@@ -4,7 +4,7 @@ description: We'll see how to handle errors in JavaScript using the try/catch/fi
 slug: javascript-try-catch-finally
 authors: abdullah_numan
 tags: [javascript, error-handling]
-image: /img/blog/2022-11-22-js-try-catch/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-22-js-try-catch/social.png
 hide_table_of_contents: false
 ---
 

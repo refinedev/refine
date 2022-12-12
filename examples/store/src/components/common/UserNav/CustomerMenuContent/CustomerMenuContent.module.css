@@ -1,7 +1,7 @@
 .root {
   @apply inset-0 fixed;
   left: 72px;
-  z-index: 10;
+  z-index: 40;
   height: 100vh;
   min-width: 100vw;
   transition: none;

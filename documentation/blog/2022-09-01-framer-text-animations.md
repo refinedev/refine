@@ -4,21 +4,9 @@ description: Framer Motion tutorial - Create text and image animations in React 
 slug: framer-motion-react-animations
 authors: joel_ezimorah
 tags: [css, react, animation, framer-motion]
-image: /img/blog/2022-09-01-framer-text-animations/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/social.png
 hide_table_of_contents: false
 ---
-
-
-import photos1 from '@site/static/img/blog/2022-09-01-framer-text-animations/photos-1.gif';
-import photos2 from '@site/static/img/blog/2022-09-01-framer-text-animations/photos-2.gif';
-import photos3 from '@site/static/img/blog/2022-09-01-framer-text-animations/photos-3.gif';
-import photos4 from '@site/static/img/blog/2022-09-01-framer-text-animations/photos-4.gif';
-import scale1 from '@site/static/img/blog/2022-09-01-framer-text-animations/scale1.gif';
-import scale2 from '@site/static/img/blog/2022-09-01-framer-text-animations/scale2.gif';
-import social from '@site/static/img/blog/2022-09-01-framer-text-animations/social.png';
-
-
-
 
 ## Introduction
 When a tool like Framer Motion is available, why write many lines of CSS code to create an animation? Web applications look more exciting and beautiful when they are animated.
@@ -120,7 +108,7 @@ The easing shows the scale at which the text animation enters before going to it
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={scale1} alt="Scale for text" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/scale1.gif" alt="Scale for text" />
 </div>
 
 <br/>
@@ -151,7 +139,7 @@ function App() {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={scale2} alt="Scale for text" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/scale2.gif" alt="Scale for text" />
 </div>
 
 <br/>
@@ -241,7 +229,7 @@ function App() {
                                 transition={{ duration: 3 }}
                                 key={image}
                             >
-                                <img src={image} alt="image" />
+                                <img src="https://refine.ams3.cdn.digitaloceanspaces.comundefined" alt="image" />
                             </motion.div>
                         );
                     })}
@@ -268,7 +256,7 @@ This will give it a unique spinning effect, as you can see below:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={photos1} alt="Scale for photo" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/photos-1.gif" alt="Scale for photo" />
 </div>
 
 <br/>
@@ -314,7 +302,7 @@ function App() {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={photos2} alt="Scale for photo" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/photos-2.gif" alt="Scale for photo" />
 </div>
 
 <br/>
@@ -341,7 +329,7 @@ function App() {
                                 whileTap={{ scale: 2 }}
                               //highlight-end   
                             >
-                                <img src={image} alt="image" />
+                                <img src="https://refine.ams3.cdn.digitaloceanspaces.comundefined" alt="image" />
                             </motion.div>
                         );
                     })}
@@ -358,7 +346,7 @@ function App() {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={photos3} alt="Scale for photo" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/photos-3.gif" alt="Scale for photo" />
 </div>
 
 <br/>

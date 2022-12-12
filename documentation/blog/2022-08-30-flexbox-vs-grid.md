@@ -4,19 +4,19 @@ description: In this brief guide, we compare some concept of the two most popula
 slug: css-grid-vs-flexbox
 authors: muhammed_arslan
 tags: [css, html, grid, flexbox, comparison]
-image: /img/blog/2022-08-30-flex-vs-grid/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/social.png
 hide_table_of_contents: false
 ---
 
 
-import pic1 from '@site/static/img/blog/2022-08-30-flex-vs-grid/pic-1.png';
-import pic2 from '@site/static/img/blog/2022-08-30-flex-vs-grid/pic-2.png';
-import pic3 from '@site/static/img/blog/2022-08-30-flex-vs-grid/pic-3.png';
-import pic4 from '@site/static/img/blog/2022-08-30-flex-vs-grid/pic-4.png';
-import pic5 from '@site/static/img/blog/2022-08-30-flex-vs-grid/pic-5.png';
-import pic6 from '@site/static/img/blog/2022-08-30-flex-vs-grid/pic-6.png';
-import grid from '@site/static/img/blog/2022-08-30-flex-vs-grid/grid.png';
-import flex from '@site/static/img/blog/2022-08-30-flex-vs-grid/flex.png';
+
+
+
+
+
+
+
+
 
 
 ## Introduction
@@ -87,7 +87,7 @@ If you set `display: flex`, it creates a flex layout. You'll notice that you don
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={pic1} alt="Control of Child Elements" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/pic-1.png" alt="Control of Child Elements" />
 </div>
 
 <br/>
@@ -105,7 +105,7 @@ So, we need to be careful while using flexbox.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={pic2} alt="Control of Child Elements" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/pic-2.png" alt="Control of Child Elements" />
 </div>
 
 <br/>
@@ -130,7 +130,7 @@ So, we need to be careful while using flexbox.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={pic3} alt="Control of Child Elements" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/pic-3.png" alt="Control of Child Elements" />
 </div>
 
 <br/>
@@ -147,7 +147,7 @@ Nothing will happen if we change `display: flex` to `display: grid` You have to 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={pic4} alt="Control of Child Elements" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/pic-4.png" alt="Control of Child Elements" />
 </div>
 
 <br/>
@@ -258,7 +258,7 @@ If you display flex in the product meta, two columns will take width according t
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={pic5} alt="Control of Child Elements" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/pic-5.png" alt="Control of Child Elements" />
 </div>
 
 <br/>
@@ -282,7 +282,7 @@ Unlike grid, where each column will take full width, or you need to specify the 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={pic6} alt="Control of Child Elements" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/pic-6.png" alt="Control of Child Elements" />
 </div>
 
 <br/>
@@ -318,12 +318,12 @@ Use grid:
 ## Browser Support
 
 <div class="img-container">
-    <img src={grid} alt="grid" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/grid.png" alt="grid" />
 </div>
 
 <br/>
 <div class="img-container">
-    <img src={flex} alt="flex" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/flex.png" alt="flex" />
 </div>
 
 <br/>

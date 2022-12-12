@@ -8,15 +8,15 @@ image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
-import refine_welcome from '@site/static/img/blog/2021-10-4-feedback-admin-panel/refine_welcome.png';
-import header from '@site/static/img/blog/2021-10-4-feedback-admin-panel/header.png';
-import strapi_content from '@site/static/img/blog/2021-10-4-feedback-admin-panel/strapi_content.png';
-import signin from '@site/static/img/blog/2021-10-4-feedback-admin-panel/signin.png';
-import user from '@site/static/img/blog/2021-10-4-feedback-admin-panel/user.png';
-import feedback from '@site/static/img/blog/2021-10-4-feedback-admin-panel/feedback.png';
-import feedbacks from '@site/static/img/blog/2021-10-4-feedback-admin-panel/feedbacks.png';
-import feedback_overview from '@site/static/img/blog/2021-10-4-feedback-admin-panel/feedback_overview.gif';
-import widgets from '@site/static/img/blog/2021-10-4-feedback-admin-panel/widgets.gif';
+
+
+
+
+
+
+
+
+
 
 
 In this article, we will create a panel where we can manage the feedback we receive from our web application. 
@@ -49,7 +49,7 @@ Quite simply, a feedback should have a `description` text field, A `page` text f
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={strapi_content} alt="content" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/strapi_content.png" alt="content" />
 </div>
 <br />
 
@@ -108,7 +108,7 @@ npm run dev
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={refine_welcome} alt="welcome" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/refine_welcome.png" alt="welcome" />
 </div>
 <br />
 
@@ -170,7 +170,7 @@ After adding the resource, our auth provider was activated.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={signin} alt="signin" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/signin.png" alt="signin" />
 </div>
 <br />
 
@@ -182,7 +182,7 @@ Now let's create a user on the Strapi to be able to login to the application.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={user} alt="user" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/user.png" alt="user" />
 </div>
 <br />
 
@@ -194,7 +194,7 @@ We created a user and login to the application with this user.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={feedback} alt="feedback" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/feedback.png" alt="feedback" />
 </div>
 <br />
 
@@ -261,7 +261,7 @@ In the new view, there are no siders anymore and the header we have customized i
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={header} alt="header" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/header.png" alt="header" />
 </div>
 <br />
 
@@ -273,7 +273,7 @@ Now we come to the part where we can list our feedback and make changes to it. B
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={feedbacks} alt="feedbacks" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/feedbacks.png" alt="feedbacks" />
 </div>
 <br />
 
@@ -457,7 +457,7 @@ See detailed usage of useSimpleList for adding new filters, adding search entrie
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={feedback_overview} alt="feedback_overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/feedback_overview.gif" alt="feedback_overview" />
 </div>
 <br />
 
@@ -475,7 +475,7 @@ Now let's add this component to the `OfflayouArea` component and create feedback
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={widgets} alt="widgets" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/widgets.gif" alt="widgets" />
 </div>
 <br />
 

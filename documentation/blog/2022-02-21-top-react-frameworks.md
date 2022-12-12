@@ -8,12 +8,12 @@ image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
-import antd from '@site/static/img/blog/2022-02-21-top-react-frameworks/antd.png';
-import cra from '@site/static/img/blog/2022-02-21-top-react-frameworks/create-react-app.png';
-import mui from '@site/static/img/blog/2022-02-21-top-react-frameworks/material-ui.png';
-import reactBootstrap from '@site/static/img/blog/2022-02-21-top-react-frameworks/react-bootstrap.png';
-import refineAdmin from '@site/static/img/blog/2022-02-21-top-react-frameworks/refine.png';
-import refine from '@site/static/img/blog/2022-02-21-top-react-frameworks/refine-2.png';
+
+
+
+
+
+
 
 ##     Best UI Frameworks for React.js
 
@@ -56,7 +56,7 @@ npm start
 ```
 **Example**
 
-<img src={cra} alt="create-react-app" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/create-react-app.png" alt="create-react-app" />
 
 
 ### 2. Material UI <a name="mui"></a>
@@ -76,7 +76,7 @@ yarn add @mui/material @emotion/react @emotion/styled
 
 [Link](https://mui.com/getting-started/templates/dashboard/)
 
-<img src={mui} alt="material-ui" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/material-ui.png" alt="material-ui" />
 
 
 
@@ -96,7 +96,7 @@ yarn add antd
 
 [Link](https://preview.pro.ant.design/dashboard/analysis/)
 
-<img src={antd} alt="antd" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/antd.png" alt="antd" />
 
 
 ### 4. React Bootstrap <a name="react-bootstrap"></a>
@@ -111,7 +111,7 @@ npm install react-bootstrap bootstrap@5.1.3
 
 [Link](https://demos.creative-tim.com/light-bootstrap-dashboard-react/#/admin/dashboard)
 
-<img src={reactBootstrap} alt="react-bootstrap" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/react-bootstrap.png" alt="react-bootstrap" />
 
 
 ### 5. refine <a name="refine"></a>
@@ -150,13 +150,13 @@ npx superplate-cli -p refine-react tutorial
 [Link](https://example.admin.refine.dev/?current=1&pageSize=5)
 
 
-<img src={refineAdmin} alt="refine-admin" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/refine.png" alt="refine-admin" />
 
 
 [Link](https://example.refine.dev)
 
 
-<img src={refine} alt="refine" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/refine-2.png" alt="refine" />
 
 
 

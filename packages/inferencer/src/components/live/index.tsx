@@ -1,7 +1,7 @@
 import React from "react";
 import * as RefineCore from "@pankod/refine-core";
 
-import { LivePreview, LiveProvider, ContextProps } from "react-live";
+import { LivePreview, LiveProvider, ContextProps } from "@aliemir/react-live";
 
 import { replaceImports, replaceExports } from "@/utilities";
 import { AdditionalScopeType, LiveComponentProps } from "@/types";

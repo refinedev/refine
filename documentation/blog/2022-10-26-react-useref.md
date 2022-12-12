@@ -4,12 +4,12 @@ description: We will explain the differences between useRef and React ref
 slug: react-useref-hook-and-ref
 authors: joel_adewole
 tags: [react, react-ref, useRef]
-image: /img/blog/2022-10-26-react-useref/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-26-react-useref/social.png
 hide_table_of_contents: false
 ---
 
 
-import useRef from '@site/static/img/blog/2022-10-26-react-useref/useref.gif';
+
 
 
 ## Introduction
@@ -177,7 +177,7 @@ Now let’s see the output:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={useRef}  alt="useRef" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-26-react-useref/useref.gif"  alt="useRef" />
 
 </div>
 

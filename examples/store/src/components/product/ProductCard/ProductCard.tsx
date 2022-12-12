@@ -1,6 +1,6 @@
 import cn from "clsx";
 import Link from "next/link";
-import Image, { ImageProps } from "next/image";
+import Image, { ImageProps } from "next/legacy/image";
 import { Product } from "@medusajs/medusa";
 
 import { currencySymbolFromCode } from "@components/product/helpers";
@@ -14,7 +14,7 @@ interface ProductCardProps {
     noNameTag?: boolean;
     imgProps?: Omit<
         ImageProps,
-        "src" | "layout" | "placeholder" | "blurDataURL"
+        "src" | "layout" | "placeholder" | "blurDataURL" | "alt"
     >;
     variant?: "default" | "slim" | "simple";
 }

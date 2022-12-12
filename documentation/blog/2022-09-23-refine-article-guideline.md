@@ -4,7 +4,7 @@ description: A guideline for writing articles
 slug: article-guideline
 authors: necati
 tags: [technical-articles]
-image: /img/blog/2022-09-23-refine-article-guideline/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-23-refine-article-guideline/social.png
 hide_table_of_contents: false
 ---
 
@@ -206,7 +206,7 @@ Add your image inside to like in the following code block in your markdown draft
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={your image source} alt="alt name related to image name" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.comundefined" alt="alt name related to image name" />
 </div>
 ```
 

@@ -8,10 +8,9 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
-    toSingular,
     dotAccessor,
     noOp,
+    getVariableName,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -40,8 +39,11 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
-    renderer: ({ resource, fields }) => {
-        const COMPONENT_NAME = componentName(resource.name, "list");
+    renderer: ({ resource, fields, isCustomPage }) => {
+        const COMPONENT_NAME = componentName(
+            resource.label ?? resource.name,
+            "list",
+        );
         const recordName = "tableData?.data";
         const imports: Array<[element: string, module: string]> = [
             ["IResourceComponentsProps", "@pankod/refine-core"],
@@ -88,7 +90,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                     }
 
                     return `
-                    const { data: ${toPlural(field.resource.name)}Data } =
+                    const { data: ${getVariableName(field.key, "Data")} } =
                     useMany({
                         resource: "${field.resource.name}",
                         ids: ${idsString},
@@ -105,7 +107,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
         const relationVariableNames = relationFields
             ?.map((field) => {
                 if (field && field.resource) {
-                    return `${toPlural(field.resource.name)}Data`;
+                    return getVariableName(field.key, "Data");
                 }
                 return undefined;
             })
@@ -113,9 +115,10 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
 
         const renderRelationFields = (field: InferField) => {
             if (field.relation && field.resource) {
-                const variableName = `${toPlural(
-                    field.resource.name,
-                )}Data?.data`;
+                const variableName = `${getVariableName(
+                    field.key,
+                    "Data",
+                )}?.data`;
 
                 if (Array.isArray(field.accessor)) {
                     // not handled - not possible case
@@ -146,17 +149,19 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
 
                     cell = `cell: function render({ getValue, table }) {
                         const meta = table.options.meta as {
-                            ${toPlural(
-                                field.resource.name,
-                            )}Data: GetManyResponse;
+                            ${getVariableName(
+                                field.key,
+                                "Data",
+                            )}: GetManyResponse;
                         };
 
-                        const ${toPlural(
-                            field.resource.name,
+                        const ${getVariableName(
+                            field.key,
                         )} = getValue<any[]>()?.map((item) => {
-                            return meta.${toPlural(
-                                field.resource.name,
-                            )}Data?.data?.find(
+                            return meta.${getVariableName(
+                                field.key,
+                                "Data",
+                            )}?.data?.find(
                                 (resourceItems) => resourceItems.id === ${accessor(
                                     "item",
                                     undefined,
@@ -167,8 +172,8 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
 
                         return (
                             <Group spacing="xs">
-                                {${toPlural(
-                                    field.resource.name,
+                                {${getVariableName(
+                                    field.key,
                                 )}?.map((item, index) => (
                                     <TagField key={index} value={${val}} />
                                 ))}
@@ -180,19 +185,20 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                     if (field?.relationInfer) {
                         cell = `cell: function render({ getValue, table }) {
                             const meta = table.options.meta as {
-                                ${toPlural(
-                                    field.resource.name,
-                                )}Data: GetManyResponse;
+                                ${getVariableName(
+                                    field.key,
+                                    "Data",
+                                )}: GetManyResponse;
                             };
 
-                            const ${toSingular(
-                                field.resource.name,
+                            const ${getVariableName(
+                                field.key,
                             )} = meta.${variableName}?.find(
                                 (item) => item.id === getValue<any>(),
                             );
 
                             return ${accessor(
-                                toSingular(field.resource.name),
+                                getVariableName(field.key),
                                 undefined,
                                 field?.relationInfer?.accessor,
                             )} ?? "Loading...";
@@ -719,6 +725,15 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                 },
             } = useTable({
                 columns,
+                ${
+                    isCustomPage
+                        ? `
+                refineCoreProps: {
+                    resource: "${resource.name}",
+                }
+                `
+                        : ""
+                }
             });
 
             ${relationHooksCode}

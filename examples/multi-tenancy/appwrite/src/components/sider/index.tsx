@@ -4,8 +4,11 @@ import {
     ITreeMenu,
     CanAccess,
     useRouterContext,
+    useLogout,
+    useIsExistAuthentication,
+    useMenu,
 } from "@pankod/refine-core";
-import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
+import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 import { StoreSelect } from "components/select";
@@ -17,6 +20,8 @@ export const CustomSider: React.FC = () => {
     const { SubMenu } = Menu;
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
+    const { mutate: mutateLogout } = useLogout();
+    const isExistAuthentication = useIsExistAuthentication();
 
     const isMobile =
         typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
@@ -66,6 +71,16 @@ export const CustomSider: React.FC = () => {
         });
     };
 
+    const logout = isExistAuthentication && (
+        <Menu.Item
+            key="logout"
+            onClick={() => mutateLogout()}
+            icon={<Icons.LogoutOutlined />}
+        >
+            Logout
+        </Menu.Item>
+    );
+
     return (
         <AntdLayout.Sider
             collapsible
@@ -89,6 +104,7 @@ export const CustomSider: React.FC = () => {
                     <StoreSelect />
                 </Menu.Item>
                 {renderTreeView(menuItems, selectedKey)}
+                {logout}
             </Menu>
         </AntdLayout.Sider>
     );

@@ -4,26 +4,26 @@ description: Easy way to creating dynamic forms in React CRUD apps with Ant Desi
 slug: react-crud-app-with-dynamic-form-ant-design
 authors: david_omotayo
 tags: [react, refine, form-validation, dynamic-form, ant-design]
-image: /img/blog/2022-11-17-antd-dynamic-form/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/social.png
 hide_table_of_contents: false
 ---
 
-import cli from '@site/static/img/blog/2022-11-17-antd-dynamic-form/dynamic-form-cli.png';
-import create from '@site/static/img/blog/2022-11-17-antd-dynamic-form/dynamic-form-create.png';
-import form from '@site/static/img/blog/2022-11-17-antd-dynamic-form/dynamic-form-1.gif';
-import action2 from '@site/static/img/blog/2022-11-17-antd-dynamic-form/dynamic-form-actions-2.gif';
-import action from '@site/static/img/blog/2022-11-17-antd-dynamic-form/dynamic-form-actions.gif';
-import dashboard from '@site/static/img/blog/2022-11-17-antd-dynamic-form/dynamic-form-dashboard.png';
-import edit2 from '@site/static/img/blog/2022-11-17-antd-dynamic-form/dynamic-form-edit-page-2.gif';
-import edit from '@site/static/img/blog/2022-11-17-antd-dynamic-form/dynamic-form-edit-page.gif';
-import folder from '@site/static/img/blog/2022-11-17-antd-dynamic-form/dynamic-form-folder.png';
-import icon from '@site/static/img/blog/2022-11-17-antd-dynamic-form/dynamic-form-icon.png';
-import icon2 from '@site/static/img/blog/2022-11-17-antd-dynamic-form/dynamic-form-icon-2.gif';
-import items from '@site/static/img/blog/2022-11-17-antd-dynamic-form/dynamic-form-items.png';
-import items2 from '@site/static/img/blog/2022-11-17-antd-dynamic-form/dynamic-form-items-2.png';
-import list from '@site/static/img/blog/2022-11-17-antd-dynamic-form/dynamic-form-list-page.gif';
-import validation from '@site/static/img/blog/2022-11-17-antd-dynamic-form/dynamic-form-validation.gif';
-import validation2 from '@site/static/img/blog/2022-11-17-antd-dynamic-form/dynamic-form-validation-2.gif';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Introduction
 
@@ -72,7 +72,7 @@ For context, here's an example of the final CRUD app product of the dynamic form
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={form}  alt="dynamic form antd" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-1.gif"  alt="dynamic form antd" />
 
 </div>
 
@@ -117,7 +117,7 @@ Select the following options to proceed:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={cli}  alt="dynamic form antd" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-cli.png"  alt="dynamic form antd" />
 
 </div>
 
@@ -138,7 +138,7 @@ After running the command, the development server will automatically preview our
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={dashboard}  alt="dynamic form antd" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-dashboard.png"  alt="dynamic form antd" />
 
 </div>
 
@@ -159,7 +159,7 @@ To begin with, create a `pages`  folder inside the `src` folder and add a `PostC
 <br />
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src={folder}  alt="dynamic form antd" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-folder.png"  alt="dynamic form antd" />
 </div>
 
 
@@ -294,7 +294,7 @@ That's it for the list page, save your progress and go back to the browser. You 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={list}  alt="dynamic form antd" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-list-page.gif"  alt="dynamic form antd" />
 
 </div>
 
@@ -360,7 +360,7 @@ If you save your progress at this point and go back to the browser, you'll notic
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={create}  alt="dynamic form antd" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-create.png"  alt="dynamic form antd" />
 
 </div>
 
@@ -408,7 +408,7 @@ We also gave the `<Form>` component a `layout` prop with a `vertical` value. Thi
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={items}  alt="dynamic form antd" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-items.png"  alt="dynamic form antd" />
 
 </div>
 
@@ -434,7 +434,7 @@ We can also add a basic validation to both fields by passing an array of objects
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={items2}  alt="dynamic form antd" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-items-2.png"  alt="dynamic form antd" />
 
 </div>
 
@@ -549,7 +549,7 @@ Now, the `Add a skill` button is functional. If you save your progress and test 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={action}  alt="dynamic form antd" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-actions.gif"  alt="dynamic form antd" />
 
 </div>
 
@@ -623,7 +623,7 @@ Unlike the former, we're passing the field name as an argument to the `remove()`
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={action2}  alt="dynamic form antd" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-actions-2.gif"  alt="dynamic form antd" />
 
 </div>
 
@@ -693,7 +693,7 @@ To place the icon on the same line with the Input field, replace the `div` wrapp
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={icon}  alt="dynamic form antd" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-icon.png"  alt="dynamic form antd" />
 
 </div>
 
@@ -719,7 +719,7 @@ Using the same process, we can also add icons to the  `Add a skill` button.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={icon2}  alt="dynamic form antd" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-icon-2.gif"  alt="dynamic form antd" />
 
 </div>
 
@@ -873,7 +873,7 @@ All we need to do is add a `hasFeedback` prop to each `<Form.item>` like so:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={validation}  alt="dynamic form antd" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-validation.gif"  alt="dynamic form antd" />
 
 </div>
 
@@ -894,7 +894,7 @@ Now, our form is ready to validate input values and perform `POST` requests to o
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={validation2}  alt="dynamic form antd" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-validation-2.gif"  alt="dynamic form antd" />
 
 </div>
 
@@ -969,7 +969,7 @@ In the example above, we're using the `render` prop to choose the appropriate re
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={edit}  alt="dynamic form antd" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-edit-page.gif"  alt="dynamic form antd" />
 
 </div>
 
@@ -1119,7 +1119,7 @@ This is a duplicate of the form component we created inside the `PostCreate` pag
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={edit2}  alt="dynamic form antd" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-edit-page-2.gif"  alt="dynamic form antd" />
 
 </div>
 

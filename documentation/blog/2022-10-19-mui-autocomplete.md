@@ -4,21 +4,21 @@ description: We'll discover the Material UI (MUI) AutoComplete component with ex
 slug: material-ui-autocomplete-component
 authors: doro_onome
 tags: [material-ui, react, mui, mui-autocomplete,]
-image: /img/blog/2022-10-19-mui-autocomplete/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/social.png
 hide_table_of_contents: false
 ---
 
-import async from '@site/static/img/blog/2022-10-19-mui-autocomplete/async.gif';
-import checkbox from '@site/static/img/blog/2022-10-19-mui-autocomplete/checkbox.gif';
-import fixedoptions from '@site/static/img/blog/2022-10-19-mui-autocomplete/fixedoptions.gif';
-import freeSolo from '@site/static/img/blog/2022-10-19-mui-autocomplete/free-solo.gif';
-import groupby from '@site/static/img/blog/2022-10-19-mui-autocomplete/groupby.gif';
-import google from '@site/static/img/blog/2022-10-19-mui-autocomplete/google.gif';
-import image1 from '@site/static/img/blog/2022-10-19-mui-autocomplete/image1.png';
-import multiplevalues from '@site/static/img/blog/2022-10-19-mui-autocomplete/multiplevalues.gif';
-import renderInput from '@site/static/img/blog/2022-10-19-mui-autocomplete/renderInput.gif';
-import statemanagement from '@site/static/img/blog/2022-10-19-mui-autocomplete/state-management.gif';
-import useAutoComplete from '@site/static/img/blog/2022-10-19-mui-autocomplete/useAutoComplete.gif';
+
+
+
+
+
+
+
+
+
+
+
 
 
  
@@ -107,7 +107,7 @@ The code above showcases an input text field that displays 5 songs as predefined
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={image1}  alt="MUI useAutoComplete" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/image1.png"  alt="MUI useAutoComplete" />
 </div>
 
 ## MUI Autocomplete props
@@ -150,7 +150,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src={renderInput}  alt="MUI useAutoComplete renderInput" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/renderInput.gif"  alt="MUI useAutoComplete renderInput" />
 </div>
 
 
@@ -239,7 +239,7 @@ export default function FreeSolo() {
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src={freeSolo}  alt="MUI useAutoComplete freeSolo" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/free-solo.gif"  alt="MUI useAutoComplete freeSolo" />
 </div>
 
 
@@ -286,7 +286,7 @@ The code above illustrates the use of the `groupBy` prop in the `<Autocomplete/>
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src={groupby}  alt="MUI useAutoComplete groupby" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/groupby.gif"  alt="MUI useAutoComplete groupby" />
 </div>
 
 
@@ -353,7 +353,7 @@ export default function ManageableStates() {
 The code showcases how the values of the `AutoComplete` component can be controlled and altered in state.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={statemanagement}  alt="MUI useAutoComplete statemanagement" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/state-management.gif"  alt="MUI useAutoComplete statemanagement" />
 </div>
 
 
@@ -456,7 +456,7 @@ The code above showcases a simple use case for the `useAutocomplete` hook. It he
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src={useAutoComplete}  alt="MUI useAutoComplete" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/useAutoComplete.gif"  alt="MUI useAutoComplete" />
 </div>
 
 
@@ -566,7 +566,7 @@ The code above showcases an asynchronous DOM display of the MUI Autocomplete com
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src={async}  alt="MUI useAutoComplete async" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/async.gif"  alt="MUI useAutoComplete async" />
 </div>
 
 ### Multiple Values
@@ -613,7 +613,7 @@ export default function Tags() {
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src={multiplevalues}  alt="MUI useAutoComplete multiplevalues" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/multiplevalues.gif"  alt="MUI useAutoComplete multiplevalues" />
 </div>
 
 
@@ -684,7 +684,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", }}  src={fixedoptions}  alt="MUI useAutoComplete fixedoptions" />
+   <img style={{alignSelf:"center", }}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/fixedoptions.gif"  alt="MUI useAutoComplete fixedoptions" />
 </div>
 
 
@@ -741,7 +741,7 @@ export default function CheckboxesTags() {
 }
 ```
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={checkbox}  alt="MUI useAutoComplete checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/checkbox.gif"  alt="MUI useAutoComplete checkbox" />
 </div>
 
 
@@ -757,8 +757,8 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import AppsIcon from '@mui/icons-material/Apps';
-import googleImage from './Images/gmail-image.jpg';
-import googleLogo from './Images/google-logo.png';
+
+
 
 
 // Top 5 Nigerian songs on Apple Music 
@@ -788,12 +788,12 @@ const Home = () => {
         <p>Images</p>
         <AppsIcon />
         <div>
-          <img src={googleImage} />
+          <img src="https://refine.ams3.cdn.digitaloceanspaces.comage from " />
         </div>
       </nav>
 
       <div id='logo-div'>
-        <img src={googleLogo} />
+        <img src="https://refine.ams3.cdn.digitaloceanspaces.comgo from " />
       </div>
 
       <div id='autocomplete-div'>
@@ -844,7 +844,7 @@ export default Home
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={google}  alt="MUI useAutoComplete google" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/google.gif"  alt="MUI useAutoComplete google" />
 </div>
 
 <br/>

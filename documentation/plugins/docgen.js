@@ -59,6 +59,8 @@ const excludedFilePatterns = [
     ".spec.",
 ];
 
+const excludedValueDeclarationPatterns = ["node_modules/antd/lib/list/"];
+
 const excludePropPatterns = [/^__.*/];
 
 const excludedProps = [
@@ -224,6 +226,31 @@ const declarationFilter = (declaration) => {
     );
 };
 
+const valueDeclarationFilter = (tsDeclaration) => {
+    // excludedValueDeclarationPatterns includes fileNames of source files to be ignored (partially)
+    const sourceFileName = _optionalChain([
+        tsDeclaration,
+        "optionalAccess",
+        (_6) => _6.getSourceFile,
+        "call",
+        (_7) => _7(),
+        "access",
+        (_8) => _8.fileName,
+    ]);
+    // if sourceFileName includes any of the excludedValueDeclarationPatterns then ignore it
+    const isIgnored = excludedValueDeclarationPatterns.some((pattern) =>
+        _optionalChain([
+            sourceFileName,
+            "optionalAccess",
+            (_9) => _9.includes,
+            "call",
+            (_10) => _10(pattern),
+        ]),
+    );
+
+    return !isIgnored;
+};
+
 const createParser = (configPath) => {
     const docgenParser = _reactdocgentypescript.withCustomConfig.call(
         void 0,
@@ -233,9 +260,12 @@ const createParser = (configPath) => {
             shouldExtractLiteralValuesFromEnum: true,
             shouldRemoveUndefinedFromOptional: true,
             shouldIncludePropTagMap: true,
-
             componentNameResolver: (exp, source) => {
-                return getComponentName(exp.getName(), source.fileName);
+                const name = getComponentName(exp.getName(), source.fileName);
+                if (valueDeclarationFilter(exp.valueDeclaration)) {
+                    return name;
+                }
+                return `IGNORED_${name}`;
             },
             propFilter: (prop) => {
                 const isExcluded =
@@ -406,11 +436,11 @@ function plugin() {
                             _optionalChain([
                                 config,
                                 "access",
-                                (_6) => _6.resolve,
+                                (_11) => _11.resolve,
                                 "optionalAccess",
-                                (_7) => _7.alias,
+                                (_12) => _12.alias,
                                 "optionalAccess",
-                                (_8) => _8["@generated"],
+                                (_13) => _13["@generated"],
                             ]),
                             "docusaurus-plugin-refine-docgen",
                             "default",

@@ -3,6 +3,7 @@ import { useResource } from "@pankod/refine-core";
 
 import {
     CreateInferencer,
+    InferencerComponentProps,
     InferencerResultComponent,
     InferField,
 } from "@/types";
@@ -52,16 +53,26 @@ export const createInferencer: CreateInferencer = ({
         ...fieldTransformers,
     ]);
 
-    const Inferencer = ({ resourceName }: { resourceName?: string }) => {
+    const Inferencer = ({
+        resourceName,
+        fieldTransformer,
+        id,
+    }: {
+        resourceName?: string;
+        fieldTransformer?: InferencerComponentProps["fieldTransformer"];
+        id?: string | number;
+    }) => {
         const { resource, resources } = useResource({
             resourceNameOrRouteName: resourceName,
         });
+
+        const { resource: resourceFromURL } = useResource();
 
         const {
             data: record,
             loading: recordLoading,
             initial: isInitialLoad,
-        } = useInferFetch(type, resourceName ?? resource?.name);
+        } = useInferFetch(type, resourceName ?? resource?.name, id);
 
         const rawResults: InferField[] = React.useMemo(() => {
             if (record) {
@@ -75,17 +86,27 @@ export const createInferencer: CreateInferencer = ({
                     })
                     .filter(Boolean);
 
-                return transform(
+                const transformed = transform(
                     inferred as InferField[],
                     resources,
                     resource,
                     record,
                     infer,
                 );
+
+                const customTransformedFields = fieldTransformer
+                    ? transformed.flatMap((field) => {
+                          const result = fieldTransformer(field);
+
+                          return result ? [result] : [];
+                      })
+                    : transformed;
+
+                return customTransformedFields;
             }
 
             return [];
-        }, [record, resources, resource]);
+        }, [record, resources, resource, fieldTransformer]);
 
         const {
             fields: results,
@@ -104,6 +125,8 @@ export const createInferencer: CreateInferencer = ({
                     resources,
                     fields: results,
                     infer,
+                    isCustomPage: resource.name !== resourceFromURL.name,
+                    id,
                 });
             }
             return "";
@@ -122,7 +145,10 @@ export const createInferencer: CreateInferencer = ({
                             }
                             code={prepareLiveCode(
                                 code,
-                                componentName(resource.name, type),
+                                componentName(
+                                    resource.label ?? resource.name,
+                                    type,
+                                ),
                             )}
                             errorComponent={ErrorComponent}
                             additionalScope={additionalScope}
@@ -142,11 +168,15 @@ export const createInferencer: CreateInferencer = ({
     const InferencerComponent: InferencerResultComponent = ({
         name,
         resource,
+        fieldTransformer,
+        id,
     }) => {
         return (
             <Inferencer
+                fieldTransformer={fieldTransformer}
                 resourceName={resource ?? name}
                 key={resource ?? name}
+                id={id}
             />
         );
     };

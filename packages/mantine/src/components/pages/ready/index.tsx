@@ -11,8 +11,6 @@ import {
     Anchor,
 } from "@mantine/core";
 
-import logo from "../../../assets/images/refine.svg";
-
 export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
     return (
         <BackgroundImage
@@ -28,7 +26,10 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
             px="sm"
             src="https://refine.ams3.cdn.digitaloceanspaces.com/login-background/background.png"
         >
-            <img src={logo} alt="Refine Logo" />
+            <img
+                src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine.svg"
+                alt="Refine Logo"
+            />
             <Space h={24} />
             <Title align="center" sx={{ color: "white", fontSize: "3rem" }}>
                 Welcome on board

@@ -157,7 +157,7 @@ const { selectProps: categorySelectProps } = useSelect<ICategory>({
 </Table>;
 ```
 
-:::important
+:::caution
 If [syncWithLocation](/api-reference/core/components/refine-config.md#syncwithlocation) is enabled, on page refresh filter values will be type of `string` since they will be parsed from URL. This might produce some incompatibility if data for filter input comes from an API and it's not type of `string`.  
 
 

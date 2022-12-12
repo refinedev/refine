@@ -1,8 +1,10 @@
-export { RouterProvider as default } from "./routerProvider";
+import routerProvider, {
+    checkAuthentication,
+    handleRefineParams,
+    NextRouteComponent,
+    Link,
+} from "./pages";
 
-export { RefineLink as Link } from "./refineLink";
+export default routerProvider;
 
-export * from "./nextRouteComponent";
-export * from "./checkAuthentication";
-
-export { handleRefineParams } from "./useParams";
+export { checkAuthentication, handleRefineParams, NextRouteComponent, Link };

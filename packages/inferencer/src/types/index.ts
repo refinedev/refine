@@ -30,6 +30,13 @@ export type InferField = {
     resource?: IResourceItem;
     priority?: number;
     relationInfer?: InferField | null | false;
+    canRelation?: boolean;
+};
+
+export type ResourceInferenceAttempt = {
+    status: "success" | "error";
+    resource: string;
+    field: string;
 };
 
 export type FieldInferencer = (
@@ -82,6 +89,8 @@ export type RendererContext = {
     resources: IResourceItem[];
     fields: Array<InferField | null>;
     infer: FieldInferencer;
+    isCustomPage: boolean;
+    id?: string | number;
 };
 
 export type CreateInferencerConfig = {
@@ -129,12 +138,22 @@ export type InferencerComponentProps = {
      */
     resource?: string;
     /**
-     * Data accessor string to get the data from the record
-     * @example your data provider returns { data: { item: { id: 1, name: "John" } } } from `getOne` then you should pass "item" as the `single` property.
-     * @example your data provider returns { data: { items: [{ id: 1, name: "John" }] } } from `getMany` then you should pass "items" as the `many` property.
-     * @example your data provider returns { data: { items: [{ id: 1, name: "John" }], total: 1 } } from `getList` then you should pass "items" as the `many` property.
+     * The action to infer page
+     * @default "list"
+     * */
+    action?: "list" | "show" | "edit" | "create";
+    /**
+     * The record to infer from, use this when `action` is `show` or `edit`
+     * */
+    id?: string | number;
+    /**
+     * Field transformer function, you can use this to transform the inferred field or ignore it by returning `undefined`, `null` or `false`
+     * Example: you can remove a field you want to hide by returning `undefined`, `null` or `false`
+     * Example: you can change the `accessor` of an element by returning a new field with the new `accessor` to update the render
      */
-    // dataAccessors?: Partial<Record<"single" | "list" | "many", string>>;
+    fieldTransformer?: (
+        field: InferField,
+    ) => InferField | undefined | null | false;
 };
 
 export type InferencerResultComponent = React.FC<InferencerComponentProps>;

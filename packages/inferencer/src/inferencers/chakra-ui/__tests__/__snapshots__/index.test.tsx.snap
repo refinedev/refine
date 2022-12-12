@@ -1,0 +1,2132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChakraUIInferencer should match the snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="css-1kekcgk"
+    >
+      <div
+        class="css-15izviv"
+      >
+        <div
+          class="css-gqssyb"
+        >
+          <nav
+            aria-label="breadcrumb"
+            class="chakra-breadcrumb css-h82jag"
+          >
+            <ol
+              class="chakra-breadcrumb__list css-70qvj9"
+            />
+          </nav>
+          <h3
+            class="chakra-heading css-0"
+          />
+        </div>
+        <div
+          class="css-i08qke"
+        />
+      </div>
+      <div
+        class="css-0"
+      >
+        <div
+          class="chakra-table__container css-1opj2lu"
+        >
+          <table
+            class="chakra-table css-0"
+          >
+            <thead
+              class="css-0"
+            >
+              <tr
+                class="css-0"
+              >
+                <th
+                  class="css-0"
+                >
+                  Id
+                </th>
+                <th
+                  class="css-0"
+                >
+                  Title
+                </th>
+                <th
+                  class="css-0"
+                >
+                  Slug
+                </th>
+                <th
+                  class="css-0"
+                >
+                  Content
+                </th>
+                <th
+                  class="css-0"
+                >
+                  Hit
+                </th>
+                <th
+                  class="css-0"
+                >
+                  Category
+                </th>
+                <th
+                  class="css-0"
+                >
+                  User
+                </th>
+                <th
+                  class="css-0"
+                >
+                  Status
+                </th>
+                <th
+                  class="css-0"
+                >
+                  Status Color
+                </th>
+                <th
+                  class="css-0"
+                >
+                  Created At
+                </th>
+                <th
+                  class="css-0"
+                >
+                  Published At
+                </th>
+                <th
+                  class="css-0"
+                >
+                  Image
+                </th>
+                <th
+                  class="css-0"
+                >
+                  Tags
+                </th>
+                <th
+                  class="css-0"
+                >
+                  Language
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              class="css-0"
+            >
+              <tr
+                class="css-0"
+              >
+                <td
+                  class="css-0"
+                >
+                  11
+                </td>
+                <td
+                  class="css-0"
+                >
+                  Nobis exercitationem officia quia est.
+                </td>
+                <td
+                  class="css-0"
+                >
+                  provident-culpa-facere
+                </td>
+                <td
+                  class="css-0"
+                >
+                  <p>
+                    Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur vol...
+                  </p>
+                </td>
+                <td
+                  class="css-0"
+                >
+                  920557
+                </td>
+                <td
+                  class="css-0"
+                >
+                  Numquam Saepe Illo
+                </td>
+                <td
+                  class="css-0"
+                >
+                  Eriberto Leannon
+                </td>
+                <td
+                  class="css-0"
+                >
+                  draft
+                </td>
+                <td
+                  class="css-0"
+                >
+                  orange
+                </td>
+                <td
+                  class="css-0"
+                >
+                  <p
+                    class="chakra-text css-0"
+                  >
+                    04/02/2022
+                  </p>
+                </td>
+                <td
+                  class="css-0"
+                >
+                  <p
+                    class="chakra-text css-0"
+                  >
+                    08/10/2021
+                  </p>
+                </td>
+                <td
+                  class="css-0"
+                >
+                  <div
+                    class="chakra-stack css-84zodg"
+                  >
+                    <img
+                      class="chakra-image css-1cooswl"
+                      src="http://loremflickr.com/640/480/abstract"
+                    />
+                  </div>
+                </td>
+                <td
+                  class="css-0"
+                >
+                  <div
+                    class="chakra-stack css-84zodg"
+                  >
+                    <span
+                      class="css-1qm7lvz"
+                    >
+                      Nobis Et Ut
+                    </span>
+                  </div>
+                </td>
+                <td
+                  class="css-0"
+                >
+                  2
+                </td>
+              </tr>
+              <tr
+                class="css-0"
+              >
+                <td
+                  class="css-0"
+                >
+                  21
+                </td>
+                <td
+                  class="css-0"
+                >
+                  Eaque in nesciunt.
+                </td>
+                <td
+                  class="css-0"
+                >
+                  quod-quos-commodi
+                </td>
+                <td
+                  class="css-0"
+                >
+                  <p>
+                    Ut velit quo. Sed beatae et sit ea. Perferendis pariatur doloremque deleniti sap...
+                  </p>
+                </td>
+                <td
+                  class="css-0"
+                >
+                  175149
+                </td>
+                <td
+                  class="css-0"
+                >
+                  Sit Natus Voluptatibus
+                </td>
+                <td
+                  class="css-0"
+                >
+                  Tressie Reichel
+                </td>
+                <td
+                  class="css-0"
+                >
+                  published
+                </td>
+                <td
+                  class="css-0"
+                >
+                  lime
+                </td>
+                <td
+                  class="css-0"
+                >
+                  <p
+                    class="chakra-text css-0"
+                  >
+                    09/24/2022
+                  </p>
+                </td>
+                <td
+                  class="css-0"
+                >
+                  <p
+                    class="chakra-text css-0"
+                  >
+                    09/01/2021
+                  </p>
+                </td>
+                <td
+                  class="css-0"
+                >
+                  <div
+                    class="chakra-stack css-84zodg"
+                  >
+                    <img
+                      class="chakra-image css-1cooswl"
+                      src="http://loremflickr.com/640/480/abstract"
+                    />
+                  </div>
+                </td>
+                <td
+                  class="css-0"
+                >
+                  <div
+                    class="chakra-stack css-84zodg"
+                  >
+                    <span
+                      class="css-1qm7lvz"
+                    >
+                      Error Eos Et
+                    </span>
+                    <span
+                      class="css-1qm7lvz"
+                    >
+                      Nobis Et Ut
+                    </span>
+                  </div>
+                </td>
+                <td
+                  class="css-0"
+                >
+                  2
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="css-1bvc4cc"
+        >
+          <div
+            class="chakra-stack css-142j3rd"
+          >
+            <button
+              class="chakra-button css-4xx2wk"
+              type="button"
+            >
+              1
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-1x21b2v"
+  >
+    <div
+      class="chakra-stack css-1qwdsol"
+    >
+      <button
+        class="chakra-button css-4xx2wk"
+        type="button"
+      >
+        <span
+          class="chakra-button__icon css-1wh2kri"
+        >
+          <svg
+            aria-hidden="true"
+            class="icon icon-tabler icon-tabler-code"
+            fill="none"
+            focusable="false"
+            height="18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+              stroke="none"
+            />
+            <polyline
+              points="7 8 3 12 7 16"
+            />
+            <polyline
+              points="17 8 21 12 17 16"
+            />
+            <line
+              x1="14"
+              x2="10"
+              y1="4"
+              y2="20"
+            />
+          </svg>
+        </span>
+        Show Code
+      </button>
+      <a
+        class="chakra-button css-4xx2wk"
+        href="https://github.com/refinedev/refine/discussions/3046"
+        target="_blank"
+      >
+        <span
+          class="chakra-button__icon css-1wh2kri"
+        >
+          <svg
+            aria-hidden="true"
+            class="icon icon-tabler icon-tabler-message-circle"
+            fill="none"
+            focusable="false"
+            height="18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+              stroke="none"
+            />
+            <path
+              d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1"
+            />
+            <line
+              x1="12"
+              x2="12"
+              y1="12"
+              y2="12.01"
+            />
+            <line
+              x1="8"
+              x2="8"
+              y1="12"
+              y2="12.01"
+            />
+            <line
+              x1="16"
+              x2="16"
+              y1="12"
+              y2="12.01"
+            />
+          </svg>
+        </span>
+        Give Feedback
+      </a>
+    </div>
+  </div>
+  <div
+    style="height: 50px;"
+  />
+</DocumentFragment>
+`;
+
+exports[`ChakraUIInferencer should match the snapshot 2`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="css-1mdbftt"
+    >
+      <div
+        class="css-15izviv"
+      >
+        <div
+          class="css-gqssyb"
+        >
+          <nav
+            aria-label="breadcrumb"
+            class="chakra-breadcrumb css-h82jag"
+          >
+            <ol
+              class="chakra-breadcrumb__list css-70qvj9"
+            />
+          </nav>
+          <div
+            class="chakra-stack css-84zodg"
+          >
+            <button
+              aria-label="back"
+              class="chakra-button css-p7mkev"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="icon icon-tabler icon-tabler-arrow-left"
+                fill="none"
+                focusable="false"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                  stroke="none"
+                />
+                <line
+                  x1="5"
+                  x2="19"
+                  y1="12"
+                  y2="12"
+                />
+                <line
+                  x1="5"
+                  x2="11"
+                  y1="12"
+                  y2="18"
+                />
+                <line
+                  x1="5"
+                  x2="11"
+                  y1="12"
+                  y2="6"
+                />
+              </svg>
+            </button>
+            <h3
+              class="chakra-heading css-0"
+            >
+              Create 
+            </h3>
+          </div>
+        </div>
+        <div
+          class="css-i08qke"
+        />
+      </div>
+      <div
+        class="css-0"
+      >
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:rk:"
+            id="field-:rk:-label"
+          >
+            Title
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:rk:"
+            name="title"
+            type="text"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:rl:"
+            id="field-:rl:-label"
+          >
+            Slug
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:rl:"
+            name="slug"
+            type="text"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:rm:"
+            id="field-:rm:-label"
+          >
+            Content
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:rm:"
+            name="content"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:rn:"
+            id="field-:rn:-label"
+          >
+            Hit
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:rn:"
+            name="hit"
+            type="number"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:ro:"
+            id="field-:ro:-label"
+          >
+            Category
+          </label>
+          <div
+            class="chakra-select__wrapper css-42b2qy"
+          >
+            <select
+              class="chakra-select css-1ik61og"
+              id="field-:ro:"
+              name="category.id"
+            >
+              <option
+                value=""
+              >
+                Select category
+              </option>
+              <option
+                value="16"
+              >
+                Numquam Saepe Illo
+              </option>
+              <option
+                value="7"
+              >
+                Sit Natus Voluptatibus
+              </option>
+            </select>
+            <div
+              class="chakra-select__icon-wrapper css-162mkon"
+            >
+              <svg
+                aria-hidden="true"
+                class="chakra-select__icon"
+                focusable="false"
+                role="presentation"
+                style="width: 1em; height: 1em; color: currentColor;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:rp:"
+            id="field-:rp:-label"
+          >
+            User
+          </label>
+          <div
+            class="chakra-select__wrapper css-42b2qy"
+          >
+            <select
+              class="chakra-select css-1ik61og"
+              id="field-:rp:"
+              name="user.id"
+            >
+              <option
+                value=""
+              >
+                Select user
+              </option>
+              <option
+                value="21"
+              >
+                Eriberto
+              </option>
+              <option
+                value="49"
+              >
+                Tressie
+              </option>
+            </select>
+            <div
+              class="chakra-select__icon-wrapper css-162mkon"
+            >
+              <svg
+                aria-hidden="true"
+                class="chakra-select__icon"
+                focusable="false"
+                role="presentation"
+                style="width: 1em; height: 1em; color: currentColor;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:rq:"
+            id="field-:rq:-label"
+          >
+            Status
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:rq:"
+            name="status"
+            type="text"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:rr:"
+            id="field-:rr:-label"
+          >
+            Status Color
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:rr:"
+            name="status_color"
+            type="text"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:rs:"
+            id="field-:rs:-label"
+          >
+            Created At
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:rs:"
+            name="createdAt"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:rt:"
+            id="field-:rt:-label"
+          >
+            Published At
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:rt:"
+            name="publishedAt"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:ru:"
+            id="field-:ru:-label"
+          >
+            Tags
+          </label>
+          <div
+            class="chakra-select__wrapper css-42b2qy"
+          >
+            <select
+              class="chakra-select css-1ik61og"
+              id="field-:ru:"
+              name="tags"
+            >
+              <option
+                value=""
+              >
+                Select tag
+              </option>
+              <option
+                value="5"
+              >
+                Error Eos Et
+              </option>
+              <option
+                value="9"
+              >
+                Nobis Et Ut
+              </option>
+            </select>
+            <div
+              class="chakra-select__icon-wrapper css-162mkon"
+            >
+              <svg
+                aria-hidden="true"
+                class="chakra-select__icon"
+                focusable="false"
+                role="presentation"
+                style="width: 1em; height: 1em; color: currentColor;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:rv:"
+            id="field-:rv:-label"
+          >
+            Language
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:rv:"
+            name="language"
+            type="number"
+          />
+        </div>
+      </div>
+      <div
+        class="css-e6thd7"
+      >
+        <button
+          class="chakra-button css-4xx2wk"
+          type="button"
+        >
+          <span
+            class="chakra-button__icon css-1wh2kri"
+          >
+            <svg
+              aria-hidden="true"
+              class="icon icon-tabler icon-tabler-device-floppy"
+              fill="none"
+              focusable="false"
+              height="20"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+                stroke="none"
+              />
+              <path
+                d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2"
+              />
+              <circle
+                cx="12"
+                cy="14"
+                r="2"
+              />
+              <polyline
+                points="14 4 14 8 8 8 8 4"
+              />
+            </svg>
+          </span>
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-1x21b2v"
+  >
+    <div
+      class="chakra-stack css-1qwdsol"
+    >
+      <button
+        class="chakra-button css-4xx2wk"
+        type="button"
+      >
+        <span
+          class="chakra-button__icon css-1wh2kri"
+        >
+          <svg
+            aria-hidden="true"
+            class="icon icon-tabler icon-tabler-code"
+            fill="none"
+            focusable="false"
+            height="18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+              stroke="none"
+            />
+            <polyline
+              points="7 8 3 12 7 16"
+            />
+            <polyline
+              points="17 8 21 12 17 16"
+            />
+            <line
+              x1="14"
+              x2="10"
+              y1="4"
+              y2="20"
+            />
+          </svg>
+        </span>
+        Show Code
+      </button>
+      <a
+        class="chakra-button css-4xx2wk"
+        href="https://github.com/refinedev/refine/discussions/3046"
+        target="_blank"
+      >
+        <span
+          class="chakra-button__icon css-1wh2kri"
+        >
+          <svg
+            aria-hidden="true"
+            class="icon icon-tabler icon-tabler-message-circle"
+            fill="none"
+            focusable="false"
+            height="18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+              stroke="none"
+            />
+            <path
+              d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1"
+            />
+            <line
+              x1="12"
+              x2="12"
+              y1="12"
+              y2="12.01"
+            />
+            <line
+              x1="8"
+              x2="8"
+              y1="12"
+              y2="12.01"
+            />
+            <line
+              x1="16"
+              x2="16"
+              y1="12"
+              y2="12.01"
+            />
+          </svg>
+        </span>
+        Give Feedback
+      </a>
+    </div>
+  </div>
+  <div
+    style="height: 50px;"
+  />
+</DocumentFragment>
+`;
+
+exports[`ChakraUIInferencer should match the snapshot 3`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="css-1mdbftt"
+    >
+      <div
+        class="css-15izviv"
+      >
+        <div
+          class="css-gqssyb"
+        >
+          <nav
+            aria-label="breadcrumb"
+            class="chakra-breadcrumb css-h82jag"
+          >
+            <ol
+              class="chakra-breadcrumb__list css-70qvj9"
+            />
+          </nav>
+          <div
+            class="chakra-stack css-15lgeks"
+          >
+            <button
+              aria-label="back"
+              class="chakra-button css-p7mkev"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="icon icon-tabler icon-tabler-arrow-left"
+                fill="none"
+                focusable="false"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                  stroke="none"
+                />
+                <line
+                  x1="5"
+                  x2="19"
+                  y1="12"
+                  y2="12"
+                />
+                <line
+                  x1="5"
+                  x2="11"
+                  y1="12"
+                  y2="18"
+                />
+                <line
+                  x1="5"
+                  x2="11"
+                  y1="12"
+                  y2="6"
+                />
+              </svg>
+            </button>
+            <h3
+              class="chakra-heading css-0"
+            >
+              Edit 
+            </h3>
+          </div>
+        </div>
+        <div
+          class="css-i08qke"
+        >
+          <a
+            href="/undefined"
+          >
+            <button
+              class="chakra-button css-4xx2wk"
+              title=""
+              type="button"
+            >
+              <span
+                class="chakra-button__icon css-1wh2kri"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="icon icon-tabler icon-tabler-list"
+                  fill="none"
+                  focusable="false"
+                  height="20"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                    stroke="none"
+                  />
+                  <line
+                    x1="9"
+                    x2="20"
+                    y1="6"
+                    y2="6"
+                  />
+                  <line
+                    x1="9"
+                    x2="20"
+                    y1="12"
+                    y2="12"
+                  />
+                  <line
+                    x1="9"
+                    x2="20"
+                    y1="18"
+                    y2="18"
+                  />
+                  <line
+                    x1="5"
+                    x2="5"
+                    y1="6"
+                    y2="6.01"
+                  />
+                  <line
+                    x1="5"
+                    x2="5"
+                    y1="12"
+                    y2="12.01"
+                  />
+                  <line
+                    x1="5"
+                    x2="5"
+                    y1="18"
+                    y2="18.01"
+                  />
+                </svg>
+              </span>
+            </button>
+          </a>
+          <button
+            class="chakra-button css-4xx2wk"
+            type="button"
+          >
+            <span
+              class="chakra-button__icon css-1wh2kri"
+            >
+              <svg
+                aria-hidden="true"
+                class="icon icon-tabler icon-tabler-refresh"
+                fill="none"
+                focusable="false"
+                height="20"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                  stroke="none"
+                />
+                <path
+                  d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"
+                />
+                <path
+                  d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"
+                />
+              </svg>
+            </span>
+            Refresh
+          </button>
+        </div>
+      </div>
+      <div
+        class="css-0"
+      >
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:r10:"
+            id="field-:r10:-label"
+          >
+            Id
+          </label>
+          <input
+            class="chakra-input css-0"
+            disabled=""
+            id="field-:r10:"
+            name="id"
+            type="number"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:r11:"
+            id="field-:r11:-label"
+          >
+            Title
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:r11:"
+            name="title"
+            type="text"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:r12:"
+            id="field-:r12:-label"
+          >
+            Slug
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:r12:"
+            name="slug"
+            type="text"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:r13:"
+            id="field-:r13:-label"
+          >
+            Content
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:r13:"
+            name="content"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:r14:"
+            id="field-:r14:-label"
+          >
+            Hit
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:r14:"
+            name="hit"
+            type="number"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:r15:"
+            id="field-:r15:-label"
+          >
+            Category
+          </label>
+          <div
+            class="chakra-select__wrapper css-42b2qy"
+          >
+            <select
+              class="chakra-select css-1ik61og"
+              id="field-:r15:"
+              name="category.id"
+            >
+              <option
+                value=""
+              >
+                Select category
+              </option>
+              <option
+                value="16"
+              >
+                Numquam Saepe Illo
+              </option>
+              <option
+                value="7"
+              >
+                Sit Natus Voluptatibus
+              </option>
+            </select>
+            <div
+              class="chakra-select__icon-wrapper css-162mkon"
+            >
+              <svg
+                aria-hidden="true"
+                class="chakra-select__icon"
+                focusable="false"
+                role="presentation"
+                style="width: 1em; height: 1em; color: currentColor;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:r16:"
+            id="field-:r16:-label"
+          >
+            User
+          </label>
+          <div
+            class="chakra-select__wrapper css-42b2qy"
+          >
+            <select
+              class="chakra-select css-1ik61og"
+              id="field-:r16:"
+              name="user.id"
+            >
+              <option
+                value=""
+              >
+                Select user
+              </option>
+              <option
+                value="21"
+              >
+                Eriberto
+              </option>
+              <option
+                value="49"
+              >
+                Tressie
+              </option>
+            </select>
+            <div
+              class="chakra-select__icon-wrapper css-162mkon"
+            >
+              <svg
+                aria-hidden="true"
+                class="chakra-select__icon"
+                focusable="false"
+                role="presentation"
+                style="width: 1em; height: 1em; color: currentColor;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:r17:"
+            id="field-:r17:-label"
+          >
+            Status
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:r17:"
+            name="status"
+            type="text"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:r18:"
+            id="field-:r18:-label"
+          >
+            Status Color
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:r18:"
+            name="status_color"
+            type="text"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:r19:"
+            id="field-:r19:-label"
+          >
+            Created At
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:r19:"
+            name="createdAt"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:r1a:"
+            id="field-:r1a:-label"
+          >
+            Published At
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:r1a:"
+            name="publishedAt"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:r1b:"
+            id="field-:r1b:-label"
+          >
+            Tags
+          </label>
+          <div
+            class="chakra-select__wrapper css-42b2qy"
+          >
+            <select
+              class="chakra-select css-1ik61og"
+              id="field-:r1b:"
+              name="tags"
+            >
+              <option
+                value=""
+              >
+                Select tag
+              </option>
+              <option
+                value="5"
+              >
+                Error Eos Et
+              </option>
+              <option
+                value="9"
+              >
+                Nobis Et Ut
+              </option>
+            </select>
+            <div
+              class="chakra-select__icon-wrapper css-162mkon"
+            >
+              <svg
+                aria-hidden="true"
+                class="chakra-select__icon"
+                focusable="false"
+                role="presentation"
+                style="width: 1em; height: 1em; color: currentColor;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:r1c:"
+            id="field-:r1c:-label"
+          >
+            Language
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:r1c:"
+            name="language"
+            type="number"
+          />
+        </div>
+      </div>
+      <div
+        class="css-e6thd7"
+      >
+        <button
+          class="chakra-button css-4xx2wk"
+          type="button"
+        >
+          <span
+            class="chakra-button__icon css-1wh2kri"
+          >
+            <svg
+              aria-hidden="true"
+              class="icon icon-tabler icon-tabler-device-floppy"
+              fill="none"
+              focusable="false"
+              height="20"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+                stroke="none"
+              />
+              <path
+                d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2"
+              />
+              <circle
+                cx="12"
+                cy="14"
+                r="2"
+              />
+              <polyline
+                points="14 4 14 8 8 8 8 4"
+              />
+            </svg>
+          </span>
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-1x21b2v"
+  >
+    <div
+      class="chakra-stack css-1qwdsol"
+    >
+      <button
+        class="chakra-button css-4xx2wk"
+        type="button"
+      >
+        <span
+          class="chakra-button__icon css-1wh2kri"
+        >
+          <svg
+            aria-hidden="true"
+            class="icon icon-tabler icon-tabler-code"
+            fill="none"
+            focusable="false"
+            height="18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+              stroke="none"
+            />
+            <polyline
+              points="7 8 3 12 7 16"
+            />
+            <polyline
+              points="17 8 21 12 17 16"
+            />
+            <line
+              x1="14"
+              x2="10"
+              y1="4"
+              y2="20"
+            />
+          </svg>
+        </span>
+        Show Code
+      </button>
+      <a
+        class="chakra-button css-4xx2wk"
+        href="https://github.com/refinedev/refine/discussions/3046"
+        target="_blank"
+      >
+        <span
+          class="chakra-button__icon css-1wh2kri"
+        >
+          <svg
+            aria-hidden="true"
+            class="icon icon-tabler icon-tabler-message-circle"
+            fill="none"
+            focusable="false"
+            height="18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+              stroke="none"
+            />
+            <path
+              d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1"
+            />
+            <line
+              x1="12"
+              x2="12"
+              y1="12"
+              y2="12.01"
+            />
+            <line
+              x1="8"
+              x2="8"
+              y1="12"
+              y2="12.01"
+            />
+            <line
+              x1="16"
+              x2="16"
+              y1="12"
+              y2="12.01"
+            />
+          </svg>
+        </span>
+        Give Feedback
+      </a>
+    </div>
+  </div>
+  <div
+    style="height: 50px;"
+  />
+</DocumentFragment>
+`;
+
+exports[`ChakraUIInferencer should match the snapshot 4`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="css-1mdbftt"
+    >
+      <div
+        class="css-15izviv"
+      >
+        <div
+          class="css-gqssyb"
+        >
+          <nav
+            aria-label="breadcrumb"
+            class="chakra-breadcrumb css-h82jag"
+          >
+            <ol
+              class="chakra-breadcrumb__list css-70qvj9"
+            />
+          </nav>
+          <div
+            class="chakra-stack css-84zodg"
+          >
+            <button
+              aria-label="back"
+              class="chakra-button css-p7mkev"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="icon icon-tabler icon-tabler-arrow-left"
+                fill="none"
+                focusable="false"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                  stroke="none"
+                />
+                <line
+                  x1="5"
+                  x2="19"
+                  y1="12"
+                  y2="12"
+                />
+                <line
+                  x1="5"
+                  x2="11"
+                  y1="12"
+                  y2="18"
+                />
+                <line
+                  x1="5"
+                  x2="11"
+                  y1="12"
+                  y2="6"
+                />
+              </svg>
+            </button>
+            <h3
+              class="chakra-heading css-0"
+            >
+              Show 
+            </h3>
+          </div>
+        </div>
+        <div
+          class="css-i08qke"
+        >
+          <a
+            href="/undefined"
+          >
+            <button
+              class="chakra-button css-4xx2wk"
+              title=""
+              type="button"
+            >
+              <span
+                class="chakra-button__icon css-1wh2kri"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="icon icon-tabler icon-tabler-list"
+                  fill="none"
+                  focusable="false"
+                  height="20"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                    stroke="none"
+                  />
+                  <line
+                    x1="9"
+                    x2="20"
+                    y1="6"
+                    y2="6"
+                  />
+                  <line
+                    x1="9"
+                    x2="20"
+                    y1="12"
+                    y2="12"
+                  />
+                  <line
+                    x1="9"
+                    x2="20"
+                    y1="18"
+                    y2="18"
+                  />
+                  <line
+                    x1="5"
+                    x2="5"
+                    y1="6"
+                    y2="6.01"
+                  />
+                  <line
+                    x1="5"
+                    x2="5"
+                    y1="12"
+                    y2="12.01"
+                  />
+                  <line
+                    x1="5"
+                    x2="5"
+                    y1="18"
+                    y2="18.01"
+                  />
+                </svg>
+              </span>
+            </button>
+          </a>
+          <button
+            class="chakra-button css-4xx2wk"
+            type="button"
+          >
+            <span
+              class="chakra-button__icon css-1wh2kri"
+            >
+              <svg
+                aria-hidden="true"
+                class="icon icon-tabler icon-tabler-refresh"
+                fill="none"
+                focusable="false"
+                height="20"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                  stroke="none"
+                />
+                <path
+                  d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"
+                />
+                <path
+                  d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"
+                />
+              </svg>
+            </span>
+            Refresh
+          </button>
+        </div>
+      </div>
+      <div
+        class="css-0"
+      >
+        <h5
+          class="chakra-heading css-1fhgjcy"
+        >
+          Id
+        </h5>
+        <p
+          class="chakra-text css-0"
+        >
+          11
+        </p>
+        <h5
+          class="chakra-heading css-1fhgjcy"
+        >
+          Title
+        </h5>
+        <p
+          class="chakra-text css-0"
+        >
+          Nobis exercitationem officia quia est.
+        </p>
+        <h5
+          class="chakra-heading css-1fhgjcy"
+        >
+          Slug
+        </h5>
+        <p
+          class="chakra-text css-0"
+        >
+          provident-culpa-facere
+        </p>
+        <h5
+          class="chakra-heading css-1fhgjcy"
+        >
+          Content
+        </h5>
+        <p>
+          Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur voluptatibus molestias. Est nemo aut. Fugit aliquam enim eveniet veritatis. Magni et aut. Consequatur aliquid rerum vero. Quaerat debitis enim magnam. Dolorem est delectus architecto et accusantium. Velit quia vero. Aut necessitatibus quia at consequatur soluta accusantium.
+        </p>
+        <h5
+          class="chakra-heading css-1fhgjcy"
+        >
+          Hit
+        </h5>
+        <p
+          class="chakra-text css-0"
+        >
+          920,557
+        </p>
+        <h5
+          class="chakra-heading css-1fhgjcy"
+        >
+          Category
+        </h5>
+        Numquam Saepe Illo
+        <h5
+          class="chakra-heading css-1fhgjcy"
+        >
+          User
+        </h5>
+        Eriberto Leannon
+        <h5
+          class="chakra-heading css-1fhgjcy"
+        >
+          Status
+        </h5>
+        <p
+          class="chakra-text css-0"
+        >
+          draft
+        </p>
+        <h5
+          class="chakra-heading css-1fhgjcy"
+        >
+          Status Color
+        </h5>
+        <p
+          class="chakra-text css-0"
+        >
+          orange
+        </p>
+        <h5
+          class="chakra-heading css-1fhgjcy"
+        >
+          Created At
+        </h5>
+        <p
+          class="chakra-text css-0"
+        >
+          04/02/2022
+        </p>
+        <h5
+          class="chakra-heading css-1fhgjcy"
+        >
+          Published At
+        </h5>
+        <p
+          class="chakra-text css-0"
+        >
+          08/10/2021
+        </p>
+        <h5
+          class="chakra-heading css-1fhgjcy"
+        >
+          Image
+        </h5>
+        <img
+          class="chakra-image css-tn9ygg"
+          src="http://loremflickr.com/640/480/abstract"
+        />
+        <h5
+          class="chakra-heading css-1fhgjcy"
+        >
+          Tags
+        </h5>
+        <div
+          class="chakra-stack css-he6z7n"
+        >
+          <span
+            class="css-1qm7lvz"
+          >
+            Error Eos Et
+          </span>
+          <span
+            class="css-1qm7lvz"
+          >
+            Nobis Et Ut
+          </span>
+        </div>
+        <h5
+          class="chakra-heading css-1fhgjcy"
+        >
+          Language
+        </h5>
+        <p
+          class="chakra-text css-0"
+        >
+          2
+        </p>
+      </div>
+      <div
+        class="css-e6thd7"
+      />
+    </div>
+  </div>
+  <div
+    class="css-1x21b2v"
+  >
+    <div
+      class="chakra-stack css-1qwdsol"
+    >
+      <button
+        class="chakra-button css-4xx2wk"
+        type="button"
+      >
+        <span
+          class="chakra-button__icon css-1wh2kri"
+        >
+          <svg
+            aria-hidden="true"
+            class="icon icon-tabler icon-tabler-code"
+            fill="none"
+            focusable="false"
+            height="18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+              stroke="none"
+            />
+            <polyline
+              points="7 8 3 12 7 16"
+            />
+            <polyline
+              points="17 8 21 12 17 16"
+            />
+            <line
+              x1="14"
+              x2="10"
+              y1="4"
+              y2="20"
+            />
+          </svg>
+        </span>
+        Show Code
+      </button>
+      <a
+        class="chakra-button css-4xx2wk"
+        href="https://github.com/refinedev/refine/discussions/3046"
+        target="_blank"
+      >
+        <span
+          class="chakra-button__icon css-1wh2kri"
+        >
+          <svg
+            aria-hidden="true"
+            class="icon icon-tabler icon-tabler-message-circle"
+            fill="none"
+            focusable="false"
+            height="18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+              stroke="none"
+            />
+            <path
+              d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1"
+            />
+            <line
+              x1="12"
+              x2="12"
+              y1="12"
+              y2="12.01"
+            />
+            <line
+              x1="8"
+              x2="8"
+              y1="12"
+              y2="12.01"
+            />
+            <line
+              x1="16"
+              x2="16"
+              y1="12"
+              y2="12.01"
+            />
+          </svg>
+        </span>
+        Give Feedback
+      </a>
+    </div>
+  </div>
+  <div
+    style="height: 50px;"
+  />
+</DocumentFragment>
+`;

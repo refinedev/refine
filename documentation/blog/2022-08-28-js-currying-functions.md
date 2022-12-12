@@ -4,8 +4,8 @@ description: Deep dive into variadic currying in JavaScript with examples
 slug: javascript-variadic-currying
 authors: abdullah_numan
 tags: [javascript, currying ]
-image: /img/blog/2022-08-28-js-currying-functions/social.png
-featured_image: /img/blog/2022-08-28-js-currying-functions/featured.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-28-js-currying-functions/social.png
+featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-28-js-currying-functions/featured.png
 is_featured: true
 hide_table_of_contents: false
 ---

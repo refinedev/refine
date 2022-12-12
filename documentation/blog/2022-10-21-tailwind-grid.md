@@ -4,18 +4,18 @@ description: We look at how to implement responsive layouts with CSS Grid using 
 slug: tailwind-grid
 authors: abdullah_numan
 tags: [tailwind, tailwind-grid,css]
-image: /img/blog/2022-10-21-tailwind-grid/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/social.png
 hide_table_of_contents: false
 ---
 
-import pic1 from '@site/static/img/blog/2022-10-21-tailwind-grid/tailwind-grid-1.png';
-import pic3 from '@site/static/img/blog/2022-10-21-tailwind-grid/tailwind-grid-3.png';
-import pic4 from '@site/static/img/blog/2022-10-21-tailwind-grid/tailwind-grid-4.gif';
-import pic5 from '@site/static/img/blog/2022-10-21-tailwind-grid/tailwind-grid-5.gif';
-import pic6 from '@site/static/img/blog/2022-10-21-tailwind-grid/tailwind-grid-6.png';
-import pic7 from '@site/static/img/blog/2022-10-21-tailwind-grid/tailwind-grid-7.gif';
-import pic8 from '@site/static/img/blog/2022-10-21-tailwind-grid/tailwind-grid-8.gif';
-import pic9 from '@site/static/img/blog/2022-10-21-tailwind-grid/tailwind-grid-9.gif';
+
+
+
+
+
+
+
+
 
 
 ## Introduction
@@ -135,7 +135,7 @@ Now, we have all the `div`s flowed into 3 columns according to Grid Formatting C
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={pic1}  alt="tailwind grid 1" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-1.png"  alt="tailwind grid 1" />
 
 </div>
 
@@ -162,7 +162,7 @@ Now we have a gap between the children `div`s:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={pic3}  alt="tailwind grid 2" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-3.png"  alt="tailwind grid 2" />
 
 </div>
 
@@ -186,7 +186,7 @@ Here, we're using Tailwind's default breakpoints at `md:	768px` and `lg:	1024px`
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={pic4}  alt="tailwind grid 4" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-4.gif"  alt="tailwind grid 4" />
 
 </div>
 
@@ -212,7 +212,7 @@ Below, we place the first `div` as a navbar. We are doing this with `col-span-{n
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={pic5}  alt="tailwind grid 5" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-5.gif"  alt="tailwind grid 5" />
 
 </div>
 
@@ -275,7 +275,7 @@ Let's see an instance of it with the fourth `div`:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={pic6}  alt="tailwind grid 6" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-6.png"  alt="tailwind grid 6" />
 
 </div>
 
@@ -320,7 +320,7 @@ Here, `row-start-5` tells the footer to be placed to the bottom row. It looks li
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={pic7}  alt="tailwind grid 7" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-7.gif"  alt="tailwind grid 7" />
 
 </div>
 
@@ -346,7 +346,7 @@ We have it shaping into a better website layout:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={pic8}  alt="tailwind grid 8" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-8.gif"  alt="tailwind grid 8" />
 
 </div>
 
@@ -371,7 +371,7 @@ We have something looking like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={pic9}  alt="tailwind grid 4" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-9.gif"  alt="tailwind grid 4" />
 
 </div>
 

@@ -9,14 +9,16 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => {
         <ChakraLink as={Link} to="/">
             {collapsed ? (
                 <img
-                    src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine-collapsed.svg"
+                    src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine-mini.svg"
                     alt="Refine"
+                    style={{ maxHeight: "38px" }}
                 />
             ) : (
                 <img
                     src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine.svg"
                     alt="Refine"
                     width="140px"
+                    style={{ minHeight: "38px" }}
                 />
             )}
         </ChakraLink>

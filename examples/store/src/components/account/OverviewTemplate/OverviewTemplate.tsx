@@ -18,36 +18,30 @@ export const Overview: React.FC<OverviewProps> = ({ orders, customer }) => {
                 <div className={s.regularText}>
                     <ul>
                         <li>
-                            <Link href="/account/profile">
-                                <a className={s.link}>
-                                    <div className={s.linkContent}>
-                                        <User size={16} />
-                                        <span>Profile</span>
-                                    </div>
-                                    <ChevronDown className={s.icon} />
-                                </a>
+                            <Link href="/account/profile" className={s.link}>
+                                <div className={s.linkContent}>
+                                    <User size={16} />
+                                    <span>Profile</span>
+                                </div>
+                                <ChevronDown className={s.icon} />
                             </Link>
                         </li>
                         <li>
-                            <Link href="/account/addresses">
-                                <a className={s.link}>
-                                    <div className={s.linkContent}>
-                                        <MapPin size={16} />
-                                        <span>Addresses</span>
-                                    </div>
-                                    <ChevronDown className={s.icon} />
-                                </a>
+                            <Link href="/account/addresses" className={s.link}>
+                                <div className={s.linkContent}>
+                                    <MapPin size={16} />
+                                    <span>Addresses</span>
+                                </div>
+                                <ChevronDown className={s.icon} />
                             </Link>
                         </li>
                         <li>
-                            <Link href="/account/orders">
-                                <a className={s.link}>
-                                    <div className={s.linkContents}>
-                                        <Package size={16} />
-                                        <span>Orders</span>
-                                    </div>
-                                    <ChevronDown className={s.icon} />
-                                </a>
+                            <Link href="/account/orders" className={s.link}>
+                                <div className={s.linkContents}>
+                                    <Package size={16} />
+                                    <span>Orders</span>
+                                </div>
+                                <ChevronDown className={s.icon} />
                             </Link>
                         </li>
                     </ul>
@@ -105,50 +99,47 @@ export const Overview: React.FC<OverviewProps> = ({ orders, customer }) => {
                                                         query: { id: order.id },
                                                     }}
                                                 >
-                                                    <a>
+                                                    <div
+                                                        className={
+                                                            s.ordersWrapper
+                                                        }
+                                                    >
                                                         <div
-                                                            className={
-                                                                s.ordersWrapper
-                                                            }
+                                                            className={s.orders}
                                                         >
-                                                            <div
+                                                            <span
                                                                 className={
-                                                                    s.orders
+                                                                    s.semibold
                                                                 }
                                                             >
-                                                                <span
-                                                                    className={
-                                                                        s.semibold
-                                                                    }
-                                                                >
-                                                                    Date placed
-                                                                </span>
-                                                                <span
-                                                                    className={
-                                                                        s.semibold
-                                                                    }
-                                                                >
-                                                                    Order number
-                                                                </span>
-                                                                <span
-                                                                    className={
-                                                                        s.semibold
-                                                                    }
-                                                                >
-                                                                    Total amount
-                                                                </span>
-                                                                <span>
-                                                                    {new Date(
-                                                                        order.created_at,
-                                                                    ).toDateString()}
-                                                                </span>
-                                                                <span>
-                                                                    #
-                                                                    {
-                                                                        order.display_id
-                                                                    }
-                                                                </span>
-                                                                {/* <span>
+                                                                Date placed
+                                                            </span>
+                                                            <span
+                                                                className={
+                                                                    s.semibold
+                                                                }
+                                                            >
+                                                                Order number
+                                                            </span>
+                                                            <span
+                                                                className={
+                                                                    s.semibold
+                                                                }
+                                                            >
+                                                                Total amount
+                                                            </span>
+                                                            <span>
+                                                                {new Date(
+                                                                    order.created_at,
+                                                                ).toDateString()}
+                                                            </span>
+                                                            <span>
+                                                                #
+                                                                {
+                                                                    order.display_id
+                                                                }
+                                                            </span>
+                                                            {/* <span>
                                                                     {formatAmount(
                                                                         {
                                                                             amount: order.total,
@@ -158,28 +149,24 @@ export const Overview: React.FC<OverviewProps> = ({ orders, customer }) => {
                                                                         },
                                                                     )}
                                                                 </span> */}
-                                                            </div>
-                                                            <button
-                                                                className={
-                                                                    s.center
-                                                                }
-                                                                onClick={close}
-                                                            >
-                                                                <span className="sr-only">
-                                                                    Go to order
-                                                                    #
-                                                                    {
-                                                                        order.display_id
-                                                                    }
-                                                                </span>
-                                                                <ChevronDown
-                                                                    className={
-                                                                        s.icon
-                                                                    }
-                                                                />
-                                                            </button>
                                                         </div>
-                                                    </a>
+                                                        <button
+                                                            className={s.center}
+                                                            onClick={close}
+                                                        >
+                                                            <span className="sr-only">
+                                                                Go to order #
+                                                                {
+                                                                    order.display_id
+                                                                }
+                                                            </span>
+                                                            <ChevronDown
+                                                                className={
+                                                                    s.icon
+                                                                }
+                                                            />
+                                                        </button>
+                                                    </div>
                                                 </Link>
                                             </li>
                                         );

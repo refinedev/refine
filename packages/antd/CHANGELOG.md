@@ -1,5 +1,23 @@
 # @pankod/refine-antd
 
+## 3.67.0
+
+### Minor Changes
+
+-   [#3195](https://github.com/refinedev/refine/pull/3195) [`2fdc5c2a88e`](https://github.com/refinedev/refine/commit/2fdc5c2a88e490c7f3b6ed5b562974787863931e) Thanks [@leapful](https://github.com/leapful)! - Support Date Picker component when using with Filter Dropdown
+
+## 3.66.0
+
+### Minor Changes
+
+-   [#3159](https://github.com/refinedev/refine/pull/3159) [`af2eefb32a4`](https://github.com/refinedev/refine/commit/af2eefb32a4df157062c28125c53aa3a47f48ff8) Thanks [@aliemir](https://github.com/aliemir)! - Updated `LoginPage` and `ReadyPage` to use **refine** logos from CDN rather than bundled svg files.
+
+## 3.65.0
+
+### Minor Changes
+
+-   [#3159](https://github.com/refinedev/refine/pull/3159) [`af2eefb32a4`](https://github.com/refinedev/refine/commit/af2eefb32a4df157062c28125c53aa3a47f48ff8) Thanks [@aliemir](https://github.com/aliemir)! - Updated `LoginPage` and `ReadyPage` to use **refine** logos from CDN rather than bundled svg files.
+
 ## 3.64.4
 
 ### Patch Changes
