@@ -1,5 +1,11 @@
 # @pankod/refine-react-hook-form
 
+## 3.37.0
+
+### Minor Changes
+
+-   [#3209](https://github.com/refinedev/refine/pull/3209) [`e0279bce6f1`](https://github.com/refinedev/refine/commit/e0279bce6f1a743014df225ea1eacf2668f91200) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Export all types.
+
 ## 3.36.0
 
 ### Minor Changes
