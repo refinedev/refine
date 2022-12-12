@@ -24,7 +24,7 @@ export const CanvasTile: React.FC<CanvasTileProps> = ({ canvas }) => {
                         <CanvasItem
                             canvas={canvas}
                             pixels={pixels}
-                            scale={22 / canvas.width}
+                            scale={25 / canvas.width}
                             active={false}
                         />
                         <Contributors pixels={pixels} />
