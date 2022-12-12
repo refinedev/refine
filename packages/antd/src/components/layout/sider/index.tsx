@@ -185,6 +185,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     </Layout>
                 </Drawer>
                 <Button
+                    data-testid="drawer-button"
                     style={drawerButtonStyles}
                     size="large"
                     onClick={() => setDrawerOpen(true)}

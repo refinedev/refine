@@ -26,11 +26,14 @@ export const layoutSiderTests = function (
         });
 
         it("should render logout menu item successful", async () => {
-            const { getAllByText } = render(<SiderElement />, {
+            const { getAllByText, getByTestId } = render(<SiderElement />, {
                 wrapper: TestWrapper({
                     authProvider: mockAuthProvider,
                 }),
             });
+
+            // open drawer
+            await waitFor(() => getByTestId("drawer-button").click());
 
             await waitFor(() =>
                 expect(getAllByText("Posts").length).toBeGreaterThanOrEqual(1),
@@ -39,11 +42,14 @@ export const layoutSiderTests = function (
         });
 
         it("should work menu item click", async () => {
-            const { getAllByText } = render(<SiderElement />, {
+            const { getAllByText, getByTestId } = render(<SiderElement />, {
                 wrapper: TestWrapper({
                     authProvider: mockAuthProvider,
                 }),
             });
+
+            // open drawer
+            await waitFor(() => getByTestId("drawer-button").click());
 
             await waitFor(() => getAllByText("Posts")[0].click());
             await waitFor(() =>
@@ -56,11 +62,14 @@ export const layoutSiderTests = function (
                 ...mockAuthProvider,
                 logout: jest.fn().mockImplementation(() => Promise.resolve()),
             };
-            const { getAllByText } = render(<SiderElement />, {
+            const { getAllByText, getByTestId } = render(<SiderElement />, {
                 wrapper: TestWrapper({
                     authProvider: logoutMockedAuthProvider,
                 }),
             });
+
+            // open drawer
+            await waitFor(() => getByTestId("drawer-button").click());
 
             await act(async () => {
                 getAllByText("Logout")[0].click();
@@ -70,42 +79,48 @@ export const layoutSiderTests = function (
         });
 
         it("should render only allowed menu items", async () => {
-            const { getAllByText, queryByText } = render(<SiderElement />, {
-                wrapper: TestWrapper({
-                    resources: [
-                        {
-                            name: "posts",
-                            list: function render() {
-                                return <div>posts</div>;
+            const { getAllByText, queryByText, getByTestId } = render(
+                <SiderElement />,
+                {
+                    wrapper: TestWrapper({
+                        resources: [
+                            {
+                                name: "posts",
+                                list: function render() {
+                                    return <div>posts</div>;
+                                },
                             },
-                        },
-                        {
-                            name: "users",
-                            list: function render() {
-                                return <div>users</div>;
+                            {
+                                name: "users",
+                                list: function render() {
+                                    return <div>users</div>;
+                                },
                             },
-                        },
-                    ],
-                    accessControlProvider: {
-                        can: ({ action, resource }) => {
-                            if (action === "list" && resource === "posts") {
-                                return Promise.resolve({ can: true });
-                            }
-                            if (action === "list" && resource === "users") {
+                        ],
+                        accessControlProvider: {
+                            can: ({ action, resource }) => {
+                                if (action === "list" && resource === "posts") {
+                                    return Promise.resolve({ can: true });
+                                }
+                                if (action === "list" && resource === "users") {
+                                    return Promise.resolve({ can: false });
+                                }
                                 return Promise.resolve({ can: false });
-                            }
-                            return Promise.resolve({ can: false });
+                            },
                         },
-                    },
-                }),
-            });
+                    }),
+                },
+            );
+
+            // open drawer
+            await waitFor(() => getByTestId("drawer-button").click());
 
             await waitFor(() => getAllByText("Posts")[0]);
             await waitFor(() => expect(queryByText("Users")).toBeNull());
         });
 
         it("should render custom element passed with render prop", async () => {
-            const { getAllByText, queryAllByText } = render(
+            const { getAllByText, queryAllByText, getByTestId } = render(
                 <SiderElement
                     render={({ logout, dashboard, items }) => {
                         return (
@@ -127,6 +142,9 @@ export const layoutSiderTests = function (
                     }),
                 },
             );
+
+            // open drawer
+            await waitFor(() => getByTestId("drawer-button").click());
 
             await waitFor(() =>
                 expect(getAllByText("Posts").length).toBeGreaterThanOrEqual(1),
