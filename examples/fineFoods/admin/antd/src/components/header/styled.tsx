@@ -8,6 +8,7 @@ export const AntdHeader = styled(AntdLayout.Header)`
 
     .ant-select-selection-search-input,
     .ant-input {
+        color: #ffffff;
         background-color: #000000;
         border-color: #303030;
     }
