@@ -78,7 +78,7 @@ export const Packages = () => {
 
 <Packages/>
 
-:::warning
+:::danger
 Make sure your using packages are version of 3.x.x otherwise you may get errors.
 :::
 
