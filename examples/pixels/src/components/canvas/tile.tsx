@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouterContext } from "@pankod/refine-core";
+import { Skeleton } from "@pankod/refine-antd";
 
 import { CanvasItem, DisplayCanvas } from "./index";
 import { Contributors } from "components/avatar";
@@ -30,8 +31,7 @@ export const CanvasTile: React.FC<CanvasTileProps> = ({ canvas }) => {
                         <Contributors pixels={pixels} />
                     </Link>
                 ) : (
-                    //TODO: show skeleton loading
-                    <></>
+                    <Skeleton paragraph={{ rows: 8 }} />
                 )
             }
         </DisplayCanvas>

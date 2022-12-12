@@ -5,7 +5,7 @@ import {
     useNavigation,
     useShow,
 } from "@pankod/refine-core";
-import { Button, Typography, Icons } from "@pankod/refine-antd";
+import { Button, Typography, Icons, Skeleton, Spin } from "@pankod/refine-antd";
 
 import { CanvasItem, DisplayCanvas } from "components/canvas";
 import { ColorSelect } from "components/color-select";
@@ -94,14 +94,16 @@ export const CanvasShow: React.FC = () => {
                                     </div>
                                 </div>
                             ) : (
-                                //TODO: show skeleton loading
-                                <></>
+                                <div className="spin-wrapper">
+                                    <Spin />
+                                </div>
                             )
                         }
                     </DisplayCanvas>
                 ) : (
-                    //TODO: show skeleton loading
-                    <></>
+                    <div className="spin-wrapper">
+                        <Spin />
+                    </div>
                 )}
             </div>
         </div>
