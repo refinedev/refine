@@ -1,5 +1,7 @@
 import React from "react";
 import { Input } from "antd";
+import { DatePicker } from "@components/antd";
+import dayjs from "dayjs";
 
 import { render, fireEvent } from "@test";
 import { FilterDropdown, FilterDropdownProps } from "./";
@@ -90,6 +92,80 @@ describe("FilterDropdown", () => {
                 value: "test",
             },
         });
+
+        expect(mapValueFn).toHaveBeenCalled();
+    });
+
+    it("should render Date Picker successfully", () => {
+        const { getByText } = render(
+            <FilterDropdown
+                {...props}
+                mapValue={(selectedKeys) =>
+                    !selectedKeys
+                        ? ""
+                        : Array.isArray(selectedKeys)
+                        ? dayjs(selectedKeys[0])
+                        : dayjs(selectedKeys)
+                }
+            >
+                <DatePicker />
+            </FilterDropdown>,
+        );
+        getByText("Filter");
+        getByText("Clear");
+    });
+
+    it("should render with Date Picker called confirm function successfully if click the filter button", async () => {
+        const { getByText } = render(
+            <FilterDropdown
+                {...props}
+                mapValue={(selectedKeys) =>
+                    !selectedKeys
+                        ? ""
+                        : Array.isArray(selectedKeys)
+                        ? dayjs(selectedKeys[0])
+                        : dayjs(selectedKeys)
+                }
+            >
+                <DatePicker />
+            </FilterDropdown>,
+        );
+
+        fireEvent.click(getByText("Filter"));
+
+        expect(confirm).toHaveBeenCalled();
+        expect(setSelectedKeys).toHaveBeenCalled();
+    });
+
+    it("should render with Date Picker called clearFilter function successfully if click the clear button", async () => {
+        const { getByText } = render(
+            <FilterDropdown
+                {...props}
+                mapValue={(selectedKeys) =>
+                    !selectedKeys
+                        ? ""
+                        : Array.isArray(selectedKeys)
+                        ? dayjs(selectedKeys[0])
+                        : dayjs(selectedKeys)
+                }
+            >
+                <DatePicker />
+            </FilterDropdown>,
+        );
+
+        fireEvent.click(getByText("Clear"));
+
+        expect(clearFilters).toHaveBeenCalled();
+    });
+
+    it("should call mapValue with Date Picker", async () => {
+        const { getByTestId } = render(
+            <FilterDropdown {...props} mapValue={mapValueFn}>
+                <DatePicker data-testid="date-picker" />
+            </FilterDropdown>,
+        );
+
+        fireEvent.change(getByTestId("date-picker"), dayjs());
 
         expect(mapValueFn).toHaveBeenCalled();
     });

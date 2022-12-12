@@ -4,7 +4,7 @@
     "private": true,
     "dependencies": {
         "@auth0/auth0-react": "^1.5.0",
-        "@pankod/refine-antd": "^3.66.0",
+        "@pankod/refine-antd": "^3.67.0",
         "@pankod/refine-core": "^3.90.4",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-simple-rest": "^3.37.4",

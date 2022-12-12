@@ -77,7 +77,7 @@ packages.map(p =>
 
 <Packages/>
 
-:::warning
+:::danger
 Make sure your using packages are version of 3.x.x otherwise you may get errors.
 :::
 

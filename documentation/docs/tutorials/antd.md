@@ -239,7 +239,7 @@ yarn add  @pankod/refine-core @pankod/refine-antd @pankod/refine-react-router-v6
   </TabItem>
 </Tabs>
 
-:::warning
+:::danger
 This tutorial assumes your project is configured for absolute imports. Since CRA does not configure it by default, you should configure it yourself to be able to use absolute imports. You should configure a [`tsconfig.json`](https://www.typescriptlang.org/tsconfig#baseUrl) with `baseUrl` setting pointing to the `/src` directory in your project.
 
 [Refer to CRA docs for more information about absolute imports. &#8594](https://create-react-app.dev/docs/importing-a-component/#absolute-imports)
