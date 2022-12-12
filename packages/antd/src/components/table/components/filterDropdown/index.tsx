@@ -1,6 +1,7 @@
 import React, { ReactNode, useState } from "react";
 import { Button, Space } from "antd";
 import type { FilterDropdownProps as AntdFilterDropdownProps } from "antd/lib/table/interface";
+import dayjs from "dayjs";
 import { FilterOutlined } from "@ant-design/icons";
 import { useTranslate } from "@pankod/refine-core";
 
@@ -36,7 +37,9 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = (props) => {
 
     const onFilter = () => {
         const _mappedValue = mappedValue(value);
-        setSelectedKeys(_mappedValue);
+        setSelectedKeys(
+            dayjs.isDayjs(_mappedValue) ? [_mappedValue] : _mappedValue,
+        );
 
         confirm?.();
     };
@@ -53,7 +56,12 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = (props) => {
                 return setSelectedKeys(_mappedValue);
             }
 
-            const { target }: React.ChangeEvent<HTMLInputElement> = e;
+            const changeEvent =
+                !e || !e.target || dayjs.isDayjs(e)
+                    ? { target: { value: e } }
+                    : e;
+
+            const { target }: React.ChangeEvent<HTMLInputElement> = changeEvent;
             const _mappedValue = mappedValue(target.value);
             setValue(_mappedValue);
             return;
