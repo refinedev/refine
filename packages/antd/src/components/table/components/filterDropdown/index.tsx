@@ -38,7 +38,9 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = (props) => {
     const onFilter = () => {
         const _mappedValue = mappedValue(value);
         setSelectedKeys(
-            dayjs.isDayjs(_mappedValue) ? [_mappedValue] : _mappedValue,
+            dayjs.isDayjs(_mappedValue)
+                ? [_mappedValue.toISOString()]
+                : _mappedValue,
         );
 
         confirm?.();
