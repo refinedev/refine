@@ -1,27 +1,23 @@
-import React from "react";
-
 import { Refine } from "@pankod/refine-core";
 import {
-    AuthPage,
     notificationProvider,
     ReadyPage,
     ErrorComponent,
     Icons,
-    Image,
 } from "@pankod/refine-antd";
 import { dataProvider, liveProvider } from "@pankod/refine-supabase";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { Layout } from "components/layout";
-import { SponsorsBanner } from "components/banners";
-import { CanvasFeaturedList, CanvasList, CanvasShow } from "pages";
+import { CanvasFeaturedList, CanvasList, CanvasShow } from "pages/canvases";
+import { AuthPage } from "pages/auth";
+
 import { supabaseClient } from "utility";
 import authProvider from "./auth-provider";
 
 import "styles/antd.less";
 
 const { GoogleOutlined, GithubOutlined } = Icons;
-const { Link } = routerProvider;
 
 function App() {
     return (
@@ -61,47 +57,6 @@ function App() {
                                     initialValues: {
                                         email: "info@refine.dev",
                                         password: "refine-supabase",
-                                    },
-                                }}
-                                wrapperProps={{
-                                    style: {
-                                        background: "#fff",
-                                    },
-                                }}
-                                renderContent={(content: React.ReactNode) => {
-                                    return (
-                                        <div
-                                            style={{
-                                                display: "flex",
-                                                flexDirection: "column",
-                                                justifyContent: "center",
-                                                alignItems: "center",
-                                            }}
-                                        >
-                                            <Link
-                                                to="/"
-                                                style={{ marginBottom: "32px" }}
-                                            >
-                                                <Image
-                                                    height="160"
-                                                    src="/pixels-logo.svg"
-                                                    alt="pixels-logo"
-                                                />
-                                            </Link>
-                                            {content}
-                                            <SponsorsBanner />
-                                        </div>
-                                    );
-                                }}
-                                contentProps={{
-                                    style: {
-                                        backgroundColor: "#fff",
-                                        border: "1px solid #f5f5f5",
-                                        borderRadius: "16px",
-                                        boxShadow:
-                                            "4px 8px 16px rgba(42, 42, 66, 0.25)",
-                                        width: "384px",
-                                        padding: "0",
                                     },
                                 }}
                             />
