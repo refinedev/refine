@@ -18,12 +18,12 @@ export const CanvasList: React.FC = () => {
         ],
     });
 
-    const { isFetching } = queryResult;
+    const { isLoading } = queryResult;
 
     return (
         <div className="container">
             <div className="paper">
-                {isFetching ? (
+                {isLoading ? (
                     <div className="canvas-skeleton-list">
                         {[...Array(12)].map((_, index) => (
                             <Skeleton key={index} paragraph={{ rows: 8 }} />
