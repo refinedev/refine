@@ -52,7 +52,11 @@ If you have any suggestions or feedback, please let us know in the [**GitHub Dis
 
 Simply, `@pankod/refine-inferencer` generates views and codes based on the data structure of the resource by fetching it using the `dataProvider` of `<Refine/>` component.
 
-For, `edit` and `show` actions, we send the request with `resource` and `id`. For `list` and `create` actions, we send a list request with `resource` and use one of the items to generate the view.
+### How the data is obtained?
+
+For, `edit` and `show` actions, we send the request with `resource` and `id`. For `list` and `create` actions, we send a list request with `resource` and use one of the items to generate the view. These actions will take place in your app and **will not** be sent to any external API for any purpose.
+
+### How the fields are inferred?
 
 While inferring the field types, we use a set of functions that each checks the field for a specific type and returns the inferred type. These functions also can return a `priority` field that is used to determine the type of the field. For example, if we have a `created_at` property with a string value, we can infer it as a `date` type and a `text` type. In this case, we use the `priority` field to determine the type of the field. The higher the priority, the more accurate the type of the field.
 
@@ -60,21 +64,15 @@ Properties with multiple values are identified as `array` type but also repeats 
 
 If the property is an `object` type, we try to pick a key to represent that property. For example, if we have a `category` field with `{ label: string; id: string; }` type, we pick `label` as the key to represent the property. These `object` fields with keys to represent them have the property `fieldable` set to `true` in the return value.
 
-:::note List of keys that can be used to represent an `object` type property
-```
-"name" | "label" | "title" | "count" | "content" | "username" | "nickname" | "login" | "firstName" | "lastName" | "url"
-```
-:::
-
-For determine the relations we use multiple steps, first one is the `relation` field function that checks the name of the property. It will return as `type: relation` if the property name is `id` or ends with `_id|_ids|_ID|_IDS|_id[]|Id[]..`.
-
-:::note
-Properties with `object` types with only `id` property are also considered as `relation` type.
-:::
-
 :::tip Available field types and functions
 ```
 "relation" | "array" | "object" | "date" | "email" | "image" | "url" | "richtext" | "text" | "number" | "boolean" | "unknown" | "custom_{string}"
+```
+:::
+
+:::note List of keys that can be used to represent an `object` type property
+```
+"name" | "label" | "title" | "count" | "content" | "username" | "nickname" | "login" | "firstName" | "lastName" | "url"
 ```
 :::
 
@@ -82,20 +80,36 @@ Properties with `object` types with only `id` property are also considered as `r
 `custom_${string}` is used by the inferencer components of UI packages when they have custom representations, for now users can't pass custom types and functions to the inferencer components.
 :::
 
-Like the `relation` field function, we don't do all the checks in a single function and keep the field function set as simple as possible. As a second step, we use transformer functions to do some extra checks and return modified inferred types for the fields. For example, if we have a `avatar` field which might be inferred as `url` type, it will be transformed to `image` type based on its property name. 
+### How the relations are determined?
 
-We also have transformers for `relation` type fields. One checks for the `resources` of `<Refine />` to match the resource name of the relation. Another one checks for the type of the property and if its a basic field like `string` or `number` it will be marked as `can-be-relation` to be checked with the `dataProvider` later. For `relation` type fields in `object` form, if we can't find a `resource` to handle the relation, we convert the field to a `fieldable` and check the keys of the object to find a representation key for the field.
+There are some conditions we look for before determining if a field is can be a `relation`. These won't trigger any API calls to the resources.
 
-:::info **Checking relations from the API**
+- If the property name ends with `id` or `ids`. camelCase, PascalCase, snake_case, kebab-case, UPPER_CASE, lower_case are all supported with or without array brackets([]).
+- If the property is an object with a single property `id`.
+- If the property is an array of objects with a single property `id` or UUID compatible strings or numbers.
+- If the property is a string or number and the property name matches with one of the known resources (singular or plural).
 
-For the last step of the `relation` type determination, we send `getOne` requests with field key in both plural and singular forms to try and find a resource to handle the relation. If we find a resource, we keep the `relation` type mark in the field, otherwise `relation` will be set to `false` and the field will be converted to a `fieldable`.
+If one of these conditions is met, we consider the property as a `relation` type and try to determine the related resource.
+
+To determine the relations;
+
+- First, we try to find a resource that matches with the property name (singular or plural).
+- If a resource is found in the `resources` array with a match, we use that resource as the related resource.
+- If no resource is found, we send two requests to the `default` `dataProvider` one with singular property name and one with plural property name, both stripped from the `id` suffixes if there are any.
+- If a resource is found we use that resource and its `dataProvider` (if specified) and make the API call with the property value.
+- If any of these requests succeed with `200` status code, we consider the property as a `relation` type and set the resource as the related resource.
+- If none of these requests succeed, we remove the `relation` mark from the property and consider it as a normal field. If it's an `object` type, then we will try to find the best suitable property to represent it.
+
+:::tip Manually setting relations and resources
+
+If your `dataProvider` and `resources` has a different way of work that makes it impossible for Inferencer to find the `relation` resources. You can manually modify the inferred fields by using the `fieldTransformer` function. You can find more information about it in the [**Modifying the inferred fields**](#modifying-the-inferred-fields) section.
 
 :::
 
-After the `relation` fields are settled. We apply a simplified inference process to determine the type of the relation resource response.
+### How the components are rendered and the code is generated?
 
 :::tip rendering
-To render the components we use a fork of `react-live`[#] package with Typescript support.
+To render the components we use a fork of [`react-live`](https://github.com/aliemir/react-live) package with Typescript support.
 :::
 
 After the fields are determined, we use the `renderer` functions to create the code for the components and also use the same code to render the components in the view. `renderer` functions are constructed per action type and the UI package. This means, `@pankod/refine-inferencer/antd` and other UI scopes has different `renderer` functions for `list`, `show`, `edit` and `create` actions. 
@@ -106,8 +120,6 @@ After the fields are determined, we use the `renderer` functions to create the c
 Component name is determined by the active `resource` element and the active action. If the resource has `option.label` field, it will be used as the part of the component name. Otherwise, the `resource.name` will be used. For example, if the resource name is `categories` and the action is `list`, the component name will be `CategoryList`.
 :::
 
-:::tip `fieldTransformer` prop in Inferencer components
+### Modifying the inferred fields
 
 If you want to customize the output of the Inferencer such as setting a custom `accessor` property for `object` type fields or changing the `type` of a field, or changing the `resource` for a `relation` type, you can use`fieldTransformer` prop in Inferencer components. It is a function that takes the field as an argument and returns the modified field. If `undefined | false | null` is returned, the field will be removed from the output, both for the preview and the code.
-
-:::
