@@ -176,7 +176,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 };
 ```
 
-:::warning
+:::danger
 `NextRouteComponent` doesn't support [automatic static optimization][autoStaticOpt] currently, since it requires route parameters thus a data fetching function must be defined.
 :::
 
