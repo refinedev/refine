@@ -1,11 +1,11 @@
-import { AntdList, useSimpleList } from "@pankod/refine-antd";
+import { AntdList, Skeleton, useSimpleList } from "@pankod/refine-antd";
 
 import { CanvasTile } from "components/canvas";
 import { SponsorsBanner } from "components/banners";
 import { Canvas } from "types";
 
 export const CanvasFeaturedList: React.FC = () => {
-    const { listProps } = useSimpleList<Canvas>({
+    const { listProps, queryResult } = useSimpleList<Canvas>({
         resource: "canvases",
         pagination: {
             pageSize: 12,
@@ -25,15 +25,25 @@ export const CanvasFeaturedList: React.FC = () => {
         ],
     });
 
+    const { isFetching } = queryResult;
+
     return (
         <div className="container">
             <div className="paper">
-                <AntdList
-                    {...listProps}
-                    className="canvas-list"
-                    split={false}
-                    renderItem={(canvas) => <CanvasTile canvas={canvas} />}
-                />
+                {isFetching ? (
+                    <div className="canvas-skeleton-list">
+                        {[...Array(12)].map((_, index) => (
+                            <Skeleton key={index} paragraph={{ rows: 8 }} />
+                        ))}
+                    </div>
+                ) : (
+                    <AntdList
+                        {...listProps}
+                        className="canvas-list"
+                        split={false}
+                        renderItem={(canvas) => <CanvasTile canvas={canvas} />}
+                    />
+                )}
             </div>
             <SponsorsBanner />
         </div>
