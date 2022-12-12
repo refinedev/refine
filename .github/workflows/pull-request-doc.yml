@@ -38,10 +38,14 @@ jobs:
           HostName github.com
           IdentityFile ~/.ssh/id_rsa
           EOT
-      - name: Install Dependencies
+      - name: Install Package Dependencies
         run: |
           npm ci
           npm run bootstrap
+      - name: Install Doc Dependencies
+        run: |
+          cd documentation
+          npm install
       - name: Wait for Netlify Deploy
         uses: probablyup/wait-for-netlify-action@3.2.0
         id: waitForDeployment
@@ -55,7 +59,6 @@ jobs:
       - name: Install Dependencies
         run: |
           cd documentation
-          npm install
           LIVE_PREVIEW_URL=${{ steps.waitForDeployment.outputs.url }}/preview npm run build
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
