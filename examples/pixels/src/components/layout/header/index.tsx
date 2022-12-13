@@ -15,7 +15,7 @@ const { PlusSquareOutlined, LogoutOutlined, LoginOutlined } = Icons;
 
 export const Header: React.FC = () => {
     const { Link, useLocation } = useRouterContext();
-    const { data: user } = useGetIdentity();
+    const { isError } = useGetIdentity();
     const { mutate: mutateLogout } = useLogout();
     const { push } = useNavigation();
     const { selectedKey } = useMenu();
@@ -26,6 +26,8 @@ export const Header: React.FC = () => {
         action: "create",
         redirect: "show",
     });
+
+    const isLogin = !isError;
 
     const handleRedirect = () => {
         if (pathname === "/") {
@@ -70,7 +72,7 @@ export const Header: React.FC = () => {
                     <Button
                         icon={<PlusSquareOutlined />}
                         onClick={() => {
-                            if (user) {
+                            if (isLogin) {
                                 show();
                             } else {
                                 handleRedirect();
@@ -80,7 +82,7 @@ export const Header: React.FC = () => {
                     >
                         Create
                     </Button>
-                    {user ? (
+                    {isLogin ? (
                         <Button
                             type="primary"
                             danger

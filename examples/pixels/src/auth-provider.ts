@@ -71,6 +71,7 @@ const authProvider: AuthProvider = {
     },
     checkError: () => Promise.resolve(),
     checkAuth: async () => {
+        await supabaseClient.auth.getSessionFromUrl();
         return Promise.resolve();
     },
     getPermissions: async () => {
@@ -89,6 +90,8 @@ const authProvider: AuthProvider = {
                 name: user.email,
             });
         }
+
+        return Promise.reject();
     },
 };
 
