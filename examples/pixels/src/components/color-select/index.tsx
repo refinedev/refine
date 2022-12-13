@@ -21,6 +21,7 @@ export const ColorSelect: React.FC<{
                     key={color}
                     style={{
                         padding: "3px",
+                        cursor: "pointer",
                         borderRadius: "999px",
                         border:
                             selected === color
