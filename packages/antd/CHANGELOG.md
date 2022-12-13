@@ -1,5 +1,17 @@
 # @pankod/refine-antd
 
+## 3.70.0
+
+### Minor Changes
+
+-   [#3216](https://github.com/refinedev/refine/pull/3216) [`e09eb81588e`](https://github.com/refinedev/refine/commit/e09eb81588e985e270a7b3d49f9c5b28ffcbb134) Thanks [@leapful](https://github.com/leapful)! - Support filter dropdown on number value of single Select component
+
+## 3.69.0
+
+### Minor Changes
+
+-   [#3216](https://github.com/refinedev/refine/pull/3216) [`e09eb81588e`](https://github.com/refinedev/refine/commit/e09eb81588e985e270a7b3d49f9c5b28ffcbb134) Thanks [@leapful](https://github.com/leapful)! - Support filter dropdown on number value of single Select component
+
 ## 3.68.0
 
 ### Minor Changes
