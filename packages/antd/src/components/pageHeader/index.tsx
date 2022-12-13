@@ -44,6 +44,7 @@ export const PageHeader: FC<AntdPageHeaderProps> = ({ children, ...props }) => {
             backIcon={backIcon}
             title={title}
             subTitle={subtitle}
+            style={{ padding: 0, ...props.style }}
         >
             {children}
         </AntdPageHeader>

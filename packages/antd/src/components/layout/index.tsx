@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout as AntdLayout } from "antd";
+import { Grid, Layout as AntdLayout } from "antd";
 
 import { Sider as DefaultSider } from "./sider";
 import { Header as DefaultHeader } from "./header";
@@ -12,8 +12,10 @@ export const Layout: React.FC<RefineLayoutLayoutProps> = ({
     Footer,
     OffLayoutArea,
 }) => {
+    const breakpoint = Grid.useBreakpoint();
     const SiderToRender = Sider ?? DefaultSider;
     const HeaderToRender = Header ?? DefaultHeader;
+    const isSmall = typeof breakpoint.sm === "undefined" ? true : breakpoint.sm;
 
     return (
         <AntdLayout style={{ minHeight: "100vh", flexDirection: "row" }}>
@@ -24,6 +26,7 @@ export const Layout: React.FC<RefineLayoutLayoutProps> = ({
                     <div
                         style={{
                             minHeight: 360,
+                            padding: isSmall ? 24 : 12,
                         }}
                     >
                         {children}
