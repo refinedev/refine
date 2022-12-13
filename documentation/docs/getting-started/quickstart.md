@@ -3,6 +3,7 @@ id: quickstart
 title: Quick Start Guide
 ---
 
+import firstExampleResult from '@site/static/img/first-example-result.png';
 
 **refine** works on any environment you can run **React** (incl. *CRA, Next.js, Remix, Vite* etc.)
 
@@ -90,7 +91,7 @@ You can now view **refine** application at [http://localhost:3000](http://localh
 
 
 <div >
-   <img style={{width: "100%"}} src="https://github.com/refinedev/refine/blob/master/documentation/static/img/first-example-result.png?raw=true"  alt="Example result" />
+   <img style={{width: "100%"}} src={firstExampleResult} alt="Example result" />
 </div>
 
 <br />
