@@ -645,7 +645,7 @@ It also accepts all props of [TanStack Table](https://tanstack.com/table/v8/docs
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/table/reactTable/basic/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-react-table-basic/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-react-table-example"
 ></iframe>

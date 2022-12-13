@@ -6,9 +6,9 @@ example-tags: [antd,data-provider,nestJsx-crud]
 
 **refine** [Nestjsx Crud](https://github.com/nestjsx/crud) Data Provider allows you to use your data on the frontend by connecting to your Nestjsx API. With **refine**, it perform these operations for you without having to write extra code for queries. By examining this example, you can learn how to use the Nestjsx Crud Data Provider.
 
-[View Nestjsx Crud Example Source](https://github.com/refinedev/refine/tree/master/examples/dataProvider/nestjsxCrud)
+[View Nestjsx Crud Example Source](https://github.com/refinedev/refine/tree/master/examples/data-provider-nestjsx-crud)
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/dataProvider/nestjsxCrud?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/data-provider-nestjsx-crud?embed=1&view=preview&theme=dark&preset=node&ctl=1"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-nestjsx-crud-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

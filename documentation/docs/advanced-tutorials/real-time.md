@@ -26,7 +26,7 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 
 Since we will need `apiKey` from Ably, you must first register and get the key from [Ably](https://ably.com).
 
-The app will have one resource: **posts** with [CRUD pages(list, create, edit and show) similar to base example](https://github.com/refinedev/refine/tree/master/examples/base/antd/src/pages/posts).
+The app will have one resource: **posts** with [CRUD pages(list, create, edit and show) similar to base example](https://github.com/refinedev/refine/tree/master/examples/base-antd/src/pages/posts).
 
 [You can also refer to StackBlitz to see final state of the app &#8594](#live-stackblitz-example)
 
@@ -456,7 +456,7 @@ useSubscription({
 
 ## Live Condesandbox Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/ably/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/live-provider-ably/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-ably-example"
 ></iframe>

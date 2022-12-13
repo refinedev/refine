@@ -76,8 +76,8 @@ You can pass a `reason` along with `can`. It will be accessible using `useCan`. 
 :::tip
 You can find access control examples made with **refine**
 
--   **Casbin** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/accessControl/casbin) - [Demo](https://stackblitz.com/github/refinedev/refine/tree/master/examples/accessControl/casbin/?preset=node)
--   **Cerbos** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/accessControl/cerbos) - [Demo](https://stackblitz.com/github/refinedev/refine/tree/master/examples/accessControl/cerbos/?preset=node)
+-   **Casbin** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-casbin) - [Demo](https://stackblitz.com/github/refinedev/refine/tree/master/examples/access-control-casbin/?preset=node)
+-   **Cerbos** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-cerbos) - [Demo](https://stackblitz.com/github/refinedev/refine/tree/master/examples/access-control-cerbos/?preset=node)
 
 :::
 
@@ -192,7 +192,7 @@ These buttons will be disabled if access control returns `{ can: false }`
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/accessControl/casbin?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/access-control-casbin?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="access-control-casbin-react"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

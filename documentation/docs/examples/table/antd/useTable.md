@@ -9,9 +9,9 @@ You may use the `useTable` hook to process your data with features compatible wi
 
 [Refer to the **refine** useTable hook documentation for more information. →](/docs/api-reference/antd/hooks/table/useTable/)
 
-[View useTable Example Source](https://github.com/refinedev/refine/tree/master/examples/table/antd/useTable)
+[View useTable Example Source](https://github.com/refinedev/refine/tree/master/examples/table-antd-use-table)
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/table/antd/useTable?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-antd-use-table?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-table-example"
 ></iframe>

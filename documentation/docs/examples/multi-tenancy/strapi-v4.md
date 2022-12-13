@@ -8,13 +8,13 @@ In this example, we've shown how to build a Multi-Tenant app using the [Strapi-v
 
 [Refer to the **refine** Strapi-v4 Multi-Tenancy guide for more information. →](/docs/advanced-tutorials/multi-tenancy/appwrite/)
 
-[View Strapi Multi-Tenancy Example Source](https://github.com/refinedev/refine/tree/master/examples/multi-tenancy/strapi)
+[View Strapi Multi-Tenancy Example Source](https://github.com/refinedev/refine/tree/master/examples/multi-tenancy-strapi)
 
 Username: `refine-demo`
 
 Password: `demodemo`
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/multi-tenancy/strapi?fautoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/multi-tenancy-strapi?fautoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="strapi-multi-tenant-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

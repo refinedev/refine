@@ -8,9 +8,9 @@ example-tags: [next.js,router-provider,antd,experimental]
 
 [Refer to the refine Next.js documentation for more information. →](/docs/advanced-tutorials/ssr/nextjs.md)
 
-[View Next.js with `app/` Example Source](https://github.com/refinedev/refine/tree/master/examples/nextjs/appdir)
+[View Next.js with `app/` Example Source](https://github.com/refinedev/refine/tree/master/examples/with-nextjs-appdir)
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/nextjs/appdir/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-nextjs-appdir/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
 style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-nextjs-appdir-example"
 ></iframe>
