@@ -144,7 +144,6 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const renderMenu = () => {
         return (
             <>
-                <RenderToTitle collapsed={collapsed} />
                 <Menu
                     selectedKeys={[selectedKey]}
                     defaultOpenKeys={defaultOpenKeys}
@@ -180,12 +179,12 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                         <Layout.Sider
                             style={{ height: "100vh", overflow: "hidden" }}
                         >
+                            <RenderToTitle collapsed={false} />
                             {renderMenu()}
                         </Layout.Sider>
                     </Layout>
                 </Drawer>
                 <Button
-                    data-testid="drawer-button"
                     style={drawerButtonStyles}
                     size="large"
                     onClick={() => setDrawerOpen(true)}
@@ -210,6 +209,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 collapsedWidth={80}
                 breakpoint="lg"
             >
+                <RenderToTitle collapsed={collapsed} />
                 {renderMenu()}
             </Layout.Sider>
         );
