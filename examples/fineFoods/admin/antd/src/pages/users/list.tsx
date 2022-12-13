@@ -155,6 +155,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                             sorter
                         />
                         <Table.Column<IUser>
+                            fixed="right"
                             title={t("table.actions")}
                             render={(_, record) => (
                                 <ShowButton hideText recordItemId={record.id} />

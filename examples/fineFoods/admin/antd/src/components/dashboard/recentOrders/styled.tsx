@@ -14,6 +14,7 @@ export const TitleWrapper = styled.div`
 
 export const Title = styled(Typography.Text)`
     font-size: 16px;
+    word-break: inherit;
 `;
 
 export const OrderId = styled(Typography.Text)`

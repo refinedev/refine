@@ -110,7 +110,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                     render={(record) => (
                         <Space>
                             <Avatar size={74} src={record.avatar?.[0]?.url} />
-                            <Typography.Text>
+                            <Typography.Text style={{ wordBreak: "inherit" }}>
                                 {record.name} {record.surname}
                             </Typography.Text>
                         </Space>
