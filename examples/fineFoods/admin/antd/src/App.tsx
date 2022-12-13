@@ -32,7 +32,6 @@ import { Header, Title, OffLayoutArea } from "components";
 import { BikeWhiteIcon, PizzaIcon } from "components/icons";
 
 import "@pankod/refine-antd/dist/reset.css";
-import { ConfigProvider } from "providers";
 
 const App: React.FC = () => {
     const API_URL = "https://api.finefoods.refine.dev";
@@ -48,106 +47,104 @@ const App: React.FC = () => {
 
     return (
         <RefineKbarProvider>
-            <ConfigProvider>
-                <Refine
-                    routerProvider={{
-                        ...routerProvider,
-                        routes: [
-                            {
-                                path: "/register",
-                                element: (
-                                    <AuthPage
-                                        type="register"
-                                        formProps={{
-                                            initialValues: {
-                                                email: "demo@refine.dev",
-                                                password: "demodemo",
-                                            },
-                                        }}
-                                    />
-                                ),
-                            },
-                            {
-                                path: "/forgot-password",
-                                element: <AuthPage type="forgotPassword" />,
-                            },
-                            {
-                                path: "/update-password",
-                                element: <AuthPage type="updatePassword" />,
-                            },
-                        ],
-                    }}
-                    dataProvider={dataProvider}
-                    authProvider={authProvider}
-                    i18nProvider={i18nProvider}
-                    OffLayoutArea={OffLayoutArea}
-                    DashboardPage={DashboardPage}
-                    LoginPage={() => (
-                        <AuthPage
-                            type="login"
-                            formProps={{
-                                initialValues: {
-                                    email: "demo@refine.dev",
-                                    password: "demodemo",
-                                },
-                            }}
-                        />
-                    )}
-                    Title={Title}
-                    Header={Header}
-                    Layout={Layout}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                    }}
-                    resources={[
+            <Refine
+                routerProvider={{
+                    ...routerProvider,
+                    routes: [
                         {
-                            name: "orders",
-                            list: OrderList,
-                            show: OrderShow,
-                            icon: <Icons.ShoppingOutlined />,
+                            path: "/register",
+                            element: (
+                                <AuthPage
+                                    type="register"
+                                    formProps={{
+                                        initialValues: {
+                                            email: "demo@refine.dev",
+                                            password: "demodemo",
+                                        },
+                                    }}
+                                />
+                            ),
                         },
                         {
-                            name: "users",
-                            list: UserList,
-                            show: UserShow,
-                            icon: <Icons.UsergroupAddOutlined />,
+                            path: "/forgot-password",
+                            element: <AuthPage type="forgotPassword" />,
                         },
                         {
-                            name: "products",
-                            list: ProductList,
-                            icon: <PizzaIcon />,
+                            path: "/update-password",
+                            element: <AuthPage type="updatePassword" />,
                         },
+                    ],
+                }}
+                dataProvider={dataProvider}
+                authProvider={authProvider}
+                i18nProvider={i18nProvider}
+                OffLayoutArea={OffLayoutArea}
+                DashboardPage={DashboardPage}
+                LoginPage={() => (
+                    <AuthPage
+                        type="login"
+                        formProps={{
+                            initialValues: {
+                                email: "demo@refine.dev",
+                                password: "demodemo",
+                            },
+                        }}
+                    />
+                )}
+                Title={Title}
+                Header={Header}
+                Layout={Layout}
+                options={{
+                    syncWithLocation: true,
+                    warnWhenUnsavedChanges: true,
+                }}
+                resources={[
+                    {
+                        name: "orders",
+                        list: OrderList,
+                        show: OrderShow,
+                        icon: <Icons.ShoppingOutlined />,
+                    },
+                    {
+                        name: "users",
+                        list: UserList,
+                        show: UserShow,
+                        icon: <Icons.UsergroupAddOutlined />,
+                    },
+                    {
+                        name: "products",
+                        list: ProductList,
+                        icon: <PizzaIcon />,
+                    },
 
-                        {
-                            name: "stores",
-                            list: StoreList,
-                            edit: StoreEdit,
-                            create: StoreCreate,
-                            icon: <Icons.ShopOutlined />,
-                        },
-                        {
-                            name: "categories",
-                            list: CategoryList,
-                        },
-                        {
-                            name: "couriers",
-                            list: CourierList,
-                            show: CourierShow,
-                            create: CouriersCreate,
-                            edit: CouriersEdit,
-                            icon: <BikeWhiteIcon />,
-                        },
-                        {
-                            name: "reviews",
-                            list: ReviewsList,
-                            icon: <Icons.StarOutlined />,
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                    catchAll={<ErrorComponent />}
-                />
-            </ConfigProvider>
+                    {
+                        name: "stores",
+                        list: StoreList,
+                        edit: StoreEdit,
+                        create: StoreCreate,
+                        icon: <Icons.ShopOutlined />,
+                    },
+                    {
+                        name: "categories",
+                        list: CategoryList,
+                    },
+                    {
+                        name: "couriers",
+                        list: CourierList,
+                        show: CourierShow,
+                        create: CouriersCreate,
+                        edit: CouriersEdit,
+                        icon: <BikeWhiteIcon />,
+                    },
+                    {
+                        name: "reviews",
+                        list: ReviewsList,
+                        icon: <Icons.StarOutlined />,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                catchAll={<ErrorComponent />}
+            />
         </RefineKbarProvider>
     );
 };

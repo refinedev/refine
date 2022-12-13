@@ -19,6 +19,7 @@ import {
     Row,
     Col,
     AutoComplete,
+    AntdLayout,
 } from "@pankod/refine-antd";
 
 import RefineReactRouter from "@pankod/refine-react-router-v6";
@@ -26,14 +27,14 @@ import RefineReactRouter from "@pankod/refine-react-router-v6";
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";
 
+const { Header: AntdHeader } = AntdLayout;
 const { Link } = RefineReactRouter;
 const { SearchOutlined, DownOutlined } = Icons;
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
 
 import { IOrder, IStore, ICourier } from "interfaces";
-import { AntdHeader, HeaderTitle } from "./styled";
-import ThemeToggle from "components/ThemeToggle";
+import { HeaderTitle } from "./styled";
 
 interface IOptionGroup {
     value: string;
@@ -188,7 +189,12 @@ export const Header: React.FC = () => {
     );
 
     return (
-        <AntdHeader>
+        <AntdHeader
+            style={{
+                padding: "0 24px",
+                background: "white",
+            }}
+        >
             <Row align="middle" justify="space-between">
                 <Col xs={0} sm={12}>
                     <AutoComplete
@@ -212,7 +218,6 @@ export const Header: React.FC = () => {
                 </Col>
                 <Col>
                     <Space size="middle" align="center">
-                        <ThemeToggle />
                         <Dropdown overlay={menu}>
                             <a
                                 style={{ color: "inherit" }}
@@ -225,7 +230,6 @@ export const Header: React.FC = () => {
                                     />
                                     <div
                                         style={{
-                                            color: "white",
                                             display: screens.lg
                                                 ? "block"
                                                 : "none",
@@ -236,7 +240,6 @@ export const Header: React.FC = () => {
                                             : "German"}
                                         <DownOutlined
                                             style={{
-                                                color: "white",
                                                 fontSize: "12px",
                                                 marginLeft: "6px",
                                             }}
@@ -250,7 +253,6 @@ export const Header: React.FC = () => {
                             ellipsis
                             strong
                             style={{
-                                color: "white",
                                 display: "flex",
                             }}
                         >

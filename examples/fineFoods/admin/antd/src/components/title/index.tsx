@@ -9,7 +9,7 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => {
     return (
         <Logo>
             {collapsed ? (
-                <BikeWhiteIcon style={{ color: "white" }} />
+                <BikeWhiteIcon style={{ color: "white", fontSize: "32px" }} />
             ) : (
                 <img src="/images/fine-foods.svg" alt="Finefood" />
             )}
