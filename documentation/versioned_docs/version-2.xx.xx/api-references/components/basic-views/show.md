@@ -104,7 +104,7 @@ export const ShowPage: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={isLoading} alt="isLoading" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/basic-views/show/isLoading.png" alt="isLoading" />
 </div>
 <br/>
 

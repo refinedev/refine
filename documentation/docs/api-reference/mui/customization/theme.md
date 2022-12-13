@@ -3,7 +3,6 @@ id: mui-custom-theme
 title: Theme
 ---
 
-
 Theme specifies the color of the components, the darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc. You can either create your own Theme or use Themes that provide from Refine. There are two types of Themes: [`LightTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L16) and [`DarkTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L46). [`LightTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L16) tend to have dark text on a light background, while [`DarkTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L46) have light text on a dark background. Theme provides a way to your app's design to meet them.
 
 [Refer to the Material UI documentation for more information about Material UI Theming. &#8594](https://mui.com/material-ui/customization/theming/)
@@ -393,7 +392,7 @@ For more information, you can review [`responsiveFontSizes()`](https://mui.com/m
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={customTheme} alt="Custom Theme" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/customTheme.png" alt="Custom Theme" />
 </div>
 
 ### Create Theme with Custom Variables
