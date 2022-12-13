@@ -3,7 +3,6 @@ id: import-button
 title: Import
 ---
 
-import importButton from '@site/static/img/guides-and-concepts/components/buttons/import/import.png';
 
 `<ImportButton>` is compatible with the [`useImport`][useimport] hook and is meant to be used as it's upload button.
 It uses Ant Design's [`<Button>`][button] and [`<Upload>`][upload] components. It wraps a [`<Button>`][button] component with an [`<Upload>`][upload] component and accepts properties for [`<Button>`][button] and [`<Upload>`][upload] components separately.
@@ -61,7 +60,7 @@ Will look like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={importButton} alt="Default import button" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/import/import.png" alt="Default import button" />
 </div>
 
 ## Properties

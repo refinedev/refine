@@ -3,9 +3,7 @@ id: overview
 title: Overview
 ---
 
-import architectureDiagram from '@site/static/img/getting-started/refine_architecture.png';
 
-import benchmarkChart from '@site/static/img/getting-started/benchmark.png';
 
 ## What is refine?
 
@@ -56,7 +54,7 @@ Under the hood, **refine** relies heavily to [React Query](https://react-query.t
 Access to external sources and API's happen via providers which are basically plug-in type components for extendibility.
 
 <div style={{textAlign: "center"}}>
-    <img src={architectureDiagram} width="400px" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/getting-started/refine_architecture.png" width="400px" />
 </div>
 
 ### Benchmark
@@ -67,7 +65,7 @@ In addition to **shorter development** times and **overall performance gains**, 
 **refine** makes your codebase significantly smaller, by eliminating redundant code such as _reducers_, _actions_ and _unit tests_. Below is a size comparison for an example project:
 
 <div style={{textAlign: "center"}}>
-    <img src={benchmarkChart} width="400px" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/getting-started/benchmark.png" width="400px" />
 </div>
 
 ### Quick Start

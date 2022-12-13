@@ -3,9 +3,6 @@ id: show
 title: Show
 ---
 
-import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/show/pageHeaderPropsUsage.png'
-import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/show/actionButtonsUsage.png'
-import isLoading from '@site/static/img/guides-and-concepts/basic-views/show/isLoading.png'
 
 `<Show>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a refresh button or giving title to the page.
 
@@ -81,7 +78,7 @@ export const ShowPage: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={actionButtonsUsage} alt="actionButton Usage" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/basic-views/show/actionButtonsUsage.png" alt="actionButton Usage" />
 </div>
 <br/>
 
@@ -97,7 +94,7 @@ export const ShowPage: React.FC = () => {
     const { queryResult } = useShow();
     const { isLoading } = queryResult;
 
-    return <Show isLoading={isLoading}>...</Show>;
+    return <Show isLoading="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/basic-views/show/isLoading.png">...</Show>;
 };
 ```
 
@@ -138,7 +135,7 @@ export const ShowPage: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={pageHeaderPropsUsage} alt="pageHeaderProps Usage"/>
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/basic-views/show/pageHeaderPropsUsage.png" alt="pageHeaderProps Usage"/>
 </div>
 <br/>
 
