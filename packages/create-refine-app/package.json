@@ -30,7 +30,7 @@
         "tslib": "^2.3.1",
         "commander": "9.4.1",
         "execa": "^5.1.1",
-        "superplate-cli": "^1.11.3",
+        "superplate-cli": "^1.11.5",
         "got": "^11.8.5",
         "chalk": "^4.1.2",
         "ora": "^5.4.1",
