@@ -17,12 +17,7 @@ export const DashboardPage: React.FC = () => {
     const { t } = useTranslation();
 
     return (
-        <Row
-            gutter={[16, 16]}
-            style={{
-                padding: "24px",
-            }}
-        >
+        <Row gutter={[16, 16]}>
             <Col md={24}>
                 <Row gutter={[16, 16]}>
                     <Col xl={10} lg={24} md={24} sm={24} xs={24}>
