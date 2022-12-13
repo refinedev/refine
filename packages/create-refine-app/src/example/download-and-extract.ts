@@ -10,11 +10,16 @@ const pipeline = promisify(Stream.pipeline);
 const TEMP_PREFIX = ".refine-example.temp";
 
 async function downloadTar(url: string) {
+    const tempFile = join(process.cwd(), `${TEMP_PREFIX}-${Date.now()}`);
     try {
-        const tempFile = join(process.cwd(), `${TEMP_PREFIX}-${Date.now()}`);
         await pipeline(got.stream(url), createWriteStream(tempFile));
         return tempFile;
     } catch (err) {
+        try {
+            await fs.unlink(tempFile);
+        } catch (err) {
+            // ignore
+        }
         return undefined;
     }
 }
@@ -53,6 +58,11 @@ export async function downloadAndExtract({
             },
         });
     } catch (err) {
+        try {
+            await fs.unlink(tempFile);
+        } catch (err) {
+            // ignore
+        }
         return "extract-failed";
     }
 
