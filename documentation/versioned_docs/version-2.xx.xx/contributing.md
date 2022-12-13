@@ -54,7 +54,7 @@ npm run build
 npm run start -- --scope @pankod/refine --scope refine-use-select-example
 ```
 
-:::warning
+:::danger
 If you run `npm run start` command without `scope` flag, it attempts to start all packages (in `/packages` and `/examples`) in development mode.
 :::
 

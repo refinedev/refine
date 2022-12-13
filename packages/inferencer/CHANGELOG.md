@@ -1,5 +1,27 @@
 # @pankod/refine-mantine
 
+## 1.6.1
+
+### Patch Changes
+
+-   [#3200](https://github.com/refinedev/refine/pull/3200) [`8c9efbd40db`](https://github.com/refinedev/refine/commit/8c9efbd40dba7b6a2bb4e9060942cdc0cfe6d056) Thanks [@aliemir](https://github.com/aliemir)! - Handle kebab-case relation suffixes for a wider case support. (e.g. `category-id`,`category-ids`)
+
+## 1.6.0
+
+### Minor Changes
+
+-   [#3173](https://github.com/refinedev/refine/pull/3173) [`15402d3a70f`](https://github.com/refinedev/refine/commit/15402d3a70fead18bb7d49eae75fe5afa6b9b4f3) Thanks [@aliemir](https://github.com/aliemir)! - - Added `fieldTransformer` prop to inferencer components to let users transform or hide the field to be rendered.
+    -   Hide networks errors caused by the relation detection process.
+    -   Added the ability to detect relations from basic types like `"text"` and `"number"`.
+
+## 1.5.0
+
+### Minor Changes
+
+-   [#3173](https://github.com/refinedev/refine/pull/3173) [`15402d3a70f`](https://github.com/refinedev/refine/commit/15402d3a70fead18bb7d49eae75fe5afa6b9b4f3) Thanks [@aliemir](https://github.com/aliemir)! - - Added `fieldTransformer` prop to inferencer components to let users transform or hide the field to be rendered.
+    -   Hide networks errors caused by the relation detection process.
+    -   Added the ability to detect relations from basic types like `"text"` and `"number"`.
+
 ## 1.4.0
 
 ### Minor Changes

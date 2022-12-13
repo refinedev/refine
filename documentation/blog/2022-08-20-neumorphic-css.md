@@ -4,19 +4,19 @@ description: Overview and examples for Neumorphic CSS implementations.
 slug: neumorphic-css
 authors: joel_adewole
 tags: [neumorphism, css, UI, neumorphic, design]
-image: /img/blog/2022-08-20-neumorphic-css/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/social.png
 hide_table_of_contents: false
 ---
 
-import card from '@site/static/img/blog/2022-08-20-neumorphic-css/card.png';
-import background from '@site/static/img/blog/2022-08-20-neumorphic-css/background.png';
-import vision from '@site/static/img/blog/2022-08-20-neumorphic-css/vision.png';
-import cards from '@site/static/img/blog/2022-08-20-neumorphic-css/cards.png';
-import checked from '@site/static/img/blog/2022-08-20-neumorphic-css/checked.png';
-import hoverState from '@site/static/img/blog/2022-08-20-neumorphic-css/hover_state.png';
-import normalState from '@site/static/img/blog/2022-08-20-neumorphic-css/normal_state.png';
-import textBox from '@site/static/img/blog/2022-08-20-neumorphic-css/textbox.png';
-import unchecked from '@site/static/img/blog/2022-08-20-neumorphic-css/unchecked.png';
+
+
+
+
+
+
+
+
+
 
 
 ## Introduction
@@ -53,7 +53,7 @@ Neumorphism requires little or no use of flashy elements. The properties needed 
 Neuomorphism makes UI elements appear inside or directly on the background layer, in contrast to other design trends that make items appear above the background.
 
 <div class="img-container">
-    <img src={card} alt="card image" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/card.png" alt="card image" />
 </div>
 
 
@@ -65,7 +65,7 @@ Neuomorphism makes UI elements appear inside or directly on the background layer
 The image below illustrates the simplest UI design template for Neumorphism; feel free to modify it as you see fit.
 
 <div class="img-container">
-    <img src={background} alt="background image" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/background.png" alt="background image" />
 </div>
 
 
@@ -86,7 +86,7 @@ The main issue Neumorphism has in terms of accessibility is contrast; you'll not
 The image below displays an original Neumorphic design and the outcome under low vision.
 
 <div class="img-container">
-    <img src={vision} alt="background image" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/vision.png" alt="background image" />
 </div>
 
 
@@ -139,12 +139,12 @@ button:hover {
 
 #### Normal State
 <div class="img-container">
-    <img src={normalState} alt="normal state" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/normal_state.png" alt="normal state" />
 </div>
 
 #### Hover State
 <div class="img-container">
-    <img src={hoverState} alt="hover state" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/hover_state.png" alt="hover state" />
 </div>
 
 <br/>
@@ -194,7 +194,7 @@ body {
 ```
 
 <div class="img-container">
-    <img src={cards} alt="cards" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/cards.png" alt="cards" />
 </div>
 
 <br/>
@@ -243,7 +243,7 @@ form input[type="text"] {
 </style>
 ```
 <div class="img-container">
-    <img src={textBox} alt="textbox" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/textbox.png" alt="textbox" />
 </div>
 
 <br/>
@@ -324,7 +324,7 @@ form .form_group .checked {
 
 ##### Unchecked
 <div class="img-container">
-    <img src={unchecked} alt="unchecked" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/unchecked.png" alt="unchecked" />
 </div>
 
 <br/>
@@ -332,7 +332,7 @@ form .form_group .checked {
 ##### Checked
 
 <div class="img-container">
-    <img src={checked} alt="checked" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/checked.png" alt="checked" />
 </div>
 
 <br/>

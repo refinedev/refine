@@ -8,10 +8,10 @@ image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
-import sider from '@site/static/img/blog/2021-10-6-migrating-react-admin-to-refine/sider.png';
-import react_admin from '@site/static/img/blog/2021-10-6-migrating-react-admin-to-refine/react_admin.png';
-import refine_table from '@site/static/img/blog/2021-10-6-migrating-react-admin-to-refine/refine_table.png';
-import react_admin_create from '@site/static/img/blog/2021-10-6-migrating-react-admin-to-refine/react_admin_create.png';
+
+
+
+
 
 Recently, our team decided to migrate a B2B admin panel of one of our customers from React-Admin to refine to battle test our new framework and improve our productivity. My mission was to migrate it and it took one and a half days for me to rewrite the panel in refine.
 
@@ -29,7 +29,7 @@ It is, also, one step forward towards the dream of <strong>making it headless</s
 
 To learn more about refine, see: https://refine.dev/docs/getting-started/overview
 
-|                                                                                                  <img src={sider} alt="sider" />                                                                                                   |
+|                                                                                                  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/sider.png" alt="sider" />                                                                                                   |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | _Our panel has 7 resources (all listable), which 4 of them must have create and edit pages, 6 of them must be exportable to `.csv` files and some of those resources have images, all images must be uploaded in `base64` format._ |
 
@@ -41,7 +41,7 @@ This is how it looks before the migration (React-Admin):
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={react_admin} alt="react-admin" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/react_admin.png" alt="react-admin" />
 </div>
 <br/>
 
@@ -53,7 +53,7 @@ And this is how it looks like after the migration (refine):
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={refine_table} alt="refine" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/refine_table.png" alt="refine" />
 </div>
 <br/>
 
@@ -103,7 +103,7 @@ And looks like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={react_admin} alt="react-admin" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/react_admin.png" alt="react-admin" />
 </div>
 <br/>
 
@@ -257,7 +257,7 @@ And it looks like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={refine_table} alt="refine" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/refine_table.png" alt="refine" />
 </div>
 <br/>
 
@@ -322,7 +322,7 @@ And it looks like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={react_admin_create} alt="react-admin" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/react_admin_create.png" alt="react-admin" />
 </div>
 <br/>
 

@@ -4,18 +4,18 @@ description: In this article, we will learn how we can create a full-featured cu
 slug: create-full-stack-app-with-refine
 authors: melih
 tags: [refine, react, next.js, full-stack, web-app, b2b, admin-panel]
-image: /img/blog/2022-04-29-create-full-stack-app/social.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/social.jpg
 hide_table_of_contents: false
 ---
 
-import benchmarkChart from '@site/static/img/getting-started/benchmark.png';
-import create from '@site/static/img/blog/2022-04-29-create-full-stack-app/create.gif';
-import first from '@site/static/img/blog/2022-04-29-create-full-stack-app/first.png';
-import client_menu from '@site/static/img/blog/2022-04-29-create-full-stack-app/client_menu.png';
-import client_home from '@site/static/img/blog/2022-04-29-create-full-stack-app/client_home.png';
-import dashboard from '@site/static/img/blog/2022-04-29-create-full-stack-app/dashboard.png';
-import products from '@site/static/img/blog/2022-04-29-create-full-stack-app/products.png';
-import reviews from '@site/static/img/blog/2022-04-29-create-full-stack-app/reviews.png';
+
+
+
+
+
+
+
+
 
 We frequently require quick development and sometimes flexibility while developing a Full Stack application. Aside from speed and flexibility, we must establish the application architecture correctly at the start so that we are not subjected to any more needless work throughout the development process.
 
@@ -64,7 +64,7 @@ To learn more about **refine** features, we recommend that you read the [Overvie
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={benchmarkChart} alt="Refine Benchmark" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/getting-started/benchmark.png" alt="Refine Benchmark" />
 </div>
 <br />
 
@@ -121,7 +121,7 @@ npx superplate-cli -p refine-react my-first-refine-project
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={create} alt="Create Refine App" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/create.gif" alt="Create Refine App" />
 </div>
 <br />
 
@@ -223,7 +223,7 @@ export default App;
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={first} alt="Refine Posts Page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/first.png" alt="Refine Posts Page" />
 </div>
 <br />
 
@@ -239,7 +239,7 @@ As you have seen, we have listed and paginated the titles coming from an API by 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={client_home} alt="Refine Client App" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/client_home.png" alt="Refine Client App" />
 </div>
 <br />
 
@@ -249,7 +249,7 @@ As you have seen, we have listed and paginated the titles coming from an API by 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={client_menu} alt="Refine Client App" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/client_menu.png" alt="Refine Client App" />
 </div>
 <br />
 
@@ -262,7 +262,7 @@ As you have seen, we have listed and paginated the titles coming from an API by 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={dashboard} alt="Refine Dashboard" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/dashboard.png" alt="Refine Dashboard" />
 </div>
 <br />
 
@@ -272,7 +272,7 @@ As you have seen, we have listed and paginated the titles coming from an API by 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={products} alt="Refine Admin Panel Producst Page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/products.png" alt="Refine Admin Panel Producst Page" />
 </div>
 <br />
 
@@ -282,7 +282,7 @@ As you have seen, we have listed and paginated the titles coming from an API by 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={reviews} alt="Refine Reviews Page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/reviews.png" alt="Refine Reviews Page" />
 </div>
 <br />
 

@@ -119,6 +119,10 @@ export function runTransform({ files, flags, transformer }) {
 
 const TRANSFORMER_INQUIRER_CHOICES = [
     {
+        name: "antd4-to-antd5: Transform from antd 4.x.x to at least 5.x.x",
+        value: "antd4-to-antd5",
+    },
+    {
         name: "use-data-grid-columns: Transform `useDataGrid` `columns` usage",
         value: "use-data-grid-columns",
     },

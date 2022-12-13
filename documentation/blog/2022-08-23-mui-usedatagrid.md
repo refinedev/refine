@@ -4,22 +4,22 @@ description: How to use Material UI DataGrid component with refine apps?
 slug: mui-datagrid-refine
 authors: michael
 tags: [material-ui, react, datagrid, mui]
-image: /img/blog/2022-08-23-mui-usedatagrid/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/social.png
 hide_table_of_contents: false
 ---
 
-import cli from '@site/static/img/blog/2022-08-23-mui-usedatagrid/cli.png';
-import grid from '@site/static/img/blog/2022-08-23-mui-usedatagrid/grid.png';
-import welcome from '@site/static/img/blog/2022-08-23-mui-usedatagrid/welcome.png';
-import employeesList from '@site/static/img/blog/2022-08-23-mui-usedatagrid/employees_list.png';
-import sorting from '@site/static/img/blog/2022-08-23-mui-usedatagrid/sorting.png';
-import sortingEmployees from '@site/static/img/blog/2022-08-23-mui-usedatagrid/sorting_employees.png';
-import pagination from '@site/static/img/blog/2022-08-23-mui-usedatagrid/pagination.png';
-import filteringColumn from '@site/static/img/blog/2022-08-23-mui-usedatagrid/filtering_column.png';
-import employeesGif from '@site/static/img/blog/2022-08-23-mui-usedatagrid/employees_gif.gif';
-import filteringTab from '@site/static/img/blog/2022-08-23-mui-usedatagrid/filtering_tab.png';
-import employeesCheck from '@site/static/img/blog/2022-08-23-mui-usedatagrid/employees_checkbox.png';
-import employeesFilter from '@site/static/img/blog/2022-08-23-mui-usedatagrid/employees_filter.png';
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Introduction
@@ -70,7 +70,7 @@ You will be asked a few questions by the installer. Select the following options
 
 
 <div class="img-container">
-    <img src={cli} alt="cli" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/cli.png" alt="cli" />
 </div>
 
 <br/>
@@ -85,7 +85,7 @@ After superplate has finished creating our app, run `npm run dev` to start the d
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={welcome} alt="welcome" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/welcome.png" alt="welcome" />
 </div>
 
 <br/>
@@ -339,7 +339,7 @@ Now, if you navigate to `localhost:8000/employees`, you should see the following
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={employeesList} alt="employees list" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/employees_list.png" alt="employees list" />
 </div>
 
 <br/>
@@ -361,7 +361,7 @@ Pagination lets us display a certain number of rows on a DataGrid at a time and 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={pagination} alt="pagination" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/pagination.png" alt="pagination" />
 </div>
 
 <br/>
@@ -418,7 +418,7 @@ Which renders our grid like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={grid} alt="grid" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/grid.png" alt="grid" />
 </div>
 
 <br/>
@@ -441,7 +441,7 @@ To sort the rows, click or hover on any column header, this displays an arrow in
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={sorting} alt="sorting" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/sorting.png" alt="sorting" />
 </div>
 
 <br/>
@@ -463,7 +463,7 @@ The above example will sort the rows using the *level* column on the initial ren
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={sortingEmployees} alt="sortingEmployees" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/sorting_employees.png" alt="sortingEmployees" />
 </div>
 
 <br/>
@@ -579,7 +579,7 @@ Here's a GIF showing the result of the above example.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={employeesGif} alt="employees Gif" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/employees_gif.gif" alt="employees Gif" />
 </div>
 
 <br/>
@@ -602,7 +602,7 @@ We can access the sort feature by either clicking on the *filter* item in the co
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={filteringColumn} alt="filtering Column" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/filtering_column.png" alt="filtering Column" />
 </div>
 
 <br/>
@@ -610,7 +610,7 @@ We can access the sort feature by either clicking on the *filter* item in the co
 or by using the filter button in the grid toolbar:
 
 <div class="img-container">
-    <img src={filteringTab} alt="filtering tab" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/filtering_tab.png" alt="filtering tab" />
 </div>
 
 <br/>
@@ -639,7 +639,7 @@ For instance in our employees table we can filter the *department* column for ro
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={employeesFilter} alt="employees filter" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/employees_filter.png" alt="employees filter" />
 </div>
 
 <br/>
@@ -811,7 +811,7 @@ Which gives the following result when you click on the checkbox:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={employeesCheck} alt="employees check" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/employees_checkbox.png" alt="employees check" />
 </div>
 
 <br/>

@@ -3,6 +3,7 @@ import { useResource } from "@pankod/refine-core";
 
 import {
     CreateInferencer,
+    InferencerComponentProps,
     InferencerResultComponent,
     InferField,
 } from "@/types";
@@ -54,9 +55,11 @@ export const createInferencer: CreateInferencer = ({
 
     const Inferencer = ({
         resourceName,
+        fieldTransformer,
         id,
     }: {
         resourceName?: string;
+        fieldTransformer?: InferencerComponentProps["fieldTransformer"];
         id?: string | number;
     }) => {
         const { resource, resources } = useResource({
@@ -83,17 +86,27 @@ export const createInferencer: CreateInferencer = ({
                     })
                     .filter(Boolean);
 
-                return transform(
+                const transformed = transform(
                     inferred as InferField[],
                     resources,
                     resource,
                     record,
                     infer,
                 );
+
+                const customTransformedFields = fieldTransformer
+                    ? transformed.flatMap((field) => {
+                          const result = fieldTransformer(field);
+
+                          return result ? [result] : [];
+                      })
+                    : transformed;
+
+                return customTransformedFields;
             }
 
             return [];
-        }, [record, resources, resource]);
+        }, [record, resources, resource, fieldTransformer]);
 
         const {
             fields: results,
@@ -155,10 +168,12 @@ export const createInferencer: CreateInferencer = ({
     const InferencerComponent: InferencerResultComponent = ({
         name,
         resource,
+        fieldTransformer,
         id,
     }) => {
         return (
             <Inferencer
+                fieldTransformer={fieldTransformer}
                 resourceName={resource ?? name}
                 key={resource ?? name}
                 id={id}

@@ -11,8 +11,8 @@ hide_table_of_contents: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import refine_flow from '@site/static/img/blog/2021-11-29-refine-vs-adminbro/refine_flow.png';
-import project_setup from '@site/static/img/blog/2021-11-29-refine-vs-adminbro/project_setup.gif';
+
+
 
 Looking for open source **admin panel framework**? Here we are going to review two of the best **Open Source admin panel frameworks of 2021**.
 
@@ -44,7 +44,7 @@ Although **refine** is a newer framework, it is successful in identifying defici
 npx superplate-cli demo-refine-project
 ```
 
-<img src={project_setup} alt="setup" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-29-refine-vs-adminbro/project_setup.gif" alt="setup" />
 
 ### Features
 
@@ -183,7 +183,7 @@ You just need to tell the route of your component to the routerProvider.
 
 A data provider is the place where a **refine** app communicates with an API.
 
-<img src={refine_flow} alt="refine" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-29-refine-vs-adminbro/refine_flow.png" alt="refine" />
 
 
 A data provider must include following methods:

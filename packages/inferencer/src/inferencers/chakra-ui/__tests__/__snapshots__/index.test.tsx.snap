@@ -207,7 +207,7 @@ exports[`ChakraUIInferencer should match the snapshot 1`] = `
                     <span
                       class="css-1qm7lvz"
                     >
-                      9
+                      Nobis Et Ut
                     </span>
                   </div>
                 </td>
@@ -306,12 +306,12 @@ exports[`ChakraUIInferencer should match the snapshot 1`] = `
                     <span
                       class="css-1qm7lvz"
                     >
-                      5
+                      Error Eos Et
                     </span>
                     <span
                       class="css-1qm7lvz"
                     >
-                      9
+                      Nobis Et Ut
                     </span>
                   </div>
                 </td>
@@ -788,11 +788,65 @@ exports[`ChakraUIInferencer should match the snapshot 2`] = `
             for="field-:ru:"
             id="field-:ru:-label"
           >
+            Tags
+          </label>
+          <div
+            class="chakra-select__wrapper css-42b2qy"
+          >
+            <select
+              class="chakra-select css-1ik61og"
+              id="field-:ru:"
+              name="tags"
+            >
+              <option
+                value=""
+              >
+                Select tag
+              </option>
+              <option
+                value="5"
+              >
+                Error Eos Et
+              </option>
+              <option
+                value="9"
+              >
+                Nobis Et Ut
+              </option>
+            </select>
+            <div
+              class="chakra-select__icon-wrapper css-162mkon"
+            >
+              <svg
+                aria-hidden="true"
+                class="chakra-select__icon"
+                focusable="false"
+                role="presentation"
+                style="width: 1em; height: 1em; color: currentColor;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:rv:"
+            id="field-:rv:-label"
+          >
             Language
           </label>
           <input
             class="chakra-input css-0"
-            id="field-:ru:"
+            id="field-:rv:"
             name="language"
             type="number"
           />
@@ -1147,35 +1201,17 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
         >
           <label
             class="chakra-form__label css-uvho5g"
-            for="field-:rv:"
-            id="field-:rv:-label"
+            for="field-:r10:"
+            id="field-:r10:-label"
           >
             Id
           </label>
           <input
             class="chakra-input css-0"
             disabled=""
-            id="field-:rv:"
+            id="field-:r10:"
             name="id"
             type="number"
-          />
-        </div>
-        <div
-          class="chakra-form-control css-h82jag"
-          role="group"
-        >
-          <label
-            class="chakra-form__label css-uvho5g"
-            for="field-:r10:"
-            id="field-:r10:-label"
-          >
-            Title
-          </label>
-          <input
-            class="chakra-input css-0"
-            id="field-:r10:"
-            name="title"
-            type="text"
           />
         </div>
         <div
@@ -1187,12 +1223,12 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
             for="field-:r11:"
             id="field-:r11:-label"
           >
-            Slug
+            Title
           </label>
           <input
             class="chakra-input css-0"
             id="field-:r11:"
-            name="slug"
+            name="title"
             type="text"
           />
         </div>
@@ -1205,12 +1241,13 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
             for="field-:r12:"
             id="field-:r12:-label"
           >
-            Content
+            Slug
           </label>
           <input
             class="chakra-input css-0"
             id="field-:r12:"
-            name="content"
+            name="slug"
+            type="text"
           />
         </div>
         <div
@@ -1222,13 +1259,12 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
             for="field-:r13:"
             id="field-:r13:-label"
           >
-            Hit
+            Content
           </label>
           <input
             class="chakra-input css-0"
             id="field-:r13:"
-            name="hit"
-            type="number"
+            name="content"
           />
         </div>
         <div
@@ -1240,6 +1276,24 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
             for="field-:r14:"
             id="field-:r14:-label"
           >
+            Hit
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:r14:"
+            name="hit"
+            type="number"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:r15:"
+            id="field-:r15:-label"
+          >
             Category
           </label>
           <div
@@ -1247,7 +1301,7 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
           >
             <select
               class="chakra-select css-1ik61og"
-              id="field-:r14:"
+              id="field-:r15:"
               name="category.id"
             >
               <option
@@ -1291,8 +1345,8 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
         >
           <label
             class="chakra-form__label css-uvho5g"
-            for="field-:r15:"
-            id="field-:r15:-label"
+            for="field-:r16:"
+            id="field-:r16:-label"
           >
             User
           </label>
@@ -1301,7 +1355,7 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
           >
             <select
               class="chakra-select css-1ik61og"
-              id="field-:r15:"
+              id="field-:r16:"
               name="user.id"
             >
               <option
@@ -1345,33 +1399,15 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
         >
           <label
             class="chakra-form__label css-uvho5g"
-            for="field-:r16:"
-            id="field-:r16:-label"
+            for="field-:r17:"
+            id="field-:r17:-label"
           >
             Status
           </label>
           <input
             class="chakra-input css-0"
-            id="field-:r16:"
-            name="status"
-            type="text"
-          />
-        </div>
-        <div
-          class="chakra-form-control css-h82jag"
-          role="group"
-        >
-          <label
-            class="chakra-form__label css-uvho5g"
-            for="field-:r17:"
-            id="field-:r17:-label"
-          >
-            Status Color
-          </label>
-          <input
-            class="chakra-input css-0"
             id="field-:r17:"
-            name="status_color"
+            name="status"
             type="text"
           />
         </div>
@@ -1384,12 +1420,13 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
             for="field-:r18:"
             id="field-:r18:-label"
           >
-            Created At
+            Status Color
           </label>
           <input
             class="chakra-input css-0"
             id="field-:r18:"
-            name="createdAt"
+            name="status_color"
+            type="text"
           />
         </div>
         <div
@@ -1401,11 +1438,28 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
             for="field-:r19:"
             id="field-:r19:-label"
           >
-            Published At
+            Created At
           </label>
           <input
             class="chakra-input css-0"
             id="field-:r19:"
+            name="createdAt"
+          />
+        </div>
+        <div
+          class="chakra-form-control css-h82jag"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:r1a:"
+            id="field-:r1a:-label"
+          >
+            Published At
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:r1a:"
             name="publishedAt"
           />
         </div>
@@ -1418,13 +1472,50 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
             for="field-:r1b:"
             id="field-:r1b:-label"
           >
-            Tags #1
+            Tags
           </label>
-          <input
-            class="chakra-input css-0"
-            id="field-:r1b:"
-            name="tags.0"
-          />
+          <div
+            class="chakra-select__wrapper css-42b2qy"
+          >
+            <select
+              class="chakra-select css-1ik61og"
+              id="field-:r1b:"
+              name="tags"
+            >
+              <option
+                value=""
+              >
+                Select tag
+              </option>
+              <option
+                value="5"
+              >
+                Error Eos Et
+              </option>
+              <option
+                value="9"
+              >
+                Nobis Et Ut
+              </option>
+            </select>
+            <div
+              class="chakra-select__icon-wrapper css-162mkon"
+            >
+              <svg
+                aria-hidden="true"
+                class="chakra-select__icon"
+                focusable="false"
+                role="presentation"
+                style="width: 1em; height: 1em; color: currentColor;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
         <div
           class="chakra-form-control css-h82jag"
@@ -1432,14 +1523,14 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
         >
           <label
             class="chakra-form__label css-uvho5g"
-            for="field-:r1a:"
-            id="field-:r1a:-label"
+            for="field-:r1c:"
+            id="field-:r1c:-label"
           >
             Language
           </label>
           <input
             class="chakra-input css-0"
-            id="field-:r1a:"
+            id="field-:r1c:"
             name="language"
             type="number"
           />
@@ -1908,7 +1999,12 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
           <span
             class="css-1qm7lvz"
           >
-            9
+            Error Eos Et
+          </span>
+          <span
+            class="css-1qm7lvz"
+          >
+            Nobis Et Ut
           </span>
         </div>
         <h5

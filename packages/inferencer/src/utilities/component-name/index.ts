@@ -9,32 +9,20 @@ export const componentName = (
     resourceName: string,
     type: "list" | "show" | "edit" | "create",
 ) => {
-    const resourcePrefix = pluralize.isSingular(resourceName)
-        ? resourceName
-        : pluralize.singular(resourceName);
+    // replace all non-alphanumeric characters with a space
+    const sanitized = resourceName.replace(/[^a-zA-Z0-9]/g, " ");
+    // convert to singular
+    const singular = pluralize.singular(sanitized);
+    // prettify the string without spaces
+    const prettified = prettyString(singular).replace(/ /g, "");
+    // get pretty type name
+    const prettyType = type.charAt(0).toUpperCase() + type.slice(1);
 
-    // if resourcePrefix is number, return Resource + capitalized type
-    // e.g. 1 => "ResourceList"
-    if (Number.isInteger(Number(resourcePrefix))) {
-        return "Resource" + type.charAt(0).toUpperCase() + type.slice(1);
+    // if resourceName is not starting with an alphabetical character, return Type + resourceName
+    // e.g. "123users" => "List123Users"
+    if (!/^[a-zA-Z]/.test(resourceName)) {
+        return `${prettyType}${prettified}`;
     }
-
-    // if resourcePrefix is start with numbers, replace the numbers with empty string
-    // e.g. 123users => "users"
-    const resourcePrefixWithoutNumbers = resourcePrefix.replace(/^\d+/, "");
-
-    // if resourcePrefix has invalid characters, replace them with empty string
-    // e.g. "users/account" => "users-account"
-    const resourcePrefixWithoutInvalidCharacters =
-        resourcePrefixWithoutNumbers.replace(/[^a-zA-Z0-9]/g, "-");
-
-    const prettyResourceName = prettyString(
-        resourcePrefixWithoutInvalidCharacters,
-    ).replace(/ /g, "");
-
-    const componentName = `${
-        prettyResourceName.charAt(0).toUpperCase() + prettyResourceName.slice(1)
-    }${type.charAt(0).toUpperCase() + type.slice(1)}`;
-
-    return componentName;
+    // e.g. "users" => "UserList"
+    return `${prettified}${prettyType}`;
 };

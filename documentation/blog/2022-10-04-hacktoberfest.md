@@ -4,15 +4,9 @@ description: Hactoberfest is back and we are excited to be a part of it. Join us
 slug: hacktoberfest-refine
 authors: necati
 tags: [hacktoberfest 10/22, refine]
-image: /img/blog/2022-10-04-hacktoberfest/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-04-hacktoberfest/social.png
 hide_table_of_contents: false
 ---
-
-
-import pixel from '@site/static/img/blog/2022-10-04-hacktoberfest/pixel-heart.png';
-import prize from '@site/static/img/blog/2022-10-04-hacktoberfest/prize.png';
-
-
 
 ## refine :heart: Hacktoberfest
 
@@ -24,7 +18,7 @@ We've already labeled a bunch of **refine** issues with `hacktoberfest` so you c
 [github.com/refinedev/refine/labels/hacktoberfest](https://github.com/refinedev/refine/labels/hacktoberfest)
 
 <div class="img-container" align-items="center" >
-   <img  src={prize}  alt="prize" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-04-hacktoberfest/prize.png"  alt="prize" />
 
 </div>
 

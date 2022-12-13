@@ -25,7 +25,10 @@ export default function BlogPostItem({ className }) {
                 <Link itemProp="url" to={permalink}>
                     <div className="relative m-0 h-40 overflow-hidden pt-[56.25%] hover:brightness-90">
                         <img
-                            src={`https://refine-web.imgix.net${frontMatter.image}?w=500`}
+                            src={`https://refine-web.imgix.net${frontMatter.image?.replace(
+                                "https://refine.ams3.cdn.digitaloceanspaces.com",
+                                "",
+                            )}?w=500`}
                             alt="Post image"
                             className="absolute inset-0 h-full w-full rounded-tl-[10px] rounded-tr-[10px] object-cover transition duration-150"
                             loading="lazy"

@@ -4,7 +4,7 @@ description: A detailed guide on React props with examples
 slug: react-props
 authors: chidume_nnamdi
 tags: [react, react-props, react-basics]
-image: /img/blog/2022-11-16-react-props/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-16-react-props/social.png
 hide_table_of_contents: false
 ---
 

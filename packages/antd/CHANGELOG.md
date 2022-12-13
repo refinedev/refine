@@ -1,5 +1,17 @@
 # @pankod/refine-antd
 
+## 3.68.0
+
+### Minor Changes
+
+-   [#3195](https://github.com/refinedev/refine/pull/3195) [`2fdc5c2a88e`](https://github.com/refinedev/refine/commit/2fdc5c2a88e490c7f3b6ed5b562974787863931e) Thanks [@leapful](https://github.com/leapful)! - Support Date Picker component when using with Filter Dropdown
+
+## 3.67.0
+
+### Minor Changes
+
+-   [#3195](https://github.com/refinedev/refine/pull/3195) [`2fdc5c2a88e`](https://github.com/refinedev/refine/commit/2fdc5c2a88e490c7f3b6ed5b562974787863931e) Thanks [@leapful](https://github.com/leapful)! - Support Date Picker component when using with Filter Dropdown
+
 ## 3.66.0
 
 ### Minor Changes

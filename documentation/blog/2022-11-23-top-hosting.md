@@ -4,11 +4,11 @@ description: A list of the best free platforms for hosting hobby web projects. Y
 slug: 5-top-free-react-hosting-platforms
 authors: joseph_mawa
 tags: [deployment, react, hosting]
-image: /img/blog/2022-11-23-top-hosting/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-23-top-hosting/social.png
 hide_table_of_contents: false
 ---
 
-import github from '@site/static/img/blog/2022-11-23-top-hosting/github-pages-setting.png';
+
 
 
 
@@ -373,7 +373,7 @@ After the deployment process completes, refresh the **Setting** page to obtain
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={github}  alt="github setting" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-23-top-hosting/github-pages-setting.png"  alt="github setting" />
 
 </div>
 

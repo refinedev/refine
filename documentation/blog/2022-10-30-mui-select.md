@@ -4,17 +4,17 @@ description: We'll discover the Material UI (MUI) select component with examples
 slug: material-ui-select-component
 authors: doro_onome
 tags: [material-ui, react, mui, mui-select,]
-image: /img/blog/2022-10-30-mui-select/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/social.png
 hide_table_of_contents: false
 ---
 
-import first from '@site/static/img/blog/2022-10-30-mui-select/first.png';
-import clearing from '@site/static/img/blog/2022-10-30-mui-select/mui-select-clearing.gif';
-import decorator from '@site/static/img/blog/2022-10-30-mui-select/mui-select-decorator.gif';
-import grouped from '@site/static/img/blog/2022-10-30-mui-select/mui-select-grouped.gif';
-import indicator from '@site/static/img/blog/2022-10-30-mui-select/mui-select-indicator.gif';
-import option from '@site/static/img/blog/2022-10-30-mui-select/mui-select-option.gif';
-import result from '@site/static/img/blog/2022-10-30-mui-select/mui-select-result.gif';
+
+
+
+
+
+
+
 
 
  
@@ -81,7 +81,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src={first}  alt="MUI select initial" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/first.png"  alt="MUI select initial" />
 </div>
 
 
@@ -160,7 +160,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src={option}  alt="MUI select option" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-option.gif"  alt="MUI select option" />
 </div>
 
 
@@ -215,7 +215,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src={indicator}  alt="MUI select indicator" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-indicator.gif"  alt="MUI select indicator" />
 </div>
 
 
@@ -257,7 +257,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src={decorator}  alt="MUI select decorator" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-decorator.gif"  alt="MUI select decorator" />
 </div>
 
 
@@ -360,7 +360,7 @@ The preceding code shows a `Select` field with organised input values. As shown 
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src={grouped}  alt="MUI select grouped" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-grouped.gif"  alt="MUI select grouped" />
 </div>
 
 
@@ -445,7 +445,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src={clearing}  alt="MUI select clearing" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-clearing.gif"  alt="MUI select clearing" />
 </div>
 
 
@@ -556,7 +556,7 @@ And the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={result}  alt="MUI select option" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-result.gif"  alt="MUI select option" />
 </div>
 
 

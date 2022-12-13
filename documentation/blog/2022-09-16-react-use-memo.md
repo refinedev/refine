@@ -4,14 +4,14 @@ description: Improve the React app performance with useMemo() hook
 slug: react-usememo
 authors: abdullah_numan
 tags: [react, memoization, usememo, performance]
-image: /img/blog/2022-09-16-react-use-memo/social.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-16-react-use-memo/social.jpg
 hide_table_of_contents: false
 ---
 
-import usememo1 from '@site/static/img/blog/2022-09-16-react-use-memo/usememo1.png';
-import usememo2 from '@site/static/img/blog/2022-09-16-react-use-memo/usememo2.png';
-import usememo3 from '@site/static/img/blog/2022-09-16-react-use-memo/usememo3.png';
-import usememo4 from '@site/static/img/blog/2022-09-16-react-use-memo/usememo4.png';
+
+
+
+
 
 
 ## Introduction
@@ -111,7 +111,7 @@ export default sortPosts;
 If we look at the console, we see that `Sorting posts...` is being logged at 1000ms intervals, i.e. with the tick of our clock:
 
 <div  class="img-container" align-items="center" >
-     <img style={{alignSelf:"center", width:"400px"}} src={usememo1}  alt="usememo1" />
+     <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-16-react-use-memo/usememo1.png"  alt="usememo1" />
 </div>
 
 <br/>
@@ -138,7 +138,7 @@ Checking our console, we can see that `Sorting posts...` has been logged only on
 
 
 <div  class="img-container" align-items="center" >
-     <img style={{alignSelf:"center", width:"400px"}} src={usememo2}  alt="usememo2" />
+     <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-16-react-use-memo/usememo2.png"  alt="usememo2" />
 </div>
 
 <br/>
@@ -165,7 +165,7 @@ If we check our console while clicking the button, we can clearly see `Sorting p
 <br/>
 
 <div class="img-container" align-items="center" >
-    <img style={{alignSelf:"center", width:"400px"}} src={usememo3} alt="usememo3" />
+    <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-16-react-use-memo/usememo3.png" alt="usememo3" />
 </div>
 
 <br/>
@@ -182,7 +182,7 @@ It is important to notice that, if we remove the dependency from `useMemo()`, `s
 There is no sorting going on when we need it:
 
 <div class="img-container" align-items="center" >
-     <img style={{alignSelf:"center", width:"400px"}} src={usememo4} alt="usememo4" />
+     <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-16-react-use-memo/usememo4.png" alt="usememo4" />
 </div>
 
 <br/>
