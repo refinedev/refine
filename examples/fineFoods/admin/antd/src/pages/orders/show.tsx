@@ -291,9 +291,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
         <>
             <Space size={20} direction="vertical" style={{ width: "100%" }}>
                 {renderOrderSteps()}
-                <div
-                    style={{ height: "500px", width: "100%", padding: "24px" }}
-                >
+                <div style={{ height: "500px", width: "100%" }}>
                     <Map
                         center={{
                             lat: 40.73061,

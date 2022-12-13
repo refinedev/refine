@@ -124,16 +124,10 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 lg={24}
                 xs={24}
                 style={{
-                    marginTop: "58px",
-                    paddingLeft: "24px",
+                    marginTop: "52px",
                 }}
             >
-                <Card
-                    title={t("orders.filter.title")}
-                    headStyle={{
-                        maxHeight: "55px",
-                    }}
-                >
+                <Card title={t("orders.filter.title")}>
                     <Filter
                         formProps={searchFormProps}
                         filters={filters || []}

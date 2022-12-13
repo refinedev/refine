@@ -98,16 +98,10 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                 lg={24}
                 xs={24}
                 style={{
-                    marginTop: "54px",
-                    paddingLeft: "24px",
+                    marginTop: "48px",
                 }}
             >
-                <Card
-                    title={t("users.filter.title")}
-                    headStyle={{
-                        maxHeight: "55px",
-                    }}
-                >
+                <Card title={t("users.filter.title")}>
                     <Filter formProps={searchFormProps} />
                 </Card>
             </Col>
