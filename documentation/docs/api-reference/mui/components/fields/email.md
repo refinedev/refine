@@ -4,7 +4,6 @@ title: Email
 swizzle: true
 ---
 
-import emailField from '@site/static/img/guides-and-concepts/fields/email/emailFieldMui.png'
 
 This field is used to display email values. It uses the [`<Link>`](https://mui.com/material-ui/react-link/#main-content) component of [`<Typography>`](https://mui.com/material-ui/react-typography/#main-content) from Material UI.
 
@@ -91,7 +90,7 @@ export interface IUser {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={emailField} alt="EmailField" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/email/emailFieldMui.png" alt="EmailField" />
 </div>
 
 ## API Reference

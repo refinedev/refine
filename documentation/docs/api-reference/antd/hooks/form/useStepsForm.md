@@ -3,7 +3,6 @@ id: useStepsForm
 title: useStepsForm
 ---
 
-import useStepsFormExample from '@site/static/img/hooks/useStepsForm/example.gif';
 
 `useStepsForm` hook allows you to split your form under an Ant Design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful functionalities that will help you manage your form.
 
@@ -317,7 +316,7 @@ export const PostCreate: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={useStepsFormExample} alt="Steps form example" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useStepsForm/example.gif" alt="Steps form example" />
 </div>
 
 ### Edit

@@ -4,8 +4,6 @@ title: Edit
 swizzle: true
 ---
 
-import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/edit/actionButtonUsageMui.png'
-import cardHeaderPropsTitle from '@site/static/img/guides-and-concepts/basic-views/edit/cardHeaderPropsTitle.png'
 
 `<Edit>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a [`<RefreshButton>`](/api-reference/mui/components/buttons/refresh.md).
 
@@ -489,7 +487,7 @@ export const EditPage: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={actionButtonsUsage} alt="actionButton Usage" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/basic-views/edit/actionButtonUsageMui.png" alt="actionButton Usage" />
 </div>
 <br/>
 
@@ -535,7 +533,7 @@ export const EditPage: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={cardHeaderPropsTitle} alt="actionButton Usage" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/basic-views/edit/cardHeaderPropsTitle.png" alt="actionButton Usage" />
 </div>
 <br/>
 

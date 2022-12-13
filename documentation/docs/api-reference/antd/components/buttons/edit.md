@@ -4,7 +4,6 @@ title: Edit
 swizzle: true
 ---
 
-import editButton from '@site/static/img/guides-and-concepts/components/buttons/edit/edit.png';
 
 `<EditButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `edit` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the edit page with the record id route of resource.
 
@@ -59,7 +58,7 @@ Will look like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={editButton} alt="Default edit button" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/edit/edit.png" alt="Default edit button" />
 </div>
 
 ## Properties

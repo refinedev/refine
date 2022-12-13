@@ -4,7 +4,6 @@ title: List
 swizzle: true
 ---
 
-import listButton from '@site/static/img/guides-and-concepts/components/buttons/list/list.png';
 
 `<ListButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
@@ -56,7 +55,7 @@ Will look like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={listButton} alt="Default list button" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/list/list.png" alt="Default list button" />
 </div>
 <br/>
 

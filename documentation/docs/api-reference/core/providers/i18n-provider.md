@@ -6,7 +6,6 @@ title: i18n Provider
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import changeLanguage from '@site/static/img/i18n/changing-language.gif';
 
 refine is capable of supporting any i18n framework but a `i18nProvider` according to the relevant library must be created.
 
@@ -809,7 +808,7 @@ export interface IPost {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={changeLanguage} alt="Language change action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/i18n/changing-language.gif" alt="Language change action" />
 </div>
 
 ## Live StackBlitz Example

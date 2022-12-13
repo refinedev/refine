@@ -3,10 +3,6 @@ id: react-table
 title: React Table
 ---
 
-import basicTable from '@site/static/img/packages/react-table/basic.png';
-import pagination from '@site/static/img/packages/react-table/pagination.gif';
-import sorting from '@site/static/img/packages/react-table/sorting.gif';
-import filtering from '@site/static/img/packages/react-table/filtering.gif';
 
 **refine** offers a [TanStack Table][tanstack-table] adapter with [@pankod/refine-react-table][refine-react-table] that allows you to use the TanStack Table library with **refine**. Thus, you can manage your server-side data fetching operations.
 
@@ -231,7 +227,7 @@ This example is the same as the basic example in the [TanStack Table][tanstack-t
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={basicTable} alt="Basic Table" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-table/basic.png" alt="Basic Table" />
 </div>
 
 <br/>
@@ -377,7 +373,7 @@ export const PostList: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={pagination} alt="Pagination Table" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-table/pagination.gif" alt="Pagination Table" />
 </div>
 
 <br/>
@@ -472,7 +468,7 @@ export const PostList: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={sorting} alt="Sortable Table" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-table/sorting.gif" alt="Sortable Table" />
 </div>
 
 <br/>
@@ -617,7 +613,7 @@ export const PostList: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={filtering} alt="Filtering" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-table/filtering.gif" alt="Filtering" />
 </div>
 
 <br/>

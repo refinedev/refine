@@ -3,10 +3,6 @@ id: ethereum-signin
 title: Sign in with Ethereum Web3 Wallet
 ---
 
-import login from '@site/static/img/guides-and-concepts/web3/login.gif';
-import dashboard from '@site/static/img/guides-and-concepts/web3/dashboard.png';
-import customize from '@site/static/img/guides-and-concepts/web3/customize.png';
-import overview from '@site/static/img/guides-and-concepts/web3/overview.gif';
 
 ## Introduction
 
@@ -187,7 +183,7 @@ export const Login: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={login} alt="ethereum-login" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/login.gif" alt="ethereum-login" />
 </div>
 <br/>
 
@@ -248,7 +244,7 @@ export const DashboardPage: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={dashboard} alt="refine-dashboard" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/dashboard.png" alt="refine-dashboard" />
 </div>
 <br/>
 
@@ -398,7 +394,7 @@ export const DashboardPage: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={customize} alt="refine-customize" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/customize.png" alt="refine-customize" />
 </div>
 <br/>
 
@@ -410,7 +406,7 @@ We can now request to send ethereum through our **refine** dashboard and also vi
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={overview} alt="refine-overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/overview.gif" alt="refine-overview" />
 </div>
 <br/>
 

@@ -3,13 +3,6 @@ id: material-ui-tutorial
 title: Your First App using Material UI 
 ---
 
-import readyPage from '@site/static/img/tutorial/mui/ready-page.png';
-import resourceFirst from '@site/static/img/tutorial/mui/resource-1.png';
-import resourceSecond from '@site/static/img/tutorial/mui/resource-2.png';
-import filter from '@site/static/img/tutorial/mui/filter.gif';
-import showGif from '@site/static/img/tutorial/mui/show.gif';
-import editGif from '@site/static/img/tutorial/mui/edit.gif';
-import createGif from '@site/static/img/tutorial/mui/create.gif'
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -273,7 +266,7 @@ Point your browser to [http://localhost:3000](http://localhost:3000) to access i
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={readyPage} alt="Ready Page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/mui/ready-page.png" alt="Ready Page" />
 </div>
 <br/>
 
@@ -375,7 +368,7 @@ Instead of showing the welcome page, the application should redirect now to an U
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={resourceFirst} alt="Resource only with name" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/mui/resource-1.png" alt="Resource only with name" />
 </div>
 <br/>
 </>
@@ -582,7 +575,7 @@ On the next step, we are going to add a category field to the table which involv
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={resourceSecond} alt="Resource only List component" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/mui/resource-2.png" alt="Resource only List component" />
 </div>
 <br/>
 </>
@@ -745,7 +738,7 @@ To see how the filtering works and more detail, you can look at the [`useDataGri
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={filter} alt="Filter and search" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/mui/filter.gif" alt="Filter and search" />
 </div>
 <br/>
 
@@ -972,7 +965,7 @@ export const PostList: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={showGif} alt="Show record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/mui/show.gif" alt="Show record action" />
 </div>
 <br/>
 
@@ -1296,7 +1289,7 @@ You can try using edit buttons which will trigger the edit forms for each record
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={editGif} alt="Edit record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/mui/edit.gif" alt="Edit record action" />
 </div>
 
 ## Creating a record
@@ -1488,7 +1481,7 @@ And that's it! Try it on the browser and see if you can create new posts from sc
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={createGif} alt="Create record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/mui/create.gif" alt="Create record action" />
 </div>
 
 <br/>

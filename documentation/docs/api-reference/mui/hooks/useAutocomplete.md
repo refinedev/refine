@@ -3,8 +3,6 @@ id: useAutocomplete
 title: useAutocomplete
 ---
 
-import basicUsage from '@site/static/img/hooks/useSelect/mui/basic-usage.png';
-import search from '@site/static/img/hooks/useSelect/mui/search.png';
 
 The `useAutocomplete` hook is used to get data from the API and to manage the Material UI [`<Autocomplete>`][mui-autocomplete] component.
 
@@ -126,7 +124,7 @@ The use of `useAutocomplete` with [`useForm`](/packages/documentation/react-hook
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={basicUsage} alt="Basic use of Autocomplete" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useSelect/mui/basic-usage.png" alt="Basic use of Autocomplete" />
 </div>
 <br/>
 
@@ -136,7 +134,7 @@ The use of `useAutocomplete` with [`useForm`](/packages/documentation/react-hook
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={search} alt="Search functionality" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useSelect/mui/search.png" alt="Search functionality" />
 </div>
 <br/>
 

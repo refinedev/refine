@@ -3,12 +3,6 @@ id: strapi-v4
 title: Strapi-v4
 ---
 
-import sider from '@site/static/img/guides-and-concepts/multi-tenant/strapi/sider.png';
-import store_filter from '@site/static/img/guides-and-concepts/multi-tenant/strapi/store-filter.gif';
-import create from '@site/static/img/guides-and-concepts/multi-tenant/strapi/create.gif';
-import stores from '@site/static/img/guides-and-concepts/multi-tenant/strapi/stores.png';
-import products from '@site/static/img/guides-and-concepts/multi-tenant/strapi/products.png';
-import orders from '@site/static/img/guides-and-concepts/multi-tenant/strapi/orders.png';
 
 ## What is Multitenancy?
 
@@ -172,7 +166,7 @@ We created three collections on Strapi as store, product and order and added a r
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={stores} alt="stores" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/stores.png" alt="stores" />
 </div>
 <br/>
 
@@ -190,7 +184,7 @@ We created three collections on Strapi as store, product and order and added a r
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={products} alt="products" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/products.png" alt="products" />
 </div>
 <br/>
 
@@ -209,7 +203,7 @@ We created three collections on Strapi as store, product and order and added a r
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={orders} alt="orders" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/orders.png" alt="orders" />
 </div>
 <br/>
 
@@ -431,7 +425,7 @@ export const CustomSider: React.FC = () => {
 </p>
 </details>
 
-|                                                                    <img src={sider} alt="sider" />                                                                     |
+|                                                                    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/sider.png" alt="sider" />                                                                     |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | _As you can see, you can now choose the store you want and create products and orders specifically for the store we have chosen according to the storeId information._ |
 
@@ -516,7 +510,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={store_filter} alt="Store Filter" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/store-filter.gif" alt="Store Filter" />
 </div>
 <br/>
 
@@ -682,7 +676,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={create} alt="Create Product" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/create.gif" alt="Create Product" />
 </div>
 <br/>
 

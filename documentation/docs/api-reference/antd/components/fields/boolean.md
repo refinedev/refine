@@ -4,7 +4,6 @@ title: Boolean
 swizzle: true
 ---
 
-import booleanField from '@site/static/img/guides-and-concepts/fields/boolean/booleanfield.png'
 
 This field is used to display boolean values. It uses the [`<Tooltip>`](https://ant.design/components/tooltip/#header) values from Ant Design.
 
@@ -62,7 +61,7 @@ export const PostList: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={booleanField} alt="BooleanField" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/boolean/booleanfield.png" alt="BooleanField" />
 </div>
 
 ## API Reference

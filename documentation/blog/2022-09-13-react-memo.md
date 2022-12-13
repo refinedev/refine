@@ -58,7 +58,7 @@ The focus of this article will be the `<Post />` component, but `<App />`, `<Blo
 
 ---
 
-<PromotionBanner title="Still building from scratch in 2022?" image="/img/mui_banner.png" />
+<PromotionBanner title="Still building from scratch in 2022?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/mui_banner.png" />
 
 ---
 
@@ -351,7 +351,7 @@ In the next article, we will turn our attention back to the `<Blog />` component
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
 </a>
 </div>
 

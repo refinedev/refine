@@ -3,7 +3,6 @@ id: command-palette
 title: Command Palette
 ---
 
-import example from '@site/static/img/packages/command-palette/kbar/refine-kbar-example.gif';
 
 **refine** supports the command palette feature and use the
 [**kbar**][kbar]. **kbar** is a fully extensible `cmd` + `k`(MacOS) or `ctrl` + `k`(Linux/Windows) interface for your site.
@@ -75,7 +74,7 @@ const App: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={example} alt="Refine Kbar Example" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/command-palette/kbar/refine-kbar-example.gif" alt="Refine Kbar Example" />
 </div>
 
 <br/>

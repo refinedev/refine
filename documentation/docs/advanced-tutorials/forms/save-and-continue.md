@@ -3,7 +3,6 @@ id: save-and-continue
 title: Save and Continue
 ---
 
-import saveButtons from '@site/static/img/guides-and-concepts/form/save-and-continue/saveButtons.png';
 
 refine provides you with the necessary methods to add this feature. This feature is familiar to [Django](https://www.djangoproject.com/) users.
 
@@ -198,7 +197,7 @@ export const PostCreate: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={saveButtons} alt="save and continue buttons" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/form/save-and-continue/saveButtons.png" alt="save and continue buttons" />
 </div>
 <br/>
 

@@ -4,8 +4,6 @@ title: Clone
 swizzle: true
 ---
 
-import cloneButton from '@site/static/img/guides-and-concepts/components/buttons/clone/clone.png';
-
 `<CloneButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `clone` method from [useNavigation](/api-reference/core/hooks/navigation/useNavigation.md) under the hood.
 It can be useful when redirecting the app to the create page with the record id route of resource.
 

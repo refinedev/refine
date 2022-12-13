@@ -3,7 +3,6 @@ id: benchmarks
 title: Benchmarks
 ---
 
-import benchmarkImg from '@site/static/img/getting-started/benchmark.png';
 
 
 Many **refine** projects involve migrating an existing vanilla React application to the **refine** framework. By collecting data from various migration projects, we were able to do some benchmarking by comparing codebases. 
@@ -12,7 +11,7 @@ Many **refine** projects involve migrating an existing vanilla React application
 
 <div align="center">
 
-<img src={benchmarkImg} width="400px" align="center" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/getting-started/benchmark.png" width="400px" align="center" />
 
 </div>
 

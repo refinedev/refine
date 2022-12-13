@@ -4,9 +4,6 @@ title: Access Control
 sidebar_label: Access Control
 ---
 
-import simpleAccess from '@site/static/img/guides-and-concepts/access-control/simple-access.png';
-import dynamicRole from '@site/static/img/guides-and-concepts/access-control/dynamic-role.gif';
-import accessControl from '@site/static/img/guides-and-concepts/access-control/access-control.gif';
 
 ## Introduction
 
@@ -180,7 +177,7 @@ Our model provides that user with role **editor** have access for **list** actio
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={simpleAccess} alt="Simple Access Control" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/access-control/simple-access.png" alt="Simple Access Control" />
 </div>
 <br/>
 
@@ -281,7 +278,7 @@ export const Header: React.FC<HeaderProps> = ({ role, setRole }) => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={dynamicRole} alt="Dynamic Role" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/access-control/dynamic-role.gif" alt="Dynamic Role" />
 </div>
 <br/>
 
@@ -523,7 +520,7 @@ export const PostList: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={accessControl} alt="Full Example Sample" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/access-control/access-control.gif" alt="Full Example Sample" />
 </div>
 
 ## Live StackBlitz Example

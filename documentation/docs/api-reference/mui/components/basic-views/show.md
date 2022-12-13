@@ -4,8 +4,6 @@ title: Show
 swizzle: true
 ---
 
-import cardHeaderProps from '@site/static/img/guides-and-concepts/basic-views/show/cardHeaderProps.png'
-import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/show/actionButtonsUsageMui.png'
 
 `<Show>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a refresh button or giving title to the page.
 
@@ -468,7 +466,7 @@ export const ShowPage: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={actionButtonsUsage} alt="actionButton Usage" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/basic-views/show/actionButtonsUsageMui.png" alt="actionButton Usage" />
 </div>
 <br/>
 
@@ -529,7 +527,7 @@ interface IPost {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={cardHeaderProps} alt="cardHeaderProps Usage" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/basic-views/show/cardHeaderProps.png" alt="cardHeaderProps Usage" />
 </div>
 <br/>
 

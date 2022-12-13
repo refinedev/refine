@@ -3,8 +3,6 @@ id: useDrawerForm
 title: useDrawerForm
 ---
 
-import createGif from '@site/static/img/hooks/useDrawerForm/create.gif';
-import editGif from '@site/static/img/hooks/useDrawerForm/edit.gif';
 
 `useDrawerForm` hook allows you to manage a form within a Drawer. It returns Ant Design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components props.
 
@@ -102,7 +100,7 @@ This code block makes `<Drawer>` appear when you click the button.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={createGif} alt="Create record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useDrawerForm/create.gif" alt="Create record action" />
 </div>
 
 <br />
@@ -223,7 +221,7 @@ The `saveButtonProps` and `deleteButtonProps` gives us the ability of saving and
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={editGif} alt="Edit record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useDrawerForm/edit.gif" alt="Edit record action" />
 </div>
 <br />
 

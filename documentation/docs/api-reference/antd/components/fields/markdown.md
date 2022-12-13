@@ -4,7 +4,6 @@ title: Markdown
 swizzle: true
 ---
 
-import markdownField from '@site/static/img/guides-and-concepts/fields/markdown/markdownfield.png';
 
 This field lets you display markdown content. It supports [GitHub Flavored Markdown](https://github.github.com/gfm/).
 
@@ -59,7 +58,7 @@ interface IPost {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={markdownField} alt="MarkdownField" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/markdown/markdownfield.png" alt="MarkdownField" />
 </div>
 
 ## API Reference

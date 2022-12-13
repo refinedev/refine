@@ -3,7 +3,6 @@ id: auth0
 title: Auth0 Login
 ---
 
-import login from '@site/static/img/guides-and-concepts/auth0/auth0-login.gif';
 
 [Auth0](https://auth0.com/) is a flexible, drop-in solution for adding authentication and authorization services to your applications. Your team and organization can avoid the cost, time, and risk that comes with building your own solution to authenticate and authorize users. You can check the [Auth0 document](https://auth0.com/docs) for details.
 
@@ -100,7 +99,7 @@ After clicking the `Login` button, you will be directed to the auth0 login scree
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={login} alt="auth0-login" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/auth0/auth0-login.gif" alt="auth0-login" />
 </div>
 <br/>
 

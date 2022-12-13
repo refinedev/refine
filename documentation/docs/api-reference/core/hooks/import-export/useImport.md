@@ -4,7 +4,6 @@ title: useImport
 description: useImport hook API references of @pankod/refine-core
 ---
 
-import useImport from '@site/static/img/core/useImport/useImport.gif';
 
 `useImport` hook allows you to handle your `CSV` import logic easily. It uses [`papaparse`][papaparse] under the hood to parse `CSV` files.
 
@@ -123,7 +122,7 @@ export const PostList: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={useImport} alt="useImport usage" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/core/useImport/useImport.gif" alt="useImport usage" />
 </div>
 
 <br />

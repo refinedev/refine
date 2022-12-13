@@ -3,8 +3,6 @@ id: useModalForm
 title: useModalForm
 ---
 
-import createModal from '@site/static/img/packages/react-hook-form/useModalForm/create-modal.gif';
-import editModal from '@site/static/img/packages/react-hook-form/useModalForm/edit-modal.gif';
 
 `useModalForm` hook allows you to manage a form within a modal. It provides some useful methods to handle the form modal.
 
@@ -241,7 +239,7 @@ export const CreatePost: React.FC<UseModalFormReturnType> = ({
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={createModal} alt="Create Modal" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-hook-form/useModalForm/create-modal.gif" alt="Create Modal" />
 </div>
 
 ### Edit Modal
@@ -381,7 +379,7 @@ export const EditPost: React.FC<UseModalFormReturnType> = ({
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={editModal} alt="Edit Modal" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-hook-form/useModalForm/edit-modal.gif" alt="Edit Modal" />
 </div>
 
 ## API Reference

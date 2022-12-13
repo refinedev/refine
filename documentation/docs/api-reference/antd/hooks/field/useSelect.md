@@ -3,8 +3,6 @@ id: useSelect
 title: useSelect
 ---
 
-import basicUsage from '@site/static/img/hooks/useSelect/basic-usage.png';
-import search from '@site/static/img/hooks/useSelect/search.png';
 
 `useSelect` hook allows you to manage an Ant Design [Select](https://ant.design/components/select/) component when records in a resource needs to be used as select options.
 
@@ -63,7 +61,7 @@ interface ICategory {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={basicUsage} alt="Basic use of select box" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useSelect/basic-usage.png" alt="Basic use of select box" />
 </div>
 <br/>
 
@@ -75,7 +73,7 @@ All we have to do is pass the `selectProps` it returns to the `<Select>` compone
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={search} alt="Search functionality" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useSelect/search.png" alt="Search functionality" />
 </div>
 <br/>
 

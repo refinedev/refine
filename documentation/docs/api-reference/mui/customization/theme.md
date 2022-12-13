@@ -3,12 +3,6 @@ id: mui-custom-theme
 title: Theme
 ---
 
-import withoutTheme from '@site/static/img/guides-and-concepts/theme/mui/withoutTheme.png'
-import withTheme from '@site/static/img/guides-and-concepts/theme/mui/withTheme.png'
-import overridedTheme from '@site/static/img/guides-and-concepts/theme/mui/overridedTheme.png'
-import customTheme from '@site/static/img/guides-and-concepts/theme/mui/customTheme.png'
-import toggleDarkMode from '@site/static/img/guides-and-concepts/theme/mui/toggleDarkMode.gif'
-import notistackTheme from '@site/static/img/guides-and-concepts/theme/mui/notistackTheme.gif'
 
 Theme specifies the color of the components, the darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc. You can either create your own Theme or use Themes that provide from Refine. There are two types of Themes: [`LightTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L16) and [`DarkTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L46). [`LightTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L16) tend to have dark text on a light background, while [`DarkTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L46) have light text on a dark background. Theme provides a way to your app's design to meet them.
 
@@ -79,7 +73,7 @@ If you don't wrap your app with [`ThemeProvider`](https://mui.com/material-ui/cu
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={withoutTheme} alt="App without ThemeProvider" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/theme/mui/withoutTheme.png" alt="App without ThemeProvider" />
 </div>
 
 <br/>
@@ -139,7 +133,7 @@ The design has been changed to match the LightTheme, so you can enjoy these amaz
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={withTheme} alt="App with ThemeProvider" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/theme/mui/withTheme.png" alt="App with ThemeProvider" />
 </div>
 
 ## Overriding Variables
@@ -217,7 +211,7 @@ When we easy-override our LightTheme, it's going to look like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={overridedTheme} alt="Theme variable override" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/theme/mui/overridedTheme.png" alt="Theme variable override" />
 </div>
 
 <br />
@@ -363,7 +357,7 @@ customTheme = responsiveFontSizes(customTheme);
 const App: React.FC = () => {
     return (
         // highlight-next-line
-        <ThemeProvider theme={customTheme}>
+        <ThemeProvider theme="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/theme/mui/customTheme.png">
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
@@ -655,7 +649,7 @@ export default App;
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={toggleDarkMode} alt="Dark Mode" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/theme/mui/toggleDarkMode.gif" alt="Dark Mode" />
 </div>
 
 ## Notification Snackbars compatible with Theme
@@ -724,7 +718,7 @@ export default App;
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={notistackTheme} alt="Notistack Snackbars with Theme" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/theme/mui/notistackTheme.gif" alt="Notistack Snackbars with Theme" />
 </div>
 
 <br />

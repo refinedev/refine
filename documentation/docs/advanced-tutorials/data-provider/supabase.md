@@ -3,14 +3,6 @@ id: supabase
 title: Supabase
 ---
 
-import login from '@site/static/img/guides-and-concepts/data-provider/supabase/login-screen.png';
-import welcome from '@site/static/img/guides-and-concepts/data-provider/supabase/welcome.png';
-import flow from '@site/static/img/guides-and-concepts/data-provider/supabase/flow.png';
-import list from '@site/static/img/guides-and-concepts/data-provider/supabase/list.png';
-import create from '@site/static/img/guides-and-concepts/data-provider/supabase/create.png';
-import realTime from '@site/static/img/guides-and-concepts/data-provider/supabase/real-time.gif';
-import socialLogin from '@site/static/img/guides-and-concepts/data-provider/supabase/social-login.gif';
-import supabaseConfig from '@site/static/img/guides-and-concepts/data-provider/supabase/supabase-config.png';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -304,7 +296,7 @@ If you head over to localhost:3000, you'll see a welcome page.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={welcome} alt="welcome" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/welcome.png" alt="welcome" />
 </div>
 
 <br/>
@@ -862,7 +854,7 @@ After adding the resources, the app will look like:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img style={{alignSelf:"center", width:"700px"}} src={login} alt="login" />
+    <img style={{alignSelf:"center", width:"700px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/login-screen.png" alt="login" />
 </div>
 
 <br/>
@@ -923,7 +915,7 @@ Remember the [Understanding the Auth Provider](#understanding-auth-provider) sec
 <br/>
 
 <div style={{display:"flex", flexDirection:"column"}}>
-     <img style={{alignSelf:"center", width:"800px"}} src={flow} alt="flow" />
+     <img style={{alignSelf:"center", width:"800px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/flow.png" alt="flow" />
 </div>
 
 <br/>
@@ -948,7 +940,7 @@ We have successfully logged in to the app and `ListPage` renders table of data a
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={list} alt="list" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/list.png" alt="list" />
 </div>
 
 <br/>
@@ -964,7 +956,7 @@ Thanks to `refine-supabase` data provider, we can now start creating new records
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={create} alt="create" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/create.png" alt="create" />
 </div>
 
 <br/>
@@ -1026,7 +1018,7 @@ You will find the Google Auth option in the Auth providers section; enable it an
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={supabaseConfig} alt="supabaseConfig" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/supabase-config.png" alt="supabaseConfig" />
 </div>
 
 <br/>
@@ -1041,7 +1033,7 @@ Here is the result:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={socialLogin} alt="socialLogin" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/social-login.gif" alt="socialLogin" />
 </div>
 
 <br/>
@@ -1102,7 +1094,7 @@ For live features to work automatically, we setted `liveMode: "auto"` in the opt
 <br/>
 
 <div class="img-container">
-    <img  src={realTime} alt="realTime" />
+    <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/real-time.gif" alt="realTime" />
 </div>
 
 <br/>

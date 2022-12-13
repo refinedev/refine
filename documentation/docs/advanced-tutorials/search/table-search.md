@@ -3,7 +3,6 @@ id: table-search
 title: Table Search
 ---
 
-import searchForm from '@site/static/img/guides-and-concepts/table-search/form.png';
 
 We can make extensive search / filter operations using the `useTable` hook on the listing pages.
 
@@ -76,7 +75,7 @@ interface IPost {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={searchForm} />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/table-search/form.png" />
 </div>
 
 <br />

@@ -3,10 +3,6 @@ id: useForm
 title: useForm
 ---
 
-import listPage from '@site/static/img/packages/react-hook-form/list-page.png';
-import createForm from '@site/static/img/packages/react-hook-form/create-form.gif';
-import editForm from '@site/static/img/packages/react-hook-form/edit-form.gif';
-import fileUpload from '@site/static/img/packages/react-hook-form/upload.gif';
 
 **refine** offers a [React Hook Form][react-hook-form] adapter([@pankod/refine-react-hook-form][refine-react-hook-form]) that allows you to use the React Hook Form library with **refine**. Thus, you can manage your forms in headless way.
 
@@ -121,7 +117,7 @@ export const PostList: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={listPage} alt="List Page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-hook-form/list-page.png" alt="List Page" />
 </div>
 
 ### Create Form
@@ -203,7 +199,7 @@ export const PostCreate: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={createForm} alt="Create Form" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-hook-form/create-form.gif" alt="Create Form" />
 </div>
 
 ### Edit Form
@@ -290,7 +286,7 @@ export const PostEdit: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={editForm} alt="Edit Form" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-hook-form/edit-form.gif" alt="Edit Form" />
 </div>
 
 ### Multipart File Upload
@@ -411,7 +407,7 @@ export const PostCreate: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={fileUpload} alt="Multipart File Upload" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-hook-form/upload.gif" alt="Multipart File Upload" />
 </div>
 
 ## API

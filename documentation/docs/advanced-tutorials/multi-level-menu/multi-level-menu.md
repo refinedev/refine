@@ -4,7 +4,6 @@ title: Multi Level Menu
 sidebar_label: Multi Level Menu
 ---
 
-import multiLevelMenu from '@site/static/img/guides-and-concepts/multi-level-menu/multi-level-menu.png';
 
 This document is related to how to create a multi-level menu for **refine** applications.
 
@@ -149,7 +148,7 @@ This gives you more control over the side menu, and allows you to customize it t
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={multiLevelMenu} alt="multiLevelMenu" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-level-menu/multi-level-menu.png" alt="multiLevelMenu" />
 </div>
 <br />
 

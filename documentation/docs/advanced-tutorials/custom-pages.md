@@ -5,8 +5,6 @@ title: Custom Pages
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import basic from '@site/static/img/guides-and-concepts/custom-pages/basic.png'
-import gif from '@site/static/img/guides-and-concepts/custom-pages/gif.gif'
 
 
 :::caution
@@ -701,7 +699,7 @@ Now our page looks like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={basic} alt="A custom page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/custom-pages/basic.png" alt="A custom page" />
 </div>
 <br />
 
@@ -823,7 +821,7 @@ export const PostReview = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={gif} alt="A custom page in action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/custom-pages/gif.gif" alt="A custom page in action" />
 </div>
 <br />
 

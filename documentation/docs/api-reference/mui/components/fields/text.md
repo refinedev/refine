@@ -4,7 +4,6 @@ title: Text
 swizzle: true
 ---
 
-import textField from '@site/static/img/guides-and-concepts/fields/text/textFieldMui.png';
 
 This field lets you show basic text. It uses Material UI [`<Typography>`](https://mui.com/material-ui/react-typography/#main-content) component.
 
@@ -107,7 +106,7 @@ interface ICategory {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={textField} alt="TagField" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/text/textFieldMui.png" alt="TagField" />
 </div>
 
 ## API Reference
