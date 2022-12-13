@@ -161,12 +161,9 @@ module.exports = {
 
 All variable overrides configured in `lessOptions.modifyVars` always have higher precedence than the overrides in `less` files.
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/customization-theme-antd?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-custom-theme-example"
-></iframe>
+<StackblitzExample path="customization-theme-antd" />
 
 [create-refine-app]: /docs/getting-started/quickstart.md
 [finefoods-client]: https://github.com/refinedev/refine/tree/master/examples/finefoods-client

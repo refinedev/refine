@@ -11,9 +11,4 @@ example-tags: [command-palette,kbar]
 
 Try it out – press cmd+k (macOS) or ctrl+k (Linux/Windows).
 
-[View kbar Example Source](https://github.com/refinedev/refine/tree/master/examples/command-palette-kbar)
-
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/command-palette-kbar?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-custom-footer-example"
-></iframe>
+<StackblitzExample path="command-palette-kbar" />

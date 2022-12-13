@@ -309,9 +309,6 @@ const { autocompleteProps } = useAutocomplete({
 > | onInputChange | Callback fired when the input value changes               | `(event: React.SyntheticEvent, value: string, reason: string) => void` |
 > | filterOptions | Determines the filtered options to be rendered on search. | `(options: TData, state: object) => TData`                             |
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/field-antd-use-select-mui?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-use-select-example"
-></iframe>
+<StackblitzExample path="field-antd-use-select-mui" />

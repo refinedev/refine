@@ -8,9 +8,4 @@ example-tags: [form,mantine]
 
 [Refer to the useModalForm hook documentation for more information. →](/api-reference/mantine/hooks/form/useModalForm.md)
 
-[View Drawer Form Example Source](https://github.com/refinedev/refine/tree/master/examples/form-mantine-use-drawer-form)
-
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-mantine-use-drawer-form?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="mantine-use-drawer-form-example"
-></iframe>
+<StackblitzExample path="form-mantine-use-drawer-form" />

@@ -8,9 +8,4 @@ You can make basic validations with Ant Design [Form.Item](https://ant.design/co
 
 [Refer to the **refine** Custom Form Validation documentation for more information. →](/docs/api-reference/antd/hooks/form/useStepsForm/)
 
-[View Custom Form Validation Example Source](https://github.com/refinedev/refine/tree/master/examples/form-antd-custom-validation)
-
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-antd-custom-validation?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-custom-validation-example-app"
-></iframe>
+<StackblitzExample path="form-antd-custom-validation" />

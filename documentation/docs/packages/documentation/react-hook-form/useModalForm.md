@@ -415,12 +415,9 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 > | title           | Modal title based on resource and action value | `string`                                     |
 > | saveButtonProps | Props for a submit button                      | `{ disabled: boolean, onClick: (e: React.BaseSyntheticEvent) => void;  }` |
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-react-hook-form-use-modal-form/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-react-hook-form-example"
-></iframe>
+<StackblitzExample path="form-react-hook-form-use-modal-form" />
 
 [@pankod/refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
 [refine-react-hook-form-use-form]: /packages/documentation/react-hook-form/useForm.md

@@ -895,9 +895,6 @@ These hooks can be used with the `authProvider` authentication and authorization
 | updatePassword                                          | Can be use to get update password         | Auth confirms update password         |
 <br />
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/auth-antd?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-authentication-example"
-></iframe>
+<StackblitzExample path="auth-antd" />

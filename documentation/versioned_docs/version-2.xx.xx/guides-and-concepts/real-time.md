@@ -398,7 +398,7 @@ useSubscription({
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/real-time/custom-sider.gif" alt="Custom Sider Demo" />
 </div>
 
-## Live Condesandbox Example
+## Example
 
 <iframe src="https://codesandbox.io/embed/refine-ably-example-u9wg9?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

@@ -165,9 +165,6 @@ If [syncWithLocation](/api-reference/core/components/refine-config.md#syncwithlo
 
 <PropsTable module="@pankod/refine-antd/FilterDropdown"/>
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-antd-use-table?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-use-table-example"
-></iframe>
+<StackblitzExample path="table-antd-use-table" />

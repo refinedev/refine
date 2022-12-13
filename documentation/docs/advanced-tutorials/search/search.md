@@ -293,9 +293,6 @@ export const Header: React.FC = () => {
 By doing the same implementation on your other resources, you can search more than one resource with a value.
 :::
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/search?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-search-example"
-></iframe>
+<StackblitzExample path="search" />

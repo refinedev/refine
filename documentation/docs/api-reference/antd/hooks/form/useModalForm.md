@@ -240,14 +240,9 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 | TError     | Custom error object that extends [`HttpError`][HttpError]        | [`HttpError`][HttpError]   |
 | TVariables | Values for params.                                               | `{}`                       |
 
-## Live StackBlitz Example
+## Example
 
-   <iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-antd-use-modal-form?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="refine-use-modal-form-example"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+   <StackblitzExample path="form-antd-use-modal-form" />
 
 [BaseRecord]: /api-reference/core/interfaces.md#baserecord
 [HttpError]: /api-reference/core/interfaces.md#httperror

@@ -545,12 +545,9 @@ export const PostEdit: React.FC = () => {
 > | currentStep | Current step                         | `boolean`                |
 > | gotoStep    | Allows you to go to a specific step. | `(step: number) => void` |
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-mantine-use-steps-form?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="mantine-use-steps-form-example"
-></iframe>
+<StackblitzExample path="form-mantine-use-steps-form" />
 
 [use-form-refine-mantine]: /api-reference/mantine/hooks/form/useForm.md
 [use-form-core]: /api-reference/core/hooks/useForm.md

@@ -8,9 +8,4 @@ With **refine** Notification Provider, you can show notification messages in you
 
 [Refer to the refine Notification Provider documentation for more information. →](/docs/api-reference/core/providers/notification-provider/)
 
-[View React Toastify Example Source](https://github.com/refinedev/refine/tree/master/examples/with-react-toastify)
-
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-react-toastify/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-react-toastify-example"
-></iframe>
+<StackblitzExample path="with-react-toastify" />

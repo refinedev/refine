@@ -347,11 +347,8 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-## Live StackBlitz Example
+## Example
 
 Below you'll find a Live StackBlitz Example displaying a fully setup `Refine` app with `@pankod/refine-inferencer/mantine` components.
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/inferencer-mantine?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="Refine Inferencer with Mantine UI"
-></iframe>
+<StackblitzExample path="inferencer-mantine" />

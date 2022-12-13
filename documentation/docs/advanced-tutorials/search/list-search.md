@@ -238,9 +238,6 @@ When the form is submitted, the `onSearch` method runs and we get the search for
 [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters) type object has `field`, `operator` and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
 :::
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/use-simple-list-antd?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-use-simple-list-example"
-></iframe>
+<StackblitzExample path="use-simple-list-antd" />

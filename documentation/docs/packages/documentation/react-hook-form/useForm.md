@@ -469,12 +469,9 @@ const {
 | TVariables | Field Values for mutation function                           | `{}`                       | `{}`                       |
 | TContext   | Second generic type of the `useForm` of the React Hook Form. | `{}`                       | `{}`                       |
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-react-hook-form-use-form/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-react-hook-form-example"
-></iframe>
+<StackblitzExample path="form-react-hook-form-use-form" />
 
 [react-hook-form]: https://react-hook-form.com
 [refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form

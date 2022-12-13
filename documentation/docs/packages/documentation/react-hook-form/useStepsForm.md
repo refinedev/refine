@@ -449,12 +449,9 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 > | currentStep | Current step                         | `boolean`                |
 > | gotoStep    | Allows you to go to a specific step. | `(step: number) => void` |
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-react-hook-form-use-steps-form/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-react-hook-form-example"
-></iframe>
+<StackblitzExample path="form-react-hook-form-use-steps-form" />
 
 [@pankod/refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
 [refine-react-hook-form-use-form]: /packages/documentation/react-hook-form/useForm.md
