@@ -1,6 +1,7 @@
 import React from "react";
-import Admonition from "@theme/Admonition";
-import CodeBlock from "@theme/CodeBlock";
+
+import ExampleSourcePrompt from "../example-source-prompt";
+import ExampleLocalPrompt from "../example-local-prompt";
 
 type Props = {
     path?: string;
@@ -13,26 +14,14 @@ const StackblitzExample: React.FC<Props> = ({
     hideSource,
     hideLocal,
 }) => {
-    const REPO_TREE_URL = "https://github.com/refinedev/refine/tree";
-
-    const SOURCE_URL = `${REPO_TREE_URL}/master/examples/${path}`;
-
     const STACKBLITZ_URL = `https://stackblitz.com/github/refinedev/refine/tree/master/${path}`;
 
     const EDITOR_URL = `${STACKBLITZ_URL}?embed=1&view=preview&theme=dark&preset=node&ctl=1`;
 
     return (
         <div>
-            {!hideSource && (
-                <Admonition type="sourcecode" path={SOURCE_URL}></Admonition>
-            )}
-            {!hideLocal && (
-                <Admonition type="create-example">
-                    <CodeBlock language="bash">
-                        {`npm create refine-app@latest --example ${path}`}
-                    </CodeBlock>
-                </Admonition>
-            )}
+            {!hideSource && <ExampleSourcePrompt path={path} />}
+            {!hideLocal && <ExampleLocalPrompt path={path} />}
             <iframe
                 loading="lazy"
                 src={EDITOR_URL}
