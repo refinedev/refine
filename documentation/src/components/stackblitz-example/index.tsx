@@ -4,7 +4,6 @@ import CodeBlock from "@theme/CodeBlock";
 
 type Props = {
     path?: string;
-    branch?: string;
     hideSource?: boolean;
     hideLocal?: boolean;
 };
@@ -36,8 +35,7 @@ const StackblitzExample: React.FC<Props> = ({
             )}
             <iframe
                 loading="lazy"
-                // src={EDITOR_URL}
-                src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/dataProvider/appwrite/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+                src={EDITOR_URL}
                 style={{
                     width: "100%",
                     height: "80vh",
