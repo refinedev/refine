@@ -8,7 +8,7 @@
         "@ant-design/charts": "^1.2.0",
         "@ant-design/graphs": "^1.2.7",
         "@craco/craco": "^6.1.2",
-        "@pankod/refine-antd": "^3.67.0",
+        "@pankod/refine-antd": "^3.70.0",
         "@pankod/refine-core": "^3.90.4",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-simple-rest": "^3.37.4",

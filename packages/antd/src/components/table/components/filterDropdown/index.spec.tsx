@@ -1,6 +1,6 @@
 import React from "react";
 import { Input } from "antd";
-import { DatePicker } from "@components/antd";
+import { DatePicker, Select } from "@components/antd";
 import dayjs from "dayjs";
 
 import { render, fireEvent } from "@test";
@@ -168,5 +168,39 @@ describe("FilterDropdown", () => {
         fireEvent.change(getByTestId("date-picker"), dayjs());
 
         expect(mapValueFn).toHaveBeenCalled();
+    });
+
+    it("should render Select successfully", () => {
+        const { getByText } = render(
+            <FilterDropdown
+                {...props}
+                mapValue={(val) =>
+                    Array.isArray(val) ? val.map((i) => Number(i)) : Number(val)
+                }
+            >
+                <Select />
+            </FilterDropdown>,
+        );
+        getByText("Filter");
+        getByText("Clear");
+    });
+
+    it("should render with Select called confirm function successfully if click the filter button", async () => {
+        const { getByText } = render(
+            <FilterDropdown
+                {...props}
+                selectedKeys={["1"]}
+                mapValue={(val) =>
+                    Array.isArray(val) ? val.map((i) => Number(i)) : Number(val)
+                }
+            >
+                <Select />
+            </FilterDropdown>,
+        );
+
+        fireEvent.click(getByText("Filter"));
+
+        expect(confirm).toHaveBeenCalled();
+        expect(setSelectedKeys).toHaveBeenCalledWith([1]);
     });
 });

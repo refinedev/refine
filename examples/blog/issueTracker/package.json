@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@ant-design/charts": "^1.2.14",
-    "@pankod/refine-antd": "^3.67.0",
+    "@pankod/refine-antd": "^3.70.0",
     "@pankod/refine-core": "^3.90.4",
     "@pankod/refine-react-router-v6": "^3.38.0",
     "@pankod/refine-supabase": "^3.35.0",

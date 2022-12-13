@@ -1,5 +1,17 @@
 # @pankod/refine-strapi-v4
 
+## 3.39.2
+
+### Patch Changes
+
+-   [#3191](https://github.com/refinedev/refine/pull/3191) [`79326b3d3b5`](https://github.com/refinedev/refine/commit/79326b3d3b587f287ee2afb32862a8e200272aaf) Thanks [@npanti](https://github.com/npanti)! - Add nested filtering
+
+## 3.39.1
+
+### Patch Changes
+
+-   [#3191](https://github.com/refinedev/refine/pull/3191) [`79326b3d3b5`](https://github.com/refinedev/refine/commit/79326b3d3b587f287ee2afb32862a8e200272aaf) Thanks [@npanti](https://github.com/npanti)! - Add nested filtering
+
 ## 3.39.0
 
 ### Minor Changes

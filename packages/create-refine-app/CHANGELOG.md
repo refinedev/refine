@@ -1,10 +1,16 @@
 # create-refine-app
 
+## 1.3.16
+
+### Patch Changes
+
+-   [`8d7a851dfd0`](https://github.com/refinedev/refine/commit/8d7a851dfd0fdf4a6909c152023c91a27f85d6d6) Thanks [@omeraplak](https://github.com/omeraplak)! - bumped superplate version 1.11.3
+
 ## 1.3.15
 
 ### Patch Changes
 
--   [`c2fa93f1aeb`](https://github.com/refinedev/refine/commit/c2fa93f1aeb9c2cccd9a26d87523b54333edb7cd) Thanks [@omeraplak](https://github.com/omeraplak)! - bumped superplate-cli version to 1.11.2 - #3180
+-   [`8d7a851dfd0`](https://github.com/refinedev/refine/commit/8d7a851dfd0fdf4a6909c152023c91a27f85d6d6) Thanks [@omeraplak](https://github.com/omeraplak)! - bumped superplate version 1.11.3
 
 ## 1.3.14
 

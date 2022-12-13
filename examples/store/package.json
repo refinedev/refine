@@ -14,7 +14,7 @@
         "@medusajs/medusa-js": "^1.2.3",
         "@pankod/refine-core": "^3.90.4",
         "@pankod/refine-nextjs-router": "^4.1.0",
-        "@pankod/refine-react-hook-form": "^3.35.0",
+        "@pankod/refine-react-hook-form": "^3.37.0",
         "@pankod/refine-medusa": "^1.7.2",
         "@stripe/react-stripe-js": "1.10.0",
         "@stripe/stripe-js": "1.34.0",

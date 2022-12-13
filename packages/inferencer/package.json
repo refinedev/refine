@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine-inferencer",
-    "version": "1.6.0",
+    "version": "1.6.1",
     "description": "refine is a React-based framework for building internal tools, rapidly.",
     "private": false,
     "main": "dist/index.js",
@@ -96,7 +96,7 @@
         "@pankod/refine-core": "^3.88.4",
         "@pankod/refine-mantine": "^1.11.8",
         "@pankod/refine-mui": "^3.55.2",
-        "@pankod/refine-react-hook-form": "^3.33.2",
+        "@pankod/refine-react-hook-form": "^3.37.0",
         "@pankod/refine-react-table": "^4.9.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@types/react-test-renderer": "^18.0.0",

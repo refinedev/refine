@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 1.6.1
+
+### Patch Changes
+
+-   [#3200](https://github.com/refinedev/refine/pull/3200) [`8c9efbd40db`](https://github.com/refinedev/refine/commit/8c9efbd40dba7b6a2bb4e9060942cdc0cfe6d056) Thanks [@aliemir](https://github.com/aliemir)! - Handle kebab-case relation suffixes for a wider case support. (e.g. `category-id`,`category-ids`)
+
 ## 1.6.0
 
 ### Minor Changes
