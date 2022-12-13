@@ -1580,13 +1580,8 @@ For more information about Refine: [Refine Github Page](https://github.com/refin
 
 For other examples and articles that will interest you with refine:  [https://refine.dev/blog/](https://refine.dev/blog/)
 
-## Live StackBlitz Example
+## Example
 
-<iframe src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/blog-issue-tracker/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="sveltekit-crud-app"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
+<StackblitzExample path="blog-issue-tracker" />
  
 

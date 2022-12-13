@@ -402,11 +402,6 @@ export const PostCreate: React.FC = () => {
 
 As you can see, we have easily saved both our data such as title, category, status and an image in the form of `multipart/form-data` to our database using the `refine-react-hook-form` adapter. We've only shown how to utilize the Multipart File Upload feature for our example in this tutorial. For examine **refine** CMS example, checkout the live codeSandbox below.
 
-## Refine Multipart Upload Live CodeSandbox Example
+## Example
 
-<iframe src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-react-hook-form-use-form/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="refine-react-hook-form-example"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
+<StackblitzExample path="form-react-hook-form-use-form" />
