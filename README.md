@@ -223,7 +223,7 @@ export default App;
 
 Now, you should see the output as a table populated with `post` & `category` data:
 
-![First example result](https://github.com/refinedev/refine/blob/master/documentation/static/img/readme-quick-start.png?raw=true)
+![First example result](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/readme-quick-start.png)
 
 <br/>
 

@@ -2,7 +2,7 @@
 
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
-  <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:250px;" align="center" />
+  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/refine_logo.png"   style="width:250px;" align="center" />
 </a>
 <br />
 <br />
@@ -156,7 +156,7 @@ Your **refine** application will be accessible at [http://localhost:3000](http:/
 
 
 
-<a href="http://localhost:3000">![Welcome on board](https://github.com/refinedev/refine/blob/master/documentation/static/img/chakra_welcome.png?raw=true)</a>
+<a href="http://localhost:3000">![Welcome on board](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/chakra_welcome.png)</a>
 
 <br/>
 
@@ -221,7 +221,7 @@ export default App;
 
 Now, you should see the output as a table populated with `post` & `category` data:
 
-![First example result](https://github.com/refinedev/refine/blob/master/documentation/static/img/chakra_first_page.png?raw=true)
+![First example result](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/chakra_first_page.png)
 
 <br/>
 
