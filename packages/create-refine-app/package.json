@@ -25,7 +25,7 @@
         "tslib": "^2.3.1",
         "commander": "9.4.1",
         "execa": "^5.1.1",
-        "superplate-cli": "^1.11.2"
+        "superplate-cli": "^1.11.3"
     },
     "author": "refine",
     "license": "MIT",
