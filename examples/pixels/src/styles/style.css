@@ -1,37 +1,10 @@
-@import "~antd/lib/style/themes/default.less";
-@import "~antd/dist/antd.less";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-// There are some major variables below,
-// all less variables could be found in
-// https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
-
-// @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
-// font
-@font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-
-// base variables
-@border-radius-base: 6px;
-
-// colors
-@primary-color: #3ecf8e;
-@error-color: #fa541c;
-@text-color: #80808a;
-
-// sider
-@layout-sider-background: #242436;
-@menu-bg: transparent;
-@menu-item-color: #fff;
-@menu-highlight-color: #fff;
-@menu-inline-submenu-bg: transparent;
-@menu-item-active-bg: transparent;
-@menu-item-active-border-width: 0px;
-@layout-trigger-background: rgba(0, 0, 0, 0.5);
-
-//form
-@label-color: @text-color;
+html {
+    font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+        "Helvetica Neue", sans-serif;
+}
 
 .ant-menu-inline,
 .ant-menu-vertical,
@@ -44,7 +17,7 @@
 }
 
 .ant-page-header {
-    border-radius: @border-radius-base;
+    border-radius: 6px;
 }
 
 .ant-menu-submenu-popup > .ant-menu {
@@ -104,14 +77,12 @@
     margin-bottom: 16px;
 }
 
-.canvas-list {
-    .ant-list-items {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, 275px);
-        gap: 16px;
-        align-items: flex-start;
-        justify-content: center;
-    }
+.canvas-list .ant-list-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 275px);
+    gap: 16px;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 .canvas-skeleton-list {
@@ -132,14 +103,14 @@
 }
 
 .canvas-item:hover {
-    border-color: @primary-color;
+    border-color: #3ecf8e;
     border-style: dashed;
     transition: border-color 0.3s;
+}
 
-    .canvas-name-text {
-        color: @primary-color;
-        transition: color 0.3s;
-    }
+.canvas-item:hover .canvas-name-text {
+    color: #3ecf8e;
+    transition: color 0.3s;
 }
 
 .canvas-name-text {
@@ -155,12 +126,12 @@
     justify-content: space-between;
     gap: 16px;
     padding: 16px 0px;
+}
 
-    @media screen and (max-width: 600px) {
-        a {
-            flex: 100%;
-            text-align: center;
-        }
+@media screen and (max-width: 600px) {
+    .layout-header a {
+        flex: 100%;
+        text-align: center;
     }
 }
 
@@ -178,20 +149,22 @@
     font-weight: bold;
     color: #96969e;
     transition: all 0.3s;
+}
 
-    &:hover {
-        .dot-icon {
-            background-color: @primary-color;
-        }
-    }
+.nav-button:hover {
+    color: #3ecf8e;
+}
 
-    &.active {
-        color: #242436;
+.nav-button:hover .dot-icon {
+    background-color: #3ecf8e;
+}
 
-        .dot-icon {
-            background-color: @primary-color;
-        }
-    }
+.nav-button.active {
+    color: #242436;
+}
+
+.nav-button.active .dot-icon {
+    background-color: #3ecf8e;
 }
 
 .spin-wrapper {
@@ -199,4 +172,9 @@
     align-items: center;
     justify-content: center;
     height: 400px;
+}
+
+::selection {
+    background-color: #3ecf8e;
+    color: #fff;
 }
