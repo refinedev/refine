@@ -13,8 +13,8 @@ RUN npm install
 
 COPY . /opt/app
 
-RUN npm run bootstrap -- --scope mui-fine-foods -- --force
-RUN npm run build -- --scope mui-fine-foods
+RUN npm run bootstrap -- --scope finefoods-mui -- --force
+RUN npm run build -- --scope finefoods-mui
 
 FROM node:16-alpine
 
