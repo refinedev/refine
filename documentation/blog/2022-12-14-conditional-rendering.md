@@ -43,6 +43,14 @@ React provides users with a much more functional approach to development, along 
 
 To begin, create a new React application on your [codesandbox](https://codesandbox.io/).
 
+
+---
+
+<PromotionBanner title="Building a side project?" image="/img/generic_banner.png" />
+
+---
+
+
 ## Using If-else
 
 Conditional rendering in React works similarly to the if-else statement in JavaScript, and each functional component returns a JSX value (which stands for JavaScript XML) that is rendered.
