@@ -1,5 +1,16 @@
 # @pankod/refine-mui
 
+## 3.61.1
+
+### Patch Changes
+
+-   [#3220](https://github.com/refinedev/refine/pull/3220) [`b867497f469`](https://github.com/refinedev/refine/commit/b867497f4694a5fbd330106a39256dee3c56199b) Thanks [@aliemir](https://github.com/aliemir)! - Updated image links in `README.MD` with CDN
+
+-   [`93a7d7088ae`](https://github.com/refinedev/refine/commit/93a7d7088aee1ec6baad3b33f646fa67b25f4af0) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed `experimental_sx` export
+
+-   Updated dependencies [[`b867497f469`](https://github.com/refinedev/refine/commit/b867497f4694a5fbd330106a39256dee3c56199b)]:
+    -   @pankod/refine-ui-types@0.14.1
+
 ## 3.61.0
 
 ### Minor Changes
