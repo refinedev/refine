@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine-chakra-ui",
-    "version": "1.6.1",
+    "version": "1.6.2",
     "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
     "private": false,
     "main": "dist/index.js",
@@ -22,8 +22,8 @@
     },
     "devDependencies": {
         "@pankod/refine-cli": "^1.11.0",
-        "@pankod/refine-ui-tests": "^0.11.5",
-        "@pankod/refine-core": "^3.90.5",
+        "@pankod/refine-ui-tests": "^0.11.6",
+        "@pankod/refine-core": "^3.90.6",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
@@ -43,7 +43,7 @@
         "typescript": "^4.7.4"
     },
     "dependencies": {
-        "@pankod/refine-ui-types": "^0.14.1",
+        "@pankod/refine-ui-types": "^0.14.2",
         "@pankod/refine-react-hook-form": "^3.33.2",
         "@chakra-ui/react": "^2.3.6",
         "@tabler/icons": "^1.1.0",

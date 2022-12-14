@@ -15,8 +15,8 @@ coverage
 .env.test.local
 .env.production.local
 
-!examples/fineFoods/admin/antd/.env
-!examples/fineFoods/admin/mui/.env
+!examples/finefoods-antd/.env
+!examples/finefoods-mui/.env
 !examples/store/.env
 
 

@@ -1,6 +1,6 @@
 # create-refine-app
 
-## 1.4.0
+## 1.5.0
 
 ### Minor Changes
 
@@ -10,6 +10,20 @@
 
     ```bash
     npm create refine-app@latest --example base-mantine my-awesome-app
+    ```
+
+    This command will create a new **refine** app in `my-awesome-app` directory with `base-mantine` example.
+
+## 1.4.0
+
+### Minor Changes
+
+-   [#3220](https://github.com/refinedev/refine/pull/3220) [`b867497f469`](https://github.com/refinedev/refine/commit/b867497f4694a5fbd330106a39256dee3c56199b) Thanks [@aliemir](https://github.com/aliemir)! - Added `--example` option to get started with an example app.
+
+    ## Usage
+
+    ```bash
+    npm create refine-app@latest -- --example base-mantine my-awesome-app
     ```
 
     This command will create a new **refine** app in `my-awesome-app` directory with `base-mantine` example.

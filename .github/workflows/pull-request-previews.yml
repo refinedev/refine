@@ -8,7 +8,9 @@ on:
       - reopened
     paths:
       - "packages/**"
-      - "examples/fineFoods/**"
+      - "examples/finefoods-antd/**"
+      - "examples/finefoods-mui/**"
+      - "examples/finefoods-client/**"
 
 jobs:
   antd-fine-foods:
@@ -35,7 +37,7 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: './examples/fineFoods/admin/antd/build'
+          publish-dir: './examples/finefoods-antd/build'
           github-token: ${{ secrets.PANKOD_BOT_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
           alias: deploy-preview-antd-${{ github.event.number }}
@@ -70,7 +72,7 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: './examples/fineFoods/admin/mui/build'
+          publish-dir: './examples/finefoods-mui/build'
           github-token: ${{ secrets.PANKOD_BOT_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
           alias: deploy-preview-mui-${{ github.event.number }}

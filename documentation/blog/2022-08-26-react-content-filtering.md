@@ -629,7 +629,7 @@ Try [refine](https://github.com/refinedev/refine) to rapidly build your next **C
 
 <div>
 <a href="https://github.com/refinedev/refine">
-   <img  src="/img/generic_banner.png" alt="refine blog logo" /> 
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" alt="refine blog logo" /> 
 </a>
 </div>
 

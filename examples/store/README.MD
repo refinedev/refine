@@ -53,7 +53,6 @@ Currently, we are using this store and have already processed real shopping tran
 
 ![App preview](https://refine-store.fra1.cdn.digitaloceanspaces.com/video/refine-store-demo.gif)                                                               
    
-                                                                              
                                                                    
 ## Set up Project   
 ### Prerequisites
@@ -64,29 +63,17 @@ Currently, we are using this store and have already processed real shopping tran
 
 ### Install Project
 
-Clone the project
+Create the project
 
 ```
-git clone https://github.com/refinedev/refine --depth 1
+npm create refine-app@latest -- --example store
 ```
 
 Go to the project directory.
 
 ```
-npm install
+npm run start
 ```
-
-### Running the development server.
-
-```bash
-npm run bootstrap -- --scope refine-store
-```
-
-```bash
-npm run start -- --scope refine-store
-```
-
-
 ## Resources
 - [refine documentation](https://refine.dev/docs/getting-started/overview/)
 - [Medusa documentation](https://docs.medusajs.com/quickstart/quick-start)

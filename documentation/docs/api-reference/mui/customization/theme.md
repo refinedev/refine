@@ -426,7 +426,7 @@ declare module "@pankod/refine-mui" {
 }
 ```
 
-You can see an example of how to [`create your own theme with custom variables`](https://github.com/refinedev/refine/blob/next/examples/fineFoods/admin/mui/src/theme.ts) and its [`interface`](https://github.com/refinedev/refine/blob/next/examples/fineFoods/admin/mui/src/interfaces/theme.d.ts) by accessing the links.
+You can see an example of how to [`create your own theme with custom variables`](https://github.com/refinedev/refine/blob/next/examples/finefoods-mui/src/theme.ts) and its [`interface`](https://github.com/refinedev/refine/blob/next/examples/finefoods-mui/src/interfaces/theme.d.ts) by accessing the links.
 
 ## Dark Mode
 

@@ -121,7 +121,7 @@ This shows `sortPosts()` is called at every re-render of `<Blog />`. An expensiv
 
 ---
 
-<PromotionBanner title="Tired of looking for the best template for your B2B app?" image="/img/generic_banner.png" />
+<PromotionBanner title="Tired of looking for the best template for your B2B app?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 

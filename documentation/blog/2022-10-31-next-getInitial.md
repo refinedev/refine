@@ -185,7 +185,7 @@ You can learn more about configuration options for the HTTP header field `Cache-
 
 ---
 
-<PromotionBanner title="Does your CRUD app need server state management?" image="/img/generic_banner.png" />
+<PromotionBanner title="Does your CRUD app need server state management?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 
