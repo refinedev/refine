@@ -1,5 +1,15 @@
 # @pankod/refine-ui-tests
 
+## 0.11.5
+
+### Patch Changes
+
+-   [#3220](https://github.com/refinedev/refine/pull/3220) [`b867497f469`](https://github.com/refinedev/refine/commit/b867497f4694a5fbd330106a39256dee3c56199b) Thanks [@aliemir](https://github.com/aliemir)! - Updated image links in `README.MD` with CDN
+
+-   Updated dependencies [[`a47f17931a8`](https://github.com/refinedev/refine/commit/a47f17931a8cad1466c25aa7ba4f9dce16dea2de), [`b867497f469`](https://github.com/refinedev/refine/commit/b867497f4694a5fbd330106a39256dee3c56199b), [`b867497f469`](https://github.com/refinedev/refine/commit/b867497f4694a5fbd330106a39256dee3c56199b)]:
+    -   @pankod/refine-core@3.90.5
+    -   @pankod/refine-ui-types@0.14.1
+
 ## 0.11.4
 
 ### Patch Changes
