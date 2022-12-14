@@ -1,4 +1,4 @@
-import React, { Children, createElement, Fragment, useMemo } from "react";
+import React, { Children, createElement, Fragment } from "react";
 import { Grid, FormProps, Form, TablePaginationConfig, TableProps } from "antd";
 import { QueryObserverResult } from "@tanstack/react-query";
 import { useForm as useFormSF } from "sunflower-antd";
@@ -17,9 +17,6 @@ import {
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
     useTableReturnType as useTableCoreReturnType,
-    CrudFilter,
-    ConditionalFilter,
-    LogicalFilter,
 } from "@pankod/refine-core";
 
 import {
@@ -123,15 +120,6 @@ export const useTable = <
         dataProviderName,
     });
 
-    const mapInitialFilter: Record<string, CrudFilter> = useMemo(() => {
-        return (initialFilter ?? []).reduce((acc, item) => {
-            const field =
-                (item as ConditionalFilter).key ||
-                (item as LogicalFilter).field;
-            return { ...acc, [field]: item };
-        }, {});
-    }, [initialFilter]);
-
     const breakpoint = Grid.useBreakpoint();
 
     const [form] = Form.useForm<TSearchVariables>();
@@ -156,7 +144,7 @@ export const useTable = <
             const crudFilters = mapAntdFilterToCrudFilter(
                 tableFilters,
                 filters,
-                mapInitialFilter,
+                initialFilter,
             );
             setFilters(crudFilters);
         }

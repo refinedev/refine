@@ -282,9 +282,7 @@ describe("definitions/table", () => {
                     foo: "Test",
                 },
                 [],
-                {
-                    foo: { field: "foo", operator: "contains", value: "" },
-                },
+                [{ field: "foo", operator: "contains", value: "" }],
             ),
         ).toMatchInlineSnapshot(`
             Array [
