@@ -79,14 +79,17 @@ export const mapAntdFilterToCrudFilter = (
         (string | number | boolean) | (string | number | boolean)[] | null
     >,
     prevFilters: CrudFilters,
+    mapInitialFilter: Record<string, CrudFilter> = {},
 ): CrudFilters => {
     const crudFilters: CrudFilters = [];
 
     Object.keys(tableFilters).map((field) => {
         const value = tableFilters[field];
-        const operator = prevFilters
-            .filter((i) => i.operator !== "or")
-            .find((p: any) => p.field === field)?.operator;
+        const operator =
+            prevFilters
+                .filter((i) => i.operator !== "or")
+                .find((p: any) => p.field === field)?.operator ||
+            mapInitialFilter[field]?.operator;
 
         if (operator !== "or" && operator !== "and") {
             crudFilters.push({

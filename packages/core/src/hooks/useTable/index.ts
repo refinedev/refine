@@ -31,9 +31,6 @@ import {
     HttpError,
     MetaDataQuery,
     LiveModeProps,
-    ConditionalFilter,
-    LogicalFilter,
-    CrudFilter,
 } from "../../interfaces";
 
 type SetFilterBehavior = "merge" | "replace";
@@ -309,32 +306,10 @@ export function useTable<
         dataProviderName,
     });
 
-    const mapInitialFilter: Record<string, CrudFilter> = useMemo(() => {
-        return (initialFilter ?? []).reduce((acc, item) => {
-            const field =
-                (item as ConditionalFilter).key ||
-                (item as LogicalFilter).field;
-            return { ...acc, [field]: item };
-        }, {});
-    }, [initialFilter]);
-
     const setFiltersAsMerge = (newFilters: CrudFilters) => {
-        setFilters((prevFilters) => {
-            const normalizedFilters = newFilters.map((item) => {
-                const field =
-                    (item as ConditionalFilter).key ||
-                    (item as LogicalFilter).field;
-                const target = mapInitialFilter[field];
-                item.operator = target.operator;
-
-                return item;
-            });
-            return unionFilters(
-                permanentFilter,
-                normalizedFilters,
-                prevFilters,
-            );
-        });
+        setFilters((prevFilters) =>
+            unionFilters(permanentFilter, newFilters, prevFilters),
+        );
     };
 
     const setFiltersAsReplace = (newFilters: CrudFilters) => {

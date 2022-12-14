@@ -274,4 +274,26 @@ describe("definitions/table", () => {
             ]
         `);
     });
+
+    it("mapAntdFilterToCrudFilter with map initial filter to restore operator in no data on previous filters", () => {
+        expect(
+            mapAntdFilterToCrudFilter(
+                {
+                    foo: "Test",
+                },
+                [],
+                {
+                    foo: { field: "foo", operator: "contains", value: "" },
+                },
+            ),
+        ).toMatchInlineSnapshot(`
+            Array [
+              Object {
+                "field": "foo",
+                "operator": "contains",
+                "value": "Test",
+              },
+            ]
+        `);
+    });
 });
