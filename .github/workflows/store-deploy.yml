@@ -46,9 +46,9 @@ jobs:
       - name: Deploy refine-store to k8s
         run: |
           cd examples/store
-          mv ./k8s/store/Chart.yaml ./k8s/store/Chart.old.yaml &&
-          cat ./k8s/store/Chart.old.yaml | grep -v appVersion > ./k8s/store/Chart.yaml &&
-          echo -e "\r\nappVersion: sha-${GITHUB_SHA::7}\r\n" >> ./k8s/store/Chart.yaml &&
-          cat ./k8s/store/Chart.yaml
-          helm upgrade refine-store ./k8s/store --install --atomic --values=./k8s/store/values.yaml --timeout 7m0s  \
+          mv ./k8s/refine-store/Chart.yaml ./k8s/refine-store/Chart.old.yaml &&
+          cat ./k8s/refine-store/Chart.old.yaml | grep -v appVersion > ./k8s/refine-store/Chart.yaml &&
+          echo -e "\r\nappVersion: sha-${GITHUB_SHA::7}\r\n" >> ./k8s/refine-store/Chart.yaml &&
+          cat ./k8s/refine-store/Chart.yaml
+          helm upgrade refine-store ./k8s/refine-store --install --atomic --values=./k8s/refine-store/values.yaml \
             --set NEXT_PUBLIC_STRIPE_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_KEY }} \
