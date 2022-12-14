@@ -244,6 +244,7 @@ module.exports = {
                         "api-reference/core/interfaceReferences",
                     ],
                 },
+
                 {
                     type: "category",
                     label: "Ant Design API",
@@ -253,13 +254,6 @@ module.exports = {
                         slug: "/api-reference/antd",
                     },
                     items: [
-                        {
-                            type: "category",
-                            label: "Migration Guide",
-                            items: [
-                                "api-reference/antd/migration-guide/v4-to-v5",
-                            ],
-                        },
                         {
                             type: "category",
                             label: "Hooks",
@@ -382,6 +376,7 @@ module.exports = {
                                 "api-reference/antd/customization/antd-custom-sider",
                             ],
                         },
+                        "api-reference/antd/migration-guide/v4-to-v5",
                     ],
                 },
 
