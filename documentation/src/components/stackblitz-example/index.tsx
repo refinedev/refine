@@ -14,7 +14,7 @@ const StackblitzExample: React.FC<Props> = ({
     hideSource,
     hideLocal,
 }) => {
-    const STACKBLITZ_URL = `https://stackblitz.com/github/refinedev/refine/tree/master/${path}`;
+    const STACKBLITZ_URL = `https://stackblitz.com/github/refinedev/refine/tree/master/examples/${path}`;
 
     const EDITOR_URL = `${STACKBLITZ_URL}?embed=1&view=preview&theme=dark&preset=node&ctl=1`;
 
