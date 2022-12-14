@@ -4,7 +4,6 @@ title: Multi Level Menu
 sidebar_label: Multi Level Menu
 ---
 
-import multiLevelMenu from '@site/static/img/guides-and-concepts/multi-level-menu/multi-level-menu.png';
 
 This document is related to how to create a multi-level menu for **refine** applications.
 
@@ -149,19 +148,14 @@ This gives you more control over the side menu, and allows you to customize it t
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={multiLevelMenu} alt="multiLevelMenu" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-level-menu/multi-level-menu.png" alt="multiLevelMenu" />
 </div>
 <br />
 
 <br/>
 
-## Live StackBlitz Example
+## Example
 
 You can review the example to examine the multi-level menu concept in more detail.
 
-[View Source](https://github.com/refinedev/refine/tree/master/examples/multi-level-menu)
-
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/multi-level-menu?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-multi-level-menu-example"
-></iframe>
+<StackblitzExample path="multi-level-menu" />

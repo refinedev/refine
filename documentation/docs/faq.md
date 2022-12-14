@@ -227,7 +227,7 @@ useMany({
 
 **Yes!** You can work with JavaScript!
 
-[Refer to **Refine JavaScript** example  → ](https://github.com/refinedev/refine/tree/master/examples/javascript)
+[Refer to **Refine JavaScript** example  → ](https://github.com/refinedev/refine/tree/master/examples/with-javascript)
 
 
 

@@ -5,8 +5,6 @@ title: Custom Pages
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import basic from '@site/static/img/guides-and-concepts/custom-pages/basic.png'
-import gif from '@site/static/img/guides-and-concepts/custom-pages/gif.gif'
 
 :::caution
 
@@ -697,7 +695,7 @@ Now our page looks like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={basic} alt="A custom page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/custom-pages/basic.png" alt="A custom page" />
 </div>
 <br />
 
@@ -819,16 +817,13 @@ export const PostReview = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={gif} alt="A custom page in action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/custom-pages/gif.gif" alt="A custom page in action" />
 </div>
 <br />
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/customPages?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="custom-pages-example"
-></iframe>
+<StackblitzExample path="with-custom-pages" />
 
 [ssrnextjs]: /docs/advanced-tutorials/ssr/nextjs
 [ssrremix]: /docs/advanced-tutorials/ssr/remix

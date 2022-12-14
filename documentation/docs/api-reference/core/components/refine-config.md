@@ -4,7 +4,6 @@ title: <Refine>
 sidebar_label: <Refine>
 ---
 
-import warnwhen from '@site/static/img/warnwhen.png';
 
 `<Refine>` component is the entry point of a **refine** app. It is where the highest level of configuration of the app occurs.
 
@@ -449,7 +448,7 @@ To activate this feature, set the `warnWhenUnsavedChanges` to `true`.
 
 <div style={{textAlign: "center",  backgroundColor:"#efefef",  padding: "13px 10px 10px"}}>
 
-<img src={warnwhen} />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/warnwhen.png" />
 
 </div>
 <br/>

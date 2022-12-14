@@ -3,7 +3,6 @@ id: useRadioGroup
 title: useRadioGroup
 ---
 
-import basicUsage from '@site/static/img/hooks/useRadioGroup/basic-usage.png';
 
 `useRadioGroup` hook allows you to manage an Ant Design [Radio.Group](https://ant.design/components/radio/#components-radio-demo-radiogroup-with-name) component when records in a resource needs to be used as radio options.
 
@@ -62,7 +61,7 @@ interface ILanguage {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={basicUsage} alt="Radio group" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useRadioGroup/basic-usage.png" alt="Radio group" />
 </div>
 <br/>
 
@@ -217,11 +216,6 @@ const { selectProps } = useSelect({
 | radioGroupProps | Ant design radio group props     | [`Radio Group`](https://ant.design/components/radio/#RadioGroup)                              |
 | queryResult     | Results of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/field/useRadioGroup?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="refine-use-radio-group-example"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<StackblitzExample path="field-antd-use-radio-group" />

@@ -9,9 +9,4 @@ You can use the **refine** `useRadioGroup` hook to manage your data in a source 
 
 [Refer to the **refine** useRadioGroup hook documentation for more information. →](/docs/api-reference/antd/hooks/field/useRadioGroup/)
 
-[View useRadioGroup Example Source](https://github.com/refinedev/refine/tree/master/examples/field/useRadioGroup)
-
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/field/useRadioGroup?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-use-radio-group-example"
-></iframe>
+<StackblitzExample path="field-antd-use-radio-group" />

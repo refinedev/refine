@@ -330,9 +330,6 @@ const { selectProps } = useSelect({
 > | onSearchChange               | Called each time search value changes                                   | `(query: string) => void`  |
 > | filterDataOnExactSearchMatch | Should data be filtered when search value exactly matches selected item | `boolean`                  |
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/base/mantine?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-use-select-example"
-></iframe>
+<StackblitzExample path="base-mantine" />

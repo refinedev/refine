@@ -58,7 +58,7 @@ export const ExampleCard: React.FC<ExampleCardProps> = ({ example }) => {
                 <Link to={button.link}>
                     <img
                         className="w-full transition duration-150"
-                        src={image}
+                        src={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static${image}`}
                         alt={title}
                     />
                 </Link>

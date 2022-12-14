@@ -2,8 +2,8 @@ import { Refine } from "@pankod/refine";
 
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import "styles/antd.less";
 import nestjsxCrudDataProvider from "@pankod/refine-nestjsx-crud";
+
 import {
     CompanyList,
     CompanyShow,
@@ -19,6 +19,8 @@ import {
     OffLayoutArea,
 } from "components";
 import { JobList, JobCreate, JobEdit } from "pages/jobs";
+
+import "@pankod/refine-antd/dist/reset.css";
 
 function App() {
     const API_URL = "http://localhost:3000";

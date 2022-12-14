@@ -176,7 +176,7 @@ We mostly focused on the client side using refine access control provider hence 
 
 So, if you are looking for an access control mechanism, you can create any kind of role or attribute based authorization structures easily with Permify. 
 
-## Refine Permify Live CodeSandbox Example
+## Example
 
 <iframe src="https://codesandbox.io/embed/github/Permify/permify-refine?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

@@ -479,4 +479,4 @@ Now let's add this component to the `OfflayouArea` component and create feedback
 </div>
 <br />
 
-You can find the source code of the project here: https://github.com/refinedev/refine/tree/master/examples/blog/refeedback
+You can find the source code of the project here: https://github.com/refinedev/refine/tree/master/examples/blog-refeedback

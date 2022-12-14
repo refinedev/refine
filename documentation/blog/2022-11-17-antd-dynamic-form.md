@@ -8,23 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynam
 hide_table_of_contents: false
 ---
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Introduction
 
 Forms are one of the most adaptable elements in web development. They come in distinct structures for various use cases.
@@ -897,7 +880,7 @@ What's left for us now is setting up the edit page to update fetched records fro
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
 </a>
 </div>
 
@@ -1137,13 +1120,8 @@ In this article, we introduced refine and looked at how to set up a refine compl
 
 We also looked at creating a dynamic form that renders and deletes fields on demand, validates input values, and handles submission using Ant's `Form` component and its sub-components.
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/blog/refine-antd-dynamic-form/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="refine-antd-dynamic-form"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
+<StackblitzExample path="blog-refine-antd-dynamic-form" />
 
 ---

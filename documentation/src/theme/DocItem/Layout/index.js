@@ -50,8 +50,6 @@ export default function DocItemLayout({ children }) {
     const docTOC = useDocTOC();
     const { frontMatter, toc } = useDoc();
 
-    console.log("FRONTMATTER", frontMatter);
-
     return (
         <div className="row">
             <div className={clsx("col", !docTOC.hidden && styles.docItemCol)}>

@@ -5,12 +5,6 @@ title: Tutorial
 sidebar_label: Tutorial
 ---
 
-import readyPage from '@site/static/img/tutorial/ready-page.png';
-import resourceFirst from '@site/static/img/tutorial/resource-1.png';
-import resourceSecond from '@site/static/img/tutorial/resource-2.png';
-import createGif from '@site/static/img/tutorial/create.gif';
-import editGif from '@site/static/img/tutorial/edit.gif';
-import showGif from '@site/static/img/tutorial/show.gif';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -242,7 +236,7 @@ Point your browser to [http://localhost:3000](http://localhost:3000) to access i
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={readyPage} alt="Ready Page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/ready-page.png" alt="Ready Page" />
 </div>
 <br/>
 
@@ -321,7 +315,7 @@ Instead of showing the welcome page, the application should redirect now? to an 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={resourceFirst} alt="Resource only with name" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/resource-1.png" alt="Resource only with name" />
 </div>
 <br/>
 </>
@@ -455,7 +449,7 @@ On the next step, we are going to add a category field to the table which involv
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={resourceSecond} alt="Resource only List component" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/resource-2.png" alt="Resource only List component" />
 </div>
 <br/>
 </>
@@ -917,7 +911,7 @@ the `<Show>` component which has extra features like `list` and `refresh` button
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={showGif} alt="Show record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/show.gif" alt="Show record action" />
 </div>
 <br/>
 
@@ -1145,7 +1139,7 @@ In edit page, `useForm` hook initializes the form with current record values.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={editGif} alt="Edit record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/edit.gif" alt="Edit record action" />
 </div>
 <br/>
 
@@ -1268,7 +1262,7 @@ We should notice some minor differences from the edit example:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={createGif} alt="Create record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/create.gif" alt="Create record action" />
 </div>
 
 <br/>

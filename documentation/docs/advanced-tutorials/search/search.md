@@ -3,7 +3,6 @@ id: search
 title: Search
 ---
 
-import search from '@site/static/img/guides-and-concepts/search/search.gif';
 
 We will create a `<Header>` component for your application with Ant Design's [`<AutoComplete>`](https://ant.design/components/auto-complete) component.
 We will now examine how to search within the application with this component.
@@ -14,7 +13,7 @@ We will now examine how to search within the application with this component.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={search} alt="search" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/search/search.gif" alt="search" />
 </div>
 <br/>
 
@@ -299,9 +298,6 @@ export const Header: React.FC = () => {
 By doing the same implementation on your other resources, you can search more than one resource with a value.
 :::
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/search?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-search-example"
-></iframe>
+<StackblitzExample path="search" />

@@ -4,8 +4,6 @@ title: Create
 swizzle: true
 ---
 
-import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/create/actionButtonUsageMui.png'
-import cardHeaderPropsTitle from '@site/static/img/guides-and-concepts/basic-views/create/cardHeaderPropsTitle.png'
 
 `<Create>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like action buttons and giving titles to the page.
 
@@ -371,7 +369,7 @@ export const CreatePage: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={actionButtonsUsage} alt="actionButton Usage" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/basic-views/create/actionButtonUsageMui.png" alt="actionButton Usage" />
 </div>
 <br/>
 
@@ -417,7 +415,7 @@ export const CreatePage: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={cardHeaderPropsTitle} alt="Card Header Props Usage" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/basic-views/create/cardHeaderPropsTitle.png" alt="Card Header Props Usage" />
 </div>
 <br/>
 

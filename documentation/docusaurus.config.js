@@ -40,12 +40,15 @@ const siteConfig = {
                     admonitions: {
                         tag: ":::",
                         keywords: [
+                            "additional",
                             "note",
                             "tip",
                             "info-tip",
                             "info",
                             "caution",
                             "danger",
+                            "sourcecode",
+                            "create-example",
                         ],
                     },
                 },

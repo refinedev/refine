@@ -21,7 +21,6 @@ export {
     emphasize,
     experimentalStyled,
     experimental_extendTheme,
-    experimental_sx,
     getContrastRatio,
     getInitColorSchemeScript,
     getLuminance,

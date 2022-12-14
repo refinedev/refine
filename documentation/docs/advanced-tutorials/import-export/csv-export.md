@@ -3,7 +3,6 @@ id: csv-export
 title: CSV Export
 ---
 
-import exportButton from '@site/static/img/guides-and-concepts/csv-export/export-button.png';
 
 With **refine**, you can easily add export functionality to dump resources' records to a `CSV` file from anywhere, including buttons. By using the [`useExport`][useexport] hook with desired configurations, you can turn any button into an export button. Which resources' records to export can be configured. But by default, unless explicitly specified, it is inferred from current route of browser.
 
@@ -63,7 +62,7 @@ interface IPost {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={exportButton} alt="Export button" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/csv-export/export-button.png" alt="Export button" />
 </div>
 <br />
 
@@ -77,14 +76,9 @@ Manually running the `triggerExport` function is another option.
 
 > [Refer to the ExportButton docs for more detailed information. &#8594][exportbutton]
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/importExport/antd?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="refine-import-export-example"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<StackblitzExample path="import-export-antd" />
 
 [button]: https://ant.design/components/button/
 [useexport]: /api-reference/core/hooks/import-export/useExport.md

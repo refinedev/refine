@@ -48,7 +48,7 @@ Luckily, ES6 solved some of these problems by introducing Promises as a new way 
 
 ---
 
-<PromotionBanner title="Backend devs love this React framework!" image="/img/diagram.png" />
+<PromotionBanner title="Backend devs love this React framework!" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" />
 
 ---
 
@@ -87,7 +87,7 @@ Therefore, having a proper understanding of Middlewares will allow you to write 
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
 </a>
 </div>
 

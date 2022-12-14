@@ -3,10 +3,6 @@ id: strapi-v4
 title: Strapi-v4
 ---
 
-import selection from '@site/static/img/guides-and-concepts/data-provider/strapi-v4/selection.png';
-import category from '@site/static/img/guides-and-concepts/data-provider/strapi-v4/category.png';
-import publication from '@site/static/img/guides-and-concepts/data-provider/strapi-v4/publication.gif';
-import locale from '@site/static/img/guides-and-concepts/data-provider/strapi-v4/locale.gif';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -242,7 +238,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={selection} alt="Fields Selection Metadata" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/strapi-v4/selection.png" alt="Fields Selection Metadata" />
 </div>
 
 ### Relations Population
@@ -393,7 +389,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={category} alt="category" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/strapi-v4/category.png" alt="category" />
 </div>
 
 ##### Relations Population for `/me` request
@@ -579,7 +575,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={publication} alt="publication" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/strapi-v4/publication.gif" alt="publication" />
 </div>
 
 <br/>
@@ -756,7 +752,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={locale} alt="locale" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/strapi-v4/locale.gif" alt="locale" />
 </div>
 <br/>
 
@@ -782,15 +778,12 @@ const { selectProps } = useSelect({
 });
 ```
 
-## Live StackBlitz Example
+## Example
 
+:::note Demo Credentials
 Username: demo@refine.dev
 
 Password: demodemo
+:::
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/dataProvider/strapi-v4/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="refine-strapi-v4-example"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
+<StackblitzExample path="data-provider-strapi-v4" />

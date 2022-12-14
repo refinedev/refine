@@ -3,7 +3,6 @@ id: useModal
 title: useModal
 ---
 
-import useModal from '@site/static/img/hooks/useModal/useModal.gif';
 
 `useModal` hook allows you to manage a modal. It returns the props to manage Ant Design's [Modal][Modal] components. 
 
@@ -72,7 +71,7 @@ interface IPost {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={useModal} alt="use modal usage" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useModal/useModal.gif" alt="use modal usage" />
 </div>
 
 <br />

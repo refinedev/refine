@@ -564,12 +564,9 @@ export const EditPostDrawer: React.FC<
 > | title           | Modal or drawer title based on resource and action value | `string`                                                                         |
 > | saveButtonProps | Props for a submit button                                | `{ disabled: boolean, onClick: (e: React.FormEvent<HTMLFormElement>) => void; }` |
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form/mantine/useDrawerForm?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="mantine-use-drawer-form-example"
-></iframe>
+<StackblitzExample path="form-mantine-use-drawer-form" />
 
 [use-form-refine-mantine]: /api-reference/mantine/hooks/form/useForm.md
 [use-form-core]: /api-reference/core/hooks/useForm.md

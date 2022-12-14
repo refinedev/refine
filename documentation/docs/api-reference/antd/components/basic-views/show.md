@@ -4,8 +4,6 @@ title: Show
 swizzle: true
 ---
 
-import isLoading from '@site/static/img/guides-and-concepts/basic-views/show/isLoading.png'
-
 `<Show>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a refresh button or giving title to the page.
 
 We will show what `<Show>` does using properties with examples.

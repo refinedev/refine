@@ -58,8 +58,8 @@ const NewsletterCta = () => {
 
                     <img
                         srcSet="
-                        /img/newsletter-logo2x.jpg 2x,
-                        /img/newsletter-logo1x.jpg 1x"
+                        https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/newsletter-logo2x.jpg 2x,
+                        https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/newsletter-logo1x.jpg 1x"
                         src="/img/newsletter-logo.jpg"
                         sizes="100vw"
                         alt="Refine app screenshot"

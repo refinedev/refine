@@ -3,7 +3,6 @@ id: tag
 title: Tag
 ---
 
-import tagField from '@site/static/img/guides-and-concepts/fields/tag/tagField.png';
 
 This field lets you display a value in a tag. It uses Ant Design's [`<Tag>`](https://ant.design/components/tag/) component.
 
@@ -52,7 +51,7 @@ interface IPost {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={tagField} alt="TagField" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/tag/tagField.png" alt="TagField" />
 </div>
 
 ## API Reference

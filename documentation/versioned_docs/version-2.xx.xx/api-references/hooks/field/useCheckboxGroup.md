@@ -3,7 +3,6 @@ id: useCheckboxGroup
 title: useCheckboxGroup
 ---
 
-import basicUsage from '@site/static/img/hooks/useCheckboxGroup/basic.png';
 
 `useCheckboxGroup` hook allows you to manage an Ant Design [Checkbox.Group](https://ant.design/components/checkbox/#components-checkbox-demo-group) component when records in a resource needs to be used as checkbox options.
 
@@ -67,7 +66,7 @@ All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={basicUsage} alt="Tags" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useCheckboxGroup/basic.png" alt="Tags" />
 </div>
 
 ## Options

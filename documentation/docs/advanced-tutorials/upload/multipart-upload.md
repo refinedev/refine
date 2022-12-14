@@ -3,9 +3,6 @@ id: multipart-upload
 title: Multipart Upload
 ---
 
-import create from '@site/static/img/guides-and-concepts/multipart-upload/create.png';
-import uploadedFile from '@site/static/img/guides-and-concepts/multipart-upload/uploaded.png';
-import edit from '@site/static/img/guides-and-concepts/multipart-upload/edit.png';
 
 We will show you how to multipart upload with **refine**.
 
@@ -110,7 +107,7 @@ It will look like this.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={create} alt="multipart upload in a create page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multipart-upload/create.png" alt="multipart upload in a create page" />
 </div>
 
 <br/>
@@ -141,7 +138,7 @@ This end-point should respond similarly.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={uploadedFile} alt="multipart upload uploaded item" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multipart-upload/uploaded.png" alt="multipart upload uploaded item" />
 </div>
 <br/>
 
@@ -255,7 +252,7 @@ export const PostEdit: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={edit} alt="multipart upload in edit page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multipart-upload/edit.png" alt="multipart upload in edit page" />
 </div>
 <br/>
 
@@ -372,12 +369,7 @@ export const PostCreate: React.FC = () => {
 };
 ```
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/upload/antd/multipart?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="refine-multipart-upload-example"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<StackblitzExample path="upload-antd-multipart" />
    

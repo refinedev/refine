@@ -574,7 +574,7 @@ Let's send the same e-mail to our subscribers shown in the picture at once.
 
 Sending mail was successful. As you can see, we were able to send the same email to all subscribers by sending a single email.
 
-[Here is repo](https://github.com/refinedev/refine/tree/master/examples/blog/mailSubscription) 
+[Here is repo](https://github.com/refinedev/refine/tree/master/examples/blog-mail-subscription) 
 
 
  

@@ -18,6 +18,16 @@ const PromotionBanner = ({ image, title, description }) => {
         </div>
     );
 
+    const imgBase =
+        image ??
+        "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png";
+
+    const imgUrl = imgBase.startsWith("http")
+        ? imgBase
+        : `https://refine.ams3.cdn.digitaloceanspaces.com/website/static${
+              imgBase.startsWith("/") ? imgBase : `/${imgBase}`
+          }`;
+
     return (
         <div className="banner-container">
             <div className="banner-header">
@@ -27,10 +37,7 @@ const PromotionBanner = ({ image, title, description }) => {
             {renderDescription}
             <div>
                 <a href="https://github.com/refinedev/refine" target="_blank">
-                    <img
-                        src={image ?? "/img/generic_banner.png"}
-                        alt="refine blog logo"
-                    />
+                    <img src={imgUrl} alt="refine blog logo" />
                 </a>
             </div>
             <br />

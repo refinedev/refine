@@ -3,12 +3,6 @@ id: strapi-v4
 title: Strapi-v4
 ---
 
-import sider from '@site/static/img/guides-and-concepts/multi-tenant/strapi/sider.png';
-import store_filter from '@site/static/img/guides-and-concepts/multi-tenant/strapi/store-filter.gif';
-import create from '@site/static/img/guides-and-concepts/multi-tenant/strapi/create.gif';
-import stores from '@site/static/img/guides-and-concepts/multi-tenant/strapi/stores.png';
-import products from '@site/static/img/guides-and-concepts/multi-tenant/strapi/products.png';
-import orders from '@site/static/img/guides-and-concepts/multi-tenant/strapi/orders.png';
 
 ## What is Multitenancy?
 
@@ -159,7 +153,7 @@ const App: React.FC = () => {
 ```
 
 :::tip
-You can find detailed usage information and the source code [here](https://github.com/refinedev/refine/tree/master/examples/multi-tenancy/strapi).
+You can find detailed usage information and the source code [here](https://github.com/refinedev/refine/tree/master/examples/multi-tenancy-strapi).
 :::
 
 ## Create Collections
@@ -178,7 +172,7 @@ We created three collections on Strapi as store, product and order and added a r
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={stores} alt="stores" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/stores.png" alt="stores" />
 </div>
 <br/>
 
@@ -196,7 +190,7 @@ We created three collections on Strapi as store, product and order and added a r
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={products} alt="products" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/products.png" alt="products" />
 </div>
 <br/>
 
@@ -215,7 +209,7 @@ We created three collections on Strapi as store, product and order and added a r
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={orders} alt="orders" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/orders.png" alt="orders" />
 </div>
 <br/>
 
@@ -445,7 +439,7 @@ export const CustomSider: React.FC = () => {
 </p>
 </details>
 
-|                                                                    <img src={sider} alt="sider" />                                                                     |
+|                                                                    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/sider.png" alt="sider" />                                                                     |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | _As you can see, you can now choose the store you want and create products and orders specifically for the store we have chosen according to the storeId information._ |
 
@@ -530,7 +524,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={store_filter} alt="Store Filter" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/store-filter.gif" alt="Store Filter" />
 </div>
 <br/>
 
@@ -696,7 +690,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={create} alt="Create Product" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/create.gif" alt="Create Product" />
 </div>
 <br/>
 
@@ -704,15 +698,12 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 
 In this guide and in our example app, we talked about how we can build Multitenancy apps with **refine**. Developing a Multitenancy application with **refine** is quite simple. By creating a context and with the hooks that **refine** provides, you can quickly and easily produce similar applications in this logic.
 
-## Live StackBlitz Example
+## Example
 
+:::note Demo Credentials
 Username: `refine-demo`
 
 Password: `demodemo`
+:::
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/multi-tenancy/strapi?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="strapi-multi-tenant-example"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
+<StackblitzExample path="multi-tenancy-strapi" />

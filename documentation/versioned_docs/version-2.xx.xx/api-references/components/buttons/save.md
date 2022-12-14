@@ -3,7 +3,6 @@ id: save-button
 title: Save
 ---
 
-import saveButton from '@site/static/img/guides-and-concepts/components/buttons/save/save.png';
 
 `<SaveButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses it for presantation purposes only. Some of the hooks that **refine** has adds features to this button.
 
@@ -52,7 +51,7 @@ Will look like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={saveButton} alt="Default save button" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/save/save.png" alt="Default save button" />
 </div>
 <br/>
 

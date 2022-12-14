@@ -3,7 +3,6 @@ id: email
 title: Email
 ---
 
-import emailField from '@site/static/img/guides-and-concepts/fields/email/emailField.png'
 
 This field is used to display email values. It uses the [`<Link>`](https://ant.design/components/typography/#FAQ) component of [`<Typography>`](https://ant.design/components/typography) from Ant Design.
 
@@ -48,7 +47,7 @@ export const UserList: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={emailField} alt="EmailField" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/email/emailField.png" alt="EmailField" />
 </div>
 
 ## API Reference

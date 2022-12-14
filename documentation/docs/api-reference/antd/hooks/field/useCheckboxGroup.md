@@ -3,7 +3,6 @@ id: useCheckboxGroup
 title: useCheckboxGroup
 ---
 
-import basicUsage from '@site/static/img/hooks/useCheckboxGroup/basic.png';
 
 `useCheckboxGroup` hook allows you to manage an Ant Design [Checkbox.Group](https://ant.design/components/checkbox/#components-checkbox-demo-group) component when records in a resource needs to be used as checkbox options.
 
@@ -67,7 +66,7 @@ All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={basicUsage} alt="Tags" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useCheckboxGroup/basic.png" alt="Tags" />
 </div>
 
 ## Options
@@ -210,11 +209,6 @@ const { selectProps } = useSelect({
 
 <PropsTable module="@pankod/refine-antd/useCheckboxGroup"/>
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/field/useCheckboxGroup?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="refine-use-checkbox-group-example"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<StackblitzExample path="field-antd-use-checkbox-group" />

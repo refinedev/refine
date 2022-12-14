@@ -4,7 +4,6 @@ title: <FilterDropdown>
 sidebar_label: <FilterDropdown>
 ---
 
-import filterDropdown from '@site/static/img/category_filter-dropdown.png';
 
 ## Usage
 
@@ -72,7 +71,7 @@ Selecting categories from dropdown will send the id's of categories as filtering
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={filterDropdown} alt="Show record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/category_filter-dropdown.png" alt="Show record action" />
 </div>
 
 <br/>

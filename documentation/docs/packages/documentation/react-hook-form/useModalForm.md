@@ -3,8 +3,6 @@ id: useModalForm
 title: useModalForm
 ---
 
-import createModal from '@site/static/img/packages/react-hook-form/useModalForm/create-modal.gif';
-import editModal from '@site/static/img/packages/react-hook-form/useModalForm/edit-modal.gif';
 
 `useModalForm` hook allows you to manage a form within a modal. It provides some useful methods to handle the form modal.
 
@@ -241,7 +239,7 @@ export const CreatePost: React.FC<UseModalFormReturnType> = ({
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={createModal} alt="Create Modal" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-hook-form/useModalForm/create-modal.gif" alt="Create Modal" />
 </div>
 
 ### Edit Modal
@@ -381,7 +379,7 @@ export const EditPost: React.FC<UseModalFormReturnType> = ({
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={editModal} alt="Edit Modal" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-hook-form/useModalForm/edit-modal.gif" alt="Edit Modal" />
 </div>
 
 ## API Reference
@@ -417,12 +415,9 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 > | title           | Modal title based on resource and action value | `string`                                     |
 > | saveButtonProps | Props for a submit button                      | `{ disabled: boolean, onClick: (e: React.BaseSyntheticEvent) => void;  }` |
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form/reactHookForm/useModalForm/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-react-hook-form-example"
-></iframe>
+<StackblitzExample path="form-react-hook-form-use-modal-form" />
 
 [@pankod/refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
 [refine-react-hook-form-use-form]: /packages/documentation/react-hook-form/useForm.md

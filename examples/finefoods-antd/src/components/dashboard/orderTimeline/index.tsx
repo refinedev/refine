@@ -1,23 +1,16 @@
 import { useTranslate, useNavigation } from "@pankod/refine-core";
 import {
     Typography,
+    Timeline,
     useSimpleList,
     AntdList,
     Tooltip,
-    ConfigProvider,
-    theme,
 } from "@pankod/refine-antd";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 import { IOrder } from "interfaces";
-import {
-    TimelineContent,
-    CreatedAt,
-    Number,
-    Timeline,
-    TimelineItem,
-} from "./styled";
+import "./style.less";
 
 dayjs.extend(relativeTime);
 
@@ -46,40 +39,18 @@ export const OrderTimeline: React.FC = () => {
 
     const orderStatusColor = (
         id: string,
-    ):
-        | { indicatorColor: string; backgroundColor: string; text: string }
-        | undefined => {
+    ): { color: string; text: string } | undefined => {
         switch (id) {
             case "1":
-                return {
-                    indicatorColor: "orange",
-                    backgroundColor: "#fff7e6",
-                    text: "pending",
-                };
+                return { color: "orange", text: "pending" };
             case "2":
-                return {
-                    indicatorColor: "cyan",
-                    backgroundColor: "#e6fffb",
-                    text: "ready",
-                };
+                return { color: "cyan", text: "ready" };
             case "3":
-                return {
-                    indicatorColor: "green",
-                    backgroundColor: "#e6f7ff",
-                    text: "on the way",
-                };
+                return { color: "green", text: "on the way" };
             case "4":
-                return {
-                    indicatorColor: "blue",
-                    backgroundColor: "#e6fffb",
-                    text: "delivered",
-                };
+                return { color: "blue", text: "delivered" };
             case "5":
-                return {
-                    indicatorColor: "red",
-                    backgroundColor: "#fff1f0",
-                    text: "cancelled",
-                };
+                return { color: "red", text: "cancelled" };
             default:
                 break;
         }
@@ -87,54 +58,47 @@ export const OrderTimeline: React.FC = () => {
 
     return (
         <AntdList {...listProps}>
-            <ConfigProvider theme={{ algorithm: theme.defaultAlgorithm }}>
-                <Timeline>
-                    {dataSource?.map(
-                        ({ createdAt, orderNumber, status, id }) => (
-                            <TimelineItem
-                                key={orderNumber}
-                                color={
-                                    orderStatusColor(status.id.toString())
-                                        ?.indicatorColor
-                                }
+            <Timeline>
+                {dataSource?.map(({ createdAt, orderNumber, status, id }) => (
+                    <Timeline.Item
+                        className="timeline__point"
+                        key={orderNumber}
+                        color={orderStatusColor(status.id.toString())?.color}
+                    >
+                        <div
+                            className={`timeline ${
+                                orderStatusColor(status.id.toString())?.color
+                            }`}
+                        >
+                            <Tooltip
+                                overlayInnerStyle={{ color: "#626262" }}
+                                color="rgba(255, 255, 255, 0.3)"
+                                placement="topLeft"
+                                title={dayjs(createdAt).format("lll")}
                             >
-                                <TimelineContent
-                                    backgroundColor={
+                                <Text italic className="createdAt">
+                                    {dayjs(createdAt).fromNow()}
+                                </Text>
+                            </Tooltip>
+                            <Text>
+                                {t(
+                                    `dashboard.timeline.orderStatuses.${
                                         orderStatusColor(status.id.toString())
-                                            ?.backgroundColor || "transparent"
-                                    }
-                                >
-                                    <Tooltip
-                                        overlayInnerStyle={{ color: "#626262" }}
-                                        color="rgba(255, 255, 255, 0.3)"
-                                        placement="topLeft"
-                                        title={dayjs(createdAt).format("lll")}
-                                    >
-                                        <CreatedAt italic>
-                                            {dayjs(createdAt).fromNow()}
-                                        </CreatedAt>
-                                    </Tooltip>
-                                    <Text>
-                                        {t(
-                                            `dashboard.timeline.orderStatuses.${
-                                                orderStatusColor(
-                                                    status.id.toString(),
-                                                )?.text
-                                            }`,
-                                        )}
-                                    </Text>
-                                    <Number
-                                        onClick={() => show("orders", id)}
-                                        strong
-                                    >
-                                        #{orderNumber}
-                                    </Number>
-                                </TimelineContent>
-                            </TimelineItem>
-                        ),
-                    )}
-                </Timeline>
-            </ConfigProvider>
+                                            ?.text
+                                    }`,
+                                )}
+                            </Text>
+                            <Text
+                                onClick={() => show("orders", id)}
+                                strong
+                                className="number"
+                            >
+                                #{orderNumber}
+                            </Text>
+                        </div>
+                    </Timeline.Item>
+                ))}
+            </Timeline>
         </AntdList>
     );
 };

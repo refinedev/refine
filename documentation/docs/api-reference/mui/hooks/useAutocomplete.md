@@ -3,8 +3,6 @@ id: useAutocomplete
 title: useAutocomplete
 ---
 
-import basicUsage from '@site/static/img/hooks/useSelect/mui/basic-usage.png';
-import search from '@site/static/img/hooks/useSelect/mui/search.png';
 
 The `useAutocomplete` hook is used to get data from the API and to manage the Material UI [`<Autocomplete>`][mui-autocomplete] component.
 
@@ -126,7 +124,7 @@ The use of `useAutocomplete` with [`useForm`](/packages/documentation/react-hook
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={basicUsage} alt="Basic use of Autocomplete" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useSelect/mui/basic-usage.png" alt="Basic use of Autocomplete" />
 </div>
 <br/>
 
@@ -136,7 +134,7 @@ The use of `useAutocomplete` with [`useForm`](/packages/documentation/react-hook
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={search} alt="Search functionality" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useSelect/mui/search.png" alt="Search functionality" />
 </div>
 <br/>
 
@@ -311,9 +309,6 @@ const { autocompleteProps } = useAutocomplete({
 > | onInputChange | Callback fired when the input value changes               | `(event: React.SyntheticEvent, value: string, reason: string) => void` |
 > | filterOptions | Determines the filtered options to be rendered on search. | `(options: TData, state: object) => TData`                             |
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/field/useSelect/mui?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-use-select-example"
-></iframe>
+<StackblitzExample path="field-antd-use-select-mui" />

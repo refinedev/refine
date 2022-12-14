@@ -9,9 +9,4 @@ When records in a resource need to be used as select options, the **refine** `us
 
 [Refer to the **refine** useSelect hook documentation for more information. →](/docs/api-reference/antd/hooks/field/useSelect/)
 
-[View useSelect Example Source](https://github.com/refinedev/refine/tree/master/examples/field/useSelect/antd/basic)
-
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/field/useSelect/antd/basic?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-use-select-example"
-></iframe>
+<StackblitzExample path="field-antd-use-select-basic" />

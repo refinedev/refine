@@ -3,9 +3,6 @@ id: useStepsForm
 title: useStepsForm
 ---
 
-import listPage from '@site/static/img/packages/react-hook-form/useStepsForm/list-page.png';
-import createForm from '@site/static/img/packages/react-hook-form/useStepsForm/create-form.gif';
-import editForm from '@site/static/img/packages/react-hook-form/useStepsForm/edit-form.gif';
 
 `useStepsForm` allows you to manage a form with multiple steps. It provides features such as which step is currently active, the ability to go to a specific step and validation when changing steps etc.
 
@@ -105,7 +102,7 @@ export const PostList: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={listPage} alt="List Page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-hook-form/useStepsForm/list-page.png" alt="List Page" />
 </div>
 
 ### Create Form
@@ -258,7 +255,7 @@ export const PostCreate: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={createForm} alt="Create Form" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-hook-form/useStepsForm/create-form.gif" alt="Create Form" />
 </div>
 
 ### Edit Page
@@ -420,7 +417,7 @@ export const PostEdit: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={editForm} alt="Edit Form" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-hook-form/useStepsForm/edit-form.gif" alt="Edit Form" />
 </div>
 
 ## API Reference
@@ -452,12 +449,9 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 > | currentStep | Current step                         | `boolean`                |
 > | gotoStep    | Allows you to go to a specific step. | `(step: number) => void` |
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form/reactHookForm/useStepsForm/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-react-hook-form-example"
-></iframe>
+<StackblitzExample path="form-react-hook-form-use-steps-form" />
 
 [@pankod/refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
 [refine-react-hook-form-use-form]: /packages/documentation/react-hook-form/useForm.md
