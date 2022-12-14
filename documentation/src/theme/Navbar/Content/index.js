@@ -10,6 +10,12 @@ import SearchBar from "@theme/SearchBar";
 import NavbarMobileSidebarToggle from "@theme/Navbar/MobileSidebar/Toggle";
 import NavbarLogo from "@theme/Navbar/Logo";
 import NavbarSearch from "@theme/Navbar/Search";
+import Link from "@docusaurus/Link";
+import { Popover, Transition } from "@headlessui/react";
+
+import { RightArrow, ChevronDownIcon } from "../../../assets/popover-icons";
+import { POPOVERMENUS } from "../../../assets/nav-menu";
+
 import styles from "./styles.module.css";
 function useNavbarItems() {
     // TODO temporary casting until ThemeConfig type is improved
@@ -40,11 +46,101 @@ function NavbarContentLayout({ left, right }) {
         </div>
     );
 }
+
+const PopoverItem = ({ label, description, to, icon }) => {
+    const Icon = icon;
+
+    return (
+        <Link
+            to={to}
+            className="flex gap-4 no-underline p-4 hover:bg-[#eeeef0] group transition rounded-lg"
+        >
+            <Icon className="flex-shrink-0" />
+            <div className="flex flex-col">
+                <span className="text-[#6B6B76] font-semibold text-sm group-hover:text-[#242436] transition">
+                    {label}
+                </span>
+                <span className="text-[#96969E] text-xs font-medium group-hover:text-[#565662] transition">
+                    {description}
+                </span>
+            </div>
+            <RightArrow className="flex-shrink-0 self-center" />
+        </Link>
+    );
+};
+
+const PopoverMenu = ({
+    label,
+    buttonLabel,
+    buttonLink,
+    imageURL,
+    children,
+}) => {
+    return (
+        <Popover className="relative">
+            {({ open }) => (
+                <>
+                    <Popover.Button as={React.Fragment}>
+                        <NavbarItem
+                            rightIcon={
+                                <ChevronDownIcon
+                                    className={`
+                                ${open ? "transform rotate-180" : ""}
+                                ml-1 transition`}
+                                />
+                            }
+                            label={label}
+                            className={`
+                        ${open ? "active-navbar-link" : ""}
+                        text-[#2A2A42] hover:text-[#2a2a42] hover:no-underline hoverline-link p-0`}
+                        />
+                    </Popover.Button>
+
+                    <Transition
+                        as={React.Fragment}
+                        enter="transition ease-in duration-200"
+                        enterFrom="opacity-0 -translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-out duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 -translate-y-1"
+                    >
+                        <Popover.Panel className="absolute z-50 top-[45px]">
+                            <div
+                                className="bg-white flex rounded-lg overflow-hidden"
+                                style={{
+                                    filter: "drop-shadow(4px 8px 16px rgba(42, 42, 66, 0.25))",
+                                }}
+                            >
+                                {children}
+                                <div
+                                    className="relative w-[312px] bg-no-repeat bg-cover flex items-end justify-center"
+                                    style={{
+                                        backgroundImage: `url(${imageURL})`,
+                                    }}
+                                >
+                                    <Link
+                                        className="flex w-4/5 justify-center items-center appearance-none no-underline font-montserrat font-bold text-white text-center py-1 px-4 rounded-lg shadow-lg hover:shadow-xl focus:outline-none focus:shadow-xl bg-gradient-to-l from-[#1890FF] to-[#47EBF5] mb-4"
+                                        to={buttonLink}
+                                    >
+                                        {buttonLabel}
+                                    </Link>
+                                </div>
+                            </div>
+                        </Popover.Panel>
+                    </Transition>
+                </>
+            )}
+        </Popover>
+    );
+};
+
 export default function NavbarContent() {
     const mobileSidebar = useNavbarMobileSidebar();
     const items = useNavbarItems();
     const [leftItems, rightItems] = splitNavbarItems(items);
     const searchBarItem = items.find((item) => item.type === "search");
+
     return (
         <NavbarContentLayout
             left={
@@ -52,6 +148,84 @@ export default function NavbarContent() {
                 <>
                     {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
                     <NavbarLogo />
+                    {POPOVERMENUS.map((item) => (
+                        <PopoverMenu
+                            key={item.label}
+                            label={item.label}
+                            buttonLabel={item.buttonLabel}
+                            buttonLink={item.buttonLink}
+                            imageURL={item.imageURL}
+                        >
+                            {item.label === "Open-source" && (
+                                <div className="grid grid-cols-2 w-[552px] p-4 gap-2">
+                                    {item.items.map((item) => (
+                                        <PopoverItem
+                                            key={item.label}
+                                            label={item.label}
+                                            description={item.description}
+                                            to={item.link}
+                                            icon={item.icon}
+                                        />
+                                    ))}
+                                </div>
+                            )}
+
+                            {item.label === "Community" && (
+                                <div className="grid grid-cols-2 w-[552px] p-4 gap-2">
+                                    {item.items.map((item) => (
+                                        <PopoverItem
+                                            key={item.label}
+                                            label={item.label}
+                                            description={item.description}
+                                            to={item.link}
+                                            icon={item.icon}
+                                        />
+                                    ))}
+                                    <div
+                                        className="col-span-2 p-6 pb-2"
+                                        style={{
+                                            borderTop: "1px solid #c1c1c6",
+                                        }}
+                                    >
+                                        <div className="grid grid-cols-2 gap-6 items-center">
+                                            <span className="text-center text-sm text-[#1890ff] cursor-default">
+                                                JOIN THE PARTY
+                                            </span>
+                                            <div className="flex">
+                                                <NavbarItem
+                                                    className="popover-icon-link header-github-link"
+                                                    href="https://github.com/refinedev/refine"
+                                                />
+                                                <NavbarItem
+                                                    className="popover-icon-link header-discord-link"
+                                                    href="https://discord.gg/refine"
+                                                />
+                                                <NavbarItem
+                                                    className="popover-icon-link header-twitter-link"
+                                                    href="https://twitter.com/refine_dev"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {item.label === "Company" && (
+                                <div className="grid grid-cols-1 w-[292px] p-4 gap-2">
+                                    {item.items.map((item) => (
+                                        <PopoverItem
+                                            key={item.label}
+                                            label={item.label}
+                                            description={item.description}
+                                            to={item.link}
+                                            icon={item.icon}
+                                        />
+                                    ))}
+                                </div>
+                            )}
+                        </PopoverMenu>
+                    ))}
+
                     <NavbarItems items={leftItems} />
                 </>
             }

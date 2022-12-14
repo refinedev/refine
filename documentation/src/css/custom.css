@@ -284,6 +284,13 @@
     width: 24px;
 }
 
+.popover-icon-link::before {
+    content: "";
+    display: flex;
+    height: 24px;
+    width: 24px;
+}
+
 .header-github-link::before {
     background: url("/icons/github.svg");
     background-size: contain;
@@ -372,6 +379,11 @@
 
 .with-hoverline .hoverline-link:hover::after,
 .with-hoverline .navbar__link--active::after {
+    content: "";
+    @apply absolute bottom-[-5px] left-[calc(50%-12px)] h-1 w-6 rounded-sm bg-[#1890ff] transition-opacity duration-200 ease-in-out;
+}
+
+.active-navbar-link::after {
     content: "";
     @apply absolute bottom-[-5px] left-[calc(50%-12px)] h-1 w-6 rounded-sm bg-[#1890ff] transition-opacity duration-200 ease-in-out;
 }
