@@ -76,23 +76,29 @@ const PopoverMenu = ({
     imageURL,
     children,
 }) => {
+    const [isShowing, setIsShowing] = React.useState(false);
+
     return (
-        <Popover className="relative">
-            {({ open }) => (
+        <Popover
+            className="relative h-full flex items-center"
+            onMouseEnter={() => setIsShowing(true)}
+            onMouseLeave={() => setIsShowing(false)}
+        >
+            {() => (
                 <>
                     <Popover.Button as={React.Fragment}>
                         <NavbarItem
                             rightIcon={
                                 <ChevronDownIcon
                                     className={`
-                                ${open ? "transform rotate-180" : ""}
+                                ${isShowing ? "transform rotate-180" : ""}
                                 ml-1 transition`}
                                 />
                             }
                             label={label}
                             className={`
-                        ${open ? "active-navbar-link" : ""}
-                        text-[#2A2A42] hover:text-[#2a2a42] hover:no-underline hoverline-link p-0`}
+                        ${isShowing ? "active-navbar-link" : ""}
+                        text-[#2A2A42] hover:text-[#2a2a42] hover:no-underline hoverline-link p-0 cursor-pointer flex items-center`}
                         />
                     </Popover.Button>
 
@@ -104,6 +110,9 @@ const PopoverMenu = ({
                         leave="transition ease-out duration-150"
                         leaveFrom="opacity-100 translate-y-0"
                         leaveTo="opacity-0 -translate-y-1"
+                        show={isShowing}
+                        onMouseEnter={() => setIsShowing(true)}
+                        onMouseLeave={() => setIsShowing(false)}
                     >
                         <Popover.Panel className="absolute z-50 top-[45px]">
                             <div
