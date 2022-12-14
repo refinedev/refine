@@ -19,7 +19,8 @@ Some of the changes are:
 
 :::danger Next.js 13 Not Supported
 
-Currently `ant-design/pro-components` does not compatible with Next.js 13. **refine** is using `ant-design/pro-components` as a dependency for <PageHeader/> component.
+Currently `ant-design/pro-components` does not compatible with Next.js 13.
+**refine** is using `ant-design/pro-components` as a dependency for `<PageHeader/>` component.
 
 > [More information](https://github.com/ant-design/pro-components/issues/6338)
 
