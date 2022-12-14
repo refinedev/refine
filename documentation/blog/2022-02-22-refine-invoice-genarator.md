@@ -13,7 +13,7 @@ tags:
         internal-tool,
         strapi,
     ]
-image: /img/placeholder.png
+image: /website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 

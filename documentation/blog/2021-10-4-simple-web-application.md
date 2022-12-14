@@ -4,7 +4,7 @@ description: Do you want to develop a web application quickly? You are at the ri
 slug: simple-web-application-with-refine
 authors: aydin
 tags: [refine, supabase, react, tutorial]
-image: /img/placeholder.png
+image: /website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 

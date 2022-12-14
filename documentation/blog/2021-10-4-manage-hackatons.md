@@ -4,7 +4,7 @@ description: We'll be building a demo app to manage hackathons with refine.
 slug: manage-hackathons-with-refine
 authors: muharrem
 tags: [refine, supabase, react, tutorial]
-image: /img/placeholder.png
+image: /website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 

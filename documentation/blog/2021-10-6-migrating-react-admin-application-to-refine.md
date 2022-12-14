@@ -4,7 +4,7 @@ description: Recently, our team decided to migrate a B2B admin panel of one of o
 slug: migrating-a-react-admin-application-to-refine
 authors: umut
 tags: [refine, react-admin, adminpanel, crud]
-image: /img/placeholder.png
+image: /website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 

@@ -4,7 +4,7 @@ description: Build authorization ready admin panel with NestJS.
 slug: how-to-access-control-with-nestjs
 authors: yildiray
 tags: [nestjs, authorization, accesscontrol, refine]
-image: /img/placeholder.png
+image: /website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
