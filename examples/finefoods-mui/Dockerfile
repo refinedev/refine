@@ -18,7 +18,7 @@ RUN npm run build -- --scope mui-fine-foods
 
 FROM node:16-alpine
 
-COPY --from=0 /opt/app/examples/fineFoods/admin/mui/build /opt/app
+COPY --from=0 /opt/app/examples/finefoods-mui/build /opt/app
 WORKDIR /opt/app/
 
 ENV NODE_ENV=production
