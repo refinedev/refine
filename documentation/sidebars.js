@@ -255,6 +255,13 @@ module.exports = {
                     items: [
                         {
                             type: "category",
+                            label: "Migration Guide",
+                            items: [
+                                "api-reference/antd/migration-guide/v4-to-v5",
+                            ],
+                        },
+                        {
+                            type: "category",
                             label: "Hooks",
                             items: [
                                 {
