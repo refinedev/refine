@@ -317,6 +317,8 @@ const siteConfig = {
         /** Live Preview */
         LIVE_PREVIEW_URL:
             process.env.LIVE_PREVIEW_URL ?? "http://localhost:3030/preview",
+        /** ---- */
+        tutorialPathPrefix: "/docs/tutorial/",
     },
 };
 
