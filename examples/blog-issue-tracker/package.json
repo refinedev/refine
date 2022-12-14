@@ -3,7 +3,7 @@
     "version": "3.25.0",
     "private": true,
     "dependencies": {
-        "@ant-design/charts": "^1.2.14",
+        "@ant-design/charts": "^1.2.0",
         "@pankod/refine-antd": "^3.70.1",
         "@pankod/refine-core": "^3.90.5",
         "@pankod/refine-react-router-v6": "^3.38.0",

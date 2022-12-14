@@ -7,7 +7,7 @@
         "@pankod/refine": "2.0.12",
         "@pankod/refine-nestjsx-crud": "^3.35.0",
         "@pankod/refine-react-router": "^3.25.0",
-        "@types/jest": "^26.0.23",
+        "@types/jest": "^26.0.24",
         "@types/react": "^18.0.0",
         "@types/react-dom": "^18.0.0",
         "craco-less": "^2.0.0",
