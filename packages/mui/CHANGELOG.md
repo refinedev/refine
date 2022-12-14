@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.61.1
+
+### Patch Changes
+
+-   [`93a7d7088ae`](https://github.com/refinedev/refine/commit/93a7d7088aee1ec6baad3b33f646fa67b25f4af0) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed `experimental_sx` export
+
 ## 3.61.0
 
 ### Minor Changes
