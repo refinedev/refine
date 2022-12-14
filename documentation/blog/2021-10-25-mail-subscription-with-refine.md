@@ -4,7 +4,7 @@ description: We will make a web application that allows you to quickly create su
 slug: e-mail-subscription-panel-with-refine
 authors: melih
 tags: [refine, strapi, react, tutorial]
-image: /website/static/img/placeholder.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 

@@ -4,7 +4,7 @@ description: Refine vs AdminBro
 slug: refine-vs-adminbro
 authors: melih
 tags: [refine, admin-bro, react, admin-panel, react-framework]
-image: /website/static/img/placeholder.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 

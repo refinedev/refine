@@ -4,7 +4,7 @@ description: This web application will  us to create issue and tasks for your te
 slug: customizable-issue-tracker-with-refine-and-supabase
 authors: melih
 tags: [refine, supabase, react, tutorial]
-image: /website/static/img/placeholder.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
