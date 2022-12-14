@@ -21,7 +21,7 @@ export const SHOW_CASES: Examples = [
             text: "VIEW DEMO",
             link: "https://example.admin.refine.dev",
         },
-        source: "https://github.com/refinedev/refine/tree/master/examples/fineFoods/admin/antd",
+        source: "https://github.com/refinedev/refine/tree/master/examples/finefoods-antd",
     },
     {
         title: "FINEFOODS STOREFRONT",
@@ -32,7 +32,7 @@ export const SHOW_CASES: Examples = [
             text: "VIEW DEMO",
             link: "https://example.refine.dev",
         },
-        source: "https://github.com/refinedev/refine/tree/master/examples/fineFoods/client",
+        source: "https://github.com/refinedev/refine/tree/master/examples/finefoods-client",
     },
     {
         title: "FINEFOODS ADMIN PANEL [MATERIAL UI]",
@@ -43,7 +43,7 @@ export const SHOW_CASES: Examples = [
             text: "VIEW DEMO",
             link: "https://example.mui.admin.refine.dev",
         },
-        source: "https://github.com/refinedev/refine/tree/master/examples/fineFoods/admin/mui",
+        source: "https://github.com/refinedev/refine/tree/master/examples/finefoods-mui",
     },
 ];
 
@@ -141,8 +141,9 @@ export const EXAMPLES: Examples = [
         image: "/examples/refine-pixels.png",
         button: {
             text: "VIEW DEMO",
-            link: "https://refine-pixels.vercel.app/canvases",
+            link: "https://pixels.refine.dev",
         },
+        source: "https://github.com/refinedev/refine/tree/master/examples/pixels",
         isExternal: true,
     },
 ];

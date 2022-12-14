@@ -22,7 +22,7 @@ import {
 import {
     mapAntdSorterToCrudSorting,
     mapAntdFilterToCrudFilter,
-} from "../../../definitions/table";
+} from "@definitions/table";
 import { PaginationLink } from "./paginationLink";
 
 export type useTableProps<
@@ -144,6 +144,7 @@ export const useTable = <
             const crudFilters = mapAntdFilterToCrudFilter(
                 tableFilters,
                 filters,
+                initialFilter,
             );
             setFilters(crudFilters);
         }

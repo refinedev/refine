@@ -7,7 +7,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@pankod/refine-core": "^3.90.4",
+        "@pankod/refine-core": "^3.90.6",
         "@pankod/refine-react-hook-form": "^3.37.0",
         "@pankod/refine-react-table": "^4.9.0",
         "@pankod/refine-react-router-v6": "^3.38.0",
