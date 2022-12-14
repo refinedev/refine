@@ -4,7 +4,6 @@ title: Export
 swizzle: true
 ---
 
-import exportButton from '@site/static/img/guides-and-concepts/components/buttons/export/export-mui.png';
 
 `<ExportButton>` is a Material UI [`<LoadingButton>`][button] with a default export icon and a default text with "Export". It only has presentational value.
 
@@ -85,7 +84,7 @@ It looks like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={exportButton} alt="Default export button" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/export/export-mui.png" alt="Default export button" />
 </div>
 
 ## Properties

@@ -3,7 +3,6 @@ id: refresh-button
 title: Refresh
 ---
 
-import refreshButton from '@site/static/img/guides-and-concepts/components/buttons/refresh/refresh.png';
 
 `<RefreshButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component to update the data shown on the page via the [`useOne`](api-references/hooks/data/useOne.md) method provided by your [`dataProvider`](api-references/providers/data-provider.md).
 
@@ -54,7 +53,7 @@ Will Look like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={refreshButton} alt="Default refresh button" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/refresh/refresh.png" alt="Default refresh button" />
 </div>
 
 ## Properties

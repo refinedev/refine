@@ -976,13 +976,8 @@ export const MovieShow: React.FC<IResourceComponentsProps> = () => {
 </div>
 <br />
 
-## Live Codesandbox Example
+## Example
 
-<iframe src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/blog/refineflix/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="refine-react-hook-form-example"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
+<StackblitzExample path="blog-refineflix" />
 
-[here is repo](https://github.com/refinedev/refine/tree/master/examples/blog/refineflix)
+[here is repo](https://github.com/refinedev/refine/tree/master/examples/blog-refineflix)

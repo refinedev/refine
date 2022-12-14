@@ -3,9 +3,6 @@ id: graphql
 title: GraphQL
 ---
 
-import graphqlList from '@site/static/img/guides-and-concepts/data-provider/graphql-list.png';
-import graphqlEdit from '@site/static/img/guides-and-concepts/data-provider/graphql-edit.png';
-import graphqlShow from '@site/static/img/guides-and-concepts/data-provider/graphql-show.png';
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -233,7 +230,7 @@ query ($sort: String, $where: JSON, $start: Int, $limit: Int) {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={graphqlList} alt="GraphQL list page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/graphql-list.png" alt="GraphQL list page" />
 </div>
 
 ## Edit Page
@@ -357,7 +354,7 @@ mutation ($input: updatePostInput) {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={graphqlEdit} alt="GraphQL edit page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/graphql-edit.png" alt="GraphQL edit page" />
 </div>
 
 ## Show Page
@@ -438,5 +435,5 @@ mutation ($input: updatePostInput) {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={graphqlShow} alt="GraphQL show page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/graphql-show.png" alt="GraphQL show page" />
 </div>

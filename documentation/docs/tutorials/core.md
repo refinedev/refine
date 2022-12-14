@@ -3,15 +3,6 @@ id: headless-tutorial
 title: Your First Headless App using Tailwind.css
 ---
 
-import readyPage from '@site/static/img/core/tutorial/ready-page.png';
-import resourceFirst from '@site/static/img/core/tutorial/resource-1.png';
-import resourceSecond from '@site/static/img/core/tutorial/resource-2.png';
-import relation from '@site/static/img/core/tutorial/relation.png';
-import pagination from '@site/static/img/core/tutorial/pagination.png';
-import sortAndFilter from '@site/static/img/core/tutorial/sort-and-filter.gif';
-import showGif from '@site/static/img/core/tutorial/show.gif';
-import editGif from '@site/static/img/core/tutorial/edit.gif';
-import createGif from '@site/static/img/core/tutorial/create.gif';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -216,7 +207,7 @@ Point your browser to [http://localhost:3000](http://localhost:3000) to access i
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={readyPage} alt="Ready Page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/core/tutorial/ready-page.png" alt="Ready Page" />
 </div>
 <br/>
 
@@ -333,7 +324,7 @@ Instead of showing the welcome page, the application should redirect now to an U
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={resourceFirst} alt="Resource only with name" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/core/tutorial/resource-1.png" alt="Resource only with name" />
 </div>
 <br/>
 
@@ -643,7 +634,7 @@ On the next step, we are going to add a category field to the table which involv
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={resourceSecond} alt="Resource only List component" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/core/tutorial/resource-2.png" alt="Resource only List component" />
 </div>
 
 ### Handling relationships
@@ -835,7 +826,7 @@ Try the result on your browser and you'll notice that the category column is fil
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={relation} alt="Relational column on table" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/core/tutorial/relation.png" alt="Relational column on table" />
 </div>
 
 ### Adding Pagination
@@ -1134,7 +1125,7 @@ export const ChevronsRightIcon = (
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={pagination} alt="Adding pagination to table" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/core/tutorial/pagination.png" alt="Adding pagination to table" />
 </div>
 
 ### Adding Sorting and Filtering
@@ -1396,7 +1387,7 @@ export const PostList: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={sortAndFilter} alt="Sorting and filtering for table" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/core/tutorial/sort-and-filter.gif" alt="Sorting and filtering for table" />
 </div>
 
 ## Showing a single record
@@ -1624,7 +1615,7 @@ Since we've got access to raw data returning from `useShow()`, there is no restr
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={showGif} alt="Show record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/core/tutorial/show.gif" alt="Show record action" />
 </div>
 
 ## Editing a record
@@ -1933,7 +1924,7 @@ export const EditIcon = (
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={editGif} alt="Edit record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/core/tutorial/edit.gif" alt="Edit record action" />
 </div>
 <br/>
 
@@ -2201,7 +2192,7 @@ We should notice some minor differences from the edit example:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={createGif} alt="Create record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/core/tutorial/create.gif" alt="Create record action" />
 </div>
 
 <br/>
@@ -2302,14 +2293,11 @@ export const DeleteIcon = (
 
 Now you can try deleting records yourself. Just click on the delete button of the record you want to delete.
 
-## Live StackBlitz Example
+## Example
 
 Our tutorial is complete. Below you'll find a Live StackBlitz Example displaying what we have done so far:
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial/headless?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-headless-tutorial-example"
-></iframe>
+<StackblitzExample path="tutorial-headless" />
 
 ## Next Steps
 

@@ -4,7 +4,6 @@ title: Tag
 swizzle: true
 ---
 
-import tagField from '@site/static/img/guides-and-concepts/fields/tag/tagFieldMui.png';
 
 This field lets you display a value in a tag. It uses Material UI [`<Chip>`](https://mui.com/material-ui/react-chip/#main-content) component.
 
@@ -81,7 +80,7 @@ interface IPost {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={tagField} alt="TagField" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/tag/tagFieldMui.png" alt="TagField" />
 </div>
 
 ## API Reference

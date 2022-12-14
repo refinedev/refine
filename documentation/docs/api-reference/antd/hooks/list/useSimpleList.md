@@ -3,7 +3,6 @@ id: useSimpleList
 title: useSimpleList
 ---
 
-import useSimpleList from '@site/static/img/guides-and-concepts/hooks/useSimpleList/useSimpleList.png';
 
 By using `useSimpleList` you get props for your records from API in accordance with Ant Design `<List>` component. All features such as pagination, sorting come out of the box.
 
@@ -147,7 +146,7 @@ To disable pagination, you can set `hasPagination` property to `false` which is 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={useSimpleList} alt="use simple list" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/hooks/useSimpleList/useSimpleList.png" alt="use simple list" />
 </div>
 
 ## API

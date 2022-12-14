@@ -4,12 +4,6 @@ title: Sider
 swizzle: true
 ---
 
-import customMenu from '@site/static/img/guides-and-concepts/hooks/useMenu/mui/custom-menu.gif';
-
-import customMenuLogout from '@site/static/img/guides-and-concepts/hooks/useMenu/mui/custom-menu-logout.gif';
-
-import customMobileMenu from '@site/static/img/guides-and-concepts/hooks/useMenu/mui/custom-menu-mobile.gif';
-
 You can access the `logout`, `dashboard`, `items` elements and `collapsed` state that we use in our default `Sider` component by using `render` properties. Customize it to your needs or you can create a custom `<Sider />` component and use it either by passing it to [`<Refine />`][refine] or using a [Custom Layout][muicustomlayout].
 
 :::info-tip Swizzle
@@ -592,7 +586,7 @@ export default App;
         <div classname="control orange"></div>
         <div classname="control green"></div>
     </div>
-    <img src={customMenu} alt="Custom Menu" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/hooks/useMenu/mui/custom-menu.gif" alt="Custom Menu" />
 </div>
 
 [refine]: /api-reference/core/components/refine-config.md

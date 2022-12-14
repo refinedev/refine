@@ -4,9 +4,6 @@ title: Create
 swizzle: true
 ---
 
-import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/create/pageHeaderPropsUsage.png'
-import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/create/actionButtonsUsage.png'
-
 `<Create>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like action buttons and giving titles to the page.
 
 We'll show what `<Create>` does using properties with examples.

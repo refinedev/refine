@@ -4,7 +4,6 @@ title: File
 swizzle: true
 ---
 
-import fileField from '@site/static/img/guides-and-concepts/fields/file/fileFieldMui.png'
 
 This field is used to display files and it uses the [`<Link>`](https://mui.com/material-ui/react-link/#main-content) component of [`<Typography>`](https://mui.com/material-ui/react-typography/#main-content) from Material UI.
 
@@ -90,7 +89,7 @@ If you don't use `title` prop it will use `src` as `title`
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={fileField} alt="FileField" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/file/fileFieldMui.png" alt="FileField" />
 </div>
 
 ## API Reference

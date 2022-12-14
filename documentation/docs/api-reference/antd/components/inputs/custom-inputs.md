@@ -3,7 +3,6 @@ id: custom-inputs
 title: Custom Inputs
 ---
 
-import markdownInput from '@site/static/img/guides-and-concepts/components/inputs/custom-inputs/markdown-input.png';
 
 **refine** uses Ant Design's [`<Form>`](https://ant.design/components/form/) components to control and work with form data. Ant Design supports custom form items inside the [`<Form.Item>`](https://ant.design/components/form/#Form.Item) components. These items should be controllable via their `value` property and should implement `onChange` (or a custom callback name specified by [`<Form.Item>`](https://ant.design/components/form/#Form.Item)'s `trigger` prop).
 
@@ -70,13 +69,10 @@ export const PostEdit: React.FC = (props) => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={markdownInput} alt="Markdown input" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/inputs/custom-inputs/markdown-input.png" alt="Markdown input" />
 </div>
 <br/>
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/inputs/customInputs?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-custom-inputs-example"
-></iframe>
+<StackblitzExample path="input-custom" />

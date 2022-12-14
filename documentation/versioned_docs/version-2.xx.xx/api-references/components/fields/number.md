@@ -2,7 +2,6 @@
 id: number
 title: Number
 ---
-import numberField from '@site/static/img/guides-and-concepts/fields/number/numberField.png'
 
 
 This field is used to display a number formatted according to the browser locale, right aligned. and uses [`Intl`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) to display date format.
@@ -55,7 +54,7 @@ interface IPost {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={numberField} alt="NumberField" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/number/numberField.png" alt="NumberField" />
 </div>
 
 ## API Reference

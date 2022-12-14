@@ -6,5 +6,10 @@ export const AntDesignLogoIcon = (
         HTMLImageElement
     >,
 ): JSX.Element => (
-    <img width="48px" height="48px" {...props} src="/img/antd-logo.png" />
+    <img
+        width="48px"
+        height="48px"
+        {...props}
+        src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/antd-logo.png"
+    />
 );

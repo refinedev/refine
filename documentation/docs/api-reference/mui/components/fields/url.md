@@ -4,7 +4,6 @@ title: Url
 swizzle: true
 ---
 
-import urlField from '@site/static/img/guides-and-concepts/fields/url/urlFieldMui.png'
 
 This field lets you embed a link. It uses Material UI [`<Typography>`](https://mui.com/material-ui/react-typography/#main-content) and [`Link`](https://mui.com/material-ui/react-link/#main-content) components. You can pass a URL in its `value` prop and you can show a text in its place by passing any `children`.
 
@@ -85,7 +84,7 @@ interface IImage {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={urlField} alt="UrlField" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/url/urlFieldMui.png" alt="UrlField" />
 </div>
 
 ## API Reference

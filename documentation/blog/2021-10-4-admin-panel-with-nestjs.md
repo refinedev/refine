@@ -16,7 +16,7 @@ In this article, we will prepare a simple `job-posting` application. We will als
 
 <!--truncate-->
 
-All the steps described are in this [repo](https://github.com/refinedev/refine/tree/master/examples/blog/jobPosting).
+All the steps described are in this [repo](https://github.com/refinedev/refine/tree/master/examples/blog-job-posting).
 
 ## Intro
 [NestJS](https://github.com/nestjs/nest) is a framework for building efficient, scalable Node.js server-side applications. With [nestjsx/crud](https://github.com/nestjsx/crud) we can add CRUD functions quickly and effortlessly on this framework.

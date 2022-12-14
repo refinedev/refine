@@ -3,9 +3,6 @@ id: mutation-mode
 title: Mutation Mode
 ---
 
-import pessimistic from '@site/static/img/guides-and-concepts/mutation-mode/pessimistic.gif';
-import optimistic from '@site/static/img/guides-and-concepts/mutation-mode/optimistic.gif';
-import undoable from '@site/static/img/guides-and-concepts/mutation-mode/undoable.gif';
 
 ## Overview
 
@@ -28,7 +25,7 @@ The mutation runs immediately. Redirection and UI updates are executed after the
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={pessimistic} alt="pessimistic mode" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/mutation-mode/pessimistic.gif" alt="pessimistic mode" />
 </div>
 
 <br />
@@ -49,7 +46,7 @@ The mutation is applied locally, redirection and UI updates are executed immedia
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={optimistic} alt="optimistic mode" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/mutation-mode/optimistic.gif" alt="optimistic mode" />
 </div>
 
 <br />
@@ -70,7 +67,7 @@ The mutation is applied locally, redirection and UI updates are executed immedia
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={undoable} alt="undoable mode" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/mutation-mode/undoable.gif" alt="undoable mode" />
 </div>
 
 <br />
@@ -119,9 +116,6 @@ mutate({
 
 <br />
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com//refine-example-mutation-mode-yh7nb?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-example-mutation-mode"
-></iframe>
+<StackblitzExample path="mutation-mode" />

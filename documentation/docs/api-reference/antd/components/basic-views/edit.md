@@ -4,8 +4,6 @@ title: Edit
 swizzle: true
 ---
 
-import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/edit/pageHeaderPropsUsage.png'
-import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/edit/actionButtonsUsage.png'
 
 `<Edit>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a refresh button.
 
@@ -1069,7 +1067,7 @@ export const EditPage: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={actionButtonsUsage} alt="actionButton Usage" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/basic-views/edit/actionButtonsUsage.png" alt="actionButton Usage" />
 </div>
 <br/>
 
@@ -1107,7 +1105,7 @@ export const EditPage: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={pageHeaderPropsUsage} alt="pageHeaderProps Usage"/>
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/basic-views/edit/pageHeaderPropsUsage.png" alt="pageHeaderProps Usage"/>
 </div>
 <br/>
 

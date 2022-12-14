@@ -3,14 +3,6 @@ id: appwrite
 title: Appwrite
 ---
 
-import posts from '@site/static/img/guides-and-concepts/data-provider/appwrite/posts.png';
-import category from '@site/static/img/guides-and-concepts/data-provider/appwrite/category.png';
-import user from '@site/static/img/guides-and-concepts/data-provider/appwrite/user.png';
-import login from '@site/static/img/guides-and-concepts/data-provider/appwrite/login.png';
-import list from '@site/static/img/guides-and-concepts/data-provider/appwrite/list.png';
-import create from '@site/static/img/guides-and-concepts/data-provider/appwrite/create.gif';
-import edit from '@site/static/img/guides-and-concepts/data-provider/appwrite/edit.png';
-import permission from '@site/static/img/guides-and-concepts/data-provider/appwrite/permission.png';
 
 ## Introduction
 
@@ -168,7 +160,7 @@ We created two collections on Appwrite Database as `posts` and `categories` and 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={category} alt="category" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/category.png" alt="category" />
 </div>
 
 <br/>
@@ -186,7 +178,7 @@ We created two collections on Appwrite Database as `posts` and `categories` and 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={posts} alt="posts" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/posts.png" alt="posts" />
 </div>
 
 <br/>
@@ -199,7 +191,7 @@ Then we need to create an appwrite user to be able to login with **refine**.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={user} alt="user" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/user.png" alt="user" />
 </div>
 
 <br/>
@@ -216,7 +208,7 @@ Example: `Post Collection Permissons`
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={permission} alt="permission" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/permission.png" alt="permission" />
 </div>
 <br/>
 
@@ -373,7 +365,7 @@ export const Login: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={login} alt="login" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/login.png" alt="login" />
 </div>
 
 <br/>
@@ -526,7 +518,7 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={list} alt="list" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/list.png" alt="list" />
 </div>
 
 <br/>
@@ -661,7 +653,7 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={create} alt="create" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/create.gif" alt="create" />
 </div>
 
 <br/>
@@ -815,17 +807,17 @@ export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={edit} alt="edit" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/appwrite/edit.png" alt="edit" />
 </div>
 
-## Live StackBlitz Example
+## Example
+
+:::additional
 
 Username: `demo@refine.dev`
 
 Password: `demodemo`
 
-<iframe
-    src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/dataProvider/appwrite?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-appwrite-example"
-></iframe>
+:::
+
+<StackblitzExample path="data-provider-appwrite" />

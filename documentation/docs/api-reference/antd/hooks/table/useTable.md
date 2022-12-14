@@ -3,8 +3,6 @@ id: useTable
 title: useTable
 ---
 
-import tableSorting from '@site/static/img/hooks/useTable/table-sorting.gif';
-import filters from '@site/static/img/hooks/useTable/filters.gif';
 
 By using useTable, you are able to get properties that are compatible with Ant Design [`<Table>`](https://ant.design/components/table/) component. All features such as sorting, filtering and pagination comes as out of box.
 
@@ -162,7 +160,7 @@ When using multiple sorting, `multiple` value we had given to the `sorter` prope
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={tableSorting} alt="Table sorting in action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useTable/table-sorting.gif" alt="Table sorting in action" />
 </div>
 
 ### Initial sort status
@@ -281,7 +279,7 @@ export const PostList: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={filters} alt="Table filtering in action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useTable/filters.gif" alt="Table filtering in action" />
 </div>
 
 ### Default filter value
@@ -409,14 +407,9 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 
 <br />
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/table/antd/useTable?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="refine-use-table-example"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<StackblitzExample path="table-antd-use-table" />
 
 [table]: https://ant.design/components/table/#API
 [form]: https://ant.design/components/form/#API

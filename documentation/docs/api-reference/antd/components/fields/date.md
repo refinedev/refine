@@ -4,7 +4,6 @@ title: Date
 swizzle: true
 ---
 
-import dateField from '@site/static/img/guides-and-concepts/fields/date/dateField.png'
 
 This field is used to display dates. It uses [`Day.js`](https://day.js.org/docs/en/display/format) to display date format.
 
@@ -57,7 +56,7 @@ interface IPost {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={dateField} alt="DateField" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/date/dateField.png" alt="DateField" />
 </div>
 
 ## API Reference

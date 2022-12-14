@@ -120,14 +120,11 @@ By default, [`<Sider>`][sider] is responsible for rendering [`<Title>`][title]. 
 This example demonstrated how to configure a global layout. To learn how to use global layout in custom pages and make local modifications per page, [refer to the `<LayoutWrapper>` docs. &#8594][layoutwrapper]
 :::
 
-## Live StackBlitz Example
+## Example
 
 Here's how it looks in the end:
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/customization/topMenuLayout?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-top-menu-layout-example"
-></iframe>
+<StackblitzExample path="customization-top-menu-layout" />
 
 [refine]: /api-reference/core/components/refine-config.md
 [layout]: /api-reference/core/components/refine-config.md#layout

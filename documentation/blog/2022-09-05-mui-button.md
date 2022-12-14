@@ -146,7 +146,7 @@ Here’s the result:
 
 ---
 
-<PromotionBanner title="Small dev teams love this React framework!" image="/img/mui_banner.png" />
+<PromotionBanner title="Small dev teams love this React framework!" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/mui_banner.png" />
 
 ---
 ## How to use Material UI Button Component in your React project
@@ -404,7 +404,7 @@ Here’s the result:
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
 </a>
 </div>
 

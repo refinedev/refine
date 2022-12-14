@@ -3,7 +3,6 @@ id: save-and-continue
 title: Save and Continue
 ---
 
-import saveButtons from '@site/static/img/guides-and-concepts/form/save-and-continue/saveButtons.png';
 
 refine provides you with the necessary methods to add this feature. This feature is familiar to [Django](https://www.djangoproject.com/) users.
 
@@ -198,7 +197,7 @@ export const PostCreate: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={saveButtons} alt="save and continue buttons" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/form/save-and-continue/saveButtons.png" alt="save and continue buttons" />
 </div>
 <br/>
 
@@ -357,9 +356,6 @@ export const PostCreate: React.FC = () => {
 We used the `redirect` method to perform the redirection, which returns from [`useForm`](/docs/api-reference/core/hooks/useForm) instead of [`useNavigation`](/docs/api-reference/core/hooks/navigation/useNavigation) Thus, we can do our routing without dealing with managing resources.
 :::
 
-## Live StackBlitz Example
+## Example
 
-<iframe src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form/headless/saveAndContinue?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-custom-validation-example-app"
-></iframe>
+<StackblitzExample path="form-save-and-continue" />

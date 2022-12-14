@@ -2,6 +2,7 @@
 import { Command } from "commander";
 import execa from "execa";
 import { readFileSync } from "fs";
+import handleExample from "./example";
 
 const bootstrap = () => {
     const packageJson = JSON.parse(
@@ -34,6 +35,10 @@ const bootstrap = () => {
             "use this option to generate a project with random answers",
         )
         .option(
+            "-e, --example <example> [destination]",
+            "get a clone of an example from the refine repository",
+        )
+        .option(
             "-d, --download <download>",
             "specify a download type (zip | git) of source",
             "zip",
@@ -41,8 +46,17 @@ const bootstrap = () => {
         .allowUnknownOption(true)
         .allowExcessArguments(true)
         .action((_, command: Command) => {
-            const superplateExecutable = require.resolve(".bin/superplate");
             try {
+                // --example
+                if (command.getOptionValue("example")) {
+                    handleExample(
+                        command.getOptionValue("example"),
+                        command.args[0],
+                    );
+                    return;
+                }
+                // rest
+                const superplateExecutable = require.resolve(".bin/superplate");
                 execa.sync(
                     superplateExecutable,
                     [

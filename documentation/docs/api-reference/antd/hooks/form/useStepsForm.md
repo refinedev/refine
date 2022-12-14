@@ -3,7 +3,6 @@ id: useStepsForm
 title: useStepsForm
 ---
 
-import useStepsFormExample from '@site/static/img/hooks/useStepsForm/example.gif';
 
 `useStepsForm` hook allows you to split your form under an Ant Design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful functionalities that will help you manage your form.
 
@@ -317,7 +316,7 @@ export const PostCreate: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={useStepsFormExample} alt="Steps form example" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useStepsForm/example.gif" alt="Steps form example" />
 </div>
 
 ### Edit
@@ -468,12 +467,9 @@ export const PostCreate: React.FC = () => {
 | TError     | Custom error object that extends [`HttpError`][HttpError]        | [`HttpError`][HttpError]   |
 | TVariables | Values for params.                                               | `{}`                       |
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form/antd/useStepsForm?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-use-steps-form-example"
-></iframe>
+<StackblitzExample path="form-antd-use-steps-form" />
 
 [BaseRecord]: /api-reference/core/interfaces.md#baserecord
 [HttpError]: /api-reference/core/interfaces.md#httperror

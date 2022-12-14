@@ -4,7 +4,6 @@ title: Import
 swizzle: true
 ---
 
-import importButton from '@site/static/img/guides-and-concepts/components/buttons/import/import-mui.png';
 
 `<ImportButton>` is compatible with the `useImport` hook and is meant to be used as it's upload button. It uses Material UI [`<LoadingButton>`][button] component and native html [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element. It wraps a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) with a [`<LoadingButton>`][button] component and [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element and accepts it's own properties for separately.
 
@@ -82,7 +81,7 @@ It looks like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={importButton} alt="Default export button" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/import/import-mui.png" alt="Default export button" />
 </div>
 
 ## Properties

@@ -4,8 +4,6 @@ title: useSelect
 description: useSelect hook API references of @pankod/refine-core
 ---
 
-import basicUsage from '@site/static/img/core/useSelect/useSelect.png';
-
 `useSelect` hook allows you to manage any `select` (like a [Html `<select>` tag](https://www.w3schools.com/tags/tag_select.asp), [React Select](https://react-select.com/home), etc...) component. Since it is designed as headless, It expects you to handle the UI.
 
 ## Usage
@@ -252,9 +250,6 @@ const { options } = useSelect({
 | defaultValueQueryResult    | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 | defaultValueQueryOnSuccess | Default value onSuccess method                 | `() => void`                                                                                  |
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/core/useSelect?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-use-select-example"
-></iframe>
+<StackblitzExample path="core-use-select" />

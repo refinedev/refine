@@ -3,8 +3,6 @@ id: csv-import
 title: CSV Import
 ---
 
-import importButton from '@site/static/img/guides-and-concepts/csv-import/import-button.png';
-import importing from '@site/static/img/guides-and-concepts/csv-import/importing.gif';
 
 You can easily import CSV files for any resource by using **refine**'s customizable `useImport` hook, optionally with `<ImportButton>` component. `useImport` hook returns the necessary props for `<ImportButton>` component. **refine** uses [Papa Parse][Papa Parse] parser under the hood to parse CSV files.
 
@@ -83,7 +81,7 @@ interface IPost {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={importButton} alt="Import button" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/csv-import/import-button.png" alt="Import button" />
 </div>
 <br />
 
@@ -158,7 +156,7 @@ And it's done. When you click on the button and provide a CSV file of the header
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={importing} alt="Importing CSV" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/csv-import/importing.gif" alt="Importing CSV" />
 </div>
 <br />
 

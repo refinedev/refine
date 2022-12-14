@@ -3,8 +3,6 @@ id: useModalForm
 title: useModalForm
 ---
 
-import createGif from '@site/static/img/hooks/useModalForm/create.gif';
-import editGif from '@site/static/img/hooks/useModalForm/edit.gif';
 
 `useModalForm` hook allows you to manage a form within a modal. It returns Ant Design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components props.
 
@@ -96,7 +94,7 @@ This code block makes `<Modal>` appear when you click the button.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={createGif} alt="Create modal action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useModalForm/create.gif" alt="Create modal action" />
 </div>
 
 <br />
@@ -199,7 +197,7 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={editGif} alt="Edit modal action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useModalForm/edit.gif" alt="Edit modal action" />
 </div>
 
 <br />
@@ -242,14 +240,9 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 | TError     | Custom error object that extends [`HttpError`][HttpError]        | [`HttpError`][HttpError]   |
 | TVariables | Values for params.                                               | `{}`                       |
 
-## Live StackBlitz Example
+## Example
 
-   <iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form/antd/useModalForm?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="refine-use-modal-form-example"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+   <StackblitzExample path="form-antd-use-modal-form" />
 
 [BaseRecord]: /api-reference/core/interfaces.md#baserecord
 [HttpError]: /api-reference/core/interfaces.md#httperror

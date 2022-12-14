@@ -3,7 +3,6 @@ id: custom-form-validation
 title: Custom Form Validation
 ---
 
-import customValidation from '@site/static/img/examples/form/custom-form-validation.gif';
 
 In refine, we can use the form validation that comes with `Ant Design` with the [rules](https://ant.design/components/form/#Rule) property of the [Form.Item](https://ant.design/components/form/#Form.Item) component.
 
@@ -134,7 +133,7 @@ interface PostUniqueCheckRequestQuery {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={customValidation} alt="custom form validation" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/examples/form/custom-form-validation.gif" alt="custom form validation" />
 </div>
 <br/>
 </>

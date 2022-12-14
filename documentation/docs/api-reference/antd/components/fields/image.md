@@ -4,7 +4,6 @@ title: Image
 swizzle: true
 ---
 
-import imageField from '@site/static/img/guides-and-concepts/fields/image/imageField.png'
 
 This field is used to display images and uses [`<Image>`](https://ant.design/components/image/#header) from Ant Design.
 
@@ -69,7 +68,7 @@ interface IPost {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={imageField} alt="ImageField" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/image/imageField.png" alt="ImageField" />
 </div>
 
 ## API Reference

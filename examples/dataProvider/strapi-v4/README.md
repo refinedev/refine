@@ -1,3 +1,3 @@
-# Refine Strapi Auth/Data Provider Example App
+# data-provider-strapi-v4
 
-TODO: Strapi provider description.
+This example has been moved to [data-provider-strapi-v4](../.././data-provider-strapi-v4)

@@ -4,7 +4,6 @@ title: Clone
 swizzle: true
 ---
 
-import cloneButton from '@site/static/img/guides-and-concepts/components/buttons/clone/clone-mui.png';
 
 `<CloneButton>` Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses the `clone` method from [useNavigation](/api-reference/core/hooks/navigation/useNavigation.md) under the hood.
 It can be useful when redirecting the app to the create page with the record id route of resource.
@@ -77,7 +76,7 @@ Will look like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={cloneButton} alt="Default clone button" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/clone/clone-mui.png" alt="Default clone button" />
 </div>
 
 ## Properties
