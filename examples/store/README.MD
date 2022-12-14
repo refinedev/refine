@@ -72,7 +72,7 @@ npm create refine-app@latest -- --example store
 Go to the project directory.
 
 ```
-npm run dev
+npm run start
 ```
 ## Resources
 - [refine documentation](https://refine.dev/docs/getting-started/overview/)
