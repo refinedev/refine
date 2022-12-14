@@ -53,7 +53,7 @@ You need to ensure that your Git repository is not a mess of outdated and old br
 
 ---
 
-<PromotionBanner title="Building a side project?" image="/img/diagram.png" />
+<PromotionBanner title="Building a side project?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" />
 
 ---
 

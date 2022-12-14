@@ -4,7 +4,7 @@ description: We will quickly create an api with Strapi and then develop its fron
 slug: create-a-feedback-admin-panel-with-refine-and-strapi
 authors: salih
 tags: [refine, strapi, react, tutorial]
-image: /img/placeholder.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 

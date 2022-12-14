@@ -4,7 +4,7 @@ description: In this guide, I will show you how to import CSV files using React 
 slug: how-to-import-csv
 authors: melih
 tags: [JavaScript, csv, import, React]
-image: /img/placeholder.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
@@ -206,7 +206,7 @@ We formatted the CSV file that came in plain text format, using Javascript [slic
 
 ---
 
-<PromotionBanner title="Not confident with your frontend skills?" image="/img/generic_banner.png" />
+<PromotionBanner title="Not confident with your frontend skills?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 

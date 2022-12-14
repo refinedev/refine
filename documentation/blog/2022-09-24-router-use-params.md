@@ -94,7 +94,7 @@ function App() {
 
 ---
 
-<PromotionBanner title="CRUD apps are just boring!" image="/img/diagram.png" />
+<PromotionBanner title="CRUD apps are just boring!" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" />
 
 ---
 

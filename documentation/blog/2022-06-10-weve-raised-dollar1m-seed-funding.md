@@ -1,7 +1,7 @@
 ---
 title: We’ve raised $1M in Seed Funding! 🚀 🚀 🚀
 slug: weve-raised-dollar1m-seed-funding
-image: /assets/images/refine-500-4d80a7500ba87ce8fe2c88102d1be958.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-06-10-weve-raised-dollar1m-seed-funding/refine-500-2.png
 authors: necati
 hide_table_of_contents: false
 ---

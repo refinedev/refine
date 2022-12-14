@@ -98,7 +98,7 @@ In the code snippet above, we created a function that gets the current value of 
 
 ---
 
-<PromotionBanner title="Is your CRUD app overloaded with technical debt?" image="/img/generic_banner.png" />
+<PromotionBanner title="Is your CRUD app overloaded with technical debt?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 ## Difference between Ref and useRef
