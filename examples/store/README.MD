@@ -66,7 +66,7 @@ Currently, we are using this store and have already processed real shopping tran
 Create the project
 
 ```
-npm create refine-app@latest --example store
+npm create refine-app@latest -- --example store
 ```
 
 Go to the project directory.
