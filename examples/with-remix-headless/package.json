@@ -1,7 +1,7 @@
 {
-    "name": "remix-antd",
     "private": true,
     "sideEffects": false,
+    "name": "with-remix-headless",
     "scripts": {
         "build": "remix build",
         "start": "remix dev",
@@ -14,14 +14,13 @@
         "@pankod/refine-core": "^3.90.6",
         "@pankod/refine-simple-rest": "^3.37.4",
         "@pankod/refine-remix-router": "^1.7.0",
-        "@pankod/refine-antd": "^3.70.2",
-        "cookie": "^0.5.0",
+        "@pankod/refine-react-hook-form": "^3.37.0",
+        "@pankod/refine-react-table": "^4.9.0",
         "js-cookie": "^3.0.1",
         "react": "^18.0.0",
         "react-dom": "^18.0.0"
     },
     "devDependencies": {
-        "@types/js-cookie": "^3.0.2",
         "@remix-run/dev": "^1.6.7",
         "@types/react": "^18.0.0",
         "@types/react-dom": "^18.0.0",
