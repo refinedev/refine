@@ -49,7 +49,7 @@ export const POPOVERMENUS: NavMenu[] = [
                 icon: ExamplesIcon,
             },
             {
-                label: "Awsome refine",
+                label: "Awesome refine",
                 description: "Repo of awesome things",
                 link: "https://github.com/refinedev/refine",
                 icon: AwesomeIcon,
