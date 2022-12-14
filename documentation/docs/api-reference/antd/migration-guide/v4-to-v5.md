@@ -10,7 +10,7 @@ Some components are removed or renamed, and some APIs are changed.
 
 Some of the changes are:
 
--   `<PageHeader>` component moved into `@ant-design/pro-components`.
+-   `<PageHeader>` component moved into `@ant-design/pro-components`. **refine** is using `<PageHeader>` in `<List>`, `<Create>`, `<Edit>`, `<Show>` components and added as a dependency. You don't need to install `@ant-design/pro-components` package manually.
 -   `<Comment>` component moved into `@ant-design/compatible`.
 -   `moment.js` is replaced with `day.js`.
 -   `less` is removed from `antd` package.
@@ -22,14 +22,17 @@ Some of the changes are:
 Currently `ant-design/pro-components` does not compatible with Next.js 13.
 **refine** is using `ant-design/pro-components` as a dependency for `<PageHeader/>` component.
 
-> [More information](https://github.com/ant-design/pro-components/issues/6338)
+> [Refer to a related issue on ant-design/pro-components repository](https://github.com/ant-design/pro-components/issues/6338)
 
 :::
 
-:::info
-`@pankod/refine-antd@4.x.x` is equal to `antd@5.x.x`
+:::info A little more clarification
 
-`@pankod/refine-antd@3.x.x` is equal to `antd@4.x.x`
+| **refine** package                | Ant Design version |
+| --------------------------------- | ------------------ |
+| &#64;pankod/refine-antd&#64;3.x.x | antd&#64;4.x.x     |
+| &#64;pankod/refine-antd&#64;4.x.x | antd&#64;5.x.x     |
+
 :::
 
 ### Updating the packages
