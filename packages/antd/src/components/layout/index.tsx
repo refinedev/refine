@@ -18,7 +18,7 @@ export const Layout: React.FC<RefineLayoutLayoutProps> = ({
     const isSmall = typeof breakpoint.sm === "undefined" ? true : breakpoint.sm;
 
     return (
-        <AntdLayout style={{ minHeight: "100vh", flexDirection: "row" }}>
+        <AntdLayout style={{ minHeight: "100vh" }}>
             <SiderToRender />
             <AntdLayout>
                 <HeaderToRender />

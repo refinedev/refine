@@ -1,19 +1,19 @@
 import { Icons } from "@pankod/refine-antd";
 import { RefineKbar } from "@pankod/refine-kbar";
 
-import "./style.less";
+import { ToggleContainer } from "./styled";
 
 const { LeftOutlined } = Icons;
 
 export const OffLayoutArea = () => {
     return (
-        <div className="toggle-container">
+        <ToggleContainer>
             <RefineKbar />
             <LeftOutlined />
             <a href="https://example.refine.dev">
                 Switch to <br />
                 <strong>CLIENT APP</strong>
             </a>
-        </div>
+        </ToggleContainer>
     );
 };

@@ -6,7 +6,7 @@ import {
     useSimpleList,
     AntdList,
 } from "@pankod/refine-antd";
-import "./style.less";
+import { Container, AvatarWrapper, AvatarCircle, TextWrapper } from "./styled";
 
 import { IOrder } from "interfaces";
 
@@ -32,9 +32,9 @@ const MenuItem: React.FC<{ item: IOrder; index: number }> = ({
     item,
     index,
 }) => (
-    <div className="menu-item" key={item.id}>
+    <Container key={item.id}>
         <Space size="large">
-            <div className="menu-item__avatar">
+            <AvatarWrapper className="menu-item__avatar">
                 <Avatar
                     size={{
                         xs: 64,
@@ -46,11 +46,11 @@ const MenuItem: React.FC<{ item: IOrder; index: number }> = ({
                     }}
                     src={item.products[0]?.images[0]?.url}
                 />
-                <div className="menu-item__avatar-circle">
+                <AvatarCircle>
                     <span>#{index + 1}</span>
-                </div>
-            </div>
-            <div className="menu-item__text">
+                </AvatarCircle>
+            </AvatarWrapper>
+            <TextWrapper>
                 <Text strong>{item.products[0]?.name}</Text>
                 <NumberField
                     strong
@@ -61,7 +61,7 @@ const MenuItem: React.FC<{ item: IOrder; index: number }> = ({
                     }}
                     value={item.amount / 100}
                 />
-            </div>
+            </TextWrapper>
         </Space>
-    </div>
+    </Container>
 );

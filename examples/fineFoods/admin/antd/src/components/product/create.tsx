@@ -2,7 +2,6 @@ import { useTranslate, useApiUrl } from "@pankod/refine-core";
 
 import {
     Create,
-    Drawer,
     DrawerProps,
     Form,
     FormProps,
@@ -23,6 +22,7 @@ import {
 const { Text } = Typography;
 
 import { ICategory } from "interfaces";
+import { Drawer } from "./styled";
 
 type CreateProductProps = {
     drawerProps: DrawerProps;
