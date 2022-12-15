@@ -23,7 +23,11 @@ const action = async (args: string[]) => {
 
     await updateNotifier();
 
-    runScript(binPath, command);
+    try {
+        await runScript(binPath, command);
+    } catch (error) {
+        process.exit(1);
+    }
 };
 
 export default build;
