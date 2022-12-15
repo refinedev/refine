@@ -13,6 +13,7 @@
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",
         "@types/jest": "^26.0.24",
+        "react-stately": "^3.19.0",
         "react": "^18.0.0",
         "react-aria": "^0.1.0",
         "react-dom": "^18.0.0",
@@ -30,7 +31,7 @@
     },
     "scripts": {
         "dev": "react-scripts start",
-        "_build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
+        "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
