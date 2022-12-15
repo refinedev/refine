@@ -8,6 +8,7 @@
 require("dotenv").config();
 
 const redirectJson = require("./redirects.json");
+const tutorialData = require("./tutorial-units");
 
 /** @type {import('@docusaurus/types/src/index').DocusaurusConfig} */
 const siteConfig = {
@@ -318,7 +319,7 @@ const siteConfig = {
         LIVE_PREVIEW_URL:
             process.env.LIVE_PREVIEW_URL ?? "http://localhost:3030/preview",
         /** ---- */
-        tutorialPathPrefix: "/docs/tutorial/",
+        tutorial: tutorialData,
     },
 };
 
