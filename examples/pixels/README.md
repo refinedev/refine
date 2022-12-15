@@ -4,7 +4,7 @@
   <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:250px;" align="center" />
 </a>
 <br />
-<br />
+
 
 # Pixels
 
