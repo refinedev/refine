@@ -77,12 +77,23 @@ const PopoverMenu = ({
     children,
 }) => {
     const [isShowing, setIsShowing] = React.useState(false);
+    const timeoutRef = React.useRef(null);
+    const timeoutEnterRef = React.useRef(null);
 
     return (
         <Popover
-            className="relative h-full flex items-center"
-            onMouseEnter={() => setIsShowing(true)}
-            onMouseLeave={() => setIsShowing(false)}
+            className="relative flex items-center -my-2.5 h-[calc(100%+20px)]"
+            onMouseEnter={() => {
+                timeoutEnterRef.current = setTimeout(
+                    () => setIsShowing(true),
+                    210,
+                );
+                clearTimeout(timeoutRef.current);
+            }}
+            onMouseLeave={() => {
+                timeoutRef.current = setTimeout(() => setIsShowing(false), 210);
+                clearTimeout(timeoutEnterRef.current);
+            }}
         >
             {() => (
                 <>
@@ -105,16 +116,17 @@ const PopoverMenu = ({
                     <Transition
                         as={React.Fragment}
                         enter="transition ease-in duration-200"
-                        enterFrom="opacity-0 -translate-y-1"
+                        enterFrom="opacity-0 translate-y-3"
                         enterTo="opacity-100 translate-y-0"
-                        leave="transition ease-out duration-150"
+                        leave="transition ease-out duration-200"
                         leaveFrom="opacity-100 translate-y-0"
-                        leaveTo="opacity-0 -translate-y-1"
+                        leaveTo="opacity-0 translate-y-3"
                         show={isShowing}
-                        onMouseEnter={() => setIsShowing(true)}
-                        onMouseLeave={() => setIsShowing(false)}
+                        onMouseEnter={(event) => {
+                            event.stopPropagation();
+                        }}
                     >
-                        <Popover.Panel className="absolute z-50 top-[45px]">
+                        <Popover.Panel className="absolute z-50 top-[58px]">
                             <div
                                 className="bg-white flex rounded-lg overflow-hidden"
                                 style={{
