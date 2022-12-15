@@ -316,15 +316,13 @@ const RefineWeek = () => {
                         </div>
                         <p className="font-montserrat font-medium text-xs text-[#242436] text-center mb-0 mt-8 px-2 sm:px-0">
                             If you build something cool during{" "}
-                            <strong className="font-bold">
-                                refine WEEK#1,
-                            </strong>{" "}
+                            <strong className="font-bold">refine WEEK,</strong>{" "}
                             we’d like to show our appreciation! Build and submit
                             your coolest projects powered by{" "}
                             <strong className="font-bold">refine</strong>. To be
                             eligible, share your project on Twitter with the
                             hashtag{" "}
-                            <strong className="font-bold">#refineweek1</strong>{" "}
+                            <strong className="font-bold">#refineweek</strong>{" "}
                             and submit a PR to get your project added to our
                             repo!
                         </p>
