@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example blog-ecommerce
 
 <br/>
 
-[![Open blog-ecommerce example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/blog-ecommerce?terminal=start)
+[![Open blog-ecommerce example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/blog-ecommerce?terminal=start&preset=node)
         

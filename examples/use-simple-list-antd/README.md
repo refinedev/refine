@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example use-simple-list-antd
 
 <br/>
 
-[![Open use-simple-list-antd example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/use-simple-list-antd?terminal=start)
+[![Open use-simple-list-antd example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/use-simple-list-antd?terminal=start&preset=node)
         

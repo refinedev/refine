@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example customization-sider
 
 <br/>
 
-[![Open customization-sider example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/customization-sider?terminal=start)
+[![Open customization-sider example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/customization-sider?terminal=start&preset=node)
         

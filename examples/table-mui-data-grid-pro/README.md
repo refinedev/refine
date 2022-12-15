@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example table-mui-data-grid-pro
 
 <br/>
 
-[![Open table-mui-data-grid-pro example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-mui-data-grid-pro?terminal=start)
+[![Open table-mui-data-grid-pro example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-mui-data-grid-pro?terminal=start&preset=node)
         

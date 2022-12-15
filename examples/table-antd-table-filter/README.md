@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example table-antd-table-filter
 
 <br/>
 
-[![Open table-antd-table-filter example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-antd-table-filter?terminal=start)
+[![Open table-antd-table-filter example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-antd-table-filter?terminal=start&preset=node)
         

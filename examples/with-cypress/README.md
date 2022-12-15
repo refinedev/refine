@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example with-cypress
 
 <br/>
 
-[![Open with-cypress example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-cypress?terminal=start)
+[![Open with-cypress example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-cypress?terminal=start&preset=node)
         

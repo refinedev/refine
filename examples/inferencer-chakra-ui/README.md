@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example inferencer-chakra-ui
 
 <br/>
 
-[![Open inferencer-chakra-ui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/inferencer-chakra-ui?terminal=start)
+[![Open inferencer-chakra-ui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/inferencer-chakra-ui?terminal=start&preset=node)
         

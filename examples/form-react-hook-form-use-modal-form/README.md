@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example form-react-hook-form-use-modal-form
 
 <br/>
 
-[![Open form-react-hook-form-use-modal-form example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-react-hook-form-use-modal-form?terminal=start)
+[![Open form-react-hook-form-use-modal-form example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-react-hook-form-use-modal-form?terminal=start&preset=node)
         

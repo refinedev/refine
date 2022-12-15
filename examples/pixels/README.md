@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example pixels
 
 <br/>
 
-[![Open pixels example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/pixels?terminal=start)
+[![Open pixels example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/pixels?terminal=start&preset=node)
         

@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example use-modal-antd
 
 <br/>
 
-[![Open use-modal-antd example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/use-modal-antd?terminal=start)
+[![Open use-modal-antd example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/use-modal-antd?terminal=start&preset=node)
         

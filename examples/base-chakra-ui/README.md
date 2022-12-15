@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example base-chakra-ui
 
 <br/>
 
-[![Open base-chakra-ui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/base-chakra-ui?terminal=start)
+[![Open base-chakra-ui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/base-chakra-ui?terminal=start&preset=node)
         
