@@ -13,6 +13,11 @@ module.exports = {
             collapsed: false,
         },
         {
+            type: "doc",
+            id: "tutorial/introduction/index",
+            label: "Tutorial",
+        },
+        {
             type: "category",
             label: "Basic Tutorials",
             link: {
