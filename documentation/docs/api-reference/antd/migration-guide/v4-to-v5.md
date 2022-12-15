@@ -48,13 +48,14 @@ values={[
 
 <TabItem value="refine-cli">
 
-You can easily update **refine** packages with [**refine** CLI](https://refine.dev/docs/packages/documentation/cli/#update).
+⚡️ You can easily update **refine** packages with **refine** CLI [`update`](https://refine.dev/docs/packages/documentation/cli/#update) command.
 
-If **refine** CLI is not installed. You can refer to [installation](https://refine.dev/docs/packages/documentation/cli/#how-to-add-to-an-existing-project) section.
 
 ```bash
 npm run refine update
 ```
+
+> [How to add refine CLI to an existing project?](https://refine.dev/docs/packages/documentation/cli/#how-to-add-to-an-existing-project)
 
 </TabItem>
 
@@ -84,7 +85,7 @@ And it's done. Now your project uses `@pankod/refine-antd@4.x.x`.
 
 ### Updating Imports
 
--   Css files are no longer included in package. Since CSS-in-JS supports importing on demand, the original `styles/antd.less` has also been abandoned. If you need to reset some basic styles, please import `@pankod/refine-antd/dist/reset.css`
+-   CSS files are no longer included in package. Since CSS-in-JS supports importing on demand, the original `styles/antd.less` has also been abandoned. If you need to reset some basic styles, please import `@pankod/refine-antd/dist/reset.css`
 
 ```diff title="App.tsx"
 - import "@pankod/refine-antd/dist/styles.min.css";
