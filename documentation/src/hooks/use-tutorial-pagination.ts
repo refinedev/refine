@@ -1,6 +1,6 @@
 import React from "react";
 import { useDocsVersion } from "@docusaurus/theme-common/internal";
-import { usePreferredUIPackage } from "./use-preferred-ui-package";
+import { useTutorialUIPackage } from "./use-tutorial-ui-package";
 
 type Props = {
     frontMatter: { tutorial: { prev?: string; next?: string } };
@@ -9,12 +9,14 @@ type Props = {
 export default function useTutorialPagination({ frontMatter }: Props) {
     const { docs } = useDocsVersion();
 
-    const [preferredUI = "antd"] = usePreferredUIPackage();
+    const { current: currentUI } = useTutorialUIPackage();
 
     const parsePagination = (rawId: string) => {
-        // rawId string may contain {preferredUI} placeholder
-        // e.g. "tutorial-1-{preferredUI}"
-        const id = rawId.replace("{preferredUI}", preferredUI);
+        if (!rawId.includes("{preferredUI}") && !currentUI) {
+            return undefined;
+        }
+
+        const id = rawId.replace("{preferredUI}", currentUI);
 
         return id;
     };

@@ -4,7 +4,7 @@ import React from "react";
 type TutorialConfig = {
     tutorial: {
         path_prefix: string;
-        units: Record<string, { label: string }>;
+        units: Record<string, { no: number; label: string }>;
     };
 };
 
