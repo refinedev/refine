@@ -4,7 +4,9 @@
   <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:250px;" align="center" />
 </a>
 <br />
-<br />
+
+
+# Pixels
 
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
@@ -31,6 +33,42 @@
 
 </div>
 
+
+        
+## About
+The funny Pixels app built with refine and Supabase. User can register and create pixel canvases. Then, they can draw pixels on the canvas. 
+
+## Live Demo
+https://pixels.refine.dev/
+## Participants
+
+Ali Emir - [GitHub](https://github.com/aliemir)  
+Salih Özdemir - [GitHub](https://github.com/salihozdemir)  
+Omer Aplak - [GitHub](https://github.com/omeraplak)  
+Necati Ozmen - [GitHub](https://github.com/necatiozmen)
+
+
+## Description
+
+The following features of Supabase are used in the app:
+- Authentication with Supabase Auth
+- Saving user and pixel drawing on Supabase Database
+- Realtime multiple pixel drawing with Supabase Real Time
+
+ The app includes the following features:
+- Authentication
+- Pixels Listing
+- Creating Pixel Canvases
+- Drawing pixels on the canvas
+- Multiple real time pixel drawing
+
+
+### Preview
+
+
+![App preview](https://refine.ams3.cdn.digitaloceanspaces.com/supabase-hackathon/pixels_screenshot.png)                                                               
+   
+                                                                   
 ## Try it out on your local
 
 ```bash
@@ -41,5 +79,4 @@ npm create refine-app@latest -- --example pixels
 
 <br/>
 
-[![Open pixels example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/pixels?terminal=start&preset=node)
-        
+[![Open pixels example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/pixels?terminal=start)
