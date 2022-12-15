@@ -70,7 +70,7 @@ export default function NavbarMobilePrimaryMenu() {
                             key={i}
                         />
                     ))}
-                    <ul className="social-icons gap-4 flex list-none px-0 pb-6">
+                    <ul className="social-icons gap-4 flex list-none px-0 pb-16 sm:pb-0">
                         {icons.map((item, i) => (
                             <NavbarItem
                                 mobile
