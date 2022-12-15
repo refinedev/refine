@@ -57,7 +57,8 @@ export const POPOVERMENUS: NavMenu[] = [
         ],
         buttonLabel: "View Our Repo",
         buttonLink: "https://github.com/refinedev/refine",
-        imageURL: "/landing/popovers/open-source.png",
+        imageURL:
+            "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/open-source.png",
     },
     {
         label: "Community",
@@ -89,7 +90,8 @@ export const POPOVERMENUS: NavMenu[] = [
         ],
         buttonLabel: "Read Articles",
         buttonLink: "/examples",
-        imageURL: "/landing/popovers/community.png",
+        imageURL:
+            "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/community.png",
     },
     {
         label: "Company",
@@ -115,6 +117,7 @@ export const POPOVERMENUS: NavMenu[] = [
         ],
         buttonLabel: "Shop",
         buttonLink: "https://store.refine.dev",
-        imageURL: "/landing/popovers/company.png",
+        imageURL:
+            "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/company.png",
     },
 ];

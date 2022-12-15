@@ -873,11 +873,11 @@ html[data-theme="dark"]:not([data-customized="true"])
 }
 
 #popover-bg-company:hover {
-    background-image: url("/landing/popovers/hover-company.png") !important;
+    background-image: url("https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/hover-company.png") !important;
 }
 #popover-bg-open-source:hover {
-    background-image: url("/landing/popovers/hover-open-source.png") !important;
+    background-image: url("https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/hover-open-source.png") !important;
 }
 #popover-bg-community:hover {
-    background-image: url("/landing/popovers/hover-community.png") !important;
+    background-image: url("https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/hover-community.png") !important;
 }
