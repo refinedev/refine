@@ -1,5 +1,11 @@
 # @pankod/refine-cli
 
+## 1.13.1
+
+### Patch Changes
+
+-   [#3239](https://github.com/refinedev/refine/pull/3239) [`989ba9f13a1`](https://github.com/refinedev/refine/commit/989ba9f13a1f28cf23d8e4e9eb18ebb55cae1e61) Thanks [@omeraplak](https://github.com/omeraplak)! - fix: the build command was exiting with "0" exit code on error - #3234
+
 ## 1.13.0
 
 ### Minor Changes
