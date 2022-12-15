@@ -53,14 +53,14 @@ const PopoverItem = ({ label, description, to, icon }) => {
     return (
         <Link
             to={to}
-            className="flex gap-4 no-underline p-4 hover:bg-[#eeeef0] group transition rounded-lg"
+            className="flex items-center gap-4 no-underline p-4 hover:bg-[#eeeef0] transition rounded-lg hover:shadow-menuItem"
         >
             <Icon className="flex-shrink-0" />
             <div className="flex flex-col">
-                <span className="text-[#6B6B76] font-semibold text-sm group-hover:text-[#242436] transition">
+                <span className="text-[#242436] font-semibold text-sm transition">
                     {label}
                 </span>
-                <span className="text-[#96969E] text-xs font-medium group-hover:text-[#565662] transition">
+                <span className="text-[#565662] text-xs font-medium transition">
                     {description}
                 </span>
             </div>
@@ -201,7 +201,7 @@ export default function NavbarContent() {
                                         />
                                     ))}
                                     <div
-                                        className="col-span-2 p-6 pb-2"
+                                        className="col-span-2 p-6 pb-2 mt-2"
                                         style={{
                                             borderTop: "1px solid #c1c1c6",
                                         }}
