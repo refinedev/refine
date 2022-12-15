@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example upload-antd-multipart
 
 <br/>
 
-[![Open upload-antd-multipart example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/upload-antd-multipart?terminal=start)
+[![Open upload-antd-multipart example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/upload-antd-multipart?terminal=start&preset=node)
         

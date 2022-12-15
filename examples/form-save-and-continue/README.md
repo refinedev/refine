@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example form-save-and-continue
 
 <br/>
 
-[![Open form-save-and-continue example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-save-and-continue?terminal=start)
+[![Open form-save-and-continue example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-save-and-continue?terminal=start&preset=node)
         

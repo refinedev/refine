@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example import-export-mantine
 
 <br/>
 
-[![Open import-export-mantine example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/import-export-mantine?terminal=start)
+[![Open import-export-mantine example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/import-export-mantine?terminal=start&preset=node)
         

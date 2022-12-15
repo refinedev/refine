@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example auth-google-login
 
 <br/>
 
-[![Open auth-google-login example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/auth-google-login?terminal=start)
+[![Open auth-google-login example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/auth-google-login?terminal=start&preset=node)
         

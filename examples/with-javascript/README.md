@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example with-javascript
 
 <br/>
 
-[![Open with-javascript example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-javascript?terminal=start)
+[![Open with-javascript example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-javascript?terminal=start&preset=node)
         

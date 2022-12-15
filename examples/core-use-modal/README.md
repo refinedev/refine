@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example core-use-modal
 
 <br/>
 
-[![Open core-use-modal example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/core-use-modal?terminal=start)
+[![Open core-use-modal example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/core-use-modal?terminal=start&preset=node)
         

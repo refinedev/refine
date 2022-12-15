@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example core-use-import
 
 <br/>
 
-[![Open core-use-import example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/core-use-import?terminal=start)
+[![Open core-use-import example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/core-use-import?terminal=start&preset=node)
         

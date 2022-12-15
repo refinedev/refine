@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example auth-headless
 
 <br/>
 
-[![Open auth-headless example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/auth-headless?terminal=start)
+[![Open auth-headless example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/auth-headless?terminal=start&preset=node)
         

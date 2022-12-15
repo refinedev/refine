@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example input-custom
 
 <br/>
 
-[![Open input-custom example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/input-custom?terminal=start)
+[![Open input-custom example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/input-custom?terminal=start&preset=node)
         

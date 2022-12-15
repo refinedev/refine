@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example form-chakra-ui-use-drawer-form
 
 <br/>
 
-[![Open form-chakra-ui-use-drawer-form example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-chakra-ui-use-drawer-form?terminal=start)
+[![Open form-chakra-ui-use-drawer-form example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-chakra-ui-use-drawer-form?terminal=start&preset=node)
         

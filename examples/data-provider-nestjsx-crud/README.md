@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example data-provider-nestjsx-crud
 
 <br/>
 
-[![Open data-provider-nestjsx-crud example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/data-provider-nestjsx-crud?terminal=start)
+[![Open data-provider-nestjsx-crud example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/data-provider-nestjsx-crud?terminal=start&preset=node)
         

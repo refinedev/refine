@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example with-web3
 
 <br/>
 
-[![Open with-web3 example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-web3?terminal=start)
+[![Open with-web3 example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-web3?terminal=start&preset=node)
         
