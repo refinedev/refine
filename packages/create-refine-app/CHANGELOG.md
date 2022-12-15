@@ -157,13 +157,13 @@
     before:
 
     ```bash
-    npm create refine-app -- -o refine-antd tutorial
+    npm create refine-app@latest -- -o refine-antd tutorial
     ```
 
     after:
 
     ```bash
-    npm create refine-app -o refine-antd tutorial
+    npm create refine-app@latest  -o refine-antd tutorial
     ```
 
 ## 1.2.0
@@ -175,13 +175,13 @@
     before:
 
     ```bash
-    npm create refine-app -- -o refine-antd tutorial
+    npm create refine-app@latest -- -o refine-antd tutorial
     ```
 
     after:
 
     ```bash
-    npm create refine-app -o refine-antd tutorial
+    npm create refine-app@latest  -o refine-antd tutorial
     ```
 
 ## 1.1.1

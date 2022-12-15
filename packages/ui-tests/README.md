@@ -131,7 +131,7 @@ In addition to **shorter development** times and **overall performance gains**, 
 Run the **create refine-app** CLI tool with the following command:
 
 ```
-npm create refine-app tutorial
+npm create refine-app@latest tutorial
 ```
 
 Follow the _CLI wizard_ to select options and start creating your project.

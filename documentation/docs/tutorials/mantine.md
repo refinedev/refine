@@ -474,7 +474,7 @@ This tutorial assumes your project is configured for absolute imports. Since CRA
 First, run the **create refine-app** with the following command:
 
 ```
-npm create refine-app -- -o refine-mantine tutorial
+npm create refine-app@latest -- -o refine-mantine tutorial
 ```
 </TabItem>
 </Tabs>

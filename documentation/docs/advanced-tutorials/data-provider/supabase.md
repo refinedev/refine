@@ -33,7 +33,7 @@ values={[
 <TabItem value="preset">
 
 ```
-npm create refine-app -- --preset refine-antd-supabase my-supabase-app
+npm create refine-app@latest -- --preset refine-antd-supabase my-supabase-app
 ```
 
 Also, we need to install npm packages to use markdown editor:
@@ -50,7 +50,7 @@ This will create a new refine app with Supabase data provider and Ant Desing as 
 You are free to bootstrap a **refine** app with any other features you want. To do so, you can run the following command and choose any data provider or feature you want.
 
 ```
-npm create refine-app example-app
+npm create refine-app@latest example-app
 ```
 
 Then choose the following options:
