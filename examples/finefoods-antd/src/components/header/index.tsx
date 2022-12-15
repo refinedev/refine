@@ -188,6 +188,8 @@ export const Header: React.FC = () => {
         </Menu>
     );
 
+    console.log(screens, screens.sm ? "space-between" : "end");
+
     return (
         <AntdHeader
             style={{
@@ -195,7 +197,12 @@ export const Header: React.FC = () => {
                 background: "white",
             }}
         >
-            <Row align="middle" justify="space-between">
+            <Row
+                align="middle"
+                style={{
+                    justifyContent: screens.sm ? "space-between" : "end",
+                }}
+            >
                 <Col xs={0} sm={12}>
                     <AutoComplete
                         style={{
