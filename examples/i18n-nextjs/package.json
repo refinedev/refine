@@ -19,7 +19,8 @@
         "nookies": "^2.5.2",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
-        "react-mde": "^11.1.0"
+        "react-mde": "^11.1.0",
+        "@uiw/react-md-editor": "^3.19.5"
     },
     "devDependencies": {
         "@types/node": "^12.20.11",
