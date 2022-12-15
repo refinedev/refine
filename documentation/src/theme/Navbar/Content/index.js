@@ -133,7 +133,8 @@ const PopoverMenu = ({
                             >
                                 {children}
                                 <div
-                                    className="relative w-[312px] bg-no-repeat bg-cover flex items-end justify-center"
+                                    id={`popover-bg-${label.toLowerCase()}`}
+                                    className="relative w-[312px] bg-no-repeat bg-cover flex items-end justify-center transition-all"
                                     style={{
                                         backgroundImage: `url(${imageURL})`,
                                     }}
