@@ -32,6 +32,6 @@ jobs:
                   registry-url: https://registry.npmjs.org/
             - run: |
                   npm ci
-                  npm run bootstrap -- --scope "*" --ignore blog-sveltekit-crud
+                  npm run bootstrap -- --scope "*" --ignore blog-sveltekit-crud --ignore blog-react-aria
                   npm run build -- --scope "*" --ignore blog-sveltekit-crud --ignore blog-react-aria
               if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))
