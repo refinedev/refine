@@ -13,6 +13,7 @@
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",
         "@types/jest": "^26.0.24",
+        "@react-stately/overlay": "^3.4.3",
         "react": "^18.0.0",
         "react-aria": "^0.1.0",
         "react-dom": "^18.0.0",
