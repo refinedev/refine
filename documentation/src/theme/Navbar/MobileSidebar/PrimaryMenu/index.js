@@ -2,6 +2,9 @@ import React from "react";
 import { useThemeConfig } from "@docusaurus/theme-common";
 import { useNavbarMobileSidebar } from "@docusaurus/theme-common/internal";
 import NavbarItem from "@theme/NavbarItem";
+import Link from "@docusaurus/Link";
+
+import { POPOVERMENUS } from "../../../../assets/nav-menu";
 
 function useNavbarItems() {
     // TODO temporary casting until ThemeConfig type is improved
@@ -15,7 +18,7 @@ export default function NavbarMobilePrimaryMenu() {
     const items = useNavbarItems();
 
     const listed = items.filter(
-        (item) => !item.className?.includes("header-icon-link"),
+        (item) => !item.className?.includes("header-icon-link") && item.label,
     );
     const icons = items.filter((item) =>
         item.className?.includes("header-icon-link"),
@@ -23,34 +26,62 @@ export default function NavbarMobilePrimaryMenu() {
 
     return (
         <ul className="menu__list with-hoverline">
-            {listed.map((item, i) => (
-                <NavbarItem
-                    mobile
-                    {...item}
-                    className={`${
-                        typeof window !== "undefined" &&
-                        (item.activeBaseRegex
-                            ? !!window.location.pathname.match(
-                                  new RegExp(item.activeBaseRegex.slice(1, -1)),
-                              )
-                            : location.pathname.startsWith(item.to))
-                            ? "active-item"
-                            : ""
-                    } block text-center font-montserrat font-semibold text-[#2A2A42] text-lg mb-1 hoveline-link`}
-                    onClick={() => mobileSidebar.toggle()}
-                    key={i}
-                />
-            ))}
-            <ul className="social-icons flex justify-center gap-4 list-none px-0 pb-2 pt-6">
-                {icons.map((item, i) => (
-                    <NavbarItem
-                        mobile
-                        {...item}
-                        onClick={() => mobileSidebar.toggle()}
-                        key={i}
-                    />
+            <div className="grid grid-cols-1 sm:grid-cols-2">
+                {POPOVERMENUS.map((item) => (
+                    <div key={item.label}>
+                        <NavbarItem
+                            label={item.label}
+                            className="text-[#1890ff] hover:text-[#1890ff] hover:no-underline cursor-default flex text-2xl font-semibold my-6"
+                        />
+                        <div className="flex items-center ml-8">
+                            <div className="flex flex-col gap-2">
+                                {item.items.map(
+                                    ({ label, icon: Icon, link }) => (
+                                        <Link
+                                            key={label}
+                                            to={link}
+                                            className="flex items-center gap-4 hover:no-underline hover:bg-[#eeeef0] group transition rounded-lg p-4"
+                                        >
+                                            <Icon
+                                                className={
+                                                    label === "Documents" &&
+                                                    `ml-2`
+                                                }
+                                            />
+                                            <span className="text-[#242436]">
+                                                {label}
+                                            </span>
+                                        </Link>
+                                    ),
+                                )}
+                            </div>
+                        </div>
+                    </div>
                 ))}
-            </ul>
+                <div>
+                    {listed.map((item, i) => (
+                        <NavbarItem
+                            mobile
+                            {...item}
+                            className={
+                                "text-[#1890ff] hover:text-[#1890ff] hover:underline cursor-pointer flex text-2xl font-semibold my-6"
+                            }
+                            to={item.to}
+                            key={i}
+                        />
+                    ))}
+                    <ul className="social-icons gap-4 flex list-none px-0 pb-6">
+                        {icons.map((item, i) => (
+                            <NavbarItem
+                                mobile
+                                {...item}
+                                onClick={() => mobileSidebar.toggle()}
+                                key={i}
+                            />
+                        ))}
+                    </ul>
+                </div>
+            </div>
         </ul>
     );
 }

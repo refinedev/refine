@@ -635,10 +635,6 @@ html[data-page="index"] {
     padding-left: 0;
 }
 
-#__docusaurus .navbar-sidebar__items {
-    padding-top: 20px;
-}
-
 #__docusaurus .gradient-button:hover {
     background: linear-gradient(90deg, #3fdcf7 2.01%, #1890ff 99.51%);
 }
