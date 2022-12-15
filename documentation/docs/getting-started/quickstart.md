@@ -14,7 +14,7 @@ Although you could take the time to manually set up your environment and install
 To get started, please run the following command. The **CLI wizard** will assist you for the rest of the setup process:
 
 ```
-npm create refine-app my-project
+npm create refine-app@latest  my-project
 ```
 
 It will create your **refine** project and install the required packages according to your selections. After completing the setup, navigate to the project folder and start your application with:
@@ -34,7 +34,7 @@ You can now view **refine** application at [http://localhost:3000](http://localh
 We will show how you can use the CLI to bootstrap a **refine** app with [Ant Design](https://ant.design/) and [React](https://reactjs.org/). You can also use [Material UI](https://material-ui.com/), [Chakra UI](https://chakra-ui.com/) and [Mantine](https://mantine.dev/) as well.
 
 ```
-npm create refine-app my-antd-project
+npm create refine-app@latest  my-antd-project
 ```
 
 <br/>
@@ -90,7 +90,7 @@ You can now view **refine** application at [http://localhost:3000](http://localh
 
 
 <div >
-   <img style={{width: "100%"}} src="https://github.com/refinedev/refine/blob/master/documentation/static/img/first-example-result.png?raw=true"  alt="Example result" />
+   <img style={{width: "100%"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/first-example-result.png" alt="Example result" />
 </div>
 
 <br />

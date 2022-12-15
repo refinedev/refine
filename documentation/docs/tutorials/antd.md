@@ -3,13 +3,6 @@ id: ant-design-tutorial
 title: Your First App using Ant Design
 ---
 
-import readyPage from '@site/static/img/tutorial/ready-page.png';
-import resourceFirst from '@site/static/img/tutorial/resource-1.png';
-import resourceSecond from '@site/static/img/tutorial/resource-2.png';
-import createGif from '@site/static/img/tutorial/create.gif';
-import editGif from '@site/static/img/tutorial/edit.gif';
-import filter from '@site/static/img/tutorial/filter.gif';
-import showGif from '@site/static/img/tutorial/show.gif';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -82,7 +75,7 @@ This tutorial assumes your project is configured for absolute imports. Since CRA
 First, run the **create refine-app** with the following command:
 
 ```
-npm create refine-app -- -o refine-antd tutorial
+npm create refine-app@latest -- -o refine-antd tutorial
 ```
 </TabItem>
 </Tabs>
@@ -226,7 +219,7 @@ Point your browser to [http://localhost:3000](http://localhost:3000) to access i
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={readyPage} alt="Ready Page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/ready-page.png" alt="Ready Page" />
 </div>
 <br/>
 
@@ -317,7 +310,7 @@ Instead of showing the welcome page, the application should redirect now to an U
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={resourceFirst} alt="Resource only with name" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/resource-1.png" alt="Resource only with name" />
 </div>
 <br/>
 </>
@@ -480,7 +473,7 @@ In the next step, we are going to add a category field to the table which involv
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={resourceSecond} alt="Resource only List component" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/resource-2.png" alt="Resource only List component" />
 </div>
 <br/>
 </>
@@ -747,7 +740,7 @@ export const PostList: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={filter} alt="Filters" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/filter.gif" alt="Filters" />
 </div>
 <br/>
 
@@ -966,7 +959,7 @@ the `<Show>` component which has extra features like `list` and `refresh` button
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={showGif} alt="Show record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/show.gif" alt="Show record action" />
 </div>
 <br/>
 
@@ -1237,7 +1230,7 @@ In the edit page, `useForm` hook initializes the form with current record values
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={editGif} alt="Edit record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/edit.gif" alt="Edit record action" />
 </div>
 <br/>
 
@@ -1393,7 +1386,7 @@ We should notice some minor differences from the edit example:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={createGif} alt="Create record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/create.gif" alt="Create record action" />
 </div>
 
 <br/>
@@ -1566,14 +1559,11 @@ export const App: React.FC = () => {
 
 After adding `canDelete` prop, `<DeleteButton>` will appear in edit form.
 
-## Live StackBlitz Example
+## Example
 
 Our tutorial is complete. Below you'll find a Live StackBlitz Example displaying what we have done so far:
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial/antd?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-tutorial"
-></iframe>
+<StackblitzExample path="tutorial-antd" />
 
 ## Next Steps
 

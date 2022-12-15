@@ -5,6 +5,8 @@ import {
     CrudFilter,
     getDefaultFilter as getDefaultFilterCore,
     getDefaultSortOrder as getDefaultSortOrderCore,
+    ConditionalFilter,
+    LogicalFilter,
 } from "@pankod/refine-core";
 import { SortOrder, SorterResult } from "antd/lib/table/interface";
 
@@ -79,14 +81,24 @@ export const mapAntdFilterToCrudFilter = (
         (string | number | boolean) | (string | number | boolean)[] | null
     >,
     prevFilters: CrudFilters,
+    initialFilters?: CrudFilters,
 ): CrudFilters => {
     const crudFilters: CrudFilters = [];
+    const mapInitialFilter: Record<string, CrudFilter> = (
+        initialFilters ?? []
+    ).reduce((acc, item) => {
+        const field =
+            (item as ConditionalFilter).key || (item as LogicalFilter).field;
+        return { ...acc, [field]: item };
+    }, {});
 
     Object.keys(tableFilters).map((field) => {
         const value = tableFilters[field];
-        const operator = prevFilters
-            .filter((i) => i.operator !== "or")
-            .find((p: any) => p.field === field)?.operator;
+        const operator =
+            prevFilters
+                .filter((i) => i.operator !== "or")
+                .find((p: any) => p.field === field)?.operator ||
+            mapInitialFilter[field]?.operator;
 
         if (operator !== "or" && operator !== "and") {
             crudFilters.push({

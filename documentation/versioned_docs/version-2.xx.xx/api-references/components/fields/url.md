@@ -3,7 +3,6 @@ id: url
 title: Url
 ---
 
-import urlField from '@site/static/img/guides-and-concepts/fields/url/urlField.png'
 
 This field lets you embed a link. It uses Ant Design's [<Typography.Link\>](https://ant.design/components/typography/) component. You can pass a URL in its `value` prop and you can show a text in its place by passing any `children`.
 
@@ -60,7 +59,7 @@ interface IImage {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={urlField} alt="UrlField" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/url/urlField.png" alt="UrlField" />
 </div>
 
 ## API Reference

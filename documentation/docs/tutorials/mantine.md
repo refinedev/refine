@@ -474,7 +474,7 @@ This tutorial assumes your project is configured for absolute imports. Since CRA
 First, run the **create refine-app** with the following command:
 
 ```
-npm create refine-app -- -o refine-mantine tutorial
+npm create refine-app@latest -- -o refine-mantine tutorial
 ```
 </TabItem>
 </Tabs>
@@ -3634,14 +3634,11 @@ render(
 );
 ```
 
-## Live StackBlitz Example
+## Example
 
 Our tutorial is complete. Below you'll find a Live StackBlitz Example displaying what we have done so far:
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial/mantine?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-tutorial"
-></iframe>
+<StackblitzExample path="tutorial-mantine" />
 
 ## Next Steps
 

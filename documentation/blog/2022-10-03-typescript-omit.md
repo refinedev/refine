@@ -106,7 +106,7 @@ So, caution there, as it is an important distinction that TypeScript is applying
 
 ---
 
-<PromotionBanner title="Backend devs love this React framework!" image="/img/generic_banner.png" />
+<PromotionBanner title="Backend devs love this React framework!" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 

@@ -8,9 +8,4 @@ example-tags: [next.js,router-provider,antd]
 
 [Refer to the refine Next.js documentation for more information. →](/docs/advanced-tutorials/ssr/nextjs.md)
 
-[View Next.js Example Source](https://github.com/refinedev/refine/tree/master/examples/nextjs/base)
-
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/nextjs/base/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-nextjs-example"
-></iframe>
+<StackblitzExample path="with-nextjs" />

@@ -4,7 +4,7 @@ description: We'll be building a demo app to manage hackathons with refine.
 slug: manage-hackathons-with-refine
 authors: muharrem
 tags: [refine, supabase, react, tutorial]
-image: /img/placeholder.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
@@ -238,6 +238,6 @@ export const DashboardPage: React.FC = () => {
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
-We can get data from other resources in a similar fashion. You can find the [repo here](https://github.com/refinedev/refine/tree/master/examples/blog/hackathonize)
+We can get data from other resources in a similar fashion. You can find the [repo here](https://github.com/refinedev/refine/tree/master/examples/blog-hackathonize)
 ## Conclusion
 This project itself is a product of a hackathon. It lacks lots of feature like authorization though it shows how **refine** makes it easy to quickly build a working app.

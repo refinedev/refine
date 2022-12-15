@@ -1,0 +1,53 @@
+{
+    "name": "finefoods-mui",
+    "version": "3.25.0",
+    "private": true,
+    "dependencies": {
+        "@googlemaps/react-wrapper": "^1.1.35",
+        "@types/google.maps": "^3.50.4",
+        "@pankod/refine-core": "^3.90.6",
+        "@pankod/refine-mui": "^3.61.2",
+        "@pankod/refine-kbar": "0.10.2",
+        "@pankod/refine-react-hook-form": "^3.37.0",
+        "@pankod/refine-react-router-v6": "^3.38.0",
+        "@pankod/refine-react-table": "^4.9.0",
+        "@pankod/refine-simple-rest": "^3.37.4",
+        "@types/node": "^12.20.11",
+        "@types/react": "^18.0.0",
+        "@types/react-dom": "^18.0.0",
+        "axios": "^0.26.1",
+        "dayjs": "^1.10.7",
+        "google-map-react": "^2.1.10",
+        "i18next": "^20.1.0",
+        "i18next-browser-languagedetector": "^6.1.1",
+        "i18next-xhr-backend": "^3.2.2",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "react-i18next": "^11.8.11",
+        "react-input-mask": "^2.0.4",
+        "@uiw/react-md-editor": "^3.19.5",
+        "react-scripts": "^5.0.0",
+        "recharts": "^2.1.9",
+        "typescript": "^4.7.4"
+    },
+    "devDependencies": {
+        "@types/react-input-mask": "^3.0.1"
+    },
+    "scripts": {
+        "start": "FAST_REFRESH=false DISABLE_ESLINT_PLUGIN=true react-scripts start",
+        "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
+        "eject": "react-scripts eject"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}

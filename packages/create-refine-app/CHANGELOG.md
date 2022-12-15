@@ -1,5 +1,51 @@
 # create-refine-app
 
+## 1.5.2
+
+### Patch Changes
+
+-   [`d0ee03c051c`](https://github.com/refinedev/refine/commit/d0ee03c051c2e6e743d4feb64861430b571c6dc0) Thanks [@omeraplak](https://github.com/omeraplak)! - bumped superplate-cli@1.11.6 - #3186
+
+## 1.5.1
+
+### Patch Changes
+
+-   [`d0ee03c051c`](https://github.com/refinedev/refine/commit/d0ee03c051c2e6e743d4feb64861430b571c6dc0) Thanks [@omeraplak](https://github.com/omeraplak)! - bumped superplate-cli@1.11.6 - #3186
+
+## 1.5.0
+
+### Minor Changes
+
+-   [#3220](https://github.com/refinedev/refine/pull/3220) [`b867497f469`](https://github.com/refinedev/refine/commit/b867497f4694a5fbd330106a39256dee3c56199b) Thanks [@aliemir](https://github.com/aliemir)! - Added `--example` option to get started with an example app.
+
+    ## Usage
+
+    ```bash
+    npm create refine-app@latest --example base-mantine my-awesome-app
+    ```
+
+    This command will create a new **refine** app in `my-awesome-app` directory with `base-mantine` example.
+
+## 1.4.0
+
+### Minor Changes
+
+-   [#3220](https://github.com/refinedev/refine/pull/3220) [`b867497f469`](https://github.com/refinedev/refine/commit/b867497f4694a5fbd330106a39256dee3c56199b) Thanks [@aliemir](https://github.com/aliemir)! - Added `--example` option to get started with an example app.
+
+    ## Usage
+
+    ```bash
+    npm create refine-app@latest -- --example base-mantine my-awesome-app
+    ```
+
+    This command will create a new **refine** app in `my-awesome-app` directory with `base-mantine` example.
+
+## 1.3.18
+
+### Patch Changes
+
+-   [`85aa9c1c58c`](https://github.com/refinedev/refine/commit/85aa9c1c58cb845feb9ea5293bf182b13bdd604d) Thanks [@omeraplak](https://github.com/omeraplak)! - bump superplate-cli version 1.11.5
+
 ## 1.3.17
 
 ### Patch Changes
@@ -111,13 +157,13 @@
     before:
 
     ```bash
-    npm create refine-app -- -o refine-antd tutorial
+    npm create refine-app@latest -- -o refine-antd tutorial
     ```
 
     after:
 
     ```bash
-    npm create refine-app -o refine-antd tutorial
+    npm create refine-app@latest  -o refine-antd tutorial
     ```
 
 ## 1.2.0
@@ -129,13 +175,13 @@
     before:
 
     ```bash
-    npm create refine-app -- -o refine-antd tutorial
+    npm create refine-app@latest -- -o refine-antd tutorial
     ```
 
     after:
 
     ```bash
-    npm create refine-app -o refine-antd tutorial
+    npm create refine-app@latest  -o refine-antd tutorial
     ```
 
 ## 1.1.1

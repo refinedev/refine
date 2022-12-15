@@ -40,7 +40,7 @@ Let's start with how `try/catch/finally` works first.
 
 ---
 
-<PromotionBanner title="Building a side project?" image="/img/generic_banner.png" />
+<PromotionBanner title="Building a side project?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 
@@ -299,7 +299,7 @@ These are most of the "gotchas" of using the `catch` block.
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
 </a>
 </div>
 

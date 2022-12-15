@@ -1,0 +1,31 @@
+{
+    "name": "i18n-nextjs",
+    "version": "3.25.0",
+    "private": true,
+    "scripts": {
+        "start": "NODE_OPTIONS=--max_old_space_size=4096 next dev -p 3001",
+        "build": "next build",
+        "start:prod": "next start",
+        "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
+    },
+    "dependencies": {
+        "@pankod/refine-antd": "^3.70.2",
+        "@pankod/refine-core": "^3.90.6",
+        "@pankod/refine-nextjs-router": "^4.1.0",
+        "@pankod/refine-simple-rest": "^3.37.4",
+        "next": "^13.0.6",
+        "next-compose-plugins": "^2.2.1",
+        "next-i18next": "^8.9.0",
+        "nookies": "^2.5.2",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "react-mde": "^11.5.0"
+    },
+    "devDependencies": {
+        "@types/node": "^12.20.11",
+        "@types/react": "^18.0.0",
+        "@types/react-dom": "^18.0.0",
+        "@typescript-eslint/parser": "^5.38.1",
+        "typescript": "^4.7.4"
+    }
+}

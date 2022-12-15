@@ -1,0 +1,46 @@
+{
+    "name": "blog-win95",
+    "version": "3.25.0",
+    "private": true,
+    "dependencies": {
+        "@pankod/refine-core": "^3.90.6",
+        "@pankod/refine-react-hook-form": "^3.37.0",
+        "@pankod/refine-react-router-v6": "^3.38.0",
+        "@pankod/refine-react-table": "^4.9.0",
+        "@pankod/refine-supabase": "^3.35.0",
+        "@testing-library/jest-dom": "^5.16.4",
+        "@testing-library/react": "^13.1.1",
+        "@testing-library/user-event": "^14.1.1",
+        "@types/jest": "^26.0.24",
+        "@types/node": "^12.20.11",
+        "@types/react": "^18.0.0",
+        "@types/react-dom": "^18.0.0",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "react-scripts": "^5.0.0",
+        "react95": "^3.11.1",
+        "styled-components": "^5.3.3",
+        "typescript": "^4.7.4"
+    },
+    "scripts": {
+        "dev": "react-scripts start",
+        "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@types/styled-components": "^5.1.24"
+    }
+}

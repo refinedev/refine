@@ -91,7 +91,7 @@ build:
 
 ---
 
-<PromotionBanner title="Not confident with your frontend skills?" image="/img/generic_banner.png" />
+<PromotionBanner title="Not confident with your frontend skills?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 ## How to pass env variables

@@ -3,10 +3,6 @@ id: strapi-v4
 title: Strapi-v4
 ---
 
-import selection from '@site/static/img/guides-and-concepts/data-provider/strapi-v4/selection.png';
-import category from '@site/static/img/guides-and-concepts/data-provider/strapi-v4/category.png';
-import publication from '@site/static/img/guides-and-concepts/data-provider/strapi-v4/publication.gif';
-import locale from '@site/static/img/guides-and-concepts/data-provider/strapi-v4/locale.gif';
 
 **refine** supports the features that come with [Strapi-v4](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html).
 
@@ -197,7 +193,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={selection} alt="Fields Selection Metadata" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/strapi-v4/selection.png" alt="Fields Selection Metadata" />
 </div>
 
 
@@ -341,7 +337,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={category} alt="category" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/strapi-v4/category.png" alt="category" />
 </div>
 
 ### Publication State
@@ -514,7 +510,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={publication} alt="publication" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/strapi-v4/publication.gif" alt="publication" />
 </div>
 
 <br/>
@@ -693,7 +689,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={locale} alt="locale" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/strapi-v4/locale.gif" alt="locale" />
 </div>
 <br/>
 

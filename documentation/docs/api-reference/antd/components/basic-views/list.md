@@ -5,7 +5,6 @@ sidebar_label: List
 swizzle: true
 ---
 
-import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/list/pageHeaderProps.png'
 
 `<List>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like a create button or giving the page titles.
 
@@ -542,7 +541,7 @@ export const ListPage: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-       <img src={pageHeaderPropsUsage} alt="pageHeaderProps Usage"/>
+       <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/basic-views/list/pageHeaderProps.png" alt="pageHeaderProps Usage"/>
 
 </div>
 <br/>

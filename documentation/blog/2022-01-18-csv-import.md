@@ -4,7 +4,7 @@ description: In this guide, I will show you how to import CSV files using React 
 slug: how-to-import-csv
 authors: melih
 tags: [JavaScript, csv, import, React]
-image: /img/placeholder.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
@@ -206,7 +206,7 @@ We formatted the CSV file that came in plain text format, using Javascript [slic
 
 ---
 
-<PromotionBanner title="Not confident with your frontend skills?" image="/img/generic_banner.png" />
+<PromotionBanner title="Not confident with your frontend skills?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 
@@ -227,7 +227,7 @@ The CSV import with **refine** is very simple and out-of-the-box feature. How to
 
 [Refer to the **refine** CSV import guide for more information. →](https://refine.dev/docs/guides-and-concepts/import-export/csv-import/)
 
-[View Source](https://github.com/refinedev/refine/blob/master/examples/importExport/antd/src/pages/posts/list.tsx#L32)
+[View Source](https://github.com/refinedev/refine/blob/master/examples/import-export-antd/src/pages/posts/list.tsx#L32)
 
 ## Refine CSV Import Usage
 
@@ -293,7 +293,7 @@ You can also divide the data into chunk with the `batchSize` option while perfor
 
 [Refer to the **refine** CSV Import API References for more information. →](https://refine.dev/docs/core/hooks/import-export/useImport/#api-reference)
 
-## Refine CSV Import Live Codesandbox Example
+## Example
 
 <iframe src="https://codesandbox.io/embed/refine-import-export-example-4nneu?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

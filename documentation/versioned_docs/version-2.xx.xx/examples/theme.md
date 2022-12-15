@@ -3,7 +3,7 @@ id: customTheme
 title: Theme
 ---
 
-[View Source](https://github.com/refinedev/refine/tree/master/examples/customTheme)
+[View Source](https://github.com/refinedev/refine/tree/master/examples/customization-custom-theme)
 
 <iframe src="https://codesandbox.io/embed/refine-custom-theme-example-675ig?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

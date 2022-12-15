@@ -3,8 +3,6 @@ id: useShow
 title: useShow
 ---
 
-import showUsage from '@site/static/img/guides-and-concepts/hooks/useShow/show-usage.png';
-import modalUsage from '@site/static/img/guides-and-concepts/hooks/useShow/modal-usage.png';
 
 `useShow` hook allows you to fetch the desired record. It uses `getOne` method as query function from the dataProvider that is passed to `<Refine>`.
 
@@ -75,7 +73,7 @@ export const App: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={showUsage} alt="useShow Basic Usage" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/hooks/useShow/show-usage.png" alt="useShow Basic Usage" />
 </div>
 
 <br />
@@ -198,7 +196,7 @@ export const App: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={modalUsage} alt="useShow Modal Usage" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/hooks/useShow/modal-usage.png" alt="useShow Modal Usage" />
 </div>
 
 <br />

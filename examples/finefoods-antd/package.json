@@ -1,0 +1,54 @@
+{
+    "name": "finefoods-antd",
+    "version": "3.25.0",
+    "private": true,
+    "dependencies": {
+        "@googlemaps/react-wrapper": "^1.1.35",
+        "@types/google.maps": "^3.50.4",
+        "@ant-design/charts": "^1.2.0",
+        "@ant-design/graphs": "^1.2.7",
+        "@craco/craco": "^6.1.2",
+        "@pankod/refine-antd": "^3.70.2",
+        "@pankod/refine-core": "^3.90.6",
+        "@pankod/refine-react-router-v6": "^3.38.0",
+        "@pankod/refine-simple-rest": "^3.37.4",
+        "@pankod/refine-kbar": "0.10.2",
+        "@testing-library/jest-dom": "^5.16.4",
+        "@testing-library/react": "^13.1.1",
+        "@testing-library/user-event": "^14.1.1",
+        "@types/jest": "^26.0.24",
+        "@types/node": "^12.20.11",
+        "@types/react": "^18.0.0",
+        "@types/react-dom": "^18.0.0",
+        "craco-less": "^2.0.0",
+        "dayjs": "^1.10.7",
+        "google-map-react": "^2.1.10",
+        "i18next": "^20.1.0",
+        "i18next-browser-languagedetector": "^6.1.1",
+        "i18next-xhr-backend": "^3.2.2",
+        "lodash": "^4.17.21",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "react-i18next": "^11.8.11",
+        "react-input-mask": "^2.0.4",
+        "@uiw/react-md-editor": "^3.19.5",
+        "react-scripts": "^5.0.0",
+        "tslib": "^2.3.1",
+        "typescript": "^4.7.4"
+    },
+    "scripts": {
+        "start": "FAST_REFRESH=false DISABLE_ESLINT_PLUGIN=true craco start",
+        "build": "DISABLE_ESLINT_PLUGIN=true craco build",
+        "test": "craco test --passWithNoTests --watchAll=false",
+        "eject": "craco eject"
+    },
+    "browserslist": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+    ],
+    "devDependencies": {
+        "@types/lodash": "^4.14.171",
+        "@types/react-input-mask": "^3.0.1"
+    }
+}

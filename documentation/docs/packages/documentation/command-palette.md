@@ -3,7 +3,6 @@ id: command-palette
 title: Command Palette
 ---
 
-import example from '@site/static/img/packages/command-palette/kbar/refine-kbar-example.gif';
 
 **refine** supports the command palette feature and use the
 [**kbar**][kbar]. **kbar** is a fully extensible `cmd` + `k`(MacOS) or `ctrl` + `k`(Linux/Windows) interface for your site.
@@ -75,7 +74,7 @@ const App: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={example} alt="Refine Kbar Example" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/command-palette/kbar/refine-kbar-example.gif" alt="Refine Kbar Example" />
 </div>
 
 <br/>
@@ -120,16 +119,13 @@ useRegisterActions(customAction);
 `refine-kbar` exports the [`kbar`](https://github.com/timc1/kbar). You can use all [`kbar`](https://github.com/timc1/kbar) features.
 :::
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/commandPalette/kbar?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-kbar-example"
-></iframe>
+<StackblitzExample path="command-palette-kbar" />
 
 [kbar]: https://github.com/timc1/kbar
 [kbar-actions]: https://kbar.vercel.app/docs/concepts/actions
 [refine-kbar]: https://github.com/refinedev/refine/tree/master/packages/kbar
 [access-contol]: https://refine.dev/docs/core/providers/accessControl-provider/
 [usecanwithoutcache]: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/accessControl/useCanWithoutCache.ts
-[refine-finefoods]: https://github.com/refinedev/refine/blob/master/examples/fineFoods/admin/mui/src/hooks/useOrderCustomKbarActions/index.tsx
+[refine-finefoods]: https://github.com/refinedev/refine/blob/master/examples/finefoods-mui/src/hooks/useOrderCustomKbarActions/index.tsx

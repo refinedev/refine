@@ -290,7 +290,7 @@ Now if we look closely at the layout, we see that everything is haphazard and it
 
 ---
 
-<PromotionBanner title="Small dev teams love this React framework!" image="/img/generic_banner.png" />
+<PromotionBanner title="Small dev teams love this React framework!" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 

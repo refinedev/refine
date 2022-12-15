@@ -1,0 +1,47 @@
+{
+    "name": "blog-mui-datagrid",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@mui/icons-material": "^5.8.3",
+        "@pankod/refine-core": "^3.90.6",
+        "@pankod/refine-mui": "^3.61.2",
+        "@pankod/refine-react-hook-form": "^3.37.0",
+        "@pankod/refine-react-router-v6": "^3.38.0",
+        "@pankod/refine-simple-rest": "^3.37.4",
+        "@testing-library/jest-dom": "^5.12.0",
+        "@testing-library/react": "^11.2.6",
+        "@testing-library/user-event": "^12.8.3",
+        "@types/jest": "^26.0.23",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-scripts": "^5.0.0",
+        "styled-components": "^5.3.5",
+        "web-vitals": "^1.1.1"
+    },
+    "devDependencies": {
+        "@types/node": "^12.20.10",
+        "@types/react": "^18.0.15",
+        "@types/react-dom": "^18.0.6",
+        "@types/styled-components": "^5.1.26",
+        "typescript": "^4.7.4"
+    },
+    "scripts": {
+        "dev": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}

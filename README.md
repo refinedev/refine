@@ -141,7 +141,7 @@ The fastest way to get started with **refine** is by using the `create refine-ap
 Run the following command to create a new **refine** project configured with  [Ant Design System](https://ant.design/) as the default UI framework:
 
 ```
-npm create refine-app -- -o refine-antd
+npm create refine-app@latest -- -o refine-antd
 ```
 
 Once the setup is complete, navigate to the project folder and start your project with:
@@ -223,7 +223,7 @@ export default App;
 
 Now, you should see the output as a table populated with `post` & `category` data:
 
-![First example result](https://github.com/refinedev/refine/blob/master/documentation/static/img/readme-quick-start.png?raw=true)
+![First example result](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/readme-quick-start.png)
 
 <br/>
 

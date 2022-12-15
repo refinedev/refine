@@ -3,9 +3,6 @@ id: real-time
 title: Live / Realtime
 ---
 
-import realTimeDemo from '@site/static/img/guides-and-concepts/real-time/real-time.gif';
-import manualMode from '@site/static/img/guides-and-concepts/real-time/manual-mode.gif';
-import customSider from '@site/static/img/guides-and-concepts/real-time/custom-sider.gif';
 
 **refine** lets you add Realtime support to your app via `liveProvider` prop for [`<Refine>`](api-references/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
 
@@ -92,7 +89,7 @@ For live features to work automatically we also added `liveMode="auto"`.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={realTimeDemo} alt="Realtime Demo" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/real-time/real-time.gif" alt="Realtime Demo" />
 </div>
 
 ## Configuring `liveMode`
@@ -176,7 +173,7 @@ We can also implement similar thing in show page.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={manualMode} alt="Manual Mode Demo" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/real-time/manual-mode.gif" alt="Manual Mode Demo" />
 </div>
 
 ## Custom Subscriptions
@@ -398,10 +395,10 @@ useSubscription({
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={customSider} alt="Custom Sider Demo" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/real-time/custom-sider.gif" alt="Custom Sider Demo" />
 </div>
 
-## Live Condesandbox Example
+## Example
 
 <iframe src="https://codesandbox.io/embed/refine-ably-example-u9wg9?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

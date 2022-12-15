@@ -115,7 +115,7 @@ Above we can see that we do fetch call to [refine](https://github.com/refinedev/
 <br/>
 <div>
 <a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="github support banner" />
 </a>
 </div>
 
@@ -152,7 +152,7 @@ With the nock mock service, we can intercept requests to the API and return cust
 
 ---
 
-<PromotionBanner title="React state management: Even the pros get it wrong!" image="/img/generic_banner.png" />
+<PromotionBanner title="React state management: Even the pros get it wrong!" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 
@@ -324,7 +324,7 @@ We have seen how to test only the behavior of an application in isolation. Avoid
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord-banner.png" alt="discord banner" />
 </a>
 </div>
 

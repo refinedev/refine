@@ -97,7 +97,7 @@ That is just about everything you need to do to start using React router version
 
 ---
 
-<PromotionBanner title="Does your CRUD app need server state management?" image="/img/generic_banner.png" />
+<PromotionBanner title="Does your CRUD app need server state management?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 ## How to use the `useNavigate` hook
@@ -168,7 +168,7 @@ The **`useNavigate`** hook is functionally similar to the `Navigate` component. 
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord-banner.png" alt="discord banner" />
 </a>
 </div>
 

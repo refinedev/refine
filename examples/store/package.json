@@ -1,5 +1,5 @@
 {
-    "name": "refine-store",
+    "name": "store",
     "version": "3.25.0",
     "private": true,
     "scripts": {
@@ -12,7 +12,7 @@
         "@headlessui/react": "^1.6.1",
         "nextjs-progressbar": "^0.0.14",
         "@medusajs/medusa-js": "^1.2.3",
-        "@pankod/refine-core": "^3.90.4",
+        "@pankod/refine-core": "^3.90.6",
         "@pankod/refine-nextjs-router": "^4.1.0",
         "@pankod/refine-react-hook-form": "^3.37.0",
         "@pankod/refine-medusa": "^1.7.2",

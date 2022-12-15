@@ -3,8 +3,6 @@ id: useSelect
 title: useSelect
 ---
 
-import basicUsage from '@site/static/img/hooks/useSelect/basic-usage.png';
-import search from '@site/static/img/hooks/useSelect/search.png';
 
 `useSelect` hook allows you to manage an Ant Design [Select](https://ant.design/components/select/) component when records in a resource needs to be used as select options.
 
@@ -63,7 +61,7 @@ interface ICategory {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={basicUsage} alt="Basic use of select box" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useSelect/basic-usage.png" alt="Basic use of select box" />
 </div>
 <br/>
 
@@ -75,7 +73,7 @@ All we have to do is pass the `selectProps` it returns to the `<Select>` compone
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={search} alt="Search functionality" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useSelect/search.png" alt="Search functionality" />
 </div>
 <br/>
 
@@ -302,16 +300,10 @@ const { selectProps } = useSelect({
 | defaultValueQueryResult    | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 | defaultValueQueryOnSuccess | Default value onSuccess method                 | `() => void`                                                                                  |
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/field/useSelect/antd/basic?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-use-select-example"
-></iframe>
+<StackblitzExample path="field-antd-use-select-basic" />
 
-## Live StackBlitz Infinite Loading Example
+## Infinite Loading Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/field/useSelect/antd/infiniteLoading?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-use-select-example"
-></iframe>
+<StackblitzExample path="field-antd-use-select-infinite" />

@@ -1,0 +1,46 @@
+{
+    "name": "blog-material-ui",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@testing-library/jest-dom": "^5.12.0",
+        "@testing-library/react": "^11.2.6",
+        "@testing-library/user-event": "^12.8.3",
+        "@types/jest": "^26.0.23",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-scripts": "^5.0.0",
+        "web-vitals": "^1.1.1",
+        "@pankod/refine-core": "^3.90.6",
+        "@pankod/refine-mui": "^3.61.2",
+        "@pankod/refine-react-hook-form": "^3.37.0",
+        "@mui/icons-material": "^5.8.3",
+        "@pankod/refine-react-router-v6": "^3.38.0",
+        "@pankod/refine-strapi-v4": "^3.39.2",
+        "axios": "^0.26.1"
+    },
+    "devDependencies": {
+        "@types/node": "^12.20.10",
+        "@types/react": "^17.0.2",
+        "@types/react-dom": "^17.0.2",
+        "typescript": "^4.2.4"
+    },
+    "scripts": {
+        "dev": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}

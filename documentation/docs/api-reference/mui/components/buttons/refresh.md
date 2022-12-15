@@ -4,7 +4,6 @@ title: Refresh
 swizzle: true
 ---
 
-import refreshButton from '@site/static/img/guides-and-concepts/components/buttons/refresh/refresh-mui.png';
 
 `<RefreshButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component to update the data shown on the page via the [`useOne`](/api-reference/core/hooks/data/useOne.md) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
@@ -57,7 +56,7 @@ Will Look like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={refreshButton} alt="Default refresh button" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/refresh/refresh-mui.png" alt="Default refresh button" />
 </div>
 
 ## Properties

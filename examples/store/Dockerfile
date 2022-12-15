@@ -13,8 +13,8 @@ RUN npm install
 
 COPY . /opt/app
 
-RUN npm run bootstrap -- --scope refine-store
-RUN npm run build -- --scope refine-store
+RUN npm run bootstrap -- --scope store
+RUN npm run build -- --scope store
 
 #Example client
 WORKDIR /opt/app/examples/store

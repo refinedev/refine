@@ -3,7 +3,6 @@ id: custom-inputs
 title: Custom Inputs
 ---
 
-import markdownInput from '@site/static/img/guides-and-concepts/components/inputs/custom-inputs/markdown-input.png';
 
 **refine** uses Ant Design's [`<Form>`](https://ant.design/components/form/) components to control and work with form data. Ant Design supports custom form items inside the [`<Form.Item>`](https://ant.design/components/form/#Form.Item) components. These items should be controllable via their `value` property and should implement `onChange` (or a custom callback name specified by `<Form.Item>`s [`trigger`] prop (https://ant.design/components/form/#Form.Item)).
 
@@ -73,7 +72,7 @@ export const PostEdit: React.FC = (props) => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={markdownInput} alt="Markdown input" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/inputs/custom-inputs/markdown-input.png" alt="Markdown input" />
 </div>
 <br/>
 

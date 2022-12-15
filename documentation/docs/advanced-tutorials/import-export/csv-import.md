@@ -3,8 +3,6 @@ id: csv-import
 title: CSV Import
 ---
 
-import importButton from '@site/static/img/guides-and-concepts/csv-import/import-button.png';
-import importing from '@site/static/img/guides-and-concepts/csv-import/importing.gif';
 
 You can easily import CSV files for any resource by using **refine**'s customizable `useImport` hook, optionally with `<ImportButton>` component. `useImport` hook returns the necessary props for `<ImportButton>` component. **refine** uses [Papa Parse][papa parse] parser under the hood to parse CSV files.
 
@@ -83,7 +81,7 @@ interface IPost {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={importButton} alt="Import button" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/csv-import/import-button.png" alt="Import button" />
 </div>
 <br />
 
@@ -158,20 +156,15 @@ And it's done. When you click on the button and provide a CSV file of the header
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={importing} alt="Importing CSV" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/csv-import/importing.gif" alt="Importing CSV" />
 </div>
 <br />
 
 Depending on the [`batchSize`][batchsize] option, posts can get sent one by one or as batches. By default, all records are sent in one [`createMany`][createmany] call.
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/importExport/antd?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="refine-import-export-example"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<StackblitzExample path="import-export-antd" />
 
 [papa parse]: https://www.papaparse.com/
 [batchsize]: /api-reference/core/hooks/import-export/useImport.md#api-reference

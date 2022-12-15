@@ -4,7 +4,6 @@ title: Data Provider
 sidebar_label: Data Provider
 ---
 
-import dpFlow from '@site/static/img/guides-and-concepts/providers/data-provider/flow.png';
 
 ## Overview
 
@@ -90,7 +89,7 @@ Data hooks use [React Query](https://react-query.tanstack.com/) to manage data f
 <br/>
 
 <div>
-    <img src={dpFlow} />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/flow.png" />
 </div>
 
 <br/>

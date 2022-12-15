@@ -162,12 +162,9 @@ const { clone } = useNavigation();
 | TError     | Custom error object that extends [`HttpError`][httperror]        | [`HttpError`][httperror]   |
 | TVariables | Values for params.                                               | `{}`                       |
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form/antd/useForm?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-use-form-example"
-></iframe>
+<StackblitzExample path="form-antd-use-form" />
 
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror

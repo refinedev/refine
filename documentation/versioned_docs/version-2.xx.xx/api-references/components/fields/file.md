@@ -3,7 +3,6 @@ id: file
 title: File
 ---
 
-import fileField from '@site/static/img/guides-and-concepts/fields/file/fileField.png'
 
 This field is used to display files and uses [`<Typography.Link>`](https://ant.design/components/typography) from Ant Design.
 
@@ -62,7 +61,7 @@ If you don't use `title` prop it will use `src` as `title`
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={fileField} alt="FileField" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/file/fileField.png" alt="FileField" />
 </div>
 
 

@@ -1,0 +1,57 @@
+{
+    "name": "access-control-casbin",
+    "version": "3.25.0",
+    "private": true,
+    "engines": {
+        "node": "~16.14.0",
+        "npm": "~7.17.0"
+    },
+    "scripts": {
+        "start": "react-app-rewired start",
+        "build": "react-app-rewired build",
+        "eject": "react-scripts eject"
+    },
+    "dependencies": {
+        "@pankod/refine-antd": "^3.70.2",
+        "@pankod/refine-core": "^3.90.6",
+        "@pankod/refine-react-router-v6": "^3.38.0",
+        "@pankod/refine-simple-rest": "^3.37.4",
+        "@types/node": "^12.20.11",
+        "@types/react": "^18.0.0",
+        "@types/react-dom": "^18.0.0",
+        "casbin": "^5.15.2",
+        "crypto-browserify": "^3.12.0",
+        "path-browserify": "^1.0.1",
+        "react": "^18.0.0",
+        "react-app-rewired": "^2.2.1",
+        "react-dom": "^18.0.0",
+        "react-mde": "^11.5.0",
+        "react-scripts": "^5.0.1",
+        "typescript": "^4.7.4"
+    },
+    "devDependencies": {
+        "assert": "^2.0.0",
+        "buffer": "^6.0.3",
+        "eslint-plugin-disable": "^2.0.3",
+        "https-browserify": "^1.0.0",
+        "os": "^0.1.2",
+        "os-browserify": "^0.3.0",
+        "path": "^0.12.7",
+        "process": "^0.11.10",
+        "stream-browserify": "^3.0.0",
+        "stream-http": "^3.2.0",
+        "webpack": "^5.74.0"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}

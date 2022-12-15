@@ -4,7 +4,6 @@ title: <FilterDropdown>
 sidebar_label: <FilterDropdown>
 ---
 
-import filterDropdown from '@site/static/img/category_filter-dropdown.png';
 
 ## Usage
 
@@ -72,7 +71,7 @@ Selecting categories from dropdown will send the id's of categories as filtering
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={filterDropdown} alt="Show record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/category_filter-dropdown.png" alt="Show record action" />
 </div>
 
 <br/>
@@ -166,9 +165,6 @@ If [syncWithLocation](/api-reference/core/components/refine-config.md#syncwithlo
 
 <PropsTable module="@pankod/refine-antd/FilterDropdown"/>
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/table/antd/useTable?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-use-table-example"
-></iframe>
+<StackblitzExample path="table-antd-use-table" />

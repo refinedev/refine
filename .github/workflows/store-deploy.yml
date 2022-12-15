@@ -50,5 +50,5 @@ jobs:
           cat ./k8s/refine-store/Chart.old.yaml | grep -v appVersion > ./k8s/refine-store/Chart.yaml &&
           echo -e "\r\nappVersion: sha-${GITHUB_SHA::7}\r\n" >> ./k8s/refine-store/Chart.yaml &&
           cat ./k8s/refine-store/Chart.yaml
-          helm upgrade refine-store ./k8s/refine-store --install --atomic --values=./k8s/refine-store/values.yaml --timeout 7m0s  \
+          helm upgrade refine-store ./k8s/refine-store --install --atomic --values=./k8s/refine-store/values.yaml \
             --set NEXT_PUBLIC_STRIPE_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_KEY }} \

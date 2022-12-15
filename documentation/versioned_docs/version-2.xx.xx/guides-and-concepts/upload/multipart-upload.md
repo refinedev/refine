@@ -3,9 +3,6 @@ id: multipart-upload
 title: Multipart Upload
 ---
 
-import create from '@site/static/img/guides-and-concepts/multipart-upload/create.png';
-import uploadedFile from '@site/static/img/guides-and-concepts/multipart-upload/uploaded.png';
-import edit from '@site/static/img/guides-and-concepts/multipart-upload/edit.png';
 
 We will show you how to multipart upload with **refine**.
 
@@ -106,7 +103,7 @@ It will look like this.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={create} alt="multipart upload in a create page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multipart-upload/create.png" alt="multipart upload in a create page" />
 </div>
 
 <br/>
@@ -137,7 +134,7 @@ This end-point should respond similarly.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={uploadedFile} alt="multipart upload uploaded item" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multipart-upload/uploaded.png" alt="multipart upload uploaded item" />
 </div>
 <br/>
 
@@ -247,7 +244,7 @@ export const PostEdit: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={edit} alt="multipart upload in edit page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multipart-upload/edit.png" alt="multipart upload in edit page" />
 </div>
 <br/>
 

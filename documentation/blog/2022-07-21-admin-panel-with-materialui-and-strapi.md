@@ -116,7 +116,7 @@ export const API_URL = "https://api.strapi-v4.refine.dev";
 
 ---
 
-<PromotionBanner title="Tired of looking for the best template for your B2B app" image="/img/mui_banner.png" />
+<PromotionBanner title="Tired of looking for the best template for your B2B app" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/mui_banner.png" />
 
 ---
 
@@ -229,7 +229,7 @@ export * from "./list";
 <br/>
 <div>
 <a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="github support banner" />
 </a>
 </div>
 
@@ -550,7 +550,7 @@ Try it on the browser and see if you can create new posts from scratch.
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
 </a>
 </div>
 

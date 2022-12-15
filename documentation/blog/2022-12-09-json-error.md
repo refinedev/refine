@@ -173,7 +173,7 @@ Spelling errors do not apply only to API endpoints, they can also occur while at
 
 ---
 
-<PromotionBanner title="Building a side project?" image="/img/generic_banner.png" />
+<PromotionBanner title="Building a side project?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 

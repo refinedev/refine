@@ -4,7 +4,6 @@ title: Show
 swizzle: true
 ---
 
-import showButton from '@site/static/img/guides-and-concepts/components/buttons/show/show-mui.png';
 
 `<ShowButton>` uses Material UI [`<Button>`](https://ant.design/components/button/) component. It uses the `show` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
 
@@ -76,7 +75,7 @@ Will look like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={showButton} alt="Default show button" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/show/show-mui.png" alt="Default show button" />
 </div>
 
 ## Properties

@@ -110,7 +110,7 @@ x = 500;
 ```
 ---
 
-<PromotionBanner title="Stop wasting your time copy/pasting your CRUD code all over your application!" image="/img/generic_banner.png" />
+<PromotionBanner title="Stop wasting your time copy/pasting your CRUD code all over your application!" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 
@@ -156,7 +156,7 @@ FindDOMNode was a React feature designed to search the DOM node tree for a speci
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
 </a>
 </div>
 

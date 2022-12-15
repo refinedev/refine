@@ -4,7 +4,6 @@ title: Boolean
 swizzle: true
 ---
 
-import booleanField from '@site/static/img/guides-and-concepts/fields/boolean/booleanFieldMui.png'
 
 This field is used to display boolean values. It uses the [`<Tooltip>`](https://mui.com/material-ui/react-tooltip/#main-content) values from Material UI.
 
@@ -90,7 +89,7 @@ export interface IPost {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={booleanField} alt="BooleanField" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/boolean/booleanFieldMui.png" alt="BooleanField" />
 </div>
 
 ## API Reference

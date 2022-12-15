@@ -4,7 +4,6 @@ title: Markdown
 swizzle: true
 ---
 
-import markdownField from '@site/static/img/guides-and-concepts/fields/markdown/mardownFieldMui.png';
 
 This field lets you display markdown content. It supports [GitHub Flavored Markdown](https://github.github.com/gfm/).
 
@@ -55,7 +54,7 @@ interface IPost {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={markdownField} alt="MarkdownField" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/markdown/mardownFieldMui.png" alt="MarkdownField" />
 </div>
 
 ## API Reference
@@ -64,9 +63,6 @@ interface IPost {
 
 <PropsTable module="@pankod/refine-antd/MarkdownField" value-description="Markdown data to render"/>
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/inputs/customInputs?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-custom-inputs-example"
-></iframe>
+<StackblitzExample path="input-custom" />

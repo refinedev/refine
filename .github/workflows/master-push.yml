@@ -116,7 +116,7 @@ jobs:
           registry: ghcr.io
           repository: refinedev/refine/refine-example
           tags: sha-${{ steps.current-time.outputs.formattedTime }}
-          dockerfile: examples/fineFoods/admin/antd/Dockerfile
+          dockerfile: examples/finefoods-antd/Dockerfile
       - name: Set up kubectl
         uses: matootie/dokube@v1.3.4
         with:
@@ -127,7 +127,7 @@ jobs:
         run: kubectl get nodes
       - name: Deploy refine-example to k8s
         run: |
-          cd examples/fineFoods/admin/antd
+          cd examples/finefoods-antd
           echo ${{ env.domain }}
           mv ./k8s/refine-example/Chart.yaml ./k8s/refine-example/Chart.old.yaml &&
           cat ./k8s/refine-example/Chart.old.yaml | grep -v appVersion > ./k8s/refine-example/Chart.yaml &&
@@ -177,7 +177,7 @@ jobs:
           registry: ghcr.io
           repository: refinedev/refine/refine-mui-example
           tags: sha-${{ steps.current-time.outputs.formattedTime }}
-          dockerfile: examples/fineFoods/admin/mui/Dockerfile
+          dockerfile: examples/finefoods-mui/Dockerfile
       - name: Set up kubectl
         uses: matootie/dokube@v1.3.4
         with:
@@ -188,7 +188,7 @@ jobs:
         run: kubectl get nodes
       - name: Deploy refine-example to k8s
         run: |
-          cd examples/fineFoods/admin/mui
+          cd examples/finefoods-mui
           echo ${{ env.domain }}
           mv ./k8s/refine-example/Chart.yaml ./k8s/refine-example/Chart.old.yaml &&
           cat ./k8s/refine-example/Chart.old.yaml | grep -v appVersion > ./k8s/refine-example/Chart.yaml &&
@@ -232,7 +232,7 @@ jobs:
           registry: ghcr.io
           repository: refinedev/refine/refine-client-example
           tag_with_sha: true
-          dockerfile: examples/fineFoods/client/Dockerfile
+          dockerfile: examples/finefoods-client/Dockerfile
       - name: Set up kubectl
         uses: matootie/dokube@v1.3.4
         with:
@@ -243,7 +243,7 @@ jobs:
         run: kubectl get nodes
       - name: Deploy refine-example to k8s
         run: |
-          cd examples/fineFoods/client
+          cd examples/finefoods-client
           mv ./k8s/refine-example/Chart.yaml ./k8s/refine-example/Chart.old.yaml &&
           cat ./k8s/refine-example/Chart.old.yaml | grep -v appVersion > ./k8s/refine-example/Chart.yaml &&
           echo -e "\r\nappVersion: sha-${GITHUB_SHA::7}\r\n" >> ./k8s/refine-example/Chart.yaml &&

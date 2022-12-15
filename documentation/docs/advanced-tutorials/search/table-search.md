@@ -3,7 +3,6 @@ id: table-search
 title: Table Search
 ---
 
-import searchForm from '@site/static/img/guides-and-concepts/table-search/form.png';
 
 We can make extensive search / filter operations using the `useTable` hook on the listing pages.
 
@@ -76,7 +75,7 @@ interface IPost {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={searchForm} />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/table-search/form.png" />
 </div>
 
 <br />
@@ -121,10 +120,7 @@ const { searchFormProps } = useTable<IPost, HttpError, { title: string; createdA
 `CrudFilters` types object has `field`, `operator` and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
 :::
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/table/tableFilter?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-table-filter-example"
-></iframe>
+<StackblitzExample path="table-antd-table-filter" />
 

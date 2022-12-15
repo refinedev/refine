@@ -18,5 +18,5 @@
 ## Install
 
 ```
-npm create refine-app my-app
+npm create refine-app@latest  my-app
 ```

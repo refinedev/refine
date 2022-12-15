@@ -4,9 +4,6 @@ title: Auth Provider
 sidebar_label: Auth Provider
 ---
 
-import login from '@site/static/img/guides-and-concepts/providers/auth-provider/login.png';
-import logout from '@site/static/img/guides-and-concepts/providers/auth-provider/logout.gif';
-import header from '@site/static/img/guides-and-concepts/providers/auth-provider/header.png';
 
 **refine** let's you set authentication logic by providing the `authProvider` property to the `<Refine>` component.
 
@@ -38,9 +35,9 @@ Authorization hooks are used to manage authentication and authorization operatio
 :::tip
 You can find auth provider examples made with **refine**
 
--   **Auth0** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/authProvider/auth0/) - [Demo](examples/auth-provider/auth0.md)
--   **Google** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/authProvider/googleLogin) - [Demo](examples/auth-provider/google-auth.md)
--   **OTP Login** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/authProvider/otpLogin) - [Demo](examples/auth-provider/otpLogin.md)
+-   **Auth0** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-auth0/) - [Demo](examples/auth-provider/auth0.md)
+-   **Google** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-google-login) - [Demo](examples/auth-provider/google-auth.md)
+-   **OTP Login** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-otp) - [Demo](examples/auth-provider/otpLogin.md)
 
 :::
 
@@ -178,7 +175,7 @@ After submission, login form calls the `login` method from `authProvider`.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={login} alt="Default Login Page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/auth-provider/login.png" alt="Default Login Page" />
 </div>
 
 <br />
@@ -465,7 +462,7 @@ If authentication is enabled, a logout button appears at the bottom of the side 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={logout} alt="Logout Action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/auth-provider/logout.gif" alt="Logout Action" />
 </div>
 <br/>
 
@@ -724,7 +721,7 @@ If the resolved data has a `name` or `avatar` property, **refine** renders a sui
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={header} alt="Header View" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/auth-provider/header.png" alt="Header View" />
 </div>
 
 <br />
@@ -898,9 +895,6 @@ These hooks can be used with the `authProvider` authentication and authorization
 | updatePassword                                          | Can be use to get update password         | Auth confirms update password         |
 <br />
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/authentication/antd?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-authentication-example"
-></iframe>
+<StackblitzExample path="auth-antd" />

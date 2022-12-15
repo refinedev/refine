@@ -3,8 +3,6 @@ id: useDrawerForm
 title: useDrawerForm
 ---
 
-import createGif from '@site/static/img/hooks/useDrawerForm/create.gif';
-import editGif from '@site/static/img/hooks/useDrawerForm/edit.gif';
 
 `useDrawerForm` hook allows you to manage a form within a Drawer. It returns Ant Design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components props.
 
@@ -102,7 +100,7 @@ This code block makes `<Drawer>` appear when you click the button.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={createGif} alt="Create record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useDrawerForm/create.gif" alt="Create record action" />
 </div>
 
 <br />
@@ -223,7 +221,7 @@ The `saveButtonProps` and `deleteButtonProps` gives us the ability of saving and
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={editGif} alt="Edit record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useDrawerForm/edit.gif" alt="Edit record action" />
 </div>
 <br />
 
@@ -265,14 +263,9 @@ The `saveButtonProps` and `deleteButtonProps` gives us the ability of saving and
 | TError     | Custom error object that extends [`HttpError`][httperror]        | [`HttpError`][httperror]   |
 | TVariables | Values for params.                                               | `{}`                       |
 
-## Live StackBlitz Example
+## Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form/antd/useDrawerForm?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="refine-use-drawer-form-example"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
+<StackblitzExample path="form-antd-use-drawer-form" />
 
 [BaseRecord]: /api-reference/core/interfaces.md#baserecord
 [HttpError]: /api-reference/core/interfaces.md#httperror

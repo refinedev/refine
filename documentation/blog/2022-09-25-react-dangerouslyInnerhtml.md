@@ -76,7 +76,7 @@ The above code will strip out the script in the data that has been rendered on t
 
 ---
 
-<PromotionBanner title="Does your CRUD app need server state management?" image="/img/mui_banner.png" />
+<PromotionBanner title="Does your CRUD app need server state management?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/mui_banner.png" />
 
 ---
 
@@ -184,7 +184,7 @@ In the above screenshot, `dangerouslySetInnerHTML` has rendered the contents jus
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
 </a>
 </div>
 
