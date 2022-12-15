@@ -27,7 +27,7 @@ function NavbarItems({ items }) {
             {items.map((item, i) => (
                 <NavbarItem
                     {...item}
-                    className={`text-[#2A2A42] hover:text-[#2a2a42] hover:no-underline hoverline-link ${item.className} p-0`}
+                    className={`text-[#2A2A42] hover:text-[#2a2a42] hover:no-underline hoverline-link ${item.className} p-0 with-hoverline`}
                     key={i}
                 />
             ))}
@@ -37,7 +37,7 @@ function NavbarItems({ items }) {
 function NavbarContentLayout({ left, right }) {
     return (
         <div className="navbar__inner">
-            <div className="navbar__items flex gap-0 lg:gap-3 xl:gap-6 font-montserrat font-semibold with-hoverline">
+            <div className="navbar__items flex gap-0 lg:gap-3 xl:gap-6 font-montserrat font-semibold">
                 {left}
             </div>
             <div className="navbar__items navbar__items--right flex gap-3">
@@ -107,9 +107,7 @@ const PopoverMenu = ({
                                 />
                             }
                             label={label}
-                            className={`
-                        ${isShowing ? "active-navbar-link" : ""}
-                        text-[#2A2A42] hover:text-[#2a2a42] hover:no-underline hoverline-link p-0 cursor-pointer flex items-center`}
+                            className="text-[#2A2A42] hover:text-[#2a2a42] hover:no-underline hoverline-link p-0 cursor-pointer flex items-center"
                         />
                     </Popover.Button>
 
