@@ -7,7 +7,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@pankod/refine-antd": "^3.70.2",
+        "@pankod/refine-antd": "^3.70.3",
         "@pankod/refine-core": "^3.90.6",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-simple-rest": "^3.37.4",
@@ -20,7 +20,7 @@
         "@types/react-dom": "^18.0.0",
         "@vitejs/plugin-react": "^1.0.7",
         "typescript": "^4.7.4",
-        "vite": "^2.8.0"
+        "vite": "^4.0.1"
     },
     "version": "3.25.0"
 }
