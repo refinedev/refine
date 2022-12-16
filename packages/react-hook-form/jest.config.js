@@ -1,7 +1,6 @@
 module.exports = {
     preset: "ts-jest",
     rootDir: "./",
-    name: "react-hook-form",
     displayName: "react-hook-form",
     globals: {
         "ts-jest": {

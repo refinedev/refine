@@ -6,7 +6,6 @@ const paths = compilerOptions.paths ? compilerOptions.paths : {};
 module.exports = {
     preset: "ts-jest",
     rootDir: "./",
-    name: "refine-cloud",
     displayName: "refine-cloud",
     globals: {
         "ts-jest": {

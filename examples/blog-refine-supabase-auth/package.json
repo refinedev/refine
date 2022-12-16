@@ -9,7 +9,7 @@
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",
-        "@types/jest": "^27.5.2",
+        "@types/jest": "^29.2.4",
         "daisyui": "^2.27.0",
         "react": "^18.0.0",
         "react-daisyui": "^2.4.1",
