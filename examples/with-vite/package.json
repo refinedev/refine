@@ -13,14 +13,14 @@
         "@pankod/refine-simple-rest": "^3.37.4",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
-        "react-mde": "^11.1.0"
+        "@uiw/react-md-editor": "^3.19.5"
     },
     "devDependencies": {
         "@types/react": "^18.0.0",
         "@types/react-dom": "^18.0.0",
         "@vitejs/plugin-react": "^1.0.7",
         "typescript": "^4.7.4",
-        "vite": "^2.8.0"
+        "vite": "^4.0.1"
     },
     "version": "3.25.0"
 }
