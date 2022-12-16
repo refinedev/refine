@@ -12,7 +12,7 @@
         "eject": "react-scripts eject"
     },
     "dependencies": {
-        "@pankod/refine-antd": "^3.70.2",
+        "@pankod/refine-antd": "^3.70.3",
         "@pankod/refine-core": "^3.90.6",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-simple-rest": "^3.37.4",
