@@ -13,7 +13,7 @@ import NavbarSearch from "@theme/Navbar/Search";
 import Link from "@docusaurus/Link";
 import { Popover, Transition } from "@headlessui/react";
 
-import { RightArrow, ChevronDownIcon } from "../../../assets/popover-icons";
+import { ChevronDownIcon } from "../../../assets/popover-icons";
 import { POPOVERMENUS } from "../../../assets/nav-menu";
 
 import styles from "./styles.module.css";
@@ -64,18 +64,11 @@ const PopoverItem = ({ label, description, to, icon }) => {
                     {description}
                 </span>
             </div>
-            <RightArrow className="flex-shrink-0 self-center" />
         </Link>
     );
 };
 
-const PopoverMenu = ({
-    label,
-    buttonLabel,
-    buttonLink,
-    imageURL,
-    children,
-}) => {
+const PopoverMenu = ({ label, imageLink, imageURL, children }) => {
     const [isShowing, setIsShowing] = React.useState(false);
     const timeoutRef = React.useRef(null);
     const timeoutEnterRef = React.useRef(null);
@@ -132,20 +125,14 @@ const PopoverMenu = ({
                                 }}
                             >
                                 {children}
-                                <div
-                                    id={`popover-bg-${label.toLowerCase()}`}
-                                    className="relative w-[312px] bg-no-repeat bg-cover flex items-end justify-center transition-all"
-                                    style={{
-                                        backgroundImage: `url(${imageURL})`,
-                                    }}
-                                >
-                                    <Link
-                                        className="flex w-4/5 justify-center items-center appearance-none no-underline font-montserrat font-bold text-white text-center py-1 px-4 rounded-lg shadow-lg hover:shadow-xl focus:outline-none focus:shadow-xl bg-gradient-to-l from-[#1890FF] to-[#47EBF5] mb-4"
-                                        to={buttonLink}
-                                    >
-                                        {buttonLabel}
-                                    </Link>
-                                </div>
+                                <Link to={imageLink}>
+                                    <div
+                                        className="relative w-[312px] h-full bg-no-repeat bg-cover flex items-end justify-center"
+                                        style={{
+                                            backgroundImage: `url(${imageURL})`,
+                                        }}
+                                    ></div>
+                                </Link>
                             </div>
                         </Popover.Panel>
                     </Transition>
@@ -172,8 +159,7 @@ export default function NavbarContent() {
                         <PopoverMenu
                             key={item.label}
                             label={item.label}
-                            buttonLabel={item.buttonLabel}
-                            buttonLink={item.buttonLink}
+                            imageLink={item.imageLink}
                             imageURL={item.imageURL}
                         >
                             {item.label === "Open-source" && (

@@ -871,13 +871,3 @@ html[data-theme="dark"]:not([data-customized="true"])
     font-size: 14px;
     line-height: 1.5;
 }
-
-#popover-bg-company:hover {
-    background-image: url("https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/hover-company.png") !important;
-}
-#popover-bg-open-source:hover {
-    background-image: url("https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/hover-open-source.png") !important;
-}
-#popover-bg-community:hover {
-    background-image: url("https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/hover-community.png") !important;
-}

@@ -7,6 +7,5 @@ export type NavMenu = {
         description: string;
     }[];
     imageURL: string;
-    buttonLabel: string;
-    buttonLink: string;
+    imageLink: string;
 };
