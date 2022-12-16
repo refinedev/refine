@@ -39,8 +39,6 @@
     "ts-jest": "^29.0.3",
     "typescript": "^4.7.4"
   },
-  "author": {
-    "name": "Ali Emir Sen",
-    "email": "ali@refine.dev"
-  }
+  "author": "refine"
+}
   
