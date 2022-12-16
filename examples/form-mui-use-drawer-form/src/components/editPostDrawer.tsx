@@ -1,3 +1,4 @@
+import { HttpError } from "@pankod/refine-core";
 import {
     Autocomplete,
     Box,
@@ -13,9 +14,11 @@ import {
 } from "@pankod/refine-react-hook-form";
 import { CloseOutlined } from "@mui/icons-material";
 
-import { ICategory } from "interfaces";
+import { IPost } from "interfaces";
 
-export const EditPostDrawer: React.FC<UseModalFormReturnType> = ({
+export const EditPostDrawer: React.FC<
+    UseModalFormReturnType<IPost, HttpError, IPost>
+> = ({
     saveButtonProps,
     refineCore: { queryResult },
     modal: { visible, close },
@@ -23,7 +26,7 @@ export const EditPostDrawer: React.FC<UseModalFormReturnType> = ({
     control,
     formState: { errors },
 }) => {
-    const { autocompleteProps } = useAutocomplete<ICategory>({
+    const { autocompleteProps } = useAutocomplete({
         resource: "categories",
         defaultValue: queryResult?.data?.data.category.id,
     });
