@@ -25,7 +25,6 @@
         "react": "^18.0.0",
         "react-app-rewired": "^2.2.1",
         "react-dom": "^18.0.0",
-        "react-mde": "^11.1.0",
         "react-scripts": "^5.0.0",
         "typescript": "^4.7.4",
         "@uiw/react-md-editor": "^3.19.5"
