@@ -31,11 +31,11 @@ jobs:
                   node-version: ${{ matrix.node-version }}
                   registry-url: https://registry.npmjs.org/
             - name: Install dependencies
-                run: npm ci
-                if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))
+              run: npm ci
+              if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))
             - name: Bootstrap
-                run: npm run bootstrap -- --scope "*" --ignore blog-sveltekit-crud --ignore blog-react-aria
-                if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))
+              run: npm run bootstrap -- --scope "*" --ignore blog-sveltekit-crud --ignore blog-react-aria
+              if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))
             - name: Build
-                run: npm run build -- --concurrency=20 --scope "*" --ignore blog-sveltekit-crud --ignore blog-react-aria
-                if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))
+              run: npm run build -- --concurrency=20 --scope "*" --ignore blog-sveltekit-crud --ignore blog-react-aria
+              if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))
