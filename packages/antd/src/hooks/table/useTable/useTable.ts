@@ -46,6 +46,11 @@ export type useTableReturnType<
     tableQueryResult: QueryObserverResult<GetListResponse<TData>>;
     sorter?: CrudSorting;
     filters?: CrudFilters;
+    current?: number;
+    setCurrent: useTableCoreReturnType<TData>["setCurrent"];
+    pageSize: number;
+    setPageSize: useTableCoreReturnType<TData>["setPageSize"];
+    pageCount: number;
     setFilters: useTableCoreReturnType<TData>["setFilters"];
     setSorter: useTableCoreReturnType<TData>["setSorter"];
 };
@@ -98,6 +103,7 @@ export const useTable = <
         sorter,
         setSorter,
         createLinkForSyncWithLocation,
+        pageCount,
     } = useTableCore({
         permanentSorter,
         permanentFilter,
@@ -245,5 +251,10 @@ export const useTable = <
         filters,
         setSorter,
         setFilters,
+        current,
+        setCurrent,
+        pageSize,
+        setPageSize,
+        pageCount,
     };
 };
