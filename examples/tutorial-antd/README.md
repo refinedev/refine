@@ -51,7 +51,7 @@ It's *headless by design*, thereby offering unlimited styling and customization 
 We will show how you can use the CLI to bootstrap the same **refine** example app with [Ant Design](https://ant.design/) and [React](https://reactjs.org/). You can also use [Material UI](https://material-ui.com/), [Chakra UI](https://chakra-ui.com/) and [Mantine](https://mantine.dev/) as well.
 
 ```
-npm create refine-app my-antd-project
+npm create refine-app@latest my-antd-project
 ```
 
 

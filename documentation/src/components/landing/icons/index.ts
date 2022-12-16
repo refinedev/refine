@@ -23,3 +23,5 @@ export * as BenefitIcons from "./benefit";
 export * as GraySocialIcons from "./gray-social-icons";
 export * as SmallSocialIcons from "./small-social-icons";
 export * as ColoredSocialIcons from "./colored-social-icons";
+export * from "./timeline-icon";
+export * from "./refine-hat-icon";

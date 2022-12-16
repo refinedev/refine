@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example base-headless
 
 <br/>
 
-[![Open base-headless example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/base-headless?terminal=start)
+[![Open base-headless example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/base-headless?terminal=start&preset=node)
         

@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example import-export-antd
 
 <br/>
 
-[![Open import-export-antd example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/import-export-antd?terminal=start)
+[![Open import-export-antd example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/import-export-antd?terminal=start&preset=node)
         

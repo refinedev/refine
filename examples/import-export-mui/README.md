@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example import-export-mui
 
 <br/>
 
-[![Open import-export-mui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/import-export-mui?terminal=start)
+[![Open import-export-mui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/import-export-mui?terminal=start&preset=node)
         

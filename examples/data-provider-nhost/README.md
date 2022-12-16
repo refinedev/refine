@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example data-provider-nhost
 
 <br/>
 
-[![Open data-provider-nhost example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/data-provider-nhost?terminal=start)
+[![Open data-provider-nhost example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/data-provider-nhost?terminal=start&preset=node)
         

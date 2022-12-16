@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example upload-mui-multipart
 
 <br/>
 
-[![Open upload-mui-multipart example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/upload-mui-multipart?terminal=start)
+[![Open upload-mui-multipart example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/upload-mui-multipart?terminal=start&preset=node)
         

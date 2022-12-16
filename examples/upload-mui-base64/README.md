@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example upload-mui-base64
 
 <br/>
 
-[![Open upload-mui-base64 example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/upload-mui-base64?terminal=start)
+[![Open upload-mui-base64 example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/upload-mui-base64?terminal=start&preset=node)
         

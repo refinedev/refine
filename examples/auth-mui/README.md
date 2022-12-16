@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example auth-mui
 
 <br/>
 
-[![Open auth-mui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/auth-mui?terminal=start)
+[![Open auth-mui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/auth-mui?terminal=start&preset=node)
         

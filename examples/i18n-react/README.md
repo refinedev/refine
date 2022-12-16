@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example i18n-react
 
 <br/>
 
-[![Open i18n-react example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/i18n-react?terminal=start)
+[![Open i18n-react example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/i18n-react?terminal=start&preset=node)
         

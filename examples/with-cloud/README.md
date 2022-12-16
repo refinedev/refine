@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example with-cloud
 
 <br/>
 
-[![Open with-cloud example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-cloud?terminal=start)
+[![Open with-cloud example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-cloud?terminal=start&preset=node)
         

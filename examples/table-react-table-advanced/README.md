@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example table-react-table-advanced
 
 <br/>
 
-[![Open table-react-table-advanced example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-react-table-advanced?terminal=start)
+[![Open table-react-table-advanced example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-react-table-advanced?terminal=start&preset=node)
         

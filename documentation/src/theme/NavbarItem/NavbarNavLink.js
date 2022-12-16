@@ -13,6 +13,7 @@ export default function NavbarNavLink({
     html,
     isDropdownLink,
     prependBaseUrlToHref,
+    rightIcon,
     ...props
 }) {
     // TODO all this seems hacky
@@ -33,6 +34,7 @@ export default function NavbarNavLink({
                               {...(isDropdownLink && { width: 12, height: 12 })}
                           />
                       )}
+                      {rightIcon && rightIcon}
                   </>
               ),
           };

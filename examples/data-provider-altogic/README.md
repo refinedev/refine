@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example data-provider-altogic
 
 <br/>
 
-[![Open data-provider-altogic example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/data-provider-altogic?terminal=start)
+[![Open data-provider-altogic example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/data-provider-altogic?terminal=start&preset=node)
         

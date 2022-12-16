@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example tutorial-mantine
 
 <br/>
 
-[![Open tutorial-mantine example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial-mantine?terminal=start)
+[![Open tutorial-mantine example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial-mantine?terminal=start&preset=node)
         

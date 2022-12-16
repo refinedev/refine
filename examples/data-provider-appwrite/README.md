@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example data-provider-appwrite
 
 <br/>
 
-[![Open data-provider-appwrite example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/data-provider-appwrite?terminal=start)
+[![Open data-provider-appwrite example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/data-provider-appwrite?terminal=start&preset=node)
         

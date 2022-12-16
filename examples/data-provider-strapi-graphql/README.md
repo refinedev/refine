@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example data-provider-strapi-graphql
 
 <br/>
 
-[![Open data-provider-strapi-graphql example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/data-provider-strapi-graphql?terminal=start)
+[![Open data-provider-strapi-graphql example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/data-provider-strapi-graphql?terminal=start&preset=node)
         

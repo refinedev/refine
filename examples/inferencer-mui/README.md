@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example inferencer-mui
 
 <br/>
 
-[![Open inferencer-mui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/inferencer-mui?terminal=start)
+[![Open inferencer-mui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/inferencer-mui?terminal=start&preset=node)
         

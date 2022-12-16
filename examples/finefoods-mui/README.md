@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example finefoods-mui
 
 <br/>
 
-[![Open finefoods-mui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/finefoods-mui?terminal=start)
+[![Open finefoods-mui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/finefoods-mui?terminal=start&preset=node)
         
