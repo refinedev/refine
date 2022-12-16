@@ -6,6 +6,7 @@
  */
 
 require("dotenv").config();
+const path = require("path");
 
 const redirectJson = require("./redirects.json");
 
@@ -67,6 +68,7 @@ const siteConfig = {
         ],
     ],
     plugins: [
+        path.resolve(__dirname, "plugins/use-case-routes.js"),
         [
             "@docusaurus/plugin-client-redirects",
             {
