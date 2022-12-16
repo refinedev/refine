@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example input-date-picker
 
 <br/>
 
-[![Open input-date-picker example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/input-date-picker?terminal=start)
+[![Open input-date-picker example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/input-date-picker?terminal=start&preset=node)
         

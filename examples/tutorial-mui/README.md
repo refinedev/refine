@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example tutorial-mui
 
 <br/>
 
-[![Open tutorial-mui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial-mui?terminal=start)
+[![Open tutorial-mui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial-mui?terminal=start&preset=node)
         

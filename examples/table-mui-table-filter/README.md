@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example table-mui-table-filter
 
 <br/>
 
-[![Open table-mui-table-filter example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-mui-table-filter?terminal=start)
+[![Open table-mui-table-filter example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-mui-table-filter?terminal=start&preset=node)
         

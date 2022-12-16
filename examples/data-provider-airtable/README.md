@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example data-provider-airtable
 
 <br/>
 
-[![Open data-provider-airtable example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/data-provider-airtable?terminal=start)
+[![Open data-provider-airtable example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/data-provider-airtable?terminal=start&preset=node)
         

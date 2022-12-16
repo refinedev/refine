@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example form-mui-use-form
 
 <br/>
 
-[![Open form-mui-use-form example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-mui-use-form?terminal=start)
+[![Open form-mui-use-form example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-mui-use-form?terminal=start&preset=node)
         

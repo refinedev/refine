@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example table-handson
 
 <br/>
 
-[![Open table-handson example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-handson?terminal=start)
+[![Open table-handson example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-handson?terminal=start&preset=node)
         

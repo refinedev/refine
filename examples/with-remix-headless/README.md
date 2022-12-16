@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example with-remix-headless
 
 <br/>
 
-[![Open with-remix-headless example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-remix-headless?terminal=start)
+[![Open with-remix-headless example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-remix-headless?terminal=start&preset=node)
         

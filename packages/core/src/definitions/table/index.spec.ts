@@ -200,6 +200,7 @@ describe("definitions/table", () => {
                         value: "permenant",
                     },
                 ],
+
                 [
                     {
                         field: "foo",
@@ -214,13 +215,13 @@ describe("definitions/table", () => {
                 ],
             ),
         ).toMatchInlineSnapshot(`
-            Array [
-              Object {
+            [
+              {
                 "field": "foo",
                 "operator": "in",
                 "value": "permenant",
               },
-              Object {
+              {
                 "field": "bar",
                 "operator": "in",
                 "value": "crud",
@@ -252,8 +253,8 @@ describe("definitions/table", () => {
                 ],
             ),
         ).toMatchInlineSnapshot(`
-            Array [
-              Object {
+            [
+              {
                 "field": "baz",
                 "operator": "in",
                 "value": "prev",
@@ -499,6 +500,7 @@ describe("definitions/table", () => {
                         order: "asc",
                     },
                 ],
+
                 [
                     {
                         field: "foo",
@@ -511,12 +513,12 @@ describe("definitions/table", () => {
                 ],
             ),
         ).toMatchInlineSnapshot(`
-            Array [
-              Object {
+            [
+              {
                 "field": "foo",
                 "order": "asc",
               },
-              Object {
+              {
                 "field": "bar",
                 "order": "asc",
               },
@@ -540,12 +542,12 @@ describe("definitions/table", () => {
                 ],
             ),
         ).toMatchInlineSnapshot(`
-            Array [
-              Object {
+            [
+              {
                 "field": "bar",
                 "order": "asc",
               },
-              Object {
+              {
                 "field": "foo",
                 "order": "asc",
               },

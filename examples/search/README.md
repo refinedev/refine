@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example search
 
 <br/>
 
-[![Open search example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/search?terminal=start)
+[![Open search example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/search?terminal=start&preset=node)
         

@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example auth-mantine
 
 <br/>
 
-[![Open auth-mantine example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/auth-mantine?terminal=start)
+[![Open auth-mantine example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/auth-mantine?terminal=start&preset=node)
         

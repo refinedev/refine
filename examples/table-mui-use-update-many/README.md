@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example table-mui-use-update-many
 
 <br/>
 
-[![Open table-mui-use-update-many example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-mui-use-update-many?terminal=start)
+[![Open table-mui-use-update-many example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-mui-use-update-many?terminal=start&preset=node)
         

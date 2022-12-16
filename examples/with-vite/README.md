@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example with-vite
 
 <br/>
 
-[![Open with-vite example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-vite?terminal=start)
+[![Open with-vite example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-vite?terminal=start&preset=node)
         

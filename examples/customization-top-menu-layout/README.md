@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example customization-top-menu-layout
 
 <br/>
 
-[![Open customization-top-menu-layout example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/customization-top-menu-layout?terminal=start)
+[![Open customization-top-menu-layout example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/customization-top-menu-layout?terminal=start&preset=node)
         

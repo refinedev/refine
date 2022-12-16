@@ -17,8 +17,8 @@ describe("context/defaultProvider", () => {
 
     it("create", async () => {
         expect(await create()).toMatchInlineSnapshot(`
-            Object {
-              "data": Object {
+            {
+              "data": {
                 "id": 1,
               },
             }
@@ -27,32 +27,32 @@ describe("context/defaultProvider", () => {
 
     it("createMany", async () => {
         expect(await createMany()).toMatchInlineSnapshot(`
-            Object {
-              "data": Array [],
+            {
+              "data": [],
             }
         `);
     });
 
     it("custom", async () => {
         expect(await custom()).toMatchInlineSnapshot(`
-            Object {
-              "data": Object {},
+            {
+              "data": {},
             }
         `);
     });
 
     it("deleteMany", async () => {
         expect(await deleteMany()).toMatchInlineSnapshot(`
-            Object {
-              "data": Array [],
+            {
+              "data": [],
             }
         `);
     });
 
     it("deleteOne", async () => {
         expect(await deleteOne()).toMatchInlineSnapshot(`
-            Object {
-              "data": Object {
+            {
+              "data": {
                 "id": 1,
               },
             }
@@ -65,8 +65,8 @@ describe("context/defaultProvider", () => {
 
     it("getList", async () => {
         expect(await getList()).toMatchInlineSnapshot(`
-            Object {
-              "data": Array [],
+            {
+              "data": [],
               "total": 0,
             }
         `);
@@ -74,16 +74,16 @@ describe("context/defaultProvider", () => {
 
     it("getMany", async () => {
         expect(await getMany()).toMatchInlineSnapshot(`
-            Object {
-              "data": Array [],
+            {
+              "data": [],
             }
         `);
     });
 
     it("getOne", async () => {
         expect(await getOne()).toMatchInlineSnapshot(`
-            Object {
-              "data": Object {
+            {
+              "data": {
                 "id": 1,
               },
             }
@@ -92,8 +92,8 @@ describe("context/defaultProvider", () => {
 
     it("update", async () => {
         expect(await update()).toMatchInlineSnapshot(`
-            Object {
-              "data": Object {
+            {
+              "data": {
                 "id": 1,
               },
             }
@@ -102,8 +102,8 @@ describe("context/defaultProvider", () => {
 
     it("updateMany", async () => {
         expect(await updateMany()).toMatchInlineSnapshot(`
-            Object {
-              "data": Array [],
+            {
+              "data": [],
             }
         `);
     });

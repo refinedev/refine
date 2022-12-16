@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example form-mantine-use-form
 
 <br/>
 
-[![Open form-mantine-use-form example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-mantine-use-form?terminal=start)
+[![Open form-mantine-use-form example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-mantine-use-form?terminal=start&preset=node)
         

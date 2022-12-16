@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example customization-theme-chakra-ui
 
 <br/>
 
-[![Open customization-theme-chakra-ui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/customization-theme-chakra-ui?terminal=start)
+[![Open customization-theme-chakra-ui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/customization-theme-chakra-ui?terminal=start&preset=node)
         

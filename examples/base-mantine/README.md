@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example base-mantine
 
 <br/>
 
-[![Open base-mantine example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/base-mantine?terminal=start)
+[![Open base-mantine example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/base-mantine?terminal=start&preset=node)
         

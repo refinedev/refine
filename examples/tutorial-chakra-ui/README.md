@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example tutorial-chakra-ui
 
 <br/>
 
-[![Open tutorial-chakra-ui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial-chakra-ui?terminal=start)
+[![Open tutorial-chakra-ui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial-chakra-ui?terminal=start&preset=node)
         
