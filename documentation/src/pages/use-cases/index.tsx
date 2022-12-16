@@ -4,8 +4,7 @@ import Link from "@docusaurus/Link";
 import Head from "@docusaurus/Head";
 
 import { GiftCard } from "../../components/use-case/gift-card";
-
-import { USE_CASES } from "../../assets/use-cases";
+import USE_CASES from "../../assets/use-cases";
 
 export const UseCases = () => {
     return (
@@ -25,7 +24,7 @@ export const UseCases = () => {
                             className="flex flex-col justify-between"
                         >
                             <div>
-                                <Link to={useCase.route}>
+                                <Link to={`/use-cases/${useCase.route}`}>
                                     <img
                                         src={useCase.thumbImgURL}
                                         alt={useCase.title}
@@ -44,7 +43,7 @@ export const UseCases = () => {
 
                             <Link
                                 className="shadow-startTiles appearance-none flex items-center justify-center mt-2 mb-4 no-underline font-bold font-montserrat text-sm h-8 w-44 text-[#1890FF] text-center bg-white rounded-[4px] cursor-pointer border border-solid border-[#EDEDEF]"
-                                to={useCase.route}
+                                to={`/use-cases/${useCase.route}`}
                             >
                                 Read more
                             </Link>

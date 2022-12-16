@@ -1,9 +1,4 @@
-"use strict";
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : { default: obj };
-}
-var _usecases = require("../src/assets/use-cases");
-var _usecases2 = _interopRequireDefault(_usecases);
+import USE_CASES from "../src/assets/use-cases";
 
 module.exports = function () {
     return {
@@ -13,7 +8,7 @@ module.exports = function () {
             const { addRoute, createData } = actions;
 
             await Promise.all(
-                _usecases2.default.map(async (useCase) => {
+                USE_CASES.map(async (useCase) => {
                     const dataJsonPath = await createData(
                         `use-cases/${useCase.route}.json`,
                         JSON.stringify(useCase, null, 2),
