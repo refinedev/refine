@@ -38,7 +38,8 @@ export type UseFormReturnType<
     >;
     saveButtonProps: {
         disabled: boolean;
-        onClick: (e: React.FormEvent<HTMLFormElement>) => void;
+        // TODO: Fix Mantine onSubmit type
+        onClick?: React.PointerEventHandler<HTMLButtonElement>;
     };
 };
 
@@ -138,7 +139,7 @@ export const useForm = <
 
     const saveButtonProps = {
         disabled: formLoading,
-        onClick: (e: React.FormEvent<HTMLFormElement>) => {
+        onClick: (e: any) => {
             onSubmit(onFinish, () => false)(e);
         },
     };
