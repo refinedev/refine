@@ -12,6 +12,7 @@ import NavbarLogo from "@theme/Navbar/Logo";
 import NavbarSearch from "@theme/Navbar/Search";
 import Link from "@docusaurus/Link";
 import { Popover, Transition } from "@headlessui/react";
+import { useLocation } from "@docusaurus/router";
 
 import { ChevronDownIcon } from "../../../assets/popover-icons";
 import { POPOVERMENUS } from "../../../assets/nav-menu";
@@ -55,7 +56,11 @@ const PopoverItem = ({ label, description, to, icon }) => {
             to={to}
             className="flex items-center gap-4 no-underline p-4 hover:bg-[#eeeef0] transition rounded-lg hover:shadow-menuItem"
         >
-            <Icon className="flex-shrink-0" />
+            <Icon
+                className={`${
+                    label === "Documents" ? "mx-1" : ""
+                } flex-shrink-0`}
+            />
             <div className="flex flex-col">
                 <span className="text-[#242436] font-semibold text-sm transition">
                     {label}
@@ -72,6 +77,11 @@ const PopoverMenu = ({ label, imageLink, imageURL, children }) => {
     const [isShowing, setIsShowing] = React.useState(false);
     const timeoutRef = React.useRef(null);
     const timeoutEnterRef = React.useRef(null);
+    const location = useLocation();
+
+    React.useEffect(() => {
+        setIsShowing(false);
+    }, [location]);
 
     return (
         <Popover
