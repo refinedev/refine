@@ -1,4 +1,5 @@
 {
+  "$schema": "https://unpkg.com/lerna/schemas/lerna-schema.json",
   "packages": [
     "packages/*",
     "examples/**/**/*"
