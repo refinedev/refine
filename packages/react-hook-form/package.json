@@ -32,6 +32,7 @@
   "devDependencies": {
     "@pankod/refine-core": "^3.69.9",
     "@esbuild-plugins/node-resolve": "^0.1.4",
+    "@types/jest": "^27.5.2",
     "jest": "^27.5.1",
     "react-router-dom": "6.3.0",
     "ts-jest": "^27.1.3",

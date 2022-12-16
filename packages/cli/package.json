@@ -23,7 +23,7 @@
         "@types/envinfo": "^7.8.1",
         "@types/fs-extra": "^9.0.13",
         "@types/inquirer": "^8.2.5",
-        "@types/jest": "^26.0.24",
+        "@types/jest": "^27.5.2",
         "@types/jscodeshift": "^0.11.5",
         "@types/node-fetch": "^2.6.2",
         "@types/temp": "^0.9.1",

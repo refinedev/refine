@@ -23,9 +23,10 @@
   "author": "refine",
   "module": "dist/esm/index.js",
   "devDependencies": {
-    "@pankod/refine-core": "^3.86.0",
-    "@pankod/refine-cli": "^1.9.0",
     "@esbuild-plugins/node-resolve": "^0.1.4",
+    "@pankod/refine-cli": "^1.9.0",
+    "@pankod/refine-core": "^3.86.0",
+    "@types/jest": "^27.5.2",
     "jest": "^27.5.1",
     "nock": "^13.1.3",
     "ts-jest": "^27.1.3",

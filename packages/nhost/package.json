@@ -24,6 +24,7 @@
     "devDependencies": {
         "@pankod/refine-core": "^3.86.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
+        "@types/jest": "^27.5.2",
         "jest": "^27.5.1",
         "lodash": "^4.17.21",
         "nock": "^13.1.3",
