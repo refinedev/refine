@@ -38,8 +38,7 @@ export type UseFormReturnType<
     >;
     saveButtonProps: {
         disabled: boolean;
-        // TODO: Fix Mantine onSubmit type
-        onClick?: React.PointerEventHandler<HTMLButtonElement>;
+        onClick: (e: React.PointerEvent<HTMLButtonElement>) => void;
     };
 };
 
@@ -139,7 +138,9 @@ export const useForm = <
 
     const saveButtonProps = {
         disabled: formLoading,
-        onClick: (e: any) => {
+        onClick: (e: React.PointerEvent<HTMLButtonElement>) => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error event type is not compatible with pointer event
             onSubmit(onFinish, () => false)(e);
         },
     };
