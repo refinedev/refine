@@ -1,3 +1,4 @@
+import { HttpError } from "@pankod/refine-core";
 import {
     Autocomplete,
     Box,
@@ -15,9 +16,11 @@ import {
     UseModalFormReturnType,
 } from "@pankod/refine-react-hook-form";
 
-import { ICategory } from "interfaces";
+import { ICategory, IPost } from "interfaces";
 
-export const CreatePostModal: React.FC<UseModalFormReturnType> = ({
+export const CreatePostModal: React.FC<
+    UseModalFormReturnType<IPost, HttpError, IPost & { category: ICategory }>
+> = ({
     saveButtonProps,
     modal: { visible, close, title },
     register,
