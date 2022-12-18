@@ -1,5 +1,5 @@
 import React from "react";
-import { useMany } from "@pankod/refine-core";
+import { HttpError, useMany } from "@pankod/refine-core";
 import {
     useDataGrid,
     DataGrid,
@@ -24,14 +24,22 @@ export const PostsList: React.FC = () => {
         },
     });
 
-    const createModalFormProps = useModalForm<IPost>({
+    const createModalFormProps = useModalForm<
+        IPost,
+        HttpError,
+        IPost & { category: ICategory }
+    >({
         refineCoreProps: { action: "create" },
     });
     const {
         modal: { show: showCreateModal },
     } = createModalFormProps;
 
-    const editModalFormProps = useModalForm<IPost>({
+    const editModalFormProps = useModalForm<
+        IPost,
+        HttpError,
+        IPost & { category: ICategory }
+    >({
         refineCoreProps: { action: "edit" },
     });
     const {
