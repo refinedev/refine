@@ -415,3 +415,6 @@ Conditional rendering has so many use cases. To list a few:
 
 - **Authorization**: When developing applications, you may need to hide certain actions or information from the user. This is possible by using the null method, as previously mentioned. Depending on the user's role, you can hide or render certain features.
 
+## Conclusion
+
+In this article, you covered what Conditional Rendering is in React, as well as several methods of Conditional Rendering in React, such as using `if...else`, rendering nothing with `null`, conditional rendering with `switch` statements, using ternary operators, using logical AND (&&) and OR (||) operators (Short Circuit Evaluation), and Using IIFEs. You also learned about some conditional rendering use cases.
