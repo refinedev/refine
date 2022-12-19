@@ -10,7 +10,7 @@
     "build": "lerna run build --ignore @pankod/refine-react-router --scope @pankod/refine* --scope create-refine-app",
     "lint": "eslint -c ./.eslintrc packages examples",
     "test": "lerna run test --stream --scope @pankod/refine* --scope create-refine-app",
-    "bootstrap": "npm run bootstrap:codemod && lerna bootstrap --hoist --strict --include-dependencies --scope @pankod/refine-core",
+    "bootstrap": "npm run bootstrap:codemod && lerna bootstrap --hoist --strict  --ignore @pankod/refine-codemod --ignore @pankod/refine-react-router --scope @pankod/refine* --scope create-refine-app",
     "changeset": "changeset",
     "nuke": "echo 'Removing all node_modules, builds and lockfiles'; npm run nuke:node_modules; npm run nuke:builds; npm run nuke:lockfiles;",
     "coffee": "npm run nuke && npm i && npm run bootstrap && npm run build",
