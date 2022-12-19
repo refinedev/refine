@@ -1,6 +1,6 @@
 {
   "name": "@pankod/refine-live-previews",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "start": "PORT=3030 nodemon --watch ./node_modules --watch ./src --watch ./pages --ext ts,tsx,js,jsx --exec \"next build --no-lint && next start\"",
@@ -11,14 +11,14 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pankod/refine-antd": "^4.0.0",
+    "@pankod/refine-antd": "^4.1.0",
     "@pankod/refine-core": "^3.74.0",
     "@pankod/refine-react-router-v6": "^3.36.0",
     "@pankod/refine-simple-rest": "^3.31.0",
     "@pankod/refine-mui": "^3.45.2",
     "@pankod/refine-react-hook-form": "^3.33.2",
     "@pankod/refine-react-table": "^4.7.2",
-    "@pankod/refine-mantine": "^1.15.3",
+    "@pankod/refine-mantine": "^1.15.4",
     "@pankod/refine-chakra-ui": "^1.0.0",
     "@pankod/refine-inferencer": "^2.0.0",
     "lz-string": "^1.4.4",
