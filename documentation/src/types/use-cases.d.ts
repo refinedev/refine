@@ -3,4 +3,18 @@ export type UseCases = {
     thumbImgURL: string;
     title: string;
     description: string;
+    companyDetails: {
+        logo: string;
+        title: string;
+        user: {
+            username: string;
+            description: string;
+            avatarURL: string;
+        };
+        message: string;
+    };
+    contents: {
+        question: string;
+        answer: string[];
+    }[];
 };
