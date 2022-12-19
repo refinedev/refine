@@ -1,20 +1,19 @@
 ---
 id: prequisite
-title: Requirements to Start
+title: 1. Prerequisite
 tutorial:
     order: 1
     prev: tutorial/introduction/index
     next: tutorial/introduction/select-framework
 ---
 
-## My Second Heading
-
-lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit
-
-### My Third Heading
-
-Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.
-
-### Again
-
-Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.
+## Prerequisite
+- Gerekli env ortamı, bilinmesi gereken techler react, ts vs…
+- Section sonlarındaki mini quizler hakkında bilgi verilebilir…
+- Daha fazla örnekler için Examples sayfalarımıza linkler verilebilir.
+- How do I use the checklists at the bottom of each page?
+   section altlarında, checklistlere basılarak oluşturacağımız progress tracker da kendi ilerlemelerini görebileceklerini anlatabiliriz(astro nun yaptığı gibi)
+- Where can I leave feedback about this tutorial?
+  Discord kanalımız, intercom…
+- What if I need help, or want to learn more about Astro?
+  Discord channel, doc içi linkler…

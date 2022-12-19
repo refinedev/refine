@@ -4,11 +4,15 @@ module.exports = {
         units: {
             introduction: {
                 no: 1,
-                label: "Introduction to Refine (tut unit title)",
+                label: "Welcome",
             },
             "getting-started": {
                 no: 2,
-                label: "Getting Started with it",
+                label: "Create your first refine app",
+            },
+            "understanding-dataprovider": {
+                no: 3,
+                label: "Understanding the Data Provider",
             },
         },
     },
