@@ -17,7 +17,7 @@ Some of the changes are:
 
 > Please refer to [Ant Design Migration Guide](https://ant.design/docs/react/migration-v5) for detailed information.
 
-:::danger Next.js 13 Not Supported
+:::danger Next.js 13 Not Supported Now
 
 Currently `ant-design/pro-components` does not compatible with Next.js 13.
 **refine** is using `ant-design/pro-components` as a dependency for `<PageHeader/>` component.
@@ -69,7 +69,7 @@ npm i @pankod/refine-antd@latest
 
 </Tabs>
 
-## 🪄 Migrating your project automatically with refine-codemod ✨ (recommended)
+## 🪄 Migrating your project automatically with Codemod ✨ (recommended)
 
 `@pankod/refine-codemod` package handles the breaking changes for your project automatically, without any manual steps. It migrates your [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/next/packages/antd) version from 3.x.x to 4.x.x.
 
