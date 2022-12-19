@@ -6,6 +6,182 @@ title: Your First App using Ant Design
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+```tsx live shared
+const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({ column }) => {
+    return (<span>Column Sorter</span>);
+};
+
+const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({ column }) => {
+    return (<span>Column Filter</span>);
+};
+
+const PostShow: React.FC = () => {
+    const { queryResult } = RefineCore.useShow();
+    const { data, isLoading } = queryResult;
+    const record = data?.data;
+
+    const { data: categoryData } = RefineCore.useOne({
+        resource: "categories",
+        id: record?.category.id || "",
+        queryOptions: {
+            enabled: !!record?.category.id,
+        },
+    });
+
+    return (
+        <RefineAntd.Show isLoading={isLoading}>
+            <RefineAntd.Typography.Title level={5}>Title</RefineAntd.Typography.Title>
+            <RefineAntd.Typography.Text>{record?.title}</RefineAntd.Typography.Text>
+
+            <RefineAntd.Typography.Title level={5}>Status</RefineAntd.Typography.Title>
+            <RefineAntd.Typography.Text>
+                <RefineAntd.Tag>{record?.status}</RefineAntd.Tag>
+            </RefineAntd.Typography.Text>
+
+            <RefineAntd.Typography.Title level={5}>Category</RefineAntd.Typography.Title>
+            <RefineAntd.Typography.Text>{categoryData?.data.title}</RefineAntd.Typography.Text>
+        </RefineAntd.Show>
+    )
+};
+
+const PostEdit: React.FC = () => {
+    const { formProps, saveButtonProps, queryResult } = RefineAntd.useForm<IPost>();
+
+    const { selectProps: categorySelectProps } = RefineAntd.useSelect<IPost>({
+        resource: "categories",
+        defaultValue: queryResult?.data?.data?.category.id,
+    });
+
+    return (
+        <RefineAntd.Edit saveButtonProps={saveButtonProps}>
+            <RefineAntd.Form {...formProps} layout="vertical">
+                <RefineAntd.Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <RefineAntd.Input />
+                </RefineAntd.Form.Item>
+                <RefineAntd.Form.Item
+                    label="Status"
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <RefineAntd.Select
+                        options={[
+                            {
+                                label: "Published",
+                                value: "published",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                            {
+                                label: "Rejected",
+                                value: "rejected",
+                            },
+                        ]}
+                    />
+                </RefineAntd.Form.Item>
+                <RefineAntd.Form.Item
+                    label="Category"
+                    name={["category", "id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <RefineAntd.Select {...categorySelectProps} />
+                </RefineAntd.Form.Item>
+            </RefineAntd.Form>
+        </RefineAntd.Edit>
+    );
+};
+
+const PostCreate: React.FC = () => {
+    const { formProps, saveButtonProps } = RefineAntd.useForm<IPost>();
+    const { selectProps: categorySelectProps } = RefineAntd.useSelect<IPost>({
+        resource: "categories",
+    });
+
+    return (
+        <RefineAntd.Create saveButtonProps={saveButtonProps}>
+            <RefineAntd.Form {...formProps} layout="vertical">
+                <RefineAntd.Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <RefineAntd.Input />
+                </RefineAntd.Form.Item>
+                <RefineAntd.Form.Item
+                    label="Status"
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <RefineAntd.Select
+                        options={[
+                            {
+                                label: "Published",
+                                value: "published",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                            {
+                                label: "Rejected",
+                                value: "rejected",
+                            },
+                        ]}
+                    />
+                </RefineAntd.Form.Item>
+                <RefineAntd.Form.Item
+                    label="Category"
+                    name={["category", "id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <RefineAntd.Select {...categorySelectProps} />
+                </RefineAntd.Form.Item>
+            </RefineAntd.Form>
+        </RefineAntd.Create>
+    );
+};
+
+const { default: routerProvider } = RefineReactRouterV6;
+const { default: simpleRest } = RefineSimpleRest;
+setRefineProps({
+    routerProvider,
+    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+    notificationProvider: RefineAntd.notificationProvider,
+    Layout: RefineAntd.Layout,
+    catchAll: <RefineAntd.ErrorComponent />,
+    ReadyPage: RefineAntd.ReadyPage,
+});
+```
+
 ## Introduction
 
 This tutorial will go through the process of building a simple _admin panel_ for a _CMS-like_ application.
@@ -77,6 +253,7 @@ First, run the **create refine-app** with the following command:
 ```
 npm create refine-app@latest -- -o refine-antd tutorial
 ```
+
 </TabItem>
 </Tabs>
 
@@ -164,7 +341,7 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
@@ -213,15 +390,17 @@ npm run start
 Your **refine** application should be up and running!
 Point your browser to [http://localhost:3000](http://localhost:3000) to access it. You will see the welcome page.
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/ready-page.png" alt="Ready Page" />
-</div>
-<br/>
+```tsx live url=http://localhost:3000 previewHeight=420px previewOnly
+setInitialRoutes(["/"]);
+
+import { Refine } from "@pankod/refine-core";
+
+const App = () => {
+    return <Refine />;
+};
+
+render(<App />);
+```
 
 ## Adding Resources
 
@@ -276,7 +455,7 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 export const App: React.FC = () => {
     return (
@@ -302,18 +481,17 @@ export const App: React.FC = () => {
 
 Instead of showing the welcome page, the application should redirect now to an URL defined by the `name` property. Open your application to check if the URL is routed to **/posts**:
 
-<>
+```tsx live url=http://localhost:3000/posts previewHeight=420px previewOnly
+setInitialRoutes(["/posts"]);
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/resource-1.png" alt="Resource only with name" />
-</div>
-<br/>
-</>
+import { Refine } from "@pankod/refine-core";
+
+const App = () => {
+    return <Refine resources={[{ name: "posts" }]} />;
+};
+
+render(<App />);
+```
 
 You'll still see a **404** error page because no **Page** component is assigned to our resource yet.
 
@@ -360,15 +538,15 @@ export const PostList: React.FC = () => {
     return (
         <List>
             <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="title" title="title" />
+                <Table.Column dataIndex="title" title="Title" />
                 <Table.Column
                     dataIndex="status"
-                    title="status"
+                    title="Status"
                     render={(value) => <TagField value={value} />}
                 />
                 <Table.Column
                     dataIndex="createdAt"
-                    title="createdAt"
+                    title="CreatedAt"
                     render={(value) => <DateField format="LLL" value={value} />}
                 />
             </Table>
@@ -421,7 +599,7 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 // highlight-next-line
 import { PostList } from "./pages/posts";
@@ -465,20 +643,47 @@ Open your application in your browser. You will see **posts** are displayed corr
 
 In the next step, we are going to add a category field to the table which involves handling data relationships.
 
-<>
+```tsx live url=http://localhost:3000/posts previewHeight=420px previewOnly
+setInitialRoutes(["/posts"]);
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/resource-2.png" alt="Resource only List component" />
-</div>
-<br/>
-</>
+import { Refine } from "@pankod/refine-core";
+import {
+    List,
+    TextField,
+    TagField,
+    DateField,
+    Table,
+    useTable,
+} from "@pankod/refine-antd";
 
-<br/>
+const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column
+                    dataIndex="status"
+                    title="Status"
+                    render={(value) => <TagField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="CreatedAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                />
+            </Table>
+        </List>
+    );
+};
+
+const App = () => {
+    return <Refine resources={[{ name: "posts", list: PostList }]} />;
+};
+
+render(<App />);
+```
+
 
 ## Handling relationships
 
@@ -577,7 +782,7 @@ export const PostList: React.FC = () => {
                 // highlight-start
                 <Table.Column
                     dataIndex={["category", "id"]}
-                    title="category"
+                    title="Category"
                     render={(value) => {
                         if (isLoading) {
                             return <TextField value="Loading..." />;
@@ -626,6 +831,77 @@ Here, we set a condition to start fetching only when data is available.
 :::
 
 To get more detailed information about this hook, please refer the [useMany Documentation](/api-reference/core/hooks/data/useMany.md).
+
+```tsx live url=http://localhost:3000/posts previewHeight=420px previewOnly
+setInitialRoutes(["/posts"]);
+
+import { Refine, useMany } from "@pankod/refine-core";
+import {
+    List,
+    TextField,
+    TagField,
+    DateField,
+    Table,
+    useTable,
+} from "@pankod/refine-antd";
+
+const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column
+                    dataIndex="status"
+                    title="Status"
+                    render={(value) => <TagField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="CreatedAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="Category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    categoriesData?.data.find(
+                                        (item) => item.id === value,
+                                    )?.title
+                                }
+                            />
+                        );
+                    }}
+                />
+            </Table>
+        </List>
+    );
+};
+
+const App = () => {
+    return <Refine resources={[{ name: "posts", list: PostList }]} />;
+};
+
+render(<App />);
+```
 
 ## Adding search and filters
 
@@ -734,15 +1010,93 @@ export const PostList: React.FC = () => {
 `defaultValue` is used to get the value for the current item. It's not affected by search, sort and filter parameters.
 :::
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/filter.gif" alt="Filters" />
-</div>
-<br/>
+```tsx live url=http://localhost:3000/posts previewHeight=420px previewOnly
+setInitialRoutes(["/posts"]);
+
+import { Refine, useMany } from "@pankod/refine-core";
+import {
+    List,
+    TextField,
+    TagField,
+    DateField,
+    Table,
+    useTable,
+    FilterDropdown,
+    Select,
+    useSelect,
+} from "@pankod/refine-antd";
+
+const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
+
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column
+                    dataIndex="status"
+                    title="Status"
+                    render={(value) => <TagField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="CreatedAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="Category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    categoriesData?.data.find(
+                                        (item) => item.id === value,
+                                    )?.title
+                                }
+                            />
+                        );
+                    }}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                style={{ minWidth: 200 }}
+                                mode="multiple"
+                                placeholder="Select Category"
+                                {...categorySelectProps}
+                            />
+                        </FilterDropdown>
+                    )}
+                />
+            </Table>
+        </List>
+    );
+};
+
+const App = () => {
+    return <Refine resources={[{ name: "posts", list: PostList }]} />;
+};
+
+render(<App />);
+```
 
 ## Showing a single record
 
@@ -803,7 +1157,7 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 // highlight-next-line
 import { PostList, PostShow } from "./pages/posts";
@@ -951,17 +1305,107 @@ the `<Show>` component which has extra features like `list` and `refresh` button
 
 [Refer to the `<Show>` documentation for detailed usage information. &#8594](/api-reference/antd/components/basic-views/show.md)
 
-<br />
+```tsx live url=http://localhost:3000/posts previewHeight=420px previewOnly
+setInitialRoutes(["/posts"]);
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/show.gif" alt="Show record action" />
-</div>
-<br/>
+import { Refine, useMany } from "@pankod/refine-core";
+import {
+    List,
+    TextField,
+    TagField,
+    DateField,
+    Table,
+    useTable,
+    FilterDropdown,
+    Select,
+    useSelect,
+    ShowButton,
+} from "@pankod/refine-antd";
+
+const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
+
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column
+                    dataIndex="status"
+                    title="Status"
+                    render={(value) => <TagField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="CreatedAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="Category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    categoriesData?.data.find(
+                                        (item) => item.id === value,
+                                    )?.title
+                                }
+                            />
+                        );
+                    }}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                style={{ minWidth: 200 }}
+                                mode="multiple"
+                                placeholder="Select Category"
+                                {...categorySelectProps}
+                            />
+                        </FilterDropdown>
+                    )}
+                />
+                <Table.Column<IPost>
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_text, record): React.ReactNode => {
+                        return (
+                            <ShowButton
+                                size="small"
+                                recordItemId={record.id}
+                                hideText
+                            />
+                        );
+                    }}
+                />
+            </Table>
+        </List>
+    );
+};
+
+const App = () => {
+    return <Refine resources={[{ name: "posts", list: PostList, show: PostShow }]} />;
+};
+
+render(<App />);
+```
 
 ## Editing a record
 
@@ -1060,7 +1504,7 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 // highlight-next-line
 import { PostList, PostShow, PostEdit } from "./pages/posts";
@@ -1221,22 +1665,118 @@ In the edit page, `useForm` hook initializes the form with current record values
 ✳️ Form data is set automatically, whenever children input `<Form.Item>`'s are edited.
 
 ✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](/api-reference/core/providers/data-provider.md). After a successful response, the application will be redirected to the listing page.
-
-<br />
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/edit.gif" alt="Edit record action" />
-</div>
-<br/>
-
-<br />
-
 :::
+
+```tsx live url=http://localhost:3000/posts previewHeight=420px previewOnly
+setInitialRoutes(["/posts"]);
+
+import { Refine, useMany } from "@pankod/refine-core";
+import {
+    List,
+    TextField,
+    TagField,
+    DateField,
+    Table,
+    useTable,
+    FilterDropdown,
+    Select,
+    useSelect,
+    ShowButton,
+    Space,
+    EditButton,
+} from "@pankod/refine-antd";
+
+const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
+
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column
+                    dataIndex="status"
+                    title="Status"
+                    render={(value) => <TagField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="CreatedAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="Category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    categoriesData?.data.find(
+                                        (item) => item.id === value,
+                                    )?.title
+                                }
+                            />
+                        );
+                    }}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                style={{ minWidth: 200 }}
+                                mode="multiple"
+                                placeholder="Select Category"
+                                {...categorySelectProps}
+                            />
+                        </FilterDropdown>
+                    )}
+                />
+                <Table.Column<IPost>
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_text, record): React.ReactNode => {
+                        return (
+                            <Space>
+                                <ShowButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                    hideText
+                                />
+                                <EditButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                    hideText
+                                />
+                            </Space>
+                        );
+                    }}
+                />
+            </Table>
+        </List>
+    );
+};
+
+const App = () => {
+    return <Refine resources={[{ name: "posts", list: PostList, show: PostShow, edit: PostEdit }]} />;
+};
+
+render(<App />);
+```
 
 ## Creating a record
 
@@ -1336,7 +1876,7 @@ import {
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 // highlight-next-line
 import { PostList, PostShow, PostEdit, PostCreate } from "./pages/posts";
@@ -1378,18 +1918,116 @@ We should notice some minor differences from the edit example:
 
 ✳️ No `defaultValue` is passed to `useSelect`.
 
-<br />
+```tsx live url=http://localhost:3000/posts previewHeight=420px previewOnly
+setInitialRoutes(["/posts"]);
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/tutorial/create.gif" alt="Create record action" />
-</div>
+import { Refine, useMany } from "@pankod/refine-core";
+import {
+    List,
+    TextField,
+    TagField,
+    DateField,
+    Table,
+    useTable,
+    FilterDropdown,
+    Select,
+    useSelect,
+    ShowButton,
+    Space,
+    EditButton,
+} from "@pankod/refine-antd";
 
-<br/>
+const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
+
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column
+                    dataIndex="status"
+                    title="Status"
+                    render={(value) => <TagField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="CreatedAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="Category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    categoriesData?.data.find(
+                                        (item) => item.id === value,
+                                    )?.title
+                                }
+                            />
+                        );
+                    }}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                style={{ minWidth: 200 }}
+                                mode="multiple"
+                                placeholder="Select Category"
+                                {...categorySelectProps}
+                            />
+                        </FilterDropdown>
+                    )}
+                />
+                <Table.Column<IPost>
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_text, record): React.ReactNode => {
+                        return (
+                            <Space>
+                                <ShowButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                    hideText
+                                />
+                                <EditButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                    hideText
+                                />
+                            </Space>
+                        );
+                    }}
+                />
+            </Table>
+        </List>
+    );
+};
+
+const App = () => {
+    return <Refine resources={[{ name: "posts", list: PostList, show: PostShow, edit: PostEdit, create: PostCreate }]} />;
+};
+
+render(<App />);
+```
 
 ## Deleting a record
 
@@ -1528,7 +2166,7 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { PostList, PostShow, PostEdit, PostCreate } from "./pages/posts";
 
@@ -1558,6 +2196,123 @@ export const App: React.FC = () => {
 ```
 
 After adding `canDelete` prop, `<DeleteButton>` will appear in edit form.
+
+```tsx live url=http://localhost:3000/posts previewHeight=420px previewOnly
+setInitialRoutes(["/posts"]);
+
+import { Refine, useMany } from "@pankod/refine-core";
+import {
+    List,
+    TextField,
+    TagField,
+    DateField,
+    Table,
+    useTable,
+    FilterDropdown,
+    Select,
+    useSelect,
+    ShowButton,
+    Space,
+    EditButton,
+    DeleteButton,
+} from "@pankod/refine-antd";
+
+const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
+
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column
+                    dataIndex="status"
+                    title="Status"
+                    render={(value) => <TagField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="CreatedAt"
+                    render={(value) => <DateField format="LLL" value={value} />}
+                />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="Category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
+
+                        return (
+                            <TextField
+                                value={
+                                    categoriesData?.data.find(
+                                        (item) => item.id === value,
+                                    )?.title
+                                }
+                            />
+                        );
+                    }}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                style={{ minWidth: 200 }}
+                                mode="multiple"
+                                placeholder="Select Category"
+                                {...categorySelectProps}
+                            />
+                        </FilterDropdown>
+                    )}
+                />
+                <Table.Column<IPost>
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_text, record): React.ReactNode => {
+                        return (
+                            <Space>
+                                <ShowButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                    hideText
+                                />
+                                <EditButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                    hideText
+                                />
+                                <DeleteButton
+                                    size="small"
+                                    recordItemId={record.id}
+                                    hideText
+                                />
+                            </Space>
+                        );
+                    }}
+                />
+            </Table>
+        </List>
+    );
+};
+
+const App = () => {
+    return <Refine resources={[{ name: "posts", list: PostList, show: PostShow, edit: PostEdit, create: PostCreate, canDelete: true }]} />;
+};
+
+render(<App />);
+```
 
 ## Example
 

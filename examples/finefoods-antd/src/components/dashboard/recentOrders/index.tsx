@@ -6,9 +6,14 @@ import {
     Avatar,
     Space,
     Tag,
-    NumberField,
 } from "@pankod/refine-antd";
-import "./style.less";
+import {
+    RecentOrdersColumn,
+    Price,
+    OrderId,
+    Title,
+    TitleWrapper,
+} from "./styled";
 
 import { OrderActions } from "components";
 
@@ -60,14 +65,11 @@ export const RecentOrders: React.FC = () => {
                     />
                 )}
             />
-            <Table.Column<IOrder>
-                className="recent-orders-col"
+            <RecentOrdersColumn
                 key="summary"
                 render={(_, record) => (
-                    <div className="recent-orders-col__title">
-                        <Text className="recent-orders-col__title--up" strong>
-                            {record.products[0]?.name}
-                        </Text>
+                    <TitleWrapper>
+                        <Title strong>{record.products[0]?.name}</Title>
                         <Paragraph
                             ellipsis={{
                                 rows: 2,
@@ -78,27 +80,24 @@ export const RecentOrders: React.FC = () => {
                             {record.products[0]?.description}
                         </Paragraph>
 
-                        <Text
+                        <OrderId
                             strong
-                            className="orderId"
                             onClick={() => {
                                 show("orders", record.id);
                             }}
                         >
                             #{record.orderNumber}
-                        </Text>
-                    </div>
+                        </OrderId>
+                    </TitleWrapper>
                 )}
             />
-            <Table.Column<IOrder>
+            <RecentOrdersColumn
                 key="summary"
-                className="recent-orders-col"
                 render={(_, record) => (
                     <Space direction="vertical">
-                        <Text
-                            className="recent-orders-col__title--up"
+                        <Title
                             strong
-                        >{`${record.courier.name} ${record.courier.surname}`}</Text>
+                        >{`${record.courier.name} ${record.courier.surname}`}</Title>
                         <Text>{record.adress.text}</Text>
                     </Space>
                 )}
@@ -113,9 +112,8 @@ export const RecentOrders: React.FC = () => {
                             justifyContent: "space-between",
                         }}
                     >
-                        <NumberField
+                        <Price
                             strong
-                            className="recent-orders-col__title--up"
                             options={{
                                 currency: "USD",
                                 style: "currency",

@@ -150,7 +150,7 @@ import { notificationProvider, Layout } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 //highlight-next-line
@@ -483,7 +483,7 @@ import { liveProvider } from "@pankod/refine-ably";
 import { ablyClient } from "utility";
 //highlight-end
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Header } from "./components/header";

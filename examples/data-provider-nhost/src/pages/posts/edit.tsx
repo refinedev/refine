@@ -50,7 +50,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Edit
-            pageHeaderProps={{
+            headerProps={{
                 extra: (
                     <>
                         <ListButton />

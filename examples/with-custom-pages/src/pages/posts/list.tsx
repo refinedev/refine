@@ -34,7 +34,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List
-            pageHeaderProps={{
+            headerProps={{
                 extra: (
                     <Space>
                         <Button onClick={() => push("/authenticated-page")}>

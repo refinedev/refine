@@ -13,7 +13,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
 
         const inputRef = React.useRef<HTMLTextAreaElement>(null);
 
-        const [visible, setVisible] = React.useState(false);
+        const [open, setOpen] = React.useState(false);
         const [isCopied, setIsCopied] = React.useState(false);
 
         if (loading) {
@@ -39,7 +39,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                         <Space>
                             <Button
                                 type="primary"
-                                onClick={() => setVisible(true)}
+                                onClick={() => setOpen(true)}
                                 icon={<Icons.CodeOutlined />}
                             >
                                 Show Code
@@ -57,8 +57,8 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                     <div style={{ height: "50px" }}></div>
                     <Modal
                         width={800}
-                        visible={visible}
-                        onCancel={() => setVisible(false)}
+                        open={open}
+                        onCancel={() => setOpen(false)}
                         closeIcon={
                             <Icons.CloseOutlined style={{ color: "#666b7a" }} />
                         }

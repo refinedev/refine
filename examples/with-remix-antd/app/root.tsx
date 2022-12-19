@@ -19,8 +19,7 @@ import {
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-remix-router";
 
-import resetStyle from "@pankod/refine-antd/dist/reset.min.css";
-import antdStyle from "@pankod/refine-antd/dist/antd.min.css";
+import resetStyle from "@pankod/refine-antd/dist/reset.css";
 
 import { authProvider } from "./authProvider";
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages/posts";
@@ -80,8 +79,5 @@ export default function App(): JSX.Element {
 }
 
 export function links() {
-    return [
-        { rel: "stylesheet", href: antdStyle },
-        { rel: "stylesheet", href: resetStyle },
-    ];
+    return [{ rel: "stylesheet", href: resetStyle }];
 }

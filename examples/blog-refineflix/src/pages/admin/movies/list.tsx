@@ -25,7 +25,7 @@ export const AdminMovieList: React.FC<IResourceComponentsProps> = () => {
     });
 
     return (
-        <List pageHeaderProps={{ extra: <CreateButton /> }}>
+        <List headerProps={{ extra: <CreateButton /> }}>
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     key="id"

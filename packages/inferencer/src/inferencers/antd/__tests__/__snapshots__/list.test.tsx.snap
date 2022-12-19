@@ -5,31 +5,44 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
   <div>
     <div>
       <div
-        class="ant-page-header has-breadcrumb"
+        class="ant-page-header ant-page-header-has-breadcrumb ant-page-header-ghost"
+        style="padding: 0px;"
       >
         <div
-          class="ant-page-header-heading"
+          class="ant-page-header-heading "
         >
           <div
-            class="ant-page-header-heading-left"
+            class="ant-page-header-heading-left "
           >
             <span
-              class="ant-page-header-heading-title"
-              title="Posts"
+              class="ant-page-header-heading-title "
             >
-              Posts
+              <h4
+                class="ant-typography css-dev-only-do-not-override-26rdvq"
+                style="margin-bottom: 0px;"
+              >
+                Posts
+              </h4>
+            </span>
+            <span
+              class="ant-page-header-heading-sub-title "
+            >
+              <h5
+                class="ant-typography ant-typography-secondary css-dev-only-do-not-override-26rdvq"
+                style="margin-bottom: 0px;"
+              />
             </span>
           </div>
         </div>
         <div
-          class="ant-page-header-content"
+          class="ant-page-header-content "
         >
           <div>
             <div
-              class="ant-table-wrapper"
+              class="ant-table-wrapper css-dev-only-do-not-override-26rdvq"
             >
               <div
-                class="ant-spin-nested-loading"
+                class="ant-spin-nested-loading css-dev-only-do-not-override-26rdvq"
               >
                 <div
                   class="ant-spin-container"
@@ -314,7 +327,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-typography"
+                                  class="ant-typography css-dev-only-do-not-override-26rdvq"
                                 >
                                   04/02/2022
                                 </span>
@@ -323,7 +336,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-typography"
+                                  class="ant-typography css-dev-only-do-not-override-26rdvq"
                                 >
                                   08/10/2021
                                 </span>
@@ -332,7 +345,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <div
-                                  class="ant-image"
+                                  class="ant-image css-dev-only-do-not-override-26rdvq"
                                 >
                                   <img
                                     class="ant-image-img"
@@ -373,7 +386,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-tag"
+                                  class="ant-tag css-dev-only-do-not-override-26rdvq"
                                 >
                                   Nobis Et Ut
                                 </span>
@@ -439,7 +452,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-typography"
+                                  class="ant-typography css-dev-only-do-not-override-26rdvq"
                                 >
                                   09/24/2022
                                 </span>
@@ -448,7 +461,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-typography"
+                                  class="ant-typography css-dev-only-do-not-override-26rdvq"
                                 >
                                   09/01/2021
                                 </span>
@@ -457,7 +470,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <div
-                                  class="ant-image"
+                                  class="ant-image css-dev-only-do-not-override-26rdvq"
                                 >
                                   <img
                                     class="ant-image-img"
@@ -498,12 +511,12 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-tag"
+                                  class="ant-tag css-dev-only-do-not-override-26rdvq"
                                 >
                                   Error Eos Et
                                 </span>
                                 <span
-                                  class="ant-tag"
+                                  class="ant-tag css-dev-only-do-not-override-26rdvq"
                                 >
                                   Nobis Et Ut
                                 </span>
@@ -520,7 +533,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                     </div>
                   </div>
                   <ul
-                    class="ant-pagination ant-pagination-simple ant-table-pagination ant-table-pagination-center"
+                    class="ant-pagination ant-pagination-simple ant-table-pagination ant-table-pagination-center css-dev-only-do-not-override-26rdvq"
                   >
                     <li
                       aria-disabled="true"
@@ -621,14 +634,14 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
     style="position: fixed; bottom: 12px; right: 60px;"
   >
     <div
-      class="ant-space ant-space-horizontal ant-space-align-center"
+      class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
     >
       <div
         class="ant-space-item"
         style="margin-right: 8px;"
       >
         <button
-          class="ant-btn ant-btn-primary"
+          class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-primary"
           type="button"
         >
           <span
@@ -659,7 +672,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
         class="ant-space-item"
       >
         <a
-          class="ant-btn ant-btn-default"
+          class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-default"
           href="https://github.com/refinedev/refine/discussions/3046"
           target="_blank"
         >

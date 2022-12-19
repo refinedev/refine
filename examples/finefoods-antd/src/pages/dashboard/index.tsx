@@ -92,7 +92,11 @@ export const DashboardPage: React.FC = () => {
                         height: 550,
                         overflowY: "scroll",
                     }}
-                    title={<Text strong>{t("dashboard.timeline.title")}</Text>}
+                    title={
+                        <Text strong style={{ textTransform: "capitalize" }}>
+                            {t("dashboard.timeline.title")}
+                        </Text>
+                    }
                 >
                     <OrderTimeline />
                 </Card>

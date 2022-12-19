@@ -113,7 +113,7 @@ export const TableEditable = () => {
 
     return (
         <List
-            pageHeaderProps={{
+            headerProps={{
                 subTitle: hasSelected && (
                     <Button
                         danger

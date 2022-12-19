@@ -103,7 +103,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Edit
-            actionButtons={
+            footerButtons={
                 <>
                     {current > 0 && (
                         <Button

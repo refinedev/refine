@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useApiUrl, useCustom, useTranslate } from "@pankod/refine-core";
-import { Typography, DatePicker, NumberField } from "@pankod/refine-antd";
+import { Typography, NumberField } from "@pankod/refine-antd";
 import { Line } from "@ant-design/charts";
 import { LineConfig } from "@ant-design/plots/lib/components/line";
 import dayjs, { Dayjs } from "dayjs";
@@ -8,7 +8,13 @@ import dayjs, { Dayjs } from "dayjs";
 import { IncreaseIcon, DecreaseIcon } from "components/icons";
 
 import { ISalesChart } from "interfaces";
-import "./style.less";
+import {
+    DailyRevenueWrapper,
+    TitleAreNumber,
+    TitleArea,
+    TitleAreaAmount,
+    RangePicker,
+} from "./styled";
 
 export const DailyRevenue: React.FC = () => {
     const t = useTranslate();
@@ -37,8 +43,6 @@ export const DailyRevenue: React.FC = () => {
             query,
         },
     });
-
-    const { RangePicker } = DatePicker;
 
     const config = useMemo(() => {
         const config: LineConfig = {
@@ -74,13 +78,13 @@ export const DailyRevenue: React.FC = () => {
     const disabledDate = (date: Dayjs) => date > dayjs();
 
     return (
-        <div className="daily-revenue-wrapper">
-            <div className="title-area">
-                <div className="title-area__amount">
+        <DailyRevenueWrapper>
+            <TitleArea>
+                <TitleAreaAmount>
                     <Typography.Title level={3}>
                         {t("dashboard.dailyRevenue.title")}
                     </Typography.Title>
-                    <div className="title-area__number">
+                    <TitleAreNumber>
                         <NumberField
                             style={{ fontSize: 36 }}
                             strong
@@ -96,11 +100,10 @@ export const DailyRevenue: React.FC = () => {
                         ) : (
                             <DecreaseIcon />
                         )}
-                    </div>
-                </div>
+                    </TitleAreNumber>
+                </TitleAreaAmount>
 
                 <RangePicker
-                    className="range-picker"
                     size="small"
                     value={dateRange}
                     onChange={(values) => {
@@ -134,7 +137,7 @@ export const DailyRevenue: React.FC = () => {
                     }}
                     format="YYYY/MM/DD"
                 />
-            </div>
+            </TitleArea>
             <Line
                 padding={0}
                 appendPadding={10}
@@ -142,6 +145,6 @@ export const DailyRevenue: React.FC = () => {
                 style={{ maxHeight: "135px" }}
                 {...config}
             />
-        </div>
+        </DailyRevenueWrapper>
     );
 };

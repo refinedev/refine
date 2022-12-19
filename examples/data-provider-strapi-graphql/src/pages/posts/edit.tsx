@@ -47,7 +47,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     return (
         <Edit
             saveButtonProps={saveButtonProps}
-            pageHeaderProps={{
+            headerProps={{
                 extra: (
                     <Space>
                         <ListButton />

@@ -69,7 +69,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List
-            pageHeaderProps={{
+            headerProps={{
                 subTitle: (
                     <>
                         <Button

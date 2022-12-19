@@ -110,7 +110,7 @@ const Preview: NextPage = () => {
             };
             element.setAttribute(
                 "href",
-                "https://unpkg.com/@pankod/refine-antd/dist/styles.min.css",
+                "https://unpkg.com/antd/dist/reset.css",
             );
             document.head.appendChild(element);
         } else {

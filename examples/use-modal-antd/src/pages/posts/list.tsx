@@ -18,7 +18,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     return (
         <>
             <List
-                pageHeaderProps={{
+                headerProps={{
                     extra: <Button onClick={show}>Show Dummy Modal</Button>,
                 }}
             >

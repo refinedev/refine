@@ -6,14 +6,13 @@ title: Custom Pages
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 :::caution
 
 This document is related to how to create custom pages for **react** applications. Since **Nextjs** and **Remix** has a file system based router built on the page concept, you can create your custom pages under the `pages` or `routes` folder.
 
-[Refer to the `Nextjs Guide` documentation for detailed information. &#8594][ssrNextjs]
+[Refer to the `Nextjs Guide` documentation for detailed information. &#8594][ssrnextjs]
 
-[Refer to the `Remix Guide` documentation for detailed information. &#8594][ssrRemix]
+[Refer to the `Remix Guide` documentation for detailed information. &#8594][ssrremix]
 :::
 
 <br />
@@ -129,8 +128,6 @@ export default App;
 
   </TabItem>
 </Tabs>
-
-
 
 Everyone can access this page via `/custom-page` path.
 
@@ -360,7 +357,7 @@ values={[
 ]}>
 <TabItem value="react-router-v6">
 
-```tsx 
+```tsx
 import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 
@@ -393,7 +390,7 @@ export default App;
 </TabItem>
 <TabItem value="react-location">
 
-```tsx 
+```tsx
 import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-location";
 
@@ -431,7 +428,6 @@ By default, custom pages don't have any layout. If you want to show your custom 
 [Refer to the `<LayoutWrapper>` for more detailed information. &#8594](/api-reference/core/components/layout-wrapper.md)
 </TabItem>
 </Tabs>
-
 
 ## Example
 
@@ -474,7 +470,7 @@ import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -503,7 +499,7 @@ Now, let's create the custom page with the name `<PostReview>`. We will use the 
 
 [Refer to the `useList` documentation for detailed usage. &#8594](/api-reference/core/hooks/data/useList.md)
 
-```tsx  title="src/pages/post-review.tsx"
+```tsx title="src/pages/post-review.tsx"
 import { useList } from "@pankod/refine-core";
 
 const PostReview = () => {
@@ -542,7 +538,7 @@ We set the filtering process with `filters` then page size set with `pagination`
 
 Post's category is relational. So we will use the post's category "id" to get the category title. Let's use `useOne` to fetch the category we want.
 
-```tsx  title="src/pages/post-review.tsx"
+```tsx title="src/pages/post-review.tsx"
 // highlight-next-line
 import { useList, useOne } from "@pankod/refine-core";
 
@@ -561,7 +557,7 @@ export const PostReview = () => {
         },
     });
 
-// highlight-start
+    // highlight-start
     const post = data?.data[0];
 
     const { data: categoryData, isLoading: categoryIsLoading } =
@@ -582,14 +578,14 @@ Now we have the data to display the post as we want. Let's use the `<Show>` comp
 `<Show>` component is not required, you are free to display the data as you wish.
 :::
 
-```tsx  title="src/pages/post-review.tsx"
+```tsx title="src/pages/post-review.tsx"
 import { useOne, useList } from "@pankod/refine-core";
 import {
-// highlight-start
+    // highlight-start
     Typography,
     Show,
     MarkdownField,
-// highlight-end
+    // highlight-end
 } from "@pankod/refine-antd";
 
 // highlight-next-line
@@ -621,7 +617,7 @@ export const PostReview = () => {
         });
 
     return (
-// highlight-start
+        // highlight-start
         <Show
             title="Review Posts"
             resource="posts"
@@ -640,7 +636,7 @@ export const PostReview = () => {
             <Title level={5}>Content</Title>
             <MarkdownField value={record?.content} />
         </Show>
-// highlight-end
+        // highlight-end
     );
 };
 ```
@@ -652,7 +648,7 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -664,7 +660,7 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-// highlight-start
+            // highlight-start
             routerProvider={{
                 ...routerProvider,
                 routes: [
@@ -674,7 +670,7 @@ const App = () => {
                     },
                 ],
             }}
-// highlight-end
+            // highlight-end
             resources={[
                 {
                     name: "posts",
@@ -707,21 +703,21 @@ Now let's put in approve and reject buttons to change the status of the post sho
 
 [Refer to the `useUpdate` documentation for detailed usage. &#8594](/api-reference/core/hooks/data/useUpdate.md)
 
-```tsx  title="src/pages/post-review.tsx"
-import { 
-    useList, 
-    useOne, 
+```tsx title="src/pages/post-review.tsx"
+import {
+    useList,
+    useOne,
     //highlight-next-line
-    useUpdate 
+    useUpdate,
 } from "@pankod/refine-core";
 import {
     Typography,
     Show,
     MarkdownField,
-// highlight-start
+    // highlight-start
     Space,
     Button,
-// highlight-end
+    // highlight-end
 } from "@pankod/refine-antd";
 
 const { Title, Text } = Typography;
@@ -751,17 +747,17 @@ export const PostReview = () => {
             },
         });
 
-// highlight-next-line
+    // highlight-next-line
     const mutationResult = useUpdate<IPost>();
 
-// highlight-next-line
+    // highlight-next-line
     const { mutate, isLoading: mutateIsLoading } = mutationResult;
 
-// highlight-start
+    // highlight-start
     const handleUpdate = (item: IPost, status: string) => {
         mutate({ resource: "posts", id: item.id, values: { ...item, status } });
     };
-// highlight-end
+    // highlight-end
 
     const buttonDisabled = isLoading || categoryIsLoading || mutateIsLoading;
 
@@ -774,7 +770,7 @@ export const PostReview = () => {
             pageHeaderProps={{
                 backIcon: false,
             }}
-// highlight-start
+            // highlight-start
             actionButtons={
                 <Space
                     key="action-buttons"
@@ -800,8 +796,8 @@ export const PostReview = () => {
                     </Button>
                 </Space>
             }
-       // highlight-end
->
+            // highlight-end
+        >
             <Title level={5}>Status</Title>
             <Text>{record?.status}</Text>
             <Title level={5}>Title</Title>
@@ -829,5 +825,5 @@ export const PostReview = () => {
 
 <StackblitzExample path="with-custom-pages" />
 
-[ssrNextjs]: /docs/advanced-tutorials/ssr/nextjs
-[ssrRemix]: /docs/advanced-tutorials/ssr/remix
+[ssrnextjs]: /docs/advanced-tutorials/ssr/nextjs
+[ssrremix]: /docs/advanced-tutorials/ssr/remix

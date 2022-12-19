@@ -13,6 +13,7 @@ export const containerStyles: CSSProperties = {
 export const titleStyles: CSSProperties = {
     textAlign: "center",
     color: "#626262",
+    marginBottom: 0,
     fontSize: "24px",
     letterSpacing: "-0.04em",
     overflowWrap: "break-word",
