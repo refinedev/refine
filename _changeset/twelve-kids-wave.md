@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-antd": major
+"@pankod/refine-antd": minor
 ---
 
 We've released Ant Design v5 support :tada:
