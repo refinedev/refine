@@ -8,7 +8,7 @@ export default function NavbarMobileSidebarLayout({
 }) {
     const { shown: secondaryMenuShown } = useNavbarSecondaryMenu();
     return (
-        <div className="navbar-sidebar h-screen w-full backdrop-blur-[18px] bg-white bg-opacity-50 with-hoverline">
+        <div className="navbar-sidebar h-screen w-full bg-[#fff] with-hoverline">
             {header}
             <div
                 className={clsx("navbar-sidebar__items", {

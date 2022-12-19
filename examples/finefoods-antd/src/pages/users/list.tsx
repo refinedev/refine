@@ -93,11 +93,19 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Row gutter={[16, 16]}>
-            <Col xl={6} lg={24} xs={24}>
+            <Col
+                xl={6}
+                lg={24}
+                xs={24}
+                style={{
+                    marginTop: "48px",
+                }}
+            >
                 <Card title={t("users.filter.title")}>
                     <Filter formProps={searchFormProps} />
                 </Card>
             </Col>
+
             <Col xl={18} xs={24}>
                 <List>
                     <Table {...tableProps} rowKey="id">
@@ -147,6 +155,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                             sorter
                         />
                         <Table.Column<IUser>
+                            fixed="right"
                             title={t("table.actions")}
                             render={(_, record) => (
                                 <ShowButton hideText recordItemId={record.id} />

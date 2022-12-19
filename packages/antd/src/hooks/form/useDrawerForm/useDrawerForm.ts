@@ -80,7 +80,7 @@ export const useDrawerForm = <
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
 
-    const [visible, setVisible] = useState(false);
+    const [open, setOpen] = useState(false);
 
     const { mutationMode: mutationModeContext } = useMutationMode();
     const mutationMode = mutationModeProp ?? mutationModeContext;
@@ -92,9 +92,9 @@ export const useDrawerForm = <
     } = mutationResult ?? {};
 
     useEffect(() => {
-        if (visible && mutationMode === "pessimistic") {
+        if (open && mutationMode === "pessimistic") {
             if (isSuccessMutation && !isLoadingMutation) {
-                setVisible(false);
+                setOpen(false);
                 resetMutation?.();
             }
         }
@@ -105,7 +105,7 @@ export const useDrawerForm = <
         onClick: () => {
             form?.submit();
             if (!(mutationMode === "pessimistic")) {
-                setVisible(false);
+                setOpen(false);
             }
         },
         loading: formLoading,
@@ -115,7 +115,7 @@ export const useDrawerForm = <
         recordItemId: id,
         onSuccess: () => {
             setId?.(undefined);
-            setVisible(false);
+            setOpen(false);
         },
     };
 
@@ -135,14 +135,14 @@ export const useDrawerForm = <
             }
         }
 
-        setVisible(false);
+        setOpen(false);
         setId?.(undefined);
     }, [warnWhen]);
 
     const handleShow = useCallback((id?: BaseKey) => {
         setId?.(id);
 
-        setVisible(true);
+        setOpen(true);
     }, []);
 
     return {
@@ -154,12 +154,13 @@ export const useDrawerForm = <
             ...useFormProps.formProps,
             onValuesChange: formProps?.onValuesChange,
             onKeyUp: formProps?.onKeyUp,
-            onFinish: formProps?.onFinish,
+            onFinish: formProps.onFinish,
         },
         drawerProps: {
             width: "500px",
             onClose: handleClose,
-            visible,
+            open,
+            visible: open,
             getContainer: false,
             forceRender: true,
         },

@@ -1,5 +1,5 @@
 import React from "react";
-import { PageHeader, Space } from "antd";
+import { Space } from "antd";
 import {
     useResourceWithRoute,
     useRouterContext,
@@ -9,7 +9,7 @@ import {
     useRefineContext,
 } from "@pankod/refine-core";
 
-import { Breadcrumb, CreateButton } from "@components";
+import { Breadcrumb, CreateButton, PageHeader } from "@components";
 import { ListProps } from "../types";
 
 /**
@@ -23,7 +23,6 @@ export const List: React.FC<ListProps> = ({
     title,
     children,
     createButtonProps,
-    pageHeaderProps,
     resource: resourceFromProps,
     wrapperProps,
     contentProps,
@@ -92,7 +91,6 @@ export const List: React.FC<ListProps> = ({
                         <Breadcrumb />
                     )
                 }
-                {...(pageHeaderProps ?? {})}
                 {...(headerProps ?? {})}
             >
                 <div {...(contentProps ?? {})}>{children}</div>

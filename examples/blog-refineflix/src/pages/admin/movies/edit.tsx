@@ -17,10 +17,7 @@ export const AdminMovieEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IMovies>();
 
     return (
-        <Edit
-            saveButtonProps={saveButtonProps}
-            pageHeaderProps={{ extra: null }}
-        >
+        <Edit saveButtonProps={saveButtonProps} headerProps={{ extra: null }}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Name"

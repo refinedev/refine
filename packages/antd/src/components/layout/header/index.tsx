@@ -17,7 +17,6 @@ export const Header: React.FC<RefineLayoutHeaderProps> = () => {
                 alignItems: "center",
                 padding: "0px 24px",
                 height: "64px",
-                backgroundColor: "#FFF",
             }}
         >
             <Space>

@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 1.15.3
+
+### Patch Changes
+
+-   [#3228](https://github.com/refinedev/refine/pull/3228) [`5aabfa19493`](https://github.com/refinedev/refine/commit/5aabfa1949374850f0f352acf842fafb01adcdcb) Thanks [@aliemir](https://github.com/aliemir)! - Fixed useForm's saveButtonProps.onClick event type
+
 ## 1.15.2
 
 ### Patch Changes

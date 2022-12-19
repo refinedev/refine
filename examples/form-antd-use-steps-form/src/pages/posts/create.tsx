@@ -95,7 +95,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Create
-            actionButtons={
+            footerButtons={
                 <>
                     {current > 0 && (
                         <Button

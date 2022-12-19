@@ -12,7 +12,7 @@
         "eject": "react-scripts eject"
     },
     "dependencies": {
-        "@pankod/refine-antd": "^3.70.2",
+        "@pankod/refine-antd": "^4.0.0",
         "@pankod/refine-core": "^3.90.6",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-simple-rest": "^3.37.4",
@@ -25,9 +25,9 @@
         "react": "^18.0.0",
         "react-app-rewired": "^2.2.1",
         "react-dom": "^18.0.0",
-        "react-mde": "^11.5.0",
-        "react-scripts": "^5.0.1",
-        "typescript": "^4.7.4"
+        "react-scripts": "^5.0.0",
+        "typescript": "^4.7.4",
+        "@uiw/react-md-editor": "^3.19.5"
     },
     "devDependencies": {
         "assert": "^2.0.0",
@@ -40,7 +40,7 @@
         "process": "^0.11.10",
         "stream-browserify": "^3.0.0",
         "stream-http": "^3.2.0",
-        "webpack": "^5.74.0"
+        "webpack": "^5.70.0"
     },
     "browserslist": {
         "production": [

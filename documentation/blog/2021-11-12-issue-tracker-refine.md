@@ -541,7 +541,7 @@ import { dataProvider } from "@pankod/refine-supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
@@ -602,7 +602,7 @@ import { dataProvider } from "@pankod/refine-supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
@@ -1484,7 +1484,7 @@ import { dataProvider } from "@pankod/refine-supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { UserList } from "./pages/user";
 import { TaskList, TaskShow, TaskCreate, EditTask } from "./pages/task";

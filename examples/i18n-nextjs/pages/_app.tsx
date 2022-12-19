@@ -14,7 +14,7 @@ import routerProvider from "@pankod/refine-nextjs-router";
 
 import { PostList, PostCreate, PostEdit, PostShow, Header } from "@components";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 import "@styles/global.css";
 
 const API_URL = "https://api.fake-rest.refine.dev";

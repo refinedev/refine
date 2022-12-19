@@ -12,7 +12,7 @@ import CodeBlock from '@theme/CodeBlock';
 ### Motivation behind breaking changes
 
 One of the big requests we received from the Community after we released the first version of **refine** was that **refine** could be used with different UI frameworks other than Ant Design.
-We are happy to announce that you can use it as **refine** `Headless` on top of these requests. Now **refine** is a framework  and works in harmony with the any UI framework you choose. At the same time, all projects made with Refine@2 are also Refine@3 compatible.
+We are happy to announce that you can use it as **refine** `Headless` on top of these requests. Now **refine** is a framework and works in harmony with the any UI framework you choose. At the same time, all projects made with Refine@2 are also Refine@3 compatible.
 
 With **refine** 3.x.x **headless** version, we have released two new packages named `@pankod/refine-core` and `@pankod/refine-antd`. The `refine-core` package includes UI independent hooks and components. The `refine-antd` package includes Ant Design components and there are table, form, select, etc hooks and components compatible with `@pankod/refine-core`.
 
@@ -43,37 +43,36 @@ npm i @pankod/refine-core @pankod/refine-antd
 ```
 
 export const Packages = () => {
-    const packages = [
-        "@pankod/refine-airtable",
-        "@pankod/refine-altogic",
-        "@pankod/refine-graphql",
-        "@pankod/refine-hasura",
-        "@pankod/refine-nestjsx-crud",
-        "@pankod/refine-nextjs-router",
-        "@pankod/refine-react-router",
-        "@pankod/refine-simple-rest",
-        "@pankod/refine-strapi",
-        "@pankod/refine-strapi-v4",
-        "@pankod/refine-strapi-graphql",
-        "@pankod/refine-supabase",
-        "@pankod/refine-appwrite",
-        "@pankod/refine-ably",
-    ]
-    return (
-        <Tabs
-        defaultValue="@pankod/refine-airtable"
-        values={packages.map(p => ({
-            label: p, value: p
-        }))}
-        >{
-            packages.map(p =>
-            <TabItem value={p}>
-                <CodeBlock className="language-bash">{`npm i ${p}@latest`}</CodeBlock>
-            </TabItem>
-            )
-        }
-        </Tabs>
-        )
+const packages = [
+"@pankod/refine-airtable",
+"@pankod/refine-altogic",
+"@pankod/refine-graphql",
+"@pankod/refine-hasura",
+"@pankod/refine-nestjsx-crud",
+"@pankod/refine-nextjs-router",
+"@pankod/refine-react-router",
+"@pankod/refine-simple-rest",
+"@pankod/refine-strapi",
+"@pankod/refine-strapi-v4",
+"@pankod/refine-strapi-graphql",
+"@pankod/refine-supabase",
+"@pankod/refine-appwrite",
+"@pankod/refine-ably",
+]
+return (
+<Tabs
+defaultValue="@pankod/refine-airtable"
+values={packages.map(p => ({
+label: p, value: p
+}))} >{
+packages.map(p =>
+<TabItem value={p}>
+<CodeBlock className="language-bash">{`npm i ${p}@latest`}</CodeBlock>
+</TabItem>
+)
+}
+</Tabs>
+)
 }
 
 <Packages/>
@@ -91,7 +90,7 @@ UI independent import packages have been migrated to the `refine-core` package w
 <p>
 
 ```tsx
- [
+[
     "Authenticated",
     "AuthenticatedProps",
     "CanAccess",
@@ -310,6 +309,7 @@ UI independent import packages have been migrated to the `refine-core` package w
     "AuthProvider",
 ];
 ```
+
 </p>
 </details>
 
@@ -321,7 +321,7 @@ All of the imports defined above must now be imported from `@pankod/refine-core`
 import dataProvider from "@pankod/refine-json-server";
 
 - import "@pankod/refine/dist/styles.min.css";
-+ import "@pankod/refine-antd/dist/styles.min.css"
++ import "@pankod/refine-antd/dist/reset.css"
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -479,6 +479,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 };
 
 ```
+
 </p>
 </details>
 
@@ -489,14 +490,12 @@ With **refine** 3.x.x, you can include and use different notification libraries 
 ```tsx
 import { Refine } from "@pankod/refine-core";
 //highlight-start
-import {
-    notificationProvider,
-} from "@pankod/refine-antd";
+import { notificationProvider } from "@pankod/refine-antd";
 //highlight-end
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { PostList, PostEdit, PostCreate, PostShow } from "./pages";
 
@@ -537,11 +536,11 @@ import {
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
-    //highlight-end
+//highlight-end
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -570,7 +569,6 @@ const App: React.FC = () => {
         />
     );
 };
-
 ```
 
 ### Default `LoginPage`
@@ -580,17 +578,17 @@ If you are using **refine**'s default login page while using AuthProvider, you m
 ```tsx
 import { Refine, AuthProvider } from "@pankod/refine-core";
 import {
-  notificationProvider,
-  //highlight-next-line
-  LoginPage,
-  Layout,
-  ErrorComponent
-  //highlight-next-line
+    notificationProvider,
+    //highlight-next-line
+    LoginPage,
+    Layout,
+    ErrorComponent,
+    //highlight-next-line
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { PostList, PostEdit, PostShow } from "pages/posts";
 import { DashboardPage } from "pages/dashboard";
@@ -598,34 +596,34 @@ import { DashboardPage } from "pages/dashboard";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-
-  return (
-    <Refine
-      authProvider={authProvider}
-      dataProvider={dataProvider(API_URL)}
-      routerProvider={routerProvider}
-      DashboardPage={DashboardPage}
-      resources={[
-        {
-          name: "posts",
-          list: PostList,
-          edit: PostEdit,
-          show: PostShow
-        }
-      ]}
-      notificationProvider={notificationProvider}
-      //highlight-next-line
-      LoginPage={LoginPage}
-      Layout={Layout}
-      catchAll={<ErrorComponent />}
-    />
-  );
+    return (
+        <Refine
+            authProvider={authProvider}
+            dataProvider={dataProvider(API_URL)}
+            routerProvider={routerProvider}
+            DashboardPage={DashboardPage}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+            notificationProvider={notificationProvider}
+            //highlight-next-line
+            LoginPage={LoginPage}
+            Layout={Layout}
+            catchAll={<ErrorComponent />}
+        />
+    );
 };
 
 export default App;
 ```
 
 ### `configProviderProps` to `ConfigProvider`
+
 configProviderProps has been deprecated. Instead we use `ConfigProvider` which is included in the `refine-antd` package. If you are using `ConfigProvider` you need to wrap `Refine` component as below.
 
 ```diff
@@ -639,7 +637,7 @@ import {
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -673,11 +671,12 @@ const App: React.FC = () => {
 ```
 
 ### `setEditId` to `setId` & `editId` to `id`
+
 Change the use `setEditId` and `editId` used in `useEditableTable`, `useModalForm`, and `useDrawerForm`.
 
-- `setEditId` -> `setId`
+-   `setEditId` -> `setId`
 
-- `editId` -> `id`
+-   `editId` -> `id`
 
 ```diff title="PostList"
 import { IResourceComponentsProps } from "@pankod/refine-core";
@@ -716,5 +715,5 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 [refine-codemod]: https://github.com/refinedev/refine/tree/master/packages/codemod
 [refine]: /api-reference/core/components/refine-config.md
 [resources]: /api-reference/core/components/refine-config.md#resources
-[routerProvider]: /api-reference/core/providers/router-provider.md
-[customPages]: /advanced-tutorials/custom-pages.md
+[routerprovider]: /api-reference/core/providers/router-provider.md
+[custompages]: /advanced-tutorials/custom-pages.md

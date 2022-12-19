@@ -149,38 +149,7 @@ const siteConfig = {
                 src: "img/refine_logo.png",
             },
             items: [
-                {
-                    to: "docs/getting-started/overview/",
-                    label: "Docs",
-                    position: "left",
-                },
-                {
-                    to: "docs",
-                    label: "Tutorial",
-                    position: "left",
-                    activeBaseRegex: "/^/docs(/)?$/",
-                },
-                {
-                    to: "examples",
-                    label: "Examples",
-                    position: "left",
-                },
-                {
-                    to: "integrations",
-                    label: "Integrations",
-                    position: "left",
-                },
                 { to: "blog", label: "Blog", position: "left" },
-                {
-                    to: "https://github.com/refinedev/refine",
-                    label: "GitHub",
-                    position: "left",
-                },
-                {
-                    to: "https://store.refine.dev",
-                    label: "Store 🎁",
-                    position: "left",
-                },
                 {
                     type: "docsVersionDropdown",
                     position: "right",

@@ -27,7 +27,7 @@ export const AdminMovieShow: React.FC<IResourceComponentsProps> = () => {
     return (
         <Show
             isLoading={isLoading}
-            pageHeaderProps={{
+            headerProps={{
                 title: record?.name,
                 subTitle: record?.premiere,
                 extra: (

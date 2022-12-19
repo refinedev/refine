@@ -24,9 +24,11 @@ We need to install Casbin.
 ```bash
 npm install casbin
 ```
+
 :::caution
 To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
+
 ## Setup
 
 The app will have three resources: **posts**, **users** and **categories** with CRUD pages(list, create, edit and show).
@@ -37,11 +39,16 @@ The app will have three resources: **posts**, **users** and **categories** with 
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { UserList, UserCreate, UserEdit, UserShow } from "pages/users";
@@ -487,8 +494,7 @@ export const PostList: React.FC = () => {
     return (
         <List>
             <Table {...tableProps} rowKey="id">
-                // ...
-                // highlight-start
+                // ... // highlight-start
                 {canAccess?.can && (
                     <Table.Column
                         dataIndex="hit"
@@ -501,8 +507,7 @@ export const PostList: React.FC = () => {
                         )}
                     />
                 )}
-                // highlight-end
-                // ...
+                // highlight-end // ...
             </Table>
         </List>
     );

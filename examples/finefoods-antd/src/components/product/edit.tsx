@@ -52,7 +52,7 @@ export const EditProduct: React.FC<EditProductProps> = ({
         >
             <Edit
                 saveButtonProps={saveButtonProps}
-                pageHeaderProps={{ extra: null }}
+                headerProps={{ extra: null }}
                 resource="products"
             >
                 <Form {...formProps} layout="vertical">
