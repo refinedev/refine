@@ -41,5 +41,3 @@ jobs:
     - name: test
       run: |
         npm run test
-      env:
-        NODE_ENV: development
