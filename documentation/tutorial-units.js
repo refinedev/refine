@@ -14,6 +14,18 @@ module.exports = {
                 no: 3,
                 label: "Understanding the Data Provider",
             },
+            "understanding-resources": {
+                no: 4,
+                label: "Understanding the Resources",
+            },
+            "adding-crud-pages": {
+                no: 5,
+                label: "Adding CRUD pages",
+            },
+            "understanding-authprovider": {
+                no: 6,
+                label: "Understanding the Auth provider",
+            },
         },
     },
 };
