@@ -62,8 +62,8 @@ describe("definitions/table", () => {
                 order: "descend",
             }),
         ).toMatchInlineSnapshot(`
-            Array [
-              Object {
+            [
+              {
                 "field": "title",
                 "order": "desc",
               },
@@ -94,12 +94,12 @@ describe("definitions/table", () => {
                 },
             ]),
         ).toMatchInlineSnapshot(`
-            Array [
-              Object {
+            [
+              {
                 "field": "title",
                 "order": "desc",
               },
-              Object {
+              {
                 "field": "id",
                 "order": "desc",
               },
@@ -117,8 +117,8 @@ describe("definitions/table", () => {
                 },
             ]),
         ).toMatchInlineSnapshot(`
-            Array [
-              Object {
+            [
+              {
                 "field": "title",
                 "order": "desc",
               },
@@ -150,12 +150,12 @@ describe("definitions/table", () => {
                 },
             ]),
         ).toMatchInlineSnapshot(`
-            Array [
-              Object {
+            [
+              {
                 "field": "category.title",
                 "order": "asc",
               },
-              Object {
+              {
                 "field": "version.title",
                 "order": "desc",
               },
@@ -172,11 +172,11 @@ describe("definitions/table", () => {
                 [],
             ),
         ).toMatchInlineSnapshot(`
-            Array [
-              Object {
+            [
+              {
                 "field": "foo",
                 "operator": "in",
-                "value": Array [
+                "value": [
                   "bar",
                   "baz",
                 ],
@@ -194,8 +194,8 @@ describe("definitions/table", () => {
                 [],
             ),
         ).toMatchInlineSnapshot(`
-            Array [
-              Object {
+            [
+              {
                 "field": "foo",
                 "operator": "eq",
                 "value": "bar",
@@ -213,11 +213,11 @@ describe("definitions/table", () => {
                 [],
             ),
         ).toMatchInlineSnapshot(`
-            Array [
-              Object {
+            [
+              {
                 "field": "foo",
                 "operator": "in",
-                "value": Array [
+                "value": [
                   0,
                 ],
               },
@@ -240,8 +240,8 @@ describe("definitions/table", () => {
                 ],
             ),
         ).toMatchInlineSnapshot(`
-            Array [
-              Object {
+            [
+              {
                 "field": "foo",
                 "operator": "in",
                 "value": null,
@@ -265,8 +265,8 @@ describe("definitions/table", () => {
                 ],
             ),
         ).toMatchInlineSnapshot(`
-            Array [
-              Object {
+            [
+              {
                 "field": "foo",
                 "operator": "eq",
                 "value": null,
@@ -285,8 +285,8 @@ describe("definitions/table", () => {
                 [{ field: "foo", operator: "contains", value: "" }],
             ),
         ).toMatchInlineSnapshot(`
-            Array [
-              Object {
+            [
+              {
                 "field": "foo",
                 "operator": "contains",
                 "value": "Test",

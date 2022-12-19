@@ -167,6 +167,8 @@ export const useModalForm = <
         ...useMantineFormResult,
         saveButtonProps: {
             ...saveButtonProps,
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error event type is not compatible with pointer event
             onClick: (e) => onSubmit(submit)(e),
         },
     };

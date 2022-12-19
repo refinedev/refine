@@ -12,17 +12,20 @@ import {
     UseModalFormReturnType,
 } from "@pankod/refine-react-hook-form";
 import { CloseOutlined } from "@mui/icons-material";
+import { HttpError } from "@pankod/refine-core";
 
-import { ICategory } from "interfaces";
+import { IPost } from "interfaces";
 
-export const CreatePostDrawer: React.FC<UseModalFormReturnType> = ({
+export const CreatePostDrawer: React.FC<
+    UseModalFormReturnType<IPost, HttpError, IPost>
+> = ({
     saveButtonProps,
     modal: { visible, close },
     register,
     control,
     formState: { errors },
 }) => {
-    const { autocompleteProps } = useAutocomplete<ICategory>({
+    const { autocompleteProps } = useAutocomplete({
         resource: "categories",
     });
 

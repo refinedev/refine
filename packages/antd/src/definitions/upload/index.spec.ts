@@ -22,8 +22,8 @@ describe("definitions/upload", () => {
         });
 
         expect(fileList).toMatchInlineSnapshot(`
-            Array [
-              Object {
+            [
+              {
                 "uid": "test2",
               },
             ]
