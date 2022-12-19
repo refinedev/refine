@@ -16,7 +16,7 @@
     "coffee": "npm run nuke && npm i && npm run bootstrap && npm run build",
     "prepare": "husky install",
     "postinstall": "patch-package",
-    "start:docs": "concurrently \"cd documentation && npm run start\" \"npm run start -- --scope @pankod/refine-live-previews\" --names docs,live --prefix-colors blue,red",
+    "start:docs": "concurrently \"cd documentation && npm run start\" \"npm run start -- --scope refine-live-previews\" --names docs,live --prefix-colors blue,red",
     "nuke:builds": "lerna exec -- rm -rf dist && lerna exec -- rm -rf .next && lerna exec -- rm -rf build",
     "nuke:lockfiles": "lerna exec --ignore @pankod/refine-codemod -- rm -rf package-lock.json && lerna exec --ignore @pankod/refine-codemod -- rm -rf yarn.lock && lerna exec --ignore @pankod/refine-codemod -- rm -rf pnpm-lock.yaml",
     "nuke:node_modules": "lerna clean --yes",

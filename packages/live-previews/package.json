@@ -1,5 +1,5 @@
 {
-  "name": "@pankod/refine-live-previews",
+  "name": "refine-live-previews",
   "version": "0.1.0",
   "private": true,
   "scripts": {
