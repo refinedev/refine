@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example customization-theme-mantine
 
 <br/>
 
-[![Open customization-theme-mantine example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/customization-theme-mantine?terminal=start)
+[![Open customization-theme-mantine example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/customization-theme-mantine?terminal=start&preset=node)
         

@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example upload-antd-base64
 
 <br/>
 
-[![Open upload-antd-base64 example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/upload-antd-base64?terminal=start)
+[![Open upload-antd-base64 example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/upload-antd-base64?terminal=start&preset=node)
         

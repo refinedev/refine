@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example form-react-hook-form-use-steps-form
 
 <br/>
 
-[![Open form-react-hook-form-use-steps-form example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-react-hook-form-use-steps-form?terminal=start)
+[![Open form-react-hook-form-use-steps-form example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-react-hook-form-use-steps-form?terminal=start&preset=node)
         

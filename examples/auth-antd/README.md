@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example auth-antd
 
 <br/>
 
-[![Open auth-antd example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/auth-antd?terminal=start)
+[![Open auth-antd example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/auth-antd?terminal=start&preset=node)
         

@@ -141,7 +141,7 @@ The fastest way to get started with **refine** is by using the `create refine-ap
 Run the following command to create a new **refine** project configured with  [Mantine](https://mantine.dev/) as the default UI framework:
 
 ```
-npm create refine-app -- --preset refine-mantine
+npm create refine-app@latest -- --preset refine-mantine
 ```
 
 Once the setup is complete, navigate to the project folder and start your project with:

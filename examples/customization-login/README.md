@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example customization-login
 
 <br/>
 
-[![Open customization-login example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/customization-login?terminal=start)
+[![Open customization-login example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/customization-login?terminal=start&preset=node)
         

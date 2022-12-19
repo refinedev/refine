@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example inferencer-mantine
 
 <br/>
 
-[![Open inferencer-mantine example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/inferencer-mantine?terminal=start)
+[![Open inferencer-mantine example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/inferencer-mantine?terminal=start&preset=node)
         

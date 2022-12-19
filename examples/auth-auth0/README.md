@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example auth-auth0
 
 <br/>
 
-[![Open auth-auth0 example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/auth-auth0?terminal=start)
+[![Open auth-auth0 example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/auth-auth0?terminal=start&preset=node)
         

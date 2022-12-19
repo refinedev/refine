@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { IResourceComponentsProps, useTranslate } from "@pankod/refine-core";
 
 import {
@@ -9,8 +8,6 @@ import {
     useForm,
     useSelect,
 } from "@pankod/refine-antd";
-
-import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "../../interfaces";
 
@@ -86,7 +83,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <MDEditor data-color-mode="light" />
+                    <Input.TextArea />
                 </Form.Item>
             </Form>
         </Create>

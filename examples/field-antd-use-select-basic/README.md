@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example field-antd-use-select-basic
 
 <br/>
 
-[![Open field-antd-use-select-basic example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/field-antd-use-select-basic?terminal=start)
+[![Open field-antd-use-select-basic example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/field-antd-use-select-basic?terminal=start&preset=node)
         

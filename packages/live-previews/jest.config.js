@@ -7,16 +7,16 @@ const paths = compilerOptions.paths ? compilerOptions.paths : {};
 module.exports = {
     preset: "ts-jest",
     rootDir: "./",
-    globals: {
-        "ts-jest": {
-            tsconfig: "<rootDir>/tsconfig.test.json",
-        },
-    },
     testEnvironment: "node",
     moduleNameMapper: {
         ...pathsToModuleNameMapper(paths, { prefix: "<rootDir>/" }),
+        "^.+\\.tsx?$": [
+            "ts-jest",
+            {
+                tsconfig: "<rootDir>/tsconfig.test.json",
+            },
+        ],
     },
     testEnvironment: "jsdom",
-    name: "live-previews",
     displayName: "live-previews",
 };

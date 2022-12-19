@@ -8,4 +8,4 @@ example-tags: [form,mui,react-hook-form]
 
 [Refer to the useModalForm hook documentation for more information. →](/docs/packages/documentation/react-hook-form/useModalForm/)
 
-<StackblitzExample path="form-muse-modal-antd-form" />
+<StackblitzExample path="form-mui-use-modal-form" />

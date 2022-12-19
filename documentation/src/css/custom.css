@@ -284,6 +284,13 @@
     width: 24px;
 }
 
+.popover-icon-link::before {
+    content: "";
+    display: flex;
+    height: 24px;
+    width: 24px;
+}
+
 .header-github-link::before {
     background: url("/icons/github.svg");
     background-size: contain;
@@ -366,12 +373,17 @@
     display: none;
 }
 
-.with-hoverline .hoverline-link {
+.with-hoverline.hoverline-link {
     @apply relative;
 }
 
-.with-hoverline .hoverline-link:hover::after,
-.with-hoverline .navbar__link--active::after {
+.with-hoverline.hoverline-link:hover::after,
+.with-hoverline.navbar__link--active::after {
+    content: "";
+    @apply absolute bottom-[-5px] left-[calc(50%-12px)] h-1 w-6 rounded-sm bg-[#1890ff] transition-opacity duration-200 ease-in-out;
+}
+
+.active-navbar-link::after {
     content: "";
     @apply absolute bottom-[-5px] left-[calc(50%-12px)] h-1 w-6 rounded-sm bg-[#1890ff] transition-opacity duration-200 ease-in-out;
 }
@@ -487,12 +499,12 @@
     @apply absolute bottom-[-5px] left-[calc(50%-12px)] h-1 w-6 rounded-sm bg-[#1890ff] transition-opacity duration-200 ease-in-out;
 }
 
-#__docusaurus .with-hoverline .active-item::before {
+#__docusaurus .with-hoverline.active-item::before {
     content: "";
     @apply absolute bottom-[-5px] left-[calc(50%-12px)] h-1 w-6 rounded-sm bg-[#1890ff] transition-opacity duration-200 ease-in-out;
 }
 
-#__docusaurus .with-hoverline .navbar-sidebar__items .menu__link--active {
+#__docusaurus .with-hoverline.navbar-sidebar__items .menu__link--active {
     position: relative;
 }
 
@@ -621,10 +633,6 @@ html[data-page="index"] {
     .navbar-sidebar__items.navbar-sidebar__items--show-secondary
     .menu__link {
     padding-left: 0;
-}
-
-#__docusaurus .navbar-sidebar__items {
-    padding-top: 20px;
 }
 
 #__docusaurus .gradient-button:hover {

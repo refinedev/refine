@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example table-mantine-basic
 
 <br/>
 
-[![Open table-mantine-basic example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-mantine-basic?terminal=start)
+[![Open table-mantine-basic example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-mantine-basic?terminal=start&preset=node)
         

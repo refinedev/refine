@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example mutation-mode
 
 <br/>
 
-[![Open mutation-mode example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/mutation-mode?terminal=start)
+[![Open mutation-mode example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/mutation-mode?terminal=start&preset=node)
         

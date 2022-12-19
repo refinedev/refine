@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example with-react-toastify
 
 <br/>
 
-[![Open with-react-toastify example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-react-toastify?terminal=start)
+[![Open with-react-toastify example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-react-toastify?terminal=start&preset=node)
         

@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example upload-mantine-multipart
 
 <br/>
 
-[![Open upload-mantine-multipart example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/upload-mantine-multipart?terminal=start)
+[![Open upload-mantine-multipart example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/upload-mantine-multipart?terminal=start&preset=node)
         

@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example customization-theme-antd
 
 <br/>
 
-[![Open customization-theme-antd example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/customization-theme-antd?terminal=start)
+[![Open customization-theme-antd example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/customization-theme-antd?terminal=start&preset=node)
         

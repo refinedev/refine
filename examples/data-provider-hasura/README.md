@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example data-provider-hasura
 
 <br/>
 
-[![Open data-provider-hasura example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/data-provider-hasura?terminal=start)
+[![Open data-provider-hasura example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/data-provider-hasura?terminal=start&preset=node)
         

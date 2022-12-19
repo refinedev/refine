@@ -1,5 +1,17 @@
 # create-refine-app
 
+## 1.5.2
+
+### Patch Changes
+
+-   [`d0ee03c051c`](https://github.com/refinedev/refine/commit/d0ee03c051c2e6e743d4feb64861430b571c6dc0) Thanks [@omeraplak](https://github.com/omeraplak)! - bumped superplate-cli@1.11.6 - #3186
+
+## 1.5.1
+
+### Patch Changes
+
+-   [`d0ee03c051c`](https://github.com/refinedev/refine/commit/d0ee03c051c2e6e743d4feb64861430b571c6dc0) Thanks [@omeraplak](https://github.com/omeraplak)! - bumped superplate-cli@1.11.6 - #3186
+
 ## 1.5.0
 
 ### Minor Changes
@@ -145,13 +157,13 @@
     before:
 
     ```bash
-    npm create refine-app -- -o refine-antd tutorial
+    npm create refine-app@latest -- -o refine-antd tutorial
     ```
 
     after:
 
     ```bash
-    npm create refine-app -o refine-antd tutorial
+    npm create refine-app@latest  -o refine-antd tutorial
     ```
 
 ## 1.2.0
@@ -163,13 +175,13 @@
     before:
 
     ```bash
-    npm create refine-app -- -o refine-antd tutorial
+    npm create refine-app@latest -- -o refine-antd tutorial
     ```
 
     after:
 
     ```bash
-    npm create refine-app -o refine-antd tutorial
+    npm create refine-app@latest  -o refine-antd tutorial
     ```
 
 ## 1.1.1

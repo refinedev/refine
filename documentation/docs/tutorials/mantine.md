@@ -474,7 +474,7 @@ This tutorial assumes your project is configured for absolute imports. Since CRA
 First, run the **create refine-app** with the following command:
 
 ```
-npm create refine-app -- -o refine-mantine tutorial
+npm create refine-app@latest -- -o refine-mantine tutorial
 ```
 </TabItem>
 </Tabs>
@@ -541,7 +541,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 
 ### Community ❤️
 
--   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
+-   [Firebase](https://github.com/resulturan/refine-firebase) by [rturan29](https://github.com/resulturan)
 -   [Directus](https://github.com/tspvivek/refine-directus) by [tspvivek](https://github.com/tspvivek)
 -   [Elide](https://github.com/chirdeeptomar/refine-elide-rest) by [chirdeeptomar](https://github.com/chirdeeptomar)
 

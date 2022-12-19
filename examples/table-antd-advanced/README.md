@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example table-antd-advanced
 
 <br/>
 
-[![Open table-antd-advanced example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-antd-advanced?terminal=start)
+[![Open table-antd-advanced example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-antd-advanced?terminal=start&preset=node)
         

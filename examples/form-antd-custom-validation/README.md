@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example form-antd-custom-validation
 
 <br/>
 
-[![Open form-antd-custom-validation example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-antd-custom-validation?terminal=start)
+[![Open form-antd-custom-validation example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-antd-custom-validation?terminal=start&preset=node)
         

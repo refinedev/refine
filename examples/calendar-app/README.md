@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example calendar-app
 
 <br/>
 
-[![Open calendar-app example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/calendar-app?terminal=start)
+[![Open calendar-app example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/calendar-app?terminal=start&preset=node)
         

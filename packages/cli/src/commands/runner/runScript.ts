@@ -1,6 +1,6 @@
 import execa from "execa";
 
-export const runScript = (binPath: string, args: string[]) => {
+export const runScript = async (binPath: string, args: string[]) => {
     const execution = execa(binPath, args, {
         stdio: "pipe",
     });
@@ -8,5 +8,5 @@ export const runScript = (binPath: string, args: string[]) => {
     execution.stdout?.pipe(process.stdout);
     execution.stderr?.pipe(process.stderr);
 
-    return execution;
+    return await execution;
 };

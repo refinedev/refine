@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example audit-log-provider
 
 <br/>
 
-[![Open audit-log-provider example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/audit-log-provider?terminal=start)
+[![Open audit-log-provider example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/audit-log-provider?terminal=start&preset=node)
         

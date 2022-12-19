@@ -41,5 +41,5 @@ npm create refine-app@latest -- --example with-custom-pages
 
 <br/>
 
-[![Open with-custom-pages example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-custom-pages?terminal=start)
+[![Open with-custom-pages example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-custom-pages?terminal=start&preset=node)
         
