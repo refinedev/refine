@@ -4,7 +4,7 @@
     "private": true,
     "dependencies": {
         "@pankod/refine": "2.0.12",
-        "@pankod/refine-antd": "^3.70.3",
+        "@pankod/refine-antd": "^3.70.4",
         "@pankod/refine-core": "^3.90.6",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-supabase": "^3.35.0",
