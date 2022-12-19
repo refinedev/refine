@@ -1,5 +1,12 @@
 # @pankod/refine-demo-sidebar
 
+## 4.0.0
+
+### Patch Changes
+
+-   Updated dependencies [[`fd2e1882e06`](https://github.com/refinedev/refine/commit/fd2e1882e060135674f53350f2fe1d22347543d7), [`214ea79c81c`](https://github.com/refinedev/refine/commit/214ea79c81c2f21573f999083612d30256be76a9)]:
+    -   @pankod/refine-antd@4.0.0
+
 ## 3.31.0
 
 ### Minor Changes
