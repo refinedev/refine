@@ -1,6 +1,6 @@
 ---
 id: index
-title:  Data Provider
+title: 1.Data Provider
 tutorial:
     order: 0
     prev: false
