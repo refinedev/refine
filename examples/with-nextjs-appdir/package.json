@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "start": "NODE_OPTIONS=--max_old_space_size=4096 PORT=3002 next dev",
-        "build": "next build",
+        "build": "next build && rm -rf .next/cache",
         "start:prod": "next start",
         "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
     },

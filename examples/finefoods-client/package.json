@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "start": "next dev",
-        "build": "next build",
+        "build": "next build && rm -rf .next/cache",
         "start:prod": "next start",
         "svgr": "npx @svgr/cli src/icons -d src/components/icons --typescript --no-svgo"
     },
