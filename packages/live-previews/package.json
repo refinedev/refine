@@ -1,11 +1,11 @@
 {
-  "name": "refine-live-previews",
+  "name": "@pankod/refine-live-previews",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "PORT=3030 nodemon --watch ./node_modules --watch ./src --watch ./pages --ext ts,tsx,js,jsx --exec \"next build --no-lint && next start\"",
     "dev": "PORT=3030 next dev",
-    "build": "next build",
+    "build": "next build && rm -rf .next/cache",
     "start:prod": "next start",
     "lint": "next lint",
     "test": "jest"
