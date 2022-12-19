@@ -34,12 +34,12 @@
 ## Try it out on your local
 
 ```bash
-npm create refine-app@latest -- --example form-muse-modal-antd-form
+npm create refine-app@latest -- --example form-mui-use-modal-form
 ```
 
 ## Try it out on StackBlitz
 
 <br/>
 
-[![Open form-muse-modal-antd-form example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-muse-modal-antd-form?terminal=start&preset=node)
+[![Open form-mui-use-modal-form example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-mui-use-modal-form?terminal=start&preset=node)
         

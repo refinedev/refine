@@ -11,10 +11,10 @@ export const Layout: React.FC<LayoutProps> = ({
     return (
         <AntLayout style={{ minHeight: "100vh", flexDirection: "row" }}>
             <AntLayout>
-                <Header />
+                {Header && <Header />}
                 <AntLayout.Content>
                     {children}
-                    <OffLayoutArea />
+                    {OffLayoutArea && <OffLayoutArea />}
                 </AntLayout.Content>
             </AntLayout>
         </AntLayout>
