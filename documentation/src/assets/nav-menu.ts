@@ -7,7 +7,7 @@ import {
     AwesomeIcon,
     ExpertIcon,
     ContributeIcon,
-    // UseCasesIcon,
+    UseCasesIcon,
     RefineWeekIcon,
     AboutUsIcon,
     RefineStoreIcon,
@@ -74,12 +74,12 @@ export const POPOVERMENUS: NavMenu[] = [
                 link: "/docs/contributing/",
                 icon: ContributeIcon,
             },
-            // {
-            //     label: "Use cases",
-            //     description: "Inspiring projects built with refine",
-            //     link: "/examples",
-            //     icon: UseCasesIcon,
-            // },
+            {
+                label: "Use cases",
+                description: "Inspiring projects built with refine",
+                link: "/use-cases",
+                icon: UseCasesIcon,
+            },
             {
                 label: "refineweek",
                 description: "The official refine event",
