@@ -395,15 +395,20 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 
 ### Return values
 
-| Property         | Description                                 | Type                                                                                                                                                    |
-| ---------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| searchFormProps  | Ant Design [`<Form>`][form] props           | [`FormProps<TSearchVariables>`][form]                                                                                                                   |
-| tableProps       | Ant Design [`<Table>`][table] props         | [`TableProps<TData>`][table]                                                                                                                            |
-| tableQueryResult | Result of the `react-query`'s `useQuery`    | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery]                                                       |
-| sorter           | Current sorting state                       | [`CrudSorting`][crudsorting]                                                                                                                            |
-| filters          | Current filters state                       | [`CrudFilters`][crudfilters]                                                                                                                            |
-| setFilters       | A function that accepts a new filter state  | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` <br/> - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
-| setSorter        | A function that accepts a new sorter state. | `(sorter: CrudSorting) => void`                                                                                                                         |
+| Property         | Description                                                                           | Type                                                                                                                                                    |
+| ---------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| searchFormProps  | Ant Design [`<Form>`][form] props                                                     | [`FormProps<TSearchVariables>`][form]                                                                                                                   |
+| tableProps       | Ant Design [`<Table>`][table] props                                                   | [`TableProps<TData>`][table]                                                                                                                            |
+| tableQueryResult | Result of the `react-query`'s `useQuery`                                              | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery]                                                       |
+| current          | Current page index state (returns `undefined` if pagination is disabled)              | `number` \| `undefined`                                                                                                                                 |
+| totalPage        | Total page count (returns `undefined` if pagination is disabled)                      | `number` \| `undefined`                                                                                                                                 |
+| setCurrent       | A function that changes the current (returns `undefined` if pagination is disabled)   | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                           |
+| pageSize         | Current pageSize state (returns `undefined` if pagination is disabled)                | `number` \| `undefined`                                                                                                                                 |
+| setPageSize      | A function that changes the pageSize. (returns `undefined` if pagination is disabled) | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                           |
+| sorter           | Current sorting state                                                                 | [`CrudSorting`][crudsorting]                                                                                                                            |
+| filters          | Current filters state                                                                 | [`CrudFilters`][crudfilters]                                                                                                                            |
+| setFilters       | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` <br/> - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
+| setSorter        | A function that accepts a new sorter state.                                           | `(sorter: CrudSorting) => void`                                                                                                                         |
 
 <br />
 
