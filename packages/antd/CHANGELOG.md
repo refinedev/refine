@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 3.70.4
+
+### Patch Changes
+
+-   [#3252](https://github.com/refinedev/refine/pull/3252) [`cf696235d0b`](https://github.com/refinedev/refine/commit/cf696235d0bdaca8554698293e8a644131522f34) Thanks [@aliemir](https://github.com/aliemir)! - Updated `esbuild` configuration to handle `antd/lib` imports in `esm` builds. (Resolves #3187)
+
 ## 3.70.3
 
 ### Patch Changes
