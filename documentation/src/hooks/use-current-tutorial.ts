@@ -1,5 +1,7 @@
 import React from "react";
+// @ts-expect-error no types
 import { useDoc } from "@docusaurus/theme-common/internal";
+// @ts-expect-error no types
 import { useDocsVersion } from "@docusaurus/theme-common/internal";
 
 import useTutorialPagination from "./use-tutorial-pagination";
@@ -20,10 +22,7 @@ const TUTORIAL_ID_PREFIX = "tutorial/";
 
 export const useCurrentTutorial = () => {
     const currentDoc = useDoc();
-    const { docs, ...rest } = useDocsVersion();
-
-    console.log("DOcs", docs);
-    console.log("rest", rest);
+    const { docs } = useDocsVersion();
 
     const {
         frontMatter,
