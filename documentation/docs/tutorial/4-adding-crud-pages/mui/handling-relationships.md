@@ -1,5 +1,5 @@
 ---
-id: handling-relationships
+id: handling-relationships-chakra
 title: 5. Handling Relationships
 tutorial:
     order: 0
