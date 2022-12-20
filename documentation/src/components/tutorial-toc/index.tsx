@@ -1,5 +1,6 @@
 import React from "react";
 import { useWindowSize } from "@docusaurus/theme-common";
+// @ts-expect-error no types
 import { useDoc } from "@docusaurus/theme-common/internal";
 
 // @ts-expect-error no types
@@ -93,7 +94,11 @@ export const TutorialTOC = () => {
         return (
             <div>
                 <ul className="list-none pl-0">
-                    {unit.docs.map(renderUnitItem)}
+                    {unit.docs
+                        .sort((a, b) =>
+                            `${a.title}`?.localeCompare(`${b.title}`),
+                        )
+                        .map(renderUnitItem)}
                 </ul>
             </div>
         );
