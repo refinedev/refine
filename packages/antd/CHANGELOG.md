@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 4.1.3
+
+### Patch Changes
+
+-   [#3273](https://github.com/refinedev/refine/pull/3273) [`a30ba43cce2`](https://github.com/refinedev/refine/commit/a30ba43cce27279deaab60c000dac0537552f7c7) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Set the `theme="dark"` of the `Menu` component in `Sider` by default.
+
 ## 4.1.2
 
 ### Patch Changes
