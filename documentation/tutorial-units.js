@@ -8,7 +8,7 @@ module.exports = {
             },
             "getting-started": {
                 no: 2,
-                label: "Create your first refine app",
+                label: "Create and deploy your first refine app",
             },
             "understanding-dataprovider": {
                 no: 3,

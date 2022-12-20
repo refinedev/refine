@@ -3,9 +3,9 @@ id: generate-crud-pages
 title: 3. Generate CRUD pages automatically with Inferencer
 tutorial:
     prev: tutorial/getting-started/{preferredUI}/create-project
-    next: tutorial/understanding-dataprovider/{preferredUI}/index
+    next: tutorial/getting-started/store-your-repository
 ---
- next: tutorial/getting-started/{preferredUI}/index
+
 ## Inferencer
     
 Inferencerdan ve kullanımından bahsediyoruz. Gerekli doc linklerini veriyoruz
