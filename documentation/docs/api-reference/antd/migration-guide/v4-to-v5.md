@@ -35,7 +35,7 @@ Currently `ant-design/pro-components` does not compatible with Next.js 13.
 
 :::
 
-### Updating the packages
+## Updating the packages
 
 [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/next/packages/antd) must be updated to `4.x.x`
 
@@ -49,7 +49,6 @@ values={[
 <TabItem value="refine-cli">
 
 ⚡️ You can easily update **refine** packages with **refine** CLI [`update`](https://refine.dev/docs/packages/documentation/cli/#update) command.
-
 
 ```bash
 npm run refine update
@@ -80,6 +79,8 @@ npx @pankod/refine-codemod antd4-to-antd5
 ```
 
 And it's done. Now your project uses `@pankod/refine-antd@4.x.x`.
+
+> 🚨 Customized or swizzled [components](#customized-sider) and [.less](#less-users) files cannot be migrated automatically. You need to migrate them manually.
 
 ## Migrating your project manually
 
@@ -115,3 +116,53 @@ And it's done. Now your project uses `@pankod/refine-antd@4.x.x`.
 - <Edit actionButtons={actionButtons} pageHeaderProps={pageHeaderProps}>
 + <Edit headerButtons={actionButtons} headerProps={pageHeaderProps}>
 ```
+
+### Customized `<Sider>`
+
+If you have customized or `swizzled` the `<Sider>` component, there may be a color mismatch issue.
+You can give theme dark to the `<Menu>` component in the `<Sider>` component.
+
+```diff title="Sider.tsx"
+    <AntdLayout.Sider
+      collapsible
+      collapsed={collapsed}
+      onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+      collapsedWidth={isMobile ? 0 : 80}
+      breakpoint='lg'
+      style={isMobile ? antLayoutSiderMobile : antLayoutSider}>
+      <RenderToTitle collapsed={collapsed} />
+      <Menu
++        theme='dark'
+        selectedKeys={[selectedKey]}
+        defaultOpenKeys={defaultOpenKeys}
+        mode='inline'
+        onClick={() => {
+          if (!breakpoint.lg) {
+            setCollapsed(true)
+          }
+        }}>
+        {renderSider()}
+      </Menu>
+    </AntdLayout.Sider>
+```
+
+### Customized `<Header>`
+
+If you have customized or `swizzled` the `<Header>` component, there may be a color mismatch issue.
+You can remove constant background color in `<Header>` component.
+
+```diff title="Header.tsx"
+   <AntdLayout.Header
+      style={{
+        display: 'flex',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        padding: '0px 24px',
+        height: '64px',
+-        backgroundColor: '#FFF',
+      }}>
+```
+
+### less Users
+
+Ant Design removed `less`, uses and recommends `CSS-in-JS` instead. You need to manually migrate your `.less` files to `CSS-in-JS`. [Ant Design's documentation for less migration.](https://ant.design/docs/react/migration-v5#less-migration)
