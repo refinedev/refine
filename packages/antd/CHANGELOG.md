@@ -5,6 +5,7 @@
 ### Patch Changes
 
 -   [`a8d3f648a28`](https://github.com/refinedev/refine/commit/a8d3f648a282329cac04c1dd4b736864d6fbf756) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed onClick event type of the `<Button />` component
+-   [#3273](https://github.com/refinedev/refine/pull/3273) [`a30ba43cce2`](https://github.com/refinedev/refine/commit/a30ba43cce27279deaab60c000dac0537552f7c7) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Set the `theme="dark"` of the `Menu` component in `Sider` by default.
 
 ## 4.1.3
 
