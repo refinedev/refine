@@ -1,8 +1,8 @@
 import React from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
-import { Lazy, Navigation, Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { Lazy, Navigation, Pagination } from "swiper";
+// import { Swiper, SwiperSlide } from "swiper/react";
 
 import { CompanyDetail } from "./company-detail";
 import { GiftCard } from "./gift-card";
@@ -46,7 +46,7 @@ const UseCaseDetail = (props) => {
                         </div>
                     </div>
                 ))}
-                <Swiper
+                {/* <Swiper
                     style={{
                         "--swiper-navigation-color": "#1890FF",
                         "--swiper-pagination-color": "#1890FF",
@@ -70,7 +70,7 @@ const UseCaseDetail = (props) => {
                             )}
                         </SwiperSlide>
                     ))}
-                </Swiper>
+                </Swiper> */}
                 <br />
                 <br />
                 <GiftCard />

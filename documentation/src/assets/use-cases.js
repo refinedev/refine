@@ -108,7 +108,7 @@ module.exports = [
                 question:
                     "Which features and integrations have you been using and why?",
                 answer: [
-                    "I am using <strong>refine-antd</strong> for creating a dashboard as ant design doesn’t have any paid plan for their data table as of MUI. And also without having to write any CSS I have created a beautiful and stunning dashboard with no time just using the <strong>refine-antd</strong> package provided by <strong>refine</strong> team.",
+                    "I am using <strong>Ant Design</strong> with <strong>refine</strong> for creating a dashboard as Ant Design doesn’t have any paid plan for their data table as of MUI. And also without having to write any CSS I have created a beautiful and stunning dashboard with no time just using the <strong>refine-antd</strong> package provided by <strong>refine</strong> team.",
                 ],
             },
             {
