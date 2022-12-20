@@ -1,14 +1,16 @@
 import React from "react";
+// @ts-expect-error no types
 import { useDoc } from "@docusaurus/theme-common/internal";
 
 export type PreferredUIPackage =
+    | "headless"
     | "antd"
     | "chakra-ui"
     | "mantine"
-    | "mui"
-    | undefined;
+    | "mui";
 
 export const availableUIPackages = [
+    "headless",
     "antd",
     "chakra-ui",
     "mantine",
@@ -22,22 +24,36 @@ const validate = (value?: string | undefined) => {
     return undefined;
 };
 
+const getDedicatedFromId = (id: string) => {
+    // check if id contains `/<availableUIPackage>/`
+    const match = id.match(/\/(headless|antd|chakra-ui|mantine|mui)\//);
+    if (match && validate(match[1])) {
+        return match[1] as PreferredUIPackage;
+    }
+    return undefined;
+};
+
 const LOCALSTORAGE_KEY = "tutorial-preferred-ui-package";
 
 export const TutorialUIPackageContext = React.createContext<{
     preferred: PreferredUIPackage;
     setPreferred: (val: PreferredUIPackage) => void;
-    current: PreferredUIPackage;
-}>({ preferred: undefined, current: undefined, setPreferred: () => undefined });
+    current: PreferredUIPackage | undefined;
+}>({
+    preferred: "headless",
+    current: undefined,
+    setPreferred: () => undefined,
+});
 
 export const TutorialUIPackageProvider: React.FC<
     React.PropsWithChildren<{}>
 > = ({ children }) => {
-    const { frontMatter } = useDoc();
-    const dedicated = (frontMatter as any)?.tutorial?.dedicatedUI;
+    const { metadata } = useDoc();
+
+    const dedicated = getDedicatedFromId(metadata.id);
 
     const [preferred, _setPreferred] =
-        React.useState<PreferredUIPackage>(undefined);
+        React.useState<PreferredUIPackage>("headless");
 
     React.useEffect(() => {
         if (typeof window !== "undefined") {
@@ -50,7 +66,6 @@ export const TutorialUIPackageProvider: React.FC<
     }, []);
 
     const setPreferred = (val: PreferredUIPackage) => {
-        console.log("val", val);
         if (!validate(val)) {
             return undefined;
         }
