@@ -1,7 +1,10 @@
 import { defineConfig } from "tsup";
 import * as fs from "fs";
+import path from "path";
 import copyStaticFiles from "esbuild-copy-static-files";
 import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
+
+const JS_EXTENSIONS = new Set(["js", "cjs", "mjs"]);
 
 export default defineConfig({
     entry: ["src/index.tsx"],
@@ -36,17 +39,54 @@ export default defineConfig({
                 });
             },
         },
+        {
+            name: "antd-lib-2-es-module-replacement",
+            setup: (build) => {
+                if (build.initialOptions.format === "cjs") {
+                    return;
+                }
+                if (build.initialOptions.format === "esm") {
+                    build.onLoad(
+                        {
+                            filter: /\/src\/components\/antd\/(antd|calendar|datePicker|timePicker).*/,
+                        },
+                        async (args) => {
+                            const contents = await fs.promises.readFile(
+                                args.path,
+                                "utf8",
+                            );
+
+                            const extension = path
+                                .extname(args.path)
+                                .replace(".", "");
+
+                            const loader = JS_EXTENSIONS.has(extension)
+                                ? "jsx"
+                                : (extension as any);
+
+                            const replacements = [
+                                [/antd\/lib\//g, "antd/es/"],
+                                [/rc-picker\/lib\//g, "rc-picker/es/"],
+                            ] as const;
+
+                            const newContents = replacements.reduce(
+                                (acc, [regex, replacement]) =>
+                                    acc.replace(regex, replacement),
+                                contents,
+                            );
+
+                            return {
+                                loader,
+                                contents: newContents,
+                            };
+                        },
+                    );
+                }
+            },
+        },
         copyStaticFiles({
-            src: "./src/assets/styles/styles.min.css",
-            dest: "./dist/styles.min.css",
-        }),
-        copyStaticFiles({
-            src: "./src/assets/styles/antd.min.css",
-            dest: "./dist/antd.min.css",
-        }),
-        copyStaticFiles({
-            src: "./src/assets/styles/reset.min.css",
-            dest: "./dist/reset.min.css",
+            src: "./src/assets/styles/reset.css",
+            dest: "./dist/reset.css",
         }),
         NodeResolvePlugin({
             extensions: [".js", "ts", "tsx", "jsx"],

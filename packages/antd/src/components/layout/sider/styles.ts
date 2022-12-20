@@ -1,10 +1,9 @@
 import { CSSProperties } from "react";
 
-export const antLayoutSider: CSSProperties = {
-    position: "relative",
-};
-export const antLayoutSiderMobile: CSSProperties = {
+export const drawerButtonStyles: CSSProperties = {
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
     position: "fixed",
-    height: "100vh",
+    top: 64,
     zIndex: 999,
 };

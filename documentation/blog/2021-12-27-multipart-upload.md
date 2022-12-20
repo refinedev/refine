@@ -4,7 +4,7 @@ description: In this guide, I'm going to show you how to multipart files upload 
 slug: how-to-multipart-upload
 authors: melih
 tags: [JavaScript, multipart/form-data, multipart-upload, file-upload]
-image: /img/placeholder.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
@@ -134,7 +134,7 @@ The requests we created to send files by JavaScript will now be sent to our loca
 
 ---
 
-<PromotionBanner title="Does your CRUD app need server state management?" image="/img/generic_banner.png" />
+<PromotionBanner title="Does your CRUD app need server state management?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 ## How to Multipart Upload with Refine?

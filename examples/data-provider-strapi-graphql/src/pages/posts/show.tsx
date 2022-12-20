@@ -30,7 +30,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
     return (
         <Show
             isLoading={isLoading}
-            pageHeaderProps={{
+            headerProps={{
                 extra: <RefreshButton onClick={() => queryResult.refetch()} />,
             }}
         >

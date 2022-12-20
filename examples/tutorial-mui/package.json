@@ -3,8 +3,8 @@
     "version": "3.9.0",
     "private": true,
     "dependencies": {
-        "@pankod/refine-core": "^3.90.5",
-        "@pankod/refine-mui": "^3.61.1",
+        "@pankod/refine-core": "^3.90.6",
+        "@pankod/refine-mui": "^3.61.2",
         "@pankod/refine-react-hook-form": "^3.37.0",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-simple-rest": "^3.37.4",
@@ -13,7 +13,6 @@
         "@types/react-dom": "^18.0.0",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
-        "@uiw/react-md-editor": "^3.19.5",
         "react-scripts": "^5.0.0",
         "typescript": "^4.7.4"
     },

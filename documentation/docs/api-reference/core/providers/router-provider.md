@@ -962,7 +962,7 @@ values={[
 ]}>
 <TabItem value="react-router-v6-subdirectory">
 
-If you want to serve from a subdirectory in your **refine** react app. You can use `basepath` property of [`<Router>`][browserrouter].
+If you want to serve from a subdirectory in your **refine** react app. You can use `basename` property of [`<BrowserRouter>`][browserrouter].
 
 The [`<RouterComponent>`][routercomponent] in the [react-router-v6][react-router-v6] package passes all its properties to the [`<BrowserRouter>`][browserrouter] component. Therefore, a `<BrowserRouter>` property that we will give to the `<RouterComponent>` is passed to the `<BrowserRouter>` that wraps our application.
 
@@ -1015,7 +1015,7 @@ Now you can access our application at `www.domain.com/admin`.
 </TabItem>
 <TabItem value="react-router-v5-subdirectory">
 
-If you want to serve from a subdirectory in your **refine** react app. You can use `basepath` property of [`<Router>`][browserrouter].
+If you want to serve from a subdirectory in your **refine** react app. You can use `basename` property of [`<BrowserRouter>`][browserrouter].
 
 The [`<RouterComponent>`][routercomponent] in the [react-router-v5][react-router-v5] package passes all its properties to the [`<BrowserRouter>`][browserrouter] component. Therefore, a `<BrowserRouter>` property that we will give to the `<RouterComponent>` is passed to the `<BrowserRouter>` that wraps our application.
 
@@ -1068,9 +1068,13 @@ Now you can access our application at `www.domain.com/admin`.
 </TabItem>
 <TabItem value="react-location-subdirectory">
 
-If you want to serve from a subdirectory in your **refine** react app. You can use `basename` property of [`<Router>`][router].
+If you want to serve from a subdirectory in your **refine** react app. You can use `basepath` property of [`<Router>`][router].
 
 The [`<RouterComponent>`][routercomponent] in the [react-location][react-location] package passes all its properties to the [`<Router>`][router] component. Therefore, a `<Router>` property that we will give to the `<RouterComponent>` is passed to the `<Router>` that wraps our application.
+
+:::caution
+Using `basepath` in `react-location` causes some problems and as the development of `react-location` is discontinued it's unlikely to be fixed. Please see [here](https://github.com/refinedev/refine/issues/3207) for more information and a workaround.
+:::
 
 In the example below you can see how to serve the application in a subdirectory.
 

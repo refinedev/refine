@@ -7,14 +7,6 @@ const paths = compilerOptions.paths ? compilerOptions.paths : {};
 module.exports = {
     preset: "ts-jest",
     rootDir: "./",
-    globals: {
-        "ts-jest": {
-            tsconfig: "<rootDir>/tsconfig.test.json",
-            diagnostics: {
-                ignoreCodes: [2578],
-            },
-        },
-    },
     setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
     testPathIgnorePatterns: [
         "<rootDir>/node_modules/",
@@ -25,10 +17,18 @@ module.exports = {
         ...pathsToModuleNameMapper(paths, { prefix: "<rootDir>/" }),
         "\\.css$": "identity-obj-proxy",
     },
-    name: "core",
     displayName: "core",
     transform: {
         "^.+\\.svg$": "<rootDir>/test/svgTransform.ts",
+        "^.+\\.tsx?$": [
+            "ts-jest",
+            {
+                tsconfig: "<rootDir>/tsconfig.test.json",
+                diagnostics: {
+                    ignoreCodes: [2578],
+                },
+            },
+        ],
     },
     coveragePathIgnorePatterns: [
         "<rootDir>/src/index.ts",

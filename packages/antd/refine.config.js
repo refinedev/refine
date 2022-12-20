@@ -537,6 +537,16 @@ module.exports = {
                                         /Layout\.Sider/g,
                                         "AntdLayout.Sider",
                                     );
+
+                                    newContent = newContent.replace(
+                                        "<Layout>",
+                                        "<AntdLayout>",
+                                    );
+
+                                    newContent = newContent.replace(
+                                        "</Layout>",
+                                        "</AntdLayout>",
+                                    );
                                 }
 
                                 // handle @components import replacement
@@ -624,7 +634,7 @@ module.exports = {
                                     newContent = newContent.replace(
                                         importItem.statement,
                                         importItem.statement.replace(
-                                            "Layout as AntdLayout,",
+                                            "Layout as AntdLayout",
                                             "AntdLayout,",
                                         ),
                                     );

@@ -4,7 +4,7 @@ description: Focus on your production, Everything you need is in Refine.
 slug: how-to-become-a-production-hero-refine-2022
 authors: ozkalai
 tags: [refine, react, javascript, opensource]
-image: /img/placeholder.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 

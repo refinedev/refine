@@ -22,8 +22,8 @@ import {
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 
 export type useModalFormFromSFReturnType<TData, TVariables> = {
+    open: boolean;
     form: FormInstance<TVariables>;
-    visible: boolean;
     show: (id?: BaseKey) => void;
     close: () => void;
     modalProps: ModalProps;
@@ -34,13 +34,15 @@ export type useModalFormFromSFReturnType<TData, TVariables> = {
     initialValues: {};
     formResult: undefined;
     submit: (values?: TVariables) => Promise<TData>;
+    /** @deprecated Please use `open` instead. */
+    visible: boolean;
 };
 
 type useModalFormConfig = {
     action: "show" | "edit" | "create" | "clone";
 };
 
-export type useModalFormReturnType<
+export type UseModalFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
@@ -50,7 +52,7 @@ export type useModalFormReturnType<
 > &
     useModalFormFromSFReturnType<TData, TVariables>;
 
-export type useModalFormProps<
+export type UseModalFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
@@ -77,7 +79,7 @@ export const useModalForm = <
 >({
     mutationMode: mutationModeProp,
     ...rest
-}: useModalFormProps<TData, TError, TVariables>): useModalFormReturnType<
+}: UseModalFormProps<TData, TError, TVariables>): UseModalFormReturnType<
     TData,
     TError,
     TVariables
@@ -183,12 +185,13 @@ export const useModalForm = <
         ...sunflowerUseModal,
         show: handleShow,
         close: handleClose,
+        open: visible,
         formProps: {
             ...modalFormProps,
             ...useFormProps.formProps,
             onValuesChange: formProps?.onValuesChange,
             onKeyUp: formProps?.onKeyUp,
-            onFinish: formProps?.onFinish,
+            onFinish: formProps.onFinish,
         },
         modalProps: {
             ...modalProps,

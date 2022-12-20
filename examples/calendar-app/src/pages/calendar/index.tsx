@@ -53,7 +53,7 @@ export const CalendarPage: React.FC<IResourceComponentsProps> = () => {
     };
 
     return (
-        <Show pageHeaderProps={{ extra: null }}>
+        <Show headerProps={{ extra: null }}>
             <Calendar
                 onPanelChange={panelChange}
                 dateCellRender={dateCellRender}

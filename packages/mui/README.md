@@ -141,7 +141,7 @@ The fastest way to get started with **refine** is by using the `create refine-ap
 Run the following command to create a new **refine** project configured with  [Material UI](https://mui.com) as the default UI framework:
 
 ```
-npm create refine-app -- --preset refine-mui
+npm create refine-app@latest -- --preset refine-mui
 ```
 
 Once the setup is complete, navigate to the project folder and start your project with:

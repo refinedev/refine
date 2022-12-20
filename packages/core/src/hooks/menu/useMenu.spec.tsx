@@ -99,8 +99,6 @@ describe("useMenu Hook", () => {
                 ],
                 i18nProvider: {
                     translate: (key) => {
-                        console.log("key", key);
-
                         return `translated ${key}`;
                     },
                     changeLocale: () => Promise.resolve(),

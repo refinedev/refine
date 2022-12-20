@@ -21,7 +21,7 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 ## Use cases
 **refine** shines on *data-intensive* applications like *admin panels*, *dashboards* and *internal tools*. Thanks to built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
 
-<img src="/img/diagram.png" alt="Refine diagram" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" alt="Refine diagram" />
 
 
 ## Key Features

@@ -176,7 +176,7 @@ You can open one of the tutorial examples in StackBlitz by following [this link]
   
 ---
 
-<PromotionBanner title="Small dev teams love this React framework!" image="/img/generic_banner.png" />
+<PromotionBanner title="Small dev teams love this React framework!" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 

@@ -4,7 +4,7 @@ description: Why you should be using low-code app Refine to build internal tools
 slug: build-internal-tools-using-low-code-with-refine
 authors: salih
 tags: [refine, fundamentals, react, javascript, low-code, internal-tools]
-image: /img/placeholder.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
@@ -183,7 +183,7 @@ The main building blocks of a Refine app are `resources`. A resource is an entit
 ```tsx
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-json-server";
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 

@@ -113,7 +113,7 @@ export const useImport = <
 
                     if (processedAmount === totalAmount) {
                         setTimeout(() => {
-                            notification.close(`${resource}-import`);
+                            notification.destroy(`${resource}-import`);
                         }, 4500);
                     }
                 }

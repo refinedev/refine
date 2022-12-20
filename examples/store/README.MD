@@ -66,13 +66,13 @@ Currently, we are using this store and have already processed real shopping tran
 Create the project
 
 ```
-npm create refine-app@latest --example store
+npm create refine-app@latest -- --example store
 ```
 
 Go to the project directory.
 
 ```
-npm run dev
+npm run start
 ```
 ## Resources
 - [refine documentation](https://refine.dev/docs/getting-started/overview/)

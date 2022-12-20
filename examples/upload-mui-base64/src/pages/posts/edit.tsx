@@ -13,7 +13,8 @@ import { LoadingButton } from "@mui/lab";
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
-import { ICategory } from "interfaces";
+import { ICategory, IPost } from "interfaces";
+import { HttpError } from "@pankod/refine-core";
 
 export const PostEdit: React.FC = () => {
     const [isUploadLoading, setIsUploadLoading] = useState(false);
@@ -27,7 +28,11 @@ export const PostEdit: React.FC = () => {
         setValue,
         setError,
         watch,
-    } = useForm();
+    } = useForm<
+        IPost,
+        HttpError,
+        IPost & { category: ICategory; images: any }
+    >();
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
@@ -200,7 +205,7 @@ export const PostEdit: React.FC = () => {
                         <br />
                         {errors.images && (
                             <Typography variant="caption" color="#fa541c">
-                                {errors.images?.message}
+                                {errors.images?.message?.toString()}
                             </Typography>
                         )}
                     </label>

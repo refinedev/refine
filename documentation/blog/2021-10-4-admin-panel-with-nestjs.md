@@ -4,7 +4,7 @@ description: We will prepare a simple `job-posting` application. We will also us
 slug: customizable-admin-panel-with-nestjs
 authors: yildiray
 tags: [refine, nestjs, crud, react]
-image: /img/placeholder.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 

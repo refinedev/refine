@@ -7,18 +7,19 @@ module.exports = {
     preset: "ts-jest",
     rootDir: "./",
     testEnvironment: "jsdom",
-    globals: {
-        "ts-jest": {
-            tsconfig: "<rootDir>/tsconfig.test.json",
-        },
-    },
     setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
     testPathIgnorePatterns: ["<rootDir>/node_modules/"],
     moduleNameMapper: {
         ...pathsToModuleNameMapper(paths, { prefix: "<rootDir>/" }),
         "\\.css$": "identity-obj-proxy",
+        "^antd/es/": "antd/lib/",
+        "^.+\\.tsx?$": [
+            "ts-jest",
+            {
+                tsconfig: "<rootDir>/tsconfig.test.json",
+            },
+        ],
     },
-    name: "antd",
     displayName: "antd",
     transform: {
         "^.+\\.svg$": "<rootDir>/test/svgTransform.ts",

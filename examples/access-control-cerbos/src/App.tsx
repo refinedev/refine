@@ -9,7 +9,7 @@ import routerProvider from "@pankod/refine-react-router-v6";
 
 import { HTTP as Cerbos } from "@cerbos/http";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { Header } from "components/header";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";

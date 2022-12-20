@@ -1,13 +1,13 @@
 import { useMemo } from "react";
 import { useApiUrl, useCustom, useTranslate } from "@pankod/refine-core";
-import { Typography } from "@pankod/refine-antd";
+import { ConfigProvider, theme, Typography } from "@pankod/refine-antd";
 import { Column } from "@ant-design/charts";
 import { ColumnConfig } from "@ant-design/plots/lib/components/column";
 
 import { IncreaseIcon, DecreaseIcon } from "components/icons";
 
 import { ISalesChart } from "interfaces";
-import "./style.less";
+import { Header, HeaderNumbers, NewCustomersWrapper } from "./styled";
 
 export const NewCustomers: React.FC = () => {
     const t = useTranslate();
@@ -56,29 +56,32 @@ export const NewCustomers: React.FC = () => {
     }, [data]);
 
     return (
-        <div className="new-customers-wrapper">
-            <div className="header">
-                <Title level={3} className="header__title">
-                    {t("dashboard.newCustomers.title")}
-                </Title>
-
-                <div className="header__numbers">
-                    <Text strong>{data?.data.total ?? 0}</Text>
-                    <div>
-                        <Text strong>{data?.data.trend ?? 0}%</Text>
-                        {(data?.data?.trend ?? 0) > 0 ? (
-                            <IncreaseIcon />
-                        ) : (
-                            <DecreaseIcon />
-                        )}
-                    </div>
-                </div>
-            </div>
-            <Column
-                style={{ padding: 0, height: 162 }}
-                appendPadding={10}
-                {...config}
-            />
-        </div>
+        <ConfigProvider
+            theme={{
+                algorithm: theme.darkAlgorithm,
+            }}
+        >
+            <NewCustomersWrapper>
+                <Header>
+                    <Title level={3}>{t("dashboard.newCustomers.title")}</Title>
+                    <HeaderNumbers>
+                        <Text strong>{data?.data.total ?? 0}</Text>
+                        <div>
+                            <Text strong>{data?.data.trend ?? 0}%</Text>
+                            {(data?.data?.trend ?? 0) > 0 ? (
+                                <IncreaseIcon />
+                            ) : (
+                                <DecreaseIcon />
+                            )}
+                        </div>
+                    </HeaderNumbers>
+                </Header>
+                <Column
+                    style={{ padding: 0, height: 162 }}
+                    appendPadding={10}
+                    {...config}
+                />
+            </NewCustomersWrapper>
+        </ConfigProvider>
     );
 };

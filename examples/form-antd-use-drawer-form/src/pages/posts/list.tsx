@@ -197,7 +197,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             >
                 <Show
                     isLoading={showIsLoading}
-                    actionButtons={<DeleteButton recordItemId={showId} />}
+                    headerButtons={<DeleteButton recordItemId={showId} />}
                 >
                     <Title level={5}>Id</Title>
                     <Text>{record?.id}</Text>

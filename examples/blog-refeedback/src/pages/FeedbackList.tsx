@@ -115,7 +115,7 @@ export const FeedbackList: React.FC = () => {
     };
 
     return (
-        <List title="" pageHeaderProps={{ style: { height: "100%" } }}>
+        <List title="" headerProps={{ style: { height: "100%" } }}>
             <Row gutter={[64, 0]} justify="center">
                 <Col xs={24} sm={24} md={4} lg={4} xl={4}>
                     <Form

@@ -82,7 +82,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
     });
 
     return (
-        <>
+        <div>
             <Form
                 {...searchFormProps}
                 onValuesChange={() => {
@@ -93,10 +93,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                     categories: getDefaultFilter("category.id", filters, "in"),
                 }}
             >
-                <Row
-                    gutter={[16, 16]}
-                    style={{ background: "#fff", padding: "16px 24px" }}
-                >
+                <Row gutter={[16, 16]}>
                     <Col xs={24} sm={18}>
                         <div
                             style={{
@@ -174,6 +171,6 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 formProps={editFormProps}
                 saveButtonProps={editSaveButtonProps}
             />
-        </>
+        </div>
     );
 };
