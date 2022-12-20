@@ -17,4 +17,8 @@ export type UseCases = {
         question: string;
         answer: string[];
     }[];
+    assets: {
+        type: string;
+        url: string;
+    }[];
 };

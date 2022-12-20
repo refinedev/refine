@@ -38,6 +38,7 @@
         "react-share": "^4.4.0",
         "react-twitter-widgets": "^1.11.0",
         "react-use-cookie": "^1.4.0",
+        "swiper": "^8.4.5",
         "tailwindcss": "^3.1.8"
     },
     "browserslist": {

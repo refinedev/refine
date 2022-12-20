@@ -56,6 +56,20 @@ module.exports = [
                 ],
             },
         ],
+        assets: [
+            {
+                type: "image",
+                url: "https://picsum.photos/seed/usystem/1600/900",
+            },
+            {
+                type: "image",
+                url: "https://picsum.photos/seed/usystem-1/1600/900",
+            },
+            {
+                type: "image",
+                url: "https://picsum.photos/seed/usystem-2/1600/900",
+            },
+        ],
     },
     {
         route: "gravity",
@@ -102,6 +116,20 @@ module.exports = [
                 answer: [
                     "The aspect I like most is <strong>refine</strong> being <strong>headless by design</strong>. And also the documentation is very well structured with all sorts of example a user need. The most I like about refine is the <strong>amazing refine community on discord where we get help instantly</strong> whenever we are stuck with a problem, thanks to the awesome <strong>refine</strong> team.",
                 ],
+            },
+        ],
+        assets: [
+            {
+                type: "image",
+                url: "https://picsum.photos/seed/gravity/1600/900",
+            },
+            {
+                type: "image",
+                url: "https://picsum.photos/seed/gravity-1/1600/900",
+            },
+            {
+                type: "image",
+                url: "https://picsum.photos/seed/gravity-2/1600/900",
             },
         ],
     },

@@ -1,9 +1,16 @@
 import React from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
+import { Lazy, Navigation, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import { CompanyDetail } from "./company-detail";
 import { GiftCard } from "./gift-card";
+
+import "swiper/css";
+import "swiper/css/lazy";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const UseCaseDetail = (props) => {
     const { data } = props;
@@ -39,6 +46,31 @@ const UseCaseDetail = (props) => {
                         </div>
                     </div>
                 ))}
+                <Swiper
+                    style={{
+                        "--swiper-navigation-color": "#1890FF",
+                        "--swiper-pagination-color": "#1890FF",
+                    }}
+                    modules={[Lazy, Navigation, Pagination]}
+                    lazy
+                    navigation
+                    pagination={{ clickable: true }}
+                    scrollbar={{ draggable: true }}
+                >
+                    {data.assets.map((asset, index) => (
+                        <SwiperSlide key={index}>
+                            {asset.type === "image" && (
+                                <>
+                                    <img
+                                        className="swiper-lazy"
+                                        src={asset.url}
+                                    />
+                                    <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                                </>
+                            )}
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
                 <br />
                 <br />
                 <GiftCard />
