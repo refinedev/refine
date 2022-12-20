@@ -17,7 +17,7 @@ export const CompanyDetail = ({ companyDetails }) => {
                 </div>
                 <div className="flex gap-2">
                     <img
-                        className="w-12 h-12"
+                        className="w-12 h-12 rounded-full"
                         src={user.avatarURL}
                         alt="User Avatar"
                     />

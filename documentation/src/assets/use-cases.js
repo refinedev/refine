@@ -12,7 +12,7 @@ module.exports = [
             user: {
                 username: "Raphael Martinez",
                 description:
-                    "Partner & Developer <a href='#'>@Usystem</a> <br /> Enterprise software development",
+                    "Partner & Developer <a href='https://usystem.com.br/' target='_blank'>@Usystem</a> <br /> Enterprise software development",
                 avatarURL: "/use-cases/details/usystem/user-avatar.png",
             },
             message:
@@ -83,8 +83,8 @@ module.exports = [
             user: {
                 username: "Dipesh Bajgain",
                 description:
-                    "Project Lead <a href='#'>@Gravity Enterprises</a>",
-                avatarURL: "/use-cases/details/usystem/user-avatar.png",
+                    "Project Lead <a href='http://enterprisesgravity.com/' target='_blank'>@Gravity Enterprises</a>",
+                avatarURL: "/use-cases/details/gravity/user-avatar.png",
             },
             message:
                 "Thank you <strong>refine</strong> team for creating such a wonderful project. I can surely say that if there wasn’t <strong>refine</strong> then the same project I have built would take me more than a month and there would be the involvement of maybe 2 or 3 individuals. Best wishes to the <strong>refine</strong> team.",
