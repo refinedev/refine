@@ -103,6 +103,11 @@ export const handleFilterValue = (operator: CrudOperators, value: any) => {
             return `(?<!${value})$`;
         case "nnull":
             return false;
+        case "contains":
+        case "containss":
+        case "ncontains":
+        case "ncontainss":
+            return `%${value}%`;
         default:
             return value;
     }
