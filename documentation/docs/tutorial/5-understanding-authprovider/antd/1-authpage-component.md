@@ -3,7 +3,7 @@ id: authpage-component
 title: 2.Implementing Authorization
 tutorial:
     order: 0
-    prev: tutorial/understanding-authprovider/{preferredUI}/index
+    prev: tutorial/understanding-authprovider/index
 ---
 
 ##  Authpage
