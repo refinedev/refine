@@ -73,7 +73,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
         <Link
             to={listUrl}
             replace={false}
-            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+            onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
                 if (data?.can === false) {
                     e.preventDefault();
                     return;

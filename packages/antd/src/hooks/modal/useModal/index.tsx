@@ -30,7 +30,7 @@ export const useModal = ({
     return {
         modalProps: {
             ...modalProps,
-            onCancel: (e: React.MouseEvent<HTMLElement>) => {
+            onCancel: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                 modalProps.onCancel?.(e);
                 close();
             },

@@ -18,7 +18,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
               class="ant-page-header-heading-title "
             >
               <h4
-                class="ant-typography css-dev-only-do-not-override-26rdvq"
+                class="ant-typography css-dev-only-do-not-override-9ntgx0"
                 style="margin-bottom: 0px;"
               >
                 Create Post
@@ -28,7 +28,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
               class="ant-page-header-heading-sub-title "
             >
               <h5
-                class="ant-typography ant-typography-secondary css-dev-only-do-not-override-26rdvq"
+                class="ant-typography ant-typography-secondary css-dev-only-do-not-override-9ntgx0"
                 style="margin-bottom: 0px;"
               />
             </span>
@@ -37,7 +37,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
             class="ant-page-header-heading-extra "
           >
             <div
-              class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
+              class="ant-space css-dev-only-do-not-override-9ntgx0 ant-space-horizontal ant-space-align-center"
             >
               <div
                 class="ant-space-item"
@@ -49,28 +49,28 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
           class="ant-page-header-content "
         >
           <div
-            class="ant-spin-nested-loading css-dev-only-do-not-override-26rdvq"
+            class="ant-spin-nested-loading css-dev-only-do-not-override-9ntgx0"
           >
             <div
               class="ant-spin-container"
             >
               <div
-                class="ant-card css-dev-only-do-not-override-26rdvq"
+                class="ant-card css-dev-only-do-not-override-9ntgx0"
               >
                 <div
                   class="ant-card-body"
                 >
                   <form
-                    class="ant-form ant-form-vertical css-dev-only-do-not-override-26rdvq"
+                    class="ant-form ant-form-vertical css-dev-only-do-not-override-9ntgx0"
                   >
                     <div
-                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                      class="ant-form-item css-dev-only-do-not-override-9ntgx0"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-9ntgx0"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-9ntgx0"
                         >
                           <label
                             class="ant-form-item-required"
@@ -81,7 +81,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-9ntgx0"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -91,7 +91,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                             >
                               <input
                                 aria-required="true"
-                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                class="ant-input css-dev-only-do-not-override-9ntgx0"
                                 id="title"
                                 type="text"
                                 value=""
@@ -102,13 +102,13 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                      class="ant-form-item css-dev-only-do-not-override-9ntgx0"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-9ntgx0"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-9ntgx0"
                         >
                           <label
                             class="ant-form-item-required"
@@ -119,7 +119,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-9ntgx0"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -129,7 +129,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                             >
                               <input
                                 aria-required="true"
-                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                class="ant-input css-dev-only-do-not-override-9ntgx0"
                                 id="slug"
                                 type="text"
                                 value=""
@@ -140,13 +140,13 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                      class="ant-form-item css-dev-only-do-not-override-9ntgx0"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-9ntgx0"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-9ntgx0"
                         >
                           <label
                             class="ant-form-item-required"
@@ -157,7 +157,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-9ntgx0"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -167,7 +167,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                             >
                               <textarea
                                 aria-required="true"
-                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                class="ant-input css-dev-only-do-not-override-9ntgx0"
                                 id="content"
                                 rows="5"
                               />
@@ -177,13 +177,13 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                      class="ant-form-item css-dev-only-do-not-override-9ntgx0"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-9ntgx0"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-9ntgx0"
                         >
                           <label
                             class="ant-form-item-required"
@@ -194,7 +194,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-9ntgx0"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -204,7 +204,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                             >
                               <input
                                 aria-required="true"
-                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                class="ant-input css-dev-only-do-not-override-9ntgx0"
                                 id="hit"
                                 type="text"
                                 value=""
@@ -215,13 +215,13 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                      class="ant-form-item css-dev-only-do-not-override-9ntgx0"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-9ntgx0"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-9ntgx0"
                         >
                           <label
                             class="ant-form-item-required"
@@ -232,7 +232,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-9ntgx0"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -242,7 +242,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                             >
                               <div
                                 aria-required="true"
-                                class="ant-select ant-select-in-form-item css-dev-only-do-not-override-26rdvq ant-select-single ant-select-show-arrow ant-select-show-search"
+                                class="ant-select ant-select-in-form-item css-dev-only-do-not-override-9ntgx0 ant-select-single ant-select-show-arrow ant-select-show-search"
                               >
                                 <div
                                   class="ant-select-selector"
@@ -302,13 +302,13 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                      class="ant-form-item css-dev-only-do-not-override-9ntgx0"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-9ntgx0"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-9ntgx0"
                         >
                           <label
                             class="ant-form-item-required"
@@ -319,7 +319,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-9ntgx0"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -329,7 +329,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                             >
                               <div
                                 aria-required="true"
-                                class="ant-select ant-select-in-form-item css-dev-only-do-not-override-26rdvq ant-select-single ant-select-show-arrow ant-select-show-search"
+                                class="ant-select ant-select-in-form-item css-dev-only-do-not-override-9ntgx0 ant-select-single ant-select-show-arrow ant-select-show-search"
                               >
                                 <div
                                   class="ant-select-selector"
@@ -389,13 +389,13 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                      class="ant-form-item css-dev-only-do-not-override-9ntgx0"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-9ntgx0"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-9ntgx0"
                         >
                           <label
                             class="ant-form-item-required"
@@ -406,7 +406,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-9ntgx0"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -416,7 +416,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                             >
                               <input
                                 aria-required="true"
-                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                class="ant-input css-dev-only-do-not-override-9ntgx0"
                                 id="status"
                                 type="text"
                                 value=""
@@ -427,13 +427,13 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                      class="ant-form-item css-dev-only-do-not-override-9ntgx0"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-9ntgx0"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-9ntgx0"
                         >
                           <label
                             class="ant-form-item-required"
@@ -444,7 +444,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-9ntgx0"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -454,7 +454,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                             >
                               <input
                                 aria-required="true"
-                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                class="ant-input css-dev-only-do-not-override-9ntgx0"
                                 id="status_color"
                                 type="text"
                                 value=""
@@ -465,13 +465,13 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                      class="ant-form-item css-dev-only-do-not-override-9ntgx0"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-9ntgx0"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-9ntgx0"
                         >
                           <label
                             class="ant-form-item-required"
@@ -482,7 +482,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-9ntgx0"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -491,7 +491,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                               class="ant-form-item-control-input-content"
                             >
                               <div
-                                class="ant-picker css-dev-only-do-not-override-26rdvq"
+                                class="ant-picker css-dev-only-do-not-override-9ntgx0"
                               >
                                 <div
                                   class="ant-picker-input"
@@ -537,13 +537,13 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                      class="ant-form-item css-dev-only-do-not-override-9ntgx0"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-9ntgx0"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-9ntgx0"
                         >
                           <label
                             class="ant-form-item-required"
@@ -554,7 +554,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-9ntgx0"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -563,7 +563,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                               class="ant-form-item-control-input-content"
                             >
                               <div
-                                class="ant-picker css-dev-only-do-not-override-26rdvq"
+                                class="ant-picker css-dev-only-do-not-override-9ntgx0"
                               >
                                 <div
                                   class="ant-picker-input"
@@ -609,13 +609,13 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                      class="ant-form-item css-dev-only-do-not-override-9ntgx0"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-9ntgx0"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-9ntgx0"
                         >
                           <label
                             class=""
@@ -625,7 +625,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-9ntgx0"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -634,10 +634,10 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                               class="ant-form-item-control-input-content"
                             >
                               <span
-                                class="ant-upload-wrapper css-dev-only-do-not-override-26rdvq"
+                                class="ant-upload-wrapper css-dev-only-do-not-override-9ntgx0"
                               >
                                 <div
-                                  class="ant-upload ant-upload-drag css-dev-only-do-not-override-26rdvq"
+                                  class="ant-upload ant-upload-drag css-dev-only-do-not-override-9ntgx0"
                                 >
                                   <span
                                     class="ant-upload ant-upload-btn"
@@ -673,13 +673,13 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                      class="ant-form-item css-dev-only-do-not-override-9ntgx0"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-9ntgx0"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-9ntgx0"
                         >
                           <label
                             class="ant-form-item-required"
@@ -690,7 +690,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-9ntgx0"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -700,7 +700,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                             >
                               <div
                                 aria-required="true"
-                                class="ant-select ant-select-in-form-item css-dev-only-do-not-override-26rdvq ant-select-multiple ant-select-show-search"
+                                class="ant-select ant-select-in-form-item css-dev-only-do-not-override-9ntgx0 ant-select-multiple ant-select-show-search"
                               >
                                 <div
                                   class="ant-select-selector"
@@ -753,13 +753,13 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                      class="ant-form-item css-dev-only-do-not-override-9ntgx0"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-9ntgx0"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-9ntgx0"
                         >
                           <label
                             class="ant-form-item-required"
@@ -770,7 +770,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-9ntgx0"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -780,7 +780,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                             >
                               <input
                                 aria-required="true"
-                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                class="ant-input css-dev-only-do-not-override-9ntgx0"
                                 id="language"
                                 type="text"
                                 value=""
@@ -800,14 +800,14 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
                   >
                     <span>
                       <div
-                        class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
+                        class="ant-space css-dev-only-do-not-override-9ntgx0 ant-space-horizontal ant-space-align-center"
                         style="float: right; margin-right: 24px;"
                       >
                         <div
                           class="ant-space-item"
                         >
                           <button
-                            class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-primary"
+                            class="ant-btn css-dev-only-do-not-override-9ntgx0 ant-btn-primary"
                             type="submit"
                           >
                             <span
@@ -849,14 +849,14 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
     style="position: fixed; bottom: 12px; right: 60px;"
   >
     <div
-      class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
+      class="ant-space css-dev-only-do-not-override-9ntgx0 ant-space-horizontal ant-space-align-center"
     >
       <div
         class="ant-space-item"
         style="margin-right: 8px;"
       >
         <button
-          class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-primary"
+          class="ant-btn css-dev-only-do-not-override-9ntgx0 ant-btn-primary"
           type="button"
         >
           <span
@@ -887,7 +887,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
         class="ant-space-item"
       >
         <a
-          class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-default"
+          class="ant-btn css-dev-only-do-not-override-9ntgx0 ant-btn-default"
           href="https://github.com/refinedev/refine/discussions/3046"
           target="_blank"
         >

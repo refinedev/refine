@@ -73,7 +73,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
         <Link
             to={createUrl}
             replace={false}
-            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+            onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
                 if (data?.can === false) {
                     e.preventDefault();
                     return;

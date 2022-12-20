@@ -44,7 +44,8 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
 
     return (
         <Button
-            onClick={(e) => (onClick ? onClick(e) : refetch())}
+            // TODO: fix any type
+            onClick={(e) => (onClick ? onClick(e as any) : refetch())}
             icon={<RedoOutlined spin={isFetching} />}
             data-testid={RefineButtonTestIds.RefreshButton}
             {...rest}

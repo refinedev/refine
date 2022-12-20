@@ -73,7 +73,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
         <Link
             to={showUrl}
             replace={false}
-            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+            onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
                 if (data?.can === false) {
                     e.preventDefault();
                     return;

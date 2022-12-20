@@ -13,7 +13,7 @@ export const PaginationLink = ({ to, element }: PaginationLinkProps) => {
         <Link
             to={to}
             replace={false}
-            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+            onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
                 e.preventDefault();
             }}
         >

@@ -18,7 +18,7 @@ exports[`AntdShowInferencer should match the snapshot 1`] = `
               class="ant-page-header-heading-title "
             >
               <h4
-                class="ant-typography css-dev-only-do-not-override-26rdvq"
+                class="ant-typography css-dev-only-do-not-override-9ntgx0"
                 style="margin-bottom: 0px;"
               >
                 Show Post
@@ -28,7 +28,7 @@ exports[`AntdShowInferencer should match the snapshot 1`] = `
               class="ant-page-header-heading-sub-title "
             >
               <h5
-                class="ant-typography ant-typography-secondary css-dev-only-do-not-override-26rdvq"
+                class="ant-typography ant-typography-secondary css-dev-only-do-not-override-9ntgx0"
                 style="margin-bottom: 0px;"
               />
             </span>
@@ -37,13 +37,13 @@ exports[`AntdShowInferencer should match the snapshot 1`] = `
             class="ant-page-header-heading-extra "
           >
             <div
-              class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
+              class="ant-space css-dev-only-do-not-override-9ntgx0 ant-space-horizontal ant-space-align-center"
             >
               <div
                 class="ant-space-item"
               >
                 <div
-                  class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
+                  class="ant-space css-dev-only-do-not-override-9ntgx0 ant-space-horizontal ant-space-align-center"
                   style="flex-wrap: wrap; margin-bottom: -8px;"
                 >
                   <div
@@ -54,7 +54,7 @@ exports[`AntdShowInferencer should match the snapshot 1`] = `
                       href="/posts"
                     >
                       <button
-                        class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-default"
+                        class="ant-btn css-dev-only-do-not-override-9ntgx0 ant-btn-default"
                         title=""
                         type="button"
                       >
@@ -88,7 +88,7 @@ exports[`AntdShowInferencer should match the snapshot 1`] = `
                     style="padding-bottom: 8px;"
                   >
                     <button
-                      class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-default"
+                      class="ant-btn css-dev-only-do-not-override-9ntgx0 ant-btn-default"
                       type="button"
                     >
                       <span
@@ -124,49 +124,49 @@ exports[`AntdShowInferencer should match the snapshot 1`] = `
           class="ant-page-header-content "
         >
           <div
-            class="ant-spin-nested-loading css-dev-only-do-not-override-26rdvq"
+            class="ant-spin-nested-loading css-dev-only-do-not-override-9ntgx0"
           >
             <div
               class="ant-spin-container"
             >
               <div
-                class="ant-card css-dev-only-do-not-override-26rdvq"
+                class="ant-card css-dev-only-do-not-override-9ntgx0"
               >
                 <div
                   class="ant-card-body"
                 >
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     Id
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     11
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     Title
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     Nobis exercitationem officia quia est.
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     Slug
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     provident-culpa-facere
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     Content
                   </h5>
@@ -174,74 +174,74 @@ exports[`AntdShowInferencer should match the snapshot 1`] = `
                     Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur voluptatibus molestias. Est nemo aut. Fugit aliquam enim eveniet veritatis. Magni et aut. Consequatur aliquid rerum vero. Quaerat debitis enim magnam. Dolorem est delectus architecto et accusantium. Velit quia vero. Aut necessitatibus quia at consequatur soluta accusantium.
                   </p>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     Hit
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     920,557
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     Category
                   </h5>
                   Numquam Saepe Illo
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     User
                   </h5>
                   Eriberto Leannon
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     Status
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     draft
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     Status Color
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     orange
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     Created At
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     04/02/2022
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     Published At
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     08/10/2021
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     Image
                   </h5>
                   <div
-                    class="ant-image css-dev-only-do-not-override-26rdvq"
+                    class="ant-image css-dev-only-do-not-override-9ntgx0"
                   >
                     <img
                       class="ant-image-img"
@@ -278,27 +278,27 @@ exports[`AntdShowInferencer should match the snapshot 1`] = `
                     </div>
                   </div>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     Tags
                   </h5>
                   <span
-                    class="ant-tag css-dev-only-do-not-override-26rdvq"
+                    class="ant-tag css-dev-only-do-not-override-9ntgx0"
                   >
                     Error Eos Et
                   </span>
                   <span
-                    class="ant-tag css-dev-only-do-not-override-26rdvq"
+                    class="ant-tag css-dev-only-do-not-override-9ntgx0"
                   >
                     Nobis Et Ut
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     Language
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-26rdvq"
+                    class="ant-typography css-dev-only-do-not-override-9ntgx0"
                   >
                     2
                   </span>
@@ -314,14 +314,14 @@ exports[`AntdShowInferencer should match the snapshot 1`] = `
     style="position: fixed; bottom: 12px; right: 60px;"
   >
     <div
-      class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
+      class="ant-space css-dev-only-do-not-override-9ntgx0 ant-space-horizontal ant-space-align-center"
     >
       <div
         class="ant-space-item"
         style="margin-right: 8px;"
       >
         <button
-          class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-primary"
+          class="ant-btn css-dev-only-do-not-override-9ntgx0 ant-btn-primary"
           type="button"
         >
           <span
@@ -352,7 +352,7 @@ exports[`AntdShowInferencer should match the snapshot 1`] = `
         class="ant-space-item"
       >
         <a
-          class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-default"
+          class="ant-btn css-dev-only-do-not-override-9ntgx0 ant-btn-default"
           href="https://github.com/refinedev/refine/discussions/3046"
           target="_blank"
         >

@@ -18,7 +18,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
               class="ant-page-header-heading-title "
             >
               <h4
-                class="ant-typography css-dev-only-do-not-override-26rdvq"
+                class="ant-typography css-dev-only-do-not-override-9ntgx0"
                 style="margin-bottom: 0px;"
               >
                 Posts
@@ -28,7 +28,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
               class="ant-page-header-heading-sub-title "
             >
               <h5
-                class="ant-typography ant-typography-secondary css-dev-only-do-not-override-26rdvq"
+                class="ant-typography ant-typography-secondary css-dev-only-do-not-override-9ntgx0"
                 style="margin-bottom: 0px;"
               />
             </span>
@@ -39,10 +39,10 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
         >
           <div>
             <div
-              class="ant-table-wrapper css-dev-only-do-not-override-26rdvq"
+              class="ant-table-wrapper css-dev-only-do-not-override-9ntgx0"
             >
               <div
-                class="ant-spin-nested-loading css-dev-only-do-not-override-26rdvq"
+                class="ant-spin-nested-loading css-dev-only-do-not-override-9ntgx0"
               >
                 <div
                   class="ant-spin-container"
@@ -67,71 +67,85 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                             <tr>
                               <th
                                 class="ant-table-cell"
+                                scope="col"
                               >
                                 Id
                               </th>
                               <th
                                 class="ant-table-cell"
+                                scope="col"
                               >
                                 Title
                               </th>
                               <th
                                 class="ant-table-cell"
+                                scope="col"
                               >
                                 Slug
                               </th>
                               <th
                                 class="ant-table-cell"
+                                scope="col"
                               >
                                 Content
                               </th>
                               <th
                                 class="ant-table-cell"
+                                scope="col"
                               >
                                 Hit
                               </th>
                               <th
                                 class="ant-table-cell"
+                                scope="col"
                               >
                                 Category
                               </th>
                               <th
                                 class="ant-table-cell"
+                                scope="col"
                               >
                                 User
                               </th>
                               <th
                                 class="ant-table-cell"
+                                scope="col"
                               >
                                 Status
                               </th>
                               <th
                                 class="ant-table-cell"
+                                scope="col"
                               >
                                 Status Color
                               </th>
                               <th
                                 class="ant-table-cell"
+                                scope="col"
                               >
                                 Created At
                               </th>
                               <th
                                 class="ant-table-cell"
+                                scope="col"
                               >
                                 Published At
                               </th>
                               <th
                                 class="ant-table-cell"
+                                scope="col"
                               >
                                 Image
                               </th>
                               <th
                                 class="ant-table-cell"
+                                scope="col"
                               >
                                 Tags
                               </th>
                               <th
                                 class="ant-table-cell"
+                                scope="col"
                               >
                                 Language
                               </th>
@@ -327,7 +341,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-typography css-dev-only-do-not-override-26rdvq"
+                                  class="ant-typography css-dev-only-do-not-override-9ntgx0"
                                 >
                                   04/02/2022
                                 </span>
@@ -336,7 +350,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-typography css-dev-only-do-not-override-26rdvq"
+                                  class="ant-typography css-dev-only-do-not-override-9ntgx0"
                                 >
                                   08/10/2021
                                 </span>
@@ -345,7 +359,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <div
-                                  class="ant-image css-dev-only-do-not-override-26rdvq"
+                                  class="ant-image css-dev-only-do-not-override-9ntgx0"
                                 >
                                   <img
                                     class="ant-image-img"
@@ -386,7 +400,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-tag css-dev-only-do-not-override-26rdvq"
+                                  class="ant-tag css-dev-only-do-not-override-9ntgx0"
                                 >
                                   Nobis Et Ut
                                 </span>
@@ -452,7 +466,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-typography css-dev-only-do-not-override-26rdvq"
+                                  class="ant-typography css-dev-only-do-not-override-9ntgx0"
                                 >
                                   09/24/2022
                                 </span>
@@ -461,7 +475,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-typography css-dev-only-do-not-override-26rdvq"
+                                  class="ant-typography css-dev-only-do-not-override-9ntgx0"
                                 >
                                   09/01/2021
                                 </span>
@@ -470,7 +484,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <div
-                                  class="ant-image css-dev-only-do-not-override-26rdvq"
+                                  class="ant-image css-dev-only-do-not-override-9ntgx0"
                                 >
                                   <img
                                     class="ant-image-img"
@@ -511,12 +525,12 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-tag css-dev-only-do-not-override-26rdvq"
+                                  class="ant-tag css-dev-only-do-not-override-9ntgx0"
                                 >
                                   Error Eos Et
                                 </span>
                                 <span
-                                  class="ant-tag css-dev-only-do-not-override-26rdvq"
+                                  class="ant-tag css-dev-only-do-not-override-9ntgx0"
                                 >
                                   Nobis Et Ut
                                 </span>
@@ -533,7 +547,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                     </div>
                   </div>
                   <ul
-                    class="ant-pagination ant-pagination-simple ant-table-pagination ant-table-pagination-center css-dev-only-do-not-override-26rdvq"
+                    class="ant-pagination ant-pagination-simple ant-table-pagination ant-table-pagination-center css-dev-only-do-not-override-9ntgx0"
                   >
                     <li
                       aria-disabled="true"
@@ -634,14 +648,14 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
     style="position: fixed; bottom: 12px; right: 60px;"
   >
     <div
-      class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
+      class="ant-space css-dev-only-do-not-override-9ntgx0 ant-space-horizontal ant-space-align-center"
     >
       <div
         class="ant-space-item"
         style="margin-right: 8px;"
       >
         <button
-          class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-primary"
+          class="ant-btn css-dev-only-do-not-override-9ntgx0 ant-btn-primary"
           type="button"
         >
           <span
@@ -672,7 +686,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
         class="ant-space-item"
       >
         <a
-          class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-default"
+          class="ant-btn css-dev-only-do-not-override-9ntgx0 ant-btn-default"
           href="https://github.com/refinedev/refine/discussions/3046"
           target="_blank"
         >
