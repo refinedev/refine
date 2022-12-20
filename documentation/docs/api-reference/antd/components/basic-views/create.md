@@ -728,67 +728,10 @@ render(
 );
 ```
 
-### ~~`actionButtons`~~
-
-:::caution Deprecated
-Use `headerButtons` or `footerButtons` instead.
-:::
-
-`<Create>` uses the Ant Design [`<Card>`](https://ant.design/components/card) component. The `action` property of the `<Card>` component shows `<SaveButton>` and `<DeleteButton>` based on your resource definition in the `resources` property you pass to `<Refine>`. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
-
-```tsx
-import { Create, Button } from "@pankod/refine-antd";
-
-export const CreatePage: React.FC = () => {
-    return (
-        <Create
-            actionButtons={
-                <>
-                    <Button type="primary">Custom Button 1</Button>
-                    <Button size="small">Custom Button 2</Button>
-                </>
-            }
-        >
-            ...
-        </Create>
-    );
-};
-```
-
-### ~~`pageHeaderProps`~~
-
-:::caution Deprecated
-Use `headerProps`, `wrapperProps` or `contentProps` instead.
-:::
-
-`<Create>` uses the Ant Design `<PageHeader>` components so you can customize with the props of `pageHeaderProps`.
-
-By default, the `breadcrumb` property of the `<PageHeader>` component shows [`<Breadcrumb>`][breadcrumb-component] component.
-
-[Refer to the `<PageHeader>` documentation for detailed usage. &#8594](https://ant.design/components/page-header/#API)
-
-```tsx
-import { Create, Breadcrumb } from "@pankod/refine-antd";
-
-export const CreatePage: React.FC = () => {
-    return (
-        <Create
-            pageHeaderProps={{
-                onBack: () => console.log("Hello, refine"),
-                subTitle: "Subtitle",
-                breadcrumb: <Breadcrumb breadcrumbProps={{ separator: "-" }} />,
-            }}
-        >
-            ...
-        </Create>
-    );
-};
-```
-
 ## API Reference
 
 ### Props
 
-<PropsTable module="@pankod/refine-antd/Create" goBack-default="`<ArrowLeft />`" />
+<PropsTable module="@pankod/refine-antd/Create" goBack-default="`<ArrowLeft />`" headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)" />
 
 [breadcrumb-component]: /api-reference/antd/components/breadcrumb.md

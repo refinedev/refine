@@ -1,41 +1,42 @@
 {
+  "name": "refinejs-repo",
   "version": "0.0.0",
-  "license": "MIT",
   "private": true,
-  "engines": {
-    "node": ">=10"
-  },
+  "license": "MIT",
+  "author": "refine",
   "scripts": {
     "lerna": "lerna",
     "start": "lerna run start --stream --parallel --scope @pankod/refine-core",
-    "test": "lerna run test --stream --scope @pankod/refine* --scope create-refine-app",
-    "test:coverage": "npm run test --stream -- -- -- --coverage",
-    "bootstrap": "cd packages/codemod && npm ci && cd ../.. && lerna bootstrap --hoist --strict  --ignore @pankod/refine-codemod --ignore @pankod/refine-react-router --scope @pankod/refine* --scope create-refine-app",
-    "lint": "eslint -c ./.eslintrc packages examples",
-    "lint:fix": "npm run lint -- --quiet --fix",
-    "lint:staged": "lint-staged",
     "build": "lerna run build --ignore @pankod/refine-react-router --scope @pankod/refine* --scope create-refine-app",
-    "start:docs": "concurrently \"cd documentation && npm run start\" \"npm run start -- --scope @pankod/refine-live-previews\" --names docs,live --prefix-colors blue,red",
-    "nuke:node_modules": "echo 'Removing all node_modules'; find . -name 'node_modules' -type d -prune -not -path './documentation/*' -exec rm -rf '{}' +",
-    "nuke:builds": "echo 'Removing all builds/dists'; find ./packages -name 'dist' -type d -prune -not -path './documentation/*' -not -path '*/node_modules/*' -exec rm -rf '{}' +",
-    "nuke:lockfiles": "echo 'Removing all lockfiles'; find ./packages \\( -name 'package-lock.json' -o -name 'yarn.lock' -o -name 'pnpm-lock.yaml' \\) -type f -prune -not -path './documentation/*' -not -path '**/codemod/**' -not -path '**/node_modules/**' -exec rm -rf '{}' +",
+    "lint": "eslint -c ./.eslintrc packages examples",
+    "test": "lerna run test --stream --scope @pankod/refine* --scope create-refine-app",
+    "bootstrap": "npm run bootstrap:codemod && lerna bootstrap --hoist --strict  --ignore @pankod/refine-codemod --ignore @pankod/refine-react-router --scope @pankod/refine* --scope create-refine-app",
+    "changeset": "changeset",
     "nuke": "echo 'Removing all node_modules, builds and lockfiles'; npm run nuke:node_modules; npm run nuke:builds; npm run nuke:lockfiles;",
     "coffee": "npm run nuke && npm i && npm run bootstrap && npm run build",
     "prepare": "husky install",
-    "changeset": "changeset",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "start:docs": "concurrently \"cd documentation && npm run start\" \"npm run start -- --scope @pankod/refine-live-previews\" --names docs,live --prefix-colors blue,red",
+    "nuke:builds": "lerna exec -- rm -rf dist && lerna exec -- rm -rf .next && lerna exec -- rm -rf build",
+    "nuke:lockfiles": "lerna exec --ignore @pankod/refine-codemod -- rm -rf package-lock.json && lerna exec --ignore @pankod/refine-codemod -- rm -rf yarn.lock && lerna exec --ignore @pankod/refine-codemod -- rm -rf pnpm-lock.yaml",
+    "nuke:node_modules": "lerna clean --yes",
+    "bootstrap:codemod": "cd packages/codemod && npm ci && cd ../..",
+    "lint:fix": "npm run lint -- --quiet --fix",
+    "lint:staged": "lint-staged",
+    "test:coverage": "npm run test --stream -- -- -- --coverage"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint -c ./.eslintrc --quiet --fix"
     ]
   },
-  "name": "refinejs-repo",
-  "author": "refine",
   "devDependencies": {
+    "@changesets/changelog-github": "^0.4.6",
+    "@changesets/cli": "^2.24.3",
     "@commitlint/cli": "^17.0.1",
     "@commitlint/config-conventional": "^17.0.0",
-    "@types/jest": "^26.0.24",
+    "@lerna/filter-options": "^6.2.0",
+    "@types/jest": "^29.2.4",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
@@ -46,19 +47,20 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.8",
     "husky": "^8.0.1",
-    "jest": "^27.5.1",
-    "lerna": "^4.0.0",
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
+    "lerna": "^6.1.0",
     "lint-staged": "^10.5.4",
     "patch-package": "^6.4.7",
+    "prettier": "^2.7.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-refresh": "^0.11.0",
-    "ts-jest": "^27.1.3",
-    "typescript": "^4.7.4"
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.7.4",
+    "@nrwl/nx-cloud": "^15.0.2"
   },
-  "dependencies": {
-    "@changesets/changelog-github": "^0.4.6",
-    "@changesets/cli": "^2.24.3",
-    "prettier": "^2.7.1"
+  "engines": {
+    "node": ">=16"
   }
 }

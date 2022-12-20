@@ -100,7 +100,7 @@ But this comes with the overhead of defining `Subscriber` manually in the first 
 
 ---
 
-<PromotionBanner title="Small dev teams love this React framework!" image="/img/generic_banner.png" />
+<PromotionBanner title="Small dev teams love this React framework!" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 

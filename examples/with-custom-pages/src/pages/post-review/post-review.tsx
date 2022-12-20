@@ -54,10 +54,10 @@ export const PostReview: React.FC = () => {
             resource="posts"
             recordItemId={record?.id}
             isLoading={isLoading || categoryIsLoading}
-            pageHeaderProps={{
+            headerProps={{
                 backIcon: false,
             }}
-            actionButtons={
+            headerButtons={
                 <Space
                     key="action-buttons"
                     style={{ float: "right", marginRight: 24 }}

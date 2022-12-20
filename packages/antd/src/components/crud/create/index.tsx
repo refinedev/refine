@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Space, PageHeader, Spin } from "antd";
+import { Card, Space, Spin } from "antd";
 import {
     useNavigation,
     useResourceWithRoute,
@@ -10,7 +10,7 @@ import {
     useRefineContext,
 } from "@pankod/refine-core";
 
-import { Breadcrumb, SaveButton } from "@components";
+import { Breadcrumb, SaveButton, PageHeader } from "@components";
 import { CreateProps } from "../types";
 
 /**
@@ -21,10 +21,8 @@ import { CreateProps } from "../types";
  */
 export const Create: React.FC<CreateProps> = ({
     title,
-    actionButtons,
     saveButtonProps,
     children,
-    pageHeaderProps,
     resource: resourceFromProps,
     isLoading = false,
     breadcrumb: breadcrumbFromProps,
@@ -56,13 +54,11 @@ export const Create: React.FC<CreateProps> = ({
 
     const defaultFooterButtons = (
         <>
-            {actionButtons ?? (
-                <SaveButton
-                    {...(isLoading ? { disabled: true } : {})}
-                    {...saveButtonProps}
-                    htmlType="submit"
-                />
-            )}
+            <SaveButton
+                {...(isLoading ? { disabled: true } : {})}
+                {...saveButtonProps}
+                htmlType="submit"
+            />
         </>
     );
 
@@ -100,7 +96,6 @@ export const Create: React.FC<CreateProps> = ({
                             : null}
                     </Space>
                 }
-                {...(pageHeaderProps ?? {})}
                 {...(headerProps ?? {})}
             >
                 <Spin spinning={isLoading}>

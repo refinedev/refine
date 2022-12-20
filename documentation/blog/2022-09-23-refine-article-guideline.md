@@ -26,7 +26,7 @@ It is a CLI tool that helps you to bootstrap a new project with a lot of feature
 
 To create a project called my-app, run this command:
 ```bash
-npm create refine-app my-app
+npm create refine-app@latest my-app
 ```
 
 ## Adding table of contents

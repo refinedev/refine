@@ -13,8 +13,8 @@ RUN npm install
 
 COPY . /opt/app
 
-RUN npm run bootstrap -- --scope fine-foods -- --force
-RUN npm run build -- --scope fine-foods
+RUN npm run bootstrap -- --scope finefoods-antd -- --force
+RUN npm run build -- --scope finefoods-antd
 
 FROM node:16-alpine
 

@@ -15,7 +15,7 @@ describe("useModal Hook", () => {
 
         const { modalProps } = result.current;
 
-        expect(modalProps.visible).toEqual(false);
+        expect(modalProps.open).toEqual(false);
     });
 
     it("should visible true on pass visible true with prop", async () => {
@@ -23,7 +23,7 @@ describe("useModal Hook", () => {
             () =>
                 useModal({
                     modalProps: {
-                        visible: true,
+                        open: true,
                     },
                 }),
             {
@@ -102,7 +102,7 @@ describe("useModal Hook", () => {
                 );
         });
 
-        expect(result.current.modalProps.visible).toEqual(false);
+        expect(result.current.modalProps.open).toEqual(false);
         expect(mockedOnClose).toBeCalledTimes(1);
     });
 
@@ -129,6 +129,6 @@ describe("useModal Hook", () => {
                 );
         });
 
-        expect(result.current.modalProps.visible).toEqual(false);
+        expect(result.current.modalProps.open).toEqual(false);
     });
 });

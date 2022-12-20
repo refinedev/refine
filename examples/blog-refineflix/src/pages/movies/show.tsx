@@ -46,7 +46,7 @@ export const MovieShow: React.FC<IResourceComponentsProps> = () => {
         <Layout>
             <Show
                 isLoading={isLoading}
-                pageHeaderProps={{
+                headerProps={{
                     title: record?.name,
                     subTitle: record?.premiere,
                     extra: null,

@@ -1,9 +1,5 @@
-import {
-    Show,
-    useShow,
-    Typography,
-    IResourceComponentsProps,
-} from "@pankod/refine";
+import { IResourceComponentsProps, useShow } from "@pankod/refine-core";
+import { Show, Typography } from "@pankod/refine-antd";
 
 import { ICompany } from "interfaces";
 

@@ -5,22 +5,47 @@ exports[`AntdInferencer should match the snapshot 1`] = `
   <div>
     <div>
       <div
-        class="ant-page-header has-breadcrumb"
+        class="ant-page-header ant-page-header-has-breadcrumb ant-page-header-ghost"
+        style="padding: 0px;"
       >
         <nav
-          class="ant-breadcrumb"
+          class="ant-breadcrumb css-dev-only-do-not-override-26rdvq"
         >
           <ol />
         </nav>
         <div
-          class="ant-page-header-content"
+          class="ant-page-header-heading "
+        >
+          <div
+            class="ant-page-header-heading-left "
+          >
+            <span
+              class="ant-page-header-heading-title "
+            >
+              <h4
+                class="ant-typography css-dev-only-do-not-override-26rdvq"
+                style="margin-bottom: 0px;"
+              />
+            </span>
+            <span
+              class="ant-page-header-heading-sub-title "
+            >
+              <h5
+                class="ant-typography ant-typography-secondary css-dev-only-do-not-override-26rdvq"
+                style="margin-bottom: 0px;"
+              />
+            </span>
+          </div>
+        </div>
+        <div
+          class="ant-page-header-content "
         >
           <div>
             <div
-              class="ant-table-wrapper"
+              class="ant-table-wrapper css-dev-only-do-not-override-26rdvq"
             >
               <div
-                class="ant-spin-nested-loading"
+                class="ant-spin-nested-loading css-dev-only-do-not-override-26rdvq"
               >
                 <div
                   class="ant-spin-container"
@@ -305,7 +330,7 @@ exports[`AntdInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-typography"
+                                  class="ant-typography css-dev-only-do-not-override-26rdvq"
                                 >
                                   04/02/2022
                                 </span>
@@ -314,7 +339,7 @@ exports[`AntdInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-typography"
+                                  class="ant-typography css-dev-only-do-not-override-26rdvq"
                                 >
                                   08/10/2021
                                 </span>
@@ -323,7 +348,7 @@ exports[`AntdInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <div
-                                  class="ant-image"
+                                  class="ant-image css-dev-only-do-not-override-26rdvq"
                                 >
                                   <img
                                     class="ant-image-img"
@@ -364,7 +389,7 @@ exports[`AntdInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-tag"
+                                  class="ant-tag css-dev-only-do-not-override-26rdvq"
                                 >
                                   Nobis Et Ut
                                 </span>
@@ -430,7 +455,7 @@ exports[`AntdInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-typography"
+                                  class="ant-typography css-dev-only-do-not-override-26rdvq"
                                 >
                                   09/24/2022
                                 </span>
@@ -439,7 +464,7 @@ exports[`AntdInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-typography"
+                                  class="ant-typography css-dev-only-do-not-override-26rdvq"
                                 >
                                   09/01/2021
                                 </span>
@@ -448,7 +473,7 @@ exports[`AntdInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <div
-                                  class="ant-image"
+                                  class="ant-image css-dev-only-do-not-override-26rdvq"
                                 >
                                   <img
                                     class="ant-image-img"
@@ -489,12 +514,12 @@ exports[`AntdInferencer should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-tag"
+                                  class="ant-tag css-dev-only-do-not-override-26rdvq"
                                 >
                                   Error Eos Et
                                 </span>
                                 <span
-                                  class="ant-tag"
+                                  class="ant-tag css-dev-only-do-not-override-26rdvq"
                                 >
                                   Nobis Et Ut
                                 </span>
@@ -511,7 +536,7 @@ exports[`AntdInferencer should match the snapshot 1`] = `
                     </div>
                   </div>
                   <ul
-                    class="ant-pagination ant-pagination-simple ant-table-pagination ant-table-pagination-center"
+                    class="ant-pagination ant-pagination-simple ant-table-pagination ant-table-pagination-center css-dev-only-do-not-override-26rdvq"
                   >
                     <li
                       aria-disabled="true"
@@ -612,14 +637,14 @@ exports[`AntdInferencer should match the snapshot 1`] = `
     style="position: fixed; bottom: 12px; right: 60px;"
   >
     <div
-      class="ant-space ant-space-horizontal ant-space-align-center"
+      class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
     >
       <div
         class="ant-space-item"
         style="margin-right: 8px;"
       >
         <button
-          class="ant-btn ant-btn-primary"
+          class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-primary"
           type="button"
         >
           <span
@@ -650,7 +675,7 @@ exports[`AntdInferencer should match the snapshot 1`] = `
         class="ant-space-item"
       >
         <a
-          class="ant-btn ant-btn-default"
+          class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-default"
           href="https://github.com/refinedev/refine/discussions/3046"
           target="_blank"
         >
@@ -691,31 +716,44 @@ exports[`AntdInferencer should match the snapshot 2`] = `
   <div>
     <div>
       <div
-        class="ant-page-header has-breadcrumb"
+        class="ant-page-header ant-page-header-has-breadcrumb ant-page-header-ghost"
+        style="padding: 0px;"
       >
         <nav
-          class="ant-breadcrumb"
+          class="ant-breadcrumb css-dev-only-do-not-override-26rdvq"
         >
           <ol />
         </nav>
         <div
-          class="ant-page-header-heading"
+          class="ant-page-header-heading "
         >
           <div
-            class="ant-page-header-heading-left"
+            class="ant-page-header-heading-left "
           >
             <span
-              class="ant-page-header-heading-title"
-              title="Create "
+              class="ant-page-header-heading-title "
             >
-              Create 
+              <h4
+                class="ant-typography css-dev-only-do-not-override-26rdvq"
+                style="margin-bottom: 0px;"
+              >
+                Create 
+              </h4>
+            </span>
+            <span
+              class="ant-page-header-heading-sub-title "
+            >
+              <h5
+                class="ant-typography ant-typography-secondary css-dev-only-do-not-override-26rdvq"
+                style="margin-bottom: 0px;"
+              />
             </span>
           </div>
           <span
-            class="ant-page-header-heading-extra"
+            class="ant-page-header-heading-extra "
           >
             <div
-              class="ant-space ant-space-horizontal ant-space-align-center"
+              class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
             >
               <div
                 class="ant-space-item"
@@ -724,641 +762,255 @@ exports[`AntdInferencer should match the snapshot 2`] = `
           </span>
         </div>
         <div
-          class="ant-page-header-content"
+          class="ant-page-header-content "
         >
           <div
-            class="ant-spin-nested-loading"
+            class="ant-spin-nested-loading css-dev-only-do-not-override-26rdvq"
           >
             <div
               class="ant-spin-container"
             >
               <div
-                class="ant-card"
+                class="ant-card css-dev-only-do-not-override-26rdvq"
               >
                 <div
                   class="ant-card-body"
                 >
                   <form
-                    class="ant-form ant-form-vertical"
+                    class="ant-form ant-form-vertical css-dev-only-do-not-override-26rdvq"
                   >
                     <div
-                      class="ant-row ant-form-item"
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
                     >
                       <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="title"
-                          title="Title"
-                        >
-                          Title
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
                       >
                         <div
-                          class="ant-form-item-control-input"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
                         >
-                          <div
-                            class="ant-form-item-control-input-content"
+                          <label
+                            class="ant-form-item-required"
+                            for="title"
+                            title="Title"
                           >
-                            <input
-                              class="ant-input"
-                              id="title"
-                              type="text"
-                              value=""
-                            />
-                          </div>
+                            Title
+                          </label>
                         </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ant-row ant-form-item"
-                    >
-                      <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="slug"
-                          title="Slug"
-                        >
-                          Slug
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
-                      >
                         <div
-                          class="ant-form-item-control-input"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
                         >
                           <div
-                            class="ant-form-item-control-input-content"
-                          >
-                            <input
-                              class="ant-input"
-                              id="slug"
-                              type="text"
-                              value=""
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ant-row ant-form-item"
-                    >
-                      <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="content"
-                          title="Content"
-                        >
-                          Content
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
-                      >
-                        <div
-                          class="ant-form-item-control-input"
-                        >
-                          <div
-                            class="ant-form-item-control-input-content"
-                          >
-                            <textarea
-                              class="ant-input"
-                              id="content"
-                              rows="5"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ant-row ant-form-item"
-                    >
-                      <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="hit"
-                          title="Hit"
-                        >
-                          Hit
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
-                      >
-                        <div
-                          class="ant-form-item-control-input"
-                        >
-                          <div
-                            class="ant-form-item-control-input-content"
-                          >
-                            <input
-                              class="ant-input"
-                              id="hit"
-                              type="text"
-                              value=""
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ant-row ant-form-item"
-                    >
-                      <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="category_id"
-                          title="Category"
-                        >
-                          Category
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
-                      >
-                        <div
-                          class="ant-form-item-control-input"
-                        >
-                          <div
-                            class="ant-form-item-control-input-content"
+                            class="ant-form-item-control-input"
                           >
                             <div
-                              class="ant-select ant-select-in-form-item ant-select-single ant-select-show-arrow ant-select-show-search"
+                              class="ant-form-item-control-input-content"
                             >
-                              <div
-                                class="ant-select-selector"
-                              >
-                                <span
-                                  class="ant-select-selection-search"
-                                >
-                                  <input
-                                    aria-activedescendant="category_id_list_0"
-                                    aria-autocomplete="list"
-                                    aria-controls="category_id_list"
-                                    aria-haspopup="listbox"
-                                    aria-owns="category_id_list"
-                                    autocomplete="off"
-                                    class="ant-select-selection-search-input"
-                                    id="category_id"
-                                    role="combobox"
-                                    type="search"
-                                    value=""
-                                  />
-                                </span>
-                                <span
-                                  class="ant-select-selection-placeholder"
-                                />
-                              </div>
-                              <span
-                                aria-hidden="true"
-                                class="ant-select-arrow"
-                                style="user-select: none;"
-                                unselectable="on"
-                              >
-                                <span
-                                  aria-label="down"
-                                  class="anticon anticon-down ant-select-suffix"
-                                  role="img"
-                                >
-                                  <svg
-                                    aria-hidden="true"
-                                    data-icon="down"
-                                    fill="currentColor"
-                                    focusable="false"
-                                    height="1em"
-                                    viewBox="64 64 896 896"
-                                    width="1em"
-                                  >
-                                    <path
-                                      d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
-                                    />
-                                  </svg>
-                                </span>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ant-row ant-form-item"
-                    >
-                      <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="user_id"
-                          title="User"
-                        >
-                          User
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
-                      >
-                        <div
-                          class="ant-form-item-control-input"
-                        >
-                          <div
-                            class="ant-form-item-control-input-content"
-                          >
-                            <div
-                              class="ant-select ant-select-in-form-item ant-select-single ant-select-show-arrow ant-select-show-search"
-                            >
-                              <div
-                                class="ant-select-selector"
-                              >
-                                <span
-                                  class="ant-select-selection-search"
-                                >
-                                  <input
-                                    aria-activedescendant="user_id_list_0"
-                                    aria-autocomplete="list"
-                                    aria-controls="user_id_list"
-                                    aria-haspopup="listbox"
-                                    aria-owns="user_id_list"
-                                    autocomplete="off"
-                                    class="ant-select-selection-search-input"
-                                    id="user_id"
-                                    role="combobox"
-                                    type="search"
-                                    value=""
-                                  />
-                                </span>
-                                <span
-                                  class="ant-select-selection-placeholder"
-                                />
-                              </div>
-                              <span
-                                aria-hidden="true"
-                                class="ant-select-arrow"
-                                style="user-select: none;"
-                                unselectable="on"
-                              >
-                                <span
-                                  aria-label="down"
-                                  class="anticon anticon-down ant-select-suffix"
-                                  role="img"
-                                >
-                                  <svg
-                                    aria-hidden="true"
-                                    data-icon="down"
-                                    fill="currentColor"
-                                    focusable="false"
-                                    height="1em"
-                                    viewBox="64 64 896 896"
-                                    width="1em"
-                                  >
-                                    <path
-                                      d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
-                                    />
-                                  </svg>
-                                </span>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ant-row ant-form-item"
-                    >
-                      <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="status"
-                          title="Status"
-                        >
-                          Status
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
-                      >
-                        <div
-                          class="ant-form-item-control-input"
-                        >
-                          <div
-                            class="ant-form-item-control-input-content"
-                          >
-                            <input
-                              class="ant-input"
-                              id="status"
-                              type="text"
-                              value=""
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ant-row ant-form-item"
-                    >
-                      <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="status_color"
-                          title="Status Color"
-                        >
-                          Status Color
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
-                      >
-                        <div
-                          class="ant-form-item-control-input"
-                        >
-                          <div
-                            class="ant-form-item-control-input-content"
-                          >
-                            <input
-                              class="ant-input"
-                              id="status_color"
-                              type="text"
-                              value=""
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ant-row ant-form-item"
-                    >
-                      <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="createdAt"
-                          title="Created At"
-                        >
-                          Created At
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
-                      >
-                        <div
-                          class="ant-form-item-control-input"
-                        >
-                          <div
-                            class="ant-form-item-control-input-content"
-                          >
-                            <div
-                              class="ant-picker"
-                            >
-                              <div
-                                class="ant-picker-input"
-                              >
-                                <input
-                                  autocomplete="off"
-                                  id="createdAt"
-                                  placeholder="Select date"
-                                  readonly=""
-                                  size="12"
-                                  title=""
-                                  value=""
-                                />
-                                <span
-                                  class="ant-picker-suffix"
-                                >
-                                  <span
-                                    aria-label="calendar"
-                                    class="anticon anticon-calendar"
-                                    role="img"
-                                  >
-                                    <svg
-                                      aria-hidden="true"
-                                      data-icon="calendar"
-                                      fill="currentColor"
-                                      focusable="false"
-                                      height="1em"
-                                      viewBox="64 64 896 896"
-                                      width="1em"
-                                    >
-                                      <path
-                                        d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"
-                                      />
-                                    </svg>
-                                  </span>
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ant-row ant-form-item"
-                    >
-                      <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="publishedAt"
-                          title="Published At"
-                        >
-                          Published At
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
-                      >
-                        <div
-                          class="ant-form-item-control-input"
-                        >
-                          <div
-                            class="ant-form-item-control-input-content"
-                          >
-                            <div
-                              class="ant-picker"
-                            >
-                              <div
-                                class="ant-picker-input"
-                              >
-                                <input
-                                  autocomplete="off"
-                                  id="publishedAt"
-                                  placeholder="Select date"
-                                  readonly=""
-                                  size="12"
-                                  title=""
-                                  value=""
-                                />
-                                <span
-                                  class="ant-picker-suffix"
-                                >
-                                  <span
-                                    aria-label="calendar"
-                                    class="anticon anticon-calendar"
-                                    role="img"
-                                  >
-                                    <svg
-                                      aria-hidden="true"
-                                      data-icon="calendar"
-                                      fill="currentColor"
-                                      focusable="false"
-                                      height="1em"
-                                      viewBox="64 64 896 896"
-                                      width="1em"
-                                    >
-                                      <path
-                                        d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"
-                                      />
-                                    </svg>
-                                  </span>
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ant-row ant-form-item"
-                    >
-                      <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class=""
-                          title="Image"
-                        >
-                          Image
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
-                      >
-                        <div
-                          class="ant-form-item-control-input"
-                        >
-                          <div
-                            class="ant-form-item-control-input-content"
-                          >
-                            <span>
-                              <div
-                                class="ant-upload ant-upload-drag"
-                              >
-                                <span
-                                  class="ant-upload ant-upload-btn"
-                                  role="button"
-                                  tabindex="0"
-                                >
-                                  <input
-                                    accept=""
-                                    id="image"
-                                    multiple=""
-                                    style="display: none;"
-                                    type="file"
-                                  />
-                                  <div
-                                    class="ant-upload-drag-container"
-                                  >
-                                    <p
-                                      class="ant-upload-text"
-                                    >
-                                      Drag & drop a file in this area
-                                    </p>
-                                  </div>
-                                </span>
-                              </div>
-                              <div
-                                class="ant-upload-list ant-upload-list-picture"
+                              <input
+                                aria-required="true"
+                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                id="title"
+                                type="text"
+                                value=""
                               />
-                            </span>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div
-                      class="ant-row ant-form-item"
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
                     >
                       <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="tags"
-                          title="Tags"
-                        >
-                          Tags
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
                       >
                         <div
-                          class="ant-form-item-control-input"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="slug"
+                            title="Slug"
+                          >
+                            Slug
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
                         >
                           <div
-                            class="ant-form-item-control-input-content"
+                            class="ant-form-item-control-input"
                           >
                             <div
-                              class="ant-select ant-select-in-form-item ant-select-multiple ant-select-show-search"
+                              class="ant-form-item-control-input-content"
+                            >
+                              <input
+                                aria-required="true"
+                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                id="slug"
+                                type="text"
+                                value=""
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                    >
+                      <div
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                      >
+                        <div
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="content"
+                            title="Content"
+                          >
+                            Content
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                        >
+                          <div
+                            class="ant-form-item-control-input"
+                          >
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
+                              <textarea
+                                aria-required="true"
+                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                id="content"
+                                rows="5"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                    >
+                      <div
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                      >
+                        <div
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="hit"
+                            title="Hit"
+                          >
+                            Hit
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                        >
+                          <div
+                            class="ant-form-item-control-input"
+                          >
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
+                              <input
+                                aria-required="true"
+                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                id="hit"
+                                type="text"
+                                value=""
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                    >
+                      <div
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                      >
+                        <div
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="category_id"
+                            title="Category"
+                          >
+                            Category
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                        >
+                          <div
+                            class="ant-form-item-control-input"
+                          >
+                            <div
+                              class="ant-form-item-control-input-content"
                             >
                               <div
-                                class="ant-select-selector"
+                                aria-required="true"
+                                class="ant-select ant-select-in-form-item css-dev-only-do-not-override-26rdvq ant-select-single ant-select-show-arrow ant-select-show-search"
                               >
                                 <div
-                                  class="ant-select-selection-overflow"
+                                  class="ant-select-selector"
                                 >
-                                  <div
-                                    class="ant-select-selection-overflow-item ant-select-selection-overflow-item-suffix"
-                                    style="opacity: 1;"
+                                  <span
+                                    class="ant-select-selection-search"
                                   >
-                                    <div
-                                      class="ant-select-selection-search"
-                                      style="width: 0px;"
-                                    >
-                                      <input
-                                        aria-activedescendant="tags_list_0"
-                                        aria-autocomplete="list"
-                                        aria-controls="tags_list"
-                                        aria-haspopup="listbox"
-                                        aria-owns="tags_list"
-                                        autocomplete="off"
-                                        class="ant-select-selection-search-input"
-                                        id="tags"
-                                        readonly=""
-                                        role="combobox"
-                                        style="opacity: 0;"
-                                        type="search"
-                                        unselectable="on"
-                                        value=""
-                                      />
-                                      <span
-                                        aria-hidden="true"
-                                        class="ant-select-selection-search-mirror"
-                                      >
-                                         
-                                      </span>
-                                    </div>
-                                  </div>
+                                    <input
+                                      aria-activedescendant="category_id_list_0"
+                                      aria-autocomplete="list"
+                                      aria-controls="category_id_list"
+                                      aria-haspopup="listbox"
+                                      aria-owns="category_id_list"
+                                      aria-required="true"
+                                      autocomplete="off"
+                                      class="ant-select-selection-search-input"
+                                      id="category_id"
+                                      role="combobox"
+                                      type="search"
+                                      value=""
+                                    />
+                                  </span>
+                                  <span
+                                    class="ant-select-selection-placeholder"
+                                  />
                                 </div>
                                 <span
-                                  class="ant-select-selection-placeholder"
-                                />
+                                  aria-hidden="true"
+                                  class="ant-select-arrow"
+                                  style="user-select: none;"
+                                  unselectable="on"
+                                >
+                                  <span
+                                    aria-label="down"
+                                    class="anticon anticon-down ant-select-suffix"
+                                    role="img"
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      data-icon="down"
+                                      fill="currentColor"
+                                      focusable="false"
+                                      height="1em"
+                                      viewBox="64 64 896 896"
+                                      width="1em"
+                                    >
+                                      <path
+                                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                                      />
+                                    </svg>
+                                  </span>
+                                </span>
                               </div>
                             </div>
                           </div>
@@ -1366,34 +1018,490 @@ exports[`AntdInferencer should match the snapshot 2`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-row ant-form-item"
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
                     >
                       <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="language"
-                          title="Language"
-                        >
-                          Language
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
                       >
                         <div
-                          class="ant-form-item-control-input"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="user_id"
+                            title="User"
+                          >
+                            User
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
                         >
                           <div
-                            class="ant-form-item-control-input-content"
+                            class="ant-form-item-control-input"
                           >
-                            <input
-                              class="ant-input"
-                              id="language"
-                              type="text"
-                              value=""
-                            />
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
+                              <div
+                                aria-required="true"
+                                class="ant-select ant-select-in-form-item css-dev-only-do-not-override-26rdvq ant-select-single ant-select-show-arrow ant-select-show-search"
+                              >
+                                <div
+                                  class="ant-select-selector"
+                                >
+                                  <span
+                                    class="ant-select-selection-search"
+                                  >
+                                    <input
+                                      aria-activedescendant="user_id_list_0"
+                                      aria-autocomplete="list"
+                                      aria-controls="user_id_list"
+                                      aria-haspopup="listbox"
+                                      aria-owns="user_id_list"
+                                      aria-required="true"
+                                      autocomplete="off"
+                                      class="ant-select-selection-search-input"
+                                      id="user_id"
+                                      role="combobox"
+                                      type="search"
+                                      value=""
+                                    />
+                                  </span>
+                                  <span
+                                    class="ant-select-selection-placeholder"
+                                  />
+                                </div>
+                                <span
+                                  aria-hidden="true"
+                                  class="ant-select-arrow"
+                                  style="user-select: none;"
+                                  unselectable="on"
+                                >
+                                  <span
+                                    aria-label="down"
+                                    class="anticon anticon-down ant-select-suffix"
+                                    role="img"
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      data-icon="down"
+                                      fill="currentColor"
+                                      focusable="false"
+                                      height="1em"
+                                      viewBox="64 64 896 896"
+                                      width="1em"
+                                    >
+                                      <path
+                                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                                      />
+                                    </svg>
+                                  </span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                    >
+                      <div
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                      >
+                        <div
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="status"
+                            title="Status"
+                          >
+                            Status
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                        >
+                          <div
+                            class="ant-form-item-control-input"
+                          >
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
+                              <input
+                                aria-required="true"
+                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                id="status"
+                                type="text"
+                                value=""
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                    >
+                      <div
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                      >
+                        <div
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="status_color"
+                            title="Status Color"
+                          >
+                            Status Color
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                        >
+                          <div
+                            class="ant-form-item-control-input"
+                          >
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
+                              <input
+                                aria-required="true"
+                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                id="status_color"
+                                type="text"
+                                value=""
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                    >
+                      <div
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                      >
+                        <div
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="createdAt"
+                            title="Created At"
+                          >
+                            Created At
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                        >
+                          <div
+                            class="ant-form-item-control-input"
+                          >
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
+                              <div
+                                class="ant-picker css-dev-only-do-not-override-26rdvq"
+                              >
+                                <div
+                                  class="ant-picker-input"
+                                >
+                                  <input
+                                    aria-required="true"
+                                    autocomplete="off"
+                                    id="createdAt"
+                                    placeholder="Select date"
+                                    readonly=""
+                                    size="12"
+                                    title=""
+                                    value=""
+                                  />
+                                  <span
+                                    class="ant-picker-suffix"
+                                  >
+                                    <span
+                                      aria-label="calendar"
+                                      class="anticon anticon-calendar"
+                                      role="img"
+                                    >
+                                      <svg
+                                        aria-hidden="true"
+                                        data-icon="calendar"
+                                        fill="currentColor"
+                                        focusable="false"
+                                        height="1em"
+                                        viewBox="64 64 896 896"
+                                        width="1em"
+                                      >
+                                        <path
+                                          d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"
+                                        />
+                                      </svg>
+                                    </span>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                    >
+                      <div
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                      >
+                        <div
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="publishedAt"
+                            title="Published At"
+                          >
+                            Published At
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                        >
+                          <div
+                            class="ant-form-item-control-input"
+                          >
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
+                              <div
+                                class="ant-picker css-dev-only-do-not-override-26rdvq"
+                              >
+                                <div
+                                  class="ant-picker-input"
+                                >
+                                  <input
+                                    aria-required="true"
+                                    autocomplete="off"
+                                    id="publishedAt"
+                                    placeholder="Select date"
+                                    readonly=""
+                                    size="12"
+                                    title=""
+                                    value=""
+                                  />
+                                  <span
+                                    class="ant-picker-suffix"
+                                  >
+                                    <span
+                                      aria-label="calendar"
+                                      class="anticon anticon-calendar"
+                                      role="img"
+                                    >
+                                      <svg
+                                        aria-hidden="true"
+                                        data-icon="calendar"
+                                        fill="currentColor"
+                                        focusable="false"
+                                        height="1em"
+                                        viewBox="64 64 896 896"
+                                        width="1em"
+                                      >
+                                        <path
+                                          d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"
+                                        />
+                                      </svg>
+                                    </span>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                    >
+                      <div
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                      >
+                        <div
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class=""
+                            title="Image"
+                          >
+                            Image
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                        >
+                          <div
+                            class="ant-form-item-control-input"
+                          >
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
+                              <span
+                                class="ant-upload-wrapper css-dev-only-do-not-override-26rdvq"
+                              >
+                                <div
+                                  class="ant-upload ant-upload-drag css-dev-only-do-not-override-26rdvq"
+                                >
+                                  <span
+                                    class="ant-upload ant-upload-btn"
+                                    role="button"
+                                    tabindex="0"
+                                  >
+                                    <input
+                                      accept=""
+                                      aria-required="true"
+                                      id="image"
+                                      multiple=""
+                                      style="display: none;"
+                                      type="file"
+                                    />
+                                    <div
+                                      class="ant-upload-drag-container"
+                                    >
+                                      <p
+                                        class="ant-upload-text"
+                                      >
+                                        Drag & drop a file in this area
+                                      </p>
+                                    </div>
+                                  </span>
+                                </div>
+                                <div
+                                  class="ant-upload-list ant-upload-list-picture"
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                    >
+                      <div
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                      >
+                        <div
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="tags"
+                            title="Tags"
+                          >
+                            Tags
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                        >
+                          <div
+                            class="ant-form-item-control-input"
+                          >
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
+                              <div
+                                aria-required="true"
+                                class="ant-select ant-select-in-form-item css-dev-only-do-not-override-26rdvq ant-select-multiple ant-select-show-search"
+                              >
+                                <div
+                                  class="ant-select-selector"
+                                >
+                                  <div
+                                    class="ant-select-selection-overflow"
+                                  >
+                                    <div
+                                      class="ant-select-selection-overflow-item ant-select-selection-overflow-item-suffix"
+                                      style="opacity: 1;"
+                                    >
+                                      <div
+                                        class="ant-select-selection-search"
+                                        style="width: 0px;"
+                                      >
+                                        <input
+                                          aria-activedescendant="tags_list_0"
+                                          aria-autocomplete="list"
+                                          aria-controls="tags_list"
+                                          aria-haspopup="listbox"
+                                          aria-owns="tags_list"
+                                          aria-required="true"
+                                          autocomplete="off"
+                                          class="ant-select-selection-search-input"
+                                          id="tags"
+                                          readonly=""
+                                          role="combobox"
+                                          style="opacity: 0;"
+                                          type="search"
+                                          unselectable="on"
+                                          value=""
+                                        />
+                                        <span
+                                          aria-hidden="true"
+                                          class="ant-select-selection-search-mirror"
+                                        >
+                                           
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <span
+                                    class="ant-select-selection-placeholder"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                    >
+                      <div
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                      >
+                        <div
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="language"
+                            title="Language"
+                          >
+                            Language
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                        >
+                          <div
+                            class="ant-form-item-control-input"
+                          >
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
+                              <input
+                                aria-required="true"
+                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                id="language"
+                                type="text"
+                                value=""
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1408,14 +1516,14 @@ exports[`AntdInferencer should match the snapshot 2`] = `
                   >
                     <span>
                       <div
-                        class="ant-space ant-space-horizontal ant-space-align-center"
+                        class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
                         style="float: right; margin-right: 24px;"
                       >
                         <div
                           class="ant-space-item"
                         >
                           <button
-                            class="ant-btn ant-btn-primary"
+                            class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-primary"
                             type="submit"
                           >
                             <span
@@ -1457,14 +1565,14 @@ exports[`AntdInferencer should match the snapshot 2`] = `
     style="position: fixed; bottom: 12px; right: 60px;"
   >
     <div
-      class="ant-space ant-space-horizontal ant-space-align-center"
+      class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
     >
       <div
         class="ant-space-item"
         style="margin-right: 8px;"
       >
         <button
-          class="ant-btn ant-btn-primary"
+          class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-primary"
           type="button"
         >
           <span
@@ -1495,7 +1603,7 @@ exports[`AntdInferencer should match the snapshot 2`] = `
         class="ant-space-item"
       >
         <a
-          class="ant-btn ant-btn-default"
+          class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-default"
           href="https://github.com/refinedev/refine/discussions/3046"
           target="_blank"
         >
@@ -1536,37 +1644,50 @@ exports[`AntdInferencer should match the snapshot 3`] = `
   <div>
     <div>
       <div
-        class="ant-page-header has-breadcrumb"
+        class="ant-page-header ant-page-header-has-breadcrumb ant-page-header-ghost"
+        style="padding: 0px;"
       >
         <nav
-          class="ant-breadcrumb"
+          class="ant-breadcrumb css-dev-only-do-not-override-26rdvq"
         >
           <ol />
         </nav>
         <div
-          class="ant-page-header-heading"
+          class="ant-page-header-heading "
         >
           <div
-            class="ant-page-header-heading-left"
+            class="ant-page-header-heading-left "
           >
             <span
-              class="ant-page-header-heading-title"
-              title="Edit "
+              class="ant-page-header-heading-title "
             >
-              Edit 
+              <h4
+                class="ant-typography css-dev-only-do-not-override-26rdvq"
+                style="margin-bottom: 0px;"
+              >
+                Edit 
+              </h4>
+            </span>
+            <span
+              class="ant-page-header-heading-sub-title "
+            >
+              <h5
+                class="ant-typography ant-typography-secondary css-dev-only-do-not-override-26rdvq"
+                style="margin-bottom: 0px;"
+              />
             </span>
           </div>
           <span
-            class="ant-page-header-heading-extra"
+            class="ant-page-header-heading-extra "
           >
             <div
-              class="ant-space ant-space-horizontal ant-space-align-center"
+              class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
             >
               <div
                 class="ant-space-item"
               >
                 <div
-                  class="ant-space ant-space-horizontal ant-space-align-center"
+                  class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
                   style="flex-wrap: wrap; margin-bottom: -8px;"
                 >
                   <div
@@ -1577,7 +1698,7 @@ exports[`AntdInferencer should match the snapshot 3`] = `
                       href="/undefined"
                     >
                       <button
-                        class="ant-btn ant-btn-default ant-btn-icon-only"
+                        class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-default ant-btn-icon-only"
                         title=""
                         type="button"
                       >
@@ -1608,7 +1729,7 @@ exports[`AntdInferencer should match the snapshot 3`] = `
                     style="padding-bottom: 8px;"
                   >
                     <button
-                      class="ant-btn ant-btn-default"
+                      class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-default"
                       type="button"
                     >
                       <span
@@ -1641,835 +1762,897 @@ exports[`AntdInferencer should match the snapshot 3`] = `
           </span>
         </div>
         <div
-          class="ant-page-header-content"
+          class="ant-page-header-content "
         >
           <div
-            class="ant-spin-nested-loading"
+            class="ant-spin-nested-loading css-dev-only-do-not-override-26rdvq"
           >
             <div
               class="ant-spin-container"
             >
               <div
-                class="ant-card"
+                class="ant-card css-dev-only-do-not-override-26rdvq"
               >
                 <div
                   class="ant-card-body"
                 >
                   <form
-                    class="ant-form ant-form-vertical"
+                    class="ant-form ant-form-vertical css-dev-only-do-not-override-26rdvq"
                   >
                     <div
-                      class="ant-row ant-form-item"
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
                     >
                       <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="id"
-                          title="Id"
-                        >
-                          Id
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
                       >
                         <div
-                          class="ant-form-item-control-input"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
                         >
-                          <div
-                            class="ant-form-item-control-input-content"
+                          <label
+                            class="ant-form-item-required"
+                            for="id"
+                            title="Id"
                           >
-                            <input
-                              class="ant-input ant-input-disabled"
-                              disabled=""
-                              id="id"
-                              readonly=""
-                              type="text"
-                              value="11"
-                            />
-                          </div>
+                            Id
+                          </label>
                         </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ant-row ant-form-item"
-                    >
-                      <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="title"
-                          title="Title"
-                        >
-                          Title
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
-                      >
                         <div
-                          class="ant-form-item-control-input"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
                         >
                           <div
-                            class="ant-form-item-control-input-content"
-                          >
-                            <input
-                              class="ant-input"
-                              id="title"
-                              type="text"
-                              value="Nobis exercitationem officia quia est."
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ant-row ant-form-item"
-                    >
-                      <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="slug"
-                          title="Slug"
-                        >
-                          Slug
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
-                      >
-                        <div
-                          class="ant-form-item-control-input"
-                        >
-                          <div
-                            class="ant-form-item-control-input-content"
-                          >
-                            <input
-                              class="ant-input"
-                              id="slug"
-                              type="text"
-                              value="provident-culpa-facere"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ant-row ant-form-item"
-                    >
-                      <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="content"
-                          title="Content"
-                        >
-                          Content
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
-                      >
-                        <div
-                          class="ant-form-item-control-input"
-                        >
-                          <div
-                            class="ant-form-item-control-input-content"
-                          >
-                            <textarea
-                              class="ant-input"
-                              id="content"
-                              rows="5"
-                            >
-                              Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur voluptatibus molestias. Est nemo aut. Fugit aliquam enim eveniet veritatis. Magni et aut. Consequatur aliquid rerum vero. Quaerat debitis enim magnam. Dolorem est delectus architecto et accusantium. Velit quia vero. Aut necessitatibus quia at consequatur soluta accusantium.
-                            </textarea>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ant-row ant-form-item"
-                    >
-                      <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="hit"
-                          title="Hit"
-                        >
-                          Hit
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
-                      >
-                        <div
-                          class="ant-form-item-control-input"
-                        >
-                          <div
-                            class="ant-form-item-control-input-content"
-                          >
-                            <input
-                              class="ant-input"
-                              id="hit"
-                              type="text"
-                              value="920557"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ant-row ant-form-item"
-                    >
-                      <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="category_id"
-                          title="Category"
-                        >
-                          Category
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
-                      >
-                        <div
-                          class="ant-form-item-control-input"
-                        >
-                          <div
-                            class="ant-form-item-control-input-content"
+                            class="ant-form-item-control-input"
                           >
                             <div
-                              class="ant-select ant-select-in-form-item ant-select-single ant-select-show-arrow ant-select-show-search"
+                              class="ant-form-item-control-input-content"
                             >
-                              <div
-                                class="ant-select-selector"
-                              >
-                                <span
-                                  class="ant-select-selection-search"
-                                >
-                                  <input
-                                    aria-activedescendant="category_id_list_0"
-                                    aria-autocomplete="list"
-                                    aria-controls="category_id_list"
-                                    aria-haspopup="listbox"
-                                    aria-owns="category_id_list"
-                                    autocomplete="off"
-                                    class="ant-select-selection-search-input"
-                                    id="category_id"
-                                    role="combobox"
-                                    type="search"
-                                    value=""
-                                  />
-                                </span>
-                                <span
-                                  class="ant-select-selection-item"
-                                  title="Numquam Saepe Illo"
-                                >
-                                  Numquam Saepe Illo
-                                </span>
-                              </div>
-                              <span
-                                aria-hidden="true"
-                                class="ant-select-arrow"
-                                style="user-select: none;"
-                                unselectable="on"
-                              >
-                                <span
-                                  aria-label="down"
-                                  class="anticon anticon-down ant-select-suffix"
-                                  role="img"
-                                >
-                                  <svg
-                                    aria-hidden="true"
-                                    data-icon="down"
-                                    fill="currentColor"
-                                    focusable="false"
-                                    height="1em"
-                                    viewBox="64 64 896 896"
-                                    width="1em"
-                                  >
-                                    <path
-                                      d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
-                                    />
-                                  </svg>
-                                </span>
-                              </span>
+                              <input
+                                aria-required="true"
+                                class="ant-input ant-input-disabled css-dev-only-do-not-override-26rdvq"
+                                disabled=""
+                                id="id"
+                                readonly=""
+                                type="text"
+                                value="11"
+                              />
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div
-                      class="ant-row ant-form-item"
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
                     >
                       <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="user_id"
-                          title="User"
-                        >
-                          User
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
                       >
                         <div
-                          class="ant-form-item-control-input"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="title"
+                            title="Title"
+                          >
+                            Title
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
                         >
                           <div
-                            class="ant-form-item-control-input-content"
+                            class="ant-form-item-control-input"
                           >
                             <div
-                              class="ant-select ant-select-in-form-item ant-select-single ant-select-show-arrow ant-select-show-search"
+                              class="ant-form-item-control-input-content"
                             >
-                              <div
-                                class="ant-select-selector"
-                              >
-                                <span
-                                  class="ant-select-selection-search"
-                                >
-                                  <input
-                                    aria-activedescendant="user_id_list_0"
-                                    aria-autocomplete="list"
-                                    aria-controls="user_id_list"
-                                    aria-haspopup="listbox"
-                                    aria-owns="user_id_list"
-                                    autocomplete="off"
-                                    class="ant-select-selection-search-input"
-                                    id="user_id"
-                                    role="combobox"
-                                    type="search"
-                                    value=""
-                                  />
-                                </span>
-                                <span
-                                  class="ant-select-selection-item"
-                                  title="Eriberto"
-                                >
-                                  Eriberto
-                                </span>
-                              </div>
-                              <span
-                                aria-hidden="true"
-                                class="ant-select-arrow"
-                                style="user-select: none;"
-                                unselectable="on"
-                              >
-                                <span
-                                  aria-label="down"
-                                  class="anticon anticon-down ant-select-suffix"
-                                  role="img"
-                                >
-                                  <svg
-                                    aria-hidden="true"
-                                    data-icon="down"
-                                    fill="currentColor"
-                                    focusable="false"
-                                    height="1em"
-                                    viewBox="64 64 896 896"
-                                    width="1em"
-                                  >
-                                    <path
-                                      d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
-                                    />
-                                  </svg>
-                                </span>
-                              </span>
+                              <input
+                                aria-required="true"
+                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                id="title"
+                                type="text"
+                                value="Nobis exercitationem officia quia est."
+                              />
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div
-                      class="ant-row ant-form-item"
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
                     >
                       <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="status"
-                          title="Status"
-                        >
-                          Status
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
                       >
                         <div
-                          class="ant-form-item-control-input"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
                         >
-                          <div
-                            class="ant-form-item-control-input-content"
+                          <label
+                            class="ant-form-item-required"
+                            for="slug"
+                            title="Slug"
                           >
-                            <input
-                              class="ant-input"
-                              id="status"
-                              type="text"
-                              value="draft"
-                            />
-                          </div>
+                            Slug
+                          </label>
                         </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ant-row ant-form-item"
-                    >
-                      <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="status_color"
-                          title="Status Color"
-                        >
-                          Status Color
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
-                      >
                         <div
-                          class="ant-form-item-control-input"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
                         >
                           <div
-                            class="ant-form-item-control-input-content"
-                          >
-                            <input
-                              class="ant-input"
-                              id="status_color"
-                              type="text"
-                              value="orange"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ant-row ant-form-item"
-                    >
-                      <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="createdAt"
-                          title="Created At"
-                        >
-                          Created At
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
-                      >
-                        <div
-                          class="ant-form-item-control-input"
-                        >
-                          <div
-                            class="ant-form-item-control-input-content"
+                            class="ant-form-item-control-input"
                           >
                             <div
-                              class="ant-picker"
+                              class="ant-form-item-control-input-content"
                             >
-                              <div
-                                class="ant-picker-input"
-                              >
-                                <input
-                                  autocomplete="off"
-                                  id="createdAt"
-                                  placeholder="Select date"
-                                  readonly=""
-                                  size="12"
-                                  title="2022-04-02"
-                                  value="2022-04-02"
-                                />
-                                <span
-                                  class="ant-picker-suffix"
-                                >
-                                  <span
-                                    aria-label="calendar"
-                                    class="anticon anticon-calendar"
-                                    role="img"
-                                  >
-                                    <svg
-                                      aria-hidden="true"
-                                      data-icon="calendar"
-                                      fill="currentColor"
-                                      focusable="false"
-                                      height="1em"
-                                      viewBox="64 64 896 896"
-                                      width="1em"
-                                    >
-                                      <path
-                                        d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"
-                                      />
-                                    </svg>
-                                  </span>
-                                </span>
-                                <span
-                                  class="ant-picker-clear"
-                                  role="button"
-                                >
-                                  <span
-                                    aria-label="close-circle"
-                                    class="anticon anticon-close-circle"
-                                    role="img"
-                                  >
-                                    <svg
-                                      aria-hidden="true"
-                                      data-icon="close-circle"
-                                      fill="currentColor"
-                                      focusable="false"
-                                      height="1em"
-                                      viewBox="64 64 896 896"
-                                      width="1em"
-                                    >
-                                      <path
-                                        d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z"
-                                      />
-                                    </svg>
-                                  </span>
-                                </span>
-                              </div>
+                              <input
+                                aria-required="true"
+                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                id="slug"
+                                type="text"
+                                value="provident-culpa-facere"
+                              />
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div
-                      class="ant-row ant-form-item"
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
                     >
                       <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="publishedAt"
-                          title="Published At"
-                        >
-                          Published At
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
                       >
                         <div
-                          class="ant-form-item-control-input"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="content"
+                            title="Content"
+                          >
+                            Content
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
                         >
                           <div
-                            class="ant-form-item-control-input-content"
+                            class="ant-form-item-control-input"
                           >
                             <div
-                              class="ant-picker"
+                              class="ant-form-item-control-input-content"
                             >
-                              <div
-                                class="ant-picker-input"
+                              <textarea
+                                aria-required="true"
+                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                id="content"
+                                rows="5"
                               >
-                                <input
-                                  autocomplete="off"
-                                  id="publishedAt"
-                                  placeholder="Select date"
-                                  readonly=""
-                                  size="12"
-                                  title="2021-08-10"
-                                  value="2021-08-10"
-                                />
-                                <span
-                                  class="ant-picker-suffix"
-                                >
-                                  <span
-                                    aria-label="calendar"
-                                    class="anticon anticon-calendar"
-                                    role="img"
-                                  >
-                                    <svg
-                                      aria-hidden="true"
-                                      data-icon="calendar"
-                                      fill="currentColor"
-                                      focusable="false"
-                                      height="1em"
-                                      viewBox="64 64 896 896"
-                                      width="1em"
-                                    >
-                                      <path
-                                        d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"
-                                      />
-                                    </svg>
-                                  </span>
-                                </span>
-                                <span
-                                  class="ant-picker-clear"
-                                  role="button"
-                                >
-                                  <span
-                                    aria-label="close-circle"
-                                    class="anticon anticon-close-circle"
-                                    role="img"
-                                  >
-                                    <svg
-                                      aria-hidden="true"
-                                      data-icon="close-circle"
-                                      fill="currentColor"
-                                      focusable="false"
-                                      height="1em"
-                                      viewBox="64 64 896 896"
-                                      width="1em"
-                                    >
-                                      <path
-                                        d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z"
-                                      />
-                                    </svg>
-                                  </span>
-                                </span>
-                              </div>
+                                Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur voluptatibus molestias. Est nemo aut. Fugit aliquam enim eveniet veritatis. Magni et aut. Consequatur aliquid rerum vero. Quaerat debitis enim magnam. Dolorem est delectus architecto et accusantium. Velit quia vero. Aut necessitatibus quia at consequatur soluta accusantium.
+                              </textarea>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div
-                      class="ant-row ant-form-item"
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
                     >
                       <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class=""
-                          title="Image"
-                        >
-                          Image
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
                       >
                         <div
-                          class="ant-form-item-control-input"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="hit"
+                            title="Hit"
+                          >
+                            Hit
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
                         >
                           <div
-                            class="ant-form-item-control-input-content"
+                            class="ant-form-item-control-input"
                           >
-                            <span>
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
+                              <input
+                                aria-required="true"
+                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                id="hit"
+                                type="text"
+                                value="920557"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                    >
+                      <div
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                      >
+                        <div
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="category_id"
+                            title="Category"
+                          >
+                            Category
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                        >
+                          <div
+                            class="ant-form-item-control-input"
+                          >
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
                               <div
-                                class="ant-upload ant-upload-drag"
-                              >
-                                <span
-                                  class="ant-upload ant-upload-btn"
-                                  role="button"
-                                  tabindex="0"
-                                >
-                                  <input
-                                    accept=""
-                                    id="image"
-                                    multiple=""
-                                    style="display: none;"
-                                    type="file"
-                                  />
-                                  <div
-                                    class="ant-upload-drag-container"
-                                  >
-                                    <p
-                                      class="ant-upload-text"
-                                    >
-                                      Drag & drop a file in this area
-                                    </p>
-                                  </div>
-                                </span>
-                              </div>
-                              <div
-                                class="ant-upload-list ant-upload-list-picture"
+                                aria-required="true"
+                                class="ant-select ant-select-in-form-item css-dev-only-do-not-override-26rdvq ant-select-single ant-select-show-arrow ant-select-show-search"
                               >
                                 <div
-                                  class="ant-upload-list-picture-container"
+                                  class="ant-select-selector"
                                 >
-                                  <div
-                                    class="ant-upload-list-item ant-upload-list-item-done ant-upload-list-item-list-type-picture"
+                                  <span
+                                    class="ant-select-selection-search"
                                   >
-                                    <div
-                                      class="ant-upload-list-item-info"
-                                    >
-                                      <span
-                                        class="ant-upload-span"
-                                      >
-                                        <a
-                                          class="ant-upload-list-item-thumbnail"
-                                          href="http://loremflickr.com/640/480/abstract"
-                                          rel="noopener noreferrer"
-                                          target="_blank"
-                                        >
-                                          <img
-                                            alt="77b8451c-3467-4072-a4cf-bddfd773c5ed"
-                                            class="ant-upload-list-item-image"
-                                            src="http://loremflickr.com/640/480/abstract"
-                                          />
-                                        </a>
-                                        <a
-                                          class="ant-upload-list-item-name"
-                                          href="http://loremflickr.com/640/480/abstract"
-                                          rel="noopener noreferrer"
-                                          target="_blank"
-                                          title="77b8451c-3467-4072-a4cf-bddfd773c5ed"
-                                        >
-                                          77b8451c-3467-4072-a4cf-bddfd773c5ed
-                                        </a>
-                                        <span
-                                          class="ant-upload-list-item-card-actions picture"
-                                        >
-                                          <button
-                                            class="ant-btn ant-btn-text ant-btn-sm ant-btn-icon-only ant-upload-list-item-card-actions-btn"
-                                            title="Remove file"
-                                            type="button"
-                                          >
-                                            <span
-                                              aria-label="delete"
-                                              class="anticon anticon-delete"
-                                              role="img"
-                                              tabindex="-1"
-                                            >
-                                              <svg
-                                                aria-hidden="true"
-                                                data-icon="delete"
-                                                fill="currentColor"
-                                                focusable="false"
-                                                height="1em"
-                                                viewBox="64 64 896 896"
-                                                width="1em"
-                                              >
-                                                <path
-                                                  d="M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z"
-                                                />
-                                              </svg>
-                                            </span>
-                                          </button>
-                                        </span>
-                                      </span>
-                                    </div>
-                                  </div>
+                                    <input
+                                      aria-activedescendant="category_id_list_0"
+                                      aria-autocomplete="list"
+                                      aria-controls="category_id_list"
+                                      aria-haspopup="listbox"
+                                      aria-owns="category_id_list"
+                                      aria-required="true"
+                                      autocomplete="off"
+                                      class="ant-select-selection-search-input"
+                                      id="category_id"
+                                      role="combobox"
+                                      type="search"
+                                      value=""
+                                    />
+                                  </span>
+                                  <span
+                                    class="ant-select-selection-item"
+                                    title="Numquam Saepe Illo"
+                                  >
+                                    Numquam Saepe Illo
+                                  </span>
                                 </div>
+                                <span
+                                  aria-hidden="true"
+                                  class="ant-select-arrow"
+                                  style="user-select: none;"
+                                  unselectable="on"
+                                >
+                                  <span
+                                    aria-label="down"
+                                    class="anticon anticon-down ant-select-suffix"
+                                    role="img"
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      data-icon="down"
+                                      fill="currentColor"
+                                      focusable="false"
+                                      height="1em"
+                                      viewBox="64 64 896 896"
+                                      width="1em"
+                                    >
+                                      <path
+                                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                                      />
+                                    </svg>
+                                  </span>
+                                </span>
                               </div>
-                            </span>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div
-                      class="ant-row ant-form-item"
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
                     >
                       <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="tags"
-                          title="Tags"
-                        >
-                          Tags
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
                       >
                         <div
-                          class="ant-form-item-control-input"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="user_id"
+                            title="User"
+                          >
+                            User
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
                         >
                           <div
-                            class="ant-form-item-control-input-content"
+                            class="ant-form-item-control-input"
                           >
                             <div
-                              class="ant-select ant-select-in-form-item ant-select-multiple ant-select-show-search"
+                              class="ant-form-item-control-input-content"
                             >
                               <div
-                                class="ant-select-selector"
+                                aria-required="true"
+                                class="ant-select ant-select-in-form-item css-dev-only-do-not-override-26rdvq ant-select-single ant-select-show-arrow ant-select-show-search"
                               >
                                 <div
-                                  class="ant-select-selection-overflow"
+                                  class="ant-select-selector"
                                 >
-                                  <div
-                                    class="ant-select-selection-overflow-item"
-                                    style="opacity: 1;"
+                                  <span
+                                    class="ant-select-selection-search"
+                                  >
+                                    <input
+                                      aria-activedescendant="user_id_list_0"
+                                      aria-autocomplete="list"
+                                      aria-controls="user_id_list"
+                                      aria-haspopup="listbox"
+                                      aria-owns="user_id_list"
+                                      aria-required="true"
+                                      autocomplete="off"
+                                      class="ant-select-selection-search-input"
+                                      id="user_id"
+                                      role="combobox"
+                                      type="search"
+                                      value=""
+                                    />
+                                  </span>
+                                  <span
+                                    class="ant-select-selection-item"
+                                    title="Eriberto"
+                                  >
+                                    Eriberto
+                                  </span>
+                                </div>
+                                <span
+                                  aria-hidden="true"
+                                  class="ant-select-arrow"
+                                  style="user-select: none;"
+                                  unselectable="on"
+                                >
+                                  <span
+                                    aria-label="down"
+                                    class="anticon anticon-down ant-select-suffix"
+                                    role="img"
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      data-icon="down"
+                                      fill="currentColor"
+                                      focusable="false"
+                                      height="1em"
+                                      viewBox="64 64 896 896"
+                                      width="1em"
+                                    >
+                                      <path
+                                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                                      />
+                                    </svg>
+                                  </span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                    >
+                      <div
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                      >
+                        <div
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="status"
+                            title="Status"
+                          >
+                            Status
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                        >
+                          <div
+                            class="ant-form-item-control-input"
+                          >
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
+                              <input
+                                aria-required="true"
+                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                id="status"
+                                type="text"
+                                value="draft"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                    >
+                      <div
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                      >
+                        <div
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="status_color"
+                            title="Status Color"
+                          >
+                            Status Color
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                        >
+                          <div
+                            class="ant-form-item-control-input"
+                          >
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
+                              <input
+                                aria-required="true"
+                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                id="status_color"
+                                type="text"
+                                value="orange"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                    >
+                      <div
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                      >
+                        <div
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="createdAt"
+                            title="Created At"
+                          >
+                            Created At
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                        >
+                          <div
+                            class="ant-form-item-control-input"
+                          >
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
+                              <div
+                                class="ant-picker css-dev-only-do-not-override-26rdvq"
+                              >
+                                <div
+                                  class="ant-picker-input"
+                                >
+                                  <input
+                                    aria-required="true"
+                                    autocomplete="off"
+                                    id="createdAt"
+                                    placeholder="Select date"
+                                    readonly=""
+                                    size="12"
+                                    title="2022-04-02"
+                                    value="2022-04-02"
+                                  />
+                                  <span
+                                    class="ant-picker-suffix"
                                   >
                                     <span
-                                      class="ant-select-selection-item"
-                                      title="Nobis Et Ut"
+                                      aria-label="calendar"
+                                      class="anticon anticon-calendar"
+                                      role="img"
                                     >
-                                      <span
-                                        class="ant-select-selection-item-content"
-                                      >
-                                        Nobis Et Ut
-                                      </span>
-                                      <span
+                                      <svg
                                         aria-hidden="true"
-                                        class="ant-select-selection-item-remove"
-                                        style="user-select: none;"
-                                        unselectable="on"
+                                        data-icon="calendar"
+                                        fill="currentColor"
+                                        focusable="false"
+                                        height="1em"
+                                        viewBox="64 64 896 896"
+                                        width="1em"
                                       >
-                                        <span
-                                          aria-label="close"
-                                          class="anticon anticon-close"
-                                          role="img"
-                                        >
-                                          <svg
-                                            aria-hidden="true"
-                                            data-icon="close"
-                                            fill="currentColor"
-                                            focusable="false"
-                                            height="1em"
-                                            viewBox="64 64 896 896"
-                                            width="1em"
-                                          >
-                                            <path
-                                              d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"
-                                            />
-                                          </svg>
-                                        </span>
-                                      </span>
+                                        <path
+                                          d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"
+                                        />
+                                      </svg>
                                     </span>
-                                  </div>
+                                  </span>
+                                  <span
+                                    class="ant-picker-clear"
+                                    role="button"
+                                  >
+                                    <span
+                                      aria-label="close-circle"
+                                      class="anticon anticon-close-circle"
+                                      role="img"
+                                    >
+                                      <svg
+                                        aria-hidden="true"
+                                        data-icon="close-circle"
+                                        fill="currentColor"
+                                        focusable="false"
+                                        height="1em"
+                                        viewBox="64 64 896 896"
+                                        width="1em"
+                                      >
+                                        <path
+                                          d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z"
+                                        />
+                                      </svg>
+                                    </span>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                    >
+                      <div
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                      >
+                        <div
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="publishedAt"
+                            title="Published At"
+                          >
+                            Published At
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                        >
+                          <div
+                            class="ant-form-item-control-input"
+                          >
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
+                              <div
+                                class="ant-picker css-dev-only-do-not-override-26rdvq"
+                              >
+                                <div
+                                  class="ant-picker-input"
+                                >
+                                  <input
+                                    aria-required="true"
+                                    autocomplete="off"
+                                    id="publishedAt"
+                                    placeholder="Select date"
+                                    readonly=""
+                                    size="12"
+                                    title="2021-08-10"
+                                    value="2021-08-10"
+                                  />
+                                  <span
+                                    class="ant-picker-suffix"
+                                  >
+                                    <span
+                                      aria-label="calendar"
+                                      class="anticon anticon-calendar"
+                                      role="img"
+                                    >
+                                      <svg
+                                        aria-hidden="true"
+                                        data-icon="calendar"
+                                        fill="currentColor"
+                                        focusable="false"
+                                        height="1em"
+                                        viewBox="64 64 896 896"
+                                        width="1em"
+                                      >
+                                        <path
+                                          d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"
+                                        />
+                                      </svg>
+                                    </span>
+                                  </span>
+                                  <span
+                                    class="ant-picker-clear"
+                                    role="button"
+                                  >
+                                    <span
+                                      aria-label="close-circle"
+                                      class="anticon anticon-close-circle"
+                                      role="img"
+                                    >
+                                      <svg
+                                        aria-hidden="true"
+                                        data-icon="close-circle"
+                                        fill="currentColor"
+                                        focusable="false"
+                                        height="1em"
+                                        viewBox="64 64 896 896"
+                                        width="1em"
+                                      >
+                                        <path
+                                          d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z"
+                                        />
+                                      </svg>
+                                    </span>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                    >
+                      <div
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                      >
+                        <div
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class=""
+                            title="Image"
+                          >
+                            Image
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                        >
+                          <div
+                            class="ant-form-item-control-input"
+                          >
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
+                              <span
+                                class="ant-upload-wrapper css-dev-only-do-not-override-26rdvq"
+                              >
+                                <div
+                                  class="ant-upload ant-upload-drag css-dev-only-do-not-override-26rdvq"
+                                >
+                                  <span
+                                    class="ant-upload ant-upload-btn"
+                                    role="button"
+                                    tabindex="0"
+                                  >
+                                    <input
+                                      accept=""
+                                      aria-required="true"
+                                      id="image"
+                                      multiple=""
+                                      style="display: none;"
+                                      type="file"
+                                    />
+                                    <div
+                                      class="ant-upload-drag-container"
+                                    >
+                                      <p
+                                        class="ant-upload-text"
+                                      >
+                                        Drag & drop a file in this area
+                                      </p>
+                                    </div>
+                                  </span>
+                                </div>
+                                <div
+                                  class="ant-upload-list ant-upload-list-picture"
+                                >
                                   <div
-                                    class="ant-select-selection-overflow-item ant-select-selection-overflow-item-suffix"
-                                    style="opacity: 1;"
+                                    class="ant-upload-list-item-container"
                                   >
                                     <div
-                                      class="ant-select-selection-search"
-                                      style="width: 0px;"
+                                      class="ant-upload-list-item ant-upload-list-item-done"
                                     >
-                                      <input
-                                        aria-activedescendant="tags_list_0"
-                                        aria-autocomplete="list"
-                                        aria-controls="tags_list"
-                                        aria-haspopup="listbox"
-                                        aria-owns="tags_list"
-                                        autocomplete="off"
-                                        class="ant-select-selection-search-input"
-                                        id="tags"
-                                        readonly=""
-                                        role="combobox"
-                                        style="opacity: 0;"
-                                        type="search"
-                                        unselectable="on"
-                                        value=""
-                                      />
-                                      <span
-                                        aria-hidden="true"
-                                        class="ant-select-selection-search-mirror"
+                                      <a
+                                        class="ant-upload-list-item-thumbnail"
+                                        href="http://loremflickr.com/640/480/abstract"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
                                       >
-                                         
+                                        <img
+                                          alt="77b8451c-3467-4072-a4cf-bddfd773c5ed"
+                                          class="ant-upload-list-item-image"
+                                          src="http://loremflickr.com/640/480/abstract"
+                                        />
+                                      </a>
+                                      <a
+                                        class="ant-upload-list-item-name"
+                                        href="http://loremflickr.com/640/480/abstract"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                        title="77b8451c-3467-4072-a4cf-bddfd773c5ed"
+                                      >
+                                        77b8451c-3467-4072-a4cf-bddfd773c5ed
+                                      </a>
+                                      <span
+                                        class="ant-upload-list-item-actions picture"
+                                      >
+                                        <button
+                                          class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-text ant-btn-sm ant-btn-icon-only ant-upload-list-item-action"
+                                          title="Remove file"
+                                          type="button"
+                                        >
+                                          <span
+                                            aria-label="delete"
+                                            class="anticon anticon-delete"
+                                            role="img"
+                                            tabindex="-1"
+                                          >
+                                            <svg
+                                              aria-hidden="true"
+                                              data-icon="delete"
+                                              fill="currentColor"
+                                              focusable="false"
+                                              height="1em"
+                                              viewBox="64 64 896 896"
+                                              width="1em"
+                                            >
+                                              <path
+                                                d="M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z"
+                                              />
+                                            </svg>
+                                          </span>
+                                        </button>
                                       </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
+                    >
+                      <div
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
+                      >
+                        <div
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="tags"
+                            title="Tags"
+                          >
+                            Tags
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
+                        >
+                          <div
+                            class="ant-form-item-control-input"
+                          >
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
+                              <div
+                                aria-required="true"
+                                class="ant-select ant-select-in-form-item css-dev-only-do-not-override-26rdvq ant-select-multiple ant-select-show-search"
+                              >
+                                <div
+                                  class="ant-select-selector"
+                                >
+                                  <div
+                                    class="ant-select-selection-overflow"
+                                  >
+                                    <div
+                                      class="ant-select-selection-overflow-item"
+                                      style="opacity: 1;"
+                                    >
+                                      <span
+                                        class="ant-select-selection-item"
+                                        title="Nobis Et Ut"
+                                      >
+                                        <span
+                                          class="ant-select-selection-item-content"
+                                        >
+                                          Nobis Et Ut
+                                        </span>
+                                        <span
+                                          aria-hidden="true"
+                                          class="ant-select-selection-item-remove"
+                                          style="user-select: none;"
+                                          unselectable="on"
+                                        >
+                                          <span
+                                            aria-label="close"
+                                            class="anticon anticon-close"
+                                            role="img"
+                                          >
+                                            <svg
+                                              aria-hidden="true"
+                                              data-icon="close"
+                                              fill="currentColor"
+                                              focusable="false"
+                                              height="1em"
+                                              viewBox="64 64 896 896"
+                                              width="1em"
+                                            >
+                                              <path
+                                                d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"
+                                              />
+                                            </svg>
+                                          </span>
+                                        </span>
+                                      </span>
+                                    </div>
+                                    <div
+                                      class="ant-select-selection-overflow-item ant-select-selection-overflow-item-suffix"
+                                      style="opacity: 1;"
+                                    >
+                                      <div
+                                        class="ant-select-selection-search"
+                                        style="width: 0px;"
+                                      >
+                                        <input
+                                          aria-activedescendant="tags_list_0"
+                                          aria-autocomplete="list"
+                                          aria-controls="tags_list"
+                                          aria-haspopup="listbox"
+                                          aria-owns="tags_list"
+                                          aria-required="true"
+                                          autocomplete="off"
+                                          class="ant-select-selection-search-input"
+                                          id="tags"
+                                          readonly=""
+                                          role="combobox"
+                                          style="opacity: 0;"
+                                          type="search"
+                                          unselectable="on"
+                                          value=""
+                                        />
+                                        <span
+                                          aria-hidden="true"
+                                          class="ant-select-selection-search-mirror"
+                                        >
+                                           
+                                        </span>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
@@ -2480,34 +2663,39 @@ exports[`AntdInferencer should match the snapshot 3`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-row ant-form-item"
+                      class="ant-form-item css-dev-only-do-not-override-26rdvq"
                     >
                       <div
-                        class="ant-col ant-form-item-label"
-                      >
-                        <label
-                          class="ant-form-item-required"
-                          for="language"
-                          title="Language"
-                        >
-                          Language
-                        </label>
-                      </div>
-                      <div
-                        class="ant-col ant-form-item-control"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-26rdvq"
                       >
                         <div
-                          class="ant-form-item-control-input"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-26rdvq"
+                        >
+                          <label
+                            class="ant-form-item-required"
+                            for="language"
+                            title="Language"
+                          >
+                            Language
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-26rdvq"
                         >
                           <div
-                            class="ant-form-item-control-input-content"
+                            class="ant-form-item-control-input"
                           >
-                            <input
-                              class="ant-input"
-                              id="language"
-                              type="text"
-                              value="2"
-                            />
+                            <div
+                              class="ant-form-item-control-input-content"
+                            >
+                              <input
+                                aria-required="true"
+                                class="ant-input css-dev-only-do-not-override-26rdvq"
+                                id="language"
+                                type="text"
+                                value="2"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -2522,7 +2710,7 @@ exports[`AntdInferencer should match the snapshot 3`] = `
                   >
                     <span>
                       <div
-                        class="ant-space ant-space-horizontal ant-space-align-center"
+                        class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
                         style="flex-wrap: wrap; margin-bottom: -8px; float: right; margin-right: 24px;"
                       >
                         <div
@@ -2530,7 +2718,7 @@ exports[`AntdInferencer should match the snapshot 3`] = `
                           style="padding-bottom: 8px;"
                         >
                           <button
-                            class="ant-btn ant-btn-primary"
+                            class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-primary"
                             type="button"
                           >
                             <span
@@ -2572,14 +2760,14 @@ exports[`AntdInferencer should match the snapshot 3`] = `
     style="position: fixed; bottom: 12px; right: 60px;"
   >
     <div
-      class="ant-space ant-space-horizontal ant-space-align-center"
+      class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
     >
       <div
         class="ant-space-item"
         style="margin-right: 8px;"
       >
         <button
-          class="ant-btn ant-btn-primary"
+          class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-primary"
           type="button"
         >
           <span
@@ -2610,7 +2798,7 @@ exports[`AntdInferencer should match the snapshot 3`] = `
         class="ant-space-item"
       >
         <a
-          class="ant-btn ant-btn-default"
+          class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-default"
           href="https://github.com/refinedev/refine/discussions/3046"
           target="_blank"
         >
@@ -2651,37 +2839,50 @@ exports[`AntdInferencer should match the snapshot 4`] = `
   <div>
     <div>
       <div
-        class="ant-page-header has-breadcrumb"
+        class="ant-page-header ant-page-header-has-breadcrumb ant-page-header-ghost"
+        style="padding: 0px;"
       >
         <nav
-          class="ant-breadcrumb"
+          class="ant-breadcrumb css-dev-only-do-not-override-26rdvq"
         >
           <ol />
         </nav>
         <div
-          class="ant-page-header-heading"
+          class="ant-page-header-heading "
         >
           <div
-            class="ant-page-header-heading-left"
+            class="ant-page-header-heading-left "
           >
             <span
-              class="ant-page-header-heading-title"
-              title="Show "
+              class="ant-page-header-heading-title "
             >
-              Show 
+              <h4
+                class="ant-typography css-dev-only-do-not-override-26rdvq"
+                style="margin-bottom: 0px;"
+              >
+                Show 
+              </h4>
+            </span>
+            <span
+              class="ant-page-header-heading-sub-title "
+            >
+              <h5
+                class="ant-typography ant-typography-secondary css-dev-only-do-not-override-26rdvq"
+                style="margin-bottom: 0px;"
+              />
             </span>
           </div>
           <span
-            class="ant-page-header-heading-extra"
+            class="ant-page-header-heading-extra "
           >
             <div
-              class="ant-space ant-space-horizontal ant-space-align-center"
+              class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
             >
               <div
                 class="ant-space-item"
               >
                 <div
-                  class="ant-space ant-space-horizontal ant-space-align-center"
+                  class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
                   style="flex-wrap: wrap; margin-bottom: -8px;"
                 >
                   <div
@@ -2692,7 +2893,7 @@ exports[`AntdInferencer should match the snapshot 4`] = `
                       href="/undefined"
                     >
                       <button
-                        class="ant-btn ant-btn-default ant-btn-icon-only"
+                        class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-default ant-btn-icon-only"
                         title=""
                         type="button"
                       >
@@ -2723,7 +2924,7 @@ exports[`AntdInferencer should match the snapshot 4`] = `
                     style="padding-bottom: 8px;"
                   >
                     <button
-                      class="ant-btn ant-btn-default"
+                      class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-default"
                       type="button"
                     >
                       <span
@@ -2756,52 +2957,52 @@ exports[`AntdInferencer should match the snapshot 4`] = `
           </span>
         </div>
         <div
-          class="ant-page-header-content"
+          class="ant-page-header-content "
         >
           <div
-            class="ant-spin-nested-loading"
+            class="ant-spin-nested-loading css-dev-only-do-not-override-26rdvq"
           >
             <div
               class="ant-spin-container"
             >
               <div
-                class="ant-card"
+                class="ant-card css-dev-only-do-not-override-26rdvq"
               >
                 <div
                   class="ant-card-body"
                 >
                   <h5
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     Id
                   </h5>
                   <span
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     11
                   </span>
                   <h5
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     Title
                   </h5>
                   <span
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     Nobis exercitationem officia quia est.
                   </span>
                   <h5
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     Slug
                   </h5>
                   <span
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     provident-culpa-facere
                   </span>
                   <h5
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     Content
                   </h5>
@@ -2809,74 +3010,74 @@ exports[`AntdInferencer should match the snapshot 4`] = `
                     Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur voluptatibus molestias. Est nemo aut. Fugit aliquam enim eveniet veritatis. Magni et aut. Consequatur aliquid rerum vero. Quaerat debitis enim magnam. Dolorem est delectus architecto et accusantium. Velit quia vero. Aut necessitatibus quia at consequatur soluta accusantium.
                   </p>
                   <h5
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     Hit
                   </h5>
                   <span
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     920,557
                   </span>
                   <h5
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     Category
                   </h5>
                   Numquam Saepe Illo
                   <h5
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     User
                   </h5>
                   Eriberto Leannon
                   <h5
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     Status
                   </h5>
                   <span
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     draft
                   </span>
                   <h5
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     Status Color
                   </h5>
                   <span
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     orange
                   </span>
                   <h5
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     Created At
                   </h5>
                   <span
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     04/02/2022
                   </span>
                   <h5
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     Published At
                   </h5>
                   <span
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     08/10/2021
                   </span>
                   <h5
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     Image
                   </h5>
                   <div
-                    class="ant-image"
+                    class="ant-image css-dev-only-do-not-override-26rdvq"
                   >
                     <img
                       class="ant-image-img"
@@ -2913,27 +3114,27 @@ exports[`AntdInferencer should match the snapshot 4`] = `
                     </div>
                   </div>
                   <h5
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     Tags
                   </h5>
                   <span
-                    class="ant-tag"
+                    class="ant-tag css-dev-only-do-not-override-26rdvq"
                   >
                     Error Eos Et
                   </span>
                   <span
-                    class="ant-tag"
+                    class="ant-tag css-dev-only-do-not-override-26rdvq"
                   >
                     Nobis Et Ut
                   </span>
                   <h5
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     Language
                   </h5>
                   <span
-                    class="ant-typography"
+                    class="ant-typography css-dev-only-do-not-override-26rdvq"
                   >
                     2
                   </span>
@@ -2949,14 +3150,14 @@ exports[`AntdInferencer should match the snapshot 4`] = `
     style="position: fixed; bottom: 12px; right: 60px;"
   >
     <div
-      class="ant-space ant-space-horizontal ant-space-align-center"
+      class="ant-space css-dev-only-do-not-override-26rdvq ant-space-horizontal ant-space-align-center"
     >
       <div
         class="ant-space-item"
         style="margin-right: 8px;"
       >
         <button
-          class="ant-btn ant-btn-primary"
+          class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-primary"
           type="button"
         >
           <span
@@ -2987,7 +3188,7 @@ exports[`AntdInferencer should match the snapshot 4`] = `
         class="ant-space-item"
       >
         <a
-          class="ant-btn ant-btn-default"
+          class="ant-btn css-dev-only-do-not-override-26rdvq ant-btn-default"
           href="https://github.com/refinedev/refine/discussions/3046"
           target="_blank"
         >

@@ -157,7 +157,7 @@ export const integrations: IntegrationsType = {
             contributors: [
                 {
                     name: "rturan29",
-                    url: "https://github.com/rturan29",
+                    url: "https://github.com/resulturan",
                 },
             ],
         },
@@ -279,7 +279,7 @@ export const integrations: IntegrationsType = {
             contributors: [
                 {
                     name: "rturan29",
-                    url: "https://github.com/rturan29",
+                    url: "https://github.com/resulturan",
                 },
             ],
         },

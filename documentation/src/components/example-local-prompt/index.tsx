@@ -14,7 +14,7 @@ const ExampleLocalPrompt: React.FC<Props> = ({ path }) => {
     return (
         <Admonition type="create-example">
             <CodeBlock language="bash">
-                {`npm create refine-app@latest --example ${path}`}
+                {`npm create refine-app@latest -- --example ${path}`}
             </CodeBlock>
         </Admonition>
     );

@@ -5,7 +5,6 @@ sidebar_label: List
 swizzle: true
 ---
 
-
 `<List>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like a create button or giving the page titles.
 
 We will show what `<List>` does using properties with examples.
@@ -505,57 +504,16 @@ render(
 );
 ```
 
-### ~~`pageHeaderProps`~~
-
-:::caution Deprecated
-Use `headerProps`, `wrapperProps` or `contentProps` instead.
-:::
-
-`<List>` uses ant-design `<PageHeader>` components so you can customize with the props of `pageHeaderProps`.
-
-By default, the `breadcrumb` property of the `<PageHeader>` component shows [`<Breadcrumb>`][breadcrumb-component] component.
-
-[Refer to the `<PageHeader>` documentation for detailed usage. &#8594](https://ant.design/components/page-header/#API)
-
-```tsx
-import { List } from "@pankod/refine-antd";
-
-export const ListPage: React.FC = () => {
-    return (
-        <List
-            pageHeaderProps={{
-                onBack: () => console.log("clicked"),
-                subTitle: "Subtitle",
-            }}
-        >
-            ...
-        </List>
-    );
-};
-```
-
-<br/>
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-       <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/basic-views/list/pageHeaderProps.png" alt="pageHeaderProps Usage"/>
-
-</div>
-<br/>
-
 ## API Reference
 
 ### Properties
 
 <PropsTable module="@pankod/refine-antd/List" 
-headerProps-type="[`PageHeaderProps`](https://ant.design/components/page-header/#API)"
+headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)" 
 headerButtonProps-type="[`SpaceProps`](https://ant.design/components/space/)"
 createButtonProps-type="[`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName: string }`"
 breadcrumb-default="[`<Breadcrumb>`](https://ant.design/components/breadcrumb/)"
 canCreate-default="If the resource is passed a create component, `true` else `false`"
- />
+/>
 
 [breadcrumb-component]: /api-reference/antd/components/breadcrumb.md

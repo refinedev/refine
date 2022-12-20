@@ -54,7 +54,7 @@ const dataProvider = {
 -   [Altogic](https://github.com/refinedev/refine/tree/master/packages/altogic)
 
 ### Community ❤️
--   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
+-   [Firebase](https://github.com/resulturan/refine-firebase) by [rturan29](https://github.com/resulturan)
 -   [Directus](https://github.com/tspvivek/refine-directus) by [tspvivek](https://github.com/tspvivek)
 :::
 

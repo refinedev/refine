@@ -112,17 +112,23 @@ strapiAuthHelper.me("token", {
     },
 });
 ```
+
 :::
-    
+
 </details>
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 // highlight-next-line
 import { authProvider, axiosInstance } from "./authProvider";
@@ -229,11 +235,16 @@ export const StoreProvider = (props: any) => {
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 // highlight-next-line
 import { StoreProvider } from "context/store";
@@ -340,7 +351,7 @@ export const CustomSider: React.FC = () => {
 
     const isMobile =
         typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
-    
+
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item: ITreeMenu) => {
             const { icon, label, route, name, children, parentName } = item;
@@ -371,7 +382,9 @@ export const CustomSider: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
+                        icon={
+                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
+                        }
                     >
                         <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
@@ -402,10 +415,7 @@ export const CustomSider: React.FC = () => {
                     }
                 }}
             >
-                <Menu.Item
-                    key={route}
-                    icon={<Icons.AppstoreAddOutlined />}
-                >
+                <Menu.Item key={route} icon={<Icons.AppstoreAddOutlined />}>
                     <StoreSelect
                         onSelect={() => {
                             setCollapsed(true);
@@ -413,7 +423,11 @@ export const CustomSider: React.FC = () => {
                     />
                 </Menu.Item>
                 {renderTreeView(menuItems, selectedKey)}
-                <Menu.Item key="logout" onClick={() => logout()} icon={<Icons.LoginOutlined />}>
+                <Menu.Item
+                    key="logout"
+                    onClick={() => logout()}
+                    icon={<Icons.LoginOutlined />}
+                >
                     Logout
                 </Menu.Item>
             </Menu>

@@ -4,7 +4,7 @@ description: We will see how easy it is to develop a functional Admin panel with
 slug: refine-react-ant-design-admin-panel-framework
 authors: melih
 tags: [refine, antd, react, admin]
-image: /img/placeholder.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
@@ -150,7 +150,7 @@ import { notificationProvider, Layout } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 //highlight-next-line
@@ -483,7 +483,7 @@ import { liveProvider } from "@pankod/refine-ably";
 import { ablyClient } from "utility";
 //highlight-end
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Header } from "./components/header";

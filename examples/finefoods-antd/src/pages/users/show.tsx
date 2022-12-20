@@ -66,12 +66,20 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <>
-            <Row gutter={[16, 16]}>
+            <Row gutter={[16, 16]} style={{}}>
                 <Col xl={6} lg={24} xs={24}>
-                    <Card bordered={false} style={{ height: "100%" }}>
+                    <Card
+                        bordered={false}
+                        style={{
+                            height: "100%",
+                        }}
+                    >
                         <Space
                             direction="vertical"
-                            style={{ width: "100%", height: "100%" }}
+                            style={{
+                                width: "100%",
+                                height: "100%",
+                            }}
                         >
                             <Space
                                 direction="vertical"
@@ -118,7 +126,7 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                 <Col xl={18} xs={24}>
                     <List
                         title={t("orders.orders")}
-                        pageHeaderProps={{
+                        headerProps={{
                             extra: <></>,
                         }}
                     >
@@ -218,7 +226,8 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                     </List>
                     <List
                         title={t("users.addresses.addresses")}
-                        pageHeaderProps={{
+                        breadcrumb={null}
+                        headerProps={{
                             extra: <></>,
                             style: {
                                 marginTop: "1em",

@@ -38,7 +38,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List
-            pageHeaderProps={{
+            headerProps={{
                 onBack: () => console.log("clicked"),
                 subTitle: "Subtitle",
             }}

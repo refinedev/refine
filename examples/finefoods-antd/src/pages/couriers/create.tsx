@@ -244,7 +244,7 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
             <Create
                 isLoading={queryResult?.isFetching}
                 saveButtonProps={saveButtonProps}
-                actionButtons={
+                headerButtons={
                     <>
                         {current > 0 && (
                             <Button

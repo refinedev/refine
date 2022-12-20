@@ -105,7 +105,7 @@ export const CreateForm: React.FC = () => {
     return (
         <Create
             isLoading={formLoading}
-            actionButtons={
+            headerButtons={
                 <>
                     {currentStep > 0 && (
                         <Button

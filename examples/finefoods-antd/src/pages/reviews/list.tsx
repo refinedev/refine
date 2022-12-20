@@ -128,7 +128,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List
-            pageHeaderProps={{
+            headerProps={{
                 subTitle: hasSelected && (
                     <Space style={{ gap: 0, marginLeft: "1em" }}>
                         <Button

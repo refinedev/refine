@@ -1,3 +1,3 @@
 # remix-headless
 
-This example has been moved to [remix-headless](../.././remix-headless)
+This example has been moved to [with-remix-headless](../.././with-remix-headless)

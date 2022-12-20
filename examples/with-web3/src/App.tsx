@@ -6,7 +6,7 @@ import {
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 import simpleRestDataProvider from "@pankod/refine-simple-rest";
 import { authProvider } from "authProvider";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";

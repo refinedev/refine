@@ -26,7 +26,7 @@ React has become one of the most popular JavaScript libraries for building user 
 
 ---
 
-<PromotionBanner title="Stop wasting your time copy/pasting your CRUD code all over your application!" image="/img/generic_banner.png" />
+<PromotionBanner title="Stop wasting your time copy/pasting your CRUD code all over your application!" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 
