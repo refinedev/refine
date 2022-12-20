@@ -3,7 +3,7 @@ id: deploy-project
 title: 5. Deploy your app to the web
 tutorial:
     prev: tutorial/getting-started/store-your-repository
-    next: tutorial/understanding-dataprovider/{preferredUI}/index
+    next: tutorial/understanding-dataprovider/index
 ---
 
 ## Create a new Netlify site

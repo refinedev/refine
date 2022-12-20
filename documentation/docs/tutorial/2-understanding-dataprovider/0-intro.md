@@ -4,7 +4,7 @@ title: 1.Data Provider
 tutorial:
     order: 0
     prev: false
-    next: tutorial/understanding-dataprovider/{preferredUI}/swizzle
+    next: tutorial/understanding-dataprovider/swizzle
 ---
 
 

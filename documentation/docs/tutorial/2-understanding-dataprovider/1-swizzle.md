@@ -1,13 +1,13 @@
 ---
-id: create-dataprovider
-title: 3. Create Your First Data Provider
+id: swizzle
+title: 2. Swizzle
 tutorial:
-    prev: tutorial/understanding-dataprovider/{preferredUI}/swizzle
-    next: tutorial/understanding-resources/{preferredUI}/index
+    prev: tutorial/understanding-dataprovider/index
+    next: tutorial/understanding-dataprovider/create-dataprovider
 ---
 
 
- ## Create your first data provider
+ ## Understanding the Swizzle
 
  Swizzle ile data provider kodlarına erişmek
 
