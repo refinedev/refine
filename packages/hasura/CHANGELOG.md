@@ -1,5 +1,11 @@
 # @pankod/refine-hasura
 
+## 4.17.2
+
+### Patch Changes
+
+-   [#3275](https://github.com/refinedev/refine/pull/3275) [`aaa499548cd`](https://github.com/refinedev/refine/commit/aaa499548cddc5365f4d7a04cc55350dc88fba7a) Thanks [@aliemir](https://github.com/aliemir)! - `contains`, `ncontains`, `containss` and `ncontainss` filters were passing the value without wrapping it to `%` characters. This caused the filters to not work as expected. Added a case to the filter value handler to wrap the value with `%` characters. (Resolves #3245)
+
 ## 4.17.1
 
 ### Patch Changes
