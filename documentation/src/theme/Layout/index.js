@@ -31,8 +31,6 @@ export default function Layout(props) {
 
     const isMobile = useIsMobile();
 
-    console.log({ isMobile });
-
     const showGithubCta = useMemo(() => {
         if (typeof window !== "undefined" && !isMobile) {
             if (location.pathname.startsWith("/blog")) {
