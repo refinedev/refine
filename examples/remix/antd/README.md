@@ -1,3 +1,3 @@
 # remix-antd
 
-This example has been moved to [remix-antd](../.././remix-antd)
+This example has been moved to [with-remix-antd](../.././with-remix-antd)

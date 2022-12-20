@@ -34,7 +34,7 @@ const strapiAuthProvider = (apiUrl: string) => {
         checkAuth: () => {
             const token = localStorage.getItem(TOKEN_KEY);
             if (token) {
-                axiosInstance.defaults.headers = {
+                axiosInstance.defaults.headers.common = {
                     Authorization: `Bearer ${token}`,
                 };
                 return Promise.resolve();

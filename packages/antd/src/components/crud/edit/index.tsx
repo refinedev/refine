@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Card, Space, PageHeader, Spin } from "antd";
+import { Card, Space, Spin } from "antd";
 import {
     useResourceWithRoute,
     useMutationMode,
@@ -18,6 +18,7 @@ import {
     ListButton,
     SaveButton,
     Breadcrumb,
+    PageHeader,
 } from "@components";
 import { EditProps } from "../types";
 
@@ -29,13 +30,11 @@ import { EditProps } from "../types";
  */
 export const Edit: React.FC<EditProps> = ({
     title,
-    actionButtons,
     saveButtonProps,
     mutationMode: mutationModeProp,
     recordItemId,
     children,
     deleteButtonProps,
-    pageHeaderProps,
     canDelete,
     resource: resourceFromProps,
     isLoading = false,
@@ -149,7 +148,6 @@ export const Edit: React.FC<EditProps> = ({
                         <Breadcrumb />
                     )
                 }
-                {...(pageHeaderProps ?? {})}
                 {...(headerProps ?? {})}
             >
                 <Spin spinning={isLoading}>
@@ -172,8 +170,6 @@ export const Edit: React.FC<EditProps> = ({
                                                   defaultFooterButtons,
                                           })
                                         : footerButtons
-                                    : actionButtons
-                                    ? actionButtons
                                     : defaultFooterButtons}
                             </Space>,
                         ]}

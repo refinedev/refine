@@ -1,5 +1,26 @@
 # @pankod/refine-mantine
 
+## 1.15.4
+
+### Patch Changes
+
+-   [#3228](https://github.com/refinedev/refine/pull/3228) [`5aabfa19493`](https://github.com/refinedev/refine/commit/5aabfa1949374850f0f352acf842fafb01adcdcb) Thanks [@aliemir](https://github.com/aliemir)! - Fixed useForm's saveButtonProps.onClick event type
+
+## 1.15.3
+
+### Patch Changes
+
+-   [#3228](https://github.com/refinedev/refine/pull/3228) [`5aabfa19493`](https://github.com/refinedev/refine/commit/5aabfa1949374850f0f352acf842fafb01adcdcb) Thanks [@aliemir](https://github.com/aliemir)! - Fixed useForm's saveButtonProps.onClick event type
+
+## 1.15.2
+
+### Patch Changes
+
+-   [#3220](https://github.com/refinedev/refine/pull/3220) [`b867497f469`](https://github.com/refinedev/refine/commit/b867497f4694a5fbd330106a39256dee3c56199b) Thanks [@aliemir](https://github.com/aliemir)! - Updated image links in `README.MD` with CDN
+
+-   Updated dependencies [[`b867497f469`](https://github.com/refinedev/refine/commit/b867497f4694a5fbd330106a39256dee3c56199b)]:
+    -   @pankod/refine-ui-types@0.14.2
+
 ## 1.15.1
 
 ### Patch Changes

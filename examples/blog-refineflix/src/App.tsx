@@ -5,7 +5,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 import { dataProvider } from "@pankod/refine-supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";

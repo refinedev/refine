@@ -520,7 +520,7 @@ In the `example.context.tsx`, we called the `useContext` hook and passed the `Ex
 
 ---
 
-<PromotionBanner title="Does your CRUD app need server state management?" image="/img/generic_banner.png" />
+<PromotionBanner title="Does your CRUD app need server state management?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 

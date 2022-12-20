@@ -1,5 +1,5 @@
 import React from 'react';
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { Refine } from "@pankod/refine-core";
 import { Layout } from "@pankod/refine-antd";

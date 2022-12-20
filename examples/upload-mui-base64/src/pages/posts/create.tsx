@@ -13,7 +13,8 @@ import { LoadingButton } from "@mui/lab";
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
-import { ICategory } from "interfaces";
+import { ICategory, IPost } from "interfaces";
+import { HttpError } from "@pankod/refine-core";
 
 export const PostCreate: React.FC = () => {
     const [isUploadLoading, setIsUploadLoading] = useState(false);
@@ -26,7 +27,11 @@ export const PostCreate: React.FC = () => {
         setValue,
         setError,
         watch,
-    } = useForm();
+    } = useForm<
+        IPost,
+        HttpError,
+        IPost & { category: ICategory; images: any }
+    >();
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
@@ -168,47 +173,49 @@ export const PostCreate: React.FC = () => {
                     flexWrap="wrap"
                     sx={{ marginTop: "16px" }}
                 >
-                    <label htmlFor="images-input">
-                        <Input
-                            id="images-input"
-                            type="file"
-                            sx={{ display: "none" }}
-                            onChange={onChangeHandler}
-                        />
-                        <input
-                            id="file"
-                            {...register("images", {
-                                required: "This field is required",
-                            })}
-                            type="hidden"
-                        />
-                        <LoadingButton
-                            loading={isUploadLoading}
-                            loadingPosition="end"
-                            endIcon={<FileUploadIcon />}
-                            variant="contained"
-                            component="span"
-                        >
-                            Upload
-                        </LoadingButton>
-                        <br />
-                        {errors.images && (
-                            <Typography variant="caption" color="#fa541c">
-                                {errors.images?.message}
-                            </Typography>
+                    <>
+                        <label htmlFor="images-input">
+                            <Input
+                                id="images-input"
+                                type="file"
+                                sx={{ display: "none" }}
+                                onChange={onChangeHandler}
+                            />
+                            <input
+                                id="file"
+                                {...register("images", {
+                                    required: "This field is required",
+                                })}
+                                type="hidden"
+                            />
+                            <LoadingButton
+                                loading={isUploadLoading}
+                                loadingPosition="end"
+                                endIcon={<FileUploadIcon />}
+                                variant="contained"
+                                component="span"
+                            >
+                                Upload
+                            </LoadingButton>
+                            <br />
+                            {errors.images && (
+                                <Typography variant="caption" color="#fa541c">
+                                    {errors.images?.message?.toString()}
+                                </Typography>
+                            )}
+                        </label>
+                        {imageInput && (
+                            <Box
+                                component="img"
+                                sx={{
+                                    maxWidth: 250,
+                                    maxHeight: 250,
+                                }}
+                                src={imageInput.toString()}
+                                alt="Post image"
+                            />
                         )}
-                    </label>
-                    {imageInput && (
-                        <Box
-                            component="img"
-                            sx={{
-                                maxWidth: 250,
-                                maxHeight: 250,
-                            }}
-                            src={imageInput}
-                            alt="Post image"
-                        />
-                    )}
+                    </>
                 </Stack>
             </Box>
         </Create>

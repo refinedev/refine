@@ -32,8 +32,8 @@ jobs:
       - name: Install Dependencies
         run: |
           npm ci
-          npm run bootstrap -- --scope fine-foods
-          npm run build -- --scope fine-foods
+          npm run bootstrap -- --scope finefoods-antd
+          npm run build -- --scope finefoods-antd
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
@@ -67,8 +67,8 @@ jobs:
       - name: Install Dependencies
         run: |
           npm ci
-          npm run bootstrap -- --scope mui-fine-foods
-          npm run build -- --scope mui-fine-foods
+          npm run bootstrap -- --scope finefoods-mui
+          npm run build -- --scope finefoods-mui
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:

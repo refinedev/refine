@@ -1,1 +1,5 @@
-export { useModalForm } from "./useModalForm";
+export {
+    useModalForm,
+    UseModalFormProps,
+    UseModalFormReturnType,
+} from "./useModalForm";

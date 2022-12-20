@@ -8,7 +8,7 @@ import {
 import { DataProvider } from "@pankod/refine-strapi-v4";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { StoreProvider } from "context/store";
 import { CustomSider } from "components/sider";

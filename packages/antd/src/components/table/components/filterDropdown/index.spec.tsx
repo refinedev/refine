@@ -15,9 +15,11 @@ describe("FilterDropdown", () => {
     const clearFilters = jest.fn();
     const setSelectedKeys = jest.fn();
     const mapValueFn = jest.fn();
+    const close = jest.fn();
 
     const props: FilterDropdownProps = {
         confirm,
+        close,
         selectedKeys: [],
         setSelectedKeys,
         visible: false,

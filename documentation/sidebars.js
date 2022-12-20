@@ -249,6 +249,7 @@ module.exports = {
                         "api-reference/core/interfaceReferences",
                     ],
                 },
+
                 {
                     type: "category",
                     label: "Ant Design API",
@@ -301,6 +302,13 @@ module.exports = {
                                     items: [
                                         "api-reference/antd/hooks/table/useEditableTable",
                                         "api-reference/antd/hooks/table/useTable",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "UI",
+                                    items: [
+                                        "api-reference/antd/hooks/ui/useModal",
                                     ],
                                 },
                             ],
@@ -373,6 +381,7 @@ module.exports = {
                                 "api-reference/antd/customization/antd-custom-sider",
                             ],
                         },
+                        "api-reference/antd/migration-guide/v4-to-v5",
                     ],
                 },
 

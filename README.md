@@ -141,7 +141,7 @@ The fastest way to get started with **refine** is by using the `create refine-ap
 Run the following command to create a new **refine** project configured with  [Ant Design System](https://ant.design/) as the default UI framework:
 
 ```
-npm create refine-app -- -o refine-antd
+npm create refine-app@latest -- -o refine-antd
 ```
 
 Once the setup is complete, navigate to the project folder and start your project with:
@@ -180,7 +180,7 @@ import {
     AntdEditInferencer,
 } from '@pankod/refine-inferencer/antd';
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (

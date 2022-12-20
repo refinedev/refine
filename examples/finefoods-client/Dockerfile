@@ -13,8 +13,8 @@ RUN npm install
 
 COPY . /opt/app
 
-RUN npm run bootstrap -- --scope fine-foods-client
-RUN npm run build -- --scope fine-foods-client
+RUN npm run bootstrap -- --scope finefoods-client
+RUN npm run build -- --scope finefoods-client
 
 #Example client
 WORKDIR /opt/app/examples/finefoods-client

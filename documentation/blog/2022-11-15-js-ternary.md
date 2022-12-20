@@ -50,7 +50,7 @@ In JavaScript, falsy values include `false`, `0`, `-0`, `0n` `""`, `null`, `unde
 
 ---
 
-<PromotionBanner title="Building a side project?" image="/img/generic_banner.png" />
+<PromotionBanner title="Building a side project?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
 
 ---
 

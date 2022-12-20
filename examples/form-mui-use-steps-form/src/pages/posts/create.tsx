@@ -1,3 +1,4 @@
+import { HttpError } from "@pankod/refine-core";
 import {
     Create,
     Box,
@@ -14,7 +15,7 @@ import {
 } from "@pankod/refine-mui";
 import { Controller, useStepsForm } from "@pankod/refine-react-hook-form";
 
-import { ICategory } from "interfaces";
+import { ICategory, IPost } from "interfaces";
 
 const stepTitles = ["Title", "Status and category", "Slug and content"];
 
@@ -27,7 +28,11 @@ export const PostCreate: React.FC = () => {
         control,
         formState: { errors },
         steps: { currentStep, gotoStep },
-    } = useStepsForm();
+    } = useStepsForm<
+        IPost,
+        HttpError,
+        IPost & { category: ICategory; slug: string }
+    >();
 
     const theme = useTheme();
     const isSmallOrLess = useMediaQuery(theme.breakpoints.down("sm"));
@@ -157,7 +162,7 @@ export const PostCreate: React.FC = () => {
         <Create
             isLoading={formLoading}
             saveButtonProps={saveButtonProps}
-            actionButtons={
+            headerButtons={
                 <>
                     {currentStep > 0 && (
                         <Button

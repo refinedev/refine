@@ -21,7 +21,6 @@ We frequently require quick development and sometimes flexibility while developi
 
 In this article, we will use the **refine** framework to develop a full stack application. **Refine** will provide us with the speed and flexibility we are looking for, while assisting with the overall project architecture during web application development.
 
-
 ## What is Refine?
 
 **refine** is a React-based framework for rapid building of internal tools. It's is a a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
@@ -152,7 +151,7 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
@@ -199,7 +198,7 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 //highlight-next-line
 import { PostList } from "pages/post";
 
@@ -252,7 +251,6 @@ As you have seen, we have listed and paginated the titles coming from an API by 
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/client_menu.png" alt="Refine Client App" />
 </div>
 <br />
-
 
 -   Refine Admin Panel Example -> [Refine Antd + Refine Core ](https://example.admin.refine.dev/)
 
@@ -307,12 +305,10 @@ As you have seen, we have listed and paginated the titles coming from an API by 
 
 ## Conclusion
 
-In this article, we went through **refine** and showed you how to create a full stack application with backend providers that are integrated with it. You may rapidly and flexibly create a web application with **refine**. **refine** is a very successful and developing open source `internal tool` framework. It solves the deficiencies in `B2B`, `B2`C and `Admin panel` development processes well and offers features suitable for needs. 
+In this article, we went through **refine** and showed you how to create a full stack application with backend providers that are integrated with it. You may rapidly and flexibly create a web application with **refine**. **refine** is a very successful and developing open source `internal tool` framework. It solves the deficiencies in `B2B`, `B2`C and `Admin panel` development processes well and offers features suitable for needs.
 
-One of the biggest features that distinguishes **refine** from other frameworks is that it is customizable. Combined with *refine* `headless`, it now provides more customization options. This provides a great deal of convenience in the project you will develop.
+One of the biggest features that distinguishes **refine** from other frameworks is that it is customizable. Combined with _refine_ `headless`, it now provides more customization options. This provides a great deal of convenience in the project you will develop.
 
 You can develop any web application or admin panel you want in a very short time with **refine**.
 
 Give **refine** a star on [GitHub](https://github.com/refinedev/refine) if you like it - your support will help us continue making this tool amazing!
-
-

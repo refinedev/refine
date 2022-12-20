@@ -109,7 +109,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List
-            pageHeaderProps={{
+            headerProps={{
                 subTitle: hasSelected && (
                     <Button
                         danger

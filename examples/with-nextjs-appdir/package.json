@@ -4,13 +4,13 @@
     "private": true,
     "scripts": {
         "start": "NODE_OPTIONS=--max_old_space_size=4096 PORT=3002 next dev",
-        "build": "next build",
+        "_build": "next build && rm -rf .next/cache",
         "start:prod": "next start",
         "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
     },
     "dependencies": {
-        "@pankod/refine-antd": "^3.70.1",
-        "@pankod/refine-core": "^3.90.5",
+        "@pankod/refine-antd": "^4.1.2",
+        "@pankod/refine-core": "^3.90.6",
         "@pankod/refine-nextjs-router": "^4.1.0",
         "@pankod/refine-simple-rest": "^3.37.4",
         "next": "^13.0.6",

@@ -48,7 +48,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
     return (
         <Show
             isLoading={isLoading}
-            pageHeaderProps={{
+            headerProps={{
                 extra: (
                     <>
                         <ListButton />

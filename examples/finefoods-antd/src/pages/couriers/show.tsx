@@ -109,7 +109,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
             <Col xl={18} xs={24}>
                 <List
                     title={t("reviews.reviews")}
-                    pageHeaderProps={{
+                    headerProps={{
                         extra: <></>,
                     }}
                 >

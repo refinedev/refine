@@ -58,7 +58,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         return (
                             <Button
                                 key={provider.name}
-                                type="ghost"
+                                type="default"
                                 block
                                 icon={provider.icon}
                                 style={{
