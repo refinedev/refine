@@ -145,6 +145,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
         return (
             <>
                 <Menu
+                    theme="dark"
                     selectedKeys={[selectedKey]}
                     defaultOpenKeys={defaultOpenKeys}
                     mode="inline"
