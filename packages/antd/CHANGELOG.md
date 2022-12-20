@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 4.1.4
+
+### Patch Changes
+
+-   [`a8d3f648a28`](https://github.com/refinedev/refine/commit/a8d3f648a282329cac04c1dd4b736864d6fbf756) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed onClick event type of the `<Button />` component
+
 ## 4.1.3
 
 ### Patch Changes
