@@ -132,7 +132,7 @@ You can give theme dark to the `<Menu>` component in the `<Sider>` component.
       style={isMobile ? antLayoutSiderMobile : antLayoutSider}>
       <RenderToTitle collapsed={collapsed} />
       <Menu
-+        theme='dark'
++       theme='dark'
         selectedKeys={[selectedKey]}
         defaultOpenKeys={defaultOpenKeys}
         mode='inline'
@@ -159,10 +159,10 @@ You can remove constant background color in `<Header>` component.
         alignItems: 'center',
         padding: '0px 24px',
         height: '64px',
--        backgroundColor: '#FFF',
+-       backgroundColor: '#FFF',
       }}>
 ```
 
-### less Users
+### LESS Users
 
 Ant Design removed `less`, uses and recommends `CSS-in-JS` instead. You need to manually migrate your `.less` files to `CSS-in-JS`. [Ant Design's documentation for less migration.](https://ant.design/docs/react/migration-v5#less-migration)
