@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 4.1.1
+
+### Patch Changes
+
+-   [#3269](https://github.com/refinedev/refine/pull/3269) [`8b86c0c4c45`](https://github.com/refinedev/refine/commit/8b86c0c4c4529dce9eef4d6e49958eb2c50c31f2) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Fixed: Wrong import and usage after `swizzling` `<Layout>` component.
+
 ## 4.1.0
 
 ### Minor Changes
