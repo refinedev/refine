@@ -5,15 +5,17 @@ module.exports = [
         title: "QUOTE/PURCHASE INTERFACE",
         description:
             "Usystem has developed a <strong>system for quoting/purchasing</strong> products for a logistics company in Paraguay via <strong>refine</strong>, the operator performs the purchase request for parts for vehicles, machines or administrative items.",
-        thumbImgURL: "/use-cases/usystem.png",
+        thumbImgURL:
+            "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/use-cases/usystem.png",
         companyDetails: {
-            logo: "/use-cases/details/usystem/logo.png",
+            logo: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/use-cases/details/usystem/logo.png",
             title: "Usystem - Desenvolvimento Ágil de Softwares / Enterprise software development",
             user: {
                 username: "Raphael Martinez",
                 description:
                     "Partner & Developer <a href='https://usystem.com.br/' target='_blank'>@Usystem</a> <br /> Enterprise software development",
-                avatarURL: "/use-cases/details/usystem/user-avatar.png",
+                avatarURL:
+                    "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/use-cases/details/usystem/user-avatar.png",
             },
             message:
                 "<strong>2 months was the estimate</strong> for delivery of the dashboard without <strong>refine</strong>, we <strong>reduced this time to 3 weeks</strong>. Thanks to <strong>refine</strong> this project managed to be developed in record time.",
@@ -76,15 +78,17 @@ module.exports = [
         title: "DASHBOARD",
         description:
             "Gravity Enterprises has created a <strong>dashboard</strong> from scratch via <strong>refine</strong>.",
-        thumbImgURL: "/use-cases/gravity.png",
+        thumbImgURL:
+            "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/use-cases/gravity.png",
         companyDetails: {
-            logo: "/use-cases/details/gravity/logo.png",
+            logo: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/use-cases/details/gravity/logo.png",
             title: "Gravity Enterprises Pvt. Ltd., builds tailored web applications based on clients’ needs.",
             user: {
                 username: "Dipesh Bajgain",
                 description:
                     "Project Lead <a href='http://enterprisesgravity.com/' target='_blank'>@Gravity Enterprises</a>",
-                avatarURL: "/use-cases/details/gravity/user-avatar.png",
+                avatarURL:
+                    "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/use-cases/details/gravity/user-avatar.png",
             },
             message:
                 "Thank you <strong>refine</strong> team for creating such a wonderful project. I can surely say that if there wasn’t <strong>refine</strong> then the same project I have built would take me more than a month and there would be the involvement of maybe 2 or 3 individuals. Best wishes to the <strong>refine</strong> team.",
