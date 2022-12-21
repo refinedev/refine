@@ -26,7 +26,7 @@ export const Header: FC<Props> = ({ scrollYProgress }) => {
 
     return (
         <motion.div
-            className="sticky z-10 flex items-center justify-end w-full h-24 top-20"
+            className="sticky z-[1] flex items-center justify-end w-full h-24 top-20"
             style={{ translateY, opacity }}
         >
             <div className="flex-shrink-0 w-full">
