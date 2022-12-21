@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 4.5.0
+
+### Minor Changes
+
+-   [#3294](https://github.com/refinedev/refine/pull/3294) [`3c9c8c07d21`](https://github.com/refinedev/refine/commit/3c9c8c07d2183595402d70a3a2bc49093778e183) Thanks [@aliemir](https://github.com/aliemir)! - Remove `getContainer: false` from `useModalForm` and `useDrawerForm` and let it fallback to the default value. Users wanting to override the default value can still do so by passing `getContainer` prop to the `Modal` and `Drawer` components.
+
 ## 4.4.0
 
 ### Minor Changes
