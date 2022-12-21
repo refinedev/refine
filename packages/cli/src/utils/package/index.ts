@@ -92,7 +92,7 @@ export const getInstalledRefinePackagesFromNodeModules = async () => {
 
         return refinePackages;
     } catch (err) {
-        return Promise.resolve(null);
+        return [];
     }
 };
 export const isPackageHaveRefineConfig = async (packagePath: string) => {
