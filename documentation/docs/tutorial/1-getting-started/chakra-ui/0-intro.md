@@ -42,7 +42,7 @@ In the file pane, you should see `src/app.tsx`. Click to open it, and follow [Ge
 
 **Deploy your App**
 
-If you’d like to deploy to Netlify, skip to [Deploy your app to the web](#). Otherwise, skip to [Unit 2](#) to start building with Astro!
+If you’d like to deploy to Netlify, skip to [Deploy your app to the web](#). Otherwise, skip to [Unit 2](#) to start building with **refine**!
 
 </details>
 :::
