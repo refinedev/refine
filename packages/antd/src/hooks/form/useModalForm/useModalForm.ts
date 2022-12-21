@@ -207,7 +207,6 @@ export const useModalForm = <
             okText: translate("buttons.save", "Save"),
             cancelText: translate("buttons.cancel", "Cancel"),
             onCancel: handleClose,
-            getContainer: false,
             forceRender: true,
         },
         formLoading,
