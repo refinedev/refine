@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 4.3.0
+
+### Minor Changes
+
+-   [#3285](https://github.com/refinedev/refine/pull/3285) [`cc2c1f042bf`](https://github.com/refinedev/refine/commit/cc2c1f042bf43ae20c58745cccc815c337e17ae7) Thanks [@omeraplak](https://github.com/omeraplak)! - Added exports for new [`<App />`](https://ant.design/components/app), [`<QrCode />`](https://ant.design/components/qrcode) and [`<Watermark />`](https://ant.design/components/watermark) components.
+
 ## 4.2.0
 
 ### Minor Changes
