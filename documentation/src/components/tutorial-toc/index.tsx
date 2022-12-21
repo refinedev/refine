@@ -53,6 +53,7 @@ export const TutorialTOC = () => {
     };
 
     const renderTOC = () => {
+        if (toc.length === 0) return null;
         return (
             <ul className="list-none pl-0 mt-1">{toc.map(renderTocItem)}</ul>
         );
@@ -154,7 +155,7 @@ export const useDocTOCwithTutorial = () => {
     const { frontMatter, toc } = useDoc();
     const windowSize = useWindowSize();
     const hidden = frontMatter.hide_table_of_contents;
-    const canRender = !hidden && toc.length > 0;
+    const canRender = (!hidden && toc.length > 0) || tutorial?.isTutorial;
     const mobile = canRender ? <DocItemTOCMobile /> : undefined;
     const desktop =
         canRender && (windowSize === "desktop" || windowSize === "ssr") ? (
