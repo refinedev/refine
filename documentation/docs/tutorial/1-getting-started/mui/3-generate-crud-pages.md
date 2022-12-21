@@ -1,0 +1,21 @@
+---
+id: generate-crud-pages
+title: 3. Generate CRUD pages automatically with Inferencer
+tutorial:
+    prev: tutorial/getting-started/{preferredUI}/create-project
+    next: tutorial/getting-started/store-your-repository
+---
+
+## Inferencer
+    
+Inferencerdan ve kullanımından bahsediyoruz. Gerekli doc linklerini veriyoruz
+Inferencer kodlarını ekleyip
+
+Inferencer verildikten sonra oluşan CRUD pageleri screenshotları ekleyebiliriz. Bu CRUD page kod eklemelerini ilerleyen unit de anlatacağız.
+
+ Bu noktaya kadar her sey magical şekilde ilerliyor. Okuyucu bir nevi şaşırtıyoruz.
+    
+
+***Checklist for moving on***
+- [x] Inferencerı neden kullandıgımızı anladım
+- [x] Inferencer ile yaratılan pageleri kodları gördüm..
