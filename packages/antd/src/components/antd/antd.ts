@@ -66,6 +66,9 @@ export {
     Upload,
     version,
     theme,
+    App,
+    QRCode,
+    Watermark,
 } from "antd";
 
 export type {
@@ -150,6 +153,9 @@ export type {
     TourProps,
     TypographyProps,
     UploadProps,
+    WatermarkProps,
+    QRCodeProps,
+    QRPropsCanvas,
 } from "antd";
 
 export type { TitleProps } from "antd/lib/typography/Title";
