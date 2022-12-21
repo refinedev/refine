@@ -298,7 +298,7 @@ Let's build a method that returns our data provider:
 
 ```ts title="dataProvider.ts"
 import axios, { AxiosInstance } from "axios";
-import { DataProvider } from "@pankod/refine-core";
+import type { DataProvider } from "@pankod/refine-core";
 
 const axiosInstance = axios.create();
 
