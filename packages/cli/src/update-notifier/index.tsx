@@ -119,24 +119,23 @@ export const validateKey = async () => {
  * @returns `string` if key is generated
  */
 export const generateKeyFromPackages = async () => {
-    try {
-        const packages = await getInstalledRefinePackages();
-
-        const currentVersionsWithName = packages.map(
-            (p) => `${p.name}@${p.version}`,
-        );
-        const hash = btoa(currentVersionsWithName.toString());
-
-        return hash;
-    } catch (error: any) {
+    const packages = await getInstalledRefinePackages();
+    if (!packages) {
         console.error(
             chalk.red(
-                `Something went wrong when trying to get installed \`refine\` packages: ${error.shortMessage}`,
+                `Something went wrong when trying to get installed \`refine\` packages.`,
             ),
         );
 
-        return Promise.resolve(null);
+        return null;
     }
+
+    const currentVersionsWithName = packages.map(
+        (p) => `${p.name}@${p.version}`,
+    );
+    const hash = btoa(currentVersionsWithName.toString());
+
+    return hash;
 };
 
 export const isUpdateNotifierDisabled = () => {

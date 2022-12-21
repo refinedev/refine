@@ -21,7 +21,7 @@ const action = async () => {
         { showNotFound: true, markdown: true },
     );
 
-    const packages = await getInstalledRefinePackages();
+    const packages = (await getInstalledRefinePackages()) || [];
     const packagesMarkdown = packages
         .map((pkg) => {
             return ` - ${pkg.name}: ${pkg.version}`;

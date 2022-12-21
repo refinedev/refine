@@ -57,7 +57,7 @@ export const getInstalledRefinePackages = async () => {
 
         return normalize;
     } catch (error) {
-        return Promise.reject(error);
+        return Promise.resolve(null);
     }
 };
 
