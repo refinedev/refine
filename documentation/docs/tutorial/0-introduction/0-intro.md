@@ -21,5 +21,5 @@ We'll cover the following topics:
 -   Understanding the `authProvider`
 
 :::note
-If you would rather start exploring **refine** with some examples before diving in, visit our [examples](#) page and choose an example to open and explore it in an online editor.
+If you would rather start exploring **refine** with some examples before diving in, visit our [examples](/examples) page and choose an example to open and explore it in an online editor.
 :::
