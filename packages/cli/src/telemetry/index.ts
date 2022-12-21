@@ -28,7 +28,7 @@ export const getTelemetryData = async (): Promise<TelemetryData> => {
         os: os.name,
         osVersion: os.version,
         command: process.argv[2],
-        packages: await getInstalledRefinePackages(),
+        packages: (await getInstalledRefinePackages()) || [],
         projectFramework: getProjectType(),
     };
 

@@ -57,7 +57,7 @@ export const getInstalledRefinePackages = async () => {
 
         return normalize;
     } catch (error) {
-        return Promise.reject(error);
+        return Promise.resolve(null);
     }
 };
 
@@ -92,7 +92,7 @@ export const getInstalledRefinePackagesFromNodeModules = async () => {
 
         return refinePackages;
     } catch (err) {
-        return [];
+        return Promise.resolve(null);
     }
 };
 export const isPackageHaveRefineConfig = async (packagePath: string) => {
