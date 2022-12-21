@@ -16,10 +16,11 @@ export const Promotional: React.FC = () => {
                         .
                     </h3>
                 </div>
-                <Link href="/1/Starters">
-                    <a className="text-primary hover:border-primary w-max rounded-md border border-white bg-white py-2 px-4 text-xl font-bold transition-all duration-300 hover:bg-gray-100">
-                        Explore Menu
-                    </a>
+                <Link
+                    href="/1/Starters"
+                    className="text-primary hover:border-primary w-max rounded-md border border-white bg-white py-2 px-4 text-xl font-bold transition-all duration-300 hover:bg-gray-100"
+                >
+                    Explore Menu
                 </Link>
             </div>
             <div>

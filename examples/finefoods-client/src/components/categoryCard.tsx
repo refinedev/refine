@@ -13,23 +13,22 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
 }) => {
     return (
         <Link
+            className="h-60 w-full overflow-hidden p-2 md:w-1/3"
             href={{
                 pathname: "/[id]/[category]",
                 query: { id, category: encodeURIComponent(title) },
             }}
         >
-            <a className="h-60 w-full overflow-hidden p-2 md:w-1/3">
-                <div
-                    className="flex h-full items-center justify-center rounded-lg bg-cover bg-center shadow-md transition-opacity duration-300 hover:opacity-95"
-                    style={{
-                        backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${backgroundImg})`,
-                    }}
-                >
-                    <div className="text-5xl font-extrabold uppercase text-white md:text-4xl lg:text-5xl">
-                        {title}
-                    </div>
+            <div
+                className="flex h-full items-center justify-center rounded-lg bg-cover bg-center shadow-md transition-opacity duration-300 hover:opacity-95"
+                style={{
+                    backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${backgroundImg})`,
+                }}
+            >
+                <div className="text-5xl font-extrabold uppercase text-white md:text-4xl lg:text-5xl">
+                    {title}
                 </div>
-            </a>
+            </div>
         </Link>
     );
 };

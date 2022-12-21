@@ -12,11 +12,9 @@ export const Header: React.FC = () => {
     return (
         <header className="bg-primary sticky top-0 z-50 shadow-md">
             <div className="container flex h-full items-center justify-between px-2 md:px-0">
-                <Link href="/">
-                    <a className="flex gap-4">
-                        <MotorcycleIcon className="hidden md:block" />
-                        <FinefoodsIcon className="w-32 md:w-48" />
-                    </a>
+                <Link href="/" className="flex gap-4">
+                    <MotorcycleIcon className="hidden md:block" />
+                    <FinefoodsIcon className="w-32 md:w-48" />
                 </Link>
                 <div
                     className="flex cursor-pointer items-center gap-2"
