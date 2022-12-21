@@ -1,5 +1,11 @@
 # @pankod/refine-cli
 
+## 1.13.3
+
+### Patch Changes
+
+-   [#3282](https://github.com/refinedev/refine/pull/3282) [`996b9077ea0`](https://github.com/refinedev/refine/commit/996b9077ea0c65a36550d0d6e5890652f6bc64bb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Added: `npm -ls` was always throws an error. From now returns `null`, with this way `error` handling can be done when needed.
+
 ## 1.13.2
 
 ### Patch Changes
