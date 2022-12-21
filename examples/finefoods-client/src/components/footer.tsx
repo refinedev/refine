@@ -13,31 +13,35 @@ export const Footer: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-4 text-lg font-semibold text-white md:flex-row">
                     <div>
-                        <Link href="https://refine.dev/docs/getting-started/overview/">
-                            <a className="transition-all hover:underline hover:underline-offset-2">
-                                Quickstart
-                            </a>
+                        <Link
+                            href="https://refine.dev/docs/getting-started/overview/"
+                            className="transition-all hover:underline hover:underline-offset-2"
+                        >
+                            Quickstart
                         </Link>
                     </div>
                     <div>
-                        <Link href="https://refine.dev/docs/">
-                            <a className="transition-all hover:underline hover:underline-offset-2">
-                                Tutorials
-                            </a>
+                        <Link
+                            href="https://refine.dev/docs/"
+                            className="transition-all hover:underline hover:underline-offset-2"
+                        >
+                            Tutorials
                         </Link>
                     </div>
                     <div>
-                        <Link href="https://refine.dev/docs/examples/">
-                            <a className="transition-all hover:underline hover:underline-offset-2">
-                                Examples
-                            </a>
+                        <Link
+                            href="https://refine.dev/docs/examples/"
+                            className="transition-all hover:underline hover:underline-offset-2"
+                        >
+                            Examples
                         </Link>
                     </div>
                     <div>
-                        <Link href="https://refine.dev/blog/">
-                            <a className="transition-all hover:underline hover:underline-offset-2">
-                                Blog
-                            </a>
+                        <Link
+                            href="https://refine.dev/blog/"
+                            className="transition-all hover:underline hover:underline-offset-2"
+                        >
+                            Blog
                         </Link>
                     </div>
                 </div>
