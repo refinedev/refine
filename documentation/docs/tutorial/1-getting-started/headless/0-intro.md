@@ -3,7 +3,7 @@ id: index
 title: Intro
 tutorial:
     prev: tutorial/introduction/select-framework
-    next: tutorial/getting-started/{preferredUI}/prepare-env
+    next: tutorial/getting-started/prepare-env
 ---
 
 Now that you have selected **headless UI** option, let's get started!

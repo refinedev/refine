@@ -3,7 +3,7 @@ id: index
 title: 0. Intro
 tutorial:
     prev: tutorial/introduction/select-framework
-    next: tutorial/getting-started/{preferredUI}/prepare-env
+    next: tutorial/getting-started/prepare-env
 ---
 
 Now that you have selected **Ant Design** as your UI framework, let's get started!
