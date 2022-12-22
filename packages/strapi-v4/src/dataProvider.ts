@@ -40,6 +40,8 @@ const mapOperator = (operator: CrudOperators) => {
             return "containsi";
         case "ncontainss":
             return "notContainsi";
+        case "nnull":
+            return "notNull";
     }
 
     return operator;
