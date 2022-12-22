@@ -5,6 +5,7 @@
     "dependencies": {
         "@pankod/refine-antd": "^4.5.0",
         "@pankod/refine-core": "^3.90.6",
+        "@pankod/refine-cli": "^1.13.4",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-strapi": "^3.37.0",
         "@testing-library/jest-dom": "^5.16.4",
@@ -25,7 +26,8 @@
         "dev": "react-scripts start",
         "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "refine": "refine"
     },
     "browserslist": {
         "production": [

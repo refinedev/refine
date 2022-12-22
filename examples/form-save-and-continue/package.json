@@ -4,6 +4,7 @@
     "private": true,
     "dependencies": {
         "@pankod/refine-core": "^3.90.6",
+        "@pankod/refine-cli": "^1.13.4",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-simple-rest": "^3.37.4",
         "@types/node": "^12.20.11",
@@ -19,7 +20,8 @@
     "scripts": {
         "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
         "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "refine": "refine"
     },
     "browserslist": {
         "production": [
