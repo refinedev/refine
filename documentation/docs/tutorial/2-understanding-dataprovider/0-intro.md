@@ -65,16 +65,16 @@ It is not mandatory to define the `createMany`, `deleteMany`, `getMany` and `upd
 
 There are hooks in *refine* that correspond to these methods. You can easily make API requests using these hooks.
 
-| Data Provider Method | Hook            |
-| -------------------- | --------------- |
-| `create`             | `useCreate`     |
-| `deleteOne`          | `useDeleteOne`  |
-| `getList`            | `useList`       |
-| `getOne`             | `useShow`       |
-| `update`             | `useUpdate`     |
-| `getApiUrl`          | `useApiUrl`     |
-| `createMany`         | `useCreateMany` |
-| `deleteMany`         | `useDeleteMany` |
-| `getMany`            | `useGetMany`    |
-| `updateMany`         | `useUpdateMany` |
-| `custom`             | `useCustom`     |
+| Data Provider Method | Hook                                                                    |
+| -------------------- | ----------------------------------------------------------------------- |
+| `create`             | [`useCreate`](../../api-reference/core/hooks/data/useCreate.md)         |
+| `deleteOne`          | [`useDelete`](../../api-reference/core/hooks/data/useDelete.md)         |
+| `getList`            | [`useList`](../../api-reference/core/hooks/data/useList.md)             |
+| `getOne`             | [`useOne`](../../api-reference/core/hooks/data/useOne.md)               |
+| `update`             | [`useUpdate`](../../api-reference/core/hooks/data/useUpdate.md)         |
+| `getApiUrl`          | [`useApiUrl`](../../api-reference/core/hooks/data/useApiUrl.md)         |
+| `createMany`         | [`useCreateMany`](../../api-reference/core/hooks/data/useCreateMany.md) |
+| `deleteMany`         | [`useDeleteMany`](../../api-reference/core/hooks/data/useDeleteMany.md) |
+| `getMany`            | [`useMany`](../../api-reference/core/hooks/data/useMany.md)             |
+| `updateMany`         | [`useUpdateMany`](../../api-reference/core/hooks/data/useUpdateMany.md) |
+| `custom`             | [`useCustom`](../../api-reference/core/hooks/data/useCustom.md)         |
