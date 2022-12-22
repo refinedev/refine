@@ -6,19 +6,62 @@ tutorial:
     next: tutorial/understanding-dataprovider/create-dataprovider
 ---
 
+## Understanding the Swizzle
 
- ## Understanding the Swizzle
+Sometimes you may want to regulate data providers. You can copy and edit these files in your project using `swizzle` from `refine-cli`.
 
- Swizzle ile data provider kodlarına erişmek
+Let's swizzle `dataProvider` as an example.
 
- Bu kısımda optional ekstra bilgi, tutoriala devam etmek isteyen skip edebilir..
-- Burada swizzle mantıgını ve kullanımını gösteriyoruz.
-- Swizzle ile dataprovider kodlarını cekip inceleyebilir, gerekirse değişiklik yapabilir.
-    
-***Checklist for moving on***
-- [x] Swizzle calısma mantıgını anladım
-- [x] Swizzle test ettim, kodları cekip inceledim
-    
-## refine daki diğer data providerların tanıtımı
-Mevcut data providerlarımızı tanıyalım.
+```bash
+npm run refine swizzle
+```
+Select the `dataProvider` package from the list of packages that support `swizzle`.
+
+```bash
+? Which package do you want to swizzle?
+  Data Provider
+❯  @pankod/refine-simple-rest
+  UI Framework
+   @pankod/refine-antd
+```
+
+Then select `DataProvider`.
+
+```bash
+? Which component do you want to swizzle? (Use arrow keys)
+❯  Data Provider
+```
+
+The necessary files for this package are being copied to the project by `swizzle`.
+
+```bash
+Successfully swizzled Data Provider
+Files created:
+ - src/rest-data-provider/index.ts
+ - src/rest-data-provider/utils/axios.ts
+ - src/rest-data-provider/utils/generateFilter.ts
+ - src/rest-data-provider/utils/generateSort.ts
+ - src/rest-data-provider/utils/mapOperator.ts
+ - src/rest-data-provider/utils/index.ts
+
+Warning:
+You will also need to add axios to your project dependencies.
+
+Usage
+
+    ╭ App.tsx ─────────────────────────────────────────────────╮
+    │                                                          │
+    │   import { dataProvider } from "./rest-data-provider";   │
+    │                                                          │
+    │   const App = () => {                                    │
+    │       return (                                           │
+    │           <Refine                                        │
+    │               dataProvider={dataProvider}                │
+    │               /* ... */                                  │
+    │           />                                             │
+    │       );                                                 │
+    │   }                                                      │
+    │                                                          │
+    ╰──────────────────────────────────────────────────────────╯
+```
 
