@@ -11,7 +11,7 @@ import { SelectTutorialFramework } from '../../../src/components/select-tutorial
 
 ## Selection of UI Framework
 
-**refine** is a headless framework. It means you can build your app without any UI frameworks or something else. However, **refine** provides ready-to-use UI framework packages for you. You can use them to build your app faster.
+**refine** is a headless framework. It means you can build your app without any UI frameworks. However, **refine** has built-in support for the most popular UI frameworks like Material UI, Ant Design, Mantine, and Chakra UI. You can speed up your app UI development with these powerful frameworks.
 
 Before you start, you can read the API references of the [UI frameworks](/docs/api-reference/) to get more information about them.
 
