@@ -6,15 +6,7 @@ tutorial:
     next: tutorial/getting-started/{preferredUI}/prepare-env
 ---
 
-Now that you know what you’re going to build, let’s set up all the tools you’ll need!
-
-This unit will cover:
-
--   Setting up your development environment
--   Creating a new project
--   Generating CRUD pages for your data model
--   Store your project in a git repository
--   Deploy your project to the cloud
+Now that you have selected **Chakra UI** as your UI framework, let's get started!
 
 If you already have an existing project, comfortable with your development environment and workflow, you can skip this unit and go directly to the [Unit 2](#).
 
@@ -47,4 +39,16 @@ If you’d like to deploy to Netlify, skip to [Deploy your app to the web](#). O
 </details>
 :::
 
+### Where are we going?
 
+In this unit, we will be covering the following steps:
+
+-   Setting up your development environment
+-   Creating a new project
+-   Generating CRUD pages for your data model
+-   Store your project in a git repository
+-   Deploy your project to the cloud
+
+As you work on your project, you will periodically commit your changes to GitHub. Netlify will use the files in your GitHub repository to build and publish your website on the internet at a unique address where anyone can view it.
+
+Netlify will continuously monitor your GitHub repository for any committed changes, and will automatically rebuild and republish your site to reflect those changes. This allows you to easily update and maintain your website over time.
