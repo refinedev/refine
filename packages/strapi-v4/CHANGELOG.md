@@ -1,5 +1,11 @@
 # @pankod/refine-strapi-v4
 
+## 3.39.3
+
+### Patch Changes
+
+-   [#3302](https://github.com/refinedev/refine/pull/3302) [`6876333ef4b`](https://github.com/refinedev/refine/commit/6876333ef4b7478a3308ba7b3a291a846087e2ed) Thanks [@npanti](https://github.com/npanti)! - patch: mapping nnul crud operator to notNull
+
 ## 3.39.2
 
 ### Patch Changes

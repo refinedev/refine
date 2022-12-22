@@ -6,7 +6,7 @@
         "@pankod/refine-antd": "^4.5.0",
         "@pankod/refine-core": "^3.90.6",
         "@pankod/refine-react-router-v6": "^3.38.0",
-        "@pankod/refine-strapi-v4": "^3.39.2",
+        "@pankod/refine-strapi-v4": "^3.39.3",
         "@react-pdf/renderer": "^3.0.1",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",

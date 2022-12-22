@@ -16,7 +16,7 @@
         "@pankod/refine-core": "^3.90.6",
         "@pankod/refine-nextjs-router": "^4.1.0",
         "@pankod/refine-strapi": "^3.37.0",
-        "@pankod/refine-strapi-v4": "^3.39.2",
+        "@pankod/refine-strapi-v4": "^3.39.3",
         "axios": "^0.26.1",
         "framer-motion": "^7.5.3",
         "next": "^13.0.6",
