@@ -81,7 +81,6 @@ export const useStepsForm = <
                 }
             });
 
-
             reset(fields as any, {
                 keepDirty: true,
                 keepValues: true,
