@@ -1,5 +1,11 @@
 # @pankod/refine-react-hook-form
 
+## 3.37.2
+
+### Patch Changes
+
+-   [#3307](https://github.com/refinedev/refine/pull/3307) [`1262f2c4589`](https://github.com/refinedev/refine/commit/1262f2c45897aaea7acc8bb67b825305749c220c) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed resetting values on step changes - #3290
+
 ## 3.37.1
 
 ### Patch Changes
