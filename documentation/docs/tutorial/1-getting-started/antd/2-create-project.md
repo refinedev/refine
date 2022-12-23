@@ -52,7 +52,7 @@ yarn create refine-app -- -o refine-antd tutorial
 
 3- The `-o refine-antd` flag in the command above tells the CLI to install the project with the `refine-antd` preset. This preset selects some options for you in accordance with this tutorial.
 
-4- The CLI will ask if you agree to share your selection anonymously with the **refine** team. You can choose whatever you prefer.
+4-The CLI will ask if you agree to share your choices anonymously with the **refine** team. This is for measuring community preferences. You are free to share or not.
 
 Once the installation wizard is finished, you can close this terminal window and open VS Code to continue your journey.
 
