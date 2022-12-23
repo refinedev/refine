@@ -1065,3 +1065,10 @@ That’s it. We’ve successfully composed a fully functional dynamic form that 
 In this article, we introduced refine and React hook forms and looked at their benefits. Then walked through the process of setting up a refine project with Material design and how to handle CRUD functionalities using the `List`, `Create`, and `Edit` pages.
 
 We also looked at how to set up a dynamic form using React hook form’s `useFieldArray` hook and how to fix the quirks that come with using the tool.
+
+
+## Live StackBlitz Example
+
+<StackblitzExample path="blog-react-hook-dynamic-form" />
+
+---
