@@ -106,7 +106,7 @@ You should see confirmation in the terminal that the **refine** app is running i
 
 ### Viewing a preview of your website
 
-Your project files contain all the code you need to run your website. To see a preview of your website in the browser:
+Your project files contain all the code you need to run your app. To see a preview of your app in the browser:
 
 1- Click on the `localhost:3000` link in the terminal. This will open a new browser tab with your website.
 
