@@ -6,16 +6,20 @@ tutorial:
     next: tutorial/understanding-dataprovider/create-dataprovider
 ---
 
-## Understanding the Swizzle
+## What is Swizzle?
 
-Sometimes you may want to regulate data providers. You can copy and edit these files in your project using `swizzle` from `refine-cli`.
+...
+
+## Using with DataProvider
+
+In some cases, data providers do not fully comply with our API and it is necessary to change it. The [`swizzle`](../../packages/documentation/cli.md#swizzle) in [`refine-cli`](../../packages/documentation/cli.md) is a tool made for this. It can quickly eject and update all data provider files.
 
 Let's swizzle `dataProvider` as an example.
 
 ```bash
 npm run refine swizzle
 ```
-Select the `dataProvider` package from the list of packages that support `swizzle`.
+Select the data provider package from the list of packages that support `swizzle`.
 
 ```bash
 ? Which package do you want to swizzle?

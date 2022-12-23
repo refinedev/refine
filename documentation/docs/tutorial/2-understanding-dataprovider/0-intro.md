@@ -7,9 +7,17 @@ tutorial:
     next: tutorial/understanding-dataprovider/swizzle
 ---
 
- ## What is data provider?
+## What is data provider?
 
-When it needs to communicate with the *refine* API, it does so using the `dataProvider` object. All API requests are processed through this object.
+The dataProvider acts as a data layer for your app that makes the HTTP requests and encapsulates how the data is retrieved. **refine** consumes these methods via data hooks.
+
+Data providers are hooks that refine use to communicate with APIs. They act as adapters that make HTTP requests to different APIs and return response data using predefined methods.
+
+refine comes with different data providers out of the box, but the one we’re interested in and will be using in this tutorial is the refine-simple-rest data provider, a data provider for communicating with RESTful APIs.
+
+The data provider concept comes into play whenever your refine app needs to communicate with an external API. Thanks to refine's `dataProvider` object property, all API requests are processed through this object.
+
+*TODO: You need to connect this section to the previous one.Readers have seen the App.tsx and the dataProvider property in the previous section. So, we need to clarify `<Refine>` (in App.tsx) dataProvider property to the users.*
 
 For example, to get all the records for the `posts` resource, use the `useList` hook as below. This makes a request from the `dataProvider` with the `getList` method.
 
@@ -23,7 +31,11 @@ console.log(postListQueryResult); // TODO: show console result
 
 Data providers can communicate with `REST`, `GraphQL`, `RPC` and `SOAP` based APIs as they work with adapter system infrastructure. You can check the supported data provider list.
 
-In cases that do not match your API, you can write your own data provider. You can use `fetch`, `axios`, `apollo-client` or any library for this communication. It is the ideal place for your Authentication or custom HTTP headers operations.
+*TODO: Maybe you draw some diagrams to visualize it?*
+
+In cases that do not match your API, you can write your own data provider. You can use `fetch`, `axios`, `apollo-client` or any library for this communication. It is the ideal place for your Authentication or custom HTTP headers operations. Refer to the [Create Your First Data Provider](./2-create-dataprovider.md) documentation for detailed usage.
+
+## Methods
 
 Data providers should have the following methods:
 
@@ -61,9 +73,11 @@ const dataProvider: DataProvider = {
 };
 ```
 
-It is not mandatory to define the `createMany`, `deleteMany`, `getMany` and `updateMany` methods. If not defined, *refine* will call the corresponding singular `create`, `delete`, `getOne` and `update` methods in a loop.
+It is not require to define the `createMany`, `deleteMany`, `getMany` and `updateMany` methods. If not defined, **refine** will call the corresponding singular `create`, `delete`, `getOne` and `update` methods in a loop.
 
-There are hooks in *refine* that correspond to these methods. You can easily make API requests using these hooks.
+## Hooks
+
+There are hooks in **refine** that correspond to these methods. You can easily make API requests using these hooks.
 
 | Data Provider Method | Hook                                                                    |
 | -------------------- | ----------------------------------------------------------------------- |
