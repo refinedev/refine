@@ -50,9 +50,9 @@ yarn create refine-app -- -o refine-antd tutorial
 
 2- Confirm `y` to installation of `create-refine-app`
 
-3- The `-o refine-antd` flag in the command above tells the CLI to install the project with the `refine-antd` preset. This preset selects some options for you in accordance with this tutorial.
+3- We are using `-o refine-antd` flag to bootstrap the app with pre-selected CLI options. The tutorial will proceed according to these selections. 
 
-4- The CLI will ask if you agree to share your selection anonymously with the **refine** team. You can choose whatever you prefer.
+4-The CLI will ask if you agree to share your choices anonymously with the **refine** team. This is for measuring community preferences. You are free to share or not.
 
 Once the installation wizard is finished, you can close this terminal window and open VS Code to continue your journey.
 
@@ -106,7 +106,7 @@ You should see confirmation in the terminal that the **refine** app is running i
 
 ### Viewing a preview of your website
 
-Your project files contain all the code you need to run your website. To see a preview of your website in the browser:
+Your project files contain all the code you need to run your app. To see a preview of your app in the browser:
 
 1- Click on the `localhost:3000` link in the terminal. This will open a new browser tab with your website.
 
