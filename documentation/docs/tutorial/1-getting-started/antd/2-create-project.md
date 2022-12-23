@@ -22,7 +22,6 @@ values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 
 <TabItem value="npm">
 
 ```bash
-# create a new project with npm
 npm create refine-app@latest -- -o refine-antd tutorial
 ```
 
@@ -31,7 +30,6 @@ npm create refine-app@latest -- -o refine-antd tutorial
 <TabItem value="pnpm">
 
 ```bash
-# create a new project with pnpm
 pnpm create refine-app@latest -- -o refine-antd tutorial
 ```
 
@@ -40,7 +38,6 @@ pnpm create refine-app@latest -- -o refine-antd tutorial
 <TabItem value="yarn">
 
 ```bash
-# create a new project with yarn
 yarn create refine-app -- -o refine-antd tutorial
 ```
 
@@ -50,7 +47,7 @@ yarn create refine-app -- -o refine-antd tutorial
 
 2- Confirm `y` to installation of `create-refine-app`
 
-3- We are using `-o refine-antd` flag to bootstrap the app with pre-selected CLI options. The tutorial will proceed according to these selections. 
+3- We are using `-o refine-antd` flag to bootstrap the app with pre-selected CLI options. The tutorial will proceed according to these selections.
 
 4-The CLI will ask if you agree to share your choices anonymously with the **refine** team. This is for measuring community preferences. You are free to share or not.
 
