@@ -50,7 +50,7 @@ yarn create refine-app -- -o refine-antd tutorial
 
 2- Confirm `y` to installation of `create-refine-app`
 
-3- The `-o refine-antd` flag in the command above tells the CLI to install the project with the `refine-antd` preset. This preset selects some options for you in accordance with this tutorial.
+3- We are using `-o refine-antd` flag to bootstrap the app with pre-selected CLI options. The tutorial will proceed according to these selections. 
 
 4-The CLI will ask if you agree to share your choices anonymously with the **refine** team. This is for measuring community preferences. You are free to share or not.
 
