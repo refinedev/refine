@@ -1,15 +1,16 @@
 ---
-title: How to Create Dynamic Forms in React CRUD app with Ant Design
-description: Easy way to creating dynamic forms in React CRUD apps with Ant Design
-slug: dynamic-hook-form
+title: Dynamic Forms with React Hook Form
+description: How to build dynamic forms with React hook form in React CRUD apps.
+slug: dynamic-forms-in-react-hook-form
 authors: david_omotayo
-tags: [react, refine, form-validation, dynamic-form, ant-design]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/social.png
+tags: [react, refine, form-validation, dynamic-form, material-ui, react-hook-form]
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/social.png
 hide_table_of_contents: false
 ---
 
 
 ## Introduction
+
 Forms are an essential part of web development; they serve as an avenue for proprietors to form formal relationships with their users. However, due to the complexity of some forms, they can come off as intrusive and affects user experience.
 
 Dynamic forms are forms with metadata templates that describe their field’s object model, which can be used to generate new fields automatically. With dynamic forms, proprietors can solve the user experience issue referenced earlier by allowing users to append and remove fields according to their needs.
@@ -102,7 +103,7 @@ If your default browser doesn't automatically open the app after starting the se
 
 ## Creating the List, Create, and Edit pages
 
-For this project, we'll build a refine app with CRUD pages that handle functionalities for listing, creating, and editing records from a fake API endpoint. And as a first step, we'll create these pages and pass them to the `list`, `create`, and `edit` properties on the `<Refine>` component's `resources` prop.
+For this project, we'll build a refine app with CRUD pages that handle functionalities for listing, creating, and editing records from a fake API endpoint. And as a first step, we'll create these pages and pass them to the `list`, `create`, and `edit` properties on the `<Refine>` component's `resources` prop. We'll also handle dynamic forms using React hook form.
 
 To begin with, create a `pages` folder inside the `src` folder and add a `userList`, `userCreate`, and `userEdit` files:
 
@@ -193,6 +194,12 @@ export default App;
 Notice the link being passed to the `<Refine>`'s `dataProvider` prop. This is the mock API endpoint we'll be fetching and posting data using our form.
 
 Refer to the documentation to learn more about the [`resources`](https://refine.dev/docs/api-reference/core/components/refine-config/#resources) and [`dataProvider`](https://refine.dev/docs/api-reference/core/components/refine-config/#dataprovider) properties.
+
+---
+
+<PromotionBanner title="Is your CRUD app overloaded with technical debt?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
+
+---
 
 ## Listing Records
 
@@ -817,6 +824,13 @@ Then remove the `delete` button and add the icon in its place:
 </div>
 
 <br />
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 ## Validation
 
