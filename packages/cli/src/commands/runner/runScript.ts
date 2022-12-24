@@ -3,6 +3,7 @@ import execa from "execa";
 export const runScript = async (binPath: string, args: string[]) => {
     const execution = execa(binPath, args, {
         stdio: "pipe",
+        windowsHide: false,
     });
 
     execution.stdout?.pipe(process.stdout);
