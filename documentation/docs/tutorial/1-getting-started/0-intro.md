@@ -136,6 +136,4 @@ In this unit, we will be covering the following steps:
 -   Store your project in a git repository
 -   Deploy your project to the cloud
 
-As you work on your project, you will periodically commit your changes to GitHub. Netlify will use the files in your GitHub repository to build and publish your website on the internet at a unique address where anyone can view it.
-
-Netlify will continuously monitor your GitHub repository for any committed changes, and will automatically rebuild and republish your site to reflect those changes. This allows you to easily update and maintain your website over time.
+As you make changes to your project, you can commit them to your GitHub repository. Netlify listens for changes to your GitHub repository to automatically rebuild and deploy your application on every commit. This allows anyone to access and view your website updates as you make them.
