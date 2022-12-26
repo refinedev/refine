@@ -114,7 +114,7 @@ Your project files contain all the code you need to run your website. To see a p
 
 2- You will be redirected to the welcome page as we have not added any pages yet.
 
-([Next section](docs/tutorial/mantine/headless/generate-crud-pages) will guide you through adding pages to your app.)
+([Next section](/docs/tutorial/mantine/headless/generate-crud-pages) will guide you through adding pages to your app.)
 
 Here's what you should see:
 
