@@ -27,9 +27,80 @@ Overall, using Inferencer can greatly speed up development time and reduce the a
 -   Learn about [how Inferencer works](/docs/packages/documentation/inferencer).
 -   Learn about [how to use Inferencer with Mantine](/docs/api-reference/mantine/components/inferencer/).
 
+## How to use Inferencer
+
+The `@pankod/refine-inferencer` package includes the `<MantineInferencer />` component, which can be imported from `@pankod/refine-inferencer/mantine` and used to generate CRUD pages with Ant Design components.
+
+The component can be used directly in the `resources` prop of the `<Refine />` component in `App.tsx` as shown below:
+
+:::info
+
+In [Unit 4](/docs/tutorial/understanding-resources/index), resource concepts will be explained in detail. For now, you can think of a resource as a collection of data that you want to manage in your app.
+
+:::
+
+```tsx title="src/App.tsx"
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+import {
+    MantineProvider,
+    Global,
+    NotificationsProvider,
+    notificationProvider,
+    LightTheme,
+    Layout,
+    ReadyPage,
+    ErrorComponent,
+} from "@pankod/refine-mantine";
+//highlight-next-line
+import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
+
+const App = () => {
+    return (
+        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+            <NotificationsProvider position="top-right">
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    ReadyPage={ReadyPage}
+                    catchAll={<ErrorComponent />}
+                    Layout={Layout}
+                    //highlight-start
+                    resources={[
+                        {
+                            name: "posts",
+                            list: MantineInferencer,
+                            show: MantineInferencer,
+                            create: MantineInferencer,
+                            edit: MantineInferencer,
+                        },
+                    ]}
+                    //highlight-end
+                />
+            </NotificationsProvider>
+        </MantineProvider>
+    );
+};
+
+export default App;
+```
+
 ## Preview the generated pages
 
 Now that you have created your project, let's take a look at the CRUD pages that Inferencer has generated for us.
+
+Before we start, let's understand the API that we will be using in this tutorial. We will be using the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API, which is a created by **refine** team to provide a fake REST API for testing. You can check out the **refine** fake REST API: https://api.fake-rest.refine.dev
+
+:::info
+
+In [Unit 3](/docs/tutorial/understanding-dataprovider/index), it will be explained in detail how **refine** apps communicate with the API via the `dataProvider`.
+
+:::
 
 ### List Page
 
