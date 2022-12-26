@@ -8,3 +8,4 @@ export * from "./browser-window";
 export * from "./integrations";
 export * from "./custom-version-dropdown";
 export * from "./about";
+export * from "./general-concepts-link";
