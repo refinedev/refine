@@ -8,7 +8,7 @@ tutorial:
 
 ## What is Swizzle?
 
-...
+The [`swizzle`](../../packages/documentation/cli.md#swizzle) that comes with [`refine-cli`](../../packages/documentation/cli.md) allows you to customize the supported components and use them as your own. For data providers, this is a very useful tool.
 
 ## Using with DataProvider
 
