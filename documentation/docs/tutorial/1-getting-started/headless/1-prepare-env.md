@@ -13,8 +13,15 @@ CLI ve refine'nın düzgün calısması için gerekli dev env ortamı hakkında 
 
 https://refine.dev/docs/#prerequisites
 
+<Checklist>
 
-**Checklist for moving on***
-- [x]  I can access the command line in a terminal.
-- [x]  I have Node.js installed.
+<ChecklistItem id="has-access-to-terminal">
+I can access the command line in a terminal.
+</ChecklistItem>
+<ChecklistItem id="installed-nodejs">
+I have Node.js installed.
+</ChecklistItem>
+
 Projenin CLI dan basarılı bootstrap etmesi için gerekli ne varsa burada check ettirebiliriz..
+
+</Checklist>
