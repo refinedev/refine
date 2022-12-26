@@ -112,6 +112,10 @@ Your project files contain all the code you need to run your website. To see a p
 
 (**refine** uses port 3000 by default)
 
+2- You will be redirected to the welcome page as we have not added any pages yet.
+
+([Next section](docs/tutorial/getting-started/headless/generate-crud-pages) will guide you through adding pages to your app.)
+
 Here's what you should see:
 
 ```tsx live previewOnly previewHeight=450px url=http://localhost:3000
@@ -120,7 +124,6 @@ setInitialRoutes(["/"]);
 import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
-
 
 const App: React.FC = () => {
     return (
