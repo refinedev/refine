@@ -166,3 +166,21 @@ You can remove constant background color in `<Header>` component.
 ### LESS Users
 
 Ant Design removed `less`, uses and recommends `CSS-in-JS` instead. You need to manually migrate your `.less` files to `CSS-in-JS`. [Ant Design's documentation for less migration.](https://ant.design/docs/react/migration-v5#less-migration)
+
+## Known Issues
+
+### Compile errors
+
+Some users repored ([issue#1](https://discord.com/channels/837692625737613362/1056236230641209396/1056236230641209396), [issue#2](https://discord.com/channels/837692625737613362/1056592183702061177/1056592183702061177)) compile errors after upgrading from `@pankod/refine-antd@3.x.x` to `@pankod/refine-antd@4.x.x`. They also provided solutions.
+
+#### Solution 1
+
+1. remove `node_modules` folder
+2. remove `package-lock.json` file
+3. `npm install`
+
+#### Solution 2
+
+```bash
+npm install react@latest react-dom@latest
+```
