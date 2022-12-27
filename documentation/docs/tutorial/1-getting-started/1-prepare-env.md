@@ -39,8 +39,15 @@ To install a code editor:
 1- Download and install the code editor of your choice from the Internet.
 2- Follow the prompts to complete the installation process.
 
-**Checklist for moving on**
+<Checklist>
 
--   [x] I can access the command line in a terminal.
--   [x] I have Node.js installed.
--   [x] I have a code editor like VS Code.
+<ChecklistItem id="has-access-to-terminal">
+I can access the command line in a terminal.
+</ChecklistItem>
+<ChecklistItem id="installed-nodejs">
+I have Node.js installed.
+</ChecklistItem>
+
+Projenin CLI dan basarılı bootstrap etmesi için gerekli ne varsa burada check ettirebiliriz..
+
+</Checklist>
