@@ -35,7 +35,33 @@ Data providers can communicate with `REST`, `GraphQL`, `RPC` and `SOAP` based AP
 
 In cases that do not match your API, you can write your own data provider. You can use `fetch`, `axios`, `apollo-client` or any library for this communication. It is the ideal place for your Authentication or custom HTTP headers operations. Refer to the [Create Your First Data Provider](./2-create-dataprovider.md) documentation for detailed usage.
 
+## Supported Data Providers
+
+**refine** includes many out-of-the-box data providers to use in your projects like
+
+-   [Simple REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
+-   [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
+-   [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
+-   [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable)
+-   [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
+-   [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
+-   [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
+-   [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
+-   [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost)
+-   [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite)
+-   [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
+-   [Altogic](https://github.com/refinedev/refine/tree/master/packages/altogic)
+
+**Community ❤️**
+
+-   [Firebase](https://github.com/resulturan/refine-firebase) by [rturan29](https://github.com/resulturan)
+-   [Directus](https://github.com/tspvivek/refine-directus) by [tspvivek](https://github.com/tspvivek)
+-   [Elide](https://github.com/chirdeeptomar/refine-elide-rest) by [chirdeeptomar](https://github.com/chirdeeptomar)
+
+
 ## Methods
+
+*TODO: Should be move or refactor "Create Your First Data Provider" section*
 
 Data providers should have the following methods:
 
@@ -76,6 +102,8 @@ const dataProvider: DataProvider = {
 It is not require to define the `createMany`, `deleteMany`, `getMany` and `updateMany` methods. If not defined, **refine** will call the corresponding singular `create`, `delete`, `getOne` and `update` methods in a loop.
 
 ## Hooks
+
+*TODO: Should be move or refactor "Create Your First Data Provider" section*
 
 There are hooks in **refine** that correspond to these methods. You can easily make API requests using these hooks.
 
