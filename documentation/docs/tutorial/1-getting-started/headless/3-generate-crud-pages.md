@@ -33,7 +33,7 @@ Overall, using Inferencer can greatly speed up development time and reduce the a
 
 So far we have added complete CRUD pages by utilizing Inferencer feature to the project. Let's take a look at the auto-generated CRUD pages that Inferencer handles for us.
 
-Before we start, let's understand the API that we will be using in this tutorial. We will be using the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API, which is a created by **refine** team to provide a fake REST API for testing. You can check out the **refine** fake REST API: https://api.fake-rest.refine.dev
+Before we start, let's understand the API that we will be using in this tutorial. We will be using the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API, which is created by **refine** team to provide a fake REST API for testing purposes.
 
 :::info
 
