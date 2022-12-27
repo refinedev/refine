@@ -7,11 +7,12 @@ type UseCodeReturn = {
     isReady: boolean;
     hasQuery: boolean;
     disableScroll: boolean;
+    useTailwind: boolean;
 };
 
 export const useCode = (): UseCodeReturn => {
     const { query, isReady } = useRouter();
-    const { code: compressed, disableScroll } = query ?? {};
+    const { code: compressed, disableScroll, tailwind } = query ?? {};
 
     const code = React.useMemo(() => {
         if (!isReady) return "";
@@ -24,5 +25,6 @@ export const useCode = (): UseCodeReturn => {
         isReady,
         hasQuery: !!compressed,
         disableScroll: !!disableScroll,
+        useTailwind: !!tailwind,
     };
 };

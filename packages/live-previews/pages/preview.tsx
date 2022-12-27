@@ -14,7 +14,13 @@ import { checkPackage } from "@/src/utils/check-package";
 
 const Preview: NextPage = () => {
     const [ready, setReady] = React.useState(false);
-    const { code: code, hasQuery, isReady, disableScroll } = useCode();
+    const {
+        code: code,
+        hasQuery,
+        isReady,
+        disableScroll,
+        useTailwind,
+    } = useCode();
     const [scope, setScope] = React.useState({ ...RefineCommonScope });
     const [scopeSettled, setScopeSettled] = React.useState(false);
 
@@ -79,29 +85,34 @@ const Preview: NextPage = () => {
     if (isReady && code && typeof window !== "undefined" && !ready) {
         const pkgs = checkPackage(code);
 
-        if (pkgs.has("antd") || pkgs.has("antd-inferencer")) {
-            const element = document.createElement("link");
-            element.setAttribute("rel", "stylesheet");
-            element.onload = () => {
-                setTimeout(() => {
-                    setReady(true);
-                }, 300);
-            };
-            element.setAttribute(
-                "href",
-                "https://unpkg.com/antd/dist/reset.css",
-            );
-            document.head.appendChild(element);
-        } else if (pkgs.size === 0) {
-            const element = document.createElement("script");
-            element.setAttribute("defer", "true");
-            element.onload = () => {
-                setTimeout(() => {
-                    setReady(true);
-                }, 300);
-            };
-            element.setAttribute("src", "https://cdn.tailwindcss.com");
-            document.head.appendChild(element);
+        const hasAntd = pkgs.has("antd") || pkgs.has("antd-inferencer");
+
+        if (hasAntd || useTailwind) {
+            if (hasAntd) {
+                const element = document.createElement("link");
+                element.setAttribute("rel", "stylesheet");
+                element.onload = () => {
+                    setTimeout(() => {
+                        setReady(true);
+                    }, 300);
+                };
+                element.setAttribute(
+                    "href",
+                    "https://unpkg.com/antd/dist/reset.css",
+                );
+                document.head.appendChild(element);
+            }
+            if (useTailwind) {
+                const element = document.createElement("script");
+                element.setAttribute("defer", "true");
+                element.onload = () => {
+                    setTimeout(() => {
+                        setReady(true);
+                    }, 300);
+                };
+                element.setAttribute("src", "https://cdn.tailwindcss.com");
+                document.head.appendChild(element);
+            }
         } else {
             setReady(true);
         }
