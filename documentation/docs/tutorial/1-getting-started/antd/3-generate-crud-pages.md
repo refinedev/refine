@@ -29,7 +29,7 @@ Overall, using Inferencer can greatly speed up development time and reduce the a
 
 ## How to use Inferencer
 
-The `@pankod/refine-inferencer` package includes the `<AntdInferencer />` component, which can be imported from `@pankod/refine-inferencer/antd` and used to generate CRUD pages with Ant Design components.
+The `@pankod/refine-inferencer` package provides the `<AntdInferencer />` component, which can be imported from `@pankod/refine-inferencer/antd` and used to generate CRUD pages based on your API response with Ant Design components.
 
 The component can be used directly in the `resources` prop of the `<Refine />` component in `App.tsx` as shown below:
 
