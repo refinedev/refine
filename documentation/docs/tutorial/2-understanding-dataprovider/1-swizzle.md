@@ -10,9 +10,13 @@ tutorial:
 
 The [`swizzle`](../../packages/documentation/cli.md#swizzle) that comes with [`refine-cli`](../../packages/documentation/cli.md) allows you to customize the supported components and use them as your own. For data providers, this is a very useful tool.
 
+*TODO: This section should explain the What is swizzle, why we need it and why we are we using very clearly.*
+
 ## Using with DataProvider
 
-In some cases, data providers do not fully comply with our API and it is necessary to change it. The [`swizzle`](../../packages/documentation/cli.md#swizzle) in [`refine-cli`](../../packages/documentation/cli.md) is a tool made for this. It can quickly eject and update all data provider files.
+In some cases, refine's built-in data providers are not fully complying with our API needs and you may want to edit the existing data provider logic.. The [`swizzle`](../../packages/documentation/cli.md#swizzle) command feature in [`refine-cli`](../../packages/documentation/cli.md) can be use for that. It can quickly eject and update all data provider files.
+
+In this section, we'll take advantage of `swizzle` feature to inspect "refine's built-in rest data provider" files and how to customize..
 
 Let's swizzle `dataProvider` as an example.
 
