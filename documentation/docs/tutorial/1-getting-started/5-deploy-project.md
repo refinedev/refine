@@ -18,7 +18,7 @@ Netlify will use your GitHub repository to build and deploy your site every time
 
 > You will be prompted to connect to a Git provider. Choose GitHub and follow the on-screen instructions to authenticate your GitHub account. Then, choose your project’s GitHub repository from the list provided.
 
-3- At the final step, Netlify will display your app's site settings. The defaults should be correct for your Astro project, so you can scroll down and click "Deploy site".
+3- To complete the process of deploying your app to the web, you will need to review and confirm the settings provided by Netlify. These settings should already be correctly configured for your **refine** project. Simply scroll down and click `Deploy site`.
 
 Congratulations! You now have an **refine** website hosted on Netlify.
 
