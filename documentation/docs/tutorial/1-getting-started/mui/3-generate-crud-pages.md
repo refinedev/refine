@@ -92,6 +92,8 @@ const App: React.FC = () => {
 export default App;
 ```
 
+At this point, **refine** will automatically generate the CRUD pages for the `posts` resource based on the API response.
+
 ## Preview the generated pages
 
 Now that you have created your project, let's take a look at the CRUD pages that Inferencer has generated for us.
