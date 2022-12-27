@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "@docusaurus/Link";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 import { useWindowSize } from "@docusaurus/theme-common";
 // @ts-expect-error no types
 import { useDoc } from "@docusaurus/theme-common/internal";
@@ -14,6 +16,26 @@ import { UnitCircle } from "../unit-circle";
 import { TutorialCircle } from "../tutorial-circle";
 // import { useTutorialConfig } from "../../hooks/use-tutorial-config";
 // import useGlobalData from "@docusaurus/useGlobalData";
+
+const LinkWithId: React.FC<
+    React.PropsWithChildren<{
+        id: string;
+        className?: string;
+        isCurrent?: boolean;
+    }>
+> = ({ id, children, className, isCurrent }) => {
+    const toUrl = useBaseUrl(`/docs/${id}`, { forcePrependBaseUrl: true });
+
+    return (
+        <Link
+            to={toUrl}
+            className={className}
+            onClick={(e) => (isCurrent ? e?.preventDefault() : undefined)}
+        >
+            {children}
+        </Link>
+    );
+};
 
 export const TutorialTOC = () => {
     // const tutorialConfig = useTutorialConfig();
@@ -72,11 +94,9 @@ export const TutorialTOC = () => {
                     <TutorialCircle id={doc.id} width="100%" height="100%" />
                 </div>
                 <div className="flex flex-col gap-2">
-                    <a
-                        onClick={(e) => {
-                            doc.current ? e.preventDefault() : undefined;
-                        }}
-                        href={"/docs/" + doc.id}
+                    <LinkWithId
+                        id={doc.id}
+                        isCurrent={doc.current}
                         className={`${
                             currentDocId === doc.id ? "font-bold" : ""
                         } leading-[22px] text-slate-600 ${
@@ -86,7 +106,7 @@ export const TutorialTOC = () => {
                         }`}
                     >
                         {doc.title}
-                    </a>
+                    </LinkWithId>
                     {doc.current && renderTOC()}
                 </div>
             </li>
