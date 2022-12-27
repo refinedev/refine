@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { render, act, TestWrapper } from "@test";
 import { AntdInferencer } from "../index";
 
-describe("AntdInferencer", () => {
+xdescribe("AntdInferencer", () => {
     it("should match the snapshot", async () => {
         const Wrapper = TestWrapper({
             routerInitialEntries: ["/custom-page"],

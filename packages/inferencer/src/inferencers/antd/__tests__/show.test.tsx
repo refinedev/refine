@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { render, act, TestWrapper } from "@test";
 import { ShowInferencer } from "../show";
 
-describe("AntdShowInferencer", () => {
+xdescribe("AntdShowInferencer", () => {
     it("should match the snapshot", async () => {
         const Wrapper = TestWrapper({
             routerInitialEntries: ["/posts/show/11"],
