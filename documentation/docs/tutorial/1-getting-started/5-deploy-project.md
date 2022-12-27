@@ -22,8 +22,6 @@ Netlify will use your GitHub repository to build and deploy your site every time
 
 Congratulations! You now have an **refine** website hosted on Netlify.
 
-https://docs.astro.build/en/tutorial/1-setup/5/
-
 ## Visit your new website
 
 To view your new website, visit the URL provided in your site settings or type it into a browser window.
