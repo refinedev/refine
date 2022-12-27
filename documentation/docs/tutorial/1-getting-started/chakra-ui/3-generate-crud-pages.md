@@ -85,7 +85,7 @@ export default App;
 
 At this point, **refine** will automatically generate the CRUD pages for the `posts` resource based on the API response.
 
-## Preview the generated pages
+## Preview the auto-generated pages
 
 So far we have added complete CRUD pages by utilizing Inferencer feature to the project. Let's take a look at the auto-generated CRUD pages that Inferencer handles for us.
 

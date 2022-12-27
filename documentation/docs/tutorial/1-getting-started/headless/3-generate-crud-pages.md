@@ -29,7 +29,7 @@ Overall, using Inferencer can greatly speed up development time and reduce the a
 -   Learn about [how Inferencer works](/docs/packages/documentation/inferencer).
 -   Learn about [how to use Inferencer with Mantine](/docs/api-reference/mantine/components/inferencer/).
 
-## Preview the generated pages
+## Preview the auto-generated pages
 
 So far we have added complete CRUD pages by utilizing Inferencer feature to the project. Let's take a look at the auto-generated CRUD pages that Inferencer handles for us.
 
