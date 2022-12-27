@@ -39,7 +39,7 @@ const LivePreviewFrameBase = ({
                         setUrl(
                             `${customFields.LIVE_PREVIEW_URL}?code=${
                                 data.compressed
-                            }${query ? `&query=${query}` : ""}`,
+                            }${query ? `${query}` : ""}`,
                         );
                     }
                     worker.terminate();
@@ -121,6 +121,7 @@ type PlaygroundProps = {
     previewHeight?: string;
     url?: string;
     previewOnly?: boolean;
+    tailwind?: boolean;
 };
 
 /**
@@ -133,6 +134,7 @@ const LivePreviewBase = ({
     hideCode = false,
     url = "http://localhost:3000",
     previewOnly = false,
+    tailwind = false,
 }: PlaygroundProps): JSX.Element => {
     const code = String(children);
     const { shared } = useLivePreviewContext();
@@ -175,11 +177,11 @@ const LivePreviewBase = ({
 ${shared ?? ""}
 ${code}
                                         `}
-                                        query={
+                                        query={`${
                                             disableScroll
                                                 ? "&disableScroll=true"
-                                                : undefined
-                                        }
+                                                : ""
+                                        }${tailwind ? "&tailwind=true" : ""}`}
                                     />
                                 );
                             }}
