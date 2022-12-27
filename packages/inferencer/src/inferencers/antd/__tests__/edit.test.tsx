@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { render, act, TestWrapper } from "@test";
 import { EditInferencer } from "../edit";
 
-describe("AntdEditInferencer", () => {
+xdescribe("AntdEditInferencer", () => {
     it("should match the snapshot", async () => {
         const Wrapper = TestWrapper({
             routerInitialEntries: ["/posts/edit/11"],
