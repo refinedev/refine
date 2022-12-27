@@ -35,7 +35,7 @@ The component can be used directly in the `resources` prop of the `<Refine />` c
 
 :::info
 
-In [Unit 4](/docs/tutorial/understanding-resources/index), resource concepts will be explained in detail. For now, you can think of a resource as a collection of data that you want to manage in your app.
+In [Unit 4](/docs/tutorial/understanding-resources/index), the resources concept will be explained in detail. For now, you can assume that the resource is a collection of data on your API used in the app.
 
 :::
 
