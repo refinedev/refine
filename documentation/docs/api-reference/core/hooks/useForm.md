@@ -628,7 +628,7 @@ Let's review the steps after creating a `post` resource with `useForm`. After fo
 
 This is the default behavior of `useForm` when `action:"create"`. You can customize it by passing your own [`redirect`](/docs/api-reference/core/hooks/useForm/#redirect), [`onFinish`](/docs/api-reference/core/hooks/useForm/##how-can-i-change-the-form-data-before-submitting-it-to-the-api), [`onMutationSuccess`](/docs/api-reference/core/hooks/useForm/#onmutationsuccess) and [`onMutationError`](/docs/api-reference/core/hooks/useForm/#onmutationerror) props.
 
-`edit` or `clone` actions are similar to `create` action. The only difference is that `useForm` fetches the record from the `dataProvider` on first render and returns the `queryResult` for you to fill the form. We will see how to use `useForm`'s [`action`](/docs/api-reference/core/hooks/useForm/#action) in the [next section](/docs/api-reference/core/hooks/useForm/#action).
+`edit` or `clone` actions are similar to `create` action. The only difference is that `useForm` fetches the record on first render and returns the `queryResult` for you to fill the form. We will see how to use `useForm`'s [`action`](/docs/api-reference/core/hooks/useForm/#action) in the [next section](/docs/api-reference/core/hooks/useForm/#action).
 
 :::info
 `useForm` does not manage state. If you're looking for a complete form library, `refine` supports three form libraries out-of-the-box.
@@ -1061,13 +1061,6 @@ Use case for overriding the `resource` prop:
 
 -   We can create a `category` from the `<PostEdit>` page.
 -   We can edit a `category` from the `<PostEdit>` page.
-
-<!--
--   We'll use `useForm` with custom `resource` prop to create a category.
--   We'll also use `redirect: false` to prevent the page from redirecting to the list page after the form is submitted.
--   We'll use `useForm` with `action: "create"` to create a category.
-
-After creating a category, `useForm` will automatically invalidate the query. So, the category list on the `<PostForm>` will be updated automatically. -->
 
 In the following example, we'll show how to use `useForm` with `resource` prop.
 
