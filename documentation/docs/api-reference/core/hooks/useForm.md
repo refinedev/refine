@@ -616,8 +616,22 @@ const ChevronsRightIcon = (
 
 `useForm` is a hook that allows to manage forms. It has some `action` methods that `create`, `edit` and `clone` the form. The hook return value comes to according to the called action and it can run different logic depending on the `action`.
 
+You can think of `useForm` as a bridge between your `state` and `dataProvider`. It's a low-level hook that you can use to build your own form components. It's also use `notificationProvider` to inform users according to the `action` and `dataProvider` response.
+
+Let's review the steps after creating a `post` resource with `useForm`. After form is submitted:
+
+1. `useForm` calls `onFinish` function with the form values.
+2. `onFinish` method calls [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) with the form values.
+3. `useCreate` calls [`dataProvider`](/docs/api-reference/core/providers/data-provider/)'s `create` function and returns the response.
+4. `useForm` calls `onSuccess` or `onError` function with the response. `onSuccess` or `onError` method calls [`notificationProvider`](/docs/api-reference/core/providers/notification-provider/) and [`notificationProvider`](/docs/api-reference/core/providers/notification-provider/) shows the notification to the user.
+5. `useForm`, redirects to the `list` page.
+
+This is the default behavior of `useForm` when `action:"create"`. You can customize it by passing your own [`redirect`](/docs/api-reference/core/hooks/useForm/#redirect), [`onFinish`](/docs/api-reference/core/hooks/useForm/##how-can-i-change-the-form-data-before-submitting-it-to-the-api), [`onMutationSuccess`](/docs/api-reference/core/hooks/useForm/#onmutationsuccess) and [`onMutationError`](/docs/api-reference/core/hooks/useForm/#onmutationerror) props.
+
+`edit` or `clone` actions are similar to `create` action. The only difference is that `useForm` fetches the record from the `dataProvider` on first render and returns the `queryResult` for you to fill the form. We will see how to use `useForm`'s [`action`](/docs/api-reference/core/hooks/useForm/#action) in the [next section](/docs/api-reference/core/hooks/useForm/#action).
+
 :::info
-If you're looking for a complete form library, Refine supports two form libraries out-of-the-box.
+`useForm` does not manage state. If you're looking for a complete form library, `refine` supports three form libraries out-of-the-box.
 
 -   [React Hook Form](https://react-hook-form.com/) (for Headless users) - [Documentation](/packages/documentation/react-hook-form/useForm.md) - [Example](/examples/form/react-hook-form/useForm.md)
 -   [Ant Design Form](https://ant.design/components/form/#header) (for Ant Design users) - [Documentation](/api-reference/antd/hooks/form/useForm.md) - [Example](/examples/form/antd/useForm.md)
@@ -681,7 +695,7 @@ values={[
 
 `action: "create"` is used for creating a new record that didn't exist before.
 
-`useForm` uses [`useCreate`](/api-reference/core/hooks/data/useCreate.md) under the hood for mutations on create mode.
+`useForm` uses [`useCreate`](/docs/api-reference/core/hooks/data/useCreate.md) under the hood for mutations on create mode.
 
 In the following example, we'll show how to use `useForm` with `action: "create"`.
 
@@ -787,7 +801,7 @@ render(<RefineHeadlessDemo />);
 
 `action: "edit"` is used for editing an existing record. It requires the `id` for determining the record to edit. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
 
-It fetches the record data according to the `id` with [`useCreate`](/api-reference/core/hooks/data/useOne/) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/api-reference/core/hooks/data/useUpdate.md).
+It fetches the record data according to the `id` with[`useOne`](/docs/api-reference/core/hooks/data/useOne/) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/api-reference/core/hooks/data/useUpdate.md).
 
 In the following example, we'll show how to use `useForm` with `action: "edit"`. You can go to edit page by clicking on the edit button in the list page.
 
@@ -904,7 +918,7 @@ render(<RefineHeadlessDemo />);
 
 You can think `action:clone` like save as. It's similar to `action:edit` but it creates a new record instead of updating the existing one.
 
-It fetches the record data according to the `id` with [`useCreate`](/api-reference/core/hooks/data/useOne/) and returns the `queryResult` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/api-reference/core/hooks/data/useCreate.md).
+It fetches the record data according to the `id` with [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and returns the `queryResult` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/api-reference/core/hooks/data/useCreate.md).
 
 In the following example, we'll show how to use `useForm` with `action: "clone"`.
 
