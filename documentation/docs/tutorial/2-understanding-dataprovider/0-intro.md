@@ -58,52 +58,7 @@ In cases that do not match your API, you can write your own data provider. You c
 -   [Directus](https://github.com/tspvivek/refine-directus) by [tspvivek](https://github.com/tspvivek)
 -   [Elide](https://github.com/chirdeeptomar/refine-elide-rest) by [chirdeeptomar](https://github.com/chirdeeptomar)
 
-
-## Methods
-
-*TODO: Should be move or refactor "Create Your First Data Provider" section*
-
-Data providers should have the following methods:
-
-```ts
-import { DataProvider } from "@pankod/refine-core";
-
-const dataProvider: DataProvider = {
-    create: ({ resource, variables, metaData }) => Promise,
-    deleteOne: ({ resource, id, variables, metaData }) => Promise,
-    getList: ({
-        resource,
-        pagination,
-        hasPagination,
-        sort,
-        filters,
-        metaData,
-    }) => Promise,
-    getOne: ({ resource, id, metaData }) => Promise,
-    update: ({ resource, id, variables, metaData }) => Promise,
-    getApiUrl: () => "",
-    createMany?: ({ resource, variables, metaData }) => Promise,
-    deleteMany?: ({ resource, ids, variables, metaData }) => Promise,
-    getMany?: ({ resource, ids, metaData }) => Promise,
-    updateMany?: ({ resource, ids, variables, metaData }) => Promise,
-    custom?: ({
-        url,
-        method,
-        sort,
-        filters,
-        payload,
-        query,
-        headers,
-        metaData,
-    }) => Promise,
-};
-```
-
-It is not require to define the `createMany`, `deleteMany`, `getMany` and `updateMany` methods. If not defined, **refine** will call the corresponding singular `create`, `delete`, `getOne` and `update` methods in a loop.
-
 ## Hooks
-
-*TODO: Should be move or refactor "Create Your First Data Provider" section*
 
 There are hooks in **refine** that correspond to these methods. You can easily make API requests using these hooks.
 
