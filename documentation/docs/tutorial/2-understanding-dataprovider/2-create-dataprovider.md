@@ -164,5 +164,179 @@ console.log(data);
 
 
 ## Example Rest API
+
+Now, let's write data provider step by step to the API that takes parameters as follows.
+
+
+**getList**
+
+```bash
+curl -i https://api.fake-rest.refine.dev/posts?title_like=Arch&_sort=id&_order=desc&_limit=10&_page=2
+
+HTTP/2 200
+x-total-count: 22
+access-control-expose-headers: X-Total-Count
+
+[
+  {
+    "id": 930,
+    "title": "Rerum id laborum architecto et rerum earum.",
+    "slug": "et-voluptas-corporis",
+    "category": {
+      "id": 4
+    }
+    "status": "draft",
+  },
+  {
+    "id": 892,
+    "title": "Architecto officiis sint voluptatem modi.",
+    "slug": "iusto-est-corrupti",
+    "category": {
+      "id": 1
+    },
+    "status": "rejected",
+  }
+]             
+```
+
+
+```ts title=dataProvider.ts
+import { stringify } from "query-string";
+import {
+  CrudFilters,
+  CrudOperators,
+  DataProvider,
+  HttpError,
+} from "@pankod/refine-core";
+
+const client = (url: string, method: string = "GET", variables?: any) => {
+  return fetch(url, {
+    method,
+    body: JSON.stringify(variables),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(async (response) => {
+      if (response.ok) {
+        const data = await response.json();
+        return { data, headers: response.headers };
+      }
+      const error: HttpError = {
+        statusCode: response.status,
+        message: response.statusText,
+      };
+      return Promise.reject(error);
+    })
+    .then(({ data, headers }) => {
+      return Promise.resolve({ data, headers });
+    });
+};
+
+const mapOperator = (operator: CrudOperators): string => {
+  switch (operator) {
+    case "ne":
+    case "gte":
+    case "lte":
+      return `_${operator}`;
+    case "contains":
+      return "_like";
+    case "eq":
+    default:
+      return "";
+  }
+};
+
+const generateFilters = (filters?: CrudFilters) => {
+  const queryFilters: { [key: string]: string } = {};
+
+  filters?.map((filter): void => {
+    // and and or operators support is not implemented yet
+    if ("field" in filter) {
+      const { field, operator, value } = filter;
+      const mappedOperator = mapOperator(operator);
+      queryFilters[`${field}${mappedOperator}`] = value;
+    }
+  });
+
+  return queryFilters;
+};
+
+export const dataProvider = (
+  apiUrl: string
+) => ({
+  getList: async ({
+    resource,
+    pagination = { current: 1, pageSize: 10 },
+    filters,
+    sort,
+  }) => {
+    const url = `${apiUrl}/${resource}`;
+
+    const { current = 1, pageSize = 10 } = pagination ?? {};
+
+    const query: {
+      _start?: number;
+      _end?: number;
+      _sort?: string;
+      _order?: string;
+    } = {
+      _start: (current - 1) * pageSize,
+      _end: current * pageSize,
+    };
+
+    if (sort && sort.length > 0) {
+      query._sort = sort[0].field;
+      query._order = sort[0].order;
+    }
+
+    const queryFilters = generateFilters(filters);
+
+    const { data, headers } = await client(
+      `${url}?${stringify(query)}&${stringify(queryFilters)}`
+    );
+
+    return {
+      data,
+      total: +(headers.get("x-total-count") || 10),
+    };
+  },
+
+  getMany: async ({ resource, ids }) => {
+    const url = `${apiUrl}/${resource}?${stringify({ id: ids })}`;
+    const { data } = await client(url);
+    return { data };
+  },
+
+  create: async ({ resource, variables }) => {
+    const url = `${apiUrl}/${resource}`;
+    const { data } = await client(url, "POST", variables);
+    return { data };
+  },
+
+  update: async ({ resource, id, variables }) => {
+    const url = `${apiUrl}/${resource}/${id}`;
+    const { data } = await client(url, "PATCH", variables);
+    return { data };
+  },
+
+  getOne: async ({ resource, id }) => {
+    const url = `${apiUrl}/${resource}/${id}`;
+    const { data } = await client(url, "GET", { id });
+    return { data };
+  },
+
+  deleteOne: async ({ resource, id, variables }) => {
+    const url = `${apiUrl}/${resource}/${id}`;
+    const { data } = await client(url, "DELETE", variables);
+    return { data };
+  },
+
+  getApiUrl: () => {
+    return apiUrl;
+  },
+});
+```
+
 ## Example GraphQL API
 
