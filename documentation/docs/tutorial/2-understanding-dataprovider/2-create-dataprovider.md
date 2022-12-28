@@ -61,7 +61,7 @@ A `{Record}` is an object with at least one id property (`{ id: 1, title: "Hello
 ## Errors
 
 When an error is returned from the API, **refine** must be extended from [HttpError](../../../../packages/core/src/interfaces/HttpError.ts) to handle it. 
-This can be done in several different ways. Below are examples made with axis and fetch.
+This can be done in several different ways. Below are examples made with `axios` and `fetch`.
 
 <Tabs
     defaultValue="fetch"
