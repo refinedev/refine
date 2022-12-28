@@ -58,7 +58,7 @@ export const PostList: React.FC = () => {
                         categoriesData: GetManyResponse<ICategory>;
                     };
                     const category = meta.categoriesData?.data.find(
-                        (item) => item.id === getValue(),
+                        (item) => item.id === getValue()
                     );
                     return category?.title ?? "Loading...";
                 },
@@ -102,7 +102,7 @@ export const PostList: React.FC = () => {
                 },
             },
         ],
-        [],
+        []
     );
 
     const {
@@ -186,7 +186,7 @@ export const PostList: React.FC = () => {
                                     >
                                         {flexRender(
                                             header.column.columnDef.header,
-                                            header.getContext(),
+                                            header.getContext()
                                         )}
                                         {{
                                             asc: " 🔼",
@@ -215,7 +215,7 @@ export const PostList: React.FC = () => {
                                         >
                                             {flexRender(
                                                 cell.column.columnDef.cell,
-                                                cell.getContext(),
+                                                cell.getContext()
                                             )}
                                         </td>
                                     );
