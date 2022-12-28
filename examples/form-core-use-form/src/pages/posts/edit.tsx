@@ -20,7 +20,7 @@ export const PostEdit: React.FC = () => {
     });
 
     const handleOnChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => {
         seFormValues({
             ...formValues,
