@@ -13,9 +13,13 @@ import PropTag from "@site/src/components/prop-tag";
 import StackblitzExample from "@site/src/components/stackblitz-example";
 import ExampleSourcePrompt from "@site/src/components/example-source-prompt";
 import ExampleLocalPrompt from "@site/src/components/example-local-prompt";
+import Checklist from "@site/src/components/checklist";
+import ChecklistItem from "@site/src/components/checklist-item";
 
 export default {
     ...MDXComponents,
+    Checklist: Checklist,
+    ChecklistItem: ChecklistItem,
     UIConditional: UIConditional,
     DiscordBanner: DiscordBanner,
     GithubBanner: GithubBanner,

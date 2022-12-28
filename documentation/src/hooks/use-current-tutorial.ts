@@ -83,6 +83,7 @@ export const useCurrentTutorial = () => {
 
     return isTutorial
         ? {
+              id: currentId,
               isTutorial,
               unit,
               pagination,

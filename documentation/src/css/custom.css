@@ -871,3 +871,9 @@ html[data-theme="dark"]:not([data-customized="true"])
     font-size: 14px;
     line-height: 1.5;
 }
+
+@media (min-width: 997px) and (max-width: 1280px) {
+aside.theme-doc-sidebar-container + main div.container div.row div.col.col--3 {
+    min-width: 30% !important;
+}
+}

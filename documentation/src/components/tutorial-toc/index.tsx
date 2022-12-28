@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "@docusaurus/Link";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 import { useWindowSize } from "@docusaurus/theme-common";
 // @ts-expect-error no types
 import { useDoc } from "@docusaurus/theme-common/internal";
@@ -10,8 +12,30 @@ import DocItemTOCDesktop from "@theme/DocItem/TOC/Desktop";
 
 import { useCurrentTutorial } from "../../hooks/use-current-tutorial";
 import { useLocation } from "@docusaurus/router";
+import { UnitCircle } from "../unit-circle";
+import { TutorialCircle } from "../tutorial-circle";
 // import { useTutorialConfig } from "../../hooks/use-tutorial-config";
 // import useGlobalData from "@docusaurus/useGlobalData";
+
+const LinkWithId: React.FC<
+    React.PropsWithChildren<{
+        id: string;
+        className?: string;
+        isCurrent?: boolean;
+    }>
+> = ({ id, children, className, isCurrent }) => {
+    const toUrl = useBaseUrl(`/docs/${id}`, { forcePrependBaseUrl: true });
+
+    return (
+        <Link
+            to={toUrl}
+            className={className}
+            onClick={(e) => (isCurrent ? e?.preventDefault() : undefined)}
+        >
+            {children}
+        </Link>
+    );
+};
 
 export const TutorialTOC = () => {
     // const tutorialConfig = useTutorialConfig();
@@ -66,23 +90,23 @@ export const TutorialTOC = () => {
     ) => {
         return (
             <li key={doc.id} className="pb-2 flex flex-row gap-2 items-start">
-                <div className="w-4 h-4 bg-slate-300 rounded-full mt-0.5" />
+                <div className="w-5 h-5 mt-0.5 flex-shrink-0">
+                    <TutorialCircle id={doc.id} width="100%" height="100%" />
+                </div>
                 <div className="flex flex-col gap-2">
-                    <a
-                        onClick={(e) => {
-                            doc.current ? e.preventDefault() : undefined;
-                        }}
-                        href={"/docs/" + doc.id}
+                    <LinkWithId
+                        id={doc.id}
+                        isCurrent={doc.current}
                         className={`${
                             currentDocId === doc.id ? "font-bold" : ""
-                        } text-slate-600 ${
+                        } leading-[22px] text-slate-600 ${
                             doc.current
                                 ? "hover:cursor-default hover:no-underline"
                                 : ""
                         }`}
                     >
                         {doc.title}
-                    </a>
+                    </LinkWithId>
                     {doc.current && renderTOC()}
                 </div>
             </li>
@@ -107,22 +131,16 @@ export const TutorialTOC = () => {
 
     const renderUnitTab = (unit: typeof currentTutorial["units"][number]) => {
         return (
-            <div
+            <button
                 key={unit.no}
-                className="w-7 text-center h-9 flex justify-center items-start pt-1"
+                type="button"
+                onClick={() => setSelectedUnit(unit.unit)}
+                className={`w-5 h-7 p-0 md:w-5 lg:w-5 ${
+                    unit.unit === selectedUnit && "md:w-6 lg:w-7"
+                } cursor-pointer bg-transparent border-none font-semibold flex justify-center items-center`}
             >
-                <button
-                    type="button"
-                    onClick={() => setSelectedUnit(unit.unit)}
-                    className={`w-7 h-7 cursor-pointer bg-slate-200 text-slate-500 border-solid border-2 ${
-                        selectedUnit === unit.unit
-                            ? "border-slate-400"
-                            : "border-transparent"
-                    } font-semibold flex justify-center items-center`}
-                >
-                    {unit.no}
-                </button>
-            </div>
+                <UnitCircle unit={unit.unit} width="100%" height="100%" />
+            </button>
         );
     };
 
@@ -130,14 +148,9 @@ export const TutorialTOC = () => {
         (unit) => unit.unit === selectedUnit,
     );
 
-    // max-height: calc(100vh - var(--ifm-navbar-height) - 2rem);
-    // overflow-y: auto;
-    // position: sticky;
-    // top: calc(var(--ifm-navbar-height) + 1rem);
-
     return (
         <div className="sticky top-[5rem] max-h-[calc(100vh-6rem]">
-            <div className="unit-tabs flex gap-1 mb-1">
+            <div className="unit-tabs flex gap-1.5 mb-1">
                 {currentTutorial?.units.map(renderUnitTab)}
             </div>
             <div className="unit-list-container bg-slate-100 py-3 px-3">
