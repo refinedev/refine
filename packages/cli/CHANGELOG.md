@@ -1,5 +1,12 @@
 # @pankod/refine-cli
 
+## 1.13.6
+
+### Patch Changes
+
+-   [#3315](https://github.com/refinedev/refine/pull/3315) [`dda827e9a58`](https://github.com/refinedev/refine/commit/dda827e9a581b4427f6423740aed399090a5631f) Thanks [@yasnbouz](https://github.com/yasnbouz)! - Fixed: `Ctrl+c` not killing running dev; leaving ports open - #3175
+    Fixed: terminal output color w/ env `FORCE_COLOR=true`
+
 ## 1.13.5
 
 ### Patch Changes

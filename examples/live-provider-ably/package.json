@@ -6,7 +6,7 @@
         "@pankod/refine-ably": "^3.29.0",
         "@pankod/refine-antd": "^4.5.0",
         "@pankod/refine-core": "^3.90.6",
-        "@pankod/refine-cli": "^1.13.5",
+        "@pankod/refine-cli": "^1.13.6",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-simple-rest": "^3.37.4",
         "@types/node": "^12.20.11",
