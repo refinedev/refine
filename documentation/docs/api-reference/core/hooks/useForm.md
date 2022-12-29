@@ -679,7 +679,11 @@ const PostCreate = () => {
 `useForm` can handle `edit`, `create` and `clone` actions.
 
 :::tip
-By default, it determines the `action` from route. If the route is `/posts/create` thus the hook will be called with `action: "create"`. If the route is `/posts/edit/1`, the hook will be called with `action: "edit"`.
+By default, it determines the `action` from route.
+
+-   If the route is `/posts/create` thus the hook will be called with `action: "create"`.
+-   If the route is `/posts/edit/1`, the hook will be called with `action: "edit"`.
+-   If the route is `/posts/clone/1`, the hook will be called with `action: "clone"`.
 
 It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
 :::
