@@ -127,12 +127,10 @@ axiosInstance.interceptors.response.use(
 
 ## Usage with Hooks
 
-<details><summary>TODO: Show useList Example</summary>
+<details><summary>useList</summary>
 <p>
 
-```ts
-// TODO: Examples of using these methods with hooks:
-
+```tsx
 const { data } = useList({
     resource: "posts",
     config: {
@@ -158,10 +156,133 @@ console.log(data);
 //     total: 50
 // }
 ```
-
 </p>
 </details>
 
+<details><summary>useMany</summary>
+<p>
+
+```tsx
+const { data } = useMany({
+  resource: "posts",
+  ids: [1, 2],
+});
+
+console.log(data);
+// { 
+//   data: [
+//     {
+//       id: 1,
+//       title: "Hello World",
+//     },
+//     {
+//       id: 2,
+//       title: "refine",
+//     }
+//   ], 
+//   total: 50
+// }
+```
+</p>
+</details>
+
+<details><summary>useCreate</summary>
+<p>
+
+```tsx
+const { mutate } = useCreate();
+
+  mutate(
+    {
+      resource: "posts",
+      values: {
+        title: "Hello World",
+      },
+    },
+    {
+      onSuccess: ({ data }) => {
+        console.log(data);
+      },
+    }
+  );
+
+// { 
+//   id: 4,
+//   title: "Hello World",
+// }
+```
+</p>
+</details>
+
+<details><summary>useUpdate</summary>
+<p>
+
+```tsx
+const { mutate } = useUpdate();
+
+  mutate(
+    {
+      id: 4,
+      resource: "posts",
+      values: {
+        title: "World Hello",
+      },
+    },
+    {
+      onSuccess: ({ data }) => {
+        console.log(data);
+      },
+    }
+  );
+
+// { 
+//   id: 4,
+//   title: "World Hello",
+// }
+```
+</p>
+</details>
+
+<details><summary>useDelete</summary>
+<p>
+
+```tsx
+const { mutate } = useDelete();
+
+  mutate(
+    {
+      id: 4,
+      resource: "posts",
+    },
+    {
+      onSuccess: ({ data }) => {
+        console.log(data);
+      },
+    }
+  );
+```
+</p>
+</details>
+
+<details><summary>useOne</summary>
+<p>
+
+```tsx
+const { data } = useOne({
+  resource: "posts",
+  id: 1,
+});
+
+console.log(data);
+// { 
+//   data: {
+//     id: 1,
+//     title: "Hello World",
+//   },
+// }
+```
+</p>
+</details>
 
 ## Example Rest API
 
@@ -171,9 +292,10 @@ Now, let's write data provider step by step to the API that takes parameters as 
 **getList**
 
 ```bash
-curl -i https://api.fake-rest.refine.dev/posts?title_like=Arch&_sort=id&_order=desc&_limit=10&_page=2
+[GET] https://api.fake-rest.refine.dev/posts?title_like=Arch&_sort=id&_order=desc&_limit=10&_page=2
 
 HTTP/2 200
+Content-Type: application/json
 x-total-count: 22
 access-control-expose-headers: X-Total-Count
 
@@ -199,6 +321,113 @@ access-control-expose-headers: X-Total-Count
 ]             
 ```
 
+**getMany**
+
+```bash
+[GET] https://api.fake-rest.refine.dev/posts?id=100&id=101
+
+HTTP/2 200
+Content-Type: application/json
+
+[
+  {
+    "id": 100,
+    "title": "Vitae maiores autem ut officia nam et.",
+    "slug": "consequatur-qui-nobis",
+    "category": {
+      "id": 33
+    },
+    "user": {
+      "id": 14
+    },
+    "status": "draft",
+  },
+  {
+    "id": 101,
+    "title": "Qui in sequi harum nemo doloremque quaerat quasi quia.",
+    "slug": "maiores-delectus-consequatur",
+    "category": {
+      "id": 8
+    },
+    "status": "rejected",
+  }
+]
+```
+
+**create**
+
+```bash
+[POST] https://api.fake-rest.refine.dev/posts
+{
+  title: "Hello",
+  status: "draft",
+  category: {
+    id: 1
+  }
+}
+
+HTTP/2 201
+Content-Type: application/json
+
+{
+  "id": 1000,
+  "title": "Hello",
+  "slug": "hello",
+  "category": {
+    "id": 1
+  },
+  "status": "draft",
+}
+```
+
+**update**
+
+```bash
+[PUT] https://api.fake-rest.refine.dev/posts/1000
+{
+  status: "published",
+}
+
+HTTP/2 200
+Content-Type: application/json
+
+{
+  "id": 1000,
+  "title": "Hello World",
+  "slug": "hello-world",
+  "category": {
+    "id": 1
+  },
+  "status": "published",
+}
+```
+
+**deleteOne**
+
+```bash
+[DELETE] https://api.fake-rest.refine.dev/posts/1000
+
+HTTP/2 200
+```
+
+**getOne**
+
+```bash
+[GET] https://api.fake-rest.refine.dev/posts/1000
+
+HTTP/2 200
+
+{
+  "id": 1000,
+  "title": "Hello World",
+  "slug": "hello-world",
+  "category": {
+    "id": 1
+  },
+  "status": "published",
+}
+```
+With this API, basically the data provider can be like this.
 
 ```ts title=dataProvider.ts
 import { stringify } from "query-string";
@@ -209,7 +438,7 @@ import {
   HttpError,
 } from "@pankod/refine-core";
 
-const client = (url: string, method: string = "GET", variables?: any) => {
+const httpClient = (url: string, method: string = "GET", variables?: any) => {
   return fetch(url, {
     method,
     body: JSON.stringify(variables),
@@ -251,7 +480,10 @@ const generateFilters = (filters?: CrudFilters) => {
   const queryFilters: { [key: string]: string } = {};
 
   filters?.map((filter): void => {
-    // and and or operators support is not implemented yet
+    /**
+     * It supports the refine `and` and `or` operators, but it is not implemented because it does not support this API.
+     * You can refer to the nestjsx-crud data provider for details.
+    */
     if ("field" in filter) {
       const { field, operator, value } = filter;
       const mappedOperator = mapOperator(operator);
@@ -285,6 +517,10 @@ export const dataProvider = (
       _end: current * pageSize,
     };
 
+    /*
+     * refine supports multiple sorting, but it is not implemented because it does not support this API.
+     * You can refer to the nestjsx-crud data provider for details.
+    */
     if (sort && sort.length > 0) {
       query._sort = sort[0].field;
       query._order = sort[0].order;
@@ -292,7 +528,7 @@ export const dataProvider = (
 
     const queryFilters = generateFilters(filters);
 
-    const { data, headers } = await client(
+    const { data, headers } = await httpClient(
       `${url}?${stringify(query)}&${stringify(queryFilters)}`
     );
 
@@ -304,31 +540,31 @@ export const dataProvider = (
 
   getMany: async ({ resource, ids }) => {
     const url = `${apiUrl}/${resource}?${stringify({ id: ids })}`;
-    const { data } = await client(url);
+    const { data } = await httpClient(url);
     return { data };
   },
 
   create: async ({ resource, variables }) => {
     const url = `${apiUrl}/${resource}`;
-    const { data } = await client(url, "POST", variables);
+    const { data } = await httpClient(url, "POST", variables);
     return { data };
   },
 
   update: async ({ resource, id, variables }) => {
     const url = `${apiUrl}/${resource}/${id}`;
-    const { data } = await client(url, "PATCH", variables);
+    const { data } = await httpClient(url, "PATCH", variables);
     return { data };
   },
 
   getOne: async ({ resource, id }) => {
     const url = `${apiUrl}/${resource}/${id}`;
-    const { data } = await client(url, "GET", { id });
+    const { data } = await httpClient(url, "GET", { id });
     return { data };
   },
 
   deleteOne: async ({ resource, id, variables }) => {
     const url = `${apiUrl}/${resource}/${id}`;
-    const { data } = await client(url, "DELETE", variables);
+    const { data } = await httpClient(url, "DELETE", variables);
     return { data };
   },
 
