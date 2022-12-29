@@ -29,8 +29,12 @@ import {
     IQueryKeys,
     FormAction,
 } from "../../interfaces";
-import { UpdateParams, UseUpdateReturnType } from "../data/useUpdate";
-import { UseCreateReturnType } from "../data/useCreate";
+import {
+    UpdateParams,
+    UseUpdateProps,
+    UseUpdateReturnType,
+} from "../data/useUpdate";
+import { UseCreateProps, UseCreateReturnType } from "../data/useCreate";
 import { redirectPage } from "@definitions/helpers";
 
 export type ActionParams = {
@@ -106,6 +110,14 @@ type ActionFormProps<
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options of useOne hook used while in edit mode.
      */
     queryOptions?: UseQueryOptions<GetOneResponse<TData>, HttpError>;
+    /**
+     * react-query's [useMutation](https://tanstack.com/query/v4/docs/reference/useMutation) options of useCreate hook used while submitting in create and clone modes.
+     */
+    createMutationOptions?: UseCreateProps<TData, TError, TVariables>;
+    /**
+     * react-query's [useMutation](https://tanstack.com/query/v4/docs/reference/useMutation) options of useUpdate hook used while submitting in edit mode.
+     */
+    updateMutationOptions?: UseUpdateProps<TData, TError, TVariables>;
 } & SuccessErrorNotification &
     ActionParams &
     LiveModeProps;
@@ -171,6 +183,8 @@ export const useForm = <
     dataProviderName,
     invalidates,
     queryOptions,
+    createMutationOptions,
+    updateMutationOptions,
 }: UseFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
     TError,
@@ -238,11 +252,15 @@ export const useForm = <
 
     const { isFetching: isFetchingQuery } = queryResult;
 
-    const mutationResultCreate = useCreate<TData, TError, TVariables>();
+    const mutationResultCreate = useCreate<TData, TError, TVariables>(
+        createMutationOptions,
+    );
     const { mutate: mutateCreate, isLoading: isLoadingCreate } =
         mutationResultCreate;
 
-    const mutationResultUpdate = useUpdate<TData, TError, TVariables>();
+    const mutationResultUpdate = useUpdate<TData, TError, TVariables>(
+        updateMutationOptions,
+    );
     const { mutate: mutateUpdate, isLoading: isLoadingUpdate } =
         mutationResultUpdate;
 
