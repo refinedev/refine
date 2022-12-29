@@ -113,11 +113,19 @@ type ActionFormProps<
     /**
      * react-query's [useMutation](https://tanstack.com/query/v4/docs/reference/useMutation) options of useCreate hook used while submitting in create and clone modes.
      */
-    createMutationOptions?: UseCreateProps<TData, TError, TVariables>;
+    createMutationOptions?: UseCreateProps<
+        TData,
+        TError,
+        TVariables
+    >["mutationOptions"];
     /**
      * react-query's [useMutation](https://tanstack.com/query/v4/docs/reference/useMutation) options of useUpdate hook used while submitting in edit mode.
      */
-    updateMutationOptions?: UseUpdateProps<TData, TError, TVariables>;
+    updateMutationOptions?: UseUpdateProps<
+        TData,
+        TError,
+        TVariables
+    >["mutationOptions"];
 } & SuccessErrorNotification &
     ActionParams &
     LiveModeProps;
@@ -252,15 +260,15 @@ export const useForm = <
 
     const { isFetching: isFetchingQuery } = queryResult;
 
-    const mutationResultCreate = useCreate<TData, TError, TVariables>(
-        createMutationOptions,
-    );
+    const mutationResultCreate = useCreate<TData, TError, TVariables>({
+        mutationOptions: createMutationOptions,
+    });
     const { mutate: mutateCreate, isLoading: isLoadingCreate } =
         mutationResultCreate;
 
-    const mutationResultUpdate = useUpdate<TData, TError, TVariables>(
-        updateMutationOptions,
-    );
+    const mutationResultUpdate = useUpdate<TData, TError, TVariables>({
+        mutationOptions: updateMutationOptions,
+    });
     const { mutate: mutateUpdate, isLoading: isLoadingUpdate } =
         mutationResultUpdate;
 
