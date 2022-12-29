@@ -7,9 +7,15 @@ tutorial:
     next: tutorial/adding-crud-pages/{preferredUI}/index
 ---
 
+:::info Remember
+
+In the [Unit 3.2](#), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine />` component using the mock components.
+
+:::
+
 `resources` are the main building block of **refine** app. Each resource allows you to create new routes of CRUD pages in your app.
 
-Let's see what's going on under the hood when we add a `resources` to our app.
+Let's see what's going on under the hood when we add a `resources` to our app and learn `resources` term for who are new to **refine**.
 
 To add `resource` to our app, we must use `resources` prop of `<Refine />` component. This prop accepts an array of objects. Each object represents a resource.
 
@@ -41,19 +47,13 @@ const App: React.FC = () => {
 export default App;
 ```
 
-In the above example, we have added a `resource` with name `posts`. This resource has 5 pages. `list`, `show`, `create`, `clone` and `edit` pages and **refine** creates these pages for us. We can access these pages by visiting the following routes:
+In the above example, we have added a `resource` with name `posts`. This resource has 5 pages. `list`, `show`, `create`, `clone` and `edit` pages and **refine** link the pages with routes for us. We can access these pages by visiting the following routes:
 
 -   `/posts` - the list page
 -   `/posts/show/:id` - the show page
 -   `/posts/create` - the create page
 -   `/posts/clone/:id` - the clone page
 -   `/posts/edit/:id` - the edit page
-
-:::info Remember
-
-In the [Unit 3.2](#), we have defined a resource to create our CRUD pages with the Inferencer.
-
-:::
 
 :::tip
 
