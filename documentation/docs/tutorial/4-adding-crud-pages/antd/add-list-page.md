@@ -227,7 +227,6 @@ Instead of starting from scratch, Inferencer've created the list page code that 
 
 -   `<List/>` is a **refine** component that is used to presentation purposes like showing "Create Button" or page title etc.
 
-
 Refer to the [`<List/>`](/docs/api-reference/antd/components/basic-views/list) documentation for more information.
 
 -   `<Table/>` is a native **Ant Design** component. It renders records row by row as a table.
@@ -283,6 +282,7 @@ import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 import { PostList } from "pages/posts/list";
 
 import "@pankod/refine-antd/dist/reset.css";
+
 const App: React.FC = () => {
     return (
         <Refine
@@ -297,9 +297,9 @@ const App: React.FC = () => {
                     name: "posts",
                     //highlight-next-line
                     list: PostList,
+                    edit: AntdInferencer,
                     show: AntdInferencer,
                     create: AntdInferencer,
-                    edit: AntdInferencer,
                 },
             ]}
         />
