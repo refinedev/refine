@@ -710,7 +710,7 @@ setInitialRoutes(["/posts/create"]);
 import React, { useState } from "react";
 import { useForm } from "@pankod/refine-core";
 
-const PostCreateExample: React.FC = () => {
+const PostCreatePage: React.FC = () => {
     const { formLoading, onFinish } = useForm<IPost, HttpError, FormValues>();
 
     const [formValues, seFormValues] = useState<FormValues>({
@@ -789,7 +789,7 @@ setRefineProps({
         {
             name: "posts",
             list: PostList,
-            create: PostCreateExample,
+            create: PostCreatePage,
             edit: PostEdit,
             show: PostShow,
         },
@@ -805,18 +805,18 @@ render(<RefineHeadlessDemo />);
 
 `action: "edit"` is used for editing an existing record. It requires the `id` for determining the record to edit. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
 
-It fetches the record data according to the `id` with[`useOne`](/docs/api-reference/core/hooks/data/useOne/) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/api-reference/core/hooks/data/useUpdate.md).
+It fetches the record data according to the `id` with [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/api-reference/core/hooks/data/useUpdate.md).
 
-In the following example, we'll show how to use `useForm` with `action: "edit"`. You can go to edit page by clicking on the edit button in the list page.
+In the following example, we'll show how to use `useForm` with `action: "edit"`.
 
 ```tsx live tailwind url=http://localhost:3000 previewHeight=420px
-setInitialRoutes(["/posts"]);
+setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
 import React, { useState, useEffect } from "react";
 import { useForm } from "@pankod/refine-core";
 
-const PostEditExample: React.FC = () => {
+const PostEditPage: React.FC = () => {
     const { formLoading, onFinish, queryResult } = useForm<FormValues>();
     const defaultValues = queryResult?.data?.data;
 
@@ -905,7 +905,7 @@ setRefineProps({
             name: "posts",
             list: PostList,
             create: PostCreate,
-            edit: PostEditExample,
+            edit: PostEditPage,
             show: PostShow,
         },
     ],
@@ -929,13 +929,13 @@ In the following example, we'll show how to use `useForm` with `action: "clone"`
 You can go to edit page by clicking on the edit button in the list page. You will see `action:clone` toggle at the top of the page. You can toggle it to set the action to `clone`.
 
 ```tsx live tailwind url=http://localhost:3000 previewHeight=420px
-setInitialRoutes(["/posts"]);
+setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
 import React, { useState, useEffect } from "react";
 import { useForm } from "@pankod/refine-core";
 
-const PostEditFormWithClone: React.FC = () => {
+const PostEditPage: React.FC = () => {
     // highlight-next-line
     const [action, setAction] = useState<"edit" | "clone">("clone");
 
@@ -974,7 +974,7 @@ const PostEditFormWithClone: React.FC = () => {
     return (
         <div className="container mx-auto">
             <div className="flex justify-center">
-                // highlight-start
+                {/* highlight-start */}
                 <Toggle
                     checkedLabel="Clone"
                     uncheckedLabel="Clone"
@@ -983,7 +983,7 @@ const PostEditFormWithClone: React.FC = () => {
                         setAction(checked ? "clone" : "edit")
                     }
                 />
-                // highlight-end
+                {/* highlight-end */}
             </div>
             <br />
             <form onSubmit={handleSubmit}>
@@ -1042,7 +1042,7 @@ setRefineProps({
             name: "posts",
             list: PostList,
             create: PostCreate,
-            edit: PostEditFormWithClone,
+            edit: PostEditPage,
             show: PostShow,
         },
     ],
@@ -1324,12 +1324,12 @@ const myDataProvider = {
 
 ### `queryOptions`
 
-[queryOptions](https://tanstack.com/query/v4/docs/react/reference/useMutation) options can be set by passing queryOptions property.
+> Works only in `action: "edit"` or `action: "clone"` mode.
 
-```tsx title="src/posts/create.tsx"
+in `edit` or `clone` mode, `refine` uses [`useOne`](/docs/api-reference/core/hooks/data/useOne/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing `queryOptions` property.
+
+```tsx title="src/posts/edit.tsx"
 const form = useForm({
-    action: "create",
-    resource: "post",
     // highlight-start
     queryOptions: {
         retry: 3,
