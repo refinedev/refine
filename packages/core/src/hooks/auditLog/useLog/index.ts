@@ -30,7 +30,7 @@ export type UseLogReturnType<TLogData, TLogRenameData> = {
     >;
 };
 
-export type UseLogProps<
+export type UseLogMutationProps<
     TLogData,
     TLogRenameData extends LogRenameData = LogRenameData,
 > = {
@@ -60,7 +60,7 @@ export const useLog = <
 >({
     logMutationOptions,
     renameMutationOptions,
-}: UseLogProps<TLogData, TLogRenameData> = {}): UseLogReturnType<
+}: UseLogMutationProps<TLogData, TLogRenameData> = {}): UseLogReturnType<
     TLogData,
     TLogRenameData
 > => {
