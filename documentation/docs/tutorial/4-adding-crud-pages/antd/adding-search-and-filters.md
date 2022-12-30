@@ -4,7 +4,7 @@ title: 6. Adding Search and Filters
 tutorial:
     order: 0
     next: tutorial/adding-crud-pages/{preferredUI}/handling-relationships
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
+    prev: tutorial/adding-crud-pages/{preferredUI}/add-create-page
 ---
 
 ## How to handle search and filters?
