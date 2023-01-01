@@ -15,8 +15,8 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/docs/api-reference/core/hooks/useForm) hook.
 
-```tsx title="src/pages/posts/edit.tsx"
-// highlight-next-line
+```tsx live url=http://localhost:3000/posts previewHeight=340px
+// visible-block-start
 import { useForm } from "@pankod/refine-react-hook-form";
 import { Edit, Box, TextField } from "@pankod/refine-mui";
 
@@ -31,6 +31,7 @@ export const PostEdit: React.FC = () => {
     return (
         <Edit
             isLoading={formLoading}
+            // highlight-next-line
             saveButtonProps={{ onClick: handleSubmit(onFinish) }}
         >
             <Box component="form">
@@ -55,19 +56,20 @@ interface ICategory {
     id: number;
     title: string;
 }
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/posts/edit/123"]}
+        resources={[
+            {
+                name: "posts",
+                edit: PostEdit,
+            },
+        ]}
+    />,
+);
 ```
-
-Will look like this:
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/save/save-mui.png" alt="Default save button" />
-</div>
-<br/>
 
 The `useForm` hook exposes `saveButtonProps` to be passed to `<SaveButton>` component which includes submitting the form action, button loading, and disable states.
 
@@ -77,12 +79,34 @@ The `useForm` hook exposes `saveButtonProps` to be passed to `<SaveButton>` comp
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
 import { SaveButton } from "@pankod/refine-mui";
 
-export const MySaveComponent = () => {
-    return <SaveButton hideText />;
+const MySaveComponent = () => {
+    return (
+        <SaveButton
+            // highlight-next-line
+            hideText={true}
+        />
+    );
 };
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                list: MySaveComponent,
+            },
+        ]}
+        DashboardPage={MySaveComponent}
+    />,
+);
 ```
 
 ## API Reference

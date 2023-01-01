@@ -14,53 +14,41 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-```tsx
-import { useTable } from "@pankod/refine-core";
-
+```tsx live url=http://localhost:3000/posts previewHeight=340px
+const { Create } = RefineMui;
+import dataProvider from "@pankod/refine-simple-rest";
+// visible-block-start
 import {
+    useDataGrid,
+    DataGrid,
+    GridColumns,
     List,
-    Table,
     // highlight-next-line
     DeleteButton,
-    TableHead,ev
-    TableRow,
-    TableCell,
-    TableBody,
 } from "@pankod/refine-mui";
 
-export const PostList: React.FC = () => {
-    const { tableQueryResult } = useTable<IPost>();
+const columns: GridColumns = [
+    { field: "id", headerName: "ID", type: "number" },
+    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+    {
+        field: "actions",
+        headerName: "Actions",
+        renderCell: function render({ row }) {
+            // highlight-next-line
+            return <DeleteButton size="small" recordItemId={row.id} />;
+        },
+        align: "center",
+        headerAlign: "center",
+        minWidth: 80,
+    },
+];
 
-    const { data } = tableQueryResult;
+const PostsList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>();
 
     return (
         <List>
-            <Table aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>ID</TableCell>
-                        <TableCell>Title</TableCell>
-                        <TableCell align="center">Action</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data?.data.map((row) => (
-                        <TableRow key={row.id}>
-                            <TableCell>{row.id}</TableCell>
-                            <TableCell component="th" scope="row">
-                                {row.title}
-                            </TableCell>
-                            <TableCell align="center">
-                                //highlight-start
-                                <DeleteButton
-                                    recordItemId={row.id}
-                                />
-                                //highlight-end
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
@@ -69,30 +57,35 @@ interface IPost {
     id: number;
     title: string;
 }
+// visible-block-end
+
+const simpleRestDataProvider = dataProvider(
+    "https://api.fake-rest.refine.dev",
+);
+
+const customDataProvider = {
+    ...simpleRestDataProvider,
+    deleteOne: async ({ resource, id, variables }) => {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        return {
+            message: "You have successfully deleted the record",
+        };
+    },
+};
+
+render(
+    <RefineMuiDemo
+        dataProvider={customDataProvider}
+        resources={[
+            {
+                name: "posts",
+                list: PostsList,
+            },
+        ]}
+    />,
+);
 ```
-
-Will look like this:
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/delete/delete-mui.png" alt="Default delete button" />
-</div>
-<br />
-
-When clicked, it opens the confirmation window like this:
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/delete/confirmation-mui.gif" alt="Confirmation window" />
-</div>
 
 ## Properties
 
@@ -100,12 +93,47 @@ When clicked, it opens the confirmation window like this:
 
 `recordItemId` allows us to manage which record will be deleted.
 
-```tsx
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+import dataProvider from "@pankod/refine-simple-rest";
+
+// visible-block-start
 import { DeleteButton } from "@pankod/refine-mui";
 
-export const MyDeleteComponent = () => {
+const MyDeleteComponent = () => {
     return <DeleteButton resourceNameOrRouteName="posts" recordItemId="1" />;
 };
+
+// visible-block-end
+
+const simpleRestDataProvider = dataProvider(
+    "https://api.fake-rest.refine.dev",
+);
+
+const customDataProvider = {
+    ...simpleRestDataProvider,
+    deleteOne: async ({ resource, id, variables }) => {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        return {
+            message: "You have successfully deleted the record",
+        };
+    },
+};
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        dataProvider={customDataProvider}
+        resources={[
+            {
+                name: "posts",
+            },
+        ]}
+        DashboardPage={MyDeleteComponent}
+    />,
+);
 ```
 
 Clicking the button will trigger the [`useDelete`](/api-reference/core/hooks/data/useDelete.md) method and then the record whose resource is `post` and whose id is `1` gets deleted.
@@ -114,70 +142,107 @@ Clicking the button will trigger the [`useDelete`](/api-reference/core/hooks/dat
 **`<DeleteButton>`** component reads the id information from the route by default.
 :::
 
+### `resourceNameOrRouteName`
+
+`resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
+
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+import dataProvider from "@pankod/refine-simple-rest";
+
+// visible-block-start
+import { DeleteButton } from "@pankod/refine-mui";
+
+const MyDeleteComponent = () => {
+    return (
+        <DeleteButton resourceNameOrRouteName="categories" recordItemId="2" />
+    );
+};
+// visible-block-end
+const simpleRestDataProvider = dataProvider(
+    "https://api.fake-rest.refine.dev",
+);
+
+const customDataProvider = {
+    ...simpleRestDataProvider,
+    deleteOne: async ({ resource, id, variables }) => {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        return {
+            message: "You have successfully deleted the record",
+        };
+    },
+};
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        dataProvider={customDataProvider}
+        resources={[
+            {
+                name: "posts",
+            },
+            {
+                name: "categories",
+            },
+        ]}
+        DashboardPage={MyDeleteComponent}
+    />,
+);
+```
+
 ### `onSuccess`
 
 `onSuccess` can be used if you want to do anything on the result returned after the delete request.
 
 For example, let's `console.log` after deletion:
 
-```tsx title="src/pages/posts/list.tsx"
-import { useTable } from "@pankod/refine-core";
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+import dataProvider from "@pankod/refine-simple-rest";
 
-import {
-    List,
-    Table,
-    // highlight-next-line
-    DeleteButton,
-    TableHead,
-    TableRow,
-    TableCell,
-    TableBody,
-} from "@pankod/refine-mui";
+// visible-block-start
+import { DeleteButton } from "@pankod/refine-mui";
 
-export const PostList: React.FC = () => {
-    const { tableQueryResult } = useTable<IPost>();
-
-    const { data } = tableQueryResult;
-
+const MyDeleteComponent = () => {
     return (
-        <List>
-            <Table aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>ID</TableCell>
-                        <TableCell>Title</TableCell>
-                        <TableCell align="center">Action</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data?.data.map((row) => (
-                        <TableRow key={row.id}>
-                            <TableCell>{row.id}</TableCell>
-                            <TableCell component="th" scope="row">
-                                {row.title}
-                            </TableCell>
-                            <TableCell align="center">
-                                <DeleteButton
-                                    recordItemId={record.id}
-                                    // highlight-start
-                                    onSuccess={(value) => {
-                                        console.log(value);
-                                    }}
-                                    // highlight-end
-                                />
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </List>
+        <DeleteButton
+            resourceNameOrRouteName="posts" 
+            recordItemId="1"
+            onSuccess={(value) => {
+                console.log(value);
+            }}
+        />
     );
 };
+// visible-block-end
+const simpleRestDataProvider = dataProvider(
+    "https://api.fake-rest.refine.dev",
+);
 
-interface IPost {
-    id: number;
-    title: string;
-}
+const customDataProvider = {
+    ...simpleRestDataProvider,
+    deleteOne: async ({ resource, id, variables }) => {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        return {
+            message: "You have successfully deleted the record",
+        };
+    },
+};
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        dataProvider={customDataProvider}
+        resources={[
+            {
+                name: "posts",
+            }
+        ]}
+        DashboardPage={MyDeleteComponent}
+    />,
+);
 ```
 
 ### `mutationMode`
@@ -247,12 +312,49 @@ interface IPost {
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+import dataProvider from "@pankod/refine-simple-rest";
+
+// visible-block-start
 import { DeleteButton } from "@pankod/refine-mui";
 
-export const MyDeleteComponent = () => {
-    return <DeleteButton hideText />;
+const MyDeleteComponent = () => {
+    return (
+        <DeleteButton
+            // highlight-next-line
+            hideText={true}
+        />
+    );
 };
+// visible-block-end
+const simpleRestDataProvider = dataProvider(
+    "https://api.fake-rest.refine.dev",
+);
+
+const customDataProvider = {
+    ...simpleRestDataProvider,
+    deleteOne: async ({ resource, id, variables }) => {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        return {
+            message: "You have successfully deleted the record",
+        };
+    },
+};
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        dataProvider={customDataProvider}
+        resources={[
+            {
+                name: "posts",
+                list: MyDeleteComponent,
+            },
+        ]}
+    />,
+);
 ```
 
 ### `accessControl`
@@ -271,18 +373,53 @@ export const MyListComponent = () => {
 
 You can change the text that appears when you confirm a transaction with `confirmTitle` prop, as well as what ok and cancel buttons text look like with `confirmOkText` and `confirmCancelText` props.
 
-```tsx
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+import dataProvider from "@pankod/refine-simple-rest";
+
+// visible-block-start
 import { DeleteButton } from "@pankod/refine-mui";
 
-export const MyDeleteComponent = () => {
+const MyDeleteComponent = () => {
     return (
         <DeleteButton
+            // highlight-start
             confirmTitle="Title"
             confirmOkText="Ok Text"
             confirmCancelText="Delete Text"
+            // highlight-end
         />
     );
 };
+// visible-block-end
+
+const simpleRestDataProvider = dataProvider(
+    "https://api.fake-rest.refine.dev",
+);
+
+const customDataProvider = {
+    ...simpleRestDataProvider,
+    deleteOne: async ({ resource, id, variables }) => {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        return {
+            message: "You have successfully deleted the record",
+        };
+    },
+};
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        dataProvider={customDataProvider}
+        resources={[
+            {
+                name: "posts",
+                list: MyDeleteComponent,
+            },
+        ]}
+    />,
+);
 ```
 
 ## API Reference
