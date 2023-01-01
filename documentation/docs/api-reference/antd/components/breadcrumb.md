@@ -21,7 +21,7 @@ const PostShow: React.FC = () => {
             breadcrumb={<Breadcrumb />}
         >
             <p>Content of your show page...</p>
-        </List>
+        </Show>
     );
 };
 // visible-block-end
