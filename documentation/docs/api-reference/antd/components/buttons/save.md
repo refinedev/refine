@@ -15,7 +15,8 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook.
 
-```tsx
+```tsx live url=http://localhost:3000/posts/edit/123
+// visible-block-start
 import { Edit, Form, Input, useForm } from "@pankod/refine-antd";
 
 export const PostEdit: React.FC = () => {
@@ -46,19 +47,27 @@ interface IPost {
     id: number;
     title: string;
 }
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/posts/edit/123"]}
+        resources={[
+            {
+                name: "posts",
+                edit: PostEdit,
+                list: () => {
+                    return (
+                        <RefineAntd.List>
+                            <p>Your list page here</p>
+                        </RefineAntd.List>
+                    );
+                }
+            },
+        ]}
+    />,
+);
 ```
-
-Will look like this:
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/save/save.png" alt="Default save button" />
-</div>
-<br/>
 
 The [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook exposes `saveButtonProps` to be passed to `<SaveButton>` component which includes submitting the form action, button loading, and disable states.
 
@@ -74,6 +83,33 @@ import { SaveButton } from "@pankod/refine-antd";
 export const MySaveComponent = () => {
     return <SaveButton hideText />;
 };
+```
+
+```tsx live disableScroll previewHeight=120px
+// visible-block-start
+import { SaveButton } from "@pankod/refine-antd";
+
+const MySaveComponent = () => {
+    return (
+        <SaveButton
+            // highlight-next-line
+            hideText
+        />
+    );
+};
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                list: MySaveComponent,
+            },
+        ]}
+    />,
+);
 ```
 
 ## API Reference

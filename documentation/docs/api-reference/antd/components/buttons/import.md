@@ -14,7 +14,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-```tsx  title="/src/pages/posts/list.tsx"
+```tsx live
 import {
     List,
     Table,
@@ -25,7 +25,7 @@ import {
     // highlight-end
 } from "@pankod/refine-antd";
 
-export const PostList: React.FC = () => {
+const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     // highlight-next-line
@@ -33,10 +33,10 @@ export const PostList: React.FC = () => {
 
     return (
         <List
-            pageHeaderProps={{
+            headerButtons={(
                 // highlight-next-line
-                extra: <ImportButton {...importProps} />,
-            }}
+                <ImportButton {...importProps} />
+            )}
         >
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
@@ -55,18 +55,19 @@ interface IPostFile {
     title: string;
     categoryId: number;
 }
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        resources={[
+            {
+                name: "posts",
+                list: PostList,
+            },
+        ]}
+    />,
+);
 ```
-
-Will look like this:
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/import/import.png" alt="Default import button" />
-</div>
 
 ## Properties
 
@@ -83,6 +84,40 @@ export const MyImportComponent = () => {
     return <ImportButton {...importProps} hideText />;
 };
 ```
+
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
+import { ImportButton, useImport } from "@pankod/refine-antd";
+
+const MyImportComponent = () => {
+    const importProps = useImport();
+
+    return (
+        <ImportButton
+            {...importProps}
+            // highlight-next-line
+            hideText
+        />
+    );
+};
+
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                list: MyImportComponent,
+            },
+        ]}
+    />,
+);
+```
+
 ## API Reference
 
 ### Properties

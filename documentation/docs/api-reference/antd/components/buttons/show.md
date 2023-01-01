@@ -13,26 +13,28 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-```tsx
+```tsx live
+// visible-block-start
 import {
-    List,
     Table,
+    List,
     useTable,
     // highlight-next-line
     ShowButton,
 } from "@pankod/refine-antd";
 
-export const PostList: React.FC = () => {
+const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     return (
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column dataIndex="title" title="Title" width="100%" />
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
+                    key="actions"
                     render={(_, record) => (
                         // highlight-next-line
                         <ShowButton size="small" recordItemId={record.id} />
@@ -47,18 +49,19 @@ interface IPost {
     id: number;
     title: string;
 }
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        resources={[
+            {
+                name: "posts",
+                list: PostList,
+            },
+        ]}
+    />,
+);
 ```
-
-Will look like this:
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/show/show.png" alt="Default show button" />
-</div>
 
 ## Properties
 
@@ -66,12 +69,48 @@ Will look like this:
 
 `recordItemId` is used to append the record id to the end of the route path.
 
-```tsx 
+```tsx live disableScroll previewHeight=150px disableScroll
+const { useRouterContext } = RefineCore;
+// visible-block-start
 import { ShowButton } from "@pankod/refine-antd";
 
-export const MyShowComponent = () => {
-    return <ShowButton resourceName="posts" recordItemId="1" />;
+const MyShowComponent = () => {
+    return (
+        <ShowButton
+            resourceNameOrRouteName="posts"
+            // highlight-next-line
+            recordItemId="123"
+        />
+    );
 };
+
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => {
+                    return (
+                        <RefineAntd.List>
+                            List page here...
+                        </RefineAntd.List>
+                    )
+                }
+                show: () => {
+                    return (
+                        <RefineAntd.Show>
+                            Show page here...
+                        </RefineAntd.Show>
+                    )
+                }
+            },
+        ]}
+        DashboardPage={MyShowComponent}
+    />,
+);
 ```
 
 Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/show/1`.
@@ -84,26 +123,109 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/api-ref
 
 Redirection endpoint(`resourceNameOrRouteName/show`) is defined by `resourceNameOrRouteName` property. By default, `<ShowButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
 
-```tsx 
+```tsx live disableScroll previewHeight=150px disableScroll
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
 import { ShowButton } from "@pankod/refine-antd";
 
-export const MyShowComponent = () => {
-    return <ShowButton resourceNameOrRouteName="categories" recordItemId="2" />;
+const MyShowComponent = () => {
+    return (
+        <ShowButton
+            // highlight-next-line
+            resourceNameOrRouteName="categories"
+            recordItemId="123"
+        />
+    );
 };
-```
 
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => {
+                    return (
+                        <RefineAntd.List>
+                            List page here...
+                        </RefineAntd.List>
+                    )
+                }
+                show: () => {
+                    return (
+                        <RefineAntd.Show>
+                            Show page here...
+                        </RefineAntd.Show>
+                    )
+                }
+            },
+            {
+                name: "categories",
+                list: () => {
+                    return (
+                        <RefineAntd.List>
+                            List page here...
+                        </RefineAntd.List>
+                    )
+                }
+                show: () => {
+                    return (
+                        <RefineAntd.Show>
+                            Show page here...
+                        </RefineAntd.Show>
+                    )
+                }
+            },
+        ]}
+        DashboardPage={MyShowComponent}
+    />,
+);
+```
 Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/show/2`.
 
 ### `hideText`
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx 
+```tsx live disableScroll previewHeight=150px disableScroll
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
 import { ShowButton } from "@pankod/refine-antd";
 
-export const MyShowComponent = () => {
-    return <ShowButton hideText />;
+const MyShowComponent = () => {
+    return (
+        <ShowButton
+            recordItemId="123"
+            // highlight-next-line
+            hideText={true}
+        />
+    );
 };
+
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                list: MyShowComponent,
+                show: () => {
+                    return (
+                        <RefineAntd.Show>
+                            Show page here...
+                        </RefineAntd.Show>
+                    )
+                }
+            },
+        ]}
+    />,
+);
 ```
 
 ### `accessControl`
@@ -114,7 +236,16 @@ This prop can be used to skip access control check with its `enabled` property o
 import { ShowButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
-    return <ShowButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <ShowButton
+            // highlight-start
+            accessControl={{
+                enabled: true,
+                hideIfUnauthorized: true
+            }}
+            // highlight-end
+        />
+    );
 };
 ```
 
