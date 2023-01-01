@@ -15,18 +15,23 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 Let's see how we can use `<FileField>` with the example in the edit page. 
 
-```tsx
+```tsx live
+// visible-block-start
 import { 
     List,
     Table,
+    useTable,
     // highlight-next-line
     FileField 
 } from "@pankod/refine-antd";
 
-export const PostList: React.FC = () => {
+const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+
     return (
         <List>
-            <Table<IPost> rowKey="id">
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
                 <Table.Column
                     dataIndex="title"
                     title="Title"
@@ -53,22 +58,23 @@ interface IPost {
         },
     ];
 }
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        resources={[
+            {
+                name: "posts",
+                list: PostList
+            },
+        ]}
+    />,
+);
 ```
 
 :::tip
 If you don't use `title` prop it will use `src` as `title`
 :::
-
-<br/>
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/file/fileField.png" alt="FileField" />
-</div>
-
 
 ## API Reference
 

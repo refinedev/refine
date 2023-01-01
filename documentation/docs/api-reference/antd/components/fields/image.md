@@ -15,18 +15,24 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 Let's see how we can use `<ImageField>` with the example in the edit page.
 
-```tsx
+```tsx live
+// visible-block-start
 import { 
     List,
     Table,
+    useTable,
     // highlight-next-line
     ImageField,
 } from "@pankod/refine-antd";
 
-export const PostList: React.FC = () => {
+const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+
     return (
         <List>
-            <Table<IPost> rowKey="id">
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" width="100%" />
                 <Table.Column<IPost>
                     title="Image"
                     dataIndex="image"
@@ -39,10 +45,6 @@ export const PostList: React.FC = () => {
                         />
                         // highlight-end
                     )}
-                />
-                <Table.Column
-                    dataIndex="title"
-                    title="Title"
                 />
             </Table>
         </List>
@@ -59,17 +61,19 @@ interface IPost {
         },
     ];
 }
-```
+// visible-block-end
 
-<br/>
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/image/imageField.png" alt="ImageField" />
-</div>
+render(
+    <RefineAntdDemo
+        resources={[
+            {
+                name: "posts",
+                list: PostList
+            },
+        ]}
+    />,
+);
+```
 
 ## API Reference
 

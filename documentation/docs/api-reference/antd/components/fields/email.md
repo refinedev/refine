@@ -15,20 +15,23 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 Let's see how we can use `<EmailField>` with the example in the user list.
 
-```tsx
+```tsx live
+// visible-block-start
 import { 
     List,
     Table,
+    useTable,
     // highlight-next-line
     EmailField
 } from "@pankod/refine-antd";
 
-export const UserList: React.FC = () => {
+const UserList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
 
     return (
         <List>
-            <Table rowKey="id">
-                ...
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
                  <Table.Column
                     dataIndex="email"
                     title="Email"
@@ -40,20 +43,27 @@ export const UserList: React.FC = () => {
         </List>
     );
 };
+
+interface IPost {
+    id: number;
+    email: string;
+}
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        resources={[
+            {
+                name: "users",
+                list: UserList
+            },
+        ]}
+    />,
+);
 ```
 :::tip
 `<EmailField>` uses "mailto:" in the href prop of the `<Link>` component. For this reason, clicking `<EmailField>` opens your device's default mail application.
 :::
-
-<br/>
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/email/emailField.png" alt="EmailField" />
-</div>
 
 ## API Reference
 

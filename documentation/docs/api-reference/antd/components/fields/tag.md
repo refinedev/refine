@@ -15,7 +15,8 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 Let's see how we can use it in a basic list page:
 
-```tsx  title="pages/posts/list.tsx"
+```tsx live
+// visible-block-start
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
@@ -26,7 +27,7 @@ import {
     useTable,
 } from "@pankod/refine-antd";
 
-export const PostList: React.FC = () => {
+const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     return (
@@ -45,20 +46,23 @@ export const PostList: React.FC = () => {
 };
 
 interface IPost {
+    id: number;
     title: string;
     status: "published" | "draft" | "rejected";
 }
-```
+// visible-block-end
 
-<br/>
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/tag/tagField.png" alt="TagField" />
-</div>
+render(
+    <RefineAntdDemo
+        resources={[
+            {
+                name: "posts",
+                list: PostList
+            },
+        ]}
+    />,
+);
+```
 
 ## API Reference
 

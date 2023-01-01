@@ -15,7 +15,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 Let's see how we can use `<MarkdownField>` in a show page.
 
-```tsx  title="pages/posts/show.tsx"
+```tsx live
 import { useShow, IResourceComponentsProps } from "@pankod/refine-core";
 import {
     Show,
@@ -26,7 +26,7 @@ import {
 
 const { Title, Text } = Typography;
 
-export const PostShow: React.FC = () => {
+const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
@@ -38,7 +38,7 @@ export const PostShow: React.FC = () => {
 
             <Title level={5}>Content</Title>
 
-            // highlight-next-line
+            {/* highlight-next-line */}
             <MarkdownField value={record?.content} />
         </Show>
     );
@@ -49,17 +49,25 @@ interface IPost {
     title: string;
     content: string;
 }
-```
+// visible-block-end
 
-<br/>
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/markdown/markdownfield.png" alt="MarkdownField" />
-</div>
+render(
+    <RefineAntdDemo
+        initialRoutes={["/posts/show/123"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <RefineAntd.List>
+                        <p>List page here...</p>
+                    </RefineAntd.List>
+                )
+                show: PostShow
+            },
+        ]}
+    />,
+);
+```
 
 ## API Reference
 
