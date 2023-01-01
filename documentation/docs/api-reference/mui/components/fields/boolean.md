@@ -15,82 +15,70 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 Let's see how we can use `<BooleanField>` with the example in the post list.
 
-```tsx title="src/pages/posts/list.tsx"
-import { useTable } from "@pankod/refine-core";
+```tsx live url=http://localhost:3000/posts previewHeight=340px
+// visible-block-start
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableRow,
+    useDataGrid,
+    DataGrid,
+    GridColumns,
+    List,
     // highlight-next-line
     BooleanField,
-    List,
 } from "@pankod/refine-mui";
-import { Check, Close } from "@mui/icons-material";
 
-export const PostList: React.FC = () => {
-    const { tableQueryResult } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
-    });
+const columns: GridColumns = [
+    { field: "id", headerName: "ID", type: "number" },
+    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+    {
+        field: "status",
+        headerName: "Published",
+        renderCell: function render({ row }) {
+            // highlight-start
+            return (
+                <BooleanField
+                    value={row.status === "published"}
+                    trueIcon={<CheckCircleOutlined />}
+                    falseIcon={<CloseCircleOutlined />}
+                    valueLabelTrue="published"
+                    valueLabelFalse="unpublished"
+                />
+            );
+            // highlight-end
+        },
+        align: "center",
+        headerAlign: "center",
+        minWidth: 80,
+    },
+];
 
-    const { data } = tableQueryResult;
+const PostsList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>();
 
     return (
         <List>
-            <Table aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Title</TableCell>
-                        <TableCell align="center">Status</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data?.data.map((row) => (
-                        <TableRow key={row.id}>
-                            <TableCell component="th" scope="row">
-                                {row.title}
-                            </TableCell>
-                            <TableCell align="center">
-                                // highlight-start
-                                <BooleanField
-                                    value={row.status === "published"}
-                                    trueIcon={<Check />}
-                                    falseIcon={<Close />}
-                                    valueLabelTrue="published"
-                                    valueLabelFalse="unpublished"
-                                />
-                                // highlight-end
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
 
-export interface IPost {
+interface IPost {
     id: number;
     title: string;
     status: "published" | "draft" | "rejected";
 }
-```
+// visible-block-end
 
-<br/>
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/boolean/booleanFieldMui.png" alt="BooleanField" />
-</div>
+render(
+    <RefineMuiDemo
+        resources={[
+            {
+                name: "posts",
+                list: PostsList,
+            },
+        ]}
+    />,
+);
+```
 
 ## API Reference
 

@@ -15,74 +15,38 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 Let's see how to use it in a basic list page:
 
-```tsx title="src/pages/posts/list.tsx"
-import { useTable, useMany } from "@pankod/refine-core";
+```tsx live url=http://localhost:3000/posts previewHeight=340px
+// visible-block-start
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    // highlight-next-line
-    TableRow,
+    useDataGrid,
+    DataGrid,
+    GridColumns,
     List,
-    TextFieldComponent,
+    // highlight-next-line
+    TextField,
 } from "@pankod/refine-mui";
 
-export const PostList: React.FC = () => {
-    const { tableQueryResult } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
-    });
-
-    const categoryIds =
-        tableQueryResult?.data?.data?.map((post) => post.categoryId) || [];
-
-    const { data: categoriesData, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
+const columns: GridColumns = [
+    { field: "id", headerName: "ID", type: "number" },
+    {
+        field: "title",
+        headerName: "Title",
+        renderCell: function render({ row }) {
+            // highlight-start
+            return (
+                <TextField value={row.title} />
+            );
+            // highlight-end
         },
-    });
+    },
+];
 
-    const { data } = tableQueryResult;
+const PostsList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>();
 
     return (
         <List>
-            <Table aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Title</TableCell>
-                        <TableCell>Category</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data?.data.map((row) => (
-                        <TableRow key={row.title}>
-                            <TableCell component="th" scope="row">
-                                {row.title}
-                            </TableCell>
-                            <TableCell>
-                                // highlight-start
-                                <TextFieldComponent
-                                    value={
-                                        isLoading
-                                            ? "Loading..."
-                                            : categoriesData?.data.find(
-                                                  (item) => item.id === row.id,
-                                              )?.title
-                                    }
-                                />
-                                // highlight-end
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
@@ -90,24 +54,20 @@ export const PostList: React.FC = () => {
 interface IPost {
     id: number;
     title: string;
-    categoryId: string;
 }
+// visible-block-end
 
-interface ICategory {
-    id: number;
-    title: string;
-}
+render(
+    <RefineMuiDemo
+        resources={[
+            {
+                name: "posts",
+                list: PostsList,
+            },
+        ]}
+    />,
+);
 ```
-
-<br/>
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/text/textFieldMui.png" alt="TagField" />
-</div>
 
 ## API Reference
 

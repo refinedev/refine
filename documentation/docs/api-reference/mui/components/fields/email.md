@@ -15,83 +15,67 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 Let's see how we can use `<EmailField>` with the example in the user list.
 
-```tsx title="src/pages/posts/list.tsx"
-import { useTable } from "@pankod/refine-core";
+```tsx live url=http://localhost:3000/posts previewHeight=340px
+// visible-block-start
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableRow,
+    useDataGrid,
+    DataGrid,
+    GridColumns,
     List,
     // highlight-next-line
     EmailField,
 } from "@pankod/refine-mui";
 
-export const PostList: React.FC = () => {
-    const { tableQueryResult } = useTable<IUser>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
-    });
+const columns: GridColumns = [
+    { field: "id", headerName: "ID", type: "number" },
+    { field: "firstName", headerName: "First Name", minWidth: 300, flex: 1 },
+    { field: "lastName", headerName: "Last Name", minWidth: 300, flex: 1 },
+    {
+        field: "email",
+        headerName: "Email Address",
+        renderCell: function render({ row }) {
+            // highlight-start
+            return (
+                <EmailField value={row.email} />
+            );
+            // highlight-end
+        },
+    },
+];
 
-    const { data } = tableQueryResult;
+const UsersList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IUser>();
 
     return (
         <List>
-            <Table aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>First Name</TableCell>
-                        <TableCell>Last Name</TableCell>
-                        <TableCell>Email</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data?.data.map((row) => (
-                        <TableRow key={row.id}>
-                            <TableCell component="th" scope="row">
-                                {row.firstName}
-                            </TableCell>
-                            <TableCell component="th" scope="row">
-                                {row.lastName}
-                            </TableCell>
-                            <TableCell>
-                                // highlight-next-line
-                                <EmailField value={row.email} />
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
 
-export interface IUser {
+interface IUSer {
     id: number;
     firstName: string;
     lastName: string;
     email: string;
 }
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        resources={[
+            {
+                name: "users",
+                list: UsersList,
+            },
+        ]}
+    />,
+);
 ```
 
 :::tip
 `<EmailField>` uses "mailto:" in the href prop of the [`<Link>`](https://mui.com/material-ui/react-link/#main-content) component. For this reason, clicking `<EmailField>` opens your device's default mail application.
 :::
-
-<br/>
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/email/emailFieldMui.png" alt="EmailField" />
-</div>
 
 ## API Reference
 
