@@ -61,7 +61,7 @@ const PostList: React.FC = () => {
 interface IPost {
     id: number;
     title: string;
-    status: boolean;
+    status: "published" | "draft" | "rejected";
 }
 // visible-block-end
 

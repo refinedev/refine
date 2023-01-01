@@ -15,51 +15,56 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 Let's see how we can use `<DateField>` with the example in the post list.
 
-```tsx live
+```tsx live url=http://localhost:3000/posts previewHeight=340px
 // visible-block-start
-import { 
+import {
+    useDataGrid,
+    DataGrid,
+    GridColumns,
     List,
-    Table,
-    useTable,
     // highlight-next-line
-    DateField 
-} from "@pankod/refine-antd";
+    DateField,
+} from "@pankod/refine-mui";
 
-const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+const columns: GridColumns = [
+    { field: "id", headerName: "ID", type: "number" },
+    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+    {
+        field: "createdAt",
+        headerName: "Created At",
+        renderCell: function render({ row }) {
+            // highlight-start
+            return (
+                <DateField format="LLL" value={row.createdAt} />
+            );
+            // highlight-end
+        },
+    },
+];
+
+const PostsList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>();
 
     return (
         <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" width="100%" />
-                <Table.Column<IPost>
-                    dataIndex="createdAt"
-                    title="Created At"
-                    render={(value) => (
-                        // highlight-next-line
-                        <DateField format="LLL" value={value} />
-                    )}
-                />
-                ...
-            </Table>
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
 
-interface IPost {   
+interface IPost {
     id: number;
-    title: string;   
+    title: string;
     createdAt: string;
 }
 // visible-block-end
 
 render(
-    <RefineAntdDemo
+    <RefineMuiDemo
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostsList,
             },
         ]}
     />,
