@@ -10,6 +10,45 @@ A breadcrumb displays the current location within a hierarchy. It allows going b
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
 :::
 
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
+// visible-block-start
+import { Show, Breadcrumb } from "@pankod/refine-antd";
+
+const PostShow: React.FC = () => {
+    return (
+        <Show
+            // highlight-next-line
+            breadcrumb={<Breadcrumb />}
+        >
+            <p>Content of your show page...</p>
+        </List>
+    );
+};
+// visible-block-end
+
+const PostList = () => {
+    return (
+        <RefineAntd.List>
+            <p>Content of your list page...</p>
+        </RefineAntd.List>
+    )
+};
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/posts/show/123"]}
+        resources={[
+            {
+                name: "posts",
+                icon: <RefineAntd.Icons.ProfileOutlined style={{ width: "18px", height: "18px" }} />,
+                show: PostShow,
+                list: PostList,
+            },
+        ]}
+    />,
+);
+```
+
 ## Properties
 
 ### `breadcrumbProps`
@@ -22,9 +61,8 @@ import { List, Breadcrumb } from "@pankod/refine-antd";
 export const PostList: React.FC = () => {
     return (
         <List
-            pageHeaderProps={{
-                breadcrumb: <Breadcrumb breadcrumbProps={{ separator: "-" }} />,
-            }}
+            // highlight-next-line
+            breadcrumb={<Breadcrumb breadcrumbProps={{ separator: "-" }} />}
         >
             ...
         </List>
@@ -42,9 +80,8 @@ import { List, Breadcrumb } from "@pankod/refine-antd";
 export const PostList: React.FC = () => {
     return (
         <List
-            pageHeaderProps={{
-                breadcrumb: <Breadcrumb showHome={false} />,
-            }}
+            // highlight-next-line
+            breadcrumb={<Breadcrumb showHome={false} />}
         >
             ...
         </List>
@@ -62,9 +99,8 @@ import { List, Breadcrumb } from "@pankod/refine-antd";
 export const PostList: React.FC = () => {
     return (
         <List
-            pageHeaderProps={{
-                breadcrumb: <Breadcrumb hideIcons />,
-            }}
+            // highlight-next-line
+            breadcrumb={<Breadcrumb hideIcons />}
         >
             ...
         </List>
