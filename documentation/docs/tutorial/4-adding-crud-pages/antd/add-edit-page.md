@@ -202,7 +202,3 @@ const App: React.FC = () => {
 };
 export default App;
 ```
-
-**_Checklist for moving on_**
-
--   [x] Edit page oluşturulması kavramını anladım

@@ -309,7 +309,3 @@ const App: React.FC = () => {
 };
 export default App;
 ```
-
-**_Checklist for moving on_**
-
--   [x] List page oluşturulması kavramını anladım

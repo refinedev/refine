@@ -190,8 +190,3 @@ const App: React.FC = () => {
 };
 export default App;
 ```
-
-Kullanılan component ve hookların anlatılması..
-**_Checklist for moving on_**
-
--   [x] Delete features eklenmesini anladım
