@@ -119,7 +119,7 @@ export const SampleCreate: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-Instead of starting from scratch, Inferencer've created the create page code that we can customize.
+Instead of coding the create page component from scratch, Inferencer've created the required code base on API response, so that we can customize.
 
 ## Understanding the Create Component
 

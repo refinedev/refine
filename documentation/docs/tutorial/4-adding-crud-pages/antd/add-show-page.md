@@ -98,7 +98,7 @@ export const SampleShow: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-Instead of starting from scratch, Inferencer've created the show page code that we can customize.
+Instead of coding the show page component from scratch, Inferencer've created the required code base on API response, so that we can customize.
 
 ## Understanding the Show Component
 

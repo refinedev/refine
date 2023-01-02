@@ -221,7 +221,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-Instead of starting from scratch, Inferencer've created the list page code that we can customize.
+Instead of coding the list page component from scratch, Inferencer've created the required code base on API response, so that we can customize.
 
 ## Understanding the List Component
 

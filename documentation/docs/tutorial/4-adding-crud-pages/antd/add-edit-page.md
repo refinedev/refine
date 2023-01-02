@@ -132,7 +132,7 @@ export const SampleEdit: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-Instead of starting from scratch, Inferencer've created the edit page code that we can customize.
+Instead of coding the edit page component from scratch, Inferencer've created the required code base on API response, so that we can customize.
 
 ## Understanding the Edit Component
 
