@@ -121,6 +121,7 @@ type PlaygroundProps = {
     previewHeight?: string;
     url?: string;
     previewOnly?: boolean;
+    isModalOpened?: boolean;
 };
 
 /**
@@ -133,6 +134,7 @@ const LivePreviewBase = ({
     hideCode = false,
     url = "http://localhost:3000",
     previewOnly = false,
+    isModalOpened,
 }: PlaygroundProps): JSX.Element => {
     const code = String(children);
     const { shared } = useLivePreviewContext();

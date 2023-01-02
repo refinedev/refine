@@ -138,17 +138,17 @@ Instead of coding the edit page component from scratch, Inferencer've created th
 
 -   `<Edit/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button, refresh button etc.
 
-Refer to the [`<Edit/>`](/docs/api-reference/antd/components/basic-views/edit) documentation for more information.
+    Refer to the [`<Edit/>`](/docs/api-reference/antd/components/basic-views/edit) documentation for more information.
 
 -   `<Form/>` and `<Form.Item/>` are **Ant Design** components that are used to build the form.
 
-Refer to the [`<Form/>`](https://ant.design/components/form/) documentation for more information.
+    Refer to the [`<Form/>`](https://ant.design/components/form/) documentation for more information.
 
 -   `useForm` is a **refine** hook that provides the necessary props for the form. It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
 
-When you use `useForm` in the edit page, it automatically fetches the data of the record by using the `id` in the URL, then fills the form with the data. It sends the form data to `dataProvider`'s `update` method when the form is submitted.
+    When you use `useForm` in the edit page, it automatically fetches the data of the record by using the `id` in the URL, then fills the form with the data. It sends the form data to `dataProvider`'s `update` method when the form is submitted.
 
-Refer to the [`useForm`](/docs/api-reference/antd/hooks/form/useForm/) documentation for more information.
+    Refer to the [`useForm`](/docs/api-reference/antd/hooks/form/useForm/) documentation for more information.
 
 ## Adding the Edit Page to the App
 

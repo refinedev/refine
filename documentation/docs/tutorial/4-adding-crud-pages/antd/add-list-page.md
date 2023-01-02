@@ -227,26 +227,28 @@ Instead of coding the list page component from scratch, Inferencer've created th
 
 -   `<List/>` is a **refine** component that is used to presentation purposes like showing "Create Button" or page title etc.
 
-Refer to the [`<List/>`](/docs/api-reference/antd/components/basic-views/list) documentation for more information.
+    Refer to the [`<List/>`](/docs/api-reference/antd/components/basic-views/list) documentation for more information.
 
 -   `<Table/>` is a native **Ant Design** component. It renders records row by row as a table.
 
-> `<Table/>` expects a `rowKey` prop as the unique key of the records. In this example, we use `id` field as the `rowKey`.
+    > `<Table/>` expects a `rowKey` prop as the unique key of the records. In this example, we use `id` field as the `rowKey`.
 
-You can find more information about `<Table/>` component from [Ant Design Table](https://ant.design/components/table/).
+    You can find more information about `<Table/>` component from [Ant Design Table](https://ant.design/components/table/).
 
 -   `useTable` hook returns the values needed by the `<Table/>` component in the `tableProps` variable.
 
-This is the point where the ✨real magic✨ happens!
+    This is the point where the ✨real magic✨ happens!
 
-`useTable` hook fetches data from API and wraps them with various helper hooks required for the `<Table/>` component. Data interaction functions like sorting, filtering, and pagination will be instantly available on the `<Table/>` with this single line of code.
+    `useTable` hook fetches data from API and wraps them with various helper hooks required for the `<Table/>` component. Data interaction functions like sorting, filtering, and pagination will be instantly available on the `<Table/>` with this single line of code.
 
-You can find more information about `useTable` hook from [useTable](/docs/api-reference/antd/hooks/table/useTable/).
+    You can find more information about `useTable` hook from [useTable](/docs/api-reference/antd/hooks/table/useTable/).
 
 -   `<Table.Column/>` is a native **Ant Design** component. It renders a column in the table.
 
     -   `dataIndex` prop is used to specify the field of the record that will be rendered in this column.
-    -   `render` prop is used to render custom content in the column. In this example, we use `render` prop to render the `content` field using `<MarkdownField/>` component. You can find more information about `<MarkdownField/>` and other field components from [Field Components](/docs/api-reference/antd/components/fields/markdown/).
+    -   `render` prop is used to render custom content in the column. In this example, we use `render` prop to render the `content` field using `<MarkdownField/>` component.
+
+        You can find more information about `<MarkdownField/>` and other field components from [Field Components](/docs/api-reference/antd/components/fields/markdown/).
 
 -   `<EditButton/>` and `<ShowButton/>` are **refine** components that are used to navigate to the edit and show pages of the record.
 
@@ -254,7 +256,7 @@ You can find more information about `useTable` hook from [useTable](/docs/api-re
 
 -   `useMany` hook is used to fetch the related data of the records. In this example, we use `useMany` hook to fetch the `category`, `user`, `tags`, and `language` fields of the records to show them in the table.
 
-We will cover in detail the handling of related data in the "[Handling Relationships](/docs/tutorial/adding-crud-pages/antd/handling-relationships)" section.
+    We will cover in detail the handling of related data in the "[Handling Relationships](/docs/tutorial/adding-crud-pages/antd/handling-relationships)" section.
 
 ## Adding the List Page to the App
 
