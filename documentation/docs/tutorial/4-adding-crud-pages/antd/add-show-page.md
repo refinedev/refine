@@ -78,6 +78,10 @@ Instead of coding the show page component from scratch, Inferencer've created th
 
     Refer to the [`useShow`](/docs/api-reference/core/hooks/show/useShow/) documentation for more information.
 
+-   `useOne` is a **refine** hook that is used to get single record data by using the `id` and `resource`. It sends the parameters to the `dataProvider`'s `getOne` function and returns the result.
+
+    Refer to the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) documentation for more information.
+
 ## Adding the Show Page to the App
 
 Now that we have created the show page, we need to add it to the `App.tsx` file.

@@ -86,6 +86,10 @@ Instead of coding the create page component from scratch, Inferencer've created 
 
     Refer to the [`useForm`](/docs/api-reference/antd/hooks/form/useForm/) documentation for more information.
 
+-   `useSelect` is a **refine** hook that provides the necessary props for the select component.
+
+    Refer to the [`useSelect`](/docs/api-reference/antd/hooks/field/useSelect/) documentation for more information.
+
 ## Adding the Create Page to the App
 
 Now that we have created the create page, we need to add it to the `App.tsx` file.

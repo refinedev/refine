@@ -72,13 +72,13 @@ Instead of coding the list page component from scratch, Inferencer've created th
 
 ## Understanding the List Component
 
--   `<List/>` is a **refine** component that is used to presentation purposes like showing "Create Button" or page title etc.
+-   `<List/>` is a **refine** component that is used to presentation purposes like showing create button or page title etc.
 
     Refer to the [`<List/>`](/docs/api-reference/antd/components/basic-views/list) documentation for more information.
 
 -   `<Table/>` is a native **Ant Design** component. It renders records row by row as a table.
 
-    > `<Table/>` expects a `rowKey` prop as the unique key of the records. In this example, we use `id` field as the `rowKey`.
+    > `<Table/>` expects a `rowKey` prop as the unique key of the records. In this example, Inferencer use `id` field as the `rowKey`.
 
     You can find more information about `<Table/>` component from [Ant Design Table](https://ant.design/components/table/).
 
@@ -101,7 +101,7 @@ Instead of coding the list page component from scratch, Inferencer've created th
 
 -   `<DeleteButton/>` is a **refine** component that is used to delete the record.
 
--   `useMany` hook is used to fetch the related data of the records. In this example, we use `useMany` hook to fetch the `category`, `user`, `tags`, and `language` fields of the records to show them in the table.
+-   `useMany` hook is used to fetch the related data of the records. In this example, Inferencer use `useMany` hook to fetch the `category`, `user`, `tags`, and `language` fields of the records to show them in the table.
 
     We will cover in detail the handling of related data in the "[Handling Relationships](/docs/tutorial/adding-crud-pages/antd/handling-relationships)" section.
 

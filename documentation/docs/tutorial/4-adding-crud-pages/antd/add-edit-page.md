@@ -84,6 +84,10 @@ Instead of coding the edit page component from scratch, Inferencer've created th
 
     Refer to the [`useForm`](/docs/api-reference/antd/hooks/form/useForm/) documentation for more information.
 
+-   `useSelect` is a **refine** hook that provides the necessary props for the select component.
+
+    Refer to the [`useSelect`](/docs/api-reference/antd/hooks/field/useSelect/) documentation for more information.
+
 ## Adding the Edit Page to the App
 
 Now that we have created the edit page, we need to add it to the `App.tsx` file.
