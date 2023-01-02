@@ -4,7 +4,7 @@ title: Selection of UI Framework
 tutorial:
     order: 2
     prev: tutorial/introduction/prequisite
-    next: tutorial/getting-started/{preferredUI}/index
+    next: tutorial/getting-started/index
 ---
 
 import { SelectTutorialFramework } from '../../../src/components/select-tutorial-framework';
@@ -16,9 +16,5 @@ import { SelectTutorialFramework } from '../../../src/components/select-tutorial
 Before you start, you can read the API references of the [UI frameworks](/docs/api-reference/) to get more information about them.
 
 After this step, the tutorial will proceed according to your UI framework choice. You can choose one of the following UI frameworks or just go with the headless UI option:
-
-<!-- :::tip
-The headless choice is an ideal option for developers who want to create apps without any UI frameworks.
-::: -->
 
 <SelectTutorialFramework />
