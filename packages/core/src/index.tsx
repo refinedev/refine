@@ -95,5 +95,3 @@ export {
     userFriendlyResourceName,
 } from "./definitions/helpers";
 export { file2Base64 } from "./definitions/upload";
-
-export * from "@tanstack/react-query";
