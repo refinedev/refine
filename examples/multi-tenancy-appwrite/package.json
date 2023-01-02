@@ -3,10 +3,10 @@
     "version": "3.25.0",
     "private": true,
     "dependencies": {
-        "@pankod/refine-antd": "^4.5.0",
+        "@pankod/refine-antd": "^4.6.0",
         "@pankod/refine-appwrite": "^5.5.0",
-        "@pankod/refine-core": "^3.90.6",
-        "@pankod/refine-cli": "^1.13.6",
+        "@pankod/refine-core": "^3.91.0",
+        "@pankod/refine-cli": "^1.14.0",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
