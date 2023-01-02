@@ -1,5 +1,28 @@
 # @pankod/refine-core
 
+## 3.92.0
+
+### Minor Changes
+
+-   [#3324](https://github.com/refinedev/refine/pull/3324) [`9bfb34749bc`](https://github.com/refinedev/refine/commit/9bfb34749bc8ddaaf80ccffbd0ad6d0a4487309b) Thanks [@aliemir](https://github.com/aliemir)! - Added the ability to pass mutation options to `useMutation` hooks in mutation hooks:
+    -   `useCreate` (data)
+    -   `useUpdate` (data)
+    -   `useDelete` (data)
+    -   `useDeleteMany` (data)
+    -   `useUpdateMany` (data)
+    -   `useCreateMany` (data)
+    -   `useCustomMutation` (data)
+    -   `useLogin` (auth)
+    -   `useLogout` (auth)
+    -   `useRegister` (auth)
+    -   `useForgotPassword` (auth)
+    -   `useUpdatePassword` (auth)
+    -   `useForm` (form)
+
+### Patch Changes
+
+-   [`814eb1009da`](https://github.com/refinedev/refine/commit/814eb1009da53505f7e82f5ed49f2f90e260c316) Thanks [@omeraplak](https://github.com/omeraplak)! - chore: re-exported `@tanstack/react-query`
+
 ## 3.91.0
 
 ### Minor Changes
