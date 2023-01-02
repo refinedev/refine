@@ -7,15 +7,323 @@ tutorial:
 ---
 
 ## Inferencer
-    
-Inferencerdan ve kullanımından bahsediyoruz. Gerekli doc linklerini veriyoruz
-Inferencer kodlarını ekleyip
 
-Inferencer verildikten sonra oluşan CRUD pageleri screenshotları ekleyebiliriz. Bu CRUD page kod eklemelerini ilerleyen unit de anlatacağız.
+Inferencer is a powerful tool in the **refine** ecosystem that helps developers quickly generate CRUD (create, read, update, delete) pages for their data model. It analyzes your data model based on the resource scheme and automatically creates the necessary forms and tables for CRUD operations.
 
- Bu noktaya kadar her sey magical şekilde ilerliyor. Okuyucu bir nevi şaşırtıyoruz.
-    
+#### Why use Inferencer?
 
-***Checklist for moving on***
-- [x] Inferencerı neden kullandıgımızı anladım
-- [x] Inferencer ile yaratılan pageleri kodları gördüm..
+There are several benefits:
+
+1- The goal of Inferencer is to reduce the amount of time spent on creating views for resources by generating the code automatically. This can save developers a significant amount of time and effort, especially on large projects with many resources.
+
+2- Inferencer generates code that is easy to customize. Instead of starting from scratch, you can use the auto-generated code as a starting point and make changes to fit your specific needs. This allows you to quickly iterate and get your project up and running faster.
+
+3- By using Inferencer, you can avoid common mistakes that can arise when building CRUD pages manually. This can help you avoid bugs and other issues that can arise during development.
+
+Overall, using Inferencer can greatly speed up development time and reduce the amount of code that needs to be written manually. It helps ensure that your CRUD pages are consistent and adhere to best practices, freeing you up to focus on more complex tasks.
+
+#### Learn Inferencer
+
+-   Learn about [how Inferencer works](/docs/packages/documentation/inferencer).
+-   Learn about [how to use Inferencer with Mantine](/docs/api-reference/mantine/components/inferencer/).
+
+## How to use Inferencer
+
+The `@pankod/refine-inferencer` package provides the `<MantineInferencer />` component, which can be imported from `@pankod/refine-inferencer/mantine` and used to generate CRUD pages based on your API response with Mantine components.
+
+The `<MantineInferencer />` component is used by passing to appropriate values in the `resources` prop of the `<Refine />` component in `App.tsx` as shown below:
+
+:::info
+
+In [Unit 4](/docs/tutorial/understanding-resources/index), the resources concept will be explained in detail. For now, you can assume that the resource is a collection of data on your API used in the app.
+
+:::
+
+```tsx title="src/App.tsx"
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+import {
+    MantineProvider,
+    Global,
+    NotificationsProvider,
+    notificationProvider,
+    LightTheme,
+    Layout,
+    ReadyPage,
+    ErrorComponent,
+} from "@pankod/refine-mantine";
+//highlight-next-line
+import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
+
+const App = () => {
+    return (
+        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+            <NotificationsProvider position="top-right">
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    ReadyPage={ReadyPage}
+                    catchAll={<ErrorComponent />}
+                    Layout={Layout}
+                    //highlight-start
+                    resources={[
+                        {
+                            name: "posts",
+                            list: MantineInferencer,
+                            show: MantineInferencer,
+                            create: MantineInferencer,
+                            edit: MantineInferencer,
+                        },
+                    ]}
+                    //highlight-end
+                />
+            </NotificationsProvider>
+        </MantineProvider>
+    );
+};
+
+export default App;
+```
+
+At this point, **refine** will automatically generate the CRUD pages for the `posts` resource based on the API response.
+
+## Preview the auto-generated pages
+
+So far we have added complete CRUD pages by utilizing Inferencer feature to the project. Let's take a look at the auto-generated CRUD pages that Inferencer handles for us.
+
+Before we start, let's understand the API that we will be using in this tutorial. We will be using the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API, which is created by **refine** team to provide a fake REST API for testing purposes.
+
+:::info
+
+In [Unit 3](/docs/tutorial/understanding-dataprovider/index), it will be explained in detail how **refine** apps communicate with the API via the `dataProvider`.
+
+:::
+
+You can view the code generated by Inferencer by clicking the "Show Code" button in the right corner of the live preview below.
+
+### List Page
+
+To preview the list page, go back to your browser and open the `localhost:3000` address. You should see the list page for the `posts` resource that was generated by Inferencer like below:
+
+::: note
+When you navigate to the `localhost:3000`, **refine** will redirect you to the initial resource's list page registered to `<Refine />` component like `localhost:3000/posts`
+:::
+
+```tsx live previewOnly previewHeight=600px url=http://localhost:3000/posts
+setInitialRoutes(["/posts"]);
+
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+import {
+    MantineProvider,
+    Global,
+    NotificationsProvider,
+    notificationProvider,
+    LightTheme,
+    Layout,
+    ReadyPage,
+    ErrorComponent,
+} from "@pankod/refine-mantine";
+import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
+
+const App = () => {
+    return (
+        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+            <NotificationsProvider position="top-right">
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    ReadyPage={ReadyPage}
+                    catchAll={<ErrorComponent />}
+                    Layout={Layout}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: MantineInferencer,
+                            show: MantineInferencer,
+                            create: MantineInferencer,
+                            edit: MantineInferencer,
+                        },
+                    ]}
+                />
+            </NotificationsProvider>
+        </MantineProvider>
+    );
+};
+
+render(<App />);
+```
+
+### Create Page
+
+To preview the create page, go back to your browser and open the `localhost:3000/posts/create` address or click the `Create` button on the list page. You should see the create page for the `posts` resource that was generated by Inferencer like below:
+
+```tsx live previewOnly previewHeight=600px url=http://localhost:3000/posts/create
+setInitialRoutes(["/posts/create"]);
+
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+import {
+    MantineProvider,
+    Global,
+    NotificationsProvider,
+    notificationProvider,
+    LightTheme,
+    Layout,
+    ReadyPage,
+    ErrorComponent,
+} from "@pankod/refine-mantine";
+import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
+
+const App = () => {
+    return (
+        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+            <NotificationsProvider position="top-right">
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    ReadyPage={ReadyPage}
+                    catchAll={<ErrorComponent />}
+                    Layout={Layout}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: MantineInferencer,
+                            show: MantineInferencer,
+                            create: MantineInferencer,
+                            edit: MantineInferencer,
+                        },
+                    ]}
+                />
+            </NotificationsProvider>
+        </MantineProvider>
+    );
+};
+
+render(<App />);
+```
+
+### Edit Page
+
+To preview the create page, go back to your browser and open the `localhost:3000/posts/edit/123` address or click the `Edit` button on the record in the list page. You should see the edit page for the `posts` resource with the id `123` that was generated by Inferencer like below:
+
+```tsx live previewOnly previewHeight=600px url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
+
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+import {
+    MantineProvider,
+    Global,
+    NotificationsProvider,
+    notificationProvider,
+    LightTheme,
+    Layout,
+    ReadyPage,
+    ErrorComponent,
+} from "@pankod/refine-mantine";
+import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
+
+const App = () => {
+    return (
+        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+            <NotificationsProvider position="top-right">
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    ReadyPage={ReadyPage}
+                    catchAll={<ErrorComponent />}
+                    Layout={Layout}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: MantineInferencer,
+                            show: MantineInferencer,
+                            create: MantineInferencer,
+                            edit: MantineInferencer,
+                        },
+                    ]}
+                />
+            </NotificationsProvider>
+        </MantineProvider>
+    );
+};
+
+render(<App />);
+```
+
+### Show Page
+
+To preview the create page, go back to your browser and open the `localhost:3000/posts/show/123` address or click the `Show` button on the record in the list page. You should see the show page for the `posts` resource with the id `123` that was generated by Inferencer like below:
+
+```tsx live previewOnly previewHeight=600px url=http://localhost:3000/posts/show/123
+setInitialRoutes(["/posts/show/123"]);
+
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+import {
+    MantineProvider,
+    Global,
+    NotificationsProvider,
+    notificationProvider,
+    LightTheme,
+    Layout,
+    ReadyPage,
+    ErrorComponent,
+} from "@pankod/refine-mantine";
+import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
+
+const App = () => {
+    return (
+        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+            <NotificationsProvider position="top-right">
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    ReadyPage={ReadyPage}
+                    catchAll={<ErrorComponent />}
+                    Layout={Layout}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: MantineInferencer,
+                            show: MantineInferencer,
+                            create: MantineInferencer,
+                            edit: MantineInferencer,
+                        },
+                    ]}
+                />
+            </NotificationsProvider>
+        </MantineProvider>
+    );
+};
+
+render(<App />);
+```
+
+In [Unit 5](/docs/tutorial/adding-crud-pages/mantine/index), you will learn how to create CRUD pages manually using the code generated by Inferencer as a reference.
