@@ -1,4 +1,8 @@
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import {
+    useMutation,
+    UseMutationOptions,
+    UseMutationResult,
+} from "@tanstack/react-query";
 import pluralize from "pluralize";
 
 import {
@@ -38,6 +42,21 @@ export type UseCreateManyReturnType<
     unknown
 >;
 
+export type UseCreateManyProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {},
+> = {
+    mutationOptions?: Omit<
+        UseMutationOptions<
+            CreateManyResponse<TData>,
+            TError,
+            useCreateManyParams<TVariables>
+        >,
+        "mutationFn" | "onError" | "onSuccess"
+    >;
+};
+
 /**
  * `useCreateMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for multiple create mutations.
  *
@@ -54,7 +73,13 @@ export const useCreateMany = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
->(): UseCreateManyReturnType<TData, TError, TVariables> => {
+>({
+    mutationOptions,
+}: UseCreateManyProps<TData, TError, TVariables> = {}): UseCreateManyReturnType<
+    TData,
+    TError,
+    TVariables
+> => {
     const dataProvider = useDataProvider();
 
     const { resources } = useResource();
@@ -176,6 +201,7 @@ export const useCreateMany = <
                     type: "error",
                 });
             },
+            ...mutationOptions,
         },
     );
 
