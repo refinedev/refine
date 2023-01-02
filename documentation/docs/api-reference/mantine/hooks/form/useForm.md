@@ -3,16 +3,225 @@ id: useForm
 title: useForm
 ---
 
-`useForm` is used to manage forms. It is based on [`useForm`][use-form-mantine] from the `@mantine/form` package and [`useForm`][use-form-core] from the `@pankod/refine-core` package. It supports all the features of these packages and adds some additional features.
+```tsx live shared
+import React from "react";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+
+import {
+    Edit as MantineEdit,
+    Create as MantineCreate,
+    List as MantineList,
+    Form as MantineForm,
+    Input as MantineInput,
+    useTable as useMantineTable,
+    EditButton as MantineEditButton,
+    Box as MantineBox,
+    Group as MantineGroup,
+    ScrollArea as MantineScrollArea,
+    Table as MantineTable,
+    Pagination as MantinePagination,
+    TextInput as MantineTextInput,
+    Text as MantineText,
+    Textarea as MantineTextarea,
+} from "@pankod/refine-mantine";
+
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+}
+
+const PostList: React.FC = () => {
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
+        () => [
+            {
+                id: "id",
+                header: "ID",
+                accessorKey: "id",
+            },
+            {
+                id: "title",
+                header: "Title",
+                accessorKey: "title",
+                meta: {
+                    filterOperator: "contains",
+                },
+            },
+
+            {
+                id: "actions",
+                header: "Actions",
+                accessorKey: "id",
+                enableColumnFilter: false,
+                enableSorting: false,
+                cell: function render({ getValue }) {
+                    return (
+                        <MantineGroup spacing="xs" noWrap>
+                            <MantineEditButton
+                                hideText
+                                recordItemId={getValue() as number}
+                            />
+                        </MantineGroup>
+                    );
+                },
+            },
+        ],
+        [],
+    );
+
+    const {
+        getHeaderGroups,
+        getRowModel,
+        refineCore: { setCurrent, pageCount, current },
+    } = useTable({
+        columns,
+    });
+
+    return (
+        <MantineScrollArea>
+            <MantineList>
+                <MantineTable highlightOnHover>
+                    <thead>
+                        {getHeaderGroups().map((headerGroup) => (
+                            <tr key={headerGroup.id}>
+                                {headerGroup.headers.map((header) => {
+                                    return (
+                                        <th key={header.id}>
+                                            {!header.isPlaceholder && (
+                                                <MantineGroup
+                                                    spacing="xs"
+                                                    noWrap
+                                                >
+                                                    <MantineBox>
+                                                        {flexRender(
+                                                            header.column
+                                                                .columnDef
+                                                                .header,
+                                                            header.getContext(),
+                                                        )}
+                                                    </MantineBox>
+                                                </MantineGroup>
+                                            )}
+                                        </th>
+                                    );
+                                })}
+                            </tr>
+                        ))}
+                    </thead>
+                    <tbody>
+                        {getRowModel().rows.map((row) => {
+                            return (
+                                <tr key={row.id}>
+                                    {row.getVisibleCells().map((cell) => {
+                                        return (
+                                            <td key={cell.id}>
+                                                {flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext(),
+                                                )}
+                                            </td>
+                                        );
+                                    })}
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </MantineTable>
+                <br />
+                <MantinePagination
+                    position="right"
+                    total={pageCount}
+                    page={current}
+                    onChange={setCurrent}
+                />
+            </MantineList>
+        </MantineScrollArea>
+    );
+};
+
+const PostEdit: React.FC = () => {
+    const { saveButtonProps, getInputProps, errors } = useForm({
+        initialValues: {
+            title: "",
+            content: "",
+        },
+    });
+
+    return (
+        <MantineEdit saveButtonProps={saveButtonProps}>
+            <form>
+                <MantineTextInput
+                    mt={8}
+                    label="Title"
+                    placeholder="Title"
+                    {...getInputProps("title")}
+                />
+                <MantineTextarea
+                    {...getInputProps("content")}
+                    label="Content"
+                    placeholder="Content"
+                    minRows={4}
+                    maxRows={4}
+                />
+                {errors.content && (
+                    <MantineText mt={2} weight={500} size="xs" color="red">
+                        {errors.content}
+                    </MantineText>
+                )}
+            </form>
+        </MantineEdit>
+    );
+};
+
+const PostCreate: React.FC = () => {
+    const { saveButtonProps, getInputProps, errors } = mantineUseForm({
+        initialValues: {
+            title: "",
+            content: "",
+        },
+    });
+
+    return (
+        <MantineCreate saveButtonProps={saveButtonProps}>
+            <form>
+                <MantineTextInput
+                    mt={8}
+                    label="Title"
+                    placeholder="Title"
+                    {...getInputProps("title")}
+                />
+                <MantineTextarea
+                    {...getInputProps("content")}
+                    label="Content"
+                    placeholder="Content"
+                    minRows={4}
+                    maxRows={4}
+                />
+                {errors.content && (
+                    <MantineText mt={2} weight={500} size="xs" color="red">
+                        {errors.content}
+                    </MantineText>
+                )}
+            </form>
+        </MantineCreate>
+    );
+};
+```
+
+`useForm` is used to manage forms. It is based on [`mantine useForm`][use-form-mantine] and [`**reifne** useForm`][use-form-core] to supports all the features of these packages and adds some additional features.
+
+<GeneralConceptsLink />
 
 ## Usage
+
+> For more detailed usage examples please refer to the [Mantine Form](https://mantine.dev/form/use-form/) documentation.
 
 We'll show the basic usage of `useForm` by adding an editing form.
 
 ```tsx
 import { Edit, Select, TextInput, useForm } from "@pankod/refine-mantine";
 
-export const PostEdit: React.FC = () => {
+const PostEdit: React.FC = () => {
     const { saveButtonProps, getInputProps } = useForm({
         initialValues: {
             title: "",
@@ -56,6 +265,603 @@ In the example if you navigate to `/posts/edit/1234` it will manage the data of 
 Since this is an edit form it will fill the form with the data of the post with id of `1234` and then the form will be ready to edit further and submit the changes.
 
 Submit functionality is provided by `saveButtonProps` which includes all of the necessary props for a button to submit a form including automatically updating loading states.
+
+:::tip
+If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/docs/api-reference/mantine/hooks/form/useModalForm/) or the [useDrawerForm](/docs/api-reference/mantine/hooks/form/useDrawerForm/) hook.
+:::
+
+## Options
+
+### `action`
+
+`useForm` can handle `edit`, `create` and `clone` actions.
+
+:::tip
+By default, it determines the `action` from route.
+
+-   If the route is `/posts/create` thus the hook will be called with `action: "create"`.
+-   If the route is `/posts/edit/1`, the hook will be called with `action: "edit"`.
+-   If the route is `/posts/clone/1`, the hook will be called with `action: "clone"`.
+
+It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
+:::
+
+<Tabs
+defaultValue="create"
+values={[
+{label: 'create', value: 'create'},
+{label: 'edit', value: 'edit'},
+{label: 'clone', value: 'clone'}
+]}>
+<TabItem value="create">
+
+`action: "create"` is used for creating a new record that didn't exist before.
+
+`useForm` uses [`useCreate`](/docs/api-reference/core/hooks/data/useCreate.md) under the hood for mutations on create mode.
+
+In the following example, we'll show how to use `useForm` with `action: "create"`.
+
+```tsx live url=http://localhost:3000 previewHeight=420px
+setInitialRoutes(["/posts/create"]);
+
+// visible-block-start
+import React from "react";
+
+import {
+    Create,
+    Text,
+    TextInput,
+    Textarea,
+    useForm,
+} from "@pankod/refine-mantine";
+
+import { IPost } from "interfaces";
+
+const PostCreatePage: React.FC = () => {
+    const { saveButtonProps, getInputProps, errors } = useForm({
+        initialValues: {
+            title: "",
+            content: "",
+        },
+    });
+
+    return (
+        <Create saveButtonProps={saveButtonProps}>
+            <form>
+                <TextInput
+                    mt={8}
+                    label="Title"
+                    placeholder="Title"
+                    {...getInputProps("title")}
+                />
+                <Textarea
+                    {...getInputProps("content")}
+                    label="Content"
+                    placeholder="Content"
+                    minRows={4}
+                    maxRows={4}
+                />
+                {errors.content && (
+                    <Text mt={2} weight={500} size="xs" color="red">
+                        {errors.content}
+                    </Text>
+                )}
+            </form>
+        </Create>
+    );
+};
+// visible-block-end
+
+setRefineProps({
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+            create: PostCreatePage,
+            edit: PostEdit,
+        },
+    ],
+});
+
+render(<RefineMantineDemo />);
+```
+
+</TabItem>
+
+<TabItem value="edit">
+
+`action: "edit"` is used for editing an existing record. It requires the `id` for determining the record to edit. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
+
+It fetches the record data according to the `id` with [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/api-reference/core/hooks/data/useUpdate.md).
+
+In the following example, we'll show how to use `useForm` with `action: "edit"`.
+
+```tsx live url=http://localhost:3000 previewHeight=420px
+setInitialRoutes(["/posts/edit/123"]);
+
+// visible-block-start
+import React from "react";
+
+import {
+    Edit,
+    Text,
+    TextInput,
+    Textarea,
+    useForm,
+} from "@pankod/refine-mantine";
+
+import { IPost } from "interfaces";
+
+const PostEditPage: React.FC = () => {
+    const { saveButtonProps, getInputProps, errors } = useForm({
+        initialValues: {
+            title: "",
+            content: "",
+        },
+    });
+
+    return (
+        <Edit saveButtonProps={saveButtonProps}>
+            <form>
+                <TextInput
+                    mt={8}
+                    label="Title"
+                    placeholder="Title"
+                    {...getInputProps("title")}
+                />
+                <Textarea
+                    {...getInputProps("content")}
+                    label="Content"
+                    placeholder="Content"
+                    minRows={4}
+                    maxRows={4}
+                />
+                {errors.content && (
+                    <Text mt={2} weight={500} size="xs" color="red">
+                        {errors.content}
+                    </Text>
+                )}
+            </form>
+        </Edit>
+    );
+};
+// visible-block-end
+
+setRefineProps({
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+            create: PostCreate,
+            edit: PostEditPage,
+        },
+    ],
+});
+
+render(<RefineMantineDemo />);
+```
+
+</TabItem>
+
+<TabItem value="clone">
+
+`action: "clone"` is used for cloning an existing record. It requires the `id` for determining the record to clone. By default, it uses the `id` from the route. It can be changed with the `setId` function.
+
+You can think `action:clone` like save as. It's similar to `action:edit` but it creates a new record instead of updating the existing one.
+
+It fetches the record data according to the `id` with [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and returns the `queryResult` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/api-reference/core/hooks/data/useCreate.md).
+
+In the following example, we'll show how to use `useForm` with `action: "clone"`. You will see `action:clone` toggle at the top of the page. You can toggle it to set the action to `clone`.
+
+```tsx live url=http://localhost:3000 previewHeight=420px
+setInitialRoutes(["/posts/edit/123"]);
+
+// visible-block-start
+import React from "react";
+
+import {
+    Edit,
+    Text,
+    TextInput,
+    Textarea,
+    Switch,
+    useForm,
+} from "@pankod/refine-mantine";
+
+import { IPost } from "interfaces";
+
+const PostEditPage: React.FC = () => {
+    // highlight-next-line
+    const [action, setAction] = React.useState<"edit" | "clone">("clone");
+
+    const { saveButtonProps, getInputProps, errors } = useForm({
+        // highlight-start
+        refineCoreProps: {
+            action,
+        },
+        // highlight-end
+        initialValues: {
+            title: "",
+            content: "",
+        },
+    });
+
+    return (
+        <Edit
+            saveButtonProps={saveButtonProps}
+            headerButtons={(props) => {
+                /* highlight-start */
+                return (
+                    <>
+                        {props.defaultButtons}
+                        <Switch
+                            label="Clone"
+                            checked={action === "clone"}
+                            onChange={(e) =>
+                                setAction(
+                                    e.currentTarget.checked ? "clone" : "edit",
+                                )
+                            }
+                        />
+                    </>
+                );
+            }}
+        >
+            {/* highlight-end */}
+            <form>
+                <TextInput
+                    mt={8}
+                    label="Title"
+                    placeholder="Title"
+                    {...getInputProps("title")}
+                />
+                <Textarea
+                    {...getInputProps("content")}
+                    label="Content"
+                    placeholder="Content"
+                    minRows={4}
+                    maxRows={4}
+                />
+                {errors.content && (
+                    <Text mt={2} weight={500} size="xs" color="red">
+                        {errors.content}
+                    </Text>
+                )}
+            </form>
+        </Edit>
+    );
+};
+// visible-block-end
+
+setRefineProps({
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+            create: PostCreate,
+            edit: PostEditPage,
+        },
+    ],
+});
+
+render(<RefineMantineDemo />);
+```
+
+</TabItem>
+
+</Tabs>
+
+### `id`
+
+`id` is used for determining the record to `edit` or `clone`. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
+
+It is usefull when you want to `edit` or `clone` a `resource` from a different page.
+
+```tsx
+const form = useForm({
+    refineCoreProps: {
+        action: "edit", // or clone
+        resource: "categories",
+        id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
+    },
+});
+```
+
+Also you can give `id` from `resource` prop.
+
+```tsx
+const form = useForm({
+    refineCoreProps: {
+        action: "edit", // or clone
+        resource: "categories/subcategory/3", // <BASE_URL_FROM_DATA_PROVIDER>/categories/subcategory/3/
+    },
+});
+```
+
+### `redirect`
+
+`redirect` is used for determining the page to redirect after the form is submitted. By default, it uses the `list`. It can be changed with the `redirect` property.
+
+It can be set to `"show" | "edit" | "list" | "create"` or `false` to prevent the page from redirecting to the list page after the form is submitted.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    refineCoreProps: {
+        redirect: false,
+    },
+});
+```
+
+### `onMutationSuccess`
+
+It's a callback function that will be called after the mutation is successful.
+
+It receives the following parameters:
+
+-   `data`: The data returned from the mutation.
+-   `variables`: The variables passed to the mutation.
+-   `context`: react-query context.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    refineCoreProps: {
+        onMutationSuccess: (data, variables, context) => {
+            console.log({ data, variables, context });
+        },
+    },
+});
+```
+
+### `onMutationError`
+
+It's a callback function that will be called after the mutation is failed.
+
+It receives the following parameters:
+
+-   `data`: The data returned from the mutation.
+-   `variables`: The variables passed to the mutation.
+-   `context`: react-query context.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    refineCoreProps: {
+        onMutationError: (data, variables, context) => {
+            console.log({ data, variables, context });
+        },
+    },
+});
+```
+
+### `invalidates`
+
+You can use it to manage the invalidations that will occur at the end of the mutation.
+
+By default it's invalidates following queries from the current `resource`:
+
+-   on `create` or `clone` mode: `"list"` and `"many"`
+-   on `edit` mode: `"list`", `"many"` and `"detail"`
+
+### `dataProviderName`
+
+If there is more than one dataProvider, you should use the dataProviderName that you will use.
+It is useful when you want to use a different dataProvider for a specific resource.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    refineCoreProps: {
+        dataProviderName: "second-data-provider",
+    },
+});
+```
+
+### `mutationMode`
+
+Mutation mode determines which mode the mutation runs with. Mutations can run under three different modes: `pessimistic`, `optimistic` and `undoable`. Default mode is `pessimistic`.
+Each mode corresponds to a different type of user experience.
+
+-   `pessimistic`: The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly.
+-   `optimistic`:The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. If mutation returns with error, UI updates to show data prior to the mutation.
+-   `undoable`: The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. Waits for a customizable amount of timeout period before mutation is applied. During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly. > It's only available for `edit` action.
+
+> For more information about mutation modes, please check [Mutation Mode documentation](/docs/advanced-tutorials/mutation-mode/#supported-data-hooks) page.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    refineCoreProps: {
+        action: "edit",
+        resource: "categories",
+        mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
+    },
+});
+```
+
+### `successNotification`
+
+> `NotificationProvider` is required.
+
+After form is submitted successfully, `refine` will show a success notification. With this prop, you can customize the success notification.
+
+```tsx title="src/posts/create.tsx"
+const form = useForm({
+    refineCoreProps: {
+        successNotification: (data, values, resource) => {
+            return {
+                message: `Post Successfully created with ${data.title}`,
+                description: "Success with no errors",
+                type: "success",
+            };
+        },
+    },
+});
+```
+
+### `errorNotification`
+
+> `NotificationProvider` is required.
+
+After form is submit is failed, `refine` will show a error notification. With this prop, you can customize the error notification.
+
+```tsx title="src/posts/create.tsx"
+const form = useForm({
+    refineCoreProps: {
+        action: "create",
+        resource: "post",
+        errorNotification: (data, values, resource) => {
+            return {
+                message: `Something went wrong when deleting ${data.id}`,
+                description: "Error",
+                type: "error",
+            };
+        },
+    },
+});
+```
+
+```json title="Default values"
+{
+    "message": "Error when updating <resource-name> (status code: ${err.statusCode})" or "Error when creating <resource-name> (status code: ${err.statusCode})",
+    "description": "Error",
+    "type": "error",
+}
+```
+
+### `metaData`
+
+[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+
+-   To pass additional information to data provider methods.
+-   Generate GraphQL queries using plain JavaScript Objects (JSON).
+
+In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
+
+```tsx
+const form = useForm({
+    refineCoreProps: {
+        action: "create",
+        resource: "post",
+        // highlight-start
+        metaData: {
+            headers: { "x-meta-data": "true" },
+        },
+        // highlight-end
+    },
+});
+
+const myDataProvider = {
+    //...
+    // highlight-start
+    create: async ({ resource, id, metaData }) => {
+        const headers = metaData?.headers ?? {};
+        // highlight-end
+        const url = `${apiUrl}/${resource}/${id}`;
+
+        // highlight-next-line
+        const { data } = await httpClient.get(url, { headers });
+
+        return {
+            data,
+        };
+    },
+    //...
+};
+```
+
+### `queryOptions`
+
+> Works only in `action: "edit"` or `action: "clone"` mode.
+
+in `edit` or `clone` mode, `refine` uses [`useOne`](/docs/api-reference/core/hooks/data/useOne/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing `queryOptions` property.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    refineCoreProps: {
+        // highlight-start
+        queryOptions: {
+            retry: 3,
+        },
+        // highlight-end
+    },
+});
+```
+
+### `liveMode`
+
+Whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
+For more information about live mode, please check [Live / Realtime](/docs/advanced-tutorials/real-time/) page.
+
+## FAQ
+
+### How can Invalidate other resources?
+
+You can invalidate other resources with help of [`useInvalidate`](/docs/api-reference/core/hooks/invalidate/useInvalidate/) hook.
+
+```tsx title="src/posts/edit.tsx"
+import React from "react";
+import { Create, Form, Input, useForm } from "@pankod/refine-antd";
+
+const PostEdit = () => {
+    const invalidate = useInvalidate();
+
+    const form = useForm({
+        refineCoreProps: {
+            // highlight-start
+            onMutationSuccess: (data, variables, context) => {
+                invalidate({
+                    resource: "categories",
+                    invalidates: ["resourceAll"],
+                });
+            },
+            // highlight-end
+        },
+    });
+
+    // ---
+};
+```
+
+### How can I change the form data before submitting it to the API?
+
+You may need to modify the form data before it is sent to the API.
+
+For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
+
+```tsx title="pages/user/create.tsx"
+import React from "react";
+import { Create, TextInput, useForm } from "@pankod/refine-mantine";
+
+const UserCreate: React.FC = () => {
+    const { saveButtonProps, getInputProps } = useForm({
+        initialValues: {
+            name: "",
+            surname: "",
+        },
+        // highlight-start
+        transformValues: (values) => ({
+            fullName: `${values.name} ${values.surname}`,
+        }),
+        // highlight-end
+    });
+
+    return (
+        <Create saveButtonProps={saveButtonProps}>
+            <form>
+                <TextInput
+                    mt={8}
+                    label="Name"
+                    placeholder="Name"
+                    {...getInputProps("name")}
+                />
+                <TextInput
+                    mt={8}
+                    label="Surname"
+                    placeholder="Surname"
+                    {...getInputProps("surname")}
+                />
+            </form>
+        </Create>
+    );
+};
+```
 
 ## API Reference
 
@@ -117,7 +923,6 @@ const {
 ## Example
 
 <StackblitzExample path="form-mantine-use-form" />
-
 
 [use-form-core]: /api-reference/core/hooks/useForm.md
 [use-form-mantine]: https://mantine.dev/form/use-form

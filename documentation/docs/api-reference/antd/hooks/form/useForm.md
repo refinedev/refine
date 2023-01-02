@@ -116,9 +116,7 @@ const PostCreate = () => {
 };
 ```
 
-`useForm` is used to manage forms. It uses Ant Design [Form](https://ant.design/components/form/) data scope management under the hood and returns the required props for managing the form actions.
-
-It uses **refine** [core useForm](/docs/api-reference/core/hooks/useForm) under the hood to access the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) and other **refine** features.
+`useForm` is used to manage forms. It is based on [Antd Form](https://ant.design/components/form/) and [`refine useForm`][use-form-core] to supports all the features of these packages and adds some additional features.
 
 <GeneralConceptsLink />
 
@@ -387,6 +385,7 @@ const PostEditPage: React.FC<IResourceComponentsProps> = () => {
         <Edit
             saveButtonProps={saveButtonProps}
             headerButtons={
+                /* highlight-start */
                 <Space>
                     <Switch
                         checked={action === "clone"}
@@ -398,6 +397,7 @@ const PostEditPage: React.FC<IResourceComponentsProps> = () => {
                 </Space>
             }
         >
+            {/* highlight-end */}
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
