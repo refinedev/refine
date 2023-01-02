@@ -24,20 +24,13 @@ export const LogList = ({ currentCanvas }: TLogListProps) => {
                     <AntdList.Item.Meta
                         avatar={
                             <Avatar
-                                src={
-                                    JSON.parse(item?.author)?.user_metadata
-                                        ?.avatar_url
-                                }
+                                src={item?.author?.user_metadata?.avatar_url}
                                 size={20}
                             />
                         }
                     />
                     <Typography.Text style={{ fontSize: "12px" }}>
-                        <strong>
-                            {`${
-                                JSON.parse(item?.author)?.user_metadata?.email
-                            }`}
-                        </strong>
+                        <strong>{item?.author?.user_metadata?.email}</strong>
                         {` ${item.action}d a pixel on canvas: `}
                         <strong>{`${item?.meta?.canvas?.name} `}</strong>
                         <span
