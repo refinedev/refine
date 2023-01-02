@@ -49,11 +49,11 @@ export default App;
 
 In the above example, we have added a `resource` with name `posts`. This resource has 5 pages. `list`, `show`, `create`, `clone` and `edit` pages and **refine** link the pages with routes for us. We can access these pages by visiting the following routes:
 
--   `/posts` - the list page
--   `/posts/show/:id` - the show page
--   `/posts/create` - the create page
--   `/posts/clone/:id` - the clone page
--   `/posts/edit/:id` - the edit page
+-   `/posts` - Post List Page
+-   `/posts/show/:id` - Post Detail Page
+-   `/posts/create` - Post Create Page
+-   `/posts/clone/:id` - Post Clone Page
+-   `/posts/edit/:id` - Post Edit Page
 
 :::tip
 
