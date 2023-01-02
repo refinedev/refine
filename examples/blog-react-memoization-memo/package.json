@@ -6,11 +6,12 @@
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
         "react-scripts": "^5.0.0",
+        "cross-env": "^7.0.3",
         "web-vitals": "^1.1.1"
     },
     "scripts": {
         "start": "react-scripts start",
-        "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
+        "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "refine": "refine"

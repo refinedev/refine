@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "NODE_OPTIONS=--max_old_space_size=4096 next dev",
+        "dev": "cross-env NODE_OPTIONS=--max_old_space_size=4096 next dev",
         "build": "next build && rm -rf .next/cache",
         "start": "next start",
         "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
@@ -14,6 +14,7 @@
         "@pankod/refine-nextjs-router": "^4.1.0",
         "@pankod/refine-simple-rest": "^3.37.4",
         "next": "^13.0.6",
+        "cross-env": "^7.0.3",
         "next-compose-plugins": "^2.2.1",
         "react": "^18.0.0",
         "react-dom": "^18.0.0"
