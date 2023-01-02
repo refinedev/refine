@@ -1,13 +1,6 @@
 import React from "react";
 import { useLogList } from "@pankod/refine-core";
-import {
-    Avatar,
-    AntdList,
-    Space,
-    Spin,
-    Typography,
-    List,
-} from "@pankod/refine-antd";
+import { Avatar, AntdList, Typography } from "@pankod/refine-antd";
 import { formattedDate, timeFromNow } from "utility/time";
 
 type TLogListProps = {
@@ -15,7 +8,7 @@ type TLogListProps = {
 };
 
 export const LogList = ({ currentCanvas }: TLogListProps) => {
-    const { isLoading, data } = useLogList({
+    const { data } = useLogList({
         resource: "pixels",
         meta: {
             canvas: currentCanvas,
