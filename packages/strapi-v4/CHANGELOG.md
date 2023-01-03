@@ -1,5 +1,12 @@
 # @pankod/refine-strapi-v4
 
+## 3.39.6
+
+### Patch Changes
+
+-   [#3338](https://github.com/refinedev/refine/pull/3338) [`747129fa32c`](https://github.com/refinedev/refine/commit/747129fa32c7caead672c4197b0513df21e3d61c) Thanks [@npanti](https://github.com/npanti)! - Wrong mapping of case insensitive CRUD operators
+    See: https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/filtering-locale-publication.html#filtering
+
 ## 3.39.5
 
 ### Patch Changes
