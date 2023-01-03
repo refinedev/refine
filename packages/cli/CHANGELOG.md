@@ -1,5 +1,11 @@
 # @pankod/refine-cli
 
+## 1.15.0
+
+### Minor Changes
+
+-   [#3330](https://github.com/refinedev/refine/pull/3330) [`ff2b87f92af`](https://github.com/refinedev/refine/commit/ff2b87f92af66dc583e614f746646567d6d56eb9) Thanks [@aliemir](https://github.com/aliemir)! - Do not prompt the component selection if there is only one component to swizzle.
+
 ## 1.14.0
 
 ### Minor Changes
