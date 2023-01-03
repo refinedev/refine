@@ -25,13 +25,13 @@ const { resource } = useResource({
 
 ### Return value
 
-| Description  | Type                                                                       |
-| ------------ | -------------------------------------------------------------------------- |
-| resources    | [`IResourceItem[]`](#interfaces)                                           |
-| resource     | [`IResourceItem`](#interfaces)                                             |
-| resourceName | `string`                                                                   |
-| id           | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                     |
-| action       | `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"` \| `undefined` |
+| Description  | Type                                                           |
+| ------------ | -------------------------------------------------------------- |
+| resources    | [`IResourceItem[]`](#interfaces)                               |
+| resource     | [`IResourceItem`](#interfaces)                                 |
+| resourceName | `string`                                                       |
+| id           | [`BaseKey`](/api-reference/core/interfaces.md#basekey)         |
+| action       | `undefined` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"` |
 
 #### Interfaces
 
