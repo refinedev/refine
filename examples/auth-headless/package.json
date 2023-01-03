@@ -8,7 +8,7 @@
         "refine": "refine"
     },
     "dependencies": {
-        "@pankod/refine-core": "^3.93.0",
+        "@pankod/refine-core": "^3.94.0",
         "@pankod/refine-cli": "^1.15.0",
         "@pankod/refine-react-hook-form": "^3.37.2",
         "@pankod/refine-react-table": "^4.9.0",
