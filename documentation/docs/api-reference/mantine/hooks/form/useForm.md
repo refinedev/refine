@@ -208,7 +208,7 @@ const PostCreate: React.FC = () => {
 };
 ```
 
-`useForm` is used to manage forms. It is based on [`mantine useForm`][use-form-mantine] and [`**reifne** useForm`][use-form-core] to supports all the features of these packages and adds some additional features.
+`useForm` is used to manage forms. It is based on [`Mantine useForm`][use-form-mantine] and [`refine useForm`][use-form-core] to supports all the features of these packages and adds some additional features.
 
 <GeneralConceptsLink />
 
