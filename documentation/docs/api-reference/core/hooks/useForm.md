@@ -1133,20 +1133,13 @@ const form = useForm({
 
 It is usefull when you want to `edit` or `clone` a `resource` from a different page.
 
+> Note: `id` is required when `action: "edit"` or `action: "clone"`.
+
 ```tsx
 const form = useForm({
     action: "edit", // or clone
     resource: "categories",
     id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
-});
-```
-
-Also you can give `id` from `resource` prop.
-
-```tsx
-const form = useForm({
-    action: "edit", // or clone
-    resource: "categories/subcategory/3", // <BASE_URL_FROM_DATA_PROVIDER>/categories/subcategory/3/
 });
 ```
 

@@ -172,10 +172,6 @@ interface IPost {
 }
 ```
 
-```tsx
-const { formProps, saveButtonProps } = useForm<IPost>();
-```
-
 `formProps` includes all necessary values to manage Ant Design [Form](https://ant.design/components/form/) components.
 
 In the example if you navigate to `/posts/edit/1234` it will manage the data of the post with id of `1234` in an editing context. See [Actions](#actions) on how `useForm` determines this is an editing context.
@@ -445,26 +441,72 @@ render(<RefineAntdDemo />);
 
 </Tabs>
 
+### `resource`
+
+**refine** passes the `resource` to the `dataProvider` as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
+
+The `resource` value is determined from the active route where the component or the hook is used. It can be overridden by passing the `resource` prop.
+
+Use case for overriding the `resource` prop:
+
+-   We can create a `category` from the `<PostEdit>` page.
+-   We can edit a `category` from the `<PostEdit>` page.
+
+In the following example, we'll show how to use `useForm` with `resource` prop.
+
+```tsx title="src/posts/edit.tsx"
+import { Edit, Form, Input, useForm } from "@pankod/refine-antd";
+import { PostForm } from "./PostForm";
+
+const PostEdit = () => {
+    return (
+        <div>
+            <PostForm />
+            <CategoryForm />
+        </div>
+    );
+};
+
+const CategoryForm = () => {
+    const { formProps, saveButtonProps } = useForm({
+        action: "create",
+        resource: "categories",
+    });
+
+    return (
+        <Edit saveButtonProps={saveButtonProps}>
+            <Form {...formProps} layout="vertical">
+                <Form.Item label="Title" name="title">
+                    <Input />
+                </Form.Item>
+            </Form>
+        </Edit>
+    );
+};
+```
+
+Also you can give URL path to the `resource` prop.
+
+```tsx
+const form = useForm({
+    action: "create",
+    resource: "categories/subcategory", // <BASE_URL_FROM_DATA_PROVIDER>/categories/subcategory
+});
+```
+
 ### `id`
 
 `id` is used for determining the record to `edit` or `clone`. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
 
 It is usefull when you want to `edit` or `clone` a `resource` from a different page.
 
+> Note: `id` is required when `action: "edit"` or `action: "clone"`.
+
 ```tsx
 const form = useForm({
     action: "edit", // or clone
     resource: "categories",
     id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
-});
-```
-
-Also you can give `id` from `resource` prop.
-
-```tsx
-const form = useForm({
-    action: "edit", // or clone
-    resource: "categories/subcategory/3", // <BASE_URL_FROM_DATA_PROVIDER>/categories/subcategory/3/
 });
 ```
 
