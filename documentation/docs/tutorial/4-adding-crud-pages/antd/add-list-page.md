@@ -74,13 +74,13 @@ Instead of coding the list page component from scratch, Inferencer've created th
 
 -   `<List/>` is a **refine** component that is used to presentation purposes like showing create button or page title etc.
 
-    Refer to the [`<List/>`](/docs/api-reference/antd/components/basic-views/list) documentation for more information.
+    [Refer to the `<List/>` documentation for more information &#8594](/docs/api-reference/antd/components/basic-views/list)
 
 -   `<Table/>` is a native **Ant Design** component. It renders records row by row as a table.
 
     > `<Table/>` expects a `rowKey` prop as the unique key of the records. In this example, Inferencer use `id` field as the `rowKey`.
 
-    You can find more information about `<Table/>` component from [Ant Design Table](https://ant.design/components/table/).
+    [Refer to the **Ant Design** `<Table/>` documentation for more information &#8594](https://ant.design/components/table/)
 
 -   `useTable` hook returns the values needed by the `<Table/>` component in the `tableProps` variable.
 
@@ -88,18 +88,24 @@ Instead of coding the list page component from scratch, Inferencer've created th
 
     `useTable` hook fetches data from API and wraps them with various helper hooks required for the `<Table/>` component. Data interaction functions like sorting, filtering, and pagination will be instantly available on the `<Table/>` with this single line of code.
 
-    You can find more information about `useTable` hook from [useTable](/docs/api-reference/antd/hooks/table/useTable/).
+    [Refer to the `useTable` documentation for more information &#8594](/docs/api-reference/antd/hooks/table/useTable/)
 
 -   `<Table.Column/>` is a native **Ant Design** component. It renders a column in the table.
 
     -   `dataIndex` prop is used to specify the field of the record that will be rendered in this column.
     -   `render` prop is used to render custom content in the column. In this example, we use `render` prop to render the `content` field using `<MarkdownField/>` component.
 
-        You can find more information about `<MarkdownField/>` and other field components from [Field Components](/docs/api-reference/antd/components/fields/markdown/).
+        [Refer to the `<MarkdownField/>` and other field components documentation for more information &#8594](/docs/api-reference/antd/components/fields/markdown/)
 
 -   `<EditButton/>` and `<ShowButton/>` are **refine** components that are used to navigate to the edit and show pages of the record.
 
+    [Refer to the `<EditButton/>` documentation for more information &#8594](/docs/api-reference/antd/components/buttons/edit-button/)
+
+    [Refer to the `<ShowButton/>` documentation for more information &#8594](/docs/api-reference/antd/components/buttons/show-button/)
+
 -   `<DeleteButton/>` is a **refine** component that is used to delete the record.
+
+    [Refer to the `<ShowButton/>` documentation for more information &#8594](/docs/api-reference/antd/components/buttons/delete-button/)
 
 ### Handling Relationships
 

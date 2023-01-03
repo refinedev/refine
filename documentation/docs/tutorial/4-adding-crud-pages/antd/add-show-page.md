@@ -72,11 +72,11 @@ Instead of coding the show page component from scratch, Inferencer've created th
 
 -   `<Show/>` is a **refine** component that is used to presentation purposes like showing the title of the page, list button, etc.
 
-    Refer to the [`<Show/>`](/docs/api-reference/antd/components/basic-views/show) documentation for more information.
+    [Refer to the `<Show/>` documentation for more information &#8594](/docs/api-reference/antd/components/basic-views/show/)
 
 -   `useShow` is a **refine** hook that is used to get single record data by using the `id` in the URL. It sends the parameters to the `dataProvider`'s `getOne` function and returns the result.
 
-    Refer to the [`useShow`](/docs/api-reference/core/hooks/show/useShow/) documentation for more information.
+    [Refer to the `useShow` documentation for more information &#8594]((/docs/api-reference/core/hooks/show/useShow/))
 
 ### Handling Relationships
 

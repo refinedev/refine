@@ -72,17 +72,17 @@ Instead of coding the edit page component from scratch, Inferencer've created th
 
 -   `<Edit/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button, refresh button etc.
 
-    Refer to the [`<Edit/>`](/docs/api-reference/antd/components/basic-views/edit) documentation for more information.
+    [Refer to the `<Edit/>` documentation for more information &#8594](/docs/api-reference/antd/components/basic-views/edit)
 
 -   `<Form/>` and `<Form.Item/>` are **Ant Design** components that are used to build the form.
 
-    Refer to the [`<Form/>`](https://ant.design/components/form/) documentation for more information.
+    [Refer to the **Ant Design** `<Form/>` documentation for more information &#8594](https://ant.design/components/form/)
 
 -   `useForm` is a **refine** hook that provides the necessary props for the form. It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
 
     When you use `useForm` in the edit page, it automatically fetches the data of the record by using the `id` in the URL, then fills the form with the data. It sends the form data to `dataProvider`'s `update` method when the form is submitted.
 
-    Refer to the [`useForm`](/docs/api-reference/antd/hooks/form/useForm/) documentation for more information.
+    [Refer to the `useForm` documentation for more information &#8594](/docs/api-reference/antd/hooks/form/useForm/)
 
 ### Handling Relationships
 
@@ -90,7 +90,7 @@ In the edit page, we may need to select a record from another resource. For exam
 
 [Refer to the `useSelect` documentation for more information &#8594](/docs/api-reference/antd/hooks/field/useSelect/)
 
-[Refer to the **Ant Design** `<Select/>` documentation for more information &#8594](/docs/api-reference/antd/hooks/field/useSelect/)
+[Refer to the **Ant Design** `<Select/>` documentation for more information &#8594](https://ant.design/components/select)
 
 In this example, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
 
