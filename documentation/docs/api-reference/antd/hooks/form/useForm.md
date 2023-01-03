@@ -116,7 +116,7 @@ const PostCreate = () => {
 };
 ```
 
-`useForm` is used to manage forms. It is based on [Antd Form](https://ant.design/components/form/) and [`refine useForm`][use-form-core] to supports all the features of these packages and adds some additional features.
+`useForm` is used to manage forms. It is based on [Antd Form](https://ant.design/components/form/) and [`refine useForm`](/docs/api-reference/core/hooks/useForm/) to supports all the features of these packages and adds some additional features.
 
 <GeneralConceptsLink />
 
@@ -221,7 +221,7 @@ values={[
 
 In the following example, we'll show how to use `useForm` with `action: "create"`.
 
-```tsx live url=http://localhost:3000 previewHeight=420px
+```tsx live url=http://localhost:3000/posts/create previewHeight=420px
 setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
@@ -290,7 +290,7 @@ It fetches the record data according to the `id` with [`useOne`](/docs/api-refer
 
 In the following example, we'll show how to use `useForm` with `action: "edit"`.
 
-```tsx live url=http://localhost:3000 previewHeight=420px
+```tsx live url=http://localhost:3000/edit/123 previewHeight=420px
 setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
@@ -361,7 +361,7 @@ It fetches the record data according to the `id` with [`useOne`](/docs/api-refer
 
 In the following example, we'll show how to use `useForm` with `action: "clone"`. You will see `action:clone` toggle at the top of the page. You can toggle it to set the action to `clone`.
 
-```tsx live url=http://localhost:3000 previewHeight=420px
+```tsx live url=http://localhost:3000/edit/123 previewHeight=420px
 setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
@@ -523,11 +523,11 @@ You can use it to manage the invalidations that will occur at the end of the mut
 By default it's invalidates following queries from the current `resource`:
 
 -   on `create` or `clone` mode: `"list"` and `"many"`
--   on `edit` mode: `"list`", `"many"` and `"detail"`
+-   on `edit` mode: `"list"`, `"many"` and `"detail"`
 
 ### `dataProviderName`
 
-If there is more than one dataProvider, you should use the dataProviderName that you will use.
+If there is more than one dataProvider, you should use the `dataProviderName` that you will use.
 It is useful when you want to use a different dataProvider for a specific resource.
 
 ```tsx title="src/posts/edit.tsx"
