@@ -1,5 +1,5 @@
 import React from "react";
-import { useDataProvider, useResource } from "@pankod/refine-core";
+import { useDataProvider, useResource, BaseKey } from "@pankod/refine-core";
 
 import { pickDataProvider, dataProviderFromResource } from "@/utilities";
 
@@ -32,7 +32,7 @@ export const useInferFetch = (
     const [loading, setLoading] = React.useState<boolean>(false);
 
     const resolver = React.useCallback(
-        async (recordItemId: number) => {
+        async (recordItemId: BaseKey) => {
             const dataProviderName =
                 dataProviderFromResource(resource) ??
                 pickDataProvider(resourceName, undefined, resources);
@@ -71,7 +71,7 @@ export const useInferFetch = (
 
     React.useEffect(() => {
         setInitial(false);
-        if (!loading && !data) {
+        if (!loading && !data && id) {
             resolver(id);
         }
     }, [resolver, id]);
