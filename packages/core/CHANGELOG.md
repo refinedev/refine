@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.93.0
+
+### Minor Changes
+
+-   [#3335](https://github.com/refinedev/refine/pull/3335) [`ce6acf2b3d4`](https://github.com/refinedev/refine/commit/ce6acf2b3d4c181a87cbdb6c1264fd6e59a504f5) Thanks [@omeraplak](https://github.com/omeraplak)! - feat: `useResource` hook can now also return the current `action`
+
 ## 3.92.0
 
 ### Minor Changes

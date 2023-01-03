@@ -5,7 +5,7 @@
     "dependencies": {
         "@pankod/refine-altogic": "^3.35.0",
         "@pankod/refine-antd": "^4.7.0",
-        "@pankod/refine-core": "^3.92.0",
+        "@pankod/refine-core": "^3.93.0",
         "@pankod/refine-cli": "^1.15.0",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@types/node": "^12.20.11",
