@@ -3,7 +3,7 @@
     "version": "3.25.0",
     "private": true,
     "scripts": {
-        "start": "NODE_OPTIONS=--max_old_space_size=4096 next dev -p 3001",
+        "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 next dev -p 3001",
         "_build": "next build",
         "start:prod": "next start",
         "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
@@ -15,6 +15,7 @@
         "@pankod/refine-nextjs-router": "^4.1.0",
         "@pankod/refine-simple-rest": "^3.37.4",
         "next": "^13.0.6",
+        "cross-env": "^7.0.3",
         "next-compose-plugins": "^2.2.1",
         "next-i18next": "^8.9.0",
         "nookies": "^2.5.2",
