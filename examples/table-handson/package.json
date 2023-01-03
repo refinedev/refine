@@ -8,7 +8,7 @@
         "refine": "refine"
     },
     "dependencies": {
-        "@pankod/refine-core": "^3.92.0",
+        "@pankod/refine-core": "^3.93.0",
         "@pankod/refine-cli": "^1.15.0",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-simple-rest": "^3.37.4",
