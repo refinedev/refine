@@ -5,8 +5,8 @@
   "dependencies": {
     "@craco/craco": "^6.1.2",
     "@pankod/refine-antd": "^4.5.0",
+    "@pankod/refine-cli": "^1.5.3",
     "@pankod/refine-core": "^3.90.6",
-    "@pankod/refine-cli": "^1.13.6",
     "@pankod/refine-react-router-v6": "^3.36.6",
     "@pankod/refine-supabase": "^3.25.0",
     "@testing-library/jest-dom": "^5.16.4",
@@ -14,9 +14,10 @@
     "@testing-library/user-event": "^14.1.1",
     "@types/jest": "^29.2.4",
     "craco-less": "^2.0.0",
+    "date-fns": "^2.29.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-scripts": "^5.0.0",
+    "react-scripts": "^4.0.3",
     "web-vitals": "^1.1.1"
   },
   "devDependencies": {
