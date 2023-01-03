@@ -1,9 +1,8 @@
 ---
 id: adding-search-and-filters
-title: 6. Adding Search and Filters
+title: 5. Adding Search and Filters
 tutorial:
     order: 0
-    next: tutorial/adding-crud-pages/{preferredUI}/handling-relationships
     prev: tutorial/adding-crud-pages/{preferredUI}/add-create-page
 ---
 

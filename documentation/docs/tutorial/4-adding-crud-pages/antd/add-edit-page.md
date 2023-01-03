@@ -84,9 +84,30 @@ Instead of coding the edit page component from scratch, Inferencer've created th
 
     Refer to the [`useForm`](/docs/api-reference/antd/hooks/form/useForm/) documentation for more information.
 
--   `useSelect` is a **refine** hook that provides the necessary props for the select component.
+### Handling Relationships
 
-    Refer to the [`useSelect`](/docs/api-reference/antd/hooks/field/useSelect/) documentation for more information.
+In the edit page, we may need to select a record from another resource. For example, we may need to select a category from the `categories` resource to assign the post to the category. In this case, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the resource name to the `dataProvider`'s `getList` method. Then, it returns the necessary props for the `<Select/>` component.
+
+[Refer to the `useSelect` documentation for more information &#8594](/docs/api-reference/antd/hooks/field/useSelect/)
+
+[Refer to the **Ant Design** `<Select/>` documentation for more information &#8594](/docs/api-reference/antd/hooks/field/useSelect/)
+
+In this example, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
+
+```tsx
+const { selectProps: categorySelectProps } = useSelect({
+    resource: "categories",
+});
+```
+
+`useSelect` returns 10 record by default, but the category of the post may not be in the first 10 records. To solve this problem, we can use the `defaultValue` prop to set the default value of the select component like below:
+
+```tsx
+const { selectProps: categorySelectProps } = useSelect({
+    resource: "categories",
+    defaultValue: postsData?.category?.id,
+});
+```
 
 ## Adding the Edit Page to the App
 

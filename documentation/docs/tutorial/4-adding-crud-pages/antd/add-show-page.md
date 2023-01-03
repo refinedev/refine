@@ -78,9 +78,32 @@ Instead of coding the show page component from scratch, Inferencer've created th
 
     Refer to the [`useShow`](/docs/api-reference/core/hooks/show/useShow/) documentation for more information.
 
--   `useOne` is a **refine** hook that is used to get single record data by using the `id` and `resource`. It sends the parameters to the `dataProvider`'s `getOne` function and returns the result.
+### Handling Relationships
 
-    Refer to the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) documentation for more information.
+In the show page, we have a single record. The record may have relationships with other resources. For example, the `posts` resource has a relationship with the `categories` resource. In this case, we can use the `useOne` hook provided by **refine**. This hook allows us to fetch single record data by using the `id` and `resource` parameters.
+
+[Refer to the `useOne` documentation for more information &#8594](/docs/api-reference/core/hooks/data/useOne/)
+
+In this tutorial, Inferencer used the `useOne` hook to fetch the category data of the post record.
+
+```tsx
+const { data: categoryData, isLoading: categoryIsLoading } = useOne({
+    resource: "categories",
+    id: record?.category?.id || "",
+});
+```
+
+To ensure that the related data is only fetched after the post record has been successfully retrieved, we can use the `queryOptions` object. By setting the `enabled` property to `true` only if the record variable is truthy, we can control when the related data is fetched like below:
+
+```tsx
+const { data: categoryData, isLoading: categoryIsLoading } = useOne({
+    resource: "categories",
+    id: record?.category?.id || "",
+    queryOptions: {
+        enabled: !!record,
+    },
+});
+```
 
 ## Adding the Show Page to the App
 

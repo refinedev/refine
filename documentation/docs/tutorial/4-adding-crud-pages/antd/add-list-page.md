@@ -101,9 +101,58 @@ Instead of coding the list page component from scratch, Inferencer've created th
 
 -   `<DeleteButton/>` is a **refine** component that is used to delete the record.
 
--   `useMany` hook is used to fetch the related data of the records. In this example, Inferencer use `useMany` hook to fetch the `category`, `user`, `tags`, and `language` fields of the records to show them in the table.
+### Handling Relationships
 
-    We will cover in detail the handling of related data in the "[Handling Relationships](/docs/tutorial/adding-crud-pages/antd/handling-relationships)" section.
+Each post includes the `category` field. But, it only includes the `id` of the category. This is a foreign key that points to the `categories` resource. In the `categories` resource, we can see the `title` field. So, in order to display the category `title` in the table, we can use the `useMany` hook provided by **refine**. This hook allows us to fetch data for multiple records in a single request by providing the `id`'s of the related records. In this case, we need to provide the `id`'s of the posts' categories. It is particularly useful when we need to fetch related data for multiple records.
+
+[Refer to the `useMany` documentation for more information &#8594](/docs/api-reference/core/hooks/data/useMany/)
+
+In this example, each post record has a `category` field as below:
+
+```ts title="https://api.fake-rest.refine.dev/posts"
+{
+  ...
+  "category": {
+    "id": 1
+  }
+  ...
+},
+{
+  ...
+  "category": {
+    "id": 2
+  }
+  ...
+}
+```
+
+We can use the `useMany` hook to fetch the full category records for each of these posts, like this:
+
+```tsx
+import { useMany } from "@pankod/refine-core";
+
+const { data } = useMany({
+    resource: "categories",
+    ids: posts.map((post) => post.category.id),
+});
+```
+
+This will pass the `resource` and `ids` to the `dataProvider`'s `getMany` function. The `dataProvider` will then make a single request to the API to fetch the full records for each category related to the posts. The resulting `data` variable will be an array of category records, like this:
+
+```ts
+[
+    {
+        id: 1,
+        title: "mock category title",
+    },
+    {
+        id: 2,
+        title: "another mock category title",
+    },
+];
+```
+
+We can then use this `data` array to display the `title` of each category in the table.
 
 ## Adding the List Page to the App
 

@@ -4,7 +4,7 @@ title: 4.Adding Create Page
 tutorial:
     order: 0
     prev: tutorial/adding-crud-pages/{preferredUI}/add-show-page
-    next: tutorial/adding-crud-pages/{preferredUI}/handling-relationships
+    next: tutorial/adding-crud-pages/{preferredUI}/adding-search-and-filters
 ---
 
 ## Overview
@@ -86,9 +86,21 @@ Instead of coding the create page component from scratch, Inferencer've created 
 
     Refer to the [`useForm`](/docs/api-reference/antd/hooks/form/useForm/) documentation for more information.
 
--   `useSelect` is a **refine** hook that provides the necessary props for the select component.
+### Handling Relationships
 
-    Refer to the [`useSelect`](/docs/api-reference/antd/hooks/field/useSelect/) documentation for more information.
+In the create page, we may need to select a record from another resource. For example, we may need to select a category from the `categories` resource to assign the post to the category. In this case, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the resource name to the `dataProvider`'s `getList` method. Then, it returns the necessary props for the `<Select/>` component.
+
+[Refer to the `useSelect` documentation for more information &#8594](/docs/api-reference/antd/hooks/field/useSelect/)
+
+[Refer to the **Ant Design** `<Select/>` documentation for more information &#8594](/docs/api-reference/antd/hooks/field/useSelect/)
+
+In this example, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
+
+```tsx
+const { selectProps: categorySelectProps } = useSelect({
+    resource: "categories",
+});
+```
 
 ## Adding the Create Page to the App
 
