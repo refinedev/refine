@@ -32,7 +32,7 @@ export const useInferFetch = (
     const [loading, setLoading] = React.useState<boolean>(false);
 
     const resolver = React.useCallback(
-        async (recordItemId: BaseKey) => {
+        async (recordItemId: BaseKey | undefined) => {
             const dataProviderName =
                 dataProviderFromResource(resource) ??
                 pickDataProvider(resourceName, undefined, resources);
@@ -50,7 +50,7 @@ export const useInferFetch = (
                         setLoading(false);
                     }, 500);
                 }
-                if (type === "edit" || (type === "show" && recordItemId)) {
+                if ((type === "edit" || type === "show") && recordItemId) {
                     const response = await dp.getOne({
                         resource: resourceName,
                         id: recordItemId,
@@ -71,7 +71,7 @@ export const useInferFetch = (
 
     React.useEffect(() => {
         setInitial(false);
-        if (!loading && !data && id) {
+        if (!loading && !data) {
             resolver(id);
         }
     }, [resolver, id]);
