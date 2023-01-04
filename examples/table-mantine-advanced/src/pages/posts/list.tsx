@@ -238,7 +238,7 @@ export const PostList: React.FC = () => {
 
     const renderEditRow = useCallback(
         (row: Row<IPost>) => {
-            const { id, title, content } = row.original;
+            const { id } = row.original;
 
             return (
                 <React.Fragment key={id}>
@@ -254,14 +254,10 @@ export const PostList: React.FC = () => {
                         </td>
                         <td>{id}</td>
                         <td>
-                            <TextInput
-                                defaultValue={title}
-                                {...getInputProps("title")}
-                            />
+                            <TextInput {...getInputProps("title")} />
                         </td>
                         <td>
                             <Select
-                                defaultValue={row.original.category.id}
                                 {...getInputProps("category.id")}
                                 {...selectProps}
                             />
@@ -281,10 +277,7 @@ export const PostList: React.FC = () => {
                     </tr>
                     <tr>
                         <td colSpan={getAllColumns().length}>
-                            <RichTextEditor
-                                value={content}
-                                {...getInputProps("content")}
-                            />
+                            <RichTextEditor {...getInputProps("content")} />
                         </td>
                     </tr>
                 </React.Fragment>
