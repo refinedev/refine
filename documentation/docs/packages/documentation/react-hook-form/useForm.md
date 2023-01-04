@@ -821,7 +821,43 @@ const myDataProvider = {
 
 > Works only in `action: "edit"` or `action: "clone"` mode.
 
-in `edit` or `clone` mode, `refine` uses [`useOne`](/docs/api-reference/core/hooks/data/useOne/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing `queryOptions` property.
+in `edit` or `clone` mode, **refine** uses [`useOne`](/docs/api-reference/core/hooks/data/useOne/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing `queryOptions` property.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    refineCoreProps: {
+        // highlight-start
+        queryOptions: {
+            retry: 3,
+        },
+        // highlight-end
+    },
+});
+```
+
+### `createMutationOptions`
+
+> This option is only available when `action: "create"` or `action: "clone"`.
+
+In `create` or `clone` mode, **refine** uses [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `createMutationOptions` property.
+
+```tsx title="src/posts/create.tsx"
+const form = useForm({
+    refineCoreProps: {
+        // highlight-start
+        queryOptions: {
+            retry: 3,
+        },
+        // highlight-end
+    },
+});
+```
+
+### `updateMutationOptions`
+
+> This option is only available when `action: "edit"`.
+
+In `edit` mode, **refine** uses [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
 
 ```tsx title="src/posts/edit.tsx"
 const form = useForm({
