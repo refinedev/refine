@@ -27,6 +27,8 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 ## Methods
 
+Now we'll add the methods that the data provider needs to implement. We will implement the following methods:
+
 :::note
 `getMany`, `createMany`, `updateMany` and `deleteMany` properties are optional. If you don't implement them, Refine will use `getOne`, `create`, `update` and `deleteOne` methods to handle multiple requests. If your API supports these methods, you can implement them to improve performance.
 :::
