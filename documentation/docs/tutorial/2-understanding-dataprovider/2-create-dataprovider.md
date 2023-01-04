@@ -26,6 +26,11 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 ```
 
 ## Methods
+
+:::note
+`getMany`, `createMany`, `updateMany` and `deleteMany` properties are optional. If you don't implement them, Refine will use `getOne`, `create`, `update` and `deleteOne` methods to handle multiple requests. If your API supports these methods, you can implement them to improve performance.
+:::
+
 ### getList
 
 `getList` method is used to sort, filter and paginate to get a list of resources.
@@ -177,6 +182,49 @@ In this parameter, `current` for which page number and `pageSize` for the number
   ]
   ```
 
+  Also, conditional filters can be made using `and` and `or`. For example:
+
+  ```bash
+  [
+    {
+      operator: "or",
+      value: [
+        {
+          operator: "and"
+          value: [
+            {
+              field: "title"
+              operator: "contain"
+              value: "Hello"
+            },
+            {
+              field: "age"
+              operator: "gte"
+              value: "18"
+            },
+          ]
+        },
+        {
+          operator: "and"
+          value: [
+            {
+              field: "title"
+              operator: "contain"
+              value: "Hello"
+            },
+            {
+              field: "age"
+              operator: "lte"
+              value: "18"
+            },
+          ]
+        }
+      ]
+    }
+  ]
+
+  ```
+
   The `operator` data comes with the [CrudOperators](/docs/api-reference/core/interfaceReferences/#crudoperators) type and needs to be mapped to the API. For this, the following `mapOperator` function is written.
 
   ```ts
@@ -195,8 +243,9 @@ In this parameter, `current` for which page number and `pageSize` for the number
     }
   };
   ```
-
-  Supports detailed filtering with **refine**. But the API must support it.
+:::info
+It supports the **refine** `and` and `or` operators and **conditional filters**, but it is not implemented because it does not support this API.
+:::
 
   ```ts title="src/data-provider.ts"
   // highlight-start
@@ -204,9 +253,6 @@ In this parameter, `current` for which page number and `pageSize` for the number
     const queryFilters: { [key: string]: string } = {};
 
     filters?.map((filter): void => {
-      /**
-       * It supports the refine `and` and `or` operators, but it is not implemented because it does not support this API.
-       */
       if ("field" in filter) {
         const { field, operator, value } = filter;
         const mappedOperator = mapOperator(operator);
@@ -254,6 +300,29 @@ In this parameter, `current` for which page number and `pageSize` for the number
   },
   ```
 
+**Parameter Types:**
+
+| Name           | Type                                                            |
+| -------------- | --------------------------------------------------------------- |
+| resource       | `string`                                                        |
+| hasPagination? | `boolean` _(defaults to `true`)_                                |
+| pagination?    | [`Pagination`](/api-reference/core/interfaces.md#pagination);   |
+| sort?          | [`CrudSorting`](/api-reference/core/interfaces.md#crudsorting); |
+| filters?       | [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters); |
+
+<br/>
+
+**refine** will consume this `getList` method using the `useList` data hook.
+
+```ts
+import { useList } from "@pankod/refine-core";
+
+const { data } = useList({ resource: "posts" });
+```
+
+> [Refer to the useList documentation for more information. &#8594](/api-reference/core/hooks/data/useList.md)
+
+
 ### create
 The `create` method creates a new record with the `resource` and `variables` methods.
 
@@ -269,6 +338,34 @@ create: async ({ resource, variables }) => {
 },
 ```
 
+**Parameter Types**
+
+| Name      | Type         | Default |
+| --------- | ------------ | ------- |
+| resource  | `string`     |         |
+| variables | `TVariables` | `{}`    |
+
+> `TVariables` is a user defined type which can be passed to [`useCreate`](../../core/hooks/data/useCreate.md#type-parameters) to type `variables`
+
+<br/>
+
+**refine** will consume this `create` method using the `useCreate` data hook.
+
+```ts
+import { useCreate } from "@pankod/refine-core";
+
+const { mutate } = useCreate();
+
+mutate({
+    resource: "posts",
+    values: {
+        title: "New Category",
+    },
+});
+```
+
+> [Refer to the useCreate documentation for more information. &#8594](/api-reference/core/hooks/data/useCreate.md)
+
 ### update
 The `update` method updates the record with the `resource`, `id` and `variables` methods.
 
@@ -283,6 +380,34 @@ update: async ({ resource, id, variables }) => {
   };
 }
 ```
+
+**Parameter Types:**
+
+| Name      | Type               | Default |
+| --------- | ------------------ | ------- |
+| resource  | `string`           |         |
+| id        | [BaseKey][basekey] |         |
+| variables | `TVariables`       | `{}`    |
+
+> `TVariables` is a user defined type which can be passed to [`useUpdate`](../../core/hooks/data/useUpdate.md#type-parameters) to type `variables`
+
+<br/>
+
+**refine** will consume this `update` method using the `useUpdate` data hook.
+
+```ts
+import { useUpdate } from "@pankod/refine-core";
+
+const { mutate } = useUpdate();
+
+mutate({
+    resource: "posts",
+    id: "2",
+    values: { title: "New Category Title" },
+});
+```
+
+> [Refer to the useUpdate documentation for more information. &#8594](/api-reference/core/hooks/data/useUpdate.md)
 
 ### deleteOne
 The `deleteOne` method delete the record with the `resource` and `id` methods.
@@ -301,6 +426,30 @@ deleteOne: async ({ resource, id, variables }) => {
 }
 ```
 
+**Parameter Types:**
+
+| Name      | Type               | Default |
+| --------- | ------------------ | ------- |
+| resource  | `string`           |         |
+| id        | [BaseKey][basekey] |         |
+| variables | `TVariables[]`     | `{}`    |
+
+> `TVariables` is a user defined type which can be passed to [`useDelete`](/api-reference/core/hooks/data/useDelete.md) to type `variables`
+
+<br/>
+
+**refine** will consume this `deleteOne` method using the `useDelete` data hook.
+
+```ts
+import { useDelete } from "@pankod/refine-core";
+
+const { mutate } = useDelete();
+
+mutate({ resource: "posts", id: "2" });
+```
+
+> [Refer to the useDelete documentation for more information. &#8594](/api-reference/core/hooks/data/useDelete.md)
+
 ### getOne
 The `getOne` method gets the record with the `resource` and `id` methods.
 
@@ -315,6 +464,27 @@ getOne: async ({ resource, id }) => {
   };
 }
 ```
+
+**Parameter Types:**
+
+| Name     | Type               | Default |
+| -------- | ------------------ | ------- |
+| resource | `string`           |         |
+| id       | [BaseKey][basekey] |         |
+
+<br/>
+
+**refine** will consume this `getOne` method using the `useOne` data hook.
+
+```ts
+import { useOne } from "@pankod/refine-core";
+
+const { data } = useOne<ICategory>({ resource: "posts", id: "1" });
+```
+
+> [Refer to the useOne documentation for more information. &#8594](/api-reference/core/hooks/data/useOne.md)
+
+<br/>
 
 ### getMany
 The `getMany` method gets the records with the `resource` and `ids` methods.
@@ -331,6 +501,25 @@ getMany: async ({ resource, ids }) => {
 }
 ```
 
+**Parameter Types:**
+
+| Name     | Type                 | Default |
+| -------- | -------------------- | ------- |
+| resource | `string`             |         |
+| ids      | [BaseKey[]][basekey] |         |
+
+<br/>
+
+**refine** will consume this `getMany` method using the `useMany` data hook.
+
+```ts
+import { useMany } from "@pankod/refine-core";
+
+const { data } = useMany({ resource: "posts", ids: ["1", "2"] });
+```
+
+> [Refer to the useMany documentation for more information. &#8594](/api-reference/core/hooks/data/useMany.md)
+
 ### getApiUrl
 
 The `getApiUrl` method returns the `apiUrl` value.
@@ -338,6 +527,224 @@ The `getApiUrl` method returns the `apiUrl` value.
 ```ts title="src/data-provider.ts"
 getApiUrl: () => apiUrl,
 ```
+**refine** will consume this `getApiUrl` method using the `useApiUrl` data hook.
+
+```ts
+import { useApiUrl } from "@pankod/refine-core";
+
+const { data } = useApiUrl();
+```
+
+> [Refer to the useApiUrl documentation for more information. &#8594](/api-reference/core/hooks/data/useApiUrl.md)
+
+### createMany
+
+This method allows us to create multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `create` method to handle multiple requests.
+
+```ts title="src/data-provider.ts"
+createMany: async ({ resource, variables }) => {
+  const url = `${apiUrl}/${resource}/bulk`;
+  const { data } = await axios.post(url, { values: variables });
+
+  return {
+    data,
+  };
+},
+```
+
+**Parameter Types:**
+
+| Name      | Type           | Default |
+| --------- | -------------- | ------- |
+| resource  | `string`       |         |
+| variables | `TVariables[]` | `{}`    |
+
+> `TVariables` is a user defined type which can be passed to [`useCreateMany`](/api-reference/core/hooks/data/useCreateMany.md) to type `variables`
+
+<br/>
+
+**refine** will consume this `createMany` method using the `useCreateMany` data hook.
+
+```ts
+import { useCreateMany } from "@pankod/refine-core";
+
+const { mutate } = useCreateMany();
+
+mutate({
+    resource: "posts",
+    values: [
+        {
+            title: "New Category",
+        },
+        {
+            title: "Another New Category",
+        },
+    ],
+});
+```
+
+> [Refer to the useCreateMany documentation for more information. &#8594](/api-reference/core/hooks/data/useCreateMany.md)
+
+### deleteMany
+
+This method allows us to delete multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `deleteOne` method to handle multiple requests.
+
+```ts title="src/data-provider.ts"
+deleteMany: async ({ resource, ids }) => {
+  const url = `${apiUrl}/${resource}/bulk?ids=${ids.join(",")}`;
+  const { data } = await axios.delete(url);
+
+  return {
+    data
+  };
+},
+```
+
+**Parameter Types:**
+
+| Name      | Type                 | Default |
+| --------- | -------------------- | ------- |
+| resource  | `string`             |         |
+| ids       | [BaseKey[]][basekey] |         |
+| variables | `TVariables[]`       | `{}`    |
+
+> `TVariables` is a user defined type which can be passed to [`useDeleteMany`](/api-reference/core/hooks/data/useDeleteMany.md) to type `variables`
+
+<br/>
+
+**refine** will consume this `deleteMany` method using the `useDeleteMany` data hook.
+
+```ts
+import { useDeleteMany } from "@pankod/refine-core";
+
+const { mutate } = useDeleteMany();
+
+mutate({
+    resource: "posts",
+    ids: ["2", "3"],
+});
+```
+> [Refer to the useDeleteMany documentation for more information. &#8594](/api-reference/core/hooks/data/useDeleteMany.md)
+
+
+### updateMany
+
+This method allows us to update multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `update` method to handle multiple requests.
+
+```ts title="src/data-provider.ts"
+updateMany: async ({ resource, ids, variables }) => {
+  const url = `${apiUrl}/${resource}/bulk`;
+  const { data } = await httpClient.patch(url, { ids, variables });
+
+  return {
+    data
+  };
+}
+```
+
+**refine** will consume this `updateMany` method using the `useUpdateMany` data hook.
+
+```ts
+import { useUpdateMany } from "@pankod/refine-core";
+
+const { mutate } = useUpdateMany();
+
+mutate({
+    resource: "posts",
+    ids: ["1", "2"],
+    values: { status: "draft" },
+});
+```
+> [Refer to the useUpdateMany documentation for more information. &#8594](/api-reference/core/hooks/data/useUpdateMany.md)
+
+
+### custom
+
+An optional method named `custom` can be added to handle requests with custom parameters like URL, CRUD methods and configurations.
+It's useful if you have non-standard REST API endpoints or want to make a connection with external resources.
+
+```ts title="dataProvider.ts"
+custom: async ({ url, method, filters, sort, payload, query, headers }) => {
+  let requestUrl = `${url}?`;
+  
+  if (sort && sort.length > 0) {
+    const sortQuery = {
+        _sort: sort[0].field,
+        _order: sort[0].order,
+      };
+      requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
+  }
+
+  if (filters) {
+    const filterQuery = generateFilters(filters);
+    requestUrl = `${requestUrl}&${stringify(filterQuery)}`;
+  }
+
+  if (query) {
+    requestUrl = `${requestUrl}&${stringify(query)}`;
+  }
+
+  if (headers) {
+    axiosInstance.defaults.headers = {
+      ...axiosInstance.defaults.headers,
+      ...headers,
+    };
+  }
+
+  let axiosResponse;
+  switch (method) {
+    case "put":
+    case "post":
+    case "patch":
+      axiosResponse = await axiosInstance[method](url, payload);
+      break;
+    case "delete":
+      axiosResponse = await axiosInstance.delete(url, {
+        data: payload,
+      });
+      break;
+    default:
+      axiosResponse = await axiosInstance.get(requestUrl);
+      break;
+  }
+
+  const { data } = axiosResponse;
+
+  return Promise.resolve({ data });
+}
+```
+
+**Parameter Types**
+
+| Name     | Type                                                            |
+| -------- | --------------------------------------------------------------- |
+| url      | `string`                                                        |
+| method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch`      |
+| sort?    | [`CrudSorting`](/api-reference/core/interfaces.md#crudsorting); |
+| filters? | [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters); |
+| payload? | `{}`                                                            |
+| query?   | `{}`                                                            |
+| headers? | `{}`                                                            |
+
+<br/>
+
+**refine** will consume this `custom` method using the `useCustom` data hook.
+
+```ts
+import { useCustom } from "@pankod/refine-core";
+
+const { data, isLoading } = useCustom({
+    url: `${apiURL}/posts-unique-check`,
+    method: "get",
+    config: {
+        query: {
+            title: "Foo bar",
+        },
+    },
+});
+```
+
+> [Refer to the useCustom documentation for more information. &#8594](/api-reference/core/hooks/data/useCustom.md)
 
 ## Errors
 
