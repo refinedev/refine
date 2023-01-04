@@ -20,7 +20,7 @@ You can also check the details to [create your own data provider](/docs/tutorial
 
 The data provider concept comes into play whenever your refine app needs to communicate with an external API. Thanks to refine's `dataProvider` object property, all API requests are processed through this object.
 
-Data providers can communicate with `REST`, `GraphQL`, `RPC` and `SOAP` based APIs as they work with adapter system infrastructure. You can check the supported data provider list.
+Data providers can communicate with `REST`, `GraphQL`, `RPC` and `SOAP` based APIs as they work with adapter system infrastructure.
 
 *TODO: Maybe you draw some diagrams to visualize it?*
 

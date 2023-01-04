@@ -1,6 +1,6 @@
 ---
 id: swizzle
-title: 2. Swizzle
+title: 2. Create Data Provider with Swizzle
 tutorial:
     prev: tutorial/understanding-dataprovider/index
     next: tutorial/understanding-dataprovider/create-dataprovider
@@ -64,3 +64,5 @@ Usage
 ```
 
 3- To use the generated data provider, we need to import it in the `App.tsx` file and give it as a `dataProvider` prop to the `Refine` component.
+
+Now that you have ejected all the data provider, you can update and use it according to your API. This method is much faster than writing a new data provider.

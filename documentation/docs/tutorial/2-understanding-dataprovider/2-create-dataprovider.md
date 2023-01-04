@@ -1,6 +1,6 @@
 ---
 id: create-dataprovider
-title: 3. Create Your First Data Provider
+title: 3. Create Data Provider From Scratch
 tutorial:
     prev: tutorial/understanding-dataprovider/swizzle
     next: tutorial/understanding-resources/index
@@ -8,288 +8,30 @@ tutorial:
 
 ## Introduction
 
-APIs usage and standards are very diverse, so [`data providers`](#) may not be suitable for you. 
-In this case, you'll have to write your own Data Provider. 
-However, data providers are prepared and ready for use very quickly.
+API usage and standards are very different, so data providers may not be suitable for you. 
+In this case, you will need to write your own Data Provider.
 
-## Request
+Data providers work with adapter system infrastructure. So they can communicate with REST, GraphQL, RPC and SOAP based APIs. You can use `fetch`, `axios`, `apollo-client` or any library for this communication.
 
-| Method       | Description                    | Parameters                                                                                                                                                                     | Is Required |
-| ------------ | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| `create`     | Create a single resource       | `{ resource: string; variables: {Object}; }`                                                                                                                                   | true        |
-| `getOne`     | Read a single resource by id   | `{resource: string; id: BaseKey; }`                                                                                                                                            | true        |
-| `update`     | Update a single resource by id | `{resource: string; id: BaseKey; variables: {Object}; }`                                                                                                                       | true        |
-| `deleteOne`  | Delete a single resource by id | `resource: string; id: BaseKey; variables?: {Object};`                                                                                                                         | true        |
-| `getList`    | Get resources                  | `{resource: string; pagination?: Pagination; hasPagination?: boolean; sort?: CrudSorting; filters?: CrudFilters; dataProviderName?: string;}`                                  | true        |
-| `getApiUrl`  | Return api url                 | `{}`                                                                                                                                                                           | true        |
-| `custom`     | Custom request                 | `{ url: string; method: "get","delete","head","options","post","put","patch"; sort?: CrudSorting; filters?: CrudFilter[]; payload?: TPayload; query?: TQuery; headers?: {}; }` | false       |
-| `getMany`    | Return api url                 | `{ resource: string; ids: BaseKey[]; dataProviderName?: string; }`                                                                                                             | false       |
-| `createMany` | Return api url                 | `{ resource: string; variables: {Object}[]; }`                                                                                                                                 | false       |
-| `updateMany` | Return api url                 | `{ resource: string; ids: BaseKey[]; variables: {Object}; }`                                                                                                                   | false       |
-| `deleteMany` | Return api url                 | `{ resource: string; ids: BaseKey[]; variables?: {Object};}`                                                                                                                   | false       |
+Now let's prepare a data provider that communicates with a REST API. We preferred `axios` as a client.
 
-:::tip Optional `metaData` Parameter
-All methods accept an optional `metaData` parameter, **refine** does not. 
-But it's a good way to pass custom arguments or metadata to an API call.
-:::
+Let's start by creating a file like the one below. We will add other methods step by step.
 
-:::tip Optional Methods
-It is not require to define the `createMany`, `deleteMany`, `getMany` and `updateMany` methods. 
-If not defined, **refine** will call the corresponding singular `create`, `delete`, `getOne` and `update` methods in a loop.
-:::
+```ts title="src/data-provider.ts"
+import { DataProvider } from "@pankod/refine-core";
 
-## Response
-
-Data Providers methods should return a Promise that resolves to an object with a `data` property.
-
-| Method       | Response                             |
-| ------------ | ------------------------------------ |
-| `create`     | `{ data: {Record} }`                 |
-| `getOne`     | `{ data: {Record} }`                 |
-| `update`     | `{ data: {Record} }`                 |
-| `deleteOne`  | `{ data: {Record} }`                 |
-| `getList`    | `{ data: {Record[]}, total: {int} }` |
-| `getApiUrl`  | `string`                             |
-| `custom`     | `{ data: {any} }`                    |
-| `getMany`    | `{ data: {Record[]} }`               |
-| `createMany` | `{ data: {Record[]} }`               |
-| `updateMany` | `{ data: {Record[]} }`               |
-| `deleteMany` | `{ data: {Record[]} }`               |
-
-A `{Record}` is an object with at least one id property (`{ id: 1, title: "Hello World" }`).
-
-## Errors
-
-When an error is returned from the API, **refine** must be extended from [HttpError](../../../../packages/core/src/interfaces/HttpError.ts) to handle it. 
-This can be done in several different ways. Below are examples made with `axios` and `fetch`.
-
-<Tabs
-    defaultValue="fetch"
-    values={[
-        {label: 'fetch', value: 'fetch'},
-        {label: 'axios', value: 'axios'}
-    ]}>
-<TabItem value="fetch">
-
-```ts title=dataProvider.ts
-import { DataProvider, HttpError } from "@pankod/refine-core";
-
-const dataProvider: DataProvider = {
-    create: async ({ resource, variables }) => {
-        const url = `${apiUrl}/${resource}ddd`;
-
-        return fetch(url, {
-            method: "POST",
-            body: JSON.stringify(variables),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            }
-            const error: HttpError = {
-                statusCode: response.status,
-                message: response.statusText,
-            };
-            return Promise.reject(error);
-        })
-        .then((data) => {
-            return Promise.resolve({ data });
-        });
-    },
-}
-```
-</TabItem>
-<TabItem value="axios">
-
-Axios interceptor can be used to transform the error from response before Axios returns the response to your code. Interceptors are methods which are triggered before the main method. 
-
-```ts title=dataProvider.ts
-axiosInstance.interceptors.response.use(
-    (response) => {
-        return response;
-    },
-    (error) => {
-        const customError: HttpError = {
-            ...error,
-            message: error.response?.data?.message,
-            statusCode: error.response?.status,
-        };
-
-        return Promise.reject(customError);
-    },
-);
-```
-</TabItem>
-</Tabs>
-
-## Usage with Hooks
-
-<details><summary>useList</summary>
-<p>
-
-```tsx
-const { data } = useList({
-    resource: "posts",
-    config: {
-        pagination: {
-            current: 1,
-            pageSize: 10,
-        }
-    }
+export const dataProvider = (apiUrl: string): DataProvider => ({
+  // Methods
 });
-
-console.log(data);
-// { 
-//     data: [
-//         {
-//             id: 1,
-//             title: "Hello World",
-//         },
-//         {
-//             id: 2,
-//             title: "refine",
-//         }
-//     ], 
-//     total: 50
-// }
 ```
-</p>
-</details>
 
-<details><summary>useMany</summary>
-<p>
+## Methods
+### getList
 
-```tsx
-const { data } = useMany({
-  resource: "posts",
-  ids: [1, 2],
-});
+`getList` method is used to sort, filter and paginate to get a list of resources.
+It takes a `resource`, `sort`, `pagination` and `filters` as parameters should return `data` and `total`.
 
-console.log(data);
-// { 
-//   data: [
-//     {
-//       id: 1,
-//       title: "Hello World",
-//     },
-//     {
-//       id: 2,
-//       title: "refine",
-//     }
-//   ], 
-//   total: 50
-// }
-```
-</p>
-</details>
-
-<details><summary>useCreate</summary>
-<p>
-
-```tsx
-const { mutate } = useCreate();
-
-  mutate(
-    {
-      resource: "posts",
-      values: {
-        title: "Hello World",
-      },
-    },
-    {
-      onSuccess: ({ data }) => {
-        console.log(data);
-      },
-    }
-  );
-
-// { 
-//   id: 4,
-//   title: "Hello World",
-// }
-```
-</p>
-</details>
-
-<details><summary>useUpdate</summary>
-<p>
-
-```tsx
-const { mutate } = useUpdate();
-
-  mutate(
-    {
-      id: 4,
-      resource: "posts",
-      values: {
-        title: "World Hello",
-      },
-    },
-    {
-      onSuccess: ({ data }) => {
-        console.log(data);
-      },
-    }
-  );
-
-// { 
-//   id: 4,
-//   title: "World Hello",
-// }
-```
-</p>
-</details>
-
-<details><summary>useDelete</summary>
-<p>
-
-```tsx
-const { mutate } = useDelete();
-
-  mutate(
-    {
-      id: 4,
-      resource: "posts",
-    },
-    {
-      onSuccess: ({ data }) => {
-        console.log(data);
-      },
-    }
-  );
-```
-</p>
-</details>
-
-<details><summary>useOne</summary>
-<p>
-
-```tsx
-const { data } = useOne({
-  resource: "posts",
-  id: 1,
-});
-
-console.log(data);
-// { 
-//   data: {
-//     id: 1,
-//     title: "Hello World",
-//   },
-// }
-```
-</p>
-</details>
-
-## Example Rest API
-
-Now, let's write data provider step by step to the API that takes parameters as follows.
-
-
-**getList**
+Let's assume the API we want to implement is as follows: 
 
 ```bash
 [GET] https://api.fake-rest.refine.dev/posts?title_like=Arch&_sort=id&_order=desc&_limit=10&_page=2
@@ -320,148 +62,99 @@ access-control-expose-headers: X-Total-Count
   }
 ]             
 ```
+1. `resource` params implements the resource name. In our case, it is `posts`.
 
-**getMany**
+    ```ts title="src/data-provider.ts"
+    getList: async ({ resource }) => {
+      const url = `${apiUrl}/${resource}`;
 
-```bash
-[GET] https://api.fake-rest.refine.dev/posts?id=100&id=101
+      const { data, headers } = await axios.get(url);
 
-HTTP/2 200
-Content-Type: application/json
+      const total = +headers["x-total-count"];
 
-[
-  {
-    "id": 100,
-    "title": "Vitae maiores autem ut officia nam et.",
-    "slug": "consequatur-qui-nobis",
-    "category": {
-      "id": 33
-    },
-    "user": {
-      "id": 14
-    },
-    "status": "draft",
-  },
-  {
-    "id": 101,
-    "title": "Qui in sequi harum nemo doloremque quaerat quasi quia.",
-    "slug": "maiores-delectus-consequatur",
-    "category": {
-      "id": 8
-    },
-    "status": "rejected",
-  }
-]
-```
-
-**create**
-
-```bash
-[POST] https://api.fake-rest.refine.dev/posts
-{
-  title: "Hello",
-  status: "draft",
-  category: {
-    id: 1
-  }
-}
-
-HTTP/2 201
-Content-Type: application/json
-
-{
-  "id": 1000,
-  "title": "Hello",
-  "slug": "hello",
-  "category": {
-    "id": 1
-  },
-  "status": "draft",
-}
-```
-
-**update**
-
-```bash
-[PUT] https://api.fake-rest.refine.dev/posts/1000
-{
-  status: "published",
-}
-
-HTTP/2 200
-Content-Type: application/json
-
-{
-  "id": 1000,
-  "title": "Hello World",
-  "slug": "hello-world",
-  "category": {
-    "id": 1
-  },
-  "status": "published",
-}
-```
-
-**deleteOne**
-
-```bash
-[DELETE] https://api.fake-rest.refine.dev/posts/1000
-
-HTTP/2 200
-```
-
-**getOne**
-
-```bash
-[GET] https://api.fake-rest.refine.dev/posts/1000
-
-HTTP/2 200
-
-{
-  "id": 1000,
-  "title": "Hello World",
-  "slug": "hello-world",
-  "category": {
-    "id": 1
-  },
-  "status": "published",
-}
-```
-With this API, basically the data provider can be like this.
-
-```ts title=dataProvider.ts
-import { stringify } from "query-string";
-import {
-  CrudFilters,
-  CrudOperators,
-  DataProvider,
-  HttpError,
-} from "@pankod/refine-core";
-
-const httpClient = (url: string, method: string = "GET", variables?: any) => {
-  return fetch(url, {
-    method,
-    body: JSON.stringify(variables),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then(async (response) => {
-      if (response.ok) {
-        const data = await response.json();
-        return { data, headers: response.headers };
-      }
-      const error: HttpError = {
-        statusCode: response.status,
-        message: response.statusText,
+      return {
+        data,
+        total,
       };
-      return Promise.reject(error);
-    })
-    .then(({ data, headers }) => {
-      return Promise.resolve({ data, headers });
-    });
-};
+    },
+    ```
 
+2- **refine** uses the `pagination` parameter for pagination. 
+In this parameter, `current` for which page number and `pageSize` for the number of records in each page.
+
+```ts title="src/data-provider.ts"
+getList: async ({ resource, pagination }) => {
+  const url = `${apiUrl}/${resource}`;
+
+  // highlight-start
+  const { current = 1, pageSize = 10 } = pagination ?? {};
+
+  const query: {
+    _start?: number;
+    _end?: number;
+  } = {
+    _start: (current - 1) * pageSize,
+    _end: current * pageSize,
+  };
+
+  const { data, headers } = await axios.get(`${url}?${stringify(query)}`);
+  // highlight-end
+
+  const total = +headers["x-total-count"];
+
+  return {
+    data,
+    total,
+  };
+},
+```
+3- **refine** uses the `sort` parameter for sorting. 
+This parameter includes `field` and `order`. Supports multiple field sorting.
+Multiple field sorting is not implemented because it doesn't support this API.
+
+```ts title="src/data-provider.ts"
+getList: async ({ resource, pagination, sort }) => {
+  const url = `${apiUrl}/${resource}`;
+
+  const { current = 1, pageSize = 10 } = pagination ?? {};
+
+  const query: {
+    _start?: number;
+    _end?: number;
+    // highlight-start
+    _sort?: string;
+    _order?: string;
+    // highlight-end
+  } = {
+    _start: (current - 1) * pageSize,
+    _end: current * pageSize,
+  };
+
+  // highlight-start
+  if (sort && sort.length > 0) {
+    query._sort = sort[0].field;
+    query._order = sort[0].order;
+  }
+  // highlight-end
+
+  // highlight-next-line
+  const { data, headers } = await axios.get(`${url}?${stringify(query)}`);
+
+  const total = +headers["x-total-count"];
+
+  return {
+    data,
+    total,
+  };
+}
+```
+
+4- **refine** uses the `filters` parameter for filtering.
+This parameter includes `field`, `operator` and `value`. 
+Supports multiple field filtering.
+
+```ts title="src/data-provider.ts"
+// highlight-start
 const mapOperator = (operator: CrudOperators): string => {
   switch (operator) {
     case "ne":
@@ -482,8 +175,7 @@ const generateFilters = (filters?: CrudFilters) => {
   filters?.map((filter): void => {
     /**
      * It supports the refine `and` and `or` operators, but it is not implemented because it does not support this API.
-     * You can refer to the nestjsx-crud data provider for details.
-    */
+     */
     if ("field" in filter) {
       const { field, operator, value } = filter;
       const mappedOperator = mapOperator(operator);
@@ -493,86 +185,171 @@ const generateFilters = (filters?: CrudFilters) => {
 
   return queryFilters;
 };
+// highlight-end
 
-export const dataProvider = (
-  apiUrl: string
-) => ({
-  getList: async ({
-    resource,
-    pagination = { current: 1, pageSize: 10 },
-    filters,
-    sort,
-  }) => {
-    const url = `${apiUrl}/${resource}`;
+getList: async ({ resource, pagination, sort, filters }) => {
+  const url = `${apiUrl}/${resource}`;
 
-    const { current = 1, pageSize = 10 } = pagination ?? {};
+  const { current = 1, pageSize = 10 } = pagination ?? {};
 
-    const query: {
-      _start?: number;
-      _end?: number;
-      _sort?: string;
-      _order?: string;
-    } = {
-      _start: (current - 1) * pageSize,
-      _end: current * pageSize,
-    };
+  const query: {
+    _start?: number;
+    _end?: number;
+    _sort?: string;
+    _order?: string;
+  } = {
+    _start: (current - 1) * pageSize,
+    _end: current * pageSize,
+  };
 
-    /*
-     * refine supports multiple sorting, but it is not implemented because it does not support this API.
-     * You can refer to the nestjsx-crud data provider for details.
-    */
-    if (sort && sort.length > 0) {
-      query._sort = sort[0].field;
-      query._order = sort[0].order;
-    }
+  // it is not implemented because it does not support this API.
+  if (sort && sort.length > 0) {
+    query._sort = sort[0].field;
+    query._order = sort[0].order;
+  }
 
-    const queryFilters = generateFilters(filters);
+  // highlight-next-line
+  const queryFilters = generateFilters(filters);
 
-    const { data, headers } = await httpClient(
-      `${url}?${stringify(query)}&${stringify(queryFilters)}`
-    );
+  // highlight-next-line
+  const { data, headers } = await axios.get(`${url}?${stringify(query)}&${stringify(queryFilters)}`);
 
-    return {
-      data,
-      total: +(headers.get("x-total-count") || 10),
-    };
-  },
+  const total = +headers["x-total-count"];
 
-  getMany: async ({ resource, ids }) => {
-    const url = `${apiUrl}/${resource}?${stringify({ id: ids })}`;
-    const { data } = await httpClient(url);
-    return { data };
-  },
-
-  create: async ({ resource, variables }) => {
-    const url = `${apiUrl}/${resource}`;
-    const { data } = await httpClient(url, "POST", variables);
-    return { data };
-  },
-
-  update: async ({ resource, id, variables }) => {
-    const url = `${apiUrl}/${resource}/${id}`;
-    const { data } = await httpClient(url, "PATCH", variables);
-    return { data };
-  },
-
-  getOne: async ({ resource, id }) => {
-    const url = `${apiUrl}/${resource}/${id}`;
-    const { data } = await httpClient(url, "GET", { id });
-    return { data };
-  },
-
-  deleteOne: async ({ resource, id, variables }) => {
-    const url = `${apiUrl}/${resource}/${id}`;
-    const { data } = await httpClient(url, "DELETE", variables);
-    return { data };
-  },
-
-  getApiUrl: () => {
-    return apiUrl;
-  },
-});
+  return {
+    data,
+    total,
+  };
+},
 ```
 
-## Example GraphQL API
+### create
+The `create` method creates a new record with the `resource` and `variables` methods.
 
+```ts title="src/data-provider.ts"
+create: async ({ resource, variables }) => {
+  const url = `${apiUrl}/${resource}`;
+
+  const { data } = await axios.post(url, variables);
+
+  return {
+    data,
+  };
+},
+```
+
+### update
+The `update` method updates the record with the `resource`, `id` and `variables` methods.
+
+```ts title="src/data-provider.ts"
+update: async ({ resource, id, variables }) => {
+  const url = `${apiUrl}/${resource}/${id}`;
+
+  const { data } = await axios.patch(url, variables);
+
+  return {
+    data,
+  };
+}
+```
+
+### deleteOne
+The `deleteOne` method delete the record with the `resource` and `id` methods.
+
+```ts title="src/data-provider.ts"
+deleteOne: async ({ resource, id, variables }) => {
+  const url = `${apiUrl}/${resource}/${id}`;
+
+  const { data } = await axios.delete(url, {
+    data: variables,
+  });
+
+  return {
+    data,
+  };
+}
+```
+
+### getOne
+The `getOne` method gets the record with the `resource` and `id` methods.
+
+```ts title="src/data-provider.ts"
+getOne: async ({ resource, id }) => {
+  const url = `${apiUrl}/${resource}/${id}`;
+
+  const { data } = await axios.get(url);
+
+  return {
+    data,
+  };
+}
+```
+
+### getMany
+The `getMany` method gets the records with the `resource` and `ids` methods.
+
+```ts title="src/data-provider.ts"
+getMany: async ({ resource, ids }) => {
+  const { data } = await axios.get(
+    `${apiUrl}/${resource}?${stringify({ id: ids })}`
+  );
+
+  return {
+    data,
+  };
+}
+```
+
+### getApiUrl
+
+The `getApiUrl` method returns the `apiUrl` value.
+
+```ts title="src/data-provider.ts"
+getApiUrl: () => apiUrl,
+```
+
+## Errors
+
+When an error is returned from the API, **refine** must be extended from [HttpError](../../../../packages/core/src/interfaces/HttpError.ts) to handle it. 
+Axios interceptor can be used to transform the error from response before Axios returns the response to your code. 
+Interceptors are methods which are triggered before the main method. 
+
+We create an `axiosInstance`, define an `interceptors` to handle an error and export it. Write this in a `utility` file.
+
+```ts title=utility.ts
+import axios from "axios";
+import { HttpError } from "@pankod/refine-core";
+
+const axiosInstance = axios.create();
+
+axiosInstance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    const customError: HttpError = {
+      ...error,
+      message: error.response?.data?.message,
+      statusCode: error.response?.status,
+    };
+
+    return Promise.reject(customError);
+  }
+);
+
+export { axiosInstance };
+```
+
+We import this utility file in the data provider and use `axiosInstance` instead of `axios`.
+
+```diff title="src/data-provider.ts"
+- import axios from "axios";
++ import { axiosInstance } from "./utility";
+
+- await axios.get(
++ await axiosInstance.get(
+```
+
+## Authentication
+
+TODO: Authentication
