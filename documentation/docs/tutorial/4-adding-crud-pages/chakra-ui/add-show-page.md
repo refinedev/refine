@@ -86,7 +86,9 @@ We will go through the show page components and hooks one by one.
 
     [Refer to the `useShow` documentation for more information &#8594](/docs/api-reference/core/hooks/show/useShow/)
 
-**- TODO: If necessary, add more information about the other components and hooks.**
+-   All other components are **Chakra UI** components that are used to show the record data.
+
+    [Refer to the **Chakra UI** documentation for more information &#8594](https://chakra-ui.com/)
 
 ### Handling Relationships
 
