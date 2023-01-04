@@ -1036,7 +1036,7 @@ const form = useForm({
 });
 ```
 
-## Return Values
+## Return Values
 
 ### `queryResult`
 
