@@ -943,7 +943,7 @@ const form = useForm({
 [`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
 
 -   To pass additional information to data provider methods.
--   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/api-reference/data-providers/graphql#metadata) for more information.
+-   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
 
 In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
@@ -1036,6 +1036,18 @@ const form = useForm({
     liveMode: "auto",
     // highlight-end
 });
+```
+
+## Return Values
+
+### `queryResult`
+
+If the `action` is set to `"edit"` or `"clone"`, or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and set the returned values as the `queryResult` property.
+
+```tsx title="src/posts/edit.tsx"
+const { queryResult } = useForm();
+
+const { data } = queryResult;
 ```
 
 ## FAQ
