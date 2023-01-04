@@ -76,7 +76,7 @@ Instead of coding the show page component from scratch, Inferencer've created th
 
 -   `useShow` is a **refine** hook that is used to get single record data by using the `id` in the URL. It sends the parameters to the `dataProvider`'s `getOne` function and returns the result.
 
-    [Refer to the `useShow` documentation for more information &#8594]((/docs/api-reference/core/hooks/show/useShow/))
+    [Refer to the `useShow` documentation for more information &#8594](/docs/api-reference/core/hooks/show/useShow/)
 
 ### Handling Relationships
 
