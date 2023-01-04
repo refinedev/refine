@@ -70,6 +70,8 @@ Instead of coding the edit page component from scratch, Inferencer created the r
 
 ## Understanding the Edit Component
 
+We will go through the edit page components and hooks one by one.
+
 -   `<Edit/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button, refresh button etc.
 
     [Refer to the `<Edit/>` documentation for more information &#8594](/docs/api-reference/antd/components/basic-views/edit)
@@ -92,7 +94,7 @@ In the edit page, we may need to select a record from another resource. For exam
 
 [Refer to the **Ant Design** `<Select/>` documentation for more information &#8594](https://ant.design/components/select)
 
-In this example, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
+In the auto-generated edit page code, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
 
 ```tsx
 const { selectProps: categorySelectProps } = useSelect({
@@ -161,3 +163,5 @@ const App: React.FC = () => {
 };
 export default App;
 ```
+
+Now, we can see the edit page in the browser at <a href="http://localhost:3000/products/edit/123" rel="noopener noreferrer nofollow">localhost:3000/products/edit/123</a>

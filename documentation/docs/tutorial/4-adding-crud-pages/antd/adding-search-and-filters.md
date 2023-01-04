@@ -7,7 +7,7 @@ tutorial:
     next: tutorial/understanding-authprovider/{preferredUI}/authpage-component
 ---
 
-Prevous ["Adding List Page"](/docs/tutorial/adding-crud-pages/antd/index) section, we have displayed posts in a table. Now we will add search and filters to the table to user can have more control over the data.
+In the previous ["Adding List Page"](/docs/tutorial/adding-crud-pages/antd/index) section, we have displayed posts data in a table. Now we will add search and filters to the table to user can have more control over the data.
 
 We will use `<Table.Column/>`'s `filterDropdown` prop and `<FilterDropdown/>` component to add search and filters to the table.
 

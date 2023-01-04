@@ -70,6 +70,8 @@ Instead of coding the show page component from scratch, Inferencer created the r
 
 ## Understanding the Show Component
 
+We will go through the show page components and hooks one by one.
+
 -   `<Show/>` is a **refine** component that is used to presentation purposes like showing the title of the page, list button, etc.
 
     [Refer to the `<Show/>` documentation for more information &#8594](/docs/api-reference/antd/components/basic-views/show/)
@@ -84,7 +86,7 @@ In the show page, we have a single record. The record may have relationships wit
 
 [Refer to the `useOne` documentation for more information &#8594](/docs/api-reference/core/hooks/data/useOne/)
 
-In this tutorial, Inferencer used the `useOne` hook to fetch the category data of the product record.
+In the auto-generated show page code, Inferencer used the `useOne` hook to fetch the category data of the product record.
 
 ```tsx
 const { data: categoryData, isLoading: categoryIsLoading } = useOne({
@@ -158,3 +160,5 @@ const App: React.FC = () => {
 };
 export default App;
 ```
+
+Now, we can see the create page in the browser at <a href="http://localhost:3000/products/show/123" rel="noopener noreferrer nofollow">localhost:3000/products/show/123</a>

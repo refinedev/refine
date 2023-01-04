@@ -72,6 +72,8 @@ Instead of coding the create page component from scratch, Inferencer've created 
 
 ## Understanding the Create Component
 
+We will go through the create page components and hooks one by one.
+
 -   `<Create/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button etc.
 
     [Refer to the `<Create/>` documentation for more information &#8594](/docs/api-reference/antd/components/basic-views/create)
@@ -94,7 +96,7 @@ In the create page, we may need to select a record from another resource. For ex
 
 [Refer to the **Ant Design** `<Select/>` documentation for more information &#8594](https://ant.design/components/select)
 
-In this example, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
+In the auto-generated create page code, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
 
 ```tsx
 const { selectProps: categorySelectProps } = useSelect({
@@ -155,3 +157,5 @@ const App: React.FC = () => {
 };
 export default App;
 ```
+
+Now, we can see the create page in the browser at <a href="http://localhost:3000/products/create" rel="noopener noreferrer nofollow">localhost:3000/products/create</a>

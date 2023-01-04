@@ -72,13 +72,15 @@ Instead of coding the list page component from scratch, Inferencer created the r
 
 ## Understanding the List Component
 
+We will go through the list page components and hooks one by one.
+
 -   `<List/>` is a **refine** component that is used to presentation purposes like showing create button or page title etc.
 
     [Refer to the `<List/>` documentation for more information &#8594](/docs/api-reference/antd/components/basic-views/list)
 
 -   `<Table/>` is a native **Ant Design** component. It renders records row by row as a table.
 
-    > `<Table/>` expects a `rowKey` prop as the unique key of the records. In this tutorial, Inferencer used `id` field as the `rowKey`.
+    > `<Table/>` expects a `rowKey` prop as the unique key of the records. In the auto-generated list page code, Inferencer used `id` field as the `rowKey`.
 
     [Refer to the **Ant Design** `<Table/>` documentation for more information &#8594](https://ant.design/components/table/)
 
@@ -93,7 +95,7 @@ Instead of coding the list page component from scratch, Inferencer created the r
 -   `<Table.Column/>` is a native **Ant Design** component. It renders a column in the table.
 
     -   `dataIndex` prop is used to specify the field of the record that will be rendered in this column.
-    -   `render` prop is used to render custom content in the column. In this tutorial, Inferencer used the `render` prop to render the `description` field using `<MarkdownField/>` component.
+    -   `render` prop is used to render custom content in the column. In the auto-generated list page code, Inferencer used the `render` prop to render the `description` field using `<MarkdownField/>` component.
 
         [Refer to the `<MarkdownField/>` and other field components documentation for more information &#8594](/docs/api-reference/antd/components/fields/markdown/)
 
@@ -211,3 +213,5 @@ const App: React.FC = () => {
 };
 export default App;
 ```
+
+Now, we can see the list page in the browser at <a href="http://localhost:3000/products" rel="noopener noreferrer nofollow">localhost:3000/products</a>
