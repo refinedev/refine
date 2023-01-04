@@ -28,6 +28,7 @@ function SwizzleBadge({ className }) {
 
 export default function DocItemLayout({ children }) {
     const docTOC = useDocTOCwithTutorial();
+    const tutorial = useCurrentTutorial();
     const { frontMatter, toc } = useDoc();
 
     return (
@@ -35,8 +36,8 @@ export default function DocItemLayout({ children }) {
             <div className={clsx("col", !docTOC.hidden && styles.docItemCol)}>
                 <DocVersionBanner />
                 <div className={styles.docItemContainer}>
-                    <article>
-                        <DocBreadcrumbs />
+                    <article className="doc-article">
+                        {tutorial?.isTutorial ? null : <DocBreadcrumbs />}
                         <div className="flex flex-row gap-1 items-center">
                             <DocVersionBadge />
                             {frontMatter.swizzle && <SwizzleBadge />}
