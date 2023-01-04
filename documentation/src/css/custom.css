@@ -10,6 +10,7 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 /* You can override the default Infima variables here. */
 :root {
@@ -40,6 +41,8 @@
     --color-bg-white: white;
     --ifm-navbar-sidebar-width: 100%;
     --ifm-table-cell-padding: 6px 8px;
+    --tutorial-toc-bg-color: #f1f5f9;
+    --browser-window-bezel-color-accent: #ebedf0;
     --tutorial-card-bg: var(--ifm-card-background-color);
     ---tutorial-card-bg-hover: var(--ifm-card-background-color);
 }
@@ -47,6 +50,8 @@
 [data-theme="dark"] {
     --tutorial-card-bg: #252527;
     --tutorial-card-bg-hover: #2c2e33;
+    --browser-window-bezel-color-accent: #4e5264;
+    --tutorial-toc-bg-color: #27272a;
 }
 
 .img-container {
@@ -873,7 +878,33 @@ html[data-theme="dark"]:not([data-customized="true"])
 }
 
 @media (min-width: 997px) and (max-width: 1280px) {
-aside.theme-doc-sidebar-container + main div.container div.row div.col.col--3 {
-    min-width: 30% !important;
+    aside.theme-doc-sidebar-container + main div.container div.row div.col.col--3 {
+            min-width: 30% !important;
+    }
 }
+
+.checklist-container {
+    @apply rounded px-6 py-5 mb-7;
+    border-left: 5px solid var(--ifm-color-primary);
+    background-color: var(--tutorial-toc-bg-color);
+}
+
+.checklist-container__title {
+    @apply text-2xl font-bold text-sky-600 mb-4 flex items-center flex-wrap gap-2;
+    color: var(--ifm-color-primary);
+}
+
+.checklist-item__button {
+    @apply w-5 h-5 p-0 appearance-none border border-solid rounded flex justify-center items-center;
+    border-color: var(--browser-window-bezel-color-accent);
+    background-color: var(--color-bg-white);
+}
+
+[data-theme="dark"] .checklist-item__button {
+    border-color: var(--browser-window-bezel-color-accent);
+    background-color: #3a3e4a;
+}
+
+.checklist-item__icon {
+    color: var(--ifm-color-primary);
 }

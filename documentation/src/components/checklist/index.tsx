@@ -57,8 +57,8 @@ const Checklist: React.FC<Props> = ({ children }) => {
     }, [allChecked, celebrated]);
 
     return (
-        <div className="rounded px-6 py-5 bg-sky-100 mb-7">
-            <h3 className="text-2xl font-bold text-sky-600 mb-4 flex items-center flex-wrap gap-2">
+        <div className="checklist-container">
+            <h3 className="checklist-container__title">
                 <CheckMarkIcon className="w-7 h-7" /> Checklist
             </h3>
             <div>{children}</div>
