@@ -20,6 +20,7 @@ After this step, the tutorial will proceed according to your UI framework choice
 <SelectTutorialFramework />
 
 
+<br/>
 
 <Checklist>
 

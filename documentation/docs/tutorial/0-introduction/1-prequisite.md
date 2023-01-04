@@ -61,7 +61,7 @@ You can also reach us on [Discord](https://discord.com/invite/refine).
 <Checklist>
 
 <ChecklistItem id="prequisite-looks-great">
-Great! I'm ready to begin!
+I understood general concept of the tutorial
 </ChecklistItem>
 
 
