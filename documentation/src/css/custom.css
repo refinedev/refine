@@ -14,7 +14,7 @@
 
 /* You can override the default Infima variables here. */
 :root {
-    --ifm-color-primary: rgb(24, 144, 255);
+    --ifm-color-primary: #1890ff;
     --ifm-color-primary-dark: rgb(21, 132, 235);
     --ifm-color-primary-darker: rgb(18, 120, 215);
     --ifm-color-primary-darkest: rgb(6, 100, 187);
@@ -37,12 +37,35 @@
     --color-turquoise: #0ccee9;
     --color-blue: #0b82f0;
     --color-text-white: white;
-    --color-text-black: #1c1e21;
+    --color-text-black: #3a3e4a;
     --color-bg-white: white;
     --ifm-navbar-sidebar-width: 100%;
     --ifm-table-cell-padding: 6px 8px;
+    /* aliemir theme overrides start */
+    /* --ifm-scrollbar-thumb-hover-background-color: transparent; */
+    --doc-sidebar-width: 270px !important;
+    --ifm-scrollbar-track-background-color: transparent !important;
+    --ifm-menu-link-padding-horizontal: 0.375rem;
+    --ifm-menu-link-padding-vertical: 0.375rem;
+    --ifm-breadcrumb-item-background-active: transparent;
+    --ifm-breadcrumb-spacing: 0.25rem;
+    --ifm-breadcrumb-padding-horizontal: 0.4rem;
+    --ifm-font-color-base: #3a3e4a;
     --tutorial-toc-bg-color: #f1f5f9;
+    --tutorial-toc-text-color: #292d3e;
+    --tutorial-toc-text-color-dark: #252527;
+    --tutorial-toc-text-color-light: #6b7280;
+    --prism-background-color: #292d3e;
+    --docusaurus-highlighted-code-line-bg: rgb(72 77 91);
+    --ifm-code-font-size: 85%;
+    --browser-window-bezel-color: #ebedf0;
     --browser-window-bezel-color-accent: #ebedf0;
+    --ifm-alert-border-radius: 0.25rem;
+    --ifm-alert-shadow: 0.5px 1px 1px 0px rgba(0, 0, 0, 0.15);
+    /* var(--ifm-font-size-base)/var(--ifm-line-height-base) var(--ifm-font-family-base) */
+    --ifm-menu-link-sublist-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23a8a8a8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-up'%3E%3Cpolyline points='18 15 12 9 6 15'%3E%3C/polyline%3E%3C/svg%3E");
+    --ifm-font-family-base: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    /* aliemir theme overrides end */
     --tutorial-card-bg: var(--ifm-card-background-color);
     ---tutorial-card-bg-hover: var(--ifm-card-background-color);
 }
@@ -50,8 +73,14 @@
 [data-theme="dark"] {
     --tutorial-card-bg: #252527;
     --tutorial-card-bg-hover: #2c2e33;
+    --ifm-font-color-base: #f6f6f9;
+    --docusaurus-highlighted-code-line-bg: rgb(72 77 91);
+    --browser-window-bezel-color: #292d3e;
     --browser-window-bezel-color-accent: #4e5264;
     --tutorial-toc-bg-color: #27272a;
+    --tutorial-toc-text-color: #ebedf0;
+    --tutorial-toc-text-color-dark: #f1f1f1;
+    --tutorial-toc-text-color-light: #dddee0;
 }
 
 .img-container {
@@ -877,10 +906,55 @@ html[data-theme="dark"]:not([data-customized="true"])
     line-height: 1.5;
 }
 
+#__docusaurus .doc--toc-desktop {
+    max-width: 285px;
+}
+
 @media (min-width: 997px) and (max-width: 1280px) {
     aside.theme-doc-sidebar-container + main div.container div.row div.col.col--3 {
             min-width: 30% !important;
     }
+}
+
+#__docusaurus .tutorial__item-link {
+    color: var(--tutorial-toc-text-color);
+}
+
+#__docusaurus .tutorial__item--toc-item {
+    color: var(--tutorial-toc-text-color);
+}
+
+#__docusaurus .tutorial__item--toc-item.active,
+#__docusaurus .tutorial__item--toc-item.active:hover,
+#__docusaurus .tutorial__item--toc-item.active:active {
+    color: var(--ifm-color-primary);
+}
+
+#__docusaurus .tutorial__item--unit-item {
+    position: relative;
+}
+
+#__docusaurus .tutorial__item--unit-item::before {
+    content: "";
+    display: block;
+    width: 7px;
+    height: 7px;
+    background-color: var(--tutorial-toc-bg-color);
+    position: absolute;
+    right: -7px;
+    bottom: 0;
+}
+
+#__docusaurus .tutorial__item--unit-item::after {
+    content: "";
+    display: block;
+    width: 7px;
+    height: 7px;
+    background-color: var(--ifm-background-color);
+    position: absolute;
+    right: -7px;
+    bottom: 0;
+    border-bottom-left-radius: 100px;
 }
 
 .checklist-container {

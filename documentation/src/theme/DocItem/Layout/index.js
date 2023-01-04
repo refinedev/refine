@@ -10,6 +10,7 @@ import DocItemContent from "@theme/DocItem/Content";
 import DocBreadcrumbs from "@theme/DocBreadcrumbs";
 import styles from "./styles.module.css";
 import { useDocTOCwithTutorial } from "../../../components/tutorial-toc/index";
+import { useCurrentTutorial } from "../../../hooks/use-current-tutorial";
 
 function SwizzleBadge({ className }) {
     return (
@@ -48,7 +49,9 @@ export default function DocItemLayout({ children }) {
                 </div>
             </div>
             {docTOC.desktop && (
-                <div className="col col--3">{docTOC.desktop}</div>
+                <div className="col col--3 doc--toc-desktop">
+                    {docTOC.desktop}
+                </div>
             )}
         </div>
     );

@@ -62,7 +62,6 @@ export const UnitCircle: React.FC<Props> = ({
     const cy = 50;
     const strokeWidth = 10;
     const standardOffsetLength = 20;
-    const emptyColor = "#718096";
     const completedColor = "#48bb78";
 
     const parts = unitItems.length;
@@ -107,10 +106,12 @@ export const UnitCircle: React.FC<Props> = ({
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                stroke={emptyColor}
                 strokeWidth={strokeWidth}
                 strokeDasharray={dashArrayMultiple}
                 strokeDashoffset={dashOffsetMultiple}
+                style={{
+                    stroke: "var(--tutorial-toc-text-color-light)",
+                }}
             />
             {unitItemStatuses.map((item, index) => {
                 if (item.status === "completed") {
@@ -138,13 +139,15 @@ export const UnitCircle: React.FC<Props> = ({
                 y="54%"
                 dominantBaseline="middle"
                 textAnchor="middle"
-                style={{ fontSize: "3.5rem" }}
-                className="font-montserrat text-[3.5rem]"
-                fill={
-                    unitItemStatuses.every((el) => el.status === "completed")
+                style={{
+                    fontSize: "3.5rem",
+                    fill: unitItemStatuses.every(
+                        (el) => el.status === "completed",
+                    )
                         ? completedColor
-                        : emptyColor
-                }
+                        : "var(--tutorial-toc-text-color-light)",
+                }}
+                className="font-montserrat text-[3.5rem]"
             >
                 {unit.no}
             </text>
