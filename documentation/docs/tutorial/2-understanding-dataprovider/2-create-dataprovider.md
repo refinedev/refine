@@ -8,14 +8,14 @@ tutorial:
 
 ## Introduction
 
-API usage and standards are very different, so data providers may not be suitable for you. 
+The standards and usage of APIs can vary significantly, so it is possible that refine's built-in data providers may not be suitable for your needs.
 In this case, you will need to write your own Data Provider.
 
 Data providers work with adapter system infrastructure. So they can communicate with REST, GraphQL, RPC and SOAP based APIs. You can use `fetch`, `axios`, `apollo-client` or any library for this communication.
 
-Now let's prepare a data provider that communicates with a REST API. We preferred `axios` as a client.
+Let's now create a data provider that communicates with a REST API. We preferred `axios` as a client.
 
-Let's start by creating a file like the one below. We will add other methods step by step.
+We will begin by creating a file, as shown below, and we will add additional methods to it as we proceed.
 
 ```ts title="src/data-provider.ts"
 import { DataProvider } from "@pankod/refine-core";
@@ -67,7 +67,7 @@ access-control-expose-headers: X-Total-Count
   }
 ]             
 ```
-1. `resource` params implements the resource name. In our case, it is `posts`.
+1. In the first step, return the `post` list and the total number of records using the `resource` parameter.
 
   ```ts title="src/data-provider.ts"
   getList: async ({ resource }) => {
@@ -324,7 +324,7 @@ const { data } = useList({ resource: "posts" });
 
 
 ### create
-The `create` method creates a new record with the `resource` and `variables` methods.
+The `create` method creates a new record with the `resource` and `variables` parameters.
 
 ```ts title="src/data-provider.ts"
 create: async ({ resource, variables }) => {
@@ -367,7 +367,7 @@ mutate({
 > [Refer to the useCreate documentation for more information. &#8594](/api-reference/core/hooks/data/useCreate.md)
 
 ### update
-The `update` method updates the record with the `resource`, `id` and `variables` methods.
+The `update` method updates the record with the `resource`, `id` and `variables` parameters.
 
 ```ts title="src/data-provider.ts"
 update: async ({ resource, id, variables }) => {
@@ -410,7 +410,7 @@ mutate({
 > [Refer to the useUpdate documentation for more information. &#8594](/api-reference/core/hooks/data/useUpdate.md)
 
 ### deleteOne
-The `deleteOne` method delete the record with the `resource` and `id` methods.
+The `deleteOne` method delete the record with the `resource` and `id` parameters.
 
 ```ts title="src/data-provider.ts"
 deleteOne: async ({ resource, id, variables }) => {
@@ -451,7 +451,7 @@ mutate({ resource: "posts", id: "2" });
 > [Refer to the useDelete documentation for more information. &#8594](/api-reference/core/hooks/data/useDelete.md)
 
 ### getOne
-The `getOne` method gets the record with the `resource` and `id` methods.
+The `getOne` method gets the record with the `resource` and `id` parameters.
 
 ```ts title="src/data-provider.ts"
 getOne: async ({ resource, id }) => {
@@ -752,7 +752,7 @@ When an error is returned from the API, **refine** must be extended from [HttpEr
 Axios interceptor can be used to transform the error from response before Axios returns the response to your code. 
 Interceptors are methods which are triggered before the main method. 
 
-We create an `axiosInstance`, define an `interceptors` to handle an error and export it. Write this in a `utility` file.
+In a `utility` file, create an `axiosInstance` and define an `interceptor` to handle errors. Then export it.
 
 ```ts title=utility.ts
 import axios from "axios";

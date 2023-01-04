@@ -16,14 +16,14 @@ Go to the next unit [Adding CRUD Pages](#) to continue.
 
 The dataProvider acts as a data layer for your app that makes the HTTP requests and encapsulates how the data is retrieved. **refine** consumes these methods via data hooks.
 
+The data provider concept comes into play whenever your refine app needs to communicate with an external API. Thanks to refine's `dataProvider` object property, all API requests are processed through this object.
+
 refine comes with different data providers out of the box, but the one we’re interested in and will be using in this tutorial is the refine-simple-rest data provider, a data provider for communicating with RESTful APIs.
 
 :::tip
 Browse the [list of supported providers](#supported-data-providers) to select an open source package for your API.
 You can also check the details to [create your own data provider](/docs/tutorial/understanding-dataprovider/create-dataprovider/) here.
 :::
-
-The data provider concept comes into play whenever your refine app needs to communicate with an external API. Thanks to refine's `dataProvider` object property, all API requests are processed through this object.
 
 Data providers can communicate with `REST`, `GraphQL`, `RPC` and `SOAP` based APIs as they work with adapter system infrastructure.
 
@@ -34,7 +34,7 @@ Data Provider must have the following methods:
 ```ts
 import { DataProvider } from "@pankod/refine-core";
 
-const dataProvider: IDataProvider = {
+const dataProvider: DataProvider = {
     create: ({ resource, variables, metaData }) => Promise,
     deleteOne: ({ resource, id, variables, metaData }) => Promise,
     getList: ({
@@ -52,6 +52,8 @@ const dataProvider: IDataProvider = {
 }
 ```
 
+`refine` this methods are used to perform CRUD operations.
+
 ## Using Data Providers in refine
 
 You can pass your data provider to the `<Refine>` component as a prop.
@@ -67,7 +69,7 @@ You can refer to the **refine** component [dataProvider](/docs/api-reference/cor
 
 ## How is it work with data hooks?
 
-**refine** data hooks are used to fetch data from the data provider. It passed paramters to the data provider and returns the result.
+**refine** data hooks are used to fetch data from the API using the data provider methods. It passes parameters to the data provider and returns the result.
 For example, to get all the records for the `posts` resource, use the `useList` hook as below. 
 
 ```ts title="src/pages/posts/index.tsx"
