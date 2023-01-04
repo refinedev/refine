@@ -65,7 +65,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-1.png"  alt="git stash" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-1.png"  alt="mui checkbox" />
 </div>
 
 <br/>
@@ -96,7 +96,7 @@ export default function CheckboxLabels() {
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-2.png"  alt="git stash" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-2.png"  alt="mui checkbox" />
 </div>
 
 <br/>
@@ -126,7 +126,7 @@ export default function SizeCheckboxes() {
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-3.png"  alt="git stash" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-3.png"  alt="mui checkbox" />
 </div>
 
 <br/>
@@ -188,7 +188,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-4.png"  alt="git stash" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-4.png"  alt="mui checkbox" />
 </div>
 
 <br/>
@@ -246,7 +246,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-5.gif"  alt="git stash" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-5.gif"  alt="mui checkbox" />
 </div>
 
 <br/>
@@ -279,7 +279,7 @@ export default function IconCheckboxes() {
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-6.gif"  alt="git stash" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-6.gif"  alt="mui checkbox" />
 </div>
 
 <br/>
@@ -385,7 +385,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-7.gif"  alt="git stash" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-7.gif"  alt="mui checkbox" />
 </div>
 
 <br/>
@@ -449,7 +449,7 @@ export default function IndeterminateCheckbox() {
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-8.gif"  alt="git stash" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-8.gif"  alt="mui checkbox" />
 </div>
 
 <br/>
@@ -545,7 +545,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-9.gif"  alt="git stash" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-9.gif"  alt="mui checkbox" />
 </div>
 
 <br/>

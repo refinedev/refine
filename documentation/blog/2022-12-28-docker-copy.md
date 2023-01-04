@@ -107,6 +107,13 @@ There are only two optional arguments for this command:
 
 You can also use the `docker cp` command to copy files between two containers. Just use the container name or ID in the source and destination paths. 
 
+---
+
+<PromotionBanner title="Building a side project?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" />
+
+---
+
+
 ## Copy through Dockerfile
 Let’s discuss how to copy files through dockerfile copy command. The basic purpose of Dockerfile is to build Docker image, which is then converted into Docker containers. Dockerfiles can contain different commands, one of which is `COPY`. The `COPY` command allows us to copy a file or folder from the host system into the docker image. The copied files become a part of every container that is created from that docker image. 
 
