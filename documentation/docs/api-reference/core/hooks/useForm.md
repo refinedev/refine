@@ -1040,7 +1040,7 @@ const form = useForm({
 
 ### `queryResult`
 
-If the `action` is set to `"edit"` or `"clone"`, or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and set the returned values as the `queryResult` property.
+If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and set the returned values as the `queryResult` property.
 
 ```tsx title="src/posts/edit.tsx"
 const { queryResult } = useForm();
@@ -1050,7 +1050,7 @@ const { data } = queryResult;
 
 ### `mutationResult`
 
-When in create or clone mode, useForm will call [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/). When in edit mode, it will call [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) and set the resulting values as the `mutationResult` property."
+When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/). When in edit mode, it will call [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) and set the resulting values as the `mutationResult` property."
 
 ```tsx title="src/posts/edit.tsx"
 const { mutationResult } = useForm();
