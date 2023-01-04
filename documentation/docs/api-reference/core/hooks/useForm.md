@@ -618,20 +618,64 @@ const ChevronsRightIcon = (
 
 You can think of `useForm` as a bridge between your `state` and `dataProvider`. It's a low-level hook that you can use to build your own form components. It's also use `notificationProvider` to inform users according to the `action` and `dataProvider` response.
 
-Let's review the steps after creating a `post` resource with `useForm`. After form is submitted:
+Let's review how `useForm` works behind the scenes.
+
+<Tabs
+defaultValue="create"
+values={[
+{label: 'create', value: 'create'},
+{label: 'edit', value: 'edit'},
+{label: 'clone', value: 'clone'}
+]}>
+<TabItem value="create">
+
+After form is submitted:
 
 1. `useForm` calls `onFinish` function with the form values.
-2. `onFinish` method calls [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) with the form values.
+2. `onFinish` function calls [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) with the form values.
 3. `useCreate` calls [`dataProvider`](/docs/api-reference/core/providers/data-provider/)'s `create` function and returns the response.
-4. `useForm` calls `onSuccess` or `onError` function with the response. `onSuccess` or `onError` method calls [`notificationProvider`](/docs/api-reference/core/providers/notification-provider/) and [`notificationProvider`](/docs/api-reference/core/providers/notification-provider/) shows the notification to the user.
-5. `useForm`, redirects to the `list` page.
+4. `useForm` calls `onSuccess` or `onError` function with the response, depending on the response status.
+5. `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/docs/api-reference/core/providers/notification-provider/) to inform the user.
+6. `useForm`, redirects to the `list` page.
 
-This is the default behavior of `useForm` when `action:"create"`. You can customize it by passing your own [`redirect`](/docs/api-reference/core/hooks/useForm/#redirect), [`onFinish`](/docs/api-reference/core/hooks/useForm/##how-can-i-change-the-form-data-before-submitting-it-to-the-api), [`onMutationSuccess`](/docs/api-reference/core/hooks/useForm/#onmutationsuccess) and [`onMutationError`](/docs/api-reference/core/hooks/useForm/#onmutationerror) props.
+</TabItem>
 
-`edit` or `clone` actions are similar to `create` action. The only difference is that `useForm` fetches the record on first render and returns the `queryResult` for you to fill the form. We will see how to use `useForm`'s [`action`](/docs/api-reference/core/hooks/useForm/#action) in the [next section](/docs/api-reference/core/hooks/useForm/#action).
+<TabItem value="edit">
+
+On mount, `useForm` calls [`useGetOne`](/docs/api-reference/core/hooks/data/useOne/) hook to retrieve the record to be edited. The `id` for the record is obtained from the `URL` or `props`.
+
+After form is submitted:
+
+1.  `useForm` calls `onFinish` function with the form values.
+2.  `onFinish` function calls [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) with the form values.
+3.  `useUpdate` calls [`dataProvider`](/docs/api-reference/core/providers/data-provider/)'s `update` function and returns the response.
+4.  `useForm` calls `onSuccess` or `onError` function with the response, depending on the response status.
+5.  `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/docs/api-reference/core/providers/notification-provider/) to inform the user.
+6.  `useForm`, redirects to the `list` page.
+
+</TabItem>
+
+<TabItem value="clone">
+
+On mount, `useForm` calls [`useGetOne`](/docs/api-reference/core/hooks/data/useOne/) hook to retrieve the record to be edited. The `id` for the record is obtained from the `URL` or `props`.
+
+After form is submitted:
+
+1.  `useForm` calls `onFinish` function with the form values.
+2.  `onFinish` function calls [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) with the form values.
+3.  `useUpdate` calls [`dataProvider`](/docs/api-reference/core/providers/data-provider/)'s `update` function and returns the response.
+4.  `useForm` calls `onSuccess` or `onError` function with the response, depending on the response status.
+5.  `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/docs/api-reference/core/providers/notification-provider/) to inform the user.
+6.  `useForm`, redirects to the `list` page.
+
+</TabItem>
+
+</Tabs>
+
+This is the default behavior of `useForm`. You can customize it by passing your own [`redirect`](/docs/api-reference/core/hooks/useForm/#redirect), [`onFinish`](/docs/api-reference/core/hooks/useForm/##how-can-i-change-the-form-data-before-submitting-it-to-the-api), [`onMutationSuccess`](/docs/api-reference/core/hooks/useForm/#onmutationsuccess) and [`onMutationError`](/docs/api-reference/core/hooks/useForm/#onmutationerror) props.
 
 :::info
-`useForm` does not manage state. If you're looking for a complete form library, `refine` supports three form libraries out-of-the-box.
+`useForm` does not manage any state. If you're looking for a complete form library, `refine` supports three form libraries out-of-the-box.
 
 -   [React Hook Form](https://react-hook-form.com/) (for Headless users) - [Documentation](/packages/documentation/react-hook-form/useForm.md) - [Example](/examples/form/react-hook-form/useForm.md)
 -   [Ant Design Form](https://ant.design/components/form/#header) (for Ant Design users) - [Documentation](/api-reference/antd/hooks/form/useForm.md) - [Example](/examples/form/antd/useForm.md)
@@ -672,7 +716,7 @@ const PostCreate = () => {
 -   Returns the `mutationResult` after called the `onFinish` callback.
 -   Accepts generic type parameters. It is used to define response type of the mutation and query.
 
-## Options
+## Properties
 
 ### `action`
 
@@ -709,6 +753,12 @@ setInitialRoutes(["/posts/create"]);
 // visible-block-start
 import React, { useState } from "react";
 import { useForm } from "@pankod/refine-core";
+
+interface FormValues {
+    id: number;
+    title: string;
+    content: string;
+}
 
 const PostCreatePage: React.FC = () => {
     const { formLoading, onFinish } = useForm<IPost, HttpError, FormValues>();
@@ -815,6 +865,12 @@ setInitialRoutes(["/posts/edit/123"]);
 // visible-block-start
 import React, { useState, useEffect } from "react";
 import { useForm } from "@pankod/refine-core";
+
+interface FormValues {
+    id: number;
+    title: string;
+    content: string;
+}
 
 const PostEditPage: React.FC = () => {
     const { formLoading, onFinish, queryResult } = useForm<FormValues>();
@@ -934,6 +990,12 @@ setInitialRoutes(["/posts/edit/123"]);
 // visible-block-start
 import React, { useState, useEffect } from "react";
 import { useForm } from "@pankod/refine-core";
+
+interface FormValues {
+    id: number;
+    title: string;
+    content: string;
+}
 
 const PostEditPage: React.FC = () => {
     // highlight-next-line
@@ -1200,10 +1262,20 @@ By default it's invalidates following queries from the current `resource`:
 -   on `"create"` or `"clone"` mode: `"list"` and `"many"`
 -   on `"edit"` mode: `"list"`", `"many"` and `"detail"`
 
+```tsx title="src/posts/create.tsx"
+const form = useForm({
+    invalidates: ["list", "many", "detail"],
+});
+```
+
 ### `dataProviderName`
 
-If there is more than one dataProvider, you should use the `dataProviderName` that you will use.
-It is useful when you want to use a different dataProvider for a specific resource.
+If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+It is useful when you want to use a different `dataProvider` for a specific resource.
+
+:::tip
+If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop ](docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
+:::
 
 ```tsx title="src/posts/edit.tsx"
 const form = useForm({
@@ -1216,11 +1288,7 @@ const form = useForm({
 Mutation mode determines which mode the mutation runs with. Mutations can run under three different modes: `pessimistic`, `optimistic` and `undoable`. Default mode is `pessimistic`.
 Each mode corresponds to a different type of user experience.
 
--   `pessimistic`: The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly.
--   `optimistic`:The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. If mutation returns with error, UI updates to show data prior to the mutation.
--   `undoable`: The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. Waits for a customizable amount of timeout period before mutation is applied. During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly. > It's only available for `edit` action.
-
-> For more information about mutation modes, please check [Mutation Mode documentation](/docs/advanced-tutorials/mutation-mode/#supported-data-hooks) page.
+> For more information about mutation modes, please check [Mutation Mode documentation](/docs/advanced-tutorials/mutation-mode) page.
 
 ```tsx title="src/posts/edit.tsx"
 const form = useForm({
@@ -1232,9 +1300,9 @@ const form = useForm({
 
 ### `successNotification`
 
-> `NotificationProvider` is required.
+> [`NotificationProvider`][notification-provider] is required.
 
-After form is submitted successfully, `refine` will show a success notification. With this prop, you can customize the success notification.
+After form is submitted successfully, `useForm` will call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
 ```tsx title="src/posts/create.tsx"
 const form = useForm({
@@ -1250,9 +1318,9 @@ const form = useForm({
 
 ### `errorNotification`
 
-> `NotificationProvider` is required.
+> [`NotificationProvider`][notification-provider] is required.
 
-After form is submit is failed, `refine` will show a error notification. With this prop, you can customize the error notification.
+After form is submit is failed, `useForm` will call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
 ```tsx title="src/posts/create.tsx"
 const form = useForm({
@@ -1281,7 +1349,7 @@ const form = useForm({
 [`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
 
 -   To pass additional information to data provider methods.
--   Generate GraphQL queries using plain JavaScript Objects (JSON).
+-   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/api-reference/data-providers/graphql#metadata) for more information.
 
 In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
@@ -1334,7 +1402,15 @@ const form = useForm({
 ### `liveMode`
 
 Whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check [Live / Realtime](/docs/advanced-tutorials/real-time/) page.
+For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    // highlight-start
+    liveMode: "auto",
+    // highlight-end
+});
+```
 
 ## FAQ
 
@@ -1434,3 +1510,5 @@ export const UserCreate: React.FC = () => {
 ## Example
 
 <StackblitzExample path="form-core-use-form" />
+
+[notification-provider]: /docs/api-reference/core/providers/notification-provider/

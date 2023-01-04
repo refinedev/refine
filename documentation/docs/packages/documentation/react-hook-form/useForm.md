@@ -249,7 +249,7 @@ export const PostEdit: React.FC = () => {
 If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/docs/packages/documentation/react-hook-form/useModalForm).
 :::
 
-## Options
+## Properties
 
 ### `action`
 
@@ -482,11 +482,86 @@ render(<RefineHeadlessDemo />);
 
 </Tabs>
 
+### `resource`
+
+**refine** passes the `resource` to the `dataProvider` as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
+
+The `resource` value is determined from the active route where the component or the hook is used. It can be overridden by passing the `resource` prop.
+
+Use case for overriding the `resource` prop:
+
+-   We can create a `category` from the `<PostEdit>` page.
+-   We can edit a `category` from the `<PostEdit>` page.
+
+In the following example, we'll show how to use `useForm` with `resource` prop.
+
+```tsx title="src/posts/edit.tsx"
+import { useForm } from "@pankod/refine-react-hook-form";
+import { PostForm } from "./PostForm";
+
+const PostEdit = () => {
+    return (
+        <div>
+            <PostForm />
+            <CategoryForm />
+        </div>
+    );
+};
+
+const CategoryForm = () => {
+    const {
+        refineCore: { onFinish },
+        handleSubmit,
+    } = useForm({
+        defaultValues: {
+            title: "",
+        },
+        // highlight-start
+        refineCoreProps: {
+            action: "create",
+            resource: "categories",
+        },
+        // highlight-end
+    });
+
+    return (
+        <form
+            onSubmit={handleSubmit(onFinish)}
+            style={{
+                display: "flex",
+                flexDirection: "column",
+            }}
+        >
+            <label htmlFor="title">Title</label>
+            <input
+                {...register("title", { required: true })}
+                id="title"
+                placeholder="Title"
+            />
+            <button type="submit">Create Category</button>
+        </form>
+    );
+};
+```
+
+Also you can give URL path to the `resource` prop.
+
+```tsx
+const form = useForm({
+    refineCoreProps: {
+        action: "create",
+        resource: "categories/subcategory", // <BASE_URL_FROM_DATA_PROVIDER>/categories/subcategory
+    },
+});
+```
+
 ### `id`
 
 `id` is used for determining the record to `edit` or `clone`. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
 
 It is usefull when you want to `edit` or `clone` a `resource` from a different page.
+
+> Note: `id` is required when `action: "edit"` or `action: "clone"`.
 
 ```tsx
 const form = useForm({
@@ -494,17 +569,6 @@ const form = useForm({
         action: "edit", // or clone
         resource: "categories",
         id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
-    },
-});
-```
-
-Also you can give `id` from `resource` prop.
-
-```tsx
-const form = useForm({
-    refineCoreProps: {
-        action: "edit", // or clone
-        resource: "categories/subcategory/3", // <BASE_URL_FROM_DATA_PROVIDER>/categories/subcategory/3/
     },
 });
 ```
@@ -572,10 +636,22 @@ By default it's invalidates following queries from the current `resource`:
 -   on `create` or `clone` mode: `"list"` and `"many"`
 -   on `edit` mode: `"list`", `"many"` and `"detail"`
 
+```tsx title="src/posts/create.tsx"
+const form = useForm({
+    refineCoreProps: {
+        invalidates: ["list", "many", "detail"],
+    },
+});
+```
+
 ### `dataProviderName`
 
-If there is more than one dataProvider, you should use the dataProviderName that you will use.
-It is useful when you want to use a different dataProvider for a specific resource.
+If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+It is useful when you want to use a different `dataProvider` for a specific resource.
+
+:::tip
+If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop ](docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
+:::
 
 ```tsx title="src/posts/edit.tsx"
 const form = useForm({
@@ -590,11 +666,7 @@ const form = useForm({
 Mutation mode determines which mode the mutation runs with. Mutations can run under three different modes: `pessimistic`, `optimistic` and `undoable`. Default mode is `pessimistic`.
 Each mode corresponds to a different type of user experience.
 
--   `pessimistic`: The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly.
--   `optimistic`:The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. If mutation returns with error, UI updates to show data prior to the mutation.
--   `undoable`: The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. Waits for a customizable amount of timeout period before mutation is applied. During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly. > It's only available for `edit` action.
-
-> For more information about mutation modes, please check [Mutation Mode documentation](/docs/advanced-tutorials/mutation-mode/#supported-data-hooks) page.
+> For more information about mutation modes, please check [Mutation Mode documentation](/docs/advanced-tutorials/mutation-mode) page.
 
 ```tsx title="src/posts/edit.tsx"
 const form = useForm({
@@ -608,9 +680,9 @@ const form = useForm({
 
 ### `successNotification`
 
-> `NotificationProvider` is required.
+> [`NotificationProvider`][notification-provider] is required.
 
-After form is submitted successfully, `refine` will show a success notification. With this prop, you can customize the success notification.
+After form is submitted successfully, `useForm` will call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
 ```tsx title="src/posts/create.tsx"
 const form = useForm({
@@ -628,7 +700,7 @@ const form = useForm({
 
 ### `errorNotification`
 
-> `NotificationProvider` is required.
+> [`NotificationProvider`][notification-provider] is required.
 
 After form is submit is failed, `refine` will show a error notification. With this prop, you can customize the error notification.
 
@@ -661,7 +733,7 @@ const form = useForm({
 [`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
 
 -   To pass additional information to data provider methods.
--   Generate GraphQL queries using plain JavaScript Objects (JSON).
+-   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/api-reference/data-providers/graphql#metadata) for more information.
 
 In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
@@ -718,7 +790,17 @@ const form = useForm({
 ### `liveMode`
 
 Whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check [Live / Realtime](/docs/advanced-tutorials/real-time/) page.
+For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    refineCoreProps: {
+        // highlight-start
+        liveMode: "auto",
+        // highlight-end
+    },
+});
+```
 
 ## FAQ
 
@@ -859,3 +941,4 @@ const {
 [use-form-core]: /api-reference/core/hooks/useForm.md
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
+[notification-provider]: /docs/api-reference/core/providers/notification-provider/
