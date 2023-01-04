@@ -80,7 +80,19 @@ We will go through the list page components and hooks one by one.
 
     [Refer to the `<List/>` documentation for more information &#8594](/docs/api-reference/antd/components/basic-views/list)
 
--   **TODO: Add more information**
+-   `<Table/>` is a native **Chakra UI** component that is used to display the data in a tabular format.
+
+    [Refer to the `<Table/>` documentation for more information &#8594](https://chakra-ui.com/docs/components/table/usage)
+
+-   `useTable` hook, imported from `@pankod/refine-react-table` package, has been developed by using the **TanStack Table v8** package and `useTable` hook imported from `@pankod/refine-core` package.
+
+    It provides all the features of the `useTable` hook from `@pankod/refine-core` package as well as the `useTable` hook from **TanStack Table v8** package.
+
+    It is used to fetch the data and manage the table state.
+
+    [Refer to the **@pankod/refine-react-table** `useTable` documentation for more information &#8594](/docs/packages/documentation/react-table/)
+
+    [Refer to the **TanStack Table v8** documentation for more information &#8594](https://tanstack.com/table/v8)
 
 -   `<EditButton/>` and `<ShowButton/>` are **refine** components that are used to navigate to the edit and show pages of the record.
 
