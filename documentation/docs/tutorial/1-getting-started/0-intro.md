@@ -137,3 +137,14 @@ In this unit, we will be covering the following steps:
 -   Deploy your project to the cloud
 
 As you make changes to your project, you can commit them to your GitHub repository. Netlify listens for changes to your GitHub repository to automatically rebuild and deploy your application on every commit. This allows anyone to access and view your website updates as you make them.
+
+
+
+<Checklist>
+
+<ChecklistItem id="getting-started">
+Let's prepare to build a "Refine" project!
+</ChecklistItem>
+
+
+</Checklist>

@@ -136,3 +136,16 @@ const App: React.FC = () => {
 
 render(<App />);
 ```
+
+
+<Checklist>
+
+<ChecklistItem id="getting-started-headless">
+I'm able to create a new headless refine project.
+</ChecklistItem>
+<ChecklistItem id="getting-started-headless-2">
+I'm able to start the refine dev server.
+</ChecklistItem>
+
+
+</Checklist>
