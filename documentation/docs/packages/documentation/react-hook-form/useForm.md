@@ -5,7 +5,7 @@ title: useForm
 
 ```tsx live shared
 import React from "react";
-import { useTable } from "@pankod/refine-core";
+import { useTable, useNavigation } from "@pankod/refine-core";
 import { useForm as ReactHoomFormUseForm } from "@pankod/refine-react-hook-form";
 
 interface IPost {
@@ -29,15 +29,19 @@ const Layout: React.FC = ({ children }) => {
 };
 
 const PostList: React.FC = () => {
-    const { tableQueryResult } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
-    });
+    const { tableQueryResult, current, setCurrent, pageSize, pageCount } =
+        useTable<IPost>({
+            initialSorter: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
+        });
     const { edit, create, clone } = useNavigation();
+
+    const hasNext = current < pageCount;
+    const hasPrev = current > 1;
 
     return (
         <div>
@@ -65,6 +69,50 @@ const PostList: React.FC = () => {
                     ))}
                 </tbody>
             </table>
+            <div>
+                <div>
+                    <button onClick={() => setCurrent(1)} disabled={!hasPrev}>
+                        First
+                    </button>
+                    <button
+                        onClick={() => setCurrent((prev) => prev - 1)}
+                        disabled={!hasPrev}
+                    >
+                        Previous
+                    </button>
+                    <button
+                        onClick={() => setCurrent((prev) => prev + 1)}
+                        disabled={!hasNext}
+                    >
+                        Next
+                    </button>
+                    <button
+                        onClick={() => setCurrent(pageCount)}
+                        disabled={!hasNext}
+                    >
+                        Last
+                    </button>
+                </div>
+                <span>
+                    Page{" "}
+                    <strong>
+                        {current} of {pageCount}
+                    </strong>
+                </span>
+                <span>
+                    Go to page:
+                    <input
+                        type="number"
+                        defaultValue={current}
+                        onChange={(e) => {
+                            const value = e.target.value
+                                ? Number(e.target.value)
+                                : 1;
+                            setCurrent(value);
+                        }}
+                    />
+                </span>
+            </div>
         </div>
     );
 };
@@ -260,7 +308,7 @@ By default, it determines the `action` from route.
 
 -   If the route is `/posts/create` thus the hook will be called with `action: "create"`.
 -   If the route is `/posts/edit/1`, the hook will be called with `action: "edit"`.
--   If the route is `/posts/clone/1`, the hook will be called with `action: "clone"`.
+-   If the route is `/posts/clone/1`, the hook will be called with `action: "clone"`. To display form, uses `create` component from resource.
 
 It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
 :::

@@ -109,7 +109,6 @@ const PostList: React.FC = () => {
                     ))}
                 </tbody>
             </table>
-
             <div>
                 <div>
                     <button onClick={() => setPage(1)} disabled={!hasPrev}>

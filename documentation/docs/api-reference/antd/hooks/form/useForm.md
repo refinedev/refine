@@ -15,6 +15,7 @@ import {
     useTable as useAntdTable,
     Space as AntdSpace,
     EditButton as AntdEditButton,
+    CloneButton as AntdCloneButton,
 } from "@pankod/refine-antd";
 
 interface IPost {
@@ -37,6 +38,11 @@ const PostList = () => {
                     render={(_, record) => (
                         <AntdSpace>
                             <AntdEditButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <AntdCloneButton
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
@@ -197,7 +203,7 @@ By default, it determines the `action` from route.
 
 -   If the route is `/posts/create` thus the hook will be called with `action: "create"`.
 -   If the route is `/posts/edit/1`, the hook will be called with `action: "edit"`.
--   If the route is `/posts/clone/1`, the hook will be called with `action: "clone"`.
+-   If the route is `/posts/clone/1`, the hook will be called with `action: "clone"`. To display form, uses `create` component from resource.
 
 It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
 :::
@@ -363,16 +369,21 @@ You can think `action:clone` like save as. It's similar to `action:edit` but it 
 
 It fetches the record data according to the `id` with [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and returns the `queryResult` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/api-reference/core/hooks/data/useCreate.md).
 
-In the following example, we'll show how to use `useForm` with `action: "clone"`. You will see `action:clone` toggle at the top of the page. You can toggle it to set the action to `clone`.
-
-```tsx live url=http://localhost:3000/edit/123 previewHeight=420px
-setInitialRoutes(["/posts/edit/123"]);
+```tsx live url=http://localhost:3000/clone/123 previewHeight=420px
+setInitialRoutes(["/posts/clone/123"]);
 
 // visible-block-start
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import { Edit, Form, Input, useForm, Space, Switch } from "@pankod/refine-antd";
+import {
+    Create,
+    Form,
+    Input,
+    useForm,
+    Space,
+    Switch,
+} from "@pankod/refine-antd";
 
 interface IPost {
     id: number;
@@ -380,32 +391,11 @@ interface IPost {
     content: string;
 }
 
-const PostEditPage: React.FC<IResourceComponentsProps> = () => {
-    // highlight-next-line
-    const [action, setAction] = useState<"edit" | "clone">("clone");
-
-    const { formProps, saveButtonProps } = useForm<IPost>({
-        // highlight-next-line
-        action,
-    });
+const PostCreatePage: React.FC<IResourceComponentsProps> = () => {
+    const { formProps, saveButtonProps } = useForm<IPost>();
 
     return (
-        <Edit
-            saveButtonProps={saveButtonProps}
-            headerButtons={
-                /* highlight-start */
-                <Space>
-                    <Switch
-                        checked={action === "clone"}
-                        onChange={() => {
-                            setAction(action === "edit" ? "clone" : "edit");
-                        }}
-                    />
-                    Clone
-                </Space>
-            }
-        >
-            {/* highlight-end */}
+        <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -430,7 +420,7 @@ const PostEditPage: React.FC<IResourceComponentsProps> = () => {
                     <Input.TextArea />
                 </Form.Item>
             </Form>
-        </Edit>
+        </Create>
     );
 };
 // visible-block-end
@@ -440,8 +430,8 @@ setRefineProps({
         {
             name: "posts",
             list: PostList,
-            create: PostCreate,
-            edit: PostEditPage,
+            create: PostCreatePage,
+            edit: PostEdit,
         },
     ],
 });

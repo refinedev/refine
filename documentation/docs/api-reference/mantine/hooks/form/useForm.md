@@ -15,6 +15,7 @@ import {
     Input as MantineInput,
     useTable as useMantineTable,
     EditButton as MantineEditButton,
+    CloneButton as MantineCloneButton,
     Box as MantineBox,
     Group as MantineGroup,
     ScrollArea as MantineScrollArea,
@@ -58,6 +59,10 @@ const PostList: React.FC = () => {
                     return (
                         <MantineGroup spacing="xs" noWrap>
                             <MantineEditButton
+                                hideText
+                                recordItemId={getValue() as number}
+                            />
+                            <MantineCloneButton
                                 hideText
                                 recordItemId={getValue() as number}
                             />
@@ -145,6 +150,12 @@ const PostEdit: React.FC = () => {
             title: "",
             content: "",
         },
+        validate: {
+            title: (value) =>
+                value.length < 3 && "Title must be at least 3 characters",
+            content: (value) =>
+                value.length < 10 && "Content must be at least 10 characters",
+        },
     });
 
     return (
@@ -154,20 +165,18 @@ const PostEdit: React.FC = () => {
                     mt={8}
                     label="Title"
                     placeholder="Title"
+                    withAsterisk
                     {...getInputProps("title")}
                 />
+
                 <MantineTextarea
-                    {...getInputProps("content")}
                     label="Content"
                     placeholder="Content"
                     minRows={4}
                     maxRows={4}
+                    withAsterisk
+                    {...getInputProps("content")}
                 />
-                {errors.content && (
-                    <MantineText mt={2} weight={500} size="xs" color="red">
-                        {errors.content}
-                    </MantineText>
-                )}
             </form>
         </MantineEdit>
     );
@@ -179,6 +188,12 @@ const PostCreate: React.FC = () => {
             title: "",
             content: "",
         },
+        validate: {
+            title: (value) =>
+                value.length < 3 && "Title must be at least 3 characters",
+            content: (value) =>
+                value.length < 10 && "Content must be at least 10 characters",
+        },
     });
 
     return (
@@ -188,20 +203,17 @@ const PostCreate: React.FC = () => {
                     mt={8}
                     label="Title"
                     placeholder="Title"
+                    withAsterisk
                     {...getInputProps("title")}
                 />
                 <MantineTextarea
-                    {...getInputProps("content")}
                     label="Content"
                     placeholder="Content"
                     minRows={4}
                     maxRows={4}
+                    withAsterisk
+                    {...getInputProps("content")}
                 />
-                {errors.content && (
-                    <MantineText mt={2} weight={500} size="xs" color="red">
-                        {errors.content}
-                    </MantineText>
-                )}
             </form>
         </MantineCreate>
     );
@@ -241,6 +253,7 @@ const PostEdit: React.FC = () => {
                     mt={8}
                     label="Title"
                     placeholder="Title"
+                    withAsterisk
                     {...getInputProps("title")}
                 />
                 <Select
@@ -252,6 +265,7 @@ const PostEdit: React.FC = () => {
                         { label: "Draft", value: "draft" },
                         { label: "Rejected", value: "rejected" },
                     ]}
+                    withAsterisk
                     {...getInputProps("status")}
                 />
             </form>
@@ -281,7 +295,7 @@ By default, it determines the `action` from route.
 
 -   If the route is `/posts/create` thus the hook will be called with `action: "create"`.
 -   If the route is `/posts/edit/1`, the hook will be called with `action: "edit"`.
--   If the route is `/posts/clone/1`, the hook will be called with `action: "clone"`.
+-   If the route is `/posts/clone/1`, the hook will be called with `action: "clone"`. To display form, uses `create` component from resource.
 
 It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
 :::
@@ -321,6 +335,12 @@ const PostCreatePage: React.FC = () => {
             title: "",
             content: "",
         },
+        validate: {
+            title: (value) =>
+                value.length < 3 && "Title must be at least 3 characters",
+            content: (value) =>
+                value.length < 10 && "Content must be at least 10 characters",
+        },
     });
 
     return (
@@ -330,20 +350,17 @@ const PostCreatePage: React.FC = () => {
                     mt={8}
                     label="Title"
                     placeholder="Title"
+                    withAsterisk
                     {...getInputProps("title")}
                 />
                 <Textarea
-                    {...getInputProps("content")}
                     label="Content"
                     placeholder="Content"
                     minRows={4}
                     maxRows={4}
+                    withAsterisk
+                    {...getInputProps("content")}
                 />
-                {errors.content && (
-                    <Text mt={2} weight={500} size="xs" color="red">
-                        {errors.content}
-                    </Text>
-                )}
             </form>
         </Create>
     );
@@ -394,6 +411,12 @@ const PostEditPage: React.FC = () => {
             title: "",
             content: "",
         },
+        validate: {
+            title: (value) =>
+                value.length < 3 && "Title must be at least 3 characters",
+            content: (value) =>
+                value.length < 10 && "Content must be at least 10 characters",
+        },
     });
 
     return (
@@ -403,20 +426,17 @@ const PostEditPage: React.FC = () => {
                     mt={8}
                     label="Title"
                     placeholder="Title"
+                    withAsterisk
                     {...getInputProps("title")}
                 />
                 <Textarea
-                    {...getInputProps("content")}
                     label="Content"
                     placeholder="Content"
                     minRows={4}
                     maxRows={4}
+                    withAsterisk
+                    {...getInputProps("content")}
                 />
-                {errors.content && (
-                    <Text mt={2} weight={500} size="xs" color="red">
-                        {errors.content}
-                    </Text>
-                )}
             </form>
         </Edit>
     );
@@ -449,80 +469,54 @@ It fetches the record data according to the `id` with [`useOne`](/docs/api-refer
 
 In the following example, we'll show how to use `useForm` with `action: "clone"`. You will see `action:clone` toggle at the top of the page. You can toggle it to set the action to `clone`.
 
-```tsx live url=http://localhost:3000/edit/123 previewHeight=420px
-setInitialRoutes(["/posts/edit/123"]);
+```tsx live url=http://localhost:3000/clone/123 previewHeight=420px
+setInitialRoutes(["/posts/clone/123"]);
 
 // visible-block-start
 import React from "react";
 
 import {
-    Edit,
+    Create,
     Text,
     TextInput,
     Textarea,
-    Switch,
     useForm,
 } from "@pankod/refine-mantine";
 
-const PostEditPage: React.FC = () => {
-    // highlight-next-line
-    const [action, setAction] = React.useState<"edit" | "clone">("clone");
-
+const PostCreatePage: React.FC = () => {
     const { saveButtonProps, getInputProps, errors } = useForm({
-        // highlight-start
-        refineCoreProps: {
-            action,
-        },
-        // highlight-end
         initialValues: {
             title: "",
             content: "",
         },
+        validate: {
+            title: (value) =>
+                value.length < 3 && "Title must be at least 3 characters",
+            content: (value) =>
+                value.length < 10 && "Content must be at least 10 characters",
+        },
     });
 
     return (
-        <Edit
-            saveButtonProps={saveButtonProps}
-            headerButtons={(props) => {
-                /* highlight-start */
-                return (
-                    <>
-                        {props.defaultButtons}
-                        <Switch
-                            label="Clone"
-                            checked={action === "clone"}
-                            onChange={(e) =>
-                                setAction(
-                                    e.currentTarget.checked ? "clone" : "edit",
-                                )
-                            }
-                        />
-                    </>
-                );
-            }}
-        >
-            {/* highlight-end */}
+        <Create saveButtonProps={saveButtonProps}>
             <form>
                 <TextInput
                     mt={8}
                     label="Title"
                     placeholder="Title"
+                    withAsterisk
                     {...getInputProps("title")}
                 />
                 <Textarea
-                    {...getInputProps("content")}
                     label="Content"
                     placeholder="Content"
                     minRows={4}
                     maxRows={4}
+                    withAsterisk
+                    {...getInputProps("content")}
                 />
-                {errors.content && (
-                    <Text mt={2} weight={500} size="xs" color="red">
-                        {errors.content}
-                    </Text>
-                )}
             </form>
-        </Edit>
+        </Create>
     );
 };
 // visible-block-end
@@ -532,8 +526,8 @@ setRefineProps({
         {
             name: "posts",
             list: PostList,
-            create: PostCreate,
-            edit: PostEditPage,
+            create: PostCreatePage,
+            edit: PostEdit,
         },
     ],
 });
