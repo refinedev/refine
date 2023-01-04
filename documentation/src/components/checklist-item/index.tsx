@@ -38,7 +38,7 @@ const ChecklistItem: React.FC<Props> = ({ children, id: checkId }) => {
     };
 
     return (
-        <div className="mb-3 flex items-center gap-1.5 flex-wrap">
+        <label className="mb-3 flex items-center gap-1.5 flex-wrap">
             <div className="flex-shrink-0 w-5 h-5">
                 <button
                     type="button"
@@ -55,7 +55,7 @@ const ChecklistItem: React.FC<Props> = ({ children, id: checkId }) => {
                 </button>
             </div>
             <div className={checked ? "line-through" : ""}>{children}</div>
-        </div>
+        </label>
     );
 };
 
