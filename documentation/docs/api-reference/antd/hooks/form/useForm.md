@@ -530,7 +530,7 @@ It's a callback function that will be called after the mutation is successful.
 
 It receives the following parameters:
 
--   `data`: The data returned from the mutation.
+-   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
 -   `variables`: The variables passed to the mutation.
 -   `context`: react-query context.
 
@@ -548,7 +548,7 @@ It's a callback function that will be called after the mutation is failed.
 
 It receives the following parameters:
 
--   `data`: The data returned from the mutation.
+-   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
 -   `variables`: The variables passed to the mutation.
 -   `context`: react-query context.
 
