@@ -1,5 +1,5 @@
 import React from "react";
-import { useDataProvider, useResource } from "@pankod/refine-core";
+import { useDataProvider, useResource, BaseKey } from "@pankod/refine-core";
 
 import { pickDataProvider, dataProviderFromResource } from "@/utilities";
 
@@ -32,7 +32,7 @@ export const useInferFetch = (
     const [loading, setLoading] = React.useState<boolean>(false);
 
     const resolver = React.useCallback(
-        async (recordItemId: number) => {
+        async (recordItemId: BaseKey | undefined) => {
             const dataProviderName =
                 dataProviderFromResource(resource) ??
                 pickDataProvider(resourceName, undefined, resources);
@@ -50,7 +50,7 @@ export const useInferFetch = (
                         setLoading(false);
                     }, 500);
                 }
-                if (type === "edit" || (type === "show" && recordItemId)) {
+                if ((type === "edit" || type === "show") && recordItemId) {
                     const response = await dp.getOne({
                         resource: resourceName,
                         id: recordItemId,

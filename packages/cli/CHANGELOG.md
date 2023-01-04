@@ -1,5 +1,24 @@
 # @pankod/refine-cli
 
+## 1.15.0
+
+### Minor Changes
+
+-   [#3330](https://github.com/refinedev/refine/pull/3330) [`ff2b87f92af`](https://github.com/refinedev/refine/commit/ff2b87f92af66dc583e614f746646567d6d56eb9) Thanks [@aliemir](https://github.com/aliemir)! - Do not prompt the component selection if there is only one component to swizzle.
+
+## 1.14.0
+
+### Minor Changes
+
+-   [#3330](https://github.com/refinedev/refine/pull/3330) [`ff2b87f92af`](https://github.com/refinedev/refine/commit/ff2b87f92af66dc583e614f746646567d6d56eb9) Thanks [@aliemir](https://github.com/aliemir)! - Do not prompt the component selection if there is only one component to swizzle.
+
+## 1.13.6
+
+### Patch Changes
+
+-   [#3315](https://github.com/refinedev/refine/pull/3315) [`dda827e9a58`](https://github.com/refinedev/refine/commit/dda827e9a581b4427f6423740aed399090a5631f) Thanks [@yasnbouz](https://github.com/yasnbouz)! - Fixed: `Ctrl+c` not killing running dev; leaving ports open - #3175
+    Fixed: terminal output color w/ env `FORCE_COLOR=true`
+
 ## 1.13.5
 
 ### Patch Changes

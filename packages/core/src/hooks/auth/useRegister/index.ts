@@ -1,10 +1,21 @@
 import React from "react";
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import {
+    useMutation,
+    UseMutationOptions,
+    UseMutationResult,
+} from "@tanstack/react-query";
 
 import { AuthContext } from "@contexts/auth";
 import { useNavigation, useNotification } from "@hooks";
 
 import { IAuthContext, TRegisterData } from "../../../interfaces";
+
+export type UseRegisterProps<TVariables> = {
+    mutationOptions?: Omit<
+        UseMutationOptions<TRegisterData, Error, TVariables, unknown>,
+        "mutationFn" | "onError" | "onSuccess"
+    >;
+};
 
 /**
  * `useRegister` calls `register` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
@@ -15,7 +26,9 @@ import { IAuthContext, TRegisterData } from "../../../interfaces";
  * @typeParam TVariables - Values for mutation function. default `{}`
  *
  */
-export const useRegister = <TVariables = {}>(): UseMutationResult<
+export const useRegister = <TVariables = {}>({
+    mutationOptions,
+}: UseRegisterProps<TVariables> = {}): UseMutationResult<
     TRegisterData,
     Error,
     TVariables,
@@ -51,6 +64,7 @@ export const useRegister = <TVariables = {}>(): UseMutationResult<
                 type: "error",
             });
         },
+        ...mutationOptions,
     });
 
     return queryResponse;

@@ -2,6 +2,7 @@ import {
     useQueryClient,
     useMutation,
     UseMutationResult,
+    UseMutationOptions,
 } from "@tanstack/react-query";
 import pluralize from "pluralize";
 
@@ -55,6 +56,22 @@ export type UseDeleteManyReturnType<
     unknown
 >;
 
+export type UseDeleteManyProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {},
+> = {
+    mutationOptions?: Omit<
+        UseMutationOptions<
+            DeleteManyResponse<TData>,
+            TError,
+            DeleteManyParams<TVariables>,
+            DeleteContext<TData>
+        >,
+        "mutationFn" | "onError" | "onSuccess" | "onSettled" | "onMutate"
+    >;
+};
+
 /**
  * `useDeleteMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for multiple delete mutations.
  *
@@ -71,7 +88,13 @@ export const useDeleteMany = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
->(): UseDeleteManyReturnType<TData, TError, TVariables> => {
+>({
+    mutationOptions,
+}: UseDeleteManyProps<TData, TError, TVariables> = {}): UseDeleteManyReturnType<
+    TData,
+    TError,
+    TVariables
+> => {
     const { mutate: checkError } = useCheckError();
 
     const {
@@ -369,6 +392,7 @@ export const useDeleteMany = <
                     });
                 }
             },
+            ...mutationOptions,
         },
     );
 

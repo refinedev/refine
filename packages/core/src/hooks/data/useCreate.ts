@@ -1,4 +1,8 @@
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import {
+    useMutation,
+    UseMutationOptions,
+    UseMutationResult,
+} from "@tanstack/react-query";
 import pluralize from "pluralize";
 import { pickDataProvider } from "@definitions/helpers";
 
@@ -55,6 +59,22 @@ export type UseCreateReturnType<
     unknown
 >;
 
+export type UseCreateProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {},
+> = {
+    mutationOptions?: Omit<
+        UseMutationOptions<
+            CreateResponse<TData>,
+            TError,
+            useCreateParams<TVariables>,
+            unknown
+        >,
+        "mutationFn" | "onError" | "onSuccess"
+    >;
+};
+
 /**
  * `useCreate` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for create mutations.
  *
@@ -72,7 +92,13 @@ export const useCreate = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
->(): UseCreateReturnType<TData, TError, TVariables> => {
+>({
+    mutationOptions,
+}: UseCreateProps<TData, TError, TVariables> = {}): UseCreateReturnType<
+    TData,
+    TError,
+    TVariables
+> => {
     const { mutate: checkError } = useCheckError();
     const dataProvider = useDataProvider();
     const invalidateStore = useInvalidate();
@@ -209,6 +235,7 @@ export const useCreate = <
                     type: "error",
                 });
             },
+            ...mutationOptions,
         },
     );
 
