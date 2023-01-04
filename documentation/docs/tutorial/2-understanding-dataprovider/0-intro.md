@@ -7,6 +7,11 @@ tutorial:
     next: tutorial/understanding-dataprovider/swizzle
 ---
 
+:::info
+DataProvider unit is not required for the tutorial. You can skip this unit if you want.
+Go to the next unit [Adding CRUD Pages](#) to continue.
+:::
+
 ## What is data provider?
 
 The dataProvider acts as a data layer for your app that makes the HTTP requests and encapsulates how the data is retrieved. **refine** consumes these methods via data hooks.
