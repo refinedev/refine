@@ -2,8 +2,6 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import { Layout } from "components";
-import { PostIcon } from "icons";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const App: React.FC = () => {
@@ -18,10 +16,8 @@ const App: React.FC = () => {
                     create: PostCreate,
                     edit: PostEdit,
                     show: PostShow,
-                    icon: PostIcon,
                 },
             ]}
-            Layout={Layout}
         />
     );
 };
