@@ -785,29 +785,27 @@ const form = useForm({
 
 In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
-```tsx
+```tsx title="src/posts/create.tsx"
 const form = useForm({
+    // highlight-start
     refineCoreProps: {
-        action: "create",
-        resource: "post",
-        // highlight-start
         metaData: {
             headers: { "x-meta-data": "true" },
         },
-        // highlight-end
     },
+    // highlight-end
 });
 
 const myDataProvider = {
     //...
     // highlight-start
-    create: async ({ resource, id, metaData }) => {
+    create: async ({ resource, variables, metaData }) => {
         const headers = metaData?.headers ?? {};
         // highlight-end
-        const url = `${apiUrl}/${resource}/${id}`;
+        const url = `${apiUrl}/${resource}`;
 
         // highlight-next-line
-        const { data } = await httpClient.get(url, { headers });
+        const { data } = await httpClient.post(url, variables, { headers });
 
         return {
             data,
