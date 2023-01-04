@@ -86,7 +86,7 @@ We will go through the create page components and hooks one by one.
 
 -   `useForm` is a **refine** hook that provides the necessary props for the form. It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
 
-    When you use `useForm` in the edit page, it sends the form data to `dataProvider`'s `update` method when the form is submitted.
+    When you use `useForm` in the create page, it sends the form data to `dataProvider`'s `create` method when the form is submitted.
 
     [Refer to the `useForm` documentation for more information &#8594](/docs/api-reference/antd/hooks/form/useForm/)
 

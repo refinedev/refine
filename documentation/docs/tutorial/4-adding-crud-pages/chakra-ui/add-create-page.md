@@ -82,22 +82,34 @@ We will go through the create page components and hooks one by one.
 
     [Refer to the `<Create/>` documentation for more information &#8594](/docs/api-reference/antd/components/basic-views/create)
 
--   **TODO: add more information**
+-   `useForm` hook, imported from `@pankod/refine-react-hook-form` package, has been developed by using the **React Hook Form** and `useForm` hook imported from `@pankod/refine-core` package.
+
+    It provides all the features of the `useForm` hook from `@pankod/refine-core` package as well as the `useForm` hook from **React Hook Form**.
+
+    It also provides the `saveButtonProps` prop that we can pass to the submit button of the form.
+
+    When you use `useForm` in the create page, it sends the form data to `dataProvider`'s `create` method when the form is submitted.
+
+    [Refer to the **@pankod/refine-react-hook-form** `useForm` documentation for more information &#8594](/docs/packages/documentation/react-hook-form/useForm/)
+
+    [Refer to the **React Hook Form** documentation for more information &#8594](https://react-hook-form.com/)
+
+-   All other components provided by **Chakra UI** are used to display the form fields.
+
+    [Refer to the **Chakra UI** documentation for more information &#8594](https://chakra-ui.com/)
 
 ### Handling Relationships
 
-**- TODO: useSelect Core'dan kullanılıyor buradaki cümleleri ona göre düzenle**
-
-In the create page, we may need to select a record from another resource. For example, we may need to select a category from the `categories` resource to assign the product to the category. In this case, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the resource name to the `dataProvider`'s `getList` method. Then, it returns the necessary props for the `<Select/>` component.
+In the create page, we may need to select a record from another resource. For example, we may need to select a category from the `categories` resource to assign the product to the category. In this case, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the resource name to the `dataProvider`'s `getList` method. Then, it returns the `options` to be used in the `<Select/>` component.
 
 [Refer to the `useSelect` documentation for more information &#8594](/docs/api-reference/antd/hooks/field/useSelect/)
 
-**- TODO: If we use Chakra-UI Select, give the link to the Chakra-UI Select documentation.**
+[Refer to the **Chakra UI** `<Select/>` documentation for more information &#8594](https://chakra-ui.com/docs/components/select/usage)
 
 In the auto-generated create page code, Inferencer used the `useSelect` hook to select a category from the `categories` resource like below:
 
 ```tsx
-const { selectProps: categorySelectProps } = useSelect({
+const { options: categoryOptions } = useSelect({
     resource: "categories",
 });
 ```
