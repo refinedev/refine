@@ -80,7 +80,7 @@ We will go through the edit page components and hooks one by one.
 
 -   `<Edit/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button, refresh button etc.
 
-    [Refer to the `<Edit/>` documentation for more information &#8594](/docs/api-reference/antd/components/basic-views/edit)
+    [Refer to the `<Edit/>` documentation for more information &#8594](/docs/api-reference/chakra-ui/components/basic-views/edit)
 
 -   `useForm` hook, imported from `@pankod/refine-react-hook-form` package, has been developed by using the **React Hook Form** and `useForm` hook imported from `@pankod/refine-core` package.
 

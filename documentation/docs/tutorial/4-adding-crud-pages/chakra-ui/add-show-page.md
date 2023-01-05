@@ -80,7 +80,7 @@ We will go through the show page components and hooks one by one.
 
 -   `<Show/>` is a **refine** component that is used to presentation purposes like showing the title of the page, list button, etc.
 
-    [Refer to the `<Show/>` documentation for more information &#8594](/docs/api-reference/antd/components/basic-views/show/)
+    [Refer to the `<Show/>` documentation for more information &#8594](/docs/api-reference/chakra-ui/components/basic-views/show/)
 
 -   `useShow` is a **refine** hook that is used to get single record data by using the `id` in the URL. It sends the parameters to the `dataProvider`'s `getOne` function and returns the result.
 
@@ -91,8 +91,6 @@ We will go through the show page components and hooks one by one.
     [Refer to the **Chakra UI** documentation for more information &#8594](https://chakra-ui.com/)
 
 ### Handling Relationships
-
-**- TODO: Buralarda Chakra-UI'a göre bir farklılık var mı? Varsa düzelt.**
 
 In the show page, we have a single record. The record may have relationships with other resources. For example, the `products` resource has a relationship with the `categories` resource. In this case, we can use the `useOne` hook provided by **refine**. This hook allows us to fetch single record data by using the `id` and `resource` parameters.
 

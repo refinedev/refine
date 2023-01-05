@@ -80,7 +80,7 @@ We will go through the create page components and hooks one by one.
 
 -   `<Create/>` is a **refine** component that is used to presentation purposes like showing the title of the page, save button etc.
 
-    [Refer to the `<Create/>` documentation for more information &#8594](/docs/api-reference/antd/components/basic-views/create)
+    [Refer to the `<Create/>` documentation for more information &#8594](/docs/api-reference/chakra-ui/components/basic-views/create)
 
 -   `useForm` hook, imported from `@pankod/refine-react-hook-form` package, has been developed by using the **React Hook Form** and `useForm` hook imported from `@pankod/refine-core` package.
 
@@ -102,7 +102,7 @@ We will go through the create page components and hooks one by one.
 
 In the create page, we may need to select a record from another resource. For example, we may need to select a category from the `categories` resource to assign the product to the category. In this case, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the resource name to the `dataProvider`'s `getList` method. Then, it returns the `options` to be used in the `<Select/>` component.
 
-[Refer to the `useSelect` documentation for more information &#8594](/docs/api-reference/antd/hooks/field/useSelect/)
+[Refer to the `useSelect` documentation for more information &#8594](/docs/api-reference/core/hooks/useSelect/)
 
 [Refer to the **Chakra UI** `<Select/>` documentation for more information &#8594](https://chakra-ui.com/docs/components/select/usage)
 

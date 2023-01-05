@@ -78,7 +78,7 @@ We will go through the list page components and hooks one by one.
 
 -   `<List/>` is a **refine** component that is used to presentation purposes like showing create button or page title etc.
 
-    [Refer to the `<List/>` documentation for more information &#8594](/docs/api-reference/antd/components/basic-views/list)
+    [Refer to the `<List/>` documentation for more information &#8594](/docs/api-reference/chakra-ui/components/basic-views/list)
 
 -   `<Table/>` is a native **Chakra UI** component that is used to display the data in a tabular format.
 
@@ -96,17 +96,21 @@ We will go through the list page components and hooks one by one.
 
 -   `<EditButton/>` and `<ShowButton/>` are **refine** components that are used to navigate to the edit and show pages of the record.
 
-    [Refer to the `<EditButton/>` documentation for more information &#8594](/docs/api-reference/antd/components/buttons/edit-button/)
+    [Refer to the `<EditButton/>` documentation for more information &#8594](/docs/api-reference/chakra-ui/components/buttons/edit-button/)
 
-    [Refer to the `<ShowButton/>` documentation for more information &#8594](/docs/api-reference/antd/components/buttons/show-button/)
+    [Refer to the `<ShowButton/>` documentation for more information &#8594](/docs/api-reference/chakra-ui/components/buttons/show-button/)
 
 -   `<DeleteButton/>` is a **refine** component that is used to delete the record.
 
-    [Refer to the `<ShowButton/>` documentation for more information &#8594](/docs/api-reference/antd/components/buttons/delete-button/)
+    [Refer to the `<ShowButton/>` documentation for more information &#8594](/docs/api-reference/chakra-ui/components/buttons/delete-button/)
 
 ### Handling Relationships
 
-Each product includes the `category` field. But, it only includes the `id` of the category. This is a foreign key that points to the `categories` resource. In the `categories` resource, we can see the `title` field. So, in order to display the category `title` in the table, we can use the `useMany` hook provided by **refine**. This hook allows us to fetch data for multiple records in a single request by providing the `id`'s of the related records. In this case, we need to provide the `id`'s of the products' categories. It is particularly useful when we need to fetch related data for multiple records.
+Each product includes the `category` field which has `id` property. This is a foreign key that points to the `categories` resource which is different than "product" resource.
+
+There is a `title` field In the `categories` resource. To display the category `title` in the table, we can use the `useMany` hook provided by **refine**.
+
+This hook allows us to fetch data for multiple records in a single request by providing the `id`'s of the related records. In this case, we need to provide the `id`'s of the products categories. It is particularly useful when we need to fetch related data for multiple records.
 
 [Refer to the `useMany` documentation for more information &#8594](/docs/api-reference/core/hooks/data/useMany/)
 
