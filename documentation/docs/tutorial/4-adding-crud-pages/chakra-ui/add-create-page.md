@@ -4,7 +4,7 @@ title: 4.Adding Create Page
 tutorial:
     order: 0
     next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
-    prev: tutorial/adding-crud-pages/{preferredUI}/adding-search-and-filters
+    prev: tutorial/adding-crud-pages/{preferredUI}/adding-sort-and-filters
 ---
 
 ## Overview
