@@ -47,7 +47,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-In the above example, we have added a `resource` with name `posts`. This resource has 5 pages. `list`, `show`, `create`, `clone` and `edit` pages and **refine** link the pages with routes for us. We can access these pages by visiting the following routes:
+In the above example, we have added a `resource` with name `posts`. This resource will have 5 pages that assigned to `list`, `show`, `create`, `clone` and `edit`  properties. **refine** link the pages with routes for us. We can access these pages by visiting the following routes:
 
 -   `/posts` - Post List Page
 -   `/posts/show/:id` - Post Detail Page
