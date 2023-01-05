@@ -173,4 +173,4 @@ const App = () => {
 export default App;
 ```
 
-Now, we can see the create page in the browser at <a href="http://localhost:3000/products/show/123" rel="noopener noreferrer nofollow">localhost:3000/products/show/123</a>
+Now, we can see the show page in the browser at <a href="http://localhost:3000/products/show/123" rel="noopener noreferrer nofollow">localhost:3000/products/show/123</a>

@@ -114,7 +114,7 @@ const { options: categoryOptions } = useSelect({
 });
 ```
 
-`useSelect` returns 10 record by default, but the category of the product may not be in the first 10 records. To solve this problem, we can use the `defaultValue` prop to set the default value of the select component like below:
+`useSelect` returns 10 record by default, but the category of the product may not be in the first 10 records. To solve this problem, we can use the `defaultValue` prop to set the default value of the `useSelect` hook like below:
 
 ```tsx
 const { options: categoryOptions } = useSelect({
