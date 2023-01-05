@@ -8,20 +8,18 @@ tutorial:
 ---
 
 :::info
-The DataProvider unit is optional for the tutorial and can be skipped to next unit [Adding CRUD Pages](/docs/tutorial/adding-crud-pages/antd/index) if desired.
+The data provider unit is optional for the tutorial and can be skipped to next unit [Adding CRUD Pages](/docs/tutorial/adding-crud-pages/antd/index) if desired.
 :::
 
 ## What is data provider?
 
-The dataProvider acts as a data layer for your app that makes the HTTP requests and encapsulates how the data is retrieved. **refine** consumes these methods via data hooks.
+The data provider acts as a data layer for your app that makes the HTTP requests and encapsulates how the data is retrieved. **refine** consumes these methods via data hooks.
 
 The data provider concept comes into play whenever your refine app needs to communicate with an external API. Thanks to refine's `dataProvider` object property, all API requests are processed through this object.
 
-refine comes with different data providers out of the box, but the one we’re interested in and will be using in this tutorial is the refine-simple-rest data provider, a data provider for communicating with RESTful APIs.
-
 :::tip
-Browse the [list of supported providers](#supported-data-providers) to select an open source package for your API.
-You can also check the details to [create your own data provider](/docs/tutorial/understanding-dataprovider/create-dataprovider/) here.
+You can review the[list of supported providers](#supported-data-providers) to find the one that is compatible with your API. 
+We'll also give more details about data providers in [create your own data provider](/docs/tutorial/understanding-dataprovider/create-dataprovider/) section.
 :::
 
 Data providers can communicate with `REST`, `GraphQL`, `RPC` and `SOAP` based APIs as they work with adapter system infrastructure.
@@ -33,7 +31,7 @@ Data providers can communicate with `REST`, `GraphQL`, `RPC` and `SOAP` based AP
 <br/>
 <br/>
 
-Data Provider must have the following methods:
+The typical data provider has following methods:
 
 ```ts
 import { DataProvider } from "@pankod/refine-core";
@@ -58,6 +56,8 @@ const dataProvider: DataProvider = {
 
 These methods are used to perform CRUD operations by **refine**
 
+**refine** comes with different data providers out of the box, but the one we’re interested in and will be using in this tutorial is the refine-simple-rest data provider, a data provider for communicating with RESTful APIs.
+
 ## Using Data Providers in refine
 
 You can register your data provider to the `<Refine>` component by passing to `dataProvider` property.
@@ -74,7 +74,7 @@ You can refer to the **refine** component [dataProvider](/docs/api-reference/cor
 ## How is it work with data hooks?
 
 **refine** data hooks are used to fetch data from the API using the data provider methods. It passes parameters to the data provider and returns the result.
-For example, to get all the records for the `posts` resource, use the `useList` hook as below. 
+To illustrate this internal connection, imagine we want to get all records from the "post" resource using refine's `useList` data hook.
 
 ```ts title="src/pages/posts/index.tsx"
 import { useList } from "@pankod/refine-core";
