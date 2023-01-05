@@ -8,7 +8,7 @@ tutorial:
 ---
 
 :::info
-The DataProvider unit is optional for the tutorial and can be skipped to next unit [Adding CRUD Pages](#) if desired.
+The DataProvider unit is optional for the tutorial and can be skipped to next unit [Adding CRUD Pages](/docs/tutorial/adding-crud-pages/antd/index) if desired.
 :::
 
 ## What is data provider?
