@@ -1101,13 +1101,15 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 `onFinish` is a function that is called when the form is submitted. It will call the appropriate mutation based on the `action` property.
 You can override the default behavior by passing an `onFinish` function in the hook's options.
 
-For example; You can [change values before sending to the API](/docs/packages/documentation/react-hook-form/useForm/#how-can-i-change-the-form-data-before-submitting-it-to-the-api).
+For example you can [change values before sending to the API](/docs/api-reference/core/hooks/useForm/#how-can-i-change-the-form-data-before-submitting-it-to-the-api).
 
 ## FAQ
 
 ### How can Invalidate other resources?
 
 You can invalidate other resources with help of [`useInvalidate`](/docs/api-reference/core/hooks/invalidate/useInvalidate/) hook.
+
+It is useful when you want to `invalidate` other resources don't have relation with the current resource.
 
 ```tsx title="src/posts/edit.tsx"
 import { useInvalidate, useForm } from "@pankod/refine-core";
@@ -1119,7 +1121,7 @@ const PostEdit = () => {
         // highlight-start
         onMutationSuccess: (data, variables, context) => {
             invalidate({
-                resource: "categories",
+                resource: "users",
                 invalidates: ["resourceAll"],
             });
         },
