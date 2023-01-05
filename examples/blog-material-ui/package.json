@@ -18,7 +18,7 @@
         "@mui/icons-material": "^5.8.3",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-strapi-v4": "^3.39.6",
-        "axios": "^0.26.1"
+        "axios": "^1.2.2"
     },
     "devDependencies": {
         "@types/node": "^12.20.11",

@@ -46,7 +46,7 @@ export const dataProvider = (
             `${url}?${stringify(query)}&${stringify(queryFilters)}`,
         );
 
-        const total = +headers["x-total-count"];
+        const total = +(headers["x-total-count"] ?? NaN);
 
         return {
             data,
@@ -135,8 +135,8 @@ export const dataProvider = (
         }
 
         if (headers) {
-            httpClient.defaults.headers = {
-                ...httpClient.defaults.headers,
+            httpClient.defaults.headers.common = {
+                ...httpClient.defaults.headers.common,
                 ...headers,
             };
         }
