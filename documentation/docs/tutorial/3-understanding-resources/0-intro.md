@@ -17,7 +17,7 @@ In the [Unit 3.2](#), we have defined a resource to create our CRUD pages with t
 
 Let's see what's going on under the hood when we add a `resources` to our app and learn `resources` term for who are new to **refine**.
 
-To add `resource` to our app, we must use `resources` prop of `<Refine />` component. This prop accepts an array of objects. Each object represents a resource.
+To add  a `resource` to our app, we need use `resources` prop of `<Refine />` component. This prop accepts an array of objects. Each object represents a resource.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
@@ -47,7 +47,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-In the above example, we have added a `resource` with name `posts`. This resource has 5 pages. `list`, `show`, `create`, `clone` and `edit` pages and **refine** link the pages with routes for us. We can access these pages by visiting the following routes:
+In the above example, we have added a `resource` with name `posts`. This resource will have 5 pages that assigned to `list`, `show`, `create`, `clone` and `edit`  properties. **refine** link the pages with routes for us. We can access these pages by visiting the following routes:
 
 -   `/posts` - Post List Page
 -   `/posts/show/:id` - Post Detail Page
