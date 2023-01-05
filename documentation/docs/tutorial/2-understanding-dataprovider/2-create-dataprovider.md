@@ -13,25 +13,74 @@ In this case, you will need to write your own Data Provider.
 
 Data providers work with adapter system infrastructure. So they can communicate with REST, GraphQL, RPC and SOAP based APIs. You can use `fetch`, `axios`, `apollo-client` or any library for this communication.
 
-Let's now create a data provider that communicates with a REST API. We preferred `axios` as a client.
-
 We will begin by creating a file, as shown below, and we will add additional methods to it as we proceed.
+
+Using `axios` as our HTTP client will allow us to make efficient and reliable HTTP requests to our server. Interceptors provide several benefits, such as centralized error handling, the ability to modify request or response data, and the ability to show global loading indicators. To get started, let's go ahead and install `axios` in our project.
+
+```bash
+npm install axios@0.26
+```
+
+Using the `stringify` library will allow us to convert the query parameters into a string format. This can be useful when we need to pass query parameters as part of an HTTP request.
+
+```bash
+npm install stringify
+```
+For our own data provider, the first step is to create the following file.
 
 ```ts title="src/data-provider.ts"
 import { DataProvider } from "@pankod/refine-core";
+import { stringify } from "query-string";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
   // Methods
 });
 ```
 
+## Error Handling
+
+When an error is returned from the API, **refine** must be extended from [HttpError](../../../../packages/core/src/interfaces/HttpError.ts) to handle it. 
+Axios interceptor can be used to transform the error from response before Axios returns the response to your code. 
+Interceptors are methods which are triggered before the main method. 
+
+In a `utility` file, create an `axiosInstance` and define an `interceptor` to handle errors. Then export it.
+
+```ts title="src/data-provider.ts"
+// highlight-start
+import axios from "axios";
+import { DataProvider, HttpError } from "@pankod/refine-core";
+// highlight-end
+import { stringify } from "query-string";
+
+// highlight-start
+// Error handling with axios interceptors
+const axiosInstance = axios.create();
+
+axiosInstance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    const customError: HttpError = {
+      ...error,
+      message: error.response?.data?.message,
+      statusCode: error.response?.status,
+    };
+
+    return Promise.reject(customError);
+  }
+);
+// highlight-end
+
+export const dataProvider = (apiUrl: string): DataProvider => ({
+  // Methods
+});
+```
+
+
 ## Methods
 
 Now we'll add the methods that the data provider needs to implement. We will implement the following methods:
-
-:::note
-`getMany`, `createMany`, `updateMany` and `deleteMany` properties are optional. If you don't implement them, Refine will use `getOne`, `create`, `update` and `deleteOne` methods to handle multiple requests. If your API supports these methods, you can implement them to improve performance.
-:::
 
 ### getList
 
@@ -41,7 +90,7 @@ It takes a `resource`, `sort`, `pagination` and `filters` as parameters should r
 Let's assume the API we want to implement is as follows: 
 
 ```bash
-[GET] https://api.fake-rest.refine.dev/posts?title_like=Arch&_sort=id&_order=desc&_limit=10&_page=2
+[GET] https://api.fake-rest.refine.dev/posts
 
 HTTP/2 200
 Content-Type: application/json
@@ -75,7 +124,7 @@ access-control-expose-headers: X-Total-Count
   getList: async ({ resource }) => {
     const url = `${apiUrl}/${resource}`;
 
-    const { data, headers } = await axios.get(url);
+    const { data, headers } = await axiosInstance.get(url);
 
     const total = +headers["x-total-count"];
 
@@ -86,8 +135,14 @@ access-control-expose-headers: X-Total-Count
   },
   ```
 
-2. **refine** uses the `pagination` parameter for pagination. 
-In this parameter, `current` for which page number and `pageSize` for the number of records in each page.
+2. Now let's add the pagination feature. For this, the API takes the following parameters.
+
+  ```bash
+  [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2
+  ```
+
+  **refine** uses the `pagination` parameter for pagination. 
+  In this parameter, `current` for which page number and `pageSize` for the number of records in each page.
 
   ```ts title="src/data-provider.ts"
   getList: async ({ resource, pagination }) => {
@@ -104,7 +159,7 @@ In this parameter, `current` for which page number and `pageSize` for the number
       _end: current * pageSize,
     };
 
-    const { data, headers } = await axios.get(`${url}?${stringify(query)}`);
+    const { data, headers } = await axiosInstance.get(`${url}?${stringify(query)}`);
     // highlight-end
 
     const total = +headers["x-total-count"];
@@ -116,7 +171,13 @@ In this parameter, `current` for which page number and `pageSize` for the number
   },
   ```
 
-3. **refine** uses the `sort` parameter for sorting. This parameter includes `field` and `order`. 
+3. Now let's add the sorting feature. For this, the API takes the following parameters.
+
+  ```bash
+  [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2&_sort=id&_order=desc
+  ```
+
+  **refine** uses the `sort` parameter for sorting. This parameter includes `field` and `order`. 
   Supports multiple field sorting. [CrudSort[]](../../api-reference/core/interfaces.md#CrudSorting) type, it comes in the data provider as follows.
 
   ```bash
@@ -127,8 +188,9 @@ In this parameter, `current` for which page number and `pageSize` for the number
     },
   ]
   ```
-  
-  Multiple field sorting is not implemented because it doesn't support this API.
+  :::tip
+  **refine** support multi-field sorting.
+  :::
 
   ```ts title="src/data-provider.ts"
   getList: async ({ resource, pagination, sort }) => {
@@ -156,7 +218,7 @@ In this parameter, `current` for which page number and `pageSize` for the number
     // highlight-end
 
     // highlight-next-line
-    const { data, headers } = await axios.get(`${url}?${stringify(query)}`);
+    const { data, headers } = await axiosInstance.get(`${url}?${stringify(query)}`);
 
     const total = +headers["x-total-count"];
 
@@ -167,9 +229,15 @@ In this parameter, `current` for which page number and `pageSize` for the number
   }
   ```
 
-1. **refine** uses the `filters` parameter for filtering. This parameter contains `field`, `operator` and `value` with type [CrudFilters[]](../../api-reference/core/interfaces.md#crudfilters).
+4. Now let's add the filter feature. For this, the API takes the following parameters.
 
- ```bash
+  ```bash
+  [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2&_sort=id&_order=desc&title_like
+  ```
+
+  **refine** uses the `filters` parameter for filtering. This parameter contains `field`, `operator` and `value` with type [CrudFilters []](../../api-reference/core/interfaces.md#crudfilters).
+
+  ```bash
   [
     {
       field: "status"
@@ -184,6 +252,7 @@ In this parameter, `current` for which page number and `pageSize` for the number
   ]
   ```
 
+  :::info
   Also, conditional filters can be made using `and` and `or`. For example:
 
   ```bash
@@ -224,8 +293,8 @@ In this parameter, `current` for which page number and `pageSize` for the number
       ]
     }
   ]
-
   ```
+  :::
 
   The `operator` data comes with the [CrudOperators](../../api-reference/core/interfaces.md#crudoperators) type and needs to be mapped to the API. For this, the following `mapOperator` function is written.
 
@@ -245,9 +314,6 @@ In this parameter, `current` for which page number and `pageSize` for the number
     }
   };
   ```
-:::info
-It supports the **refine** `and` and `or` operators and **conditional filters**, but it is not implemented because it does not support this API.
-:::
 
   ```ts title="src/data-provider.ts"
   // highlight-start
@@ -291,7 +357,7 @@ It supports the **refine** `and` and `or` operators and **conditional filters**,
     const queryFilters = generateFilters(filters);
 
     // highlight-next-line
-    const { data, headers } = await axios.get(`${url}?${stringify(query)}&${stringify(queryFilters)}`);
+    const { data, headers } = await axiosInstance.get(`${url}?${stringify(query)}&${stringify(queryFilters)}`);
 
     const total = +headers["x-total-count"];
 
@@ -304,13 +370,13 @@ It supports the **refine** `and` and `or` operators and **conditional filters**,
 
 **Parameter Types:**
 
-| Name           | Type                                                                 |
-| -------------- | -------------------------------------------------------------------- |
-| resource       | `string`                                                             |
-| hasPagination? | `boolean` _(defaults to `true`)_                                     |
-| pagination?    | [`Pagination`](../../api-reference/core/interfaces.md#pagination);   |
-| sort?          | [`CrudSorting`](../../api-reference/core/interfaces.md#crudsorting); |
-| filters?       | [`CrudFilters`](../../api-reference/core/interfaces.md#crudfilters); |
+| Name           | Type                                                                |
+| -------------- | ------------------------------------------------------------------- |
+| resource       | `string`                                                            |
+| hasPagination? | `boolean` _(defaults to `true`)_                                    |
+| pagination?    | [`Pagination`](../../api-reference/core/interfaces.md#pagination)   |
+| sort?          | [`CrudSorting`](../../api-reference/core/interfaces.md#crudsorting) |
+| filters?       | [`CrudFilters`](../../api-reference/core/interfaces.md#crudfilters) |
 
 <br/>
 
@@ -332,7 +398,7 @@ The `create` method creates a new record with the `resource` and `variables` par
 create: async ({ resource, variables }) => {
   const url = `${apiUrl}/${resource}`;
 
-  const { data } = await axios.post(url, variables);
+  const { data } = await axiosInstance.post(url, variables);
 
   return {
     data,
@@ -361,7 +427,7 @@ const { mutate } = useCreate();
 mutate({
     resource: "posts",
     values: {
-        title: "New Category",
+        title: "New Post",
     },
 });
 ```
@@ -375,7 +441,7 @@ The `update` method updates the record with the `resource`, `id` and `variables`
 update: async ({ resource, id, variables }) => {
   const url = `${apiUrl}/${resource}/${id}`;
 
-  const { data } = await axios.patch(url, variables);
+  const { data } = await axiosInstance.patch(url, variables);
 
   return {
     data,
@@ -385,11 +451,11 @@ update: async ({ resource, id, variables }) => {
 
 **Parameter Types:**
 
-| Name      | Type               | Default |
-| --------- | ------------------ | ------- |
-| resource  | `string`           |         |
-| id        | [BaseKey][basekey] |         |
-| variables | `TVariables`       | `{}`    |
+| Name      | Type                                                      | Default |
+| --------- | --------------------------------------------------------- | ------- |
+| resource  | `string`                                                  |         |
+| id        | [BaseKey](../../api-reference/core/interfaces.md#basekey) |         |
+| variables | `TVariables`                                              | `{}`    |
 
 > `TVariables` is a user defined type which can be passed to [`useUpdate`](../../api-reference/core/hooks/data/useUpdate.md#type-parameters) to type `variables`
 
@@ -404,8 +470,8 @@ const { mutate } = useUpdate();
 
 mutate({
     resource: "posts",
-    id: "2",
-    values: { title: "New Category Title" },
+    id: 2,
+    values: { title: "New Post Title" },
 });
 ```
 
@@ -418,7 +484,7 @@ The `deleteOne` method delete the record with the `resource` and `id` parameters
 deleteOne: async ({ resource, id, variables }) => {
   const url = `${apiUrl}/${resource}/${id}`;
 
-  const { data } = await axios.delete(url, {
+  const { data } = await axiosInstance.delete(url, {
     data: variables,
   });
 
@@ -430,11 +496,11 @@ deleteOne: async ({ resource, id, variables }) => {
 
 **Parameter Types:**
 
-| Name      | Type               | Default |
-| --------- | ------------------ | ------- |
-| resource  | `string`           |         |
-| id        | [BaseKey][basekey] |         |
-| variables | `TVariables[]`     | `{}`    |
+| Name      | Type                                                      | Default |
+| --------- | --------------------------------------------------------- | ------- |
+| resource  | `string`                                                  |         |
+| id        | [BaseKey](../../api-reference/core/interfaces.md#basekey) |         |
+| variables | `TVariables[]`                                            | `{}`    |
 
 > `TVariables` is a user defined type which can be passed to [`useDelete`](../../api-reference/core/hooks/data/useDelete.md) to type `variables`
 
@@ -447,7 +513,7 @@ import { useDelete } from "@pankod/refine-core";
 
 const { mutate } = useDelete();
 
-mutate({ resource: "posts", id: "2" });
+mutate({ resource: "posts", id: 2 });
 ```
 
 > [Refer to the useDelete documentation for more information. &#8594](../../api-reference/core/hooks/data/useDelete.md)
@@ -459,7 +525,7 @@ The `getOne` method gets the record with the `resource` and `id` parameters.
 getOne: async ({ resource, id }) => {
   const url = `${apiUrl}/${resource}/${id}`;
 
-  const { data } = await axios.get(url);
+  const { data } = await axiosInstance.get(url);
 
   return {
     data,
@@ -469,10 +535,10 @@ getOne: async ({ resource, id }) => {
 
 **Parameter Types:**
 
-| Name     | Type               | Default |
-| -------- | ------------------ | ------- |
-| resource | `string`           |         |
-| id       | [BaseKey][basekey] |         |
+| Name     | Type                                                      | Default |
+| -------- | --------------------------------------------------------- | ------- |
+| resource | `string`                                                  |         |
+| id       | [BaseKey](../../api-reference/core/interfaces.md#basekey) |         |
 
 <br/>
 
@@ -481,53 +547,25 @@ getOne: async ({ resource, id }) => {
 ```ts
 import { useOne } from "@pankod/refine-core";
 
-const { data } = useOne<ICategory>({ resource: "posts", id: "1" });
+const { data } = useOne({ resource: "posts", id: 1 });
 ```
 
 > [Refer to the useOne documentation for more information. &#8594](../../api-reference/core/hooks/data/useOne.md)
 
 <br/>
 
-### getMany
-The `getMany` method gets the records with the `resource` and `ids` methods.
-
-```ts title="src/data-provider.ts"
-getMany: async ({ resource, ids }) => {
-  const { data } = await axios.get(
-    `${apiUrl}/${resource}?${stringify({ id: ids })}`
-  );
-
-  return {
-    data,
-  };
-}
-```
-
-**Parameter Types:**
-
-| Name     | Type                 | Default |
-| -------- | -------------------- | ------- |
-| resource | `string`             |         |
-| ids      | [BaseKey[]][basekey] |         |
-
-<br/>
-
-**refine** will consume this `getMany` method using the `useMany` data hook.
-
-```ts
-import { useMany } from "@pankod/refine-core";
-
-const { data } = useMany({ resource: "posts", ids: ["1", "2"] });
-```
-
-> [Refer to the useMany documentation for more information. &#8594](../../api-reference/core/hooks/data/useMany.md)
-
 ### getApiUrl
 
 The `getApiUrl` method returns the `apiUrl` value.
 
 ```ts title="src/data-provider.ts"
-getApiUrl: () => apiUrl,
+import { DataProvider } from "@pankod/refine-core";
+
+export const dataProvider = (apiUrl: string): DataProvider => ({
+  // highlight-next-line
+  getApiUrl: () => apiUrl,
+  ...
+});
 ```
 **refine** will consume this `getApiUrl` method using the `useApiUrl` data hook.
 
@@ -538,127 +576,6 @@ const { data } = useApiUrl();
 ```
 
 > [Refer to the useApiUrl documentation for more information. &#8594](../../api-reference/core/hooks/data/useApiUrl.md)
-
-### createMany
-
-This method allows us to create multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `create` method to handle multiple requests.
-
-```ts title="src/data-provider.ts"
-createMany: async ({ resource, variables }) => {
-  const url = `${apiUrl}/${resource}/bulk`;
-  const { data } = await axios.post(url, { values: variables });
-
-  return {
-    data,
-  };
-},
-```
-
-**Parameter Types:**
-
-| Name      | Type           | Default |
-| --------- | -------------- | ------- |
-| resource  | `string`       |         |
-| variables | `TVariables[]` | `{}`    |
-
-> `TVariables` is a user defined type which can be passed to [`useCreateMany`](../../api-reference/core/hooks/data/useCreateMany.md) to type `variables`
-
-<br/>
-
-**refine** will consume this `createMany` method using the `useCreateMany` data hook.
-
-```ts
-import { useCreateMany } from "@pankod/refine-core";
-
-const { mutate } = useCreateMany();
-
-mutate({
-    resource: "posts",
-    values: [
-        {
-            title: "New Category",
-        },
-        {
-            title: "Another New Category",
-        },
-    ],
-});
-```
-
-> [Refer to the useCreateMany documentation for more information. &#8594](../../api-reference/core/hooks/data/useCreateMany.md)
-
-### deleteMany
-
-This method allows us to delete multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `deleteOne` method to handle multiple requests.
-
-```ts title="src/data-provider.ts"
-deleteMany: async ({ resource, ids }) => {
-  const url = `${apiUrl}/${resource}/bulk?ids=${ids.join(",")}`;
-  const { data } = await axios.delete(url);
-
-  return {
-    data
-  };
-},
-```
-
-**Parameter Types:**
-
-| Name      | Type                 | Default |
-| --------- | -------------------- | ------- |
-| resource  | `string`             |         |
-| ids       | [BaseKey[]][basekey] |         |
-| variables | `TVariables[]`       | `{}`    |
-
-> `TVariables` is a user defined type which can be passed to [`useDeleteMany`](../../api-reference/core/hooks/data/useDeleteMany.md) to type `variables`
-
-<br/>
-
-**refine** will consume this `deleteMany` method using the `useDeleteMany` data hook.
-
-```ts
-import { useDeleteMany } from "@pankod/refine-core";
-
-const { mutate } = useDeleteMany();
-
-mutate({
-    resource: "posts",
-    ids: ["2", "3"],
-});
-```
-> [Refer to the useDeleteMany documentation for more information. &#8594](../../api-reference/core/hooks/data/useDeleteMany.md)
-
-
-### updateMany
-
-This method allows us to update multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `update` method to handle multiple requests.
-
-```ts title="src/data-provider.ts"
-updateMany: async ({ resource, ids, variables }) => {
-  const url = `${apiUrl}/${resource}/bulk`;
-  const { data } = await httpClient.patch(url, { ids, variables });
-
-  return {
-    data
-  };
-}
-```
-
-**refine** will consume this `updateMany` method using the `useUpdateMany` data hook.
-
-```ts
-import { useUpdateMany } from "@pankod/refine-core";
-
-const { mutate } = useUpdateMany();
-
-mutate({
-    resource: "posts",
-    ids: ["1", "2"],
-    values: { status: "draft" },
-});
-```
-> [Refer to the useUpdateMany documentation for more information. &#8594](../../api-reference/core/hooks/data/useUpdateMany.md)
-
 
 ### custom
 
@@ -748,53 +665,166 @@ const { data, isLoading } = useCustom({
 
 > [Refer to the useCustom documentation for more information. &#8594](../../api-reference/core/hooks/data/useCustom.md)
 
-## Errors
 
-When an error is returned from the API, **refine** must be extended from [HttpError](../../../../packages/core/src/interfaces/HttpError.ts) to handle it. 
-Axios interceptor can be used to transform the error from response before Axios returns the response to your code. 
-Interceptors are methods which are triggered before the main method. 
+## Bulk Actions
 
-In a `utility` file, create an `axiosInstance` and define an `interceptor` to handle errors. Then export it.
+Bulk actions are actions that can be performed on multiple items at once. Performing bulk actions is a common pattern in admin panels. If your api supports bulk actions, you can implement them in your data provider.
 
-```ts title=utility.ts
-import axios from "axios";
-import { HttpError } from "@pankod/refine-core";
+:::tip
+Bulk operations are a way to perform many database operations at once, improving speed and efficiency. They can be used for data [`import`](../../examples/core/useImport.md) and [`export`](../../api-reference/core/hooks/import-export/useExport.md), and have the added benefit of being atomic, meaning that they are treated as a single unit.
+:::
 
-const axiosInstance = axios.create();
+### getMany
+The `getMany` method gets the records with the `resource` and `ids` methods. Implementation of this method is optional. If you don't implement it, refine will use `getOne` method to handle multiple requests.
 
-axiosInstance.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    const customError: HttpError = {
-      ...error,
-      message: error.response?.data?.message,
-      statusCode: error.response?.status,
-    };
+```ts title="src/data-provider.ts"
+getMany: async ({ resource, ids }) => {
+  const { data } = await axiosInstance.get(
+    `${apiUrl}/${resource}?${stringify({ id: ids })}`
+  );
 
-    return Promise.reject(customError);
-  }
-);
-
-export { axiosInstance };
-```
-
-We import this utility file in the data provider and use `axiosInstance` instead of `axios`.
-
-```diff title="src/data-provider.ts"
-- import axios from "axios";
-import { CrudFilters, CrudOperators, DataProvider } from "@pankod/refine-core";
-import { stringify } from "query-string";
-
-+ import { axiosInstance } from "./utils";
-
-export const dataProvider = (apiUrl: string): DataProvider => ({
-  getList: async ({ resource, pagination, sort, filters }) => {
--    const { data, headers } = await axios.get(
-+    const { data, headers } = await axiosInstance.get(
-      `${url}?${stringify(query)}&${stringify(queryFilters)}`
-    );
-  },
+  return {
+    data,
+  };
 }
 ```
+
+**Parameter Types:**
+
+| Name     | Type                                                        | Default |
+| -------- | ----------------------------------------------------------- | ------- |
+| resource | `string`                                                    |         |
+| ids      | [[BaseKey](../../api-reference/core/interfaces.md#basekey)] |         |
+
+<br/>
+
+**refine** will consume this `getMany` method using the `useMany` data hook.
+
+```ts
+import { useMany } from "@pankod/refine-core";
+
+const { data } = useMany({ resource: "posts", ids: [1, 2] });
+```
+
+> [Refer to the useMany documentation for more information. &#8594](../../api-reference/core/hooks/data/useMany.md)
+
+
+### createMany
+
+This method allows us to create multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `create` method to handle multiple requests.
+
+```ts title="src/data-provider.ts"
+createMany: async ({ resource, variables }) => {
+  const url = `${apiUrl}/${resource}/bulk`;
+  const { data } = await axiosInstance.post(url, { values: variables });
+
+  return {
+    data,
+  };
+},
+```
+
+**Parameter Types:**
+
+| Name      | Type           | Default |
+| --------- | -------------- | ------- |
+| resource  | `string`       |         |
+| variables | `TVariables[]` | `{}`    |
+
+> `TVariables` is a user defined type which can be passed to [`useCreateMany`](../../api-reference/core/hooks/data/useCreateMany.md) to type `variables`
+
+<br/>
+
+**refine** will consume this `createMany` method using the `useCreateMany` data hook.
+
+```ts
+import { useCreateMany } from "@pankod/refine-core";
+
+const { mutate } = useCreateMany();
+
+mutate({
+    resource: "posts",
+    values: [
+        {
+            title: "New Post",
+        },
+        {
+            title: "Another New Post",
+        },
+    ],
+});
+```
+
+> [Refer to the useCreateMany documentation for more information. &#8594](../../api-reference/core/hooks/data/useCreateMany.md)
+
+### deleteMany
+
+This method allows us to delete multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `deleteOne` method to handle multiple requests.
+
+```ts title="src/data-provider.ts"
+deleteMany: async ({ resource, ids }) => {
+  const url = `${apiUrl}/${resource}/bulk?ids=${ids.join(",")}`;
+  const { data } = await axiosInstance.delete(url);
+
+  return {
+    data
+  };
+},
+```
+
+**Parameter Types:**
+
+| Name      | Type                                                        | Default |
+| --------- | ----------------------------------------------------------- | ------- |
+| resource  | `string`                                                    |         |
+| ids       | [[BaseKey](../../api-reference/core/interfaces.md#basekey)] |         |
+| variables | `TVariables[]`                                              | `{}`    |
+
+> `TVariables` is a user defined type which can be passed to [`useDeleteMany`](../../api-reference/core/hooks/data/useDeleteMany.md) to type `variables`
+
+<br/>
+
+**refine** will consume this `deleteMany` method using the `useDeleteMany` data hook.
+
+```ts
+import { useDeleteMany } from "@pankod/refine-core";
+
+const { mutate } = useDeleteMany();
+
+mutate({
+    resource: "posts",
+    ids: [2, 3],
+});
+```
+> [Refer to the useDeleteMany documentation for more information. &#8594](../../api-reference/core/hooks/data/useDeleteMany.md)
+
+
+### updateMany
+
+This method allows us to update multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `update` method to handle multiple requests.
+
+```ts title="src/data-provider.ts"
+updateMany: async ({ resource, ids, variables }) => {
+  const url = `${apiUrl}/${resource}/bulk`;
+  const { data } = await httpClient.patch(url, { ids, variables });
+
+  return {
+    data
+  };
+}
+```
+
+**refine** will consume this `updateMany` method using the `useUpdateMany` data hook.
+
+```ts
+import { useUpdateMany } from "@pankod/refine-core";
+
+const { mutate } = useUpdateMany();
+
+mutate({
+    resource: "posts",
+    ids: [1, 2],
+    values: { status: "draft" },
+});
+```
+> [Refer to the useUpdateMany documentation for more information. &#8594](../../api-reference/core/hooks/data/useUpdateMany.md)
