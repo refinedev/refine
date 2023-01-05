@@ -884,11 +884,88 @@ const form = useForm({
 });
 ```
 
+## Return Values
+
+### `queryResult`
+
+If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and set the returned values as the `queryResult` property.
+
+```tsx title="src/posts/edit.tsx"
+const {
+    refineCore: { queryResult },
+} = useForm();
+
+const { data } = queryResult;
+```
+
+### `mutationResult`
+
+When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/). When in `"edit"` mode, it will call [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) and set the resulting values as the `mutationResult` property."
+
+```tsx title="src/posts/edit.tsx"
+const {
+    refineCore: { mutationResult },
+} = useForm();
+
+const { data } = mutationResult;
+```
+
+### `setId`
+
+`useForm` determine `id` from the router. If you want to change the `id` dynamically, you can use `setId` function.
+
+```tsx title="src/posts/edit.tsx"
+const {
+    refineCore: { id, setId },
+} = useForm();
+
+const handleIdChange = (id: string) => {
+    setId(id);
+};
+
+return (
+    <div>
+        <input value={id} onChange={(e) => handleIdChange(e.target.value)} />
+    </div>
+);
+```
+
+### `redirect`
+
+"By default, after a successful mutation, `useForm` will `redirect` to the `"list"` page. To redirect to a different page, you can either use the `redirect` function to programmatically specify the destination, or set the redirect [property](/docs/api-reference/core/hooks/useForm/#redirect) in the hook's options.
+
+In the following example we will redirect to the `"show"` page after a successful mutation.
+
+```tsx title="src/posts/create.tsx"
+const {
+    refineCore: { onFinish, redirect },
+} = useForm();
+
+// --
+
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = await onFinish(formValues);
+    redirect("show", data?.data?.id);
+};
+
+// --
+```
+
+### `onFinish`
+
+`onFinish` is a function that is called when the form is submitted. It will call the appropriate mutation based on the `action` property.
+You can override the default behavior by passing an `onFinish` function in the hook's options.
+
+For example you can [change values before sending to the API](/docs/packages/documentation/react-hook-form/useForm/#how-can-i-change-the-form-data-before-submitting-it-to-the-api).
+
 ## FAQ
 
 ### How can Invalidate other resources?
 
 You can invalidate other resources with help of [`useInvalidate`](/docs/api-reference/core/hooks/invalidate/useInvalidate/) hook.
+
+It is useful when you want to `invalidate` other resources don't have relation with the current resource.
 
 ```tsx title="src/posts/edit.tsx"
 import React from "react";
@@ -903,7 +980,7 @@ const PostEdit = () => {
             // highlight-start
             onMutationSuccess: (data, variables, context) => {
                 invalidate({
-                    resource: "categories",
+                    resource: "users",
                     invalidates: ["resourceAll"],
                 });
             },
