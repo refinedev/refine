@@ -111,7 +111,11 @@ We will go through the list page components and hooks one by one.
 
 ### Handling Relationships
 
-Each product includes the `category` field. But, it only includes the `id` of the category. This is a foreign key that points to the `categories` resource. In the `categories` resource, we can see the `title` field. So, in order to display the category `title` in the table, we can use the `useMany` hook provided by **refine**. This hook allows us to fetch data for multiple records in a single request by providing the `id`'s of the related records. In this case, we need to provide the `id`'s of the products' categories. It is particularly useful when we need to fetch related data for multiple records.
+Each product includes the `category` field which has `id` property. This is a foreign key that points to the `categories` resource which is different than "product" resource.
+
+There is a `title` field In the `categories` resource. To display the category `title` in the table, we can use the `useMany` hook provided by **refine**.
+
+This hook allows us to fetch data for multiple records in a single request by providing the `id`'s of the related records. In this case, we need to provide the `id`'s of the products categories. It is particularly useful when we need to fetch related data for multiple records.
 
 [Refer to the `useMany` documentation for more information &#8594](/docs/api-reference/core/hooks/data/useMany/)
 
