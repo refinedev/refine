@@ -726,7 +726,7 @@ const form = useForm({
 
 In `edit` mode, **refine** uses [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
 
-````tsx title="src/posts/edit.tsx"
+```tsx title="src/posts/edit.tsx"
 const form = useForm({
     // highlight-start
     updateMutationOptions: {
@@ -734,6 +734,7 @@ const form = useForm({
     },
     // highlight-end
 });
+```
 
 ### `liveMode`
 
@@ -746,7 +747,7 @@ const form = useForm({
     liveMode: "auto",
     // highlight-end
 });
-````
+```
 
 ## Return Values
 
