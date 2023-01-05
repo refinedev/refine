@@ -17,7 +17,7 @@ In the [Unit 3.2](#), we have defined a resource to create our CRUD pages with t
 
 Let's see what's going on under the hood when we add a `resources` to our app and learn `resources` term for who are new to **refine**.
 
-To add `resource` to our app, we must use `resources` prop of `<Refine />` component. This prop accepts an array of objects. Each object represents a resource.
+To add  a `resource` to our app, we need use `resources` prop of `<Refine />` component. This prop accepts an array of objects. Each object represents a resource.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
