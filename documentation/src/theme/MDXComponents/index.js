@@ -12,6 +12,7 @@ import PropTag from "../../components/prop-tag";
 import StackblitzExample from "../../components/stackblitz-example";
 import ExampleSourcePrompt from "../../components/example-source-prompt";
 import ExampleLocalPrompt from "../../components/example-local-prompt";
+import GeneralConceptsLink from "../../components/general-concepts-link";
 
 export default {
     ...MDXComponents,
@@ -23,6 +24,7 @@ export default {
     PromotionBanner: PromotionBanner,
     Tabs: Tabs,
     TabItem: TabItem,
+    GeneralConceptsLink,
     StackblitzExample,
     ExampleLocalPrompt,
     ExampleSourcePrompt,

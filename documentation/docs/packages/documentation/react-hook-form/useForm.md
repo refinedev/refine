@@ -3,85 +3,45 @@ id: useForm
 title: useForm
 ---
 
+```tsx live shared
+import React from "react";
+import { useTable, useNavigation } from "@pankod/refine-core";
+import { useForm as ReactHoomFormUseForm } from "@pankod/refine-react-hook-form";
 
-**refine** offers a [React Hook Form][react-hook-form] adapter([@pankod/refine-react-hook-form][refine-react-hook-form]) that allows you to use the React Hook Form library with **refine**. Thus, you can manage your forms in headless way.
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+}
 
-All of React Hook Form's features are supported and you can use all of the React Hook Form's examples with no changes just copy and paste them into your project.
-
-## Installation
-
-Install the [`@pankod/refine-react-hook-form`][refine-react-hook-form] library.
-
-```bash
-npm i @pankod/refine-react-hook-form
-```
-
-## Usage
-
-In the following example, we will step-by-step create an example of a headless form with React Hook Form capabilities.
-
-### Create resource pages
-
-We simply create a `<PostList>`, `<PostCreate>`, and `<PostEdit>` components and pass to the `<Refine>` component as a resource.
-
-```tsx title="src/posts/list.tsx"
-export const PostList: React.FC = () => {
-    return <></>;
-};
-```
-
-```tsx title="src/posts/create.tsx"
-export const PostCreate: React.FC = () => {
-    return <></>;
-};
-```
-
-```tsx title="src/posts/edit.tsx"
-export const PostEdit: React.FC = () => {
-    return <></>;
-};
-```
-
-```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
-
-//highlight-next-line
-import { PostList, PostCreate, PostEdit } from "pages/posts";
-
-const App: React.FC = () => {
+const Layout: React.FC = ({ children }) => {
     return (
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            routerProvider={routerProvider}
-            //highlight-start
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                },
-            ]}
-            //highlight-end
-        />
+        <div
+            style={{
+                height: "100vh",
+                background: "white",
+            }}
+        >
+            {children}
+        </div>
     );
 };
 
-export default App;
-```
+const PostList: React.FC = () => {
+    const { tableQueryResult, current, setCurrent, pageSize, pageCount } =
+        useTable<IPost>({
+            initialSorter: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
+        });
+    const { edit, create, clone } = useNavigation();
 
-Let's develop the `<PostList>` component for directing to the `<PostCreate>` and the `<PostEdit>` component.
-
-```tsx title="src/posts/list.tsx"
-import { useTable, useNavigation } from "@pankod/refine-core";
-
-import { IPost } from "interfaces";
-
-export const PostList: React.FC = () => {
-    const { tableQueryResult } = useTable<IPost>();
-    const { edit, create } = useNavigation();
+    const hasNext = current < pageCount;
+    const hasPrev = current > 1;
 
     return (
         <div>
@@ -101,54 +61,71 @@ export const PostList: React.FC = () => {
                                 <button onClick={() => edit("posts", post.id)}>
                                     Edit
                                 </button>
+                                <button onClick={() => clone("posts", post.id)}>
+                                    Clone
+                                </button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+            <div>
+                <div>
+                    <button onClick={() => setCurrent(1)} disabled={!hasPrev}>
+                        First
+                    </button>
+                    <button
+                        onClick={() => setCurrent((prev) => prev - 1)}
+                        disabled={!hasPrev}
+                    >
+                        Previous
+                    </button>
+                    <button
+                        onClick={() => setCurrent((prev) => prev + 1)}
+                        disabled={!hasNext}
+                    >
+                        Next
+                    </button>
+                    <button
+                        onClick={() => setCurrent(pageCount)}
+                        disabled={!hasNext}
+                    >
+                        Last
+                    </button>
+                </div>
+                <span>
+                    Page{" "}
+                    <strong>
+                        {current} of {pageCount}
+                    </strong>
+                </span>
+                <span>
+                    Go to page:
+                    <input
+                        type="number"
+                        defaultValue={current}
+                        onChange={(e) => {
+                            const value = e.target.value
+                                ? Number(e.target.value)
+                                : 1;
+                            setCurrent(value);
+                        }}
+                    />
+                </span>
+            </div>
         </div>
     );
 };
-```
 
-<div class="img-container" style={{"max-width": "700px"}}>
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-hook-form/list-page.png" alt="List Page" />
-</div>
-
-### Create Form
-
-Firts, we need to import the `useForm` hook from the `@pankod/refine-react-hook-form` library. Then we create a basic example of `post` a create form. All we have to do is to pass the `onFinish` to `handleSubmit`.
-
-We also use `useSelect` to fetch category options.
-
-[Refer to the `useSelect` documentation for detailed information. &#8594](/api-reference/core/hooks/useSelect.md)
-
-```tsx title="src/posts/create.tsx"
-// highlight-next-line
-import { useForm } from "@pankod/refine-react-hook-form";
-import { useSelect } from "@pankod/refine-core";
-
-export const PostCreate: React.FC = () => {
-    //highlight-start
+const PostEdit: React.FC = () => {
     const {
         refineCore: { onFinish, formLoading },
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
-    //highlight-end
-
-    const { options } = useSelect({
-        resource: "categories",
-    });
+    } = ReactHoomFormUseForm();
 
     return (
-        // highlight-next-line
         <form onSubmit={handleSubmit(onFinish)}>
             <label>Title: </label>
             <input {...register("title", { required: true })} />
@@ -161,21 +138,42 @@ export const PostCreate: React.FC = () => {
                 <option value="rejected">rejected</option>
             </select>
             <br />
-            <label>Category: </label>
-            <select
-                defaultValue={""}
-                {...register("category.id", { required: true })}
-            >
-                <option value={""} disabled>
-                    Please select
-                </option>
-                {options?.map((category) => (
-                    <option key={category.value} value={category.value}>
-                        {category.label}
-                    </option>
-                ))}
+            <label>Content: </label>
+            <br />
+            <textarea
+                {...register("content", { required: true })}
+                rows={10}
+                cols={50}
+            />
+            {errors.content && <span>This field is required</span>}
+            <br />
+            <br />
+            <input type="submit" disabled={formLoading} value="Submit" />
+            {formLoading && <p>Loading</p>}
+        </form>
+    );
+};
+
+const PostCreate: React.FC = () => {
+    const {
+        refineCore: { onFinish, formLoading },
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = ReactHoomFormUseForm();
+
+    return (
+        <form onSubmit={handleSubmit(onFinish)}>
+            <label>Title: </label>
+            <input {...register("title", { required: true })} />
+            {errors.title && <span>This field is required</span>}
+            <br />
+            <label>Status: </label>
+            <select {...register("status")}>
+                <option value="published">published</option>
+                <option value="draft">draft</option>
+                <option value="rejected">rejected</option>
             </select>
-            {errors.category && <span>This field is required</span>}
             <br />
             <label>Content: </label>
             <br />
@@ -186,33 +184,35 @@ export const PostCreate: React.FC = () => {
             />
             {errors.content && <span>This field is required</span>}
             <br />
-            <input type="submit" value="Submit" />
+            <br />
+            <input type="submit" disabled={formLoading} value="Submit" />
             {formLoading && <p>Loading</p>}
         </form>
     );
 };
 ```
 
-<div class="img-container" style={{"max-width": "500px"}}>
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-hook-form/create-form.gif" alt="Create Form" />
-</div>
+The [`@pankod/refine-react-hook-form`][refine-react-hook-form] adapter allows you to integrate the [React Hook Form][react-hook-form] library with refine, enabling you to manage your forms in a headless manner. This adapter supports all of the features of both [React Hook Form][react-hook-form] and [refine's useForm][use-form-core] hook, and you can use any of the [React Hook Form][react-hook-form] examples as-is by copying and pasting them into your project."
 
-### Edit Form
+<GeneralConceptsLink />
 
-Edit form is very similar to create form. `@pankod/refine-react-hook-form` sets the default values for the form fields according to the `id` of the route and fetch the data from the server. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
+## Installation
 
+Install the [`@pankod/refine-react-hook-form`][refine-react-hook-form] library.
 
-However, we need to pass `defaultValues` to the `useSelect` hook to make sure that the category id from data is in the options. Otherwise, the category will not match the existing options. Since the options are async, we need to reset the relavent field every time the options are changed.
+```bash
+npm i @pankod/refine-react-hook-form
+```
 
-```tsx title="src/posts/edit.tsx"
-import { useEffect } from "react";
-import { useForm } from "@pankod/refine-react-hook-form";
+## Basic Usage
+
+> For more detailed usage examples please refer to the [React Hook Form](https://react-hook-form.com/get-started) documentation.
+
+We'll show the basic usage of `useForm` by adding an editing form.
+
+```tsx title="pages/posts/edit.tsx"
 import { useSelect } from "@pankod/refine-core";
+import { useForm } from "@pankod/refine-react-hook-form";
 
 export const PostEdit: React.FC = () => {
     const {
@@ -223,18 +223,14 @@ export const PostEdit: React.FC = () => {
         formState: { errors },
     } = useForm();
 
-    // highlight-start
     const { options } = useSelect({
         resource: "categories",
         defaultValue: queryResult?.data?.data.category.id,
     });
-    // highlight-end
 
-    // highlight-start
     useEffect(() => {
         resetField("category.id");
     }, [options]);
-    // highlight-end
 
     return (
         <form onSubmit={handleSubmit(onFinish)}>
@@ -273,6 +269,23 @@ export const PostEdit: React.FC = () => {
             />
             {errors.content && <span>This field is required</span>}
             <br />
+
+            {queryResult?.data?.data?.thumbnail && (
+                <>
+                    <br />
+                    <label>Image: </label>
+                    <br />
+
+                    <img
+                        src={queryResult?.data?.data?.thumbnail}
+                        width={200}
+                        height={200}
+                    />
+                    <br />
+                    <br />
+                </>
+            )}
+
             <input type="submit" value="Submit" />
             {formLoading && <p>Loading</p>}
         </form>
@@ -280,69 +293,54 @@ export const PostEdit: React.FC = () => {
 };
 ```
 
-<div class="img-container" style={{"max-width": "500px"}}>
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-hook-form/edit-form.gif" alt="Edit Form" />
-</div>
+:::tip
+If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/docs/packages/documentation/react-hook-form/useModalForm).
+:::
 
-### Multipart File Upload
+## Properties
 
-You can submit files or images to your server in multipart/form-data format using the refine-react-hook-form adapter. First of all, let's create a function called `onSubmitFile` to convert the file from the input to formData type. After placing the selected file in formData, let's upload it to our server. When your form is submitted, the **refine** `onFinish` method automatically saves your file and other data on your server.
+### `action`
 
-```tsx title="src/posts/create.tsx"
-import { useState } from "react";
+`useForm` can handle `edit`, `create` and `clone` actions.
+
+:::tip
+By default, it determines the `action` from route.
+
+-   If the route is `/posts/create` thus the hook will be called with `action: "create"`.
+-   If the route is `/posts/edit/1`, the hook will be called with `action: "edit"`.
+-   If the route is `/posts/clone/1`, the hook will be called with `action: "clone"`. To display form, uses `create` component from resource.
+
+It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
+:::
+
+<Tabs
+defaultValue="create"
+values={[
+{label: 'create', value: 'create'},
+{label: 'edit', value: 'edit'},
+{label: 'clone', value: 'clone'}
+]}>
+<TabItem value="create">
+
+`action: "create"` is used for creating a new record that didn't exist before.
+
+`useForm` uses [`useCreate`](/docs/api-reference/core/hooks/data/useCreate.md) under the hood for mutations on create mode.
+
+In the following example, we'll show how to use `useForm` with `action: "create"`.
+
+```tsx live url=http://localhost:3000/posts/create previewHeight=420px
+setInitialRoutes(["/posts/create"]);
+
+// visible-block-start
 import { useForm } from "@pankod/refine-react-hook-form";
-import { useSelect, useApiUrl } from "@pankod/refine-core";
 
-import axios from "axios";
-
-export const PostCreate: React.FC = () => {
-    const [isUploading, setIsUploading] = useState<boolean>(false);
-
+const PostCreatePage: React.FC = () => {
     const {
         refineCore: { onFinish, formLoading },
         register,
         handleSubmit,
         formState: { errors },
-        setValue,
     } = useForm();
-
-    //highlight-next-line
-    const apiURL = useApiUrl();
-
-    const { options } = useSelect({
-        resource: "categories",
-    });
-
-    //highlight-start
-    const onSubmitFile = async () => {
-        setIsUploading(true);
-        const inputFile = document.getElementById(
-            "fileInput",
-        ) as HTMLInputElement;
-
-        const formData = new FormData();
-        formData.append("file", inputFile?.files?.item(0) as File);
-
-        const res = await axios.post<{ url: string }>(
-            `${apiURL}/media/upload`,
-            formData,
-            {
-                withCredentials: false,
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                },
-            },
-        );
-
-        setValue("thumbnail", res.data.url);
-        setIsUploading(false);
-    };
-    //highlight-end
 
     return (
         <form onSubmit={handleSubmit(onFinish)}>
@@ -357,21 +355,144 @@ export const PostCreate: React.FC = () => {
                 <option value="rejected">rejected</option>
             </select>
             <br />
-            <label>Category: </label>
-            <select
-                defaultValue={""}
-                {...register("category.id", { required: true })}
-            >
-                <option value={""} disabled>
-                    Please select
-                </option>
-                {options?.map((category) => (
-                    <option key={category.value} value={category.value}>
-                        {category.label}
-                    </option>
-                ))}
+            <label>Content: </label>
+            <br />
+            <textarea
+                {...register("content", { required: true })}
+                rows={10}
+                cols={50}
+            />
+            {errors.content && <span>This field is required</span>}
+            <br />
+            <br />
+            <input type="submit" disabled={formLoading} value="Submit" />
+            {formLoading && <p>Loading</p>}
+        </form>
+    );
+};
+// visible-block-end
+
+setRefineProps({
+    Layout: (props) => <Layout {...props} />,
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+            create: PostCreatePage,
+            edit: PostEdit,
+        },
+    ],
+});
+
+render(<RefineHeadlessDemo />);
+```
+
+</TabItem>
+
+<TabItem value="edit">
+
+`action: "edit"` is used for editing an existing record. It requires the `id` for determining the record to edit. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
+
+It fetches the record data according to the `id` with [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/api-reference/core/hooks/data/useUpdate.md).
+
+In the following example, we'll show how to use `useForm` with `action: "edit"`.
+
+```tsx live url=http://localhost:3000/edit/123 previewHeight=420px
+setInitialRoutes(["/posts/edit/123"]);
+
+// visible-block-start
+import { useForm } from "@pankod/refine-react-hook-form";
+
+const PostEditPage: React.FC = () => {
+    const {
+        refineCore: { onFinish, formLoading },
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+
+    return (
+        <form onSubmit={handleSubmit(onFinish)}>
+            <label>Title: </label>
+            <input {...register("title", { required: true })} />
+            {errors.title && <span>This field is required</span>}
+            <br />
+            <label>Content: </label>
+            <br />
+            <label>Status: </label>
+            <select {...register("status")}>
+                <option value="published">published</option>
+                <option value="draft">draft</option>
+                <option value="rejected">rejected</option>
             </select>
-            {errors.category && <span>This field is required</span>}
+            <br />
+            <textarea
+                {...register("content", { required: true })}
+                rows={10}
+                cols={50}
+            />
+            {errors.content && <span>This field is required</span>}
+            <br />
+            <input type="submit" value="Submit" />
+            {formLoading && <p>Loading</p>}
+        </form>
+    );
+};
+// visible-block-end
+
+setRefineProps({
+    Layout: (props) => <Layout {...props} />,
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+            create: PostCreate,
+            edit: PostEditPage,
+        },
+    ],
+});
+
+render(<RefineHeadlessDemo />);
+```
+
+</TabItem>
+
+<TabItem value="clone">
+
+`action: "clone"` is used for cloning an existing record. It requires the `id` for determining the record to clone. By default, it uses the `id` from the route. It can be changed with the `setId` function.
+
+You can think `action:clone` like save as. It's similar to `action:edit` but it creates a new record instead of updating the existing one.
+
+It fetches the record data according to the `id` with [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and returns the `queryResult` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/api-reference/core/hooks/data/useCreate.md).
+
+In the following example, we'll show how to use `useForm` with `action: "clone"`.
+
+```tsx live url=http://localhost:3000/clone/123 previewHeight=420px
+setInitialRoutes(["/posts/clone/123"]);
+
+// visible-block-start
+import { useForm } from "@pankod/refine-react-hook-form";
+
+const PostCreatePage: React.FC = () => {
+    const {
+        refineCore: { onFinish, formLoading },
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+
+    return (
+        <form onSubmit={handleSubmit(onFinish)}>
+            <label>Title: </label>
+            <input {...register("title", { required: true })} />
+            {errors.title && <span>This field is required</span>}
+            <br />
+            <label>Status: </label>
+            <select {...register("status")}>
+                <option value="published">published</option>
+                <option value="draft">draft</option>
+                <option value="rejected">rejected</option>
+            </select>
             <br />
             <label>Content: </label>
             <br />
@@ -383,32 +504,534 @@ export const PostCreate: React.FC = () => {
             {errors.content && <span>This field is required</span>}
             <br />
             <br />
-            //highlight-start
-            <label>Image: </label>
-            <input id="fileInput" type="file" onChange={onSubmitFile} />
-            <input
-                type="hidden"
-                {...register("thumbnail", { required: true })}
-            />
-            {errors.thumbnail && <span>This field is required</span>}
-            //highlight-end
-            <br />
-            <br />
-            <input type="submit" disabled={isUploading} value="Submit" />
+            <input type="submit" disabled={formLoading} value="Submit" />
             {formLoading && <p>Loading</p>}
+        </form>
+    );
+};
+// visible-block-end
+
+setRefineProps({
+    Layout: (props) => <Layout {...props} />,
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+            create: PostCreatePage,
+            edit: PostEdit,
+        },
+    ],
+});
+
+render(<RefineHeadlessDemo />);
+```
+
+</TabItem>
+
+</Tabs>
+
+### `resource`
+
+**refine** passes the `resource` to the `dataProvider` as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
+
+The `resource` value is determined from the active route where the component or the hook is used. It can be overridden by passing the `resource` prop.
+
+Use case for overriding the `resource` prop:
+
+-   We can create a `category` from the `<PostEdit>` page.
+-   We can edit a `category` from the `<PostEdit>` page.
+
+In the following example, we'll show how to use `useForm` with `resource` prop.
+
+```tsx title="src/posts/edit.tsx"
+import { useForm } from "@pankod/refine-react-hook-form";
+import { PostForm } from "./PostForm";
+
+const PostEdit = () => {
+    return (
+        <div>
+            <PostForm />
+            <CategoryForm />
+        </div>
+    );
+};
+
+const CategoryForm = () => {
+    const {
+        refineCore: { onFinish },
+        handleSubmit,
+    } = useForm({
+        defaultValues: {
+            title: "",
+        },
+        // highlight-start
+        refineCoreProps: {
+            action: "create",
+            resource: "categories",
+        },
+        // highlight-end
+    });
+
+    return (
+        <form
+            onSubmit={handleSubmit(onFinish)}
+            style={{
+                display: "flex",
+                flexDirection: "column",
+            }}
+        >
+            <label htmlFor="title">Title</label>
+            <input
+                {...register("title", { required: true })}
+                id="title"
+                placeholder="Title"
+            />
+            <button type="submit">Create Category</button>
         </form>
     );
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
+Also you can give URL path to the `resource` prop.
+
+```tsx
+const form = useForm({
+    refineCoreProps: {
+        action: "create",
+        resource: "categories/subcategory", // <BASE_URL_FROM_DATA_PROVIDER>/categories/subcategory
+    },
+});
+```
+
+### `id`
+
+`id` is used for determining the record to `edit` or `clone`. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
+
+It is usefull when you want to `edit` or `clone` a `resource` from a different page.
+
+> Note: `id` is required when `action: "edit"` or `action: "clone"`.
+
+```tsx
+const form = useForm({
+    refineCoreProps: {
+        action: "edit", // or clone
+        resource: "categories",
+        id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
+    },
+});
+```
+
+### `redirect`
+
+`redirect` is used for determining the page to redirect after the form is submitted. By default, it uses the `list`. It can be changed with the `redirect` property.
+
+It can be set to `"show" | "edit" | "list" | "create"` or `false` to prevent the page from redirecting to the list page after the form is submitted.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    refineCoreProps: {
+        redirect: false,
+    },
+});
+```
+
+### `onMutationSuccess`
+
+It's a callback function that will be called after the mutation is successful.
+
+It receives the following parameters:
+
+-   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
+-   `variables`: The variables passed to the mutation.
+-   `context`: react-query context.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    refineCoreProps: {
+        onMutationSuccess: (data, variables, context) => {
+            console.log({ data, variables, context });
+        },
+    },
+});
+```
+
+### `onMutationError`
+
+It's a callback function that will be called after the mutation is failed.
+
+It receives the following parameters:
+
+-   `data`: Returned value from [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) depending on the `action`.
+-   `variables`: The variables passed to the mutation.
+-   `context`: react-query context.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    refineCoreProps: {
+        onMutationError: (data, variables, context) => {
+            console.log({ data, variables, context });
+        },
+    },
+});
+```
+
+### `invalidates`
+
+You can use it to manage the invalidations that will occur at the end of the mutation.
+
+By default it's invalidates following queries from the current `resource`:
+
+-   on `create` or `clone` mode: `"list"` and `"many"`
+-   on `edit` mode: `"list`", `"many"` and `"detail"`
+
+```tsx title="src/posts/create.tsx"
+const form = useForm({
+    refineCoreProps: {
+        invalidates: ["list", "many", "detail"],
+    },
+});
+```
+
+### `dataProviderName`
+
+If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+It is useful when you want to use a different `dataProvider` for a specific resource.
+
+:::tip
+If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop ](docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
+:::
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    refineCoreProps: {
+        dataProviderName: "second-data-provider",
+    },
+});
+```
+
+### `mutationMode`
+
+Mutation mode determines which mode the mutation runs with. Mutations can run under three different modes: `pessimistic`, `optimistic` and `undoable`. Default mode is `pessimistic`.
+Each mode corresponds to a different type of user experience.
+
+> For more information about mutation modes, please check [Mutation Mode documentation](/docs/advanced-tutorials/mutation-mode) page.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    refineCoreProps: {
+        action: "edit",
+        resource: "categories",
+        mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
+    },
+});
+```
+
+### `successNotification`
+
+> [`NotificationProvider`][notification-provider] is required.
+
+After form is submitted successfully, `useForm` will call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
+
+```tsx title="src/posts/create.tsx"
+const form = useForm({
+    refineCoreProps: {
+        successNotification: (data, values, resource) => {
+            return {
+                message: `Post Successfully created with ${data.title}`,
+                description: "Success with no errors",
+                type: "success",
+            };
+        },
+    },
+});
+```
+
+### `errorNotification`
+
+> [`NotificationProvider`][notification-provider] is required.
+
+After form is submit is failed, `refine` will show a error notification. With this prop, you can customize the error notification.
+
+```tsx title="src/posts/create.tsx"
+const form = useForm({
+    refineCoreProps: {
+        action: "create",
+        resource: "post",
+        errorNotification: (data, values, resource) => {
+            return {
+                message: `Something went wrong when deleting ${data.id}`,
+                description: "Error",
+                type: "error",
+            };
+        },
+    },
+});
+```
+
+```json title="Default values"
+{
+    "message": "Error when updating <resource-name> (status code: ${err.statusCode})" or "Error when creating <resource-name> (status code: ${err.statusCode})",
+    "description": "Error",
+    "type": "error",
+}
+```
+
+### `metaData`
+
+[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+
+-   To pass additional information to data provider methods.
+-   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
+
+In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
+
+```tsx title="src/posts/create.tsx"
+const form = useForm({
+    // highlight-start
+    refineCoreProps: {
+        metaData: {
+            headers: { "x-meta-data": "true" },
+        },
+    },
+    // highlight-end
+});
+
+const myDataProvider = {
+    //...
+    // highlight-start
+    create: async ({ resource, variables, metaData }) => {
+        const headers = metaData?.headers ?? {};
+        // highlight-end
+        const url = `${apiUrl}/${resource}`;
+
+        // highlight-next-line
+        const { data } = await httpClient.post(url, variables, { headers });
+
+        return {
+            data,
+        };
+    },
+    //...
+};
+```
+
+### `queryOptions`
+
+> Works only in `action: "edit"` or `action: "clone"` mode.
+
+in `edit` or `clone` mode, **refine** uses [`useOne`](/docs/api-reference/core/hooks/data/useOne/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing `queryOptions` property.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    refineCoreProps: {
+        // highlight-start
+        queryOptions: {
+            retry: 3,
+        },
+        // highlight-end
+    },
+});
+```
+
+### `createMutationOptions`
+
+> This option is only available when `action: "create"` or `action: "clone"`.
+
+In `create` or `clone` mode, **refine** uses [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `createMutationOptions` property.
+
+```tsx title="src/posts/create.tsx"
+const form = useForm({
+    refineCoreProps: {
+        // highlight-start
+        queryOptions: {
+            retry: 3,
+        },
+        // highlight-end
+    },
+});
+```
+
+### `updateMutationOptions`
+
+> This option is only available when `action: "edit"`.
+
+In `edit` mode, **refine** uses [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    refineCoreProps: {
+        // highlight-start
+        queryOptions: {
+            retry: 3,
+        },
+        // highlight-end
+    },
+});
+```
+
+### `liveMode`
+
+Whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
+For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    refineCoreProps: {
+        // highlight-start
+        liveMode: "auto",
+        // highlight-end
+    },
+});
+```
+
+## Return Values
+
+### `queryResult`
+
+If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and set the returned values as the `queryResult` property.
+
+```tsx title="src/posts/edit.tsx"
+const {
+    refineCore: { queryResult },
+} = useForm();
+
+const { data } = queryResult;
+```
+
+### `mutationResult`
+
+When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/). When in `"edit"` mode, it will call [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) and set the resulting values as the `mutationResult` property."
+
+```tsx title="src/posts/edit.tsx"
+const {
+    refineCore: { mutationResult },
+} = useForm();
+
+const { data } = mutationResult;
+```
+
+### `setId`
+
+`useForm` determine `id` from the router. If you want to change the `id` dynamically, you can use `setId` function.
+
+```tsx title="src/posts/edit.tsx"
+const {
+    refineCore: { id, setId },
+} = useForm();
+
+const handleIdChange = (id: string) => {
+    setId(id);
+};
+
+return (
+    <div>
+        <input value={id} onChange={(e) => handleIdChange(e.target.value)} />
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/packages/react-hook-form/upload.gif" alt="Multipart File Upload" />
-</div>
+);
+```
+
+### `redirect`
+
+"By default, after a successful mutation, `useForm` will `redirect` to the `"list"` page. To redirect to a different page, you can either use the `redirect` function to programmatically specify the destination, or set the redirect [property](/docs/api-reference/core/hooks/useForm/#redirect) in the hook's options.
+
+In the following example we will redirect to the `"show"` page after a successful mutation.
+
+```tsx title="src/posts/create.tsx"
+const {
+    refineCore: { onFinish, redirect },
+} = useForm();
+
+// --
+
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = await onFinish(formValues);
+    redirect("show", data?.data?.id);
+};
+
+// --
+```
+
+### `onFinish`
+
+`onFinish` is a function that is called when the form is submitted. It will call the appropriate mutation based on the `action` property.
+You can override the default behavior by passing an `onFinish` function in the hook's options.
+
+For example you can [change values before sending to the API](/docs/packages/documentation/react-hook-form/useForm/#how-can-i-change-the-form-data-before-submitting-it-to-the-api).
+
+## FAQ
+
+### How can Invalidate other resources?
+
+You can invalidate other resources with help of [`useInvalidate`](/docs/api-reference/core/hooks/invalidate/useInvalidate/) hook.
+
+It is useful when you want to `invalidate` other resources don't have relation with the current resource.
+
+```tsx title="src/posts/edit.tsx"
+import React from "react";
+import { useInvalidate } from "@pankod/refine-core";
+import { useForm } from "@pankod/refine-react-hook-form";
+
+const PostEdit = () => {
+    const invalidate = useInvalidate();
+
+    const form = useForm({
+        refineCoreProps: {
+            // highlight-start
+            onMutationSuccess: (data, variables, context) => {
+                invalidate({
+                    resource: "users",
+                    invalidates: ["resourceAll"],
+                });
+            },
+            // highlight-end
+        },
+    });
+
+    // ---
+};
+```
+
+### How can I change the form data before submitting it to the API?
+
+You may need to modify the form data before it is sent to the API.
+
+For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
+
+```tsx title="pages/user/create.tsx"
+import React from "react";
+import { FieldValues, useForm } from "@pankod/refine-react-hook-form";
+
+export const UserCreate: React.FC = () => {
+    const {
+        refineCore: { onFinish },
+        register,
+        handleSubmit,
+    } = useForm();
+
+    // highlight-start
+    const onFinishHandler = (data: FieldValues) => {
+        onFinish({
+            fullName: `${data.name} ${data.surname}`,
+        });
+    };
+    // highlight-end
+
+    return (
+        <form onSubmit={handleSubmit(onFinishHandler)}>
+            <label>Name: </label>
+            <input {...register("name")} />
+            <br />
+
+            <label>Surname: </label>
+            <input {...register("surname")} />
+            <br />
+
+            <button type="submit">Submit</button>
+        </form>
+    );
+};
+```
 
 ## API
 
@@ -419,7 +1042,7 @@ export const PostCreate: React.FC = () => {
 > `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-reference/core/components/refine-config.md)>** component.
 
 :::tip External Props
-It also accepts all props of [useForm](https://react-hook-form.com/api/useform) hook available in the  [React Hook Form](https://react-hook-form.com/).
+It also accepts all props of [useForm](https://react-hook-form.com/api/useform) hook available in the [React Hook Form](https://react-hook-form.com/).
 :::
 
 <br/>
@@ -455,10 +1078,9 @@ const {
 } = useForm({ ... });
 ```
 
-| Property        | Description               | Type                                          |
-| --------------- | ------------------------- | --------------------------------------------- |
+| Property        | Description               | Type                                                                     |
+| --------------- | ------------------------- | ------------------------------------------------------------------------ |
 | saveButtonProps | Props for a submit button | `{ disabled: boolean; onClick: (e: React.BaseSyntheticEvent) => void; }` |
-
 
 ### Type Parameters
 
@@ -478,3 +1100,4 @@ const {
 [use-form-core]: /api-reference/core/hooks/useForm.md
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
+[notification-provider]: /docs/api-reference/core/providers/notification-provider/
