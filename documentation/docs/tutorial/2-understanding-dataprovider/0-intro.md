@@ -8,7 +8,7 @@ tutorial:
 ---
 
 :::info
-DataProvider unit is not required for the tutorial. You can skip this unit if you want.
+The DataProvider unit is optional for the tutorial and can be skipped if desired.
 Go to the next unit [Adding CRUD Pages](#) to continue.
 :::
 
@@ -52,11 +52,11 @@ const dataProvider: DataProvider = {
 }
 ```
 
-`refine` this methods are used to perform CRUD operations.
+These methods are used to perform CRUD operations by **refine**
 
 ## Using Data Providers in refine
 
-You can pass your data provider to the `<Refine>` component as a prop.
+You can register your data provider to the `<Refine>` component by passing to `dataProvider` property.
 
 ```tsx
 import dataProvider from "@pankod/refine-simple-rest"
