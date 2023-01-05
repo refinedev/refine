@@ -117,7 +117,7 @@ In this parameter, `current` for which page number and `pageSize` for the number
   ```
 
 3. **refine** uses the `sort` parameter for sorting. This parameter includes `field` and `order`. 
-  Supports multiple field sorting. [CrudSort[]](/docs/api-reference/core/interfaceReferences/#crudsorting) type, it comes in the data provider as follows.
+  Supports multiple field sorting. [CrudSort[]](../../api-reference/core/interfaces.md#CrudSorting) type, it comes in the data provider as follows.
 
   ```bash
   [
@@ -167,7 +167,7 @@ In this parameter, `current` for which page number and `pageSize` for the number
   }
   ```
 
-4. **refine** uses the `filters` parameter for filtering. This parameter contains `field`, `operator` and `value` with type [CrudFilters[]](/docs/api-reference/core/interfaceReferences/#crudfilters).
+1. **refine** uses the `filters` parameter for filtering. This parameter contains `field`, `operator` and `value` with type [CrudFilters[]](../../api-reference/core/interfaces.md#crudfilters).
 
  ```bash
   [
@@ -227,7 +227,7 @@ In this parameter, `current` for which page number and `pageSize` for the number
 
   ```
 
-  The `operator` data comes with the [CrudOperators](/docs/api-reference/core/interfaceReferences/#crudoperators) type and needs to be mapped to the API. For this, the following `mapOperator` function is written.
+  The `operator` data comes with the [CrudOperators](../../api-reference/core/interfaces.md#crudoperators) type and needs to be mapped to the API. For this, the following `mapOperator` function is written.
 
   ```ts
   // Map refine operators to API operators
@@ -304,13 +304,13 @@ It supports the **refine** `and` and `or` operators and **conditional filters**,
 
 **Parameter Types:**
 
-| Name           | Type                                                            |
-| -------------- | --------------------------------------------------------------- |
-| resource       | `string`                                                        |
-| hasPagination? | `boolean` _(defaults to `true`)_                                |
-| pagination?    | [`Pagination`](/api-reference/core/interfaces.md#pagination);   |
-| sort?          | [`CrudSorting`](/api-reference/core/interfaces.md#crudsorting); |
-| filters?       | [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters); |
+| Name           | Type                                                                 |
+| -------------- | -------------------------------------------------------------------- |
+| resource       | `string`                                                             |
+| hasPagination? | `boolean` _(defaults to `true`)_                                     |
+| pagination?    | [`Pagination`](../../api-reference/core/interfaces.md#pagination);   |
+| sort?          | [`CrudSorting`](../../api-reference/core/interfaces.md#crudsorting); |
+| filters?       | [`CrudFilters`](../../api-reference/core/interfaces.md#crudfilters); |
 
 <br/>
 
@@ -322,7 +322,7 @@ import { useList } from "@pankod/refine-core";
 const { data } = useList({ resource: "posts" });
 ```
 
-> [Refer to the useList documentation for more information. &#8594](/api-reference/core/hooks/data/useList.md)
+> [Refer to the useList documentation for more information. &#8594](../../api-reference/core/hooks/data/useList.md)
 
 
 ### create
@@ -347,7 +347,7 @@ create: async ({ resource, variables }) => {
 | resource  | `string`     |         |
 | variables | `TVariables` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreate`](../../core/hooks/data/useCreate.md#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useCreate`](../../api-reference/core/hooks/data/useCreate.md#type-parameters) to type `variables`
 
 <br/>
 
@@ -366,7 +366,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreate documentation for more information. &#8594](/api-reference/core/hooks/data/useCreate.md)
+> [Refer to the useCreate documentation for more information. &#8594](../../api-reference/core/hooks/data/useCreate.md)
 
 ### update
 The `update` method updates the record with the `resource`, `id` and `variables` parameters.
@@ -391,7 +391,7 @@ update: async ({ resource, id, variables }) => {
 | id        | [BaseKey][basekey] |         |
 | variables | `TVariables`       | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useUpdate`](../../core/hooks/data/useUpdate.md#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useUpdate`](../../api-reference/core/hooks/data/useUpdate.md#type-parameters) to type `variables`
 
 <br/>
 
@@ -409,7 +409,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdate documentation for more information. &#8594](/api-reference/core/hooks/data/useUpdate.md)
+> [Refer to the useUpdate documentation for more information. &#8594](../../api-reference/core/hooks/data/useUpdate.md)
 
 ### deleteOne
 The `deleteOne` method delete the record with the `resource` and `id` parameters.
@@ -436,7 +436,7 @@ deleteOne: async ({ resource, id, variables }) => {
 | id        | [BaseKey][basekey] |         |
 | variables | `TVariables[]`     | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useDelete`](/api-reference/core/hooks/data/useDelete.md) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useDelete`](../../api-reference/core/hooks/data/useDelete.md) to type `variables`
 
 <br/>
 
@@ -450,7 +450,7 @@ const { mutate } = useDelete();
 mutate({ resource: "posts", id: "2" });
 ```
 
-> [Refer to the useDelete documentation for more information. &#8594](/api-reference/core/hooks/data/useDelete.md)
+> [Refer to the useDelete documentation for more information. &#8594](../../api-reference/core/hooks/data/useDelete.md)
 
 ### getOne
 The `getOne` method gets the record with the `resource` and `id` parameters.
@@ -484,7 +484,7 @@ import { useOne } from "@pankod/refine-core";
 const { data } = useOne<ICategory>({ resource: "posts", id: "1" });
 ```
 
-> [Refer to the useOne documentation for more information. &#8594](/api-reference/core/hooks/data/useOne.md)
+> [Refer to the useOne documentation for more information. &#8594](../../api-reference/core/hooks/data/useOne.md)
 
 <br/>
 
@@ -520,7 +520,7 @@ import { useMany } from "@pankod/refine-core";
 const { data } = useMany({ resource: "posts", ids: ["1", "2"] });
 ```
 
-> [Refer to the useMany documentation for more information. &#8594](/api-reference/core/hooks/data/useMany.md)
+> [Refer to the useMany documentation for more information. &#8594](../../api-reference/core/hooks/data/useMany.md)
 
 ### getApiUrl
 
@@ -537,7 +537,7 @@ import { useApiUrl } from "@pankod/refine-core";
 const { data } = useApiUrl();
 ```
 
-> [Refer to the useApiUrl documentation for more information. &#8594](/api-reference/core/hooks/data/useApiUrl.md)
+> [Refer to the useApiUrl documentation for more information. &#8594](../../api-reference/core/hooks/data/useApiUrl.md)
 
 ### createMany
 
@@ -561,7 +561,7 @@ createMany: async ({ resource, variables }) => {
 | resource  | `string`       |         |
 | variables | `TVariables[]` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreateMany`](/api-reference/core/hooks/data/useCreateMany.md) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useCreateMany`](../../api-reference/core/hooks/data/useCreateMany.md) to type `variables`
 
 <br/>
 
@@ -585,7 +585,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreateMany documentation for more information. &#8594](/api-reference/core/hooks/data/useCreateMany.md)
+> [Refer to the useCreateMany documentation for more information. &#8594](../../api-reference/core/hooks/data/useCreateMany.md)
 
 ### deleteMany
 
@@ -610,7 +610,7 @@ deleteMany: async ({ resource, ids }) => {
 | ids       | [BaseKey[]][basekey] |         |
 | variables | `TVariables[]`       | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useDeleteMany`](/api-reference/core/hooks/data/useDeleteMany.md) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useDeleteMany`](../../api-reference/core/hooks/data/useDeleteMany.md) to type `variables`
 
 <br/>
 
@@ -626,7 +626,7 @@ mutate({
     ids: ["2", "3"],
 });
 ```
-> [Refer to the useDeleteMany documentation for more information. &#8594](/api-reference/core/hooks/data/useDeleteMany.md)
+> [Refer to the useDeleteMany documentation for more information. &#8594](../../api-reference/core/hooks/data/useDeleteMany.md)
 
 
 ### updateMany
@@ -657,7 +657,7 @@ mutate({
     values: { status: "draft" },
 });
 ```
-> [Refer to the useUpdateMany documentation for more information. &#8594](/api-reference/core/hooks/data/useUpdateMany.md)
+> [Refer to the useUpdateMany documentation for more information. &#8594](../../api-reference/core/hooks/data/useUpdateMany.md)
 
 
 ### custom
@@ -718,15 +718,15 @@ custom: async ({ url, method, filters, sort, payload, query, headers }) => {
 
 **Parameter Types**
 
-| Name     | Type                                                            |
-| -------- | --------------------------------------------------------------- |
-| url      | `string`                                                        |
-| method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch`      |
-| sort?    | [`CrudSorting`](/api-reference/core/interfaces.md#crudsorting); |
-| filters? | [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters); |
-| payload? | `{}`                                                            |
-| query?   | `{}`                                                            |
-| headers? | `{}`                                                            |
+| Name     | Type                                                                 |
+| -------- | -------------------------------------------------------------------- |
+| url      | `string`                                                             |
+| method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch`           |
+| sort?    | [`CrudSorting`](../../api-reference/core/interfaces.md#crudsorting); |
+| filters? | [`CrudFilters`](../../api-reference/core/interfaces.md#crudfilters); |
+| payload? | `{}`                                                                 |
+| query?   | `{}`                                                                 |
+| headers? | `{}`                                                                 |
 
 <br/>
 
@@ -746,7 +746,7 @@ const { data, isLoading } = useCustom({
 });
 ```
 
-> [Refer to the useCustom documentation for more information. &#8594](/api-reference/core/hooks/data/useCustom.md)
+> [Refer to the useCustom documentation for more information. &#8594](../../api-reference/core/hooks/data/useCustom.md)
 
 ## Errors
 
