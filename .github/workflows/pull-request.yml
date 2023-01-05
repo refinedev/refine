@@ -40,4 +40,4 @@ jobs:
         npm run lint
     - name: test
       run: |
-        npm run test
+        npm run test --skip-nx-cache

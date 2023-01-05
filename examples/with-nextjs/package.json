@@ -3,14 +3,15 @@
     "version": "3.25.0",
     "private": true,
     "scripts": {
-        "start": "NODE_OPTIONS=--max_old_space_size=4096 PORT=3001 next dev",
+        "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 PORT=3001 next dev",
         "_build": "next build && rm -rf .next/cache",
         "start:prod": "next start",
         "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
     },
     "dependencies": {
-        "@pankod/refine-antd": "^4.2.0",
-        "@pankod/refine-core": "^3.90.6",
+        "@pankod/refine-antd": "^4.7.0",
+        "@pankod/refine-core": "^3.94.0",
+        "@pankod/refine-cli": "^1.15.0",
         "@pankod/refine-nextjs-router": "^4.1.0",
         "@pankod/refine-simple-rest": "^3.37.4",
         "next": "^13.0.6",

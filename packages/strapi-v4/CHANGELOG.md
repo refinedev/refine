@@ -1,5 +1,31 @@
 # @pankod/refine-strapi-v4
 
+## 3.39.6
+
+### Patch Changes
+
+-   [#3338](https://github.com/refinedev/refine/pull/3338) [`747129fa32c`](https://github.com/refinedev/refine/commit/747129fa32c7caead672c4197b0513df21e3d61c) Thanks [@npanti](https://github.com/npanti)! - Wrong mapping of case insensitive CRUD operators
+    See: https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/filtering-locale-publication.html#filtering
+
+## 3.39.5
+
+### Patch Changes
+
+-   [#3338](https://github.com/refinedev/refine/pull/3338) [`747129fa32c`](https://github.com/refinedev/refine/commit/747129fa32c7caead672c4197b0513df21e3d61c) Thanks [@npanti](https://github.com/npanti)! - Wrong mapping of case insensitive CRUD operators
+    See: https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/filtering-locale-publication.html#filtering
+
+## 3.39.4
+
+### Patch Changes
+
+-   [#3302](https://github.com/refinedev/refine/pull/3302) [`6876333ef4b`](https://github.com/refinedev/refine/commit/6876333ef4b7478a3308ba7b3a291a846087e2ed) Thanks [@npanti](https://github.com/npanti)! - patch: mapping nnul crud operator to notNull
+
+## 3.39.3
+
+### Patch Changes
+
+-   [#3302](https://github.com/refinedev/refine/pull/3302) [`6876333ef4b`](https://github.com/refinedev/refine/commit/6876333ef4b7478a3308ba7b3a291a846087e2ed) Thanks [@npanti](https://github.com/npanti)! - patch: mapping nnul crud operator to notNull
+
 ## 3.39.2
 
 ### Patch Changes

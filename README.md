@@ -156,7 +156,7 @@ Your **refine** application will be accessible at [http://localhost:3000](http:/
 
 
 
-<a href="http://localhost:3000">![Welcome on board](https://github.com/refinedev/refine/blob/master/documentation/static/img/welcome-on-board.png?raw=true)</a>
+<a href="http://localhost:3000">![Welcome on board](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/welcome-on-board.png)</a>
 
 <br/>
 

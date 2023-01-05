@@ -8,7 +8,7 @@
     "build": "next build && rm -rf .next/cache",
     "start:prod": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "dependencies": {
     "@pankod/refine-antd": "^4.1.0",

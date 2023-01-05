@@ -1,5 +1,6 @@
 import {
     useMutation,
+    UseMutationOptions,
     UseMutationResult,
     useQueryClient,
 } from "@tanstack/react-query";
@@ -59,6 +60,22 @@ type UseUpdateManyReturnType<
     UpdateContext<TData>
 >;
 
+export type UseUpdateManyProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {},
+> = {
+    mutationOptions?: Omit<
+        UseMutationOptions<
+            UpdateManyResponse<TData>,
+            TError,
+            UpdateManyParams<TVariables>,
+            UpdateContext<TData>
+        >,
+        "mutationFn" | "onError" | "onSuccess" | "onSettled" | "onMutate"
+    >;
+};
+
 /**
  * `useUpdateMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for multiple update mutations.
  *
@@ -75,7 +92,13 @@ export const useUpdateMany = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
->(): UseUpdateManyReturnType<TData, TError, TVariables> => {
+>({
+    mutationOptions,
+}: UseUpdateManyProps<TData, TError, TVariables> = {}): UseUpdateManyReturnType<
+    TData,
+    TError,
+    TVariables
+> => {
     const { resources } = useResource();
     const queryClient = useQueryClient();
     const dataProvider = useDataProvider();
@@ -398,6 +421,7 @@ export const useUpdateMany = <
                     });
                 }
             },
+            ...mutationOptions,
         },
     );
 

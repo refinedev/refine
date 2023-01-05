@@ -1,5 +1,27 @@
 # @pankod/refine-mantine
 
+## 2.0.2
+
+### Patch Changes
+
+-   [#3340](https://github.com/refinedev/refine/pull/3340) [`52489a0d8bc`](https://github.com/refinedev/refine/commit/52489a0d8bc746ad23eb1af984370a8222959c8d) Thanks [@aliemir](https://github.com/aliemir)! - Update `useInferFetch` hook logic to work without `id` in `list` and `create` type of inferencer.
+
+-   [#3339](https://github.com/refinedev/refine/pull/3339) [`8c764ecc566`](https://github.com/refinedev/refine/commit/8c764ecc566a0bdb9c7455c7b06680a93f1a8305) Thanks [@aliemir](https://github.com/aliemir)! - Fix type inconsistency in `useInferFetch` due to changes in `@pankod/refine-core`'s `useResource` hook.
+
+-   Updated dependencies [[`ce6acf2b3d4`](https://github.com/refinedev/refine/commit/ce6acf2b3d4c181a87cbdb6c1264fd6e59a504f5)]:
+    -   @pankod/refine-core@3.94.0
+
+## 2.0.1
+
+### Patch Changes
+
+-   [#3340](https://github.com/refinedev/refine/pull/3340) [`52489a0d8bc`](https://github.com/refinedev/refine/commit/52489a0d8bc746ad23eb1af984370a8222959c8d) Thanks [@aliemir](https://github.com/aliemir)! - Update `useInferFetch` hook logic to work without `id` in `list` and `create` type of inferencer.
+
+-   [#3339](https://github.com/refinedev/refine/pull/3339) [`8c764ecc566`](https://github.com/refinedev/refine/commit/8c764ecc566a0bdb9c7455c7b06680a93f1a8305) Thanks [@aliemir](https://github.com/aliemir)! - Fix type inconsistency in `useInferFetch` due to changes in `@pankod/refine-core`'s `useResource` hook.
+
+-   Updated dependencies [[`ce6acf2b3d4`](https://github.com/refinedev/refine/commit/ce6acf2b3d4c181a87cbdb6c1264fd6e59a504f5)]:
+    -   @pankod/refine-core@3.93.0
+
 ## 2.0.0
 
 ### Patch Changes

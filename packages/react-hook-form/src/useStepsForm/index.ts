@@ -81,7 +81,10 @@ export const useStepsForm = <
                 }
             });
 
-            reset(fields as any, { keepDirty: true });
+            reset(fields as any, {
+                keepDirty: true,
+                keepValues: true,
+            });
         }
     }, [queryResult?.data, current]);
 

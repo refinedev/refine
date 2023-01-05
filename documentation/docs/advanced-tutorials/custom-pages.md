@@ -19,6 +19,21 @@ This document is related to how to create custom pages for **react** application
 
 **refine** allows us to add custom pages to our application. To do this, it is necessary to create an object array with [react-router-dom](https://reactrouter.com/web/api/Route) `<Route>` properties. Then, pass this array as `routes` property in `routerProvider` property.
 
+:::tip
+When you create a custom page, it will not be visible in the `<Sider />` component. You can trick the `<Sider/>` by passing an empty resource to show your custom page.
+
+```tsx title="Example"
+const App = () => (
+    <Refine
+        resources={[
+            // This will add an item to `<Sider/>` with route `/my-custom-item`
+            { name: "my-custom-item", list: () => null }
+        ]}
+    />
+);
+```
+:::
+
 ## Public Custom Pages
 
 Allows creating custom pages that everyone can access via path.
