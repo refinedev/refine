@@ -15,14 +15,15 @@ The data provider unit is optional for the tutorial and can be skipped to next u
 
 The data provider acts as a data layer for your app that makes the HTTP requests and encapsulates how the data is retrieved. **refine** consumes these methods via data hooks.
 
-The data provider concept comes into play whenever your refine app needs to communicate with an external API. Thanks to refine's `dataProvider` object property, all API requests are processed through this object.
+
+You don't need worry about creating data providers from scratch. **refine** offers built-in data provider support for the most popular [API providers](#supported-data-providers). So you can use one of them or you can create your own data provider according to your needs. We'll see how to create data provider in the next sections.
 
 :::tip
 You can review the[list of supported providers](#supported-data-providers) to find the one that is compatible with your API. 
 We'll also give more details about data providers in [create your own data provider](/docs/tutorial/understanding-dataprovider/create-dataprovider/) section.
 :::
 
-Data providers can communicate with `REST`, `GraphQL`, `RPC` and `SOAP` based APIs as they work with adapter system infrastructure.
+Data providers can communicate with `REST`, `GraphQL`, `RPC`, and `SOAP` based API's. You can imagine the data provider is an adapter between refine and the API.
 
 
 <div>
@@ -71,9 +72,9 @@ import dataProvider from "@pankod/refine-simple-rest"
 ```
 You can refer to the **refine** component [dataProvider](/docs/api-reference/core/components/refine-config/#dataprovider) prop documentation for more detailed information.
 
-## How is it work with data hooks?
+## How data provider methods are using in the app?
 
-**refine** data hooks are used to fetch data from the API using the data provider methods. It passes parameters to the data provider and returns the result.
+We use refine's data hooks whenever we need to fetch data from the API. These data hooks are connected to data provider methods internally. The required parameters passes to the data provider methods and response from API returning back.
 To illustrate this internal connection, imagine we want to get all records from the "post" resource using refine's `useList` data hook.
 
 ```ts title="src/pages/posts/index.tsx"
@@ -98,6 +99,8 @@ const postUseListResult = useList({
     },
   });
 ```
+
+As we can see, the parameters passed to useList hook are forwarded to the data providers getList method internally. In the background, refine connects all data provider methods to appropriate data hooks.
 
 ```ts title="dataProvider.ts"
 const dataProvider = {
@@ -128,7 +131,7 @@ const dataProvider = {
 
 ## Supported Data Providers
 
-**refine** includes many out-of-the-box data providers to use in your projects like 
+**refine** comes with many pre-loaded data providers. To include them in your project, you can use `npm install [packageName]` or you can use the `npm create refine-app@latest projectName` to configure them. This will allow you to easily use these data providers in your project.
 
 -   [Simple REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
 -   [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
@@ -148,3 +151,7 @@ const dataProvider = {
 -   [Firebase](https://github.com/resulturan/refine-firebase) by [rturan29](https://github.com/resulturan)
 -   [Directus](https://github.com/tspvivek/refine-directus) by [tspvivek](https://github.com/tspvivek)
 -   [Elide](https://github.com/chirdeeptomar/refine-elide-rest) by [chirdeeptomar](https://github.com/chirdeeptomar)
+
+
+*If you have created a custom data provider and would like to share it with the community, please don't hesitate to get in touch with us. We would be happy to include it on this page for others to use.*
+

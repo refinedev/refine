@@ -145,6 +145,15 @@ access-control-expose-headers: X-Total-Count
   **refine** uses the `pagination` parameter for pagination. 
   In this parameter, `current` for which page number and `pageSize` for the number of records in each page.
 
+  ```bash
+  [
+    {
+      current: 1,
+      pageSize: 10,
+    },
+  ]
+  ```
+
   ```ts title="src/data-provider.ts"
   getList: async ({ resource, pagination }) => {
     const url = `${apiUrl}/${resource}`;
@@ -233,6 +242,7 @@ access-control-expose-headers: X-Total-Count
 4. Now let's add the filter feature. For this, the API takes the following parameters.
 
   ```bash
+
   [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2&_sort=id&_order=desc&title_like
   ```
 
@@ -252,50 +262,6 @@ access-control-expose-headers: X-Total-Count
     },
   ]
   ```
-
-  :::info
-  Also, conditional filters can be made using `and` and `or`. For example:
-
-  ```bash
-  [
-    {
-      operator: "or",
-      value: [
-        {
-          operator: "and"
-          value: [
-            {
-              field: "title"
-              operator: "contain"
-              value: "Hello"
-            },
-            {
-              field: "age"
-              operator: "gte"
-              value: "18"
-            },
-          ]
-        },
-        {
-          operator: "and"
-          value: [
-            {
-              field: "title"
-              operator: "contain"
-              value: "Hello"
-            },
-            {
-              field: "age"
-              operator: "lte"
-              value: "18"
-            },
-          ]
-        }
-      ]
-    }
-  ]
-  ```
-  :::
 
   The `operator` data comes with the [CrudOperators](../../api-reference/core/interfaces.md#crudoperators) type and needs to be mapped to the API. For this, the following `mapOperator` function is written.
 
@@ -348,7 +314,6 @@ access-control-expose-headers: X-Total-Count
       _end: current * pageSize,
     };
 
-    // it is not implemented because it does not support this API.
     if (sort && sort.length > 0) {
       query._sort = sort[0].field;
       query._order = sort[0].order;
@@ -369,6 +334,50 @@ access-control-expose-headers: X-Total-Count
   },
   ```
 
+  :::info
+  Also, conditional filters can be made using `and` and `or`. For example:
+
+  ```bash
+  [
+    {
+      operator: "or",
+      value: [
+        {
+          operator: "and"
+          value: [
+            {
+              field: "title"
+              operator: "contain"
+              value: "Hello"
+            },
+            {
+              field: "age"
+              operator: "gte"
+              value: "18"
+            },
+          ]
+        },
+        {
+          operator: "and"
+          value: [
+            {
+              field: "title"
+              operator: "contain"
+              value: "Hello"
+            },
+            {
+              field: "age"
+              operator: "lte"
+              value: "18"
+            },
+          ]
+        }
+      ]
+    }
+  ]
+  ```
+  :::
+
 **Parameter Types:**
 
 | Name           | Type                                                                |
@@ -386,7 +395,24 @@ access-control-expose-headers: X-Total-Count
 ```ts
 import { useList } from "@pankod/refine-core";
 
-const { data } = useList({ resource: "posts" });
+const { data } = useList({
+  resource: "posts",
+  config: {
+    sort: [
+      {
+        field: "id",
+        order: "desc",
+      },
+    ],
+    filters: [
+      {
+        field: "title",
+        operator: "contains",
+        value: "hello",
+      },
+    ],
+  },
+});
 ```
 
 > [Refer to the useList documentation for more information. &#8594](../../api-reference/core/hooks/data/useList.md)
@@ -651,7 +677,9 @@ custom: async ({ url, method, filters, sort, payload, query, headers }) => {
 **refine** will consume this `custom` method using the `useCustom` data hook.
 
 ```ts
-import { useCustom } from "@pankod/refine-core";
+import { useCustom, useApiUrl } from "@pankod/refine-core";
+
+const 
 
 const { data, isLoading } = useCustom({
     url: `${apiURL}/posts-unique-check`,
