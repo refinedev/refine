@@ -8,8 +8,7 @@ tutorial:
 ---
 
 :::info
-The DataProvider unit is optional for the tutorial and can be skipped if desired.
-Go to the next unit [Adding CRUD Pages](#) to continue.
+The DataProvider unit is optional for the tutorial and can be skipped to next unit [Adding CRUD Pages](#) if desired.
 :::
 
 ## What is data provider?
@@ -27,8 +26,7 @@ You can also check the details to [create your own data provider](/docs/tutorial
 
 Data providers can communicate with `REST`, `GraphQL`, `RPC` and `SOAP` based APIs as they work with adapter system infrastructure.
 
-<br/>
-<br/>
+
 <div>
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/flow.png" />
 </div>
