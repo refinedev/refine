@@ -98,7 +98,7 @@ render(
                             List page here...
                         </RefineAntd.List>
                     )
-                }
+                },
                 show: () => {
                     return (
                         <RefineAntd.Show>
@@ -153,7 +153,7 @@ render(
                             List page here...
                         </RefineAntd.List>
                     )
-                }
+                },
                 show: () => {
                     return (
                         <RefineAntd.Show>
@@ -170,7 +170,7 @@ render(
                             List page here...
                         </RefineAntd.List>
                     )
-                }
+                },
                 show: () => {
                     return (
                         <RefineAntd.Show>

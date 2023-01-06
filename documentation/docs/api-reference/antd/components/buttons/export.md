@@ -35,7 +35,7 @@ const PostList: React.FC = () => {
 
     return (
         <List
-            headerButtons{(
+            headerButtons={(
                 // highlight-start
                 <ExportButton
                     onClick={triggerExport}

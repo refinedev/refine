@@ -13,7 +13,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-```tsx
+```tsx live url=http://localhost:3000/posts/show/123
 // visible-block-start
 import { useShow } from "@pankod/refine-core";
 import {
@@ -25,7 +25,7 @@ import {
 
 const { Title, Text } = Typography;
 
-export const PostShow: React.FC = () => {
+const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;

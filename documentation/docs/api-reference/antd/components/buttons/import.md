@@ -75,16 +75,6 @@ render(
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx 
-import { ImportButton, useImport } from "@pankod/refine-antd";
-
-export const MyImportComponent = () => {
-    const importProps = useImport();
-
-    return <ImportButton {...importProps} hideText />;
-};
-```
-
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
 

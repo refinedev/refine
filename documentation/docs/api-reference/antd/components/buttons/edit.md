@@ -98,7 +98,7 @@ render(
                             List page here...
                         </RefineAntd.List>
                     )
-                }
+                },
                 edit: () => {
                     return (
                         <RefineAntd.Edit>
@@ -153,7 +153,7 @@ render(
                             List page here...
                         </RefineAntd.List>
                     )
-                }
+                },
                 edit: () => {
                     return (
                         <RefineAntd.Edit>
@@ -170,7 +170,7 @@ render(
                             List page here...
                         </RefineAntd.List>
                     )
-                }
+                },
                 edit: () => {
                     return (
                         <RefineAntd.Edit>

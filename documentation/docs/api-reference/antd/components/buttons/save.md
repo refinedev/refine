@@ -19,7 +19,7 @@ For example, let's add logic to the `<SaveButton>` component with the `saveButto
 // visible-block-start
 import { Edit, Form, Input, useForm } from "@pankod/refine-antd";
 
-export const PostEdit: React.FC = () => {
+const PostEdit: React.FC = () => {
     // highlight-next-line
     const { formProps, saveButtonProps } = useForm<IPost>();
 
@@ -76,14 +76,6 @@ The [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook exposes `saveBut
 ### `hideText`
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
-
-```tsx 
-import { SaveButton } from "@pankod/refine-antd";
-
-export const MySaveComponent = () => {
-    return <SaveButton hideText />;
-};
-```
 
 ```tsx live disableScroll previewHeight=120px
 // visible-block-start
