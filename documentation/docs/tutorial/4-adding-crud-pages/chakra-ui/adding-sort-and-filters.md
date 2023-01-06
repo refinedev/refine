@@ -228,6 +228,8 @@ export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({
 
 Filter element is a component that renders an input element. When the user changes the value of the input element, the filter value of the column will be changed.
 
+`<ColumnFilter/>` also contains a clear and apply button. When the user clicks on the clear button, the filter value of the column will be cleared. When the user clicks on the apply button, the filter value of the column will be set.
+
 :::tip
 If you want to use a custom filter element, you can pass it to the `filterElement` property of the `meta` in column definition. For example, you can pass a `<Select/>` component like below.
 
@@ -244,8 +246,6 @@ If you want to use a custom filter element, you can pass it to the `filterElemen
 In the props, the filter element will receive the `value` and `onChange` props. You can use these props to change the filter value of the column.
 
 :::
-
-The menu also contains a clear and apply button. When the user clicks on the clear button, the filter value of the column will be cleared. When the user clicks on the apply button, the filter value of the column will be set.
 
 :::tip
 By default, filter operator is "contains" for columns. You can change the filter operator by passing the `filterOperator` property to the `meta` in column definition. For example, you can change the filter operator to "eq" like below:
