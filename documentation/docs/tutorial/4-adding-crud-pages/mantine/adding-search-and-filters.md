@@ -65,7 +65,9 @@ Lastly, If the column is sorted, we will render the `IconChevronDown` icon. Othe
 In this example, we are using the `@tabler/icons` package for icons. You can use any icon library you want.
 :::
 
-:::tip
+<details>
+  <summary><strong>How can I disable sorting for a specific column?</strong></summary>
+
 You can disable sorting for a specific column by setting the `enableSorting` property of the column to `false` in the column definition like below.
 
 ```tsx
@@ -77,7 +79,9 @@ You can disable sorting for a specific column by setting the `enableSorting` pro
 },
 ```
 
-:::
+</details>
+
+<br />
 
 Now, we can use `<ColumnSorter/>` in our table header.
 
@@ -231,6 +235,11 @@ Filter element is a component that renders an input element. When the user chang
 :::tip
 If you want to use a custom filter element, you can pass it to the `filterElement` property of the `meta` in column definition. For example, you can pass a `<Select/>` component like below.
 
+<details>
+  <summary><strong>How can I use custom filter element?</strong></summary>
+
+If you want to use a custom filter element, you can pass it to the `filterElement` property of the `meta` in column definition. For example, you can pass a `<Select/>` component like below.
+
 ```tsx
 {
     title: "Category",
@@ -243,24 +252,29 @@ If you want to use a custom filter element, you can pass it to the `filterElemen
 
 In the props, the filter element will receive the `value` and `onChange` props. You can use these props to change the filter value of the column.
 
-:::
+</details>
 
-:::tip
+<details>
+  <summary><strong>How can I change the filter operator?</strong></summary>
+
 By default, filter operator is "contains" for columns. You can change the filter operator by passing the `filterOperator` property to the `meta` in column definition. For example, you can change the filter operator to "eq" like below:
 
 ```tsx
 {
     title: "Category",
     dataIndex: "category",
+    //highlight-start
     meta: {
         filterOperator: "eq",
     },
+    //highlight-end
 },
 ```
 
-:::
+</details>
 
-:::tip
+<details>
+  <summary><strong>How can I disable filtering for a specific column?</strong></summary>
 
 You can disable filtering for a specific column by setting the `enableColumnFilter` property of the column to `false` in the column definition like below.
 
@@ -273,7 +287,9 @@ You can disable filtering for a specific column by setting the `enableColumnFilt
 },
 ```
 
-:::
+</details>
+
+<br />
 
 Now, we can use `<ColumnFilter/>` in our table header.
 
