@@ -91,6 +91,14 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                         defaultValue: ${val},
                         ${getOptionLabel(field)}
                     });
+
+                    React.useEffect(() => {
+                        resetField("${dotAccessor(
+                            field.key,
+                            undefined,
+                            field.accessor,
+                        )}");
+                    }, [${getVariableName(field.key, "Options")}]);
                 `;
                 }
                 return undefined;
