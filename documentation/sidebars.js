@@ -225,6 +225,7 @@ module.exports = {
                                 "api-reference/core/components/auth-page",
                                 "api-reference/core/components/refine-config",
                                 "api-reference/core/components/layout-wrapper",
+                                "api-reference/antd/components/inferencer",
                                 {
                                     type: "category",
                                     label: "Authorization",
