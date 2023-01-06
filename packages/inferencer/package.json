@@ -11,6 +11,10 @@
             "import": "./dist/esm/index.js",
             "require": "./dist/index.js"
         },
+        "./headless": {
+            "import": "./dist/esm/headless.js",
+            "require": "./dist/headless.js"
+        },
         "./mantine": {
             "import": "./dist/esm/mantine.js",
             "require": "./dist/mantine.js"
@@ -32,6 +36,9 @@
         "*": {
             ".": [
                 "dist/index.d.ts"
+            ],
+            "headless": [
+                "dist/inferencers/headless/index.d.ts"
             ],
             "mantine": [
                 "dist/inferencers/mantine/index.d.ts"
