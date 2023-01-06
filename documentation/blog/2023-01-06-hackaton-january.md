@@ -1,6 +1,6 @@
 ---
 title: refine Open Source Hackathon
-description: Hactoberfest is back and we are excited to be a part of it. Join us in making open source contributions.
+description: refine Hackathon is an excellent opportunity for developers to showcase their skills and learn refine!
 slug: refine-hackathon
 authors: necati
 tags: [hackathon, refine]
@@ -13,25 +13,34 @@ hide_table_of_contents: false
 
 ## Overview
 
-We are excited to announce that the first **refine** hackathon will launch. We can't wait to see what amazing projects the participants will build CRUD apps using **refine**. 
+We're proud to have reached thousands of developers using **refine** in our first year, and we couldn't have done it without open source community!
+
+To celebrate this achievement with the community, we are excited to announce the launch of the first **refine** hackathon event.
 
 This hackathon is an excellent opportunity for developers to showcase their skills and learn **refine**! 
 
-We look forward to seeing the innovative solutions that will be developed during the hackathon.
+We can't wait to see what amazing projects the participants will build projects using **refine**. 
 
 You can win $1500 and a special gifts along with swag kits!
 
+We look forward to seeing the cool projects that will be developed during the hackathon.
+
+
 ## Sponsors
 
-We are grateful to our sponsors for their support of this event. 
+refine comes with built-in data provider support for many popular service platforms, making it easy for you to integrate your Strapi and Appwrite API's into the project.
 
 Strapi Appwrite
+
+
+We are grateful to hackathon sponsors for their support of this event. The winners will get swag kit from the hackaton sponsors.
+
 
 ## Hackathon Key Facts
 
 - Enter as a solo or recruit a team of up to five and take part in this exciting hackaton!
-- You have 3 weeks to build a cool Open Source CRUD application using **refine**.
-- Build a **refine** project. It can be anything, CRUD app, admin panel, internal tool, forms, storefront, dashboard, library, data provider, auth provider, live provider, etc.
+- You have 3 weeks to build a cool Open Source project using **refine**.
+- Build a **refine** project. It can be anything like CRUD app, admin panel, internal tool, forms, storefront, dashboard, library, data provider, auth provider, live provider, etc.
 
 
 
