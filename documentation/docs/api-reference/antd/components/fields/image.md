@@ -32,7 +32,7 @@ const PostList: React.FC = () => {
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" width="100%" />
+                <Table.Column dataIndex="title" title="Title" width="50%" />
                 <Table.Column<IPost>
                     title="Image"
                     dataIndex="image"
@@ -45,6 +45,7 @@ const PostList: React.FC = () => {
                         />
                         // highlight-end
                     )}
+                    width="50%"
                 />
             </Table>
         </List>

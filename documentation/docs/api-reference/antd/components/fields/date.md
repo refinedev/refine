@@ -18,36 +18,33 @@ Let's see how we can use `<DateField>` with the example in the post list.
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
 // visible-block-start
 import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
     List,
-    // highlight-next-line
+    Table,
+    useTable,
+    // highlight-start
     DateField,
-} from "@pankod/refine-mui";
+    // highlight-end
+} from "@pankod/refine-antd";
 
-const columns: GridColumns = [
-    { field: "id", headerName: "ID", type: "number" },
-    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
-    {
-        field: "createdAt",
-        headerName: "Created At",
-        renderCell: function render({ row }) {
-            // highlight-start
-            return (
-                <DateField format="LLL" value={row.createdAt} />
-            );
-            // highlight-end
-        },
-    },
-];
-
-const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid<IPost>();
+const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
 
     return (
         <List>
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" width="50%" />
+                <Table.Column
+                    dataIndex="createdAt"
+                    title="Created At"
+                    render={(value) => (
+                        // highlight-start
+                        <DateField value={value} />
+                        // highlight-end
+                    )}
+                    width="50%"
+                />
+            </Table>
         </List>
     );
 };
@@ -60,11 +57,11 @@ interface IPost {
 // visible-block-end
 
 render(
-    <RefineMuiDemo
+    <RefineAntdDemo
         resources={[
             {
                 name: "posts",
-                list: PostsList,
+                list: PostList
             },
         ]}
     />,

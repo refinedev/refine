@@ -37,6 +37,7 @@ const UserList: React.FC = () => {
                     title="Email"
                     // highlight-next-line
                     render={(value: string) => <EmailField value={value} />}
+                    width="100%"
                 />
                 ...
             </Table>

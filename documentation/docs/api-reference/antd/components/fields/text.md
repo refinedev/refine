@@ -42,7 +42,7 @@ const PostList: React.FC<IResourceComponentsProps> = (props) => {
     return (
         <List {...props}>
             <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="title" title="title" />
+                <Table.Column dataIndex="title" title="title" width="50%" />
                 <Table.Column
                     dataIndex={["category", "id"]}
                     title="category"
@@ -63,6 +63,7 @@ const PostList: React.FC<IResourceComponentsProps> = (props) => {
                         );
                         // highlight-end
                     }}
+                    width="50%"
                 />
             </Table>
         </List>

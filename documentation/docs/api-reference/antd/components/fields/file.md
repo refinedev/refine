@@ -35,6 +35,7 @@ const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex="title"
                     title="Title"
+                    width="50%"
                 />
                 <Table.Column<IPost>
                     title="Image"
@@ -43,6 +44,7 @@ const PostList: React.FC = () => {
                         // highlight-next-line
                         <FileField src={record.image[0].url} />
                     )}
+                    width="50%"
                 />
             </Table>
         </List>

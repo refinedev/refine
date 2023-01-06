@@ -61,7 +61,7 @@ render(
                     <RefineAntd.List>
                         <p>List page here...</p>
                     </RefineAntd.List>
-                )
+                ),
                 show: PostShow
             },
         ]}

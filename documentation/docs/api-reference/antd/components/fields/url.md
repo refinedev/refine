@@ -24,7 +24,7 @@ import {
     UrlField 
 } from "@pankod/refine-antd";
 
-export const PostList: React.FC = () => {
+const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     return (
@@ -34,6 +34,7 @@ export const PostList: React.FC = () => {
                     dataIndex="title"
                     title="Title"
                     key="title"
+                    width="50%"
                 />
                 <Table.Column
                     dataIndex={["image", "0", "url"]}
@@ -41,6 +42,7 @@ export const PostList: React.FC = () => {
                     key="image"
                     // highlight-next-line
                     render={(value: string) => <UrlField value={value} />}
+                    width="50%"
                 />
             </Table>
         </List>

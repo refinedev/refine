@@ -33,12 +33,13 @@ const PostList: React.FC = () => {
     return (
         <List>
             <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="title" title="title" />
+                <Table.Column dataIndex="title" title="Sitle"  width="50%"/>
                 <Table.Column
                     dataIndex="status"
-                    title="status"
+                    title="Status"
                     // highlight-next-line
                     render={(value: string) => <TagField value={value} />}
+                    width="50%"
                 />
             </Table>
         </List>
