@@ -38,6 +38,8 @@ const columns: GridColumns = [
             );
             // highlight-end
         },
+        minWidth: 100,
+        flex: 1,
     },
 ];
 

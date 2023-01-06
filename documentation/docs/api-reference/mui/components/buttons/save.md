@@ -20,7 +20,7 @@ For example, let's add logic to the `<SaveButton>` component with the `saveButto
 import { useForm } from "@pankod/refine-react-hook-form";
 import { Edit, Box, TextField } from "@pankod/refine-mui";
 
-export const PostEdit: React.FC = () => {
+const PostEdit: React.FC = () => {
     const {
         refineCore: { onFinish, formLoading },
         register,

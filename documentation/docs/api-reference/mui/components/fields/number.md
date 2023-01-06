@@ -30,7 +30,7 @@ import {
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
-    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+    { field: "title", headerName: "Title", minWidth: 100, flex: 1 },
     {
         field: "hit",
         headerName: "Hit",
@@ -46,6 +46,8 @@ const columns: GridColumns = [
             );
             // highlight-end
         },
+        minWidth: 100,
+        flex: 1,
     },
 ];
 

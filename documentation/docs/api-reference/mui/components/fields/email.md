@@ -28,8 +28,8 @@ import {
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
-    { field: "firstName", headerName: "First Name", minWidth: 300, flex: 1 },
-    { field: "lastName", headerName: "Last Name", minWidth: 300, flex: 1 },
+    { field: "firstName", headerName: "First Name", minWidth: 80 },
+    { field: "lastName", headerName: "Last Name", minWidth: 80 },
     {
         field: "email",
         headerName: "Email Address",
@@ -40,6 +40,8 @@ const columns: GridColumns = [
             );
             // highlight-end
         },
+        minWidth: 100,
+        flex: 1,
     },
 ];
 
