@@ -12,4 +12,5 @@ export const packageMap: Record<string, string> = {
     "@pankod/refine-inferencer/mui": "RefineMuiInferencer",
     "@pankod/refine-inferencer/mantine": "RefineMantineInferencer",
     "@pankod/refine-inferencer/chakra-ui": "RefineChakraInferencer",
+    "@pankod/refine-inferencer/headless": "RefineHeadlessInferencer",
 };

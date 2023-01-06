@@ -54,6 +54,11 @@ const Preview: NextPage = () => {
             const chakraInferencerScope = usedPackages.has("chakra-inferencer")
                 ? (await import("../src/scope/chakra-inferencer")).default
                 : {};
+            const headlessInferencerScope = usedPackages.has(
+                "headless-inferencer",
+            )
+                ? (await import("../src/scope/headless-inferencer")).default
+                : {};
 
             setScope({
                 ...RefineCommonScope,
@@ -65,6 +70,7 @@ const Preview: NextPage = () => {
                 ...muiInferencerScope,
                 ...mantineInferencerScope,
                 ...chakraInferencerScope,
+                ...headlessInferencerScope,
             });
             setScopeSettled(true);
         }
