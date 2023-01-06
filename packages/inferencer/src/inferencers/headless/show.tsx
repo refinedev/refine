@@ -400,7 +400,7 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
                             field.key,
                         )}?.map((item: any) => (
                             <li key={${val}}>
-                                {(new Date(${val})).toLocaleString()}
+                                {(new Date(${val})).toLocaleString(undefined, { timeZone: "UTC" })}
                             </li>
                         ))}
                         </ul>
@@ -416,7 +416,7 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
                             field.key,
                             field.accessor,
                             " + ' ' + ",
-                        )})).toLocaleString()}
+                        )})).toLocaleString(undefined, { timeZone: "UTC" })}
                     </div>
                 </div>
                 `;
