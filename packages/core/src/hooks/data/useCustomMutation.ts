@@ -4,7 +4,12 @@ import {
     UseMutationResult,
 } from "@tanstack/react-query";
 
-import { useDataProvider, useHandleNotification, useTranslate } from "@hooks";
+import {
+    useCheckError,
+    useDataProvider,
+    useHandleNotification,
+    useTranslate,
+} from "@hooks";
 import {
     CreateResponse,
     BaseRecord,
@@ -77,6 +82,7 @@ export const useCustomMutation = <
     TError,
     TVariables
 > = {}): UseCustomMutationReturnType<TData, TError, TVariables> => {
+    const { mutate: checkError } = useCheckError();
     const handleNotification = useHandleNotification();
     const dataProvider = useDataProvider();
     const translate = useTranslate();
@@ -137,6 +143,8 @@ export const useCustomMutation = <
                     metaData,
                 },
             ) => {
+                checkError(err);
+
                 const notificationConfig =
                     typeof errorNotificationFromProp === "function"
                         ? errorNotificationFromProp(err, {
