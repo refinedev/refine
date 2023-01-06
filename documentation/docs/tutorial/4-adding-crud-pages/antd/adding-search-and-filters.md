@@ -1,9 +1,9 @@
 ---
 id: adding-search-and-filters
-title: 5. Adding Search and Filters
+title: 5.Adding Search and Filters
 tutorial:
     order: 0
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-create-page
+    prev: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
     next: tutorial/understanding-authprovider/{preferredUI}/authpage-component
 ---
 
