@@ -1,0 +1,352 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChakraListInferencer should match the snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      style="padding: 16px;"
+    >
+      <div
+        style="display: flex; align-items: center; justify-content: space-between;"
+      >
+        <h1>
+          Posts
+        </h1>
+      </div>
+      <div
+        style="max-width: 100%; overflow-y: scroll;"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Id
+              </th>
+              <th>
+                Title
+              </th>
+              <th>
+                Slug
+              </th>
+              <th>
+                Content
+              </th>
+              <th>
+                Hit
+              </th>
+              <th>
+                Category
+              </th>
+              <th>
+                User
+              </th>
+              <th>
+                Status
+              </th>
+              <th>
+                Status Color
+              </th>
+              <th>
+                Created At
+              </th>
+              <th>
+                Published At
+              </th>
+              <th>
+                Image
+              </th>
+              <th>
+                Tags
+              </th>
+              <th>
+                Language
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                11
+              </td>
+              <td>
+                Nobis exercitationem officia quia est.
+              </td>
+              <td>
+                provident-culpa-facere
+              </td>
+              <td>
+                Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur voluptatibus molestias. Est nemo aut. Fugit aliquam enim eveniet veritatis. Magni et aut. Consequatur aliquid rerum vero. Quaerat debitis enim magnam. Dolorem est delectus architecto et accusantium. Velit quia vero. Aut necessitatibus quia at consequatur soluta accusantium.
+              </td>
+              <td>
+                920557
+              </td>
+              <td>
+                Numquam Saepe Illo
+              </td>
+              <td>
+                Eriberto Leannon
+              </td>
+              <td>
+                draft
+              </td>
+              <td>
+                orange
+              </td>
+              <td>
+                4/2/2022, 4:25:44 AM
+              </td>
+              <td>
+                8/10/2021, 8:07:39 AM
+              </td>
+              <td>
+                <ul>
+                  <li>
+                    <img
+                      src="http://loremflickr.com/640/480/abstract"
+                      style="height: 50px; max-width: 100px;"
+                    />
+                  </li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>
+                    Nobis Et Ut
+                  </li>
+                </ul>
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+            <tr>
+              <td>
+                21
+              </td>
+              <td>
+                Eaque in nesciunt.
+              </td>
+              <td>
+                quod-quos-commodi
+              </td>
+              <td>
+                Ut velit quo. Sed beatae et sit ea. Perferendis pariatur doloremque deleniti sapiente. Doloribus iste est minima quam laboriosam quia aut. Voluptatem hic debitis. Aut et atque sapiente accusamus et labore consequatur quo eligendi. Harum debitis vel in repellat neque dolor. Dolores itaque eveniet minima aut hic ut incidunt officiis. Accusamus debitis quasi est sint recusandae illum ut unde. Doloribus rem et.
+              </td>
+              <td>
+                175149
+              </td>
+              <td>
+                Sit Natus Voluptatibus
+              </td>
+              <td>
+                Tressie Reichel
+              </td>
+              <td>
+                published
+              </td>
+              <td>
+                lime
+              </td>
+              <td>
+                9/24/2022, 8:33:21 AM
+              </td>
+              <td>
+                9/1/2021, 3:33:43 AM
+              </td>
+              <td>
+                <ul>
+                  <li>
+                    <img
+                      src="http://loremflickr.com/640/480/abstract"
+                      style="height: 50px; max-width: 100px;"
+                    />
+                  </li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>
+                    Error Eos Et
+                  </li>
+                  <li>
+                    Nobis Et Ut
+                  </li>
+                </ul>
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div
+        style="margin-top: 12px;"
+      >
+        <button
+          disabled=""
+        >
+          &lt;&lt;
+        </button>
+        <button
+          disabled=""
+        >
+          &lt;
+        </button>
+        <button
+          disabled=""
+        >
+          &gt;
+        </button>
+        <button
+          disabled=""
+        >
+          &gt;&gt;
+        </button>
+        <span>
+          Page
+          <strong>
+            1 of 1
+          </strong>
+        </span>
+        <span>
+          | Go to page:
+          <input
+            type="number"
+            value="1"
+          />
+        </span>
+         
+        <select>
+          <option
+            value="10"
+          >
+            Show 10
+          </option>
+          <option
+            value="20"
+          >
+            Show 20
+          </option>
+          <option
+            value="30"
+          >
+            Show 30
+          </option>
+          <option
+            value="40"
+          >
+            Show 40
+          </option>
+          <option
+            value="50"
+          >
+            Show 50
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div
+    style="position: fixed; bottom: 12px; right: 64px;"
+  >
+    <div
+      style="display: flex; flex-direction: row; align-items: center; justify-content: center; width: 100%; height: 100%; gap: 12px;"
+    >
+      <button
+        style="background-color: rgb(255, 255, 255); border: 1px solid #e2e8f0; border-radius: 4px; padding: 8px 16px; cursor: pointer; display: flex; font-family: sans-serif; align-items: center;"
+      >
+        <svg
+          class="icon icon-tabler icon-tabler-code"
+          fill="none"
+          height="18"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="18"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+            stroke="none"
+          />
+          <polyline
+            points="7 8 3 12 7 16"
+          />
+          <polyline
+            points="17 8 21 12 17 16"
+          />
+          <line
+            x1="14"
+            x2="10"
+            y1="4"
+            y2="20"
+          />
+        </svg>
+        <span
+          style="margin-left: 8px; font-size: 14px; color: rgb(102, 107, 122);"
+        >
+          Show Code
+        </span>
+      </button>
+      <a
+        href="https://github.com/refinedev/refine/discussions/3046"
+        rel="noreferrer"
+        style="background-color: rgb(255, 255, 255); border: 1px solid #e2e8f0; border-radius: 4px; padding: 8px 16px; cursor: pointer; display: flex; align-items: center; text-decoration: none; color: rgb(102, 107, 122); font-family: sans-serif;"
+        target="_blank"
+      >
+        <svg
+          class="icon icon-tabler icon-tabler-message-circle"
+          fill="none"
+          height="18"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="18"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+            stroke="none"
+          />
+          <path
+            d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1"
+          />
+          <line
+            x1="12"
+            x2="12"
+            y1="12"
+            y2="12.01"
+          />
+          <line
+            x1="8"
+            x2="8"
+            y1="12"
+            y2="12.01"
+          />
+          <line
+            x1="16"
+            x2="16"
+            y1="12"
+            y2="12.01"
+          />
+        </svg>
+        <span
+          style="margin-left: 8px; font-size: 14px; color: rgb(102, 107, 122);"
+        >
+          Give Feedback
+        </span>
+      </a>
+    </div>
+  </div>
+  <div
+    style="height: 50px;"
+  />
+</DocumentFragment>
+`;

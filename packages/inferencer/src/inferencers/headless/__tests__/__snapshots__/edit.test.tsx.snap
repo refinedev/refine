@@ -1,0 +1,353 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChakraEditInferencer should match the snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      style="padding: 16px;"
+    >
+      <div
+        style="display: flex; justify-content: space-between;"
+      >
+        <h1>
+          Post Edit
+        </h1>
+        <div>
+          <button>
+            Posts List
+          </button>
+        </div>
+      </div>
+      <form>
+        <div
+          style="display: flex; flex-direction: column; gap: 8px;"
+        >
+          <label>
+            <span
+              style="margin-right: 8px;"
+            >
+              Id
+            </span>
+            <input
+              disabled=""
+              name="id"
+              type="number"
+            />
+            <span
+              style="color: red;"
+            />
+          </label>
+          <label>
+            <span
+              style="margin-right: 8px;"
+            >
+              Title
+            </span>
+            <input
+              name="title"
+              type="text"
+            />
+            <span
+              style="color: red;"
+            />
+          </label>
+          <label>
+            <span
+              style="margin-right: 8px;"
+            >
+              Slug
+            </span>
+            <input
+              name="slug"
+              type="text"
+            />
+            <span
+              style="color: red;"
+            />
+          </label>
+          <label>
+            <span
+              style="margin-right: 8px;"
+            >
+              Content
+            </span>
+            <textarea
+              cols="33"
+              name="content"
+              rows="5"
+              style="vertical-align: top;"
+            />
+            <span
+              style="color: red;"
+            />
+          </label>
+          <label>
+            <span
+              style="margin-right: 8px;"
+            >
+              Hit
+            </span>
+            <input
+              name="hit"
+              type="number"
+            />
+            <span
+              style="color: red;"
+            />
+          </label>
+          <label>
+            <span
+              style="margin-right: 8px;"
+            >
+              Category
+            </span>
+            <select
+              name="category.id"
+              placeholder="Select category"
+            >
+              <option
+                value="16"
+              >
+                Numquam Saepe Illo
+              </option>
+              <option
+                value="7"
+              >
+                Sit Natus Voluptatibus
+              </option>
+            </select>
+            <span
+              style="color: red;"
+            />
+          </label>
+          <label>
+            <span
+              style="margin-right: 8px;"
+            >
+              User
+            </span>
+            <select
+              name="user.id"
+              placeholder="Select user"
+            >
+              <option
+                value="21"
+              >
+                Eriberto
+              </option>
+              <option
+                value="49"
+              >
+                Tressie
+              </option>
+            </select>
+            <span
+              style="color: red;"
+            />
+          </label>
+          <label>
+            <span
+              style="margin-right: 8px;"
+            >
+              Status
+            </span>
+            <input
+              name="status"
+              type="text"
+            />
+            <span
+              style="color: red;"
+            />
+          </label>
+          <label>
+            <span
+              style="margin-right: 8px;"
+            >
+              Status Color
+            </span>
+            <input
+              name="status_color"
+              type="text"
+            />
+            <span
+              style="color: red;"
+            />
+          </label>
+          <label>
+            <span
+              style="margin-right: 8px;"
+            >
+              Created At
+            </span>
+            <input
+              name="createdAt"
+            />
+            <span
+              style="color: red;"
+            />
+          </label>
+          <label>
+            <span
+              style="margin-right: 8px;"
+            >
+              Published At
+            </span>
+            <input
+              name="publishedAt"
+            />
+            <span
+              style="color: red;"
+            />
+          </label>
+          <label>
+            <span
+              style="margin-right: 8px;"
+            >
+              Tags
+            </span>
+            <select
+              name="tags"
+              placeholder="Select tag"
+            >
+              <option
+                value="5"
+              >
+                Error Eos Et
+              </option>
+              <option
+                value="9"
+              >
+                Nobis Et Ut
+              </option>
+            </select>
+            <span
+              style="color: red;"
+            />
+          </label>
+          <label>
+            <span
+              style="margin-right: 8px;"
+            >
+              Language
+            </span>
+            <input
+              name="language"
+              type="number"
+            />
+            <span
+              style="color: red;"
+            />
+          </label>
+          <div>
+            <input
+              type="submit"
+              value="Save"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div
+    style="position: fixed; bottom: 12px; right: 64px;"
+  >
+    <div
+      style="display: flex; flex-direction: row; align-items: center; justify-content: center; width: 100%; height: 100%; gap: 12px;"
+    >
+      <button
+        style="background-color: rgb(255, 255, 255); border: 1px solid #e2e8f0; border-radius: 4px; padding: 8px 16px; cursor: pointer; display: flex; font-family: sans-serif; align-items: center;"
+      >
+        <svg
+          class="icon icon-tabler icon-tabler-code"
+          fill="none"
+          height="18"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="18"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+            stroke="none"
+          />
+          <polyline
+            points="7 8 3 12 7 16"
+          />
+          <polyline
+            points="17 8 21 12 17 16"
+          />
+          <line
+            x1="14"
+            x2="10"
+            y1="4"
+            y2="20"
+          />
+        </svg>
+        <span
+          style="margin-left: 8px; font-size: 14px; color: rgb(102, 107, 122);"
+        >
+          Show Code
+        </span>
+      </button>
+      <a
+        href="https://github.com/refinedev/refine/discussions/3046"
+        rel="noreferrer"
+        style="background-color: rgb(255, 255, 255); border: 1px solid #e2e8f0; border-radius: 4px; padding: 8px 16px; cursor: pointer; display: flex; align-items: center; text-decoration: none; color: rgb(102, 107, 122); font-family: sans-serif;"
+        target="_blank"
+      >
+        <svg
+          class="icon icon-tabler icon-tabler-message-circle"
+          fill="none"
+          height="18"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="18"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+            stroke="none"
+          />
+          <path
+            d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1"
+          />
+          <line
+            x1="12"
+            x2="12"
+            y1="12"
+            y2="12.01"
+          />
+          <line
+            x1="8"
+            x2="8"
+            y1="12"
+            y2="12.01"
+          />
+          <line
+            x1="16"
+            x2="16"
+            y1="12"
+            y2="12.01"
+          />
+        </svg>
+        <span
+          style="margin-left: 8px; font-size: 14px; color: rgb(102, 107, 122);"
+        >
+          Give Feedback
+        </span>
+      </a>
+    </div>
+  </div>
+  <div
+    style="height: 50px;"
+  />
+</DocumentFragment>
+`;

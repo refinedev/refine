@@ -2,9 +2,9 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { render, act, TestWrapper } from "@test";
-import { MantineInferencer } from "../index";
+import { HeadlessInferencer } from "../index";
 
-describe("MantineInferencer", () => {
+describe("ChakraUIInferencer", () => {
     it("should match the snapshot", async () => {
         const Wrapper = TestWrapper({
             routerInitialEntries: ["/custom-page"],
@@ -16,7 +16,10 @@ describe("MantineInferencer", () => {
                     <Route
                         path="/custom-page"
                         element={
-                            <MantineInferencer resource="posts" action="list" />
+                            <HeadlessInferencer
+                                resource="posts"
+                                action="list"
+                            />
                         }
                     />
                 </Routes>
@@ -29,7 +32,7 @@ describe("MantineInferencer", () => {
                     <Route
                         path="/custom-page"
                         element={
-                            <MantineInferencer
+                            <HeadlessInferencer
                                 resource="posts"
                                 action="create"
                             />
@@ -45,7 +48,7 @@ describe("MantineInferencer", () => {
                     <Route
                         path="/custom-page"
                         element={
-                            <MantineInferencer
+                            <HeadlessInferencer
                                 resource="posts"
                                 action="edit"
                                 id="11"
@@ -62,7 +65,7 @@ describe("MantineInferencer", () => {
                     <Route
                         path="/custom-page"
                         element={
-                            <MantineInferencer
+                            <HeadlessInferencer
                                 resource="posts"
                                 action="show"
                                 id="21"
@@ -73,9 +76,6 @@ describe("MantineInferencer", () => {
             </Wrapper>,
         );
 
-        await act(async () => {
-            await new Promise((resolve) => setTimeout(resolve, 2000));
-        });
         await act(async () => {
             await new Promise((resolve) => setTimeout(resolve, 2000));
         });

@@ -1,5 +1,4 @@
 import * as RefineCore from "@pankod/refine-core";
-import * as RefineChakraUI from "@pankod/refine-chakra-ui";
 import * as RefineReactHookForm from "@pankod/refine-react-hook-form";
 
 import { createInferencer } from "@/create-inferencer";
@@ -15,6 +14,7 @@ import {
     getOptionLabel,
     noOp,
     getVariableName,
+    toPlural,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -30,7 +30,6 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
     type: "edit",
     additionalScope: [
         ["@pankod/refine-core", "RefineCore", RefineCore],
-        ["@pankod/refine-chakra-ui", "RefineChakraUI", RefineChakraUI],
         [
             "@pankod/refine-react-hook-form",
             "RefineReactHookForm",
@@ -51,10 +50,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
         );
         const imports: Array<ImportElement> = [
             ["React", "react", true],
-            ["Edit", "@pankod/refine-chakra-ui"],
-            ["FormControl", "@pankod/refine-chakra-ui"],
-            ["FormLabel", "@pankod/refine-chakra-ui"],
-            ["FormErrorMessage", "@pankod/refine-chakra-ui"],
+            ["useNavigation", "@pankod/refine-core"],
             ["useForm", "@pankod/refine-react-hook-form"],
         ];
 
@@ -112,24 +108,26 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
         const renderRelationFields = (field: InferField) => {
             if (field.relation && field.resource) {
                 imports.push(["useSelect", "@pankod/refine-core"]);
-                imports.push(["Select", "@pankod/refine-chakra-ui"]);
 
                 const variableName = getVariableName(field.key, "Options");
 
                 return jsx`
-                <FormControl mb="3" isInvalid={!!errors?.${dotAccessor(
-                    field.key,
-                    undefined,
-                )}}>
-                    <FormLabel>${prettyString(field.key)}</FormLabel>
-                    <Select
+                <label>
+                    <span style={{ marginRight: "8px" }}>${prettyString(
+                        field.key,
+                    )}</span>
+                    <select
                         placeholder="Select ${toSingular(field.resource.name)}"
                         {...register("${dotAccessor(
                             field.key,
                             undefined,
                             field.accessor,
                         )}", {
-                            required: "This field is required",
+                            required: ${
+                                field.multiple
+                                    ? "false"
+                                    : '"This field is required"'
+                            },
                         })}
                     >
                         {${variableName}?.map((option) => (
@@ -137,16 +135,16 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                                 {option.label}
                             </option>
                         ))}
-                    </Select>
-                    <FormErrorMessage>
+                    </select>
+                    <span style={{ color: "red" }}>
                         {${accessor(
                             "(errors as any)",
                             field.key,
                             field.accessor,
                             false,
                         )}?.message as string}
-                    </FormErrorMessage>
-                </FormControl>
+                    </span>
+                </label>
                 `;
             }
             return undefined;
@@ -161,7 +159,6 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                 field.type === "date" ||
                 field.type === "richtext"
             ) {
-                imports.push(["Input", "@pankod/refine-chakra-ui"]);
                 if (field.multiple) {
                     const val = dotAccessor(
                         field.key,
@@ -186,59 +183,68 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                                 recordName,
                                 field.key,
                             )}?.map((item: any, index: number) => (
-                                <FormControl key={index} mb="3" isInvalid={!!${valError}}>
-                                    <FormLabel>${prettyString(
-                                        field.key,
-                                    )} #{index + 1}</FormLabel>
-                                    <Input
-                                        {...register(\`${val}\`, {
-                                            required: "This field is required",
-                                        })}
-                                    />
-                                    <FormErrorMessage>
-                                        {${accessor(
-                                            valError,
-                                            "message",
-                                        )} as string}
-                                    </FormErrorMessage>
-                                </FormControl>
+                                <label key={index}>
+                                    <span style={{ marginRight: "8px" }}>
+                                        ${prettyString(field.key)} #{index + 1}
+                                    </span>
+                                    <input ${
+                                        field.type !== "richtext"
+                                            ? `
+                                    type="${
+                                        field.type !== "date"
+                                            ? field.type
+                                            : "text"
+                                    }"
+                                    `
+                                            : ""
+                                    } {...register(\`${val}\`, { required: "This field is required", })} />
+                                    <span style={{color: "red"}}>
+                                    {${accessor(valError, "message")} as string}
+                                    </span>
+                                </label>
                             ))}
                         </>
                     `;
                 }
+                const inp = field.type === "richtext" ? "textarea" : "input";
                 return jsx`
-                    <FormControl mb="3" isInvalid={!!${accessor(
+                <label>
+                    <span style={{ marginRight: "8px" }}>${prettyString(
+                        field.key,
+                    )}</span>
+                    <${inp}
+                    ${isIDKey(field.key) ? "disabled" : ""}
+                    ${
+                        field.type !== "date" && field.type !== "richtext"
+                            ? `type="${field.type}"`
+                            : ""
+                    }
+                    ${
+                        inp === "textarea"
+                            ? `
+                        rows={5}
+                        cols={33}
+                        style={{ verticalAlign: "top" }}
+                    `
+                            : ""
+                    }
+                    {...register("${dotAccessor(
+                        field.key,
+                        undefined,
+                        field.accessor,
+                    )}", {
+                        required: "This field is required",
+                    })}
+                    />
+                    <span style={{ color: "red" }}>
+                    {${accessor(
                         "(errors as any)",
                         field.key,
                         field.accessor,
                         false,
-                    )}}>
-                        <FormLabel>${prettyString(field.key)}</FormLabel>
-                        <Input
-                            ${isIDKey(field.key) ? "disabled" : ""}
-                            ${
-                                field.type !== "date" &&
-                                field.type !== "richtext"
-                                    ? `type="${field.type}"`
-                                    : ""
-                            }
-                            {...register("${dotAccessor(
-                                field.key,
-                                undefined,
-                                field.accessor,
-                            )}", {
-                                required: "This field is required",
-                            })}
-                        />
-                        <FormErrorMessage>
-                            {${accessor(
-                                "(errors as any)",
-                                field.key,
-                                field.accessor,
-                                false,
-                            )}?.message as string}
-                        </FormErrorMessage>
-                    </FormControl>
+                    )}?.message as string}
+                    </span>
+                </label>
                 `;
             }
             return undefined;
@@ -246,8 +252,6 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
 
         const booleanFields = (field: InferField) => {
             if (field.type === "boolean") {
-                imports.push(["Checkbox", "@pankod/refine-chakra-ui"]);
-
                 if (field.multiple) {
                     const val = dotAccessor(
                         field.key,
@@ -269,70 +273,46 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                                 recordName,
                                 field.key,
                             )}?.map((item: any, index: number) => (
-                                <FormControl key={index} mb="3" isInvalid={!!${errorVal}}>
-                                    <FormLabel>${prettyString(
-                                        field.key,
-                                    )} #{index + 1}</FormLabel>
-                                    <Checkbox
-                                        {...register(\`${val}.\${index}\`, {
-                                            required: "This field is required",
-                                        })}
-                                    />
-                                    <FormErrorMessage>
-                                        {${errorVal}?.message as string}
-                                    </FormErrorMessage>
-                                </FormControl>
+                                <label key={index}>
+                                <span style={{ marginRight: "8px" }}>
+                                ${prettyString(field.key)} #{index + 1}
+                                </span>
+                                <input
+                                    type="checkbox"
+                                    {...register(\`${val}.\${index}\`, {
+                                        required: "This field is required",
+                                    })}
+                                />
+                                <span style={{ color: "red" }}>
+                                    {${errorVal}?.message as string}
+                                </span>
                             ))}
                         </>
                     `;
                 }
 
                 return jsx`
-                    <FormControl mb="3" isInvalid={!!${accessor(
-                        "errors",
+                <label>
+                    <span style={{ marginRight: "8px" }}>${prettyString(
                         field.key,
+                    )}</span>
+                    <input type="checkbox" {...register("${dotAccessor(
+                        field.key,
+                        undefined,
                         field.accessor,
-                        false,
-                    )}}>
-                        <FormLabel>${prettyString(field.key)}</FormLabel>
-                        <Checkbox
-                            {...register("${dotAccessor(
-                                field.key,
-                                undefined,
-                                field.accessor,
-                            )}", {
-                                required: "This field is required",
-                            })}
-                        />
-                        <FormErrorMessage>
-                            {${accessor(
-                                "errors",
-                                field.key,
-                                field.accessor,
-                                false,
-                            )}?.message as string}
-                        </FormErrorMessage>
-                    </FormControl>
-                   
+                    )}", {
+                        required: "This field is required",
+                    })} />
+                    <span style={{ color: "red" }}>
+                        {${accessor(
+                            "errors",
+                            field.key,
+                            field.accessor,
+                            false,
+                        )}?.message as string}
+                    </span>
+                </label>
                 `;
-            }
-            return undefined;
-        };
-
-        const dateFields = (field: InferField) => {
-            if (field.type === "date") {
-                const basicRender = basicInputFields(field);
-
-                return `
-                    {/* 
-                        DatePicker component is not included in "@pankod/refine-chakra-ui" package.
-                        To use a <DatePicker> component, you can examine the following links:
-                        
-                        - https://github.com/aboveyunhai/chakra-dayzed-datepicker
-                        - https://github.com/wojtekmaj/react-date-picker
-                    */}
-                    ${basicRender}
-                    `;
             }
             return undefined;
         };
@@ -345,9 +325,8 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                     case "email":
                     case "url":
                     case "richtext":
-                        return basicInputFields(field);
                     case "date":
-                        return dateFields(field);
+                        return basicInputFields(field);
                     case "boolean":
                         return booleanFields(field);
                     case "relation":
@@ -358,16 +337,25 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
             },
         );
 
+        const canList = !!resource.list;
+
         noOp(imports);
 
         return jsx`
         ${printImports(imports)}
         
         export const ${COMPONENT_NAME} = () => {
+            ${
+                canList
+                    ? `
+            const { list } = useNavigation();
+            `
+                    : ""
+            }
             const {
-                refineCore: { formLoading, queryResult },
-                saveButtonProps,
+                refineCore: { onFinish, formLoading, queryResult },
                 register,
+                handleSubmit,
                 resetField,
                 formState: { errors },
             } = useForm(
@@ -390,9 +378,44 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
             ${relationHooksCode}
 
             return (
-                <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
-                    ${renderedFields.join("")}
-                </Edit>
+                <div style={{ padding: "16px" }}>
+                    <div style={{ display: "flex", justifyContent: ${
+                        canList ? '"space-between"' : '"flex-start"'
+                    } }}>
+                        <h1>
+                            ${prettyString(
+                                toSingular(resource.label ?? resource.name) +
+                                    " Edit",
+                            )}
+                        </h1>
+                        ${
+                            canList
+                                ? jsx`
+                        <div>
+                            <button
+                                    onClick={() => {
+                                        list("${resource.name}");
+                                    }}
+                            >
+                                ${prettyString(
+                                    toPlural(resource.label ?? resource.name) +
+                                        " List",
+                                )}
+                            </button>
+                        </div>
+                        `
+                                : ""
+                        }
+                    </div>
+                    <form onSubmit={handleSubmit(onFinish)}>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                            ${renderedFields.join("")}
+                            <div>
+                                <input type="submit" value="Save" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
             );
         };
         `;
