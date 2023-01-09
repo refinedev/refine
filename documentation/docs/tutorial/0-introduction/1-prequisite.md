@@ -55,3 +55,14 @@ You can leave feedback about this tutorial by clicking the `Give us feedback` bu
 You can also reach us on [Discord](https://discord.com/invite/refine).
 
 </details>
+
+
+
+<Checklist>
+
+<ChecklistItem id="prequisite-looks-great">
+I understood general concept of the tutorial
+</ChecklistItem>
+
+
+</Checklist>

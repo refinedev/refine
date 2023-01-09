@@ -159,3 +159,17 @@ const App: React.FC = () => {
 
 render(<App />);
 ```
+
+
+
+<Checklist>
+
+<ChecklistItem id="getting-started-antd">
+I'm able to create a new refine project with Material UI
+</ChecklistItem>
+<ChecklistItem id="getting-started-antd-2">
+I am able to start the refine dev server.
+</ChecklistItem>
+
+
+</Checklist>

@@ -150,3 +150,15 @@ const App = () => {
 
 render(<App />);
 ```
+
+<Checklist>
+
+<ChecklistItem id="getting-started-chakra">
+I'm able to create a new refine project with Chakra UI.
+</ChecklistItem>
+<ChecklistItem id="getting-started-chakra-2">
+I am able to start the refine dev server.
+</ChecklistItem>
+
+
+</Checklist>
