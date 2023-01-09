@@ -143,7 +143,7 @@ As you make changes to your project, you can commit them to your GitHub reposito
 <Checklist>
 
 <ChecklistItem id="getting-started">
-Let's prepare to build a "Refine" project!
+Let's prepare to build a "refine" project!
 </ChecklistItem>
 
 
