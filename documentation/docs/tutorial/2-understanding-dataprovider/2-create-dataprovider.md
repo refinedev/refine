@@ -858,10 +858,13 @@ mutate({
 });
 ```
 > [Refer to the useUpdateMany documentation for more information. &#8594](../../api-reference/core/hooks/data/useUpdateMany.md)
+>
 
-## Override Spesific Methods with metaData
+## Override Spesific Methods
 
-You may need to customize certain methods of **refine** data providers in certain situations. One way to do this is by using the [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) with the `metaData` parameter. As an example, let's say you want to override the `update` function of the `@pankod/refine-simple-rest` data provider. By default, this data provider uses the `PATCH` method for updates. However, you can modify it to use the `PUT` method instead of forking the entire data provider.
+Sometimes you may need to customize certain methods of existing **refine** data providers. One way to do this is by using the [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) method. This allows you to override specific methods without having to create a copy of the data provider.
+
+As an example, let's say you want to modify the `update` function of the `@pancode/refine-simple-rest` data provider. By default, this data provider uses the `PATCH` method for updates. However, you can change it to use the `PUT` method instead of creating a new, separate data provider.
 
 ```ts title="src/data-provider.ts"
 import { DataProvider } from "@pankod/refine-core";
@@ -880,6 +883,9 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 });
 ```
 
+## metaData Usage
+
+In the [Override Specific Methods](#override-spesific-methods) section, we explained how to customize certain methods of an existing data provider.  
 Now, let's take it a step further and make our update function even more flexible. We can allow the user to choose the HTTP method when making requests. This way, they can choose between using the `PATCH` or `PUT` method, depending on their needs.
 
 :::tip
