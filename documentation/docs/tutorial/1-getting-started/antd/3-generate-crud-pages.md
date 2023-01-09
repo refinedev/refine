@@ -290,7 +290,7 @@ In [Unit 5](/docs/tutorial/adding-crud-pages/antd/index), you will learn how to 
 I understood what is Inferencer, how it works and how Inferencer make my work easier.
 </ChecklistItem>
 <ChecklistItem id="generated-crud-pages-2">
-I inspected the auto-generated create, show edit, and list pages. 
+I inspected the auto-generated `list`, `create`, `edit`, and `show` pages. 
 </ChecklistItem>
 
 
