@@ -157,3 +157,17 @@ const App = () => {
 
 render(<App />);
 ```
+
+
+
+<Checklist>
+
+<ChecklistItem id="getting-started-mantine">
+I'm able to create a new refine project with Mantine
+</ChecklistItem>
+<ChecklistItem id="getting-started-mantine-2">
+I am able to start the refine dev server.
+</ChecklistItem>
+
+
+</Checklist>

@@ -29,3 +29,12 @@ To view your new website, visit the URL provided in your site settings or type i
 **_Checklist for moving on_**
 
 -   [x] I can view my updated website online.
+
+
+<Checklist>
+
+<ChecklistItem id="deploy-your-project">
+I am able to view the updated version of my website online.
+</ChecklistItem>
+
+</Checklist>
