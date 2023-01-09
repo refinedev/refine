@@ -6,12 +6,12 @@ title: useModalForm
 `useModalForm` hook also allows you to manage a form inside a modal component. It provides some useful methods to handle the form modal.
 
 :::info
-`useModalForm` hook based on [`useForm`][use-form-refine-mantine] hook provided by [`@pankod/refine-mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine). Which means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
+`useModalForm` hook is extended from [`useForm`][use-form-refine-mantine] hook from the [`@pankod/refine-mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. Which means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
 :::
 
 ## Basic Usage
 
-```ts
+```tsx
 const createModalForm = useModalForm({
     modal: { show: showCreateModal, close, submit, title, visible },
     refineCoreProps: { action: "create" },
