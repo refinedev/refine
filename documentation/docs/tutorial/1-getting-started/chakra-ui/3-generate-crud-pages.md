@@ -300,7 +300,7 @@ In [Unit 5](/docs/tutorial/adding-crud-pages/chakra-ui/index), you will learn ho
 I understood what is Inferencer, how it works and how Inferencer make my work easier.
 </ChecklistItem>
 <ChecklistItem id="generated-chakra-crud-pages-2">
-I inspected the auto-generated create, show edit, and list pages. 
+I inspected the auto-generated `list`, `create`, `edit`, and `show` pages.
 </ChecklistItem>
 
 
