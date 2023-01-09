@@ -5,8 +5,8 @@
   "dependencies": {
     "@craco/craco": "^6.1.2",
     "@pankod/refine-antd": "^4.7.0",
-    "@pankod/refine-core": "^3.94.1",
-    "@pankod/refine-cli": "^1.16.0",
+    "@pankod/refine-core": "^3.94.2",
+    "@pankod/refine-cli": "^1.17.0",
     "@pankod/refine-react-router-v6": "^3.36.6",
     "@pankod/refine-supabase": "^3.25.0",
     "@testing-library/jest-dom": "^5.16.4",
