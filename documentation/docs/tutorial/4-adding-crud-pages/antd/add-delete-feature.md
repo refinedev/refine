@@ -40,7 +40,7 @@ To add a delete feature to the products table, you can follow the steps below:
                 <EditButton hideText size="small" recordItemId={record.id} />
                 <ShowButton hideText size="small" recordItemId={record.id} />
                 //highlight-start
-                <DeleteButton size="small" recordItemId={record.id} hideText />
+                <DeleteButton hideText size="small" recordItemId={record.id} />
                 //highlight-end
             </Space>
         )}
