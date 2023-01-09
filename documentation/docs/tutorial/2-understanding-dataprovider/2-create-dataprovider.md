@@ -857,3 +857,66 @@ mutate({
 });
 ```
 > [Refer to the useUpdateMany documentation for more information. &#8594](../../api-reference/core/hooks/data/useUpdateMany.md)
+
+## Override Spesific Methods with metaData
+
+You may need to customize certain methods of **refine** data providers in certain situations. One way to do this is by using the [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) with the `metaData` parameter. As an example, let's say you want to override the `update` function of the `@pankod/refine-simple-rest` data provider. By default, this data provider uses the `PATCH` method for updates. However, you can modify it to use the `PUT` method instead of forking the entire data provider.
+
+```ts title="src/data-provider.ts"
+import { DataProvider } from "@pankod/refine-core";
+import { simpleRestProvider } from "@pankod/refine-simple-rest";
+
+export const dataProvider = (apiUrl: string): DataProvider => ({
+  ...simpleRestProvider,
+  update: async ({ resource, id, variables }) => {
+    const url = `${apiUrl}/${resource}/${id}`;
+    const { data } = await httpClient.put(url, variables);
+
+    return {
+      data,
+    };
+  },
+});
+```
+
+Now, let's take it a step further and make our update function even more flexible. We can allow the user to choose the HTTP method when making requests. This way, they can choose between using the `PATCH` or `PUT` method, depending on their needs.
+
+:::tip
+We can use the `metaData` parameter for this purpose. It's worth noting that `metaData` can be used in all `data`, `form`, and `table hooks`.
+:::
+
+```ts title="post/edit.tsx"
+import { useUpdate } from "@pankod/refine-core";
+
+const { mutate } = useUpdate();
+mutate({
+  resource: "post",
+  id: "1",
+  values: {
+    title: "Hello World",
+  },
+  metaData: {
+    httpMethod: "PATCH",
+  },
+});
+```
+
+```ts title="src/data-provider.ts"
+import { DataProvider } from "@pankod/refine-core";
+import { simpleRestProvider } from "@pankod/refine-simple-rest";
+
+export const dataProvider = (apiUrl: string): DataProvider => ({
+  ...simpleRestProvider,
+  update: async ({ resource, id, variables, metaData }) => {
+    // highlight-next-line
+    const method = metaData.httpMethod ?? "patch";
+    const url = `${apiUrl}/${resource}/${id}`;
+    // highlight-next-line
+    const { data } = await httpClient[method](url, variables);
+
+    return {
+      data,
+    };
+  },
+});
+```
