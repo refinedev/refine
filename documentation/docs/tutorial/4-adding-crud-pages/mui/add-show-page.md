@@ -134,7 +134,7 @@ Now that we have created the show page, we need to add it to the `App.tsx` file.
 
 2. Import the created `ProductShow` component.
 
-3. Replace the `ChakraUIInferencer` component with the `ProductShow` component.
+3. Replace the `MuiInferencer` component with the `ProductShow` component.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";

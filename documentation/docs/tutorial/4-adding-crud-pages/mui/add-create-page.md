@@ -131,7 +131,7 @@ Now that we have created the create page, we need to add it to the `App.tsx` fil
 
 2. Import the created `ProductCreate` component.
 
-3. Replace the `MantineInferencer` component with the `ProductCreate` component.
+3. Replace the `MuiInferencer` component with the `ProductCreate` component.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
