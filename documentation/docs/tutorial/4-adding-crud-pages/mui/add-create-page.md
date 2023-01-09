@@ -4,7 +4,7 @@ title: 4.Adding Create Page
 tutorial:
     order: 0
     next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
-    prev: tutorial/adding-crud-pages/{preferredUI}/authpage-component
+    prev: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
 ---
 
 ## Overview
