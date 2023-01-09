@@ -256,7 +256,7 @@ In the props, the filter element will receive the `value` and `onChange` props. 
 <details>
   <summary><strong>How can I change the filter operator?</strong></summary>
 
-By default, filter operator is "contains" for columns. You can change the filter operator by passing the `filterOperator` property to the `meta` in column definition. For example, you can change the filter operator to "eq" like below:
+By default, filter operator is "eq" for columns. You can change the filter operator by passing the `filterOperator` property to the `meta` in column definition. For example, you can change the filter operator to "contains" like below:
 
 ```tsx
 {
@@ -264,7 +264,7 @@ By default, filter operator is "contains" for columns. You can change the filter
     dataIndex: "category",
     //highlight-start
     meta: {
-        filterOperator: "eq",
+        filterOperator: "contains",
     },
     //highlight-end
 },
