@@ -9,7 +9,7 @@ tutorial:
 
 ## Overview
 
-In the previous ["Adding List Page"](/docs/tutorial/adding-crud-pages/antd/index) section, we have displayed posts data in a table. Now we will add search and filters to the table to user can have more control over the data.
+In the previous ["Adding List Page"](/docs/tutorial/adding-crud-pages/antd/index) section, we have displayed products data in a table. Now we will add search and filters to the table to user can have more control over the data.
 
 ## Adding Search and Filters
 
@@ -27,7 +27,7 @@ In this tutorial, we will add search and filters capabilities to the `category` 
 
 [Refer to the `useSelect` documentation for more information &#8594](/docs/api-reference/antd/hooks/field/useSelect/)
 
-1. Open `src/pages/posts/list.tsx` file and import the following components and hooks like below.
+1. Open `src/pages/products/list.tsx` file and import the following components and hooks like below.
 
     ```tsx
     import { FilterDropdown, Select, useSelect } from "@pankod/refine-antd";
