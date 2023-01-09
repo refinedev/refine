@@ -15,7 +15,8 @@ Data providers work with adapter system infrastructure. So they can communicate 
 
 We will begin by creating a file, as shown below, and we will add additional methods to it as we proceed.
 
-Using `axios` as our HTTP client will allow us to make efficient and reliable HTTP requests to our server. Interceptors provide several benefits, such as centralized error handling, the ability to modify request or response data, and the ability to show global loading indicators. To get started, let's go ahead and install `axios` in our project.
+Using `axios` as our HTTP client will allow us to make efficient and reliable HTTP requests to our server. Interceptors provide several benefits, such as centralized error handling, the ability to modify request or response data, and the ability to show global loading indicators.  
+To get started, let's go ahead and install `axios` in our project.
 
 ```bash
 npm install axios@0.26

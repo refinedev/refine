@@ -16,7 +16,9 @@ The data provider unit is optional for the tutorial and can be skipped to next u
 The data provider acts as a data layer for your app that makes the HTTP requests and encapsulates how the data is retrieved. **refine** consumes these methods via data hooks.
 
 
-You don't need worry about creating data providers from scratch. **refine** offers built-in data provider support for the most popular [API providers](#supported-data-providers). So you can use one of them or you can create your own data provider according to your needs. We'll see how to create data provider in the next sections.
+You don't need worry about creating data providers from scratch. **refine** offers built-in data provider support for the most popular [API providers](#supported-data-providers). So you can use one of them or you can create your own data provider according to your needs. 
+
+We'll see how to create data provider in the next sections.
 
 :::tip
 You can review the [list of supported providers](#supported-data-providers) to find the one that is compatible with your API. 
@@ -74,8 +76,8 @@ You can refer to the **refine** component [dataProvider](/docs/api-reference/cor
 
 ## How data provider methods are using in the app?
 
-We use **refine's** data hooks whenever we need to fetch data from the API. These data hooks are connected to data provider methods internally. The required parameters passes to the data provider methods and response from API returning back.
-To illustrate this internal connection, imagine we want to get all records from the "post" resource using refine's `useList` data hook.
+We use **refine's** data hooks whenever we need to fetch data from the API. These data hooks are connected to data provider methods internally. The required parameters passes to the data provider methods and response from API returning back.  
+To illustrate this internal connection, imagine we want to get all records from the `post` resource using refine's `useList` data hook.
 
 ```ts title="src/pages/posts/index.tsx"
 import { useList } from "@pankod/refine-core";
@@ -131,7 +133,8 @@ const dataProvider = {
 
 ## Supported Data Providers
 
-**refine** comes with many pre-loaded data providers. To include them in your project, you can use `npm install [packageName]` or you can use the `npm create refine-app@latest projectName` to configure them. This will allow you to easily use these data providers in your project.
+**refine** comes with many pre-loaded data providers. To include them in your project, you can use `npm install [packageName]` or you can select preferred data provider with the `npm create refine-app@latest projectName` during the project creation phase with CLI.  
+This will allow you to easily use these data providers in your project.
 
 -   [Simple REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
 -   [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
