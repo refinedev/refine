@@ -107,10 +107,6 @@ We will go through the list page components and hooks one by one.
 
     [Refer to the `<ShowButton/>` documentation for more information &#8594](/docs/api-reference/mantine/components/buttons/show-button/)
 
--   `<DeleteButton/>` is a **refine** component that is used to delete the record.
-
-    [Refer to the `<ShowButton/>` documentation for more information &#8594](/docs/api-reference/mantine/components/buttons/delete-button/)
-
 ### Handling Relationships
 
 Each product includes the `category` field which has `id` property. This is a foreign key that points to the `categories` resource which is different than "product" resource.
