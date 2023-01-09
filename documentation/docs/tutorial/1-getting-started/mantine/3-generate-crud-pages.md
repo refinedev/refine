@@ -337,7 +337,7 @@ In [Unit 5](/docs/tutorial/adding-crud-pages/mantine/index), you will learn how 
 I understood what is Inferencer, how it works and how Inferencer make my work easier.
 </ChecklistItem>
 <ChecklistItem id="generated-crud-mantine-pages-2">
-I inspected the auto-generated create, show edit, and list pages. 
+I inspected the auto-generated `list`, `create`, `edit`, and `show` pages.
 </ChecklistItem>
 
 
