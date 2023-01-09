@@ -19,7 +19,7 @@ The data provider acts as a data layer for your app that makes the HTTP reques
 You don't need worry about creating data providers from scratch. **refine** offers built-in data provider support for the most popular [API providers](#supported-data-providers). So you can use one of them or you can create your own data provider according to your needs. We'll see how to create data provider in the next sections.
 
 :::tip
-You can review the[list of supported providers](#supported-data-providers) to find the one that is compatible with your API. 
+You can review the [list of supported providers](#supported-data-providers) to find the one that is compatible with your API. 
 We'll also give more details about data providers in [create your own data provider](/docs/tutorial/understanding-dataprovider/create-dataprovider/) section.
 :::
 
