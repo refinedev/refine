@@ -596,7 +596,7 @@ return (
             </Button>,
         ]}
     >
-        <Form {...formProps} onFinish={onFinishHandler} layout="vertical">
+        <Form {...formProps} layout="vertical">
             <Form.Item label="Title" name="title">
                 <Input />
             </Form.Item>
@@ -611,14 +611,10 @@ A function that can show the modal.
 
 ```tsx
 const { modalProps, formProps, show } = useModalForm();
-const onFinishHandler = (values) => {
-    onFinish(values);
-    show();
-};
 
 return (
     <>
-        <Button type="primary" onClick={showModal}>
+        <Button type="primary" onClick={() => show()}>
             Show Modal
         </Button>
         <Modal
