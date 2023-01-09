@@ -1,5 +1,17 @@
 # @pankod/refine-mantine
 
+## 2.1.0
+
+### Minor Changes
+
+-   [#3361](https://github.com/refinedev/refine/pull/3361) [`abcd9a7ed6b`](https://github.com/refinedev/refine/commit/abcd9a7ed6bc0070b386a9fdc4bf95d9187bf7c3) Thanks [@aliemir](https://github.com/aliemir)! - - fix: updated date inference logic to have a minimum length limit
+    -   feat: added headless inferencer using `@pankod/refine-react-table` and `@pankod/refine-react-hook-form` packages. exported from `/headless` path.
+
+### Patch Changes
+
+-   Updated dependencies [[`98a1fbec65a`](https://github.com/refinedev/refine/commit/98a1fbec65abd38da9d6081e04c23b5fe4174acd), [`310ebd05990`](https://github.com/refinedev/refine/commit/310ebd05990dd629e64d0a2afcd2b371fe42440f)]:
+    -   @pankod/refine-core@3.94.1
+
 ## 2.0.2
 
 ### Patch Changes

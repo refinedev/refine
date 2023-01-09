@@ -1,5 +1,15 @@
 # @pankod/refine-cli
 
+## 1.16.0
+
+### Minor Changes
+
+-   [#3349](https://github.com/refinedev/refine/pull/3349) [`4853ac484df`](https://github.com/refinedev/refine/commit/4853ac484dfe8647050997a97183dcd44fc2d0cb) Thanks [@vanflux](https://github.com/vanflux)! - Ignoring "npm ls" exit code to get package list
+
+### Patch Changes
+
+-   [#3367](https://github.com/refinedev/refine/pull/3367) [`e850fe25400`](https://github.com/refinedev/refine/commit/e850fe2540080ab7c5da75b76160e2b71d6f7148) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Fixed: `ReferenceError: btoa is not defined`. #3366 use `Buffer.from` when `btoa` is `"undefined"` for base64 encoding.
+
 ## 1.15.0
 
 ### Minor Changes
