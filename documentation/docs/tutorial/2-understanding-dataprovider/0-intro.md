@@ -74,7 +74,7 @@ You can refer to the **refine** component [dataProvider](/docs/api-reference/cor
 
 ## How data provider methods are using in the app?
 
-We use refine's data hooks whenever we need to fetch data from the API. These data hooks are connected to data provider methods internally. The required parameters passes to the data provider methods and response from API returning back.
+We use **refine's** data hooks whenever we need to fetch data from the API. These data hooks are connected to data provider methods internally. The required parameters passes to the data provider methods and response from API returning back.
 To illustrate this internal connection, imagine we want to get all records from the "post" resource using refine's `useList` data hook.
 
 ```ts title="src/pages/posts/index.tsx"
