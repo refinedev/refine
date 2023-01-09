@@ -23,6 +23,9 @@ export const checkPackage = (code = "") => {
     const hasChakraInferencer =
         code.includes("@pankod/refine-inferencer/chakra-ui") ||
         code.includes("RefineChakraInferencer");
+    const hasHeadlessInferencer =
+        code.includes("@pankod/refine-inferencer/headless") ||
+        code.includes("RefineHeadlessInferencer");
 
     if (hasAntd) {
         set.add("antd");
@@ -50,6 +53,10 @@ export const checkPackage = (code = "") => {
     }
     if (hasChakraInferencer) {
         set.add("chakra-inferencer");
+    }
+
+    if (hasHeadlessInferencer) {
+        set.add("headless-inferencer");
     }
 
     return set;

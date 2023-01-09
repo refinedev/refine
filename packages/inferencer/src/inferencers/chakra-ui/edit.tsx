@@ -50,6 +50,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
             "Data",
         );
         const imports: Array<ImportElement> = [
+            ["React", "react", true],
             ["Edit", "@pankod/refine-chakra-ui"],
             ["FormControl", "@pankod/refine-chakra-ui"],
             ["FormLabel", "@pankod/refine-chakra-ui"],
@@ -94,6 +95,14 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                         defaultValue: ${val},
                         ${getOptionLabel(field)}
                     });
+
+                    React.useEffect(() => {
+                        resetField("${dotAccessor(
+                            field.key,
+                            undefined,
+                            field.accessor,
+                        )}");
+                    }, [${getVariableName(field.key, "Options")}]);
                 `;
                 }
                 return undefined;
@@ -359,6 +368,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                 refineCore: { formLoading, queryResult },
                 saveButtonProps,
                 register,
+                resetField,
                 formState: { errors },
             } = useForm(
                 ${

@@ -1,5 +1,21 @@
 # @pankod/refine-core
 
+## 3.94.2
+
+### Patch Changes
+
+-   [#3364](https://github.com/refinedev/refine/pull/3364) [`98a1fbec65a`](https://github.com/refinedev/refine/commit/98a1fbec65abd38da9d6081e04c23b5fe4174acd) Thanks [@aliemir](https://github.com/aliemir)! - Changed `IResourceComponents` from `IResourceContext` to use `React.ComponentType` rather than `React.FunctionComponent` to make it compatible with other types and interfaces.
+
+-   [#3356](https://github.com/refinedev/refine/pull/3356) [`310ebd05990`](https://github.com/refinedev/refine/commit/310ebd05990dd629e64d0a2afcd2b371fe42440f) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed checkError hook is not called in onError of useCustomMutation
+
+## 3.94.1
+
+### Patch Changes
+
+-   [#3364](https://github.com/refinedev/refine/pull/3364) [`98a1fbec65a`](https://github.com/refinedev/refine/commit/98a1fbec65abd38da9d6081e04c23b5fe4174acd) Thanks [@aliemir](https://github.com/aliemir)! - Changed `IResourceComponents` from `IResourceContext` to use `React.ComponentType` rather than `React.FunctionComponent` to make it compatible with other types and interfaces.
+
+-   [#3356](https://github.com/refinedev/refine/pull/3356) [`310ebd05990`](https://github.com/refinedev/refine/commit/310ebd05990dd629e64d0a2afcd2b371fe42440f) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed checkError hook is not called in onError of useCustomMutation
+
 ## 3.94.0
 
 ### Minor Changes

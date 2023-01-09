@@ -9,7 +9,9 @@ export const dateInfer: FieldInferencer = (key, value) => {
     const isValidDateString =
         typeof value === "string" && dayjs(value).isValid();
 
-    if (isDateField || isValidDateString) {
+    const isAcceptableLength = typeof value === "string" && value.length > 4;
+
+    if (isDateField || (isValidDateString && isAcceptableLength)) {
         return {
             key,
             type: "date",
