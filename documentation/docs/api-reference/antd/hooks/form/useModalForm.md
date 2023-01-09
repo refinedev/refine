@@ -5,7 +5,9 @@ title: useModalForm
 
 `useModalForm` hook allows you to manage a form within a [`<Modal>`][antd-modal]. It returns Ant Design [`<Form>`][antd-form] and [Modal][antd-modal] components props.
 
+:::info
 This hook is built on top of the [`useForm`][antd-use-form] hooks. Which means that you can use all the features of [`useForm`][antd-use-form] hook.
+:::
 
 ## Basic Usage
 
@@ -37,7 +39,7 @@ values={[
 
 <TabItem value="create">
 
-In this example, we will show you how to create a record with useModalForm.
+In this example, we will show you how to create a record with `useModalForm`.
 
 ```tsx live url=http://localhost:3000/posts
 setInitialRoutes(["/posts"]);
@@ -306,7 +308,7 @@ So, we have to put the edit buttons on our list. In that way, `<Edit>` form in `
 :::
 
 :::caution
-Don't forget to pass the record id to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
+Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
 :::
 
 </TabItem>
@@ -536,7 +538,7 @@ const modalForm = useModalForm({
 ## Return Values
 
 :::tip
-All [`useForm`][antd-use-form] return valus also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#return-values) docs.
+All [`useForm`][antd-use-form] return values also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#return-values) docs.
 :::
 
 ### `open`
@@ -576,6 +578,67 @@ return (
 );
 ```
 
+### `submit`
+
+A function that can submit the form. It's useful when you want to submit the form manually.
+
+```tsx
+const { modalProps, formProps, submit } = useModalForm();
+
+// ---
+
+return (
+    <Modal
+        {...modalProps}
+        footer={[
+            <Button key="submit" type="primary" onClick={submit}>
+                Submit
+            </Button>,
+        ]}
+    >
+        <Form {...formProps} onFinish={onFinishHandler} layout="vertical">
+            <Form.Item label="Title" name="title">
+                <Input />
+            </Form.Item>
+        </Form>
+    </Modal>
+);
+```
+
+### `show`
+
+A function that can show the modal.
+
+```tsx
+const { modalProps, formProps, show } = useModalForm();
+const onFinishHandler = (values) => {
+    onFinish(values);
+    show();
+};
+
+return (
+    <>
+        <Button type="primary" onClick={showModal}>
+            Show Modal
+        </Button>
+        <Modal
+            {...modalProps}
+            footer={[
+                <Button key="submit" type="primary" onClick={submit}>
+                    Submit
+                </Button>,
+            ]}
+        >
+            <Form {...formProps} onFinish={onFinishHandler} layout="vertical">
+                <Form.Item label="Title" name="title">
+                    <Input />
+                </Form.Item>
+            </Form>
+        </Modal>
+    </>
+);
+```
+
 ### `formProps`
 
 Props for the [`<Form>`](https://ant.design/components/form#form). It's required to manage form state and actions.
@@ -594,20 +657,6 @@ Props for the [`<Modal>`](https://ant.design/components/modal#API). It's require
 const { modalProps } = useModalForm();
 
 return <Modal {...modalProps} />;
-```
-
-### `formLoading`
-
-Loading state of the form. It's useful when you want to show a loading screen while the form is loading.
-
-```tsx
-const { formLoading } = useModalForm();
-
-if (formLoading) {
-    return <LoadingScreen />;
-}
-
-// --
 ```
 
 ## API Reference
