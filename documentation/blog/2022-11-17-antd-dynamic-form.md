@@ -20,7 +20,6 @@ This guide will teach us how to create a dynamic form using Ant design and refin
 
 Steps we'll cover:
 
--   [Introduction](#introduction)
 -   [What is a dynamic form?](#what-is-a-dynamic-form)
 -   [What is refine?](#what-is-refine)
 -   [Project setup](#project-setup)
@@ -32,7 +31,6 @@ Steps we'll cover:
 -   [Adding icons](#adding-icons)
 -   [Validation](#validation)
 -   [Building the edit page](#building-the-edit-page)
--   [Conclusion](#conclusion)
 -   [Live StackBlitz Example](#live-stackblitz-example)
 
 **Prerequisite**

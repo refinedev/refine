@@ -9,7 +9,11 @@ export const PostCreate: React.FC = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+        refineCoreProps: {
+            mutationMode: "undoable",
+        },
+    });
 
     const { options } = useSelect({
         resource: "categories",

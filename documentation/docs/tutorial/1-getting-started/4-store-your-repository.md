@@ -50,3 +50,12 @@ For more detailed instructions and options, you can refer to the [GitHub documen
 ## See your project on GitHub
 
 To confirm that your project has been successfully stored on GitHub, go to [GitHub.com](https://github.com/) and navigate to your list of repositories. Select the new repository you created, and verify that it contains your project files.
+
+
+<Checklist>
+
+<ChecklistItem id="store-your-repo">
+I have uploaded my project to GitHub.
+</ChecklistItem>
+
+</Checklist>

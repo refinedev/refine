@@ -10,6 +10,7 @@ import DocItemContent from "@theme/DocItem/Content";
 import DocBreadcrumbs from "@theme/DocBreadcrumbs";
 import styles from "./styles.module.css";
 import { useDocTOCwithTutorial } from "../../../components/tutorial-toc/index";
+import { useCurrentTutorial } from "../../../hooks/use-current-tutorial";
 
 function SwizzleBadge({ className }) {
     return (
@@ -27,6 +28,7 @@ function SwizzleBadge({ className }) {
 
 export default function DocItemLayout({ children }) {
     const docTOC = useDocTOCwithTutorial();
+    const tutorial = useCurrentTutorial();
     const { frontMatter, toc } = useDoc();
 
     return (
@@ -34,8 +36,8 @@ export default function DocItemLayout({ children }) {
             <div className={clsx("col", !docTOC.hidden && styles.docItemCol)}>
                 <DocVersionBanner />
                 <div className={styles.docItemContainer}>
-                    <article>
-                        <DocBreadcrumbs />
+                    <article className="doc-article">
+                        {tutorial?.isTutorial ? null : <DocBreadcrumbs />}
                         <div className="flex flex-row gap-1 items-center">
                             <DocVersionBadge />
                             {frontMatter.swizzle && <SwizzleBadge />}
@@ -48,7 +50,9 @@ export default function DocItemLayout({ children }) {
                 </div>
             </div>
             {docTOC.desktop && (
-                <div className="col col--3">{docTOC.desktop}</div>
+                <div className="col col--3 doc--toc-desktop">
+                    {docTOC.desktop}
+                </div>
             )}
         </div>
     );

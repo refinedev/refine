@@ -11,7 +11,14 @@ export const PostEdit: React.FC = () => {
         handleSubmit,
         resetField,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+        refineCoreProps: {
+            mutationMode: "undoable",
+            onMutationSuccess: (data, variables, context) => {
+                console.log({ data, variables, context });
+            },
+        },
+    });
 
     const { options } = useSelect({
         resource: "categories",

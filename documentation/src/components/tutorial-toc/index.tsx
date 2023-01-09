@@ -14,6 +14,7 @@ import { useCurrentTutorial } from "../../hooks/use-current-tutorial";
 import { useLocation } from "@docusaurus/router";
 import { UnitCircle } from "../unit-circle";
 import { TutorialCircle } from "../tutorial-circle";
+import { SelectTutorialFramework } from "../select-tutorial-framework";
 // import { useTutorialConfig } from "../../hooks/use-tutorial-config";
 // import useGlobalData from "@docusaurus/useGlobalData";
 
@@ -37,7 +38,7 @@ const LinkWithId: React.FC<
     );
 };
 
-export const TutorialTOC = () => {
+export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
     // const tutorialConfig = useTutorialConfig();
     const {
         /* frontMatter, */ toc,
@@ -64,10 +65,8 @@ export const TutorialTOC = () => {
             >
                 <a
                     href={`#${item.id}`}
-                    className={`${
-                        `${hash}`.slice(1) === item.id
-                            ? "text-[#1890ff]"
-                            : "text-slate-500 hover:text-[#1890ff] active:text-[#1890ff]"
+                    className={`tutorial__item--toc-item ${
+                        `${hash}`.slice(1) === item.id ? "active" : ""
                     }`}
                 >
                     {item.value}
@@ -97,9 +96,9 @@ export const TutorialTOC = () => {
                     <LinkWithId
                         id={doc.id}
                         isCurrent={doc.current}
-                        className={`${
-                            currentDocId === doc.id ? "font-bold" : ""
-                        } leading-[22px] text-slate-600 ${
+                        className={`tutorial__item-link ${
+                            currentDocId === doc.id ? "font-semibold" : ""
+                        } leading-[22px] ${
                             doc.current
                                 ? "hover:cursor-default hover:no-underline"
                                 : ""
@@ -135,11 +134,23 @@ export const TutorialTOC = () => {
                 key={unit.no}
                 type="button"
                 onClick={() => setSelectedUnit(unit.unit)}
-                className={`w-5 h-7 p-0 md:w-5 lg:w-5 ${
-                    unit.unit === selectedUnit && "md:w-6 lg:w-7"
-                } cursor-pointer bg-transparent border-none font-semibold flex justify-center items-center`}
+                style={{
+                    backgroundColor:
+                        unit.unit === selectedUnit
+                            ? "var(--tutorial-toc-bg-color)"
+                            : "transparent",
+                    boxShadow:
+                        unit.unit === selectedUnit
+                            ? "0 -1px 0px 0px rgb(255 255 255 / 10%)"
+                            : "none",
+                }}
+                className={`${
+                    unit.unit === selectedUnit
+                        ? "tutorial__item--unit-item"
+                        : ""
+                } w-[28px] h-[30px] pt-0 px-[3.5px] rounded-tl-[24px] rounded-tr-[24px] cursor-pointer border-none font-semibold flex justify-center items-start -mb-1`}
             >
-                <UnitCircle unit={unit.unit} width="100%" height="100%" />
+                <UnitCircle unit={unit.unit} width="100%" height="28px" />
             </button>
         );
     };
@@ -149,16 +160,36 @@ export const TutorialTOC = () => {
     );
 
     return (
-        <div className="sticky top-[5rem] max-h-[calc(100vh-6rem]">
-            <div className="unit-tabs flex gap-1.5 mb-1">
+        <div
+            className="sticky top-[5rem] max-h-[calc(100vh-6rem]"
+            style={{
+                color: "var(--tutorial-toc-text-color)",
+            }}
+        >
+            <div className="unit-tabs flex gap-0.5 mb-1">
                 {currentTutorial?.units.map(renderUnitTab)}
             </div>
-            <div className="unit-list-container bg-slate-100 py-3 px-3">
-                <div className="font-bold text-sm mb-2 text-slate-700">
+            <div
+                className="unit-list-container py-3 px-3"
+                style={{
+                    backgroundColor: "var(--tutorial-toc-bg-color)",
+                }}
+            >
+                <div
+                    className="font-bold text-sm mb-2"
+                    style={{
+                        color: "var(--tutorial-toc-text-color)",
+                    }}
+                >
                     {currentUnit.title ?? currentUnit.unit}
                 </div>
                 <div className="text-sm">{renderUnitDocs(currentUnit)}</div>
             </div>
+            {!isMobile && (
+                <div className="mt-4">
+                    <SelectTutorialFramework small />
+                </div>
+            )}
         </div>
     );
 };
@@ -169,7 +200,17 @@ export const useDocTOCwithTutorial = () => {
     const windowSize = useWindowSize();
     const hidden = frontMatter.hide_table_of_contents;
     const canRender = (!hidden && toc.length > 0) || tutorial?.isTutorial;
-    const mobile = canRender ? <DocItemTOCMobile /> : undefined;
+    const mobile = canRender ? (
+        tutorial?.isTutorial ? (
+            windowSize === "mobile" ? (
+                <div className="my-4">
+                    <TutorialTOC isMobile />
+                </div>
+            ) : null
+        ) : (
+            <DocItemTOCMobile />
+        )
+    ) : undefined;
     const desktop =
         canRender && (windowSize === "desktop" || windowSize === "ssr") ? (
             tutorial?.isTutorial ? (

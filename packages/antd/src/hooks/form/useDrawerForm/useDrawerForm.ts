@@ -161,7 +161,6 @@ export const useDrawerForm = <
             onClose: handleClose,
             open,
             visible: open,
-            getContainer: false,
             forceRender: true,
         },
         saveButtonProps,

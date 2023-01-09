@@ -1,11 +1,22 @@
 import React from "react";
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import {
+    useMutation,
+    UseMutationOptions,
+    UseMutationResult,
+} from "@tanstack/react-query";
 import qs from "qs";
 
 import { useNavigation, useRouterContext, useNotification } from "@hooks";
 import { AuthContext } from "@contexts/auth";
 
 import { IAuthContext, TLoginData } from "../../../interfaces";
+
+export type UseLoginProps<TVariables> = {
+    mutationOptions?: Omit<
+        UseMutationOptions<TLoginData, Error, TVariables, unknown>,
+        "mutationFn" | "onError" | "onSuccess"
+    >;
+};
 
 /**
  * `useLogin` calls `login` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
@@ -16,7 +27,9 @@ import { IAuthContext, TLoginData } from "../../../interfaces";
  * @typeParam TVariables - Values for mutation function. default `{}`
  *
  */
-export const useLogin = <TVariables = {}>(): UseMutationResult<
+export const useLogin = <TVariables = {}>({
+    mutationOptions,
+}: UseLoginProps<TVariables> = {}): UseMutationResult<
     TLoginData,
     Error,
     TVariables,
@@ -60,6 +73,7 @@ export const useLogin = <TVariables = {}>(): UseMutationResult<
                     type: "error",
                 });
             },
+            ...mutationOptions,
         },
     );
 

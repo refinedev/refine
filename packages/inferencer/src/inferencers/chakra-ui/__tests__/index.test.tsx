@@ -85,6 +85,9 @@ describe("ChakraUIInferencer", () => {
         await act(async () => {
             await new Promise((resolve) => setTimeout(resolve, 2000));
         });
+        await act(async () => {
+            await new Promise((resolve) => setTimeout(resolve, 2000));
+        });
 
         const nodeList = renderingList.asFragment();
         const nodeCreate = renderingCreate.asFragment();

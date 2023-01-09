@@ -15,6 +15,8 @@ import ExampleSourcePrompt from "@site/src/components/example-source-prompt";
 import ExampleLocalPrompt from "@site/src/components/example-local-prompt";
 import Checklist from "@site/src/components/checklist";
 import ChecklistItem from "@site/src/components/checklist-item";
+import GeneralConceptsLink from "../../components/general-concepts-link";
+
 
 export default {
     ...MDXComponents,
@@ -29,6 +31,7 @@ export default {
     PromotionBanner: PromotionBanner,
     Tabs: Tabs,
     TabItem: TabItem,
+    GeneralConceptsLink,
     StackblitzExample,
     ExampleLocalPrompt,
     ExampleSourcePrompt,

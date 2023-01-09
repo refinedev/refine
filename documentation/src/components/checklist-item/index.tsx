@@ -38,24 +38,24 @@ const ChecklistItem: React.FC<Props> = ({ children, id: checkId }) => {
     };
 
     return (
-        <div className="mb-3 flex items-center gap-1 flex-wrap">
+        <label className="mb-3 flex items-center gap-1.5 flex-wrap">
             <div className="flex-shrink-0 w-5 h-5">
                 <button
                     type="button"
                     onClick={handleToggle}
-                    className="w-5 h-5 p-0 appearance-none border border-solid rounded border-slate-300 bg-white flex justify-center items-center"
+                    className="checklist-item__button"
                 >
                     {checked && (
                         <CheckIcon
                             width={16}
                             height={16}
-                            className="text-sky-700"
+                            className="checklist-item__icon"
                         />
                     )}
                 </button>
             </div>
             <div className={checked ? "line-through" : ""}>{children}</div>
-        </div>
+        </label>
     );
 };
 

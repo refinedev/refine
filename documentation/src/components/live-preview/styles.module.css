@@ -7,7 +7,7 @@
 
 .playgroundHeader {
   padding: 0 1rem;
-  background: #dee2e9;
+  background: var(--browser-window-bezel-color);
   text-align: center;
 }
 
@@ -39,8 +39,8 @@
 }
 
 .playgroundEditorWrapper {
-  border: 3px solid #dee2e9;
-  background-color: #dee2e9;
+  border: 3px solid var(--browser-window-bezel-color);
+  background-color: var(--browser-window-bezel-color);
 }
 
 .playgroundEditorWrapper > div {

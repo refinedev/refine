@@ -75,10 +75,12 @@ export const TutorialCircle: React.FC<Props> = ({
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                stroke={emptyColor}
                 strokeWidth={strokeWidth}
                 strokeDasharray={dashArrayMultiple}
                 strokeDashoffset={dashOffsetMultiple}
+                style={{
+                    stroke: "var(--tutorial-toc-text-color-light)",
+                }}
             />
             {tutorialCheckStatuses.map((item, index) => {
                 if (item.status === "completed") {

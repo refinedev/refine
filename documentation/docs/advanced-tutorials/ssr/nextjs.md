@@ -118,6 +118,21 @@ interface IUser {
 export default UserList;
 ```
 
+:::tip
+If you want to handle your `resource` with a custom page or create a custom page with or without a resource, these will not be visible in the `<Sider />` component. You can trick the `<Sider/>` by passing an empty resource to show your custom route in it.
+
+```tsx title="Example"
+const App = () => (
+    <Refine
+        resources={[
+            // This will add an item to `<Sider/>` with route `/my-custom-item`
+            { name: "my-custom-item", list: () => null }
+        ]}
+    />
+);
+```
+:::
+
 :::caution
 Notice how we passed `resource` prop to [`useTable`][usetable]. This is necessary since for `useTable` to be able to get `resource` name from route, it needs to be a route parameter in a dynamic route. [Refer here](#standard-crud-page) where standard CRUD pages can be built with dynamic routing.
 :::

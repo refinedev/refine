@@ -1,0 +1,46 @@
+{
+  "name": "blog-react-hook-dynamic-form",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@mui/icons-material": "^5.8.3",
+    "@pankod/refine-core": "^3.94.2",
+    "@pankod/refine-mui": "^3.30.0",
+    "@pankod/refine-react-hook-form": "^3.33.2",
+    "@pankod/refine-react-router-v6": "^3.18.0",
+    "@pankod/refine-simple-rest": "^3.18.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.1.1",
+    "@testing-library/user-event": "^14.1.1",
+    "@types/jest": "^29.2.4",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^5.0.0",
+    "cross-env": "^7.0.3",
+    "web-vitals": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.20.11",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "dev": "react-scripts start",
+    "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

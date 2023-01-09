@@ -8,8 +8,9 @@
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
         "@googlemaps/react-wrapper": "^1.1.35",
-        "@pankod/refine-antd": "^4.2.0",
-        "@pankod/refine-core": "^3.90.6",
+        "@pankod/refine-antd": "^4.7.0",
+        "@pankod/refine-core": "^3.94.2",
+        "@pankod/refine-cli": "^1.17.0",
         "@pankod/refine-kbar": "0.10.2",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-simple-rest": "^3.37.4",
@@ -33,14 +34,16 @@
         "react-i18next": "^11.8.11",
         "react-input-mask": "^2.0.4",
         "react-scripts": "^5.0.0",
+        "cross-env": "^7.0.3",
         "tslib": "^2.3.1",
         "typescript": "^4.7.4"
     },
     "scripts": {
-        "start": "FAST_REFRESH=false DISABLE_ESLINT_PLUGIN=true react-scripts start",
-        "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
+        "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
+        "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
         "test": "react-scripts test --passWithNoTests --watchAll=false",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "refine": "refine"
     },
     "browserslist": [
         ">0.2%",

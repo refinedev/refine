@@ -77,6 +77,12 @@ export const TutorialUIPackageProvider: React.FC<
         _setPreferred(val);
     };
 
+    React.useEffect(() => {
+        if (dedicated && dedicated !== preferred) {
+            setPreferred(dedicated);
+        }
+    }, [dedicated, preferred]);
+
     return (
         <TutorialUIPackageContext.Provider
             value={{

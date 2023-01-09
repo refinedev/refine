@@ -18,3 +18,18 @@ Before you start, you can read the API references of the [UI frameworks](/docs/a
 After this step, the tutorial will proceed according to your UI framework choice. You can choose one of the following UI frameworks or just go with the headless UI option:
 
 <SelectTutorialFramework />
+
+
+<br/>
+
+<Checklist>
+
+<ChecklistItem id="select-framework">
+I understood that I have two options: I can build my app without a UI framework or I can use the most popular UI frameworks with "refine"
+</ChecklistItem>
+<ChecklistItem id="select-framework-2">
+I've chosen the UI framework option
+</ChecklistItem>
+
+
+</Checklist>

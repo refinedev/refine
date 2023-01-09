@@ -42,12 +42,15 @@ To install a code editor:
 <Checklist>
 
 <ChecklistItem id="has-access-to-terminal">
-I can access the command line in a terminal.
+I am able to access the command line via a terminal.
 </ChecklistItem>
 <ChecklistItem id="installed-nodejs">
-I have Node.js installed.
+Node.js has been installed on my device.
+</ChecklistItem>
+<ChecklistItem id="installed-vscode">
+I am using a code editor similar to Visual Studio Code.
 </ChecklistItem>
 
-Projenin CLI dan basarılı bootstrap etmesi için gerekli ne varsa burada check ettirebiliriz..
+
 
 </Checklist>

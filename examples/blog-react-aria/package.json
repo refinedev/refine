@@ -4,8 +4,9 @@
     "private": true,
     "dependencies": {
         "@js-temporal/polyfill": "^0.4.2",
-        "@pankod/refine-core": "^3.90.6",
-        "@pankod/refine-react-hook-form": "^3.37.0",
+        "@pankod/refine-core": "^3.94.2",
+        "@pankod/refine-cli": "^1.17.0",
+        "@pankod/refine-react-hook-form": "^3.37.2",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-react-table": "^4.9.0",
         "@pankod/refine-simple-rest": "^3.37.4",
@@ -18,6 +19,7 @@
         "react-aria": "^0.1.0",
         "react-dom": "^18.0.0",
         "react-scripts": "^5.0.0",
+        "cross-env": "^7.0.3",
         "web-vitals": "^1.1.1"
     },
     "devDependencies": {
@@ -31,9 +33,10 @@
     },
     "scripts": {
         "dev": "react-scripts start",
-        "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
+        "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "refine": "refine"
     },
     "browserslist": {
         "production": [
