@@ -100,7 +100,7 @@ const postUseListResult = useList({
   });
 ```
 
-As we can see, the parameters passed to useList hook are forwarded to the data providers getList method internally. In the background, refine connects all data provider methods to appropriate data hooks.
+As we can see, the parameters passed to the `useList` hook are forwarded to the data provider's `getList` method internally. In the background, **refine** connects all data provider methods to appropriate data hooks.
 
 ```ts title="dataProvider.ts"
 const dataProvider = {
