@@ -8,7 +8,7 @@ tutorial:
 
 ## Introduction
 
-The standards and usage of APIs can vary significantly, so it is possible that refine's built-in data providers may not be suitable for your needs.
+The standards and usage of APIs can vary significantly, so it is possible that **refine's** built-in data providers may not be suitable for your needs.
 In this case, you will need to write your own Data Provider.
 
 Data providers work with adapter system infrastructure. So they can communicate with REST, GraphQL, RPC and SOAP based APIs. You can use `fetch`, `axios`, `apollo-client` or any library for this communication.
