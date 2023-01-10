@@ -36,11 +36,12 @@
     "@commitlint/cli": "^17.0.1",
     "@commitlint/config-conventional": "^17.0.0",
     "@lerna/filter-options": "^6.2.0",
+    "@nrwl/nx-cloud": "^15.0.2",
     "@types/jest": "^29.2.4",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.38.1",
-    "@typescript-eslint/parser": "^5.38.1",
+    "@typescript-eslint/eslint-plugin": "5.48.0",
+    "@typescript-eslint/parser": "5.48.0",
     "concurrently": "^7.4.0",
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
@@ -57,8 +58,7 @@
     "react-dom": "^18.0.0",
     "react-refresh": "^0.11.0",
     "ts-jest": "^29.0.3",
-    "typescript": "^4.7.4",
-    "@nrwl/nx-cloud": "^15.0.2"
+    "typescript": "^4.7.4"
   },
   "engines": {
     "node": ">=16"
