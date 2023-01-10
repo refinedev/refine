@@ -1,13 +1,11 @@
 ---
 id: add-delete-feature
-title: 5.Adding Delete Feature
+title: 5. Adding Delete Feature
 tutorial:
     order: 0
     prev: tutorial/adding-crud-pages/{preferredUI}/add-create-page
     next: tutorial/adding-crud-pages/{preferredUI}/adding-search-and-filters
 ---
-
-## Overview
 
 There are many ways to delete a record. In this tutorial, we will first use the `<DeleteButton/>` to delete a record and then we will learn how to enable the delete feature on the show page and edit page.
 
