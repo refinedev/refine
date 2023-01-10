@@ -14,50 +14,81 @@ const Modal: React.FC<ModalPropsType> = ({ isOpen, onClose, children }) => {
     if (!isOpen) return null;
     return (
         <>
-            <div
-                style={{
-                    position: "fixed",
-                    top: 0,
-                    left: 0,
-                    bottom: 0,
-                    right: 0,
-                    backgroundColor: "rgba(0, 0, 0, 0.7)",
-                    zIndex: 1000,
-                }}
-                onClick={onClose}
-            />
-            <div
-                style={{
-                    position: "fixed",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    backgroundColor: "#fff",
-                    zIndex: 1000,
-                    width: "500px",
-                    overflowY: "auto",
-                }}
-            >
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "flex-end",
-                        padding: "4px",
-                    }}
-                >
-                    <button onClick={onClose}>&times;</button>
+            <div className="overlay" onClick={onClose}></div>
+            <div className="modal">
+                <div className="modal-title">
+                    <button className="close-button" onClick={onClose}>
+                        &times;
+                    </button>
                 </div>
-                <div
-                    style={{
-                        padding: "0px 16px 16px 16px",
-                    }}
-                >
-                    {children}
-                </div>
+                <div className="modal-content">{children}</div>
             </div>
         </>
     );
 };
+```
+
+```css live shared
+html,
+body {
+    background: white;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    z-index: 1000;
+    width: 500px;
+    overflow-y: auto;
+}
+
+.modal .modal-title {
+    display: flex;
+    justify-content: flex-end;
+    padding: 4px;
+}
+
+.modal .modal-content {
+    padding: 0px 16px 16px 16px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.form input,
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 ```
 
 `useModalForm` hook allows you to manage a form within a modal. It provides some useful methods to handle the form modal.
@@ -123,21 +154,8 @@ const PostList = () => {
         <div>
             {/* highlight-start */}
             <Modal isOpen={visible} onClose={close}>
-                <form
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "8px",
-                    }}
-                    onSubmit={handleSubmit(onFinish)}
-                >
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "4px",
-                        }}
-                    >
+                <form className="form" onSubmit={handleSubmit(onFinish)}>
+                    <div className="form-group">
                         <label>Title: </label>
                         <input
                             {...register("title", {
@@ -146,13 +164,7 @@ const PostList = () => {
                         />
                         {errors.title && <span>{errors.title.message}</span>}
                     </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "4px",
-                        }}
-                    >
+                    <div className="form-group">
                         <label>Status: </label>
                         <select {...register("status")}>
                             <option value="published">published</option>
@@ -255,21 +267,8 @@ const PostList = () => {
         <div>
             {/* highlight-start */}
             <Modal isOpen={visible} onClose={close}>
-                <form
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "8px",
-                    }}
-                    onSubmit={handleSubmit(onFinish)}
-                >
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "4px",
-                        }}
-                    >
+                <form className="form" onSubmit={handleSubmit(onFinish)}>
+                    <div className="form-group">
                         <label>Title: </label>
                         <input
                             {...register("title", {
@@ -278,13 +277,7 @@ const PostList = () => {
                         />
                         {errors.title && <span>{errors.title.message}</span>}
                     </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "4px",
-                        }}
-                    >
+                    <div className="form-group">
                         <label>Status: </label>
                         <select {...register("status")}>
                             <option value="published">published</option>
@@ -413,21 +406,8 @@ const PostList = () => {
         <div>
             {/* highlight-start */}
             <Modal isOpen={visible} onClose={close}>
-                <form
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "8px",
-                    }}
-                    onSubmit={handleSubmit(onFinish)}
-                >
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "4px",
-                        }}
-                    >
+                <form className="form" onSubmit={handleSubmit(onFinish)}>
+                    <div className="form-group">
                         <label>Title: </label>
                         <input
                             {...register("title", {
@@ -436,13 +416,7 @@ const PostList = () => {
                         />
                         {errors.title && <span>{errors.title.message}</span>}
                     </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "4px",
-                        }}
-                    >
+                    <div className="form-group">
                         <label>Status: </label>
                         <select {...register("status")}>
                             <option value="published">published</option>
@@ -543,50 +517,83 @@ const Modal: React.FC<ModalPropsType> = ({ isOpen, onClose, children }) => {
     if (!isOpen) return null;
     return (
         <>
-            <div
-                style={{
-                    position: "fixed",
-                    top: 0,
-                    left: 0,
-                    bottom: 0,
-                    right: 0,
-                    backgroundColor: "rgba(0, 0, 0, 0.7)",
-                    zIndex: 1000,
-                }}
-                onClick={onClose}
-            />
-            <div
-                style={{
-                    position: "fixed",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    backgroundColor: "#fff",
-                    zIndex: 1000,
-                    width: "500px",
-                    overflowY: "auto",
-                }}
-            >
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "flex-end",
-                        padding: "4px",
-                    }}
-                >
-                    <button onClick={onClose}>&times;</button>
+            <div className="overlay" onClick={onClose}></div>
+            <div className="modal">
+                <div className="modal-title">
+                    <button className="close-button" onClick={onClose}>
+                        &times;
+                    </button>
                 </div>
-                <div
-                    style={{
-                        padding: "0px 16px 16px 16px",
-                    }}
-                >
-                    {children}
-                </div>
+                <div className="modal-content">{children}</div>
             </div>
         </>
     );
 };
+```
+
+  </div>
+</details>
+
+<details>
+  <summary>See styles</summary>
+  <div>
+
+```css title="src/styles.css"
+* {
+    box-sizing: border-box;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    z-index: 1000;
+    width: 500px;
+    overflow-y: auto;
+}
+
+.modal .modal-title {
+    display: flex;
+    justify-content: flex-end;
+    padding: 4px;
+}
+
+.modal .modal-content {
+    padding: 0px 16px 16px 16px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.form input,
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 ```
 
   </div>
