@@ -9,15 +9,43 @@ tutorial:
 
 :::info Remember
 
-In the [Unit 3.2](#), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine />` component using the mock components.
+<UIConditional is="antd">
+
+In the [Unit 2.2](/docs/tutorial/getting-started/antd/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+
+</UIConditional>
+
+<UIConditional is="chakra-ui">
+
+In the [Unit 2.2](/docs/tutorial/getting-started/chakra-ui/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+
+</UIConditional>
+
+<UIConditional is="headless">
+
+In the [Unit 2.2](/docs/tutorial/getting-started/headless/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+
+</UIConditional>
+
+<UIConditional is="mantine">
+
+In the [Unit 2.2](/docs/tutorial/getting-started/mantine/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+
+</UIConditional>
+
+<UIConditional is="mui">
+
+In the [Unit 2.2](/docs/tutorial/getting-started/mui/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+
+</UIConditional>
 
 :::
 
-`In the context of a CRUD application, a resource typically refers to a data entity that can be created, read, updated, or deleted. For example, a resource could be a user account, a blog post, a product in an online store, or any other piece of data that can be managed by the CRUD app.
+In the context of a CRUD application, a resource typically refers to a data entity that can be created, read, updated, or deleted. For example, a resource could be a user account, a blog post, a product in an online store, or any other piece of data that can be managed by the CRUD app.
 
 Let's see what's going on under the hood when we add a `resources` to our app and learn `resources` term for who are new to **refine**.
 
-To add a `resource` to our app, we need use `resources` prop of `<Refine />` component. This prop accepts an array of objects. Each object represents a resource.
+To add a `resource` to our app, we need use `resources` prop of `<Refine/>` component. This prop accepts an array of objects. Each object represents a resource.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
@@ -64,10 +92,3 @@ When using the **refine** hooks and components in the created pages, the `name` 
 ## Learn More
 
 Learn more about [resources](/docs/api-reference/core/components/refine-config/#resources) in the API reference.
-
-<!-- > Burada Mini Quiz yapabilir
-> refine da resource kavramı ile ilgili sorular
-
-**_Checklist for moving on_**
-
--   [x] resources kavramını anladım --> -->

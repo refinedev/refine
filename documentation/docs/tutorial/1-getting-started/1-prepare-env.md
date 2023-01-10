@@ -18,13 +18,13 @@ In order to run **refine** applications on your system, you will also need to ha
 
 To check if you already have a compatible version of Node.js (v.16.0.0 or higher) installed:
 
-1- Launch your terminal and type the following command:
+1. Launch your terminal and type the following command:
 
-```bash
-node -v
-```
+    ```bash
+    node -v
+    ```
 
-2- If you do not have a compatible version of Node.js installed, follow these instructions to [install Node.js](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) via the terminal.
+2. If you do not have a compatible version of Node.js installed, follow these instructions to [install Node.js](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) via the terminal.
 
 ### Code Editor
 
@@ -36,8 +36,8 @@ This tutorial will use **VS Code**, but you can use any code editor that is comp
 
 To install a code editor:
 
-1- Download and install the code editor of your choice from the Internet.
-2- Follow the prompts to complete the installation process.
+1. Download and install the code editor of your choice from the Internet.
+2. Follow the prompts to complete the installation process.
 
 <Checklist>
 
@@ -50,7 +50,5 @@ Node.js has been installed on my device.
 <ChecklistItem id="installed-vscode">
 I am using a code editor similar to Visual Studio Code.
 </ChecklistItem>
-
-
 
 </Checklist>

@@ -12,9 +12,9 @@ Netlify will use your GitHub repository to build and deploy your site every time
 
 ## Create a new Netlify site
 
-1- If you don't already have a Netlify account, go to [Netlify.com](https://www.netlify.com/) and create a free account.
+1. If you don't already have a Netlify account, go to [Netlify.com](https://www.netlify.com/) and create a free account.
 
-2- Click `Add new site` > `Import an existing project`.
+2. Click `Add new site` > `Import an existing project`.
 
 > You will be prompted to connect to a Git provider. Choose GitHub and follow the on-screen instructions to authenticate your GitHub account. Then, choose your project’s GitHub repository from the list provided.
 
@@ -25,11 +25,6 @@ Congratulations! You now have an **refine** website hosted on Netlify.
 ## Visit your new website
 
 To view your new website, visit the URL provided in your site settings or type it into a browser window.
-
-**_Checklist for moving on_**
-
--   [x] I can view my updated website online.
-
 
 <Checklist>
 

@@ -13,54 +13,54 @@ import TabItem from '@theme/TabItem';
 
 The easiest way to create a new project is to use the **refine CLI**. This tool will help you get started quickly by generating a new project with a basic configuration and a folder structure that follows best practices.
 
-1- Launch your terminal and type the following command using your preferred package manager:
+1. Launch your terminal and type the following command using your preferred package manager:
 
-<Tabs
-defaultValue="npm"
-values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
+    <Tabs
+    defaultValue="npm"
+    values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
 
-<TabItem value="npm">
+    <TabItem value="npm">
 
-```bash
-# create a new project with npm
-npm create refine-app@latest -- -o refine-headless tutorial
-```
+    ```bash
+    # create a new project with npm
+    npm create refine-app@latest -- -o refine-headless tutorial
+    ```
 
-</TabItem>
+    </TabItem>
 
-<TabItem value="pnpm">
+    <TabItem value="pnpm">
 
-```bash
-# create a new project with pnpm
-pnpm create refine-app@latest -- -o refine-headless tutorial
-```
+    ```bash
+    # create a new project with pnpm
+    pnpm create refine-app@latest -- -o refine-headless tutorial
+    ```
 
-</TabItem>
+    </TabItem>
 
-<TabItem value="yarn">
+    <TabItem value="yarn">
 
-```bash
-# create a new project with yarn
-yarn create refine-app -- -o refine-headless tutorial
-```
+    ```bash
+    # create a new project with yarn
+    yarn create refine-app -- -o refine-headless tutorial
+    ```
 
-</TabItem>
+    </TabItem>
 
-</Tabs>
+    </Tabs>
 
-2- Confirm `y` to installation of `create-refine-app`
+2. Confirm `y` to installation of `create-refine-app`
 
-3- The `-o refine-headless` flag in the command above tells the CLI to install the project with the `refine-headless` preset. This preset selects some options for you in accordance with this tutorial.
+3. The `-o refine-headless` flag in the command above tells the CLI to install the project with the `refine-headless` preset. This preset selects some options for you in accordance with this tutorial.
 
-4- The CLI will ask if you agree to share your selection anonymously with the **refine** team. You can choose whatever you prefer.
+4. The CLI will ask if you agree to share your selection anonymously with the **refine** team. You can choose whatever you prefer.
 
 Once the installation wizard is finished, you can close this terminal window and open VS Code to continue your journey.
 
 ### Open your project in VS Code
 
-1- Open Visual Studio Code and select the directory that was generated during your setup process.
+1. Open Visual Studio Code and select the directory that was generated during your setup process.
 
-2- Make sure the terminal is open and ready to run commands. You can open it by pressing `Ctrl + J`(Windows) or `Cmd ⌘ + J`(macOS).
+2. Make sure the terminal is open and ready to run commands. You can open it by pressing `Ctrl + J`(Windows) or `Cmd ⌘ + J`(macOS).
 
 For the rest of this tutorial, you can use the terminal within VS Code instead of your computer's terminal.
 
@@ -70,7 +70,7 @@ To preview your project as a web page while you work on it, the project must be 
 
 #### Start the dev server
 
-1- To start the dev server, run the following command in your terminal:
+To start the dev server, run the following command in your terminal:
 
 <Tabs
 defaultValue="npm"
@@ -108,13 +108,13 @@ You should see confirmation in the terminal that the **refine** app is running i
 
 Your project files contain all the code you need to run your website. To see a preview of your website in the browser:
 
-1- Click on the `localhost:3000` link in the terminal. This will open a new browser tab with your website.
+1. Click on the `localhost:3000` link in the terminal. This will open a new browser tab with your website.
 
-(**refine** uses port 3000 by default)
+    (**refine** uses port 3000 by default)
 
-2- You will be redirected to the welcome page as we have not added any pages yet.
+2. You will be redirected to the welcome page as we have not added any pages yet.
 
-([Next section](/docs/tutorial/getting-started/headless/generate-crud-pages) will guide you through adding pages to your app.)
+    ([Next section](/docs/tutorial/getting-started/headless/generate-crud-pages) will guide you through adding pages to your app.)
 
 Here's what you should see:
 
@@ -137,7 +137,6 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-
 <Checklist>
 
 <ChecklistItem id="getting-started-headless">
@@ -146,6 +145,5 @@ I'm able to create a new headless refine project.
 <ChecklistItem id="getting-started-headless-2">
 I'm able to start the refine dev server.
 </ChecklistItem>
-
 
 </Checklist>
