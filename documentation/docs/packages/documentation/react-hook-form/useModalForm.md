@@ -714,22 +714,32 @@ A function that can close the modal. It's useful when you want to close the moda
 ```tsx
 const {
     getInputProps,
-    modal: { close, visible, title },
+    handleSubmit,
+    register,
+    modal,
+    refineCore: { onFinish },
 } = useModalForm();
 
 return (
-    <Modal opened={visible} onClose={close} title={title}>
-        <TextInput
-            mt={8}
-            label="Title"
-            placeholder="Title"
-            {...getInputProps("title")}
-        />
-        <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
-            <SaveButton {...saveButtonProps} />
-            <Button onClick={close}>Cancel</Button>
-        </Box>
-    </Modal>
+    <>
+        <button onClick={show}>Show Modal</button>
+        <Modal {...modal}>
+            <form onSubmit={handleSubmit(onFinish)}>
+                <div>
+                    <label>Title: </label>
+                    <input {...register("title")} />
+                </div>
+                <div>
+                    <button type="submit" onClick={modal.close}>
+                        Cancel
+                    </button>
+                    <button type="submit" onClick={modal.submit}>
+                        Save
+                    </button>
+                </div>
+            </form>
+        </Modal>
+    </>
 );
 ```
 
@@ -739,23 +749,32 @@ A function that can submit the form. It's useful when you want to submit the for
 
 ```tsx
 const {
-    modal: { submit },
+    getInputProps,
+    handleSubmit,
+    register,
+    modal,
+    refineCore: { onFinish },
 } = useModalForm();
 
 // ---
 
 return (
-    <Modal opened={visible} onClose={close} title={title}>
-        <TextInput
-            mt={8}
-            label="Title"
-            placeholder="Title"
-            {...getInputProps("title")}
-        />
-        <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button onClick={submit}>Save</Button>
-        </Box>
-    </Modal>
+    <>
+        <button onClick={show}>Show Modal</button>
+        <Modal {...modal}>
+            <form onSubmit={handleSubmit(onFinish)}>
+                <div>
+                    <label>Title: </label>
+                    <input {...register("title")} />
+                </div>
+                <div>
+                    <button type="submit" onClick={modal.submit}>
+                        Save
+                    </button>
+                </div>
+            </form>
+        </Modal>
+    </>
 );
 ```
 
@@ -765,28 +784,68 @@ A function that can show the modal.
 
 ```tsx
 const {
-    getInputProps,
-    modal: { close, visible, title, show },
+    saveButtonProps,
+    handleSubmit,
+    register,
+    modal,
+    refineCore: { onFinish, formLoading },
 } = useModalForm();
-
-const onFinishHandler = (values) => {
-    onFinish(values);
-    show();
-};
 
 return (
     <>
-        <Button onClick={}>Show Modal</Button>
-        <Modal opened={visible} onClose={close} title={title}>
-            <TextInput
-                mt={8}
-                label="Title"
-                placeholder="Title"
-                {...getInputProps("title")}
-            />
-            <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
-                <SaveButton {...saveButtonProps} />
-            </Box>
+        <button onClick={show}>Show Modal</button>
+        <Modal {...modal}>
+            <form onSubmit={handleSubmit(onFinish)}>
+                <div>
+                    <label>Title: </label>
+                    <input {...register("title")} />
+                </div>
+                <div>
+                    <button type="submit" {...saveButtonProps}>
+                        Save
+                    </button>
+                </div>
+            </form>
+        </Modal>
+    </>
+);
+```
+
+### `saveButtonProps`
+
+It contains all the props needed by the "submit" button within the modal (disabled,loading etc.). You can manually pass these props to your custom button.
+
+```tsx
+const {
+    saveButtonProps,
+    handleSubmit,
+    register,
+    modal,
+    refineCore: { onFinish, formLoading },
+} = useModalForm();
+
+return (
+    <>
+        <button onClick={show}>Show Modal</button>
+        <Modal {...modal}>
+            <form onSubmit={handleSubmit(onFinish)}>
+                <div>
+                    <label>Title: </label>
+                    <input {...register("title")} />
+                </div>
+                <div>
+                    <button
+                        type="submit"
+                        disabled={saveButtonProps.disabled}
+                        onClick={(e) => {
+                            // -- your custom logic
+                            saveButtonProps.onClick(e);
+                        }}
+                    >
+                        Save
+                    </button>
+                </div>
+            </form>
         </Modal>
     </>
 );

@@ -541,6 +541,84 @@ const modalForm = useModalForm({
 All [`useForm`][antd-use-form] return values also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#return-values) docs.
 :::
 
+### `formProps`
+
+It's required to manage `<Form>` state and actions. Under the hood the `formProps` came from [`useForm`][antd-use-form].
+
+It contains the props to manage the [Antd `<Form>`](https://ant.design/components/form#api) component such as [_`onValuesChange`, `initialValues`, `onFieldsChange`, `onFinish` etc._](/docs/api-reference/antd/hooks/form/useForm/#return-values)
+
+```tsx
+const { formProps, modalProps } = useModalForm();
+
+return (
+    <>
+        <Button type="primary" onClick={() => show()}>
+            Show Modal
+        </Button>
+        <Modal
+            {...modalProps}
+            footer={[
+                // highlight-start
+                <Button key="1" onClick={() => formProps.form?.resetFields()}>
+                    Reset
+                </Button>,
+                // highlight-end
+                <Button
+                    key="2"
+                    onClick={(
+                        e: React.MouseEvent<HTMLAnchorElement, MouseEvent> &
+                            React.MouseEvent<HTMLButtonElement, MouseEvent>,
+                    ) => modalProps.onCancel?.(e)}
+                >
+                    Cancel
+                </Button>,
+                <Button
+                    key="3"
+                    type="primary"
+                    onClick={(
+                        e: React.MouseEvent<HTMLAnchorElement, MouseEvent> &
+                            React.MouseEvent<HTMLButtonElement, MouseEvent>,
+                    ) => modalProps.okButtonProps.onOk?.(e)}
+                >
+                    Save
+                </Button>,
+            ]}
+        >
+            // highlight-start
+            <Form
+                {...formProps}
+                onFinish={formProps.onFinish}
+                initialValues={formProps.initialValues}
+                onFinishFailed={formProps.onFinishFailed}
+                onFieldsChange={formProps.onFieldsChange}
+            >
+                <Form.Item label="Title" name="title">
+                    <Input />
+                </Form.Item>
+            </Form>
+            // highlight-end
+        </Modal>
+    </>
+);
+```
+
+### `title`
+
+Title of the modal. Based on resource and action values
+
+```tsx
+const {
+    modalProps: { title },
+} = useModalForm({
+    refineCoreProps: {
+        resource: "posts",
+        action: "create",
+    },
+});
+
+console.log(title); // "Create Post"
+```
+
 ### `open`
 
 Current visibility state of the modal.
@@ -635,24 +713,112 @@ return (
 );
 ```
 
-### `formProps`
+### `okButtonProps`
 
-Props for the [`<Form>`](https://ant.design/components/form#form). It's required to manage form state and actions.
+It contains all the props needed by the `"submit"` button within the modal (disabled,loading etc.). You can manually pass these props to your custom button.
 
 ```tsx
-const { formProps } = useModalForm();
+const {
+    modalProps: { okButtonProps },
+} = useModalForm();
 
-return <Form {...formProps} />;
+// --
+
+return (
+    <>
+        <Modal
+            {...modalProps}
+            okButtonProps={{
+                ...okButtonProps,
+                onClick: (
+                    e: React.MouseEvent<HTMLAnchorElement, MouseEvent> &
+                        React.MouseEvent<HTMLButtonElement, MouseEvent>,
+                ) => {
+                    // -- your custom logic
+                    okButtonProps?.onClick?.(e);
+                },
+            }}
+        >
+            {/* -- */}
+        </Modal>
+    </>
+);
 ```
 
-### `modalProps`
+### `okText`
 
-Props for the [`<Modal>`](https://ant.design/components/modal#API). It's required to manage modal state and actions.
+Text of the `"submit"` button within the modal.
 
 ```tsx
-const { modalProps } = useModalForm();
+const {
+    modalProps: { okText },
+} = useModalForm();
 
-return <Modal {...modalProps} />;
+// --
+
+console.log(okText); // "Save"
+
+return (
+    <>
+        <Modal {...modalProps} okText="Submit">
+            {/* -- */}
+        </Modal>
+    </>
+);
+```
+
+### `onCancel`
+
+A function triggered when `<Modal>` is closed. It's useful when you want to close the modal manually.
+
+```tsx
+const { modalProps, formProps } = useModalForm();
+
+// ---
+
+return (
+    <Modal
+        {...modalProps}
+        footer={
+            <Button
+                onClick={(
+                    e: React.MouseEvent<HTMLAnchorElement, MouseEvent> &
+                        React.MouseEvent<HTMLButtonElement, MouseEvent>,
+                ) => modalProps.onCancel(e)}
+            >
+                Cancel
+            </Button>
+        }
+    >
+        <Form {...formProps} layout="vertical">
+            <Form.Item label="Title" name="title">
+                <Input />
+            </Form.Item>
+        </Form>
+    </Modal>
+);
+```
+
+### `cancelText`
+
+Text of the `"cancel"` button within the modal.
+
+```tsx
+const {
+    modalProps: { cancelText },
+} = useModalForm();
+
+// --
+
+console.log(cancelText); // "Cancel"
+
+return (
+    <>
+        <Modal {...modalProps} cancelText="Exit">
+            {/* -- */}
+        </Modal>
+    </>
+);
 ```
 
 ## API Reference

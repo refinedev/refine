@@ -995,6 +995,34 @@ return (
 );
 ```
 
+### `saveButtonProps`
+
+It contains all the props needed by the "submit" button within the modal (disabled,loading etc.). You can manually pass these props to your custom button.
+
+```tsx
+const { getInputProps, modal, saveButtonProps } = useModalForm();
+
+return (
+    <Modal {...modal}>
+        <TextInput
+            mt={8}
+            label="Title"
+            placeholder="Title"
+            {...getInputProps("title")}
+        />
+        <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button
+                {...saveButtonProps}
+                onClick={(e) => {
+                    // -- your custom logic
+                    saveButtonProps.onClick(e);
+                }}
+            />
+        </Box>
+    </Modal>
+);
+```
+
 ## API Reference
 
 ### Properties
