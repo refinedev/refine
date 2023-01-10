@@ -861,7 +861,7 @@ mutate({
 
 ## metaData Usage
 
-When using APIs, you may wish to include custom parameters, such as a custom header. To accomplish this, you can utilize the `metaData` field, which allows the sent parameter to be easily accessed by the data provider.```
+When using APIs, you may wish to include custom parameters, such as a custom header. To accomplish this, you can utilize the `metaData` field, which allows the sent parameter to be easily accessed by the data provider.
 
 Now let's send a custom header parameter to the [`getOne`](#getone) method using `metaData`.
 
