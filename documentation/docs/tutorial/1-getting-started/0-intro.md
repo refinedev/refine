@@ -36,8 +36,6 @@ Now that you have selected **Material UI** as your UI framework, let's get start
 
 </UIConditional>
 
-If you already have an existing project, comfortable with your development environment and workflow, you can skip this unit and go directly to the [Unit 3](/docs/tutorial/understanding-dataprovider/index/).
-
 :::info Using Stackblitz?
 Prefer to finish this tutorial in an online code editor? That's possible!
 
