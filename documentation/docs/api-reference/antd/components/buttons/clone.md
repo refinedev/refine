@@ -15,7 +15,13 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live
 // visible-block-start
-import { Table, List, useTable, CloneButton } from "@pankod/refine-antd";
+import {
+    Table,
+    List,
+    useTable,
+    // highlight-next-line
+    CloneButton,
+} from "@pankod/refine-antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -63,7 +69,7 @@ render(
 
 `recordItemId` is used to append the record id to the end of the route path.
 
-```tsx live disableScroll previewHeight=200px
+```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
 // visible-block-start
 import { CloneButton } from "@pankod/refine-antd";
@@ -103,7 +109,7 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/api-re
 
 It is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
 
-```tsx live disableScroll previewHeight=200px
+```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
@@ -145,7 +151,7 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/api-re
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx live disableScroll previewHeight=200px
+```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
@@ -173,10 +179,10 @@ render(
         resources={[
             {
                 name: "posts",
+                list: MyCloneComponent,
                 create: ClonedPage,
             },
         ]}
-        DashboardPage={MyCloneComponent}
     />,
 );
 ```
@@ -189,7 +195,14 @@ This prop can be used to skip access control check with its `enabled` property o
 import { CloneButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
-    return <CloneButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <CloneButton
+            accessControl={{
+                enabled: true,
+                hideIfUnauthorized: true
+            }}
+        />
+    );
 };
 ```
 

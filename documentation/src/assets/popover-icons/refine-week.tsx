@@ -9,6 +9,7 @@ const SvgRefineWeek = (props: SVGProps<SVGSVGElement>) => (
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         {...props}
+        className={props.className ? props.className : undefined}
     >
         <g opacity="0.75">
             <path

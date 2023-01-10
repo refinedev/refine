@@ -4,7 +4,6 @@ title: Export
 swizzle: true
 ---
 
-
 `<ExportButton>` is a Material UI [`<LoadingButton>`][button] with a default export icon and a default text with "Export". It only has presentational value.
 
 [Refer to the for more detailed information about `useExport`. &#8594][useexport]
@@ -17,55 +16,40 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 Use it like any other Ant Design [`<Button>`][button]. You can use it with [useExport][useexport]:
 
-```tsx title="/src/pages/posts/list.tsx"
-// highlight-next-line
-import { useExport, useTable } from "@pankod/refine-core";
+```tsx live url=http://localhost:3000/posts previewHeight=340px
+// visible-block-start
+import { useExport } from "@pankod/refine-core";
 import {
-    ExportButton,
+    useDataGrid,
+    DataGrid,
+    GridColumns,
     List,
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableRow,
+    // highlight-next-line
+    ExportButton,
 } from "@pankod/refine-mui";
 
-export const PostList: React.FC = () => {
-    const { tableQueryResult } = useTable<IPost>();
+const columns: GridColumns = [
+    { field: "id", headerName: "ID", type: "number" },
+    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+];
+
+const PostsList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>();
 
     const { triggerExport, isLoading: exportLoading } = useExport<IPost>();
 
     return (
         <List
-            cardHeaderProps={{
-                action: (
-                    // highlight-start
-                    <ExportButton
-                        onClick={triggerExport}
-                        loading={exportLoading}
-                    />
-                    // highlight-end
-                ),
-            }}
+            // highlight-start
+            headerButtons={(
+                <ExportButton
+                    onClick={triggerExport}
+                    loading={exportLoading}
+                />
+            )}
+            // highlight-end
         >
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>ID</TableCell>
-                        <TableCell>Title</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {tableQueryResult.data?.data.map((row) => (
-                        <TableRow key={row.title}>
-                            <TableCell>{row.id}</TableCell>
-                            <TableCell component="th" scope="row">
-                                {row.title}
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
@@ -74,18 +58,19 @@ interface IPost {
     id: number;
     title: string;
 }
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        resources={[
+            {
+                name: "posts",
+                list: PostsList,
+            },
+        ]}
+    />,
+);
 ```
-
-It looks like this:
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/export/export-mui.png" alt="Default export button" />
-</div>
 
 ## Properties
 
@@ -93,12 +78,34 @@ It looks like this:
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
 import { ExportButton } from "@pankod/refine-mui";
 
-export const MyRefreshComponent = () => {
-    return <ExportButton hideText />;
+const MyExportComponent = () => {
+    return (
+        <ExportButton
+            // highlight-next-line
+            hideText={true}
+        />
+    );
 };
+
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                list: MyExportComponent,
+            },
+        ]}
+    />,
+);
 ```
 
 ## API Reference

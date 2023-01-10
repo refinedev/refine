@@ -4,10 +4,73 @@ title: Show
 swizzle: true
 ---
 
-
 `<Show>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a refresh button or giving title to the page.
 
 We will show what `<Show>` does using properties with examples.
+
+```tsx live hideCode url=http://localhost:3000/posts/show/123
+// visible-block-start
+import React from "react";
+import { useShow, useOne } from "@pankod/refine-core";
+import {
+    Show,
+    Stack,
+    Typography,
+    NumberField,
+    TextFieldComponent as TextField,
+    MarkdownField,
+    DateField,
+} from "@pankod/refine-mui";
+
+const SampleShow = () => {
+    const { queryResult } = useShow();
+    const { data, isLoading } = queryResult;
+
+    const record = data?.data;
+
+    const { data: categoryData, isLoading: categoryIsLoading } = useOne({
+        resource: "categories",
+        id: record?.category?.id || "",
+        queryOptions: {
+            enabled: !!record,
+        },
+    });
+
+    return (
+        <Show isLoading={isLoading}>
+            <Stack gap={1}>
+                <Typography variant="body1" fontWeight="bold">
+                    Id
+                </Typography>
+                <NumberField value={record?.id ?? ""} />
+                <Typography variant="body1" fontWeight="bold">
+                    Title
+                </Typography>
+                <TextField value={record?.title} />
+                <Typography variant="body1" fontWeight="bold">
+                    Content
+                </Typography>
+                <MarkdownField value={record?.content} />
+                <Typography variant="body1" fontWeight="bold">
+                    Category
+                </Typography>
+                {categoryIsLoading ? (
+                    <>Loading...</>
+                ) : (
+                    <>{categoryData?.data?.title}</>
+                )}
+                <Typography variant="body1" fontWeight="bold">
+                    Created At
+                </Typography>
+                <DateField value={record?.createdAt} />
+            </Stack>
+        </Show>
+    );
+};
+// visible-block-end
+
+render(<RefineMuiDemo initialRoutes={["/samples/show/123"]} resources={[ { name: "samples", show: SampleShow, list: SampleList } ]} />)
+```
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -19,12 +82,39 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 It allows adding title inside the `<Show>` component. if you don't pass title props it uses the "Show" prefix and the singular resource name by default. For example, for the "posts" resource, it will be "Show post".
 
-```tsx
-import { Show } from "@pankod/refine-mui";
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
+// visible-block-start
+import { Show, Typography } from "@pankod/refine-mui";
 
-export const ShowPage: React.FC = () => {
-    return <Show title="Custom Title">...</Show>;
+const ShowPage: React.FC = () => {
+    return (
+        <Show
+            // highlight-next-line
+            title={<Typography variant="h5">Custom Title</Typography>}
+        >
+            <span>Rest of your page here</span>
+        </Show>
+    );
 };
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/posts/show/123"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <RefineMui.ShowButton recordItemId="123" />
+                    </div>
+                ),
+                show: ShowPage,
+            },
+        ]}
+    />
+);
 ```
 
 ### `resource`
@@ -33,23 +123,26 @@ The `<Show>` component reads the `resource` information from the route by defaul
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
 
-```tsx title="src/app.tsx"
-import { Refine } from "@pankod/refine-core";
-import { Show } from "@pankod/refine-mui";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
+// handle initial routes in new way
+setInitialRoutes(["/custom"]);
 
-// highlight-start
-const CustomPage = () => {
+// visible-block-start
+import { Refine } from "@pankod/refine-core";
+import { Show, Layout } from "@pankod/refine-mui";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+
+const CustomPage: React.FC = () => {
     return (
-        <Show resource="posts" recordItemId="postId">
-            ...
+        /* highlight-next-line */
+        <Show resource="posts" recordItemId={123}>
+            <span>Rest of your page here</span>
         </Show>
     );
 };
-// highlight-end
 
-export const App: React.FC = () => {
+const App: React.FC = () => {
     return (
         <Refine
             routerProvider={{
@@ -63,11 +156,15 @@ export const App: React.FC = () => {
                 ],
                 // highlight-end
             }}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
+            Layout={Layout}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[{ name: "posts" }]}
         />
     );
 };
+// visible-block-end
+
+render(<Wrapper><App /></Wrapper>);
 ```
 
 ### `canDelete` and `canEdit`
@@ -78,25 +175,68 @@ When clicked on, delete button executes the [`useDelete`](/api-reference/core/ho
 
 Refer to the [`<DeleteButton>`](/api-reference/mui/components/buttons/delete.md) and the [`<EditButton>`](/api-reference/mui/components/buttons/edit.md) documentation for detailed usage.
 
-```tsx title="src/pages/posts/show.tsx"
-import { usePermissions } from "@pankod/refine-core";
-// highlight-next-line
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
+const { default: simpleRest } = RefineSimpleRest;
+
+const dataProvider = simpleRest("https://api.fake-rest.refine.dev");
+
+const customDataProvider = {
+    ...dataProvider,
+    deleteOne: async ({ resource, id, variables }) => {
+        return {
+            data: {},
+        };
+    },
+};
+
+const authProvider = {
+    login: () => Promise.resolve(),
+    logout: () => Promise.resolve(),
+    checkAuth: () => Promise.resolve(),
+    checkError: () => Promise.resolve(),
+    getPermissions: () => Promise.resolve("admin"),
+    getUserIdentity: () => Promise.resolve(),
+};
+
+// visible-block-start
 import { Show } from "@pankod/refine-mui";
+import { usePermissions } from "@pankod/refine-core";
 
-export const ShowPage: React.FC = () => {
-    const { data } = usePermissions<string>();
-
+const PostShow: React.FC = () => {
+    const { data: permissionsData } = usePermissions();
     return (
         <Show
-            // highlight-next-line
-            canDelete={data === "admin"}
-            // highlight-next-line
-            canEdit={data === "editor" || data === "admin"}
+            /* highlight-start */
+            canDelete={permissionsData?.includes("admin")}
+            canEdit={permissionsData?.includes("editor") || permissionsData?.includes("admin")}
+            /* highlight-end */
         >
-            ...
+            <p>Rest of your page here</p>
         </Show>
     );
 };
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        authProvider={authProvider}
+        dataProvider={customDataProvider}
+        initialRoutes={["/posts/show/123"]}
+        Layout={RefineMui.Layout}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <RefineMui.ShowButton recordItemId="123" />
+                    </div>
+                ),
+                show: PostShow,
+            },
+        ]}
+    />,
+);
 ```
 
 [Refer to the `usePermission` documentation for detailed usage. &#8594](/api-reference/core/hooks/auth/usePermissions.md)
@@ -105,37 +245,46 @@ export const ShowPage: React.FC = () => {
 
 `<Show>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL (when used on a custom page, modal or drawer).
 
-```tsx title="src/pages/posts/show.tsx"
-import { useState } from "react";
-import { useShow } from "@pankod/refine-core";
-// highlight-next-line
-import { Show, Dialog, ShowButton } from "@pankod/refine-mui";
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
+// handle initial routes in new way
+setInitialRoutes(["/custom"]);
 
-export const ShowPage: React.FC = () => {
-    const [visibleShowDialog, setVisibleShowDialog] = useState<boolean>(false);
+// visible-block-start
+import { Refine } from "@pankod/refine-core";
+import { List, Layout } from "@pankod/refine-mui";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
 
-    const { queryResult, showId, setShowId } = useShow();
-    const { data, isLoading } = queryResult;
-
+const CustomPage: React.FC = () => {
     return (
-        <>
-            <ShowButton
-                size="small"
-                onClick={() => {
-                    setShowId(data?.data.id);
-                    setVisibleShowDialog(true);
-                }}
-            />
-            <Dialog
-                open={visibleShowDialog}
-                onClose={() => setVisibleShowDialog(false)}
-            >
-                // highlight-next-line
-                <Show recordItemId={showId} isLoading={isLoading}></Show>
-            </Dialog>
-        </>
+        /* highlight-next-line */
+        <List resource="posts" recordItemId={123}>
+            <span>Rest of your page here</span>
+        </List>
     );
 };
+
+const App: React.FC = () => {
+    return (
+        <Refine
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                    {
+                        element: <CustomPage />,
+                        path: "/custom",
+                    },
+                ],
+            }}
+            Layout={Layout}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[{ name: "posts" }]}
+        />
+    );
+};
+// visible-block-end
+
+render(<Wrapper><App /></Wrapper>);
 ```
 
 :::note
@@ -182,46 +331,87 @@ export const App: React.FC = () => {
 
 To customize the back button or to disable it, you can use the `goBack` property.
 
-```tsx
-import { Show } from "@pankod/refine-mui";
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
+// visible-block-start
+import { Show, Button } from "@pankod/refine-mui";
 import { useNavigation } from "@pankod/refine-core";
-import { MyBackButton } from "@components";
 
-export const ShowPage: React.FC = () => {
+const BackButton = () => {
     const { goBack } = useNavigation();
 
+    return <Button onClick={() => goBack()}>BACK!</Button>
+}
+
+const PostShow: React.FC = () => {
     return (
         <Show
-            /* ... */
-            goBack={<MyBackButton onClick={() => goBack()} />}
-            /* ... */
+            // highlight-next-line
+            goBack={<BackButton />}
         >
-            ...
+            <span>Rest of your page here</span>
         </Show>
     );
 };
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/posts", "/posts/show/123"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <RefineMui.ShowButton recordItemId={123} />
+                    </div>
+                ),
+                show: PostShow,
+            },
+        ]}
+    />,
+);
 ```
 
 ### `isLoading`
 
 To toggle the loading state of the `<Show/>` component, you can use the `isLoading` property.
 
-```tsx
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
+// visible-block-start
 import { Show } from "@pankod/refine-mui";
 
-export const ShowPage: React.FC = () => {
+const PostShow: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
 
     return (
         <Show
-            /* ... */
+            // highlight-next-line
             isLoading={loading}
-            /* ... */
         >
-            ...
+            <span>Rest of your page here</span>
         </Show>
     );
 };
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/posts", "/posts/show/123"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <RefineMui.ShowButton recordItemId={123} />
+                    </div>
+                ),
+                show: PostShow,
+            },
+        ]}
+    />,
+);
 ```
 
 ### `breadcrumb`
@@ -234,20 +424,49 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
 :::
 
-```tsx
-import { Show } from "@pankod/refine-mui";
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
+// visible-block-start
+import { Show, Breadcrumb } from "@pankod/refine-mui";
 
-export const ShowPage: React.FC = () => {
+const PostShow: React.FC = () => {
     return (
         <Show
-            /* ... */
-            breadcrumb={null}
-            /* ... */
+            // highlight-start
+            breadcrumb={
+                <div
+                    style={{
+                        padding: "3px 6px",
+                        border: "2px dashed cornflowerblue",
+                    }}
+                >
+                    <Breadcrumb />
+                </div>
+            }
+            // highlight-end
         >
-            ...
+            <span>Rest of your page here</span>
         </Show>
     );
 };
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/posts", "/posts/show/123"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <RefineMui.ShowButton recordItemId={123} />
+                    </div>
+                ),
+                show: PostShow,
+            },
+        ]}
+    />,
+);
 ```
 
 ### `wrapperProps`
@@ -256,24 +475,46 @@ If you want to customize the wrapper of the `<Show/>` component, you can use the
 
 [Refer to the `Card` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card/)
 
-```tsx
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
+// visible-block-start
 import { Show } from "@pankod/refine-mui";
 
-export const ShowPage: React.FC = () => {
+const PostShow: React.FC = () => {
+    const [loading, setLoading] = React.useState(true);
+
     return (
         <Show
-            /* ... */
+            // highlight-start
             wrapperProps={{
                 sx: {
-                    backgroundColor: "snow",
+                    backgroundColor: "lightsteelblue",
                 },
             }}
-            /* ... */
+            // highlight-end
         >
-            ...
+            <span>Rest of your page here</span>
         </Show>
     );
 };
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/posts", "/posts/show/123"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <RefineMui.ShowButton recordItemId={123} />
+                    </div>
+                ),
+                show: PostShow,
+            },
+        ]}
+    />,
+);
 ```
 
 ### `headerProps`
@@ -282,24 +523,46 @@ If you want to customize the header of the `<Show/>` component, you can use the 
 
 [Refer to the `CardHeader` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card-header/)
 
-```tsx
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
+// visible-block-start
 import { Show } from "@pankod/refine-mui";
 
-export const ShowPage: React.FC = () => {
+const PostShow: React.FC = () => {
+    const [loading, setLoading] = React.useState(true);
+
     return (
         <Show
-            /* ... */
+            // highlight-start
             headerProps={{
                 sx: {
-                    backgroundColor: "snow",
+                    backgroundColor: "lightsteelblue",
                 },
             }}
-            /* ... */
+            // highlight-end
         >
-            ...
+            <span>Rest of your page here</span>
         </Show>
     );
 };
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/posts", "/posts/show/123"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <RefineMui.ShowButton recordItemId={123} />
+                    </div>
+                ),
+                show: PostShow,
+            },
+        ]}
+    />,
+);
 ```
 
 ### `contentProps`
@@ -308,49 +571,93 @@ If you want to customize the content of the `<Show/>` component, you can use the
 
 [Refer to the `CardContent` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card-content/)
 
-```tsx
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
+// visible-block-start
 import { Show } from "@pankod/refine-mui";
 
-export const ShowPage: React.FC = () => {
+const PostShow: React.FC = () => {
+    const [loading, setLoading] = React.useState(true);
+
     return (
         <Show
-            /* ... */
+            // highlight-start
             contentProps={{
                 sx: {
-                    backgroundColor: "snow",
+                    backgroundColor: "lightsteelblue",
                 },
             }}
-            /* ... */
+            // highlight-end
         >
-            ...
+            <span>Rest of your page here</span>
         </Show>
     );
 };
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/posts", "/posts/show/123"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <RefineMui.ShowButton recordItemId={123} />
+                    </div>
+                ),
+                show: PostShow,
+            },
+        ]}
+    />,
+);
 ```
 
 ### `headerButtons`
 
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
-```tsx
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
+// visible-block-start
 import { Show, Button } from "@pankod/refine-mui";
 
-export const ShowPage: React.FC = () => {
+const PostShow: React.FC = () => {
+    const [loading, setLoading] = React.useState(true);
+
     return (
         <Show
-            /* ... */
+            // highlight-start
             headerButtons={({ defaultButtons }) => (
                 <>
                     {defaultButtons}
                     <Button type="primary">Custom Button</Button>
                 </>
             )}
-            /* ... */
+            // highlight-end
         >
-            ...
+            <span>Rest of your page here</span>
         </Show>
     );
 };
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/posts", "/posts/show/123"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <RefineMui.ShowButton recordItemId={123} />
+                    </div>
+                ),
+                show: PostShow,
+            },
+        ]}
+    />,
+);
 ```
 
 ### `headerButtonProps`
@@ -359,49 +666,99 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 [Refer to the `Box` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/box/)
 
-```tsx
-import { Show } from "@pankod/refine-mui";
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
+// visible-block-start
+import { Show, Button } from "@pankod/refine-mui";
 
-export const ShowPage: React.FC = () => {
+const PostShow: React.FC = () => {
+    const [loading, setLoading] = React.useState(true);
+
     return (
         <Show
-            /* ... */
+            // highlight-start
             headerButtonProps={{
                 sx: {
-                    backgroundColor: "snow",
+                    backgroundColor: "lightsteelblue",
                 },
             }}
-            /* ... */
+            // highlight-end
+            headerButtons={({ defaultButtons }) => (
+                <>
+                    {defaultButtons}
+                    <Button type="primary">Custom Button</Button>
+                </>
+            )}
         >
-            ...
+            <span>Rest of your page here</span>
         </Show>
     );
 };
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/posts", "/posts/show/123"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <RefineMui.ShowButton recordItemId={123} />
+                    </div>
+                ),
+                show: PostShow,
+            },
+        ]}
+    />,
+);
 ```
 
 ### `footerButtons`
 
 You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
-```tsx
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
+// visible-block-start
 import { Show, Button } from "@pankod/refine-mui";
 
-export const ShowPage: React.FC = () => {
+const PostShow: React.FC = () => {
+    const [loading, setLoading] = React.useState(true);
+
     return (
         <Show
-            /* ... */
+            // highlight-start
             footerButtons={({ defaultButtons }) => (
                 <>
                     {defaultButtons}
                     <Button type="primary">Custom Button</Button>
                 </>
             )}
-            /* ... */
+            // highlight-end
         >
-            ...
+            <span>Rest of your page here</span>
         </Show>
     );
 };
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/posts", "/posts/show/123"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <RefineMui.ShowButton recordItemId={123} />
+                    </div>
+                ),
+                show: PostShow,
+            },
+        ]}
+    />,
+);
 ```
 
 ### `footerButtonProps`
@@ -410,25 +767,54 @@ You can customize the wrapper element of the buttons at the footer by using the 
 
 [Refer to the `CardActions` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card-actions/)
 
-```tsx
-import { Show } from "@pankod/refine-mui";
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
+// visible-block-start
+import { Show, Button } from "@pankod/refine-mui";
 
-export const ShowPage: React.FC = () => {
+const PostShow: React.FC = () => {
+    const [loading, setLoading] = React.useState(true);
+
     return (
         <Show
-            /* ... */
+            // highlight-start
             footerButtonProps={{
                 sx: {
-                    backgroundColor: "snow",
+                    backgroundColor: "lightsteelblue",
                 },
             }}
-            /* ... */
+            // highlight-end
+            footerButtons={({ defaultButtons }) => (
+                <>
+                    {defaultButtons}
+                    <Button type="primary">Custom Button</Button>
+                </>
+            )}
         >
-            ...
+            <span>Rest of your page here</span>
         </Show>
     );
 };
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/posts", "/posts/show/123"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <RefineMui.ShowButton recordItemId={123} />
+                    </div>
+                ),
+                show: PostShow,
+            },
+        ]}
+    />,
+);
 ```
+
 
 ### ~~`actionButtons`~~
 
@@ -459,16 +845,6 @@ export const ShowPage: React.FC = () => {
     );
 };
 ```
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/basic-views/show/actionButtonsUsageMui.png" alt="actionButton Usage" />
-</div>
-<br/>
 
 ### ~~`cardProps`~~
 
@@ -521,16 +897,6 @@ interface IPost {
 }
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/basic-views/show/cardHeaderProps.png" alt="cardHeaderProps Usage" />
-</div>
-<br/>
-
 ### ~~`cardContentProps`~~
 
 :::caution Deprecated
@@ -562,3 +928,90 @@ breadcrumb-default="[`<Breadcrumb/>`](/docs/api-reference/mui/components/mui-bre
 goBack-default="`<ArrowLeft />`"
 goBack-type="`ReactNode`"
 />
+
+```tsx live shared
+const SampleList = () => {
+    const { dataGridProps } = RefineMui.useDataGrid();
+
+    const { data: categoryData, isLoading: categoryIsLoading } = RefineCore.useMany({
+        resource: "categories",
+        ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
+        queryOptions: {
+            enabled: !!dataGridProps?.rows,
+        },
+    });
+
+    const columns = React.useMemo<GridColumns<any>>(
+        () => [
+            {
+                field: "id",
+                headerName: "Id",
+                type: "number",
+                minWidth: 50,
+            },
+            {
+                field: "title",
+                headerName: "Title",
+                minWidth: 200,
+            },
+            {
+                field: "category",
+                headerName: "Category",
+                valueGetter: ({ row }) => {
+                    const value = row?.category?.id;
+
+                    return value;
+                },
+                minWidth: 300,
+                renderCell: function render({ value }) {
+                    return categoryIsLoading ? (
+                        <>Loading...</>
+                    ) : (
+                        categoryData?.data?.find((item) => item.id === value)
+                            ?.title
+                    );
+                },
+            },
+            {
+                field: "createdAt",
+                headerName: "Created At",
+                minWidth: 250,
+                renderCell: function render({ value }) {
+                    return <RefineMui.DateField value={value} />;
+                },
+            },
+            {
+                field: "actions",
+                headerName: "Actions",
+                renderCell: function render({ row }) {
+                    return (
+                        <>
+                            <RefineMui.ShowButton hideText recordItemId={row.id} />
+                        </>
+                    );
+                },
+                align: "center",
+                headerAlign: "center",
+                minWidth: 80,
+            },
+        ],
+        [categoryData?.data],
+    );
+
+    return (
+        <RefineMui.List>
+            <RefineMui.DataGrid {...dataGridProps} columns={columns} autoHeight />
+        </RefineMui.List>
+    );
+};
+
+const Wrapper = ({children}) => {
+    return (
+        <RefineMui.ThemeProvider theme={RefineMui.LightTheme}>
+            <RefineMui.CssBaseline />
+            <RefineMui.GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+            {children}
+        </RefineMui.ThemeProvider>
+    )
+}
+```
