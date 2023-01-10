@@ -30,7 +30,7 @@ const PostList: React.FC = () => {
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" width="100%" />
+                <Table.Column dataIndex="title" title="Title" width="50%" />
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
@@ -39,6 +39,7 @@ const PostList: React.FC = () => {
                         // highlight-next-line
                         <DeleteButton size="small" recordItemId={record.id} />
                     )}
+                    width="50%"
                 />
             </Table>
         </List>
