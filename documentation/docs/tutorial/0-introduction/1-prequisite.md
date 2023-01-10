@@ -27,7 +27,6 @@ A clickable task checklist awaits you at the end of each page to measure your un
 
 -   [Join the Discord Community](https://discord.com/invite/refine) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
 -   [GitHub Discussions](https://github.com/refinedev/refine/discussions) – ask anything about the project or give feedback, we'd love to hear your thoughts!
--   Intercom – if you have any questions, you can ask them directly from the page you are on.
 
 </details>
 
