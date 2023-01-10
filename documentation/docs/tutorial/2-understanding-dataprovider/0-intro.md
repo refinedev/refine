@@ -63,7 +63,7 @@ These methods are used to perform CRUD operations by **refine**
 
 ## Using Data Providers in refine
 
-You can register your data provider to the `<Refine>` component by passing to `dataProvider` property.
+Let's remember that in the previous units, the dataProvider was passed to the `<Refine>` component and we consumed the data in the API. Here is the way to activate the `dataProvider` register.
 
 ```tsx
 import dataProvider from "@pankod/refine-simple-rest"
