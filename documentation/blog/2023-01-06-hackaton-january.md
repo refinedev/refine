@@ -11,7 +11,6 @@ hide_table_of_contents: false
 
 
 
-
 We're proud to have reached thousands of developers using **[refine](https://github.com/refinedev/refine)** in our first year, and we couldn't have done it without open source community! To celebrate this achievement with the community, we are excited to announce the launch of the first hackathon event.
 
 This hackathon is an excellent opportunity for developers to showcase their skills and learn **[refine](https://github.com/refinedev/refine)**! 
@@ -25,11 +24,10 @@ We can't wait to see what amazing projects the participants will build projects 
 
 ## Together with Open Source Community
 
-`<Strapi Logo>`  `<Appwrite Logo>`
+`<Strapi Logo>`  `<Appwrite Logo>` `<Medusa>`
  
 refine draws its strength from the open-source community, and we are grateful to have the support of [Strapi](https://strapi.io/) and [Appwrite](https://appwrite.io/)
-which has significant contributions to the open source community for our first hackathon!
-
+which has significant contributions to the open source community
 It's worth noting that refine has built-in data provider support for both Strapi and Appwrite, so we believe they will be excellent backend solutions for your hackathon project.
 
 Strapi and Appwrite will also be providing swag kits for the winners.
@@ -45,9 +43,9 @@ Strapi and Appwrite will also be providing swag kits for the winners.
 ## Details
 ### Schedule
 - The Hackathon begins at 9:00am PT Monday 16th January 2023
-- Work on your project any time for the next 3 weeks
-- Submission deadline (11:59pm PT Monday 6st February 2023)
-- The winners will be announced on Monday 13th February 2023
+- Work on your project any time for the next 4 weeks
+- Submission deadline (11:59pm PT Monday 13st February 2023)
+- The winners will be announced on Monday 20th February 2023
 
 ### Prizes
 There are 3 chances to win, there will be prizes for:
@@ -57,7 +55,7 @@ There are 3 chances to win, there will be prizes for:
 - **Most Technically Impressive** => $300 in GitHub Sponsorship + Special Swag Kit
 
 ## Submission
-- **Submissions link:**  [Use this GitHub thread](https://github.com/refinedev/refine/discussions/3363)
+- **Submissions link:**  [Use this form](https://refinedev.typeform.com/hackathon)
 - **Submission guidelines:** [Follow the guidelines in this repository](https://github.com/refinedev/hackathon-jan2023-guidelines)
 
 
@@ -83,13 +81,14 @@ The **refine** team will be taking part in the Hackathon and you'll find us live
 - The winning repository for "Best Overall Project" category will receive a $1500 prize in the form of a GitHub sponsorship, which will consist of $500 per month for a period of 3 months. The aim of this prize is to provide funding to sustain the project and encourage its continued maintenance.
 - The "Most Visually Pleasing" and "Most Technically Impressive" prizes will be given at one time.
 
-### What are judging criterias?
+### What are the judging criterias?
 -  The Judges will be senior staff from the refine DevRel, Marketing and Engineering Teams.
 -  Judging criteria:
     -  Quality: It is evaluated based on its creativity and originality.
     -  Design: The design of the idea is judged based on its user experience and visual appeal.
     -  The technical implementation: It is assessed on how well the idea was executed by the developer and how effectively refine was used in the submission.
 - By submitting your project, you give refine permission to use screenshots, code snippets, and/or links to your project or the content of your README in our Twitter, blog, website, email updates, and [refine Discord](https://discord.gg/refine). You retain ownership of your intellectual property.
+
 
 ## Useful resources
 
