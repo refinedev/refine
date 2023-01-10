@@ -9,7 +9,7 @@ tutorial:
 
 ## Overview
 
-In the previous ["Adding List Page"](/docs/tutorial/adding-crud-pages/mantine/index) section, we have displayed products data in a table. Now we will learn how to add sorting and filtering to the table to user can have more control over the data.
+In the previous ["Adding List Page"](/docs/tutorial/adding-crud-pages/chakra-ui/index) section, we have displayed products data in a table. Now we will learn how to add sorting and filtering to the table to user can have more control over the data.
 
 ## Sort and Filters
 
@@ -30,7 +30,7 @@ Since `@pankod/refine-react-table` provides a headless solution, there are many 
 Let's create a `<ColumnSorter/>` component to use in our table header. This component will be responsible for changing the sorting state of the table.
 
 ```tsx title="src/components/table/ColumnSorter.tsx"
-import { ActionIcon } from "@pankod/refine-mantine";
+import { IconButton } from "@chakra-ui/react";
 import { IconChevronDown, IconSelector } from "@tabler/icons";
 import type { Column } from "@pankod/refine-react-table";
 
@@ -44,13 +44,17 @@ export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
     const sorted = column.getIsSorted();
 
     return (
-        <ActionIcon size="xs" onClick={column.getToggleSortingHandler()}>
+        <IconButton
+            aria-label="Sort"
+            size="xs"
+            onClick={column.getToggleSortingHandler()}
+        >
             {sorted ? (
                 <IconChevronDown size={18} />
             ) : (
                 <IconSelector size={18} />
             )}
-        </ActionIcon>
+        </IconButton>
     );
 };
 ```
@@ -91,14 +95,14 @@ Now, we can use `<ColumnSorter/>` in our table header.
     import { ColumnSorter } from "../../components/table";
     ```
 
-2. Add the `<ColumnSorter/>` component to the `<th/>` as a child like below.
+2. Add the `<ColumnSorter/>` component to the `<Th/>` as a child like below.
 
     ```tsx title="src/pages/products/list.tsx"
-    <thead>
+    <Thead>
         {getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
+            <Tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                    <th key={header.id}>
+                    <Th key={header.id}>
                         {!header.isPlaceholder &&
                             flexRender(
                                 header.column.columnDef.header,
@@ -106,11 +110,11 @@ Now, we can use `<ColumnSorter/>` in our table header.
                             )}
                         //highlight-next-line
                         <ColumnSorter column={header.column} />
-                    </th>
+                    </Th>
                 ))}
-            </tr>
+            </Tr>
         ))}
-    </thead>
+    </Thead>
     ```
 
 Now, we can sort the table by clicking on the sort button in the table header.
@@ -122,12 +126,14 @@ Let's create a `<ColumnFilter/>` component to use in our table header. This comp
 ```tsx title="src/components/table/ColumnFilter.tsx"
 import React, { useState } from "react";
 import {
-    TextInput,
+    Input,
     Menu,
-    ActionIcon,
-    Stack,
-    Group,
-} from "@pankod/refine-mantine";
+    IconButton,
+    MenuButton,
+    MenuList,
+    VStack,
+    HStack,
+} from "@pankod/refine-chakra-ui";
 import { IconFilter, IconX, IconCheck } from "@tabler/icons";
 
 export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({
@@ -164,7 +170,9 @@ export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({
 
         if (!FilterComponent && !!state) {
             return (
-                <TextInput
+                <Input
+                    borderRadius="md"
+                    size="sm"
                     autoComplete="off"
                     value={state.value}
                     onChange={(e) => change(e.target.value)}
@@ -172,55 +180,49 @@ export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({
             );
         }
 
-        return <FilterComponent value={state?.value} onChange={change} />;
+        return (
+            <FilterComponent
+                value={state?.value}
+                onChange={(e: any) => change(e.target.value)}
+            />
+        );
     };
 
     return (
-        <Menu
-            opened={!!state}
-            position="bottom"
-            withArrow
-            transition="scale-y"
-            shadow="xl"
-            onClose={close}
-            width="256px"
-            withinPortal
-        >
-            <Menu.Target>
-                <ActionIcon
-                    size="xs"
-                    onClick={open}
-                    variant={column.getIsFiltered() ? "light" : "transparent"}
-                    color={column.getIsFiltered() ? "primary" : "gray"}
-                >
-                    <IconFilter size={18} />
-                </ActionIcon>
-            </Menu.Target>
-            <Menu.Dropdown>
+        <Menu isOpen={!!state} onClose={close}>
+            <MenuButton
+                onClick={open}
+                as={IconButton}
+                aria-label="Options"
+                icon={<IconFilter size="16" />}
+                variant="ghost"
+                size="xs"
+            />
+            <MenuList p="2">
                 {!!state && (
-                    <Stack p="xs" spacing="xs">
+                    <VStack align="flex-start">
                         {renderFilterElement()}
-                        <Group position="right" spacing={6} noWrap>
-                            <ActionIcon
-                                size="md"
-                                color="gray"
-                                variant="outline"
+                        <HStack spacing="1">
+                            <IconButton
+                                aria-label="Clear"
+                                size="sm"
+                                colorScheme="red"
                                 onClick={clear}
                             >
                                 <IconX size={18} />
-                            </ActionIcon>
-                            <ActionIcon
-                                size="md"
+                            </IconButton>
+                            <IconButton
+                                aria-label="Save"
+                                size="sm"
                                 onClick={save}
-                                color="primary"
-                                variant="outline"
+                                colorScheme="green"
                             >
                                 <IconCheck size={18} />
-                            </ActionIcon>
-                        </Group>
-                    </Stack>
+                            </IconButton>
+                        </HStack>
+                    </VStack>
                 )}
-            </Menu.Dropdown>
+            </MenuList>
         </Menu>
     );
 };
@@ -231,9 +233,6 @@ export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({
 Filter element is a component that renders an input element. When the user changes the value of the input element, the filter value of the column will be changed.
 
 `<ColumnFilter/>` also contains a clear and apply button. When the user clicks on the clear button, the filter value of the column will be cleared. When the user clicks on the apply button, the filter value of the column will be set.
-
-:::tip
-If you want to use a custom filter element, you can pass it to the `filterElement` property of the `meta` in column definition. For example, you can pass a `<Select/>` component like below.
 
 <details>
   <summary><strong>How can I use custom filter element?</strong></summary>
@@ -299,14 +298,14 @@ Now, we can use `<ColumnFilter/>` in our table header.
     import { ColumnFilter } from "../../components/table";
     ```
 
-2. Add the `<ColumnFilter/>` component to the `<th/>` as a child like below.
+2. Add the `<ColumnFilter/>` component to the `<Th/>` as a child like below.
 
     ```tsx title="src/pages/products/list.tsx"
-    <thead>
+    <Thead>
         {getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
+            <Tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                    <th key={header.id}>
+                    <Th key={header.id}>
                         {!header.isPlaceholder &&
                             flexRender(
                                 header.column.columnDef.header,
@@ -315,11 +314,11 @@ Now, we can use `<ColumnFilter/>` in our table header.
                         <ColumnSorter column={header.column} />
                         //highlight-next-line
                         <ColumnFilter column={header.column} />
-                    </th>
+                    </Th>
                 ))}
-            </tr>
+            </Tr>
         ))}
-    </thead>
+    </Thead>
     ```
 
 Now, we can filter the table by clicking on the filter button in the table header.
