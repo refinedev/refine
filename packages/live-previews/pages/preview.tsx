@@ -14,13 +14,8 @@ import { checkPackage } from "@/src/utils/check-package";
 
 const Preview: NextPage = () => {
     const [ready, setReady] = React.useState(false);
-    const {
-        code: code,
-        hasQuery,
-        isReady,
-        disableScroll,
-        useTailwind,
-    } = useCode();
+    const { code, css, hasQuery, isReady, disableScroll, useTailwind } =
+        useCode();
     const [scope, setScope] = React.useState({ ...RefineCommonScope });
     const [scopeSettled, setScopeSettled] = React.useState(false);
 
@@ -54,6 +49,11 @@ const Preview: NextPage = () => {
             const chakraInferencerScope = usedPackages.has("chakra-inferencer")
                 ? (await import("../src/scope/chakra-inferencer")).default
                 : {};
+            const headlessInferencerScope = usedPackages.has(
+                "headless-inferencer",
+            )
+                ? (await import("../src/scope/headless-inferencer")).default
+                : {};
 
             setScope({
                 ...RefineCommonScope,
@@ -65,6 +65,7 @@ const Preview: NextPage = () => {
                 ...muiInferencerScope,
                 ...mantineInferencerScope,
                 ...chakraInferencerScope,
+                ...headlessInferencerScope,
             });
             setScopeSettled(true);
         }
@@ -128,6 +129,7 @@ const Preview: NextPage = () => {
                             ? "hidden !important"
                             : "auto"};
                     }
+                    ${css ?? ""}
                 `}
             </style>
             <Loading loading={!ready || !scopeSettled} />

@@ -50,6 +50,7 @@ export default function BrowserWindow({
                         "text--truncate",
                     )}
                 >
+                    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine-mini.svg" />
                     {url}
                 </div>
                 {right ? (

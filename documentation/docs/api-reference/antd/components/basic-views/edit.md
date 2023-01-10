@@ -8,7 +8,7 @@ swizzle: true
 
 We will show what `<Edit>` does using properties with examples.
 
-```tsx live hideCode url=http://localhost:3000/posts/edit/2
+```tsx live hideCode url=http://localhost:3000/posts/edit/123
 const { EditButton } = RefineAntd;
 
 interface ICategory {
@@ -105,14 +105,14 @@ const PostEdit: React.FC<IResourceComponentsProps> = () => {
 
 render(
     <RefineAntdDemo
-        initialRoutes={["/posts/edit/2"]}
+        initialRoutes={["/posts/edit/123"]}
         resources={[
             {
                 name: "posts",
                 list: () => (
                     <div>
                         <p>This page is empty.</p>
-                        <EditButton recordItemId="2">Edit Item 2</EditButton>
+                        <EditButton recordItemId="123">Edit Item 123</EditButton>
                     </div>
                 ),
                 edit: PostEdit,
@@ -230,7 +230,7 @@ When clicked on, the delete button executes the `useDelete` method provided by t
 
 [Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/api-reference/antd/components/buttons/delete.md)
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 const { EditButton } = RefineAntd;
 const { default: simpleRest } = RefineSimpleRest;
 
@@ -278,14 +278,14 @@ render(
     <RefineAntdDemo
         authProvider={authProvider}
         dataProvider={customDataProvider}
-        initialRoutes={["/posts/edit/2"]}
+        initialRoutes={["/posts/edit/123"]}
         resources={[
             {
                 name: "posts",
                 list: () => (
                     <div>
                         <p>This page is empty.</p>
-                        <EditButton>Edit Item 2</EditButton>
+                        <EditButton recordItemId="123">Edit Item 123</EditButton>
                     </div>
                 ),
                 edit: PostEdit,
@@ -558,7 +558,7 @@ export const App: React.FC = () => {
 
 To customize the back button or to disable it, you can use the `goBack` property.
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 const { EditButton } = RefineAntd;
 
 // visible-block-start
@@ -576,14 +576,14 @@ const PostEdit: React.FC = () => {
 
 render(
     <RefineAntdDemo
-        initialRoutes={["/posts", "/posts/edit/2"]}
+        initialRoutes={["/posts", "/posts/edit/123"]}
         resources={[
             {
                 name: "posts",
                 list: () => (
                     <div>
                         <p>This page is empty.</p>
-                        <EditButton>Edit Item 2</EditButton>
+                        <EditButton recordItemId="123">Edit Item 123</EditButton>
                     </div>
                 ),
                 edit: PostEdit,

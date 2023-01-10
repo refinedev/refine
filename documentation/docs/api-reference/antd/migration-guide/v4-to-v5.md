@@ -17,15 +17,6 @@ Some of the changes are:
 
 > Please refer to [Ant Design Migration Guide](https://ant.design/docs/react/migration-v5) for detailed information.
 
-:::danger Next.js 13 and Remix Not Supported Now
-
-Currently `ant-design/pro-components` does not compatible with Next.js 13 and Remix.
-**refine** is using `ant-design/pro-components` as a dependency for `<PageHeader/>` component.
-
-> [Refer to a related issue on ant-design/pro-components repository](https://github.com/ant-design/pro-components/issues/6338)
-
-:::
-
 :::info A little more clarification
 
 | **refine** package                | Ant Design version |

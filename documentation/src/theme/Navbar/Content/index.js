@@ -85,6 +85,7 @@ const PopoverMenu = ({ label, imageLink, imageURL, children }) => {
 
     return (
         <Popover
+            id={`popover-${label}`}
             className="relative flex items-center -my-2.5 h-[calc(100%+20px)]"
             onMouseEnter={() => {
                 timeoutEnterRef.current = setTimeout(
@@ -101,17 +102,19 @@ const PopoverMenu = ({ label, imageLink, imageURL, children }) => {
             {() => (
                 <>
                     <Popover.Button as={React.Fragment}>
-                        <NavbarItem
-                            rightIcon={
-                                <ChevronDownIcon
-                                    className={`
+                        <span>
+                            <NavbarItem
+                                rightIcon={
+                                    <ChevronDownIcon
+                                        className={`
                                 ${isShowing ? "transform rotate-180" : ""}
                                 ml-1 transition`}
-                                />
-                            }
-                            label={label}
-                            className="text-[#2A2A42] hover:text-[#2a2a42] hover:no-underline hoverline-link p-0 cursor-pointer flex items-center"
-                        />
+                                    />
+                                }
+                                label={label}
+                                className="text-[#2A2A42] hover:text-[#2a2a42] hover:no-underline hoverline-link p-0 cursor-pointer flex items-center"
+                            />
+                        </span>
                     </Popover.Button>
 
                     <Transition
