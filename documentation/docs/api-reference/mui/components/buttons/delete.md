@@ -93,7 +93,7 @@ render(
 
 `recordItemId` allows us to manage which record will be deleted.
 
-```tsx live disableScroll previewHeight=120px
+```tsx live disableScroll previewHeight=200px
 const { useRouterContext } = RefineCore;
 
 import dataProvider from "@pankod/refine-simple-rest";
@@ -146,7 +146,7 @@ Clicking the button will trigger the [`useDelete`](/api-reference/core/hooks/dat
 
 `resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
 
-```tsx live disableScroll previewHeight=120px
+```tsx live disableScroll previewHeight=200px
 const { useRouterContext } = RefineCore;
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -197,7 +197,7 @@ render(
 
 For example, let's `console.log` after deletion:
 
-```tsx live disableScroll previewHeight=120px
+```tsx live disableScroll previewHeight=200px
 const { useRouterContext } = RefineCore;
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -312,7 +312,7 @@ interface IPost {
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx live disableScroll previewHeight=120px
+```tsx live disableScroll previewHeight=200px
 const { useRouterContext } = RefineCore;
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -373,7 +373,7 @@ export const MyListComponent = () => {
 
 You can change the text that appears when you confirm a transaction with `confirmTitle` prop, as well as what ok and cancel buttons text look like with `confirmOkText` and `confirmCancelText` props.
 
-```tsx live disableScroll previewHeight=120px
+```tsx live disableScroll previewHeight=200px
 const { useRouterContext } = RefineCore;
 import dataProvider from "@pankod/refine-simple-rest";
 
