@@ -4,7 +4,8 @@ description: refine Hackathon is an excellent opportunity for developers to show
 slug: refine-hackathon
 authors: necati
 tags: [hackathon, refine]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-04-hacktoberfest/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social.png
+social_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/general_social.png
 hide_table_of_contents: false
 ---
 
@@ -24,8 +25,13 @@ We can't wait to see what amazing projects the participants will build projects 
 
 ## Together with Open Source Community
 
-`<Strapi Logo>`  `<Appwrite Logo>` `<Medusa>`
- 
+<div>
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/sponsor_banner.png"  alt="refine hackathon" />
+
+</div>
+
+<br/>
+
 refine draws its strength from the open-source community, and we are grateful to have the support of [Strapi](https://strapi.io/) and [Appwrite](https://appwrite.io/)
 which has significant contributions to the open source community
 It's worth noting that refine has built-in data provider support for both Strapi and Appwrite, so we believe they will be excellent backend solutions for your hackathon project.
