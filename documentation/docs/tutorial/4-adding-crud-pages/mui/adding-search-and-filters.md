@@ -1,16 +1,18 @@
 ---
-id: adding-search-and-filters
-title: 6. Adding Search and Filters
+id: adding-sort-and-filters
+title: 6. Adding Sort and Filters
 tutorial:
     order: 0
-    next: tutorial/adding-crud-pages/{preferredUI}/handling-relationships-chakra
     prev: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
+    next: tutorial/understanding-authprovider/{preferredUI}/authpage-component
 ---
 
-## How to handle search and filters?
+## Overview
 
-  https://refine.dev/docs/tutorials/ant-design-tutorial/#adding-search-and-filters  
-    
-***Checklist for moving on***
-- [x] refine da filtreme nasıl yapılır anladım ok
-    
+In the previous ["Adding List Page"](/docs/tutorial/adding-crud-pages/mui/index) section, we have displayed products data in a table using the `<DataGrid/>`. This component includes built-in support for sorting and filtering, so you don't have to manually add these features.
+
+When you click arrow icons on the table header, it will sort the data by the column you clicked. You can also filter the data by clicking the menu icon on the table header and selecting the filter.
+
+:::tip
+To see how the filtering and sorting work and more detail, you can refer to the [`useDataGrid` documentation](/docs/api-reference/mui/hooks/useDataGrid/).
+:::
