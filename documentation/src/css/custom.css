@@ -1049,3 +1049,12 @@ background: var(--ifm-menu-link-sublist-icon) 50% / 1.25rem 1.25rem;
 .checklist-item__icon {
     color: var(--ifm-color-primary);
 }
+
+.tutorial--framework-select--wrapper {
+    font-size: 12px;
+    text-align: center;
+}
+
+.tutorial--framework-select--container {
+    @apply mt-4;
+}

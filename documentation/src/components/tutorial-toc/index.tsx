@@ -15,8 +15,18 @@ import { useLocation } from "@docusaurus/router";
 import { UnitCircle } from "../unit-circle";
 import { TutorialCircle } from "../tutorial-circle";
 import { SelectTutorialFramework } from "../select-tutorial-framework";
+import { useTutorialUIPackage } from "../../hooks/use-tutorial-ui-package";
+import { PreferredUIPackage } from "../../context/TutorialUIPackageContext";
 // import { useTutorialConfig } from "../../hooks/use-tutorial-config";
 // import useGlobalData from "@docusaurus/useGlobalData";
+
+const uiNames: Record<PreferredUIPackage, string> = {
+    headless: "Headless",
+    antd: "Ant Design",
+    mui: "Material UI",
+    mantine: "Mantine",
+    "chakra-ui": "Chakra UI",
+};
 
 const LinkWithId: React.FC<
     React.PropsWithChildren<{
@@ -47,6 +57,8 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
     const currentTutorial = useCurrentTutorial();
 
     const { hash } = useLocation();
+
+    const { preferred: preferredUIPackage } = useTutorialUIPackage();
 
     const [selectedUnit, setSelectedUnit] = React.useState(
         currentTutorial.unit,
@@ -159,6 +171,10 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
         (unit) => unit.unit === selectedUnit,
     );
 
+    const isFirstUnit =
+        currentTutorial?.units.find((el) => el.unit === currentTutorial.unit)
+            ?.no === 1;
+
     return (
         <div
             className="sticky top-[5rem] max-h-[calc(100vh-6rem]"
@@ -185,11 +201,26 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
                 </div>
                 <div className="text-sm">{renderUnitDocs(currentUnit)}</div>
             </div>
-            {!isMobile && (
-                <div className="mt-4">
-                    <SelectTutorialFramework small />
-                </div>
-            )}
+            {!isMobile &&
+                !isFirstUnit &&
+                currentDocId !== "tutorial/introduction/select-framework" && (
+                    <div className="tutorial--framework-select--container">
+                        <div className="tutorial--framework-select--wrapper">
+                            <div>
+                                Current UI Framework is{" "}
+                                <span className="font-bold">
+                                    {uiNames[preferredUIPackage]}
+                                </span>
+                            </div>
+                            <LinkWithId
+                                id="tutorial/introduction/select-framework"
+                                className="tutorial--framework-select--button"
+                            >
+                                click to pick another
+                            </LinkWithId>
+                        </div>
+                    </div>
+                )}
         </div>
     );
 };
