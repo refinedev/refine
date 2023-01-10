@@ -89,7 +89,7 @@ At this point, **refine** will automatically generate the CRUD pages for the `pr
 
 So far we have added complete CRUD pages by utilizing Inferencer feature to the project. Let's take a look at the auto-generated CRUD pages that Inferencer handles for us.
 
-Before we start, let's understand the API that we will be using in this tutorial. We will be using the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API, which is created by **refine** team to provide a fake REST API for testing purposes.
+Before we start, let's understand the API that we will be using in this tutorial. We will be using the "https://api.fake-rest.refine.dev" API. This API is created by the **refine** team and is used for demo purposes. It is a simple REST API that contains some resources like `products`, `categories`, etc.
 
 :::info
 
