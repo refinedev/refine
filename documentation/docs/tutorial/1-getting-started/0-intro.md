@@ -36,13 +36,13 @@ Now that you have selected **Material UI** as your UI framework, let's get start
 
 </UIConditional>
 
-If you already have an existing project, comfortable with your development environment and workflow, you can skip this unit and go directly to the [Unit 2](#).
+If you already have an existing project, comfortable with your development environment and workflow, you can skip this unit and go directly to the [Unit 3](/docs/tutorial/understanding-dataprovider/index/).
 
 :::info Using Stackblitz?
 Prefer to finish this tutorial in an online code editor? That's possible!
 
 <details>
-<summary>Follow these instructions, then go directly to Unit 2!</summary>
+<summary>Follow these instructions, then go directly to Unit 3!</summary>
 
 **Set up StackBlitz**
 
@@ -111,8 +111,35 @@ Prefer to finish this tutorial in an online code editor? That's possible!
 </UIConditional>
 
 **Make Changes**
+<UIConditional is="antd">
 
-In the file pane, you should see `src/app.tsx`. Click to open it, and follow [Generate CRUD pages automatically with Inferencer](#) to make a change to this file.
+In the file pane, you should see `src/app.tsx`. Click to open it, and follow [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/antd/generate-crud-pages/) to make a change to this file.
+
+</UIConditional>
+
+<UIConditional is="chakra-ui">
+
+In the file pane, you should see `src/app.tsx`. Click to open it, and follow [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/chakra-ui/generate-crud-pages/) to make a change to this file.
+
+</UIConditional>
+
+<UIConditional is="headless">
+
+In the file pane, you should see `src/app.tsx`. Click to open it, and follow [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/headless/generate-crud-pages/) to make a change to this file.
+
+</UIConditional>
+
+<UIConditional is="mantine">
+
+In the file pane, you should see `src/app.tsx`. Click to open it, and follow [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/mantine/generate-crud-pages/) to make a change to this file.
+
+</UIConditional>
+
+<UIConditional is="mui">
+
+In the file pane, you should see `src/app.tsx`. Click to open it, and follow [Generate CRUD pages automatically with Inferencer](/docs/tutorial/getting-started/mui/generate-crud-pages/) to make a change to this file.
+
+</UIConditional>
 
 **Create a GitHub Repository**
 
@@ -121,7 +148,7 @@ In the file pane, you should see `src/app.tsx`. Click to open it, and follow [Ge
 
 **Deploy your App**
 
-If you’d like to deploy to Netlify, skip to [Deploy your app to the web](#). Otherwise, skip to [Unit 2](#) to start building with **refine**!
+If you’d like to deploy to Netlify, skip to [Deploy your app to the web](/docs/tutorial/getting-started/store-your-repository/). Otherwise, skip to [Unit 3](/docs/tutorial/understanding-dataprovider/index/) to start building with **refine**!
 
 </details>
 :::
@@ -138,13 +165,10 @@ In this unit, we will be covering the following steps:
 
 As you make changes to your project, you can commit them to your GitHub repository. Netlify listens for changes to your GitHub repository to automatically rebuild and deploy your application on every commit. This allows anyone to access and view your website updates as you make them.
 
-
-
 <Checklist>
 
 <ChecklistItem id="getting-started">
 Let's prepare to build a "refine" project!
 </ChecklistItem>
-
 
 </Checklist>
