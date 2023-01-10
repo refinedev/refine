@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import base64url from "base64url";
 // @ts-expect-error Docusaurus components has an issue with TypeScript
 import CodeBlock from "@theme/CodeBlock";
 import styles from "./styles.module.css";
@@ -9,6 +10,9 @@ import { useInView } from "../../hooks/use-in-view";
 import { Conditional } from "../conditional";
 import { splitCode } from "../../utils/split-code";
 import { useLivePreviewContext } from "../live-preview-context";
+import Buffer from "buffer";
+
+global.Buffer = global.Buffer || Buffer.Buffer;
 
 /**
  * Live Preview Frame
@@ -16,9 +20,11 @@ import { useLivePreviewContext } from "../live-preview-context";
 const LivePreviewFrameBase = ({
     query,
     code,
+    css,
 }: {
     code: string;
     query?: string;
+    css?: string;
 }) => {
     const {
         siteConfig: { customFields },
@@ -39,7 +45,9 @@ const LivePreviewFrameBase = ({
                         setUrl(
                             `${customFields.LIVE_PREVIEW_URL}?code=${
                                 data.compressed
-                            }${query ? `${query}` : ""}`,
+                            }${css ? `&css=${base64url.encode(css)}` : ""}${
+                                query ? `${query}` : ""
+                            }`,
                         );
                     }
                     worker.terminate();
@@ -76,7 +84,11 @@ const LivePreviewFrameBase = ({
 };
 
 const LivePreviewFrame = React.memo(LivePreviewFrameBase, (prev, next) => {
-    return prev.code === next.code && prev.query === next.query;
+    return (
+        prev.code === next.code &&
+        prev.query === next.query &&
+        prev.css === next.css
+    );
 });
 
 /**
@@ -137,7 +149,7 @@ const LivePreviewBase = ({
     tailwind = false,
 }: PlaygroundProps): JSX.Element => {
     const code = String(children);
-    const { shared } = useLivePreviewContext();
+    const { shared, sharedCss } = useLivePreviewContext();
     const { visible } = splitCode(
         `
     ${shared ?? ""}
@@ -177,6 +189,7 @@ const LivePreviewBase = ({
 ${shared ?? ""}
 ${code}
                                         `}
+                                        css={sharedCss}
                                         query={`${
                                             disableScroll
                                                 ? "&disableScroll=true"
