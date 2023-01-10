@@ -21,6 +21,7 @@
     "@pankod/refine-mantine": "^1.15.4",
     "@pankod/refine-chakra-ui": "^1.0.0",
     "@pankod/refine-inferencer": "^2.0.0",
+    "base64url": "^3.0.1",
     "lz-string": "^1.4.4",
     "next": "^13.0.6",
     "react": "^18.0.0",
