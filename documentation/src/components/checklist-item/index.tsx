@@ -38,8 +38,8 @@ const ChecklistItem: React.FC<Props> = ({ children, id: checkId }) => {
     };
 
     return (
-        <label className="mb-3 flex items-center gap-1.5 flex-wrap">
-            <div className="flex-shrink-0 w-5 h-5">
+        <label className="mb-3 flex items-start flex-nowrap gap-1.5">
+            <div className="flex-shrink-0 w-5 h-5 mt-[3px]">
                 <button
                     type="button"
                     onClick={handleToggle}
