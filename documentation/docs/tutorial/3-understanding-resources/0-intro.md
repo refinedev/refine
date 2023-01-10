@@ -11,39 +11,43 @@ tutorial:
 
 <UIConditional is="antd">
 
-In the [Unit 2.2](/docs/tutorial/getting-started/antd/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+In the [Unit 2.3](/docs/tutorial/getting-started/antd/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
 
 </UIConditional>
 
 <UIConditional is="chakra-ui">
 
-In the [Unit 2.2](/docs/tutorial/getting-started/chakra-ui/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+In the [Unit 2.3](/docs/tutorial/getting-started/chakra-ui/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
 
 </UIConditional>
 
 <UIConditional is="headless">
 
-In the [Unit 2.2](/docs/tutorial/getting-started/headless/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+In the [Unit 2.3](/docs/tutorial/getting-started/headless/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
 
 </UIConditional>
 
 <UIConditional is="mantine">
 
-In the [Unit 2.2](/docs/tutorial/getting-started/mantine/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+In the [Unit 2.3](/docs/tutorial/getting-started/mantine/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
 
 </UIConditional>
 
 <UIConditional is="mui">
 
-In the [Unit 2.2](/docs/tutorial/getting-started/mui/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+In the [Unit 2.3](/docs/tutorial/getting-started/mui/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
 
 </UIConditional>
 
 :::
 
-In the context of a CRUD application, a resource typically refers to a data entity that can be created, read, updated, or deleted. For example, a resource could be a user account, a blog post, a product in an online store, or any other piece of data that can be managed by the CRUD app.
+Before we start, let's understand what is `<Refine/>` component.
 
-Let's see what's going on under the hood when we add a `resources` to our app and learn `resources` term for who are new to **refine**.
+The `<Refine/>` is the starting point of the **refine** app. It is a wrapper component that provides the context to the **refine** components and hooks. It is used to configure the highest level settings of the app. In order to initialize the app, the `dataProvider` and `routerProvider` props must be provided. Additionally, it also has other props such as `resources`, `authProvider`, `i18nProvider`, `Layout` etc. These props allow for the configuration of different aspects of the app, including data management, routing, authentication, localization, layout etc.
+
+[Refer to the `<Refine/>` documentation for more information &#8594](/docs/api-reference/core/components/refine-config/)
+
+In the context of a CRUD application, a resource typically refers to a data entity that can be created, read, updated, or deleted. For example, a resource could be a user account, a blog post, a product in an online store, or any other piece of data that can be managed by the CRUD app.
 
 To add a `resource` to our app, we need use `resources` prop of `<Refine/>` component. This prop accepts an array of objects. Each object represents a resource.
 
