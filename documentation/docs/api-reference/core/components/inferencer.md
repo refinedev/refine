@@ -5,6 +5,15 @@ title: Inferencer
 
 You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `HeadlessListInferencer`, `HeadlessShowInferencer`, `HeadlessEditInferencer`, `HeadlessCreateInferencer` and `HeadlessInferencer` (which combines all in one place) components.
 
+:::caution Dependencies
+
+`@pankod/refine-inferencer/headless` uses [`@pankod/refine-react-hook-form`](/docs/packages/documentation/react-hook-form/useForm) and [`@pankod/refine-react-table`](/docs/packages/documentation/react-table) to create views.
+
+Make sure you include them in your dependencies.
+
+:::
+
+
 ## Usage
 
 Ant Design components can be imported from `@pankod/refine-inferencer/headless`. You can directly use the components in `resources` prop of `Refine` component or you can use them in your custom components by passing the `resource` prop as the resource name.
