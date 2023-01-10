@@ -9,7 +9,7 @@ tutorial:
 
 ## Prerequisite
 
-**refine** is React-based framework. So, if you have some preliminary knowledge of React and TypeScript, then this tutorial is perfect for you! Just by following the directions provided, you'll be able to finish it from start to finish.
+**refine** is a React-based framework. So, if you have some preliminary knowledge of React and TypeScript, then this tutorial is perfect for you! Just by following the directions provided, you'll be able to finish it from start to finish.
 
 In order to publish and deploy your project, you'll also need a [GitHub](https://github.com/) (or a similar platform).
 
@@ -27,7 +27,6 @@ A clickable task checklist awaits you at the end of each page to measure your un
 
 -   [Join the Discord Community](https://discord.com/invite/refine) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
 -   [GitHub Discussions](https://github.com/refinedev/refine/discussions) – ask anything about the project or give feedback, we'd love to hear your thoughts!
--   Intercom – if you have any questions, you can ask them directly from the page you are on.
 
 </details>
 
