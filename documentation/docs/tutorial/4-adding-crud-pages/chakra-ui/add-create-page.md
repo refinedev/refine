@@ -170,3 +170,14 @@ export default App;
 ```
 
 Now, we can see the create page in the browser at <a href="http://localhost:3000/products/create" rel="noopener noreferrer nofollow">localhost:3000/products/create</a>
+
+<Checklist>
+
+<ChecklistItem id="add-create-page-chakra-ui">
+I added the create page to the app
+</ChecklistItem>
+<ChecklistItem id="add-create-page-chakra-ui-2">
+I understood the create page components and hooks
+</ChecklistItem>
+
+</Checklist>

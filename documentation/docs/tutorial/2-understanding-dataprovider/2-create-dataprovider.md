@@ -909,3 +909,17 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
   },
 });
 ```
+
+<Checklist>
+
+<ChecklistItem id="data-provider-create-your-data-provider">
+I understood how to create a data provider
+</ChecklistItem>
+<ChecklistItem id="data-provider-create-your-data-provider-2">
+I learned how to handle errors
+</ChecklistItem>
+<ChecklistItem id="data-provider-create-your-data-provider-3">
+I understood how to use the `metaData` parameter
+</ChecklistItem>
+
+</Checklist>

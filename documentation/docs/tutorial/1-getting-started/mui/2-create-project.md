@@ -162,11 +162,11 @@ render(<App />);
 
 <Checklist>
 
-<ChecklistItem id="getting-started-antd">
-I'm able to create a new refine project with Material UI
+<ChecklistItem id="getting-started-mui">
+I understood how to create a new project
 </ChecklistItem>
-<ChecklistItem id="getting-started-antd-2">
-I am able to start the refine dev server.
+<ChecklistItem id="getting-started-mui-2">
+I run the dev server and previewed my website
 </ChecklistItem>
 
 </Checklist>

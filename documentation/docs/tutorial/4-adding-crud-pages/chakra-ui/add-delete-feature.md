@@ -114,3 +114,14 @@ export default App;
 After setting the `canDelete` property to `true`, you will see a delete button on the show page and edit page. Because we used the `<Show/>` and `<Edit/>` components in the show page and edit page, the delete button will be added automatically in these components.
 
 [Refer to the `<Refine/>` documentation for more information about the `canDelete` property &#8594](/docs/api-reference/core/components/refine-config.md#candelete)
+
+<Checklist>
+
+<ChecklistItem id="add-delete-feature-chakra-ui">
+I added the delete feature to the list page
+</ChecklistItem>
+<ChecklistItem id="add-delete-feature-chakra-ui-2">
+I enabled the delete feature on the show page and edit page
+</ChecklistItem>
+
+</Checklist>

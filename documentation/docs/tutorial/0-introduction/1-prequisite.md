@@ -37,17 +37,17 @@ It awaits you at the end of each page to measure your understanding of the conte
 
 </details>
 
-<details>
+<!-- <details>
 <summary>What is the mini-quiz at the bottom of each page?</summary>
 
 The mini-quiz at the bottom of each page is a quick way to test your understanding of the content. It is not required to complete the tutorial, but it is recommended to take it to make sure you understand the content.
 
-</details>
+</details> -->
 
 <details>
 <summary>Where can I leave feedback about this tutorial?</summary>
 
-You can leave feedback about this tutorial by clicking the `Give us feedback` button at the bottom of the tutorial tracker.
+You can leave feedback about this tutorial by clicking the "Give us feedback" button at the bottom of the tutorial tracker.
 
 You can also reach us on [Discord](https://discord.com/invite/refine).
 
@@ -56,7 +56,10 @@ You can also reach us on [Discord](https://discord.com/invite/refine).
 <Checklist>
 
 <ChecklistItem id="prequisite-looks-great">
-I understood general concept of the tutorial
+I understood how to use the checklists
+</ChecklistItem>
+<ChecklistItem id="prequisite-looks-great-2">
+I'm know how to get help, and where to leave feedback
 </ChecklistItem>
 
 </Checklist>

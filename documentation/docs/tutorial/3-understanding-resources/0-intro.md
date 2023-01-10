@@ -96,3 +96,11 @@ When using the **refine** hooks and components in the created pages, the `name` 
 ## Learn More
 
 Learn more about [resources](/docs/api-reference/core/components/refine-config/#resources) in the API reference.
+
+<Checklist>
+
+<ChecklistItem id="understanding-resource">
+I understood what a resource is and how to add a resource to the app
+</ChecklistItem>
+
+</Checklist>

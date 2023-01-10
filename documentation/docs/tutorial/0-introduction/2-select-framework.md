@@ -22,10 +22,13 @@ After this step, the tutorial will proceed according to your UI framework choice
 <Checklist>
 
 <ChecklistItem id="select-framework">
-I understood that I have two options: I can build my app without a UI framework or I can use the most popular UI frameworks with "refine"
+I understood that "refine" is a headless framework
 </ChecklistItem>
 <ChecklistItem id="select-framework-2">
-I've chosen the UI framework option
+I understood that "refine" has built-in support for the most popular UI frameworks
+</ChecklistItem>
+<ChecklistItem id="select-framework-3">
+I have selected a UI framework
 </ChecklistItem>
 
 </Checklist>

@@ -164,3 +164,14 @@ export default App;
 ```
 
 Now, we can see the show page in the browser at <a href="http://localhost:3000/products/show/123" rel="noopener noreferrer nofollow">localhost:3000/products/show/123</a>
+
+<Checklist>
+
+<ChecklistItem id="add-show-page-antd">
+I added the show page to the app
+</ChecklistItem>
+<ChecklistItem id="add-show-page-antd-2">
+I understood the show page components and hooks
+</ChecklistItem>
+
+</Checklist>

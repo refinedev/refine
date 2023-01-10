@@ -195,3 +195,14 @@ export default App;
 ```
 
 Now, we can see the edit page in the browser at <a href="http://localhost:3000/products/edit/123" rel="noopener noreferrer nofollow">localhost:3000/products/edit/123</a>
+
+<Checklist>
+
+<ChecklistItem id="add-edit-page-mui">
+I added the edit page to the app
+</ChecklistItem>
+<ChecklistItem id="add-edit-page-mui-2">
+I understood the edit page components and hooks
+</ChecklistItem>
+
+</Checklist>

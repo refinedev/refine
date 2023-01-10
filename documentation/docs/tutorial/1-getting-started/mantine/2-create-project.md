@@ -161,10 +161,10 @@ render(<App />);
 <Checklist>
 
 <ChecklistItem id="getting-started-mantine">
-I'm able to create a new refine project with Mantine
+I understood how to create a new project
 </ChecklistItem>
 <ChecklistItem id="getting-started-mantine-2">
-I am able to start the refine dev server.
+I run the dev server and previewed my website
 </ChecklistItem>
 
 </Checklist>

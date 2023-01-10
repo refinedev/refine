@@ -29,7 +29,7 @@ To view your new website, visit the URL provided in your site settings or type i
 <Checklist>
 
 <ChecklistItem id="deploy-your-project">
-I am able to view the updated version of my website online.
+I deployed my app to the web.
 </ChecklistItem>
 
 </Checklist>

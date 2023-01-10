@@ -83,3 +83,14 @@ To add a delete feature to the products table, you can follow the steps below:
     ```
 
 Now, you can try to delete a record from the list page. Just click on the delete button of the record you want to delete.
+
+<Checklist>
+
+<ChecklistItem id="add-delete-feature-headless">
+I added the delete feature to the list page
+</ChecklistItem>
+<ChecklistItem id="add-delete-feature-headless-2">
+I enabled the delete feature on the show page and edit page
+</ChecklistItem>
+
+</Checklist>

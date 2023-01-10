@@ -321,3 +321,11 @@ Now, we can use `<ColumnFilter/>` in our table header.
     ```
 
 Now, we can filter the table by clicking on the filter button in the table header.
+
+<Checklist>
+
+<ChecklistItem id="add-search-and-filters-mantine">
+I added search and filters to the table
+</ChecklistItem>
+
+</Checklist>

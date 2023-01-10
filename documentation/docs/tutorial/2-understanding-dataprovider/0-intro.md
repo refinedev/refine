@@ -158,3 +158,13 @@ This will allow you to easily use these data providers in your project.
 
 *If you have created a custom data provider and would like to share it with the community, please don't hesitate to get in touch with us. We would be happy to include it on this page for others to use.*
 
+<Checklist>
+
+<ChecklistItem id="data-provider-intro">
+I understood what is data provider
+</ChecklistItem>
+<ChecklistItem id="data-provider-intro-2">
+I saw built-in data providers provided by "refine"
+</ChecklistItem>
+
+</Checklist>

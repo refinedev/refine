@@ -154,10 +154,10 @@ render(<App />);
 <Checklist>
 
 <ChecklistItem id="getting-started-chakra">
-I'm able to create a new refine project with Chakra UI.
+I understood how to create a new project
 </ChecklistItem>
 <ChecklistItem id="getting-started-chakra-2">
-I am able to start the refine dev server.
+I run the dev server and previewed my website
 </ChecklistItem>
 
 </Checklist>

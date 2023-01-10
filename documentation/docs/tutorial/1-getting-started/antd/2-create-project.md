@@ -149,10 +149,10 @@ render(<App />);
 <Checklist>
 
 <ChecklistItem id="getting-started-antd">
-I'm able to create a new refine project with Ant Design
+I understood how to create a new project
 </ChecklistItem>
 <ChecklistItem id="getting-started-antd-2">
-I am able to start the refine dev server.
+I run the dev server and previewed my website
 </ChecklistItem>
 
 </Checklist>

@@ -140,10 +140,10 @@ render(<App />);
 <Checklist>
 
 <ChecklistItem id="getting-started-headless">
-I'm able to create a new headless refine project.
+I understood how to create a new project
 </ChecklistItem>
 <ChecklistItem id="getting-started-headless-2">
-I'm able to start the refine dev server.
+I run the dev server and previewed my website
 </ChecklistItem>
 
 </Checklist>

@@ -16,25 +16,25 @@ In some cases, refine's built-in data providers are not fully complying with our
 
 1. Run the `swizzle` command in the project directory:
 
-  ```bash
-  npm run refine swizzle
-  ```
+    ```bash
+    npm run refine swizzle
+    ```
 
 2. Select the data provider package from the list of packages that support `swizzle`. In this tutorial, we will use `@pankod/refine-simple-rest`.
 
-  ```bash
-  ? Which package do you want to swizzle?
-    Data Provider
-  ❯  @pankod/refine-simple-rest
-    UI Framework
-    @pankod/refine-antd
-  ```
+    ```bash
+    ? Which package do you want to swizzle?
+      Data Provider
+    ❯  @pankod/refine-simple-rest
+      UI Framework
+      @pankod/refine-antd
+    ```
 
-  The necessary files for this package are copied to the `src/rest-data-provider` folder with `swizzle`.
+The necessary files for this package are copied to the `src/rest-data-provider` folder with `swizzle`.
 
     ```bash
     Successfully swizzled Data Provider
-    
+
     Files created:
     - src/rest-data-provider/index.ts
     - src/rest-data-provider/utils/axios.ts
@@ -67,3 +67,11 @@ In some cases, refine's built-in data providers are not fully complying with our
 3. To use the generated data provider, we need to import it in the `App.tsx` file and give it as a `dataProvider` prop to the `Refine` component.
 
 Now that you have ejected all the data provider, you can update and use it according to your API. This method is much faster than writing a new data provider.
+
+<Checklist>
+
+<ChecklistItem id="data-provider-swizzle">
+I learned what is swizzle and how to use it
+</ChecklistItem>
+
+</Checklist>

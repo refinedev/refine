@@ -241,3 +241,11 @@ You can disable filtering for a specific column by setting the `enableColumnFilt
 ```
 
 </details>
+
+<Checklist>
+
+<ChecklistItem id="add-search-and-filters-headless">
+I added search and filters to the table
+</ChecklistItem>
+
+</Checklist>

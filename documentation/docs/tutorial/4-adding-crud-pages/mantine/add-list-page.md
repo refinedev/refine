@@ -224,3 +224,14 @@ export default App;
 ```
 
 Now, we can see the list page in the browser at <a href="http://localhost:3000/products" rel="noopener noreferrer nofollow">localhost:3000/products</a>
+
+<Checklist>
+
+<ChecklistItem id="add-list-page-mantine">
+I added the list page to the app
+</ChecklistItem>
+<ChecklistItem id="add-list-page-mantine-2">
+I understood the list page components and hooks
+</ChecklistItem>
+
+</Checklist>

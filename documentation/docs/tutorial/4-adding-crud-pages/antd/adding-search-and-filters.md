@@ -82,4 +82,10 @@ In this tutorial, we will add search and filters capabilities to the `category` 
 
 Now, you can search and filter the data by category on the table. Before moving on, play in the playground to see how it works 🚀
 
-**TODO: should be show the live preview**
+<Checklist>
+
+<ChecklistItem id="add-search-and-filters-antd">
+I added search and filters to the table
+</ChecklistItem>
+
+</Checklist>

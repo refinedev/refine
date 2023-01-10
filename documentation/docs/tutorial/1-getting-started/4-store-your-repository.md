@@ -54,7 +54,10 @@ To confirm that your project has been successfully stored on GitHub, go to [GitH
 <Checklist>
 
 <ChecklistItem id="store-your-repo">
-I have uploaded my project to GitHub.
+I created a repository on GitHub.
+</ChecklistItem>
+<ChecklistItem id="store-your-repo-2">
+I uploaded my project to GitHub.
 </ChecklistItem>
 
 </Checklist>
