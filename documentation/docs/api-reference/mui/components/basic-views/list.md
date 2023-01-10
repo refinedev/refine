@@ -83,7 +83,7 @@ const SampleList = () => {
 };
 // visible-block-end
 
-render(<RefineMuiDemo initialRoutes={["/samples"]} resources={[ { name: "samples" list: SampleList } ]} />)
+render(<RefineMuiDemo initialRoutes={["/samples"]} resources={[ { name: "samples", list: SampleList } ]} />)
 ```
 
 :::info-tip Swizzle
@@ -96,7 +96,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 It allows adding title inside the `<List>` component. if you don't pass title props it uses the plural resource name by default. For example, for the `/posts` resource, it will be "Posts".
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
+```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts/create
 // visible-block-start
 import { List, Typography } from "@pankod/refine-mui";
 
@@ -131,7 +131,7 @@ The `<List>` component reads the `resource` information from the route by defaul
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
+```tsx live disableScroll previewHeight=210px url=http://localhost:3000/custom
 // handle initial routes in new way
 setInitialRoutes(["/custom"]);
 
@@ -181,7 +181,7 @@ render(<Wrapper><App /></Wrapper>);
 
 Create button redirects to the create page of the resource according to the value it reads from the URL.
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
+```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 const { default: simpleRest } = RefineSimpleRest;
 
 const dataProvider = simpleRest("https://api.fake-rest.refine.dev");
@@ -217,7 +217,7 @@ const PostList: React.FC = () => {
 render(
     <RefineMuiDemo
         authProvider={authProvider}
-        dataProvider={customDataProvider}
+        dataProvider={dataProvider}
         initialRoutes={["/posts"]}
         Layout={RefineMui.Layout}
         resources={[
@@ -242,7 +242,7 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
 :::
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
+```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
 import { List, Breadcrumb } from "@pankod/refine-mui";
 
@@ -277,6 +277,14 @@ render(
                 list: PostList,
             },
         ]}
+        DashboardPage={() => {
+            return (
+                <div>
+                    <p>This page is empty.</p>
+                    <RefineMui.ListButton resource="posts" />
+                </div>
+            )
+        }}
     />,
 );
 ```
@@ -287,7 +295,7 @@ If you want to customize the wrapper of the `<List/>` component, you can use the
 
 [Refer to the `Card` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card/)
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
+```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
 import { List } from "@pankod/refine-mui";
 
@@ -329,7 +337,7 @@ If you want to customize the header of the `<List/>` component, you can use the 
 
 [Refer to the `CardHeader` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card-header/)
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
+```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
 import { List } from "@pankod/refine-mui";
 
@@ -371,7 +379,7 @@ If you want to customize the content of the `<List/>` component, you can use the
 
 [Refer to the `CardContent` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card-content/)
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
+```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
 import { List } from "@pankod/refine-mui";
 
@@ -411,7 +419,7 @@ render(
 
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
+```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
 import { List, Button } from "@pankod/refine-mui";
 
@@ -454,7 +462,7 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 [Refer to the `Box` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/box/)
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
+```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
 import { List, Button } from "@pankod/refine-mui";
 
