@@ -861,10 +861,12 @@ mutate({
 
 ## metaData Usage
 
+Sometimes you may want to send a custom parameter to APIs, for example a custom header parameter. You can use `metaData` for this. The sent parameter can be accessed directly from the data provider.
+
 Now let's send a custom header parameter to the [`getOne`](#getone) method using `metaData`.
 
 :::tip
-We can use the `metaData` parameter for this purpose. It's worth noting that `metaData` can be used in all `data`, `form`, and `table hooks`.
+The `metaData` parameter can be used in all data, form, and table hooks.
 :::
 
 ```ts title="post/edit.tsx"
@@ -880,6 +882,8 @@ useOne({
   },
 });
 ```
+
+Now let's get the `metaData` parameter from the data provider.
 
 ```ts title="src/data-provider.ts"
 import { DataProvider } from "@pankod/refine-core";
