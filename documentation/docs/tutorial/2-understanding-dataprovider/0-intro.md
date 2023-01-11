@@ -25,7 +25,7 @@ Data providers can communicate with `REST`, `GraphQL`, `RPC`, and `SOAP` based A
 
 
 <div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/flow.png" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/tutorial_dataprovider_flog.png" />
 </div>
 <br/>
 <br/>
