@@ -1053,8 +1053,25 @@ background: var(--ifm-menu-link-sublist-icon) 50% / 1.25rem 1.25rem;
 .tutorial--framework-select--wrapper {
     font-size: 12px;
     text-align: center;
+    background-color: var(--tutorial-toc-bg-color);
+    @apply px-[10px] pt-[7px] pb-[10px];
 }
 
 .tutorial--framework-select--container {
     @apply mt-4;
+}
+
+.tutorial--framework-select__title {
+    color: var(--tutorial-toc-text-color);
+    text-align: center;
+    font-size: 0.5rem;
+    @apply font-montserrat tracking-wide;
+}
+
+.tutorial--framework-select__box {
+    @apply pt-3 flex items-center justify-between;
+}
+
+.tutorial--framework-select--button {
+    @apply underline;
 }
