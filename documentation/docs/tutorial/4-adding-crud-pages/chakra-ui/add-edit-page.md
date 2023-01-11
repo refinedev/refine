@@ -181,10 +181,13 @@ Now, we can see the edit page in the browser at <a href="http://localhost:3000/p
 <Checklist>
 
 <ChecklistItem id="add-edit-page-chakra-ui">
-I added the edit page to the app
+I added the edit page to the app.
 </ChecklistItem>
 <ChecklistItem id="add-edit-page-chakra-ui-2">
-I understood the edit page components and hooks
+I understood the edit page components and hooks.
+</ChecklistItem>
+<ChecklistItem id="add-edit-page-chakra-ui-3">
+I understood the relationship handling.
 </ChecklistItem>
 
 </Checklist>

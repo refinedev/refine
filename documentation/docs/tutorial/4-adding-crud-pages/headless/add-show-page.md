@@ -147,10 +147,13 @@ Now, we can see the show page in the browser at <a href="http://localhost:3000/p
 <Checklist>
 
 <ChecklistItem id="add-show-page-headless">
-I added the show page to the app
+I added the show page to the app.
 </ChecklistItem>
 <ChecklistItem id="add-show-page-headless-2">
-I understood the show page components and hooks
+I understood the show page components and hooks.
+</ChecklistItem>
+<ChecklistItem id="add-show-page-headless-3">
+I understood the relationship handling.
 </ChecklistItem>
 
 </Checklist>

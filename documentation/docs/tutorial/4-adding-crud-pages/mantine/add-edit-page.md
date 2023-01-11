@@ -193,11 +193,14 @@ Now, we can see the edit page in the browser at <a href="http://localhost:3000/p
 
 <Checklist>
 
-<ChecklistItem id="add-edit-page-manitne">
-I added the edit page to the app
+<ChecklistItem id="add-edit-page-mantine">
+I added the edit page to the app.
 </ChecklistItem>
-<ChecklistItem id="add-edit-page-manitne-2">
-I understood the edit page components and hooks
+<ChecklistItem id="add-edit-page-mantine-2">
+I understood the edit page components and hooks.
+</ChecklistItem>
+<ChecklistItem id="add-edit-page-mantine-3">
+I understood the relationship handling.
 </ChecklistItem>
 
 </Checklist>
