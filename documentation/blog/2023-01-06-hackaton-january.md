@@ -5,7 +5,7 @@ slug: refine-hackathon
 authors: necati
 tags: [hackathon, refine]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social.png
-social_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/general_social.png
+social_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social_prizes.png
 hide_table_of_contents: false
 ---
 
@@ -25,18 +25,20 @@ We can't wait to see what amazing projects the participants will build projects 
 
 ## Together with Open Source Community
 
+
+
+refine draws its strength from the open-source community, and we are grateful to have the support of [Strapi](https://strapi.io/), [Appwrite](https://appwrite.io/), and [Medusa](https://medusajs.com/) which has significant contributions to the open source community.  
+
+It's worth noting that refine has built-in data provider support for Strapi, Appwrite, and Medusa. So we believe they will be excellent backend solutions for your hackathon project.
+
+Strapi and Appwrite will also be providing swag kits for the winners.
+
 <div>
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/sponsor_banner.png"  alt="refine hackathon" />
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/sponsors_banner.jpg"  alt="refine hackathon" />
 
 </div>
 
 <br/>
-
-refine draws its strength from the open-source community, and we are grateful to have the support of [Strapi](https://strapi.io/) and [Appwrite](https://appwrite.io/)
-which has significant contributions to the open source community
-It's worth noting that refine has built-in data provider support for both Strapi and Appwrite, so we believe they will be excellent backend solutions for your hackathon project.
-
-Strapi and Appwrite will also be providing swag kits for the winners.
 
 ## Hackathon Key Facts
 
@@ -48,17 +50,24 @@ Strapi and Appwrite will also be providing swag kits for the winners.
 
 ## Details
 ### Schedule
-- The Hackathon begins at 9:00am PT Monday 16th January 2023
+- The Hackathon begins at 9:00am PT Monday 23th January 2023
 - Work on your project any time for the next 4 weeks
-- Submission deadline (11:59pm PT Monday 13st February 2023)
-- The winners will be announced on Monday 20th February 2023
+- Submission deadline (11:59pm PT Monday 23st February 2023)
+- The winners will be announced on Monday 28th February 2023
 
 ### Prizes
 There are 3 chances to win, there will be prizes for:
 
-- **Best Overall Project** => $1500 in GitHub Sponsorship + Special Swag Kit
-- **Most Visually Pleasing** => $300 in GitHub Sponsorship + Special Swag Kit
-- **Most Technically Impressive** => $300 in GitHub Sponsorship + Special Swag Kit
+- **Best Overall Project** => **$1500** in GitHub Sponsorship + Special Swag Kit
+- **Most Visually Pleasing** => **$300** in GitHub Sponsorship + Special Swag Kit
+- **Most Technically Impressive** => **$300** in GitHub Sponsorship + Special Swag Kit
+
+<div>
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/swag_kits.png"  alt="refine hackathon" />
+
+</div>
+
+<br/>
 
 ## Submission
 - **Submissions link:**  [Use this form](https://refinedev.typeform.com/hackathon)
@@ -89,11 +98,10 @@ The **refine** team will be taking part in the Hackathon and you'll find us live
 
 ### What are the judging criterias?
 -  The Judges will be senior staff from the refine DevRel, Marketing and Engineering Teams.
--  Judging criteria:
+-  Judging criterias:
     -  Quality: It is evaluated based on its creativity and originality.
     -  Design: The design of the idea is judged based on its user experience and visual appeal.
     -  The technical implementation: It is assessed on how well the idea was executed by the developer and how effectively refine was used in the submission.
-- By submitting your project, you give refine permission to use screenshots, code snippets, and/or links to your project or the content of your README in our Twitter, blog, website, email updates, and [refine Discord](https://discord.gg/refine). You retain ownership of your intellectual property.
 
 
 ## Useful resources
