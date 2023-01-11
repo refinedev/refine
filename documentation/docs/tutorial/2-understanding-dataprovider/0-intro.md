@@ -8,7 +8,8 @@ tutorial:
 ---
 
 :::info
-The data provider unit is optional for the tutorial and can be skipped to next unit [Adding CRUD Pages](/docs/tutorial/adding-crud-pages/antd/index) if desired.
+The data provider unit is optional for the tutorial and can be skipped to next unit <UIConditional is="headless">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/headless/index)</UIConditional><UIConditional is="antd">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/antd/index)</UIConditional><UIConditional is="mantine">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/mantine/index)</UIConditional><UIConditional is="chakra-ui">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/chakra-ui/index)</UIConditional><UIConditional is="mui">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/mui/index)</UIConditional>
+if desired.
 :::
 
 ## What is data provider?
@@ -19,11 +20,6 @@ The data provider acts as a data layer for your app that makes the HTTP reques
 You don't need worry about creating data providers from scratch. **refine** offers built-in data provider support for the most popular [API providers](#supported-data-providers). So you can use one of them or you can create your own data provider according to your needs. 
 
 We'll see how to create data provider in the next sections.
-
-:::tip
-You can review the [list of supported providers](#supported-data-providers) to find the one that is compatible with your API. 
-We'll also give more details about data providers in [create your own data provider](/docs/tutorial/understanding-dataprovider/create-dataprovider/) section.
-:::
 
 Data providers can communicate with `REST`, `GraphQL`, `RPC`, and `SOAP` based API's. You can imagine the data provider is an adapter between refine and the API.
 
@@ -50,14 +46,14 @@ const dataProvider: DataProvider = {
         filters,
         metaData,
     }) => Promise,
-    getMany: ({ resource, ids, metaData }) => Promise,
     getOne: ({ resource, id, metaData }) => Promise,
     update: ({ resource, id, variables, metaData }) => Promise,
     getApiUrl: () => "",
+    ...
 }
 ```
 
-These methods are used to perform CRUD operations by **refine**
+These methods are used to perform data operations by **refine**.
 
 **refine** comes with different data providers out of the box, but the one we’re interested in and will be using in this tutorial is the refine-simple-rest data provider, a data provider for communicating with RESTful APIs.
 
@@ -165,6 +161,9 @@ I understood what is data provider
 </ChecklistItem>
 <ChecklistItem id="data-provider-intro-2">
 I saw built-in data providers provided by "refine"
+</ChecklistItem>
+<ChecklistItem id="data-provider-intro-3">
+I understood what is data provider and how it works.
 </ChecklistItem>
 
 </Checklist>
