@@ -19,16 +19,25 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 id: "name",
                 accessorKey: "name",
                 header: "Name",
+                meta: {
+                    filterOperator: "contains",
+                },
             },
             {
                 id: "material",
                 accessorKey: "material",
                 header: "Material",
+                meta: {
+                    filterOperator: "contains",
+                },
             },
             {
                 id: "description",
                 accessorKey: "description",
                 header: "Description",
+                meta: {
+                    filterOperator: "contains",
+                },
             },
             {
                 id: "price",
@@ -59,6 +68,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 id: "actions",
                 accessorKey: "id",
                 header: "Actions",
+                enableColumnFilter: false,
                 cell: function render({ getValue }) {
                     return (
                         <div
@@ -148,11 +158,37 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                             <tr key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => (
                                     <th key={header.id}>
-                                        {!header.isPlaceholder &&
-                                            flexRender(
-                                                header.column.columnDef.header,
-                                                header.getContext(),
+                                        <div
+                                            onClick={header.column.getToggleSortingHandler()}
+                                        >
+                                            {!header.isPlaceholder &&
+                                                flexRender(
+                                                    header.column.columnDef
+                                                        .header,
+                                                    header.getContext(),
+                                                )}
+                                            {{
+                                                asc: " 🔼",
+                                                desc: " 🔽",
+                                            }[
+                                                header.column.getIsSorted() as string
+                                            ] ?? null}
+                                        </div>
+                                        <div>
+                                            {header.column.getCanFilter() && (
+                                                <input
+                                                    value={
+                                                        header.column.getFilterValue() as string
+                                                    }
+                                                    onChange={(e) => {
+                                                        header.column.setFilterValue(
+                                                            e.target.value,
+                                                        );
+                                                    }}
+                                                    placeholder={`Search ${header.column.columnDef.header}`}
+                                                />
                                             )}
+                                        </div>
                                     </th>
                                 ))}
                             </tr>
