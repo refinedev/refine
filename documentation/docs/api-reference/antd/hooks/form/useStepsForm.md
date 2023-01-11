@@ -509,8 +509,8 @@ export const PostCreate: React.FC = () => {
         <Create saveButtonProps={saveButtonProps}>
             // highlight-start
             <Steps {...stepsProps}>
-                <Steps.Step title="First Step" />
-                <Steps.Step title="Second Step" />
+                <Step title="About Post" />
+                <Step title="Content" />
             </Steps>
             <Form {...formProps} layout="vertical">
                 {formList[current]}
@@ -591,7 +591,7 @@ export const PostCreate: React.FC = () => {
     return (
         <Create
             // highlight-start
-            actionButtons={
+            footerButtons={
                 <>
                     {current > 0 && (
                         <Button
@@ -623,8 +623,8 @@ export const PostCreate: React.FC = () => {
             // highlight-end
         >
             <Steps {...stepsProps}>
-                <Steps.Step title="First Step" />
-                <Steps.Step title="Second Step" />
+                <Step title="About Post" />
+                <Step title="Content" />
             </Steps>
             <Form {...formProps} layout="vertical">
                 {formList[current]}
@@ -813,6 +813,7 @@ import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
+    // highlight-next-line
     Edit,
     Form,
     Input,
@@ -914,6 +915,7 @@ const PostEditPage: React.FC<IResourceComponentsProps> = () => {
     ];
 
     return (
+        // highlight-next-line
         <Edit
             footerButtons={
                 <>
@@ -945,10 +947,10 @@ const PostEditPage: React.FC<IResourceComponentsProps> = () => {
                 <Step title="About Post" />
                 <Step title="Content" />
             </Steps>
-
             <Form {...formProps} layout="vertical" style={{ marginTop: 30 }}>
                 {formList[current]}
             </Form>
+            {/* highlight-next-line */}
         </Edit>
     );
 };
