@@ -52,7 +52,6 @@ export const SelectTutorialFramework = ({ small }) => {
 
     return (
         <div>
-            {!small ? <h3>Select UI Framework</h3> : null}
             <div className={clsx(styles.cards, small && styles.cardsSmall)}>
                 {availableUIPackages.map((uiPackage) => (
                     <Card
