@@ -101,6 +101,18 @@ After setting the `canDelete` property to `true`, you will see a delete button o
 
 [Refer to the `<Refine/>` documentation for more information about the `canDelete` property &#8594](/docs/api-reference/core/components/refine-config.md#candelete)
 
+<br/>
+
+:::tip
+
+You can also use `useDelete` hook provided by **refine** to delete a record.
+
+[Refer to the `useDelete` documentation for more information information &#8594](/docs/api-reference/core/hooks/data/useDelete/)
+
+:::
+
+<br/>
+
 <Checklist>
 
 <ChecklistItem id="add-delete-feature-antd">

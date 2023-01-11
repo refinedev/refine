@@ -84,6 +84,18 @@ To add a delete feature to the products table, you can follow the steps below:
 
 Now, you can try to delete a record from the list page. Just click on the delete button of the record you want to delete.
 
+<br/>
+
+:::tip
+
+You can also use `useDelete` hook provided by **refine** to delete a record.
+
+[Refer to the `useDelete` documentation for more information information &#8594](/docs/api-reference/core/hooks/data/useDelete/)
+
+:::
+
+<br/>
+
 <Checklist>
 
 <ChecklistItem id="add-delete-feature-headless">
