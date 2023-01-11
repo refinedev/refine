@@ -7,7 +7,7 @@ tutorial:
     next: false
 ---
 
-In the previous ["Adding List Page"](/docs/tutorial/adding-crud-pages/antd/index) section, we have displayed products data in a table. Now we will add search and filters to the table to user can have more control over the data.
+In the previous [Adding List Page](/docs/tutorial/adding-crud-pages/antd/index) section, we have displayed products data in a table. Now we will add search and filters to the table to user can have more control over the data.
 
 ## Adding Search and Filters
 
