@@ -64,11 +64,11 @@ Once the installation wizard is finished, you can close this terminal window and
 
 For the rest of this tutorial, you can use the terminal within VS Code instead of your computer's terminal.
 
-### Running refine in dev mode
+### Running the dev server
 
 To preview your project as a web page while you work on it, the project must be running in development (dev) mode.
 
-#### Start the dev server
+<h4>Start the dev server</h4>
 
 To start the dev server, run the following command in your terminal:
 
@@ -108,9 +108,7 @@ You should see confirmation in the terminal that the **refine** app is running i
 
 Your project files contain all the code you need to run your website. To see a preview of your website in the browser:
 
-1. Click on the `localhost:3000` link in the terminal. This will open a new browser tab with your website.
-
-    (**refine** uses port 3000 by default)
+1. Click on the <a href="http://localhost:3000" rel="noopener noreferrer nofollow">localhost:3000</a> link in the terminal. This will open a new browser tab with your app running in dev mode.
 
 2. You will be redirected to the welcome page as we have not added any pages yet.
 
@@ -164,7 +162,7 @@ render(<App />);
 I understood how to create a new project
 </ChecklistItem>
 <ChecklistItem id="getting-started-mantine-2">
-I run the dev server and previewed my website
+I run the dev server and previewed my app
 </ChecklistItem>
 
 </Checklist>
