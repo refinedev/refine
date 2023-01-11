@@ -200,7 +200,7 @@ access-control-expose-headers: X-Total-Count
   ]
   ```
   :::tip
-  **refine** support multi-field sorting.
+  **refine** supports multi-field sorting.
   :::
 
   ```ts title="src/data-provider.ts"
