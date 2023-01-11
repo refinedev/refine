@@ -680,9 +680,9 @@ const modalForm = useModalForm({
 ## Return Values
 
 :::tip
-All [`useForm`][refine-react-hook-form-use-form] return values also available in `useModalForm`. You can find descriptions on [`useForm`](docs/packages/documentation/react-hook-form/useForm/#return-values) docs.
+All [`useForm`][refine-react-hook-form-use-form] return values also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/packages/documentation/react-hook-form/useForm/#return-values) docs.
 
-All [`React Hook Form useForm`][react-hook-form-use-form] return values also available in `useModalForm`. You can find descriptions on [`useForm`](docs/packages/documentation/react-hook-form/useForm/#return-values) docs.
+All [`React Hook Form useForm`][react-hook-form-use-form] return values also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/packages/documentation/react-hook-form/useForm/#return-values) docs.
 :::
 
 ### `visible`

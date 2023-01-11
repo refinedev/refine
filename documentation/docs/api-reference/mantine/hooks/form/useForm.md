@@ -886,6 +886,10 @@ const form = useForm({
 
 ## Return Values
 
+:::tip
+All [`mantine useForm`][use-form-mantine] and [`core useForm`][use-form-core] return values also available in `useForm`.
+:::
+
 ### `queryResult`
 
 If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and set the returned values as the `queryResult` property.

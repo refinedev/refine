@@ -751,6 +751,34 @@ const form = useForm({
 
 ## Return Values
 
+### `form`
+
+It's a [`<Form>`](https://ant.design/components/form) instance. You can refer to [Antd `<Form>`](https://ant.design/components/form#api) for more information.
+
+### `formProps`
+
+It's required to manage [`<Form>`](https://ant.design/components/form) state and actions. Under the hood the `formProps` came from [Antd `<Form>`](https://ant.design/components/form#api). Additionally, **refine** added following values to `formProps` object for better user experience.
+
+#### `onKeyUp`
+
+It's a function that will be called when a key is pressed. By default, it will call `form.submit()` function when the pressed key is `Enter`.
+
+```tsx title="src/posts/create.tsx"
+const { formProps } = useForm();
+
+return (
+    <Form {...formProps} onKeyUp={undefined}>
+        <Form.Item name="title">
+            <Input />
+        </Form.Item>
+    </Form>
+);
+```
+
+#### `initialValues`
+
+When `action` is set to `"edit"` or `"clone"`, `initialValues` will be set to the `data` returned from [`useOne`](/docs/api-reference/core/hooks/data/useOne/) hook.
+
 ### `queryResult`
 
 If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and set the returned values as the `queryResult` property.
