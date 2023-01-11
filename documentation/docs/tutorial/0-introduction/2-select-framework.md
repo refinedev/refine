@@ -1,6 +1,6 @@
 ---
 id: select-framework
-title: Selection of UI Framework
+title: 3. Selection of UI Framework
 tutorial:
     order: 2
     prev: tutorial/introduction/prequisite

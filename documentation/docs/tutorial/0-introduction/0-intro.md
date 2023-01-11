@@ -1,6 +1,6 @@
 ---
 id: index
-title: 0. Build your first refine app
+title: 1. Build your first refine app
 tutorial:
     order: 0
     prev: false

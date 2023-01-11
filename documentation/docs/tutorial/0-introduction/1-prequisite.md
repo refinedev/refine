@@ -1,6 +1,6 @@
 ---
 id: prequisite
-title: 1. Prerequisite
+title: 2. Prerequisite
 tutorial:
     order: 1
     prev: tutorial/introduction/index
