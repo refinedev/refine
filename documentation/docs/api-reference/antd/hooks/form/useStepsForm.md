@@ -803,7 +803,10 @@ render(<RefineAntdDemo />);
 
 <TabItem value="edit">
 
-`edit` is similar to `create`. The only difference is that we are using `<Edit>` component instead of `<Create>`. `useForm` handles the rest for us.
+`edit` is similar to `create`. The only difference is that we are using `<Edit>` component instead of `<Create>`.
+
+So how are the form's default values set? `useStepsForm` does this with te `id` parameter it reads from the URL and fetches the data from the server.
+You can change the `id` as you want with the `setId` that comes out of `refineCore`.
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/edit/123"]);
