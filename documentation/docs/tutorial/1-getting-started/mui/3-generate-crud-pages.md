@@ -29,7 +29,7 @@ Overall, using Inferencer can greatly speed up development time and reduce the a
 
 ## How to use Inferencer
 
-The `@pankod/refine-inferencer` package provides the `<MuiInferencer/>` component, which can be imported from `@pankod/refine-inferencer/mui` and used to generate CRUD pages based on your API response with Material UI components.
+The `@pankod/refine-inferencer` package provides the `<MuiInferencer/>` component, which can be imported from `@pankod/refine-inferencer/mui`. It used to generate CRUD pages based on your API response with Material UI components.
 
 The `<MuiInferencer/>` component is used by passing to appropriate values in the `resources` prop of the `<Refine/>` component in `App.tsx` as shown below:
 

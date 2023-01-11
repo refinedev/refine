@@ -7,7 +7,7 @@ tutorial:
     next: false
 ---
 
-In the previous ["Adding List Page"](/docs/tutorial/adding-crud-pages/mantine/index) section, we have displayed products data in a table. Now we will learn how to add sorting and filtering to the table to user can have more control over the data.
+In the previous [Adding List Page](/docs/tutorial/adding-crud-pages/mantine/index) section, we have displayed products data in a table. Now we will learn how to add sorting and filtering to the table to user can have more control over the data.
 
 ## Sort and Filters
 

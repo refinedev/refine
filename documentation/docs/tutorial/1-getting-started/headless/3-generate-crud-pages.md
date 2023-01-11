@@ -6,6 +6,9 @@ tutorial:
     next: tutorial/getting-started/store-your-repository
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Inferencer
 
 Inferencer is a powerful tool in the **refine** ecosystem that helps developers quickly generate CRUD (create, read, update, delete) pages for their data model. It analyzes your data model based on the resource scheme and automatically creates the necessary forms and tables for CRUD operations.
@@ -29,9 +32,41 @@ Overall, using Inferencer can greatly speed up development time and reduce the a
 
 ## How to use Inferencer
 
-The `@pankod/refine-inferencer` package provides the `<HeadlessInferencer/>` component, which can be imported from `@pankod/refine-inferencer/headless` and used to generate CRUD pages based on your API response.
+The `@pankod/refine-inferencer` package provides the `<HeadlessInferencer/>` component, which can be imported from `@pankod/refine-inferencer/headless`. It used to generate CRUD pages based on your API response.
 
-The `<HeadlessInferencer/>` component is used by passing to appropriate values in the `resources` prop of the `<Refine/>` component in `App.tsx` as shown below:
+Before we start using Inferencer, we need to add `@pankod/refine-react-hook-form` and `@pankod/refine-react-table` packages to our project. Since these packages are used by Inferencer to generate forms and tables, they need to be installed in our project.
+
+<Tabs
+defaultValue="npm"
+values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
+
+<TabItem value="npm">
+
+```bash
+npm i @pankod/refine-react-table @pankod/refine-react-hook-form
+```
+
+</TabItem>
+
+<TabItem value="pnpm">
+
+```bash
+pnpm i @pankod/refine-react-table @pankod/refine-react-hook-form
+```
+
+</TabItem>
+
+<TabItem value="yarn">
+
+```bash
+yarn add @pankod/refine-react-table @pankod/refine-react-hook-form
+```
+
+</TabItem>
+
+</Tabs>
+
+Then, we need to add the `<HeadlessInferencer/>` component is used by passing to appropriate values in the `resources` prop of the `<Refine/>` component in `App.tsx` as shown below:
 
 :::info
 

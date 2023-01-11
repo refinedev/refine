@@ -22,7 +22,6 @@ The easiest way to create a new project is to use the **refine CLI**. This tool 
     <TabItem value="npm">
 
     ```bash
-    # create a new project with npm
     npm create refine-app@latest -- -o refine-mantine tutorial
     ```
 
@@ -31,7 +30,6 @@ The easiest way to create a new project is to use the **refine CLI**. This tool 
     <TabItem value="pnpm">
 
     ```bash
-    # create a new project with pnpm
     pnpm create refine-app@latest -- -o refine-mantine tutorial
     ```
 
@@ -40,7 +38,6 @@ The easiest way to create a new project is to use the **refine CLI**. This tool 
     <TabItem value="yarn">
 
     ```bash
-    # create a new project with yarn
     yarn create refine-app -- -o refine-mantine tutorial
     ```
 
