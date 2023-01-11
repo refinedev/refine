@@ -1,6 +1,6 @@
 ---
 title: The refine Open Source Hackathon
-description: refine Hackathon is an excellent opportunity for developers to showcase their skills and learn refine!
+description: refine Hackathon is an excellent opportunity for developers to showcase their skills, learn refine and win prizes!
 slug: refine-hackathon
 authors: necati
 tags: [hackathon, refine]
