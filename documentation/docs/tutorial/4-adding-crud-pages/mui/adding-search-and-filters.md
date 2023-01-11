@@ -4,7 +4,7 @@ title: 6. Adding Sort and Filters
 tutorial:
     order: 0
     prev: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
-    next: tutorial/understanding-authprovider/{preferredUI}/authpage-component
+    next: false
 ---
 
 In the previous ["Adding List Page"](/docs/tutorial/adding-crud-pages/mui/index) section, we have displayed products data in a table using the `<DataGrid/>`. This component includes built-in support for sorting and filtering, so you don't have to manually add these features.

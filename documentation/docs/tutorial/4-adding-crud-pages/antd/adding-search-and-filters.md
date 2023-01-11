@@ -4,7 +4,7 @@ title: 5. Adding Search and Filters
 tutorial:
     order: 0
     prev: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
-    next: tutorial/understanding-authprovider/{preferredUI}/authpage-component
+    next: false
 ---
 
 In the previous ["Adding List Page"](/docs/tutorial/adding-crud-pages/antd/index) section, we have displayed products data in a table. Now we will add search and filters to the table to user can have more control over the data.

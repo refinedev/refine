@@ -4,7 +4,7 @@ title: 6. Adding Sort and Filters
 tutorial:
     order: 0
     prev: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
-    next: tutorial/understanding-authprovider/{preferredUI}/authpage-component
+    next: false
 ---
 
 In the previous ["Adding List Page"](/docs/tutorial/adding-crud-pages/mantine/index) section, we have displayed products data in a table. Now we will learn how to add sorting and filtering to the table to user can have more control over the data.
