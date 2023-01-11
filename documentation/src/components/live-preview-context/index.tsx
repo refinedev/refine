@@ -2,20 +2,29 @@ import React, { PropsWithChildren } from "react";
 
 export type LivePreviewContextType = {
     shared: string | undefined;
+    sharedCss: string | undefined;
     setShared: React.Dispatch<React.SetStateAction<string | undefined>>;
+    setSharedCss: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
 export const LivePreviewContext = React.createContext<LivePreviewContextType>({
     shared: undefined,
+    sharedCss: undefined,
     setShared: () => undefined,
+    setSharedCss: () => undefined,
 });
 
 export const LivePreviewProvider: React.FC<PropsWithChildren<{}>> = ({
     children,
 }) => {
     const [shared, setShared] = React.useState<string | undefined>(undefined);
+    const [sharedCss, setSharedCss] = React.useState<string | undefined>(
+        undefined,
+    );
     return (
-        <LivePreviewContext.Provider value={{ shared, setShared }}>
+        <LivePreviewContext.Provider
+            value={{ shared, setShared, sharedCss, setSharedCss }}
+        >
             {children}
         </LivePreviewContext.Provider>
     );

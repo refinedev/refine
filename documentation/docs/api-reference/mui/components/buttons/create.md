@@ -13,46 +13,30 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-```tsx title="src/pages/posts/list.tsx"
-import { useTable } from "@pankod/refine-core";
-
+```tsx live url=http://localhost:3000/posts previewHeight=340px
+const { Create } = RefineMui;
+// visible-block-start
 import {
+    useDataGrid,
+    DataGrid,
+    GridColumns,
     List,
-    Table,
     // highlight-next-line
     CreateButton,
-    TableHead,
-    TableRow,
-    TableCell,
-    TableBody,
 } from "@pankod/refine-mui";
 
-export const PostList: React.FC = () => {
-    const { tableQueryResult } = useTable<IPost>();
+const columns: GridColumns = [
+    { field: "id", headerName: "ID", type: "number" },
+    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+];
 
-    const { data } = tableQueryResult;
+const PostsList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>();
 
     return (
         // highlight-next-line
-        <List cardHeaderProps={{ action: <CreateButton /> }}>
-            <Table aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>ID</TableCell>
-                        <TableCell>Title</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data?.data.map((row) => (
-                        <TableRow key={row.title}>
-                            <TableCell>{row.id}</TableCell>
-                            <TableCell component="th" scope="row">
-                                {row.title}
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
+        <List headerButtons={<CreateButton />}>
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
@@ -61,18 +45,20 @@ interface IPost {
     id: number;
     title: string;
 }
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        resources={[
+            {
+                name: "posts",
+                list: PostsList,
+                create: () => <Create>Rest of the page here...</Create>,
+            },
+        ]}
+    />,
+);
 ```
-
-Will look like this:
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/create/create-mui.png" alt="Default create button" />
-</div>
 
 ## Properties
 
@@ -80,12 +66,43 @@ Will look like this:
 
 It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of resource object.
 
-```tsx
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
 import { CreateButton } from "@pankod/refine-mui";
 
-export const MyCreateComponent = () => {
-    return <CreateButton resourceNameOrRouteName="posts" />;
+const MyCreateComponent = () => {
+    return (
+        <CreateButton
+            // highlight-next-line
+            resourceNameOrRouteName="categories" 
+        />
+    );
 };
+
+// visible-block-end
+
+const CreatePage = () => {
+    const params = useRouterContext().useParams();
+    return <div>{JSON.stringify(params)}</div>;
+};
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+            },
+            {
+                name: "categories",
+                create: CreatePage,
+            },
+        ]}
+        DashboardPage={MyCreateComponent}
+    />,
+);
 ```
 
 Clicking the button will trigger the `create` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/posts/create`.
@@ -94,12 +111,40 @@ Clicking the button will trigger the `create` method of [`useNavigation`](/api-r
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
 import { CreateButton } from "@pankod/refine-mui";
 
-export const MyCreateComponent = () => {
-    return <CreateButton hideText />;
+const MyCreateComponent = () => {
+    return (
+        <CreateButton
+            // highlight-next-line
+            hideText={true}
+        />
+    );
 };
+
+// visible-block-end
+
+const CreatePage = () => {
+    const params = useRouterContext().useParams();
+    return <div>{JSON.stringify(params)}</div>;
+};
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                list: MyCreateComponent,
+                create: CreatePage,
+            },
+        ]}
+    />,
+);
 ```
 
 ### `accessControl`

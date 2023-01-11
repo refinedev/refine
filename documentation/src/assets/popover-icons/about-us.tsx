@@ -10,6 +10,7 @@ const SvgAboutUs = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
         xmlns="http://www.w3.org/2000/svg"
         className={className ? className : undefined}
         {...props}
+        className={props.className ? props.className : undefined}
     >
         <path
             opacity="0.75"
