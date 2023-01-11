@@ -25,6 +25,9 @@ import {
 } from "@pankod/refine-chakra-ui";
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
 
+import { ColumnSorter } from "../../components/table/ColumnSorter";
+import { ColumnFilter } from "../../components/table/ColumnFilter";
+
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const columns = React.useMemo<ColumnDef<any>[]>(
         () => [
@@ -143,6 +146,8 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                                                 header.column.columnDef.header,
                                                 header.getContext(),
                                             )}
+                                        <ColumnSorter column={header.column} />
+                                        <ColumnFilter column={header.column} />
                                     </Th>
                                 ))}
                             </Tr>
