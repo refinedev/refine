@@ -11,31 +11,31 @@ tutorial:
 
 <UIConditional is="antd">
 
-In the [Unit 2.3](/docs/tutorial/getting-started/antd/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+In the [Unit 2.4](/docs/tutorial/getting-started/antd/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
 
 </UIConditional>
 
 <UIConditional is="chakra-ui">
 
-In the [Unit 2.3](/docs/tutorial/getting-started/chakra-ui/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+In the [Unit 2.4](/docs/tutorial/getting-started/chakra-ui/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
 
 </UIConditional>
 
 <UIConditional is="headless">
 
-In the [Unit 2.3](/docs/tutorial/getting-started/headless/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+In the [Unit 2.4](/docs/tutorial/getting-started/headless/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
 
 </UIConditional>
 
 <UIConditional is="mantine">
 
-In the [Unit 2.3](/docs/tutorial/getting-started/mantine/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+In the [Unit 2.4](/docs/tutorial/getting-started/mantine/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
 
 </UIConditional>
 
 <UIConditional is="mui">
 
-In the [Unit 2.3](/docs/tutorial/getting-started/mui/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
+In the [Unit 2.4](/docs/tutorial/getting-started/mui/generate-crud-pages/), we have defined a resource to create our CRUD pages with the Inferencer component. However, we have not explained how it works. In this unit, we will explain the `resources` prop of the `<Refine/>` component using the mock components.
 
 </UIConditional>
 
@@ -43,7 +43,9 @@ In the [Unit 2.3](/docs/tutorial/getting-started/mui/generate-crud-pages/), we h
 
 Before we start, let's understand what is `<Refine/>` component.
 
-The `<Refine/>` is the starting point of the **refine** app. It is a wrapper component that provides the context to the **refine** components and hooks. It is used to configure the highest level settings of the app. In order to initialize the app, the `dataProvider` and `routerProvider` props must be provided. Additionally, it also has other props such as `resources`, `authProvider`, `i18nProvider`, `Layout` etc. These props allow for the configuration of different aspects of the app, including data management, routing, authentication, localization, layout etc.
+The `<Refine/>` is the starting point of the **refine** app. It is a wrapper component that provides the context to the **refine** components and hooks. It is used to configure the highest level settings of the app.
+
+In order to initialize the app, the `dataProvider` and `routerProvider` props must be provided. Additionally, it also has other props such as `resources`, `authProvider`, `i18nProvider`, `Layout` etc. These props allow for the configuration of different aspects of the app, including data management, routing, authentication, localization, layout etc.
 
 [Refer to the `<Refine/>` documentation for more information &#8594](/docs/api-reference/core/components/refine-config/)
 
@@ -64,11 +66,11 @@ const App: React.FC = () => {
             //highlight-start
             resources={[
                 {
-                    name: "posts",
-                    list: () => <div>Posts List Page</div>,
-                    show: <div>Post Detail Page</div>,
-                    create: <div>Post Create Page</div>,
-                    edit: <div>Post Edit Page</div>,
+                    name: "products",
+                    list: () => <div>Products List Page</div>,
+                    show: <div>Product Detail Page</div>,
+                    create: <div>Product Create Page</div>,
+                    edit: <div>Product Edit Page</div>,
                 },
             ]}
             //highlight-end
@@ -79,13 +81,13 @@ const App: React.FC = () => {
 export default App;
 ```
 
-In the above example, we have added a `resource` with name `posts`. This resource will have 5 pages that assigned to `list`, `show`, `create`, `clone` and `edit` properties. **refine** link the pages with routes for us. We can access these pages by visiting the following routes:
+In the above example, we have added a `resource` with name `products`. This resource will have 5 pages that assigned to `list`, `show`, `create`, and `edit` properties. **refine** link the pages with routes for us. When we define `create`, clone page will be generated automatically. We can access these pages by visiting the following routes:
 
--   `/posts` - Post List Page
--   `/posts/show/:id` - Post Detail Page
--   `/posts/create` - Post Create Page
--   `/posts/clone/:id` - Post Clone Page
--   `/posts/edit/:id` - Post Edit Page
+-   `/products` - Product List Page
+-   `/products/show/:id` - Product Detail Page
+-   `/products/create` - Product Create Page
+-   `/products/clone/:id` - Product Clone Page
+-   `/products/edit/:id` - Product Edit Page
 
 :::tip
 
@@ -100,7 +102,7 @@ Learn more about [resources](/docs/api-reference/core/components/refine-config/#
 <Checklist>
 
 <ChecklistItem id="understanding-resource">
-I understood what a resource is and how to add a resource to the app
+I understood what a resource is and how to add a resource to the app.
 </ChecklistItem>
 
 </Checklist>
