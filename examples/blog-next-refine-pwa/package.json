@@ -23,7 +23,7 @@
         "@types/node": "^12.20.11",
         "@types/react": "^18.0.0",
         "@types/react-dom": "^18.0.0",
-        "@typescript-eslint/parser": "^5.38.1",
+        "@typescript-eslint/parser": "5.48.0",
         "autoprefixer": "^10.4.1",
         "next-pwa": "^5.6.0",
         "postcss": "^8.1.4",
