@@ -15,15 +15,14 @@ We'll cover the following topics:
 
 -   Setting up your development environment
 -   Create your first refine app
--   Understanding the `dataProvider`
--   What is the `resources` concept
+-   Understanding the [`dataProvider`](/docs/api-reference/core/providers/data-provider/)
+-   What is the [`resources`](docs/api-reference/core/components/refine-config.md#resources) concept
 -   Adding CRUD pages
--   Understanding the `authProvider`
+<!-- -   Understanding the `authProvider` -->
 
 :::note
-If you would rather start exploring **refine** with some examples before diving in, visit our [examples](/examples) page and choose an example to open and explore it in an online editor.
+If you would rather start exploring **refine** with some examples before diving in, visit our [examples](/docs/examples/) page and choose an example to open and explore it in an online editor.
 :::
-
 
 :::note Thank you Astro Community! ❤️
 
@@ -31,13 +30,10 @@ While preparing the refine' tutorial, we were inspired (quite) by the [Astro](ht
 
 :::
 
-
-
 <Checklist>
 
 <ChecklistItem id="looks-great">
 Great! I'm ready to begin!
 </ChecklistItem>
-
 
 </Checklist>
