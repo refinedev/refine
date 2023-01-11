@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 2.2.2
+
+### Patch Changes
+
+-   [#3376](https://github.com/refinedev/refine/pull/3376) [`7de42162c6b`](https://github.com/refinedev/refine/commit/7de42162c6ba42fb4afe94972ffcee26a2634d43) Thanks [@aliemir](https://github.com/aliemir)! - Remove repeated `React` import from `headless/list` inferencer.
+
 ## 2.2.1
 
 ### Patch Changes
