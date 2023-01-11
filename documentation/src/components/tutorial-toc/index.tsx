@@ -28,6 +28,9 @@ const uiNames: Record<PreferredUIPackage, string> = {
     "chakra-ui": "Chakra UI",
 };
 
+const baseIconUrl =
+    "https://refine.ams3.digitaloceanspaces.com/website/static/icons/colored/ui-framework-";
+
 const LinkWithId: React.FC<
     React.PropsWithChildren<{
         id: string;
@@ -48,6 +51,39 @@ const LinkWithId: React.FC<
     );
 };
 
+const TutorialUIStatus = () => {
+    const { preferred: preferredUIPackage } = useTutorialUIPackage();
+
+    return (
+        <div className="tutorial--framework-select--container">
+            <div className="tutorial--framework-select--wrapper rounded-md">
+                <div className="tutorial--framework-select__title">
+                    CURRENT UI FRAMEWORK
+                </div>
+                <div className="tutorial--framework-select__box">
+                    <div className="flex items-center gap-2">
+                        <img
+                            src={`${baseIconUrl}${preferredUIPackage}.svg`}
+                            className="w-5 h-auto"
+                        />
+                        <span className="font-semibold">
+                            {uiNames[preferredUIPackage]}
+                        </span>
+                    </div>
+                    <div>
+                        <LinkWithId
+                            id="tutorial/introduction/select-framework"
+                            className="tutorial--framework-select--button"
+                        >
+                            change
+                        </LinkWithId>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
     // const tutorialConfig = useTutorialConfig();
     const {
@@ -57,8 +93,6 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
     const currentTutorial = useCurrentTutorial();
 
     const { hash } = useLocation();
-
-    const { preferred: preferredUIPackage } = useTutorialUIPackage();
 
     const [selectedUnit, setSelectedUnit] = React.useState(
         currentTutorial.unit,
@@ -186,7 +220,9 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
                 {currentTutorial?.units.map(renderUnitTab)}
             </div>
             <div
-                className="unit-list-container py-3 px-3"
+                className={`unit-list-container py-3 px-3 rounded-md ${
+                    currentUnit.no === 1 ? "rounded-tl-none" : ""
+                }`}
                 style={{
                     backgroundColor: "var(--tutorial-toc-bg-color)",
                 }}
@@ -201,25 +237,9 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
                 </div>
                 <div className="text-sm">{renderUnitDocs(currentUnit)}</div>
             </div>
-            {!isMobile &&
-                !isFirstUnit &&
+            {!isFirstUnit &&
                 currentDocId !== "tutorial/introduction/select-framework" && (
-                    <div className="tutorial--framework-select--container">
-                        <div className="tutorial--framework-select--wrapper">
-                            <div>
-                                Current UI Framework is{" "}
-                                <span className="font-bold">
-                                    {uiNames[preferredUIPackage]}
-                                </span>
-                            </div>
-                            <LinkWithId
-                                id="tutorial/introduction/select-framework"
-                                className="tutorial--framework-select--button"
-                            >
-                                click to pick another
-                            </LinkWithId>
-                        </div>
-                    </div>
+                    <TutorialUIStatus />
                 )}
         </div>
     );
