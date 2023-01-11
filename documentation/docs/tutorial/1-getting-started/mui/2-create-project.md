@@ -1,6 +1,6 @@
 ---
 id: create-project
-title: 2. Create your refine project
+title: 3. Create your refine project
 tutorial:
     prev: tutorial/getting-started/{preferredUI}/prepare-env
     next: tutorial/getting-started/{preferredUI}/generate-crud-pages

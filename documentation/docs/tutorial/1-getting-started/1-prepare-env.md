@@ -1,6 +1,6 @@
 ---
 id: prepare-env
-title: 1. Prepare your dev environment
+title: 2. Prepare your dev environment
 tutorial:
     prev: tutorial/getting-started/{preferredUI}/index
     next: tutorial/getting-started/{preferredUI}/create-project

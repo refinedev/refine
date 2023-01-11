@@ -1,6 +1,6 @@
 ---
 id: generate-crud-pages
-title: 3. Generate CRUD pages automatically with Inferencer
+title: 4. Generate CRUD pages automatically with Inferencer
 tutorial:
     prev: tutorial/getting-started/{preferredUI}/create-project
     next: tutorial/getting-started/store-your-repository

@@ -1,6 +1,6 @@
 ---
 id: store-your-repository
-title: 4. Store your repository online
+title: 5. Store your repository online
 tutorial:
     prev: tutorial/getting-started/{preferredUI}/generate-crud-pages
     next: tutorial/getting-started/deploy-project
