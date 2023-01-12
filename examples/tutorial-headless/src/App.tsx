@@ -1,29 +1,31 @@
+import React from "react";
+
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+
 import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router-v6";
 
-import { Layout } from "components";
-import { PostIcon } from "icons";
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { ProductList } from "pages/products/list";
+import { ProductEdit } from "pages/products/edit";
+import { ProductShow } from "pages/products/show";
+import { ProductCreate } from "pages/products/create";
 
-const App: React.FC = () => {
+function App() {
     return (
         <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             routerProvider={routerProvider}
             resources={[
                 {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    icon: PostIcon,
+                    name: "products",
+                    list: ProductList,
+                    show: ProductShow,
+                    create: ProductCreate,
+                    edit: ProductEdit,
                 },
             ]}
-            Layout={Layout}
         />
     );
-};
+}
 
 export default App;
