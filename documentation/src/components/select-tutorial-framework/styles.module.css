@@ -19,20 +19,30 @@
 
 .cardSelected {
     background: var(--tutorial-card-bg-hover);
-    box-shadow: 0px 0px 5px rgba(42, 42, 66, 0.25);
+    box-shadow: 2.7px 5.3px 10.7px 0px #2A2A4240;
+}
+
+[data-theme="dark"] .cardSelected, [data-theme="dark"] .card:hover {
+    border: 1px solid var(--ifm-color-primary);
 }
 
 .card:hover {
     background: var(--tutorial-card-bg-hover);
-    box-shadow: 4px 8px 16px rgba(42, 42, 66, 0.25);
+    box-shadow: 2.7px 5.3px 10.7px 0px #2A2A4240;
 }
 
 .card span {
     user-select: none;
     margin-top: 8px;
     color: var(--ifm-font-color-base);
-    font-weight: 700;
-    font-family: "Montserrat";
+    opacity: 0.6;
+    font-weight: 500;
+    font-size: 11px;
+    @apply font-montserrat;
+}
+
+.cardSelected span {
+    opacity: 1;
 }
 
 .card img {
