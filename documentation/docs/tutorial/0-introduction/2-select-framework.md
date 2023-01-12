@@ -23,31 +23,31 @@ After this step, the tutorial will proceed according to your UI framework choice
 
 <UIConditional is="antd">
 
-The tutorial will continue with **Ant Design**.
+The tutorial content will continue as if it were the **Ant Design** selection.
 
 </UIConditional>
 
 <UIConditional is="chakra-ui">
 
-The tutorial will continue with **Chakra UI**.
+The tutorial content will continue as if it were the **Chakra UI** selection.
 
 </UIConditional>
 
 <UIConditional is="headless">
 
-The tutorial will continue like a **headless**.
+The tutorial content will continue as if it were the **headless** selection.
 
 </UIConditional>
 
 <UIConditional is="mantine">
 
-The tutorial will continue with **Mantine**.
+The tutorial content will continue as if it were the **Mantine** selection.
 
 </UIConditional>
 
 <UIConditional is="mui">
 
-The tutorial will continue with **Material UI**.
+The tutorial content will continue as if it were the **Material UI*** selection.
 
 </UIConditional>
 

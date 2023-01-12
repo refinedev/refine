@@ -12,7 +12,7 @@ Before you can create a **refine** app, you need to set up a development environ
 
 ### Terminal
 
-You will use a terminal (also known as a command line interface) to run these commands and interact with your operating system. You can access the terminal through a local program for your operating system, such as Terminal (MacOS/Linux), Command Prompt (Windows), or Termux (Android).
+You will use a terminal (also known as a command line interface) to run these commands and interact with your operating system. You can access the terminal through a local program for your operating system, such as Terminal (MacOS/Linux) or Command Prompt (Windows).
 
 In order to run **refine** applications on your system, you will also need to have [Node.js](https://nodejs.org/en/) installed. Node.js is a JavaScript runtime that allows developers to run JavaScript code outside of a web browser. It is required to run **refine** applications because it is a JavaScript-based tool.
 

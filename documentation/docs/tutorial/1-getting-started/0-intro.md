@@ -8,31 +8,31 @@ tutorial:
 
 <UIConditional is="antd">
 
-Now that you have selected **Ant Design** as your UI framework, let's get started!
+Now that you have selected the **Ant Design** option as your UI preference, let's get started!
 
 </UIConditional>
 
 <UIConditional is="chakra-ui">
 
-Now that you have selected **Chakra UI** as your UI framework, let's get started!
+Now that you have selected the **Chakra UI** option as your UI preference, let's get started!
 
 </UIConditional>
 
 <UIConditional is="headless">
 
-Now that you have selected **headless UI** as your UI framework, let's get started!
+Now that you have selected the **headless** option as your UI preference, let's get started!
 
 </UIConditional>
 
 <UIConditional is="mantine">
 
-Now that you have selected **Mantine** as your UI framework, let's get started!
+Now that you have selected the **Mantine** option as your UI preference, let's get started!
 
 </UIConditional>
 
 <UIConditional is="mui">
 
-Now that you have selected **Material UI** as your UI framework, let's get started!
+Now that you have selected the **Material UI** option as your UI preference, let's get started!
 
 </UIConditional>
 
@@ -157,11 +157,11 @@ If you’d like to deploy to Netlify, skip to [Deploy your app to the web](/docs
 
 In this unit, we will be covering the following steps:
 
--   Setting up your development environment
--   Creating a new project
--   Generating CRUD pages for your data model
--   Store your project in a git repository
--   Deploy your project to the cloud
+-   Setting up your development environment.
+-   Creating a new project.
+-   Generating CRUD pages for your data model.
+-   Store your project in a git repository.
+-   Deploy your project to the cloud.
 
 As you make changes to your project, you can commit them to your GitHub repository. Netlify listens for changes to your GitHub repository to automatically rebuild and deploy your application on every commit. This allows anyone to access and view your website updates as you make them.
 
