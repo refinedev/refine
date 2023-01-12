@@ -669,13 +669,9 @@
             "to": "/docs/tutorial/introduction/index/"
         },
         {
-            "from": "/docs/",
-            "to": "/docs/getting-started/overview/"
-        },
-        {
             "from": "/docs/guides-and-concepts/telemetry/",
             "to": "/docs/further-readings/telemetry/"
-        },        
+        },
         {
             "from": "/docs/benchmarks/",
             "to": "/docs/further-readings/benchmarks/"

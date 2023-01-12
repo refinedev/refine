@@ -7,7 +7,7 @@ module.exports = {
             link: {
                 type: "generated-index",
                 title: "Getting Started",
-                slug: "/getting-started",
+                slug: "/",
             },
             items: ["getting-started/overview", "getting-started/quickstart"],
             collapsed: false,
