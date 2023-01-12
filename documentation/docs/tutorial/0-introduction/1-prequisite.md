@@ -40,7 +40,7 @@ The mini-quiz at the bottom of each page is a quick way to test your understandi
 
 You can leave feedback about this tutorial by clicking the "Give us feedback" button at the bottom of the tutorial tracker.
 
-You can also reach us on [Discord](https://discord.com/invite/refine).
+You can also reach us on [Discord](https://discord.gg/refine).
 
 </details>
 
