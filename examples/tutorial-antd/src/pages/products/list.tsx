@@ -12,11 +12,18 @@ import {
     EditButton,
     ShowButton,
     MarkdownField,
+    FilterDropdown,
+    useSelect,
+    Select,
 } from "@pankod/refine-antd";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable({
         syncWithLocation: true,
+    });
+
+    const { selectProps: categorySelectProps } = useSelect({
+        resource: "categories",
     });
 
     const { data: categoryData, isLoading: categoryIsLoading } = useMany({
@@ -30,8 +37,12 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
     return (
         <List>
             <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="Id" />
-                <Table.Column dataIndex="name" title="Name" />
+                <Table.Column dataIndex="id" title="Id" sorter />
+                <Table.Column
+                    dataIndex="name"
+                    title="Name"
+                    sorter={{ multiple: 1 }}
+                />
                 <Table.Column dataIndex="material" title="Material" />
                 <Table.Column
                     dataIndex="description"
@@ -53,6 +64,16 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                             )?.title
                         )
                     }
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                style={{ minWidth: 200 }}
+                                mode="multiple"
+                                placeholder="Select Category"
+                                {...categorySelectProps}
+                            />
+                        </FilterDropdown>
+                    )}
                 />
                 <Table.Column
                     title="Actions"
