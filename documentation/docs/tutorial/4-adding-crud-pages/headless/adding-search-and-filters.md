@@ -88,14 +88,14 @@ Let's add filters to the table. We will add a basic text input to the table head
 
     ```tsx
     {
-         id: "name",
+        id: "name",
         accessorKey: "name",
         header: "Name",
         //highlight-start
         meta: {
             filterOperator: "contains",
-        //highlight-end
         },
+        //highlight-end
     },
     {
         id: "material",
@@ -104,8 +104,8 @@ Let's add filters to the table. We will add a basic text input to the table head
         //highlight-start
         meta: {
             filterOperator: "contains",
-        //highlight-end
         },
+        //highlight-end
     },
     {
         id: "description",
@@ -114,8 +114,8 @@ Let's add filters to the table. We will add a basic text input to the table head
         //highlight-start
         meta: {
             filterOperator: "contains",
-        //highlight-end
         },
+        //highlight-end
     },
     ```
 
@@ -241,6 +241,8 @@ You can disable filtering for a specific column by setting the `enableColumnFilt
 ```
 
 </details>
+
+<br />
 
 <Checklist>
 
