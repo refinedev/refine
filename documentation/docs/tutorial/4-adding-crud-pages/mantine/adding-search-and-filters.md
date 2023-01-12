@@ -63,22 +63,6 @@ Lastly, If the column is sorted, we will render the `IconChevronDown` icon. Othe
 In this example, we are using the `@tabler/icons` package for icons. You can use any icon library you want.
 :::
 
-<details>
-  <summary><strong>How can I disable sorting for a specific column?</strong></summary>
-
-You can disable sorting for a specific column by setting the `enableSorting` property of the column to `false` in the column definition like below.
-
-```tsx
-{
-    title: "Category",
-    dataIndex: "cagegory",
-    //highlight-next-line
-    enableSorting: false,
-},
-```
-
-</details>
-
 <br />
 
 Now, we can use `<ColumnSorter/>` in our table header.
@@ -86,7 +70,7 @@ Now, we can use `<ColumnSorter/>` in our table header.
 1. Import the `<ColumnSorter/>` component.
 
     ```tsx title="src/pages/products/list.tsx"
-    import { ColumnSorter } from "../../components/table";
+    import { ColumnSorter } from "../../components/table/ColumnSorter";
     ```
 
 2. Add the `<ColumnSorter/>` component to the `<th/>` as a child like below.
@@ -111,7 +95,36 @@ Now, we can use `<ColumnSorter/>` in our table header.
     </thead>
     ```
 
+3. Disable sorting for the `actions` column by setting the `enableSorting` property of the column to `false` in the column definition like below:
+
+    ```tsx title="src/pages/products/list.tsx"
+    {
+        id: "actions",
+        accessorKey: "id",
+        header: "Actions",
+        //highlight-next-line
+        enableSorting: false,
+    },
+    ```
+
 Now, we can sort the table by clicking on the sort button in the table header.
+
+<details>
+  <summary><strong>How can I disable sorting for a specific column?</strong></summary>
+
+You can disable sorting for a specific column by setting the `enableSorting` property of the column to `false` in the column definition like below.
+
+```tsx
+{
+    id: "name",
+    accessorKey: "name",
+    header: "Name",
+    //highlight-next-line
+    enableSorting: false,
+},
+```
+
+</details>
 
 ## Adding Filters
 
@@ -127,6 +140,7 @@ import {
     Group,
 } from "@pankod/refine-mantine";
 import { IconFilter, IconX, IconCheck } from "@tabler/icons";
+import type { Column } from "@pankod/refine-react-table";
 
 export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({
     column,
@@ -230,71 +244,12 @@ Filter element is a component that renders an input element. When the user chang
 
 `<ColumnFilter/>` also contains a clear and apply button. When the user clicks on the clear button, the filter value of the column will be cleared. When the user clicks on the apply button, the filter value of the column will be set.
 
-:::tip
-If you want to use a custom filter element, you can pass it to the `filterElement` property of the `meta` in column definition. For example, you can pass a `<Select/>` component like below.
-
-<details>
-  <summary><strong>How can I use custom filter element?</strong></summary>
-
-If you want to use a custom filter element, you can pass it to the `filterElement` property of the `meta` in column definition. For example, you can pass a `<Select/>` component like below.
-
-```tsx
-{
-    title: "Category",
-    dataIndex: "category",
-    meta: {
-        filterElement: (props) => <Select {...props} />,
-    },
-},
-```
-
-In the props, the filter element will receive the `value` and `onChange` props. You can use these props to change the filter value of the column.
-
-</details>
-
-<details>
-  <summary><strong>How can I change the filter operator?</strong></summary>
-
-By default, filter operator is "eq" for columns. You can change the filter operator by passing the `filterOperator` property to the `meta` in column definition. For example, you can change the filter operator to "contains" like below:
-
-```tsx
-{
-    title: "Category",
-    dataIndex: "category",
-    //highlight-start
-    meta: {
-        filterOperator: "contains",
-    },
-    //highlight-end
-},
-```
-
-</details>
-
-<details>
-  <summary><strong>How can I disable filtering for a specific column?</strong></summary>
-
-You can disable filtering for a specific column by setting the `enableColumnFilter` property of the column to `false` in the column definition like below.
-
-```tsx
-{
-    title: "Category",
-    dataIndex: "category",
-    //highlight-next-line
-    enableColumnFilter: false,
-},
-```
-
-</details>
-
-<br />
-
 Now, we can use `<ColumnFilter/>` in our table header.
 
 1. Import the `<ColumnFilter/>` component.
 
     ```tsx title="src/pages/products/list.tsx"
-    import { ColumnFilter } from "../../components/table";
+    import { ColumnFilter } from "../../components/table/ColumnFilter";
     ```
 
 2. Add the `<ColumnFilter/>` component to the `<th/>` as a child like below.
@@ -320,7 +275,118 @@ Now, we can use `<ColumnFilter/>` in our table header.
     </thead>
     ```
 
+3. Change the filter operator for columns to "contains" by changing the `meta` property of the column definition like below:
+
+    ```tsx
+    {
+         id: "name",
+        accessorKey: "name",
+        header: "Name",
+        //highlight-start
+        meta: {
+            filterOperator: "contains",
+        },
+        //highlight-end
+    },
+    {
+        id: "material",
+        accessorKey: "material",
+        header: "Material",
+        //highlight-start
+        meta: {
+            filterOperator: "contains",
+        },
+        //highlight-end
+    },
+    {
+        id: "description",
+        accessorKey: "description",
+        header: "Description",
+        //highlight-start
+        meta: {
+            filterOperator: "contains",
+        },
+        //highlight-end
+    },
+    ```
+
+    By default, the `filterOperator` is set to "eq". So, we have changed the `filterOperator` to "contains" for specific columns.
+
+4. Disable filtering for the "actions" column by setting the `enableColumnFilter` property of the column to `false` in the column definition like below:
+
+    ```tsx
+    {
+        id: "actions",
+        accessorKey: "id",
+        header: "Actions",
+        //highlight-next-line
+        enableColumnFilter: false,
+        ...
+    },
+    ```
+
 Now, we can filter the table by clicking on the filter button in the table header.
+
+<br/>
+
+<details>
+  <summary><strong>How can I use custom filter element?</strong></summary>
+
+If you want to use a custom filter element, you can pass it to the `filterElement` property of the `meta` in column definition. For example, you can pass a `<Select/>` component like below:
+
+```tsx
+{
+    id: "category",
+    header: "Category",
+    accessorKey: "category.id",
+    meta: {
+        filterElement: (props) => <Select {...props} />,
+    },
+},
+```
+
+In the props, the filter element will receive the `value` and `onChange` props. You can use these props to change the filter value of the column.
+
+</details>
+
+<details>
+  <summary><strong>How can I change the filter operator?</strong></summary>
+
+By default, filter operator is "eq" for columns. You can change the filter operator by passing the `filterOperator` property to the `meta` in column definition. For example, you can change the filter operator to "contains" like below:
+
+```tsx
+{
+    id: "description",
+    header: "Description",
+    accessorKey: "description",
+    //highlight-start
+    meta: {
+        filterOperator: "contains",
+    },
+    //highlight-end
+},
+```
+
+</details>
+
+<details>
+  <summary><strong>How can I disable filtering for a specific column?</strong></summary>
+
+You can disable filtering for a specific column by setting the `enableColumnFilter` property of the column to `false` in the column definition like below:
+
+```tsx
+{
+    id: "category",
+    header: "Category",
+    accessorKey: "category.id",
+    //highlight-next-line
+    enableColumnFilter: false,
+},
+```
+
+</details>
+
+<br />
 
 <Checklist>
 

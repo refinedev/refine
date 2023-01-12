@@ -98,6 +98,7 @@ Now, we can use `<ColumnSorter/>` in our table header.
         ))}
     </Thead>
     ```
+
 3. Disable sorting for the `actions` column by setting the `enableSorting` property of the column to `false` in the column definition like below:
 
     ```tsx title="src/pages/products/list.tsx"
@@ -328,10 +329,12 @@ Now, we can use `<ColumnFilter/>` in our table header.
 
 Now, we can filter the table by clicking on the filter button in the table header.
 
+<br/>
+
 <details>
   <summary><strong>How can I use custom filter element?</strong></summary>
 
-If you want to use a custom filter element, you can pass it to the `filterElement` property of the `meta` in column definition. For example, you can pass a `<Select/>` component like below.
+If you want to use a custom filter element, you can pass it to the `filterElement` property of the `meta` in column definition. For example, you can pass a `<Select/>` component like below:
 
 ```tsx
 {
@@ -371,7 +374,7 @@ By default, filter operator is "eq" for columns. You can change the filter opera
 <details>
   <summary><strong>How can I disable filtering for a specific column?</strong></summary>
 
-You can disable filtering for a specific column by setting the `enableColumnFilter` property of the column to `false` in the column definition like below.
+You can disable filtering for a specific column by setting the `enableColumnFilter` property of the column to `false` in the column definition like below:
 
 ```tsx
 {
