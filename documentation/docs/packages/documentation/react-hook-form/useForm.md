@@ -959,6 +959,10 @@ You can override the default behavior by passing an `onFinish` function in the h
 
 For example you can [change values before sending to the API](/docs/packages/documentation/react-hook-form/useForm/#how-can-i-change-the-form-data-before-submitting-it-to-the-api).
 
+### `formLoading`
+
+Loading state of a modal. It's `true` when `useForm` is currently being submitted or data is being fetched for the `"edit"` or `"clone"` mode.
+
 ## FAQ
 
 ### How can Invalidate other resources?

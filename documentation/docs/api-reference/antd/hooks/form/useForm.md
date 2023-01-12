@@ -751,33 +751,39 @@ const form = useForm({
 
 ## Return Values
 
+:::tip
+All [`core useForm`](/docs/api-reference/core/hooks/useForm/) return values also available in `useForm`.
+:::
+
 ### `form`
 
 It's a [`<Form>`](https://ant.design/components/form) instance. You can refer to [Antd `<Form>`](https://ant.design/components/form#api) for more information.
 
 ### `formProps`
 
-It's required to manage [`<Form>`](https://ant.design/components/form) state and actions. Under the hood the `formProps` came from [Antd `<Form>`](https://ant.design/components/form#api). Additionally, **refine** added following values to `formProps` object for better user experience.
+It's required to manage [`<Form>`](https://ant.design/components/form) state and actions.
+
+#### `onFinish`
+
+is called when the form is submitted. It will call the appropriate mutation based on the `action` property.
+
+The only difference between `onFinish` and `formProps.onFinish` is that passing a value to `formProps.onFinish`is mandatory, whereas `onFinish` can automatically retrieve values from the form state.
+
+#### `onValuesChange`
+
+The `warnWhenUnsavedChanges` feature requires this function to work. If you want to override the form's `onValuesChange`, keep this in mind.
 
 #### `onKeyUp`
 
 It's a function that will be called when a key is pressed. By default, it will call `form.submit()` function when the pressed key is `Enter`.
 
-```tsx title="src/posts/create.tsx"
-const { formProps } = useForm();
-
-return (
-    <Form {...formProps} onKeyUp={undefined}>
-        <Form.Item name="title">
-            <Input />
-        </Form.Item>
-    </Form>
-);
-```
-
 #### `initialValues`
 
 When `action` is set to `"edit"` or `"clone"`, `initialValues` will be set to the `data` returned from [`useOne`](/docs/api-reference/core/hooks/data/useOne/) hook.
+
+### `formLoading`
+
+Loading state of a modal. It's `true` when `useForm` is currently being submitted or data is being fetched for the `"edit"` or `"clone"` mode.
 
 ### `queryResult`
 

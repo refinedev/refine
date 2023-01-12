@@ -547,36 +547,67 @@ It's required to manage `<Form>` state and actions. Under the hood the `formProp
 
 It contains the props to manage the [Antd `<Form>`](https://ant.design/components/form#api) component such as [_`onValuesChange`, `initialValues`, `onFieldsChange`, `onFinish` etc._](/docs/api-reference/antd/hooks/form/useForm/#return-values)
 
-### `title`
+### `modalProps`
 
-Title of the modal. Based on resource and action values
+The props needed by the [`<Modal>`][antd-modal] component.
 
-```tsx
-const {
-    modalProps: { title },
-} = useModalForm({
-    refineCoreProps: {
-        resource: "posts",
-        action: "create",
-    },
-});
+#### `title`
 
-console.log(title); // "Create Post"
-```
+> Default when url is `"/posts/create"`: "Create Post"
+
+Title of the modal. Value is based on resource and action values.
+
+#### `okText`
+
+> Default: `"Save"`
+
+Text of the `"submit"` button within the modal.
+
+#### `cancelText`
+
+> Default: `"Cancel"`
+
+Text of the `"cancel"` button within the modal.
+
+#### `width`
+
+> Default: `1000px`
+
+Width of the `<Modal>`
+
+#### `forceRender`
+
+> Default: `true`
+
+It renders `<Modal>` instead of lazy rendering it.
+
+#### `okButtonProps`
+
+It contains all the props needed by the `"submit"` button within the modal (disabled,loading etc.). When `okButtonProps.onClick` is called, it triggers `form.submit()`. You can manually pass these props to your custom button.
+
+#### `onOk`
+
+A function that can submit the `<Form>` inside `<Modal>`. It's useful when you want to submit the form manually.
+
+#### `onCancel`
+
+> Same as `close`
+
+A function that can close the `<Modal>`. It's useful when you want to close the modal manually.
+
+#### `visible`
+
+> @deprecated. Please use `open` instead.
+
+Current visible state of `<Modal>`. Default value depends on `defaultVisible` prop.
 
 ### `open`
 
-Current visibility state of the modal.
-
-```tsx
-const modalForm = useModalForm({
-    defaultVisible: true,
-});
-
-console.log(modalForm.open); // true
-```
+Current visible state of `<Modal>`. Default value depends on `defaultVisible` prop.
 
 ### `close`
+
+> Same as `onCancel`
 
 A function that can close the modal. It's useful when you want to close the modal manually.
 
@@ -658,64 +689,6 @@ return (
 );
 ```
 
-### `okButtonProps`
-
-It contains all the props needed by the `"submit"` button within the modal (disabled,loading etc.). You can manually pass these props to your custom button.
-
-```tsx
-const {
-    modalProps: { okButtonProps },
-} = useModalForm();
-
-// --
-
-return (
-    <>
-        <Modal
-            {...modalProps}
-            okButtonProps={{
-                ...okButtonProps,
-                onClick: (
-                    e: React.MouseEvent<HTMLAnchorElement, MouseEvent> &
-                        React.MouseEvent<HTMLButtonElement, MouseEvent>,
-                ) => {
-                    // -- your custom logic
-                    okButtonProps?.onClick?.(e);
-                },
-            }}
-        >
-            {/* -- */}
-        </Modal>
-    </>
-);
-```
-
-### `okText`
-
-Text of the `"submit"` button within the modal.
-
-```tsx
-const {
-    modalProps: { okText },
-} = useModalForm();
-
-// --
-
-console.log(okText); // "Save"
-
-return (
-    <>
-        <Modal {...modalProps} okText="Submit">
-            {/* -- */}
-        </Modal>
-    </>
-);
-```
-
-### `onCancel`
-
-A function triggered when `<Modal>` is closed. It's useful when you want to close the modal manually.
-
 ```tsx
 const { modalProps, formProps } = useModalForm();
 
@@ -744,28 +717,6 @@ return (
 );
 ```
 
-### `cancelText`
-
-Text of the `"cancel"` button within the modal.
-
-```tsx
-const {
-    modalProps: { cancelText },
-} = useModalForm();
-
-// --
-
-console.log(cancelText); // "Cancel"
-
-return (
-    <>
-        <Modal {...modalProps} cancelText="Exit">
-            {/* -- */}
-        </Modal>
-    </>
-);
-```
-
 ## API Reference
 
 ### Properties
@@ -778,21 +729,21 @@ return (
 
 ### Return Value
 
-| Key                      | Description                                                                                          | Type                                                                                                                                                                                  |
-| ------------------------ | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| show                     | A function that can open the modal                                                                   | `(id?: BaseKey) => void`                                                                                                                                                              |
-| formProps                | [Props needed to manage form component](/docs/api-reference/antd/hooks/form/useModalForm/#formprops) | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                                               |
-| modalProps               | Props for managed modal                                                                              | [`ModalProps`](https://ant.design/components/modal/#API)                                                                                                                              |
-| formLoading              | Loading status of form                                                                               | `boolean`                                                                                                                                                                             |
-| submit                   | Submit method, the parameter is the value of the form fields                                         | `() => void`                                                                                                                                                                          |
-| open                     | Whether the modal dialog is open or not                                                              | `boolean`                                                                                                                                                                             |
-| close                    | Specify a function that can close the modal                                                          | `() => void`                                                                                                                                                                          |
-| defaultFormValuesLoading | DefaultFormValues loading status of form                                                             | `boolean`                                                                                                                                                                             |
-| form                     | Ant Design form instance                                                                             | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                                                                        |
-| id                       | Record id for edit action                                                                            | [`BaseKey`][basekey] \| `undefined`                                                                                                                                                   |
-| setId                    | `id` setter                                                                                          | `Dispatch<SetStateAction<` [`BaseKey`][basekey] \| `undefined>>`                                                                                                                      |
-| queryResult              | Result of the query of a record                                                                      | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery)                                                                                         |
-| mutationResult           | Result of the mutation triggered by submitting the form                                              | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+| Key                      | Description                                                                                                | Type                                                                                                                                                                                  |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| show                     | A function that can open the modal                                                                         | `(id?: BaseKey) => void`                                                                                                                                                              |
+| formProps                | [Props needed to manage form component](/docs/api-reference/antd/hooks/form/useModalForm/#formprops)       | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                                               |
+| modalProps               | [Props for needed to manage modal component](/docs/api-reference/antd/hooks/form/useModalForm/#modalprops) | [`ModalProps`](https://ant.design/components/modal/#API)                                                                                                                              |
+| formLoading              | Loading status of form                                                                                     | `boolean`                                                                                                                                                                             |
+| submit                   | Submit method, the parameter is the value of the form fields                                               | `() => void`                                                                                                                                                                          |
+| open                     | Whether the modal dialog is open or not                                                                    | `boolean`                                                                                                                                                                             |
+| close                    | Specify a function that can close the modal                                                                | `() => void`                                                                                                                                                                          |
+| defaultFormValuesLoading | DefaultFormValues loading status of form                                                                   | `boolean`                                                                                                                                                                             |
+| form                     | Ant Design form instance                                                                                   | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                                                                        |
+| id                       | Record id for edit action                                                                                  | [`BaseKey`][basekey] \| `undefined`                                                                                                                                                   |
+| setId                    | `id` setter                                                                                                | `Dispatch<SetStateAction<` [`BaseKey`][basekey] \| `undefined>>`                                                                                                                      |
+| queryResult              | Result of the query of a record                                                                            | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery)                                                                                         |
+| mutationResult           | Result of the mutation triggered by submitting the form                                                    | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 
 ### Type Parameters
 
