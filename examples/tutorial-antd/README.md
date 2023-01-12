@@ -31,7 +31,7 @@
 
 ## About
 
-This is a source code for example app built in [refine Ant Design tutorial](https://refine.dev/docs/tutorials/ant-design-tutorial/).
+This is a source code for example app built in [tutorial](https://refine.dev/docs/tutorial/introduction/index/) with Ant Design selection.
 
 The tutorial section will take you through the steps involved in creating an app from scratch using refine Ant Design.
 
