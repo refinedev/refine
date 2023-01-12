@@ -11,17 +11,18 @@ type RefineLinkProps = (
     | LinkProps
 ) & {
     children: React.ReactNode;
+    ref?: React.Ref<HTMLAnchorElement>;
 };
 
-export const RefineLink: React.FC<RefineLinkProps> = ({
-    children,
-    ...props
-}) => (
-    <Link
-        href={"to" in props ? props.to : props.href}
-        legacyBehavior={false}
-        {...props}
-    >
-        {children}
-    </Link>
+export const RefineLink: React.FC<RefineLinkProps> = React.forwardRef(
+    ({ children, ...props }) => (
+        <Link
+            href={"to" in props ? props.to : props.href}
+            legacyBehavior={false}
+            {...props}
+        >
+            {children}
+        </Link>
+    ),
 );
+RefineLink.displayName = "RefineLink";
