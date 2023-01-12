@@ -35,6 +35,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 id: "id",
                 accessorKey: "id",
                 header: "Id",
+                enableColumnFilter: false,
             },
             {
                 id: "name",
@@ -50,6 +51,9 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 id: "description",
                 accessorKey: "description",
                 header: "Description",
+                meta: {
+                    filterOperator: "contains",
+                },
                 cell: function render({ getValue }) {
                     return (
                         <MarkdownField
@@ -62,11 +66,14 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 id: "price",
                 accessorKey: "price",
                 header: "Price",
+                enableColumnFilter: false,
             },
             {
                 id: "category",
                 header: "Category",
                 accessorKey: "category.id",
+                enableSorting: false,
+                enableColumnFilter: false,
                 cell: function render({ getValue, table }) {
                     const meta = table.options.meta as {
                         categoryData: GetManyResponse;
@@ -83,6 +90,8 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 id: "actions",
                 accessorKey: "id",
                 header: "Actions",
+                enableSorting: false,
+                enableColumnFilter: false,
                 cell: function render({ getValue }) {
                     return (
                         <HStack>
