@@ -537,10 +537,6 @@ const modalForm = useModalForm({
 
 ## Return Values
 
-:::tip
-All [`useForm`][antd-use-form] return values also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#return-values) docs.
-:::
-
 ### `formProps`
 
 It's required to manage `<Form>` state and actions. Under the hood the `formProps` came from [`useForm`][antd-use-form].
