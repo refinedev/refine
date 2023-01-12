@@ -15,8 +15,9 @@ type RefineLinkProps = (
 };
 
 export const RefineLink: React.FC<RefineLinkProps> = React.forwardRef(
-    ({ children, ...props }) => (
+    ({ children, ...props }, ref) => (
         <Link
+            ref={ref}
             href={"to" in props ? props.to : props.href}
             legacyBehavior={false}
             {...props}
