@@ -22,6 +22,12 @@ Netlify will use your GitHub repository to build and deploy your site every time
 
 Congratulations! You now have an **refine** website hosted on Netlify.
 
+:::tip
+
+To support for client-side routing, you can check out the Create React App documentation on [deployment](https://create-react-app.dev/docs/deployment/#netlify).
+
+:::
+
 ## Visit your new website
 
 To view your new website, visit the URL provided in your site settings or type it into a browser window.
