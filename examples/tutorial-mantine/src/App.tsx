@@ -1,47 +1,52 @@
+import React from "react";
+
 import { Refine } from "@pankod/refine-core";
 import {
-    MantineProvider,
     NotificationsProvider,
-    Layout,
-    ErrorComponent,
-    ReadyPage,
     notificationProvider,
-    LightTheme,
+    MantineProvider,
     Global,
+    Layout,
+    LightTheme,
+    ReadyPage,
+    ErrorComponent,
 } from "@pankod/refine-mantine";
+
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
+import { ProductList } from "pages/products/list";
+import { ProductCreate } from "pages/products/create";
+import { ProductEdit } from "pages/products/edit";
+import { ProductShow } from "pages/products/show";
 
-const App: React.FC = () => {
+function App() {
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <Refine
-                    routerProvider={routerProvider}
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}
                     notificationProvider={notificationProvider}
+                    Layout={Layout}
                     ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}
-                    Layout={Layout}
+                    routerProvider={routerProvider}
                     resources={[
                         {
-                            name: "posts",
-                            show: PostShow,
-                            list: PostList,
-                            edit: PostEdit,
-                            create: PostCreate,
-                            canDelete: true,
+                            name: "products",
+                            list: ProductList,
+                            show: ProductShow,
+                            create: ProductCreate,
+                            edit: ProductEdit,
                         },
                     ]}
                 />
             </NotificationsProvider>
         </MantineProvider>
     );
-};
+}
 
 export default App;

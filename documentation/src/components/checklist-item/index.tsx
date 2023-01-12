@@ -38,7 +38,7 @@ const ChecklistItem: React.FC<Props> = ({ children, id: checkId }) => {
     };
 
     return (
-        <label className="mb-3 flex items-start flex-nowrap gap-1.5">
+        <label className="mb-3 flex items-start flex-nowrap gap-1.5 cursor-pointer">
             <div className="flex-shrink-0 w-5 h-5 mt-[3px]">
                 <button
                     type="button"

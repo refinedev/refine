@@ -1,14 +1,10 @@
 
-<br/>
-
 <div align="center" style="margin: 30px;">
-<a href="https://github.com/refinedev/refine">
+<a href="https://refine.dev/">
   <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:250px;" align="center" />
 </a>
 <br />
 <br />
-
-<h1>Ant Design Example App</h1>
 
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
@@ -18,107 +14,32 @@
     <a href="https://refine.dev/docs/">Documentation</a> | 
     <a href="https://github.com/refinedev/refine/projects/1">Roadmap</a>
 </div>
+</div>
 
 <br />
 
-<a href="https://github.com/refinedev/refine">
- <img src="https://github.com/refinedev/refine/blob/master/documentation/static/img/first-example-result.png?raw=true"   style="width:650px;" align="center" />
- </a>
+<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open source, headless web application framework developed with flexibility in mind.
+
+<br />
+<br />
+
+
+[![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
+[![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
+
+<a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=light&period=daily" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
 </div>
 
+## Try it out on your local
 
-
-
-## About
-
-This is a source code for example app built in [tutorial](https://refine.dev/docs/tutorial/introduction/index/) with Ant Design selection.
-
-The tutorial section will take you through the steps involved in creating an app from scratch using refine Ant Design.
-
-You can use the source code as a starting point for your own custom apps.  We hope that these examples and tutorials will be a great resource for you.
-
-
-## What is refine?
-[**refine**](https://github.com/refinedev/refine) is a React-based framework for the rapid  development of CRUD web applications. It shines✨ on data-intensive applications like admin panels, dashboards and internal tools. Thanks to the built-in SSR support, refine can also power customer-facing applications like storefronts.
-
-
-It's *headless by design*, thereby offering unlimited styling and customization options.
-
-[**refine**](https://github.com/refinedev/refine) seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
-
-## Bootsrapping the example app
-
-We will show how you can use the CLI to bootstrap the same **refine** example app with [Ant Design](https://ant.design/) and [React](https://reactjs.org/). You can also use [Material UI](https://material-ui.com/), [Chakra UI](https://chakra-ui.com/) and [Mantine](https://mantine.dev/) as well.
-
-```
-npm create refine-app@latest my-antd-project
+```bash
+npm create refine-app@latest -- --example tutorial-antd
 ```
 
+## Try it out on StackBlitz
 
 <br/>
 
-Select the following options to complete CLI wizard:
-
-```
-? Select your project type: 
-❯ refine-react
-
-? Do you want to use a UI Framework?:
-❯ Ant Design
-
-? Do you want a customized theme?:
-❯ Default theme
-
-? Router Provider:
-❯ React Router v6
-
-? Data Provider:
-❯ REST API
-
-? Auth Provider:
-❯ None
-
-? Do you want to add example pages? 
-❯ Yes
-
-? Do you want a customized layout?
-❯ No
-```
-<br/>
-
->🚦**Info:**
- We only show important options for this example. You can prefer to select other options like [Kbar](https://github.com/timc1/kbar) and [i18n](https://www.i18next.com/). Different options selections may be result in a different project structure.
-
-
-
-<br/>
-
-Once the setup is complete, navigate to the project folder and start your project with:
-
-```
-npm run dev
-```
-
-You can now view **refine** application at [http://localhost:3000](http://localhost:3000).
-<br/>
-
-### Live StackBlitz Example
-[You can also react the same app on Stackblitz 	➡️ ](https://stackblitz.com/edit/refinedev-refine-n8shov?file=package.json)
-
-## Community
-Join our community to get help, share ideas and connect with other developers.
-
-<br>
-
-<a href="https://discord.gg/refine">
-  <img src="images/discord.png" width="160px" />
-</a>
-<a href="https://twitter.com/refine_dev">
-  <img src="images/twitter.png" width="160px" />
-</a>
-<a href="https://github.com/refinedev/refine">
-  <img src="images/github.png"  width="160px"/>
-</a>
-<a href="https://www.reddit.com/r/refine/">
-  <img src="images/reddit.png" width="160px" />
-</a>
+[![Open tutorial-antd example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial-antd?terminal=start&preset=node)
+        
