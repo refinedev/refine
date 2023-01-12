@@ -29,6 +29,7 @@ export const ProductList = () => {
                 headerName: "Id",
                 type: "number",
                 minWidth: 50,
+                filterable: false,
             },
             {
                 field: "name",
@@ -56,10 +57,12 @@ export const ProductList = () => {
                 field: "price",
                 headerName: "Price",
                 minWidth: 200,
+                filterable: false,
             },
             {
                 field: "category",
                 headerName: "Category",
+                filterable: false,
                 valueGetter: ({ row }) => {
                     const value = row?.category?.id;
 
@@ -78,6 +81,8 @@ export const ProductList = () => {
             {
                 field: "actions",
                 headerName: "Actions",
+                sortable: false,
+                filterable: false,
                 renderCell: function render({ row }) {
                     return (
                         <>
