@@ -19,22 +19,6 @@ module.exports = {
         },
         {
             type: "category",
-            label: "Basic Tutorials",
-            link: {
-                type: "doc",
-                id: "tutorials",
-            },
-            items: [
-                "tutorials/ant-design-tutorial",
-                "tutorials/chakra-ui-tutorial",
-                "tutorials/mantine-tutorial",
-                "tutorials/material-ui-tutorial",
-                "tutorials/headless-tutorial",
-            ],
-            collapsed: true,
-        },
-        {
-            type: "category",
             label: "API Reference",
             link: {
                 type: "generated-index",

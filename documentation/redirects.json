@@ -649,16 +649,28 @@
             "to": "/"
         },
         {
-            "from": "/docs/ui-frameworks/antd/tutorial/",
-            "to": "/docs/tutorials/ant-design-tutorial/"
+            "from": "/docs/tutorials/ant-design-tutorial/",
+            "to": "/docs/tutorial/introduction/index/"
         },
         {
-            "from": "/docs/core/tutorial/",
-            "to": "/docs/tutorials/headless-tutorial/"
+            "from": "/docs/tutorials/headless-tutorial/",
+            "to": "/docs/tutorial/introduction/index/"
         },
         {
-            "from": "/docs/ui-frameworks/mui/tutorial/",
-            "to": "/docs/tutorials/material-ui-tutorial/"
+            "from": "/docs/tutorials/material-ui-tutorial/",
+            "to": "/docs/tutorial/introduction/index/"
+        },
+        {
+            "from": "/docs/tutorials/mantine-tutorial/",
+            "to": "/docs/tutorial/introduction/index/"
+        },
+        {
+            "from": "/docs/tutorials/chakra-ui-tutorial/",
+            "to": "/docs/tutorial/introduction/index/"
+        },
+        {
+            "from": "/docs/",
+            "to": "/docs/getting-started/overview/"
         },
         {
             "from": "/docs/guides-and-concepts/telemetry/",
