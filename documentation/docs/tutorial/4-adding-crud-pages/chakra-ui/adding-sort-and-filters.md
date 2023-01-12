@@ -324,7 +324,7 @@ Now, we can filter the table by clicking on the filter button in the table heade
 <Checklist>
 
 <ChecklistItem id="add-search-and-filters-chakra-ui">
-I added search and filters to the table
+I added search and filters to the table.
 </ChecklistItem>
 
 </Checklist>

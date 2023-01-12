@@ -56,13 +56,13 @@ The tutorial will continue with **Material UI**.
 <Checklist>
 
 <ChecklistItem id="select-framework">
-I understood that refine is a headless framework
+I understood that refine is a headless framework.
 </ChecklistItem>
 <ChecklistItem id="select-framework-2">
-I understood that refine has built-in support for the most popular UI frameworks
+I understood that refine has built-in support for the most popular UI frameworks.
 </ChecklistItem>
 <ChecklistItem id="select-framework-3">
-I have selected a UI framework
+I have selected a UI framework.
 </ChecklistItem>
 
 </Checklist>

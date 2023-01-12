@@ -158,10 +158,10 @@ render(<App />);
 <Checklist>
 
 <ChecklistItem id="getting-started-mui">
-I understood how to create a new project
+I understood how to create a new project.
 </ChecklistItem>
 <ChecklistItem id="getting-started-mui-2">
-I run the dev server and previewed my app
+I run the dev server and previewed my app.
 </ChecklistItem>
 
 </Checklist>

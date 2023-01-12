@@ -47,10 +47,10 @@ You can also reach us on [Discord](https://discord.com/invite/refine).
 <Checklist>
 
 <ChecklistItem id="prequisite-looks-great">
-I understood how to use the checklists
+I understood how to use the checklists.
 </ChecklistItem>
 <ChecklistItem id="prequisite-looks-great-2">
-I know how to get help, and where to leave feedback
+I know how to get help, and where to leave feedback.
 </ChecklistItem>
 
 </Checklist>

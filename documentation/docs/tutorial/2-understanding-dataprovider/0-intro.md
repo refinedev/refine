@@ -157,10 +157,10 @@ This will allow you to easily use these data providers in your project.
 <Checklist>
 
 <ChecklistItem id="data-provider-intro">
-I understood what is data provider
+I understood what is data provider.
 </ChecklistItem>
 <ChecklistItem id="data-provider-intro-2">
-I saw built-in data providers provided by "refine"
+I saw built-in data providers provided by refine.
 </ChecklistItem>
 <ChecklistItem id="data-provider-intro-3">
 I understood what is data provider and how it works.

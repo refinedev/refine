@@ -130,10 +130,10 @@ You can also use `useDelete` hook provided by **refine** to delete a record.
 <Checklist>
 
 <ChecklistItem id="add-delete-feature-chakra-ui">
-I added the delete feature to the list page
+I added the delete feature to the list page.
 </ChecklistItem>
 <ChecklistItem id="add-delete-feature-chakra-ui-2">
-I enabled the delete feature on the show page and edit page
+I enabled the delete feature on the show page and edit page.
 </ChecklistItem>
 
 </Checklist>

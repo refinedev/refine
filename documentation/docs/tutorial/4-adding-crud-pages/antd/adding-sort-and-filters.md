@@ -123,7 +123,7 @@ Now, you can search and filter the data by category on the table.
 <Checklist>
 
 <ChecklistItem id="add-search-and-filters-antd">
-I added search and filters to the table
+I added search and filters to the table.
 </ChecklistItem>
 
 </Checklist>

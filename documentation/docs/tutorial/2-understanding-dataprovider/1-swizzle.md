@@ -71,7 +71,7 @@ Now that you have ejected all the data provider, you can update and use it accor
 <Checklist>
 
 <ChecklistItem id="data-provider-swizzle">
-I learned what is swizzle and how to use it
+I learned what is swizzle and how to use it.
 </ChecklistItem>
 
 </Checklist>
