@@ -81,7 +81,9 @@ const App: React.FC = () => {
 export default App;
 ```
 
-In the above example, we have added a `resource` with name `products`. This resource will have 5 pages that assigned to `list`, `show`, `create`, and `edit` properties. **refine** link the pages with routes for us. When we define `create`, clone page will be generated automatically. We can access these pages by visiting the following routes:
+In the above example, we have added a `resource` with name `products`. This resource will have 5 pages that assigned to `list`, `show`, `create`, and `edit` properties. **refine** link the pages with routes for us.  
+
+When we define `create`, clone page will be generated automatically. We can access these pages by visiting the following routes:
 
 -   `/products` - Product List Page
 -   `/products/show/:id` - Product Detail Page
