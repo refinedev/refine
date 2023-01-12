@@ -90,7 +90,10 @@ We will go through the edit page components and hooks one by one.
 
 ### Handling Relationships
 
-In the edit page, we may need to select a record from another resource. For example, we may need to select a category from the `categories` resource to assign the product to the category. In this case, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method. Then, it returns the necessary props for the `<Select/>` component.
+
+In the edit page, we may need to select a record from another resource.  
+
+For example, we may need to select a category from the `categories` resource to assign the product to the category. In this case, we can use the `useSelect` hook provided by **refine**. This hook fetches the data by passing the params to the `dataProvider`'s `getList` method. Then, it returns the necessary props for the `<Select/>` component.
 
 [Refer to the `useSelect` documentation for more information &#8594](/docs/api-reference/antd/hooks/field/useSelect/)
 
