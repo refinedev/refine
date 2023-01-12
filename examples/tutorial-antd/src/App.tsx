@@ -1,38 +1,42 @@
+import React from "react";
+
 import { Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
+    ReadyPage,
     ErrorComponent,
 } from "@pankod/refine-antd";
+import "@pankod/refine-antd/dist/reset.css";
+
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import "@pankod/refine-antd/dist/reset.css";
+import { ProductList } from "pages/products/list";
+import { ProductCreate } from "pages/products/create";
+import { ProductShow } from "pages/products/show";
+import { ProductEdit } from "pages/products/edit";
 
-import { PostList, PostEdit, PostCreate, PostShow } from "./pages";
-
-const API_URL = "https://api.fake-rest.refine.dev";
-
-const App: React.FC = () => {
+function App() {
     return (
         <Refine
-            dataProvider={dataProvider(API_URL)}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            catchAll={<ErrorComponent />}
             routerProvider={routerProvider}
             resources={[
                 {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    canDelete: true,
+                    name: "products",
+                    list: ProductList,
+                    show: ProductShow,
+                    create: ProductCreate,
+                    edit: ProductEdit,
                 },
             ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
         />
     );
-};
+}
 
 export default App;
