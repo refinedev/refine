@@ -23,7 +23,7 @@ A clickable task checklist awaits you at the end of each page to measure your un
 <details>
 <summary>What if I need help, or want to learn more about <strong>refine</strong>?</summary>
 
--   [Join the Discord Community](https://discord.com/invite/refine) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
+-   [Join the Discord Community](https://discord.gg/refine) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
 -   [GitHub Discussions](https://github.com/refinedev/refine/discussions) – ask anything about the project or give feedback, we'd love to hear your thoughts!
 
 </details>
