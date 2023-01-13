@@ -122,7 +122,7 @@ const PostCreate = () => {
 };
 ```
 
-`useForm` is used to manage forms. It is based on [Antd Form](https://ant.design/components/form/) and [`refine useForm`](/docs/api-reference/core/hooks/useForm/) to supports all the features of these packages and adds some additional features.
+`useForm` is used to manage forms. It returns the necessary properties and methods to control the [Antd Form](https://ant.design/components/form/). Also, it has been developed by using [`useForm`](/docs/api-reference/core/hooks/useForm/) imported from [@pankod/refine-core](https://github.com/refinedev/refine/tree/next/packages/core) package.
 
 <GeneralConceptsLink />
 
@@ -736,6 +736,36 @@ const form = useForm({
 });
 ```
 
+### `warnWhenUnsavedChanges`
+
+> Default: `false`
+
+When it's true, Shows a warning when the user tries to leave the page with unsaved changes. It can be used to prevent the user from accidentally leaving the page.
+
+It can be set globally in [`refine config`](/docs/api-reference/core/components/refine-config/#warnwhenunsavedchanges).
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    // highlight-start
+    warnWhenUnsavedChanges: true,
+    // highlight-end
+});
+```
+
+### `submitOnEnter`
+
+> Default: `false`
+
+When it's true, pressing the Enter key will submit the form. It can be used to prevent the user from accidentally leaving the page.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    // highlight-start
+    submitOnEnter: true,
+    // highlight-end
+});
+```
+
 ### `liveMode`
 
 Whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
@@ -749,7 +779,59 @@ const form = useForm({
 });
 ```
 
+### `onLiveEvent`
+
+The callback function that is executed when new events from a subscription are arrived.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    // highlight-start
+    onLiveEvent: (event) => {
+        console.log(event);
+    },
+    // highlight-end
+});
+```
+
+### `liveParams`
+
+Params to pass to [liveProvider's](/docs/api-reference/core/providers/live-provider/#subscribe) subscribe method.
+
 ## Return Values
+
+:::tip
+All [`core useForm`](/docs/api-reference/core/hooks/useForm/) return values also available in `useForm`.
+:::
+
+### `form`
+
+It's a [`<Form>`](https://ant.design/components/form) instance. You can refer to [Antd `<Form>`](https://ant.design/components/form#api) for more information.
+
+### `formProps`
+
+It's required to manage [`<Form>`](https://ant.design/components/form) state and actions.
+
+#### `onFinish`
+
+is called when the form is submitted. It will call the appropriate mutation based on the `action` property.
+
+The only difference between `onFinish` and `formProps.onFinish` is that passing a value to `formProps.onFinish`is mandatory, whereas `onFinish` can automatically retrieve values from the form state.
+
+#### `onValuesChange`
+
+The `warnWhenUnsavedChanges` feature requires this function to work. If you want to override the form's `onValuesChange`, keep this in mind.
+
+#### `onKeyUp`
+
+It's a function that will be called when a key is pressed. By default, it will call `form.submit()` function when the pressed key is `Enter`.
+
+#### `initialValues`
+
+When `action` is set to `"edit"` or `"clone"`, `initialValues` will be set to the `data` returned from [`useOne`](/docs/api-reference/core/hooks/data/useOne/) hook.
+
+### `formLoading`
+
+Loading state of a modal. It's `true` when `useForm` is currently being submitted or data is being fetched for the `"edit"` or `"clone"` mode.
 
 ### `queryResult`
 
