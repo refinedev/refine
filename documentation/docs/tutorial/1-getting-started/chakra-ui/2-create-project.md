@@ -49,6 +49,8 @@ The easiest way to create a new project is to use the **refine CLI**. This tool 
 
 3. The `-o refine-chakra-ui` flag in the command above tells the CLI to install the project with the `refine-chakra-ui` preset. This preset selects some options for you in accordance with this tutorial.
 
+    > We use a preset here to sync the tutorial content with the code. Outside of the tutorial, you can skip this flag and select your own options.
+
 4. The CLI will ask if you agree to share your selection anonymously with the **refine** team. You can choose whatever you prefer.
 
 Once the installation wizard is finished, you can close this terminal window and open VS Code to continue your journey.

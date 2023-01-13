@@ -120,6 +120,9 @@ In this tutorial, we will add filters capabilities to the `category` column. To 
 
 Now, you can search and filter the data by category on the table.
 
+<br/>
+<br/>
+
 <Checklist>
 
 <ChecklistItem id="add-search-and-filters-antd">

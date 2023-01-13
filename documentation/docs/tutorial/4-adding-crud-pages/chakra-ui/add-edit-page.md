@@ -178,6 +178,9 @@ export default App;
 
 Now, we can see the edit page in the browser at <a href="http://localhost:3000/products/edit/123" rel="noopener noreferrer nofollow">localhost:3000/products/edit/123</a>
 
+<br/>
+<br/>
+
 <Checklist>
 
 <ChecklistItem id="add-edit-page-chakra-ui">

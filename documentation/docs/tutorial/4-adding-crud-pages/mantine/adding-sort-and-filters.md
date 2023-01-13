@@ -387,6 +387,7 @@ You can disable filtering for a specific column by setting the `enableColumnFilt
 </details>
 
 <br />
+<br />
 
 <Checklist>
 

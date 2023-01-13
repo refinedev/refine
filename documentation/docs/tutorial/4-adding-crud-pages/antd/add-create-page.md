@@ -160,6 +160,9 @@ export default App;
 
 Now, we can see the create page in the browser at <a href="http://localhost:3000/products/create" rel="noopener noreferrer nofollow">localhost:3000/products/create</a>
 
+<br/>
+<br/>
+
 <Checklist>
 
 <ChecklistItem id="add-create-page-antd">

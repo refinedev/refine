@@ -99,7 +99,9 @@ We will go through the show page components and hooks one by one.
 
 ### Handling Relationships
 
-In the show page, we have a single record. The record may have relationships with other resources. For example, the `products` resource has a relationship with the `categories` resource. In this case, we can use the `useOne` hook provided by **refine**. This hook allows us to fetch single record data by using the `id` and `resource` parameters.
+In the show page, we have a single record. The record may have relationships with other resources.
+
+For example, the `products` resource has a relationship with the `categories` resource. In this case, we can use the `useOne` hook provided by **refine**. This hook allows us to fetch single record data by using the `id` and `resource` parameters.
 
 [Refer to the `useOne` documentation for more information &#8594](/docs/api-reference/core/hooks/data/useOne/)
 
@@ -190,6 +192,9 @@ export default App;
 ```
 
 Now, we can see the create page in the browser at <a href="http://localhost:3000/products/show/123" rel="noopener noreferrer nofollow">localhost:3000/products/show/123</a>
+
+<br/>
+<br/>
 
 <Checklist>
 

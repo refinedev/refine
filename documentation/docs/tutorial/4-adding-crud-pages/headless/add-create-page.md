@@ -3,8 +3,8 @@ id: add-create-page
 title: 4. Adding Create Page
 tutorial:
     order: 0
-    next: tutorial/adding-crud-pages/{preferredUI}/add-show-page
-    prev: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
+    prev: tutorial/adding-crud-pages/{preferredUI}/add-show-page
+    next: tutorial/adding-crud-pages/{preferredUI}/add-delete-feature
 ---
 
 Create page is the page where you can create the record. In this tutorial, we will create the create page for the `products` resource.
@@ -134,6 +134,9 @@ export default App;
 ```
 
 Now, we can see the create page in the browser at <a href="http://localhost:3000/products/create" rel="noopener noreferrer nofollow">localhost:3000/products/create</a>
+
+<br/>
+<br/>
 
 <Checklist>
 

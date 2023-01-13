@@ -8,7 +8,9 @@ tutorial:
 
 ## What is Swizzle?
 
-The [`swizzle`](../../packages/documentation/cli.md#swizzle) is a command in [`refine-cli`](../../packages/documentation/cli.md) that allows you to customize the supported components and data providers. It allows you to eject selected files from the **refine** packages. Instead of starting from scratch, you can use the file as a starting point and make changes to fit your specific needs.
+The [`swizzle`](../../packages/documentation/cli.md#swizzle) is a command in [`refine-cli`](../../packages/documentation/cli.md) that allows you to customize the refine's supported components and data providers. It allows you to eject selected files from the **refine** packages and modify depending on your needs.
+
+Instead of starting from scratch, you can use the ejected file code logic as a starting point and make changes to fit your specific needs.
 
 ## How to Use Swizzle for Data Provider?
 
@@ -66,7 +68,7 @@ The necessary files for this package are copied to the `src/rest-data-provider` 
 
 3. To use the generated data provider, we need to import it in the `App.tsx` file and give it as a `dataProvider` prop to the `Refine` component.
 
-Now that you have ejected all the data provider, you can update and use it according to your API. This method is much faster than writing a new data provider.
+Now that you have ejected all the data provider, you can modify and use it according to your API. You'll realize that using the swizzle for creating a data provider is much faster than writing a new data provider from scratch.
 
 <Checklist>
 

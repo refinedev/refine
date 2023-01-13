@@ -211,6 +211,8 @@ export default App;
 
 Now, we can see the list page in the browser at <a href="http://localhost:3000/products" rel="noopener noreferrer nofollow">localhost:3000/products</a>
 
+<br/>
+<br/>
 
 <Checklist>
 

@@ -15,6 +15,9 @@ When you click arrow icons on the table header, it will sort the data by the col
 To see how the filtering and sorting work and more detail, you can refer to the [`useDataGrid` documentation](/docs/api-reference/mui/hooks/useDataGrid/).
 :::
 
+<br/>
+<br/>
+
 <Checklist>
 
 <ChecklistItem id="add-search-and-filters-mui">

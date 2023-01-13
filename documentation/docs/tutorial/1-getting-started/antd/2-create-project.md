@@ -49,6 +49,8 @@ The easiest way to create a new project is to use the **refine CLI**. This tool 
 
 3. We are using `-o refine-antd` flag to bootstrap the app with pre-selected CLI options. The tutorial will proceed according to these selections.
 
+    > We use a preset here to sync the tutorial content with the code. Outside of the tutorial, you can skip this flag and select your own options.
+
 4. The CLI will ask if you agree to share your choices anonymously with the **refine** team. This is for measuring community preferences. You are free to share or not.
 
 Once the installation wizard is finished, you can close this terminal window and open VS Code to continue your journey.
