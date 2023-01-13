@@ -1006,6 +1006,8 @@ render(<RefineMantineDemo />);
 
 ### Properties
 
+<PropsTable module="@pankod/refine-mantine/useStepsForm"/>
+
 | Property                               | Description                                                         | Type                                                              |
 | -------------------------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | stepsProps                             | Configuration object for the steps                                  | [`StepsPropsType`](#stepspropstype)                               |
