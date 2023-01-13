@@ -491,13 +491,13 @@
     position: relative;
 }
 
-#__docusaurus
+/* #__docusaurus
     .with-hoverline
     .navbar-sidebar__items
     .menu__link--active::before {
     content: "";
     @apply absolute bottom-[-5px] left-[calc(50%-12px)] h-1 w-6 rounded-sm bg-[#1890ff] transition-opacity duration-200 ease-in-out;
-}
+} */
 
 #__docusaurus .with-hoverline.active-item::before {
     content: "";

@@ -151,6 +151,11 @@ const siteConfig = {
             items: [
                 { to: "blog", label: "Blog", position: "left" },
                 {
+                    to: "blog/refine-hackathon/",
+                    label: "Hackathon",
+                    position: "left",
+                },
+                {
                     type: "docsVersionDropdown",
                     position: "right",
                     dropdownActiveClassDisabled: true,
