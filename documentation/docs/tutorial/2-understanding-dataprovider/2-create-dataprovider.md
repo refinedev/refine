@@ -751,7 +751,7 @@ const { data } = useMany({ resource: "posts", ids: [1, 2] });
 
 ### createMany
 
-This method allows us to create multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `create` method to handle multiple requests.
+This method allows us to create multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use [`create`](#create) method to handle multiple requests.
 
 ```ts title="src/data-provider.ts"
 createMany: async ({ resource, variables }) => {
@@ -799,7 +799,7 @@ mutate({
 
 ### deleteMany
 
-This method allows us to delete multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `deleteOne` method to handle multiple requests.
+This method allows us to delete multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use [`deleteOne`](#deleteone) method to handle multiple requests.
 
 ```ts title="src/data-provider.ts"
 deleteMany: async ({ resource, ids }) => {
@@ -841,7 +841,7 @@ mutate({
 
 ### updateMany
 
-This method allows us to update multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `update` method to handle multiple requests.
+This method allows us to update multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use [`update`](#update) method to handle multiple requests.
 
 ```ts title="src/data-provider.ts"
 updateMany: async ({ resource, ids, variables }) => {
