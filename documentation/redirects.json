@@ -695,6 +695,10 @@
         {
             "from": "/docs/examples/next-js/i18n-nextjs",
             "to": "/docs/examples/i18n/i18n-nextjs"
+        },
+        {
+            "from": "/docs/getting-started/overview/",
+            "to": "/docs/"
         }
     ]
 }

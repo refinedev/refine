@@ -4,11 +4,6 @@ module.exports = {
         {
             type: "category",
             label: "Getting Started",
-            link: {
-                type: "generated-index",
-                title: "Getting Started",
-                slug: "/",
-            },
             items: ["getting-started/overview", "getting-started/quickstart"],
             collapsed: false,
         },

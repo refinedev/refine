@@ -187,11 +187,11 @@ const siteConfig = {
                     items: [
                         {
                             label: "Getting Started",
-                            to: "docs/getting-started/overview",
+                            to: "docs",
                         },
                         {
                             label: "Tutorials",
-                            to: "docs",
+                            to: "docs/tutorial/introduction/index/",
                         },
                         {
                             label: "Blog",
