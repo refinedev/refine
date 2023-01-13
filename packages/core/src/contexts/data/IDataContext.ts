@@ -89,6 +89,11 @@ export interface GetListResponse<TData = BaseRecord> {
     total: number;
 }
 
+export interface GetInfinityListResponse<TData = BaseRecord>
+    extends GetListResponse<TData> {
+    pagination?: Pagination;
+}
+
 export interface CreateResponse<TData = BaseRecord> {
     data: TData;
 }

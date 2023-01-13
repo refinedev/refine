@@ -1,12 +1,9 @@
 import {
-    QueryObserverResult,
-    UseQueryOptions,
     useInfiniteQuery,
     UseInfiniteQueryOptions,
     InfiniteQueryObserverResult,
 } from "@tanstack/react-query";
 import {
-    GetListResponse,
     CrudFilters,
     Pagination,
     BaseRecord,
@@ -15,6 +12,7 @@ import {
     MetaDataQuery,
     SuccessErrorNotification,
     LiveModeProps,
+    GetInfinityListResponse,
 } from "../../interfaces";
 import {
     useResource,
@@ -26,7 +24,7 @@ import {
 } from "@hooks";
 import { queryKeys, pickDataProvider } from "@definitions/helpers";
 
-export interface UseListConfig {
+export interface UseInfinityConfig {
     pagination?: Pagination;
     hasPagination?: boolean;
     sort?: CrudSorting;
@@ -42,11 +40,14 @@ export type UseInfinityListProps<TData, TError> = {
      * Configuration for pagination, sorting and filtering
      * @type [`UseListConfig`](/docs/api-reference/core/hooks/data/useList/#config-parameters)
      */
-    config?: UseListConfig;
+    config?: UseInfinityConfig;
     /**
-     * react-query's [useQuery](https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery) options,
+     * react-query's [useInfiniteQuery](https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery) options,
      */
-    queryOptions?: UseInfiniteQueryOptions<GetListResponse<TData>, TError>;
+    queryOptions?: UseInfiniteQueryOptions<
+        GetInfinityListResponse<TData>,
+        TError
+    >;
     /**
      *  Metadata query for `dataProvider`
      */
@@ -59,11 +60,11 @@ export type UseInfinityListProps<TData, TError> = {
     LiveModeProps;
 
 /**
- * `useList` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
+ * `useInfinityGetList` is a modified version of `react-query`'s {@link https://tanstack.com/query/latest/docs/react/guides/infinite-queries `useInfiniteQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
  *
  * It uses the `getList` method as the query function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/core/hooks/data/useList} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/data/useInfinityGetList} for more details.
  *
  * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/core/interfaceReferences#httperror `HttpError`}
@@ -84,7 +85,7 @@ export const useInfinityGetList = <
     liveParams,
     dataProviderName,
 }: UseInfinityListProps<TData, TError>): InfiniteQueryObserverResult<
-    GetListResponse<TData>,
+    GetInfinityListResponse<TData>,
     TError
 > => {
     const { resources } = useResource();
@@ -114,7 +115,7 @@ export const useInfinityGetList = <
             hasPagination: config?.hasPagination,
             sort: config?.sort,
             filters: config?.filters,
-            subscriptionType: "useList",
+            subscriptionType: "useInfinityList",
             ...liveParams,
         },
         channel: `resources/${resource}`,
@@ -123,13 +124,22 @@ export const useInfinityGetList = <
         onLiveEvent,
     });
 
-    const queryResponse = useInfiniteQuery<GetListResponse<TData>, TError>(
+    const queryResponse = useInfiniteQuery<
+        GetInfinityListResponse<TData>,
+        TError
+    >(
         queryKey.list(config),
         ({ queryKey, pageParam, signal }) => {
             const { hasPagination, ...restConfig } = config || {};
+            const pagination = {
+                ...config?.pagination,
+                current: pageParam,
+            };
+
             return getList<TData>({
                 resource,
                 ...restConfig,
+                pagination,
                 hasPagination,
                 metaData: {
                     ...metaData,
@@ -139,7 +149,64 @@ export const useInfinityGetList = <
                         signal,
                     },
                 },
+            }).then(({ data, total }) => {
+                return {
+                    data,
+                    total,
+                    pagination,
+                };
             });
+        },
+        {
+            ...queryOptions,
+            onSuccess: (data) => {
+                queryOptions?.onSuccess?.(data);
+
+                const notificationConfig =
+                    typeof successNotification === "function"
+                        ? successNotification(
+                              data,
+                              { metaData, config },
+                              resource,
+                          )
+                        : successNotification;
+
+                handleNotification(notificationConfig);
+            },
+            onError: (err: TError) => {
+                checkError(err);
+                queryOptions?.onError?.(err);
+
+                const notificationConfig =
+                    typeof errorNotification === "function"
+                        ? errorNotification(err, { metaData, config }, resource)
+                        : errorNotification;
+
+                handleNotification(notificationConfig, {
+                    key: `${resource}-useList-notification`,
+                    message: translate(
+                        "common:notifications.error",
+                        { statusCode: err.statusCode },
+                        `Error (status code: ${err.statusCode})`,
+                    ),
+                    description: err.message,
+                    type: "error",
+                });
+            },
+            getNextPageParam: (lastPage) => {
+                const { pagination } = lastPage;
+                const current = pagination?.current || 1;
+                const pageSize = pagination?.pageSize || 10;
+
+                const totalPages = Math.ceil((lastPage.total || 0) / pageSize);
+                return current < totalPages ? Number(current) + 1 : undefined;
+            },
+            getPreviousPageParam: (lastPage) => {
+                const { pagination } = lastPage;
+                const current = pagination?.current || 1;
+
+                return current === 1 ? undefined : current - 1;
+            },
         },
     );
 
