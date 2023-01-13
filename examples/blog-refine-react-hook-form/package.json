@@ -3,8 +3,8 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "@pankod/refine-core": "^3.90.6",
-        "@pankod/refine-cli": "^1.13.6",
+        "@pankod/refine-core": "^3.94.2",
+        "@pankod/refine-cli": "^1.17.0",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",
@@ -12,6 +12,7 @@
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
         "react-scripts": "^5.0.0",
+        "cross-env": "^7.0.3",
         "web-vitals": "^1.1.1",
         "@pankod/refine-mui": "^3.61.2",
         "@pankod/refine-react-hook-form": "^3.37.2",
@@ -28,8 +29,8 @@
         "typescript": "^4.7.4"
     },
     "scripts": {
-        "dev": "react-scripts start",
-        "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
+        "dev": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
+        "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "refine": "refine"

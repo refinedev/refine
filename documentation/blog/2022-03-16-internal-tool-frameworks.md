@@ -211,4 +211,4 @@ yarn add react-admin
 
 In this article, we have listed the popular open-source ReactJS internal-tool frameworks. If you want a more detailed review article, you can like and share this article. Thank you for your interest and reading.
 
-[For more information about **refine** ->](https://refine.dev/docs/getting-started/overview/)
+[For more information about **refine** ->](https://refine.dev/docs/)

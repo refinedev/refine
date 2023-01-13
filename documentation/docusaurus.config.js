@@ -9,6 +9,7 @@ require("dotenv").config();
 const path = require("path");
 
 const redirectJson = require("./redirects.json");
+const tutorialData = require("./tutorial-units");
 
 /** @type {import('@docusaurus/types/src/index').DocusaurusConfig} */
 const siteConfig = {
@@ -96,6 +97,7 @@ const siteConfig = {
         },
         "./plugins/docgen.js",
         "./plugins/examples.js",
+        "./plugins/checklist.js",
         [
             "./plugins/blog-plugin.js",
             {
@@ -115,6 +117,8 @@ const siteConfig = {
     ],
     themeConfig: {
         prism: {
+            theme: require("prism-react-renderer/themes/vsDark"),
+            darkTheme: require("prism-react-renderer/themes/vsDark"),
             magicComments: [
                 // Remember to extend the default highlight class name as well!
                 {
@@ -183,11 +187,11 @@ const siteConfig = {
                     items: [
                         {
                             label: "Getting Started",
-                            to: "docs/getting-started/overview",
+                            to: "docs",
                         },
                         {
                             label: "Tutorials",
-                            to: "docs",
+                            to: "docs/tutorial/introduction/index/",
                         },
                         {
                             label: "Blog",
@@ -288,6 +292,8 @@ const siteConfig = {
         /** Live Preview */
         LIVE_PREVIEW_URL:
             process.env.LIVE_PREVIEW_URL ?? "http://localhost:3030/preview",
+        /** ---- */
+        tutorial: tutorialData,
     },
 };
 

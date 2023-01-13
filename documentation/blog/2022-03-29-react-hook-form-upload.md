@@ -264,7 +264,7 @@ A React-based framework for building internal tools, rapidly. **refine** offers 
 
 📝 Boilerplate-free Code : Keeps your codebase clean and readable.
 
-[Refer to the **refine** documentation for more information. →](https://refine.dev/docs/getting-started/overview/)
+[Refer to the **refine** documentation for more information. →](https://refine.dev/docs/)
 
 ## How to Multipart File Upload with Refine and React Hook Form?
 

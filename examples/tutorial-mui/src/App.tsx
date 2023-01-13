@@ -1,48 +1,54 @@
+import React from "react";
+
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ErrorComponent,
-    ReadyPage,
-    LightTheme,
-    CssBaseline,
-    ThemeProvider,
-    RefineSnackbarProvider,
     notificationProvider,
+    RefineSnackbarProvider,
+    CssBaseline,
     GlobalStyles,
+    Layout,
+    ThemeProvider,
+    LightTheme,
+    ReadyPage,
+    ErrorComponent,
 } from "@pankod/refine-mui";
+
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import { PostCreate, PostEdit, PostList, PostShow } from "pages/posts";
+import { ProductList } from "pages/products/list";
+import { ProductEdit } from "pages/products/edit";
+import { ProductCreate } from "pages/products/create";
+import { ProductShow } from "pages/products/show";
 
-const API_URL = "https://api.fake-rest.refine.dev";
-const App: React.FC = () => {
+function App() {
     return (
         <ThemeProvider theme={LightTheme}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
                 <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
                     notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
                     Layout={Layout}
+                    ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}
+                    routerProvider={routerProvider}
                     resources={[
                         {
-                            name: "posts",
-                            list: PostList,
-                            create: PostCreate,
-                            edit: PostEdit,
-                            show: PostShow,
-                            canDelete: true,
+                            name: "products",
+                            list: ProductList,
+                            show: ProductShow,
+                            create: ProductCreate,
+                            edit: ProductEdit,
                         },
                     ]}
                 />
             </RefineSnackbarProvider>
         </ThemeProvider>
     );
-};
+}
 
 export default App;

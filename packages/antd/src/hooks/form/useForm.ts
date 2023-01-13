@@ -76,6 +76,8 @@ export const useForm = <
     invalidates,
     undoableTimeout,
     queryOptions,
+    createMutationOptions,
+    updateMutationOptions,
     id: idFromProps,
 }: UseFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
@@ -107,6 +109,8 @@ export const useForm = <
         invalidates,
         undoableTimeout,
         queryOptions,
+        createMutationOptions,
+        updateMutationOptions,
         id: idFromProps,
     });
 

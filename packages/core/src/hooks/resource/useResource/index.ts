@@ -1,7 +1,12 @@
 import { useContext } from "react";
 
 import { ResourceContext } from "@contexts/resource";
-import { BaseKey, IResourceItem, ResourceRouterParams } from "src/interfaces";
+import {
+    BaseKey,
+    IResourceItem,
+    ResourceRouterParams,
+    RouteAction,
+} from "../../../interfaces";
 import { useRouterContext, useResourceWithRoute } from "@hooks";
 
 export type UseResourcePropsType = {
@@ -27,6 +32,7 @@ type UseResourceReturnType = {
     resource: IResourceItem;
     resourceName: string;
     id?: BaseKey;
+    action: RouteAction;
 };
 
 /**
@@ -55,5 +61,5 @@ export const useResource = ({
 
     const id = recordItemId ?? params.id;
 
-    return { resources, resource, resourceName, id };
+    return { resources, resource, resourceName, id, action: params.action };
 };

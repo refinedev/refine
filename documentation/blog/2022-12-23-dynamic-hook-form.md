@@ -38,7 +38,7 @@ Here are some of the benefits of using refine:
 - Open source: refine has a strong community of maintainers and contributors.
 - Workflow independence: refine prevents vendors lock-in, thus giving you and your team complete control over your project.
 
-Refer to the [documentation](https://refine.dev/docs/getting-started/overview/) to learn more about refine.
+Refer to the [documentation](https://refine.dev/docs/) to learn more about refine.
 
 ## What is React hook form
 

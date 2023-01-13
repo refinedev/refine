@@ -7,7 +7,7 @@
 
 .playgroundHeader {
   padding: 0 1rem;
-  background: #dee2e9;
+  background: var(--browser-window-bezel-color);
   text-align: center;
 }
 
@@ -16,7 +16,7 @@
   appearance: none;
   border: none;
   background: none;
-  color: var(--ifm-color-content);
+  color: #1c1e21;
   font-size: 0.75rem;
   text-align: center;
   text-transform: uppercase;
@@ -39,8 +39,8 @@
 }
 
 .playgroundEditorWrapper {
-  border: 3px solid #dee2e9;
-  background-color: #dee2e9;
+  border: 3px solid var(--browser-window-bezel-color);
+  background-color: var(--browser-window-bezel-color);
 }
 
 .playgroundEditorWrapper > div {

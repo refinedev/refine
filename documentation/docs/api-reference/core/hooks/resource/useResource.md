@@ -8,7 +8,7 @@ title: useResource
 ```ts
 import { useResource } from "@pankod/refine-core";
 
-const { resources } = useResource();
+const { resources, resource, action, id } = useResource();
 
 // it also returns the resource with the props you provide as resourceNameOrRouteName.
 
@@ -25,12 +25,13 @@ const { resource } = useResource({
 
 ### Return value
 
-| Description  | Type                                                   |
-| ------------ | ------------------------------------------------------ |
-| resources    | [`IResourceItem[]`](#interfaces)                       |
-| resource     | [`IResourceItem`](#interfaces)                         |
-| resourceName | `string`                                               |
-| id           | [`BaseKey`](/api-reference/core/interfaces.md#basekey) |
+| Description  | Type                                                           |
+| ------------ | -------------------------------------------------------------- |
+| resources    | [`IResourceItem[]`](#interfaces)                               |
+| resource     | [`IResourceItem`](#interfaces)                                 |
+| resourceName | `string`                                                       |
+| id           | [`BaseKey`](/api-reference/core/interfaces.md#basekey)         |
+| action       | `undefined` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"` |
 
 #### Interfaces
 

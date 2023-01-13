@@ -1,10 +1,21 @@
 import React from "react";
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import {
+    useMutation,
+    UseMutationOptions,
+    UseMutationResult,
+} from "@tanstack/react-query";
 
 import { AuthContext } from "@contexts/auth";
 import { useNavigation, useNotification } from "@hooks";
 
 import { IAuthContext, TForgotPasswordData } from "../../../interfaces";
+
+export type UseForgotPasswordProps<TVariables> = {
+    mutationOptions?: Omit<
+        UseMutationOptions<TForgotPasswordData, Error, TVariables, unknown>,
+        "mutationFn" | "onError" | "onSuccess"
+    >;
+};
 
 /**
  * `useForgotPassword` calls `forgotPassword` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
@@ -15,7 +26,9 @@ import { IAuthContext, TForgotPasswordData } from "../../../interfaces";
  * @typeParam TVariables - Values for mutation function. default `{}`
  *
  */
-export const useForgotPassword = <TVariables = {}>(): UseMutationResult<
+export const useForgotPassword = <TVariables = {}>({
+    mutationOptions,
+}: UseForgotPasswordProps<TVariables> = {}): UseMutationResult<
     TForgotPasswordData,
     Error,
     TVariables,
@@ -49,6 +62,7 @@ export const useForgotPassword = <TVariables = {}>(): UseMutationResult<
                 type: "error",
             });
         },
+        ...mutationOptions,
     });
 
     return queryResponse;

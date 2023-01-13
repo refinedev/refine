@@ -1,5 +1,9 @@
 import React from "react";
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import {
+    useMutation,
+    UseMutationOptions,
+    UseMutationResult,
+} from "@tanstack/react-query";
 
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext, TLogoutData } from "../../../interfaces";
@@ -9,13 +13,27 @@ type Variables = {
     redirectPath?: string | false;
 };
 
+export type UseLogoutProps<TVariables> = {
+    mutationOptions?: Omit<
+        UseMutationOptions<
+            TLogoutData,
+            Error,
+            (TVariables & Variables) | void,
+            unknown
+        >,
+        "mutationFn" | "onError" | "onSuccess"
+    >;
+};
+
 /**
  * `useLogout` calls the `logout` method from the {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
  *
  * @see {@link https://refine.dev/docs/core/hooks/auth/useLogout} for more details.
  *
  */
-export const useLogout = <TVariables = {}>(): UseMutationResult<
+export const useLogout = <TVariables = {}>({
+    mutationOptions,
+}: UseLogoutProps<TVariables> = {}): UseMutationResult<
     TLogoutData,
     Error,
     (TVariables & Variables) | void,
@@ -55,6 +73,7 @@ export const useLogout = <TVariables = {}>(): UseMutationResult<
                     error?.message || "Something went wrong during logout",
             });
         },
+        ...mutationOptions,
     });
 
     return queryResponse;

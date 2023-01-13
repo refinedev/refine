@@ -4,9 +4,9 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.2",
-    "@pankod/refine-antd": "^4.5.0",
-    "@pankod/refine-cli": "^1.5.3",
-    "@pankod/refine-core": "^3.90.6",
+    "@pankod/refine-antd": "^4.7.0",
+    "@pankod/refine-core": "^3.94.2",
+    "@pankod/refine-cli": "^1.17.0",
     "@pankod/refine-react-router-v6": "^3.36.6",
     "@pankod/refine-supabase": "^3.25.0",
     "@testing-library/jest-dom": "^5.16.4",
