@@ -27,14 +27,14 @@ We can't wait to see what amazing projects the participants will build projects 
 
 
 
-refine draws its strength from the open-source community, and we are grateful to have the support of [Strapi](https://strapi.io/), [Appwrite](https://appwrite.io/), and [Medusa](https://medusajs.com/) which has significant contributions to the open source community.  
+refine draws its strength from the open-source community, and we are grateful to have the support of [Strapi](https://strapi.io/), [Appwrite](https://appwrite.io/), [Medusa](https://medusajs.com/), and [MeiliSearch](https://www.meilisearch.com/) which has significant contributions to the open source community.  
 
 It's worth noting that refine has built-in data provider support for Strapi, Appwrite, and Medusa. So we believe they will be excellent backend solutions for your hackathon project.
 
-Strapi and Appwrite will also be providing swag kits for the winners.
+Strapi, Appwrite, Medusa, and Meilisearch will also be providing swag kits for the winners.
 
 <div>
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/sponsors_banner.jpg"  alt="refine hackathon" />
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/sponsors_banner.png"  alt="refine hackathon" />
 
 </div>
 
