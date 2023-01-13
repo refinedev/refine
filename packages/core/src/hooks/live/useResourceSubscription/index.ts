@@ -25,7 +25,7 @@ export type UseResourceSubscriptionProps = {
         hasPagination?: boolean;
         sort?: CrudSorting;
         filters?: CrudFilters;
-        subscriptionType: "useList" | "useOne" | "useMany";
+        subscriptionType: "useList" | "useOne" | "useMany" | "useInfinityList";
         [key: string]: any;
     };
     types: LiveEvent["type"][];
