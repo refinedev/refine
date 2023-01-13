@@ -1036,6 +1036,24 @@ const form = useForm({
 });
 ```
 
+### `onLiveEvent`
+
+The callback function that is executed when new events from a subscription are arrived.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    // highlight-start
+    onLiveEvent: (event) => {
+        console.log(event);
+    },
+    // highlight-end
+});
+```
+
+### `liveParams`
+
+Params to pass to [liveProvider's](/docs/api-reference/core/providers/live-provider/#subscribe) subscribe method.
+
 ## Return Values
 
 ### `queryResult`

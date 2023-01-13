@@ -869,6 +869,24 @@ const form = useForm({
 });
 ```
 
+### `warnWhenUnsavedChanges`
+
+> Default: `false`
+
+When it's true, Shows a warning when the user tries to leave the page with unsaved changes. It can be used to prevent the user from accidentally leaving the page.
+
+It can be set globally in [`refine config`](/docs/api-reference/core/components/refine-config/#warnwhenunsavedchanges).
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    // highlight-start
+    refineCoreProps: {
+        warnWhenUnsavedChanges: true,
+    },
+    // highlight-end
+});
+```
+
 ### `liveMode`
 
 Whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
@@ -883,6 +901,26 @@ const form = useForm({
     },
 });
 ```
+
+### `onLiveEvent`
+
+The callback function that is executed when new events from a subscription are arrived.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    // highlight-start
+    refineCoreProps: {
+        onLiveEvent: (event) => {
+            console.log(event);
+        },
+    },
+    // highlight-end
+});
+```
+
+### `liveParams`
+
+Params to pass to [liveProvider's](/docs/api-reference/core/providers/live-provider/#subscribe) subscribe method.
 
 ## Return Values
 
