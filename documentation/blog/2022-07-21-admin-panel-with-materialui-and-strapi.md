@@ -43,7 +43,7 @@ Before we dive into the meat of the article, let's first take a look at the tool
 - [refine](https://refine.dev/docs/getting-started/overview/)
 - [refine StrapiV4 data provider ](https://refine.dev/docs/examples/data-provider/strapi-v4/)
 - [Material UI](https://mui.com/material-ui/getting-started/overview/)
-- [refine Material UI Tutorial](https://refine.dev/docs/ui-frameworks/mui/tutorial/)
+- [refine Material UI Tutorial](https://refine.dev/docs/tutorial/introduction/index/)
 
 Your node version need to be mininum `v16.14.0`
 
@@ -223,7 +223,7 @@ export * from "./list";
 
 
 
-[Refer to offical refine's Material UI tutorial for detailed explanations and examples &#8594](https://refine.dev/docs/ui-frameworks/mui/tutorial/#showing-a-single-record)
+[Refer to offical refine's Material UI tutorial for detailed explanations and examples &#8594](https://refine.dev//docs/tutorial/adding-crud-pages/mui/add-show-page/)
 
 
 <br/>
@@ -363,7 +363,7 @@ To show category field in table, we need to add new column to the PostList compo
 :::tip
 We use benefits of Strapi V4 relational population feature by using `populate` parameter. It handles to getting relational data automatically.
 
- [If you use another REST API that relational populations need to be handled manually you can check the  example at the link &#8594](https://refine.dev/docs/ui-frameworks/mui/tutorial/#handling-relationships)
+ [If you use another REST API that relational populations need to be handled manually you can check the  example at the link &#8594](https://refine.dev/docs/tutorial/adding-crud-pages/mui/index/#handling-relationships)
 :::
 
 [Refer to refine Strapi v4 documentation for more information &#8594](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/#relations-population)

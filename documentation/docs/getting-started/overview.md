@@ -70,5 +70,5 @@ You can find Refine's [Public Roadmap here!](https://github.com/refinedev/refine
 
 👉 Continue with [Quickstart guide](/docs/getting-started/quickstart/) to setup and run your first **refine** project.
 
-👉 Or jump directly to [Refine - Ant Design Tutorial](/docs/tutorials/ant-design-tutorial/) to learn refine by building a full-blown CRUD application.
+👉 Or jump directly to [Tutorial](/docs/tutorial/introduction/index/) to learn refine by building a full-blown CRUD application.
 
