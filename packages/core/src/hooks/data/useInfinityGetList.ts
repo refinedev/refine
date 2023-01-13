@@ -115,7 +115,7 @@ export const useInfinityGetList = <
             hasPagination: config?.hasPagination,
             sort: config?.sort,
             filters: config?.filters,
-            subscriptionType: "useInfinityList",
+            subscriptionType: "useList",
             ...liveParams,
         },
         channel: `resources/${resource}`,
