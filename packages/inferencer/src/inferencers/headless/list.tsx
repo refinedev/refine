@@ -665,7 +665,6 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
         noOp(imports);
 
         return jsx`
-        import React from "react";
         ${printImports(imports)}
         
         export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {

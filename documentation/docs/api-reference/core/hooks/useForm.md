@@ -1036,6 +1036,24 @@ const form = useForm({
 });
 ```
 
+### `onLiveEvent`
+
+The callback function that is executed when new events from a subscription are arrived.
+
+```tsx title="src/posts/edit.tsx"
+const form = useForm({
+    // highlight-start
+    onLiveEvent: (event) => {
+        console.log(event);
+    },
+    // highlight-end
+});
+```
+
+### `liveParams`
+
+Params to pass to [liveProvider's](/docs/api-reference/core/providers/live-provider/#subscribe) subscribe method.
+
 ## Return Values
 
 ### `queryResult`
@@ -1102,6 +1120,10 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 You can override the default behavior by passing an `onFinish` function in the hook's options.
 
 For example you can [change values before sending to the API](/docs/api-reference/core/hooks/useForm/#how-can-i-change-the-form-data-before-submitting-it-to-the-api).
+
+### `formLoading`
+
+Loading state of a modal. It's `true` when `useForm` is currently being submitted or data is being fetched for the `"edit"` or `"clone"` mode.
 
 ## FAQ
 

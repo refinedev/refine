@@ -6,60 +6,81 @@ title: useModalForm
 `useModalForm` hook also allows you to manage a form inside a modal component. It provides some useful methods to handle the form modal.
 
 :::info
-`useModalForm` hook based on [`useForm`][use-form-refine-mantine] hook provided by `@pankod/refine-mantine`.
+`useModalForm` hook is extended from [`useForm`][use-form-refine-mantine] hook from the [`@pankod/refine-mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. Which means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
 :::
 
-## Usage
+## Basic Usage
 
-We'll show two examples, one for creating and one for editing a post. Let's see how `useModalForm` is used in both.
+```tsx
+const createModalForm = useModalForm({
+    modal: { show: showCreateModal, close, submit, title, visible },
+    refineCoreProps: { action: "create" },
+    initialValues: {
+        title: "",
+        content: "",
+    },
+    validate: {
+        title: (value) => (value.length < 2 ? "Too short title" : null),
+        content: (value) => (value.length < 10 ? "Too short content" : null),
+    },
+});
+```
 
-### Create Modal
+We'll show three examples, `"create"`, `"edit"` and `"clone"`. Let's see how `useModalForm` is used in all.
 
-First, we'll create a list page for posts. We'll use the [`useTable`](/packages/documentation/react-table.md) hook to manage the table and the `useModalForm` hook to manage the form.
+<Tabs
+defaultValue="create"
+values={[
+{label: 'create', value: 'create'},
+{label: 'edit', value: 'edit'},
+{label: 'clone', value: 'clone'},
+]}>
 
-```tsx title="src/pages/posts/list.tsx"
+<TabItem value="create">
+
+In this example, we will show you how to `"create"` a record with `useModalForm`.
+
+```tsx live url=http://localhost:3000/posts
+setInitialRoutes(["/posts"]);
+
+// visible-block-start
 import React from "react";
+import { IResourceComponentsProps } from "@pankod/refine-core";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { GetManyResponse, useMany } from "@pankod/refine-core";
 import {
+    Box,
+    Group,
     List,
     ScrollArea,
     Table,
     Pagination,
-    // highlight-next-line
     useModalForm,
+    Modal,
+    Select,
+    TextInput,
+    SaveButton,
 } from "@pankod/refine-mantine";
 
-// highlight-next-line
-import { CreatePostModal } from "../../components";
-import { IPost } from "../../interfaces";
-
-export const PostList: React.FC = () => {
+const PostList: React.FC<IResourceComponentsProps> = () => {
     // highlight-start
-    const createModalForm = useModalForm({
+    const {
+        getInputProps,
+        saveButtonProps,
+        modal: { show, close, title, visible },
+    } = useModalForm({
         refineCoreProps: { action: "create" },
         initialValues: {
             title: "",
             status: "",
-            category: {
-                id: "",
-            },
             content: "",
         },
         validate: {
             title: (value) => (value.length < 2 ? "Too short title" : null),
             status: (value) =>
                 value.length <= 0 ? "Status is required" : null,
-            category: {
-                id: (value) =>
-                    value.length <= 0 ? "Category is required" : null,
-            },
-            content: (value) =>
-                value.length < 10 ? "Too short content" : null,
         },
     });
-    const {
-        modal: { show: showCreateModal },
-    } = createModalForm;
     // highlight-end
 
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -73,11 +94,30 @@ export const PostList: React.FC = () => {
                 id: "title",
                 header: "Title",
                 accessorKey: "title",
+                meta: {
+                    filterOperator: "contains",
+                },
             },
             {
                 id: "status",
                 header: "Status",
                 accessorKey: "status",
+                meta: {
+                    filterElement: function render(props: FilterElementProps) {
+                        return (
+                            <Select
+                                defaultValue="published"
+                                data={[
+                                    { label: "Published", value: "published" },
+                                    { label: "Draft", value: "draft" },
+                                    { label: "Rejected", value: "rejected" },
+                                ]}
+                                {...props}
+                            />
+                        );
+                    },
+                    filterOperator: "eq",
+                },
             },
         ],
         [],
@@ -86,18 +126,49 @@ export const PostList: React.FC = () => {
     const {
         getHeaderGroups,
         getRowModel,
-        refineCore: { setCurrent, pageCount, current },
+        setOptions,
+        refineCore: {
+            setCurrent,
+            pageCount,
+            current,
+            tableQueryResult: { data: tableData },
+        },
     } = useTable({
         columns,
     });
 
     return (
         <>
-            // highlight-next-line
-            <CreatePostModal {...createModalForm} />
+            {/* highlight-start */}
+            <Modal opened={visible} onClose={close} title={title}>
+                <TextInput
+                    mt={8}
+                    label="Title"
+                    placeholder="Title"
+                    {...getInputProps("title")}
+                />
+                <Select
+                    mt={8}
+                    label="Status"
+                    placeholder="Pick one"
+                    data={[
+                        { label: "Published", value: "published" },
+                        { label: "Draft", value: "draft" },
+                        { label: "Rejected", value: "rejected" },
+                    ]}
+                    {...getInputProps("status")}
+                />
+                <Box
+                    mt={8}
+                    sx={{ display: "flex", justifyContent: "flex-end" }}
+                >
+                    <SaveButton {...saveButtonProps} />
+                </Box>
+            </Modal>
+            {/* highlight-end */}
             <ScrollArea>
-                // highlight-next-line
-                <List createButtonProps={{ onClick: () => showCreateModal() }}>
+                {/* highlight-next-line */}
+                <List createButtonProps={{ onClick: () => show() }}>
                     <Table highlightOnHover>
                         <thead>
                             {getHeaderGroups().map((headerGroup) => (
@@ -106,14 +177,16 @@ export const PostList: React.FC = () => {
                                         return (
                                             <th key={header.id}>
                                                 {!header.isPlaceholder && (
-                                                    <div>
-                                                        {flexRender(
-                                                            header.column
-                                                                .columnDef
-                                                                .header,
-                                                            header.getContext(),
-                                                        )}
-                                                    </div>
+                                                    <Group spacing="xs" noWrap>
+                                                        <Box>
+                                                            {flexRender(
+                                                                header.column
+                                                                    .columnDef
+                                                                    .header,
+                                                                header.getContext(),
+                                                            )}
+                                                        </Box>
+                                                    </Group>
                                                 )}
                                             </th>
                                         );
@@ -154,170 +227,73 @@ export const PostList: React.FC = () => {
     );
 };
 
-export interface IPost {
+interface IPost {
     id: number;
     title: string;
-    content: string;
     status: "published" | "draft" | "rejected";
-    category: { id: number };
 }
+// visible-block-end
+
+setRefineProps({
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+        },
+    ],
+});
+
+render(<RefineMantineDemo />);
 ```
 
-Now, let's see how the `CreatePostModal` component is implemented.
+</TabItem>
 
-```tsx title="src/components/createPostModal.tsx"
-import { BaseRecord, HttpError } from "@pankod/refine-core";
-import {
-    UseModalFormReturnType,
-    Modal,
-    TextInput,
-    RichTextEditor,
-    Select,
-    useSelect,
-    Box,
-    SaveButton,
-    Text,
-} from "@pankod/refine-mantine";
+<TabItem value="edit">
 
-interface FormValues {
-    title: string;
-    content: string;
-    status: string;
-    category: { id: string };
-}
+In this example, we will show you how to `"edit"` a record with `useModalForm`.
 
-export const CreatePostModal: React.FC<
-    UseModalFormReturnType<BaseRecord, HttpError, FormValues>
-> = ({
-    getInputProps,
-    errors,
-    modal: { visible, close, title },
-    saveButtonProps,
-}) => {
-    const { selectProps } = useSelect({
-        resource: "categories",
-    });
+```tsx live url=http://localhost:3000/posts
+setInitialRoutes(["/posts"]);
 
-    return (
-        <Modal opened={visible} onClose={close} title={title}>
-            <TextInput
-                mt={8}
-                label="Title"
-                placeholder="Title"
-                {...getInputProps("title")}
-            />
-            <Select
-                mt={8}
-                label="Status"
-                placeholder="Pick one"
-                {...getInputProps("status")}
-                data={[
-                    { label: "Published", value: "published" },
-                    { label: "Draft", value: "draft" },
-                    { label: "Rejected", value: "rejected" },
-                ]}
-            />
-            <Select
-                mt={8}
-                label="Category"
-                placeholder="Pick one"
-                {...getInputProps("category.id")}
-                {...selectProps}
-            />
-            <Text mt={8} weight={500} size="sm" color="#212529">
-                Content
-            </Text>
-            <RichTextEditor
-                sx={{ minHeight: 300 }}
-                {...getInputProps("content")}
-            />
-            {errors.content && (
-                <Text mt={2} weight={500} size="xs" color="red">
-                    {errors.content}
-                </Text>
-            )}
-            <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
-                <SaveButton {...saveButtonProps} />
-            </Box>
-        </Modal>
-    );
-};
-```
-
-### Edit Modal
-
-Now, let's add the edit modal to the `PostList` component.
-
-```tsx title="src/pages/posts/list.tsx"
+// visible-block-start
 import React from "react";
+import { IResourceComponentsProps } from "@pankod/refine-core";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { GetManyResponse, useMany } from "@pankod/refine-core";
 import {
+    Box,
+    Group,
     List,
     ScrollArea,
     Table,
     Pagination,
-    // highlight-next-line
-    EditButton,
     useModalForm,
+    Modal,
+    Select,
+    TextInput,
+    EditButton,
+    SaveButton,
 } from "@pankod/refine-mantine";
 
-// highlight-next-line
-import { CreatePostModal, EditPostModal } from "../../components";
-import { IPost } from "../../interfaces";
-
-export const PostList: React.FC = () => {
-    const createModalForm = useModalForm({
-        refineCoreProps: { action: "create" },
-        initialValues: {
-            title: "",
-            status: "",
-            category: {
-                id: "",
-            },
-            content: "",
-        },
-        validate: {
-            title: (value) => (value.length < 2 ? "Too short title" : null),
-            status: (value) =>
-                value.length <= 0 ? "Status is required" : null,
-            category: {
-                id: (value) =>
-                    value.length <= 0 ? "Category is required" : null,
-            },
-            content: (value) =>
-                value.length < 10 ? "Too short content" : null,
-        },
-    });
-    const {
-        modal: { show: showCreateModal },
-    } = createModalForm;
-
+const PostList: React.FC<IResourceComponentsProps> = () => {
     // highlight-start
-    const editModalForm = useModalForm({
+    const {
+        getInputProps,
+        saveButtonProps,
+        modal: { show, close, title, visible },
+    } = useModalForm({
         refineCoreProps: { action: "edit" },
         initialValues: {
             title: "",
             status: "",
-            category: {
-                id: "",
-            },
             content: "",
         },
         validate: {
             title: (value) => (value.length < 2 ? "Too short title" : null),
             status: (value) =>
                 value.length <= 0 ? "Status is required" : null,
-            category: {
-                id: (value) =>
-                    value.length <= 0 ? "Category is required" : null,
-            },
-            content: (value) =>
-                value.length < 10 ? "Too short content" : null,
         },
     });
-    const {
-        modal: { show: showEditModal },
-    } = editModalForm;
     // highlight-end
 
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -331,28 +307,50 @@ export const PostList: React.FC = () => {
                 id: "title",
                 header: "Title",
                 accessorKey: "title",
+                meta: {
+                    filterOperator: "contains",
+                },
             },
             {
                 id: "status",
                 header: "Status",
                 accessorKey: "status",
+                meta: {
+                    filterElement: function render(props: FilterElementProps) {
+                        return (
+                            <Select
+                                defaultValue="published"
+                                data={[
+                                    { label: "Published", value: "published" },
+                                    { label: "Draft", value: "draft" },
+                                    { label: "Rejected", value: "rejected" },
+                                ]}
+                                {...props}
+                            />
+                        );
+                    },
+                    filterOperator: "eq",
+                },
             },
-            // highlight-start
             {
                 id: "actions",
                 header: "Actions",
                 accessorKey: "id",
+                enableColumnFilter: false,
+                enableSorting: false,
                 cell: function render({ getValue }) {
                     return (
-                        <EditButton
-                            hideText
-                            size="xs"
-                            onClick={() => showEditModal(getValue() as number)}
-                        />
+                        <Group spacing="xs" noWrap>
+                            {/* highlight-start */}
+                            <EditButton
+                                hideText
+                                onClick={() => show(getValue() as number)}
+                            />
+                            {/* highlight-end */}
+                        </Group>
                     );
                 },
             },
-            // highlight-end
         ],
         [],
     );
@@ -360,18 +358,48 @@ export const PostList: React.FC = () => {
     const {
         getHeaderGroups,
         getRowModel,
-        refineCore: { setCurrent, pageCount, current },
+        setOptions,
+        refineCore: {
+            setCurrent,
+            pageCount,
+            current,
+            tableQueryResult: { data: tableData },
+        },
     } = useTable({
         columns,
     });
 
     return (
         <>
-            <CreatePostModal {...createModalForm} />
-            // highlight-next-line
-            <EditPostModal {...editModalForm} />
+            {/* highlight-start */}
+            <Modal opened={visible} onClose={close} title={title}>
+                <TextInput
+                    mt={8}
+                    label="Title"
+                    placeholder="Title"
+                    {...getInputProps("title")}
+                />
+                <Select
+                    mt={8}
+                    label="Status"
+                    placeholder="Pick one"
+                    data={[
+                        { label: "Published", value: "published" },
+                        { label: "Draft", value: "draft" },
+                        { label: "Rejected", value: "rejected" },
+                    ]}
+                    {...getInputProps("status")}
+                />
+                <Box
+                    mt={8}
+                    sx={{ display: "flex", justifyContent: "flex-end" }}
+                >
+                    <SaveButton {...saveButtonProps} />
+                </Box>
+            </Modal>
+            {/* highlight-end */}
             <ScrollArea>
-                <List createButtonProps={{ onClick: () => showCreateModal() }}>
+                <List>
                     <Table highlightOnHover>
                         <thead>
                             {getHeaderGroups().map((headerGroup) => (
@@ -380,14 +408,16 @@ export const PostList: React.FC = () => {
                                         return (
                                             <th key={header.id}>
                                                 {!header.isPlaceholder && (
-                                                    <div>
-                                                        {flexRender(
-                                                            header.column
-                                                                .columnDef
-                                                                .header,
-                                                            header.getContext(),
-                                                        )}
-                                                    </div>
+                                                    <Group spacing="xs" noWrap>
+                                                        <Box>
+                                                            {flexRender(
+                                                                header.column
+                                                                    .columnDef
+                                                                    .header,
+                                                                header.getContext(),
+                                                            )}
+                                                        </Box>
+                                                    </Group>
                                                 )}
                                             </th>
                                         );
@@ -427,46 +457,529 @@ export const PostList: React.FC = () => {
         </>
     );
 };
+
+interface IPost {
+    id: number;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+// visible-block-end
+
+setRefineProps({
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+        },
+    ],
+});
+
+render(<RefineMantineDemo />);
 ```
 
-Finally, let's see how the `EditPostModal` component is implemented.
+:::caution
+**refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens `"edit"` form in `<Modal>` when clicked.
 
-```tsx title="src/components/editPostModal.tsx"
-import { BaseRecord, HttpError } from "@pankod/refine-core";
+So, we have to put the `<EditButton/>` on our list. In that way, `"edit"` form in `<Modal>` can fetch data by the record `id`.
+
+```tsx
+const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+        // --
+        {
+            id: "actions",
+            header: "Actions",
+            accessorKey: "id",
+            enableColumnFilter: false,
+            enableSorting: false,
+            cell: function render({ getValue }) {
+                return (
+                    <Group spacing="xs" noWrap>
+                        <EditButton
+                            hideText
+                            onClick={() => show(getValue() as number)}
+                        />
+                    </Group>
+                );
+            },
+        },
+    ],
+    [],
+);
+
+const table = useTable({
+    columns,
+});
+```
+
+:::
+
+:::caution
+Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
+:::
+
+</TabItem>
+
+<TabItem value="clone">
+
+In this example, we will show you how to `"clone"` a record with `useModalForm`.
+
+```tsx live url=http://localhost:3000/posts
+setInitialRoutes(["/posts"]);
+
+// visible-block-start
+import React from "react";
+import { IResourceComponentsProps } from "@pankod/refine-core";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { GetManyResponse, useMany } from "@pankod/refine-core";
 import {
-    UseModalFormReturnType,
-    Modal,
-    TextInput,
-    RichTextEditor,
-    Select,
-    useSelect,
-    SaveButton,
     Box,
-    Text,
+    Group,
+    List,
+    ScrollArea,
+    Table,
+    Pagination,
+    useModalForm,
+    Modal,
+    Select,
+    TextInput,
+    CloneButton,
+    SaveButton,
 } from "@pankod/refine-mantine";
 
-interface FormValues {
-    title: string;
-    content: string;
-    status: string;
-    category: { id: string };
-}
+const PostList: React.FC<IResourceComponentsProps> = () => {
+    // highlight-start
+    const {
+        getInputProps,
+        saveButtonProps,
+        modal: { show, close, title, visible },
+    } = useModalForm({
+        refineCoreProps: { action: "edit" },
+        initialValues: {
+            title: "",
+            status: "",
+        },
+        validate: {
+            title: (value) => (value.length < 2 ? "Too short title" : null),
+            status: (value) =>
+                value.length <= 0 ? "Status is required" : null,
+        },
+    });
+    // highlight-end
 
-export const EditPostModal: React.FC<
-    UseModalFormReturnType<BaseRecord, HttpError, FormValues>
-> = ({
-    getInputProps,
-    errors,
-    modal: { visible, close, title },
-    refineCore: { queryResult },
-    saveButtonProps,
-}) => {
-    const { selectProps } = useSelect({
-        resource: "categories",
-        defaultValue: queryResult?.data?.data.category.id,
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
+        () => [
+            {
+                id: "id",
+                header: "ID",
+                accessorKey: "id",
+            },
+            {
+                id: "title",
+                header: "Title",
+                accessorKey: "title",
+                meta: {
+                    filterOperator: "contains",
+                },
+            },
+            {
+                id: "status",
+                header: "Status",
+                accessorKey: "status",
+                meta: {
+                    filterElement: function render(props: FilterElementProps) {
+                        return (
+                            <Select
+                                defaultValue="published"
+                                data={[
+                                    { label: "Published", value: "published" },
+                                    { label: "Draft", value: "draft" },
+                                    { label: "Rejected", value: "rejected" },
+                                ]}
+                                {...props}
+                            />
+                        );
+                    },
+                    filterOperator: "eq",
+                },
+            },
+            {
+                id: "actions",
+                header: "Actions",
+                accessorKey: "id",
+                enableColumnFilter: false,
+                enableSorting: false,
+                cell: function render({ getValue }) {
+                    return (
+                        <Group spacing="xs" noWrap>
+                            {/* highlight-start */}
+                            <CloneButton
+                                hideText
+                                onClick={() => show(getValue() as number)}
+                            />
+                            {/* highlight-end */}
+                        </Group>
+                    );
+                },
+            },
+        ],
+        [],
+    );
+
+    const {
+        getHeaderGroups,
+        getRowModel,
+        setOptions,
+        refineCore: {
+            setCurrent,
+            pageCount,
+            current,
+            tableQueryResult: { data: tableData },
+        },
+    } = useTable({
+        columns,
     });
 
     return (
+        <>
+            {/* highlight-start */}
+            <Modal opened={visible} onClose={close} title={title}>
+                <TextInput
+                    mt={8}
+                    label="Title"
+                    placeholder="Title"
+                    {...getInputProps("title")}
+                />
+                <Select
+                    mt={8}
+                    label="Status"
+                    placeholder="Pick one"
+                    data={[
+                        { label: "Published", value: "published" },
+                        { label: "Draft", value: "draft" },
+                        { label: "Rejected", value: "rejected" },
+                    ]}
+                    {...getInputProps("status")}
+                />
+                <Box
+                    mt={8}
+                    sx={{ display: "flex", justifyContent: "flex-end" }}
+                >
+                    <SaveButton {...saveButtonProps} />
+                </Box>
+            </Modal>
+            {/* highlight-end */}
+            <ScrollArea>
+                <List>
+                    <Table highlightOnHover>
+                        <thead>
+                            {getHeaderGroups().map((headerGroup) => (
+                                <tr key={headerGroup.id}>
+                                    {headerGroup.headers.map((header) => {
+                                        return (
+                                            <th key={header.id}>
+                                                {!header.isPlaceholder && (
+                                                    <Group spacing="xs" noWrap>
+                                                        <Box>
+                                                            {flexRender(
+                                                                header.column
+                                                                    .columnDef
+                                                                    .header,
+                                                                header.getContext(),
+                                                            )}
+                                                        </Box>
+                                                    </Group>
+                                                )}
+                                            </th>
+                                        );
+                                    })}
+                                </tr>
+                            ))}
+                        </thead>
+                        <tbody>
+                            {getRowModel().rows.map((row) => {
+                                return (
+                                    <tr key={row.id}>
+                                        {row.getVisibleCells().map((cell) => {
+                                            return (
+                                                <td key={cell.id}>
+                                                    {flexRender(
+                                                        cell.column.columnDef
+                                                            .cell,
+                                                        cell.getContext(),
+                                                    )}
+                                                </td>
+                                            );
+                                        })}
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </Table>
+                    <br />
+                    <Pagination
+                        position="right"
+                        total={pageCount}
+                        page={current}
+                        onChange={setCurrent}
+                    />
+                </List>
+            </ScrollArea>
+        </>
+    );
+};
+
+interface IPost {
+    id: number;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+// visible-block-end
+
+setRefineProps({
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+        },
+    ],
+});
+
+render(<RefineMantineDemo />);
+```
+
+:::caution
+**refine** doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens `"clone"` form in `<Modal>` when clicked.
+
+So, we have to put the `<CloneButton/>` on our list. In that way, `"clone"` form in `<Modal>` can fetch data by the record `id`.
+
+```tsx
+const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+        // --
+        {
+            id: "actions",
+            header: "Actions",
+            accessorKey: "id",
+            enableColumnFilter: false,
+            enableSorting: false,
+            cell: function render({ getValue }) {
+                return (
+                    <Group spacing="xs" noWrap>
+                        <CloneButton
+                            hideText
+                            onClick={() => show(getValue() as number)}
+                        />
+                    </Group>
+                );
+            },
+        },
+    ],
+    [],
+);
+
+const table = useTable({
+    columns,
+});
+```
+
+:::
+
+:::caution
+Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
+:::
+
+</TabItem>
+
+</Tabs>
+
+## Properties
+
+:::tip
+All [`useForm`][use-form-refine-mantine] props also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) docs.
+
+All [`mantine useForm`](https://mantine.dev/form/use-form/) props also available in `useModalForm`. You can find descriptions on [`mantine`](https://mantine.dev/form/use-form/) docs.
+:::
+
+### `initialValues`
+
+> Only available in `"create"` form.
+
+Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
+
+```tsx
+const modalForm = useModalForm({
+    initialValues: {
+        title: "Hello World",
+    },
+});
+```
+
+### `defaultVisible`
+
+> Default: `false`
+
+When `true`, modal will be visible by default.
+
+```tsx
+const modalForm = useModalForm({
+    modalProps: {
+        defaultVisible: true,
+    },
+});
+```
+
+### `autoSubmitClose`
+
+> Default: `true`
+
+When `true`, modal will be closed after successful submit.
+
+```tsx
+const modalForm = useModalForm({
+    modalProps: {
+        autoSubmitClose: false,
+    },
+});
+```
+
+### `autoResetForm`
+
+> Default: `true`
+
+When `true`, form will be reset after successful submit.
+
+```tsx
+const modalForm = useModalForm({
+    modalProps: {
+        autoResetForm: false,
+    },
+});
+```
+
+### `warnWhenUnsavedChanges`
+
+> Default: `false`
+
+When you have unsaved changes and try to leave the current page, refine shows a confirmation modal box. To activate this feature.
+
+You can also set this value in [`<Refine>`](/docs/api-reference/core/components/refine-config/#warnwhenunsavedchanges) component.
+
+```tsx
+const modalForm = useModalForm({
+    refineCoreProps: {
+        warnWhenUnsavedChanges: true,
+    },
+});
+```
+
+## Return Values
+
+:::tip
+All [`useForm`][use-form-refine-mantine] return values also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#return-values) docs.
+
+All [`mantine useForm`](https://mantine.dev/form/use-form/) return values also available in `useModalForm`. You can find descriptions on [`mantine`](https://mantine.dev/form/use-form/) docs.
+:::
+
+### `visible`
+
+Current visibility state of the modal.
+
+```tsx
+const modalForm = useModalForm({
+    defaultVisible: true,
+});
+
+console.log(modalForm.modal.visible); // true
+```
+
+### `title`
+
+Title of the modal. Based on resource and action values
+
+```tsx
+const {
+    modal: { title },
+} = useModalForm({
+    refineCoreProps: {
+        resource: "posts",
+        action: "create",
+    },
+});
+
+console.log(title); // "Create Post"
+```
+
+### `close`
+
+A function that can close the modal. It's useful when you want to close the modal manually.
+
+```tsx
+const {
+    getInputProps,
+    modal: { close, visible, title },
+} = useModalForm();
+
+return (
+    <Modal opened={visible} onClose={close} title={title}>
+        <TextInput
+            mt={8}
+            label="Title"
+            placeholder="Title"
+            {...getInputProps("title")}
+        />
+        <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <SaveButton {...saveButtonProps} />
+            <Button onClick={close}>Cancel</Button>
+        </Box>
+    </Modal>
+);
+```
+
+### `submit`
+
+A function that can submit the form. It's useful when you want to submit the form manually.
+
+```tsx
+const {
+    modal: { submit },
+} = useModalForm();
+
+// ---
+
+return (
+    <Modal opened={visible} onClose={close} title={title}>
+        <TextInput
+            mt={8}
+            label="Title"
+            placeholder="Title"
+            {...getInputProps("title")}
+        />
+        <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button onClick={submit}>Save</Button>
+        </Box>
+    </Modal>
+);
+```
+
+### `show`
+
+A function that can show the modal.
+
+```tsx
+const {
+    getInputProps,
+    modal: { close, visible, title, show },
+} = useModalForm();
+
+const onFinishHandler = (values) => {
+    onFinish(values);
+    show();
+};
+
+return (
+    <>
+        <Button onClick={}>Show Modal</Button>
         <Modal opened={visible} onClose={close} title={title}>
             <TextInput
                 mt={8}
@@ -474,39 +987,40 @@ export const EditPostModal: React.FC<
                 placeholder="Title"
                 {...getInputProps("title")}
             />
-            <Select
-                mt={8}
-                label="Status"
-                placeholder="Pick one"
-                {...getInputProps("status")}
-                data={[
-                    { label: "Published", value: "published" },
-                    { label: "Draft", value: "draft" },
-                    { label: "Rejected", value: "rejected" },
-                ]}
-            />
-            <Select
-                mt={8}
-                label="Category"
-                placeholder="Pick one"
-                {...getInputProps("category.id")}
-                {...selectProps}
-            />
-            <Text mt={8} weight={500} size="sm" color="#212529">
-                Content
-            </Text>
-            <RichTextEditor {...getInputProps("content")} />
-            {errors.content && (
-                <Text mt={2} weight={500} size="xs" color="red">
-                    {errors.content}
-                </Text>
-            )}
             <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
                 <SaveButton {...saveButtonProps} />
             </Box>
         </Modal>
-    );
-};
+    </>
+);
+```
+
+### `saveButtonProps`
+
+It contains all the props needed by the "submit" button within the modal (disabled,loading etc.). You can manually pass these props to your custom button.
+
+```tsx
+const { getInputProps, modal, saveButtonProps } = useModalForm();
+
+return (
+    <Modal {...modal}>
+        <TextInput
+            mt={8}
+            label="Title"
+            placeholder="Title"
+            {...getInputProps("title")}
+        />
+        <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button
+                {...saveButtonProps}
+                onClick={(e) => {
+                    // -- your custom logic
+                    saveButtonProps.onClick(e);
+                }}
+            />
+        </Box>
+    </Modal>
+);
 ```
 
 ## API Reference
@@ -556,3 +1070,15 @@ export const EditPostModal: React.FC<
 
 [use-form-refine-mantine]: /api-reference/mantine/hooks/form/useForm.md
 [use-form-core]: /api-reference/core/hooks/useForm.md
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
