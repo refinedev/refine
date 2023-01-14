@@ -38,7 +38,7 @@ export type UseInfinityListProps<TData, TError> = {
     resource: string;
     /**
      * Configuration for pagination, sorting and filtering
-     * @type [`UseListConfig`](/docs/api-reference/core/hooks/data/useList/#config-parameters)
+     * @type [`UseInfinityConfig`](/docs/api-reference/core/hooks/data/useInfinityGetList/#config-parameters)
      */
     config?: UseInfinityConfig;
     /**
@@ -183,7 +183,7 @@ export const useInfinityGetList = <
                         : errorNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${resource}-useList-notification`,
+                    key: `${resource}-useInfinityGetList-notification`,
                     message: translate(
                         "common:notifications.error",
                         { statusCode: err.statusCode },
