@@ -977,6 +977,61 @@ render(<RefineAntdDemo />);
 
 </Tabs>
 
+## Properties
+
+:::tip
+All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) props also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) docs.
+:::
+
+### `defaultCurrent`
+
+> Default: `0`
+
+Sets the default starting step number. Counting starts from `0`.
+
+```tsx
+const stepsForm = useStepsForm<IPost>({
+    defaultCurrent: 2,
+});
+```
+
+### `total`
+
+Maximum number of steps. `<Steps>` cannot go beyond this number.
+
+```tsx
+const stepsForm = useStepsForm<IPost>({
+    total: 3,
+});
+```
+
+## Return Values
+
+:::tip
+All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#return-values) docs.
+:::
+
+### `stepsProps`
+
+The props needed by the `<Steps>` component.
+
+#### `current`
+
+Current step, counting from `0`.
+
+#### `onChange`
+
+Callback function that is trigger when the current step of the form changes. The function takes in one argument, `currentStep`, which is a number representing the index of the current step.
+
+### `current`
+
+Current step, counting from `0`.
+
+### `gotoStep`
+
+Is a function that allows you to programmatically change the current step of a form.
+It takes in one argument, step, which is a number representing the index of the step you want to navigate to.
+
 ## API Reference
 
 ### Properties
@@ -1019,3 +1074,7 @@ render(<RefineAntdDemo />);
 
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
+
+```
+
+```

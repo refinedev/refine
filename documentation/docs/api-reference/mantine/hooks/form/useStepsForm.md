@@ -1002,6 +1002,61 @@ render(<RefineMantineDemo />);
 
 </Tabs>
 
+## Properties
+
+:::tip
+All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#return-values) docs.
+:::
+
+### `stepsProps`
+
+#### `defaultStep`
+
+> Default: `0`
+
+Sets the default starting step number. Counting starts from `0`.
+
+```tsx
+const stepsForm = useStepsForm<IPost>({
+    stepsProps: {
+        defaultStep: 0,
+    },
+});
+```
+
+#### `isBackValidate`
+
+> Default: `false`
+
+When is `true`, validates a form fields when the user navigates to a previous step.
+
+```tsx
+const stepsForm = useStepsForm<IPost>({
+    stepsProps: {
+        isBackValidate: true,
+    },
+});
+```
+
+## Return Values
+
+:::tip
+All [`useForm`](/docs/api-reference/mantine/hooks/form/useForm) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/api-reference/mantine/hooks/form/useForm#return-values) docs.
+:::
+
+### `steps`
+
+The props needed by the `<Stepper>` component.
+
+#### `currenStep`
+
+Current step, counting from `0`.
+
+#### `gotoStep`
+
+Is a function that allows you to programmatically change the current step of a form.
+It takes in one argument, step, which is a number representing the index of the step you want to navigate to.
+
 ## API Reference
 
 ### Properties

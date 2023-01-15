@@ -766,6 +766,10 @@ const form = useForm({
 });
 ```
 
+### `saveButtonProps`
+
+It contains all the props needed by the `"submit"` button within the form (disabled,loading etc.). When `saveButtonProps.onClick` is called, it triggers `form.submit()`. You can manually pass these props to your custom button.
+
 ### `liveMode`
 
 Whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
