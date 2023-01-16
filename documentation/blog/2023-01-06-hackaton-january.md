@@ -11,7 +11,6 @@ hide_table_of_contents: false
 
 
 
-
 We're proud to have reached thousands of developers using **[refine](https://github.com/refinedev/refine)** in our first year, and we couldn't have done it without open source community! To celebrate this achievement with the community, we are excited to announce the launch of the first hackathon event.
 
 This hackathon is an excellent opportunity for developers to showcase their skills and learn **[refine](https://github.com/refinedev/refine)**! 
@@ -27,7 +26,7 @@ We can't wait to see what amazing projects the participants will build projects 
 
 
 
-refine draws its strength from the open-source community, and we are grateful to have the support of [Strapi](https://strapi.io/), [Appwrite](https://appwrite.io/), [Medusa](https://medusajs.com/), and [MeiliSearch](https://www.meilisearch.com/) which has significant contributions to the open source community.  
+refine draws its strength from the open-source community, and we are grateful to have the support of [Strapi](https://strapi.io/), [Appwrite](https://appwrite.io/), [Medusa](https://medusajs.com/), and [Meilisearch](https://www.meilisearch.com/) which has significant contributions to the open source community.  
 
 It's worth noting that refine has built-in data provider support for Strapi, Appwrite, and Medusa. So we believe they will be excellent backend solutions for your hackathon project.
 
@@ -58,9 +57,9 @@ Strapi, Appwrite, Medusa, and Meilisearch will also be providing swag kits for t
 ### Prizes
 There are 3 chances to win, there will be prizes for:
 
-- **Best Overall Project** => **$1500** in GitHub Sponsorship + Special Swag Kit
-- **Most Visually Pleasing** => **$300** in GitHub Sponsorship + Special Swag Kit
-- **Most Technically Impressive** => **$300** in GitHub Sponsorship + Special Swag Kit
+- **Best Overall Project** => **$1500** in GitHub Sponsorship + refine Special Swag Kit + Swag Kits from Strapi, Appwrite, Medusa, and Meilisearch
+- **Most Visually Pleasing** => **$300** in GitHub Sponsorship + refine Special Swag Kit + Swag Kits from Strapi, Appwrite, Medusa, and Meilisearch
+- **Most Technically Impressive** => **$300** in GitHub Sponsorship + refine Special Swag Kit + Swag Kits from Strapi, Appwrite, Medusa, and Meilisearch
 
 <div>
 <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/swag_kits.png"  alt="refine hackathon" />
@@ -107,7 +106,7 @@ The **refine** team will be taking part in the Hackathon and you'll find us live
 ## Useful resources
 
 - You can step up to complete CRUD app tutorials to learn **refine** and how it works.
-   - :point_right: https://refine.dev/docs/
+   - :point_right: https://refine.dev/docs/tutorial/introduction/index/
 - You can take a look at real use case example projects built with **refine** to get an inspiration.
    - :point_right: https://refine.dev/docs/examples/  
    - :point_right: https://refine.dev/examples/
