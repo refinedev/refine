@@ -87,6 +87,10 @@ export interface CustomResponse<TData = BaseRecord> {
 export interface GetListResponse<TData = BaseRecord> {
     data: TData[];
     total: number;
+    pageInfo?: {
+        hasNextPage: boolean;
+        hasPreviousPage: boolean;
+    };
 }
 
 export interface GetInfinityListResponse<TData = BaseRecord>
