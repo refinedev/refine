@@ -72,23 +72,15 @@ export const CanvasShow: React.FC = () => {
                     </Button>
                     <Title level={3}>{canvas?.name ?? canvas?.id ?? ""}</Title>
                     <Button type="primary" onClick={show}>
-                        View Changes
+                        History
                     </Button>
                 </div>
                 <Modal
-                    title="Canvas Changes"
+                    title="Canvas History"
                     {...modalProps}
                     centered
                     destroyOnClose
-                    onOk={close}
-                    onCancel={() => {
-                        close();
-                    }}
-                    footer={[
-                        <Button type="primary" key="close" onClick={close}>
-                            Close
-                        </Button>,
-                    ]}
+                    footer={null}
                 >
                     <LogList currentCanvas={canvas} />
                 </Modal>
