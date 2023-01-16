@@ -510,7 +510,7 @@ Since `category` is a relational data, we use `useSelect` to fetch its data.
 
 This hook returns a set of useful values to render steps form. Given current value, you should have a way to render your form items conditionally with this index value.
 
-Here, we're going to use a `switch` statement to render the form items based on the current step.
+Here, we're going to use a `switch` statement to render the form items based on the `currentStep`.
 
 ```tsx
 import { HttpError, useSelect } from "@pankod/refine-core";
@@ -609,7 +609,7 @@ interface IPost {
 }
 ```
 
-Now, we can use `renderFormByStep` function to render the form items based on the current step and `gotoStep` function to navigate between steps.
+Now, we can use `renderFormByStep` function to render the form items based on the `currentStep` and `gotoStep` function to navigate between steps.
 
 ```tsx
 import { HttpError, useSelect } from "@pankod/refine-core";
