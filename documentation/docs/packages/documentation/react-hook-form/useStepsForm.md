@@ -464,7 +464,296 @@ values={[
 
 <TabItem value="create">
 
-In this component you can see how `useStepsForm` is used to manage the steps and form.
+In this example we're going to build a Post create form. We also added a relational category field to expand our example. You can check the [`useSelect`](/docs/api-reference/core/hooks/useSelect/) hook documentation for more information.
+
+To split your `<input/>` components under a `<form/>` component, first import and use `useStepsForm` hook in your page:
+
+```tsx
+import { HttpError, useSelect } from "@pankod/refine-core";
+import { useStepsForm } from "@pankod/refine-react-hook-form";
+
+const PostCreate = () => {
+    const {
+        refineCore: { onFinish, formLoading },
+        register,
+        handleSubmit,
+        formState: { errors },
+        steps: { currentStep, gotoStep },
+    } = useStepsForm<IPost, HttpError, IPost>();
+
+    const { options } = useSelect({
+        resource: "categories",
+    });
+
+    return <div>...</div>;
+};
+
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: {
+        id: ICategory["id"];
+    };
+}
+```
+
+:::tip
+Since `category` is a relational data, we use `useSelect` to fetch its data.
+
+[Refer to `useSelect` documentation for detailed usage. &#8594](/api-reference/antd/hooks/field/useSelect.md)
+
+:::
+
+<br />
+
+This hook returns a set of useful values to render steps form. Given current value, you should have a way to render your form items conditionally with this index value.
+
+Here, we're going to use a `switch` statement to render the form items based on the current step.
+
+```tsx
+import { HttpError, useSelect } from "@pankod/refine-core";
+import { useStepsForm } from "@pankod/refine-react-hook-form";
+
+const PostCreate = () => {
+    const {
+        refineCore: { onFinish, formLoading },
+        register,
+        handleSubmit,
+        formState: { errors },
+        steps: { currentStep, gotoStep },
+    } = useStepsForm<IPost, HttpError, IPost>();
+
+    const { options } = useSelect({
+        resource: "categories",
+    });
+
+    // highlight-start
+    const renderFormByStep = (step: number) => {
+        switch (step) {
+            case 0:
+                return (
+                    <>
+                        <label>Title: </label>
+                        <input
+                            {...register("title", {
+                                required: "This field is required",
+                            })}
+                        />
+                        {errors.title && <span>{errors.title.message}</span>}
+                    </>
+                );
+            case 1:
+                return (
+                    <>
+                        <label>Status: </label>
+                        <select {...register("status")}>
+                            <option value="published">published</option>
+                            <option value="draft">draft</option>
+                            <option value="rejected">rejected</option>
+                        </select>
+                    </>
+                );
+            case 2:
+                return (
+                    <>
+                        <label>Category: </label>
+                        <select
+                            {...register("category.id", {
+                                required: "This field is required",
+                            })}
+                        >
+                            {options?.map((category) => (
+                                <option
+                                    key={category.value}
+                                    value={category.value}
+                                >
+                                    {category.label}
+                                </option>
+                            ))}
+                        </select>
+                        {errors.category && (
+                            <span>{errors.category.message}</span>
+                        )}
+                        <br />
+                        <br />
+                        <label>Content: </label>
+                        <textarea
+                            {...register("content", {
+                                required: "This field is required",
+                            })}
+                            rows={10}
+                            cols={50}
+                        />
+                        {errors.content && (
+                            <span>{errors.content.message}</span>
+                        )}
+                    </>
+                );
+        }
+    };
+    // highlight-end
+
+    return <div>...</div>;
+};
+
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: {
+        id: ICategory["id"];
+    };
+}
+```
+
+Now, we can use `renderFormByStep` function to render the form items based on the current step and `gotoStep` function to navigate between steps.
+
+```tsx
+import { HttpError, useSelect } from "@pankod/refine-core";
+import { useStepsForm } from "@pankod/refine-react-hook-form";
+
+const PostCreate = () => {
+    const {
+        refineCore: { onFinish, formLoading },
+        register,
+        handleSubmit,
+        formState: { errors },
+        steps: { currentStep, gotoStep },
+    } = useStepsForm<IPost, HttpError, IPost>();
+
+    const { options } = useSelect({
+        resource: "categories",
+    });
+
+    const renderFormByStep = (step: number) => {
+        switch (step) {
+            case 0:
+                return (
+                    <>
+                        <label>Title: </label>
+                        <input
+                            {...register("title", {
+                                required: "This field is required",
+                            })}
+                        />
+                        {errors.title && <span>{errors.title.message}</span>}
+                    </>
+                );
+            case 1:
+                return (
+                    <>
+                        <label>Status: </label>
+                        <select {...register("status")}>
+                            <option value="published">published</option>
+                            <option value="draft">draft</option>
+                            <option value="rejected">rejected</option>
+                        </select>
+                    </>
+                );
+            case 2:
+                return (
+                    <>
+                        <label>Category: </label>
+                        <select
+                            {...register("category.id", {
+                                required: "This field is required",
+                            })}
+                        >
+                            {options?.map((category) => (
+                                <option
+                                    key={category.value}
+                                    value={category.value}
+                                >
+                                    {category.label}
+                                </option>
+                            ))}
+                        </select>
+                        {errors.category && (
+                            <span>{errors.category.message}</span>
+                        )}
+                        <br />
+                        <br />
+                        <label>Content: </label>
+                        <textarea
+                            {...register("content", {
+                                required: "This field is required",
+                            })}
+                            rows={10}
+                            cols={50}
+                        />
+                        {errors.content && (
+                            <span>{errors.content.message}</span>
+                        )}
+                    </>
+                );
+        }
+    };
+
+    // highlight-start
+    if (formLoading) {
+        return <div>Loading...</div>;
+    }
+
+    return (
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <div style={{ display: "flex", gap: 36 }}>
+                {stepTitles.map((title, index) => (
+                    <button
+                        key={index}
+                        onClick={() => gotoStep(index)}
+                        style={{
+                            backgroundColor:
+                                currentStep === index ? "lightgray" : "initial",
+                        }}
+                    >
+                        {index + 1} - {title}
+                    </button>
+                ))}
+            </div>
+            <form autoComplete="off">{renderFormByStep(currentStep)}</form>
+            <div style={{ display: "flex", gap: 8 }}>
+                {currentStep > 0 && (
+                    <button
+                        onClick={() => {
+                            gotoStep(currentStep - 1);
+                        }}
+                    >
+                        Previous
+                    </button>
+                )}
+                {currentStep < stepTitles.length - 1 && (
+                    <button
+                        onClick={() => {
+                            gotoStep(currentStep + 1);
+                        }}
+                    >
+                        Next
+                    </button>
+                )}
+                {currentStep === stepTitles.length - 1 && (
+                    <button onClick={handleSubmit(onFinish)}>Save</button>
+                )}
+            </div>
+        </div>
+    );
+    // highlight-end
+};
+
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: {
+        id: ICategory["id"];
+    };
+}
+```
+
+Here is the final result of the form:
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=420px hideCode
 setInitialRoutes(["/posts/create"]);
