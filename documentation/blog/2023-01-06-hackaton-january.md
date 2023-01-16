@@ -57,9 +57,9 @@ Strapi, Appwrite, Medusa, and Meilisearch will also be providing swag kits for t
 ### Prizes
 There are 3 chances to win, there will be prizes for:
 
-- **Best Overall Project** => **$1500** in GitHub Sponsorship + refine Special Swag Kit + Swag Kits from Strapi, Appwrite, Medusa, and Meilisearch
-- **Most Visually Pleasing** => **$300** in GitHub Sponsorship + refine Special Swag Kit + Swag Kits from Strapi, Appwrite, Medusa, and Meilisearch
-- **Most Technically Impressive** => **$300** in GitHub Sponsorship + refine Special Swag Kit + Swag Kits from Strapi, Appwrite, Medusa, and Meilisearch
+- **Best Overall Project** => **$1500** in GitHub Sponsorship + refine Special Swag Kit + Swag Kits from **Strapi**, **Appwrite**, **Medusa**, and **Meilisearch**
+- **Most Visually Pleasing** => **$300** in GitHub Sponsorship + refine Special Swag Kit + Swag Kits from **Strapi**, **Appwrite**, **Medusa**, and **Meilisearch**
+- **Most Technically Impressive** => **$300** in GitHub Sponsorship + refine Special Swag Kit + Swag Kits from **Strapi**, **Appwrite**, **Medusa**, and **Meilisearch**
 
 <div>
 <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/swag_kits.png"  alt="refine hackathon" />
