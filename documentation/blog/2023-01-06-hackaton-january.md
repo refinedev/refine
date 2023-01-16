@@ -9,15 +9,16 @@ social_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hac
 hide_table_of_contents: false
 ---
 
+**[refine](https://github.com/refinedev/refine)** is a React-based framework for the rapid ✨ development of CRUD web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry standard solutions for critical parts like authentication, access control, routing, networking, state management, and i18n. refine shines on data-intensive applications like admin panels, dashboards, internal tools and storefronts. 
 
+We're proud to have reached thousands of developers who used **[refine](https://github.com/refinedev/refine)**  in our first year, and we couldn't have done it without an open source community!
+ To celebrate this achievement with the community, we are excited to announce the launch of the first hackathon event.
 
-We're proud to have reached thousands of developers using **[refine](https://github.com/refinedev/refine)** in our first year, and we couldn't have done it without open source community! To celebrate this achievement with the community, we are excited to announce the launch of the first hackathon event.
-
-This hackathon is an excellent opportunity for developers to showcase their skills and learn **[refine](https://github.com/refinedev/refine)**! 
+This hackathon is an excellent opportunity for developers to showcase their skills and learn **refine**! 
 
 You can win **$1500** and a special gifts along with **limited edition** swag kits!
 
-We can't wait to see what amazing projects the participants will build projects using **[refine](https://github.com/refinedev/refine)**. 
+We can't wait to see what amazing projects the participants will build projects using **refine**. 
 
 
 
@@ -42,7 +43,7 @@ Strapi, Appwrite, Medusa, and Meilisearch will also be providing swag kits for t
 ## Hackathon Key Facts
 
 - Enter as a solo or recruit a team of up to five and take part in this exciting hackaton!
-- You have 3 weeks to build a cool Open Source project using **refine**.
+- You have 4 weeks to build a cool Open Source project using **refine**.
 - Build a **refine** project. It can be anything like CRUD app, admin panel, internal tool, forms, storefront, dashboard, library, data provider, auth provider, live provider, etc.
 
 
@@ -57,9 +58,11 @@ Strapi, Appwrite, Medusa, and Meilisearch will also be providing swag kits for t
 ### Prizes
 There are 3 chances to win, there will be prizes for:
 
-- **Best Overall Project** => **$1500** in GitHub Sponsorship + refine Special Swag Kit + Swag Kits from **Strapi**, **Appwrite**, **Medusa**, and **Meilisearch**
-- **Most Visually Pleasing** => **$300** in GitHub Sponsorship + refine Special Swag Kit + Swag Kits from **Strapi**, **Appwrite**, **Medusa**, and **Meilisearch**
-- **Most Technically Impressive** => **$300** in GitHub Sponsorship + refine Special Swag Kit + Swag Kits from **Strapi**, **Appwrite**, **Medusa**, and **Meilisearch**
+- **Best Overall Project** => **$1500** in GitHub Sponsorship  
+- **Most Visually Pleasing** => **$300** in GitHub Sponsorship 
+- **Most Technically Impressive** => **$300** in GitHub Sponsorship 
+
+The all winners will get [refine Special Swag Kit](https://store.refine.dev/product/hackathon-swag-kit) + Swag Kits from **Strapi**, **Appwrite**, **Medusa**, and **Meilisearch**!
 
 <div>
 <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/swag_kits.png"  alt="refine hackathon" />
@@ -69,7 +72,7 @@ There are 3 chances to win, there will be prizes for:
 <br/>
 
 ## Submission
-- **Submissions link:**  [Use this form](https://refinedev.typeform.com/hackathon)
+- **Submissions link:**  Submissions will be active on 23rd of January.
 - **Submission guidelines:** [Follow the guidelines in this repository](https://github.com/refinedev/hackathon-jan2023-guidelines)
 
 
