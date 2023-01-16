@@ -34,12 +34,12 @@
 ## Try it out on your local
 
 ```bash
-npm create refine-app@latest -- --example base-headless
+npm create refine-app@latest -- --example infinity-list
 ```
 
 ## Try it out on StackBlitz
 
 <br/>
 
-[![Open base-headless example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/base-headless?terminal=start&preset=node)
+[![Open infinity list example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/infinity-list?terminal=start&preset=node)
         
