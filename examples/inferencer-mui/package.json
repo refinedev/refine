@@ -3,7 +3,7 @@
     "version": "3.25.0",
     "private": true,
     "dependencies": {
-        "@pankod/refine-core": "^3.94.2",
+        "@pankod/refine-core": "^3.95.0",
         "@pankod/refine-cli": "^1.17.0",
         "@pankod/refine-inferencer": "^2.2.2",
         "@pankod/refine-mui": "^3.61.2",
