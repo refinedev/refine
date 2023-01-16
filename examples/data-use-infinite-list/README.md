@@ -34,12 +34,12 @@
 ## Try it out on your local
 
 ```bash
-npm create refine-app@latest -- --example infinity-list
+npm create refine-app@latest -- --example data-use-infinite-list
 ```
 
 ## Try it out on StackBlitz
 
 <br/>
 
-[![Open infinity list example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/infinity-list?terminal=start&preset=node)
+[![Open useInfiniteList hook example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/data-use-infinite-list?terminal=start&preset=node)
         
