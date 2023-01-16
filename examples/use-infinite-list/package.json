@@ -1,5 +1,5 @@
 {
-    "name": "data-use-infinite-list",
+    "name": "use-infinite-list",
     "version": "3.25.0",
     "private": true,
     "dependencies": {
