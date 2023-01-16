@@ -285,7 +285,7 @@ const PostCreate: React.FC = () => {
             <MantineStepper
                 active={currentStep}
                 onStepClick={gotoStep}
-                breakpoint="sm"
+                breakpoint="xs"
             >
                 <MantineStepper.Step
                     label="First Step"
@@ -405,7 +405,7 @@ const PostEdit: React.FC = () => {
             <MantineStepper
                 active={currentStep}
                 onStepClick={gotoStep}
-                breakpoint="sm"
+                breakpoint="xs"
             >
                 <MantineStepper.Step
                     label="First Step"
@@ -760,7 +760,7 @@ const PostCreatePage: React.FC = () => {
             <Stepper
                 active={currentStep}
                 onStepClick={gotoStep}
-                breakpoint="sm"
+                breakpoint="xs"
             >
                 <Stepper.Step
                     label="First Step"
@@ -921,7 +921,7 @@ const PostEditPage: React.FC = () => {
             <Stepper
                 active={currentStep}
                 onStepClick={gotoStep}
-                breakpoint="sm"
+                breakpoint="xs"
             >
                 <Stepper.Step
                     label="First Step"
