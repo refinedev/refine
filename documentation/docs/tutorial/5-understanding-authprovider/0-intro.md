@@ -121,3 +121,15 @@ You can use the following auth provider examples as a starting point for your ow
 -   [Nhost](/docs/examples/data-provider/nhost) - An auth provider example with Nhost.
 -   [Basic with Nextjs](/docs/examples/next-js/) - A basic auth provider example with Nextjs.
 -   [Basic with Remix](/docs/examples/remix/remix-headless) - A basic auth provider example with Remix.
+
+
+<Checklist>
+
+<ChecklistItem id="auth-provider-intro">
+I understood what is auth provider and how it works.
+</ChecklistItem>
+<ChecklistItem id="auth-provider-intro-2">
+I learned that refine offers built-in auth provider examples.
+</ChecklistItem>
+
+</Checklist>
