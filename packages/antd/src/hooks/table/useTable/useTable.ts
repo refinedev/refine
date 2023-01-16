@@ -39,11 +39,12 @@ export type useTableProps<
 
 export type useTableReturnType<
     TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
     TSearchVariables = unknown,
 > = {
     searchFormProps: FormProps<TSearchVariables>;
     tableProps: TableProps<TData>;
-    tableQueryResult: QueryObserverResult<GetListResponse<TData>>;
+    tableQueryResult: QueryObserverResult<GetListResponse<TData>, TError>;
     sorter?: CrudSorting;
     filters?: CrudFilters;
     current?: number;
@@ -91,7 +92,7 @@ export const useTable = <
         metaData,
         dataProviderName,
     }: useTableProps<TData, TError, TSearchVariables> = { hasPagination: true },
-): useTableReturnType<TData, TSearchVariables> => {
+): useTableReturnType<TData, TError, TSearchVariables> => {
     const {
         tableQueryResult,
         current,
@@ -104,7 +105,7 @@ export const useTable = <
         setSorter,
         createLinkForSyncWithLocation,
         pageCount,
-    } = useTableCore({
+    } = useTableCore<TData, TError>({
         permanentSorter,
         permanentFilter,
         initialCurrent,

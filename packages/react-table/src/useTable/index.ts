@@ -16,15 +16,18 @@ import {
     getCoreRowModel,
 } from "@tanstack/react-table";
 
-export type UseTableReturnType<TData extends BaseRecord = BaseRecord> =
-    Table<TData> & {
-        refineCore: useTableReturnTypeCore<TData>;
-    };
+export type UseTableReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+> = Table<TData> & {
+    refineCore: useTableReturnTypeCore<TData, TError>;
+};
 
 export type UseTableNoPaginationReturnType<
     TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
 > = Table<TData> & {
-    refineCore: useTableNoPaginationReturnTypeCore<TData>;
+    refineCore: useTableNoPaginationReturnTypeCore<TData, TError>;
 };
 
 export type UseTableProps<
@@ -48,7 +51,7 @@ export function useTable<
             hasPagination?: true;
         };
     },
-): UseTableReturnType<TData>;
+): UseTableReturnType<TData, TError>;
 export function useTable<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -67,8 +70,8 @@ export function useTable<
     initialState: reactTableInitialState = {},
     ...rest
 }: UseTableProps<TData, TError>):
-    | UseTableReturnType<TData>
-    | UseTableNoPaginationReturnType<TData> {
+    | UseTableReturnType<TData, TError>
+    | UseTableNoPaginationReturnType<TData, TError> {
     const useTableResult = useTableCore<TData, TError>({
         ...refineCoreProps,
         // @ts-expect-error currently boolean casting is not supported in overloaded types.
@@ -213,7 +216,10 @@ export function useTable<
     return {
         ...reactTableResult,
         refineCore: {
-            ...(useTableResult as unknown as useTableNoPaginationReturnTypeCore<TData>),
+            ...(useTableResult as unknown as useTableNoPaginationReturnTypeCore<
+                TData,
+                TError
+            >),
             current: undefined,
             setCurrent: undefined,
             pageSize: undefined,
