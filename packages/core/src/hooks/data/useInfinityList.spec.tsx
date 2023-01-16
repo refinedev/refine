@@ -2,7 +2,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
-import { useInfinityGetList } from "./useInfinityGetList";
+import { useInfinityList } from "./useInfinityList";
 import { defaultRefineOptions } from "@contexts/refine";
 import { IRefineContextProvider } from "../../interfaces";
 
@@ -12,10 +12,10 @@ const mockRefineProvider: IRefineContextProvider = {
     options: defaultRefineOptions,
 };
 
-describe("useInfinityGetList Hook", () => {
+describe("useInfinityList Hook", () => {
     it("with rest json server", async () => {
         const { result } = renderHook(
-            () => useInfinityGetList({ resource: "posts" }),
+            () => useInfinityList({ resource: "posts" }),
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
@@ -38,7 +38,7 @@ describe("useInfinityGetList Hook", () => {
     it("hasNextPage is truthy", async () => {
         const { result } = renderHook(
             () =>
-                useInfinityGetList({
+                useInfinityList({
                     resource: "posts",
                     config: {
                         pagination: {
@@ -68,7 +68,7 @@ describe("useInfinityGetList Hook", () => {
 
             const { result } = renderHook(
                 () =>
-                    useInfinityGetList({
+                    useInfinityList({
                         resource: "posts",
                     }),
                 {
@@ -113,7 +113,7 @@ describe("useInfinityGetList Hook", () => {
 
             const { result } = renderHook(
                 () =>
-                    useInfinityGetList({
+                    useInfinityList({
                         resource: "posts",
                     }),
                 {
@@ -143,8 +143,7 @@ describe("useInfinityGetList Hook", () => {
             const onSubscribeMock = jest.fn();
 
             const { result } = renderHook(
-                () =>
-                    useInfinityGetList({ resource: "posts", liveMode: "auto" }),
+                () => useInfinityList({ resource: "posts", liveMode: "auto" }),
                 {
                     wrapper: TestWrapper({
                         dataProvider: MockJSONServer,
@@ -174,7 +173,7 @@ describe("useInfinityGetList Hook", () => {
 
             const { result, unmount } = renderHook(
                 () =>
-                    useInfinityGetList({
+                    useInfinityList({
                         resource: "posts",
                     }),
                 {
