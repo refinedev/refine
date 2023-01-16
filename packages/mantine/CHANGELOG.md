@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 1.15.6
+
+### Patch Changes
+
+-   [#3396](https://github.com/refinedev/refine/pull/3396) [`bb2774e3941`](https://github.com/refinedev/refine/commit/bb2774e39411c844b01f552d1cae2931d4f6b9f9) Thanks [@omeraplak](https://github.com/omeraplak)! - fix: `onSubmit` is set to nullable on [`<AuthPage>`](https://refine.dev/docs/api-reference/mantine/components/mantine-auth-page/)
+
 ## 1.15.5
 
 ### Patch Changes
