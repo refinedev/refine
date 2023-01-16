@@ -22,7 +22,12 @@ import {
     useTranslate,
     useDataProvider,
 } from "@hooks";
-import { queryKeys, pickDataProvider } from "@definitions/helpers";
+import {
+    queryKeys,
+    pickDataProvider,
+    getNextPageParam,
+    getPreviousPageParam,
+} from "@definitions/helpers";
 
 export interface UseInfinityConfig {
     pagination?: Pagination;
@@ -194,28 +199,8 @@ export const useInfiniteList = <
                     type: "error",
                 });
             },
-            getNextPageParam: (lastPage) => {
-                const { pagination, pageInfo } = lastPage;
-                const current = pagination?.current || 1;
-
-                if (pageInfo) {
-                    return pageInfo.hasNextPage ? current + 1 : undefined;
-                }
-
-                const pageSize = pagination?.pageSize || 10;
-                const totalPages = Math.ceil((lastPage.total || 0) / pageSize);
-                return current < totalPages ? Number(current) + 1 : undefined;
-            },
-            getPreviousPageParam: (lastPage) => {
-                const { pagination, pageInfo } = lastPage;
-                const current = pagination?.current || 1;
-
-                if (pageInfo) {
-                    return pageInfo.hasPreviousPage ? current - 1 : undefined;
-                }
-
-                return current === 1 ? undefined : current - 1;
-            },
+            getNextPageParam: (lastPage) => getNextPageParam(lastPage),
+            getPreviousPageParam: (lastPage) => getPreviousPageParam(lastPage),
         },
     );
 
