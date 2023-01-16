@@ -38,7 +38,7 @@ export type UseInfinityListProps<TData, TError> = {
     resource: string;
     /**
      * Configuration for pagination, sorting and filtering
-     * @type [`UseInfinityConfig`](/docs/api-reference/core/hooks/data/useInfinityList/#config-parameters)
+     * @type [`UseInfinityConfig`](/docs/api-reference/core/hooks/data/useInfiniteList/#config-parameters)
      */
     config?: UseInfinityConfig;
     /**
@@ -60,17 +60,17 @@ export type UseInfinityListProps<TData, TError> = {
     LiveModeProps;
 
 /**
- * `useInfinityList` is a modified version of `react-query`'s {@link https://tanstack.com/query/latest/docs/react/guides/infinite-queries `useInfiniteQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
+ * `useInfiniteList` is a modified version of `react-query`'s {@link https://tanstack.com/query/latest/docs/react/guides/infinite-queries `useInfiniteQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
  *
  * It uses the `getList` method as the query function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/core/hooks/data/useInfinityList} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/data/useInfiniteList} for more details.
  *
  * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/core/interfaceReferences#httperror `HttpError`}
  *
  */
-export const useInfinityList = <
+export const useInfiniteList = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
 >({
@@ -183,7 +183,7 @@ export const useInfinityList = <
                         : errorNotification;
 
                 handleNotification(notificationConfig, {
-                    key: `${resource}-useInfinityList-notification`,
+                    key: `${resource}-useInfiniteList-notification`,
                     message: translate(
                         "common:notifications.error",
                         { statusCode: err.statusCode },

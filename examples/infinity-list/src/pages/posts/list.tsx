@@ -1,5 +1,5 @@
 import React from "react";
-import { useInfinityGetList } from "@pankod/refine-core";
+import { useInfiniteList } from "@pankod/refine-core";
 
 import { IProduct } from "interfaces";
 
@@ -11,7 +11,7 @@ export const PostList: React.FC = () => {
         isLoading,
         fetchNextPage,
         isFetchingNextPage,
-    } = useInfinityGetList<IProduct>({
+    } = useInfiniteList<IProduct>({
         resource: "products",
     });
 
