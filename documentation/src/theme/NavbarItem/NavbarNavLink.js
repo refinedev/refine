@@ -4,6 +4,7 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import isInternalUrl from "@docusaurus/isInternalUrl";
 import { isRegexpStringMatch } from "@docusaurus/theme-common";
 import IconExternalLink from "@theme/Icon/ExternalLink";
+import { useLocation } from "@docusaurus/router";
 
 const HackathonIcon = (props) => (
     <svg
@@ -38,6 +39,7 @@ export default function NavbarNavLink({
     // TODO all this seems hacky
     // {to: 'version'} should probably be forbidden, in favor of {to: '/version'}
     const toUrl = useBaseUrl(to);
+    const location = useLocation();
     const activeBaseUrl = useBaseUrl(activeBasePath);
     const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true });
     const isExternalLink = label && href && !isInternalUrl(href);
