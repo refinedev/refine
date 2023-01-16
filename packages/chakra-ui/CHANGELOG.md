@@ -1,5 +1,11 @@
 # @pankod/refine-chakra-ui
 
+## 1.6.4
+
+### Patch Changes
+
+-   [`89a020942c8`](https://github.com/refinedev/refine/commit/89a020942c887e6c74f60c52ebc707774221871a) Thanks [@omeraplak](https://github.com/omeraplak)! - fix: deleted unused chakra-ui exports
+
 ## 1.6.3
 
 ### Patch Changes
