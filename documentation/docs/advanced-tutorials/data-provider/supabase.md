@@ -14,7 +14,7 @@ refine offers built-in data provider support for Supabase and handles all requir
 
 We'll build a simple CRUD app with refine and use Supabase as a data provider. We'll also see how to use Supabase's authentication features on refine app.
 
-We are assuming that you have already know how refine works. If not, please check out the [Tutorial](/docs/tutorials/antd.md) section first.
+We are assuming that you have already know how refine works. If not, please check out the [Tutorial](/docs/tutorial/introduction/index/) section first.
 
 [Refer to docs for more information about data provider &#8594](/docs/api-reference/core/providers/data-provider.md)
 
@@ -308,7 +308,7 @@ Now it's time to add some resources to our app.
 Before diving into Supabase features, we'll add simple CRUD pages to make the app more interactive.
 
 :::note
-Since this post focuses on Supabase implementation, we'll not discuss how to create CRUD pages and how it works. You can refer to [Tutorial](/docs/tutorials/antd.md/#creating-a-list-page) to learn more about creating CRUD pages.
+Since this post focuses on Supabase implementation, we'll not discuss how to create CRUD pages and how it works. You can refer to [Tutorial](/docs/tutorial/introduction/index/) to learn more about creating CRUD pages.
 :::
 
 ### Adding a List page

@@ -82,7 +82,7 @@ const features = [
         src: "/icons/features/fast.png",
         srcset: "/icons/features/fast@2x.png 768w",
         title: "Fast",
-        description: `Up to 3x increase in speed of development. (<a href="/docs/getting-started/overview/#benchmark" target="_blank">*</a>)`,
+        description: `Up to 3x increase in speed of development. (<a href="/docs#benchmark" target="_blank">*</a>)`,
     },
     {
         src: "/icons/features/headless.png",

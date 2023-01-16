@@ -71,7 +71,7 @@ There are a lot of benefits to using refine in your applications, to name a few:
 - Backend agnostic, you can connect with any backend technologies
 - Authentication, state management, data fetching routing, and more are prioritized.
 
-Visit [refine's documentation](https://refine.dev/docs/getting-started/overview/) to learn more about the framework.
+Visit [refine's documentation](https://refine.dev/docs/) to learn more about the framework.
 
 ## Project setup 
 Before we get into the nitty-gritty of how React Hook Form works and how to use it to validate forms in your projects, let's set up an example project with refine for reference purposes.

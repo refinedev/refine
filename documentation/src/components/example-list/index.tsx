@@ -41,7 +41,7 @@ const staticTags = [
 
 const visibleTags = staticTags.map((tag) => ({
     name: tag,
-    color: allTags.find((aTag) => aTag.name === tag).color,
+    color: allTags.find((aTag) => aTag.name === tag)?.color,
 }));
 
 const PREDEFINED_COLORS = {

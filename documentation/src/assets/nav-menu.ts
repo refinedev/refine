@@ -21,7 +21,7 @@ export const POPOVERMENUS: NavMenu[] = [
             {
                 label: "Documents",
                 description: "Everything you need to get started",
-                link: "/docs/getting-started/overview/",
+                link: "/docs/",
                 icon: DocumentsIcon,
             },
             {
@@ -33,7 +33,7 @@ export const POPOVERMENUS: NavMenu[] = [
             {
                 label: "Tutorial",
                 description: "Your first refine application",
-                link: "/docs",
+                link: "/docs/tutorial/introduction/index/",
                 icon: TutorialIcon,
             },
             // {

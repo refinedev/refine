@@ -423,13 +423,13 @@ export const SectionHero: React.FC = () => {
                     <div className="flex flex-col flex-1 gap-4 px-0 -mx-4 lg:flex-row md:px-8 lg:px-12">
                         <Link
                             className="flex flex-1 justify-center items-center appearance-none no-underline font-montserrat font-bold text-xl text-white text-center py-3 px-4 md:px-0 xl:px-4 rounded-lg shadow-lg hover:shadow-xl focus:outline-none focus:shadow-xl bg-gradient-to-l from-[#1890FF] to-[#47EBF5]"
-                            to="/docs"
+                            to="/docs/tutorial/introduction/index/"
                         >
                             Start Tutorial
                         </Link>
                         <Link
                             className="flex items-center justify-center flex-1 gap-3 px-4 py-3 text-xl font-bold text-center text-white no-underline appearance-none font-montserrat md:px-0 xl:px-4 focus:outline-none"
-                            href="/docs/getting-started/overview"
+                            href="/docs"
                         >
                             Read the docs <ChevronRight />
                         </Link>
