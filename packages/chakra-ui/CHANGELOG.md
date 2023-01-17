@@ -1,5 +1,11 @@
 # @pankod/refine-chakra-ui
 
+## 1.6.6
+
+### Patch Changes
+
+-   [`03afb3215ef`](https://github.com/refinedev/refine/commit/03afb3215ef6e2331ca4f1315905366ec3617e2e) Thanks [@omeraplak](https://github.com/omeraplak)! - fix: button disabled states
+
 ## 1.6.5
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.61.3
+
+### Patch Changes
+
+-   [#3399](https://github.com/refinedev/refine/pull/3399) [`22b44a857a8`](https://github.com/refinedev/refine/commit/22b44a857a8ede3473965ab6baff70fc8ae31332) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fix `useTable` hook error return type.
+
 ## 3.61.2
 
 ### Patch Changes
