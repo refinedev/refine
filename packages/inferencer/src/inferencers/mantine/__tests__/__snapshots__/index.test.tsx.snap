@@ -10,7 +10,7 @@ exports[`MantineInferencer should match the snapshot 1`] = `
         class="mantine-Group-root mantine-1dn2tzg"
       >
         <div
-          class="mantine-Stack-root mantine-1xft3nm"
+          class="mantine-Stack-root mantine-zyu68o"
         >
           <div
             aria-label="breadcrumb"
@@ -378,7 +378,7 @@ exports[`MantineInferencer should match the snapshot 2`] = `
         class="mantine-Group-root mantine-1dn2tzg"
       >
         <div
-          class="mantine-Stack-root mantine-1xft3nm"
+          class="mantine-Stack-root mantine-zyu68o"
         >
           <div
             aria-label="breadcrumb"
@@ -997,7 +997,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
         class="mantine-Group-root mantine-1dn2tzg"
       >
         <div
-          class="mantine-Stack-root mantine-1xft3nm"
+          class="mantine-Stack-root mantine-zyu68o"
         >
           <div
             aria-label="breadcrumb"
@@ -1807,7 +1807,7 @@ exports[`MantineInferencer should match the snapshot 4`] = `
         class="mantine-Group-root mantine-1dn2tzg"
       >
         <div
-          class="mantine-Stack-root mantine-1xft3nm"
+          class="mantine-Stack-root mantine-zyu68o"
         >
           <div
             aria-label="breadcrumb"
