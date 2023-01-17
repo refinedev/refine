@@ -348,10 +348,11 @@ For the sake of simplicity, in this example we're going to build a `Post` create
 To split your form items under a `<Steps>` component, first import and use `useStepsForm` hook in your page:
 
 ```tsx title="pages/posts/create.tsx"
+import React from "react";
+import { HttpError } from "@pankod/refine-core";
 import { useStepsForm } from "@pankod/refine-antd";
 
 export const PostCreate: React.FC = () => {
-    // highlight-start
     const {
         current,
         gotoStep,
@@ -359,16 +360,10 @@ export const PostCreate: React.FC = () => {
         formProps,
         saveButtonProps,
         queryResult,
-    } = useStepsForm<IPost>();
-    // highlight-end
+    } = useStepsForm<IPost, HttpError, IPost>();
 
     return null;
 };
-
-interface ICategory {
-    id: number;
-    title: string;
-}
 
 interface IPost {
     id: number;
@@ -384,7 +379,8 @@ This hook returns a set of useful values to render steps form. Given `current` v
 Here, each item of `formList` corresponds to one step in form:
 
 ```tsx title="pages/posts/create.tsx"
-// highlight-next-line
+import React from "react";
+import { HttpError } from "@pankod/refine-core";
 import {
     useStepsForm,
     useSelect,
@@ -394,12 +390,13 @@ import {
 } from "@pankod/refine-antd";
 
 export const PostCreate: React.FC = () => {
-    // highlight-start
     const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
-        useStepsForm<IPost>();
-    // highlight-end
+        useStepsForm<IPost, HttpError, IPost>();
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    const { selectProps: categorySelectProps } = useSelect<
+        ICategory,
+        HttpError
+    >({
         resource: "categories",
     });
 
@@ -436,6 +433,19 @@ export const PostCreate: React.FC = () => {
 
     return null;
 };
+
+interface ICategory {
+    id: number;
+    title: string;
+}
+
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: { id: number };
+}
 ```
 
 :::tip
@@ -450,6 +460,8 @@ Since `category` is a relational data, we use `useSelect` to fetch its data.
 You should use `stepsProps` on `<Steps>` component, `formProps` on the `<Form>` component respectively. And as the last step, you should render the `<Steps>` component besides the form like this:
 
 ```tsx title="pages/posts/create.tsx"
+import React from "react";
+import { HttpError } from "@pankod/refine-core";
 import {
     useStepsForm,
     useSelect,
@@ -470,9 +482,12 @@ export const PostCreate: React.FC = () => {
         formProps,
         saveButtonProps,
         queryResult,
-    } = useStepsForm<IPost>();
+    } = useStepsForm<IPost, HttpError, IPost>();
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    const { selectProps: categorySelectProps } = useSelect<
+        ICategory,
+        HttpError
+    >({
         resource: "categories",
     });
 
@@ -519,6 +534,19 @@ export const PostCreate: React.FC = () => {
         </Create>
     );
 };
+
+interface ICategory {
+    id: number;
+    title: string;
+}
+
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: { id: number };
+}
 ```
 
 :::danger Important
@@ -530,6 +558,8 @@ Make sure to add as much `<Steps.Step>` components as the number of steps in the
 To help users navigate between steps in the form, you can use action buttons. Your navigation buttons should use the `gotoStep` function that was previously returned from the the `useStepsForm` hook.
 
 ```tsx title="pages/posts/create.tsx"
+import React from "react";
+import { HttpError } from "@pankod/refine-core";
 import {
     useStepsForm,
     useSelect,
@@ -553,9 +583,12 @@ export const PostCreate: React.FC = () => {
         saveButtonProps,
         queryResult,
         submit,
-    } = useStepsForm<IPost>();
+    } = useStepsForm<IPost, HttpError, IPost>();
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    const { selectProps: categorySelectProps } = useSelect<
+        ICategory,
+        HttpError
+    >({
         resource: "categories",
     });
 
@@ -632,28 +665,6 @@ export const PostCreate: React.FC = () => {
         </Create>
     );
 };
-```
-
-Here is the final result of the form:
-
-```tsx live url=http://localhost:3000/posts/create previewHeight=420px hideCode
-setInitialRoutes(["/posts/create"]);
-
-// visible-block-start
-import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
-
-import {
-    Create,
-    Form,
-    Input,
-    Select,
-    Button,
-    SaveButton,
-    useSelect,
-    useStepsForm,
-    Steps,
-} from "@pankod/refine-antd";
 
 interface ICategory {
     id: number;
@@ -667,14 +678,39 @@ interface IPost {
     status: "published" | "draft" | "rejected";
     category: { id: number };
 }
+```
+
+Here is the final result of the form:
+
+```tsx live url=http://localhost:3000/posts/create previewHeight=420px hideCode
+setInitialRoutes(["/posts/create"]);
+
+// visible-block-start
+import React from "react";
+import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
+
+import {
+    Create,
+    Form,
+    Input,
+    Select,
+    Button,
+    SaveButton,
+    useSelect,
+    useStepsForm,
+    Steps,
+} from "@pankod/refine-antd";
 
 const { Step } = Steps;
 
 const PostCreatePage: React.FC<IResourceComponentsProps> = () => {
     const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
-        useStepsForm<IPost>();
+        useStepsForm<IPost, HttpError, IPost>();
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    const { selectProps: categorySelectProps } = useSelect<
+        ICategory,
+        HttpError
+    >({
         resource: "categories",
     });
 
@@ -783,6 +819,19 @@ const PostCreatePage: React.FC<IResourceComponentsProps> = () => {
         </Create>
     );
 };
+
+interface ICategory {
+    id: number;
+    title: string;
+}
+
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: { id: number };
+}
 // visible-block-end
 
 setRefineProps({
@@ -813,7 +862,7 @@ setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
 
 import {
     // highlight-next-line
@@ -828,26 +877,16 @@ import {
     Steps,
 } from "@pankod/refine-antd";
 
-interface ICategory {
-    id: number;
-    title: string;
-}
-
-interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
-}
-
 const { Step } = Steps;
 
 const PostEditPage: React.FC<IResourceComponentsProps> = () => {
     const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
-        useStepsForm<IPost>();
+        useStepsForm<IPost, HttpError, IPost>();
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    const { selectProps: categorySelectProps } = useSelect<
+        ICategory,
+        HttpError
+    >({
         resource: "categories",
     });
 
@@ -957,6 +996,20 @@ const PostEditPage: React.FC<IResourceComponentsProps> = () => {
         </Edit>
     );
 };
+
+interface ICategory {
+    id: number;
+    title: string;
+}
+
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: { id: number };
+}
+
 // visible-block-end
 
 setRefineProps({

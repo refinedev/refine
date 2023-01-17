@@ -481,12 +481,17 @@ const PostCreate = () => {
         steps: { currentStep, gotoStep },
     } = useStepsForm<IPost, HttpError, IPost>();
 
-    const { options } = useSelect({
+    const { options } = useSelect<ICategory, HttpError>({
         resource: "categories",
     });
 
     return <div>...</div>;
 };
+
+interface ICategory {
+    id: number;
+    title: string;
+}
 
 interface IPost {
     id: number;
@@ -525,7 +530,7 @@ const PostCreate = () => {
         steps: { currentStep, gotoStep },
     } = useStepsForm<IPost, HttpError, IPost>();
 
-    const { options } = useSelect({
+    const { options } = useSelect<ICategory, HttpError>({
         resource: "categories",
     });
 
@@ -598,6 +603,11 @@ const PostCreate = () => {
     return <div>...</div>;
 };
 
+interface ICategory {
+    id: number;
+    title: string;
+}
+
 interface IPost {
     id: number;
     title: string;
@@ -624,7 +634,7 @@ const PostCreate = () => {
         steps: { currentStep, gotoStep },
     } = useStepsForm<IPost, HttpError, IPost>();
 
-    const { options } = useSelect({
+    const { options } = useSelect<ICategory, HttpError>({
         resource: "categories",
     });
 
@@ -742,6 +752,11 @@ const PostCreate = () => {
     // highlight-end
 };
 
+interface ICategory {
+    id: number;
+    title: string;
+}
+
 interface IPost {
     id: number;
     title: string;
@@ -773,7 +788,7 @@ const PostCreatePage: React.FC = () => {
         steps: { currentStep, gotoStep },
     } = useStepsForm<IPost, HttpError, IPost>();
 
-    const { options } = useSelect({
+    const { options } = useSelect<ICategory, HttpError>({
         resource: "categories",
     });
 
@@ -888,6 +903,11 @@ const PostCreatePage: React.FC = () => {
         </div>
     );
 };
+
+interface ICategory {
+    id: number;
+    title: string;
+}
 
 interface IPost {
     id: number;
@@ -944,7 +964,7 @@ const PostEditPage: React.FC = () => {
         steps: { currentStep, gotoStep },
     } = useStepsForm<IPost, HttpError, IPost>();
 
-    const { options } = useSelect({
+    const { options } = useSelect<ICategory, HttpError>({
         resource: "categories",
         defaultValue: queryResult?.data?.data.category.id,
     });
@@ -1061,6 +1081,11 @@ const PostEditPage: React.FC = () => {
         </div>
     );
 };
+
+interface ICategory {
+    id: number;
+    title: string;
+}
 
 interface IPost {
     id: number;
