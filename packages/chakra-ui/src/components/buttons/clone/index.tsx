@@ -91,7 +91,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
             ) : (
                 <Button
                     variant="outline"
-                    disabled={data?.can === false}
+                    isDisabled={data?.can === false}
                     leftIcon={<IconSquarePlus size={20} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.CloneButton}
