@@ -8,7 +8,7 @@
         "refine": "refine"
     },
     "dependencies": {
-        "@pankod/refine-chakra-ui": "^1.6.4",
+        "@pankod/refine-chakra-ui": "^1.6.5",
         "@tabler/icons": "^1.1.0",
         "@pankod/refine-core": "^3.95.0",
         "@pankod/refine-cli": "^1.17.0",
