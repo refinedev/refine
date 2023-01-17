@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.95.0
+
+### Minor Changes
+
+-   [`22b44a857a8`](https://github.com/refinedev/refine/commit/22b44a857a8ede3473965ab6baff70fc8ae31332) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fix `useTable` hook error return type.
+
 ## 3.94.2
 
 ### Patch Changes

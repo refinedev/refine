@@ -67,7 +67,16 @@ export const LogButton: React.FC<LogButtonProps> = ({
     return (
         <>
             <Button
-                onClick={(e): void => (onClick ? onClick(e) : show())}
+                onClick={(e): void =>
+                    onClick
+                        ? onClick(
+                              e as React.MouseEvent<
+                                  HTMLButtonElement,
+                                  MouseEvent
+                              >,
+                          )
+                        : show()
+                }
                 icon={<Icons.HistoryOutlined />}
                 loading={logQueryResult.isLoading}
                 {...rest}

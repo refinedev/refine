@@ -43,7 +43,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
             class="MuiDataGrid-main css-204u17-MuiDataGrid-main"
           >
             <div
-              class="MuiDataGrid-columnHeaders css-f3jnds-MuiDataGrid-columnHeaders"
+              class="MuiDataGrid-columnHeaders css-z8fhq1-MuiDataGrid-columnHeaders"
               style="min-height: 56px; max-height: 56px; line-height: 56px;"
             >
               <div
