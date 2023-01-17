@@ -1,6 +1,6 @@
-import { GetInfinityListResponse } from "../../../interfaces";
+import { GetInfiniteListResponse } from "../../../interfaces";
 
-export const getNextPageParam = (lastPage: GetInfinityListResponse) => {
+export const getNextPageParam = (lastPage: GetInfiniteListResponse) => {
     const { pagination, pageInfo } = lastPage;
     const current = pagination?.current || 1;
 
@@ -14,7 +14,7 @@ export const getNextPageParam = (lastPage: GetInfinityListResponse) => {
     return current < totalPages ? Number(current) + 1 : undefined;
 };
 
-export const getPreviousPageParam = (lastPage: GetInfinityListResponse) => {
+export const getPreviousPageParam = (lastPage: GetInfiniteListResponse) => {
     const { pagination, pageInfo } = lastPage;
     const current = pagination?.current || 1;
 

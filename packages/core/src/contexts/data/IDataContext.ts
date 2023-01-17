@@ -93,7 +93,7 @@ export interface GetListResponse<TData = BaseRecord> {
     };
 }
 
-export interface GetInfinityListResponse<TData = BaseRecord>
+export interface GetInfiniteListResponse<TData = BaseRecord>
     extends GetListResponse<TData> {
     pagination?: Pagination;
 }

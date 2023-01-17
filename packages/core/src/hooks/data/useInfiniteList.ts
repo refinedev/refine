@@ -12,7 +12,7 @@ import {
     MetaDataQuery,
     SuccessErrorNotification,
     LiveModeProps,
-    GetInfinityListResponse,
+    GetInfiniteListResponse,
 } from "../../interfaces";
 import {
     useResource,
@@ -50,7 +50,7 @@ export type UseInfinityListProps<TData, TError> = {
      * react-query's [useInfiniteQuery](https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery) options,
      */
     queryOptions?: UseInfiniteQueryOptions<
-        GetInfinityListResponse<TData>,
+        GetInfiniteListResponse<TData>,
         TError
     >;
     /**
@@ -90,7 +90,7 @@ export const useInfiniteList = <
     liveParams,
     dataProviderName,
 }: UseInfinityListProps<TData, TError>): InfiniteQueryObserverResult<
-    GetInfinityListResponse<TData>,
+    GetInfiniteListResponse<TData>,
     TError
 > => {
     const { resources } = useResource();
@@ -130,7 +130,7 @@ export const useInfiniteList = <
     });
 
     const queryResponse = useInfiniteQuery<
-        GetInfinityListResponse<TData>,
+        GetInfiniteListResponse<TData>,
         TError
     >(
         queryKey.list(config),
