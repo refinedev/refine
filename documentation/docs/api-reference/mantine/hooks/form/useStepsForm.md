@@ -1004,6 +1004,8 @@ render(<RefineMantineDemo />);
 
 ## Properties
 
+### `refineCoreProps`
+
 :::tip
 All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#return-values) docs.
 :::

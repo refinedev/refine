@@ -1093,6 +1093,8 @@ render(<RefineHeadlessDemo />);
 
 ## Properties
 
+### `refineCoreProps`
+
 :::tip
 All [`useForm`](/docs/packages/documentation/react-hook-form/useForm/) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/packages/documentation/react-hook-form/useForm/#return-values) docs.
 :::

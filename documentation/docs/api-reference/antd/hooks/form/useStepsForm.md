@@ -1032,6 +1032,14 @@ Current step, counting from `0`.
 Is a function that allows you to programmatically change the current step of a form.
 It takes in one argument, step, which is a number representing the index of the step you want to navigate to.
 
+### `submit`
+
+A function that can submit the form. It's useful when you want to submit the form manually.
+
+### `defaultFormValuesLoading`
+
+When `action` is `"edit"` or `"clone"`, `useStepsForm` will fetch the data from the API and set it as default values. This prop is `true` when the data is being fetched.
+
 ## API Reference
 
 ### Properties
