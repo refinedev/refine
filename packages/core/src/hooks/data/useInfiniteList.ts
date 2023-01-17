@@ -29,23 +29,23 @@ import {
     getPreviousPageParam,
 } from "@definitions/helpers";
 
-export interface UseInfinityConfig {
+export interface UseInfiniteListConfig {
     pagination?: Pagination;
     hasPagination?: boolean;
     sort?: CrudSorting;
     filters?: CrudFilters;
 }
 
-export type UseInfinityListProps<TData, TError> = {
+export type UseInfiniteListProps<TData, TError> = {
     /**
      * Resource name for API data interactions
      */
     resource: string;
     /**
      * Configuration for pagination, sorting and filtering
-     * @type [`UseInfinityConfig`](/docs/api-reference/core/hooks/data/useInfiniteList/#config-parameters)
+     * @type [`useInfiniteListConfig`](/docs/api-reference/core/hooks/data/useInfiniteList/#config-parameters)
      */
-    config?: UseInfinityConfig;
+    config?: UseInfiniteListConfig;
     /**
      * react-query's [useInfiniteQuery](https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery) options,
      */
@@ -89,7 +89,7 @@ export const useInfiniteList = <
     onLiveEvent,
     liveParams,
     dataProviderName,
-}: UseInfinityListProps<TData, TError>): InfiniteQueryObserverResult<
+}: UseInfiniteListProps<TData, TError>): InfiniteQueryObserverResult<
     GetInfiniteListResponse<TData>,
     TError
 > => {
