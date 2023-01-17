@@ -48,7 +48,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
             onClick={(e: React.PointerEvent<HTMLButtonElement>) =>
                 onClick ? onClick(e) : refetch()
             }
-            disabled={isFetching}
+            isDisabled={isFetching}
             data-testid={RefineButtonTestIds.RefreshButton}
             {...rest}
         >

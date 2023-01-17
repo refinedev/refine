@@ -75,7 +75,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                     variant="outline"
                     aria-label={translate("buttons.create", "Create")}
                     title={disabledTitle()}
-                    disabled={data?.can === false}
+                    isDisabled={data?.can === false}
                     data-testid={RefineButtonTestIds.CreateButton}
                     {...rest}
                 >
@@ -84,7 +84,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
             ) : (
                 <Button
                     variant="outline"
-                    disabled={data?.can === false}
+                    isDisabled={data?.can === false}
                     leftIcon={<IconSquarePlus size={20} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.CreateButton}

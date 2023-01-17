@@ -81,7 +81,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
                 <IconButton
                     variant="outline"
                     aria-label={translate("buttons.show", "Show")}
-                    disabled={data?.can === false}
+                    isDisabled={data?.can === false}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ShowButton}
                     {...rest}
@@ -91,7 +91,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
             ) : (
                 <Button
                     variant="outline"
-                    disabled={data?.can === false}
+                    isDisabled={data?.can === false}
                     leftIcon={<IconEye size={20} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ShowButton}

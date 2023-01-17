@@ -88,7 +88,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
                             "plural",
                         ),
                     )}
-                    disabled={data?.can === false}
+                    isDisabled={data?.can === false}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ListButton}
                     {...rest}
@@ -98,7 +98,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
             ) : (
                 <Button
                     variant="outline"
-                    disabled={data?.can === false}
+                    isDisabled={data?.can === false}
                     leftIcon={<IconList size={20} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ListButton}
