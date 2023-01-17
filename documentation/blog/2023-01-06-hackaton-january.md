@@ -90,7 +90,7 @@ The **refine** team will be taking part in the Hackathon and you'll find us live
 
 - Join us in our [Discord](https://discord.gg/refine) to get help, ask questions, and share your progress.
   - Forum channel: **hackathon**
-- Follow us on [Twitter](https://twitter.com/refinedev) for updates and announcements.
+- Follow us on [Twitter](https://twitter.com/refine_dev) for updates and announcements.
 - [Refer to refine GitHub repository](https://github.com/refinedev/refine)
 
 ## F.A.Q
