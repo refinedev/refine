@@ -1084,18 +1084,9 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 
 | Property                      | Description                                                     | Type                                                                        |
 | ----------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| steps                         | Relevant state and method to control the steps                  | [`StepsReturnValues`](#stepsreturnvalues)                                   |
+| steps                         | Relevant state and method to control the steps                  | [`StepsReturnValues`](#steps)                                               |
 | refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/api-reference/core/hooks/useForm.md#return-values) |
 | React Hook Form Return Values | See [React Hook Form][react-hook-form-use-form] documentation   |
-
-<br />
-
-> -   #### StepsReturnValues
->
-> | Property    | Description                          | Type                     |
-> | ----------- | ------------------------------------ | ------------------------ |
-> | currentStep | Current step                         | `boolean`                |
-> | gotoStep    | Allows you to go to a specific step. | `(step: number) => void` |
 
 ## Example
 

@@ -1054,39 +1054,20 @@ It takes in one argument, step, which is a number representing the index of the 
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/useStepsForm"/>
-
-| Property                               | Description                                                         | Type                                                              |
-| -------------------------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| stepsProps                             | Configuration object for the steps                                  | [`StepsPropsType`](#stepspropstype)                               |
-| refineCoreProps                        | Configuration object for the core of the [`useForm`][use-form-core] | [`UseFormProps`](/api-reference/core/hooks/useForm.md#properties) |
-| `@mantine/form`'s `useForm` properties | See [useForm][use-form-refine-mantine] documentation                |
-
-<br />
-
-> -   #### StepsPropsType
->
-> | Property       | Description                                             | Type      | Default |
-> | -------------- | ------------------------------------------------------- | --------- | ------- |
-> | defaultStep    | Allows you to set the initial step                      | `number`  | `0`     |
-> | isBackValidate | Whether to validation the current step when going back. | `boolean` | `false` |
+<PropsTable module="@pankod/refine-mantine/useStepsForm" 
+refineCoreProps-type="[`UseFormCoreProps<TData, TError, TVariables>`](/docs/api-reference/core/hooks/useForm/#properties)"
+refineCoreProps-description="Configuration object for the core of the [useForm](/docs/api-reference/core/hooks/useForm/)"
+stepsProps-description="Configuration object for the steps. `defaultStep`: Allows you to set the initial step. `isBackValidate`: Whether to validation the current step when going back."
+stepsProps-default="`defaultStep = 0` `isBackValidate = false`"
+ />
 
 ### Return values
 
 | Property                                  | Description                                                     | Type                                                                        |
 | ----------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| steps                                     | Relevant state and method to control the steps                  | [`StepsReturnValues`](#stepsreturnvalues)                                   |
+| steps                                     | Relevant state and method to control the steps                  | [`StepsReturnValues`](#steps)                                               |
 | refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/api-reference/core/hooks/useForm.md#return-values) |
 | `@mantine/form`'s `useForm` return values | See [useForm][use-form-refine-mantine] documentation            |
-
-<br />
-
-> -   #### StepsReturnValues
->
-> | Property    | Description                          | Type                     |
-> | ----------- | ------------------------------------ | ------------------------ |
-> | currentStep | Current step                         | `boolean`                |
-> | gotoStep    | Allows you to go to a specific step. | `(step: number) => void` |
 
 ## Example
 
