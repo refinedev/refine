@@ -470,212 +470,13 @@ const PostEdit: React.FC = () => {
 
 `useStepsForm` allows you to manage a form with multiple steps. It provides features such as which step is currently active, the ability to go to a specific step and validation when changing steps etc.
 
-:::info
+:::tip
 `useStepsForm` hook based on [`useForm`][use-form-refine-mantine] hook provided by `@pankod/refine-mantine`. It means that you can use all the features of [`useForm`][use-form-refine-mantine] in your `useStepsForm`.
 :::
 
 ## Basic Usage
 
 We'll show two examples, one for creating and one for editing a post. Let's see how `useStepsForm` is used in both.
-
-Let's create our `<PostList>` component to redirect to create and edit pages.
-
-<details>
-  <summary>PostList</summary>
-  <div>
-
-```tsx title="src/pages/posts/list.tsx"
-import React from "react";
-import {
-    useTable,
-    ColumnDef,
-    flexRender,
-    Column,
-} from "@pankod/refine-react-table";
-import { GetManyResponse, useMany } from "@pankod/refine-core";
-import {
-    Button,
-    Code,
-    Edit,
-    Group,
-    Select,
-    Stepper,
-    TextInput,
-    useStepsForm,
-    SaveButton,
-    Textarea,
-    Space,
-} from "@pankod/refine-mantine";
-
-interface ICategory {
-    id: number;
-    title: string;
-}
-
-interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
-}
-
-const PostList: React.FC = () => {
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
-                meta: {
-                    filterOperator: "contains",
-                },
-            },
-            {
-                id: "status",
-                header: "Status",
-                accessorKey: "status",
-            },
-            {
-                id: "category.id",
-                header: "Category",
-                enableColumnFilter: false,
-                accessorKey: "category.id",
-                cell: function render({ getValue, table }) {
-                    const meta = table.options.meta as {
-                        categoriesData: GetManyResponse<ICategory>;
-                    };
-                    const category = meta.categoriesData?.data.find(
-                        (item) => item.id === getValue(),
-                    );
-                    return category?.title ?? "Loading...";
-                },
-            },
-            {
-                id: "actions",
-                header: "Actions",
-                accessorKey: "id",
-                enableColumnFilter: false,
-                enableSorting: false,
-                cell: function render({ getValue }) {
-                    return (
-                        <Group spacing="xs" noWrap>
-                            <EditButton
-                                hideText
-                                recordItemId={getValue() as number}
-                            />
-                            <DeleteButton
-                                hideText
-                                recordItemId={getValue() as number}
-                            />
-                        </Group>
-                    );
-                },
-            },
-        ],
-        [],
-    );
-
-    const {
-        getHeaderGroups,
-        getRowModel,
-        setOptions,
-        refineCore: {
-            setCurrent,
-            pageCount,
-            current,
-            tableQueryResult: { data: tableData },
-        },
-    } = useTable({
-        columns,
-    });
-
-    const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
-    const { data: categoriesData } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
-
-    setOptions((prev) => ({
-        ...prev,
-        meta: {
-            ...prev.meta,
-            categoriesData,
-        },
-    }));
-
-    return (
-        <ScrollArea>
-            <List>
-                <Table highlightOnHover>
-                    <thead>
-                        {getHeaderGroups().map((headerGroup) => (
-                            <tr key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => {
-                                    return (
-                                        <th key={header.id}>
-                                            {!header.isPlaceholder && (
-                                                <Group spacing="xs" noWrap>
-                                                    <Box>
-                                                        {flexRender(
-                                                            header.column
-                                                                .columnDef
-                                                                .header,
-                                                            header.getContext(),
-                                                        )}
-                                                    </Box>
-                                                </Group>
-                                            )}
-                                        </th>
-                                    );
-                                })}
-                            </tr>
-                        ))}
-                    </thead>
-                    <tbody>
-                        {getRowModel().rows.map((row) => {
-                            return (
-                                <tr key={row.id}>
-                                    {row.getVisibleCells().map((cell) => {
-                                        return (
-                                            <td key={cell.id}>
-                                                {flexRender(
-                                                    cell.column.columnDef.cell,
-                                                    cell.getContext(),
-                                                )}
-                                            </td>
-                                        );
-                                    })}
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </Table>
-                <br />
-                <Pagination
-                    position="right"
-                    total={pageCount}
-                    page={current}
-                    onChange={setCurrent}
-                />
-            </List>
-        </ScrollArea>
-    );
-};
-```
-
-  </div>
-</details>
-
-In creating a multi-step form, we will use [`<Stepper/>`](https://mantine.dev/core/stepper/) component from Mantine. To handle the state of both the form and the steps, we will use `useStepsForm` hook.
 
 <Tabs
 defaultValue="create"
@@ -686,10 +487,14 @@ values={[
 
 <TabItem value="create">
 
-```tsx live url=http://localhost:3000/posts/create previewHeight=420px
+Here is the final result of the form: We will explain the code in following sections.
+
+```tsx live url=http://localhost:3000/posts/create previewHeight=420px hideCode
 setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
+import React from "react";
+import { HttpError } from "@pankod/refine-core";
 import {
     Button,
     Code,
@@ -705,13 +510,15 @@ import {
     Textarea,
 } from "@pankod/refine-mantine";
 
+type FormValues = Omit<IPost, "id">;
+
 const PostCreatePage: React.FC = () => {
     const {
         saveButtonProps,
         getInputProps,
         values,
         steps: { currentStep, gotoStep },
-    } = useStepsForm({
+    } = useStepsForm<IPost, HttpError, FormValues>({
         initialValues: {
             title: "",
             status: "",
@@ -836,19 +643,201 @@ setRefineProps({
 render(<RefineMantineDemo />);
 ```
 
+In creating a multi-step form, we will use [`<Stepper/>`](https://mantine.dev/core/stepper/) component from Mantine. To handle the state of both the form and the steps, we will use `useStepsForm` hook.
+
+To show your form inputs step by step, first import and use `useStepsForm` hook in your page:
+
+```tsx
+import React from "react";
+import { HttpError } from "@pankod/refine-core";
+import { Create } from "@pankod/refine-mantine";
+
+type FormValues = Omit<IPost, "id">;
+
+const PostCreatePage: React.FC = () => {
+    const {
+        saveButtonProps,
+        getInputProps,
+        values,
+        steps: { currentStep, gotoStep },
+    } = useStepsForm<IPost, HttpError, FormValues>({
+        initialValues: {
+            title: "",
+            status: "",
+            slug: "",
+            content: "",
+        },
+        validate: (values) => {
+            if (currentStep === 0) {
+                return {
+                    title: values.title ? null : "Title is required",
+                    slug: values.slug ? null : "Slug is required",
+                };
+            }
+
+            if (currentStep === 1) {
+                return {
+                    status: values.status ? null : "Status is required",
+                };
+            }
+
+            return {};
+        },
+    });
+
+    return <Create>create page</Create>;
+};
+```
+
+`useStepsForm` is generic over the type form data to help you type check your code.
+
+This hook returns a set of useful values to render [`<Stepper/>`](https://mantine.dev/core/stepper/). Given current value, you should have a way to render your form items conditionally with this index value.
+
+Here, we're going to use a [`<Stepper/>`](https://mantine.dev/core/stepper/) component to render the form items based on the `currentStep` and we added `<Button>` to footer with `gotoStep` function to navigate between steps.
+
+```tsx
+import React from "react";
+import { HttpError } from "@pankod/refine-core";
+import { Create } from "@pankod/refine-mantine";
+
+type FormValues = Omit<IPost, "id">;
+
+const PostCreatePage: React.FC = () => {
+    const {
+        saveButtonProps,
+        getInputProps,
+        values,
+        steps: { currentStep, gotoStep },
+    } = useStepsForm<IPost, HttpError, FormValues>({
+        initialValues: {
+            title: "",
+            status: "",
+            slug: "",
+            content: "",
+        },
+        validate: (values) => {
+            if (currentStep === 0) {
+                return {
+                    title: values.title ? null : "Title is required",
+                    slug: values.slug ? null : "Slug is required",
+                };
+            }
+
+            if (currentStep === 1) {
+                return {
+                    status: values.status ? null : "Status is required",
+                };
+            }
+
+            return {};
+        },
+    });
+
+    return (
+        <Create
+            //highlight-start
+            footerButtons={
+                <Group position="right" mt="xl">
+                    {currentStep !== 0 && (
+                        <Button
+                            variant="default"
+                            onClick={() => gotoStep(currentStep - 1)}
+                        >
+                            Back
+                        </Button>
+                    )}
+                    {currentStep !== 3 && (
+                        <Button onClick={() => gotoStep(currentStep + 1)}>
+                            Next step
+                        </Button>
+                    )}
+                    {currentStep === 2 && <SaveButton {...saveButtonProps} />}
+                </Group>
+            }
+            // highlight-end
+        >
+            {/* highlight-start */}
+            <Stepper
+                active={currentStep}
+                onStepClick={gotoStep}
+                breakpoint="xs"
+            >
+                <Stepper.Step
+                    label="First Step"
+                    description="Title and Slug"
+                    allowStepSelect={currentStep > 0}
+                >
+                    <TextInput
+                        mt="md"
+                        label="Title"
+                        placeholder="Title"
+                        {...getInputProps("title")}
+                    />
+                    <TextInput
+                        mt="md"
+                        label="Slug"
+                        placeholder="Slug"
+                        {...getInputProps("slug")}
+                    />
+                </Stepper.Step>
+
+                <Stepper.Step
+                    label="Second Step"
+                    description="Status"
+                    allowStepSelect={currentStep > 1}
+                >
+                    <Select
+                        mt="md"
+                        label="Status"
+                        placeholder="Pick one"
+                        {...getInputProps("status")}
+                        data={[
+                            { label: "Published", value: "published" },
+                            { label: "Draft", value: "draft" },
+                            { label: "Rejected", value: "rejected" },
+                        ]}
+                    />
+                </Stepper.Step>
+
+                <Stepper.Step
+                    label="Final Step"
+                    description="Content"
+                    allowStepSelect={currentStep > 2}
+                >
+                    <Textarea
+                        label="Content"
+                        placeholder="Content"
+                        {...getInputProps("content")}
+                    />
+                </Stepper.Step>
+
+                <Stepper.Completed>
+                    Completed! Form values:
+                    <Space />
+                    <Code mt="xl">{JSON.stringify(values, null, 2)}</Code>
+                </Stepper.Completed>
+            </Stepper>
+            {/* highlight-end */}
+        </Create>
+    );
+};
+```
+
 </TabItem>
 
 <TabItem value="edit">
 
-`<PostCreate>` and `<PostEdit>` pages are almost the same. The only difference is that we are using `<Edit>` component instead of `<Create>`.
+`create` and `edit` forms are almost the same. The only difference is that we are using `<Edit>` component instead of `<Create>`.
 
 So how are the form's default values set? `useStepsForm` does this with te `id` parameter it reads from the URL and fetches the data from the server.
 You can change the `id` as you want with the `setId` that comes out of `refineCore`.
 
-```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
+import React from "react";
+import { HttpError } from "@pankod/refine-core";
 import {
     // highlight-next-line
     Edit,
@@ -865,13 +854,15 @@ import {
     Textarea,
 } from "@pankod/refine-mantine";
 
+type FormValues = Omit<IPost, "id">;
+
 const PostEditPage: React.FC = () => {
     const {
         saveButtonProps,
         getInputProps,
         values,
         steps: { currentStep, gotoStep },
-    } = useStepsForm({
+    } = useStepsForm<IPost, HttpError, FormValues>({
         initialValues: {
             title: "",
             status: "",
