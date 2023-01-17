@@ -114,8 +114,11 @@ export type useTablePaginationKeys =
     | "setPageSize"
     | "pageCount";
 
-export type useTableReturnType<TData extends BaseRecord = BaseRecord> = {
-    tableQueryResult: QueryObserverResult<GetListResponse<TData>>;
+export type useTableReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+> = {
+    tableQueryResult: QueryObserverResult<GetListResponse<TData>, TError>;
     sorter: CrudSorting;
     setSorter: (sorter: CrudSorting) => void;
     filters: CrudFilters;
@@ -131,7 +134,8 @@ export type useTableReturnType<TData extends BaseRecord = BaseRecord> = {
 
 export type useTableNoPaginationReturnType<
     TData extends BaseRecord = BaseRecord,
-> = Omit<useTableReturnType<TData>, useTablePaginationKeys> &
+    TError extends HttpError = HttpError,
+> = Omit<useTableReturnType<TData, TError>, useTablePaginationKeys> &
     Record<useTablePaginationKeys, undefined>;
 
 /**
@@ -153,7 +157,7 @@ export function useTable<
     props?: useTableProps<TData, TError> & {
         hasPagination?: true;
     },
-): useTableReturnType<TData>;
+): useTableReturnType<TData, TError>;
 // overload without pagination
 export function useTable<
     TData extends BaseRecord = BaseRecord,
@@ -162,7 +166,7 @@ export function useTable<
     props?: useTableProps<TData, TError> & {
         hasPagination: false;
     },
-): useTableNoPaginationReturnType<TData>;
+): useTableNoPaginationReturnType<TData, TError>;
 // implementation
 export function useTable<
     TData extends BaseRecord = BaseRecord,
@@ -187,8 +191,8 @@ export function useTable<
     metaData,
     dataProviderName,
 }: useTableProps<TData, TError> = {}):
-    | useTableReturnType<TData>
-    | useTableNoPaginationReturnType<TData> {
+    | useTableReturnType<TData, TError>
+    | useTableNoPaginationReturnType<TData, TError> {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
