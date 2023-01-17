@@ -27,7 +27,7 @@ Recently, our team decided to migrate a B2B admin panel of one of our customers 
 
 It is, also, one step forward towards the dream of <strong>making it headless</strong>.
 
-To learn more about refine, see: https://refine.dev/docs/getting-started/overview
+To learn more about refine, see: https://refine.dev/docs/
 
 |                                                                                                  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/sider.png" alt="sider" />                                                                                                   |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |

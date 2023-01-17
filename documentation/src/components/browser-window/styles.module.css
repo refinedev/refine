@@ -10,7 +10,7 @@
 */
 
 .browserWindow {
-    border: 3px solid #dee2e9;
+    border: 3px solid var(--browser-window-bezel-color);
     border-top-left-radius: var(--ifm-global-radius);
     border-top-right-radius: var(--ifm-global-radius);
     box-shadow: var(--ifm-global-shadow-lw);
@@ -19,7 +19,7 @@
 
 .browserWindowHeader {
     align-items: center;
-    background: #dee2e9;
+    background: var(--browser-window-bezel-color);
     display: flex;
     padding: 0.5rem 1rem;
 }

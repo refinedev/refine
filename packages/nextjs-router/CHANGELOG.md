@@ -1,5 +1,17 @@
 # @pankod/refine-nextjs-router
 
+## 4.3.0
+
+### Minor Changes
+
+-   [#3387](https://github.com/refinedev/refine/pull/3387) [`a4731bd8fb4`](https://github.com/refinedev/refine/commit/a4731bd8fb43c96b38e1712981067c2d8cfea5e3) Thanks [@vanflux](https://github.com/vanflux)! - Forwarding ref on RefineLink component
+
+## 4.2.0
+
+### Minor Changes
+
+-   [#3387](https://github.com/refinedev/refine/pull/3387) [`a4731bd8fb4`](https://github.com/refinedev/refine/commit/a4731bd8fb43c96b38e1712981067c2d8cfea5e3) Thanks [@vanflux](https://github.com/vanflux)! - Forwarding ref on RefineLink component
+
 ## 4.1.0
 
 ### Minor Changes
