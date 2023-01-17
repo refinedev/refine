@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "@pankod/refine-core": "^3.95.0",
+        "@pankod/refine-core": "^3.95.1",
         "@pankod/refine-cli": "^1.17.0",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
@@ -14,7 +14,7 @@
         "react-scripts": "^5.0.0",
         "cross-env": "^7.0.3",
         "web-vitals": "^1.1.1",
-        "@pankod/refine-mui": "^3.61.2",
+        "@pankod/refine-mui": "^3.61.3",
         "@pankod/refine-react-hook-form": "^3.37.2",
         "@mui/icons-material": "^5.8.3",
         "@pankod/refine-react-router-v6": "^3.38.0",
