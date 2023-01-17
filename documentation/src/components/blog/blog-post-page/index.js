@@ -48,7 +48,7 @@ export const BlogPostPageView = ({ children }) => {
                             title={title}
                             hashtags={tags.map((tag) => tag.label)}
                         >
-                            <TwitterIcon size={36} round />
+                            <TwitterIcon size={26} round />
                         </TwitterShareButton>
                         <RedditShareButton
                             className="flex"
@@ -57,7 +57,7 @@ export const BlogPostPageView = ({ children }) => {
                             url={url + permalink}
                             title={title}
                         >
-                            <RedditIcon size={36} round />
+                            <RedditIcon size={26} round />
                         </RedditShareButton>
                         <LinkedinShareButton
                             url={url + permalink}
@@ -66,7 +66,7 @@ export const BlogPostPageView = ({ children }) => {
                             summary={description}
                             className="flex"
                         >
-                            <LinkedinIcon size={36} round />
+                            <LinkedinIcon size={26} round />
                         </LinkedinShareButton>
                     </div>
                 </div>
