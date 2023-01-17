@@ -123,6 +123,9 @@ You can use the following auth provider examples as a starting point for your ow
 -   [Basic with Remix](/docs/examples/remix/remix-headless) - A basic auth provider example with Remix.
 
 
+<br />
+<br />
+
 <Checklist>
 
 <ChecklistItem id="auth-provider-intro">
