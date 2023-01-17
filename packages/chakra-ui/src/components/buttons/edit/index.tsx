@@ -82,7 +82,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
                     variant="outline"
                     aria-label={translate("buttons.edit", "Edit")}
                     title={disabledTitle()}
-                    disabled={data?.can === false}
+                    isDisabled={data?.can === false}
                     data-testid={RefineButtonTestIds.EditButton}
                     {...rest}
                 >
@@ -91,7 +91,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
             ) : (
                 <Button
                     variant="outline"
-                    disabled={data?.can === false}
+                    isDisabled={data?.can === false}
                     leftIcon={<IconPencil size={20} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.EditButton}

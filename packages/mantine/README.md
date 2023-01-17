@@ -241,9 +241,7 @@ You can get the auto-generated pages codes by clicking the `Show Code` button on
 
 ## Next Steps
 
-👉 Jump to [Refine<>Mantine Tutorial](https://refine.dev/docs/tutorials/mantine-tutorial) to continue your work and turn the example into a full-blown CRUD application.
-
-👉 Check out the [Refine<>Tailwind Tutorial](https://refine.dev/docs/tutorials/headless-tutorial/) to learn how to use **refine** in a pure *headless* way.
+👉 Jump to [Tutorial](https://refine.dev/docs/tutorial/introduction/index/) to continue your work and turn the example into a full-blown CRUD application.
 
 👉 Visit [Learn the Basics Page](https://refine.dev/docs/getting-started/overview/) to get informed about the fundamental concepts.
 

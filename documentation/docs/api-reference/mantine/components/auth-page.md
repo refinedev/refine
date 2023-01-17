@@ -728,8 +728,7 @@ const App = () => {
                     formProps={{
                         onSubmit: (e: any) => {
                             e.preventDefault();
-                            console.log("e", e.target.email.value);
-
+                            
                             const email = e.target.email.value;
                             const password = e.target.password.value;
 
@@ -739,6 +738,10 @@ const App = () => {
                                     password,
                                 }),
                             );
+                        },
+                        initialValues: {
+                            email: "info@refine.dev",
+                            password: "i-love-refine",
                         },
                     }}
                     // highlight-end

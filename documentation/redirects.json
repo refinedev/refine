@@ -649,21 +649,29 @@
             "to": "/"
         },
         {
-            "from": "/docs/ui-frameworks/antd/tutorial/",
-            "to": "/docs/tutorials/ant-design-tutorial/"
+            "from": "/docs/tutorials/ant-design-tutorial/",
+            "to": "/docs/tutorial/introduction/index/"
         },
         {
-            "from": "/docs/core/tutorial/",
-            "to": "/docs/tutorials/headless-tutorial/"
+            "from": "/docs/tutorials/headless-tutorial/",
+            "to": "/docs/tutorial/introduction/index/"
         },
         {
-            "from": "/docs/ui-frameworks/mui/tutorial/",
-            "to": "/docs/tutorials/material-ui-tutorial/"
+            "from": "/docs/tutorials/material-ui-tutorial/",
+            "to": "/docs/tutorial/introduction/index/"
+        },
+        {
+            "from": "/docs/tutorials/mantine-tutorial/",
+            "to": "/docs/tutorial/introduction/index/"
+        },
+        {
+            "from": "/docs/tutorials/chakra-ui-tutorial/",
+            "to": "/docs/tutorial/introduction/index/"
         },
         {
             "from": "/docs/guides-and-concepts/telemetry/",
             "to": "/docs/further-readings/telemetry/"
-        },        
+        },
         {
             "from": "/docs/benchmarks/",
             "to": "/docs/further-readings/benchmarks/"
@@ -687,6 +695,10 @@
         {
             "from": "/docs/examples/next-js/i18n-nextjs",
             "to": "/docs/examples/i18n/i18n-nextjs"
+        },
+        {
+            "from": "/docs/getting-started/overview/",
+            "to": "/docs/"
         }
     ]
 }

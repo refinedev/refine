@@ -4,29 +4,13 @@ module.exports = {
         {
             type: "category",
             label: "Getting Started",
-            link: {
-                type: "generated-index",
-                title: "Getting Started",
-                slug: "/getting-started",
-            },
             items: ["getting-started/overview", "getting-started/quickstart"],
             collapsed: false,
         },
         {
-            type: "category",
-            label: "Basic Tutorials",
-            link: {
-                type: "doc",
-                id: "tutorials",
-            },
-            items: [
-                "tutorials/ant-design-tutorial",
-                "tutorials/chakra-ui-tutorial",
-                "tutorials/mantine-tutorial",
-                "tutorials/material-ui-tutorial",
-                "tutorials/headless-tutorial",
-            ],
-            collapsed: true,
+            type: "doc",
+            id: "tutorial/introduction/index",
+            label: "Tutorial",
         },
         {
             type: "category",

@@ -1,13 +1,14 @@
 import * as React from "react";
 import { SVGProps } from "react";
 
-const SvgDocuments = (props: SVGProps<SVGSVGElement>) => (
+const SvgDocuments = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
     <svg
         width="25"
         height="32"
         viewBox="0 0 25 32"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        className={className ? className : undefined}
         {...props}
         className={props.className ? props.className : undefined}
     >

@@ -21,7 +21,7 @@ export const POPOVERMENUS: NavMenu[] = [
             {
                 label: "Documents",
                 description: "Everything you need to get started",
-                link: "/docs/getting-started/overview/",
+                link: "/docs/",
                 icon: DocumentsIcon,
             },
             {
@@ -33,7 +33,7 @@ export const POPOVERMENUS: NavMenu[] = [
             {
                 label: "Tutorial",
                 description: "Your first refine application",
-                link: "/docs",
+                link: "/docs/tutorial/introduction/index/",
                 icon: TutorialIcon,
             },
             // {
@@ -87,9 +87,12 @@ export const POPOVERMENUS: NavMenu[] = [
                 icon: RefineWeekIcon,
             },
         ],
-        imageLink: "/examples",
+        imageLink: "/blog/refine-hackathon",
+        // imageLink: "/examples",
+        // imageURL:
+        //     "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/community.png",
         imageURL:
-            "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/community.png",
+            "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/hackathon_square.png",
     },
     {
         label: "Company",
