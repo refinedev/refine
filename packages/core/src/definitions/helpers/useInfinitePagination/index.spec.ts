@@ -20,13 +20,12 @@ describe("useInfiniteList pagination helper", () => {
             });
             expect(hasNextPage).toBe(3);
         });
-        it("hasNextPage true", () => {
+        it("cursor", () => {
             const hasNextPage = getNextPageParam({
                 data: [],
                 total: 10,
-                pageInfo: {
-                    hasNextPage: true,
-                    hasPreviousPage: false,
+                cursor: {
+                    next: 2,
                 },
             });
             expect(hasNextPage).toBe(2);
@@ -50,6 +49,17 @@ describe("useInfiniteList pagination helper", () => {
                 total: 10,
             });
             expect(hasPreviousPage).toBe(undefined);
+        });
+        it("cursor", () => {
+            const hasPreviousPage = getPreviousPageParam({
+                data: [],
+                total: 10,
+                cursor: {
+                    next: 2,
+                    prev: 1,
+                },
+            });
+            expect(hasPreviousPage).toBe(1);
         });
     });
 });
