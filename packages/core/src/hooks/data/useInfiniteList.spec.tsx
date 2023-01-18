@@ -4,7 +4,10 @@ import { MockJSONServer, TestWrapper } from "@test";
 
 import { useInfiniteList } from "./useInfiniteList";
 import { defaultRefineOptions } from "@contexts/refine";
-import { IRefineContextProvider } from "../../interfaces";
+import {
+    IDataMultipleContextProvider,
+    IRefineContextProvider,
+} from "../../interfaces";
 
 const mockRefineProvider: IRefineContextProvider = {
     hasDashboard: false,
@@ -60,6 +63,52 @@ describe("useInfiniteList Hook", () => {
 
         const { hasNextPage } = result.current;
         expect(hasNextPage).toBeTruthy();
+    });
+
+    it("cursor has next", async () => {
+        const mockDataProvider = {
+            default: {
+                ...MockJSONServer.default,
+                getList: async () => {
+                    return {
+                        data: [
+                            {
+                                title: "title1",
+                            },
+                        ],
+                        total: 0,
+                        cursor: {
+                            next: undefined,
+                        },
+                    };
+                },
+            },
+        } as IDataMultipleContextProvider;
+
+        const { result } = renderHook(
+            () =>
+                useInfiniteList({
+                    resource: "posts",
+                    config: {
+                        pagination: {
+                            pageSize: 1,
+                        },
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: mockDataProvider,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeFalsy();
+        });
+
+        const { hasNextPage } = result.current;
+        expect(hasNextPage).toBeUndefined();
     });
 
     describe("useResourceSubscription", () => {
