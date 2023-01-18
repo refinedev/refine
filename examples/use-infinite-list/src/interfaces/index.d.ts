@@ -1,6 +1,5 @@
-export interface IProduct {
+export interface IPost {
     id: number;
-    name: string;
-    material: string;
-    description: string;
+    title: string;
+    createdAt: string;
 }

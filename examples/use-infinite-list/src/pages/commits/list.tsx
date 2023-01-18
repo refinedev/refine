@@ -1,9 +1,7 @@
 import React from "react";
 import { useInfiniteList } from "@pankod/refine-core";
 
-import { IPost } from "interfaces";
-
-export const PostList: React.FC = () => {
+export const CommitList: React.FC = () => {
     const {
         data,
         error,
@@ -11,8 +9,16 @@ export const PostList: React.FC = () => {
         isLoading,
         fetchNextPage,
         isFetchingNextPage,
-    } = useInfiniteList<IPost>({
-        resource: "posts",
+    } = useInfiniteList({
+        resource: "commits",
+        dataProviderName: "github",
+        queryOptions: {
+            getNextPageParam: ({ data }) => {
+                // return the last commit date of the last page
+                const lastCommit = data[data.length - 1];
+                return lastCommit.commit.committer.date;
+            },
+        },
     });
 
     if (isLoading) {
@@ -26,11 +32,11 @@ export const PostList: React.FC = () => {
         <div>
             <ul>
                 {data?.pages.map((page) =>
-                    page.data.map(({ id, title, createdAt }) => (
-                        <li key={id} style={{ marginBottom: 10 }}>
-                            <i>{createdAt}</i>
+                    page.data.map(({ sha, commit }) => (
+                        <li key={sha} style={{ marginBottom: 10 }}>
+                            <i>{commit.committer.date}</i>
                             <br />
-                            {title}
+                            {commit.message} - <b>{commit.committer.name}</b>
                         </li>
                     )),
                 )}
