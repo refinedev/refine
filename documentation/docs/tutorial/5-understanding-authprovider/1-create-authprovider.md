@@ -8,7 +8,7 @@ tutorial:
 
 This section will show you how to create an auth provider from scratch. We'll use mock data to be able to focus on the auth provider methods. When you understand the logic of auth provider, you can easly integrate third-party authentication services or your own custom auth provider which includes many possible strategies like JWT, OAuth, etc.
 
-## Create Auth Provider
+## Create Mock Auth Provider
 
 1. Create a new file named `authProvider.ts` in `src` folder and add the following code:
 
@@ -17,10 +17,9 @@ This section will show you how to create an auth provider from scratch. We'll us
 
     const authProvider: AuthProvider = {
         login: () => Promise.resolve(),
-        logout: () => Promise.resolve(),
         checkAuth: () => Promise.resolve(),
+        logout: () => Promise.resolve(),
         checkError: () => Promise.resolve(),
-        getPermissions: () => Promise.resolve(),
     };
 
     export default authProvider;
@@ -45,6 +44,8 @@ This section will show you how to create an auth provider from scratch. We'll us
 <br />
 
 We created a mock auth provider and passed it to the `<Refine/>` component. Now, we'll add the logic to the auth provider methods.
+
+## Required Methods
 
 ### login
 
@@ -94,14 +95,16 @@ mutate({ email: "john@mail.com", password: "123456"}}
 
 ```
 
-The `login` method will get the above values as parameters.
+The `login` method will get the mutation's parameters as arguments.
+
+At this point, we can authenticate users. But, we can't check if the user is authenticated or not when the user refreshes the page or navigates to another page. We'll add the logic to the `checkAuth` method to solve this problem.
 
 <br />
 
 <details>
   <summary><strong>Can I pass any parameters to the <code>login</code> method?</strong></summary>
 
-Yes, you can pass any parameters to the `login` method as long as you pass the same parameters to the `useLogin` hook's mutation as well.
+Yes, you can pass any parameters to the `login` method. `useLogin` hook's mutation will pass the mutation's parameters to the `login` method without any type constraints.
 
 ```ts
 const { mutate } = useLogin<{
@@ -171,26 +174,87 @@ const authProvider: AuthProvider = {
 ```tsx title="src/authProvider.ts"
 import { AuthProvider } from "@pankod/refine-core";
 
-const mockUsers = [{ email: "john@mail.com" }, { email: "jane@mail.com" }];
-
 const authProvider: AuthProvider = {
     login: ({ email, password }) => {
-        const user = mockUsers.find((item) => item.email === email);
-
-        if (user) {
-            localStorage.setItem("auth", JSON.stringify(user));
-            return Promise.resolve();
-        }
-
-        //highlight-start
+        ...
         return Promise.reject({
             name: "Login Failed!",
             message: "The email or password that you've entered doesn't match any account.",
         });
-        //highlight-end
     },
     ...
 };
+```
+
+</details>
+
+### checkAuth
+
+`checkAuth` method is used to check if the user is authenticated. Internally, it is called when the user navigates to a page that requires authentication.
+
+`checkAuth` method expects to return a Promise.
+
+-   If the Promise resolves, the user is authenticated and pages that require authentication will be accessible.
+
+-   If the Promise rejects, the user is not authenticated and pages that require authentication will not be accessible.
+
+In the `login` method, we've saved the user data to the local storage when the user logs in. So, we'll check if the user data exists in the local storage to determine if the user is authenticated.
+
+```tsx title="src/authProvider.ts"
+import { AuthProvider } from "@pankod/refine-core";
+
+const authProvider: AuthProvider = {
+    ...
+    checkAuth: () => {
+        const user = localStorage.getItem("auth");
+
+        if (user) {
+            return Promise.resolve();
+        }
+
+        return Promise.reject();
+    },
+    ...
+};
+```
+
+<br />
+
+Invoking the `useAuthenticated` hook will call the `checkAuth` method. If `checkAuth` method resolves a data, it will be available in the `useAuthenticated` hook's `data` property.
+
+[Refer to the `useAuthenticated` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useAuthenticated/)
+
+```tsx
+import { useAuthenticated } from "@pankod/refine-core";
+
+const { data, isSuccess, isLoading, isError, refetch } = useAuthenticated();
+```
+
+:::tip
+
+The `<Authenticated>` component makes use of the `useAuthenticated` hook. It allows you to render components only if the user is authenticated. You can see how to use the `useAuthenticated` hook in the [source code](https://github.com/refinedev/refine/blob/master/packages/core/src/components/authenticated/index.tsx).
+
+[Refer to the `<Authenticated>` documentation for more information &#8594](/docs/api-reference/core/components/auth/authenticated/)
+
+:::
+
+<br />
+
+<details>
+  <summary><strong>How can I redirect the user if the user is not authenticated?</strong></summary>
+
+By default, the user won't be redirected to anywhere if the `checkAuth` method rejects the Promise. If you want to redirect the user to a specific page, you can reject the Promise with an object that has `redirectPath` property.
+
+```ts
+const authProvider: AuthProvider = {
+    ...
+    checkAuth: () => {
+        ...
+         return Promise.reject({
+            redirectPath: "/custom-page",
+        });
+    }
+}
 ```
 
 </details>
@@ -203,7 +267,7 @@ const authProvider: AuthProvider = {
 
 -   If the Promise rejects, the user is not logged out and stays on the page.
 
-We'll remove the user data from the local storage and resolve the Promise.
+In the `login` method, we've saved the user data to the local storage when the user logs in. So, we'll remove the user data from the local storage when the user logs out.
 
 ```tsx title="src/authProvider.ts"
 import { AuthProvider } from "@pankod/refine-core";
@@ -231,12 +295,26 @@ import { useLogout } from "@pankod/refine-core";
 
 const { mutate } = useLogout();
 
-mutate({ id: 1 });
+mutate({ id: "1" });
 ```
 
-The `logout` method will get the above values as parameters.
+The `logout` method will get the mutation's parameters as an argument.
 
 <br />
+
+<details>
+  <summary><strong>Can I pass any parameters to the <code>logout</code> method?</strong></summary>
+
+Yes, you can pass any parameters to the `logout` method. `useLogout` hook's mutation will pass the mutation's parameters to the `login` method without any type constraints.
+
+```ts
+const { mutate } = useLogin<{
+    id: string;
+    name: string;
+}>();
+```
+
+</details>
 
 <details>
   <summary><strong>How can I redirect the user to a specific page after logout?</strong></summary>
@@ -299,91 +377,28 @@ import { AuthProvider } from "@pankod/refine-core";
 const authProvider: AuthProvider = {
     logout: () => {
         ...
-        //highlight-start
         return Promise.reject({
             name: "Logout Failed!",
             message: "Something went wrong.",
         });
-        //highlight-end
     },
     ...
 };
-```
-
-</details>
-
-### checkAuth
-
-`checkAuth` method is used to check if the user is authenticated. Internally, it is called when the user navigates to a page that requires authentication.
-
-`checkAuth` method expects to return a Promise.
-
--   If the Promise resolves, the user is authenticated and pages that require authentication will be accessible.
-
--   If the Promise rejects, the user is not authenticated and pages that require authentication will not be accessible.
-
-We'll check if the user data exists in the local storage and resolve the Promise.
-
-```tsx title="src/authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
-
-const authProvider: AuthProvider = {
-    ...
-    checkAuth: () => {
-        const user = localStorage.getItem("auth");
-
-        if (user) {
-            return Promise.resolve();
-        }
-
-        return Promise.reject();
-    },
-    ...
-};
-```
-
-<br />
-
-Invoking the `useAuthenticated` hook will call the `checkAuth` method. If `checkAuth` method resolves a data, it will be available in the `useAuthenticated` hook's `data` property.
-
-[Refer to the `useAuthenticated` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useAuthenticated/)
-
-```tsx
-import { useAuthenticated } from "@pankod/refine-core";
-
-const { data, isSuccess, isLoading, isError, refetch } = useAuthenticated();
-```
-
-<br />
-
-<details>
-  <summary><strong>How can I redirect the user if the user is not authenticated?</strong></summary>
-
-By default, the user will be redirected to the `/login` route if the `checkAuth` method rejects the Promise. If you want to redirect the user to a specific page, you can reject the Promise with the path of the page.
-
-```ts
-const authProvider: AuthProvider = {
-    ...
-    checkAuth: () => {
-        ...
-        return Promise.reject("/custom-page");
-    }
-}
 ```
 
 </details>
 
 ### checkError
 
-`checkError` method is called when you get an error response from the API. If the error is related to authentication, you can create your own business logic to handle the error such as refreshing the token.
+`checkError` method is called when you get an error response from the API. You can create your own business logic to handle the error such as refreshing the token, logging out the user, etc.
 
 `checkError` method expects to return a Promise.
 
--   If the Promise resolves, the error is not related to authentication and the user will be continued to use the application.
+-   If the Promise resolves, the user is not logged out and stays on the page.
 
--   If the Promise rejects, the error is related to authentication and the [`logout`](#logout) method will be called.
+-   If the Promise rejects, the `logout` method is called to log out the user and the user is redirected to the `/login` route.
 
-We'll check if the error is related to authentication and reject the Promise.
+We'll use the `checkError` method to log out the user if the API returns a `401` or `403` error.
 
 ```tsx title="src/authProvider.ts"
 import { AuthProvider } from "@pankod/refine-core";
@@ -416,37 +431,45 @@ const { mutate } = useCheckError();
 
 fetch("http://example.com/payment")
     .then(() => console.log("Success"))
-    .catch((error) => checkError(error));
+    .catch((error) => mutate(error));
 ```
 
 <br />
 
 <details>
-  <summary><strong>How can I redirect the user if the user is not authenticated?</strong></summary>
+  <summary><strong>How can I redirect the user to a specific page after logout?</strong></summary>
 
-By default, the user will be redirected to the `/login` route if the `checkError` method rejects the Promise. If you want to redirect the user to a specific page, you can reject the Promise with the path of the page.
+By default, the user will be redirected to the `/login` route after rejecting the `checkError` method's Promise. If you want to redirect the user to a specific page, you can reject the Promise with an object that has `redirectPath` property.
 
 ```ts
 const authProvider: AuthProvider = {
     ...
     checkError: (error) => {
-        ...
-        return Promise.reject("/custom-page");
-    }
+        if (error.status === 401 || error.status === 403) {
+            return Promise.reject({
+                redirectPath: "/custom-page",
+            });
+        }
+
+        return Promise.resolve();
+    },
+    ...
 }
 ```
 
 </details>
 
+## Optional Methods
+
 ### getPermissions
 
 `getPermissions` method is used to get the user's permissions. It expects to return a Promise.
 
--   If the Promise resolves, the user's permissions will be available in the `usePermissions` hook's `data` property.
+-   If the Promise resolves with data, the user's permissions will be available in the `usePermissions` hook's `data` property.
 
 -   If the Promise rejects, the user's permissions will not be available and `usePermissions` hook throw an error.
 
-We'll get the user's permissions from the local storage and resolve the Promise.
+We'll use the `getPermissions` method to get the user's permissions from the `localStorage`.
 
 ```tsx title="src/authProvider.ts"
 import { AuthProvider } from "@pankod/refine-core";
@@ -462,9 +485,7 @@ const authProvider: AuthProvider = {
         const user = localStorage.getItem("auth");
 
         if (user) {
-            const { email } = JSON.parse(user);
-
-            const { roles } = mockUsers.find((user) => user.email === email);
+            const { roles } = JSON.parse(user);
 
             return Promise.resolve(roles);
         }
@@ -481,7 +502,7 @@ Invoking the `usePermissions` hook will call the `getPermissions` method. If `ge
 
 [Refer to the `usePermissions` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/usePermissions/)
 
-For example, if you want to check if the user has a specific permission, you can use the `usePermissions` hook's `data` property like this:
+For example, if you want to check if the user has a specific permission, you can use the `usePermissions` hook like this:
 
 ```tsx
 import { usePermissions } from "@pankod/refine-core";
@@ -492,3 +513,433 @@ if (data?.includes("admin")) {
     console.log("User has admin permission");
 }
 ```
+
+<br />
+
+:::info
+`usePermissions` hook can be used for simply authorization purposes. If you need more complex authorization logic, we recommend using the access control provider to handle the authorization logic.
+
+[Refer to the `accessControlProvider` documentation for more information &#8594](docs/api-reference/core/providers/accessControl-provider/)
+:::
+
+### getUserIdentity
+
+`getUserIdentity` method is used to get the user's identity. It expects to return a Promise.
+
+-   If the Promise resolves with a data, the user's identity will be available in the `useIdentity` hook's `data` property.
+
+-   If the Promise rejects, the user's identity will not be available and `useIdentity` hook throw an error.
+
+We'll get the user's identity from the local storage and resolve the Promise.
+
+```tsx title="src/authProvider.ts"
+import { AuthProvider } from "@pankod/refine-core";
+
+const mockUsers = [
+    { email: "john@mail.com", roles: ["admin"] },
+    { email: "jane@mail.com", roles: ["editor"] },
+]
+
+const authProvider: AuthProvider = {
+    ...
+    getUserIdentity: () => {
+        const user = localStorage.getItem("auth");
+
+        if (user) {
+            const { email, roles } = JSON.parse(user);
+
+            return Promise.resolve({ email, roles });
+        }
+
+        return Promise.reject();
+    },
+    ...
+};
+```
+
+<br />
+
+Invoking the `useGetIdentity` hook will call the `getUserIdentity` method. If `getUserIdentity` method resolves a data, it will be available in the `useIdentity` hook's `data` property.
+
+[Refer to the `useIdentity` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useGetIdentity/)
+
+For example, if you want to get the user's email, you can use the `useIdentity` hook like this:
+
+```tsx
+import { useIdentity } from "@pankod/refine-core";
+
+const { data } = useIdentity();
+
+if (data) {
+    console.log(data.email);
+}
+```
+
+### register
+
+`register` method is used to register a new user. It is similar to the `login` method. It expects to return a Promise.
+
+-   If the Promise resolves, the user is authenticated and pages that require authentication will be accessible.
+
+-   If the Promise rejects, the user is not authenticated and pages that require authentication will not be accessible.
+
+We'll register a new user and resolve the Promise.
+
+```tsx title="src/authProvider.ts"
+import { AuthProvider } from "@pankod/refine-core";
+
+const mockUsers = [{ email: "john@mail.com" }, { email: "jane@mail.com" }];
+
+const authProvider: AuthProvider = {
+    ...
+    register: ({ email }) => {
+        const user = mockUsers.find((user) => user.email === email);
+
+        if (user) {
+            return Promise.reject();
+        }
+
+        mockUsers.push({ email });
+
+        return Promise.resolve();
+    },
+    ...
+};
+```
+
+<br />
+
+Invoking the `useRegister` hook's mutation will call the `register` method, passing in the mutation's parameters as arguments.
+
+[Refer to the `useRegister` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useRegister/)
+
+For example, if you want to register a new user, you can use the `useRegister` hook like this:
+
+```tsx
+import { useRegister } from "@pankod/refine-core";
+
+const { mutate } = useRegister();
+
+const handleRegister = (values) => {
+    mutate(values);
+};
+```
+
+The `register` method will get the mutation's parameters as arguments.
+
+<br />
+
+<details>
+  <summary><strong>Can I pass any parameters to the <code>register</code> method?</strong></summary>
+
+Yes, you can pass any parameters to the `register` method. `useRegister` hook's mutation will pass the mutation's parameters to the `register` method without any type constraints.
+
+```ts
+const { mutate } = useRegister<{
+    username: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+    remember: boolean;
+}>();
+```
+
+</details>
+
+<details>
+  <summary><strong>How can I redirect the user to a specific page after registration?</strong></summary>
+
+By default, the user will be redirected to the `/` route after registration. If you want to redirect the user to a specific page, you can resolve the `register` method's Promise with the path of the page.
+
+```ts
+const authProvider: AuthProvider = {
+    ...
+    register: () => {
+        ...
+        return Promise.resolve("/custom-page");
+    }
+}
+```
+
+Also, you can use the `useRegister` hook's for this purpose.
+
+```tsx
+const { mutate } = useRegister();
+
+mutate({ redirectPath: "/custom-page" });
+```
+
+Then, you can use the `redirectPath` parameter in the `register` method to redirect the user to the specific page.
+
+```ts
+const authProvider: AuthProvider = {
+    ...
+    register: ({ redirectPath }) => {
+        ...
+        return Promise.resolve(redirectPath);
+    }
+}
+```
+
+If you don't want to redirect the user to anywhere, you can resolve the `register` method's Promise with `false`.
+
+```ts
+const authProvider: AuthProvider = {
+    ...
+    register: () => {
+        ...
+        return Promise.resolve(false);
+    }
+}
+```
+
+</details>
+
+<details>
+  <summary><strong>How can I customize the error message?</strong></summary>
+
+**refine** automatically displays an error notification when the `register` method rejects the Promise. If you want to customize the error message, you can reject the Promise with an object that has `name` and `message` properties.
+
+```tsx title="src/authProvider.ts"
+
+const authProvider: AuthProvider = {
+    ...
+    register: () => {
+        ...
+        return Promise.reject({
+            name: "Error",
+            message: "Something went wrong!",
+        });
+    }
+}
+```
+
+</details>
+
+### forgotPassword
+
+`forgotPassword` method is used to send a password reset link to the user's email address. It expects to return a Promise.
+
+We'll show how to send a password reset link to the user's email address and resolve the Promise.
+
+```tsx title="src/authProvider.ts"
+import { AuthProvider } from "@pankod/refine-core";
+
+const authProvider: AuthProvider = {
+    ...
+    forgotPassword: ({ email }) => {
+        // send password reset link to the user's email address here
+        // if request is successful, resolve the Promise, otherwise reject it
+        return Promise.resolve();
+    },
+    ...
+};
+```
+
+<br />
+
+Invoking the `useForgotPassword` hook's mutation will call the `forgotPassword` method, passing in the mutation's parameters as arguments.
+
+[Refer to the `useForgotPassword` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useForgotPassword/)
+
+For example, if you want to send a password reset link to the user's email address, you can use the `useForgotPassword` hook like this:
+
+```tsx
+import { useForgotPassword } from "@pankod/refine-core";
+
+const { mutate } = useForgotPassword();
+
+const handleForgotPassword = (values) => {
+    mutate(values);
+};
+```
+
+The `forgotPassword` method will get the mutation's parameters as arguments.
+
+<br />
+
+<details>
+  <summary><strong>Can I pass any parameters to the <code>forgotPassword</code> method?</strong></summary>
+
+Yes, you can pass any parameters to the `forgotPassword` method. `useForgotPassword` hook's mutation will pass the mutation's parameters to the `forgotPassword` method without any type constraints.
+
+```ts
+const { mutate } = useForgotPassword<{
+    email: string;
+}>();
+```
+
+</details>
+
+<details>
+  <summary><strong>How can I redirect the user to a specific page after sending the password reset link?</strong></summary>
+
+By default, the user won't be redirected to anywhere after sending the password reset link. If you want to redirect the user to a specific page, you can resolve the `forgotPassword` method's Promise with the path of the page.
+
+```ts
+const authProvider: AuthProvider = {
+    ...
+    forgotPassword: () => {
+        ...
+        return Promise.resolve("/custom-page");
+    }
+}
+```
+
+Also, you can use the `useForgotPassword` hook's for this purpose.
+
+```ts
+const { mutate } = useForgotPassword();
+
+useForgotPassword({ redirectPath: "/custom-page" });
+```
+
+Then, you can use the `redirectPath` parameter in the `forgotPassword` method to redirect the user to the specific page.
+
+```ts
+const authProvider: AuthProvider = {
+    ...
+    forgotPassword: ({ redirectPath }) => {
+        ...
+        return Promise.resolve(redirectPath);
+    }
+}
+```
+
+</details>
+
+<details>
+  <summary><strong>How can I customize the error message?</strong></summary>
+
+**refine** automatically displays an error notification when the `forgotPassword` method rejects the Promise. If you want to customize the error message, you can reject the Promise with an object that has `name` and `message` properties.
+
+```tsx title="src/authProvider.ts"
+const authProvider: AuthProvider = {
+    ...
+    forgotPassword: () => {
+        ...
+        return Promise.reject({
+            name: "Error",
+            message: "Something went wrong!",
+        });
+    }
+}
+```
+
+</details>
+
+### updatePassword
+
+`updatePassword` method is used to update the user's password. It expects to return a Promise.
+
+We'll show how to update the user's password and resolve the Promise.
+
+```tsx title="src/authProvider.ts"
+import { AuthProvider } from "@pankod/refine-core";
+
+const authProvider: AuthProvider = {
+    ...
+    updatePassword: ({ password }) => {
+        // update the user's password here
+        // if request is successful, resolve the Promise, otherwise reject it
+        return Promise.resolve();
+    },
+    ...
+};
+```
+
+<br />
+
+Invoking the `useUpdatePassword` hook's mutation will call the `updatePassword` method, passing in the mutation's parameters as arguments. Additionally, the `updatePassword` method will take query parameters as arguments from the URL as well.
+
+[Refer to the `useUpdatePassword` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useUpdatePassword/)
+
+For example, if you want to update the user's password, you can use the `useUpdatePassword` hook like this:
+
+```tsx
+import { useUpdatePassword } from "@pankod/refine-core";
+
+const { mutate } = useUpdatePassword();
+
+const handleUpdatePassword = (values) => {
+    mutate(values);
+};
+```
+
+The `updatePassword` method will get mutation's parameters as arguments and query parameters from the URL as well.
+
+<br />
+
+<details>
+  <summary><strong>Can I pass any parameters to the <code>updatePassword</code> method?</strong></summary>
+
+Yes, you can pass any parameters to the `updatePassword` method. `useUpdatePassword` hook's mutation will pass the mutation's parameters to the `updatePassword` method without any type constraints.
+
+```ts
+const { mutate } = useUpdatePassword<{
+    password: string;
+    newPassword: string;
+}>();
+```
+
+</details>
+
+<details>
+  <summary><strong>How can I redirect the user to a specific page after updating the password?</strong></summary>
+
+By default, the user won't be redirected to anywhere after updating the password. If you want to redirect the user to a specific page, you can resolve the `updatePassword` method's Promise with the path of the page.
+
+```ts
+const authProvider: AuthProvider = {
+    ...
+    updatePassword: () => {
+        ...
+        return Promise.resolve("/custom-page");
+    }
+}
+```
+
+Also, you can use the `useUpdatePassword` hook's for this purpose.
+
+```ts
+const { mutate } = useUpdatePassword();
+
+useUpdatePassword({ redirectPath: "/custom-page" });
+```
+
+Then, you can use the `redirectPath` parameter in the `updatePassword` method to redirect the user to the specific page.
+
+```ts
+const authProvider: AuthProvider = {
+    ...
+    updatePassword: ({ redirectPath }) => {
+        ...
+        return Promise.resolve(redirectPath);
+    }
+}
+```
+
+</details>
+
+<details>
+  <summary><strong>How can I customize the error message?</strong></summary>
+
+**refine** automatically displays an error notification when the `updatePassword` method rejects the Promise. If you want to customize the error message, you can reject the Promise with an object that has `name` and `message` properties.
+
+```tsx title="src/authProvider.ts"
+const authProvider: AuthProvider = {
+    ...
+    updatePassword: () => {
+        ...
+        return Promise.reject({
+            name: "Error",
+            message: "Something went wrong!",
+        });
+    }
+}
+```
+
+</details>
+
+<br />
+<br />
