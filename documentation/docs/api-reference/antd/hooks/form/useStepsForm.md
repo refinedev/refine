@@ -321,7 +321,7 @@ const PostCreate = () => {
 ```ts
 import { useStepsForm } from "@pankod/refine-antd";
 
-const { stepsProps, formProps } = useStepsForm<IPost>();
+const { stepsProps, formProps } = useStepsForm();
 ```
 
 All we have to do is to pass the props it returns to our `<Steps>` and `<Form>` components.
@@ -525,7 +525,6 @@ import React from "react";
 import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
 
 import {
-    // highlight-next-line
     Edit,
     Form,
     Input,
@@ -625,7 +624,6 @@ const PostEditPage: React.FC<IResourceComponentsProps> = () => {
     ];
 
     return (
-        // highlight-next-line
         <Edit
             footerButtons={
                 <>
@@ -660,7 +658,6 @@ const PostEditPage: React.FC<IResourceComponentsProps> = () => {
             <Form {...formProps} layout="vertical" style={{ marginTop: 30 }}>
                 {formList[current]}
             </Form>
-            {/* highlight-next-line */}
         </Edit>
     );
 };
@@ -698,16 +695,7 @@ render(<RefineAntdDemo />);
 
 </Tabs>
 
-For the sake of simplicity, in this example we're going to build a Post `"create"` form that consists of only a `title` and a relational `category` field. [Please refer to the `useSelect` documentation for detailed information. &#8594](/api-reference/core/hooks/useSelect.md)
-
-:::tip
-`edit` and `create` forms are almost the same. The only difference is that we are using `<Edit>` component instead of `<Create>`.
-
-So how are the form's default values set? `useStepsForm` does this with te `id` parameter it reads from the URL and fetches the data from the server.
-You can change the `id` as you want with the `setId` that comes out of return values.
-
-Another part that is different from `edit` and `create` is the defaultValue value passed to the `useSelect` hook and the `<Select>` element.
-:::
+For the sake of simplicity, in this example we're going to build a Post `"create"` form that consists of only a `title` and a relational `category` field.
 
 To split your form items under a `<Steps>` component, first import and use `useStepsForm` hook in your page:
 
@@ -1057,7 +1045,7 @@ All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) props also availabl
 Sets the default starting step number. Counting starts from `0`.
 
 ```tsx
-const stepsForm = useStepsForm<IPost>({
+const stepsForm = useStepsForm({
     defaultCurrent: 2,
 });
 ```
@@ -1067,7 +1055,7 @@ const stepsForm = useStepsForm<IPost>({
 Maximum number of steps. `<Steps>` cannot go beyond this number.
 
 ```tsx
-const stepsForm = useStepsForm<IPost>({
+const stepsForm = useStepsForm({
     total: 3,
 });
 ```

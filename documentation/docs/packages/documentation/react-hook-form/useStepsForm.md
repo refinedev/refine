@@ -708,17 +708,7 @@ render(<RefineHeadlessDemo />);
 
 </Tabs>
 
-In this example we're going to build a Post `"create"` form.
-
-:::info
-`"edit"` and `"create"` forms are almost the same.
-
-So how are the form's default values set? `useStepsForm` does this with te `id` parameter it reads from the URL and fetches the data from the server. You can change the `id` as you want with the `setId` that comes out of `refineCore`.
-
-Another part that is different from `"edit"` and `"create"` is the `defaultValue` value passed to the `useSelect` hook and the `<select>` element.
-:::
-
-We also added a relational category field to expand our example. [Please refer to the `useSelect` documentation for detailed. &#8594](/api-reference/core/hooks/useSelect.md)
+In this example we're going to build a Post `"create"` form. We also added a relational category field to expand our example.
 
 To split your `<input/>` components under a `<form/>` component, first import and use `useStepsForm` hook in your page:
 
@@ -1022,7 +1012,7 @@ interface IPost {
 All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#return-values) docs.
 
 ```tsx
-const stepsForm = useStepsForm<IPost>({
+const stepsForm = useStepsForm({
     refineCoreProps: {
         action: "edit",
         resource: "posts",
@@ -1042,7 +1032,7 @@ The props needed by the manage state steps.
 Sets the default starting step number. Counting starts from `0`.
 
 ```tsx
-const stepsForm = useStepsForm<IPost>({
+const stepsForm = useStepsForm({
     stepsProps: {
         defaultStep: 0,
     },
@@ -1056,7 +1046,7 @@ const stepsForm = useStepsForm<IPost>({
 When is `true`, validates a form fields when the user navigates to a previous step.
 
 ```tsx
-const stepsForm = useStepsForm<IPost>({
+const stepsForm = useStepsForm({
     stepsProps: {
         isBackValidate: true,
     },

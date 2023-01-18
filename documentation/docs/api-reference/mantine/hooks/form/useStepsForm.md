@@ -656,7 +656,6 @@ setInitialRoutes(["/posts/edit/123"]);
 import React from "react";
 import { HttpError } from "@pankod/refine-core";
 import {
-    // highlight-next-line
     Edit,
     Button,
     Code,
@@ -705,7 +704,6 @@ const PostEditPage: React.FC = () => {
     });
 
     return (
-        // highlight-next-line
         <Edit
             footerButtons={
                 <Group position="right" mt="xl">
@@ -786,7 +784,6 @@ const PostEditPage: React.FC = () => {
                     <Code mt="xl">{JSON.stringify(values, null, 2)}</Code>
                 </Stepper.Completed>
             </Stepper>
-            {/* highlight-next-line */}
         </Edit>
     );
 };
@@ -811,13 +808,6 @@ render(<RefineMantineDemo />);
 </Tabs>
 
 In this example we're going to build a Post `"create"` form. To creating a multi-step form, we will use [`<Stepper/>`](https://mantine.dev/core/stepper/) component from Mantine. To handle the state of both the form and the steps, we will use `useStepsForm` hook.
-
-:::info
-`"create"` and `"edit"` forms are almost the same. The only difference is that we are using `<Edit>` component instead of `<Create>`.
-
-So how are the form's default values set? `useStepsForm` does this with te `id` parameter it reads from the URL and fetches the data from the server.
-You can change the `id` as you want with the `setId` that comes out of `refineCore`.
-:::
 
 To show your form inputs step by step, first import and use `useStepsForm` hook in your page:
 
@@ -1004,7 +994,7 @@ const PostCreatePage: React.FC = () => {
 All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#return-values) docs.
 
 ```tsx
-const stepsForm = useStepsForm<IPost>({
+const stepsForm = useStepsForm({
     refineCoreProps: {
         action: "edit",
         resource: "posts",
@@ -1022,7 +1012,7 @@ const stepsForm = useStepsForm<IPost>({
 Sets the default starting step number. Counting starts from `0`.
 
 ```tsx
-const stepsForm = useStepsForm<IPost>({
+const stepsForm = useStepsForm({
     stepsProps: {
         defaultStep: 0,
     },
@@ -1036,7 +1026,7 @@ const stepsForm = useStepsForm<IPost>({
 When is `true`, validates a form fields when the user navigates to a previous step.
 
 ```tsx
-const stepsForm = useStepsForm<IPost>({
+const stepsForm = useStepsForm({
     stepsProps: {
         isBackValidate: true,
     },
@@ -1087,3 +1077,6 @@ stepsProps-default="`defaultStep = 0` `isBackValidate = false`"
 
 [use-form-refine-mantine]: /api-reference/mantine/hooks/form/useForm.md
 [use-form-core]: /api-reference/core/hooks/useForm.md
+
+Array relationship, `tags` from `posts` table using `tags` :: `post_id` -> `id`
+Object relationship, `post` from `tags` table using `post_id`-> `posts` :: ``id`
