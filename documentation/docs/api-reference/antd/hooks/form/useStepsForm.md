@@ -511,7 +511,201 @@ setRefineProps({
 render(<RefineAntdDemo />);
 ```
 
-For the sake of simplicity, in this example we're going to build a `Post` create form that consists of only a `title` and a relational `category` field.
+</TabItem>
+
+<TabItem value="edit">
+
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
+setInitialRoutes(["/posts/edit/123"]);
+
+// visible-block-start
+import React from "react";
+import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
+
+import {
+    // highlight-next-line
+    Edit,
+    Form,
+    Input,
+    Select,
+    Button,
+    SaveButton,
+    useSelect,
+    useStepsForm,
+    Steps,
+} from "@pankod/refine-antd";
+
+const { Step } = Steps;
+
+const PostEditPage: React.FC<IResourceComponentsProps> = () => {
+    const {
+        current,
+        gotoStep,
+        stepsProps,
+        formProps,
+        saveButtonProps,
+        queryResult,
+    } = useStepsForm<IPost, HttpError, IPost>();
+
+    const postData = queryResult?.data?.data;
+    const { selectProps: categorySelectProps } = useSelect<
+        ICategory,
+        HttpError
+    >({
+        resource: "categories",
+        defaultValue: postData?.category.id,
+    });
+
+    const formList = [
+        <>
+            <Form.Item
+                label="Title"
+                name="title"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+            <Form.Item
+                label="Category"
+                name={["category", "id"]}
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Select {...categorySelectProps} />
+            </Form.Item>
+            <Form.Item
+                label="Status"
+                name="status"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Select
+                    options={[
+                        {
+                            label: "Published",
+                            value: "published",
+                        },
+                        {
+                            label: "Draft",
+                            value: "draft",
+                        },
+                        {
+                            label: "Rejected",
+                            value: "rejected",
+                        },
+                    ]}
+                />
+            </Form.Item>
+        </>,
+        <>
+            <Form.Item
+                label="Content"
+                name="content"
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+            >
+                <Input.TextArea />
+            </Form.Item>
+        </>,
+    ];
+
+    return (
+        // highlight-next-line
+        <Edit
+            footerButtons={
+                <>
+                    {current > 0 && (
+                        <Button
+                            onClick={() => {
+                                gotoStep(current - 1);
+                            }}
+                        >
+                            Previous
+                        </Button>
+                    )}
+                    {current < formList.length - 1 && (
+                        <Button
+                            onClick={() => {
+                                gotoStep(current + 1);
+                            }}
+                        >
+                            Next
+                        </Button>
+                    )}
+                    {current === formList.length - 1 && (
+                        <SaveButton {...saveButtonProps} />
+                    )}
+                </>
+            }
+        >
+            <Steps {...stepsProps}>
+                <Step title="About Post" />
+                <Step title="Content" />
+            </Steps>
+            <Form {...formProps} layout="vertical" style={{ marginTop: 30 }}>
+                {formList[current]}
+            </Form>
+            {/* highlight-next-line */}
+        </Edit>
+    );
+};
+
+interface ICategory {
+    id: number;
+    title: string;
+}
+
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: { id: number };
+}
+
+// visible-block-end
+
+setRefineProps({
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+            create: PostCreate,
+            edit: PostEditPage,
+        },
+    ],
+});
+
+render(<RefineAntdDemo />);
+```
+
+</TabItem>
+
+</Tabs>
+
+For the sake of simplicity, in this example we're going to build a Post `"create"` form that consists of only a `title` and a relational `category` field. [Please refer to the `useSelect` documentation for detailed information. &#8594](/api-reference/core/hooks/useSelect.md)
+
+:::tip
+`edit` and `create` forms are almost the same. The only difference is that we are using `<Edit>` component instead of `<Create>`.
+
+So how are the form's default values set? `useStepsForm` does this with te `id` parameter it reads from the URL and fetches the data from the server.
+You can change the `id` as you want with the `setId` that comes out of return values.
+
+Another part that is different from `edit` and `create` is the defaultValue value passed to the `useSelect` hook and the `<Select>` element.
+:::
 
 To split your form items under a `<Steps>` component, first import and use `useStepsForm` hook in your page:
 
@@ -848,200 +1042,6 @@ interface IPost {
 }
 ```
 
-</TabItem>
-
-<TabItem value="edit">
-
-`edit` and `create` forms are almost the same. The only difference is that we are using `<Edit>` component instead of `<Create>`.
-
-So how are the form's default values set? `useStepsForm` does this with te `id` parameter it reads from the URL and fetches the data from the server.
-You can change the `id` as you want with the `setId` that comes out of return values.
-
-Another part that is different from `edit` and `create` is the defaultValue value passed to the `useSelect` hook and the `<Select>` element.
-
-[Refer to the `useSelect` documentation for detailed information. &#8594](/api-reference/core/hooks/useSelect.md)
-
-```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
-setInitialRoutes(["/posts/edit/123"]);
-
-// visible-block-start
-import React from "react";
-import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
-
-import {
-    // highlight-next-line
-    Edit,
-    Form,
-    Input,
-    Select,
-    Button,
-    SaveButton,
-    useSelect,
-    useStepsForm,
-    Steps,
-} from "@pankod/refine-antd";
-
-const { Step } = Steps;
-
-const PostEditPage: React.FC<IResourceComponentsProps> = () => {
-    const {
-        current,
-        gotoStep,
-        stepsProps,
-        formProps,
-        saveButtonProps,
-        queryResult,
-    } = useStepsForm<IPost, HttpError, IPost>();
-
-    const postData = queryResult?.data?.data;
-    const { selectProps: categorySelectProps } = useSelect<
-        ICategory,
-        HttpError
-    >({
-        resource: "categories",
-        defaultValue: postData?.category.id,
-    });
-
-    const formList = [
-        <>
-            <Form.Item
-                label="Title"
-                name="title"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                label="Category"
-                name={["category", "id"]}
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Select {...categorySelectProps} />
-            </Form.Item>
-            <Form.Item
-                label="Status"
-                name="status"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Select
-                    options={[
-                        {
-                            label: "Published",
-                            value: "published",
-                        },
-                        {
-                            label: "Draft",
-                            value: "draft",
-                        },
-                        {
-                            label: "Rejected",
-                            value: "rejected",
-                        },
-                    ]}
-                />
-            </Form.Item>
-        </>,
-        <>
-            <Form.Item
-                label="Content"
-                name="content"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input.TextArea />
-            </Form.Item>
-        </>,
-    ];
-
-    return (
-        // highlight-next-line
-        <Edit
-            footerButtons={
-                <>
-                    {current > 0 && (
-                        <Button
-                            onClick={() => {
-                                gotoStep(current - 1);
-                            }}
-                        >
-                            Previous
-                        </Button>
-                    )}
-                    {current < formList.length - 1 && (
-                        <Button
-                            onClick={() => {
-                                gotoStep(current + 1);
-                            }}
-                        >
-                            Next
-                        </Button>
-                    )}
-                    {current === formList.length - 1 && (
-                        <SaveButton {...saveButtonProps} />
-                    )}
-                </>
-            }
-        >
-            <Steps {...stepsProps}>
-                <Step title="About Post" />
-                <Step title="Content" />
-            </Steps>
-            <Form {...formProps} layout="vertical" style={{ marginTop: 30 }}>
-                {formList[current]}
-            </Form>
-            {/* highlight-next-line */}
-        </Edit>
-    );
-};
-
-interface ICategory {
-    id: number;
-    title: string;
-}
-
-interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: { id: number };
-}
-
-// visible-block-end
-
-setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreate,
-            edit: PostEditPage,
-        },
-    ],
-});
-
-render(<RefineAntdDemo />);
-```
-
-</TabItem>
-
-</Tabs>
-
 ## Properties
 
 :::tip
@@ -1117,21 +1117,15 @@ When `action` is `"edit"` or `"clone"`, `useStepsForm` will fetch the data from 
 
 ### Return Values
 
-| Key                      | Description                                                  | Type                                                                                                                                                                                 |
-| ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- | --- |
-| stepsProps               | Ant Design steps props                                       | [`StepsProps`](https://ant.design/components/steps/#API)                                                                                                                             |
-| current                  | Current step, counting from 0.                               | `number`                                                                                                                                                                             |
-| gotoStep                 | Go to the target step                                        | `(step: number) => void`                                                                                                                                                             |
-| formProps                | Ant Design form props                                        | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                                              |
-| form                     | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                                                                       |
-| formLoading              | Loading status of form                                       | `boolean`                                                                                                                                                                            |
-| defaultFormValuesLoading | DefaultFormValues loading status of form                     | `boolean`                                                                                                                                                                            |
-| submit                   | Submit method, the parameter is the value of the form fields | `() => void`                                                                                                                                                                         |
-| saveButtonProps          | Props for a submit button                                    | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                                                                                                                      |
-| queryResult              | Result of the query of a record                              | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery)                                                                                        |
-| mutationResult           | Result of the mutation triggered by submitting the form      | `UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
-| id                       | Record id for `clone` and `create` action                    | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                                                                               |     |     |
-| setId                    | `id` setter                                                  | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                                                     |
+| Key                      | Description                                                  | Type                                                                           |
+| ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| stepsProps               | Ant Design steps props                                       | [`StepsProps`](https://ant.design/components/steps/#API)                       |
+| current                  | Current step, counting from 0.                               | `number`                                                                       |
+| gotoStep                 | Go to the target step                                        | `(step: number) => void`                                                       |
+| formProps                | Ant Design form props                                        | [`FormProps`](/docs/api-reference/antd/hooks/form/useForm/#formprops)          |
+| form                     | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance) |
+| defaultFormValuesLoading | DefaultFormValues loading status of form                     | `boolean`                                                                      |
+| submit                   | Submit method, the parameter is the value of the form fields | `() => void`                                                                   |
 
 ### Type Parameters
 

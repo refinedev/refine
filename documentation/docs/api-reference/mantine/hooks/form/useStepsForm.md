@@ -643,7 +643,179 @@ setRefineProps({
 render(<RefineMantineDemo />);
 ```
 
-In creating a multi-step form, we will use [`<Stepper/>`](https://mantine.dev/core/stepper/) component from Mantine. To handle the state of both the form and the steps, we will use `useStepsForm` hook.
+</TabItem>
+
+<TabItem value="edit">
+
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
+setInitialRoutes(["/posts/edit/123"]);
+
+// visible-block-start
+import React from "react";
+import { HttpError } from "@pankod/refine-core";
+import {
+    // highlight-next-line
+    Edit,
+    Button,
+    Code,
+    Group,
+    Select,
+    Stepper,
+    TextInput,
+    useStepsForm,
+    SaveButton,
+    Text,
+    Space,
+    Textarea,
+} from "@pankod/refine-mantine";
+
+type FormValues = Omit<IPost, "id">;
+
+const PostEditPage: React.FC = () => {
+    const {
+        saveButtonProps,
+        getInputProps,
+        values,
+        steps: { currentStep, gotoStep },
+    } = useStepsForm<IPost, HttpError, FormValues>({
+        initialValues: {
+            title: "",
+            status: "",
+            slug: "",
+            content: "",
+        },
+        validate: (values) => {
+            if (currentStep === 0) {
+                return {
+                    title: values.title ? null : "Title is required",
+                    slug: values.slug ? null : "Slug is required",
+                };
+            }
+
+            if (currentStep === 1) {
+                return {
+                    status: values.status ? null : "Status is required",
+                };
+            }
+
+            return {};
+        },
+    });
+
+    return (
+        // highlight-next-line
+        <Edit
+            footerButtons={
+                <Group position="right" mt="xl">
+                    {currentStep !== 0 && (
+                        <Button
+                            variant="default"
+                            onClick={() => gotoStep(currentStep - 1)}
+                        >
+                            Back
+                        </Button>
+                    )}
+                    {currentStep !== 3 && (
+                        <Button onClick={() => gotoStep(currentStep + 1)}>
+                            Next step
+                        </Button>
+                    )}
+                    {currentStep === 2 && <SaveButton {...saveButtonProps} />}
+                </Group>
+            }
+        >
+            <Stepper
+                active={currentStep}
+                onStepClick={gotoStep}
+                breakpoint="xs"
+            >
+                <Stepper.Step
+                    label="First Step"
+                    description="Title and Slug"
+                    allowStepSelect={currentStep > 0}
+                >
+                    <TextInput
+                        mt="md"
+                        label="Title"
+                        placeholder="Title"
+                        {...getInputProps("title")}
+                    />
+                    <TextInput
+                        mt="md"
+                        label="Slug"
+                        placeholder="Slug"
+                        {...getInputProps("slug")}
+                    />
+                </Stepper.Step>
+
+                <Stepper.Step
+                    label="Second Step"
+                    description="Status"
+                    allowStepSelect={currentStep > 1}
+                >
+                    <Select
+                        mt="md"
+                        label="Status"
+                        placeholder="Pick one"
+                        {...getInputProps("status")}
+                        data={[
+                            { label: "Published", value: "published" },
+                            { label: "Draft", value: "draft" },
+                            { label: "Rejected", value: "rejected" },
+                        ]}
+                    />
+                </Stepper.Step>
+
+                <Stepper.Step
+                    label="Final Step"
+                    description="Content"
+                    allowStepSelect={currentStep > 2}
+                >
+                    <Textarea
+                        label="Content"
+                        placeholder="Content"
+                        {...getInputProps("content")}
+                    />
+                </Stepper.Step>
+
+                <Stepper.Completed>
+                    Completed! Form values:
+                    <Space />
+                    <Code mt="xl">{JSON.stringify(values, null, 2)}</Code>
+                </Stepper.Completed>
+            </Stepper>
+            {/* highlight-next-line */}
+        </Edit>
+    );
+};
+// visible-block-end
+
+setRefineProps({
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+            create: PostCreate,
+            edit: PostEditPage,
+        },
+    ],
+});
+
+render(<RefineMantineDemo />);
+```
+
+</TabItem>
+
+</Tabs>
+
+In this example we're going to build a Post `"create"` form. To creating a multi-step form, we will use [`<Stepper/>`](https://mantine.dev/core/stepper/) component from Mantine. To handle the state of both the form and the steps, we will use `useStepsForm` hook.
+
+:::info
+`"create"` and `"edit"` forms are almost the same. The only difference is that we are using `<Edit>` component instead of `<Create>`.
+
+So how are the form's default values set? `useStepsForm` does this with te `id` parameter it reads from the URL and fetches the data from the server.
+You can change the `id` as you want with the `setId` that comes out of `refineCore`.
+:::
 
 To show your form inputs step by step, first import and use `useStepsForm` hook in your page:
 
@@ -823,183 +995,21 @@ const PostCreatePage: React.FC = () => {
 };
 ```
 
-</TabItem>
-
-<TabItem value="edit">
-
-`create` and `edit` forms are almost the same. The only difference is that we are using `<Edit>` component instead of `<Create>`.
-
-So how are the form's default values set? `useStepsForm` does this with te `id` parameter it reads from the URL and fetches the data from the server.
-You can change the `id` as you want with the `setId` that comes out of `refineCore`.
-
-```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
-setInitialRoutes(["/posts/edit/123"]);
-
-// visible-block-start
-import React from "react";
-import { HttpError } from "@pankod/refine-core";
-import {
-    // highlight-next-line
-    Edit,
-    Button,
-    Code,
-    Group,
-    Select,
-    Stepper,
-    TextInput,
-    useStepsForm,
-    SaveButton,
-    Text,
-    Space,
-    Textarea,
-} from "@pankod/refine-mantine";
-
-type FormValues = Omit<IPost, "id">;
-
-const PostEditPage: React.FC = () => {
-    const {
-        saveButtonProps,
-        getInputProps,
-        values,
-        steps: { currentStep, gotoStep },
-    } = useStepsForm<IPost, HttpError, FormValues>({
-        initialValues: {
-            title: "",
-            status: "",
-            slug: "",
-            content: "",
-        },
-        validate: (values) => {
-            if (currentStep === 0) {
-                return {
-                    title: values.title ? null : "Title is required",
-                    slug: values.slug ? null : "Slug is required",
-                };
-            }
-
-            if (currentStep === 1) {
-                return {
-                    status: values.status ? null : "Status is required",
-                };
-            }
-
-            return {};
-        },
-    });
-
-    return (
-        // highlight-next-line
-        <Edit
-            footerButtons={
-                <Group position="right" mt="xl">
-                    {currentStep !== 0 && (
-                        <Button
-                            variant="default"
-                            onClick={() => gotoStep(currentStep - 1)}
-                        >
-                            Back
-                        </Button>
-                    )}
-                    {currentStep !== 3 && (
-                        <Button onClick={() => gotoStep(currentStep + 1)}>
-                            Next step
-                        </Button>
-                    )}
-                    {currentStep === 2 && <SaveButton {...saveButtonProps} />}
-                </Group>
-            }
-        >
-            <Stepper
-                active={currentStep}
-                onStepClick={gotoStep}
-                breakpoint="xs"
-            >
-                <Stepper.Step
-                    label="First Step"
-                    description="Title and Slug"
-                    allowStepSelect={currentStep > 0}
-                >
-                    <TextInput
-                        mt="md"
-                        label="Title"
-                        placeholder="Title"
-                        {...getInputProps("title")}
-                    />
-                    <TextInput
-                        mt="md"
-                        label="Slug"
-                        placeholder="Slug"
-                        {...getInputProps("slug")}
-                    />
-                </Stepper.Step>
-
-                <Stepper.Step
-                    label="Second Step"
-                    description="Status"
-                    allowStepSelect={currentStep > 1}
-                >
-                    <Select
-                        mt="md"
-                        label="Status"
-                        placeholder="Pick one"
-                        {...getInputProps("status")}
-                        data={[
-                            { label: "Published", value: "published" },
-                            { label: "Draft", value: "draft" },
-                            { label: "Rejected", value: "rejected" },
-                        ]}
-                    />
-                </Stepper.Step>
-
-                <Stepper.Step
-                    label="Final Step"
-                    description="Content"
-                    allowStepSelect={currentStep > 2}
-                >
-                    <Textarea
-                        label="Content"
-                        placeholder="Content"
-                        {...getInputProps("content")}
-                    />
-                </Stepper.Step>
-
-                <Stepper.Completed>
-                    Completed! Form values:
-                    <Space />
-                    <Code mt="xl">{JSON.stringify(values, null, 2)}</Code>
-                </Stepper.Completed>
-            </Stepper>
-            {/* highlight-next-line */}
-        </Edit>
-    );
-};
-// visible-block-end
-
-setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreate,
-            edit: PostEditPage,
-        },
-    ],
-});
-
-render(<RefineMantineDemo />);
-```
-
-</TabItem>
-
-</Tabs>
-
 ## Properties
 
 ### `refineCoreProps`
 
-:::tip
 All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#return-values) docs.
-:::
+
+```tsx
+const stepsForm = useStepsForm<IPost>({
+    refineCoreProps: {
+        action: "edit",
+        resource: "posts",
+        id: "1",
+    },
+});
+```
 
 ### `stepsProps`
 
