@@ -357,6 +357,6 @@ In the next article, we will turn our attention back to the `<Blog />` component
 
 ## Example
 
-<StackblitzExample path="blog-react-memoization-memo" />
+<CodeSandboxExample path="blog-react-memoization-memo" />
 
 

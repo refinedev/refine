@@ -8,4 +8,4 @@ example-tags: [antd,router-provider,react-location]
 
 [Refer to the refine Router Provider documentation for more information. →](/docs/api-reference/core/providers/router-provider/)
 
-<StackblitzExample path="with-react-location" />
+<CodeSandboxExample path="with-react-location" />

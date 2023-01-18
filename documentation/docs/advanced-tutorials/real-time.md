@@ -457,4 +457,4 @@ useSubscription({
 
 ## Example
 
-<StackblitzExample path="live-provider-ably" />
+<CodeSandboxExample path="live-provider-ably" />

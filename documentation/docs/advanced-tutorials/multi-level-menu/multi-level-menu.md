@@ -158,4 +158,4 @@ This gives you more control over the side menu, and allows you to customize it t
 
 You can review the example to examine the multi-level menu concept in more detail.
 
-<StackblitzExample path="multi-level-menu" />
+<CodeSandboxExample path="multi-level-menu" />

@@ -8,4 +8,4 @@ example-tags: [antd,upload]
 
 [Refer to the **refine** Multipart Upload documentation for more information. →](/docs/advanced-tutorials/upload/multipart-upload/)
 
-<StackblitzExample path="upload-antd-multipart" />
+<CodeSandboxExample path="upload-antd-multipart" />

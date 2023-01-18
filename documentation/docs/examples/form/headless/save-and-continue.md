@@ -11,4 +11,4 @@ We have three save options: `Save`, `Save and continue editing` and `Save and ad
 
 [Refer to the **refine** Save and Continue documentation for more information. →](/docs/advanced-tutorials/forms/save-and-continue/)
 
-<StackblitzExample path="form-save-and-continue" />
+<CodeSandboxExample path="form-save-and-continue" />

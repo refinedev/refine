@@ -838,7 +838,7 @@ export const PostReview = () => {
 
 ## Example
 
-<StackblitzExample path="with-custom-pages" />
+<CodeSandboxExample path="with-custom-pages" />
 
 [ssrnextjs]: /docs/advanced-tutorials/ssr/nextjs
 [ssrremix]: /docs/advanced-tutorials/ssr/remix

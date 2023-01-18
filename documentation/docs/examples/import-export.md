@@ -11,4 +11,4 @@ example-tags: [antd,import,export,refine-hooks,data-provider]
 
 [Refer to the **refine** CSV Export guide for more information. →](/docs/advanced-tutorials/import-export/csv-export/)
 
-<StackblitzExample path="import-export-antd" />
+<CodeSandboxExample path="import-export-antd" />

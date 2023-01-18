@@ -9,7 +9,7 @@ type Props = {
     hideLocal?: boolean;
 };
 
-const StackblitzExample: React.FC<Props> = ({
+const CodeSandboxExample: React.FC<Props> = ({
     path,
     hideSource,
     hideLocal,
@@ -41,4 +41,4 @@ const StackblitzExample: React.FC<Props> = ({
     );
 };
 
-export default StackblitzExample;
+export default CodeSandboxExample;

@@ -351,4 +351,4 @@ render(<App />);
 
 Below you'll find a Live CodeSandbox Example displaying a fully setup `Refine` app with `@pankod/refine-inferencer/mantine` components.
 
-<StackblitzExample path="inferencer-mantine" />
+<CodeSandboxExample path="inferencer-mantine" />

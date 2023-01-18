@@ -8,4 +8,4 @@ example-tags: [antd,upload]
 
 [Refer to the **refine** Base64 Upload documentation for more information. →](/docs/advanced-tutorials/upload/base64-upload/)
 
-<StackblitzExample path="upload-antd-base64" />
+<CodeSandboxExample path="upload-antd-base64" />

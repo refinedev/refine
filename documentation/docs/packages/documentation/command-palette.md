@@ -121,7 +121,7 @@ useRegisterActions(customAction);
 
 ## Example
 
-<StackblitzExample path="command-palette-kbar" />
+<CodeSandboxExample path="command-palette-kbar" />
 
 [kbar]: https://github.com/timc1/kbar
 [kbar-actions]: https://kbar.vercel.app/docs/concepts/actions

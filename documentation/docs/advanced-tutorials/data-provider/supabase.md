@@ -1210,6 +1210,6 @@ If you filter based on a table from an inner join, you will need to use `.select
 
 ## Example
 
-<StackblitzExample path="data-provider-supabase" />
+<CodeSandboxExample path="data-provider-supabase" />
 
 ---

@@ -10,4 +10,4 @@ example-tags: [antd,auth-provider,auth0]
 
 Auth0 example doesn't work in CodeSandbox embed mode. With [this](https://ussft.csb.app/) link, you can open the example in the browser and try it.
 
-<StackblitzExample path="auth-auth0" />
+<CodeSandboxExample path="auth-auth0" />

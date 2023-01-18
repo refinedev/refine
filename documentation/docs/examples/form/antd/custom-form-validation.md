@@ -8,4 +8,4 @@ You can make basic validations with Ant Design [Form.Item](https://ant.design/co
 
 [Refer to the **refine** Custom Form Validation documentation for more information. →](/docs/api-reference/antd/hooks/form/useStepsForm/)
 
-<StackblitzExample path="form-antd-custom-validation" />
+<CodeSandboxExample path="form-antd-custom-validation" />

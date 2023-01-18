@@ -6,4 +6,4 @@ example-title: Refine's useSelect hook
 example-tags: [headless,refine-hooks]
 ---
 
-<StackblitzExample path="core-use-select" />
+<CodeSandboxExample path="core-use-select" />

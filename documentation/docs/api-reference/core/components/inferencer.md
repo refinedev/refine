@@ -310,4 +310,4 @@ render(<App />);
 
 Below you'll find a Live CodeSandbox Example displaying a fully setup `Refine` app with `@pankod/refine-inferencer/headless` components.
 
-<StackblitzExample path="inferencer-headless" />
+<CodeSandboxExample path="inferencer-headless" />

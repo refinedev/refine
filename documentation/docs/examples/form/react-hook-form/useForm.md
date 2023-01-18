@@ -8,4 +8,4 @@ example-tags: [form,headless,react-hook-form]
 
 [Refer to the useForm documentation for more information. →](/packages/documentation/react-hook-form/useForm.md)
 
-<StackblitzExample path="form-react-hook-form-use-form" />
+<CodeSandboxExample path="form-react-hook-form-use-form" />

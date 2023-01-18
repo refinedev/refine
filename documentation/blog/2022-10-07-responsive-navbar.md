@@ -545,6 +545,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
 ## Example
 
-<StackblitzExample path="blog-responsive-navbar" />
+<CodeSandboxExample path="blog-responsive-navbar" />
 
 

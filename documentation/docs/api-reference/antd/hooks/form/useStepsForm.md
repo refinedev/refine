@@ -469,7 +469,7 @@ export const PostCreate: React.FC = () => {
 
 ## Example
 
-<StackblitzExample path="form-antd-use-steps-form" />
+<CodeSandboxExample path="form-antd-use-steps-form" />
 
 [BaseRecord]: /api-reference/core/interfaces.md#baserecord
 [HttpError]: /api-reference/core/interfaces.md#httperror

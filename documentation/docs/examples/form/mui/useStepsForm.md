@@ -8,4 +8,4 @@ example-tags: [form,mui,react-hook-form]
 
 [Refer to the useStepsForm hook documentation for more information. →](/docs/packages/documentation/react-hook-form/useStepsForm/)
 
-<StackblitzExample path="form-mui-use-steps-form" />
+<CodeSandboxExample path="form-mui-use-steps-form" />

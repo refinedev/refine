@@ -146,4 +146,4 @@ The Multipart file upload process with **refine** is very simple. How to use it 
 
 ## Example
 
-<StackblitzExample path="upload-antd-multipart" />
+<CodeSandboxExample path="upload-antd-multipart" />

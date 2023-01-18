@@ -9,4 +9,4 @@ example-tags: [table,chakra-ui,react-tablereact-router]
 
 [Refer to the React Table documentation for more information. →](/docs/packages/documentation/react-table/)
 
-<StackblitzExample path="table-chakra-ui-basic" />
+<CodeSandboxExample path="table-chakra-ui-basic" />

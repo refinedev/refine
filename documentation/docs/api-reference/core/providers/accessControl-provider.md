@@ -192,7 +192,7 @@ These buttons will be disabled if access control returns `{ can: false }`
 
 ## Example
 
-<StackblitzExample path="access-control-casbin" />
+<CodeSandboxExample path="access-control-casbin" />
 
 [nextjsrouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
 [reactrouter]: https://www.npmjs.com/package/@pankod/refine-react-router

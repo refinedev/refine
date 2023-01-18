@@ -77,4 +77,4 @@ render(
 
 ## Example
 
-<StackblitzExample path="input-custom" />
+<CodeSandboxExample path="input-custom" />

@@ -532,8 +532,8 @@ export const PostList: React.FC = () => {
 
 ### Casbin
 
-<StackblitzExample path="access-control-casbin" />
+<CodeSandboxExample path="access-control-casbin" />
 
 ### Cerbos
 
-<StackblitzExample path="access-control-cerbos" />
+<CodeSandboxExample path="access-control-cerbos" />

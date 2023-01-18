@@ -122,5 +122,5 @@ const { searchFormProps } = useTable<IPost, HttpError, { title: string; createdA
 
 ## Example
 
-<StackblitzExample path="table-antd-table-filter" />
+<CodeSandboxExample path="table-antd-table-filter" />
 

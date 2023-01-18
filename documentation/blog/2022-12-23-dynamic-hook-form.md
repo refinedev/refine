@@ -1083,6 +1083,6 @@ We also looked at how to set up a dynamic form using React hook form’s `useFie
 
 ## Live CodeSandbox Example
 
-<StackblitzExample path="blog-react-hook-dynamic-form" />
+<CodeSandboxExample path="blog-react-hook-dynamic-form" />
 
 ---

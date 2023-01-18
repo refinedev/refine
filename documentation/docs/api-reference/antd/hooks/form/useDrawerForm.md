@@ -265,7 +265,7 @@ The `saveButtonProps` and `deleteButtonProps` gives us the ability of saving and
 
 ## Example
 
-<StackblitzExample path="form-antd-use-drawer-form" />
+<CodeSandboxExample path="form-antd-use-drawer-form" />
 
 [BaseRecord]: /api-reference/core/interfaces.md#baserecord
 [HttpError]: /api-reference/core/interfaces.md#httperror

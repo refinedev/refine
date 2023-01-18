@@ -9,4 +9,4 @@ example-tags: [table,antd,refine-hooksreact-router]
 
 [Refer to the **refine** useEditableTable hook documentation for more information. →](/docs/api-reference/antd/hooks/table/useEditableTable/)
 
-<StackblitzExample path="table-antd-use-editable-table" />
+<CodeSandboxExample path="table-antd-use-editable-table" />

@@ -897,4 +897,4 @@ These hooks can be used with the `authProvider` authentication and authorization
 
 ## Example
 
-<StackblitzExample path="auth-antd" />
+<CodeSandboxExample path="auth-antd" />

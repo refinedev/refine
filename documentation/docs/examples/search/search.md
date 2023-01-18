@@ -9,4 +9,4 @@ This example explains in detail how to create a `Search` component using Ant Des
 
 [Refer to the **refine** Search guide documentation for more information. →](/docs/advanced-tutorials/search/search.md)
 
-<StackblitzExample path="search" />
+<CodeSandboxExample path="search" />
