@@ -728,6 +728,11 @@ const PostCreate = () => {
     return <div>...</div>;
 };
 
+interface ICategory {
+    id: number;
+    title: string;
+}
+
 interface IPost {
     id: number;
     title: string;
@@ -1004,8 +1009,6 @@ interface IPost {
 ```
 
 ## Properties
-
-### `refineCoreProps`
 
 ### `refineCoreProps`
 

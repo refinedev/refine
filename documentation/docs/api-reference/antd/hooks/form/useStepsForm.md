@@ -717,10 +717,17 @@ export const PostCreate: React.FC = () => {
     return null;
 };
 
+interface ICategory {
+    id: number;
+}
+
 interface IPost {
     id: number;
     title: string;
     status: "published" | "draft" | "rejected";
+    category: {
+        id: ICategory["id"];
+    };
 }
 ```
 
