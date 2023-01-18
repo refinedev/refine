@@ -10,7 +10,7 @@ export const CommitList: React.FC = () => {
         fetchNextPage,
         isFetchingNextPage,
     } = useInfiniteList({
-        resource: "commits",
+        resource: "repos/refinedev/refine/commits",
         dataProviderName: "github",
         queryOptions: {
             getNextPageParam: ({ data }) => {
@@ -25,7 +25,7 @@ export const CommitList: React.FC = () => {
         return <p>Loading</p>;
     }
     if (error) {
-        return <p>ERROR</p>;
+        return <p>Something went wrong</p>;
     }
 
     return (

@@ -4,7 +4,7 @@ export const getNextPageParam = (lastPage: GetListResponse) => {
     const { pagination, cursor } = lastPage;
 
     // cursor pagination
-    if (cursor && cursor.next) {
+    if (cursor?.next) {
         return cursor.next;
     }
 
@@ -20,7 +20,7 @@ export const getPreviousPageParam = (lastPage: GetListResponse) => {
     const { pagination, cursor } = lastPage;
 
     // cursor pagination
-    if (cursor && cursor.prev) {
+    if (cursor?.prev) {
         return cursor.prev;
     }
 

@@ -14,7 +14,7 @@ export const githubDataProvider = (
 > => ({
     getList: async ({ resource, pagination }) => {
         const { data } = await httpClient.get(
-            `https://api.github.com/repos/refinedev/refine/${resource}?until=${
+            `https://api.github.com/${resource}?until=${
                 pagination?.current || new Date().toISOString()
             }`,
         );
