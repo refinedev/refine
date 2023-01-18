@@ -1,12 +1,14 @@
-import { GetInfiniteListResponse } from "../../../interfaces";
+import { GetListResponse } from "../../../interfaces";
 
-export const getNextPageParam = (lastPage: GetInfiniteListResponse) => {
-    const { pagination, pageInfo } = lastPage;
-    const current = pagination?.current || 1;
+export const getNextPageParam = (lastPage: GetListResponse) => {
+    const { pagination, cursor } = lastPage;
 
-    if (pageInfo) {
-        return pageInfo.hasNextPage ? current + 1 : undefined;
+    // cursor pagination
+    if (cursor && cursor.next) {
+        return cursor.next;
     }
+
+    const current = pagination?.current || 1;
 
     const pageSize = pagination?.pageSize || 10;
     const totalPages = Math.ceil((lastPage.total || 0) / pageSize);
@@ -14,13 +16,15 @@ export const getNextPageParam = (lastPage: GetInfiniteListResponse) => {
     return current < totalPages ? Number(current) + 1 : undefined;
 };
 
-export const getPreviousPageParam = (lastPage: GetInfiniteListResponse) => {
-    const { pagination, pageInfo } = lastPage;
-    const current = pagination?.current || 1;
+export const getPreviousPageParam = (lastPage: GetListResponse) => {
+    const { pagination, cursor } = lastPage;
 
-    if (pageInfo) {
-        return pageInfo.hasPreviousPage ? current - 1 : undefined;
+    // cursor pagination
+    if (cursor && cursor.prev) {
+        return cursor.prev;
     }
+
+    const current = pagination?.current || 1;
 
     return current === 1 ? undefined : current - 1;
 };

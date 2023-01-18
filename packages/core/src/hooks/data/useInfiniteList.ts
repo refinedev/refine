@@ -12,7 +12,7 @@ import {
     MetaDataQuery,
     SuccessErrorNotification,
     LiveModeProps,
-    GetInfiniteListResponse,
+    GetListResponse,
 } from "../../interfaces";
 import {
     useResource,
@@ -49,10 +49,7 @@ export type UseInfiniteListProps<TData, TError> = {
     /**
      * react-query's [useInfiniteQuery](https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery) options,
      */
-    queryOptions?: UseInfiniteQueryOptions<
-        GetInfiniteListResponse<TData>,
-        TError
-    >;
+    queryOptions?: UseInfiniteQueryOptions<GetListResponse<TData>, TError>;
     /**
      *  Metadata query for `dataProvider`
      */
@@ -90,7 +87,7 @@ export const useInfiniteList = <
     liveParams,
     dataProviderName,
 }: UseInfiniteListProps<TData, TError>): InfiniteQueryObserverResult<
-    GetInfiniteListResponse<TData>,
+    GetListResponse<TData>,
     TError
 > => {
     const { resources } = useResource();
@@ -129,10 +126,7 @@ export const useInfiniteList = <
         onLiveEvent,
     });
 
-    const queryResponse = useInfiniteQuery<
-        GetInfiniteListResponse<TData>,
-        TError
-    >(
+    const queryResponse = useInfiniteQuery<GetListResponse<TData>, TError>(
         queryKey.list(config),
         ({ queryKey, pageParam, signal }) => {
             const { hasPagination, ...restConfig } = config || {};
@@ -154,16 +148,18 @@ export const useInfiniteList = <
                         signal,
                     },
                 },
-            }).then(({ data, total, pageInfo }) => {
+            }).then(({ data, total, ...rest }) => {
                 return {
                     data,
                     total,
                     pagination,
-                    pageInfo,
+                    ...rest,
                 };
             });
         },
         {
+            getNextPageParam: (lastPage) => getNextPageParam(lastPage),
+            getPreviousPageParam: (lastPage) => getPreviousPageParam(lastPage),
             ...queryOptions,
             onSuccess: (data) => {
                 queryOptions?.onSuccess?.(data);
@@ -199,8 +195,6 @@ export const useInfiniteList = <
                     type: "error",
                 });
             },
-            getNextPageParam: (lastPage) => getNextPageParam(lastPage),
-            getPreviousPageParam: (lastPage) => getPreviousPageParam(lastPage),
         },
     );
 

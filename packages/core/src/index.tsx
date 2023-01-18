@@ -93,5 +93,7 @@ export {
     importCSVMapper,
     routeGenerator,
     userFriendlyResourceName,
+    getNextPageParam,
+    getPreviousPageParam,
 } from "./definitions/helpers";
 export { file2Base64 } from "./definitions/upload";

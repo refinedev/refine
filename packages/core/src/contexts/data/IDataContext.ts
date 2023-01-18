@@ -87,15 +87,7 @@ export interface CustomResponse<TData = BaseRecord> {
 export interface GetListResponse<TData = BaseRecord> {
     data: TData[];
     total: number;
-    pageInfo?: {
-        hasNextPage: boolean;
-        hasPreviousPage: boolean;
-    };
-}
-
-export interface GetInfiniteListResponse<TData = BaseRecord>
-    extends GetListResponse<TData> {
-    pagination?: Pagination;
+    [key: string]: any;
 }
 
 export interface CreateResponse<TData = BaseRecord> {
@@ -139,6 +131,7 @@ export interface IDataContextProvider {
         filters?: CrudFilters;
         metaData?: MetaDataQuery;
         dataProviderName?: string;
+        cursor?: unknown;
     }) => Promise<GetListResponse<TData>>;
     getMany?: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
