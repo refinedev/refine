@@ -673,6 +673,7 @@ module.exports = {
                     items: [
                         "examples/auth-provider/auth0",
                         "examples/auth-provider/google-auth",
+                        "examples/auth-provider/keycloak",
                         "examples/auth-provider/otpLogin",
                     ],
                 },
