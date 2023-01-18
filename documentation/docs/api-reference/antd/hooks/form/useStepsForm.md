@@ -515,6 +515,8 @@ render(<RefineAntdDemo />);
 
 <TabItem value="edit">
 
+Here is the final result of the form: We will explain the code in following sections.
+
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/edit/123"]);
 
