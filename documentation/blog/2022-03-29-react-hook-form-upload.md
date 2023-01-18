@@ -404,4 +404,4 @@ As you can see, we have easily saved both our data such as title, category, stat
 
 ## Example
 
-<StackblitzExample path="form-react-hook-form-use-form" />
+<CodeSandboxExample path="form-react-hook-form-use-form" />

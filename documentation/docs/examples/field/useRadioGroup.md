@@ -9,4 +9,4 @@ You can use the **refine** `useRadioGroup` hook to manage your data in a source 
 
 [Refer to the **refine** useRadioGroup hook documentation for more information. →](/docs/api-reference/antd/hooks/field/useRadioGroup/)
 
-<StackblitzExample path="field-antd-use-radio-group" />
+<CodeSandboxExample path="field-antd-use-radio-group" />

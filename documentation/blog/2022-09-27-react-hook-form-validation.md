@@ -954,6 +954,6 @@ There you have it, we’ve successfully built a form that can validate input val
 
 ## Example
 
-<StackblitzExample path="blog-refine-react-hook-form" />
+<CodeSandboxExample path="blog-refine-react-hook-form" />
 
 ---

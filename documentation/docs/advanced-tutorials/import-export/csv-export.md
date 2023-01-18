@@ -78,7 +78,7 @@ Manually running the `triggerExport` function is another option.
 
 ## Example
 
-<StackblitzExample path="import-export-antd" />
+<CodeSandboxExample path="import-export-antd" />
 
 [button]: https://ant.design/components/button/
 [useexport]: /api-reference/core/hooks/import-export/useExport.md

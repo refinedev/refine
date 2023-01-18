@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example i18n-react
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open i18n-react example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/i18n-react?terminal=start&preset=node)
+[![Open i18n-react example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/i18n-react?view=preview&theme=dark&codemirror=1)
         

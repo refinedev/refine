@@ -455,4 +455,4 @@ In this case, only events will be created for the `create` mutation.
 
 ## Example
 
-<StackblitzExample path="audit-log-provider" />
+<CodeSandboxExample path="audit-log-provider" />

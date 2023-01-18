@@ -8,4 +8,4 @@ example-tags: [next.js,router-provider,antd,experimental]
 
 [Refer to the refine Next.js documentation for more information. →](/docs/advanced-tutorials/ssr/nextjs.md)
 
-<StackblitzExample path="with-nextjs-appdir" />
+<CodeSandboxExample path="with-nextjs-appdir" />

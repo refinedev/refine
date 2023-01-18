@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example blog-ecommerce
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open blog-ecommerce example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/blog-ecommerce?terminal=start&preset=node)
+[![Open blog-ecommerce example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/blog-ecommerce?view=preview&theme=dark&codemirror=1)
         

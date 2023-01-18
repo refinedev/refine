@@ -1071,7 +1071,7 @@ const styles = StyleSheet.create({
 PDF download may not work in codeSandbox mode. With [**this**](https://n59710.csb.app/invoices) link, you can open the example in the browser and try it.
 :::
 
-<StackblitzExample path="blog-invoice-generator" />
+<CodeSandboxExample path="blog-invoice-generator" />
 
 ## Conclusion
 

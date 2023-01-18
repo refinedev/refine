@@ -451,7 +451,7 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 
 ## Example
 
-<StackblitzExample path="form-react-hook-form-use-steps-form" />
+<CodeSandboxExample path="form-react-hook-form-use-steps-form" />
 
 [@pankod/refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
 [refine-react-hook-form-use-form]: /packages/documentation/react-hook-form/useForm.md

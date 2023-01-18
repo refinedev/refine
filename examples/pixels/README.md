@@ -75,8 +75,8 @@ The following features of Supabase are used in the app:
 npm create refine-app@latest -- --example pixels
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open pixels example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/pixels?terminal=start)
+[![Open pixels example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/pixels?terminal=start)

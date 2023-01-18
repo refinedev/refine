@@ -8,4 +8,4 @@ example-tags: [antd,i18n]
 
 [Refer to the refine i18n Provider documentation for more information. →](/docs/api-reference/core/providers/i18n-provider/)
 
-<StackblitzExample path="i18n-react" />
+<CodeSandboxExample path="i18n-react" />

@@ -8,4 +8,4 @@ example-tags: [form,chakra-ui,react-hook-form]
 
 [Refer to the useForm hook documentation for more information. →](/docs/packages/documentation/react-hook-form/useForm)
 
-<StackblitzExample path="form-chakra-ui-use-form" />
+<CodeSandboxExample path="form-chakra-ui-use-form" />

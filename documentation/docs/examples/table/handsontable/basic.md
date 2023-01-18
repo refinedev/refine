@@ -9,4 +9,4 @@ example-tags: [table,handsontablevite]
 
 This example shows you how to manage relational data, sort, and update.
 
-<StackblitzExample path="table-handson" />
+<CodeSandboxExample path="table-handson" />

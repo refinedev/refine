@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example tutorial-antd
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open tutorial-antd example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial-antd?terminal=start&preset=node)
+[![Open tutorial-antd example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/tutorial-antd?view=preview&theme=dark&codemirror=1)
         

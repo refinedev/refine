@@ -10,4 +10,4 @@ Using the `useModal` hook that comes with the **headless** version of **refine**
 
 [Refer to the **refine** useModal hook documentation for more information. →](/docs/api-reference/core/hooks/ui/useModal/)
 
-<StackblitzExample path="core-use-modal" />
+<CodeSandboxExample path="core-use-modal" />

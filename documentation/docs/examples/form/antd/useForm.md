@@ -8,4 +8,4 @@ example-tags: [form,antd]
 
 [Refer to the **refine** useForm hook documentation for more information. →](/docs/api-reference/antd/hooks/form/useForm/)
 
-<StackblitzExample path="form-antd-use-form" />
+<CodeSandboxExample path="form-antd-use-form" />

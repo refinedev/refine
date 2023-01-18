@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example customization-top-menu-layout
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open customization-top-menu-layout example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/customization-top-menu-layout?terminal=start&preset=node)
+[![Open customization-top-menu-layout example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/customization-top-menu-layout?view=preview&theme=dark&codemirror=1)
         

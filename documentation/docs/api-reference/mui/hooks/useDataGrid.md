@@ -444,7 +444,7 @@ export const PostsList: React.FC = () => {
 
 ## Example
 
-<StackblitzExample path="table-mui-use-data-grid" />
+<CodeSandboxExample path="table-mui-use-data-grid" />
 
 [source-code]: https://github.com/refinedev/refine/blob/master/packages/master/src/hooks/useDataGrid/index.ts
 [syncwithlocationparams]: /api-reference/core/interfaces.md#syncwithlocationparams

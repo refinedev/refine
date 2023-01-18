@@ -414,7 +414,7 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 
 ## Example
 
-<StackblitzExample path="table-antd-use-table" />
+<CodeSandboxExample path="table-antd-use-table" />
 
 [table]: https://ant.design/components/table/#API
 [form]: https://ant.design/components/form/#API

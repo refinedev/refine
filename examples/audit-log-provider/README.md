@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example audit-log-provider
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open audit-log-provider example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/audit-log-provider?terminal=start&preset=node)
+[![Open audit-log-provider example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/audit-log-provider?view=preview&theme=dark&codemirror=1)
         

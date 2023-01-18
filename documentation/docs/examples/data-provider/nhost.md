@@ -10,4 +10,4 @@ example-tags: [antd,data-provider,nhost,auth-provider,graphql]
 **Password**: demodemo
 :::
 
-<StackblitzExample path="data-provider-nhost" />
+<CodeSandboxExample path="data-provider-nhost" />

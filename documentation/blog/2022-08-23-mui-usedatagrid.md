@@ -839,7 +839,7 @@ Where to go next? Check the useDataGrid hook documentation [here](https://refine
 
 ## Example
 
-<StackblitzExample path="blog-mui-datagrid" />
+<CodeSandboxExample path="blog-mui-datagrid" />
 
 
 ---

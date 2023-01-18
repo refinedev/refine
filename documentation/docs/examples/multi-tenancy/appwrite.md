@@ -8,4 +8,4 @@ In this example, we've shown how to build a Multi-Tenant app using the [Appwrite
 
 [Refer to the **refine** Appwrite Multi-Tenancy guide for more information. →](/docs/advanced-tutorials/multi-tenancy/appwrite/)
 
-<StackblitzExample path="multi-tenancy-appwrite" />
+<CodeSandboxExample path="multi-tenancy-appwrite" />

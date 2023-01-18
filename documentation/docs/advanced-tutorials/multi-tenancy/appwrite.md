@@ -649,4 +649,4 @@ In this guide and in our example app, we talked about how we can build Multitena
 
 ## Example
 
-<StackblitzExample path="multi-tenancy-appwrite" />
+<CodeSandboxExample path="multi-tenancy-appwrite" />

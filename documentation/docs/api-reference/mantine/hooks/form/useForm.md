@@ -1137,7 +1137,7 @@ const {
 
 ## Example
 
-<StackblitzExample path="form-mantine-use-form" />
+<CodeSandboxExample path="form-mantine-use-form" />
 
 [use-form-core]: /api-reference/core/hooks/useForm.md
 [use-form-mantine]: https://mantine.dev/form/use-form

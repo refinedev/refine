@@ -8,4 +8,4 @@ With the `useModalForm` hook, you can manage a form inside of your modal compone
 
 [Refer to the **refine** useModalForm hook documentation for more information. →](/docs/api-reference/antd/hooks/form/useModalForm/)
 
-<StackblitzExample path="form-antd-use-modal-form" />
+<CodeSandboxExample path="form-antd-use-modal-form" />

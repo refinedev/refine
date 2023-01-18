@@ -245,4 +245,4 @@ When the form is submitted, the `onSearch` method runs and we get the search for
 
 ## Example
 
-<StackblitzExample path="use-simple-list-antd" />
+<CodeSandboxExample path="use-simple-list-antd" />

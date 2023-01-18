@@ -9,4 +9,4 @@ example-tags: [table,react-tablereact-router]
 
 [Refer to the **refine** React Table documentation for more information. →](/docs/packages/documentation/react-table/)
 
-<StackblitzExample path="table-react-table-basic" />
+<CodeSandboxExample path="table-react-table-basic" />

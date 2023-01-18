@@ -786,4 +786,4 @@ Username: demo@refine.dev
 Password: demodemo
 :::
 
-<StackblitzExample path="data-provider-strapi-v4" />
+<CodeSandboxExample path="data-provider-strapi-v4" />

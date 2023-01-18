@@ -371,5 +371,5 @@ export const PostCreate: React.FC = () => {
 
 ## Example
 
-<StackblitzExample path="upload-antd-multipart" />
+<CodeSandboxExample path="upload-antd-multipart" />
    

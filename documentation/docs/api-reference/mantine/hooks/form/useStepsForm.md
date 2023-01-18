@@ -547,7 +547,7 @@ export const PostEdit: React.FC = () => {
 
 ## Example
 
-<StackblitzExample path="form-mantine-use-steps-form" />
+<CodeSandboxExample path="form-mantine-use-steps-form" />
 
 [use-form-refine-mantine]: /api-reference/mantine/hooks/form/useForm.md
 [use-form-core]: /api-reference/core/hooks/useForm.md
