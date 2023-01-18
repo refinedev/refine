@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example base-mantine
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open base-mantine example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/base-mantine?terminal=start&preset=node)
+[![Open base-mantine example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/base-mantine?view=preview&theme=dark&codemirror=1)
         

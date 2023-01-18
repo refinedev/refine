@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example table-chakra-ui-basic
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open table-chakra-ui-basic example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/table-chakra-ui-basic?terminal=start&preset=node)
+[![Open table-chakra-ui-basic example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/table-chakra-ui-basic?view=preview&theme=dark&codemirror=1)
         

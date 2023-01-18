@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example input-custom
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open input-custom example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/input-custom?terminal=start&preset=node)
+[![Open input-custom example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/input-custom?view=preview&theme=dark&codemirror=1)
         

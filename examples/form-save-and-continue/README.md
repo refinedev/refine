@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example form-save-and-continue
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open form-save-and-continue example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/form-save-and-continue?terminal=start&preset=node)
+[![Open form-save-and-continue example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/form-save-and-continue?view=preview&theme=dark&codemirror=1)
         

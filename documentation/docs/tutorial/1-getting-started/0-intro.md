@@ -47,31 +47,31 @@ Prefer to finish this tutorial in an online code editor? That's possible!
 
 <UIConditional is="antd">
 
-1. Click [here](https://stackblitz.com/github/refinedev/refine/tree/master/examples/template-antd?file=src%2FApp.tsx) to open the Ant Design template.
+1. Click [here](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/template-antd?file=src%2FApp.tsx) to open the Ant Design template.
 
 </UIConditional>
 
 <UIConditional is="chakra-ui">
 
-1. Click [here](https://stackblitz.com/github/refinedev/refine/tree/master/examples/template-chakra-ui?file=src%2FApp.tsx) to open the Chakra UI template.
+1. Click [here](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/template-chakra-ui?file=src%2FApp.tsx) to open the Chakra UI template.
 
 </UIConditional>
 
 <UIConditional is="headless">
 
-1. Click [here](https://stackblitz.com/github/refinedev/refine/tree/master/examples/template-headless?file=src%2FApp.tsx) to open the headless template.
+1. Click [here](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/template-headless?file=src%2FApp.tsx) to open the headless template.
 
 </UIConditional>
 
 <UIConditional is="mantine">
 
-1. Click [here](https://stackblitz.com/github/refinedev/refine/tree/master/examples/template-mantine?file=src%2FApp.tsx) to open the Mantine template.
+1. Click [here](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/template-mantine?file=src%2FApp.tsx) to open the Mantine template.
 
 </UIConditional>
 
 <UIConditional is="mui">
 
-1. Click [here](https://stackblitz.com/github/refinedev/refine/tree/master/examples/template-mui?file=src%2FApp.tsx) to open the Material UI template.
+1. Click [here](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/template-mui?file=src%2FApp.tsx) to open the Material UI template.
 
 </UIConditional>
 

@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example upload-chakra-ui-multipart
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open upload-chakra-ui-multipart example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/upload-chakra-ui-multipart?terminal=start&preset=node)
+[![Open upload-chakra-ui-multipart example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/upload-chakra-ui-multipart?view=preview&theme=dark&codemirror=1)
         

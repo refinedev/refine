@@ -308,6 +308,6 @@ render(<App />);
 
 ## Example
 
-Below you'll find a Live StackBlitz Example displaying a fully setup `Refine` app with `@pankod/refine-inferencer/headless` components.
+Below you'll find a Live CodeSandbox Example displaying a fully setup `Refine` app with `@pankod/refine-inferencer/headless` components.
 
 <StackblitzExample path="inferencer-headless" />

@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example customization-rtl
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open customization-rtl example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/customization-rtl?terminal=start&preset=node)
+[![Open customization-rtl example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/customization-rtl?view=preview&theme=dark&codemirror=1)
         
