@@ -4,7 +4,7 @@ import { BaseKey } from "..";
 export type LiveModeProps = {
     /**
      * Whether to update data automatically ("auto") or not ("manual") if a related live event is received. The "off" value is used to avoid creating a subscription.
-     * @type  [`"auto" | "manual" | "off"`](/docs/api-reference/core/interfaceReferences/#crudsorting)
+     * @type  [`"auto" | "manual" | "off"`](/docs/api-reference/core/providers/live-provider/#livemode)
      * @default `"off"`
      */
     liveMode?: "auto" | "manual" | "off";
