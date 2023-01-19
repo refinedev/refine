@@ -830,6 +830,7 @@ module.exports = {
                     label: "Notification Provider",
                     items: ["examples/notification-provider/react-toastify"],
                 },
+                "examples/persistQuery",
                 /*                 {
                     type: "category",
                     label: "Remix",
