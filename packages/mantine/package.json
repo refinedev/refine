@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine-mantine",
-    "version": "1.15.6",
+    "version": "1.15.7",
     "description": "refine is a React-based framework for building internal tools, rapidly.",
     "private": false,
     "main": "dist/index.js",
@@ -28,7 +28,7 @@
     "devDependencies": {
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@pankod/refine-cli": "^1.11.0",
-        "@pankod/refine-core": "^3.90.6",
+        "@pankod/refine-core": "^3.95.2",
         "@pankod/refine-ui-tests": "^0.11.6",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
