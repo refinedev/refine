@@ -7,15 +7,15 @@ description: useInfiniteList data hook from refine is a modified version of reac
 
 In some APIs, the `cursor-pagination` method is used for its various advantages. With **refine**, this type of API's can be retrieved with the [`useInfiniteQuery`](https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery) data hook, pagination, filtering and sorting can be done. Ideal for fetching data of the next page and user with a button (or scroll listener) where the total number of records is unknown.
 
-It uses the `getList` method as the query function from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
+It uses the `getList` method as the query function from the [`dataProvider`](/docs/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
 *TODO: Add LivePreview*
 
 ## Usage
 
-There is an API where the pagination is done with `cursor` where the total number of pages is unknown as below.
+Let's consider the following API as an example. Paging is done with the `cursor` parameter. Returns in cursor object whether there are next and previous pages.
 
-```ts title="https://api.fake-rest.refine.dev/posts"
+```ts title="https://api.fake-rest.refine.dev/posts?cursor=0"
 {
     posts: [
         {
@@ -31,13 +31,60 @@ There is an API where the pagination is done with `cursor` where the total numbe
     ],
     cursor: {
         next: 2,
-        prev: null,
+        prev: undefined,
     },
 }
 ```
 
-Now let's see how to use this API with `useInfiniteQuery`. 
+APIs of this type return the next page by sending a unique value of the last displayed row to the paging. The `id` value is used here. For the next page, the request should be request as `https://api.fake-rest.refine.dev/posts?cursor=2`.
 
+### Preparing the data provider
+
+Consumes data from data provider `useInfiniteList` with `getList` method. First of all, we need to make the this method in the data provider convenient for this API. The `cursor` data is kept in `pagination` and should be set to `0` by default.
+
+```ts
+getList: async ({ resource, pagination }) => {
+    const { current } = pagination;
+    const { data } = await axios.get(
+        `https://api.fake-rest.refine.dev/${resource}?cursor=${cursor || 0}`,
+    );
+
+    return {
+        data: data[resource],
+        total: 0,
+    };
+},
+```
+
+:::tip
+As the `total` data is only needed in the `offset-pagination` method, define it as `0` here.
+:::
+
+After this process, we have successfully retrieved the first page data. Let's fill the `cursor` object for the next page.
+
+```ts
+getList: async ({ resource, pagination }) => {
+    const { current } = pagination;
+    const { data } = await axios.get(
+        `https://api.fake-rest.refine.dev/${resource}?cursor=${cursor || 0}`,
+    );
+
+    return {
+        data: data[resource],
+        total: 0,
+        // highlight-start
+        cursor: {
+            next: data.cursor.next,
+            prev: data.cursor.prev,
+        },
+        // highlight-end
+    };
+},
+```
+
+### Handling the next pages
+
+If you returned a `cursor` object as described above, **refine** will do the pagination automatically. All pages can be accessed in the `pages` array as below.
 
 ```tsx
 import { useInfiniteList } from "@pankod/refine-core";
@@ -50,67 +97,78 @@ const {
     fetchNextPage,
     isFetchingNextPage,
 } = useInfiniteList({
-    resource: "products",
+    resource: "posts",
 });
 
 if (isLoading) {
     return <p>Loading</p>;
 }
 if (error) {
-    return <p>ERROR</p>;
+    return <p>Something went wrong</p>;
 }
 
 return (
     <div>
-        {data?.pages.map((page) =>
-            page.data.map((product) => (
-                <li key={product.id}>
-                    {product.id}-{product.name}
-                </li>
-            )),
-        )}
+        <ul>
+            {data?.pages.map((page) =>
+                page.data.map(({ id, title, createdAt }) => (
+                    <li key={id} style={{ marginBottom: 10 }}>
+                        <i>{createdAt}</i>
+                        <br />
+                        {title}
+                    </li>
+                )),
+            )}
+        </ul>
 
-        <button
-            onClick={() => fetchNextPage()}
-            disabled={!hasNextPage || isFetchingNextPage}
-        >
-            {isFetchingNextPage
-                ? "Loading more..."
-                : hasNextPage
-                ? "Load More"
-                : "Nothing more to load"}
-        </button>
+        {
+            hasNextPage && (
+                <button
+                    onClick={() => fetchNextPage()}
+                    disabled={isFetchingNextPage}
+                >Load More
+                </button>
+            )
+        }
     </div>
 );
 ```
 
-<br />
+By default, `refine` expects you to return the `cursor` object, but is not required. This is because some APIs don't work that way. To fix this problem you need to override the `getNextPageParam` method and return the next `cursor`.
 
-Although we didn't pass any sort order configurations to `useList`, data comes in descending order according to `id` since `getList` has default values for sort order:
+```tsx
+import { useInfiniteList } from "@pankod/refine-core";
 
-```ts
-{
-    sort: [{ order: "desc", field: "id" }];
-}
+const {
+    data,
+    error,
+    hasNextPage,
+    isLoading,
+    fetchNextPage,
+    isFetchingNextPage,
+} = useInfiniteList({
+    resource: "posts",
+    // highlight-start
+    queryOptions: {
+        getNextPageParam: (lastPage, allPages) => {
+            // return the last post's id
+            const { data } = lastPage;
+            const lastPost = data[data.length - 1];
+            return lastPost.id;
+        },
+    },
+    // highlight-end
+});
 ```
-
-:::caution
-`getList` also has default values for pagination:
-
-```ts
-{
-    pagination: { current: 1, pageSize: 10 }
-}
-```
-
-:::
-:::caution
-
-If you want to create your own `getList` method, it will automatically implement default query configurations since `useList` can work with no configuration parameters.
-
+:::tip
+When you override this method, you can access the `lastPage` and `allPages`.
 :::
 
-<br/>
+### Support for `offset-pagination`
+
+The pagination method prepared for the [`useList`](/docs/api-reference/core/hooks/data/useList.md) hook can also be used here.
+
+*TODO: More Information*
 
 ### Query Configuration
 
@@ -121,9 +179,9 @@ Allows us to set page and items per page values.
 For example imagine that we have 1000 post records:
 
 ```ts
-import { useList } from "@pankod/refine-core";
+import { useInfiniteList } from "@pankod/refine-core";
 
-const postListQueryResult = useList<IPost>({
+const postListQueryResult = useInfiniteList({
     resource: "posts",
     config: {
         pagination: { current: 3, pageSize: 8 },
@@ -140,9 +198,9 @@ const postListQueryResult = useList<IPost>({
 Allows us to sort records by the speficified order and field.
 
 ```ts
-import { useList } from "@pankod/refine-core";
+import { useInfiniteList } from "@pankod/refine-core";
 
-const postListQueryResult = useList<IPost>({
+const postListQueryResult = useInfiniteList<IPost>({
     resource: "posts",
     config: {
         sort: [{ order: "asc", field: "title" }],
@@ -169,7 +227,6 @@ const postListQueryResult = useList<IPost>({
             status: "published"
         },
     ],
-    total: 3
 }
 ```
 
@@ -182,9 +239,9 @@ const postListQueryResult = useList<IPost>({
 Allows us to filter queries using refine's filter operators. It is configured via `field`, `operator` and `value` properites.
 
 ```ts
-import { useList } from "@pankod/refine-core";
+import { useInfiniteList } from "@pankod/refine-core";
 
-const postListQueryResult = useList<IPost>({
+const postListQueryResult = useInfiniteList<IPost>({
     resource: "posts",
     config: {
         filters: [
@@ -207,7 +264,6 @@ const postListQueryResult = useList<IPost>({
             status: "rejected"
         },
     ],
-    total: 1
 }
 ```
 
@@ -236,17 +292,25 @@ const postListQueryResult = useList<IPost>({
 <br />
 
 :::tip
-`useList` can also accept all `useQuery` options as a third parameter.  
-[Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/reference/useQuery)
+`useInfiniteList` can also accept all `useInfiniteQuery` options as a third parameter.  
+[Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/reference/useInfiniteQuery)
 
 -   For example, to disable query from running automatically you can set `enabled` to `false`.
 
 ```ts
-import { useList } from "@pankod/refine-core";
+import { useInfiniteList } from "@pankod/refine-core";
 
-const postListQueryResult = useList<IPost>({
+const postListQueryResult = useInfiniteList<IPost>({
     resource: "posts",
-    queryOptions: { enabled: false },
+    // highlight-start
+    queryOptions: {
+        enabled: false,
+        getNextPageParam: ({ data }) => {
+            const lastRow = data[data.length - 1];
+            return lastRow.id;
+        },
+    },
+    // highlight-end
 });
 ```
 
@@ -255,15 +319,15 @@ const postListQueryResult = useList<IPost>({
 <br />
 
 :::tip
-`useList` returns the result of `react-query`'s `useQuery` which includes many properties such as `isLoading` and `isFetching`.
-[Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/reference/useQuery)
+`useInfiniteList` returns the result of `react-query`'s `useInfiniteQuery` which includes many properties such as `fetchNextPage`, `hasNextPage` and `isFetchingNextPage`.  
+[Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/reference/useInfiniteQuery)
 :::
 
 ## API
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useList" 
+<PropsTable module="@pankod/refine-core/useInfiniteList" 
 successNotification-default='`false`'
 errorNotification-default='"Error (status code: `statusCode`)"'
 />
@@ -298,6 +362,6 @@ interface UseListConfig {
 
 ### Return values
 
-| Description                              | Type                                                                                                                                         |
-| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`](https://react-query.tanstack.com/reference/useQuery) |
+| Description                                      | Type                                                                                                                                                         |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Result of the `react-query`'s `useInfiniteQuery` | [`InfiniteQueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`](https://react-query.tanstack.com/reference/useInfiniteQuery) |
