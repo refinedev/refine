@@ -6,7 +6,7 @@ title: useModalForm
 `useModalForm` hook allows you to manage a form within a [`<Modal>`][antd-modal]. It returns Ant Design [`<Form>`][antd-form] and [Modal][antd-modal] components props.
 
 :::info
-`useModalForm` hook is extended from [`useForm`][antd-use-form] from the [`@pankod/refine-antd`][@pankod/refine-antd] package. Which means that you can use all the features of [`useForm`][antd-use-form] hook.
+`useModalForm` hook is extended from [`useForm`][antd-use-form] from the [`@pankod/refine-antd`][@pankod/refine-antd] package. This means that you can use all the features of [`useForm`][antd-use-form] hook.
 :::
 
 ## Basic Usage
