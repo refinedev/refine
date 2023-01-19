@@ -105,7 +105,7 @@ const OnBackend: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
         >
             {!twBreakpoints.lg && <HeaderMobile>On Backend</HeaderMobile>}
             <div className="flex flex-col-reverse items-center justify-center w-full h-full max-w-screen-xl gap-8 md:flex-col md:gap-16">
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 w-[calc(100vw-32px)] lg:max-w-5xl sm:w-full px-4 -mx-4 sm:mx-0 gap-4 lg:gap-6">
+                <div className="flex flex-wrap items-center justify-center  w-[calc(100vw-32px)] lg:max-w-5xl sm:w-full px-4 -mx-4 sm:mx-0 gap-4 lg:gap-6">
                     {backendItems.map(({ name, Icon, AltIcon }, index) => (
                         <motion.div
                             key={name}
@@ -124,11 +124,9 @@ const OnBackend: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                                           scale: [0, 1],
                                       }
                             }
-                            className={`group relative w-full h-10 md:h-20 lg:h-[65px] bg-white rounded-[10px] ${
-                                index === backendItems.length - 1
-                                    ? "col-span-2 max-w-[50%] sm:max-w-none sm:col-span-1 mx-auto sm:mx-0"
-                                    : ""
-                            } ${name === "Python" ? "pt-1.5" : "pt-0"}`}
+                            className={`group relative w-[45%] sm:w-[30%] md:w-[30%] lg:w-[15%] h-10 md:h-20 lg:h-[65px] bg-white rounded-[10px] ${
+                                name === "Python" ? "pt-1.5" : "pt-0"
+                            }`}
                         >
                             <div className="flex items-center justify-center w-full h-full transition-all duration-300 scale-100 opacity-100 group-hover:opacity-0 group-hover:scale-0">
                                 <AltIcon className="scale-50 lg:scale-75" />
