@@ -21,6 +21,17 @@ export type UseStepsFormProps<
     TVariables = Record<string, unknown>,
     TTransformed = TVariables,
 > = UseFormProps<TData, TError, TVariables, TTransformed> & {
+    /**
+     * @description Configuration object for the steps.
+     * `defaultStep`: Allows you to set the initial step.
+     * 
+     * `isBackValidate`: Whether to validation the current step when going back.
+     * @type `{
+      defaultStep?: number;
+      isBackValidate?: boolean;
+      }`
+     * @default `defaultStep = 0` `isBackValidate = false`
+     */
     stepsProps?: {
         defaultStep?: number;
         isBackValidate?: boolean;

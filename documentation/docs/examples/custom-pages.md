@@ -7,4 +7,4 @@ example-tags: [antd,customization]
 
 The feature to modify your project in detail is a major benefit of using **refine**. In this example, you learn how to include and manage your own [Custom Pages](/docs/advanced-tutorials/custom-pages/) in your project.
 
-<StackblitzExample path="with-custom-pages" />
+<CodeSandboxExample path="with-custom-pages" />

@@ -6,25 +6,10 @@ title: useModalForm
 `useModalForm` hook also allows you to manage a form inside a modal component. It provides some useful methods to handle the form modal.
 
 :::info
-`useModalForm` hook is extended from [`useForm`][use-form-refine-mantine] hook from the [`@pankod/refine-mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. Which means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
+`useModalForm` hook is extended from [`useForm`][use-form-refine-mantine] hook from the [`@pankod/refine-mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. This means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
 :::
 
 ## Basic Usage
-
-```tsx
-const createModalForm = useModalForm({
-    modal: { show: showCreateModal, close, submit, title, visible },
-    refineCoreProps: { action: "create" },
-    initialValues: {
-        title: "",
-        content: "",
-    },
-    validate: {
-        title: (value) => (value.length < 2 ? "Too short title" : null),
-        content: (value) => (value.length < 10 ? "Too short content" : null),
-    },
-});
-```
 
 We'll show three examples, `"create"`, `"edit"` and `"clone"`. Let's see how `useModalForm` is used in all.
 
@@ -1066,7 +1051,7 @@ return (
 
 ## Example
 
-<StackblitzExample path="form-mantine-use-modal-form" />
+<CodeSandboxExample path="form-mantine-use-modal-form" />
 
 [use-form-refine-mantine]: /api-reference/mantine/hooks/form/useForm.md
 [use-form-core]: /api-reference/core/hooks/useForm.md

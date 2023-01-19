@@ -8,4 +8,4 @@ example-tags: [form,mantine]
 
 [Refer to the useModalForm hook documentation for more information. →](/api-reference/mantine/hooks/form/useModalForm.md)
 
-<StackblitzExample path="form-mantine-use-drawer-form" />
+<CodeSandboxExample path="form-mantine-use-drawer-form" />

@@ -224,7 +224,7 @@ const PostCreate: React.FC = () => {
 
 <GeneralConceptsLink />
 
-## Usage
+## Basic Usage
 
 > For more detailed usage examples please refer to the [Mantine Form](https://mantine.dev/form/use-form/) documentation.
 
@@ -1137,7 +1137,7 @@ const {
 
 ## Example
 
-<StackblitzExample path="form-mantine-use-form" />
+<CodeSandboxExample path="form-mantine-use-form" />
 
 [use-form-core]: /api-reference/core/hooks/useForm.md
 [use-form-mantine]: https://mantine.dev/form/use-form

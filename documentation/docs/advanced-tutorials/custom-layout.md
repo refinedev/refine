@@ -129,7 +129,7 @@ This example demonstrated how to configure a global layout. To learn how to use 
 
 Here's how it looks in the end:
 
-<StackblitzExample path="customization-top-menu-layout" />
+<CodeSandboxExample path="customization-top-menu-layout" />
 
 [refine]: /api-reference/core/components/refine-config.md
 [layout]: /api-reference/core/components/refine-config.md#layout

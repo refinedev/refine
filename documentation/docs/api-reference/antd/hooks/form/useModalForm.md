@@ -6,26 +6,10 @@ title: useModalForm
 `useModalForm` hook allows you to manage a form within a [`<Modal>`][antd-modal]. It returns Ant Design [`<Form>`][antd-form] and [Modal][antd-modal] components props.
 
 :::info
-`useModalForm` hook is extended from [`useForm`][antd-use-form] from the [`@pankod/refine-antd`][@pankod/refine-antd] package. Which means that you can use all the features of [`useForm`][antd-use-form] hook.
+`useModalForm` hook is extended from [`useForm`][antd-use-form] from the [`@pankod/refine-antd`][@pankod/refine-antd] package. This means that you can use all the features of [`useForm`][antd-use-form] hook.
 :::
 
 ## Basic Usage
-
-```tsx
-import { useModalForm } from "@pankod/refine-antd";
-
-interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
-}
-
-const { modalProps, formProps } = useModalForm<IPost>({
-    action: "create", // or "edit" or clone
-});
-```
-
-All we have to do is to pass the `formProps` to [`<Form>`][antd-form] and `modalProps` to [`<Modal>`][antd-modal] components.
 
 We'll show three examples, `"create"`, `"edit"` and `"clone"`. Let's see how `useModalForm` is used in all.
 
@@ -751,7 +735,7 @@ return (
 
 ## Example
 
-   <StackblitzExample path="form-antd-use-modal-form" />
+   <CodeSandboxExample path="form-antd-use-modal-form" />
 
 [@pankod/refine-antd]: https://github.com/refinedev/refine/tree/master/packages/antd
 [baserecord]: /api-reference/core/interfaces.md#baserecord

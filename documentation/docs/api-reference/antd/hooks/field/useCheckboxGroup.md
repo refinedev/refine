@@ -211,4 +211,4 @@ const { selectProps } = useSelect({
 
 ## Example
 
-<StackblitzExample path="field-antd-use-checkbox-group" />
+<CodeSandboxExample path="field-antd-use-checkbox-group" />

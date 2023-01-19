@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example command-palette-kbar
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open command-palette-kbar example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/command-palette-kbar?terminal=start&preset=node)
+[![Open command-palette-kbar example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/command-palette-kbar?view=preview&theme=dark&codemirror=1)
         

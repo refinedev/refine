@@ -218,4 +218,4 @@ Now, parsed data is mapped to conform our APIs requirements.
 
 ## Example
 
-<StackblitzExample path="core-use-import" />
+<CodeSandboxExample path="core-use-import" />

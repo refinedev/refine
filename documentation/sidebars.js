@@ -673,6 +673,7 @@ module.exports = {
                     items: [
                         "examples/auth-provider/auth0",
                         "examples/auth-provider/google-auth",
+                        "examples/auth-provider/keycloak",
                         "examples/auth-provider/otpLogin",
                     ],
                 },
@@ -704,7 +705,6 @@ module.exports = {
                     label: "Data Provider",
                     items: [
                         "examples/data-provider/airtable",
-                        "examples/data-provider/altogic",
                         "examples/data-provider/appwrite",
                         "examples/data-provider/directus",
                         "examples/data-provider/elide",
@@ -829,6 +829,7 @@ module.exports = {
                     label: "Notification Provider",
                     items: ["examples/notification-provider/react-toastify"],
                 },
+                "examples/persistQuery",
                 /*                 {
                     type: "category",
                     label: "Remix",

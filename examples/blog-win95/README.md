@@ -58,7 +58,7 @@ It's *headless by design*, thereby offering unlimited styling and customization 
 [**refine**](https://github.com/refinedev/refine) seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
 
 
-### Live StackBlitz Example
+### Live CodeSandbox Example
 [You can also reach to the same app on CodeSandbox 	➡️ ](https://refine.dev/blog/awesome-react-windows95-ui-with-refine/#live-codesandbox-example)
 
 ## Community

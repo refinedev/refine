@@ -8,4 +8,4 @@ example-tags: [form,antd]
 
 [Refer to the **refine** useDrawerForm hook documentation for more information. →](/docs/api-reference/antd/hooks/form/useDrawerForm/)
 
-<StackblitzExample path="form-antd-use-drawer-form" />
+<CodeSandboxExample path="form-antd-use-drawer-form" />

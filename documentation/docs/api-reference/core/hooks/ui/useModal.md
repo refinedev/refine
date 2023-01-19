@@ -63,6 +63,6 @@ We also created a `<button>` to close the `<YourModalComponent>` and gave the on
 
 ## Example
 
-<StackblitzExample path="core-use-modal" />
+<CodeSandboxExample path="core-use-modal" />
 
 [modal]: https://ant.design/components/modal/#API

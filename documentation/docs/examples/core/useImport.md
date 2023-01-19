@@ -11,4 +11,4 @@ The `useImport` hook was created by **refine** to help you import CSV files. You
 [Refer to the **refine** useImport hook documentation for more information. →](/docs/api-reference/core/hooks/import-export/useImport/)
 
 
-<StackblitzExample path="core-use-import" />
+<CodeSandboxExample path="core-use-import" />

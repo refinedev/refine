@@ -154,10 +154,10 @@ https://www.stackblitz.com/github/{GITHUB_USERNAME}/{REPOSITORY_NAME}/{BRANCH|TA
 You can also specify the script in your `package.json` file StackBlitz will use to set up the development serve as a query string. In the example below, StackBlitz will use the `dev` script.
 
 ```txt
-https://www.stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial-antd?terminal=start&preset=node
+https://www.stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial-antd?view=preview&theme=dark&codemirror=1
 ```
 
-You can open one of the tutorial examples in StackBlitz by following [this link](https://www.stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial-antd?terminal=start&preset=node).
+You can open one of the tutorial examples in StackBlitz by following [this link](https://www.stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial-antd?view=preview&theme=dark&codemirror=1).
 
 ### Pros of using StackBlitz
 

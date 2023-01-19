@@ -1135,7 +1135,7 @@ const {
 
 ## Example
 
-<StackblitzExample path="form-react-hook-form-use-form" />
+<CodeSandboxExample path="form-react-hook-form-use-form" />
 
 [react-hook-form]: https://react-hook-form.com
 [refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form

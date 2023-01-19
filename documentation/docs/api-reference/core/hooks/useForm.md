@@ -1224,6 +1224,6 @@ export const UserCreate: React.FC = () => {
 
 ## Example
 
-<StackblitzExample path="form-core-use-form" />
+<CodeSandboxExample path="form-core-use-form" />
 
 [notification-provider]: /docs/api-reference/core/providers/notification-provider/

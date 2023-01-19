@@ -10,4 +10,4 @@ Connect your [Supabase](https://supabase.com/) database with **refine** Supabase
 StackBlitz environment does not allow Realtime features to work.
 :::
 
-<StackblitzExample path="data-provider-supabase" />
+<CodeSandboxExample path="data-provider-supabase" />

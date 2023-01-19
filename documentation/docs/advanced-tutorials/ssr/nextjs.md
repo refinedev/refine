@@ -490,7 +490,7 @@ You can find the `app/` directory example with **refine** in [examples/nextjs/ap
 
 ## Example
 
-<StackblitzExample path="with-nextjs" />
+<CodeSandboxExample path="with-nextjs" />
 
 [nextjs]: https://nextjs.org/docs/getting-started
 [nextjsrouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router

@@ -218,5 +218,5 @@ In the next post, we will demonstrate the use of `useCallback()` hook.
 
 ## Example
 
-<StackblitzExample path="blog-react-memoization-memo" />
+<CodeSandboxExample path="blog-react-memoization-memo" />
 

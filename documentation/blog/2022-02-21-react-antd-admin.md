@@ -27,7 +27,7 @@ hide_table_of_contents: false
 
 📦 Out-of-the-box : Routing, networking, authentication, state management, i18n and UI.
 
-🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, GraphQL, NestJs CRUD, Airtable, Strapi, Strapi v4, Strapi GraphQL, Supabase, Hasura, Nhost, Medusa, Appwrite, Firebase and Altogic.
+🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, GraphQL, NestJs CRUD, Airtable, Strapi, Strapi v4, Strapi GraphQL, Supabase, Hasura, Nhost, Medusa, Appwrite, and Firebase.
 
 📝 Native Typescript Core : You can always opt out for plain JavaScript.
 

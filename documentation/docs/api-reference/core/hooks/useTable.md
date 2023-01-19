@@ -161,7 +161,7 @@ const { filters, setFilters } = useTable({
 
 console.log(filters); // [{ field: "title", operator: "contains", value: "rerum" }, { field: "status", operator: "equals", value: "published" }]
 
-setFilter([
+setFilters([
     {
         field: "title",
         operator: "contains",
@@ -171,7 +171,7 @@ setFilter([
 
 console.log(filters); // [{ field: "title", operator: "contains", value: "F" }, { field: "status", operator: "equals", value: "published" }]
 
-setFilter([
+setFilters([
     {
         field: "author",
         operator: "contains",
@@ -189,7 +189,7 @@ console.log(filters);
 ]
 */
 
-setFilter([
+setFilters([
     {
         field: "author",
         operator: "ne",

@@ -8,4 +8,4 @@ example-tags: [form,mui,react-hook-form]
 
 [Refer to the useForm hook documentation for more information. →](/docs/packages/documentation/react-hook-form/useForm)
 
-<StackblitzExample path="form-mui-use-form" />
+<CodeSandboxExample path="form-mui-use-form" />

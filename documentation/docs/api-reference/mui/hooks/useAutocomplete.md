@@ -311,4 +311,4 @@ const { autocompleteProps } = useAutocomplete({
 
 ## Example
 
-<StackblitzExample path="field-antd-use-select-mui" />
+<CodeSandboxExample path="field-antd-use-select-mui" />

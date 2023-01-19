@@ -412,4 +412,4 @@ We can now request to send ethereum through our **refine** dashboard and also vi
 
 ## Example
 
-<StackblitzExample path="with-web3" />
+<CodeSandboxExample path="with-web3" />

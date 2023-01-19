@@ -11,4 +11,4 @@ example-tags: [command-palette,kbar]
 
 Try it out – press cmd+k (macOS) or ctrl+k (Linux/Windows).
 
-<StackblitzExample path="command-palette-kbar" />
+<CodeSandboxExample path="command-palette-kbar" />

@@ -9,4 +9,4 @@ You may use the `useTable` hook to process your data with features compatible wi
 
 [Refer to the **refine** useTable hook documentation for more information. →](/docs/api-reference/antd/hooks/table/useTable/)
 
-<StackblitzExample path="table-antd-use-table" />
+<CodeSandboxExample path="table-antd-use-table" />

@@ -8,4 +8,4 @@ example-tags: [form,mantine]
 
 [Refer to the useForm hook documentation for more information. →](/api-reference/mantine/hooks/form/useForm.md)
 
-<StackblitzExample path="form-mantine-use-form" />
+<CodeSandboxExample path="form-mantine-use-form" />

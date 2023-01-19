@@ -164,7 +164,7 @@ Depending on the [`batchSize`][batchsize] option, posts can get sent one by one 
 
 ## Example
 
-<StackblitzExample path="import-export-antd" />
+<CodeSandboxExample path="import-export-antd" />
 
 [papa parse]: https://www.papaparse.com/
 [batchsize]: /api-reference/core/hooks/import-export/useImport.md#api-reference

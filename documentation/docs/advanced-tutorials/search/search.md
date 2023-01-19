@@ -300,4 +300,4 @@ By doing the same implementation on your other resources, you can search more th
 
 ## Example
 
-<StackblitzExample path="search" />
+<CodeSandboxExample path="search" />

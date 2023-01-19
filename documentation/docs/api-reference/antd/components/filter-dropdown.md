@@ -167,4 +167,4 @@ If [syncWithLocation](/api-reference/core/components/refine-config.md#syncwithlo
 
 ## Example
 
-<StackblitzExample path="table-antd-use-table" />
+<CodeSandboxExample path="table-antd-use-table" />
