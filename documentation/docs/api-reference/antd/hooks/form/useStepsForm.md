@@ -1067,6 +1067,18 @@ const stepsForm = useStepsForm({
 });
 ```
 
+### `isBackValidate`
+
+> Default: `false`
+
+When is `true`, validates a form fields when the user navigates to a previous step.
+
+```tsx
+const stepsForm = useStepsForm({
+    isBackValidate: true,
+});
+```
+
 ## Return Values
 
 :::tip
