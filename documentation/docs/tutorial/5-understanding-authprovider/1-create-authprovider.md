@@ -943,3 +943,11 @@ const authProvider: AuthProvider = {
 
 <br />
 <br />
+
+<Checklist>
+
+<ChecklistItem id="auth-provider-create-auth-provider">
+I understood how to create a auth provider.
+</ChecklistItem>
+
+</Checklist>
