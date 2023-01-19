@@ -5,6 +5,12 @@ title: useDrawerForm
 
 `useDrawerForm` hook allows you to manage a form within a Drawer. It returns Ant Design [`<Form>`](https://ant.design/components/form/) and [`<Drawer>`](https://ant.design/components/drawer/) components props.
 
+:::info
+`useDrawerForm` hook is extended from [`useForm`](/api-reference/antd/hooks/form/useForm.md) from the [@pankod/refine-antd](https://github.com/refinedev/refine/tree/next/packages/antd) package. Which means that you can use all the features of [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook.
+:::
+
+## Basic Usage
+
 ```ts
 import { useDrawerForm } from "@pankod/refine-antd";
 
@@ -13,15 +19,7 @@ const { drawerProps, formProps } = useDrawerForm<IPost>({
 });
 ```
 
-All we have to do is to pass the `drawerProps` to `<Drawer>` and `formProps` to `<Form>` components.
-
-:::info
-`useDrawerForm` hook is extended from [`useForm`](/api-reference/antd/hooks/form/useForm.md) from the [@pankod/refine-antd](https://github.com/refinedev/refine/tree/next/packages/antd) package. Which means that you can use all the features of [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook.
-:::
-
-## Basic Usage
-
-We'll do two examples, one for creating and one for editing a post. Let's see how `useDrawerForm` is used in both. To achieve this, we will utilize the `"list"` page to open a [`<Drawer>`](https://ant.design/components/drawer/).
+We'll do two examples, one for creating and one for editing a post. Let's see how `useDrawerForm` is used in both.
 
 <Tabs
 defaultValue="create"
