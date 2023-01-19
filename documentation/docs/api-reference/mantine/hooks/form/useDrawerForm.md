@@ -539,7 +539,7 @@ All [`mantine useForm`](https://mantine.dev/form/use-form/) props also available
 Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
 
 ```tsx
-const modalForm = useDrawerForm({
+const drawerForm = useDrawerForm({
     initialValues: {
         title: "Hello World",
     },
@@ -553,7 +553,7 @@ const modalForm = useDrawerForm({
 When `true`, modal will be visible by default.
 
 ```tsx
-const modalForm = useDrawerForm({
+const drawerForm = useDrawerForm({
     modalProps: {
         defaultVisible: true,
     },
@@ -567,7 +567,7 @@ const modalForm = useDrawerForm({
 When `true`, modal will be closed after successful submit.
 
 ```tsx
-const modalForm = useDrawerForm({
+const drawerForm = useDrawerForm({
     modalProps: {
         autoSubmitClose: false,
     },
@@ -581,7 +581,7 @@ const modalForm = useDrawerForm({
 When `true`, form will be reset after successful submit.
 
 ```tsx
-const modalForm = useDrawerForm({
+const drawerForm = useDrawerForm({
     modalProps: {
         autoResetForm: false,
     },
@@ -597,7 +597,7 @@ When you have unsaved changes and try to leave the current page, refine shows a 
 You can also set this value in [`<Refine>`](/docs/api-reference/core/components/refine-config/#warnwhenunsavedchanges) component.
 
 ```tsx
-const modalForm = useDrawerForm({
+const drawerForm = useDrawerForm({
     refineCoreProps: {
         warnWhenUnsavedChanges: true,
     },
@@ -617,7 +617,7 @@ All [`mantine useForm`](https://mantine.dev/form/use-form/) return values also a
 Current visibility state of the modal.
 
 ```tsx
-const modalForm = useDrawerForm({
+const drawerForm = useDrawerForm({
     defaultVisible: true,
 });
 
