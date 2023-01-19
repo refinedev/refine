@@ -829,6 +829,10 @@ It's a function that will be called when a key is pressed. By default, it will c
 
 When `action` is set to `"edit"` or `"clone"`, `initialValues` will be set to the `data` returned from [`useOne`](/docs/api-reference/core/hooks/data/useOne/) hook.
 
+### `saveButtonProps`
+
+It contains all the props needed by the `"submit"` button within the form (disabled,loading etc.). When `saveButtonProps.onClick` is called, it triggers `form.submit()`. You can manually pass these props to your custom button.
+
 ### `formLoading`
 
 Loading state of a modal. It's `true` when `useForm` is currently being submitted or data is being fetched for the `"edit"` or `"clone"` mode.

@@ -3,43 +3,62 @@ id: useStepsForm
 title: useStepsForm
 ---
 
-`useStepsForm` allows you to manage a form with multiple steps. It provides features such as which step is currently active, the ability to go to a specific step and validation when changing steps etc.
-
-:::info
-`useStepsForm` hook based on [`useForm`][use-form-refine-mantine] hook provided by `@pankod/refine-mantine`.
-:::
-
-## Usage
-
-We'll show two examples, one for creating and one for editing a post. Let's see how `useStepsForm` is used in both.
-
-Let's create our `<PostList>` component to redirect to create and edit pages.
-
-<details>
-  <summary>PostList</summary>
-  <div>
-
-```tsx title="src/pages/posts/list.tsx"
+```tsx live shared
 import React from "react";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import {
+    useTable,
+    ColumnDef,
+    flexRender,
+    Column,
+} from "@pankod/refine-react-table";
 import { GetManyResponse, useMany } from "@pankod/refine-core";
 import {
-    Box,
-    Group,
-    List,
-    ScrollArea,
-    Select,
-    Table,
-    Pagination,
-    EditButton,
-    DeleteButton,
-    DateField,
+    Button as MantineButton,
+    Code as MantineCode,
+    Edit as MantineEdit,
+    Create as MantineCreate,
+    List as MantineList,
+    Group as MantineGroup,
+    Select as MantineSelect,
+    Stepper as MantineStepper,
+    TextInput as MantineTextInput,
+    useStepsForm as MantineUseStepsForm,
+    useSelect as MantineUseSelect,
+    DeleteButton as MantineDeleteButton,
+    SaveButton as MantineSaveButton,
+    Text as MantineText,
+    Textarea as MantineTextarea,
+    Space as MantineSpace,
+    Pagination as MantinePagination,
+    ScrollArea as MantineScrollArea,
+    Table as MantineTable,
+    Box as MantineBox,
+    EditButton as MantineEditButton,
 } from "@pankod/refine-mantine";
 
-import { ColumnFilter, ColumnSorter } from "../../components/table";
-import { FilterElementProps, ICategory, IPost } from "../../interfaces";
+interface ICategory {
+    id: number;
+    title: string;
+}
 
-export const PostList: React.FC = () => {
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: { id: number };
+}
+
+interface ColumnButtonProps {
+    column: Column<any, any>; // eslint-disable-line
+}
+
+interface FilterElementProps {
+    value: any; // eslint-disable-line
+    onChange: (value: any) => void; // eslint-disable-line
+}
+
+const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             {
@@ -92,17 +111,6 @@ export const PostList: React.FC = () => {
                 },
             },
             {
-                id: "createdAt",
-                header: "Created At",
-                accessorKey: "createdAt",
-                cell: function render({ getValue }) {
-                    return (
-                        <DateField value={getValue() as string} format="LLL" />
-                    );
-                },
-                enableColumnFilter: false,
-            },
-            {
                 id: "actions",
                 header: "Actions",
                 accessorKey: "id",
@@ -110,16 +118,16 @@ export const PostList: React.FC = () => {
                 enableSorting: false,
                 cell: function render({ getValue }) {
                     return (
-                        <Group spacing="xs" noWrap>
-                            <EditButton
+                        <MantineGroup spacing="xs" noWrap>
+                            <MantineEditButton
                                 hideText
                                 recordItemId={getValue() as number}
                             />
-                            <DeleteButton
+                            <MantineDeleteButton
                                 hideText
                                 recordItemId={getValue() as number}
                             />
-                        </Group>
+                        </MantineGroup>
                     );
                 },
             },
@@ -159,9 +167,9 @@ export const PostList: React.FC = () => {
     }));
 
     return (
-        <ScrollArea>
-            <List>
-                <Table highlightOnHover>
+        <MantineScrollArea>
+            <MantineList>
+                <MantineTable highlightOnHover>
                     <thead>
                         {getHeaderGroups().map((headerGroup) => (
                             <tr key={headerGroup.id}>
@@ -169,28 +177,19 @@ export const PostList: React.FC = () => {
                                     return (
                                         <th key={header.id}>
                                             {!header.isPlaceholder && (
-                                                <Group spacing="xs" noWrap>
-                                                    <Box>
+                                                <MantineGroup
+                                                    spacing="xs"
+                                                    noWrap
+                                                >
+                                                    <MantineBox>
                                                         {flexRender(
                                                             header.column
                                                                 .columnDef
                                                                 .header,
                                                             header.getContext(),
                                                         )}
-                                                    </Box>
-                                                    <Group spacing="xs" noWrap>
-                                                        <ColumnSorter
-                                                            column={
-                                                                header.column
-                                                            }
-                                                        />
-                                                        <ColumnFilter
-                                                            column={
-                                                                header.column
-                                                            }
-                                                        />
-                                                    </Group>
-                                                </Group>
+                                                    </MantineBox>
+                                                </MantineGroup>
                                             )}
                                         </th>
                                     );
@@ -216,28 +215,286 @@ export const PostList: React.FC = () => {
                             );
                         })}
                     </tbody>
-                </Table>
+                </MantineTable>
                 <br />
-                <Pagination
+                <MantinePagination
                     position="right"
                     total={pageCount}
                     page={current}
                     onChange={setCurrent}
                 />
-            </List>
-        </ScrollArea>
+            </MantineList>
+        </MantineScrollArea>
+    );
+};
+
+const PostCreate: React.FC = () => {
+    const {
+        saveButtonProps,
+        getInputProps,
+        values,
+        steps: { currentStep, gotoStep },
+    } = MantineUseStepsForm({
+        initialValues: {
+            title: "",
+            status: "",
+            slug: "",
+            content: "",
+        },
+        validate: (values) => {
+            if (currentStep === 0) {
+                return {
+                    title: values.title ? null : "Title is required",
+                    slug: values.slug ? null : "Slug is required",
+                };
+            }
+
+            if (currentStep === 1) {
+                return {
+                    status: values.status ? null : "Status is required",
+                };
+            }
+
+            return {};
+        },
+    });
+
+    return (
+        <MantineCreate
+            footerButtons={
+                <MantineGroup position="right" mt="xl">
+                    {currentStep !== 0 && (
+                        <MantineButton
+                            variant="default"
+                            onClick={() => gotoStep(currentStep - 1)}
+                        >
+                            Back
+                        </MantineButton>
+                    )}
+                    {currentStep !== 3 && (
+                        <MantineButton
+                            onClick={() => gotoStep(currentStep + 1)}
+                        >
+                            Next step
+                        </MantineButton>
+                    )}
+                    {currentStep === 2 && <SaveButton {...saveButtonProps} />}
+                </MantineGroup>
+            }
+        >
+            <MantineStepper
+                active={currentStep}
+                onStepClick={gotoStep}
+                breakpoint="xs"
+            >
+                <MantineStepper.Step
+                    label="First Step"
+                    description="Title and Slug"
+                    allowStepSelect={currentStep > 0}
+                >
+                    <MantineTextInput
+                        mt="md"
+                        label="Title"
+                        placeholder="Title"
+                        {...getInputProps("title")}
+                    />
+                    <MantineTextInput
+                        mt="md"
+                        label="Slug"
+                        placeholder="Slug"
+                        {...getInputProps("slug")}
+                    />
+                </MantineStepper.Step>
+
+                <MantineStepper.Step
+                    label="Second Step"
+                    description="Status"
+                    allowStepSelect={currentStep > 1}
+                >
+                    <MantineSelect
+                        mt="md"
+                        label="Status"
+                        placeholder="Pick one"
+                        {...getInputProps("status")}
+                        data={[
+                            { label: "Published", value: "published" },
+                            { label: "Draft", value: "draft" },
+                            { label: "Rejected", value: "rejected" },
+                        ]}
+                    />
+                </MantineStepper.Step>
+
+                <MantineStepper.Step
+                    label="Final Step"
+                    description="Content"
+                    allowStepSelect={currentStep > 2}
+                >
+                    <MantineTextarea
+                        label="Content"
+                        placeholder="Content"
+                        {...getInputProps("content")}
+                    />
+                </MantineStepper.Step>
+
+                <MantineStepper.Completed>
+                    Completed! Form values:
+                    <MantineSpace />
+                    <MantineCode mt="xl">
+                        {JSON.stringify(values, null, 2)}
+                    </MantineCode>
+                </MantineStepper.Completed>
+            </MantineStepper>
+        </MantineCreate>
+    );
+};
+
+const PostEdit: React.FC = () => {
+    const {
+        saveButtonProps,
+        getInputProps,
+        values,
+        steps: { currentStep, gotoStep },
+    } = MantineUseStepsForm({
+        initialValues: {
+            title: "",
+            status: "",
+            slug: "",
+            content: "",
+        },
+        validate: (values) => {
+            if (currentStep === 0) {
+                return {
+                    title: values.title ? null : "Title is required",
+                    status: values.status ? null : "Status is required",
+                };
+            }
+
+            if (currentStep === 1) {
+                return {
+                    slug: values.slug ? null : "Slug is required",
+                };
+            }
+
+            return {};
+        },
+    });
+
+    return (
+        <MantineEdit
+            footerButtons={
+                <MantineGroup position="right" mt="xl">
+                    {currentStep !== 0 && (
+                        <MantineButton
+                            variant="default"
+                            onClick={() => gotoStep(currentStep - 1)}
+                        >
+                            Back
+                        </MantineButton>
+                    )}
+                    {currentStep !== 3 && (
+                        <MantineButton
+                            onClick={() => gotoStep(currentStep + 1)}
+                        >
+                            Next step
+                        </MantineButton>
+                    )}
+                    {currentStep === 2 && <SaveButton {...saveButtonProps} />}
+                </MantineGroup>
+            }
+        >
+            <MantineStepper
+                active={currentStep}
+                onStepClick={gotoStep}
+                breakpoint="xs"
+            >
+                <MantineStepper.Step
+                    label="First Step"
+                    description="Title and Slug"
+                    allowStepSelect={currentStep > 0}
+                >
+                    <MantineTextInput
+                        mt="md"
+                        label="Title"
+                        placeholder="Title"
+                        {...getInputProps("title")}
+                    />
+                    <MantineTextInput
+                        mt="md"
+                        label="Slug"
+                        placeholder="Slug"
+                        {...getInputProps("slug")}
+                    />
+                </MantineStepper.Step>
+
+                <MantineStepper.Step
+                    label="Second Step"
+                    description="Status"
+                    allowStepSelect={currentStep > 1}
+                >
+                    <MantineSelect
+                        mt="md"
+                        label="Status"
+                        placeholder="Pick one"
+                        {...getInputProps("status")}
+                        data={[
+                            { label: "Published", value: "published" },
+                            { label: "Draft", value: "draft" },
+                            { label: "Rejected", value: "rejected" },
+                        ]}
+                    />
+                </MantineStepper.Step>
+
+                <MantineStepper.Step
+                    label="Final Step"
+                    description="Content"
+                    allowStepSelect={currentStep > 2}
+                >
+                    <MantineTextarea
+                        label="Content"
+                        placeholder="Content"
+                        {...getInputProps("content")}
+                    />
+                </MantineStepper.Step>
+                <MantineStepper.Completed>
+                    Completed! Form values:
+                    <MantineSpace />
+                    <MantineCode mt="xl">
+                        {JSON.stringify(values, null, 2)}
+                    </MantineCode>
+                </MantineStepper.Completed>
+            </MantineStepper>
+        </MantineEdit>
     );
 };
 ```
 
-  </div>
-</details>
+`useStepsForm` allows you to manage a form with multiple steps. It provides features such as which step is currently active, the ability to go to a specific step and validation when changing steps etc.
 
-### Create Form
+:::tip
+`useStepsForm` hook based on [`useForm`][use-form-refine-mantine] hook provided by `@pankod/refine-mantine`. It means that you can use all the features of [`useForm`][use-form-refine-mantine] in your `useStepsForm`.
+:::
 
-In this component you can see how `useStepsForm` is used to manage the steps and form.
+## Basic Usage
 
-```tsx title="src/pages/posts/create.tsx"
+We'll show two examples, one for creating and one for editing a post. Let's see how `useStepsForm` is used in both.
+
+<Tabs
+defaultValue="create"
+values={[
+{label: 'create', value: 'create'},
+{label: 'edit', value: 'edit'},
+]}>
+
+<TabItem value="create">
+
+Here is the final result of the form: We will explain the code in following sections.
+
+```tsx live url=http://localhost:3000/posts/create previewHeight=420px hideCode
+setInitialRoutes(["/posts/create"]);
+
+// visible-block-start
+import React from "react";
+import { HttpError } from "@pankod/refine-core";
 import {
     Button,
     Code,
@@ -249,26 +506,26 @@ import {
     useStepsForm,
     SaveButton,
     Text,
+    Space,
+    Textarea,
 } from "@pankod/refine-mantine";
-import { RichTextEditor } from "@mantine/rte";
-import { DatePicker } from "@mantine/dates";
 
-export const PostCreate: React.FC = () => {
+type FormValues = Omit<IPost, "id">;
+
+const PostCreatePage: React.FC = () => {
     const {
         saveButtonProps,
         getInputProps,
         values,
         steps: { currentStep, gotoStep },
-    } = useStepsForm({
+    } = useStepsForm<IPost, HttpError, FormValues>({
         initialValues: {
             title: "",
             status: "",
             slug: "",
-            createdAt: new Date(),
             content: "",
         },
         validate: (values) => {
-            // validation for each step
             if (currentStep === 0) {
                 return {
                     title: values.title ? null : "Title is required",
@@ -279,9 +536,6 @@ export const PostCreate: React.FC = () => {
             if (currentStep === 1) {
                 return {
                     status: values.status ? null : "Status is required",
-                    createdAt: values.createdAt
-                        ? null
-                        : "CreatedAt is required",
                 };
             }
 
@@ -291,7 +545,6 @@ export const PostCreate: React.FC = () => {
 
     return (
         <Create
-            // Next, previous and save buttons
             footerButtons={
                 <Group position="right" mt="xl">
                     {currentStep !== 0 && (
@@ -311,8 +564,16 @@ export const PostCreate: React.FC = () => {
                 </Group>
             }
         >
-            <Stepper active={currentStep} breakpoint="sm">
-                <Stepper.Step label="First Step">
+            <Stepper
+                active={currentStep}
+                onStepClick={gotoStep}
+                breakpoint="xs"
+            >
+                <Stepper.Step
+                    label="First Step"
+                    description="Title and Slug"
+                    allowStepSelect={currentStep > 0}
+                >
                     <TextInput
                         mt="md"
                         label="Title"
@@ -327,7 +588,11 @@ export const PostCreate: React.FC = () => {
                     />
                 </Stepper.Step>
 
-                <Stepper.Step label="Second Step">
+                <Stepper.Step
+                    label="Second Step"
+                    description="Status"
+                    allowStepSelect={currentStep > 1}
+                >
                     <Select
                         mt="md"
                         label="Status"
@@ -339,49 +604,61 @@ export const PostCreate: React.FC = () => {
                             { label: "Rejected", value: "rejected" },
                         ]}
                     />
-
-                    <DatePicker
-                        mt="md"
-                        label="CreatedAt"
-                        placeholder="CreatedAt"
-                        {...getInputProps("createdAt")}
-                    />
                 </Stepper.Step>
 
-                <Stepper.Step label="Final Step">
-                    <Text mt={8} weight={500} size="sm" color="#212529">
-                        Content
-                    </Text>
-                    <RichTextEditor
-                        sx={{ minHeight: 300 }}
+                <Stepper.Step
+                    label="Final Step"
+                    description="Content"
+                    allowStepSelect={currentStep > 2}
+                >
+                    <Textarea
+                        label="Content"
+                        placeholder="Content"
                         {...getInputProps("content")}
                     />
                 </Stepper.Step>
+
                 <Stepper.Completed>
                     Completed! Form values:
-                    <Code block mt="xl">
-                        {JSON.stringify(values, null, 2)}
-                    </Code>
+                    <Space />
+                    <Code mt="xl">{JSON.stringify(values, null, 2)}</Code>
                 </Stepper.Completed>
             </Stepper>
         </Create>
     );
 };
+// visible-block-end
+
+setRefineProps({
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+            create: PostCreatePage,
+            edit: PostEdit,
+        },
+    ],
+});
+
+render(<RefineMantineDemo />);
 ```
 
-### Edit Form
+</TabItem>
 
-Magic, `<PostCreate>` and `<PostEdit>` pages are almost the same. So how are the form's default values set? `useStepsForm` does this with te `id` parameter it reads from the URL and fetches the data from the server.
+<TabItem value="edit">
 
-You can change the `id` as you want with the `setId` that comes out of `refineCore`.
+Here is the final result of the form: We will explain the code in following sections.
 
-Another part that is different from `<PostCreate>` and `<PostEdit>` is the `value` passed to the `DatePicker` component.
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
+setInitialRoutes(["/posts/edit/123"]);
 
-```tsx title="src/pages/posts/edit.tsx"
+// visible-block-start
+import React from "react";
+import { HttpError } from "@pankod/refine-core";
 import {
+    Edit,
     Button,
     Code,
-    Edit,
     Group,
     Select,
     Stepper,
@@ -390,40 +667,35 @@ import {
     SaveButton,
     Text,
     Space,
+    Textarea,
 } from "@pankod/refine-mantine";
-import { RichTextEditor } from "@mantine/rte";
-import { DatePicker } from "@mantine/dates";
-import dayjs from "dayjs";
 
-export const PostEdit: React.FC = () => {
+type FormValues = Omit<IPost, "id">;
+
+const PostEditPage: React.FC = () => {
     const {
         saveButtonProps,
         getInputProps,
         values,
         steps: { currentStep, gotoStep },
-    } = useStepsForm({
+    } = useStepsForm<IPost, HttpError, FormValues>({
         initialValues: {
             title: "",
             status: "",
             slug: "",
-            createdAt: new Date(),
             content: "",
         },
         validate: (values) => {
-            // validation for each step
             if (currentStep === 0) {
                 return {
                     title: values.title ? null : "Title is required",
-                    status: values.status ? null : "Status is required",
+                    slug: values.slug ? null : "Slug is required",
                 };
             }
 
             if (currentStep === 1) {
                 return {
-                    slug: values.slug ? null : "Slug is required",
-                    createdAt: values.createdAt
-                        ? null
-                        : "CreatedAt is required",
+                    status: values.status ? null : "Status is required",
                 };
             }
 
@@ -433,7 +705,6 @@ export const PostEdit: React.FC = () => {
 
     return (
         <Edit
-            // Next, previous and save buttons
             footerButtons={
                 <Group position="right" mt="xl">
                     {currentStep !== 0 && (
@@ -453,8 +724,16 @@ export const PostEdit: React.FC = () => {
                 </Group>
             }
         >
-            <Stepper active={currentStep} breakpoint="sm">
-                <Stepper.Step label="First Step">
+            <Stepper
+                active={currentStep}
+                onStepClick={gotoStep}
+                breakpoint="xs"
+            >
+                <Stepper.Step
+                    label="First Step"
+                    description="Title and Slug"
+                    allowStepSelect={currentStep > 0}
+                >
                     <TextInput
                         mt="md"
                         label="Title"
@@ -469,7 +748,11 @@ export const PostEdit: React.FC = () => {
                     />
                 </Stepper.Step>
 
-                <Stepper.Step label="Second Step">
+                <Stepper.Step
+                    label="Second Step"
+                    description="Status"
+                    allowStepSelect={currentStep > 1}
+                >
                     <Select
                         mt="md"
                         label="Status"
@@ -481,69 +764,312 @@ export const PostEdit: React.FC = () => {
                             { label: "Rejected", value: "rejected" },
                         ]}
                     />
+                </Stepper.Step>
 
-                    <DatePicker
-                        mt="md"
-                        label="CreatedAt"
-                        placeholder="CreatedAt"
-                        {...getInputProps("createdAt")}
-                        value={dayjs(values.createdAt).toDate()}
+                <Stepper.Step
+                    label="Final Step"
+                    description="Content"
+                    allowStepSelect={currentStep > 2}
+                >
+                    <Textarea
+                        label="Content"
+                        placeholder="Content"
+                        {...getInputProps("content")}
                     />
                 </Stepper.Step>
 
-                <Stepper.Step label="Final Step">
-                    <Text mt={8} weight={500} size="sm" color="#212529">
-                        Content
-                    </Text>
-                    <RichTextEditor {...getInputProps("content")} />
-                </Stepper.Step>
                 <Stepper.Completed>
                     Completed! Form values:
-                    <Code block mt="xl">
-                        {JSON.stringify(values, null, 2)}
-                    </Code>
+                    <Space />
+                    <Code mt="xl">{JSON.stringify(values, null, 2)}</Code>
                 </Stepper.Completed>
             </Stepper>
         </Edit>
     );
 };
+// visible-block-end
+
+setRefineProps({
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+            create: PostCreate,
+            edit: PostEditPage,
+        },
+    ],
+});
+
+render(<RefineMantineDemo />);
 ```
+
+</TabItem>
+
+</Tabs>
+
+In this example we're going to build a Post `"create"` form. To creating a multi-step form, we will use [`<Stepper/>`](https://mantine.dev/core/stepper/) component from Mantine. To handle the state of both the form and the steps, we will use `useStepsForm` hook.
+
+To show your form inputs step by step, first import and use `useStepsForm` hook in your page:
+
+```tsx
+import React from "react";
+import { HttpError } from "@pankod/refine-core";
+import { Create } from "@pankod/refine-mantine";
+
+type FormValues = Omit<IPost, "id">;
+
+const PostCreatePage: React.FC = () => {
+    const {
+        saveButtonProps,
+        getInputProps,
+        values,
+        steps: { currentStep, gotoStep },
+    } = useStepsForm<IPost, HttpError, FormValues>({
+        initialValues: {
+            title: "",
+            status: "",
+            slug: "",
+            content: "",
+        },
+        validate: (values) => {
+            if (currentStep === 0) {
+                return {
+                    title: values.title ? null : "Title is required",
+                    slug: values.slug ? null : "Slug is required",
+                };
+            }
+
+            if (currentStep === 1) {
+                return {
+                    status: values.status ? null : "Status is required",
+                };
+            }
+
+            return {};
+        },
+    });
+
+    return <Create>create page</Create>;
+};
+```
+
+`useStepsForm` is generic over the type form data to help you type check your code.
+
+This hook returns a set of useful values to render [`<Stepper/>`](https://mantine.dev/core/stepper/). Given current value, you should have a way to render your form items conditionally with this index value.
+
+Here, we're going to use a [`<Stepper/>`](https://mantine.dev/core/stepper/) component to render the form items based on the `currentStep` and we added `<Button>` to footer with `gotoStep` function to navigate between steps.
+
+```tsx
+import React from "react";
+import { HttpError } from "@pankod/refine-core";
+import { Create } from "@pankod/refine-mantine";
+
+type FormValues = Omit<IPost, "id">;
+
+const PostCreatePage: React.FC = () => {
+    const {
+        saveButtonProps,
+        getInputProps,
+        values,
+        steps: { currentStep, gotoStep },
+    } = useStepsForm<IPost, HttpError, FormValues>({
+        initialValues: {
+            title: "",
+            status: "",
+            slug: "",
+            content: "",
+        },
+        validate: (values) => {
+            if (currentStep === 0) {
+                return {
+                    title: values.title ? null : "Title is required",
+                    slug: values.slug ? null : "Slug is required",
+                };
+            }
+
+            if (currentStep === 1) {
+                return {
+                    status: values.status ? null : "Status is required",
+                };
+            }
+
+            return {};
+        },
+    });
+
+    return (
+        <Create
+            //highlight-start
+            footerButtons={
+                <Group position="right" mt="xl">
+                    {currentStep !== 0 && (
+                        <Button
+                            variant="default"
+                            onClick={() => gotoStep(currentStep - 1)}
+                        >
+                            Back
+                        </Button>
+                    )}
+                    {currentStep !== 3 && (
+                        <Button onClick={() => gotoStep(currentStep + 1)}>
+                            Next step
+                        </Button>
+                    )}
+                    {currentStep === 2 && <SaveButton {...saveButtonProps} />}
+                </Group>
+            }
+            // highlight-end
+        >
+            {/* highlight-start */}
+            <Stepper
+                active={currentStep}
+                onStepClick={gotoStep}
+                breakpoint="xs"
+            >
+                <Stepper.Step
+                    label="First Step"
+                    description="Title and Slug"
+                    allowStepSelect={currentStep > 0}
+                >
+                    <TextInput
+                        mt="md"
+                        label="Title"
+                        placeholder="Title"
+                        {...getInputProps("title")}
+                    />
+                    <TextInput
+                        mt="md"
+                        label="Slug"
+                        placeholder="Slug"
+                        {...getInputProps("slug")}
+                    />
+                </Stepper.Step>
+
+                <Stepper.Step
+                    label="Second Step"
+                    description="Status"
+                    allowStepSelect={currentStep > 1}
+                >
+                    <Select
+                        mt="md"
+                        label="Status"
+                        placeholder="Pick one"
+                        {...getInputProps("status")}
+                        data={[
+                            { label: "Published", value: "published" },
+                            { label: "Draft", value: "draft" },
+                            { label: "Rejected", value: "rejected" },
+                        ]}
+                    />
+                </Stepper.Step>
+
+                <Stepper.Step
+                    label="Final Step"
+                    description="Content"
+                    allowStepSelect={currentStep > 2}
+                >
+                    <Textarea
+                        label="Content"
+                        placeholder="Content"
+                        {...getInputProps("content")}
+                    />
+                </Stepper.Step>
+
+                <Stepper.Completed>
+                    Completed! Form values:
+                    <Space />
+                    <Code mt="xl">{JSON.stringify(values, null, 2)}</Code>
+                </Stepper.Completed>
+            </Stepper>
+            {/* highlight-end */}
+        </Create>
+    );
+};
+```
+
+## Properties
+
+### `refineCoreProps`
+
+All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#return-values) docs.
+
+```tsx
+const stepsForm = useStepsForm({
+    refineCoreProps: {
+        action: "edit",
+        resource: "posts",
+        id: "1",
+    },
+});
+```
+
+### `stepsProps`
+
+#### `defaultStep`
+
+> Default: `0`
+
+Sets the default starting step number. Counting starts from `0`.
+
+```tsx
+const stepsForm = useStepsForm({
+    stepsProps: {
+        defaultStep: 0,
+    },
+});
+```
+
+#### `isBackValidate`
+
+> Default: `false`
+
+When is `true`, validates a form fields when the user navigates to a previous step.
+
+```tsx
+const stepsForm = useStepsForm({
+    stepsProps: {
+        isBackValidate: true,
+    },
+});
+```
+
+## Return Values
+
+:::tip
+All [`useForm`](/docs/api-reference/mantine/hooks/form/useForm) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/api-reference/mantine/hooks/form/useForm#return-values) docs.
+:::
+
+### `steps`
+
+The props needed by the `<Stepper>` component.
+
+#### `currenStep`
+
+Current step, counting from `0`.
+
+#### `gotoStep`
+
+Is a function that allows you to programmatically change the current step of a form.
+It takes in one argument, step, which is a number representing the index of the step you want to navigate to.
 
 ## API Reference
 
 ### Properties
 
-| Property                               | Description                                                         | Type                                                              |
-| -------------------------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| stepsProps                             | Configuration object for the steps                                  | [`StepsPropsType`](#stepspropstype)                               |
-| refineCoreProps                        | Configuration object for the core of the [`useForm`][use-form-core] | [`UseFormProps`](/api-reference/core/hooks/useForm.md#properties) |
-| `@mantine/form`'s `useForm` properties | See [useForm][use-form-refine-mantine] documentation                |
-
-<br />
-
-> -   #### StepsPropsType
->
-> | Property       | Description                                             | Type      | Default |
-> | -------------- | ------------------------------------------------------- | --------- | ------- |
-> | defaultStep    | Allows you to set the initial step                      | `number`  | `0`     |
-> | isBackValidate | Whether to validation the current step when going back. | `boolean` | `false` |
+<PropsTable module="@pankod/refine-mantine/useStepsForm" 
+refineCoreProps-type="[`UseFormCoreProps<TData, TError, TVariables>`](/docs/api-reference/core/hooks/useForm/#properties)"
+refineCoreProps-description="Configuration object for the core of the [useForm](/docs/api-reference/core/hooks/useForm/)"
+stepsProps-description="Configuration object for the steps. `defaultStep`: Allows you to set the initial step. `isBackValidate`: Whether to validation the current step when going back."
+stepsProps-default="`defaultStep = 0` `isBackValidate = false`"
+ />
 
 ### Return values
 
 | Property                                  | Description                                                     | Type                                                                        |
 | ----------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| steps                                     | Relevant state and method to control the steps                  | [`StepsReturnValues`](#stepsreturnvalues)                                   |
+| steps                                     | Relevant state and method to control the steps                  | [`StepsReturnValues`](#steps)                                               |
 | refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/api-reference/core/hooks/useForm.md#return-values) |
 | `@mantine/form`'s `useForm` return values | See [useForm][use-form-refine-mantine] documentation            |
-
-<br />
-
-> -   #### StepsReturnValues
->
-> | Property    | Description                          | Type                     |
-> | ----------- | ------------------------------------ | ------------------------ |
-> | currentStep | Current step                         | `boolean`                |
-> | gotoStep    | Allows you to go to a specific step. | `(step: number) => void` |
 
 ## Example
 
@@ -551,3 +1077,6 @@ export const PostEdit: React.FC = () => {
 
 [use-form-refine-mantine]: /api-reference/mantine/hooks/form/useForm.md
 [use-form-core]: /api-reference/core/hooks/useForm.md
+
+Array relationship, `tags` from `posts` table using `tags` :: `post_id` -> `id`
+Object relationship, `post` from `tags` table using `post_id`-> `posts` :: ``id`
