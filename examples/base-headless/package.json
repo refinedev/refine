@@ -9,8 +9,6 @@
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-react-table": "^4.9.1",
         "@pankod/refine-simple-rest": "^3.37.4",
-        "@tanstack/react-query-persist-client": "^4.22.0",
-        "@tanstack/query-sync-storage-persister": "^4.22.0",
         "@types/node": "^12.20.11",
         "@types/react": "^18.0.0",
         "@types/react-dom": "^18.0.0",
