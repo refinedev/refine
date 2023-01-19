@@ -471,7 +471,7 @@ const PostEdit: React.FC = () => {
 `useStepsForm` allows you to manage a form with multiple steps. It provides features such as which step is currently active, the ability to go to a specific step and validation when changing steps etc.
 
 :::info
-`useStepsForm` hook is extended from [`useForm`][use-form-refine-mantine] under the hood. This means that you can use all the functionalities of [`useForm`][use-form-refine-mantine] in your `useStepsForm`.
+`useStepsForm` hook is extended from [`useForm`][use-form-refine-mantine] from the [`@pankod/refine-mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. This means that you can use all the functionalities of [`useForm`][use-form-refine-mantine] in your `useStepsForm`.
 :::
 
 ## Basic Usage
