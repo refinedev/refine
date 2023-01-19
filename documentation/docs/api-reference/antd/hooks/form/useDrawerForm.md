@@ -396,7 +396,7 @@ It renders `<Drawer>` instead of lazy rendering it.
 | show              | A function that opens the drawer                             | `(id?: BaseKey) => void`                                                       |
 | form              | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance) |
 | formProps         | Ant Design form props                                        | [`FormProps`](/docs/api-reference/antd/hooks/form/useForm/#properties)         |
-| drawerProps       | Props for managed drawer                                     | [`DrawerProps`](https://ant.design/components/drawer/#API)                     |
+| drawerProps       | Props for managed drawer                                     | [`DrawerProps`](#drawerprops)                                                  |
 | saveButtonProps   | Props for a submit button                                    | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                |
 | deleteButtonProps | Adds props for delete button                                 | [`DeleteButtonProps`](/api-reference/core/interfaces.md#delete-button-props)   |
 | submit            | Submit method, the parameter is the value of the form fields | `() => void`                                                                   |
