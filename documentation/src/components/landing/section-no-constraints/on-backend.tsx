@@ -124,7 +124,7 @@ const OnBackend: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                                           scale: [0, 1],
                                       }
                             }
-                            className={`group relative w-[45%] sm:w-[30%] md:w-[30%] lg:w-[15%] h-10 md:h-20 lg:h-[65px] bg-white rounded-[10px] ${
+                            className={`group relative w-[46%] sm:w-[30%] md:w-[30%] lg:w-[18%] h-10 md:h-20 lg:h-[65px] bg-white rounded-[10px] ${
                                 name === "Python" ? "pt-1.5" : "pt-0"
                             }`}
                         >
