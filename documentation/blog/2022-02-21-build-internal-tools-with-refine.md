@@ -235,6 +235,7 @@ Refer to the [`authProvider`](https://refine.dev/docs/core/providers/auth-provid
 ### Out-of-the-box router providers
 
 -   Auth0 - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-auth0/) - [Demo](https://refine.dev/docs/examples/auth-provider/auth0)
+-   Keycloak - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-keycloak/) - [Demo](https://refine.dev/docs/examples/auth-provider/keycloak)
 -   Google - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-google-login) - [Demo](https://refine.dev/docs/examples/auth-provider/google-auth)
 -   OTP Login - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-otp) - [Demo](https://refine.dev/docs/examples/auth-provider/otpLogin)
 
