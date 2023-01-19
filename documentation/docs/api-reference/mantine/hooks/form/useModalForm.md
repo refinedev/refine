@@ -1070,15 +1070,3 @@ return (
 
 [use-form-refine-mantine]: /api-reference/mantine/hooks/form/useForm.md
 [use-form-core]: /api-reference/core/hooks/useForm.md
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
