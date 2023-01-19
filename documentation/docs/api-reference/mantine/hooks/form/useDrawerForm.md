@@ -8,7 +8,7 @@ title: useDrawerForm
 We will use [`useModalForm`][use-modal-form-refine-mantine] hook as a `useDrawerForm` to manage a form within a `<Drawer>`.
 
 :::info
-`useDrawerForm` hook is extended from [`useForm`][use-form-refine-mantine] hook from the [`@pankod/refine-mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. Which means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
+`useDrawerForm` hook is extended from [`useForm`][use-form-refine-mantine] hook from the [`@pankod/refine-mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. This means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
 :::
 
 ## Basic Usage
