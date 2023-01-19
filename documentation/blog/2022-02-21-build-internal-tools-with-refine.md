@@ -232,7 +232,7 @@ Refine uses these methods via [authorization hooks](https://refine.dev/docs/core
 
 Refer to the [`authProvider`](https://refine.dev/docs/core/providers/auth-provider) for more information.
 
-### Out-of-the-box router providers
+### Out-of-the-box Auth providers
 
 -   Auth0 - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-auth0/) - [Demo](https://refine.dev/docs/examples/auth-provider/auth0)
 -   Keycloak - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-keycloak/) - [Demo](https://refine.dev/docs/examples/auth-provider/keycloak)
