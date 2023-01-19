@@ -613,7 +613,7 @@ Feel free to modify the app with your own custom features. Play around with diff
 
 ## Example
 
-<StackblitzExample path="blog-refine-filtering" />
+<CodeSandboxExample path="blog-refine-filtering" />
 
 ---
 <div style={{backgroundColor:"#F8F8F8", padding:"18px", borderRadius:"10px"}}>

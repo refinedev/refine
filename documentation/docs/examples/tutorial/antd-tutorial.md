@@ -10,4 +10,4 @@ It is the example created at the end of the [tutorial](/docs/tutorial/introducti
 
 <br/>
 
-<StackblitzExample path="tutorial-antd" />
+<CodeSandboxExample path="tutorial-antd" />

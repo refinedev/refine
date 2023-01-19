@@ -14,4 +14,4 @@ Username: `refine-demo`
 Password: `demodemo`
 :::
 
-<StackblitzExample path="multi-tenancy-strapi" />
+<CodeSandboxExample path="multi-tenancy-strapi" />

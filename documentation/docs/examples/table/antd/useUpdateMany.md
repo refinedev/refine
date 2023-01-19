@@ -9,4 +9,4 @@ example-tags: [table,antd,refine-hooksreact-router]
 
 [Refer to the **refine** useUpdateMany data hook documentation for more information. →](/docs/api-reference/core/hooks/data/useUpdateMany/)
 
-<StackblitzExample path="table-antd-use-update-many" />
+<CodeSandboxExample path="table-antd-use-update-many" />

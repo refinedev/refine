@@ -8,4 +8,4 @@ The `useStepsForm` hook is a method that allows you to split your form into mult
 
 [Refer to the **refine** useStepsForm hook documentation for more information. →](/docs/api-reference/antd/hooks/form/useStepsForm/)
 
-<StackblitzExample path="form-antd-use-steps-form" />
+<CodeSandboxExample path="form-antd-use-steps-form" />

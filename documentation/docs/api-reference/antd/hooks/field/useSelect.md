@@ -302,8 +302,8 @@ const { selectProps } = useSelect({
 
 ## Example
 
-<StackblitzExample path="field-antd-use-select-basic" />
+<CodeSandboxExample path="field-antd-use-select-basic" />
 
 ## Infinite Loading Example
 
-<StackblitzExample path="field-antd-use-select-infinite" />
+<CodeSandboxExample path="field-antd-use-select-infinite" />

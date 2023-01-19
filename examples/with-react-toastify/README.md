@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example with-react-toastify
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open with-react-toastify example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-react-toastify?terminal=start&preset=node)
+[![Open with-react-toastify example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/with-react-toastify?view=preview&theme=dark&codemirror=1)
         

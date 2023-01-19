@@ -37,9 +37,8 @@
 npm create refine-app@latest -- --example tutorial-mui
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open tutorial-mui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial-mui?terminal=start&preset=node)
-        
+[![Open tutorial-mui example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/tutorial-mui?view=preview&theme=dark&codemirror=1)

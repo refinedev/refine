@@ -222,5 +222,5 @@ In this article, we looked at how re-renders of a parent component lead to viola
 
 ## Example
 
-<StackblitzExample path="blog-react-memoization-memo" />
+<CodeSandboxExample path="blog-react-memoization-memo" />
 

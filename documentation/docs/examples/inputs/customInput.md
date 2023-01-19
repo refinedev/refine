@@ -9,4 +9,4 @@ When working with form data, **refine** uses Ant Design's Form component. Ant De
 
 [Refer to the Custom Inputs documentation for more information. →](/docs/api-reference/antd/components/inputs/custom-inputs/)
 
-<StackblitzExample path="input-custom" />
+<CodeSandboxExample path="input-custom" />

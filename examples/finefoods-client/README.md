@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example finefoods-client
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open finefoods-client example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/finefoods-client?terminal=start&preset=node)
+[![Open finefoods-client example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/finefoods-client?view=preview&theme=dark&codemirror=1)
         

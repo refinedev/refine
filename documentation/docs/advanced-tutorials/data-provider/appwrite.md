@@ -820,4 +820,4 @@ Password: `demodemo`
 
 :::
 
-<StackblitzExample path="data-provider-appwrite" />
+<CodeSandboxExample path="data-provider-appwrite" />

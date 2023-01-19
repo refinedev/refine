@@ -1582,6 +1582,6 @@ For other examples and articles that will interest you with refine:  [https://re
 
 ## Example
 
-<StackblitzExample path="blog-issue-tracker" />
+<CodeSandboxExample path="blog-issue-tracker" />
  
 

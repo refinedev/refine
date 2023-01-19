@@ -978,6 +978,6 @@ export const MovieShow: React.FC<IResourceComponentsProps> = () => {
 
 ## Example
 
-<StackblitzExample path="blog-refineflix" />
+<CodeSandboxExample path="blog-refineflix" />
 
 [here is repo](https://github.com/refinedev/refine/tree/master/examples/blog-refineflix)

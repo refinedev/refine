@@ -9,15 +9,16 @@ type Props = {
     hideLocal?: boolean;
 };
 
-const StackblitzExample: React.FC<Props> = ({
+const CodeSandboxExample: React.FC<Props> = ({
     path,
     hideSource,
     hideLocal,
 }) => {
-    const STACKBLITZ_URL = `https://stackblitz.com/github/refinedev/refine/tree/master/examples/${path}`;
+    const CODESANDBOX_URL = `https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/${path}`;
 
-    const EDITOR_URL = `${STACKBLITZ_URL}?embed=1&view=preview&theme=dark&preset=node&ctl=1`;
+    const EDITOR_URL = `${CODESANDBOX_URL}?view=preview&theme=dark&runonclick=1&codemirror=1`;
 
+    console.log({ EDITOR_URL });
     return (
         <div>
             {!hideSource && <ExampleSourcePrompt path={path} />}
@@ -40,4 +41,4 @@ const StackblitzExample: React.FC<Props> = ({
     );
 };
 
-export default StackblitzExample;
+export default CodeSandboxExample;

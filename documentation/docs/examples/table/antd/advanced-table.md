@@ -7,4 +7,4 @@ example-tags: [table,antdreact-router]
 
 Multiple record deletion, modification, and other features can be used simultaneously in a table. It's an example of a Advanced Table made with **refine**'s customization feature.
 
-<StackblitzExample path="table-antd-advanced" />
+<CodeSandboxExample path="table-antd-advanced" />

@@ -332,4 +332,4 @@ const { selectProps } = useSelect({
 
 ## Example
 
-<StackblitzExample path="base-mantine" />
+<CodeSandboxExample path="base-mantine" />

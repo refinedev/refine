@@ -350,7 +350,7 @@ export const PostList: React.FC = () => {
 
 ## Example
 
-<StackblitzExample path="table-antd-use-editable-table" />
+<CodeSandboxExample path="table-antd-use-editable-table" />
 
 [table]: https://ant.design/components/table/#API
 [form]: https://ant.design/components/form/#API

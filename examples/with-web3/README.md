@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example with-web3
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open with-web3 example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/with-web3?terminal=start&preset=node)
+[![Open with-web3 example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/with-web3?view=preview&theme=dark&codemirror=1)
         

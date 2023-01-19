@@ -9,4 +9,4 @@ example-tags: [table,mantine,react-tablereact-router]
 
 [Refer to the React Table documentation for more information. →](/docs/packages/documentation/react-table/)
 
-<StackblitzExample path="table-mantine-basic" />
+<CodeSandboxExample path="table-mantine-basic" />

@@ -751,7 +751,7 @@ return (
 
 ## Example
 
-   <StackblitzExample path="form-antd-use-modal-form" />
+   <CodeSandboxExample path="form-antd-use-modal-form" />
 
 [@pankod/refine-antd]: https://github.com/refinedev/refine/tree/master/packages/antd
 [baserecord]: /api-reference/core/interfaces.md#baserecord

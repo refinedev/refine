@@ -9,4 +9,4 @@ The `useDeleteMany` is one of **refine**'s data hooks. It removes more than one 
 
 [Refer to the **refine** useDeleteMany data hook documentation for more information. →](/docs/api-reference/core/hooks/data/useDeleteMany/)
 
-<StackblitzExample path="table-mui-use-delete-many" />
+<CodeSandboxExample path="table-mui-use-delete-many" />

@@ -11,4 +11,4 @@ This example demonstrates how to quickly connect your [Strapi](https://strapi.io
 **Password**: demodemo
 :::
 
-<StackblitzExample path="data-provider-strapi" />
+<CodeSandboxExample path="data-provider-strapi" />

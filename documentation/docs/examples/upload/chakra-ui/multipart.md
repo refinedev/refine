@@ -6,4 +6,4 @@ example-tags: [chakra-ui,upload]
 
 In this example, you'll learn how to do multipart upload in **refine** with `useForm`. For more information, you can view the live example or review the source code.
 
-<StackblitzExample path="upload-chakra-ui-multipart" />
+<CodeSandboxExample path="upload-chakra-ui-multipart" />

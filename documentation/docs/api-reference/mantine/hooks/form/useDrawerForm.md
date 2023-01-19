@@ -566,7 +566,7 @@ export const EditPostDrawer: React.FC<
 
 ## Example
 
-<StackblitzExample path="form-mantine-use-drawer-form" />
+<CodeSandboxExample path="form-mantine-use-drawer-form" />
 
 [use-form-refine-mantine]: /api-reference/mantine/hooks/form/useForm.md
 [use-form-core]: /api-reference/core/hooks/useForm.md

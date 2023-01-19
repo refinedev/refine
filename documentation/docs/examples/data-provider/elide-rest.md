@@ -10,7 +10,7 @@ example-tags: [antd, community, data-provider, elide]
 
 Elide Data Provider is developed by the community. We would like to thank [chirdeeptomar](https://github.com/chirdeeptomar/refine-elide-rest) for his interest and contribution.
 
-<iframe loading="lazy" src="https://stackblitz.com/github/chirdeeptomar/refine-elide-rest/tree/main/example?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://codesandbox.io/embed/github/chirdeeptomar/refine-elide-rest?view=preview&theme=dark&codemirror=1"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-elide-rest"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

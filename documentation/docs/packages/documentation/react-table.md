@@ -645,7 +645,7 @@ It also accepts all props of [TanStack Table](https://tanstack.com/table/v8/docs
 
 ## Example
 
-<StackblitzExample path="table-react-table-basic" />
+<CodeSandboxExample path="table-react-table-basic" />
 
 [tanstack-table]: https://tanstack.com/table/v8
 [refine-react-table]: https://github.com/refinedev/refine/tree/master/packages/react-table

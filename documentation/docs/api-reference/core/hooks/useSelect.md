@@ -252,4 +252,4 @@ const { options } = useSelect({
 
 ## Example
 
-<StackblitzExample path="core-use-select" />
+<CodeSandboxExample path="core-use-select" />

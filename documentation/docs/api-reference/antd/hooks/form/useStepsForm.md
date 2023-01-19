@@ -1134,7 +1134,7 @@ When `action` is `"edit"` or `"clone"`, `useStepsForm` will fetch the data from 
 
 ## Example
 
-<StackblitzExample path="form-antd-use-steps-form" />
+<CodeSandboxExample path="form-antd-use-steps-form" />
 
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror

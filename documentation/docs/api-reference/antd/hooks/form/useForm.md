@@ -1005,7 +1005,7 @@ export const UserCreate: React.FC = () => {
 
 ## Example
 
-<StackblitzExample path="form-antd-use-form" />
+<CodeSandboxExample path="form-antd-use-form" />
 
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror

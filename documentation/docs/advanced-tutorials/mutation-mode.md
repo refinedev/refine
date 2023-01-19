@@ -118,4 +118,4 @@ mutate({
 
 ## Example
 
-<StackblitzExample path="mutation-mode" />
+<CodeSandboxExample path="mutation-mode" />
