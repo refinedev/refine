@@ -11,14 +11,6 @@ title: useDrawerForm
 
 ## Basic Usage
 
-```ts
-import { useDrawerForm } from "@pankod/refine-antd";
-
-const { drawerProps, formProps } = useDrawerForm<IPost>({
-    action: "create", // or "edit"
-});
-```
-
 We'll do two examples, one for creating and one for editing a post. Let's see how `useDrawerForm` is used in both.
 
 <Tabs

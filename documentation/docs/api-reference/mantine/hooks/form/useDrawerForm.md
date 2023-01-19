@@ -13,31 +13,13 @@ We will use [`useModalForm`][use-modal-form-refine-mantine] hook as a `useDrawer
 
 ## Basic Usage
 
-```tsx
-import { useModalForm as useDrawerForm } from "@pankod/refine-mantine";
-
-const createModalForm = useDrawerForm({
-    modal: { show: showCreateModal, close, submit, title, visible },
-    refineCoreProps: { action: "create" },
-    initialValues: {
-        title: "",
-        content: "",
-    },
-    validate: {
-        title: (value) => (value.length < 2 ? "Too short title" : null),
-        content: (value) => (value.length < 10 ? "Too short content" : null),
-    },
-});
-```
-
-We'll show three examples, `"create"`, `"edit"` and `"clone"`. Let's see how `useDrawerForm` is used in all.
+We'll show three examples, `"create"` and `"edit"`. Let's see how `useDrawerForm` is used in both.
 
 <Tabs
 defaultValue="create"
 values={[
 {label: 'create', value: 'create'},
 {label: 'edit', value: 'edit'},
-{label: 'clone', value: 'clone'},
 ]}>
 
 <TabItem value="create">
@@ -61,7 +43,7 @@ import {
     Pagination,
     // highlight-next-line
     useModalForm as useDrawerForm,
-    Modal,
+    Drawer,
     Select,
     TextInput,
     SaveButton,
@@ -145,7 +127,14 @@ const PostList: React.FC<IResourceComponentsProps> = () => {
     return (
         <>
             {/* highlight-start */}
-            <Modal opened={visible} onClose={close} title={title}>
+            <Drawer
+                opened={visible}
+                onClose={close}
+                title={title}
+                padding="xl"
+                size="xl"
+                position="right"
+            >
                 <TextInput
                     mt={8}
                     label="Title"
@@ -169,7 +158,7 @@ const PostList: React.FC<IResourceComponentsProps> = () => {
                 >
                     <SaveButton {...saveButtonProps} />
                 </Box>
-            </Modal>
+            </Drawer>
             {/* highlight-end */}
             <ScrollArea>
                 {/* highlight-next-line */}
@@ -274,7 +263,7 @@ import {
     Pagination,
     // highlight-next-line
     useModalForm as useDrawerForm,
-    Modal,
+    Drawer,
     Select,
     TextInput,
     EditButton,
@@ -378,7 +367,14 @@ const PostList: React.FC<IResourceComponentsProps> = () => {
     return (
         <>
             {/* highlight-start */}
-            <Modal opened={visible} onClose={close} title={title}>
+            <Drawer
+                opened={visible}
+                onClose={close}
+                title={title}
+                padding="xl"
+                size="xl"
+                position="right"
+            >
                 <TextInput
                     mt={8}
                     label="Title"
@@ -402,7 +398,7 @@ const PostList: React.FC<IResourceComponentsProps> = () => {
                 >
                     <SaveButton {...saveButtonProps} />
                 </Box>
-            </Modal>
+            </Drawer>
             {/* highlight-end */}
             <ScrollArea>
                 <List>
@@ -484,9 +480,9 @@ render(<RefineMantineDemo />);
 ```
 
 :::caution
-**refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens `"edit"` form in `<Modal>` when clicked.
+**refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens `"edit"` form in `<Drawer>` when clicked.
 
-So, we have to put the `<EditButton/>` on our list. In that way, `"edit"` form in `<Modal>` can fetch data by the record `id`.
+So, we have to put the `<EditButton/>` on our list. In that way, `"edit"` form in `<Drawer>` can fetch data by the record `id`.
 
 ```tsx
 const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -502,278 +498,6 @@ const columns = React.useMemo<ColumnDef<IPost>[]>(
                 return (
                     <Group spacing="xs" noWrap>
                         <EditButton
-                            hideText
-                            onClick={() => show(getValue() as number)}
-                        />
-                    </Group>
-                );
-            },
-        },
-    ],
-    [],
-);
-
-const table = useTable({
-    columns,
-});
-```
-
-:::
-
-:::caution
-Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
-:::
-
-</TabItem>
-
-<TabItem value="clone">
-
-In this example, we will show you how to `"clone"` a record with `useDrawerForm`.
-
-```tsx live url=http://localhost:3000/posts
-setInitialRoutes(["/posts"]);
-
-// visible-block-start
-import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
-import { GetManyResponse, useMany } from "@pankod/refine-core";
-import {
-    Box,
-    Group,
-    List,
-    ScrollArea,
-    Table,
-    Pagination,
-    // highlight-next-line
-    useModalForm as useDrawerForm,
-    Modal,
-    Select,
-    TextInput,
-    CloneButton,
-    SaveButton,
-} from "@pankod/refine-mantine";
-
-const PostList: React.FC<IResourceComponentsProps> = () => {
-    // highlight-start
-    const {
-        getInputProps,
-        saveButtonProps,
-        modal: { show, close, title, visible },
-    } = useDrawerForm({
-        refineCoreProps: { action: "edit" },
-        initialValues: {
-            title: "",
-            status: "",
-        },
-        validate: {
-            title: (value) => (value.length < 2 ? "Too short title" : null),
-            status: (value) =>
-                value.length <= 0 ? "Status is required" : null,
-        },
-    });
-    // highlight-end
-
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
-                meta: {
-                    filterOperator: "contains",
-                },
-            },
-            {
-                id: "status",
-                header: "Status",
-                accessorKey: "status",
-                meta: {
-                    filterElement: function render(props: FilterElementProps) {
-                        return (
-                            <Select
-                                defaultValue="published"
-                                data={[
-                                    { label: "Published", value: "published" },
-                                    { label: "Draft", value: "draft" },
-                                    { label: "Rejected", value: "rejected" },
-                                ]}
-                                {...props}
-                            />
-                        );
-                    },
-                    filterOperator: "eq",
-                },
-            },
-            {
-                id: "actions",
-                header: "Actions",
-                accessorKey: "id",
-                enableColumnFilter: false,
-                enableSorting: false,
-                cell: function render({ getValue }) {
-                    return (
-                        <Group spacing="xs" noWrap>
-                            {/* highlight-start */}
-                            <CloneButton
-                                hideText
-                                onClick={() => show(getValue() as number)}
-                            />
-                            {/* highlight-end */}
-                        </Group>
-                    );
-                },
-            },
-        ],
-        [],
-    );
-
-    const {
-        getHeaderGroups,
-        getRowModel,
-        setOptions,
-        refineCore: {
-            setCurrent,
-            pageCount,
-            current,
-            tableQueryResult: { data: tableData },
-        },
-    } = useTable({
-        columns,
-    });
-
-    return (
-        <>
-            {/* highlight-start */}
-            <Modal opened={visible} onClose={close} title={title}>
-                <TextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    {...getInputProps("title")}
-                />
-                <Select
-                    mt={8}
-                    label="Status"
-                    placeholder="Pick one"
-                    data={[
-                        { label: "Published", value: "published" },
-                        { label: "Draft", value: "draft" },
-                        { label: "Rejected", value: "rejected" },
-                    ]}
-                    {...getInputProps("status")}
-                />
-                <Box
-                    mt={8}
-                    sx={{ display: "flex", justifyContent: "flex-end" }}
-                >
-                    <SaveButton {...saveButtonProps} />
-                </Box>
-            </Modal>
-            {/* highlight-end */}
-            <ScrollArea>
-                <List>
-                    <Table highlightOnHover>
-                        <thead>
-                            {getHeaderGroups().map((headerGroup) => (
-                                <tr key={headerGroup.id}>
-                                    {headerGroup.headers.map((header) => {
-                                        return (
-                                            <th key={header.id}>
-                                                {!header.isPlaceholder && (
-                                                    <Group spacing="xs" noWrap>
-                                                        <Box>
-                                                            {flexRender(
-                                                                header.column
-                                                                    .columnDef
-                                                                    .header,
-                                                                header.getContext(),
-                                                            )}
-                                                        </Box>
-                                                    </Group>
-                                                )}
-                                            </th>
-                                        );
-                                    })}
-                                </tr>
-                            ))}
-                        </thead>
-                        <tbody>
-                            {getRowModel().rows.map((row) => {
-                                return (
-                                    <tr key={row.id}>
-                                        {row.getVisibleCells().map((cell) => {
-                                            return (
-                                                <td key={cell.id}>
-                                                    {flexRender(
-                                                        cell.column.columnDef
-                                                            .cell,
-                                                        cell.getContext(),
-                                                    )}
-                                                </td>
-                                            );
-                                        })}
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </Table>
-                    <br />
-                    <Pagination
-                        position="right"
-                        total={pageCount}
-                        page={current}
-                        onChange={setCurrent}
-                    />
-                </List>
-            </ScrollArea>
-        </>
-    );
-};
-
-interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
-}
-// visible-block-end
-
-setRefineProps({
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-        },
-    ],
-});
-
-render(<RefineMantineDemo />);
-```
-
-:::caution
-**refine** doesn't automatically add a `<CloneButton/>` to the each record in `<PostList>` which opens `"clone"` form in `<Modal>` when clicked.
-
-So, we have to put the `<CloneButton/>` on our list. In that way, `"clone"` form in `<Modal>` can fetch data by the record `id`.
-
-```tsx
-const columns = React.useMemo<ColumnDef<IPost>[]>(
-    () => [
-        // --
-        {
-            id: "actions",
-            header: "Actions",
-            accessorKey: "id",
-            enableColumnFilter: false,
-            enableSorting: false,
-            cell: function render({ getValue }) {
-                return (
-                    <Group spacing="xs" noWrap>
-                        <CloneButton
                             hideText
                             onClick={() => show(getValue() as number)}
                         />
