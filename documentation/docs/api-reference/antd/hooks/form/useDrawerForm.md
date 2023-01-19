@@ -11,7 +11,7 @@ title: useDrawerForm
 
 ## Basic Usage
 
-We'll do two examples, one for creating and one for editing a post. Let's see how `useDrawerForm` is used in both.
+We'll show two examples, one for creating and one for editing a post. Let's see how `useDrawerForm` is used in both.
 
 <Tabs
 defaultValue="create"
