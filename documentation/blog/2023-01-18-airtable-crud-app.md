@@ -9,7 +9,7 @@ hide_table_of_contents: false
 ---
 
 
-## Introduction:
+## Introduction
 Before the existence of refine, building CRUD applications and data-intensive apps in React had always involved a painstaking repetitive process. [refine](https://github.com/refinedev/refine) eliminates this by providing a set of helper hooks, components, and service providers that are decoupled and independent of the UI components and business logic used in your application. This provides room for customizability and speed in building your application. 
 
 refine’s service providers make sure that you can easily connect to any custom REST, GraphQL backend as well as most BAAS(Backend as a service) such as [Airtable](https://www.airtable.com/). In this article, we will be building a simple CRUD application using refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
@@ -277,7 +277,7 @@ export default App;
 
 ```
 
-`Preview of the posts route in the refine application`
+Preview of the posts route in the refine application
 
 <div class="img-container">
     <div class="window">
@@ -326,6 +326,9 @@ As shown above, we added the `id`, `name`,  `title`, `content`, `category`, `sta
 
 Next, we create a new folder named "pages" under `src`. Under that folder, create a `post` folder and add a `list.tsx` file with the following code:
 
+<details>
+<summary>Show Code</summary>
+<p>
 
 ```tsx title="src/pages/post/list.tsx"
 import React from "react";
@@ -466,6 +469,8 @@ export const PostList: React.FC = () => {
  );
 };
 ```
+</p>
+</details>
 
 In the code above, we use the `useTable()` hook from the `@pankod/refine-react-table` package to fetch records from our Airtable base.
 
@@ -473,8 +478,7 @@ In the code above, we use the `useTable()` hook from the `@pankod/refine-react-t
 #### Handling relationships
 Remember the records from our **posts** base on Airtable has a category field, we will map the  category fields to their corresponding titles on the **category** base we created on airtable. But first, we will add a category type to the `post.d.ts` file under `interfaces` under the `src` folder in the root directory of our application.
 
-```javascript
-tsx title="src/interfaces/post.d.ts"
+```tsx title="src/interfaces/post.d.ts"
 
 export interface IPost {
   id: string;
@@ -501,6 +505,10 @@ To get more information about this hook, view its documentation [here](https://r
 
 
 Update the `<PostList/>` component with the code below:
+
+<details>
+<summary>Show Code</summary>
+<p>
 
 ```tsx title="src/pages/post/list.tsx"
 import React from "react";
@@ -705,6 +713,10 @@ export const PostList: React.FC = () => {
 };
 ```
 
+
+</p>
+</details>
+
 In the code above, The `useMany()` hook fetches records from the category base using the `category field` present on the `posts` table. this ensures that all the category fields are properly mapped to their respective records on the category base.
 
 We also update the category row on the table to display the category record assigned to a category field from the mapping.
@@ -739,9 +751,20 @@ function App() {
 export default App;
 ```
 
-<!-- ![](https://i.imgur.com/U3SHHC1.jpg) -->
 
-![](https://i.imgur.com/SWjmDwf.jpg)
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/handling-relationships.jpeg"  alt="react crud app airtable" />
+
+</div>
+
+<br />
+
 
 
 ### Viewing a single post record
@@ -898,7 +921,18 @@ export const PostList: React.FC = () => {
 };
 ```
 
-![](https://i.imgur.com/gdOkwJq.png)
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/view_single_post.png"  alt="react crud app airtable" />
+
+</div>
+
+<br />
 
 ### Creating post record
 To create a record, we will install the `@pankod/refine-react-hook-form` to use the `useForm()` hook that comes with form validation out of the box and handles our form submission request to Airtable.
@@ -910,6 +944,9 @@ npm i @pankod/refine-react-hook-form
 
 Next, In the `post`  under the `pages` folder we will add a `create.tsx` file with the following code:
 
+<details>
+<summary>Show Code</summary>
+<p>
 
 ```tsx title="src/pages/post/create.tsx"
 import { useForm } from "@pankod/refine-react-hook-form";
@@ -1058,6 +1095,8 @@ export const PostCreate: React.FC = () => {
 };
 
 ```
+</p>
+</details>
 
 In the code above, we used the `useForm()` hook to create records. This hook comes from the [@pankod/refine-react-hook-form](https://github.com/refinedev/refine/tree/master/packages/react-hook-form) which is inherently a refine adapter of the [React Hook Form](https://react-hook-form.com/) library. In a nutshell, this library allows you to use the [React Hook Form](https://react-hook-form.com/) library with refine. More information about the `useForm()` hook can be obtained [here](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/).
 
@@ -1128,13 +1167,29 @@ function App() {
 export default App;
 ```
 
-![](https://i.imgur.com/is6RGtF.gif)
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/creating_post_record-min.gif"  alt="react crud app airtable" />
+
+</div>
+
+<br />
 
 
 ### Editing post record
 
 For editing a record, we will add an `edit.tsx` file In the `post`  under the `pages` folder
 Next, with the following code:
+
+<details>
+<summary>Show Code</summary>
+<p>
+
 
 ```tsx title="src/pages/post/edit.tsx"
 
@@ -1309,6 +1364,8 @@ export const PostEdit: React.FC = () => {
   );
 };
 ```
+</p>
+</details>
 
 Similar to that of the `<PostEdit/>` component, we use methods provided by the  `useForm()` hook like `register()` to validate the new post we will be adding into airtable.  
 
@@ -1365,4 +1422,89 @@ export const PostList: React.FC = () => {
 After this, we can now add the component `<PostEdit/>` in the `edit.tsx` file to our resource present in the `app.tsx` file.
 
 
-![](https://i.imgur.com/aRq6PV2.gif)
+
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/editing_post-min.gif"  alt="react crud app airtable" />
+
+</div>
+
+<br />
+
+
+
+### Deleting post record
+For Deleting a record, we will use the `useDelete()` hook which is present in the `@pankod/refine-core` package which was installed using the `superplate cli` method to build our refine application.
+
+We'll add a **Delete** button to each row because refine doesn't add one automatically, so we'll need to update our `<PostList>` component to include one for each record. Add the highlighted lines below to the existing list component.
+
+
+```tsx title="src/pages/post/list.tsx"
+
+import React from "react";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { IPost } from "../../interfaces/post";
+import { useNavigation, useDelete } from "@pankod/refine-core";
+ 
+ 
+export const PostList: React.FC = () => {
+ const { show, edit, create } = useNavigation();
+ const { mutate } = useDelete();
+ 
+ const columns = React.useMemo<ColumnDef<IPost>[]>(
+   () => [
+	...,
+
+     {
+         id: "action",
+         header: "Action",
+         accessorKey: "id",
+         cell: function render({ getValue }) {
+           return (
+             <button
+               className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-red-500 hover:text-white"
+               onClick={() =>
+                 mutate({
+                   id: getValue() as number,
+                   resource: "posts",
+                 })
+               }
+             >
+               Delete
+             </button>
+   
+           );
+         },
+      },
+   [],
+ );
+ 
+ return (
+    ...
+   );
+};
+```
+
+
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/deleting_record-min.gif"  alt="react crud app airtable" />
+
+</div>
+
+<br />
+
+
+
+## Conclusion
+In this article, we covered how to create a headless refine application using the superplate cli method as well as creating a **CRUD** application using refine. There is no limit to what can be achieved using refine as you can quickly a fully API or **BAAS**-powered application with minimal effort and code. It also has well-detailed documentation which can soon get you started as well as guide you through your building process. To access the documentation, visit [here](https://refine.dev/docs/getting-started/overview/).
