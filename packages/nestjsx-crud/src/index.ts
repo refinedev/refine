@@ -7,6 +7,8 @@ import {
     CondOperator,
     ComparisonOperator,
     SCondition,
+    QueryJoin,
+    QueryJoinArr,
 } from "@nestjsx/crud-request";
 import {
     DataProvider,
@@ -127,6 +129,51 @@ const generateSearchFilter = (filters: RefineCrudFilter): SCondition => {
     });
 };
 
+const handleFilter = (
+    query: RequestQueryBuilder,
+    filters?: RefineCrudFilter,
+) => {
+    if (filters) {
+        query.search(generateSearchFilter(filters));
+    }
+    return query;
+};
+
+const handleJoin = (
+    query: RequestQueryBuilder,
+    join?: QueryJoin | QueryJoinArr | (QueryJoin | QueryJoinArr)[],
+) => {
+    if (join) {
+        query.setJoin(join);
+    }
+    return query;
+};
+
+const handlePagination = (
+    query: RequestQueryBuilder,
+    hasPagination: boolean,
+    pageSize: number,
+    current: number,
+) => {
+    if (hasPagination) {
+        query
+            .setLimit(pageSize)
+            .setPage(current)
+            .setOffset((current - 1) * pageSize);
+    }
+
+    return query;
+};
+
+const handleSort = (query: RequestQueryBuilder, sort?: CrudSorting) => {
+    const sortBy = generateSort(sort);
+    if (sortBy) {
+        query.sortBy(sortBy);
+    }
+
+    return query;
+};
+
 const NestsxCrud = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -137,28 +184,18 @@ const NestsxCrud = (
         pagination = { current: 1, pageSize: 10 },
         filters,
         sort,
+        metaData,
     }) => {
         const url = `${apiUrl}/${resource}`;
 
         const { current = 1, pageSize = 10 } = pagination ?? {};
 
-        const query = RequestQueryBuilder.create();
+        let query = RequestQueryBuilder.create();
 
-        if (filters) {
-            query.search(generateSearchFilter(filters));
-        }
-
-        if (hasPagination) {
-            query
-                .setLimit(pageSize)
-                .setPage(current)
-                .setOffset((current - 1) * pageSize);
-        }
-
-        const sortBy = generateSort(sort);
-        if (sortBy) {
-            query.sortBy(sortBy);
-        }
+        query = handleFilter(query, filters);
+        query = handleJoin(query, metaData?.join);
+        query = handlePagination(query, hasPagination, pageSize, current);
+        query = handleSort(query, sort);
 
         const { data } = await httpClient.get(`${url}?${query.query()}`);
 
@@ -168,18 +205,18 @@ const NestsxCrud = (
         };
     },
 
-    getMany: async ({ resource, ids }) => {
+    getMany: async ({ resource, ids, metaData }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const query = RequestQueryBuilder.create()
-            .setFilter({
-                field: "id",
-                operator: CondOperator.IN,
-                value: ids,
-            })
-            .query();
+        let query = RequestQueryBuilder.create().setFilter({
+            field: "id",
+            operator: CondOperator.IN,
+            value: ids,
+        });
 
-        const { data } = await httpClient.get(`${url}?${query}`);
+        query = handleJoin(query, metaData?.join);
+
+        const { data } = await httpClient.get(`${url}?${query.query()}`);
 
         return {
             data,
@@ -266,17 +303,23 @@ const NestsxCrud = (
         return apiUrl;
     },
 
-    custom: async ({ url, method, filters, sort, payload, query, headers }) => {
-        const requestQueryBuilder = RequestQueryBuilder.create();
+    custom: async ({
+        url,
+        method,
+        metaData,
+        filters,
+        sort,
+        payload,
+        query,
+        headers,
+    }) => {
+        let requestQueryBuilder = RequestQueryBuilder.create();
 
-        if (filters) {
-            requestQueryBuilder.search(generateSearchFilter(filters));
-        }
+        requestQueryBuilder = handleFilter(requestQueryBuilder, filters);
 
-        const sortBy = generateSort(sort);
-        if (sortBy) {
-            requestQueryBuilder.sortBy(sortBy);
-        }
+        requestQueryBuilder = handleJoin(requestQueryBuilder, metaData?.join);
+
+        requestQueryBuilder = handleSort(requestQueryBuilder, sort);
 
         let requestUrl = `${url}?${requestQueryBuilder.query()}`;
 
