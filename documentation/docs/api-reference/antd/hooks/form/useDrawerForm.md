@@ -22,6 +22,8 @@ values={[
 
 <TabItem value="create">
 
+In this example, we will show you how to `"create"` a record with `useDrawerForm`.
+
 ```tsx live url=http://localhost:3000/posts previewHeight=420px
 setInitialRoutes(["/posts"]);
 
@@ -146,6 +148,8 @@ render(<RefineAntdDemo />);
 </TabItem>
 
 <TabItem value="edit">
+
+In this example, we will show you how to `"edit"` a record with `useDrawerForm`.
 
 ```tsx live url=http://localhost:3000/posts previewHeight=420px
 setInitialRoutes(["/posts"]);
