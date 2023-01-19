@@ -318,16 +318,8 @@ const PostCreate = () => {
 
 `useStepsForm` hook allows you to split your form under an Ant Design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful functionalities that will help you manage your form.
 
-```ts
-import { useStepsForm } from "@pankod/refine-antd";
-
-const { stepsProps, formProps } = useStepsForm();
-```
-
-All we have to do is to pass the props it returns to our `<Steps>` and `<Form>` components.
-
-:::tip
-`useStepsForm` is using [`useForm`](/api-reference/antd/hooks/form/useForm.md) under the hood. This means that you can use all the functionalities of `useForm` in your `useStepsForm`.
+:::info
+`useStepsForm` hook is extended from [`useForm`][antd-use-form] under the hood. This means that you can use all the functionalities of [`useForm`][antd-use-form] in your `useStepsForm`.
 :::
 
 ## Basic Usage
@@ -1150,7 +1142,4 @@ When `action` is `"edit"` or `"clone"`, `useStepsForm` will fetch the data from 
 
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
-
-```
-
-```
+[antd-use-form]: /docs/api-reference/antd/hooks/form/useForm

@@ -126,7 +126,7 @@ const PostCreate = () => {
 
 <GeneralConceptsLink />
 
-## Usage
+## Basic Usage
 
 > For more detailed usage examples please refer to the [Ant Design Form](https://ant.design/components/form/) documentation.
 

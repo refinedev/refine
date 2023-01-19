@@ -349,8 +349,8 @@ const PostEdit: React.FC = () => {
 
 `useStepsForm` allows you to manage a form with multiple steps. It provides features such as which step is currently active, the ability to go to a specific step and validation when changing steps etc.
 
-:::tip
-`useStepsForm` hook is extended from [`useForm`][refine-react-hook-form-use-form] from the [`@pankod/refine-react-hook-form`][@pankod/refine-react-hook-form] package. It means you can use all the features of [`useForm`][refine-react-hook-form-use-form].
+:::info
+`useStepsForm` hook is extended from [`useForm`][refine-react-hook-form-use-form] from the [`@pankod/refine-react-hook-form`][@pankod/refine-react-hook-form] package. This means you can use all the features of [`useForm`][refine-react-hook-form-use-form].
 :::
 
 ## Basic Usage
