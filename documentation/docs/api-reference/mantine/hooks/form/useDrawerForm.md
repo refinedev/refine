@@ -526,11 +526,19 @@ Don't forget to pass the record `"id"` to `show` to fetch the record data. This 
 
 ## Properties
 
-:::tip
-All [`useForm`][use-form-refine-mantine] props also available in `useDrawerForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) docs.
+### `refineCoreProps`
 
-All [`mantine useForm`](https://mantine.dev/form/use-form/) props also available in `useDrawerForm`. You can find descriptions on [`mantine`](https://mantine.dev/form/use-form/) docs.
-:::
+All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) docs.
+
+```tsx
+const drawerForm = useDrawerForm({
+    refineCoreProps: {
+        action: "edit",
+        resource: "posts",
+        id: "1",
+    },
+});
+```
 
 ### `initialValues`
 
@@ -550,7 +558,7 @@ const drawerForm = useDrawerForm({
 
 > Default: `false`
 
-When `true`, modal will be visible by default.
+When `true`, drawer will be visible by default.
 
 ```tsx
 const drawerForm = useDrawerForm({
@@ -564,7 +572,7 @@ const drawerForm = useDrawerForm({
 
 > Default: `true`
 
-When `true`, modal will be closed after successful submit.
+When `true`, drawer will be closed after successful submit.
 
 ```tsx
 const drawerForm = useDrawerForm({
@@ -588,22 +596,6 @@ const drawerForm = useDrawerForm({
 });
 ```
 
-### `warnWhenUnsavedChanges`
-
-> Default: `false`
-
-When you have unsaved changes and try to leave the current page, refine shows a confirmation modal box. To activate this feature.
-
-You can also set this value in [`<Refine>`](/docs/api-reference/core/components/refine-config/#warnwhenunsavedchanges) component.
-
-```tsx
-const drawerForm = useDrawerForm({
-    refineCoreProps: {
-        warnWhenUnsavedChanges: true,
-    },
-});
-```
-
 ## Return Values
 
 :::tip
@@ -614,19 +606,19 @@ All [`mantine useForm`](https://mantine.dev/form/use-form/) return values also a
 
 ### `visible`
 
-Current visibility state of the modal.
+Current visibility state of the drawer.
 
 ```tsx
 const drawerForm = useDrawerForm({
     defaultVisible: true,
 });
 
-console.log(modalForm.modal.visible); // true
+console.log(drawerForm.modal.visible); // true
 ```
 
 ### `title`
 
-Title of the modal. Based on resource and action values
+Title of the drawer. Based on resource and action values
 
 ```tsx
 const {
@@ -643,7 +635,7 @@ console.log(title); // "Create Post"
 
 ### `close`
 
-A function that can close the modal. It's useful when you want to close the modal manually.
+A function that can close the drawer. It's useful when you want to close the drawer manually.
 
 ```tsx
 const {
@@ -652,7 +644,7 @@ const {
 } = useDrawerForm();
 
 return (
-    <Modal opened={visible} onClose={close} title={title}>
+    <Drawer opened={visible} onClose={close} title={title}>
         <TextInput
             mt={8}
             label="Title"
@@ -663,7 +655,7 @@ return (
             <SaveButton {...saveButtonProps} />
             <Button onClick={close}>Cancel</Button>
         </Box>
-    </Modal>
+    </Drawer>
 );
 ```
 
@@ -679,7 +671,7 @@ const {
 // ---
 
 return (
-    <Modal opened={visible} onClose={close} title={title}>
+    <Drawer opened={visible} onClose={close} title={title}>
         <TextInput
             mt={8}
             label="Title"
@@ -689,13 +681,13 @@ return (
         <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
             <Button onClick={submit}>Save</Button>
         </Box>
-    </Modal>
+    </Drawer>
 );
 ```
 
 ### `show`
 
-A function that can show the modal.
+A function that can show the drawer.
 
 ```tsx
 const {
@@ -711,7 +703,7 @@ const onFinishHandler = (values) => {
 return (
     <>
         <Button onClick={}>Show Modal</Button>
-        <Modal opened={visible} onClose={close} title={title}>
+        <Drawer opened={visible} onClose={close} title={title}>
             <TextInput
                 mt={8}
                 label="Title"
@@ -721,20 +713,20 @@ return (
             <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
                 <SaveButton {...saveButtonProps} />
             </Box>
-        </Modal>
+        </Drawer>
     </>
 );
 ```
 
 ### `saveButtonProps`
 
-It contains all the props needed by the "submit" button within the modal (disabled,loading etc.). You can manually pass these props to your custom button.
+It contains all the props needed by the "submit" button within the drawer (disabled,loading etc.). You can manually pass these props to your custom button.
 
 ```tsx
 const { getInputProps, modal, saveButtonProps } = useDrawerForm();
 
 return (
-    <Modal {...modal}>
+    <Drawer {...modal}>
         <TextInput
             mt={8}
             label="Title"
@@ -750,7 +742,7 @@ return (
                 }}
             />
         </Box>
-    </Modal>
+    </Drawer>
 );
 ```
 
