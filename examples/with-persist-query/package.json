@@ -1,5 +1,5 @@
 {
-    "name": "base-headless",
+    "name": "with-persist-query",
     "version": "3.25.0",
     "private": true,
     "dependencies": {
