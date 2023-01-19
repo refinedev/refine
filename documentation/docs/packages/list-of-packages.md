@@ -44,7 +44,6 @@ title: List of Packages
 
 - `@pankod/refine-airtable` - Use [Airtable](https://airtable.com/) as backend service.
 
-- `@pankod/refine-altogic` -  Connect backends created with [Altogic](https://www.altogic.com/) 
 - `@pankod/refine-nhost` -   [Nhost](https://nhost.io/) data provider. Supports **GraphQL Subscriptions** for **live/realtime** projects.
 
 

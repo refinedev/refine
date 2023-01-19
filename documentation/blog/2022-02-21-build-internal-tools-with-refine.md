@@ -158,7 +158,6 @@ Refine includes many out-of-the-box data providers to use in your projects like:
 -   [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost)
 -   [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
 -   [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite)
--   [Altogic](https://github.com/refinedev/refine/tree/master/packages/altogic)
 
 ## Add routing to the application
 
@@ -232,9 +231,10 @@ Refine uses these methods via [authorization hooks](https://refine.dev/docs/core
 
 Refer to the [`authProvider`](https://refine.dev/docs/core/providers/auth-provider) for more information.
 
-### Out-of-the-box router providers
+### Out-of-the-box Auth providers
 
 -   Auth0 - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-auth0/) - [Demo](https://refine.dev/docs/examples/auth-provider/auth0)
+-   Keycloak - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-keycloak/) - [Demo](https://refine.dev/docs/examples/auth-provider/keycloak)
 -   Google - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-google-login) - [Demo](https://refine.dev/docs/examples/auth-provider/google-auth)
 -   OTP Login - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-otp) - [Demo](https://refine.dev/docs/examples/auth-provider/otpLogin)
 

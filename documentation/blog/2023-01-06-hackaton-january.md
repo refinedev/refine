@@ -73,7 +73,7 @@ The all winners will get [refine Special Swag Kit](https://store.refine.dev/prod
 
 ## Submission
 - **Submissions link:**  Submissions will be active on 23rd of January.
-- **Submission guidelines:** [Follow the guidelines in this repository](https://github.com/refinedev/hackathon-jan2023-guidelines)
+- **Submission guidelines:** [Follow the guidelines in this repository](https://github.com/refinedev/refine/hackathon/hackathon-january.md)
 
 
 ## Rules

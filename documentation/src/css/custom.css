@@ -639,7 +639,7 @@ html[data-page="index"] {
 }
 
 @media (min-width: 1024px) {
-    html[data-page="index"] footer.refine-footer {
+    html[data-page="index"] footer.refine-footer-index {
         scroll-snap-align: end;
     }
 }

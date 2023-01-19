@@ -1,5 +1,27 @@
 # @pankod/refine-core
 
+## 3.95.3
+
+### Patch Changes
+
+-   [#3382](https://github.com/refinedev/refine/pull/3382) [`6604586b030`](https://github.com/refinedev/refine/commit/6604586b030576c4b582a675de97678dc63dbb10) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Fixed: The link in the jsDOC of the `liveMode` replaced with the correct link.
+
+    ```diff
+    - * @type  [`"auto" | "manual" | "off"`](/docs/api-reference/core/interfaceReferences/#crudsorting)
+    + * @type  [`"auto" | "manual" | "off"`](/docs/api-reference/core/providers/live-provider/#livemode)
+    ```
+
+## 3.95.2
+
+### Patch Changes
+
+-   [#3382](https://github.com/refinedev/refine/pull/3382) [`6604586b030`](https://github.com/refinedev/refine/commit/6604586b030576c4b582a675de97678dc63dbb10) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Fixed: The link in the jsDOC of the `liveMode` replaced with the correct link.
+
+    ```diff
+    - * @type  [`"auto" | "manual" | "off"`](/docs/api-reference/core/interfaceReferences/#crudsorting)
+    + * @type  [`"auto" | "manual" | "off"`](/docs/api-reference/core/providers/live-provider/#livemode)
+    ```
+
 ## 3.95.1
 
 ### Patch Changes

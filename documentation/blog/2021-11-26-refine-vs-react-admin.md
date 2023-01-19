@@ -579,7 +579,6 @@ Connects to any REST or GraphQL custom backend.
 * Hasura: [https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura](https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura)
 * Nhost: [https://github.com/refinedev/refine/tree/master/examples/data-provider-nhost](https://github.com/refinedev/refine/tree/master/examples/data-provider-nhost)
 * Appwrite: [https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite](https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite)
-* Altogic: [https://github.com/refinedev/refine/tree/master/examples/data-provider-altogic](https://github.com/refinedev/refine/tree/master/examples/data-provider-altogic)
 
 ### Customization
 * **refine's** motivation and main purpose are as follows: "Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility." 

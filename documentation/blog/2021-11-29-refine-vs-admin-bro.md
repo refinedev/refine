@@ -382,7 +382,6 @@ Connects to any REST or GraphQL custom backend.
 * Hasura: [https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura](https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura)
 * Nhost: [https://github.com/refinedev/refine/tree/master/examples/data-provider-nhost](https://github.com/refinedev/refine/tree/master/examples/data-provider-nhost)
 * Appwrite: [https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite](https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite)
-* Altogic: [https://github.com/refinedev/refine/tree/master/examples/data-provider-altogic](https://github.com/refinedev/refine/tree/master/examples/data-provider-altogic)
 * Medusa: [https://github.com/refinedev/refine/tree/next/packages/medusa](https://github.com/refinedev/refine/tree/next/packages/medusa)
 
 ### Customization
