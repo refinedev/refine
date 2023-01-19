@@ -554,7 +554,7 @@ const PostList: React.FC<IResourceComponentsProps> = () => {
         saveButtonProps,
         modal: { show, close, title, visible },
     } = useModalForm({
-        refineCoreProps: { action: "edit" },
+        refineCoreProps: { action: "clone" },
         initialValues: {
             title: "",
             status: "",
