@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 1.15.8
+
+### Patch Changes
+
+-   [#3382](https://github.com/refinedev/refine/pull/3382) [`6604586b030`](https://github.com/refinedev/refine/commit/6604586b030576c4b582a675de97678dc63dbb10) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - added: description of `StepProps` to the jsDoc of the `useStepForm` hook.
+
 ## 1.15.7
 
 ### Patch Changes
