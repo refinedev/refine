@@ -11,22 +11,6 @@ title: useModalForm
 
 ## Basic Usage
 
-```tsx
-import { useModalForm } from "@pankod/refine-antd";
-
-interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
-}
-
-const { modalProps, formProps } = useModalForm<IPost>({
-    action: "create", // or "edit" or clone
-});
-```
-
-All we have to do is to pass the `formProps` to [`<Form>`][antd-form] and `modalProps` to [`<Modal>`][antd-modal] components.
-
 We'll show three examples, `"create"`, `"edit"` and `"clone"`. Let's see how `useModalForm` is used in all.
 
 <Tabs

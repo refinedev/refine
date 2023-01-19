@@ -324,12 +324,6 @@ const PostCreate = () => {
 
 ## Basic Usage
 
-```ts
-import { useStepsForm } from "@pankod/refine-antd";
-
-const { stepsProps, formProps } = useStepsForm();
-```
-
 We'll do two examples, one for creating and one for editing a post. Let's see how `useStepsForm` is used in both.
 
 <Tabs

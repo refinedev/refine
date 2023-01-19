@@ -11,21 +11,6 @@ title: useModalForm
 
 ## Basic Usage
 
-```tsx
-const createModalForm = useModalForm({
-    modal: { show: showCreateModal, close, submit, title, visible },
-    refineCoreProps: { action: "create" },
-    initialValues: {
-        title: "",
-        content: "",
-    },
-    validate: {
-        title: (value) => (value.length < 2 ? "Too short title" : null),
-        content: (value) => (value.length < 10 ? "Too short content" : null),
-    },
-});
-```
-
 We'll show three examples, `"create"`, `"edit"` and `"clone"`. Let's see how `useModalForm` is used in all.
 
 <Tabs
