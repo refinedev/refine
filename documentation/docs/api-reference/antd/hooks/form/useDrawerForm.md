@@ -15,8 +15,8 @@ const { drawerProps, formProps } = useDrawerForm<IPost>({
 
 All we have to do is to pass the `drawerProps` to `<Drawer>` and `formProps` to `<Form>` components.
 
-:::tip
-`useStepsForm` is using [`useForm`](/api-reference/antd/hooks/form/useForm.md) under the hood. This means that you can use all the functionalities of `useForm` in your `useStepsForm`.
+:::info
+`useDrawerForm` hook is extended from [`useForm`](/api-reference/antd/hooks/form/useForm.md) from the [@pankod/refine-antd](https://github.com/refinedev/refine/tree/next/packages/antd) package. Which means that you can use all the features of [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook.
 :::
 
 ## Basic Usage
