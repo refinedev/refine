@@ -62,7 +62,6 @@ The word headless is underlined above. So Refine drop you into UI heaven, meanwh
 - Appwrite
 - Firebase
 - Directus
-- Altogic
 	
 
 #### State Management

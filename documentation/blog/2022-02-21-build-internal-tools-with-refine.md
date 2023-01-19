@@ -158,7 +158,6 @@ Refine includes many out-of-the-box data providers to use in your projects like:
 -   [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost)
 -   [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
 -   [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite)
--   [Altogic](https://github.com/refinedev/refine/tree/master/packages/altogic)
 
 ## Add routing to the application
 

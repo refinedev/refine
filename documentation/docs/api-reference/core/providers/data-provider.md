@@ -57,10 +57,8 @@ const dataProvider = {
 -   [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
 -   [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
 -   [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
--   [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost)
 -   [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite)
 -   [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
--   [Altogic](https://github.com/refinedev/refine/tree/master/packages/altogic)
 
 ### Community ❤️
 

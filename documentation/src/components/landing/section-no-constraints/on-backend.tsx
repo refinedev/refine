@@ -58,11 +58,6 @@ const backendItems = [
         AltIcon: BackendIcons.DirectusAlt,
     },
     {
-        name: "Altogic",
-        Icon: BackendIcons.Altogic,
-        AltIcon: BackendIcons.AltogicAlt,
-    },
-    {
         name: "Node",
         Icon: BackendIcons.Node,
         AltIcon: BackendIcons.NodeAlt,

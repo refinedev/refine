@@ -25,8 +25,12 @@ const App: React.FC = () => {
     }
 
     const authProvider: AuthProvider = {
-        login: () => {
-            keycloak.login();
+        login: async () => {
+            const urlSearchParams = new URLSearchParams(window.location.search);
+            const { to } = Object.fromEntries(urlSearchParams.entries());
+            await keycloak.login({
+                redirectUri: to ? `${window.location.origin}${to}` : undefined,
+            });
             return Promise.resolve(false);
         },
         logout: async () => {
