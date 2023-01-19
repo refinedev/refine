@@ -13,7 +13,7 @@ We will use [`useModalForm`][use-modal-form-refine-mantine] hook as a `useDrawer
 
 ## Basic Usage
 
-We'll show three examples, `"create"` and `"edit"`. Let's see how `useDrawerForm` is used in both.
+We'll show two examples, one for creating and one for editing a post. Let's see how `useDrawerForm` is used in both.
 
 <Tabs
 defaultValue="create"
