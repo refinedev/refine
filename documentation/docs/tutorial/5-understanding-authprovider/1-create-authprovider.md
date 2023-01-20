@@ -3,7 +3,7 @@ id: create-authprovider
 title: 2. Create Auth Provider From Scratch
 tutorial:
     prev: tutorial/understanding-authprovider/index
-    next: tutorial/getting-started/{preferredUI}/create-authprovider
+    next: tutorial/understanding-authprovider/{preferredUI}/auth-pages
 ---
 
 This section will show you how to create an auth provider from scratch. We'll use mock data to be able to focus on the auth provider methods. When you understand the logic of auth provider, you can easly integrate third-party authentication services or your own custom auth provider which includes many possible strategies like JWT, OAuth, etc.
@@ -110,7 +110,7 @@ Yes, you can pass any parameters to the `login` method. `useLogin` hook's mutati
 const { mutate } = useLogin<{
     username: string;
     password: string;
-    confirmPassword: string;
+    foo: string;
     remember: boolean;
 }>();
 ```
@@ -196,7 +196,7 @@ const authProvider: AuthProvider = {
 
 -   If the Promise resolves, the user is authenticated and pages that require authentication will be accessible.
 
--   If the Promise rejects, the user is not authenticated and pages that require authentication will not be accessible.
+-   If the Promise rejects, the user is not authenticated and pages that require authentication will not be accessible and by default, the user will be redirected to the `/login` page.
 
 In the `login` method, we've saved the user data to the local storage when the user logs in. So, we'll check if the user data exists in the local storage to determine if the user is authenticated.
 
@@ -232,7 +232,7 @@ const { data, isSuccess, isLoading, isError, refetch } = useAuthenticated();
 
 :::tip
 
-The `<Authenticated>` component makes use of the `useAuthenticated` hook. It allows you to render components only if the user is authenticated. You can see how to use the `useAuthenticated` hook in the [source code](https://github.com/refinedev/refine/blob/master/packages/core/src/components/authenticated/index.tsx).
+The `<Authenticated>` component makes use of the `useAuthenticated` hook. It allows you to render components only if the user is authenticated.
 
 [Refer to the `<Authenticated>` documentation for more information &#8594](/docs/api-reference/core/components/auth/authenticated/)
 
@@ -243,7 +243,7 @@ The `<Authenticated>` component makes use of the `useAuthenticated` hook. It all
 <details>
   <summary><strong>How can I redirect the user if the user is not authenticated?</strong></summary>
 
-By default, the user won't be redirected to anywhere if the `checkAuth` method rejects the Promise. If you want to redirect the user to a specific page, you can reject the Promise with an object that has `redirectPath` property.
+By default, the user will be redirected to `/login` if the `checkAuth` method rejects the Promise. If you want to redirect the user to a specific page, you can reject the Promise with an object that has `redirectPath` property.
 
 ```ts
 const authProvider: AuthProvider = {
@@ -263,7 +263,7 @@ const authProvider: AuthProvider = {
 
 `logout` method is used to log out users. It expects to return a Promise.
 
--   If the Promise resolves, the user is logged out and pages that require authentication will not be accessible.
+-   If the Promise resolves, the user is logged out and pages that require authentication will not be accessible and by default, the user will be redirected to the `/login` page.
 
 -   If the Promise rejects, the user is not logged out and stays on the page.
 
@@ -396,7 +396,7 @@ const authProvider: AuthProvider = {
 
 -   If the Promise resolves, the user is not logged out and stays on the page.
 
--   If the Promise rejects, the `logout` method is called to log out the user and the user is redirected to the `/login` route.
+-   If the Promise rejects, the `logout` method is called to log out the user and by default, the user is redirected to the `/login` route.
 
 We'll use the `checkError` method to log out the user if the API returns a `401` or `403` error.
 
@@ -510,7 +510,7 @@ import { usePermissions } from "@pankod/refine-core";
 const { data } = usePermissions();
 
 if (data?.includes("admin")) {
-    console.log("User has admin permission");
+    console.log("User has admin permissions");
 }
 ```
 
@@ -526,9 +526,9 @@ if (data?.includes("admin")) {
 
 `getUserIdentity` method is used to get the user's identity. It expects to return a Promise.
 
--   If the Promise resolves with a data, the user's identity will be available in the `useIdentity` hook's `data` property.
+-   If the Promise resolves with a data, the user's identity will be available in the `useGetIdentity` hook's `data` property.
 
--   If the Promise rejects, the user's identity will not be available and `useIdentity` hook throw an error.
+-   If the Promise rejects, the user's identity will not be available and `useGetIdentity` hook throw an error.
 
 We'll get the user's identity from the local storage and resolve the Promise.
 
@@ -559,29 +559,60 @@ const authProvider: AuthProvider = {
 
 <br />
 
-Invoking the `useGetIdentity` hook will call the `getUserIdentity` method. If `getUserIdentity` method resolves a data, it will be available in the `useIdentity` hook's `data` property.
+Invoking the `useGetIdentity` hook will call the `getUserIdentity` method. If `getUserIdentity` method resolves a data, it will be available in the `useGetIdentity` hook's `data` property.
 
-[Refer to the `useIdentity` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useGetIdentity/)
+[Refer to the `useGetIdentity` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useGetIdentity/)
 
-For example, if you want to get the user's email, you can use the `useIdentity` hook like this:
+For example, if you want to get the user's email, you can use the `useGetIdentity` hook like this:
 
 ```tsx
-import { useIdentity } from "@pankod/refine-core";
+import { useGetIdentity } from "@pankod/refine-core";
 
-const { data } = useIdentity();
+const { data } = useGetIdentity();
 
 if (data) {
     console.log(data.email);
 }
 ```
 
+:::info
+
+Depending on the UI framework you use, if you resolve `name` and `avatar` properties in the `getUserIdentity` method, the user's name and avatar will be shown in the header in the default layout.
+
+```ts
+const authProvider: AuthProvider = {
+    ...
+    getUserIdentity: () => {
+        const user = localStorage.getItem("auth");
+
+        if (user) {
+            const { email, roles } = JSON.parse(user);
+
+            return Promise.resolve({
+                email,
+                roles,
+                // highlight-start
+                name: "John Doe",
+                avatar: "https://i.pravatar.cc/300",
+                // highlight-end
+            });
+        }
+
+        return Promise.reject();
+    },
+    ...
+};
+```
+
+:::
+
 ### register
 
 `register` method is used to register a new user. It is similar to the `login` method. It expects to return a Promise.
 
--   If the Promise resolves, the user is authenticated and pages that require authentication will be accessible.
+-   If the Promise resolves, by default, the user will be redirected to the `/` page.
 
--   If the Promise rejects, the user is not authenticated and pages that require authentication will not be accessible.
+-   If the Promise rejects, the `useRegister` hook will throw an error.
 
 We'll register a new user and resolve the Promise.
 
@@ -861,12 +892,22 @@ import { useUpdatePassword } from "@pankod/refine-core";
 
 const { mutate } = useUpdatePassword();
 
-const handleUpdatePassword = (values) => {
-    mutate(values);
+const handleUpdatePassword = ({ password, confirmPassword }) => {
+    mutate({ password, confirmPassword }});
 };
 ```
 
-The `updatePassword` method will get mutation's parameters as arguments and query parameters from the URL as well.
+If we assume that the URL is `http://localhost:3000/reset-password?token=123`, the `updatePassword` method will get the mutation's parameters as arguments and `token` query parameter as well.
+
+```ts
+const authProvider: AuthProvider = {
+    ...
+    updatePassword: ({ password, confirmPassword, token }) => {
+        console.log(token); // 123
+        return Promise.resolve();
+    }
+}
+```
 
 <br />
 

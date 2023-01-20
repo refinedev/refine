@@ -189,6 +189,21 @@ Login page is used to authenticate users. It provides a basic form to enter emai
 
     By default, `<AuthPage>` component renders the login page. So, we don't need to pass any props to the `<AuthPage/>` component.
 
+    :::note
+
+    When the user submits the login form, it passes the email, password and remember to the auth provider's `login` method like below:
+
+    ```ts
+    const authProvider = {
+        login: ({ email, password, remember }) => {
+            ...
+        },
+        ...
+    };
+    ```
+
+    :::
+
 3. Run the app and navigate to the `/login` page.
 
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/login
@@ -296,6 +311,21 @@ Register page is used to register new users. It provides a basic form to enter e
 
     We need to pass the `type` prop to the `<AuthPage/>` component to render the register page.
 
+    :::note
+
+    When the user submits the register form, it passes the email and password to the auth provider's `register` method like below:
+
+    ```ts
+    const authProvider = {
+        register: ({ email, password }) => {
+            ...
+        },
+        ...
+    };
+    ```
+
+    :::
+
 2. Run the app and navigate to the `/register` page.
 
 ```tsx live previewOnly previewHeight=600px url=http://localhost:3000/register
@@ -385,6 +415,22 @@ Forgot password page is used to send a reset password link to the user's email. 
     ```
 
     We need to pass the `forgotPassword` prop to the `<AuthPage/>` component to render the forgot password page.
+
+    :::note
+
+    When the user submits the forgot password form, it passes the email to the auth provider's `forgotPassword` method like below:
+
+    ```ts
+
+    const authProvider = {
+        forgotPassword: ({ email }) => {
+            ...
+        },
+        ...
+    };
+    ```
+
+    :::
 
 2. Run the app and navigate to the `/forgot-password` page.
 
@@ -479,6 +525,21 @@ Update password page is used to update the user's password. It provides a basic 
     ```
 
     We need to pass the `updatePassword` prop to the `<AuthPage/>` component to render the update password page.
+
+    :::note
+
+    When the user submits the update password form, it passes the new password and confirm password to the auth provider's `updatePassword` method like below:
+
+    ```ts
+    const authProvider = {
+        updatePassword: ({ password, confirmPassword }) => {
+            ...
+        },
+        ...
+    };
+    ```
+
+    :::
 
 2. Run the app and navigate to the `/update-password` page.
 
