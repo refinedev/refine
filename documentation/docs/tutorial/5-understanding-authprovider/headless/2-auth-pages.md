@@ -155,7 +155,6 @@ Login page is used to authenticate users. It provides a basic form to enter emai
 
     :::
 
-    [Refer to the `useLogin` documentation for more information &#8594](/docs/api-reference/core/hooks/use-login.md)
 
 3. Run the app and navigate to the `/login` page.
 
