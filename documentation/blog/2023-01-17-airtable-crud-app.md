@@ -1,10 +1,10 @@
 ---
-title: How to use Material UI Card Component
-description: We'll discover the Material UI (MUI) Card component with examples
+title: Building a Complete React CRUD App with Airtable
+description: We will be building a Complete React CRUD application using refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
 slug: react-crud-app-airtable
-authors: doro_onome
-tags: [material-ui, react, mui, mui-card,]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-04-mui-card/social.png
+authors: peter_osah
+tags: [refine, react, airtable, crud,]
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/social.png
 hide_table_of_contents: false
 ---
 
@@ -12,19 +12,34 @@ hide_table_of_contents: false
 ## Introduction
 Before the existence of refine, building CRUD applications and data-intensive apps in React had always involved a painstaking repetitive process. [refine](https://github.com/refinedev/refine) eliminates this by providing a set of helper hooks, components, and service providers that are decoupled and independent of the UI components and business logic used in your application. This provides room for customizability and speed in building your application. 
 
-refine’s service providers make sure that you can easily connect to any custom REST, GraphQL backend as well as most BAAS(Backend as a service) such as [Airtable](https://www.airtable.com/). In this article, we will be building a simple CRUD application using refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
+refine’s service providers make sure that you can easily connect to any custom REST, GraphQL backend as well as most BAAS(Backend as a service) such as [Airtable](https://www.airtable.com/). In this article, we will be building a simple React CRUD application using refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
+
+Steps we'll cover:
+- [Why Use refine?](#why-use-refine)
+- [What is Airtable?](#what-is-airtable)
+  - [Setup Airtable](#setup-airtable)
+- [Bootstrapping the refine Application](#bootstrapping-the-refine-application)
+- [Implementing CRUD operations](#implementing-crud-operations)
+  - [Creating pages for CRUD operations](#creating-pages-for-crud-operations)
+  - [Listing posts records](#listing-posts-records)
+    - [Handling relationships](#handling-relationships)
+  - [Viewing a single post record](#viewing-a-single-post-record)
+  - [Creating post record](#creating-post-record)
+  - [Editing post record](#editing-post-record)
+  - [Deleting post record](#deleting-post-record)
+
 
 
 ## Why Use refine?
-refine is an open-source front-end development framework based on React that allows developers to create and deploy web applications in record time and with unrivaled flexibility. By design, refine decouples UI from frontend application logic to give developers complete styling and customization control.
+[refine](https://github.com/refinedev/refine) is an open-source front-end development framework based on React that allows developers to create and deploy web applications in record time and with unrivaled flexibility. By design, refine decouples UI from frontend application logic to give developers complete styling and customization control.
 
 refine's can be used in the development of data-intensive applications such as admin panels and dashboards; as well as an option for building public-facing applications.
 
 It can also connect to any REST or GraphQL backend service and includes support for NestJs CRUD, Airtable, Strapi, Supabase, and others out of the box and comes with powerful, enterprise-grade UI frameworks: Ant Design, MUI, Chakra UI and Mantine which support any UI-Kit as well as custom(headless) design.
 
 
-## Airtable
- [Airtable](https://www.airtable.com/) is a simple cloud database platform that uses spreadsheets to implement database features. It is a low-code application that offers a straightforward user interface for creating and sharing relational databases. It assists users in managing and displaying their data. It also includes an easy-to-use dashboard that allows users to effectively manage the databases they've created.
+## What is Airtable?
+ [Airtable](https://www.airtable.com/) is a simple cloud database platform that uses spreadsheets to implement database features. It is a low-code application that offers a straightforward user interface for creating and sharing relational databases. It assists users in managing and displaying their data. It also includes an easy-to-use dashboard that allows users to effectively manage the databases they've created. We will be using Airtable to power our React CRUD application.
 
 
  ### Setup Airtable
@@ -125,7 +140,7 @@ After running the command, you will be directed to the CLI wizard. Select the fo
 <br />
 
 
-
+refine is headless by design. This means that it does not come with a UI framework by default. However, it supports various UI frameworks such as Ant Design, MUI, Chakra UI and Mantine For this article, we will be using headless structure to build our React CRUD app.
 
 On selecting these options, the CLI will bootstrap a refine application with the Airtable provider.
 
@@ -172,7 +187,7 @@ To get more information about the dataProvider, you can always view the document
 In order to activate a resource, we have to pass the `resources` property to the `<Refine />` component.
 
 
-```tsx title="src/app.tsx"
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-json-server";
 
@@ -208,7 +223,7 @@ To get more information about how to use a resource, you can always view the doc
 
 <br/><br/>
 
-After obtaining more insight on the constitutents of a refine application, we will take a look at the `app.tsx` file of our refine application.
+After obtaining more insight on the constitutents of a refine application, we will take a look at the `App.tsx` file of our refine application.
 
 
 ```tsx title="src/App.tsx"
@@ -239,7 +254,7 @@ After installation, we will set up TailwindCSS as our CSS library for this appli
 
 
 ## Implementing CRUD operations
-We will implement the basic CRUD operations like create, list, delete and retrieve post records from Airtable but first, we will create the pages where these operations will be implemented.
+We will implement the basic CRUD operations like create, list, delete and retrieve post records from Airtable but first, we will create the pages where these operations will be implemented. So our React CRUD app will have the following sections:
 
 ### Creating pages for CRUD operations
 We will add the /posts/ route to our refine application
@@ -473,6 +488,13 @@ export const PostList: React.FC = () => {
 </details>
 
 In the code above, we use the `useTable()` hook from the `@pankod/refine-react-table` package to fetch records from our Airtable base.
+
+
+---
+
+<PromotionBanner title="Is your CRUD app overloaded with technical debt?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" />
+
+---
 
 
 #### Handling relationships
@@ -723,9 +745,9 @@ We also update the category row on the table to display the category record assi
 
 
 
-After this, we can now add the component `<PostList/>` in the `list.tsx` file to our resource present in the `app.tsx` file
+After this, we can now add the component `<PostList/>` in the `list.tsx` file to our resource present in the `App.tsx` file
 
-```tsx title="src/app.tsx"
+```tsx title="src/App.tsx"
 ...
 // highlight-next-line
 import { PostList } from "pages/post/list";
@@ -766,9 +788,15 @@ export default App;
 <br />
 
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 ### Viewing a single post record
-For Viewing a record, we will use the `useShow()` hook which is present in the `@pankod/refine-core` package.
+For Viewing a record in our React CRUD app, we will use the `useShow()` hook which is present in the `@pankod/refine-core` package.
 
 We will add a `show.tsx` file In the `post`  under the `pages` folder.
 Next, with the following code:
@@ -1133,10 +1161,10 @@ export const PostList: React.FC = () => {
 };
 ```
 
-After this, we can now add the component `<PostCreate/>` in the `create.tsx` file to our resource present in the app.tsx file.
+After this, we can now add the component `<PostCreate/>` in the `create.tsx` file to our resource present in the `App.tsx` file.
 
 
-```tsx title="src/app.tsx"
+```tsx title="src/App.tsx"
 ...
 import { Refine } from "@pankod/refine-core";
 import { PostList } from "pages/post/list";
@@ -1419,7 +1447,7 @@ export const PostList: React.FC = () => {
 ```
 
 
-After this, we can now add the component `<PostEdit/>` in the `edit.tsx` file to our resource present in the `app.tsx` file.
+After this, we can now add the component `<PostEdit/>` in the `edit.tsx` file to our resource present in the `App.tsx` file.
 
 
 
@@ -1439,7 +1467,7 @@ After this, we can now add the component `<PostEdit/>` in the `edit.tsx` file to
 
 
 ### Deleting post record
-For Deleting a record, we will use the `useDelete()` hook which is present in the `@pankod/refine-core` package which was installed using the `superplate cli` method to build our refine application.
+For Deleting a record, we will use the `useDelete()` hook which is present in the `@pankod/refine-core` package which was installed using the `refine CLI` to build our refine application.
 
 We'll add a **Delete** button to each row because refine doesn't add one automatically, so we'll need to update our `<PostList>` component to include one for each record. Add the highlighted lines below to the existing list component.
 
@@ -1507,4 +1535,10 @@ export const PostList: React.FC = () => {
 
 
 ## Conclusion
-In this article, we covered how to create a headless refine application using the superplate cli method as well as creating a **CRUD** application using refine. There is no limit to what can be achieved using refine as you can quickly a fully API or **BAAS**-powered application with minimal effort and code. It also has well-detailed documentation which can soon get you started as well as guide you through your building process. To access the documentation, visit [here](https://refine.dev/docs/getting-started/overview/).
+In this article, we covered how to create a headless refine application using the refine CLI as well as creating a **React CRUD** application using refine. There is no limit to what can be achieved using refine as you can quickly a fully API or **BAAS**-powered application with minimal effort and code. It also has well-detailed documentation which can soon get you started as well as guide you through your building process. To access the documentation, visit [here](https://refine.dev/docs/getting-started/overview/).
+
+## Live StackBlitz Example
+
+<StackblitzExample path="blog-refine-airtable-crud" />
+
+---
