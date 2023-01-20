@@ -152,14 +152,6 @@ const postInfiniteListResult = useInfiniteList<IPost>({ resource: "posts" });
 }
 ```
 
-Although we didn't pass any sort order configurations to `useInfiniteList`, data comes in descending order according to `id` since `getList` has default values for sort order:
-
-```ts
-{
-    sort: [{ order: "desc", field: "id" }];
-}
-```
-
 :::caution
 `getList` also has default values for pagination:
 
