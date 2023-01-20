@@ -3,7 +3,7 @@ title: Building a Complete React CRUD App with Airtable
 description: We will be building a Complete React CRUD application using refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
 slug: react-crud-app-airtable
 authors: peter_osah
-tags: [refine, react, airtable, crud,]
+tags: [refine, react, airtable, crud]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/social.png
 hide_table_of_contents: false
 ---
@@ -1537,8 +1537,8 @@ export const PostList: React.FC = () => {
 ## Conclusion
 In this article, we covered how to create a headless refine application using the refine CLI as well as creating a **React CRUD** application using refine. There is no limit to what can be achieved using refine as you can quickly a fully API or **BAAS**-powered application with minimal effort and code. It also has well-detailed documentation which can soon get you started as well as guide you through your building process. To access the documentation, visit [here](https://refine.dev/docs/getting-started/overview/).
 
-## Live StackBlitz Example
+## Live CodeSandbox Example
 
-<StackblitzExample path="blog-refine-airtable-crud" />
+<CodeSandboxExample path="blog-refine-airtable-crud" />
 
 ---
