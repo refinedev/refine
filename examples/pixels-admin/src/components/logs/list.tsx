@@ -37,7 +37,7 @@ export const LogList = ({ currentCanvas }: TLogListProps) => {
                             style={{ fontSize: "10px", color: "#9c9c9c" }}
                         >{`${formattedDate(item.created_at)} - ${timeFromNow(
                             item.created_at,
-                        )} ago`}</span>
+                        )}`}</span>
                     </Typography.Text>
                 </AntdList.Item>
             )}
