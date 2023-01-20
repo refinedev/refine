@@ -410,8 +410,13 @@
     @apply relative;
 }
 
-.with-hoverline.hoverline-link:hover::after,
-.with-hoverline.navbar__link--active::after {
+.with-hoverline.hoverline-link:not([role=button]):hover::after,
+.with-hoverline.navbar__link--active:not([role=button])::after {
+    content: "";
+    @apply absolute bottom-[-5px] left-[calc(50%-12px)] h-1 w-6 rounded-sm bg-[#1890ff] transition-opacity duration-200 ease-in-out;
+}
+
+.with-hoverline.hoverline-link[role=button]:hover::before {
     content: "";
     @apply absolute bottom-[-5px] left-[calc(50%-12px)] h-1 w-6 rounded-sm bg-[#1890ff] transition-opacity duration-200 ease-in-out;
 }
