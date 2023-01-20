@@ -1,7 +1,9 @@
-import { parseISO, format, formatDistanceToNow } from "date-fns";
+import relativeTime from "dayjs/plugin/relativeTime";
+import dayjs from "dayjs";
 
-export const formattedDate = (time: string) =>
-    format(new Date(parseISO(time)), "MMM dd yyyy, HH:mm");
+dayjs.extend(relativeTime);
 
-export const timeFromNow = (time: string) =>
-    formatDistanceToNow(new Date(parseISO(time)));
+export const formattedDate = (time: string): string =>
+    dayjs(time).format("D MMM YYYY, HH:mm");
+
+export const timeFromNow = (time: string): string => dayjs(time).fromNow();
