@@ -14,12 +14,8 @@
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",
     "@types/jest": "^29.2.4",
-    "i18next": "^20.1.0",
-    "i18next-browser-languagedetector": "^6.1.1",
-    "i18next-xhr-backend": "^3.2.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-i18next": "^11.8.11",
     "react-scripts": "^5.0.0",
     "web-vitals": "^1.1.1",
     "cross-env": "^7.0.3"

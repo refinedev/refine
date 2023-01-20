@@ -3,7 +3,7 @@ import React from "react";
 
 export const PostEdit: React.FC = () => {
     const {
-        refineCore: { onFinish, formLoading, queryResult },
+        refineCore: { onFinish, formLoading },
         register,
         handleSubmit,
         formState: { errors },
