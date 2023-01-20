@@ -278,10 +278,6 @@ function App() {
      resources={[
        {
          name: "posts",
-         icon: '',
-         list: null,
-         show: null,
-	       create: null,
        }
      ]}
    />
@@ -322,8 +318,7 @@ npm i @pankod/refine-react-table
 Next, we will define an interface for the fetched data from our Airtable Base. to do this, we will create a new folder called `interfaces` under the `src` folder in the root directory of our application. Then we will create a `post.d.ts` file and add the code below:
 
 
-```tsx
-tsx title="src/interfaces/post.d.ts"
+```tsx title="src/interfaces/post.d.ts"
 
 export interface IPost {
  id: string;

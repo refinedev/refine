@@ -30,7 +30,6 @@ function App() {
             resources={[
                 {
                     name: "posts",
-                    icon: "",
                     list: PostList,
                     show: PostShow,
                     create: PostCreate,
