@@ -33,11 +33,11 @@ export const LogList = ({ currentCanvas }: TLogListProps) => {
                         <strong>{item?.author?.user_metadata?.email}</strong>
                         {` ${item.action}d a pixel on canvas: `}
                         <strong>{`${item?.meta?.canvas?.name} `}</strong>
-                        <span
-                            style={{ fontSize: "10px", color: "#9c9c9c" }}
-                        >{`${formattedDate(item.created_at)} - ${timeFromNow(
-                            item.created_at,
-                        )} ago`}</span>
+                        <span style={{ fontSize: "10px", color: "#9c9c9c" }}>
+                            {`${formattedDate(item.created_at)} - ${timeFromNow(
+                                item.created_at,
+                            )}`}
+                        </span>
                     </Typography.Text>
                 </AntdList.Item>
             )}
