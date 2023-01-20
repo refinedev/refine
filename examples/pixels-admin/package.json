@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.2",
-    "@pankod/refine-antd": "^3.18.0",
+    "@pankod/refine-antd": "^4.7.1",
     "@pankod/refine-core": "^3.18.0",
     "@pankod/refine-react-router-v6": "^3.18.0",
     "@pankod/refine-supabase": "^3.18.0",
@@ -18,7 +18,6 @@
     "buffer": "^6.0.3",
     "casbin": "^5.19.3",
     "craco-less": "^2.0.0",
-    "date-fns": "^2.29.3",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
     "react": "^18.2.0",
