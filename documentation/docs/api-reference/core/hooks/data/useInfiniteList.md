@@ -9,7 +9,78 @@ In some APIs, the `cursor-pagination` method is used for its various advantages.
 
 It uses the `getList` method as the query function from the [`dataProvider`](/docs/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
-*TODO: Add LivePreview*
+```tsx live url=http://localhost:3000/categories previewHeight=420px
+import React from "react";
+import { Refine } from "@pankod/refine-core";
+
+setInitialRoutes(["/posts"]);
+// visible-block-start
+import React from "react";
+import { useInfiniteList } from "@pankod/refine-core";
+
+const PostList = () => {
+    const {
+        data,
+        error,
+        hasNextPage,
+        isLoading,
+        fetchNextPage,
+        isFetchingNextPage,
+    } = useInfiniteList({
+        resource: "categories",
+        config: {
+            pagination: {
+                pageSize: 4
+            }
+        }
+    });
+
+    if (isLoading) {
+        return <p>Loading</p>;
+    }
+    if (error) {
+        return <p>Something went wrong</p>;
+    }
+
+    return (
+        <div>
+            <ul>
+                {data?.pages.map((page) =>
+                    page.data.map(({ id, title }) => (
+                        <li key={id}>
+                            {id}.{title}
+                        </li>
+                    )),
+                )}
+            </ul>
+
+            <button
+                onClick={() => fetchNextPage()}
+                disabled={!hasNextPage || isFetchingNextPage}
+            >
+                {isFetchingNextPage
+                    ? "Loading more..."
+                    : hasNextPage
+                    ? "Load More"
+                    : "Nothing more to load"}
+            </button>
+        </div>
+    );
+}
+// visible-block-end
+
+setRefineProps({
+    // Layout: (props: LayoutProps) => <Layout {...props} />,
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+        },
+    ],
+});
+
+render(<RefineHeadlessDemo />);
+```
 
 ## Usage
 
@@ -46,7 +117,7 @@ Consumes data from data provider `useInfiniteList` with `getList` method. First 
 getList: async ({ resource, pagination }) => {
     const { current } = pagination;
     const { data } = await axios.get(
-        `https://api.fake-rest.refine.dev/${resource}?cursor=${cursor || 0}`,
+        `https://api.fake-rest.refine.dev/${resource}?cursor=${current || 0}`,
     );
 
     return {
@@ -66,7 +137,7 @@ After this process, we have successfully retrieved the first page data. Let's fi
 getList: async ({ resource, pagination }) => {
     const { current } = pagination;
     const { data } = await axios.get(
-        `https://api.fake-rest.refine.dev/${resource}?cursor=${cursor || 0}`,
+        `https://api.fake-rest.refine.dev/${resource}?cursor=${current || 0}`,
     );
 
     return {
@@ -292,7 +363,7 @@ const postListQueryResult = useInfiniteList<IPost>({
 <br />
 
 :::tip
-`useInfiniteList` can also accept all `useInfiniteQuery` options as a third parameter.  
+`useInfiniteList` can also accept all `useInfiniteQuery` options as a parameter.  
 [Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/reference/useInfiniteQuery)
 
 -   For example, to disable query from running automatically you can set `enabled` to `false`.
