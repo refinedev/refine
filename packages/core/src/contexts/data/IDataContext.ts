@@ -131,7 +131,6 @@ export interface IDataContextProvider {
         filters?: CrudFilters;
         metaData?: MetaDataQuery;
         dataProviderName?: string;
-        cursor?: unknown;
     }) => Promise<GetListResponse<TData>>;
     getMany?: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
