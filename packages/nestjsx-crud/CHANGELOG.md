@@ -1,5 +1,42 @@
 # @pankod/refine-nestjsx-crud
 
+## 3.37.0
+
+### Minor Changes
+
+-   [#3429](https://github.com/refinedev/refine/pull/3429) [`92c3cac9a7f`](https://github.com/refinedev/refine/commit/92c3cac9a7fec15a5e28f9bc60aa182d8cb58254) Thanks [@aliemir](https://github.com/aliemir)! - Added ability to pass `join` parameter through `metaData` to queries.
+
+    **Example**
+
+    ```ts
+    useList({
+        metaData: {
+            join: {
+                select: ["id", "name"],
+                field: "categories",
+            },
+        },
+    });
+
+    useList({
+        metaData: {
+            join: ["categories", ["id", "name"]],
+        },
+    });
+
+    useList({
+        metaData: {
+            join: [
+                ["categories", ["id", "name"]],
+                {
+                    select: ["id", "label"],
+                    field: "tags",
+                },
+            ],
+        },
+    });
+    ```
+
 ## 3.36.0
 
 ### Minor Changes
