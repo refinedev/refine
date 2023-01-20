@@ -1,0 +1,54 @@
+{
+  "name": "blog-refine-airtable-crud",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@pankod/refine-airtable": "^3.18.0",
+    "@pankod/refine-cli": "^1.2.0",
+    "@pankod/refine-core": "^3.18.0",
+    "@pankod/refine-inferencer": "^1.2.0",
+    "@pankod/refine-react-hook-form": "^3.37.2",
+    "@pankod/refine-react-router-v6": "^3.18.0",
+    "@pankod/refine-react-table": "^4.9.0",
+    "@testing-library/jest-dom": "^5.12.0",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/user-event": "^12.8.3",
+    "@types/jest": "^26.0.23",
+    "i18next": "^20.1.0",
+    "i18next-browser-languagedetector": "^6.1.1",
+    "i18next-xhr-backend": "^3.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^11.8.11",
+    "react-scripts": "^5.0.0",
+    "web-vitals": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.20.10",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.19",
+    "tailwindcss": "^3.2.4",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "dev": "refine start",
+    "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "refine": "refine"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
