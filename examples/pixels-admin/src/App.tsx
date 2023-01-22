@@ -60,10 +60,6 @@ function App() {
                     ...routerProvider,
                     routes: [
                         {
-                            path: "/register",
-                            element: <AuthPage type="register" />,
-                        },
-                        {
                             path: "/forgot-password",
                             element: <AuthPage type="forgotPassword" />,
                         },
@@ -86,26 +82,6 @@ function App() {
                 LoginPage={() => (
                     <AuthPage
                         type="login"
-                        providers={[
-                            {
-                                name: "google",
-                                icon: (
-                                    <GoogleOutlined
-                                        style={{ fontSize: "18px" }}
-                                    />
-                                ),
-                                label: "Sign in with Google",
-                            },
-                            {
-                                name: "github",
-                                icon: (
-                                    <GithubOutlined
-                                        style={{ fontSize: "18px" }}
-                                    />
-                                ),
-                                label: "Sign in with GitHub",
-                            },
-                        ]}
                         formProps={{
                             initialValues: {
                                 email: "info@refine.dev",
