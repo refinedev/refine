@@ -70,7 +70,7 @@ You can disable sorting for a specific column by setting the `enableSorting` pro
 ```tsx
 {
     title: "Category",
-    dataIndex: "cagegory",
+    dataIndex: "category",
     //highlight-next-line
     enableSorting: false,
 },

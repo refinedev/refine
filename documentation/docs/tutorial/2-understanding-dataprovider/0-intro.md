@@ -73,7 +73,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 You can refer to the **refine** component [dataProvider](/docs/api-reference/core/components/refine-config/#dataprovider) prop documentation for more detailed information.
 
-## How data provider methods are using in the app?
+## How are data provider methods used in the app?
 
 We use **refine's** data hooks whenever we need to fetch data from the API. These data hooks are connected to data provider methods internally. The required parameters are passed to the data provider methods, and the response from the API is returned.
 
