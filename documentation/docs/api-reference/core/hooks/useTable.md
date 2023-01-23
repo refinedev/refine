@@ -509,12 +509,7 @@ const table = useTable({
 
 ### `dataProviderName`
 
-If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
-It is useful when you want to use a different `dataProvider` for a specific resource.
-
-:::tip
-If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop ](docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
-:::
+If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. It is useful when you want to use a different `dataProvider` for a specific resource.
 
 ```tsx
 const table = useTable({
@@ -616,7 +611,7 @@ The filter behavior can be set to either `"merge"` or `"merge"`.
 
 -   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
--   When the filter behavior is set to `"merge"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+-   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
 
 ```tsx
 const table = useTable({
