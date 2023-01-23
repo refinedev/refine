@@ -1529,7 +1529,8 @@ export const PostList: React.FC = () => {
 
 
 
-## Conclusion
+## Conclusion
+
 In this article, we covered how to create a headless refine application using the refine CLI as well as creating a **React CRUD** application using refine. There is no limit to what can be achieved using refine as you can quickly a fully API or **BAAS**-powered application with minimal effort and code. It also has well-detailed documentation which can soon get you started as well as guide you through your building process. To access the documentation, visit [here](https://refine.dev/docs/getting-started/overview/).
 
 ## Live CodeSandbox Example
