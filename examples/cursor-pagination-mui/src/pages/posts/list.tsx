@@ -1,16 +1,21 @@
 import React from "react";
-import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    List,
-    DateField,
-} from "@pankod/refine-mui";
+import { useDataGrid, DataGrid, GridColumns, List } from "@pankod/refine-mui";
 
 import { ICommit } from "interfaces";
 
 export const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid<ICommit>();
+    const [next, setNext] = React.useState(undefined);
+    const { dataGridProps, setCurrent, tableQueryResult } =
+        useDataGrid<ICommit>({
+            initialPageSize: 5,
+            metaData: {
+                cursor: {
+                    next,
+                },
+            },
+        });
+
+    const { data } = tableQueryResult;
 
     const columns: GridColumns<ICommit> = [
         {
@@ -46,14 +51,12 @@ export const PostsList: React.FC = () => {
         {
             field: "date",
             headerName: "Date",
-            minWidth: 100,
+            minWidth: 140,
             flex: 1,
             filterable: false,
             sortable: false,
             renderCell: ({ row }) => {
-                return (
-                    <DateField value={row.commit.author.date} format="lll" />
-                );
+                return row.commit.author.date;
             },
         },
     ];
@@ -63,6 +66,13 @@ export const PostsList: React.FC = () => {
             <DataGrid
                 getRowId={(row) => row.sha}
                 {...dataGridProps}
+                onPageChange={(page) => {
+                    console.log("data", data);
+                    if (data?.cursor) {
+                        setNext(data?.cursor?.next);
+                    }
+                    setCurrent(page + 1);
+                }}
                 columns={columns}
                 autoHeight
             />

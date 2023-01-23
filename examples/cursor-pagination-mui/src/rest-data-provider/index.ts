@@ -12,16 +12,37 @@ export const dataProvider = (
     Required<DataProvider>,
     "createMany" | "updateMany" | "deleteMany"
 > => ({
-    getList: async ({ resource, pagination }) => {
-        const { data } = await httpClient.get(
-            `https://api.github.com/${resource}?until=${
-                pagination?.current || new Date().toISOString()
-            }`,
-        );
+    getList: async ({ resource, metaData, pagination }) => {
+        let url = `https://api.github.com/${resource}?per_page=${
+            pagination?.pageSize || 10
+        }`;
 
+        if (metaData?.cursor?.next) {
+            url = `${url}&until=${metaData.cursor.next}`;
+        }
+
+        const { data } = await httpClient.get(url);
+
+        const next = data[data.length - 1].commit.committer.date;
         return {
             data,
-            total: 0,
+            total: 200, // Total count is not available in Github API
+            cursor: {
+                next,
+            },
+
+            /**
+             * If the API supports it, you can define `nextCursor` this way.
+             *
+             * return {
+             *  data
+             *  total: 200,
+             *  cursor: {
+             *     next: data.meta.nextCursor,
+             *     prev: data.meta.prevCursor,
+             *  }
+             * }
+             */
         };
     },
 
