@@ -1,5 +1,53 @@
 # @pankod/refine-core
 
+## 3.97.0
+
+### Minor Changes
+
+-   [#3442](https://github.com/refinedev/refine/pull/3442) [`8f2954611fa`](https://github.com/refinedev/refine/commit/8f2954611fa1dd1ebcc7519c416c6ef2554ca395) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added swizzle support for `@pankod/refine-core` package.
+
+    Swizzleable components:
+
+    -   `Authenticated`
+    -   `CanAccess`
+    -   `ErrorPage`
+    -   Authentication Pages
+        -   `Login`
+        -   `Logout`
+        -   `Register`
+        -   `ForgotPassword`
+        -   `UpdatePassword`
+
+### Patch Changes
+
+-   [#3436](https://github.com/refinedev/refine/pull/3436) [`ea74f3a8408`](https://github.com/refinedev/refine/commit/ea74f3a8408bb53097f0e4a6b3b733d515b2a4d3) Thanks [@sevkioruc](https://github.com/sevkioruc)! - Fix useList, useCustom and useCustomMutation hooks i18n issue in the error messages.
+
+-   [#3440](https://github.com/refinedev/refine/pull/3440) [`96d93eb2d71`](https://github.com/refinedev/refine/commit/96d93eb2d714d2559faf25c7eab5b4db31f1bf4c) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Made the auth provider's `usePermissions` method optional.
+
+## 3.96.0
+
+### Minor Changes
+
+-   [#3442](https://github.com/refinedev/refine/pull/3442) [`8f2954611fa`](https://github.com/refinedev/refine/commit/8f2954611fa1dd1ebcc7519c416c6ef2554ca395) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added swizzle support for `@pankod/refine-core` package.
+
+    Swizzleable components:
+
+    -   `Authenticated`
+    -   `CanAccess`
+    -   `ErrorPage`
+    -   Authentication Pages
+        -   `Login`
+        -   `Logout`
+        -   `Register`
+        -   `ForgotPassword`
+        -   `UpdatePassword`
+
+### Patch Changes
+
+-   [#3436](https://github.com/refinedev/refine/pull/3436) [`ea74f3a8408`](https://github.com/refinedev/refine/commit/ea74f3a8408bb53097f0e4a6b3b733d515b2a4d3) Thanks [@sevkioruc](https://github.com/sevkioruc)! - Fix useList, useCustom and useCustomMutation hooks i18n issue in the error messages.
+
+-   [#3440](https://github.com/refinedev/refine/pull/3440) [`96d93eb2d71`](https://github.com/refinedev/refine/commit/96d93eb2d714d2559faf25c7eab5b4db31f1bf4c) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Made the auth provider's `usePermissions` method optional.
+
 ## 3.95.3
 
 ### Patch Changes
