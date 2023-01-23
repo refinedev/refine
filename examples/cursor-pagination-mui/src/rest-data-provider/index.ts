@@ -3,7 +3,7 @@ import { AxiosInstance } from "axios";
 // "stringify" function is re-exported from "query-string" package by "@pankod/refine-simple-rest"
 import { stringify } from "@pankod/refine-simple-rest";
 import { DataProvider } from "@pankod/refine-core";
-import { axiosInstance, generateSort, generateFilter } from "./utils";
+import { axiosInstance, generateFilter, generateSort } from "./utils";
 
 export const dataProvider = (
     apiUrl: string,
@@ -12,47 +12,16 @@ export const dataProvider = (
     Required<DataProvider>,
     "createMany" | "updateMany" | "deleteMany"
 > => ({
-    getList: async ({
-        resource,
-        hasPagination = true,
-        pagination = { current: 1, pageSize: 10 },
-        filters,
-        sort,
-    }) => {
-        const url = `${apiUrl}/${resource}`;
-
-        const { current = 1, pageSize = 10 } = pagination ?? {};
-
-        const queryFilters = generateFilter(filters);
-
-        const query: {
-            _start?: number;
-            _end?: number;
-            _sort?: string;
-            _order?: string;
-        } = hasPagination
-            ? {
-                  _start: (current - 1) * pageSize,
-                  _end: current * pageSize,
-              }
-            : {};
-
-        const generatedSort = generateSort(sort);
-        if (generatedSort) {
-            const { _sort, _order } = generatedSort;
-            query._sort = _sort.join(",");
-            query._order = _order.join(",");
-        }
-
-        const { data, headers } = await httpClient.get(
-            `${url}?${stringify(query)}&${stringify(queryFilters)}`,
+    getList: async ({ resource, pagination }) => {
+        const { data } = await httpClient.get(
+            `https://api.github.com/${resource}?until=${
+                pagination?.current || new Date().toISOString()
+            }`,
         );
-
-        const total = +headers["x-total-count"];
 
         return {
             data,
-            total,
+            total: 0,
         };
     },
 

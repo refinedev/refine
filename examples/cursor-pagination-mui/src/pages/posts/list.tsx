@@ -1,73 +1,71 @@
 import React from "react";
-import { useMany } from "@pankod/refine-core";
 import {
     useDataGrid,
     DataGrid,
     GridColumns,
     List,
-    EditButton,
+    DateField,
 } from "@pankod/refine-mui";
 
-import { ICategory, IPost } from "interfaces";
+import { ICommit } from "interfaces";
 
 export const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid<IPost>();
+    const { dataGridProps } = useDataGrid<ICommit>();
 
-    const categoryIds = dataGridProps.rows.map((item) => item.category.id);
-    const { data: categoriesData, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
+    const columns: GridColumns<ICommit> = [
+        {
+            field: "sha",
+            headerName: "SHA",
+            type: "string",
+            width: 100,
+            filterable: false,
+            sortable: false,
         },
-    });
-
-    const columns = React.useMemo<GridColumns<IPost>>(
-        () => [
-            {
-                field: "id",
-                headerName: "ID",
-                type: "number",
-                width: 50,
+        {
+            field: "message",
+            headerName: "Message",
+            minWidth: 400,
+            flex: 1,
+            filterable: false,
+            sortable: false,
+            renderCell: ({ row }) => {
+                return row.commit.message;
             },
-            { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
-            {
-                field: "category.id",
-                headerName: "Category",
-                type: "number",
-                headerAlign: "left",
-                align: "left",
-                minWidth: 250,
-                flex: 0.5,
-                renderCell: function render({ row }) {
-                    if (isLoading) {
-                        return "Loading...";
-                    }
-
-                    const category = categoriesData?.data.find(
-                        (item) => item.id === row.category.id,
-                    );
-                    return category?.title;
-                },
+        },
+        {
+            field: "author",
+            headerName: "Author",
+            minWidth: 140,
+            flex: 1,
+            filterable: false,
+            sortable: false,
+            renderCell: ({ row }) => {
+                return row.commit.author.name;
             },
-            { field: "status", headerName: "Status", minWidth: 120, flex: 0.3 },
-            {
-                field: "actions",
-                headerName: "Actions",
-                renderCell: function render({ row }) {
-                    return <EditButton hideText recordItemId={row.id} />;
-                },
-                align: "center",
-                headerAlign: "center",
-                minWidth: 80,
+        },
+        {
+            field: "date",
+            headerName: "Date",
+            minWidth: 100,
+            flex: 1,
+            filterable: false,
+            sortable: false,
+            renderCell: ({ row }) => {
+                return (
+                    <DateField value={row.commit.author.date} format="lll" />
+                );
             },
-        ],
-        [categoriesData, isLoading],
-    );
+        },
+    ];
 
     return (
         <List>
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
+            <DataGrid
+                getRowId={(row) => row.sha}
+                {...dataGridProps}
+                columns={columns}
+                autoHeight
+            />
         </List>
     );
 };
