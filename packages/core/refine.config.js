@@ -93,6 +93,16 @@ module.exports = {
                     },
                 ],
             },
+            {
+                group: "Other",
+                label: "Authenticated",
+                files: [
+                    {
+                        src: "./src/components/authenticated/index.tsx",
+                        dest: "./components/authenticated.tsx",
+                    },
+                ],
+            },
         ],
         transform: (content) => {
             let newContent = content;
