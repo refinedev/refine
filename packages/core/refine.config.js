@@ -83,6 +83,16 @@ module.exports = {
                     },
                 ],
             },
+            {
+                group: "Other",
+                label: "CanAccess",
+                files: [
+                    {
+                        src: "./src/components/canAccess/index.tsx",
+                        dest: "./components/canAccess.tsx",
+                    },
+                ],
+            },
         ],
         transform: (content) => {
             let newContent = content;
@@ -92,6 +102,7 @@ module.exports = {
                 if (
                     importItem.importPath === "../../../../../interfaces" ||
                     importItem.importPath === "../../../interfaces" ||
+                    importItem.importPath === "../../interfaces" ||
                     importItem.importPath === "@hooks" ||
                     importItem.importPath === "@hooks/translate"
                 ) {
