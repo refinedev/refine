@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-core": patch
+"@pankod/refine-core": minor
 ---
 
 Added swizzle support for `@pankod/refine-core` package.
