@@ -7,6 +7,35 @@ module.exports = {
         items: [
             {
                 group: "Pages",
+                label: "ErrorPage",
+                message: ` 
+                **\`Warning:\`**
+                If you want to change the default error page;
+                You should pass it with the **catchAll** prop to the **<Refine/>** component.
+
+                \`\`\`
+                // title: App.tsx
+                import { ErrorPage } from "components/pages/error";
+
+                const App = () => {
+                    return (
+                        <Refine
+                            catchAll={ErrorPage}
+                            /* ... */
+                        />
+                    );
+                }
+                \`\`\`
+                `,
+                files: [
+                    {
+                        src: "./src/components/pages/error/index.tsx",
+                        dest: "./components/pages/error.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Pages",
                 label: "AuthPage",
                 message: ` 
                 **\`Warning:\`**
