@@ -5,7 +5,7 @@ body {
 }
 ```
 
-```tsx live url=http://localhost:3000/posts previewHeight=420px hideCode
+```tsx live url=http://localhost:3000/posts previewHeight=420px
 setInitialRoutes(["/posts"]);
 
 // visible-block-start

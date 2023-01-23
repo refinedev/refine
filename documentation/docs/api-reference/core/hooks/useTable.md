@@ -4,6 +4,9 @@ title: useTable
 ---
 
 import BasicUsageLivePreview from "./\_partials/useTable/\_partial-basic-usage-live-preview.md";
+import PaginationLivePreview from "./\_partials/useTable/\_partial-pagination-live-preview.md";
+import SortingLivePreview from "./\_partials/useTable/\_partial-sorting-live-preview.md";
+import FilteringLivePreview from "./\_partials/useTable/\_partial-filtering-live-preview.md";
 
 `useTable` allows us to fetch data according to sorter, filter, and pagination states. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch.
 
@@ -18,210 +21,11 @@ If you're looking for a complete table library, Refine supports two table librar
 
 ## Basic Usage
 
+In basic usage `useTable` returns the data as it comes from the endpoint.
+
 <BasicUsageLivePreview />
 
 <br/>
-
-In basic usage `useTable` returns the data as it comes from the endpoint.
-
-```tsx
-import { useTable, HttpError } from "@pankod/refine-core";
-
-interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    createdAt: string;
-}
-
-const { tableQueryResult } = useTable<IPost, HttpError>({
-    resource: "posts",
-});
-```
-
-We will use this data in the following examples.
-
-```json title="https://api.fake-rest.refine.dev/posts"
-[
-    {
-        "id": 182,
-        "title": "A aspernatur rerum molestiae.",
-        "content": "Natus molestias incidunt voluptatibus. Libero delectus facilis...",
-        "status": "published",
-        "createdAt": "2021-04-18T00:09:11.607Z"
-    },
-    {
-        "id": 989,
-        "title": "A molestiae vel voluptatem enim.",
-        "content": "Voluptas consequatur quia beatae. Ipsa est qui culpa deleniti...",
-        "status": "draft",
-        "createdAt": "2020-01-28T02:57:58.892Z"
-    }
-]
-```
-
-## Pagination
-
-`useTable` has a pagination feature. The pagination is done by using the `current` and `pageSize` props. The `current` is the current page and the `pageSize` is the number of records per page.
-
-By default, the `current` is 1 and the `pageSize` is 10. You can change default values by passing the `initialCurrent` and `initialPageSize` props to the `useTable` hook.
-
-You can also change the `current` and `pageSize` values by using the `setCurrent` and `setPageSize` functions that are returned by the `useTable` hook. Every change will trigger a new fetch.
-
-If you want to disable pagination, you can use `hasPagination` property in `useTable` config and set it to `false`
-
-:::info
-If `hasPagination` is set to `false`, `current`, `setCurrent`, `pageSize`, `setPageSize` and `pageCount` will return `undefined`
-:::
-
-```tsx
-import { useTable } from "@pankod/core";
-
-const { pageSize, setPageSize, current, setCurrent } = useTable({
-    resource: "posts",
-    initialCurrent: 1,
-    initialPageSize: 10,
-});
-
-console.log(pageSize); // 10
-console.log(current); // 1
-
-setPageSize(20);
-console.log(pageSize); // 20
-
-setCurrent(2);
-console.log(current); // 2
-```
-
-## Sorting
-
-`useTable` has a sorter feature. The sorter is done by using the `sorter` state. The `sorter` state is a [`CrudSorting`][crudsorting] type that contains the field and the order of the sort. You can change the sorter state by using the `setSorter` function. Every change will trigger a new fetch.
-
-Also you can add initial sorter state by passing the `initialSorter` prop and permanent sorter state by passing the `permanentSorter` prop to the `useTable` hook. Even if you change the sorter state, the `permanentSorter` will be used together with the sorter state.
-
-```tsx
-import { useTable } from "@pankod/core";
-
-const { sorter, setSorter } = useTable({
-    resource: "posts",
-    initialSorter: [
-        {
-            field: "title",
-            order: "asc",
-        },
-    ],
-    permanentSorter: [
-        {
-            field: "id",
-            order: "desc",
-        },
-    ],
-});
-
-console.log(sorter); // [{ field: "id", order: "desc" }, { field: "title", order: "asc" }]
-
-setSorter([
-    {
-        field: "createdAt",
-        order: "desc",
-    },
-]);
-
-console.log(sorter); // [{ field: "createdAt", order: "desc" }, { field: "id", order: "desc" }]
-```
-
-## Filtering
-
-`useTable` has a filter feature. The filter is done by using the `filters` state. The `filters` state is a [`CrudFilters`][crudfilters] type that contains the field, the operator and the value of the filter. You can change the filter state by using the `setFilters` function. Every change will trigger a new fetch.
-
-Also you can add initial filter state by passing the `initialFilter` prop and permanent filter state by passing the `permanentFilter` prop to the `useTable` hook. Even if you change the filter state, the `permanentFilter` will be used together with the filter state.
-
-`setFilters` function can work in two different behaviors; `merge` (default) and `replace`. You can set the behavior by passing it as the 2nd parameter.
-
-You can also call `setFilters` with a setter function.
-
-:::info
-If you are using `merge` behavior and want to remove one of the filters; you should set the `value` to `undefined` or `null`. For `or` filters, you should set the `value` to an empty array `[]` to remove the filter.
-:::
-
-```tsx
-import { useTable } from "@pankod/core";
-
-const { filters, setFilters } = useTable({
-    resource: "posts",
-    initialFilter: [
-        {
-            field: "title",
-            operator: "contains",
-            value: "rerum",
-        },
-    ],
-    permanentFilter: [
-        {
-            field: "status",
-            operator: "equals",
-            value: "published",
-        },
-    ],
-});
-
-console.log(filters); // [{ field: "title", operator: "contains", value: "rerum" }, { field: "status", operator: "equals", value: "published" }]
-
-setFilters([
-    {
-        field: "title",
-        operator: "contains",
-        value: "F",
-    },
-]);
-
-console.log(filters); // [{ field: "title", operator: "contains", value: "F" }, { field: "status", operator: "equals", value: "published" }]
-
-setFilters([
-    {
-        field: "author",
-        operator: "contains",
-        value: "Foo",
-    },
-    "merge", // default
-]);
-
-console.log(filters);
-/*
-[
-    { field: "title", operator: "contains", value: "F" },
-    { field: "author", operator: "contains", value: "Foo" },
-    { field: "status", operator: "equals", value: "published" }
-]
-*/
-
-setFilters([
-    {
-        field: "author",
-        operator: "ne",
-        value: "Foo",
-    },
-    "replace",
-]);
-
-console.log(filters);
-/*
-[
-    { field: "author", operator: "ne", value: "Foo" },
-    { field: "status", operator: "equals", value: "published" }
-]
-*/
-
-setFilters((prev) => prev.filter((filter) => filter.field !== "author"));
-
-console.log(filters);
-/*
-[
-    { field: "status", operator: "equals", value: "published" }
-]
-*/
-```
 
 ## Properties
 
@@ -382,6 +186,8 @@ The filter behavior can be set to either `"merge"` or `"merge"`.
 -   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
 -   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+
+You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
 ```tsx
 const table = useTable({
@@ -551,7 +357,7 @@ const table = useTable({
 
 Params to pass to [liveProvider's](/docs/api-reference/core/providers/live-provider/#subscribe) subscribe method.
 
-## `Return Values`
+## Return Values
 
 ### `tableQueryResult`
 
@@ -563,6 +369,10 @@ Current [sorter state][crudsorting].
 
 ### `setSorter`
 
+```tsx
+ (sorter: CrudSorting) => void;
+```
+
 A function to set current [sorter state][crudsorting].
 
 ### `filters`
@@ -570,6 +380,10 @@ A function to set current [sorter state][crudsorting].
 Current [filters state][crudfilters].
 
 ### `setFilters`
+
+```tsx
+((filters: CrudFilters, behavior?: SetFilterBehavior) => void) & ((setter: (prevFilters: CrudFilters) => CrudFilters) => void)
+```
 
 A function to set current [filters state][crudfilters].
 
@@ -579,6 +393,10 @@ Current page index state. If pagination is disabled, it will be `undefined`.
 
 ### `setCurrent`
 
+```tsx
+React.Dispatch<React.SetStateAction<number>> | undefined
+```
+
 A function to set current page index state. If pagination is disabled, it will be `undefined`.
 
 ### `pageSize`
@@ -586,6 +404,10 @@ A function to set current page index state. If pagination is disabled, it will b
 Current page size state. If pagination is disabled, it will be `undefined`.
 
 ### `setPageSize`
+
+```tsx
+React.Dispatch<React.SetStateAction<number>> | undefined
+```
 
 A function to set current page size state. If pagination is disabled, it will be `undefined`.
 
@@ -595,7 +417,53 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 
 ### `createLinkForSyncWithLocation`
 
+```tsx
+(params: SyncWithLocationParams) => string;
+```
+
 A function create accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
+
+## Examples
+
+### Pagination
+
+`useTable` has a pagination feature. The pagination is done by using the `current` and `pageSize` props. The `current` is the current page and the `pageSize` is the number of records per page.
+
+By default, the `current` is 1 and the `pageSize` is 10. You can change default values by passing the `initialCurrent` and `initialPageSize` props to the `useTable` hook.
+
+You can also change the `current` and `pageSize` values by using the `setCurrent` and `setPageSize` functions that are returned by the `useTable` hook. Every change will trigger a new fetch.
+
+If you want to disable pagination, you can use `hasPagination` property in `useTable` config and set it to `false`
+
+:::info
+If `hasPagination` is set to `false`, `current`, `setCurrent`, `pageSize`, `setPageSize` and `pageCount` will return `undefined`
+:::
+
+<PaginationLivePreview/>
+
+### Sorting
+
+`useTable` has a sorter feature. The sorter is done by using the `sorter` state. The `sorter` state is a [`CrudSorting`][crudsorting] type that contains the field and the order of the sort. You can change the sorter state by using the `setSorter` function. Every change will trigger a new fetch.
+
+Also you can add initial sorter state by passing the `initialSorter` prop and permanent sorter state by passing the `permanentSorter` prop to the `useTable` hook. Even if you change the sorter state, the `permanentSorter` will be used together with the sorter state.
+
+<SortingLivePreview/>
+
+### Filtering
+
+`useTable` has a filter feature. The filter is done by using the `filters` state. The `filters` state is a [`CrudFilters`][crudfilters] type that contains the field, the operator and the value of the filter. You can change the filter state by using the `setFilters` function. Every change will trigger a new fetch.
+
+Also you can add initial filter state by passing the `initialFilter` prop and permanent filter state by passing the `permanentFilter` prop to the `useTable` hook. Even if you change the filter state, the `permanentFilter` will be used together with the filter state.
+
+`setFilters` function can work in two different behaviors; `merge` (default) and `replace`. You can set the behavior by passing it as the 2nd parameter. Uou can change default behavior with [`defaultSetFilterBehavior`](#defaultsetfilterbehavior) prop.
+
+You can also call `setFilters` with a setter function.
+
+:::info
+If you are using `merge` behavior and want to remove one of the filters; you should set the `value` to `undefined` or `null`. For `or` filters, you should set the `value` to an empty array `[]` to remove the filter.
+:::
+
+<FilteringLivePreview/>
 
 ## API
 
@@ -627,11 +495,6 @@ errorNotification-default='"There was an error creating resource (status code: `
 | filters                       | Current filters state                                                                 | [`CrudFilters`][crudfilters]                                                                                                                            |
 | setFilters                    | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` <br/> - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
 | createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                               | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`                                                                               |
-
-<br/>
-<br/>
-
-### Examples
 
 [table]: https://ant.design/components/table/#API
 [form]: https://ant.design/components/form/#API
