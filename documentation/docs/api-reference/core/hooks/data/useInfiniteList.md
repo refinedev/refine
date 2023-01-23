@@ -84,7 +84,7 @@ render(<RefineHeadlessDemo />);
 
 ## Usage
 
-Let's say that we have a resource named `posts`
+Let's assume that we have a `posts` resource with the following data:
 
 ```ts title="https://api.fake-rest.refine.dev/posts"
 {
