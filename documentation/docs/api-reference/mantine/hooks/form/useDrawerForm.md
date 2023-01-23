@@ -3,63 +3,71 @@ id: useDrawerForm
 title: useDrawerForm
 ---
 
-`useModalForm` hook also allows you to manage a form inside a drawer component, such as a modal component. It provides some useful methods to handle the form drawer.
+[`useModalForm`][use-modal-form-refine-mantine] hook allows you to manage a form within a `<Modal>` as well as a `<Drawer>`. It provides some useful methods to handle the form `<Modal>` or form `<Drawer>`.
+
+We will use [`useModalForm`][use-modal-form-refine-mantine] hook as a `useDrawerForm` to manage a form within a `<Drawer>`.
 
 :::info
-`useModalForm` hook based on [`useForm`][use-form-refine-mantine] hook provided by `@pankod/refine-mantine`.
+`useDrawerForm` hook is extended from [`useForm`][use-form-refine-mantine] hook from the [`@pankod/refine-mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. This means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
 :::
 
-## Usage
+## Basic Usage
 
-We'll show two examples, one for creating and one for editing a post. Let's see how `useModalForm` is used in both.
+We'll show two examples, one for creating and one for editing a post. Let's see how `useDrawerForm` is used in both.
 
-### Create Drawer
+<Tabs
+defaultValue="create"
+values={[
+{label: 'create', value: 'create'},
+{label: 'edit', value: 'edit'},
+]}>
 
-First, we'll create a list page for posts. We'll use the [`useTable`](/packages/documentation/react-table.md) hook to manage the table and the `useModalForm` hook as a `useDrawerForm` to manage the form.
+<TabItem value="create">
 
-```tsx title="src/pages/posts/list.tsx"
+In this example, we will show you how to `"create"` a record with `useDrawerForm`.
+
+```tsx live url=http://localhost:3000/posts
+setInitialRoutes(["/posts"]);
+
+// visible-block-start
 import React from "react";
+import { IResourceComponentsProps } from "@pankod/refine-core";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { GetManyResponse, useMany } from "@pankod/refine-core";
 import {
+    Box,
+    Group,
     List,
     ScrollArea,
     Table,
     Pagination,
     // highlight-next-line
     useModalForm as useDrawerForm,
+    Drawer,
+    Select,
+    TextInput,
+    SaveButton,
 } from "@pankod/refine-mantine";
 
-// highlight-next-line
-import { CreatePostDrawer } from "../../components";
-import { IPost } from "../../interfaces";
-
-export const PostList: React.FC = () => {
+const PostList: React.FC<IResourceComponentsProps> = () => {
     // highlight-start
-    const createDrawerForm = useDrawerForm({
+    const {
+        getInputProps,
+        saveButtonProps,
+        modal: { show, close, title, visible },
+    } = useDrawerForm({
         refineCoreProps: { action: "create" },
         initialValues: {
             title: "",
             status: "",
-            category: {
-                id: "",
-            },
             content: "",
         },
         validate: {
             title: (value) => (value.length < 2 ? "Too short title" : null),
             status: (value) =>
                 value.length <= 0 ? "Status is required" : null,
-            category: {
-                id: (value) =>
-                    value.length <= 0 ? "Category is required" : null,
-            },
-            content: (value) =>
-                value.length < 10 ? "Too short content" : null,
         },
     });
-    const {
-        modal: { show: showCreateDrawer },
-    } = createDrawerForm;
     // highlight-end
 
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -73,11 +81,30 @@ export const PostList: React.FC = () => {
                 id: "title",
                 header: "Title",
                 accessorKey: "title",
+                meta: {
+                    filterOperator: "contains",
+                },
             },
             {
                 id: "status",
                 header: "Status",
                 accessorKey: "status",
+                meta: {
+                    filterElement: function render(props: FilterElementProps) {
+                        return (
+                            <Select
+                                defaultValue="published"
+                                data={[
+                                    { label: "Published", value: "published" },
+                                    { label: "Draft", value: "draft" },
+                                    { label: "Rejected", value: "rejected" },
+                                ]}
+                                {...props}
+                            />
+                        );
+                    },
+                    filterOperator: "eq",
+                },
             },
         ],
         [],
@@ -86,18 +113,56 @@ export const PostList: React.FC = () => {
     const {
         getHeaderGroups,
         getRowModel,
-        refineCore: { setCurrent, pageCount, current },
+        setOptions,
+        refineCore: {
+            setCurrent,
+            pageCount,
+            current,
+            tableQueryResult: { data: tableData },
+        },
     } = useTable({
         columns,
     });
 
     return (
         <>
-            // highlight-next-line
-            <CreatePostDrawer {...createDrawerForm} />
+            {/* highlight-start */}
+            <Drawer
+                opened={visible}
+                onClose={close}
+                title={title}
+                padding="xl"
+                size="xl"
+                position="right"
+            >
+                <TextInput
+                    mt={8}
+                    label="Title"
+                    placeholder="Title"
+                    {...getInputProps("title")}
+                />
+                <Select
+                    mt={8}
+                    label="Status"
+                    placeholder="Pick one"
+                    data={[
+                        { label: "Published", value: "published" },
+                        { label: "Draft", value: "draft" },
+                        { label: "Rejected", value: "rejected" },
+                    ]}
+                    {...getInputProps("status")}
+                />
+                <Box
+                    mt={8}
+                    sx={{ display: "flex", justifyContent: "flex-end" }}
+                >
+                    <SaveButton {...saveButtonProps} />
+                </Box>
+            </Drawer>
+            {/* highlight-end */}
             <ScrollArea>
-                // highlight-next-line
-                <List createButtonProps={{ onClick: () => showCreateDrawer() }}>
+                {/* highlight-next-line */}
+                <List createButtonProps={{ onClick: () => show() }}>
                     <Table highlightOnHover>
                         <thead>
                             {getHeaderGroups().map((headerGroup) => (
@@ -106,14 +171,16 @@ export const PostList: React.FC = () => {
                                         return (
                                             <th key={header.id}>
                                                 {!header.isPlaceholder && (
-                                                    <div>
-                                                        {flexRender(
-                                                            header.column
-                                                                .columnDef
-                                                                .header,
-                                                            header.getContext(),
-                                                        )}
-                                                    </div>
+                                                    <Group spacing="xs" noWrap>
+                                                        <Box>
+                                                            {flexRender(
+                                                                header.column
+                                                                    .columnDef
+                                                                    .header,
+                                                                header.getContext(),
+                                                            )}
+                                                        </Box>
+                                                    </Group>
                                                 )}
                                             </th>
                                         );
@@ -154,177 +221,74 @@ export const PostList: React.FC = () => {
     );
 };
 
-export interface IPost {
+interface IPost {
     id: number;
     title: string;
-    content: string;
     status: "published" | "draft" | "rejected";
-    category: { id: number };
 }
+// visible-block-end
+
+setRefineProps({
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+        },
+    ],
+});
+
+render(<RefineMantineDemo />);
 ```
 
-Now, let's see how the `CreatePostDrawer` component is implemented.
+</TabItem>
 
-```tsx title="src/components/createPostDrawer.tsx"
-import { BaseRecord, HttpError } from "@pankod/refine-core";
-import {
-    UseModalFormReturnType as UseDrawerFormReturnType,
-    Drawer,
-    TextInput,
-    RichTextEditor,
-    Select,
-    useSelect,
-    SaveButton,
-    Box,
-    Text,
-} from "@pankod/refine-mantine";
+<TabItem value="edit">
 
-interface FormValues {
-    title: string;
-    content: string;
-    status: string;
-    category: { id: string };
-}
+In this example, we will show you how to `"edit"` a record with `useDrawerForm`.
 
-export const CreatePostDrawer: React.FC<
-    UseDrawerFormReturnType<BaseRecord, HttpError, FormValues>
-> = ({
-    getInputProps,
-    errors,
-    modal: { visible, close, title },
-    saveButtonProps,
-}) => {
-    const { selectProps } = useSelect({
-        resource: "categories",
-    });
+```tsx live url=http://localhost:3000/posts
+setInitialRoutes(["/posts"]);
 
-    return (
-        <Drawer
-            opened={visible}
-            onClose={close}
-            title={title}
-            padding="xl"
-            size="xl"
-            position="right"
-        >
-            <TextInput
-                mt={8}
-                label="Title"
-                placeholder="Title"
-                {...getInputProps("title")}
-            />
-            <Select
-                mt={8}
-                label="Status"
-                placeholder="Pick one"
-                {...getInputProps("status")}
-                data={[
-                    { label: "Published", value: "published" },
-                    { label: "Draft", value: "draft" },
-                    { label: "Rejected", value: "rejected" },
-                ]}
-            />
-            <Select
-                mt={8}
-                label="Category"
-                placeholder="Pick one"
-                {...getInputProps("category.id")}
-                {...selectProps}
-            />
-            <Text mt={8} weight={500} size="sm" color="#212529">
-                Content
-            </Text>
-            <RichTextEditor
-                sx={{ minHeight: 300 }}
-                {...getInputProps("content")}
-            />
-            {errors.content && (
-                <Text mt={2} weight={500} size="xs" color="red">
-                    {errors.content}
-                </Text>
-            )}
-            <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
-                <SaveButton {...saveButtonProps} />
-            </Box>
-        </Drawer>
-    );
-};
-```
-
-### Edit Drawer
-
-Now, let's add the edit drawer to the `PostList` component.
-
-```tsx title="src/pages/posts/list.tsx"
+// visible-block-start
 import React from "react";
+import { IResourceComponentsProps } from "@pankod/refine-core";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { GetManyResponse, useMany } from "@pankod/refine-core";
 import {
+    Box,
+    Group,
     List,
     ScrollArea,
     Table,
     Pagination,
     // highlight-next-line
-    EditButton,
     useModalForm as useDrawerForm,
+    Drawer,
+    Select,
+    TextInput,
+    EditButton,
+    SaveButton,
 } from "@pankod/refine-mantine";
 
-// highlight-next-line
-import { CreatePostDrawer, EditPostDrawer } from "../../components";
-import { IPost } from "../../interfaces";
-
-export const PostList: React.FC = () => {
-    const createDrawerForm = useDrawerForm({
-        refineCoreProps: { action: "create" },
-        initialValues: {
-            title: "",
-            status: "",
-            category: {
-                id: "",
-            },
-            content: "",
-        },
-        validate: {
-            title: (value) => (value.length < 2 ? "Too short title" : null),
-            status: (value) =>
-                value.length <= 0 ? "Status is required" : null,
-            category: {
-                id: (value) =>
-                    value.length <= 0 ? "Category is required" : null,
-            },
-            content: (value) =>
-                value.length < 10 ? "Too short content" : null,
-        },
-    });
-    const {
-        modal: { show: showCreateDrawer },
-    } = createDrawerForm;
-
+const PostList: React.FC<IResourceComponentsProps> = () => {
     // highlight-start
-    const editDrawerForm = useDrawerForm({
+    const {
+        getInputProps,
+        saveButtonProps,
+        modal: { show, close, title, visible },
+    } = useDrawerForm({
         refineCoreProps: { action: "edit" },
         initialValues: {
             title: "",
             status: "",
-            category: {
-                id: "",
-            },
             content: "",
         },
         validate: {
             title: (value) => (value.length < 2 ? "Too short title" : null),
             status: (value) =>
                 value.length <= 0 ? "Status is required" : null,
-            category: {
-                id: (value) =>
-                    value.length <= 0 ? "Category is required" : null,
-            },
-            content: (value) =>
-                value.length < 10 ? "Too short content" : null,
         },
     });
-    const {
-        modal: { show: showEditDrawer },
-    } = editDrawerForm;
     // highlight-end
 
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -338,28 +302,50 @@ export const PostList: React.FC = () => {
                 id: "title",
                 header: "Title",
                 accessorKey: "title",
+                meta: {
+                    filterOperator: "contains",
+                },
             },
             {
                 id: "status",
                 header: "Status",
                 accessorKey: "status",
+                meta: {
+                    filterElement: function render(props: FilterElementProps) {
+                        return (
+                            <Select
+                                defaultValue="published"
+                                data={[
+                                    { label: "Published", value: "published" },
+                                    { label: "Draft", value: "draft" },
+                                    { label: "Rejected", value: "rejected" },
+                                ]}
+                                {...props}
+                            />
+                        );
+                    },
+                    filterOperator: "eq",
+                },
             },
-            // highlight-start
             {
                 id: "actions",
                 header: "Actions",
                 accessorKey: "id",
+                enableColumnFilter: false,
+                enableSorting: false,
                 cell: function render({ getValue }) {
                     return (
-                        <EditButton
-                            hideText
-                            size="xs"
-                            onClick={() => showEditDrawer(getValue() as number)}
-                        />
+                        <Group spacing="xs" noWrap>
+                            {/* highlight-start */}
+                            <EditButton
+                                hideText
+                                onClick={() => show(getValue() as number)}
+                            />
+                            {/* highlight-end */}
+                        </Group>
                     );
                 },
             },
-            // highlight-end
         ],
         [],
     );
@@ -367,18 +353,55 @@ export const PostList: React.FC = () => {
     const {
         getHeaderGroups,
         getRowModel,
-        refineCore: { setCurrent, pageCount, current },
+        setOptions,
+        refineCore: {
+            setCurrent,
+            pageCount,
+            current,
+            tableQueryResult: { data: tableData },
+        },
     } = useTable({
         columns,
     });
 
     return (
         <>
-            <CreatePostDrawer {...createDrawerForm} />
-            // highlight-next-line
-            <EditPostDrawer {...editDrawerForm} />
+            {/* highlight-start */}
+            <Drawer
+                opened={visible}
+                onClose={close}
+                title={title}
+                padding="xl"
+                size="xl"
+                position="right"
+            >
+                <TextInput
+                    mt={8}
+                    label="Title"
+                    placeholder="Title"
+                    {...getInputProps("title")}
+                />
+                <Select
+                    mt={8}
+                    label="Status"
+                    placeholder="Pick one"
+                    data={[
+                        { label: "Published", value: "published" },
+                        { label: "Draft", value: "draft" },
+                        { label: "Rejected", value: "rejected" },
+                    ]}
+                    {...getInputProps("status")}
+                />
+                <Box
+                    mt={8}
+                    sx={{ display: "flex", justifyContent: "flex-end" }}
+                >
+                    <SaveButton {...saveButtonProps} />
+                </Box>
+            </Drawer>
+            {/* highlight-end */}
             <ScrollArea>
-                <List createButtonProps={{ onClick: () => showCreateDrawer() }}>
+                <List>
                     <Table highlightOnHover>
                         <thead>
                             {getHeaderGroups().map((headerGroup) => (
@@ -387,14 +410,16 @@ export const PostList: React.FC = () => {
                                         return (
                                             <th key={header.id}>
                                                 {!header.isPlaceholder && (
-                                                    <div>
-                                                        {flexRender(
-                                                            header.column
-                                                                .columnDef
-                                                                .header,
-                                                            header.getContext(),
-                                                        )}
-                                                    </div>
+                                                    <Group spacing="xs" noWrap>
+                                                        <Box>
+                                                            {flexRender(
+                                                                header.column
+                                                                    .columnDef
+                                                                    .header,
+                                                                header.getContext(),
+                                                            )}
+                                                        </Box>
+                                                    </Group>
                                                 )}
                                             </th>
                                         );
@@ -434,93 +459,291 @@ export const PostList: React.FC = () => {
         </>
     );
 };
+
+interface IPost {
+    id: number;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+// visible-block-end
+
+setRefineProps({
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+        },
+    ],
+});
+
+render(<RefineMantineDemo />);
 ```
 
-Finally, let's see how the `EditPostDrawer` component is implemented.
+:::caution
+**refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens `"edit"` form in `<Drawer>` when clicked.
 
-```tsx title="src/components/editPostDrawer.tsx"
-import { BaseRecord, HttpError } from "@pankod/refine-core";
-import {
-    UseModalFormReturnType as UseDrawerFormReturnType,
-    Drawer,
-    TextInput,
-    RichTextEditor,
-    Select,
-    useSelect,
-    SaveButton,
-    Box,
-    Text,
-} from "@pankod/refine-mantine";
+So, we have to put the `<EditButton/>` on our list. In that way, `"edit"` form in `<Drawer>` can fetch data by the record `id`.
 
-interface FormValues {
-    title: string;
-    content: string;
-    status: string;
-    category: { id: string };
-}
+```tsx
+const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+        // --
+        {
+            id: "actions",
+            header: "Actions",
+            accessorKey: "id",
+            enableColumnFilter: false,
+            enableSorting: false,
+            cell: function render({ getValue }) {
+                return (
+                    <Group spacing="xs" noWrap>
+                        <EditButton
+                            hideText
+                            onClick={() => show(getValue() as number)}
+                        />
+                    </Group>
+                );
+            },
+        },
+    ],
+    [],
+);
 
-export const EditPostDrawer: React.FC<
-    UseDrawerFormReturnType<BaseRecord, HttpError, FormValues>
-> = ({
+const table = useTable({
+    columns,
+});
+```
+
+:::
+
+:::caution
+Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
+:::
+
+</TabItem>
+
+</Tabs>
+
+## Properties
+
+### `refineCoreProps`
+
+All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) docs.
+
+```tsx
+const drawerForm = useDrawerForm({
+    refineCoreProps: {
+        action: "edit",
+        resource: "posts",
+        id: "1",
+    },
+});
+```
+
+### `initialValues`
+
+> Only available in `"create"` form.
+
+Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
+
+```tsx
+const drawerForm = useDrawerForm({
+    initialValues: {
+        title: "Hello World",
+    },
+});
+```
+
+### `defaultVisible`
+
+> Default: `false`
+
+When `true`, drawer will be visible by default.
+
+```tsx
+const drawerForm = useDrawerForm({
+    modalProps: {
+        defaultVisible: true,
+    },
+});
+```
+
+### `autoSubmitClose`
+
+> Default: `true`
+
+When `true`, drawer will be closed after successful submit.
+
+```tsx
+const drawerForm = useDrawerForm({
+    modalProps: {
+        autoSubmitClose: false,
+    },
+});
+```
+
+### `autoResetForm`
+
+> Default: `true`
+
+When `true`, form will be reset after successful submit.
+
+```tsx
+const drawerForm = useDrawerForm({
+    modalProps: {
+        autoResetForm: false,
+    },
+});
+```
+
+## Return Values
+
+:::tip
+All [`useForm`][use-form-refine-mantine] return values also available in `useDrawerForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#return-values) docs.
+
+All [`mantine useForm`](https://mantine.dev/form/use-form/) return values also available in `useDrawerForm`. You can find descriptions on [`mantine`](https://mantine.dev/form/use-form/) docs.
+:::
+
+### `visible`
+
+Current visibility state of the drawer.
+
+```tsx
+const drawerForm = useDrawerForm({
+    defaultVisible: true,
+});
+
+console.log(drawerForm.modal.visible); // true
+```
+
+### `title`
+
+Title of the drawer. Based on resource and action values
+
+```tsx
+const {
+    modal: { title },
+} = useDrawerForm({
+    refineCoreProps: {
+        resource: "posts",
+        action: "create",
+    },
+});
+
+console.log(title); // "Create Post"
+```
+
+### `close`
+
+A function that can close the drawer. It's useful when you want to close the drawer manually.
+
+```tsx
+const {
     getInputProps,
-    errors,
-    modal: { visible, close, title },
-    refineCore: { queryResult },
-    saveButtonProps,
-}) => {
-    const { selectProps } = useSelect({
-        resource: "categories",
-        defaultValue: queryResult?.data?.data.category.id,
-    });
+    modal: { close, visible, title },
+} = useDrawerForm();
 
-    return (
-        <Drawer
-            opened={visible}
-            onClose={close}
-            title={title}
-            padding="xl"
-            size="xl"
-            position="right"
-        >
+return (
+    <Drawer opened={visible} onClose={close} title={title}>
+        <TextInput
+            mt={8}
+            label="Title"
+            placeholder="Title"
+            {...getInputProps("title")}
+        />
+        <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <SaveButton {...saveButtonProps} />
+            <Button onClick={close}>Cancel</Button>
+        </Box>
+    </Drawer>
+);
+```
+
+### `submit`
+
+A function that can submit the form. It's useful when you want to submit the form manually.
+
+```tsx
+const {
+    modal: { submit },
+} = useDrawerForm();
+
+// ---
+
+return (
+    <Drawer opened={visible} onClose={close} title={title}>
+        <TextInput
+            mt={8}
+            label="Title"
+            placeholder="Title"
+            {...getInputProps("title")}
+        />
+        <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button onClick={submit}>Save</Button>
+        </Box>
+    </Drawer>
+);
+```
+
+### `show`
+
+A function that can show the drawer.
+
+```tsx
+const {
+    getInputProps,
+    modal: { close, visible, title, show },
+} = useDrawerForm();
+
+const onFinishHandler = (values) => {
+    onFinish(values);
+    show();
+};
+
+return (
+    <>
+        <Button onClick={}>Show Modal</Button>
+        <Drawer opened={visible} onClose={close} title={title}>
             <TextInput
                 mt={8}
                 label="Title"
                 placeholder="Title"
                 {...getInputProps("title")}
             />
-            <Select
-                mt={8}
-                label="Status"
-                placeholder="Pick one"
-                {...getInputProps("status")}
-                data={[
-                    { label: "Published", value: "published" },
-                    { label: "Draft", value: "draft" },
-                    { label: "Rejected", value: "rejected" },
-                ]}
-            />
-            <Select
-                mt={8}
-                label="Category"
-                placeholder="Pick one"
-                {...getInputProps("category.id")}
-                {...selectProps}
-            />
-            <Text mt={8} weight={500} size="sm" color="#212529">
-                Content
-            </Text>
-            <RichTextEditor {...getInputProps("content")} />
-            {errors.content && (
-                <Text mt={2} weight={500} size="xs" color="red">
-                    {errors.content}
-                </Text>
-            )}
             <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
                 <SaveButton {...saveButtonProps} />
             </Box>
         </Drawer>
-    );
-};
+    </>
+);
+```
+
+### `saveButtonProps`
+
+It contains all the props needed by the "submit" button within the drawer (disabled,loading etc.). You can manually pass these props to your custom button.
+
+```tsx
+const { getInputProps, modal, saveButtonProps } = useDrawerForm();
+
+return (
+    <Drawer {...modal}>
+        <TextInput
+            mt={8}
+            label="Title"
+            placeholder="Title"
+            {...getInputProps("title")}
+        />
+        <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button
+                {...saveButtonProps}
+                onClick={(e) => {
+                    // -- your custom logic
+                    saveButtonProps.onClick(e);
+                }}
+            />
+        </Box>
+    </Drawer>
+);
 ```
 
 ## API Reference
@@ -537,11 +760,11 @@ export const EditPostDrawer: React.FC<
 
 > -   #### ModalPropsType
 >
-> | Property        | Description                                                             | Type      | Default |
-> | --------------- | ----------------------------------------------------------------------- | --------- | ------- |
-> | defaultVisible  | Initial visibility state of the modal or drawer                         | `boolean` | `false` |
-> | autoSubmitClose | Whether the form should be submitted when the modal or drawer is closed | `boolean` | `true`  |
-> | autoResetForm   | Whether the form should be reset when the form is submitted             | `boolean` | `true`  |
+> | Property        | Description                                                   | Type      | Default |
+> | --------------- | ------------------------------------------------------------- | --------- | ------- |
+> | defaultVisible  | Initial visibility state of the modal                         | `boolean` | `false` |
+> | autoSubmitClose | Whether the form should be submitted when the modal is closed | `boolean` | `true`  |
+> | autoResetForm   | Whether the form should be reset when the form is submitted   | `boolean` | `true`  |
 
 ### Return values
 
@@ -555,14 +778,14 @@ export const EditPostDrawer: React.FC<
 
 > -   #### ModalReturnValues
 >
-> | Property        | Description                                              | Type                                                                             |
-> | --------------- | -------------------------------------------------------- | -------------------------------------------------------------------------------- |
-> | visible         | State of modal of drawer visibility                      | `boolean`                                                                        |
-> | show            | Sets the visible state to true                           | `(id?: BaseKey) => void`                                                         |
-> | close           | Sets the visible state to false                          | `() => void`                                                                     |
-> | submit          | Submits the form                                         | `(values: TVariables) => void`                                                   |
-> | title           | Modal or drawer title based on resource and action value | `string`                                                                         |
-> | saveButtonProps | Props for a submit button                                | `{ disabled: boolean, onClick: (e: React.FormEvent<HTMLFormElement>) => void; }` |
+> | Property        | Description                                    | Type                                                                             |
+> | --------------- | ---------------------------------------------- | -------------------------------------------------------------------------------- |
+> | visible         | State of modal visibility                      | `boolean`                                                                        |
+> | show            | Sets the visible state to true                 | `(id?: BaseKey) => void`                                                         |
+> | close           | Sets the visible state to false                | `() => void`                                                                     |
+> | submit          | Submits the form                               | `(values: TVariables) => void`                                                   |
+> | title           | Modal title based on resource and action value | `string`                                                                         |
+> | saveButtonProps | Props for a submit button                      | `{ disabled: boolean, onClick: (e: React.FormEvent<HTMLFormElement>) => void; }` |
 
 ## Example
 
@@ -570,3 +793,4 @@ export const EditPostDrawer: React.FC<
 
 [use-form-refine-mantine]: /api-reference/mantine/hooks/form/useForm.md
 [use-form-core]: /api-reference/core/hooks/useForm.md
+[use-modal-form-refine-mantine]: /api-reference/mantine/hooks/form/useModalForm.md

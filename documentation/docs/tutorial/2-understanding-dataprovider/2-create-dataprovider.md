@@ -85,8 +85,8 @@ Now we'll add the methods that the data provider needs to implement. We will imp
 
 ### getList
 
-`getList` method is used to get a list of resources with implementing sorting, filtering and paginating features.
-It takes a `resource`, `sort`, `pagination` and `filters` as parameters should return `data` and `total`.
+`getList` method is used to get a list of resources with sorting, filtering and pagination features.
+It takes `resource`, `sort`, `pagination` and `filters` as parameters and returns `data` and `total`.
 
 Let's assume the API we want to implement is as follows:
 

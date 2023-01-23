@@ -539,7 +539,7 @@ const PostList: React.FC<IResourceComponentsProps> = () => {
         saveButtonProps,
         modal: { show, close, title, visible },
     } = useModalForm({
-        refineCoreProps: { action: "edit" },
+        refineCoreProps: { action: "clone" },
         initialValues: {
             title: "",
             status: "",
@@ -780,11 +780,19 @@ Don't forget to pass the record `"id"` to `show` to fetch the record data. This 
 
 ## Properties
 
-:::tip
-All [`useForm`][use-form-refine-mantine] props also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) docs.
+### `refineCoreProps`
 
-All [`mantine useForm`](https://mantine.dev/form/use-form/) props also available in `useModalForm`. You can find descriptions on [`mantine`](https://mantine.dev/form/use-form/) docs.
-:::
+All [`useForm`](/docs/api-reference/antd/hooks/form/useForm) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) docs.
+
+```tsx
+const modalForm = useModalForm({
+    refineCoreProps: {
+        action: "edit",
+        resource: "posts",
+        id: "1",
+    },
+});
+```
 
 ### `initialValues`
 
@@ -838,22 +846,6 @@ When `true`, form will be reset after successful submit.
 const modalForm = useModalForm({
     modalProps: {
         autoResetForm: false,
-    },
-});
-```
-
-### `warnWhenUnsavedChanges`
-
-> Default: `false`
-
-When you have unsaved changes and try to leave the current page, refine shows a confirmation modal box. To activate this feature.
-
-You can also set this value in [`<Refine>`](/docs/api-reference/core/components/refine-config/#warnwhenunsavedchanges) component.
-
-```tsx
-const modalForm = useModalForm({
-    refineCoreProps: {
-        warnWhenUnsavedChanges: true,
     },
 });
 ```
@@ -1055,15 +1047,3 @@ return (
 
 [use-form-refine-mantine]: /api-reference/mantine/hooks/form/useForm.md
 [use-form-core]: /api-reference/core/hooks/useForm.md
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
