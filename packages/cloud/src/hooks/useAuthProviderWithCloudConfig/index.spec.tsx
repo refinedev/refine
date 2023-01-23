@@ -53,7 +53,7 @@ describe("useAuthProviderWithCloudConfig Hook", () => {
         const { generateCloudAuthProvider } = result.current;
         const { getPermissions } = generateCloudAuthProvider();
 
-        const response = await getPermissions();
+        const response = await getPermissions?.();
         expect(response).toContain("admin");
     });
 
