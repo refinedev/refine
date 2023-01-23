@@ -32,7 +32,7 @@ export const dataProvider = (
             },
 
             /**
-             * If the API supports it, you can define `nextCursor` this way.
+             * If the API supports it, you can define `cursor` this way.
              *
              * return {
              *  data
