@@ -1,10 +1,10 @@
 ---
-title: Creating a React search bar and content filtering components 
-description: Article about how to create Search bar and filter component in React
-slug: react-search-bar-and-filtering
+title: refine vs RedwoodJS
+description: We will compare two open source React frameworks, that can be used to build CRUD applications
+slug: refine-vs-redwood-js
 authors: madars_biss
-tags: [react, refine, search-bar, filtering]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/refine-filter-social.png
+tags: [refine,redwoodjs]
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/social.png
 hide_table_of_contents: false
 ---
 
@@ -32,7 +32,6 @@ The project has experienced rapid growth since its release in 2021. On GitHub 10
 
 <br/>
 
-![refine_stars.png](./refine_stars.png)
 
 ### Redwood
 
@@ -42,7 +41,6 @@ It it based on several core technologies - [GraphQL](https://graphql.org/) for m
 
 Since its release in 2020, the project has received over 7500 contributions on GitHub by 340 developers. As of the start of 2023, the project has already been starred more than 15000 times.
 
-![redwood_stars.png](./redwood_stars.png)
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_stars.png"  alt="redwoodjs vs refine" />
@@ -58,7 +56,6 @@ The recommended way to set up a new refine project is to use their built-in CLI 
 
 You will be asked to pick your preferred router solution, UI framework, auth provider, i18n approach, and other settings. For testing purposes, choose the settings provided below:
 
-![refine_setup.png](./refine_setup.png)
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_setup.png"  alt="redwoodjs vs refine" />
@@ -70,7 +67,6 @@ Once the installation setup is completed, change the working direction to the ne
 
 It should automatically open up a new tab on your default browser with the application preview. If it does not, open [http://localhost:3000](http://localhost:3000/) manually. You should be presented with the welcome screen of refine:
 
-![refine_welcome.png](./refine_welcome.png)
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_welcome.png"  alt="redwoodjs vs refine" />
@@ -86,7 +82,6 @@ If you prefer to set up the project on Vanilla JS, remove `--typescript` tag fro
 
 During the terminal wizard, you will be asked whether or not to initialize the git repository. The rest of the wizard is fully automatic and should not take more than a couple of minutes to finish.
 
-![redwood_setup.png](./redwood_setup.png)
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_setup.png"  alt="redwoodjs vs refine" />
@@ -99,7 +94,6 @@ Next, change your working directory to the newly created project folder via `cd 
 
 It should open a new tab on your default browser with the working project demo. If it's not, run [http://localhost:8910](http://localhost:8910/) to see the Redwood welcome page.
 
-![redwood_welcome.png](./redwood_welcome.png)
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_welcome.png"  alt="redwoodjs vs refine" />
@@ -110,7 +104,7 @@ It should open a new tab on your default browser with the working project demo. 
 
 ## Internal build
 
-### Refine
+### refine
 
 Out of the box, refine file structure is as simple as it gets. The user is provided with just the bare minimum to be able to work with a functional React app.
 
@@ -214,7 +208,7 @@ The `web` folder holds the main `App.jsx` file for the app logic, `Routes.tsx` f
 
 ## Pages and routing
 
-### Refine
+### refine
 
 In order to create the first page, run the following command in the terminal `npm run refine create-resource test -- --actions list`.
 
@@ -276,7 +270,6 @@ export const TestList = () => {
 
 To test the route, open your browser and navigate to [http://localhost:3000/test](http://localhost:3000/test). You should be presented with the following view:
 
-![refine_page.png](./refine_page.png)
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_page.png"  alt="redwoodjs vs refine" />
@@ -317,7 +310,6 @@ export default TestPage;
 
 To test it out, run [http://localhost:8910/test](http://localhost:8910/test) in your browser and you should be presented with something like this:
 
-![redwood_page.png](./redwood_page.png)
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_page.png"  alt="redwoodjs vs refine" />
@@ -325,9 +317,17 @@ To test it out, run [http://localhost:8910/test](http://localhost:8910/test) in 
 
 <br/>
 
+
+---
+
+<PromotionBanner title="Small dev teams love this React framework!" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" />
+
+---
+
+
 ## Data sources
 
-### Refine
+### refine
 
 In order to set up data for the application, refine has a built-in REST data provider, that could simulate the use of the database. We already imported it in the initialization phase while setting up the app.
 
@@ -346,7 +346,6 @@ function App() {
 
 We can also check the data coming from the data provider. Open your browser and navigate to [https://api.fake-rest.refine.dev](https://api.fake-rest.refine.dev). You will be presented with all the available endpoints:
 
-![json_server.png](./json_server.png)
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/json_server.png"  alt="redwoodjs vs refine" />
 </div>
@@ -356,7 +355,6 @@ We can also check the data coming from the data provider. Open your browser and 
 
 For this application we will use the `posts` route, so click on it and you will see sample data that is provided to the user:
 
-![json_data.png](./json_data.png)
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/json_data.png"  alt="redwoodjs vs refine" />
 </div>
@@ -393,11 +391,21 @@ Migrate the new changes with the command `yarn rw prisma migrate dev` for the ne
 
 Redwood also comes with Prisma studio, so we get a graphical user interface (GUI) to work with database records. To access it, run `yarn rw prisma studio`. It will open it up on [http://localhost:5555](http://localhost:5555).
 
-![prisma_studio.png](./prisma_studio.png)
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/prisma_studio.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 Click on the Post model and add some records into the database so we have data to work with.
 
-![prisma_data.png](./prisma_data.png)
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/prisma_data.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 ## CRUD approach
 
@@ -518,7 +526,6 @@ export interface IPost {
 
 Now test the `/posts` route on [http://localhost:3000/posts](http://localhost:3000/posts). This route will allow us to display all the data from the data provider and display the action buttons.
 
-![refine_list.png](./refine_list.png)
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_list.png"  alt="redwoodjs vs refine" />
@@ -559,7 +566,6 @@ export const PostCreate: React.FC = () => {
 
 Now every time we want to create a new record, we have a dedicated route ([http://localhost:3000/posts/create](http://localhost:3000/posts/create)) for it:
 
-![refine_create.png](./refine_create.png)
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_create.png"  alt="redwoodjs vs refine" />
@@ -601,7 +607,6 @@ Each time there is the need to update some record, users will be presented with 
 
 The posts can be edited via [http://localhost:3000/posts/edit/5](http://localhost:3000/posts/edit/5), where the number behind the last forward slash is the ID of the post:
 
-![refine_edit.png](./refine_edit.png)
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_edit.png"  alt="redwoodjs vs refine" />
@@ -639,7 +644,6 @@ To read the data, users will be able to click on individual records and they wil
 
 Each post will be accessible on the [http://localhost:3000/posts/show/11](http://localhost:3000/posts/show/11), where the number behind the last forward slash is the ID of the post:
 
-![refine_show.png](./refine_show.png)
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_show.png"  alt="redwoodjs vs refine" />
@@ -651,7 +655,6 @@ Each post will be accessible on the [http://localhost:3000/posts/show/11](http:/
 
 Users are also able to delete any record from the app by clicking on the bin icon. The UI is handled via a modal, where they are first asked to confirm the decision:
 
-![refine_delete.png](./refine_delete.png)
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_delete.png"  alt="redwoodjs vs refine" />
@@ -713,7 +716,6 @@ export default PostPage;
 
 To see it working, access the route on [http://localhost:8910/posts](http://localhost:8910/posts), which would display all of the posts available in the database:
 
-![redwood_list.png](./redwood_list.png)
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_list.png"  alt="redwoodjs vs refine" />
@@ -724,7 +726,6 @@ To see it working, access the route on [http://localhost:8910/posts](http://loca
 
 In order to create a new post navigate to [http://localhost:8910/posts/new](http://localhost:8910/posts/new):
 
-![redwood_create.png](./redwood_create.png)
 
 
 <div className="centered-image"  >
@@ -735,7 +736,6 @@ In order to create a new post navigate to [http://localhost:8910/posts/new](http
 
 Now try to open any of the individual posts, via [http://localhost:8910/posts/1](http://localhost:8910/posts/1), where the number after the last slash in the URL is the ID of the particular post.
 
-![redwood_show.png](./redwood_show.png)
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_show.png"  alt="redwoodjs vs refine" />
 </div>
@@ -744,7 +744,6 @@ Now try to open any of the individual posts, via [http://localhost:8910/posts/1]
 
 Similarly, you can edit any of the posts in the database via [http://localhost:8910/posts/1/edit](http://localhost:8910/posts/1/edit):
 
-![redwood_edit.png](./redwood_edit.png)
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_edit.png"  alt="redwoodjs vs refine" />
 </div>
@@ -753,9 +752,8 @@ Similarly, you can edit any of the posts in the database via [http://localhost:8
 
 And, finally, the user is also able to delete any of the posts. Before the actual deletion, the user is presented with the alert asking to confirm the decision:
 
-![redwood_delete.png](./redwood_delete.png)
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_create.png"  alt="redwoodjs vs refine" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_delete.png"  alt="redwoodjs vs refine" />
 </div>
 
 <br/>
@@ -764,7 +762,7 @@ And, finally, the user is also able to delete any of the posts. Before the actua
 
 ### Refine
 
-We will use [Auth0](https://auth0.com/) provider to implement the authentication in our Refine app.
+We will use [Auth0](https://auth0.com/) provider to implement the authentication in our refine app.
 
 First, we must install the required Auth0 package via the command
 `npm install @auth0/auth0-react`.
@@ -798,19 +796,41 @@ Now [create a new account on Auth0](https://auth0.com/signup).
 
 Once logged in create a new application, by selecting Single page web application.
 
-![refine_auth0.png](./refine_auth0.png)
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_auth0.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 After that navigate to the Settings panel and you will get the keys for domain, client_id, and client secret.
 
-![refine_keys.png](./refine_keys.png)
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_keys.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 Now scroll down the settings and configure the callback, logout, and web origins URLs like shown below:
 
-![refine_callbacks.png](./refine_callbacks.png)
 
-Go back to the Refine app, create a file `.env` in the app root and paste the following environment values:
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_callbacks.png"  alt="redwoodjs vs refine" />
+</div>
 
-![refine_env.png](./refine_env.png)
+<br/>
+
+
+Go back to the refine app, create a file `.env` in the app root and paste the following environment values:
+
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_env.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
+
 
 Now restart the developer server for the changes to take effect. Press Ctrl+C on your keyboard to close the server and run `npm run dev` to start it again.
 
@@ -938,11 +958,28 @@ export default App;
 
 Now every time user wants to access the app, he/she will be asked to authenticate via the login screen.
 
-![refine_login.png](./refine_login.png)
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_login.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 And once the user is done, there will be an option to log out.
 
-![refine_logout.png](./refine_logout.png)
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_logout.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 ### Redwood
 
@@ -1091,33 +1128,64 @@ Next, [create a new Auth0 account](https://auth0.com/signup) if you already do n
 
 Once logged in, create a new application by selecting Single page web application.
 
-![redwood_auth0](./redwood_auth0.png)
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_auth0.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 After that navigate to the Settings panel and you will get the keys for domain, client_iId, and client secret.
 
-![redwood_keys](./redwood_keys.png)
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_keys.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 Scroll down the Settings and set the callback, logout, and web origins URLs as shown below:
 
-![redwood_callbacks](./redwood_callbacks.png)
 
-Go back to the Refine app, and paste those environmental variables into the `.env` file in the project root as shown below:
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_callbacks.png"  alt="redwoodjs vs refine" />
+</div>
 
-![redwood_env](./redwood_env.png)
+<br/>
+
+
+Go back to the refine app, and paste those environmental variables into the `.env` file in the project root as shown below:
+
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_env.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 Now, restart the developer server for the changes to take effect. Press Ctrl+C on your keyboard to close the server and run `yarn rw dev` to start it again.
 
 Now try to access the app via [http://localhost:8910](http://localhost:8910) and you will be asked to log in to view the content:
 
-![redwood_login](./redwood_login.png)
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_login.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 After successful login, you will be taken to the app, allowing access to all the content. There will also be an option to log out:
 
-![redwood_logout](./redwood_logout.png)
+
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_logout.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 ## Deployment
 
-### Refine
+### refine
 
 Deploying a refine app is as easy as it would be with any other React app.
 
@@ -1125,7 +1193,12 @@ First, make sure to push your code to GitHub.
 
 [Create a new account](https://github.com/signup) if you do not have one already, log in and [create a new repository](https://github.com/new) to host the code.
 
-![refine_repo.png](./refine_repo.png)
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_repo.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 Switch back to the code editor and run the following commands on your terminal. Make sure to replace the GitHub user name with your own in the first command:
 
@@ -1137,23 +1210,44 @@ git push -u origin main
 
 Once the code is successfully pushed, refresh your GitHub repository and you should see all of your project files.
 
-![refine_github.png](./refine_github.png)
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_github.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 Next, [create a Vercel account](https://vercel.com/signup) if you do not have one.
 
 Select Import from Git, which will let you set up the project from the GitHub that we just pushed.
 
-![refine_vercel.png](./refine_vercel.png)
+
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_vercel.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 The only thing required for you to do is to provide the environmental keys, the same way you did in the local instance of the application. Once that's done, click on Deploy.
 
-![refine_prod.png](./refine_prod.png)
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_prod.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 The deployment process is fully automatic and once everything is completed, you will receive a live link to your deployed project.
 
 Congratulations, your site is now live, the live link will be provided by Vercel.
 
-![refine_deployed.png](./refine_deployed.png)
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_deployed.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 Before clicking on the link, make sure to visit Auth0, open the refine project, navigate to the Settings panel and change the domain URL for a callback, logout, and web origins given by Vercel (previously set to http://localhost:3000).
 
@@ -1165,11 +1259,21 @@ Since we designed a separate database for our Redwood project we will first need
 
 Then [create a new project](https://railway.app/new) and pick a new Postgres instance.
 
-![redwood_postgres.png](./redwood_postgres.png)
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_postgres.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 Open the newly created Postgres instance and select the Connect tab. Here you will access the database connection keys that we will need later.
 
-![redwood_connect.png](./redwood_connect.png)
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_connect.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 Now switch back to your local Redwood project and change the database type in the `schema.prisma` file to PostgreSQL. It should now look like this:
 
@@ -1192,7 +1296,12 @@ model Post {
 
 Now add the database connection string from Railway in the `.env` file, like this:
 
-![redwood_dbenv.png](./redwood_dbenv.png)
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_dbenv.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 Next, remove the `migrations` folder inside the `api` directory.
 
@@ -1216,7 +1325,12 @@ Now it is time to push the code to GitHub.
 
 [Create a new account](https://github.com/signup) if you do not have one already and [create a new repository](https://github.com/new).
 
-![redwood_repo.png](./redwood_repo.png)
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_repo.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 Run the following command on the terminal to push the code. Make sure to replace the GitHub user name with your own in the first command:
 
@@ -1228,7 +1342,14 @@ git push -u origin main
 
 Once successfully pushed, you will have the project available on the repository.
 
-![redwood_github.png](./redwood_github.png)
+
+
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_github.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
+
 
 We will use Vercel to deploy the front end.
 
@@ -1236,17 +1357,29 @@ We will use Vercel to deploy the front end.
 
 Select Import from Git, which will let you set up the project from the GitHub that we just pushed.
 
-![redwood_vercel.png](./redwood_vercel.png)
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_vercel.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 The only thing required for you to do is to provide the environmental keys, the same way you did in the local instance of the application.
 
-![redwood_prod.png](./redwood_prod.png)
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_prod.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 The deployment process is fully automatic and once everything is completed, you will receive a live link to your deployed project.
 
 Congratulations, your site is now live. Vercel will provide you with the live link for the project.
 
-![redwood_deployed.png](./redwood_deployed.png)
+<div className="centered-image"  >
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_deployed.png"  alt="redwoodjs vs refine" />
+</div>
+
+<br/>
 
 Before clicking on the link, make sure to visit Auth0, open the refine project, navigate to the Settings panel and change the domain URL for a callback, logout, and web origins given by Vercel (previously set to http://localhost:8910).
 
@@ -1258,8 +1391,8 @@ Both frameworks have terminal wizards to set them up, both provide the scaffoldi
 
 The core differences are in the internal structure, the level of abstraction each provides after the initialization of the project, and the core tech stack each of them uses to achieve CRUD functionality.
 
-I would recommend using refine for developers who are seeking full control and a higher level of customization. Refine allows users to fully focus on business logic and the provided framework/project structure is minimal.
+I would recommend using refine for developers who are seeking full control and a higher level of customization. refine allows users to fully focus on business logic and the provided framework/project structure is minimal.
 
-Refine also has a data API that could be used to create a full-stack app example without relying on a database. With Redwood, you are expected to use Prisma and create a database schema to handle the CRUD operations on data.
+refine also has a data API that could be used to create a full-stack app example without relying on a database. With Redwood, you are expected to use Prisma and create a database schema to handle the CRUD operations on data.
 
 Redwood provides a more complex framework structure and the user has less control over the file tree. Users are requested to work with GraphQL and the installation wizard sets support for tools like StoryBlock, Jest, and Pino.
