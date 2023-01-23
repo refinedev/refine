@@ -2,9 +2,9 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { render, act, TestWrapper } from "@test";
-import { EditInferencer } from "../edit";
+import { EditInferencer, renderer } from "../edit";
 
-describe("ChakraEditInferencer", () => {
+describe("HeadlessEditInferencer", () => {
     it("should match the snapshot", async () => {
         const Wrapper = TestWrapper({
             routerInitialEntries: ["/posts/edit/11"],
@@ -48,5 +48,60 @@ describe("ChakraEditInferencer", () => {
         const node = rendering.asFragment();
 
         expect(node).toMatchSnapshot();
+    });
+});
+
+describe("HeadlessEditInferencer > renderer", () => {
+    it("should use `PostEdit` name when resource is `posts`", () => {
+        expect(
+            renderer({
+                infer: () => null,
+                resources: [],
+                isCustomPage: false,
+                fields: [],
+                resource: {
+                    name: "posts",
+                },
+            }),
+        ).toContain("export const PostEdit");
+    });
+    it("should use `InferredEdit` name when resource label is empty", () => {
+        expect(
+            renderer({
+                infer: () => null,
+                resources: [],
+                isCustomPage: false,
+                fields: [],
+                resource: {
+                    name: "",
+                },
+            }),
+        ).toContain("export const InferredEdit");
+    });
+    it("should use `InferredEdit` name when resource label is non [a-zA-Z] (Chinese)", () => {
+        expect(
+            renderer({
+                infer: () => null,
+                resources: [],
+                isCustomPage: false,
+                fields: [],
+                resource: {
+                    name: "用户",
+                },
+            }),
+        ).toContain("export const InferredEdit");
+    });
+    it("should use `InferredEdit` name when resource label is non [a-zA-Z] (Cyrillic)", () => {
+        expect(
+            renderer({
+                infer: () => null,
+                resources: [],
+                isCustomPage: false,
+                fields: [],
+                resource: {
+                    name: "пользователи",
+                },
+            }),
+        ).toContain("export const InferredEdit");
     });
 });
