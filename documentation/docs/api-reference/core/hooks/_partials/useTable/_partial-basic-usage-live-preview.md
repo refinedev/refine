@@ -42,7 +42,6 @@ const PostList: React.FC<IResourceComponentsProps> = () => {
                         <th>Title</th>
                         <th>Status</th>
                         <th>Created At</th>
-                        <th>Category</th>
                     </tr>
                 </thead>
                 <tbody>
