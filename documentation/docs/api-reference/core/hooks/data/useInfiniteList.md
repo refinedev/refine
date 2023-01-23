@@ -152,6 +152,8 @@ const postInfiniteListResult = useInfiniteList<IPost>({ resource: "posts" });
 }
 ```
 
+If your API returns the result like above, you can use useInfiniteList without any configuration.
+
 :::caution
 `getList` also has default values for pagination:
 
