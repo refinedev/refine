@@ -22,4 +22,13 @@ describe("componentName", () => {
         expect(componentName("user-account", "edit")).toBe("UserAccountEdit");
         expect(componentName("user?.account", "edit")).toBe("UserAccountEdit");
     });
+    it("should turn `` into `InferredList`", () => {
+        expect(componentName("", "list")).toBe("InferredList");
+    });
+    it("should turn cyrillic resource label into `InferredList`", () => {
+        expect(componentName("пользователи", "list")).toBe("InferredList");
+    });
+    it("should turn chinese resource label into `InferredList`", () => {
+        expect(componentName("用户", "list")).toBe("InferredList");
+    });
 });
