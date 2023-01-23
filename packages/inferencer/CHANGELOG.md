@@ -1,5 +1,14 @@
 # @pankod/refine-mantine
 
+## 2.2.4
+
+### Patch Changes
+
+-   [#3441](https://github.com/refinedev/refine/pull/3441) [`68eeacdbc15`](https://github.com/refinedev/refine/commit/68eeacdbc15695d419a4ac557b375acbdb216856) Thanks [@aliemir](https://github.com/aliemir)! - Update component name generation for non-latin characters with a fallback value to the resource name.
+
+-   Updated dependencies [[`8f2954611fa`](https://github.com/refinedev/refine/commit/8f2954611fa1dd1ebcc7519c416c6ef2554ca395), [`ea74f3a8408`](https://github.com/refinedev/refine/commit/ea74f3a8408bb53097f0e4a6b3b733d515b2a4d3), [`96d93eb2d71`](https://github.com/refinedev/refine/commit/96d93eb2d714d2559faf25c7eab5b4db31f1bf4c)]:
+    -   @pankod/refine-core@3.97.0
+
 ## 2.2.3
 
 ### Patch Changes
