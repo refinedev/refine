@@ -67,7 +67,6 @@ export const PostsList: React.FC = () => {
                 getRowId={(row) => row.sha}
                 {...dataGridProps}
                 onPageChange={(page) => {
-                    console.log("data", data);
                     if (data?.cursor) {
                         setNext(data?.cursor?.next);
                     }
