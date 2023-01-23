@@ -5,8 +5,8 @@
   "dependencies": {
     "@pankod/refine-airtable": "^3.18.0",
     "@pankod/refine-cli": "^1.2.0",
-    "@pankod/refine-core": "^3.18.0",
-    "@pankod/refine-inferencer": "^1.2.0",
+    "@pankod/refine-core": "^3.96.0",
+    "@pankod/refine-inferencer": "^2.2.3",
     "@pankod/refine-react-hook-form": "^3.37.2",
     "@pankod/refine-react-router-v6": "^3.18.0",
     "@pankod/refine-react-table": "^4.9.0",
