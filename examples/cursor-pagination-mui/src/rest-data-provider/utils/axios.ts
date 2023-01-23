@@ -5,10 +5,6 @@ import axios from "axios";
 
 const axiosInstance = axios.create();
 
-axiosInstance.defaults.headers.common[
-    "Authorization"
-] = `Bearer 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`;
-
 axiosInstance.interceptors.response.use(
     (response) => {
         return response;
