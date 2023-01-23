@@ -984,15 +984,16 @@ const authProvider: AuthProvider = {
 
 ## Setting Authorization Credentials
 
-After user login, you can set the authorization credentials to the `localStorage` or `sessionStorage` to use them in the API calls by configuring the [`dataProvider`](/api-reference/core/providers/data-provider.md). A custom `httpClient` can be passed to the [`dataProvider`](/api-reference/core/providers/data-provider.md) to include the authorization credentials in the HTTP requests.
+After a user logs in, you can save the user's authorization credentials (such as a token) to the browser's `localStorage` or `sessionStorage`. This allows you to include the credentials in API calls by configuring the `dataProvider`.
 
-We'll show how to add a token acquired from the `login` method to the **Authorization** header of the **HTTP** requests. We will leverage the default headers configuration of Axios. See the [Config Default](https://axios-http.com/docs/config_defaults) of Axios docs for more information on how this works.
+Here's an example using `axios` and the `localStorage` to add a token acquired from the `login` method to the `Authorization` header of API calls.
 
-```tsx title="src/App.tsx"
+```tsx title="App.tsx"
 ...
 // highlight-next-line
 import axios from "axios";
 
+// highlight-next-line
 const axiosInstance = axios.create();
 
 const mockUsers = [
@@ -1002,7 +1003,6 @@ const mockUsers = [
 
 const App = () => {
     const authProvider: AuthProvider = {
-        // highlight-start
         login: ({ username, password }) => {
                 // Suppose we actually send a request to the back end here.
                 const user = mockUsers.find((item) => item.username === username);
@@ -1010,22 +1010,24 @@ const App = () => {
                 if (user) {
                     localStorage.setItem("auth", JSON.stringify(user));
                     // This sets the authorization headers on Axios instance
+                    // highlight-start
                     axiosInstance.defaults.headers.common = {
                         Authorization: `Bearer ${user.token}`,
                     };
+                    // highlight-end
 
                     return Promise.resolve();
                 }
                 return Promise.reject();
             },
-        // highlight-end
-        ...
-    };
+            ...
+        };
 
     return (
         <Refine
             authProvider={authProvider}
             routerProvider={routerProvider}
+            // In order to use the axios instance, we need to pass it to the dataProvider
             // highlight-next-line
             dataProvider={dataProvider(API_URL, axiosInstance)}
         />
@@ -1037,21 +1039,22 @@ const App = () => {
 We recommend using **axios** as the **HTTP** client with the **@pankod/refine-simple-rest** [`dataProvider`](/api-reference/core/providers/data-provider.md). Other **HTTP** clients can also be preferred.
 :::
 
-Since default headers are per Axios instance it is important that you create a single Axios instance that will be re-used throughout your refine project. There are a few methods to accomplish this, as shown one could create a variable that you import in other parts of your project and use as necessary. Another option would be to use a `Singleton` model which may work better depending on your code structure.
+<br />
 
-Another option for setting the authorization for Axios is to use `axios.interceptors.request.use()`. This _intercepts_ any request made and performs some function on that request. In theory, this function could do anything, for instance checking browser local storage for a key/token and inserting it somewhere in the request before sending the request. See the [interceptor](https://axios-http.com/docs/interceptors) docs for more information.
+You can also use `axios.interceptors.request.use` to add the token acquired from the `login` method to the `Authorization` header of API calls. It is similar to the above example, but it is more flexible for more complex use cases such as refreshing tokens when they expire.
 
-Here is an example of how one could use the interceptors to include authorization information in requests. This example uses Bearer tokens and assumes they've been saved in browser local storage:
+[Refer to the axios documentation for more information about interceptors &#8594](https://axios-http.com/docs/interceptors)
 
-```tsx title="src/App.tsx"
+```tsx title="App.tsx"
 ...
-// highlight-start
-import axios from "axios";
+// highlight-next-line
+import axios, { AxiosRequestConfig } from "axios";
 
+// highlight-next-line
 const axiosInstance = axios.create();
 
+// highlight-start
 axiosInstance.interceptors.request.use(
-    // Here we can perform any function we'd like on the request
     (request: AxiosRequestConfig) => {
         // Retrieve the token from local storage
         const token = JSON.parse(localStorage.getItem("auth"));
@@ -1081,35 +1084,31 @@ const mockUsers = [
 
 const App = () => {
     const authProvider: AuthProvider = {
-        // highlight-start
+        //highlight-start
         login: ({ username, password }) => {
-                // Suppose we actually send a request to the back end here.
-                const user = mockUsers.find((item) => item.username === username);
+            // Suppose we actually send a request to the back end here.
+            const user = mockUsers.find((item) => item.username === username);
 
-                if (user) {
-                    localStorage.setItem("auth", JSON.stringify(user));
-                    return Promise.resolve();
-                }
-                return Promise.reject();
-            },
-            // highlight-end
+            if (user) {
+                localStorage.setItem("auth", JSON.stringify(user));
+                return Promise.resolve();
+            }
+            return Promise.reject();
+        },
+        //highlight-end
             ...
-        };
+    };
 
     return (
         <Refine
             authProvider={authProvider}
             routerProvider={routerProvider}
-            // highlight-next-line
+            //highlight-next-line
             dataProvider={dataProvider(API_URL, axiosInstance)}
         />
     );
 }
 ```
-
-:::note
-Interceptors are also a great way for refreshing tokens when they expire.
-:::
 
 <br />
 <br />
