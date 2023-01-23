@@ -109,6 +109,7 @@ We made an example to show the relationship between auth provider methods and au
 You can use the following auth provider examples as a starting point for your own auth provider or you can use them as it is. Check the links below to see the details of each example.
 
 -   [Basic](/docs/examples/authentication/headless/) - A basic auth provider example.
+-   [Keycloak](/docs/examples/auth-provider/keycloak) - An auth provider example with Keycloak.
 -   [Auth0](/docs/examples/auth-provider/auth0) - An auth provider example with Auth0.
 -   [Google Auth](/docs/examples/auth-provider/google-auth) - An auth provider example with Google Auth.
 -   [OTP Login](/docs/examples/auth-provider/otpLogin) - An auth provider example with OTP Login.
