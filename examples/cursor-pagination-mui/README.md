@@ -34,12 +34,12 @@
 ## Try it out on your local
 
 ```bash
-npm create refine-app@latest -- --example base-mui
+npm create refine-app@latest -- --example cursor-pagination-mui
 ```
 
 ## Try it out on CodeSandbox
 
 <br/>
 
-[![Open base-mui example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/base-mui?view=preview&theme=dark&codemirror=1)
+[![Open cursor-pagination-mui example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/cursor-pagination-mui?view=preview&theme=dark&codemirror=1)
         
