@@ -58,7 +58,7 @@ const authProvider: AuthProvider = {
 
 [Refer to the `<Refine/>` documentation for more information &#8594](/docs/api-reference/core/components/refine-config/)
 
-## How auth provider methods are using in the app?
+## How are auth provider methods used in the app?
 
 Each method of auth provider is corresponding to a hook in **refine**. So, you can use these hooks to perform auth operations in your app. You can check [Auth Hooks](/docs/api-reference/core/hooks/auth/useAuthenticated/) documentation to see the details of each hook.
 
