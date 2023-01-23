@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ChakraCreateInferencer should match the snapshot 1`] = `
+exports[`HeadlessCreateInferencer should match the snapshot 1`] = `
 <DocumentFragment>
   <div>
     <div
