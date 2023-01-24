@@ -2,12 +2,10 @@ import React from "react";
 
 import { Refine } from "@pankod/refine-core";
 import {
-    AuthPage,
+    Layout,
     notificationProvider,
     ReadyPage,
     ErrorComponent,
-    Icons,
-    Image,
     ConfigProvider,
 } from "@pankod/refine-antd";
 
@@ -17,23 +15,12 @@ import { supabaseClient } from "utility";
 import "@pankod/refine-antd/dist/reset.css";
 
 import {
-    Title,
-    Header,
-    Sider,
-    Footer,
-    Layout,
-    OffLayoutArea,
-} from "components/layout";
-import {
     auditLogProvider,
     authProvider,
     accessControlProvider,
 } from "providers";
 import { CanvasList, UserList } from "pages";
-import { StackBanner } from "components/banners";
-
-const { GoogleOutlined, GithubOutlined } = Icons;
-const { Link } = routerProvider;
+import { AuthPage } from "pages/auth";
 
 function App() {
     return (
@@ -88,58 +75,13 @@ function App() {
                                 password: "refine-supabase",
                             },
                         }}
-                        wrapperProps={{
-                            style: {
-                                background: "#fff",
-                            },
-                        }}
-                        renderContent={(content: React.ReactNode) => {
-                            return (
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                    }}
-                                >
-                                    <Link
-                                        to="/"
-                                        style={{ marginBottom: "32px" }}
-                                    >
-                                        <Image
-                                            height="160"
-                                            src="/pixels-logo.svg"
-                                            alt="pixels-logo"
-                                        />
-                                    </Link>
-                                    {content}
-                                    <StackBanner />
-                                </div>
-                            );
-                        }}
-                        contentProps={{
-                            style: {
-                                backgroundColor: "#fff",
-                                border: "1px solid #f5f5f5",
-                                borderRadius: "16px",
-                                boxShadow:
-                                    "4px 8px 16px rgba(42, 42, 66, 0.25)",
-                                width: "384px",
-                                padding: "0",
-                            },
-                        }}
+                        registerLink={false}
                     />
                 )}
                 notificationProvider={notificationProvider}
                 ReadyPage={ReadyPage}
                 catchAll={<ErrorComponent />}
-                Title={Title}
-                Header={Header}
-                Sider={Sider}
-                Footer={Footer}
                 Layout={Layout}
-                OffLayoutArea={OffLayoutArea}
             />
         </ConfigProvider>
     );
