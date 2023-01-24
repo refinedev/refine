@@ -7,6 +7,7 @@ import BasicUsageLivePreview from "./\_partial-basic-usage-live-preview.md";
 import PaginationLivePreview from "./\_partial-pagination-live-preview.md";
 import SortingLivePreview from "./\_partial-sorting-live-preview.md";
 import FilteringLivePreview from "./\_partial-filtering-live-preview.md";
+import RelationalDataLivePreview from "./\_partial-relational-data-live-preview.md";
 
 `useTable` allows us to fetch data according to sorter, filter, and pagination states. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch.
 
@@ -462,6 +463,14 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 ```
 
 A function create accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
+
+## FAQ
+
+### How can I handle relational data ?
+
+You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fetch relational data.
+
+<RelationalDataLivePreview/>
 
 ## API
 
