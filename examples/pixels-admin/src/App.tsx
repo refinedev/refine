@@ -8,7 +8,7 @@ import {
     ErrorComponent,
     ConfigProvider,
 } from "@pankod/refine-antd";
-
+import { Title } from "./components/layout";
 import { dataProvider, liveProvider } from "@pankod/refine-supabase";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { supabaseClient } from "utility";
@@ -82,6 +82,7 @@ function App() {
                 ReadyPage={ReadyPage}
                 catchAll={<ErrorComponent />}
                 Layout={Layout}
+                Title={Title}
             />
         </ConfigProvider>
     );
