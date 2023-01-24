@@ -26,7 +26,7 @@
     },
     "scripts": {
         "dev": "refine start",
-        "start": "react-scripts start",
+        "start": "FAST_REFRESH=false DISABLE_ESLINT_PLUGIN=true react-scripts start",
         "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
