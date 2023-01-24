@@ -1,5 +1,5 @@
 {
-    "name": "cursor-pagination-mui",
+    "name": "table-mui-cursor-pagination",
     "version": "3.25.0",
     "private": true,
     "dependencies": {
