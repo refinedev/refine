@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "@pankod/refine-core": "^3.96.0",
+        "@pankod/refine-core": "^3.99.2",
         "@pankod/refine-cli": "^1.17.0",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",

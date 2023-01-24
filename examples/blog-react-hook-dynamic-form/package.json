@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@mui/icons-material": "^5.8.3",
-    "@pankod/refine-core": "^3.96.0",
+    "@pankod/refine-core": "^3.99.2",
     "@pankod/refine-mui": "^3.61.3",
     "@pankod/refine-react-hook-form": "^3.33.2",
     "@pankod/refine-react-router-v6": "^3.18.0",

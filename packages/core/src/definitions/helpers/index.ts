@@ -12,3 +12,7 @@ export { redirectPage } from "./redirectPage";
 export { sequentialPromises } from "./sequentialPromises";
 export { pickDataProvider } from "./pickDataProvider";
 export { handleMultiple } from "./handleMultiple";
+export {
+    getNextPageParam,
+    getPreviousPageParam,
+} from "./useInfinitePagination";

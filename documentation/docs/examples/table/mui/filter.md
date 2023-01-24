@@ -2,7 +2,7 @@
 id: filter
 title: Table Filter
 example-title: Filtering on Material UI Table
-example-tags: [table,filter,muireact-router]
+example-tags: [table,filter,mui,react-router]
 ---
 
 

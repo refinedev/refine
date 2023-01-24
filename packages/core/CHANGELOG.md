@@ -1,5 +1,57 @@
 # @pankod/refine-core
 
+## 3.99.2
+
+### Patch Changes
+
+-   [#3455](https://github.com/refinedev/refine/pull/3455) [`0405eb18e88`](https://github.com/refinedev/refine/commit/0405eb18e88214722a86f2cd0d5321248666e623) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fix error translation key on `useInfiniteList` hook.
+
+## 3.99.1
+
+### Patch Changes
+
+-   [#3455](https://github.com/refinedev/refine/pull/3455) [`0405eb18e88`](https://github.com/refinedev/refine/commit/0405eb18e88214722a86f2cd0d5321248666e623) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fix error translation key on `useInfiniteList` hook.
+
+## 3.99.0
+
+### Minor Changes
+
+-   [`0767d7a07a7`](https://github.com/refinedev/refine/commit/0767d7a07a71366946e54486ae3869499337433e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Added the `useInfiniteList` hook 🥳. This hook is a modified version of react-query's [`useInfiniteQuery`](https://tanstack.com/query/latest/docs/react/guides/infinite-queries) used for retrieving items from a resource with pagination, sort, and filter configurations.
+
+    [Refer to `useInfiniteList` docs for further information. →](https://refine.dev/docs/api-reference/core/hooks/data/useInfiniteList/)
+
+## 3.98.0
+
+### Minor Changes
+
+-   [`0767d7a07a7`](https://github.com/refinedev/refine/commit/0767d7a07a71366946e54486ae3869499337433e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Added the `useInfiniteList` hook 🥳. This hook is a modified version of react-query's [`useInfiniteQuery`](https://tanstack.com/query/latest/docs/react/guides/infinite-queries) used for retrieving items from a resource with pagination, sort, and filter configurations.
+
+    [Refer to `useInfiniteList` docs for further information. →](https://refine.dev/docs/api-reference/core/hooks/data/useInfiniteList/)
+
+## 3.97.0
+
+### Minor Changes
+
+-   [#3442](https://github.com/refinedev/refine/pull/3442) [`8f2954611fa`](https://github.com/refinedev/refine/commit/8f2954611fa1dd1ebcc7519c416c6ef2554ca395) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added swizzle support for `@pankod/refine-core` package.
+
+    Swizzleable components:
+
+    -   `Authenticated`
+    -   `CanAccess`
+    -   `ErrorPage`
+    -   Authentication Pages
+        -   `Login`
+        -   `Logout`
+        -   `Register`
+        -   `ForgotPassword`
+        -   `UpdatePassword`
+
+### Patch Changes
+
+-   [#3436](https://github.com/refinedev/refine/pull/3436) [`ea74f3a8408`](https://github.com/refinedev/refine/commit/ea74f3a8408bb53097f0e4a6b3b733d515b2a4d3) Thanks [@sevkioruc](https://github.com/sevkioruc)! - Fix useList, useCustom and useCustomMutation hooks i18n issue in the error messages.
+
+-   [#3440](https://github.com/refinedev/refine/pull/3440) [`96d93eb2d71`](https://github.com/refinedev/refine/commit/96d93eb2d714d2559faf25c7eab5b4db31f1bf4c) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Made the auth provider's `usePermissions` method optional.
+
 ## 3.96.0
 
 ### Minor Changes
