@@ -25,7 +25,7 @@
         "typescript": "^4.7.4"
     },
     "scripts": {
-        "dev": "PORT=3005 refine start",
+        "dev": "refine start",
         "start": "react-scripts start",
         "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
         "test": "react-scripts test",

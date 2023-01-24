@@ -25,6 +25,46 @@ In basic usage `useTable` returns the data as it comes from the endpoint.
 
 <BasicUsageLivePreview />
 
+## Pagination
+
+`useTable` has a pagination feature. The pagination is done by using the `current` and `pageSize` props. The `current` is the current page and the `pageSize` is the number of records per page.
+
+By default, the `current` is 1 and the `pageSize` is 10. You can change default values by passing the `initialCurrent` and `initialPageSize` props to the `useTable` hook.
+
+You can also change the `current` and `pageSize` values by using the `setCurrent` and `setPageSize` functions that are returned by the `useTable` hook. Every change will trigger a new fetch.
+
+If you want to disable pagination, you can use `hasPagination` property in `useTable` config and set it to `false`
+
+:::info
+If `hasPagination` is set to `false`, `current`, `setCurrent`, `pageSize`, `setPageSize` and `pageCount` will return `undefined`
+:::
+
+<PaginationLivePreview/>
+
+## Sorting
+
+`useTable` has a sorter feature. The sorter is done by using the `sorter` state. The `sorter` state is a [`CrudSorting`][crudsorting] type that contains the field and the order of the sort. You can change the sorter state by using the `setSorter` function. Every change will trigger a new fetch.
+
+Also you can add initial sorter state by passing the `initialSorter` prop and permanent sorter state by passing the `permanentSorter` prop to the `useTable` hook. Even if you change the sorter state, the `permanentSorter` will be used together with the sorter state.
+
+<SortingLivePreview/>
+
+## Filtering
+
+`useTable` has a filter feature. The filter is done by using the `filters` state. The `filters` state is a [`CrudFilters`][crudfilters] type that contains the field, the operator and the value of the filter. You can change the filter state by using the `setFilters` function. Every change will trigger a new fetch.
+
+Also you can add initial filter state by passing the `initialFilter` prop and permanent filter state by passing the `permanentFilter` prop to the `useTable` hook. Even if you change the filter state, the `permanentFilter` will be used together with the filter state.
+
+`setFilters` function can work in two different behaviors; `merge` (default) and `replace`. You can set the behavior by passing it as the 2nd parameter. You can change default behavior with [`defaultSetFilterBehavior`](#defaultsetfilterbehavior) prop.
+
+You can also call `setFilters` with a setter function.
+
+:::info
+If you are using `merge` behavior and want to remove one of the filters; you should set the `value` to `undefined` or `null`. For `or` filters, you should set the `value` to an empty array `[]` to remove the filter.
+:::
+
+<FilteringLivePreview/>
+
 <br/>
 
 ## Properties
@@ -422,48 +462,6 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 ```
 
 A function create accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
-
-## Examples
-
-### Pagination
-
-`useTable` has a pagination feature. The pagination is done by using the `current` and `pageSize` props. The `current` is the current page and the `pageSize` is the number of records per page.
-
-By default, the `current` is 1 and the `pageSize` is 10. You can change default values by passing the `initialCurrent` and `initialPageSize` props to the `useTable` hook.
-
-You can also change the `current` and `pageSize` values by using the `setCurrent` and `setPageSize` functions that are returned by the `useTable` hook. Every change will trigger a new fetch.
-
-If you want to disable pagination, you can use `hasPagination` property in `useTable` config and set it to `false`
-
-:::info
-If `hasPagination` is set to `false`, `current`, `setCurrent`, `pageSize`, `setPageSize` and `pageCount` will return `undefined`
-:::
-
-<PaginationLivePreview/>
-
-### Sorting
-
-`useTable` has a sorter feature. The sorter is done by using the `sorter` state. The `sorter` state is a [`CrudSorting`][crudsorting] type that contains the field and the order of the sort. You can change the sorter state by using the `setSorter` function. Every change will trigger a new fetch.
-
-Also you can add initial sorter state by passing the `initialSorter` prop and permanent sorter state by passing the `permanentSorter` prop to the `useTable` hook. Even if you change the sorter state, the `permanentSorter` will be used together with the sorter state.
-
-<SortingLivePreview/>
-
-### Filtering
-
-`useTable` has a filter feature. The filter is done by using the `filters` state. The `filters` state is a [`CrudFilters`][crudfilters] type that contains the field, the operator and the value of the filter. You can change the filter state by using the `setFilters` function. Every change will trigger a new fetch.
-
-Also you can add initial filter state by passing the `initialFilter` prop and permanent filter state by passing the `permanentFilter` prop to the `useTable` hook. Even if you change the filter state, the `permanentFilter` will be used together with the filter state.
-
-`setFilters` function can work in two different behaviors; `merge` (default) and `replace`. You can set the behavior by passing it as the 2nd parameter. Uou can change default behavior with [`defaultSetFilterBehavior`](#defaultsetfilterbehavior) prop.
-
-You can also call `setFilters` with a setter function.
-
-:::info
-If you are using `merge` behavior and want to remove one of the filters; you should set the `value` to `undefined` or `null`. For `or` filters, you should set the `value` to an empty array `[]` to remove the filter.
-:::
-
-<FilteringLivePreview/>
 
 ## API
 
