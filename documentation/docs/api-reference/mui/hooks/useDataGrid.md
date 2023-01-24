@@ -9,7 +9,7 @@ By using `useDataGrid`, you are able to get properties that are compatible with 
 The `useDataGrid` hook works in compatible with both the `<DataGrid>` and the `<DataGridPro>` component.
 :::
 
-This hook is extended from [`useTable`](/api-reference/core/hooks/useTable.md) from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/master/packages/core) package.
+This hook is extended from [`useTable`](/docs/api-reference/core/hooks/useTable) from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/master/packages/core) package.
 
 ## Basic usage
 

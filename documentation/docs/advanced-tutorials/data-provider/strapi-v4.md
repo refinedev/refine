@@ -19,20 +19,20 @@ A few of the Strapi-v4 API features are as follows:
 
 Hooks and components that support `metaData`:
 
-| Supported data hooks                                        | Supported other hooks                                                            | Supported components                                                        |
-| ----------------------------------------------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [`useUpdate` &#8594](/api-reference/core/hooks/data/useUpdate.md)         | [`useForm` &#8594](/api-reference/core/hooks/useForm.md)                                       | [`DeleteButton` &#8594](/api-reference/antd/components/buttons/delete.md)   |
+| Supported data hooks                                                      | Supported other hooks                                                            | Supported components                                                        |
+| ------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| [`useUpdate` &#8594](/api-reference/core/hooks/data/useUpdate.md)         | [`useForm` &#8594](/api-reference/core/hooks/useForm.md)                         | [`DeleteButton` &#8594](/api-reference/antd/components/buttons/delete.md)   |
 | [`useUpdateMany` &#8594](/api-reference/core/hooks/data/useUpdateMany.md) | [`useModalForm` &#8594](/api-reference/antd/hooks/form/useModalForm.md)          | [`RefreshButton` &#8594](/api-reference/antd/components/buttons/refresh.md) |
 | [`useDelete` &#8594](/api-reference/core/hooks/data/useDelete.md)         | [`useDrawerForm` &#8594](/api-reference/antd/hooks/form/useDrawerForm.md)        |                                                                             |
 | [`useDeleteMany` &#8594](/api-reference/core/hooks/data/useDeleteMany.md) | [`useStepsForm` &#8594](/api-reference/antd/hooks/form/useStepsForm.md)          |                                                                             |
-| [`useCreate` &#8594](/api-reference/core/hooks/data/useCreate.md)         | [`useTable` &#8594](/api-reference/core/hooks/useTable.md)                                     |                                                                             |
+| [`useCreate` &#8594](/api-reference/core/hooks/data/useCreate.md)         | [`useTable` &#8594](/docs/api-reference/core/hooks/useTable)                     |                                                                             |
 | [`useCreateMany` &#8594](/api-reference/core/hooks/data/useCreateMany.md) | [`useEditableTable` &#8594](/api-reference/antd/hooks/table/useEditableTable.md) |                                                                             |
 | [`useList` &#8594](/api-reference/core/hooks/data/useList.md)             | [`useSimpleList` &#8594](/api-reference/antd/hooks/list/useSimpleList.md)        |                                                                             |
-| [`useOne` &#8594](/api-reference/core/hooks/data/useOne.md)               | [`useShow` &#8594](/api-reference/core/hooks/show/useShow.md)                                  |                                                                             |
-| [`useMany` &#8594](/api-reference/core/hooks/data/useMany.md)             | [`useExport` &#8594](/api-reference/core/hooks/import-export/useExport.md)                     |                                                                             |
+| [`useOne` &#8594](/api-reference/core/hooks/data/useOne.md)               | [`useShow` &#8594](/api-reference/core/hooks/show/useShow.md)                    |                                                                             |
+| [`useMany` &#8594](/api-reference/core/hooks/data/useMany.md)             | [`useExport` &#8594](/api-reference/core/hooks/import-export/useExport.md)       |                                                                             |
 | [`useCustom` &#8594](/api-reference/core/hooks/data/useCustom.md)         | [`useCheckboxGroup` &#8594](/api-reference/antd/hooks/field/useCheckboxGroup.md) |                                                                             |
-|                                                             | [`useSelect` &#8594](/api-reference/core/hooks/useSelect.md)                                   |                                                                             |
-|                                                             | [`useRadioGroup` &#8594](/api-reference/antd/hooks/field/useRadioGroup.md)       |                                                                             |
+|                                                                           | [`useSelect` &#8594](/api-reference/core/hooks/useSelect.md)                     |                                                                             |
+|                                                                           | [`useRadioGroup` &#8594](/api-reference/antd/hooks/field/useRadioGroup.md)       |                                                                             |
 
 :::note
 There is no need to use `metaData` for sorting, pagination and filters. Sorting, pagination and filters will be handled automatically by the strapi-v4 dataProvider.
@@ -268,20 +268,19 @@ const { tableProps } = useTable<IPost>({
 It should be noted that Strapi-V4 allows populating relations more than 1 level.
 
 ```tsx title="Get all posts and populate one second-level relation and first-level relation"
- const { tableProps } = useTable<IPost>({
+const { tableProps } = useTable<IPost>({
     metaData: {
-      populate: {
-        category: {
-          populate: ["cover"],
+        populate: {
+            category: {
+                populate: ["cover"],
+            },
+            cover: {
+                populate: [""],
+            },
         },
-        cover : {
-          populate: [""] 
-        }
-      },
     },
-  });
+});
 ```
-
 
 In order to pull the `categories` related to the posts, we can now show the categories in our list by defining the `metaData` `populate` parameter.
 

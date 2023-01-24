@@ -3,7 +3,6 @@ id: react-table
 title: React Table
 ---
 
-
 **refine** offers a [TanStack Table][tanstack-table] adapter with [@pankod/refine-react-table][refine-react-table] that allows you to use the TanStack Table library with **refine**. Thus, you can manage your server-side data fetching operations.
 
 All of TanStack Table's features are supported and you can use all of the TanStack Table's examples with no changes just copy and paste them into your project.
@@ -637,11 +636,10 @@ It also accepts all props of [TanStack Table](https://tanstack.com/table/v8/docs
 
 ### Return values
 
-| Property                     | Description                                                                                     | Type                                                            |
-| ---------------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| refineCore                   | The return values of the [`useTable`][use-table-core] in the core                               | [`UseTableReturnValues`](/api-reference/core/hooks/useTable.md#return-values) |
+| Property                     | Description                                                                                     | Type                                                                            |
+| ---------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| refineCore                   | The return values of the [`useTable`][use-table-core] in the core                               | [`UseTableReturnValues`](/docs/api-reference/core/hooks/useTable#return-values) |
 | Tanstack Table Return Values | See [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#table-api) documentation |
-
 
 ## Example
 
@@ -649,6 +647,6 @@ It also accepts all props of [TanStack Table](https://tanstack.com/table/v8/docs
 
 [tanstack-table]: https://tanstack.com/table/v8
 [refine-react-table]: https://github.com/refinedev/refine/tree/master/packages/react-table
-[use-table-core]: /api-reference/core/hooks/useTable.md
+[use-table-core]: /docs/api-reference/core/hooks/useTable
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
