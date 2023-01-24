@@ -4,16 +4,15 @@ import { useDataGrid, DataGrid, GridColumns, List } from "@pankod/refine-mui";
 import { ICommit } from "interfaces";
 
 export const PostsList: React.FC = () => {
-    const [next, setNext] = React.useState(undefined);
-    const { dataGridProps, setCurrent, tableQueryResult } =
-        useDataGrid<ICommit>({
-            initialPageSize: 5,
-            metaData: {
-                cursor: {
-                    next,
-                },
+    const [next, setNext] = React.useState<string | undefined>(undefined);
+    const { dataGridProps, tableQueryResult } = useDataGrid<ICommit>({
+        initialPageSize: 5,
+        metaData: {
+            cursor: {
+                next,
             },
-        });
+        },
+    });
 
     const { data } = tableQueryResult;
 
@@ -67,8 +66,11 @@ export const PostsList: React.FC = () => {
                 getRowId={(row) => row.sha}
                 {...dataGridProps}
                 onPageChange={(page, details) => {
-                    if (data?.cursor) {
-                        setNext(data?.cursor?.next);
+                    // Github API returns the latest commit date as the next cursor
+                    const lastRow = data?.data[data.data.length - 1];
+                    const next = lastRow?.commit.committer.date;
+                    if (next) {
+                        setNext(next);
                     }
                     dataGridProps.onPageChange?.(page, details);
                 }}

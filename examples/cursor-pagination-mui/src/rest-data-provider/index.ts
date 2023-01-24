@@ -1,9 +1,7 @@
-// "axios" package needs to be installed
-import { AxiosInstance } from "axios";
-// "stringify" function is re-exported from "query-string" package by "@pankod/refine-simple-rest"
-import { stringify } from "@pankod/refine-simple-rest";
+import axios, { AxiosInstance } from "axios";
 import { DataProvider } from "@pankod/refine-core";
-import { axiosInstance, generateFilter, generateSort } from "./utils";
+
+const axiosInstance = axios.create();
 
 export const dataProvider = (
     apiUrl: string,
@@ -23,14 +21,9 @@ export const dataProvider = (
 
         const { data } = await httpClient.get(url);
 
-        // Github API returns the latest commit date as the next cursor
-        const next = data[data.length - 1].commit.committer.date;
         return {
             data,
             total: 200, // Total count is not available in Github API
-            cursor: {
-                next,
-            },
 
             /**
              * If the API supports it, you can define `cursor` this way.
@@ -47,112 +40,31 @@ export const dataProvider = (
         };
     },
 
-    getMany: async ({ resource, ids }) => {
-        const { data } = await httpClient.get(
-            `${apiUrl}/${resource}?${stringify({ id: ids })}`,
-        );
-
-        return {
-            data,
-        };
+    getMany: async () => {
+        throw new Error("Not implemented");
     },
 
-    create: async ({ resource, variables }) => {
-        const url = `${apiUrl}/${resource}`;
-
-        const { data } = await httpClient.post(url, variables);
-
-        return {
-            data,
-        };
+    create: async () => {
+        throw new Error("Not implemented");
     },
 
-    update: async ({ resource, id, variables }) => {
-        const url = `${apiUrl}/${resource}/${id}`;
-
-        const { data } = await httpClient.patch(url, variables);
-
-        return {
-            data,
-        };
+    update: async () => {
+        throw new Error("Not implemented");
     },
 
-    getOne: async ({ resource, id }) => {
-        const url = `${apiUrl}/${resource}/${id}`;
-
-        const { data } = await httpClient.get(url);
-
-        return {
-            data,
-        };
+    getOne: async () => {
+        throw new Error("Not implemented");
     },
 
-    deleteOne: async ({ resource, id, variables }) => {
-        const url = `${apiUrl}/${resource}/${id}`;
-
-        const { data } = await httpClient.delete(url, {
-            data: variables,
-        });
-
-        return {
-            data,
-        };
+    deleteOne: async () => {
+        throw new Error("Not implemented");
     },
 
     getApiUrl: () => {
         return apiUrl;
     },
 
-    custom: async ({ url, method, filters, sort, payload, query, headers }) => {
-        let requestUrl = `${url}?`;
-
-        if (sort) {
-            const generatedSort = generateSort(sort);
-            if (generatedSort) {
-                const { _sort, _order } = generatedSort;
-                const sortQuery = {
-                    _sort: _sort.join(","),
-                    _order: _order.join(","),
-                };
-                requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
-            }
-        }
-
-        if (filters) {
-            const filterQuery = generateFilter(filters);
-            requestUrl = `${requestUrl}&${stringify(filterQuery)}`;
-        }
-
-        if (query) {
-            requestUrl = `${requestUrl}&${stringify(query)}`;
-        }
-
-        if (headers) {
-            httpClient.defaults.headers = {
-                ...httpClient.defaults.headers,
-                ...headers,
-            };
-        }
-
-        let axiosResponse;
-        switch (method) {
-            case "put":
-            case "post":
-            case "patch":
-                axiosResponse = await httpClient[method](url, payload);
-                break;
-            case "delete":
-                axiosResponse = await httpClient.delete(url, {
-                    data: payload,
-                });
-                break;
-            default:
-                axiosResponse = await httpClient.get(requestUrl);
-                break;
-        }
-
-        const { data } = axiosResponse;
-
-        return Promise.resolve({ data });
+    custom: async () => {
+        throw new Error("Not implemented");
     },
 });

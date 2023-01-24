@@ -1,9 +1,7 @@
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
-    LoginPage,
     ErrorComponent,
-    ReadyPage,
     LightTheme,
     ThemeProvider,
     notificationProvider,
@@ -26,9 +24,7 @@ const App: React.FC = () => {
                     routerProvider={routerProvider}
                     dataProvider={dataProvider("https://api.github.com")}
                     notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
                     Layout={Layout}
-                    LoginPage={LoginPage}
                     catchAll={<ErrorComponent />}
                     resources={[
                         {
