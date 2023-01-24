@@ -16,7 +16,3 @@ export interface ITitle {
     title: string;
     language: string;
 }
-
-export interface IRouter {
-    query: string;
-}
