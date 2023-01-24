@@ -13,7 +13,7 @@ export const dataProvider = (
     "createMany" | "updateMany" | "deleteMany"
 > => ({
     getList: async ({ resource, metaData, pagination }) => {
-        let url = `https://api.github.com/${resource}?per_page=${
+        let url = `${apiUrl}/${resource}?per_page=${
             pagination?.pageSize || 10
         }`;
 

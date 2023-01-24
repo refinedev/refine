@@ -24,9 +24,7 @@ const App: React.FC = () => {
             <RefineSnackbarProvider>
                 <Refine
                     routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
+                    dataProvider={dataProvider("https://api.github.com")}
                     notificationProvider={notificationProvider}
                     ReadyPage={ReadyPage}
                     Layout={Layout}
