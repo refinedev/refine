@@ -26,6 +26,7 @@ export const CanvasList = () => {
     const [currentCanvas, setCurrentCanvas] = useState({});
     const { modalProps, show, close } = useModal();
     const { tableProps, formProps } = useEditableTable<TCanvas>({
+        liveMode: "auto",
         initialSorter: [
             {
                 field: "created_at",
