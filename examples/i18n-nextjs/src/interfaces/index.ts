@@ -11,3 +11,12 @@ export interface ICategory {
     id: string;
     title: string;
 }
+
+export interface ITitle {
+    title: string;
+    language: string;
+}
+
+export interface IRouter {
+    query: string;
+}

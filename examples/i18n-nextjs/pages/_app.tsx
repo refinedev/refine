@@ -16,6 +16,7 @@ import { PostList, PostCreate, PostEdit, PostShow, Header } from "@components";
 
 import "@pankod/refine-antd/dist/reset.css";
 import "@styles/global.css";
+import { Title } from "@components/title";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -33,6 +34,12 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             dataProvider={dataProvider(API_URL)}
             i18nProvider={i18nProvider}
             Header={Header}
+            Title={() => (
+                <Title
+                    title={routerProvider.useLocation().pathname}
+                    language={i18n.language || ""}
+                />
+            )}
             resources={[
                 {
                     name: "posts",
