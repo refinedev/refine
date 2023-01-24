@@ -9,29 +9,33 @@ import {
 import {
     createClient,
     PostgrestError,
-    RealtimeSubscription,
+    RealtimeChannel,
+    RealtimePostgresChangesPayload,
+    REALTIME_POSTGRES_CHANGES_LISTEN_EVENT,
     SupabaseClient,
 } from "@supabase/supabase-js";
-import {
-    SupabaseEventTypes,
-    SupabaseRealtimePayload,
-} from "@supabase/supabase-js/dist/main/lib/types";
 
-const liveTypes: Record<SupabaseEventTypes, LiveEvent["type"]> = {
+const liveTypes: Record<
+    REALTIME_POSTGRES_CHANGES_LISTEN_EVENT,
+    LiveEvent["type"]
+> = {
     INSERT: "created",
     UPDATE: "updated",
     DELETE: "deleted",
     "*": "*",
 };
 
-const supabaseTypes: Record<LiveEvent["type"], SupabaseEventTypes> = {
-    created: "INSERT",
-    updated: "UPDATE",
-    deleted: "DELETE",
-    "*": "*",
+const supabaseTypes: Record<
+    LiveEvent["type"],
+    REALTIME_POSTGRES_CHANGES_LISTEN_EVENT
+> = {
+    created: REALTIME_POSTGRES_CHANGES_LISTEN_EVENT.INSERT,
+    updated: REALTIME_POSTGRES_CHANGES_LISTEN_EVENT.UPDATE,
+    deleted: REALTIME_POSTGRES_CHANGES_LISTEN_EVENT.DELETE,
+    "*": REALTIME_POSTGRES_CHANGES_LISTEN_EVENT.ALL,
 };
 
-const mapOperator = (operator: CrudOperators) => {
+export const mapOperator = (operator: CrudOperators) => {
     switch (operator) {
         case "ne":
             return "neq";
@@ -57,7 +61,11 @@ const mapOperator = (operator: CrudOperators) => {
     }
 };
 
-const generateFilter = (filter: CrudFilter, query: any) => {
+export const generateFilter = (
+    filter: CrudFilter,
+    query: any,
+    isRoot = true,
+) => {
     switch (filter.operator) {
         case "eq":
             return query.eq(filter.field, filter.value);
@@ -84,19 +92,29 @@ const generateFilter = (filter: CrudFilter, query: any) => {
         case "endswith":
             return query.ilike(filter.field, `%${filter.value}`);
         case "or":
-            const orSyntax = filter.value
+            const filterString: string = filter.value
                 .map((item) => {
+                    if (Array.isArray(item.value)) {
+                        return generateFilter(item, query, false);
+                    }
                     if (
                         item.operator !== "or" &&
                         item.operator !== "and" &&
                         "field" in item
                     ) {
-                        return `${item.field}.${item.operator}.${item.value}`;
+                        return `${item.field}.${mapOperator(item.operator)}.${
+                            item.value
+                        }`;
                     }
                     return;
                 })
                 .join(",");
-            return query.or(orSyntax);
+
+            if (isRoot) {
+                return query.or(filterString);
+            } else {
+                return `or(${filterString})`;
+            }
 
         case "and":
             throw Error("Operator 'and' is not supported");
@@ -142,7 +160,7 @@ const dataProvider = (
                 query.range((current - 1) * pageSize, current * pageSize - 1);
             }
 
-            sort?.map((item) => {
+            sort?.forEach((item) => {
                 const [foreignTable, field] = item.field.split(/\.(.*)/);
 
                 if (foreignTable && field) {
@@ -161,7 +179,7 @@ const dataProvider = (
                 }
             });
 
-            filters?.map((item) => {
+            filters?.forEach((item) => {
                 generateFilter(item, query);
             });
 
@@ -172,7 +190,7 @@ const dataProvider = (
             }
 
             return {
-                data: data || [],
+                data: (data || []) as any,
                 total: count || 0,
             };
         },
@@ -188,7 +206,7 @@ const dataProvider = (
             }
 
             return {
-                data: data || [],
+                data: (data || []) as any,
             };
         },
 
@@ -262,7 +280,7 @@ const dataProvider = (
             );
 
             return {
-                data: response,
+                data: response as any,
             };
         },
 
@@ -327,7 +345,7 @@ const dataProvider = (
             );
 
             return {
-                data: response,
+                data: response as any,
             };
         },
 
@@ -343,15 +361,10 @@ const dataProvider = (
 
 const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
     return {
-        subscribe: ({
-            channel,
-            types,
-            params,
-            callback,
-        }): RealtimeSubscription => {
+        subscribe: ({ channel, types, params, callback }): RealtimeChannel => {
             const resource = channel.replace("resources/", "");
 
-            const listener = (payload: SupabaseRealtimePayload<any>) => {
+            const listener = (payload: RealtimePostgresChangesPayload<any>) => {
                 if (
                     types.includes("*") ||
                     types.includes(liveTypes[payload.eventType])
@@ -384,19 +397,31 @@ const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
                 }
             };
 
-            const client = supabaseClient
-                .from(resource)
-                .on(supabaseTypes[types[0]], listener);
+            const client = supabaseClient.channel(`public:${resource}`).on(
+                "postgres_changes",
+                {
+                    event: supabaseTypes[types[0]] as any,
+                    schema: "public",
+                },
+                listener,
+            );
 
-            types
-                .slice(1)
-                .map((item) => client.on(supabaseTypes[item], listener));
+            types.slice(1).map((item) =>
+                client.on(
+                    "postgres_changes",
+                    {
+                        event: supabaseTypes[item] as any,
+                        schema: "public",
+                    },
+                    listener,
+                ),
+            );
 
             return client.subscribe();
         },
 
-        unsubscribe: async (subscription: RealtimeSubscription) => {
-            supabaseClient.removeSubscription(subscription);
+        unsubscribe: async (channel: RealtimeChannel) => {
+            supabaseClient.removeChannel(channel);
         },
     };
 };
