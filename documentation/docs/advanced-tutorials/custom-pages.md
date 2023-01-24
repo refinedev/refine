@@ -512,7 +512,7 @@ export default App;
 
 Now, let's create the custom page with the name `<PostReview>`. We will use the properties of `useList`, `filter` and `pagination` to fetch a post with "draft" status.
 
-[Refer to the `useList` documentation for detailed usage. &#8594](/api-reference/core/hooks/data/useList.md)
+[Refer to the `useList` documentation for detailed usage. &#8594](/docs/api-reference/core/hooks/data/useList/)
 
 ```tsx title="src/pages/post-review.tsx"
 import { useList } from "@pankod/refine-core";
