@@ -34,13 +34,23 @@ const PostList: React.FC<IResourceComponentsProps> = () => {
     // Fetches the posts for the current page
     const posts = tableQueryResult?.data?.data ?? [];
 
+    // Gets the current filter values for the fields
     // highlight-start
     const currentFilterValues = useMemo(() => {
+        // Filters can be a LogicalFilter or a ConditionalFilter. ConditionalFilter not have field property. So we need to filter them.
+        // We use flatMap for better type support.
+        const logicalFilters = filters.flatMap((item) =>
+            "field" in item ? item : [],
+        );
+
         return {
-            title: filters.find((item) => item?.field === "title")?.value || "",
-            id: filters.find((item) => item?.field === "id")?.value || "",
+            title:
+                logicalFilters.find((item) => item.field === "title")?.value ||
+                "",
+            id: logicalFilters.find((item) => item.field === "id")?.value || "",
             status:
-                filters.find((item) => item?.field === "status")?.value || "",
+                logicalFilters.find((item) => item.field === "status")?.value ||
+                "",
         };
     }, [filters]);
     // highlight-end
