@@ -11,9 +11,11 @@ import {
     Space,
     Tag,
     Modal,
+    Avatar,
 } from "@pankod/refine-antd";
 import { TCanvas } from "types/canvas";
 import { LogList } from "components/logs";
+import { CanvasItem } from "components/canvas";
 
 type TCanvasPromoteResult = {
     id: number;
@@ -23,7 +25,17 @@ type TCanvasPromoteResult = {
 export const CanvasList = () => {
     const [currentCanvas, setCurrentCanvas] = useState({});
     const { modalProps, show, close } = useModal();
-    const { tableProps, formProps } = useEditableTable<TCanvas>();
+    const { tableProps, formProps } = useEditableTable<TCanvas>({
+        initialSorter: [
+            {
+                field: "created_at",
+                order: "desc",
+            },
+        ],
+        metaData: {
+            select: "*, pixels(id, canvas_id, user_id, x, y, color)",
+        },
+    });
     const { mutate } = useUpdate<TCanvasPromoteResult>();
 
     return (
@@ -40,9 +52,29 @@ export const CanvasList = () => {
                                     fontWeight: "bold",
                                 }}
                             >
-                                ID
+                                Canvas
                             </h4>
                         }
+                        render={(_, record) => (
+                            <Avatar
+                                shape="square"
+                                size={64}
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                }}
+                                icon={
+                                    <CanvasItem
+                                        canvas={record}
+                                        pixels={record?.pixels}
+                                        border={true}
+                                        scale={5 / record?.width}
+                                        active={false}
+                                    />
+                                }
+                            />
+                        )}
                     />
                     <Table.Column<TCanvas>
                         key="name"
