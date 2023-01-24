@@ -4,7 +4,7 @@
     "private": true,
     "dependencies": {
         "@mui/x-data-grid-pro": "^5.11.1",
-        "@pankod/refine-core": "^3.98.0",
+        "@pankod/refine-core": "^3.99.0",
         "@pankod/refine-cli": "^1.17.0",
         "@pankod/refine-mui": "^3.61.3",
         "@pankod/refine-react-hook-form": "^3.37.2",
