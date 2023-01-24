@@ -66,11 +66,11 @@ export const PostsList: React.FC = () => {
             <DataGrid
                 getRowId={(row) => row.sha}
                 {...dataGridProps}
-                onPageChange={(page) => {
+                onPageChange={(page, details) => {
                     if (data?.cursor) {
                         setNext(data?.cursor?.next);
                     }
-                    setCurrent(page + 1);
+                    dataGridProps.onPageChange?.(page, details);
                 }}
                 columns={columns}
                 autoHeight

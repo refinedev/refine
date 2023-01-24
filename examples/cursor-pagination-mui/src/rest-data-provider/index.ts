@@ -23,6 +23,7 @@ export const dataProvider = (
 
         const { data } = await httpClient.get(url);
 
+        // Github API returns the latest commit date as the next cursor
         const next = data[data.length - 1].commit.committer.date;
         return {
             data,
