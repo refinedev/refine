@@ -180,7 +180,7 @@ module.exports = {
                                     type: "category",
                                     label: "Table",
                                     items: [
-                                        "api-reference/core/hooks/useTable",
+                                        "api-reference/core/hooks/useTable/index",
                                     ],
                                 },
                                 {

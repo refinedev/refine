@@ -1,12 +1,12 @@
 ---
-id: useTable
 title: useTable
+slug: /api-reference/core/hooks/useTable
 ---
 
-import BasicUsageLivePreview from "./\_partials/useTable/\_partial-basic-usage-live-preview.md";
-import PaginationLivePreview from "./\_partials/useTable/\_partial-pagination-live-preview.md";
-import SortingLivePreview from "./\_partials/useTable/\_partial-sorting-live-preview.md";
-import FilteringLivePreview from "./\_partials/useTable/\_partial-filtering-live-preview.md";
+import BasicUsageLivePreview from "./\_partial-basic-usage-live-preview.md";
+import PaginationLivePreview from "./\_partial-pagination-live-preview.md";
+import SortingLivePreview from "./\_partial-sorting-live-preview.md";
+import FilteringLivePreview from "./\_partial-filtering-live-preview.md";
 
 `useTable` allows us to fetch data according to sorter, filter, and pagination states. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch.
 
