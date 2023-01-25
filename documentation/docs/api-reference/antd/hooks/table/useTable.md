@@ -684,3 +684,5 @@ You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fe
 [table search]: /advanced-tutorials/search/table-search.md
 [refine swl]: /api-reference/core/components/refine-config.md#syncwithlocation
 [filter-dropdown]: /api-reference/antd/components/filter-dropdown/
+[syncwithlocationparams]: /api-reference/core/interfaces.md#syncwithlocationparams
+[notification-provider]: /api-reference/core/providers/notification-provider.md
