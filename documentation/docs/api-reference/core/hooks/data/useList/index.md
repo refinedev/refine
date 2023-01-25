@@ -54,9 +54,7 @@ When `useList` hook is mounted, it passes some parameters (`channel`, `resource`
 
 ## Properties
 
-### `resource`
-
-> `resource` is required.
+### `resource` <PropTag required />
 
 It will be passed to the `getList` method from the `dataProvider` as parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resource are handled.
 
