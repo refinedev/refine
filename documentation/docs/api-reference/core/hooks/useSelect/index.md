@@ -11,7 +11,7 @@ import OnSearchLivePreview from "./on-search-live-preview.md";
 This hook uses the `useList` hook for fetching data. [Refer to useList hook for details. →](/docs/api-reference/core/hooks/data/useList/)
 
 :::info
-If you're looking for a complete select library, Refine supports two select libraries out-of-the-box.
+If you're looking for a complete select library, refine supports two select libraries out-of-the-box.
 
 -   [Refine Headless Select](https://react-select.com/home) (for Headless users) - [Documentation](/docs/api-reference/core/hooks/useSelect/) - [Example](/docs/examples/core/useSelect)
 -   [Ant Design Select](https://ant.design/components/select) (for Ant Design users) - [Documentation](/docs/api-reference/antd/hooks/field/useSelect) - [Example](/docs/examples/field/useSelect)
@@ -108,7 +108,7 @@ Allows to make options selected by default. Adds extra options to `<select>` com
 
 ```tsx
 useSelect({
-    defaultValue: "1", // or ["1", "2"]
+    defaultValue: 1, // or [1, 2]
 });
 ```
 
