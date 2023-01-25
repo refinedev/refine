@@ -101,7 +101,7 @@ module.exports = {
                                         "api-reference/core/hooks/data/useList",
                                         "api-reference/core/hooks/data/useInfiniteList",
                                         "api-reference/core/hooks/data/useMany",
-                                        "api-reference/core/hooks/data/useOne",
+                                        "api-reference/core/hooks/data/useOne/index",
                                         "api-reference/core/hooks/data/useUpdate",
                                         "api-reference/core/hooks/data/useUpdateMany",
                                     ],
