@@ -104,7 +104,7 @@ After mutation runs `posts` will be updated as below:
 <br/>
 
 :::note
-Queries that use `/posts` endpoint will be automatically invalidated to show the updated data. For example, data returned from [`useList`](useList.md) and [`useOne`](useOne.md) will be automatically updated.
+Queries that use `/posts` endpoint will be automatically invalidated to show the updated data. For example, data returned from [`useList`](useList.md) and [`useOne`](/docs/api-reference/core/hooks/data/useOne/) will be automatically updated.
 :::
 
 :::tip
