@@ -96,22 +96,19 @@ const myDataProvider = {
     //...
     getList: async ({
         resource,
-        pagination,
-        hasPagination,
-        sort,
-        filters,
+        id,
         // highlight-next-line
         metaData,
     }) => {
         // highlight-next-line
         const headers = metaData?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
+        const url = `${apiUrl}/${resource}/${id}`;
 
         //...
         //...
 
         // highlight-next-line
-        const { data, headers } = await httpClient.get(`${url}`, { headers });
+        const { data } = await httpClient.get(`${url}`, { headers });
 
         return {
             data,
