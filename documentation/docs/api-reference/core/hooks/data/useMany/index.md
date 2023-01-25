@@ -88,6 +88,8 @@ useMany({
 In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
+import { stringify } from "query-string";
+
 useMany({
     // highlight-start
     metaData: {
@@ -98,18 +100,15 @@ useMany({
 
 const myDataProvider = {
     //...
-    getList: async ({
+    getMany: async ({
         resource,
-        pagination,
-        hasPagination,
-        sort,
-        filters,
+        ids,
         // highlight-next-line
         metaData,
     }) => {
         // highlight-next-line
         const headers = metaData?.headers ?? {};
-        const url = `${apiUrl}/${resource}`;
+        const url = `${apiUrl}/${resource}?${stringify({ id: ids })}`;
 
         //...
         //...
