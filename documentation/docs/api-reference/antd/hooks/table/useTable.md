@@ -630,7 +630,7 @@ A function create accessible links for `syncWithLocation`. It takes an [SyncWith
 
 ### How can I handle relational data ?
 
-You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fetch relational data.
+You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fetch relational data and filter `<Table>` by categories with help of [`useSelect`](http://localhost:3000/docs/api-reference/antd/hooks/field/useSelect/)
 
 <RelationalLivePreview/>
 
