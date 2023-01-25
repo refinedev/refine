@@ -3,75 +3,31 @@ id: useTable
 title: useTable
 ---
 
+import BasicUsageLivePreview from "./\_partial-use-table-basic-usage-live-preview.md";
+import SorterLivePreview from "./\_partial-use-table-sorter-live-preview.md";
+import FilteringPreview from "./\_partial-use-table-filtering-live-preview.md";
+import SearchPreview from "./\_partial-use-table-search-live-preview.md";
+import RelationalLivePreview from "./\_partial-use-table-relational-live-preview.md";
 
-By using useTable, you are able to get properties that are compatible with Ant Design [`<Table>`](https://ant.design/components/table/) component. All features such as sorting, filtering and pagination comes as out of box.
+`useTable` allows us to fetch data according to sorter, filter, and pagination states. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch.
+
+Also you are able to get properties that are compatible with Ant Design [`<Table>`](https://ant.design/components/table/) component.
+
+:::info
+`useTable` hook is extended from [`useTable`][use-table-core] hook from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/next/packages/antd) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
+:::
 
 ## Basic usage
 
-Lets say that the data we are going to show on the table came like this from the endpoint:
+In basic usage `useTable` returns the data as it comes from the endpoint.
 
-```json title="https://api.fake-rest.refine.dev/posts"
-[
-    {
-        "id": 182,
-        "title": "A aspernatur rerum molestiae.",
-        "content": "Natus molestias incidunt voluptatibus. Libero delectus facilis...",
-        "status": "published"
-    },
-    {
-        "id": 989,
-        "title": "A molestiae vel voluptatem enim.",
-        "content": "Voluptas consequatur quia beatae. Ipsa est qui culpa deleniti...",
-        "status": "draft",
-        "createdAt": "2020-01-28T02:57:58.892Z"
-    }
-]
-```
+<BasicUsageLivePreview />
 
-If we want to make a sorting page where we show the `id`, `title` and `content` values:
+## Pagination
 
-```tsx title="/src/pages/posts/list.tsx"
-import { List, Table, TextField, useTable } from "@pankod/refine-antd";
+This feature comes out of the box with the `tableProps.pagination`. It generates the pagination links for the `<Table>` component instead of react state and overrides `<Table>`'s `pagination.itemRender` value. It's also syncs the pagination state with the URL.
 
-export const PostList: React.FC = () => {
-    // highlight-next-line
-    const { tableProps } = useTable<IPost>();
-
-    return (
-        <List>
-            // highlight-start
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-                <Table.Column dataIndex="content" title="Content" />
-            </Table>
-            // highlight-end
-        </List>
-    );
-};
-
-interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-}
-```
-
-:::tip
-In a page in resource given to `<Refine>` component, `useTable` decides which sources are going to be shown automatically.
-If you want to show the data that comes from the endpoint of another `resource` . You can do so with the `resource: string` option in the option object that the `useTable(options)` hook takes.
-If the `resource` option is given, `syncWithLocation` will not work.
-
-`useTable` uses `useMany` while pulling data from the given resource.
-:::
-
-## Listing
-
-<br />
-
-:::info
-If you want to make a change in the pagination of the `<Table>`. You should pass the pagination object of the `tableProps` to the pagination property of the `<Table>` as below.
+If you want to make a change in the pagination of the `<Table>`. You should pass the pagination object of the `tableProps` to the pagination property of the `<Table>` as below. You can override the values of the pagination object as your needs.
 
 ```tsx
 const { tableProps } = useTable<IPost>();
@@ -87,61 +43,19 @@ const { tableProps } = useTable<IPost>();
     }}
     // highlight-end
 >
-    ...
+    // ---
 </Table>;
 ```
 
-:::
+<br/>
 
-:::info
 To disable pagination, you can set `hasPagination` property to `false` which is `true` by default. If `hasPagination` has set to `false`, pagination elements will be hidden in the `<Table/>`. If you want to handle the pagination on the client-side you can override the `pagination` property in `tableProps`.
-:::
 
 ## Sorting
 
-If we want to give a column the sorting property, the corresponding `<Table.Column>` component must be given the [sorter](https://ant.design/components/table/#components-table-demo-head) property.
+If we want to give a column the sorting property, the corresponding [`<Table.Column>`][table-column] component must be given the [sorter](https://ant.design/components/table/#components-table-demo-head) property.
 
-```tsx title="/src/pages/posts/list.tsx"
-import {
-    List,
-    Table,
-    TextField,
-    useTable,
-    // highlight-next-line
-    getDefaultSortOrder,
-} from "@pankod/refine-antd";
-
-export const PostList: React.FC = () => {
-    // highlight-next-line
-    const { tableProps, sorter } = useTable<IPost>();
-
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column
-                    dataIndex="id"
-                    title="ID"
-                    render={(value) => <TextField value={value} />}
-                    // highlight-start
-                    sorter
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
-                    // highlight-end
-                />
-                <Table.Column
-                    dataIndex="title"
-                    title="Title"
-                    render={(value) => <TextField value={value} />}
-                    // highlight-start
-                    sorter={{ multiple: 1 }}
-                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
-                    // highlight-end
-                />
-                <Table.Column dataIndex="content" title="Content" />
-            </Table>
-        </List>
-    );
-};
-```
+<SorterLivePreview/>
 
 :::caution
 
@@ -151,143 +65,23 @@ It can be used when your DataIndex and your sorting key are different.
 :::
 
 :::tip
-When using multiple sorting, `multiple` value we had given to the `sorter` property specifies the priority of this column in sorting.
-:::
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useTable/table-sorting.gif" alt="Table sorting in action" />
-</div>
-
-### Initial sort status
-
-```ts title="/src/pages/posts/list.tsx"
-const { tableProps, sorter } = useTable<IPost>({
-    // highlight-start
-    initialSorter: [
-        {
-            field: "title",
-            order: "asc",
-        },
-    ],
-    // highlight-end
-});
-```
-
-By using `initialSorter` setting, you can select which `field` is going to start with which sorting status (`"asc"` or `"desc"`).
-
-:::caution
-If you're using the `initialSorter`, don't forget to add `getDefaultSortOrder` to your `<Table.Column>` component. Otherwise, during filter and paging operations, the `initialSorter` might be lost.
-
-```tsx
-...
-<Table.Column
-    dataIndex="title"
-    title="Title"
-    sorter={{ multiple: 2 }}
-    // highlight-next-line
-    defaultSortOrder={getDefaultSortOrder("title", sorter)}
-/>
-...
-```
-
+When using multiple sorting, `multiple` value is required for `sorter` property. Which is specifies the priority of column in sorting.
 :::
 
 ## Filtering
 
-Every `post` that comes from endpoint has a `status` value. This value can either be `published` or `draft`. We can show the `status` value with a Ant Design `<TagField>`:
+We can use the `filterDropdown` property from [`<Table.Column>`][table-column] to make filtering based on the column values. In order to do this, we need to put the filtering form inside the [`<FilterDropdown>`][filter-dropdown] component and pass the properties coming to the function to these component's properties.
 
-```tsx title="/src/pages/posts/list.tsx"
-...
-<Table.Column
-    dataIndex="status"
-    title="Status"
-    render={(value) => <TagField value={value} />}
-/>
-...
-```
+<FilteringPreview />
 
-We can use the `filterDropdown` property to make filtering based on the `status` value. In order to do this, we need to put the filtering form inside the `<FilterDropdown>` component and pass the properties coming to the function to these component's properties:
+## Initial Filter and Sorter
 
-```tsx title="/src/pages/posts/list.tsx"
-import {
-    List,
-    Table,
-    // highlight-start
-    Radio,
-    FilterDropdown,
-    // highlight-end
-    TagField,
-    useTable,
-    getDefaultSortOrder,
-} from "@pankod/refine-antd";
+:::caution
+If you're using the `initialSorter` or `initialFilter`, don't forget to add `getDefaultSortOrder` or `defaultFilteredValue` to your `<Table.Column>` component. Otherwise, during filter and paging operations, the `initialSorter` might be lost.
 
-export const PostList: React.FC = () => {
-    const { tableProps, sorter } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "title",
-                order: "asc",
-            },
-        ],
-    });
-
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" sorter />
-                <Table.Column
-                    dataIndex="title"
-                    title="Title"
-                    sorter={{ multiple: 2 }}
-                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
-                />
-                <Table.Column
-                    dataIndex="content"
-                    title="Content"
-                    sorter={{ multiple: 1 }}
-                />
-                <Table.Column
-                    dataIndex="status"
-                    title="Status"
-                    render={(value) => <TagField value={value} />}
-                    // highlight-start
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Radio.Group>
-                                <Radio value="published">Published</Radio>
-                                <Radio value="draft">Draft</Radio>
-                                <Radio value="rejected">Rejected</Radio>
-                            </Radio.Group>
-                        </FilterDropdown>
-                    )}
-                    // highlight-end
-                />
-            </Table>
-        </List>
-    );
-};
-```
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useTable/filters.gif" alt="Table filtering in action" />
-</div>
-
-### Default filter value
-
-In order to set a default filter value, you can use the `initialFilter` option of the `useTable(options)` hook.
-
-```ts title="/src/pages/posts/list.tsx"
-const { tableProps, sorter, filters } = useTable<IPost>({
+```tsx
+// ---
+const { tableProps, sorter, filters } = useTable({
     initialSorter: [
         {
             field: "title",
@@ -298,86 +92,548 @@ const { tableProps, sorter, filters } = useTable<IPost>({
         {
             field: "status",
             operator: "eq",
-            value: "draft",
+            value: "published",
+        },
+    ],
+});
+
+// ---
+<Table.Column
+    dataIndex="title"
+    title="Title"
+    // highlight-next-line
+     defaultSortOrder={getDefaultSortOrder("title", sorter)}
+/>
+<Table.Column
+    dataIndex="status"
+    title="Status"
+    render={(value) => <TagField value={value} />}
+    // highlight-next-line
+    defaultFilteredValue={getDefaultFilter("status", filters)}
+    filterDropdown={(props) => (
+        <FilterDropdown {...props}>
+            <Radio.Group>
+                <Radio value="published">Published</Radio>
+                <Radio value="draft">Draft</Radio>
+                <Radio value="rejected">Rejected</Radio>
+            </Radio.Group>
+        </FilterDropdown>
+    )}
+/>
+// ---
+```
+
+:::
+
+## Search
+
+We can use [`onSearch`](#onsearch) and [`searchFormProps`](#searchformprops) properties to make custom filter form. `onSearch` is a function that is called when the form is submitted. `searchFormProps` is a property that is passed to the [`<Form>`](https://ant.design/components/form) component.
+
+<SearchPreview/>
+
+## Properties
+
+### `resource`
+
+**refine** passes the `resource` to the `dataProvider` as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
+
+The `resource` value is determined from the active route where the component or the hook is used. It can be overridden by passing the `resource` prop.
+
+Use case for overriding the `resource` prop:
+
+-   We can list a `category` from the `<PostList>` page.
+
+```tsx
+import React from "react";
+import {
+    HttpError,
+    IResourceComponentsProps,
+    useTable,
+} from "@pankod/refine-core";
+
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+}
+
+interface ICategory {
+    id: number;
+    name: string;
+}
+
+export const PostList: React.FC<IResourceComponentsProps> = () => {
+    const { tableQueryResult: postsQueryResult } = useTable<IPost, HttpError>();
+
+    const { tableQueryResult: categoriesQueryResult } = useTable<
+        ICategory,
+        HttpError
+    >({
+        resource: "categories",
+    });
+
+    return <div>{/* ... */}</div>;
+};
+```
+
+Also you can give URL path to the `resource` prop.
+
+```tsx
+const table = useTable({
+    resource: "categories/subcategory", // <BASE_URL_FROM_DATA_PROVIDER>/categories/subcategory
+});
+```
+
+### `onSearch`
+
+When [`searchFormProps.onFinish`](#searchformprops) is called, the `onSearch` function is called with the values of the form. The `onSearch` function should return `CrudFilters | Promise<CrudFilters>`.
+Also `onSearch` will set current page to 1.
+
+It's useful when you want to filter the data with any query.
+
+```tsx
+const { searchFormProps, tableProps } = useTable({
+    onSearch: (values) => {
+        return [
+            {
+                field: "title",
+                operator: "contains",
+                value: values.title,
+            },
+        ];
+    },
+});
+
+// --
+<List>
+    <Form {...searchFormProps}>
+        <Space>
+            <Form.Item name="title">
+                <Input placeholder="Search by title" />
+            </Form.Item>
+            <SaveButton onClick={searchFormProps.form?.submit} />
+        </Space>
+    </Form>
+    <Table {...tableProps} rowKey="id">
+        <Table.Column title="Title" dataIndex="title" />
+    </Table>
+</List>;
+// ---
+```
+
+### `dataProviderName`
+
+If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. It is useful when you want to use a different `dataProvider` for a specific resource.
+
+```tsx
+const table = useTable({
+    dataProviderName: "second-data-provider",
+});
+```
+
+### `initialCurrent`
+
+> Default: `1`
+
+Sets the initial value of the page index.
+
+```tsx
+const table = useTable({
+    initialCurrent: 2, // This will cause the table to initially display the data for page 2, rather than the default of page 1
+});
+```
+
+### `initialPageSize`
+
+> Default: `10`
+
+Sets the initial value of the page size.
+
+```tsx
+const table = useTable({
+    initialPageSize: 20, // This will cause the table to initially display 20 rows per page, rather than the default of 10
+});
+```
+
+### `initialSorter`
+
+Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
+
+```tsx
+const table = useTable({
+    initialSorter: [
+        {
+            field: "title",
+            order: "asc",
         },
     ],
 });
 ```
 
-If you give default filter values, `defaultFilteredValue` property needs to be properly given to the relevant `<Table.Column>` components so that those filter fields come with default values when the page is opened.
+### `permanentSorter`
 
-```tsx title="/src/pages/posts/list.tsx"
-// highlight-next-line
-import { getDefaultFilter } from "@pankod/refine-core";
-import {
-    List,
-    Table,
-    Radio,
-    FilterDropdown,
-    TagField,
-    useTable,
-    getDefaultSortOrder,
-} from "@pankod/refine-antd";
+Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
 
-export const PostList: React.FC = () => {
-    const { tableProps, sorter, filters } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "title",
-                order: "asc",
-            },
-        ],
-        // highlight-start
-        initialFilter: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "draft",
-            },
-        ],
-        // highlight-end
-    });
+```tsx
+const table = useTable({
+    permanentSorter: [
+        {
+            field: "title",
+            order: "asc",
+        },
+    ],
+});
+```
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" sorter />
-                <Table.Column
-                    dataIndex="title"
-                    title="Title"
-                    sorter={{ multiple: 2 }}
-                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
-                />
-                <Table.Column
-                    dataIndex="content"
-                    title="Content"
-                    sorter={{ multiple: 1 }}
-                />
-                <Table.Column
-                    dataIndex="status"
-                    title="Status"
-                    render={(value) => <TagField value={value} />}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Radio.Group>
-                                <Radio value="published">Published</Radio>
-                                <Radio value="draft">Draft</Radio>
-                                <Radio value="rejected">Rejected</Radio>
-                            </Radio.Group>
-                        </FilterDropdown>
-                    )}
-                    // highlight-next-line
-                    defaultFilteredValue={getDefaultFilter("status", filters)}
-                />
-            </Table>
-        </List>
-    );
+### `initialFilter`
+
+Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
+
+```tsx
+const table = useTable({
+    initialFilter: [
+        {
+            field: "title",
+            operator: "contains",
+            value: "Foo",
+        },
+    ],
+});
+```
+
+### `permanentFilter`
+
+Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
+
+```tsx
+const table = useTable({
+    permanentFilter: [
+        {
+            field: "title",
+            operator: "contains",
+            value: "Foo",
+        },
+    ],
+});
+```
+
+### `defaultSetFilterBehavior`
+
+> Default: `merge`
+
+The filter behavior can be set to either `"merge"` or `"merge"`.
+
+-   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+
+-   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+
+You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
+
+```tsx
+const table = useTable({
+    defaultSetFilterBehavior: "replace",
+});
+```
+
+### `hasPagination`
+
+> Default: `true`
+
+Determines whether to use server-side pagination or not.
+
+```tsx
+const table = useTable({
+    // highlight-start
+    hasPagination: false,
+    // highlight-end
+});
+```
+
+### `syncWithLocation`
+
+> Default: `false`
+
+When you use the syncWithLocation feature, the `useTable`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views.
+
+Also you can set this value globally on [`<Refine>`][refine swl] component.
+
+```tsx
+const table = useTable({
+    // highlight-start
+    syncWithLocation: true,
+    // highlight-end
+});
+```
+
+### `queryOptions`
+
+`useTable` uses [`useList`](/docs/api-reference/core/hooks/data/useList/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+
+```tsx
+const table = useTable({
+    // highlight-start
+    queryOptions: {
+        retry: 3,
+    },
+    // highlight-end
+});
+```
+
+### `metaData`
+
+[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+
+-   To pass additional information to data provider methods.
+-   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
+
+In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
+
+```tsx
+const table = useTable({
+    // highlight-start
+    metaData: {
+        headers: { "x-meta-data": "true" },
+    },
+    // highlight-end
+});
+
+const myDataProvider = {
+    //...
+    getList: async ({
+        resource,
+        pagination,
+        hasPagination,
+        sort,
+        filters,
+        // highlight-next-line
+        metaData,
+    }) => {
+        // highlight-next-line
+        const headers = metaData?.headers ?? {};
+        const url = `${apiUrl}/${resource}`;
+
+        //...
+        //...
+
+        // highlight-next-line
+        const { data, headers } = await httpClient.get(`${url}`, { headers });
+
+        return {
+            data,
+        };
+    },
+    //...
 };
 ```
 
-:::tip
-Filters we give to `initialFilter` are default filters. In order to prevent filters from being changed, `permanentFilter` must be used instead of `initialFilter`.
-:::
+### `successNotification`
+
+> [`NotificationProvider`][notification-provider] is required.
+
+After data is fetched successfully, `useTable` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
+
+```tsx
+const table = useTable({
+    // highlight-start
+    successNotification: (data, values, resource) => {
+        return {
+            message: `${data.title} Successfully fetched.`,
+            description: "Success with no errors",
+            type: "success",
+        };
+    },
+    // highlight-end
+});
+```
+
+### `errorNotification`
+
+> [`NotificationProvider`][notification-provider] is required.
+
+After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show a error notification. With this prop, you can customize the error notification.
+
+```tsx
+const table = useTable({
+    // highlight-start
+    errorNotification: (data, values, resource) => {
+        return {
+            message: `Something went wrong when getting ${data.id}`,
+            description: "Error",
+            type: "error",
+        };
+    },
+    // highlight-end
+});
+```
+
+### `liveMode`
+
+Whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
+For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
+
+```tsx
+const table = useTable({
+    // highlight-start
+    liveMode: "auto",
+    // highlight-end
+});
+```
+
+### `onLiveEvent`
+
+The callback function that is executed when new events from a subscription are arrived.
+
+```tsx
+const table = useTable({
+    // highlight-start
+    onLiveEvent: (event) => {
+        console.log(event);
+    },
+    // highlight-end
+});
+```
+
+### `liveParams`
+
+Params to pass to [liveProvider's](/docs/api-reference/core/providers/live-provider/#subscribe) subscribe method.
+
+## Return Values
+
+### `tableProps`
+
+The props needed by the [`<Table>`][table] component.
+
+#### `dataSource`
+
+Contains the data to be displayed in the table. Values fetched with [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
+
+#### `loading`
+
+Indicates whether the data is being fetched.
+
+#### `onChange`
+
+The callback function that is executed when a user interacts(filter, sort etc.) with the table. It can be used to update the table state.
+
+#### `pagination`
+
+Returns pagination configuration values(pageSize, current, position etc.).
+
+#### `scroll`
+
+> Default: `{ x: true }`
+
+Whether the table can be scrollable.
+
+### `searchFormProps`
+
+It returns [`<Form>`](https://ant.design/components/form/) instance of Ant Design. When `searchFormProps.onFinish` is called, it will trigger [`onSearch`](#onsearch) function.
+You can also use `searchFormProps.form.submit` to submit the form manually.
+
+It's useful when you want to create a filter form for your `<Table>`.
+
+```tsx
+const { searchFormProps, tableProps } = useTable({
+    onSearch: (values) => {
+        return [
+            {
+                field: "title",
+                operator: "contains",
+                value: values.title,
+            },
+        ];
+    },
+});
+
+// --
+<List>
+    <Form {...searchFormProps}>
+        <Space>
+            <Form.Item name="title">
+                <Input placeholder="Search by title" />
+            </Form.Item>
+            <SaveButton onClick={searchFormProps.form?.submit} />
+        </Space>
+    </Form>
+    <Table {...tableProps} rowKey="id">
+        <Table.Column title="Title" dataIndex="title" />
+    </Table>
+</List>;
+// ---
+```
+
+### `tableQueryResult`
+
+Returned values from [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
+
+### `sorter`
+
+Current [sorter state][crudsorting].
+
+### `setSorter`
+
+```tsx
+ (sorter: CrudSorting) => void;
+```
+
+A function to set current [sorter state][crudsorting].
+
+### `filters`
+
+Current [filters state][crudfilters].
+
+### `setFilters`
+
+```tsx
+((filters: CrudFilters, behavior?: SetFilterBehavior) => void) & ((setter: (prevFilters: CrudFilters) => CrudFilters) => void)
+```
+
+A function to set current [filters state][crudfilters].
+
+### `current`
+
+Current page index state. If pagination is disabled, it will be `undefined`.
+
+### `setCurrent`
+
+```tsx
+React.Dispatch<React.SetStateAction<number>> | undefined
+```
+
+A function to set current page index state. If pagination is disabled, it will be `undefined`.
+
+### `pageSize`
+
+Current page size state. If pagination is disabled, it will be `undefined`.
+
+### `setPageSize`
+
+```tsx
+React.Dispatch<React.SetStateAction<number>> | undefined
+```
+
+A function to set current page size state. If pagination is disabled, it will be `undefined`.
+
+### `pageCount`
+
+Total page count state. If pagination is disabled, it will be `undefined`.
+
+### `createLinkForSyncWithLocation`
+
+```tsx
+(params: SyncWithLocationParams) => string;
+```
+
+A function create accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
+
+## FAQ
+
+### How can I handle relational data ?
+
+You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fetch relational data.
+
+<RelationalLivePreview/>
 
 ## API
 
@@ -416,7 +672,9 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 
 <CodeSandboxExample path="table-antd-use-table" />
 
+[use-table-core]: /docs/api-reference/core/hooks/useTable/
 [table]: https://ant.design/components/table/#API
+[table-column]: https://ant.design/components/table#column
 [form]: https://ant.design/components/form/#API
 [usequery]: https://react-query.tanstack.com/reference/useQuery
 [baserecord]: /api-reference/core/interfaces.md#baserecord
@@ -425,3 +683,4 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 [httperror]: /api-reference/core/interfaces.md#httperror
 [table search]: /advanced-tutorials/search/table-search.md
 [refine swl]: /api-reference/core/components/refine-config.md#syncwithlocation
+[filter-dropdown]: /api-reference/antd/components/filter-dropdown/
