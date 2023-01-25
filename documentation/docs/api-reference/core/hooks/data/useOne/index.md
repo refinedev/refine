@@ -21,7 +21,7 @@ When these properties are changed, `useOne` hook will trigger a new request.
 
 <BasicUsageLivePreview />
 
-## `liveProvider`
+## Realtime Updates
 
 When `useOne` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`. It is useful when you want to subscribe to the live updates.
 
@@ -123,7 +123,7 @@ const myDataProvider = {
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required to use this prop.
+> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
 After data is fetched successfully, `useOne` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -141,7 +141,7 @@ useOne({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required to use this prop.
+> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
 After data fetching is failed, `useOne` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
 
