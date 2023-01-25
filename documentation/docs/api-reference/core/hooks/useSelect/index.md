@@ -1,12 +1,20 @@
 ---
-id: useSelect
 title: useSelect
-description: useSelect hook API references of @pankod/refine-core
+siderbar_label: useSelect
 ---
 
 `useSelect` hook allows you to manage any `select` (like a [Html `<select>` tag](https://www.w3schools.com/tags/tag_select.asp), [React Select](https://react-select.com/home), etc...) component. Since it is designed as headless, It expects you to handle the UI.
 
-## Usage
+:::info
+If you're looking for a complete select library, Refine supports two select libraries out-of-the-box.
+
+-   [Refine Headless Select](https://react-select.com/home) (for Headless users) - [Documentation](/docs/api-reference/core/hooks/useSelect/) - [Example](/docs/examples/core/useSelect)
+-   [Ant Design Select](https://ant.design/components/select) (for Ant Design users) - [Documentation](/docs/api-reference/antd/hooks/field/useSelect) - [Example](/docs/examples/field/useSelect)
+-   [Mantine Select](https://mantine.dev/core/select/) (for Mantine users) - [Documentation](/docs/api-reference/mantine/hooks/useSelect)
+
+:::
+
+## Basic Usage
 
 We'll demonstrate how to get data at `/categories` endpoint from `https://api.fake-rest.refine.dev` REST API.
 
