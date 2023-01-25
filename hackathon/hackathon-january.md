@@ -6,11 +6,11 @@ refine Hackathon 2023 is just around the corner and this repository serves as yo
 
 [:point_right: Refer to Hackathon January 2023 blog for information.](https://refine.dev/blog/refine-hackathon/)
 
-:point_right: Submissions will be active on 23rd of January
+[:point_right: Please submit your project on refine Devpost Hackathon page.](https://refine-open-source-hackathon.devpost.com/)
 
 From rules and guidelines, it provides all the information necessary for successful GitHub submissions. Please prepare your repository README as shown below
 
-
+You can add `refine-hackathon` tag to your repository to make it easier for us to find your submission.
 ## Project Name
 
 ### Cover Image

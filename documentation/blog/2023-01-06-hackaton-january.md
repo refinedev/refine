@@ -72,7 +72,7 @@ The all winners will get [refine Special Swag Kit](https://store.refine.dev/prod
 <br/>
 
 ## Submission
-- **Submissions link:**  Submissions will be active on 23rd of January.
+- **Submissions link:**  [Please submit your project on refine Devpost Hackathon page](https://refine-open-source-hackathon.devpost.com/)
 - **Submission guidelines:** [Follow the guidelines in this repository](https://github.com/refinedev/refine/blob/next/hackathon/hackathon-january.md)
 
 
