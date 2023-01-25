@@ -46,13 +46,25 @@ Dynamically changing the `filters` property will trigger a new request.
 
 <FilteringLivePreview />
 
+## `liveProvider`
+
+When `useList` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`. It is useful when you want to subscribe to the live updates.
+
+[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+
 ## Properties
 
 ### `resource`
 
+> `resource` is required.
+
 It will be passed to the `getList` method from the `dataProvider` as parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resource are handled.
 
-By default, `resource` is required.
+```tsx
+useList({
+    resource: "categories",
+});
+```
 
 ### `dataProviderName`
 
@@ -208,7 +220,7 @@ const myDataProvider = {
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required.
+> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required to use this prop.
 
 After data is fetched successfully, `useList` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -226,7 +238,7 @@ useList({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required.
+> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required to use this prop.
 
 After data fetching is failed, `useList` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
 
