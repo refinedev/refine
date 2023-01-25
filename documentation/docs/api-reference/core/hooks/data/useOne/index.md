@@ -94,7 +94,7 @@ useOne({
 
 const myDataProvider = {
     //...
-    getList: async ({
+    getOne: async ({
         resource,
         id,
         // highlight-next-line
