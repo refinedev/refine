@@ -1,7 +1,15 @@
-```tsx live url=http://localhost:3000/products previewHeight=420px hideCode
+```css live shared
+body {
+    padding: 4px;
+    background: white;
+}
+```
+
+```tsx live url=http://localhost:3000/products previewHeight=300px hideCode
 setInitialRoutes(["/products"]);
 
 // visible-block-start
+import { useState } from "react";
 import { useList, HttpError } from "@pankod/refine-core";
 
 interface IProduct {
@@ -11,13 +19,18 @@ interface IProduct {
 }
 
 const ProductList: React.FC = () => {
+    //highlight-start
+    const [current, setCurrent] = useState(1);
+    const [pageSize, setPageSize] = useState(5);
+    //highlight-end
+
     const { data, isLoading, isError } = useList<IProduct, HttpError>({
         resource: "products",
         //highlight-start
         config: {
             pagination: {
-                current: 2,
-                pageSize: 20,
+                current,
+                pageSize,
             },
         },
         //highlight-end
@@ -34,18 +47,40 @@ const ProductList: React.FC = () => {
     }
 
     return (
-        <ul>
-            {products.map((product) => (
-                <li key={product.id}>
-                    <h4>
-                        {product.name} - ({product.material})
-                    </h4>
-                </li>
-            ))}
-        </ul>
+        <div>
+            {/* highlight-start */}
+            <button onClick={() => setCurrent((prev) => prev - 1)}>
+                {"<"}
+            </button>
+            <span> page: {current} </span>
+            <button onClick={() => setCurrent((prev) => prev + 1)}>
+                {">"}
+            </button>
+            <span> per page: </span>
+            <select
+                value={pageSize}
+                onChange={(e) => setPageSize(Number(e.target.value))}
+            >
+                {[5, 10, 20].map((size) => (
+                    <option key={size} value={size}>
+                        {size}
+                    </option>
+                ))}
+            </select>
+            {/* highlight-end */}
+
+            <ul>
+                {products.map((product) => (
+                    <li key={product.id}>
+                        <h4>
+                            {product.name} - ({product.material})
+                        </h4>
+                    </li>
+                ))}
+            </ul>
+        </div>
     );
 };
-
 // visible-block-end
 
 setRefineProps({

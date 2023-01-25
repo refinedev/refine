@@ -1,4 +1,11 @@
-```tsx live url=http://localhost:3000/products previewHeight=420px
+```css live shared
+body {
+    padding: 4px;
+    background: white;
+}
+```
+
+```tsx live url=http://localhost:3000/products previewHeight=300px
 setInitialRoutes(["/products"]);
 
 // visible-block-start

@@ -1,7 +1,15 @@
-```tsx live url=http://localhost:3000/products previewHeight=420px hideCode
+```css live shared
+body {
+    padding: 4px;
+    background: white;
+}
+```
+
+```tsx live url=http://localhost:3000/products previewHeight=300px hideCode
 setInitialRoutes(["/products"]);
 
 // visible-block-start
+import { useState } from "react";
 import { useList, HttpError } from "@pankod/refine-core";
 
 interface IProduct {
@@ -11,6 +19,9 @@ interface IProduct {
 }
 
 const ProductList: React.FC = () => {
+    //highlight-next-line
+    const [order, setOrder] = useState<"asc" | "desc">("asc");
+
     const { data, isLoading, isError } = useList<IProduct, HttpError>({
         resource: "products",
         //highlight-start
@@ -18,7 +29,7 @@ const ProductList: React.FC = () => {
             sort: [
                 {
                     field: "name",
-                    order: "ascend",
+                    order,
                 },
             ],
         },
@@ -36,15 +47,27 @@ const ProductList: React.FC = () => {
     }
 
     return (
-        <ul>
-            {products.map((product) => (
-                <li key={product.id}>
-                    <h4>
-                        {product.name} - ({product.material})
-                    </h4>
-                </li>
-            ))}
-        </ul>
+        <div>
+            {/* highlight-start */}
+            <button
+                onClick={() =>
+                    setOrder((prev) => (prev === "asc" ? "desc" : "asc"))
+                }
+            >
+                toggle sort
+            </button>
+            {/* highlight-end */}
+
+            <ul>
+                {products.map((product) => (
+                    <li key={product.id}>
+                        <h4>
+                            {product.name} - ({product.material})
+                        </h4>
+                    </li>
+                ))}
+            </ul>
+        </div>
     );
 };
 

@@ -24,17 +24,25 @@ Here is a basic example of how to use `useList` hook.
 
 ## Pagination
 
-`useList` hook supports pagination feature. You can pass `pagination` property to the hook to enable pagination. In order to handle pagination, `useList` hook passes `pagination` property to the `getList` method from the `dataProvider`.
+`useList` hook supports pagination feature. You can pass `pagination` property to enable pagination. In order to handle pagination, `useList` hook passes `pagination` property to the `getList` method from the `dataProvider`.
+
+Dynamically changing the `pagination` properties will trigger a new request.
 
 <PaginationLivePreview />
 
 ## Sorting
 
-`useList` hook supports sorting feature. You can pass `sort` property to the hook to enable sorting. In order to handle sorting, `useList` hook passes `sort` property to the `getList` method from the `dataProvider`.
+`useList` hook supports sorting feature. You can pass `sort` property to enable sorting. In order to handle sorting, `useList` hook passes `sort` property to the `getList` method from the `dataProvider`.
+
+Dynamically changing the `sort` property will trigger a new request.
 
 <SortingLivePreview />
 
 ## Filtering
+
+`useList` hook supports filtering feature. You can pass `filters` property to enable filtering. In order to handle filtering, `useList` hook passes `filters` property to the `getList` method from the `dataProvider`.
+
+Dynamically changing the `filters` property will trigger a new request.
 
 <FilteringLivePreview />
 

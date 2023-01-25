@@ -1,7 +1,15 @@
-```tsx live url=http://localhost:3000/products previewHeight=420px hideCode
+```css live shared
+body {
+    padding: 4px;
+    background: white;
+}
+```
+
+```tsx live url=http://localhost:3000/products previewHeight=300px hideCode
 setInitialRoutes(["/products"]);
 
 // visible-block-start
+import { useState } from "react";
 import { useList, HttpError } from "@pankod/refine-core";
 
 interface IProduct {
@@ -11,6 +19,9 @@ interface IProduct {
 }
 
 const ProductList: React.FC = () => {
+    //highlight-next-line
+    const [value, setValue] = useState("Cotton");
+
     const { data, isLoading, isError } = useList<IProduct, HttpError>({
         resource: "products",
         //highlight-start
@@ -19,7 +30,7 @@ const ProductList: React.FC = () => {
                 {
                     field: "material",
                     operator: "eq",
-                    value: "Cotton",
+                    value,
                 },
             ],
         },
@@ -37,15 +48,28 @@ const ProductList: React.FC = () => {
     }
 
     return (
-        <ul>
-            {products.map((product) => (
-                <li key={product.id}>
-                    <h4>
-                        {product.name} - ({product.material})
-                    </h4>
-                </li>
-            ))}
-        </ul>
+        <div>
+            {/* highlight-start */}
+            <span> material: </span>
+            <select value={value} onChange={(e) => setValue(e.target.value)}>
+                {["Cotton", "Bronze", "Plastic"].map((material) => (
+                    <option key={material} value={material}>
+                        {material}
+                    </option>
+                ))}
+            </select>
+            {/* highlight-end */}
+
+            <ul>
+                {products.map((product) => (
+                    <li key={product.id}>
+                        <h4>
+                            {product.name} - ({product.material})
+                        </h4>
+                    </li>
+                ))}
+            </ul>
+        </div>
     );
 };
 
