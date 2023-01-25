@@ -206,7 +206,7 @@ const myDataProvider = {
         //...
 
         // highlight-next-line
-        const { data, headers } = await httpClient.get(`${url}`, { headers });
+        const { data } = await httpClient.get(`${url}`, { headers });
 
         return {
             data,
