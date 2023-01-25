@@ -51,18 +51,22 @@ const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, filters } = useTable<IPost, HttpError>();
 
     // highlight-start
+    // Creates the array of ids. This will filter and fetch the category data for the relevant posts.
     const categoryIds =
         tableProps.dataSource?.map((p) => p.category.id.toString()) || [];
+    // Fetches the category of each post. It uses the useMany hook to fetch the category data from the API.
     const { data, isFetching } = useMany<ICategory>({
         resource: "categories",
         ids: categoryIds,
         queryOptions: {
+            // Set to true only if the posts array is not empty.
             enabled: categoryIds.length > 0,
         },
     });
     // highlight-end
 
     // highlight-start
+    // Creates the props by needed the select component for filtering the posts by category.
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
         optionLabel: "title",
@@ -83,7 +87,7 @@ const PostList: React.FC<IResourceComponentsProps> = () => {
                     title="Category"
                     render={(value) => {
                         if (isFetching) return "loading...";
-
+                        // Gets the title of the category from the data object, which is the result of the useMany hook.
                         return data?.data.find((p) => p.id === value)?.title;
                     }}
                     filterDropdown={(props: FilterDropdownProps) => (
