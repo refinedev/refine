@@ -5,7 +5,7 @@ title: useInvalidate
 
 `useInvalidate` can be used to invalidate the state of a particular `resource` or `dataProvider` (with dataProviderName). 
 
-For example, creating a `Posts` with [useCreate](/api-reference/core/hooks/data/useCreate.md) hook will invalidate the `list` ([useList](/api-reference/core/hooks/data/useList.md)) and `many` ([useMany](/api-reference/core/hooks/data/useMany.md)) state of the `Posts` resource.
+For example, creating a `Posts` with [useCreate](/api-reference/core/hooks/data/useCreate.md) hook will invalidate the `list` ([useList](/api-reference/core/hooks/data/useList.md)) and `many` ([useMany](/docs/api-reference/core/hooks/data/useMany/)) state of the `Posts` resource.
 
 The hook is used internal in **refine**. Normally you don't need this hook, but we export it as it may be useful for some use-cases.
 

@@ -747,7 +747,7 @@ import { useMany } from "@pankod/refine-core";
 const { data } = useMany({ resource: "posts", ids: [1, 2] });
 ```
 
-> [Refer to the useMany documentation for more information. &#8594](../../api-reference/core/hooks/data/useMany.md)
+> [Refer to the useMany documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useMany/)
 
 ### createMany
 

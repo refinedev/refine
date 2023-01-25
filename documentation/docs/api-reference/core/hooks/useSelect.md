@@ -89,7 +89,7 @@ Adds extra `options` to `<select>` component. It uses `useMany` so `defaultValue
 defaultValue: ["1", "2"],
 ```
 
-[Refer to the `useMany` documentation for detailed usage. &#8594](/api-reference/core/hooks/data/useMany.md)
+[Refer to the `useMany` documentation for detailed usage. &#8594](/docs/api-reference/core/hooks/data/useMany/)
 
 :::tip
 Can use `defaultValue` property when edit a record in `Edit` page.
