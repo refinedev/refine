@@ -122,7 +122,7 @@ After the mutation runs `categories` will be updated as below:
 ```
 
 :::note
-Queries that use `/categories` endpoint will be automatically invalidated to show the updated data. For example, data returned from [`useList`](useList.md) will be automatically updated.
+Queries that use `/categories` endpoint will be automatically invalidated to show the updated data. For example, data returned from [`useList`](/docs/api-reference/core/hooks/data/useList/) will be automatically updated.
 :::
 
 :::tip
