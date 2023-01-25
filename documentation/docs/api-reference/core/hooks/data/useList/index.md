@@ -200,9 +200,9 @@ const myDataProvider = {
 
 ### `successNotification`
 
-> [`NotificationProvider`](/api-reference/core/providers/notification-provider.md) is required.
+> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required.
 
-After data is fetched successfully, `useList` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
+After data is fetched successfully, `useList` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
 ```tsx
 useList({
@@ -218,9 +218,9 @@ useList({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/api-reference/core/providers/notification-provider.md) is required.
+> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required.
 
-After data fetching is failed, `useList` will call `open` function from [`NotificationProvider`][notification-provider] to show a error notification. With this prop, you can customize the error notification.
+After data fetching is failed, `useList` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
 
 ```tsx
 useList({
@@ -304,7 +304,7 @@ interface UseListConfig {
 | TData    | Result data of the query. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
 | TError   | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)    | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |
 
-### Return values
+### Return Values
 
 | Description                              | Type                                                                                                                                         |
 | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
