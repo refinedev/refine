@@ -9,9 +9,9 @@ import FilteringPreview from "./\_partial-use-table-filtering-live-preview.md";
 import SearchPreview from "./\_partial-use-table-search-live-preview.md";
 import RelationalLivePreview from "./\_partial-use-table-relational-live-preview.md";
 
-`useTable` allows us to fetch data according to sorter, filter, and pagination states. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch.
+By using `useTable`, you are able to get properties that are compatible with Ant Design [`<Table>`][table] component. All features such as sorting, filtering and pagination comes as out of box. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch.
 
-Also you are able to get properties that are compatible with Ant Design [`<Table>`](https://ant.design/components/table/) component.
+For all the other features, you can refer to the Ant Design [`<Table>`][table] documentation.
 
 :::info
 `useTable` hook is extended from [`useTable`][use-table-core] hook from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/next/packages/antd) package. This means that you can use all the features of [`useTable`][use-table-core] hook.

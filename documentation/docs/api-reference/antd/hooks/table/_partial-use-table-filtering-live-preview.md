@@ -71,5 +71,5 @@ setRefineProps({
     ],
 });
 
-render(<RefineHeadlessDemo />);
+render(<RefineAntdDemo />);
 ```
