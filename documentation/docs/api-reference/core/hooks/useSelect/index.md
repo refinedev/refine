@@ -3,7 +3,12 @@ title: useSelect
 siderbar_label: useSelect
 ---
 
+import BasicUsageLivePreview from "./basic-usage-live-preview.md";
+import OnSearchLivePreview from "./on-search-live-preview.md";
+
 `useSelect` hook allows you to manage any `select` (like a [Html `<select>` tag](https://www.w3schools.com/tags/tag_select.asp), [React Select](https://react-select.com/home), etc...) component. Since it is designed as headless, It expects you to handle the UI.
+
+This hook uses the `useList` hook for fetching data. [Refer to useList hook for details. →](/docs/api-reference/core/hooks/data/useList/)
 
 :::info
 If you're looking for a complete select library, Refine supports two select libraries out-of-the-box.
@@ -16,106 +21,36 @@ If you're looking for a complete select library, Refine supports two select libr
 
 ## Basic Usage
 
-We'll demonstrate how to get data at `/categories` endpoint from `https://api.fake-rest.refine.dev` REST API.
+Here is a basic example of how to use `useSelect` hook.
 
-```ts title="https://api.fake-rest.refine.dev/categories"
-{
-    [
-        {
-            id: 1,
-            title: "E-business",
-        },
-        {
-            id: 2,
-            title: "Virtual Invoice Avon",
-        },
-        {
-            id: 3,
-            title: "Unbranded",
-        },
-    ];
-}
-```
+<BasicUsageLivePreview />
 
-```tsx title="pages/posts/create.tsx"
-// highlight-next-line
-import { useSelect } from "@pankod/refine-core";
 
-export const DummyList = () => {
-    // highlight-start
-    const { options } = useSelect<ICategory>({
-        resource: "categories",
-    });
-    // highlight-end
+## Properties
+### `resource` <PropTag required />
 
-    return (
-        <select>
-            // highlight-start
-            {options?.map((category) => (
-                <option key={category.value} value={category.value}>
-                    {category.label}
-                </option>
-            ))}
-            // highlight-end
-        </select>
-    );
-};
+It will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resource are handled.
 
-interface ICategory {
-    id: number;
-    title: string;
-}
-```
-
-`useSelect` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](/api-reference/core/hooks/data/useList.md)
-
-## Options
-
-### `resource`
+By default, `resource` is required.
 
 ```tsx
-const { options } = useSelect({
+useSelect({
     resource: "categories",
 });
 ```
-
-`resource` property determines API resource endpoint to fetch records from [`dataProvider`](/api-reference/core/providers/data-provider.md). It returns properly configured `options` values for select options.
-
-### `defaultValue`
-
-```tsx
-const { options } = useSelect({
-    resource: "categories",
-    // highlight-next-line
-    defaultValue: "1",
-});
-```
-
-Adds extra `options` to `<select>` component. It uses `useMany` so `defaultValue` can be an array of strings like follows.
-
-```ts
-defaultValue: ["1", "2"],
-```
-
-[Refer to the `useMany` documentation for detailed usage. &#8594](/api-reference/core/hooks/data/useMany.md)
-
-:::tip
-Can use `defaultValue` property when edit a record in `Edit` page.
-:::
 
 ### `optionLabel` and `optionValue`
 
+Allows you to change the `value` and `label` of your options.  
+Default values are `optionLabel = "title"` and `optionValue = "id"`
+
 ```tsx
-const { options } = useSelect({
-    resource: "categories",
-    // highlight-start
-    optionLabel: "title",
-    optionValue: "id",
-    // highlight-end
+useSelect<ICategory>({
+    resource: "products",
+    // highlight-next-line
+    optionLabel: "name"
 });
 ```
-
-Allows you to change the values and appearance of your options. Default values are `optionLabel = "title"` and `optionValue = "id"`.
 
 :::tip
 
@@ -130,103 +65,104 @@ const { options } = useSelect({
     // highlight-end
 });
 ```
-
 :::
-
-### `filters`
-
-```tsx
-const { options } = useSelect({
-    resource: "categories",
-    // highlight-start
-    filters: [
-        {
-            field: "isActive",
-            operator: "eq",
-            value: true,
-        },
-    ],
-    // highlight-end
-});
-```
-
-It allows us to add some filters while fetching the data. For example, if you want to list only the active records.
 
 ### `sort`
 
+
+It allows to show the options in the desired order. `sort` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send sort query parameters to the API.
+
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+
+
 ```tsx
-const { options } = useSelect({
-    resource: "categories",
-    // highlight-start
+useSelect({
     sort: [
         {
             field: "title",
             order: "asc",
         },
     ],
-    // highlight-end
 });
 ```
+### `filters`
 
-It allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
+It is used to show options by filtering them. `filters` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send filter query parameters to the API.
 
-### `fetchSize`
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
-const { options } = useSelect({
-    resource: "categories",
-    // highlight-next-line
-    fetchSize: 20,
+useSelect({
+    filter: [
+        {
+            field: "isActive",
+            operator: "eq",
+            value: true,
+        },
+    ],
+});
+```
+### `defaultValue`
+
+Allows to make options selected by default. Adds extra options to `<select>` component. It uses `useMany` so `defaultValue` can be an array of strings like follows.
+
+```tsx
+useSelect({
+    defaultValue: "1", // or ["1", "2"]
 });
 ```
 
-Amount of records to fetch in select box.
+[Refer to the `useMany` documentation for detailed usage. &#8594](/api-reference/core/hooks/data/useMany.md)
+
+:::tip
+Can use `defaultValue` property when edit a record in `Edit` page.
+:::
 
 ### `onSearch`
 
-It allows us to `AutoComplete` the `options`.
+It allows us to `AutoComplete` the `options`.  
 
-```tsx
-const { options } = useSelect({
-    resource: "categories",
-    // highlight-start
-    onSearch: (value) => [
-        {
-            field: "title",
-            operator: "containss",
-            value,
-        },
-    ],
-    // highlight-end
-});
-```
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
+<OnSearchLivePreview />
 
 :::tip
 The HTML select tag does not natively support AutoComplete. If AutoComplete is desired, it can be used with [React Select](https://react-select.com/async) or [use-select](https://github.com/tannerlinsley/use-select).
 :::
 
-If defined, it allows us to override the filters to use when fetching list of records. Thus, it . It should return [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters).
+:::info
+**If defined, it allows us to override the filters to use when fetching list of records.** 
+:::
 
-### `queryOptions`
+### `debounce`
+
+It allows us to `debounce` the `onSearch` function.  
 
 ```tsx
-const { options } = useSelect({
+useSelect({
     resource: "categories",
-    // highlight-start
-    queryOptions: {
-        onError: () => {
-            console.log("triggers when on query return Error");
-        },
-    },
-    // highlight-end
+    // highlight-next-line
+    debounce: 500,
 });
 ```
 
-[useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
+### `queryOptions`
+
+`queryOptions` is used to pass additional options to the `useQuery` hook. It is useful when you want to pass additional options to the `useQuery` hook.
+
+[Refer to the `useQuery` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
+
+```tsx
+useList({
+    queryOptions: {
+        retry: 3,
+    },
+});
+```
 
 ### `defaultValueQueryOptions`
 
-When the `defaultValue` property is given, the `useMany` data hook is called for the selected records. With this property, you can change the options of this query. If not given, the values given in queryOptions will be used.
+When the `defaultValue` property is given, the `useMany` data hook is called for the selected records. With this property, you can change the options of this query. If not given, the values given in `queryOptions` will be used.
 
 ```tsx
 const { options } = useSelect({
@@ -243,6 +179,97 @@ const { options } = useSelect({
 
 [useQuery](https://react-query.tanstack.com/reference/useQuery) options for default value query can be set by passing `queryOptions` property.
 
+### `dataProviderName`
+
+If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
+
+```tsx
+useSelect({
+    dataProviderName: "second-data-provider",
+});
+```
+
+### `metaData`
+
+[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+
+-   To pass additional information to data provider methods.
+-   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
+
+In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
+
+```tsx
+useSelect({
+    // highlight-start
+    metaData: {
+        headers: { "x-meta-data": "true" },
+    },
+    // highlight-end
+});
+
+const myDataProvider = {
+    //...
+    getList: async ({
+        resource,
+        pagination,
+        hasPagination,
+        sort,
+        filters,
+        // highlight-next-line
+        metaData,
+    }) => {
+        // highlight-next-line
+        const headers = metaData?.headers ?? {};
+        const url = `${apiUrl}/${resource}`;
+        //...
+        //...
+        // highlight-next-line
+        const { data, headers } = await httpClient.get(`${url}`, { headers });
+        return {
+            data,
+        };
+    },
+    //...
+};
+```
+
+### `pagination`
+
+`pagination` will be passed to the `getList` method from the `dataProvider` as parameter. It is used to send pagination query parameters to the API.
+
+#### `current`
+
+You can pass the `current` page number to the `pagination` property.
+
+```tsx
+useSelect({
+    pagination: {
+        current: 2,
+    },
+});
+```
+
+#### `pageSize`
+
+You can pass the `pageSize` to the `pagination` property.
+
+```tsx
+useSelect({
+    pagination: {
+        pageSize: 20,
+    },
+});
+```
+
+### `hasPagination`
+
+`hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to determine whether to use server-side pagination or not.
+
+```tsx
+useSelect({
+    hasPagination: false,
+});
+```
 ## API Reference
 
 ### Properties
@@ -251,12 +278,12 @@ const { options } = useSelect({
 
 ### Return values
 
-| Property                   | Description                                    | Type                                                                                          |
-| -------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| options                    | It returns possible options                    | `{ label: string; value: string }`                                                            |
-| queryResult                | Result of the query of a record                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
-| defaultValueQueryResult    | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
-| defaultValueQueryOnSuccess | Default value onSuccess method                 | `() => void`                                                                                  |
+| Property                | Description                                    | Type                                                                                          |
+| ----------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| options                 | It returns possible options                    | `{ label: string; value: string }`                                                            |
+| queryResult             | Result of the query of a record                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| defaultValueQueryResult | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| onSearch                | A function to set the search value             | `onSearch: (value: string) => void`                                                           |
 
 ## Example
 
