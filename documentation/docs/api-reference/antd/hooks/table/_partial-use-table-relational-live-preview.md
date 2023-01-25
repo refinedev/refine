@@ -21,29 +21,36 @@ import {
     Table,
     TagField,
     useTable,
+    // highlight-start
     useSelect,
     FilterDropdown,
     Select,
+    // highlight-end
 } from "@pankod/refine-antd";
 
+// highlight-start
 interface ICategory {
     id: number;
     title: string;
 }
+// highlight-end
 
 interface IPost {
     id: number;
     title: string;
     content: string;
     status: "published" | "draft" | "rejected";
+    // highlight-start
     category: {
         id: number;
     };
+    // highlight-end
 }
 
 const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, filters } = useTable<IPost, HttpError>();
 
+    // highlight-start
     const categoryIds =
         tableProps.dataSource?.map((p) => p.category.id.toString()) || [];
     const { data, isFetching } = useMany<ICategory>({
@@ -53,13 +60,16 @@ const PostList: React.FC<IResourceComponentsProps> = () => {
             enabled: categoryIds.length > 0,
         },
     });
+    // highlight-end
 
+    // highlight-start
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",
         defaultValue: getDefaultFilter("category.id", filters, "in"),
     });
+    // highlight-end
 
     return (
         <List>
@@ -67,6 +77,7 @@ const PostList: React.FC<IResourceComponentsProps> = () => {
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column dataIndex="title" title="Title" />
                 <Table.Column dataIndex="content" title="Content" />
+                {/* highlight-start */}
                 <Table.Column
                     dataIndex={["category", "id"]}
                     title="Category"
@@ -90,6 +101,7 @@ const PostList: React.FC<IResourceComponentsProps> = () => {
                         </FilterDropdown>
                     )}
                 />
+                {/* highlight-end */}
                 <Table.Column
                     dataIndex="status"
                     title="Status"
