@@ -48,9 +48,7 @@
 
 
 <a href="https://refine.dev/blog/refine-hackathon/">
-<picture>
-  <img alt="refine hackathon" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social_prizes.png">
-</picture>
+  <img alt="refine hackathon" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social_prizes.png" />
 </a>
 
 
