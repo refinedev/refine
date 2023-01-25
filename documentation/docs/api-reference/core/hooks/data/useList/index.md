@@ -181,7 +181,7 @@ useList({
 In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
-const table = useTable({
+useList({
     // highlight-start
     metaData: {
         headers: { "x-meta-data": "true" },
