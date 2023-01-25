@@ -22,7 +22,7 @@ If you're looking for a complete table library, Refine supports two table librar
 
 ## Basic Usage
 
-In basic usage `useTable` returns the data as it comes from the endpoint.
+In basic usage `useTable` returns the data as it comes from the endpoint. By default, it reads resource from the url.
 
 <BasicUsageLivePreview />
 

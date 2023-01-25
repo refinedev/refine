@@ -19,8 +19,7 @@ Also you are able to get properties that are compatible with Ant Design [`<Table
 
 ## Basic usage
 
-In basic usage `useTable` returns the data as it comes from the endpoint.
-
+In basic usage `useTable` returns the data as it comes from the endpoint. By default, it reads [`resource`](#resource) from the url.
 <BasicUsageLivePreview />
 
 ## Pagination
@@ -683,6 +682,6 @@ You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fe
 [httperror]: /api-reference/core/interfaces.md#httperror
 [table search]: /advanced-tutorials/search/table-search.md
 [refine swl]: /api-reference/core/components/refine-config.md#syncwithlocation
-[filter-dropdown]: /api-reference/antd/components/filter-dropdown/
+[filter-dropdown]: /docs/api-reference/antd/components/filter-dropdown/
 [syncwithlocationparams]: /api-reference/core/interfaces.md#syncwithlocationparams
 [notification-provider]: /api-reference/core/providers/notification-provider.md
