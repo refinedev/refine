@@ -862,6 +862,9 @@ html[data-theme="dark"]:not([data-customized="true"])
 .prop--tag__required {
     border-color: #1890ff;
     color: #1890ff;
+    font-size: 12px;
+    line-height: 18px;
+    vertical-align: middle;
 }
 
 .prop--tag__featured {
