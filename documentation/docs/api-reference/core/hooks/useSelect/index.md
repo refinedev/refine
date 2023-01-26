@@ -6,6 +6,7 @@ siderbar_label: useSelect
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 import OnSearchLivePreview from "./on-search-live-preview.md";
 import SortLivePreview from "./sort-live-preview.md";
+import DefaultValueLivePreview from "./default-value-live-preview.md";
 
 `useSelect` hook allows you to manage any `select` (like a [Html `<select>` tag](https://www.w3schools.com/tags/tag_select.asp), [React Select](https://react-select.com/home), etc...) component. Since it is designed as headless, It expects you to handle the UI.
 
@@ -53,8 +54,7 @@ useSelect<ICategory>({
 
 :::tip
 
-Supports nested properties with optionlabel 
-Supports use with `optionLabel` and `optionValue` [Object path](https://lodash.com/docs/4.17.15#get) syntax.
+Supports nested properties with option [Object path](https://lodash.com/docs/4.17.15#get) syntax.
 
 ```tsx
 const { options } = useSelect({
@@ -345,11 +345,37 @@ It is useful when you want to subscribe to the live updates.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
 
-### hasPagination
-### onSearch
-### defaultValue
-### optionLabel & optionValue
+### How do get all the data without pagination?
 
+You may want to get all the data without pagination. In this case you should use the [`hasPagination`](/docs/api-reference/core/hooks/useSelect/#haspagination) prop.
+
+> Don't forget to implement it in the [data provider](/docs/api-reference/core/providers/data-provider/#getlist).
+
+### How can search for options (Autocomplete)?
+
+[`onSearch`](/docs/api-reference/core/hooks/useSelect/#onsearch) is a function that is used to set the search value. It is useful when you want to search for a specific value. A simple example of this is shown below.
+
+<OnSearchLivePreview />
+
+### How can selected the option by default?
+
+In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/api-reference/core/hooks/data/useMany/), gets the data and mark as seleted.
+
+<DefaultValueLivePreview />
+
+### How do change the `label` and `value` on options?
+
+[`optionLabel` and `optionValue`](/docs/api-reference/core/hooks/useSelect/#optionlabel-and-optionvalue) are used to change the value of your options.
+The default values are optionsLabel="title" and optionsValue="id".
+
+To change to `name` and `categoryId`;
+
+```tsx
+useSelect({
+    optionLabel: "name",
+    optionValue: "categoryId",
+});
+```
 
 ## API Reference
 
