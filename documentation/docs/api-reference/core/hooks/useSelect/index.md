@@ -5,6 +5,7 @@ siderbar_label: useSelect
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 import OnSearchLivePreview from "./on-search-live-preview.md";
+import SortLivePreview from "./sort-live-preview.md";
 
 `useSelect` hook allows you to manage any `select` (like a [Html `<select>` tag](https://www.w3schools.com/tags/tag_select.asp), [React Select](https://react-select.com/home), etc...) component. Since it is designed as headless, It expects you to handle the UI.
 
@@ -31,8 +32,6 @@ Here is a basic example of how to use `useSelect` hook.
 
 It will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resource are handled.
 
-By default, `resource` is required.
-
 ```tsx
 useSelect({
     resource: "categories",
@@ -54,6 +53,7 @@ useSelect<ICategory>({
 
 :::tip
 
+Supports nested properties with optionlabel 
 Supports use with `optionLabel` and `optionValue` [Object path](https://lodash.com/docs/4.17.15#get) syntax.
 
 ```tsx
@@ -68,7 +68,6 @@ const { options } = useSelect({
 :::
 
 ### `sort`
-
 
 It allows to show the options in the desired order. `sort` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send sort query parameters to the API.
 
@@ -85,6 +84,9 @@ useSelect({
     ],
 });
 ```
+
+<SortLivePreview />
+
 ### `filters`
 
 It is used to show options by filtering them. `filters` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send filter query parameters to the API.
@@ -114,26 +116,6 @@ useSelect({
 
 [Refer to the `useMany` documentation for detailed usage. &#8594](/api-reference/core/hooks/data/useMany.md)
 
-:::tip
-Can use `defaultValue` property when edit a record in `Edit` page.
-:::
-
-### `onSearch`
-
-It allows us to `AutoComplete` the `options`.  
-
-[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
-
-<OnSearchLivePreview />
-
-:::tip
-The HTML select tag does not natively support AutoComplete. If AutoComplete is desired, it can be used with [React Select](https://react-select.com/async) or [use-select](https://github.com/tannerlinsley/use-select).
-:::
-
-:::info
-**If defined, it allows us to override the filters to use when fetching list of records.** 
-:::
-
 ### `debounce`
 
 It allows us to `debounce` the `onSearch` function.  
@@ -153,10 +135,48 @@ useSelect({
 [Refer to the `useQuery` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 
 ```tsx
-useList({
+useSelect({
     queryOptions: {
         retry: 3,
     },
+});
+```
+
+### `pagination`
+
+`pagination` will be passed to the `getList` method from the `dataProvider` as parameter. It is used to send pagination query parameters to the API.
+
+#### `current`
+
+You can pass the `current` page number to the `pagination` property.
+
+```tsx
+useSelect({
+    pagination: {
+        current: 2,
+    },
+});
+```
+
+#### `pageSize`
+
+You can pass the `pageSize` to the `pagination` property.
+
+```tsx
+useSelect({
+    pagination: {
+        pageSize: 20,
+    },
+});
+```
+
+### `hasPagination`
+
+`hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to determine whether to use server-side pagination or not.
+
+```tsx
+useSelect({
+    hasPagination: false,
 });
 ```
 
@@ -177,17 +197,23 @@ const { options } = useSelect({
 });
 ```
 
+### `onSearch`
+
+It allows us to `AutoComplete` the `options`.  
+
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
+<OnSearchLivePreview />
+
+:::tip
+The HTML select tag does not natively support AutoComplete. If AutoComplete is desired, it can be used with [React Select](https://react-select.com/async) or [use-select](https://github.com/tannerlinsley/use-select).
+:::
+
+:::info
+**If defined, it allows us to override the filters to use when fetching list of records.** 
+:::
+
 [useQuery](https://react-query.tanstack.com/reference/useQuery) options for default value query can be set by passing `queryOptions` property.
-
-### `dataProviderName`
-
-If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
-
-```tsx
-useSelect({
-    dataProviderName: "second-data-provider",
-});
-```
 
 ### `metaData`
 
@@ -233,43 +259,92 @@ const myDataProvider = {
 };
 ```
 
-### `pagination`
+### `dataProviderName`
 
-`pagination` will be passed to the `getList` method from the `dataProvider` as parameter. It is used to send pagination query parameters to the API.
-
-#### `current`
-
-You can pass the `current` page number to the `pagination` property.
+If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
 
 ```tsx
 useSelect({
-    pagination: {
-        current: 2,
+    dataProviderName: "second-data-provider",
+});
+```
+
+### `successNotification`
+
+> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.  
+
+After data is fetched successfully, `useSelect` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
+
+```tsx
+useSelect({
+    successNotification: (data, values, resource) => {
+        return {
+            message: `${data.title} Successfully fetched.`,
+            description: "Success with no errors",
+            type: "success",
+        };
     },
 });
 ```
 
-#### `pageSize`
+### `errorNotification`
 
-You can pass the `pageSize` to the `pagination` property.
+> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.  
+
+After data fetching is failed, `useSelect` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
 
 ```tsx
 useSelect({
-    pagination: {
-        pageSize: 20,
+    errorNotification: (data, values, resource) => {
+        return {
+            message: `Something went wrong when getting ${data.id}`,
+            description: "Error",
+            type: "error",
+        };
     },
 });
 ```
 
-### `hasPagination`
+### `liveMode`
 
-`hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to determine whether to use server-side pagination or not.
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.  
+
+Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
+For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
 useSelect({
-    hasPagination: false,
+    liveMode: "auto",
 });
 ```
+
+### `onLiveEvent`
+
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.  
+
+The callback function that is executed when new events from a subscription are arrived.
+
+```tsx
+useSelect({
+    onLiveEvent: (event) => {
+        console.log(event);
+    },
+});
+```
+### `liveParams`
+
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.  
+
+Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
+
+## FAQ
+### Realtime Updates
+### hasPagination
+### onSearch
+### defaultValue
+### optionLabel & optionValue
+
+
 ## API Reference
 
 ### Properties
