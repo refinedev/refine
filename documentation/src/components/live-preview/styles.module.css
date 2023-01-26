@@ -16,7 +16,7 @@
   appearance: none;
   border: none;
   background: none;
-  color: #1c1e21;
+  color: var(--ifm-color-content);
   font-size: 0.75rem;
   text-align: center;
   text-transform: uppercase;
