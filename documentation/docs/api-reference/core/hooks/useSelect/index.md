@@ -1,6 +1,7 @@
 ---
 title: useSelect
 siderbar_label: useSelect
+source: https://github.com/refinedev/refine/blob/next/packages/core/src/hooks/useSelect.ts
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
