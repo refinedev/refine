@@ -686,6 +686,7 @@ module.exports = {
                     items: [
                         "examples/core/useImport",
                         "examples/core/useModal",
+                        "examples/core/useSelect",
                     ],
                 },
                 {
