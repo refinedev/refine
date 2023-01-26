@@ -57,6 +57,7 @@ Strapi, Appwrite, Medusa, and Meilisearch will also be providing swag kits for t
 - The winners will be announced on Monday 28th February 2023
 
 ### Prizes
+
 There are 3 chances to win, there will be prizes for:
 
 - **Best Overall Project** => **$1500** in GitHub Sponsorship  
@@ -66,14 +67,12 @@ There are 3 chances to win, there will be prizes for:
 The all winners will get [refine Special Swag Kit](https://store.refine.dev/product/hackathon-swag-kit) + Swag Kits from **Strapi**, **Appwrite**, **Medusa**, and **Meilisearch**!
 
 
-
-![cover-image](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/swag_kits.png)
-
-<br/>
+![swag_kits](https://user-images.githubusercontent.com/18739364/214782395-961d9d53-48c8-42b1-9f86-bb62b7bc4898.png)
 
 ## Submission
 - **Submissions link:**  [Please submit your project on refine Devpost Hackathon page](https://refine-open-source-hackathon.devpost.com/)
 - **Submission guidelines:** [Follow the guidelines in this repository](https://github.com/refinedev/refine/blob/next/hackathon/hackathon-january.md)
+
 
 
 ## Rules
