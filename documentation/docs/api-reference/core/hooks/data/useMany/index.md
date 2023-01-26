@@ -49,7 +49,7 @@ It will be passed to the `getMany` method from the `dataProvider` as parameter. 
 
 ```tsx
 useMany({
-    ids: ["1", "2", "3"],
+    ids: [1, 2, 3],
 });
 ```
 
