@@ -588,7 +588,7 @@ import { useOne } from "@pankod/refine-core";
 const { data } = useOne({ resource: "posts", id: 1 });
 ```
 
-> [Refer to the useOne documentation for more information. &#8594](../../api-reference/core/hooks/data/useOne.md)
+> [Refer to the useOne documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useOne/)
 
 <br/>
 
