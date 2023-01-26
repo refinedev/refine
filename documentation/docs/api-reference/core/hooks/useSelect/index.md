@@ -339,6 +339,12 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 
 ## FAQ
 ### Realtime Updates
+
+When `useSelect` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`. 
+It is useful when you want to subscribe to the live updates.
+
+[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+
 ### hasPagination
 ### onSearch
 ### defaultValue
