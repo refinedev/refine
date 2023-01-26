@@ -1,12 +1,28 @@
 ---
 id: useEditableTable
 title: useEditableTable
+source: packages/antd/src/hooks/table/useTable
 ---
 
-`useEditeableTable` allows you to implement edit feature on the table with ease, on top of all the features that [`useTable`][usetable] provides.
-`useEditableTable` return properties that can be used on Ant Desing's [`<Table>`][table] and [`<Form>`][form] components.
+import LivePreview from "./\_partial-use-editable-table-live-preview.md";
 
-## Editing with buttons
+`useEditeableTable` allows you to implement edit feature on the [`<Table>`][table] with ease. Return properties that can be used on Ant Desing's [`<Table>`][table] and [`<Form>`][form] components.
+
+:::info
+`useEditeableTable` hook is extended from [`useTable`][usetable] hook from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/next/packages/antd) package. This means that you can use all the features of [`useTable`][usetable] hook.
+:::
+
+<br/>
+
+## Basic Usage
+
+Here is a example of how to use `useEditableTable` hook. We will explain in detail the usage of the hook with the following sections:
+
+<LivePreview/>
+
+<br />
+
+### Editing with buttons
 
 Let's say that we want to make the `Post` data where we show the `id` and `title` values a listing page:
 
@@ -225,16 +241,9 @@ By giving the `<Table.Column>` component a unique `render` property, you can ren
 Refer to [`<Table.Column>`][table.column] documentation for more information.
 :::
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useEditableTable/edit-button.gif" alt="Editing rows with edit button" />
-</div>
+<br />
 
-## Editing by clicking to row
+### Editing by clicking to row
 
 A line with the `id` value can be put to edit mode programatically by using the `setId` function that returns from `useEditableTable`.
 
@@ -300,14 +309,51 @@ export const PostList: React.FC = () => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useEditableTable/row-click-edit.gif" alt="Row click edit functionality in action" />
-</div>
+## Properties
+
+:::tip
+
+All `useForm` and [`useTable`][usetable] properties are available in `useEditableTable`. You can read the documentation of [`useForm`][useform] and [`useTable`][usetable] for more information.
+
+:::
+
+## Return Values
+
+:::tip
+
+All `useForm` and [`useTable`][usetable] return values are available in `useEditableTable`. You can read the documentation of [`useForm`][useform] and [`useTable`][usetable] for more information.
+
+:::
+
+### `cancelButtonProps`
+
+Returns the props for needed by the `<EditButton>`.
+
+By default, `onClick` function is overridden by `useEditableTable`. When is triggered it will call `useForm's` `setId` function with `undefined`.
+
+```tsx
+cancelButtonProps: () => ButtonProps;
+```
+
+### `editButtonProps`
+
+Takes `id` as a parameter and returns the props for needed by the `<EditButton>`.
+
+By default, `onClick` function is overridden by `useEditableTable`. When is triggered it will call `useForm's` `setId` function with the given `id`.
+
+```tsx
+editButtonProps: (id: BaseKey) => ButtonProps;
+```
+
+Returns a function that takes a `id` as a parameter and returns the props for the edit button.
+
+### `isEditing`
+
+```tsx
+isEditing: (id: BaseKey) => boolean;
+```
+
+Takes a `id` as a parameter and returns `true` if the given `BaseKey` is equal to the selected `useForm's` `id`.
 
 ## API
 
@@ -353,6 +399,7 @@ export const PostList: React.FC = () => {
 
 [table]: https://ant.design/components/table/#API
 [form]: https://ant.design/components/form/#API
+[useform]: /docs/api-reference/antd/hooks/table/useTable/
 [usetable]: /docs/api-reference/antd/hooks/table/useTable
 [usequery]: https://react-query.tanstack.com/reference/useQuery
 [usemutation]: https://react-query.tanstack.com/reference/useMutation
