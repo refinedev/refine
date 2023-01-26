@@ -588,7 +588,7 @@ import { useOne } from "@pankod/refine-core";
 const { data } = useOne({ resource: "posts", id: 1 });
 ```
 
-> [Refer to the useOne documentation for more information. &#8594](../../api-reference/core/hooks/data/useOne.md)
+> [Refer to the useOne documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useOne/)
 
 <br/>
 
@@ -747,7 +747,7 @@ import { useMany } from "@pankod/refine-core";
 const { data } = useMany({ resource: "posts", ids: [1, 2] });
 ```
 
-> [Refer to the useMany documentation for more information. &#8594](../../api-reference/core/hooks/data/useMany.md)
+> [Refer to the useMany documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useMany/)
 
 ### createMany
 

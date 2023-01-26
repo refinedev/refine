@@ -1157,7 +1157,7 @@ const { tableProps, sorter } = useTable<IUser>({
 
 `metaData` `id` property is used to match the column name of the primary key(in case the column name is different than "id") in your Supabase data table to the column name you have assigned.
 
-refine's [useMany](/docs/api-reference/core/hooks/data/useMany.md) hook accepts `metaData` property and uses `getMany` method of data provider.
+refine's [useMany](/docs/api-reference/core/hooks/data/useMany/) hook accepts `metaData` property and uses `getMany` method of data provider.
 
 ```tsx
 useMany({
