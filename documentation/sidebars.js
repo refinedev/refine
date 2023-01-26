@@ -538,7 +538,7 @@ module.exports = {
                             label: "Hooks",
                             items: [
                                 "api-reference/mui/hooks/useAutocomplete",
-                                "api-reference/mui/hooks/useDataGrid",
+                                "api-reference/mui/hooks/useDataGrid/index",
                             ],
                         },
                         {

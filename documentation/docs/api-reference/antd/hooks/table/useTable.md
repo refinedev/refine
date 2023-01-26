@@ -14,12 +14,13 @@ By using `useTable`, you are able to get properties that are compatible with Ant
 For all the other features, you can refer to the Ant Design [`<Table>`][table] documentation.
 
 :::info
-`useTable` hook is extended from [`useTable`][use-table-core] hook from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/next/packages/antd) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
+`useTable` hook is extended from [`useTable`][use-table-core] hook from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
 :::
 
 ## Basic usage
 
 In basic usage `useTable` returns the data as it comes from the endpoint. By default, it reads [`resource`](#resource) from the url.
+
 <BasicUsageLivePreview />
 
 ## Pagination
@@ -46,9 +47,9 @@ const { tableProps } = useTable<IPost>();
 </Table>;
 ```
 
-<br/>
-
+:::info
 To disable pagination, you can set `hasPagination` property to `false` which is `true` by default. If `hasPagination` has set to `false`, pagination elements will be hidden in the `<Table/>`. If you want to handle the pagination on the client-side you can override the `pagination` property in `tableProps`.
+:::
 
 ## Sorting
 
@@ -144,11 +145,8 @@ Use case for overriding the `resource` prop:
 
 ```tsx
 import React from "react";
-import {
-    HttpError,
-    IResourceComponentsProps,
-    useTable,
-} from "@pankod/refine-core";
+import { HttpError, IResourceComponentsProps } from "@pankod/refine-core";
+import { useTable } from "@pankod/refine-antd";
 
 interface IPost {
     id: number;
@@ -503,6 +501,20 @@ Params to pass to [liveProvider's](/docs/api-reference/core/providers/live-provi
 
 The props needed by the [`<Table>`][table] component.
 
+#### `onChange`
+
+The callback function that is executed when a user interacts(filter, sort etc.) with the table.
+
+> 🚨 `useTable` handles sorting, filtering, and pagination with this function. If you override this function, you need to handle these operations manually.
+
+```tsx
+const { tableProps } = useTable()
+
+<Table {...tableProps} onChange={tableProps.onChange} rowKey="id">
+    <Table.Column title="Title" dataIndex="title" />
+</Table>
+```
+
 #### `dataSource`
 
 Contains the data to be displayed in the table. Values fetched with [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
@@ -510,10 +522,6 @@ Contains the data to be displayed in the table. Values fetched with [`useList`](
 #### `loading`
 
 Indicates whether the data is being fetched.
-
-#### `onChange`
-
-The callback function that is executed when a user interacts(filter, sort etc.) with the table. It can be used to update the table state.
 
 #### `pagination`
 
