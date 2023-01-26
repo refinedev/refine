@@ -1,6 +1,7 @@
 ---
 title: React Table
 slug: /packages/documentation/react-table
+source: /packages/react-table/src/useTable
 ---
 
 import BasicUsageLivePreview from "./\_partial-basic-usage-live-preview.md";

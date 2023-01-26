@@ -1,6 +1,7 @@
 ---
 id: useTable
 title: useTable
+source: packages/antd/src/hooks/table/useTable
 ---
 
 import BasicUsageLivePreview from "./\_partial-use-table-basic-usage-live-preview.md";

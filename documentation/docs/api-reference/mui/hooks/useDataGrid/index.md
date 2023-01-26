@@ -1,6 +1,7 @@
 ---
 title: useDataGrid
 slug: /api-reference/mui/hooks/useDataGrid
+source: /packages/mui/src/hooks/useDataGrid
 ---
 
 import BasicUsagePreview from "./\_partial-use-data-grid-basic-usage-live-preview.md";

@@ -1,6 +1,7 @@
 ---
 title: useTable
 slug: /api-reference/core/hooks/useTable
+source: packages/core/src/hooks/useTable
 ---
 
 import BasicUsageLivePreview from "./\_partial-basic-usage-live-preview.md";
