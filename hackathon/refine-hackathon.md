@@ -1,8 +1,10 @@
 
-# The refine Open Source Hackathon
+
 
 
 ![cover-image]( https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social.png)
+
+# The refine Open Source Hackathon
 
 **[refine](https://github.com/refinedev/refine)** is a React-based framework for the rapid ✨ development of CRUD web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry standard solutions for critical parts like authentication, access control, routing, networking, state management, and i18n. refine shines on data-intensive applications like admin panels, dashboards, internal tools and storefronts. 
 
@@ -16,7 +18,9 @@ You can win **$1500** and a special gifts along with **limited edition** swag ki
 We can't wait to see what amazing projects the participants will build projects using **refine**. 
 
 
-[Please submit your project on refine Devpost Hackathon page](https://refine-open-source-hackathon.devpost.com/)
+[👉 Please submit your project on refine Devpost Hackathon platform](https://refine-open-source-hackathon.devpost.com/)
+
+[👉 Discover potential teammates for your hackathon project](https://refine-open-source-hackathon.devpost.com/participants)
 
 ## Together with Open Source Community
 
@@ -35,6 +39,8 @@ Strapi, Appwrite, Medusa, and Meilisearch will also be providing swag kits for t
 
 <br/>
 
+
+
 ## Hackathon Key Facts
 
 - Enter as a solo or recruit a team of up to five and take part in this exciting hackaton!
@@ -51,6 +57,7 @@ Strapi, Appwrite, Medusa, and Meilisearch will also be providing swag kits for t
 - The winners will be announced on Monday 28th February 2023
 
 ### Prizes
+
 There are 3 chances to win, there will be prizes for:
 
 - **Best Overall Project** => **$1500** in GitHub Sponsorship  
@@ -59,16 +66,13 @@ There are 3 chances to win, there will be prizes for:
 
 The all winners will get [refine Special Swag Kit](https://store.refine.dev/product/hackathon-swag-kit) + Swag Kits from **Strapi**, **Appwrite**, **Medusa**, and **Meilisearch**!
 
-<div>
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/swag_kits.png"  alt="refine hackathon" />
 
-</div>
-
-<br/>
+![swag_kits](https://user-images.githubusercontent.com/18739364/214782395-961d9d53-48c8-42b1-9f86-bb62b7bc4898.png)
 
 ## Submission
 - **Submissions link:**  [Please submit your project on refine Devpost Hackathon page](https://refine-open-source-hackathon.devpost.com/)
 - **Submission guidelines:** [Follow the guidelines in this repository](https://github.com/refinedev/refine/blob/next/hackathon/hackathon-january.md)
+
 
 
 ## Rules
