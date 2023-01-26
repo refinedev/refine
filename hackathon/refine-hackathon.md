@@ -67,8 +67,9 @@ The all winners will get [refine Special Swag Kit](https://store.refine.dev/prod
 
 
 
-![cover-image]( https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/swag_kits.png)
+![cover-image](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/swag_kits.png)
 
+<br/>
 
 ## Submission
 - **Submissions link:**  [Please submit your project on refine Devpost Hackathon page](https://refine-open-source-hackathon.devpost.com/)
