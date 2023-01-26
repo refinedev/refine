@@ -162,7 +162,9 @@ useMany({
 
 ### `liveMode`
 
-Whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
+Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
@@ -172,6 +174,8 @@ useMany({
 ```
 
 ### `onLiveEvent`
+
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 The callback function that is executed when new events from a subscription are arrived.
 
@@ -185,7 +189,9 @@ useMany({
 
 ### `liveParams`
 
-Params to pass to [liveProvider's](/docs/api-reference/core/providers/live-provider/#subscribe) subscribe method.
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
+Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
 ## Return Values
 
