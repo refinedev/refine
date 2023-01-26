@@ -13,10 +13,10 @@ import DefaultValueLivePreview from "./default-value-live-preview.md";
 
 This hook uses the `useList` hook for fetching data. [Refer to useList hook for details. →](/docs/api-reference/core/hooks/data/useList/)
 
-:::info
+:::info-tip DERIVATIVES
 If you're looking for a complete select library, refine supports two select libraries out-of-the-box.
 
--   [Refine Headless Select](https://react-select.com/home) (for Headless users) - [Documentation](/docs/api-reference/core/hooks/useSelect/) - [Example](/docs/examples/core/useSelect)
+-   refine Headless Select (for Headless users) - [Documentation](/docs/api-reference/core/hooks/useSelect/) - [Example](/docs/examples/core/useSelect)
 -   [Ant Design Select](https://ant.design/components/select) (for Ant Design users) - [Documentation](/docs/api-reference/antd/hooks/field/useSelect) - [Example](/docs/examples/field/useSelect)
 -   [Mantine Select](https://mantine.dev/core/select/) (for Mantine users) - [Documentation](/docs/api-reference/mantine/hooks/useSelect)
 
@@ -28,6 +28,12 @@ Here is a basic example of how to use `useSelect` hook.
 
 <BasicUsageLivePreview />
 
+## Realtime Updates
+
+When `useSelect` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`. 
+It is useful when you want to subscribe to the live updates.
+
+[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
 
 ## Properties
 ### `resource` <PropTag required />
@@ -107,7 +113,7 @@ useSelect({
 ```
 ### `defaultValue`
 
-Allows to make options selected by default. Adds extra options to `<select>` component. It uses `useMany` so `defaultValue` can be an array of strings like follows.
+Allows to make options selected by default. Adds extra options to `<select>` component. In some cases like there are many entries for the `<select>` and pagination is required, `defaultValue` may not be present in the current visible options and this can break the `<select>` component. To avoid such cases, A seperate `useMany` query is sent to the backend with the `defaultValue` and appended to the options of `<select>`, ensuring the default values exist in the current options array. Since it uses `useMany` to query the necessary data, the `defaultValue` can be a single value or an array of values like the following:
 
 ```tsx
 useSelect({
@@ -339,12 +345,6 @@ useSelect({
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
 ## FAQ
-### Realtime Updates
-
-When `useSelect` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`. 
-It is useful when you want to subscribe to the live updates.
-
-[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
 
 ### How do get all the data without pagination?
 
