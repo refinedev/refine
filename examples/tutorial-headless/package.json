@@ -4,8 +4,8 @@
     "private": true,
     "dependencies": {
         "@pankod/refine-cli": "^1.2.0",
-        "@pankod/refine-core": "^3.95.3",
-        "@pankod/refine-inferencer": "^2.2.0",
+        "@pankod/refine-core": "^3.99.2",
+        "@pankod/refine-inferencer": "^2.2.4",
         "@pankod/refine-react-hook-form": "^3.37.2",
         "@pankod/refine-react-router-v6": "^3.18.0",
         "@pankod/refine-react-table": "^4.9.1",

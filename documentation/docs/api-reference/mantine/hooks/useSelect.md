@@ -100,7 +100,7 @@ All we have to do is pass the `selectProps` it returns to the `<Select>` compone
 By default, refine does the search using the `useList` hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://mantine.dev/core/select/#custom-item-component) example.
 :::
 
-`useSelect` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](/api-reference/core/hooks/data/useList.md)
+`useSelect` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](/docs/api-reference/core/hooks/data/useList)
 
 ## Options
 

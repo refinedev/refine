@@ -5,7 +5,7 @@
     "dependencies": {
         "@googlemaps/react-wrapper": "^1.1.35",
         "@types/google.maps": "^3.50.4",
-        "@pankod/refine-core": "^3.95.3",
+        "@pankod/refine-core": "^3.99.2",
         "@pankod/refine-cli": "^1.17.0",
         "@pankod/refine-mui": "^3.61.3",
         "@pankod/refine-kbar": "0.10.2",

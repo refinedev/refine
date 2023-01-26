@@ -167,7 +167,7 @@ export const useList = <
                 handleNotification(notificationConfig, {
                     key: `${resource}-useList-notification`,
                     message: translate(
-                        "common:notifications.error",
+                        "notifications.error",
                         { statusCode: err.statusCode },
                         `Error (status code: ${err.statusCode})`,
                     ),

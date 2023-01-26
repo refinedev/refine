@@ -98,7 +98,8 @@ module.exports = {
                                         "api-reference/core/hooks/data/useDataProvider",
                                         "api-reference/core/hooks/data/useDelete",
                                         "api-reference/core/hooks/data/useDeleteMany",
-                                        "api-reference/core/hooks/data/useList",
+                                        "api-reference/core/hooks/data/useList/index",
+                                        "api-reference/core/hooks/data/useInfiniteList",
                                         "api-reference/core/hooks/data/useMany",
                                         "api-reference/core/hooks/data/useOne",
                                         "api-reference/core/hooks/data/useUpdate",
@@ -877,6 +878,7 @@ module.exports = {
                             label: "Material UI",
                             items: [
                                 "examples/table/mui/advanced",
+                                "examples/table/mui/cursor-pagination",
                                 "examples/table/mui/filter",
                                 "examples/table/mui/useDataGrid",
                                 "examples/table/mui/useDeleteMany",

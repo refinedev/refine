@@ -59,7 +59,7 @@ interface ICategory {
 }
 ```
 
-`useSelect` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](/api-reference/core/hooks/data/useList.md)
+`useSelect` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](/docs/api-reference/core/hooks/data/useList)
 
 ## Options
 
