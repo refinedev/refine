@@ -625,7 +625,7 @@ module.exports = {
                     items: [
                         "packages/documentation/cli",
                         "packages/documentation/command-palette",
-                        "packages/documentation/react-table",
+                        "packages/documentation/react-table/index",
                         {
                             type: "category",
                             label: "React Hook Form",
