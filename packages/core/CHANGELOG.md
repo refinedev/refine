@@ -1,5 +1,17 @@
 # @pankod/refine-core
 
+## 3.99.2
+
+### Patch Changes
+
+-   [#3455](https://github.com/refinedev/refine/pull/3455) [`0405eb18e88`](https://github.com/refinedev/refine/commit/0405eb18e88214722a86f2cd0d5321248666e623) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fix error translation key on `useInfiniteList` hook.
+
+## 3.99.1
+
+### Patch Changes
+
+-   [#3455](https://github.com/refinedev/refine/pull/3455) [`0405eb18e88`](https://github.com/refinedev/refine/commit/0405eb18e88214722a86f2cd0d5321248666e623) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fix error translation key on `useInfiniteList` hook.
+
 ## 3.99.0
 
 ### Minor Changes

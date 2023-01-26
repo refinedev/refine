@@ -187,7 +187,7 @@ export const useInfiniteList = <
                 handleNotification(notificationConfig, {
                     key: `${resource}-useInfiniteList-notification`,
                     message: translate(
-                        "common:notifications.error",
+                        "notifications.error",
                         { statusCode: err.statusCode },
                         `Error (status code: ${err.statusCode})`,
                     ),
