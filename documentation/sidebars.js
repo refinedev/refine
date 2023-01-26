@@ -250,7 +250,7 @@ module.exports = {
                                     items: [
                                         "api-reference/antd/hooks/field/useCheckboxGroup",
                                         "api-reference/antd/hooks/field/useRadioGroup",
-                                        "api-reference/antd/hooks/field/useSelect",
+                                        "api-reference/antd/hooks/field/useSelect/index",
                                     ],
                                 },
                                 {
