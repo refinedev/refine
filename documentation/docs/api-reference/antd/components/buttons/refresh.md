@@ -5,7 +5,7 @@ swizzle: true
 ---
 
 
-`<RefreshButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component to update the data shown on the page via the [`useOne`](/docs/api-reference/core/hooks/data/useOne/ method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
+`<RefreshButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component to update the data shown on the page via the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
