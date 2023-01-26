@@ -47,6 +47,11 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
 
+<a href="https://refine.dev/blog/refine-hackathon/">
+  <img alt="refine hackathon" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social_prizes.png" />
+</a>
+
+
 
 </div>
 
@@ -57,7 +62,6 @@
   <img alt="how-works-refine" src="https://user-images.githubusercontent.com/18739364/200257209-8fc0c8b1-2568-453e-873f-00513434deed.png">
 </picture>
 </a>
-
 
 
 

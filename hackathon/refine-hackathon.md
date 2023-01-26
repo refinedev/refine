@@ -1,13 +1,8 @@
----
-title: The refine Open Source Hackathon
-description: refine Hackathon is an excellent opportunity for developers to showcase their skills, learn refine and win prizes!
-slug: refine-hackathon
-authors: necati
-tags: [hackathon, refine]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social.png
-social_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social_prizes.png
-hide_table_of_contents: false
----
+
+# The refine Open Source Hackathon
+
+
+![cover-image]( https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social.png)
 
 **[refine](https://github.com/refinedev/refine)** is a React-based framework for the rapid ✨ development of CRUD web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry standard solutions for critical parts like authentication, access control, routing, networking, state management, and i18n. refine shines on data-intensive applications like admin panels, dashboards, internal tools and storefronts. 
 
