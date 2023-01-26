@@ -45,7 +45,7 @@ It will be passed to the `getOne` method from the `dataProvider` as parameter. I
 
 ```tsx
 useOne({
-    id: "123",
+    id: 123,
 });
 ```
 
