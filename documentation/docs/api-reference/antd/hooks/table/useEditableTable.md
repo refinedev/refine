@@ -3,7 +3,6 @@ id: useEditableTable
 title: useEditableTable
 ---
 
-
 `useEditeableTable` allows you to implement edit feature on the table with ease, on top of all the features that [`useTable`][usetable] provides.
 `useEditableTable` return properties that can be used on Ant Desing's [`<Table>`][table] and [`<Form>`][form] components.
 
@@ -354,7 +353,7 @@ export const PostList: React.FC = () => {
 
 [table]: https://ant.design/components/table/#API
 [form]: https://ant.design/components/form/#API
-[usetable]: /api-reference/antd/hooks/table/useTable.md
+[usetable]: /docs/api-reference/antd/hooks/table/useTable
 [usequery]: https://react-query.tanstack.com/reference/useQuery
 [usemutation]: https://react-query.tanstack.com/reference/useMutation
 [baserecord]: /api-reference/core/interfaces.md#baserecord
