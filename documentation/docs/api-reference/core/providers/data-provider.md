@@ -805,7 +805,7 @@ import { useList } from "@pankod/refine-core";
 const { data } = useList({ resource: "posts" });
 ```
 
-> [Refer to the useList documentation for more information. &#8594](/api-reference/core/hooks/data/useList.md)
+> [Refer to the useList documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useList)
 
 <br />
 

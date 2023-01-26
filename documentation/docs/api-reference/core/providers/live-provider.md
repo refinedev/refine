@@ -301,7 +301,7 @@ const { data } = useList({
 
 | Supported data hooks                            | Supported form hooks                                                      | Supported other hooks                                                            |
 | ----------------------------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| [`useList` &#8594](/api-reference/core/hooks/data/useList.md) | [`useForm` &#8594](/api-reference/core/hooks/useForm.md)                                | [`useTable` &#8594](/api-reference/core/hooks/useTable.md)                                     |
+| [`useList` &#8594](/docs/api-reference/core/hooks/data/useList) | [`useForm` &#8594](/api-reference/core/hooks/useForm.md)                                | [`useTable` &#8594](/api-reference/core/hooks/useTable.md)                                     |
 | [`useOne` &#8594](/api-reference/core/hooks/data/useOne.md)   | [`useModalForm` &#8594](/api-reference/antd/hooks/form/useModalForm.md)   | [`useEditableTable` &#8594](/api-reference/antd/hooks/table/useEditableTable.md) |
 | [`useMany` &#8594](/docs/api-reference/core/hooks/data/useMany/) | [`useDrawerForm` &#8594](/api-reference/antd/hooks/form/useDrawerForm.md) | [`useSimpleList` &#8594](/api-reference/antd/hooks/list/useSimpleList.md)        |
 |                                                 | [`useStepsForm` &#8594](/api-reference/antd/hooks/form/useStepsForm.md)   | [`useShow` &#8594](/api-reference/core/hooks/show/useShow.md)                                  |
