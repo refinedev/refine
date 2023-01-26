@@ -1080,3 +1080,37 @@ background: var(--ifm-menu-link-sublist-icon) 50% / 1.25rem 1.25rem;
 .tutorial--framework-select--button {
     @apply underline;
 }
+
+.sourcecode-badge {
+    @apply appearance-none no-underline text-xs font-bold bg-slate-800 text-white;
+    font-size: 12px;
+    line-height: 13px;
+    padding-top: 4px;
+    padding-bottom: 5px;
+    vertical-align: middle;
+
+    text-decoration: none;
+    background-color: #24292f;
+    color: white;
+}
+
+.sourcecode-badge:hover,
+.sourcecode-badge:active,
+.sourcecode-badge:focus,
+.sourcecode-badge:visited {
+    text-decoration: none;
+    background-color: #24292f;
+    color: white;
+}
+
+html[data-theme="dark"] .sourcecode-badge {
+    background-color: var(--ifm-color-secondary);
+    color: #24292f;
+}
+
+.sourcecode-badge svg {
+    margin-right: 6px;
+    height: 13px;
+    width: 13px;
+    margin-bottom: -2px;
+}
