@@ -39,7 +39,7 @@ Let's say that we have a resource named `posts`.
 }
 ```
 
-```tsx 
+```tsx
 type PostMutationResult = {
     id: number;
     status: "published" | "draft" | "rejected";
@@ -59,7 +59,7 @@ mutate({
 :::tip
 `mutate` can also accept lifecycle methods like `onSuccess` and `onError`.
 
-```tsx 
+```tsx
 mutate(
     {
         resource: "categories",
@@ -89,12 +89,12 @@ After mutation runs `posts` will be updated as below:
     [
         {
             id: 1,
-// highlight-next-line
+            // highlight-next-line
             status: "draft",
         },
         {
             id: 2,
-// highlight-next-line
+            // highlight-next-line
             status: "draft",
         },
     ];
@@ -104,7 +104,7 @@ After mutation runs `posts` will be updated as below:
 <br/>
 
 :::note
-Queries that use `/posts` endpoint will be automatically invalidated to show the updated data. For example, data returned from [`useList`](useList.md) and [`useOne`](/docs/api-reference/core/hooks/data/useOne/) will be automatically updated.
+Queries that use `/posts` endpoint will be automatically invalidated to show the updated data. For example, data returned from [`useList`](/docs/api-reference/core/hooks/data/useList/) and [`useOne`](/docs/api-reference/core/hooks/data/useOne/) will be automatically updated.
 :::
 
 :::tip
@@ -191,19 +191,19 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ### Properties
 
-| Property                                                                                            | Description                                                                                        | Type                                                                       | Default                                                      |
-| --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                                            | `string`                                                                   |                                                              |
-| id <div className=" required">Required</div>                                                        | id for mutation function                                                                           | [`BaseKey[]`](/api-reference/core/interfaces.md#basekey)                                                                   |                                                              |
-| values <div className=" required">Required</div>                                                    | Values for mutation function                                                                       | `TVariables[]`                                                             | [{}]                                                         |
-| mutationMode                                                                                        | [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)                    | ` "pessimistic` \| `"optimistic` \| `"undoable"`                           | `"pessimistic"`\*                                            |
-| undoableTimeout                                                                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"`                    | `number`                                                                   | `5000ms`\*                                                   |
-| onCancel                                                                                            | Callback that runs when undo button is clicked on `mutationMode = "undoable"`                      | `(cancelMutation: () => void) => void`                                     |                                                              |
+| Property                                                                                            | Description                                                                                        | Type                                                                                     | Default                                                      |
+| --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                                            | `string`                                                                                 |                                                              |
+| id <div className=" required">Required</div>                                                        | id for mutation function                                                                           | [`BaseKey[]`](/api-reference/core/interfaces.md#basekey)                                 |                                                              |
+| values <div className=" required">Required</div>                                                    | Values for mutation function                                                                       | `TVariables[]`                                                                           | [{}]                                                         |
+| mutationMode                                                                                        | [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                         | `"pessimistic"`\*                                            |
+| undoableTimeout                                                                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"`                    | `number`                                                                                 | `5000ms`\*                                                   |
+| onCancel                                                                                            | Callback that runs when undo button is clicked on `mutationMode = "undoable"`                      | `(cancelMutation: () => void) => void`                                                   |                                                              |
 | successNotification                                                                                 | Successful Mutation notification                                                                   | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification) | "Successfully updated `resource`"                            |
 | errorNotification                                                                                   | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification) | "Error when updating `resource` (status code: `statusCode`)" |
 | metaData                                                                                            | Metadata query for `dataProvider`                                                                  | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                       | {}                                                           |
-| dataProviderName                                                                                    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                   | `default`                                                    |
-| invalidates                                                                                        | You can use it to manage the invalidations that will occur at the end of the mutation.           | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                    | `["list", "many", "detail"]`                                                   |
+| dataProviderName                                                                                    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                                 | `default`                                                    |
+| invalidates                                                                                         | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                  | `["list", "many", "detail"]`                                 |
 
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-reference/core/components/refine-config.md))>** component. `useUpdateMany` will use what is passed to `<Refine>` as default but a local value will override it.
 
@@ -211,16 +211,16 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ### Type Parameters
 
-| Property   | Desription                                                                          | Type                                           | Default                                        |
-| ---------- | ----------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| Property   | Desription                                                                                        | Type                                                         | Default                                                      |
+| ---------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | TData      | Result data of the mutation. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
 | TError     | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |
-| TVariables | Values for mutation function                                                        | `{}`                                           | `{}`                                           |
+| TVariables | Values for mutation function                                                                      | `{}`                                                         | `{}`                                                         |
 
 ### Return value
 
-| Description                               | Type                                                                                                                                                                                                        |
-| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description                               | Type                                                                                                                                                                                                         |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource:string; ids: BaseKey[]; values: TVariables; },`<br/>` UpdateContext>`](https://react-query.tanstack.com/reference/useMutation)\* |
 
 > `*` `UpdateContext` is an internal type.
