@@ -1,8 +1,10 @@
 
-# The refine Open Source Hackathon
+
 
 
 ![cover-image]( https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social.png)
+
+# The refine Open Source Hackathon
 
 **[refine](https://github.com/refinedev/refine)** is a React-based framework for the rapid ✨ development of CRUD web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry standard solutions for critical parts like authentication, access control, routing, networking, state management, and i18n. refine shines on data-intensive applications like admin panels, dashboards, internal tools and storefronts. 
 
@@ -16,7 +18,9 @@ You can win **$1500** and a special gifts along with **limited edition** swag ki
 We can't wait to see what amazing projects the participants will build projects using **refine**. 
 
 
-[Please submit your project on refine Devpost Hackathon page](https://refine-open-source-hackathon.devpost.com/)
+[👉 Please submit your project on refine Devpost Hackathon platform](https://refine-open-source-hackathon.devpost.com/)
+
+[👉 Discover potential teammates for your hackathon project](https://refine-open-source-hackathon.devpost.com/participants)
 
 ## Together with Open Source Community
 
@@ -34,6 +38,8 @@ Strapi, Appwrite, Medusa, and Meilisearch will also be providing swag kits for t
 </div>
 
 <br/>
+
+
 
 ## Hackathon Key Facts
 
@@ -59,12 +65,10 @@ There are 3 chances to win, there will be prizes for:
 
 The all winners will get [refine Special Swag Kit](https://store.refine.dev/product/hackathon-swag-kit) + Swag Kits from **Strapi**, **Appwrite**, **Medusa**, and **Meilisearch**!
 
-<div>
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/swag_kits.png"  alt="refine hackathon" />
 
-</div>
 
-<br/>
+![cover-image]( https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/swag_kits.png)
+
 
 ## Submission
 - **Submissions link:**  [Please submit your project on refine Devpost Hackathon page](https://refine-open-source-hackathon.devpost.com/)
