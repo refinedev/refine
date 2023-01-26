@@ -448,7 +448,7 @@ create: async ({ resource, variables }) => {
 | resource  | `string`     |         |
 | variables | `TVariables` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreate`](../../api-reference/core/hooks/data/useCreate.md#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/api-reference/core/hooks/data/useCreate#type-parameters) to type `variables`
 
 <br/>
 
@@ -467,7 +467,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreate documentation for more information. &#8594](../../api-reference/core/hooks/data/useCreate.md)
+> [Refer to the useCreate documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useCreate/)
 
 ### update
 
