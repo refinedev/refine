@@ -460,7 +460,7 @@ const table = useTable({
 
 > [`LiveProvider`](/docs/api-reference/core/providers/live-provider) is required.
 
-Params to pass to [liveProvider's subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
+Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
 ## Return Values
 

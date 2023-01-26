@@ -553,7 +553,9 @@ const dataGrid = useDataGrid({
 
 ### `liveMode`
 
-Whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required.
+
+Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
@@ -565,6 +567,8 @@ const dataGrid = useDataGrid({
 ```
 
 ### `onLiveEvent`
+
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required.
 
 The callback function that is executed when new events from a subscription are arrived.
 
@@ -580,7 +584,9 @@ const dataGrid = useDataGrid({
 
 ### `liveParams`
 
-Params to pass to [liveProvider's](/docs/api-reference/core/providers/live-provider/#subscribe) subscribe method.
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required.
+
+Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
 ## Return Values
 
