@@ -5,7 +5,7 @@ siderbar_label: useMany
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 
-`useMany` is a extended version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries). It support all the features of `useQuery` and adds some extra features.
+`useMany` is a extended version of `react-query`'s [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It support all the features of `useQuery` and adds some extra features.
 
 -   It uses the `getMany` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
@@ -27,7 +27,7 @@ When these properties are changed, `useMany` hook will trigger a new request.
 
 ## Realtime Updates
 
-When `useMany` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`. It is useful when you want to subscribe to the live updates.
+When `useMany` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to the live updates.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
 
@@ -217,6 +217,6 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 
 ### Return values
 
-| Description                              | Type                                                                                             |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{ data: TData[]; }>`](https://react-query.tanstack.com/reference/useQuery) |
+| Description                              | Type                                                                                                     |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{ data: TData[]; }>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
