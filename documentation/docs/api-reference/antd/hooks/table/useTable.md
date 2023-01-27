@@ -24,6 +24,8 @@ In basic usage `useTable` returns the data as it comes from the endpoint. By def
 
 <BasicUsageLivePreview />
 
+<br/>
+
 ## Pagination
 
 This feature comes out of the box with the `tableProps.pagination`. It generates the pagination links for the `<Table>` component instead of react state and overrides `<Table>`'s `pagination.itemRender` value. It's also syncs the pagination state with the URL.
@@ -52,6 +54,8 @@ const { tableProps } = useTable<IPost>();
 To disable pagination, you can set `hasPagination` property to `false` which is `true` by default. If `hasPagination` has set to `false`, pagination elements will be hidden in the `<Table/>`. If you want to handle the pagination on the client-side you can override the `pagination` property in `tableProps`.
 :::
 
+<br/>
+
 ## Sorting
 
 If we want to give a column the sorting property, the corresponding [`<Table.Column>`][table-column] component must be given the [sorter](https://ant.design/components/table/#components-table-demo-head) property.
@@ -69,11 +73,15 @@ It can be used when your DataIndex and your sorting key are different.
 When using multiple sorting, `multiple` value is required for `sorter` property. Which is specifies the priority of column in sorting.
 :::
 
+<br/>
+
 ## Filtering
 
 We can use the `filterDropdown` property from [`<Table.Column>`][table-column] to make filtering based on the column values. In order to do this, we need to put the filtering form inside the [`<FilterDropdown>`][filter-dropdown] component and pass the properties coming to the function to these component's properties.
 
 <FilteringPreview />
+
+<br/>
 
 ## Initial Filter and Sorter
 
@@ -126,11 +134,24 @@ const { tableProps, sorter, filters } = useTable({
 
 :::
 
+<br/>
+
 ## Search
 
 We can use [`onSearch`](#onsearch) and [`searchFormProps`](#searchformprops) properties to make custom filter form. `onSearch` is a function that is called when the form is submitted. `searchFormProps` is a property that is passed to the [`<Form>`](https://ant.design/components/form) component.
 
 <SearchPreview/>
+
+<br/>
+
+## Realtime Updates
+
+> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+> When `useCreate` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on client side.
+
+[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+
+<br/>
 
 ## Properties
 
@@ -502,6 +523,8 @@ const table = useTable({
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
+<br/>
+
 ## Return Values
 
 ### `tableProps`
@@ -640,6 +663,8 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 ```
 
 A function create accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
+
+<br/>
 
 ## FAQ
 

@@ -93,6 +93,15 @@ You can specify which field will be filtered with which filter operator with the
 
 <br/>
 
+## Realtime Updates
+
+> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+> When `useCreate` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on client side.
+
+[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+
+<br/>
+
 ## Properties
 
 :::tip
@@ -463,6 +472,8 @@ const table = useTable({
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
+<br/>
+
 ## Return Values
 
 :::tip
@@ -535,6 +546,8 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 
 A function create accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
+<br/>
+
 ## FAQ
 
 ### How can I handle relational data ?
@@ -542,6 +555,8 @@ A function create accessible links for `syncWithLocation`. It takes an [SyncWith
 You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fetch relational data.
 
 <RelationalLivePreview/>
+
+<br/>
 
 ## API Reference
 

@@ -17,11 +17,15 @@ By using `useDataGrid`, you are able to get properties that are compatible with 
 This hook is extended from [`useTable`][use-table-core] from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
 :::
 
+<br/>
+
 ## Basic usage
 
 In basic usage `useDataGrid` returns the data as it comes from the endpoint. By default, it reads [`resource`](#resource) from the url.
 
 <BasicUsagePreview/>
+
+<br/>
 
 ## Pagination
 
@@ -64,6 +68,8 @@ export const PostsList: React.FC = () => {
     );
 };
 ```
+
+<br/>
 
 ## Sorting
 
@@ -154,6 +160,8 @@ return <DataGrid {...dataGridProps} sortModel={undefined} autoHeight />;
 When `sortModel` is not passed, it supports more than one criteria at a time, but cannot show which fields are sorted in `<DataGrid>` headers.
 
 :::
+
+<br/>
 
 ## Filtering
 
@@ -252,6 +260,17 @@ return <DataGrid {...dataGridProps} filterModel={undefined} autoHeight />;
 When `filterModel` is not passed, it supports more than one criteria at a time, but cannot show which fields are filtered in `<DataGrid>` headers.
 
 :::
+
+<br/>
+
+## Realtime Updates
+
+> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+> When `useCreate` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on client side.
+
+[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+
+<br/>
 
 ## Properties
 
@@ -589,6 +608,8 @@ const dataGrid = useDataGrid({
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
+<br/>
+
 ## Return Values
 
 ### `dataGridProps`
@@ -749,6 +770,8 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 
 A function create accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
+<br/>
+
 ## FAQ
 
 ### How can I handle relational data ?
@@ -756,6 +779,8 @@ A function create accessible links for `syncWithLocation`. It takes an [SyncWith
 You can use [`useSelect`](http://localhost:3000/docs/api-reference/core/hooks/useSelect/) hook to fetch relational data and filter [`<DataGrid>`][data-grid] by categories.
 
 <RelationalPreview/>
+
+<br/>
 
 ## API
 

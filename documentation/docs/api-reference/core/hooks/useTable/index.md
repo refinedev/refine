@@ -21,11 +21,15 @@ If you're looking for a complete table library, Refine supports two table librar
 
 :::
 
+<br/>
+
 ## Basic Usage
 
 In basic usage `useTable` returns the data as it comes from the endpoint. By default, it reads resource from the url.
 
 <BasicUsageLivePreview />
+
+<br/>
 
 ## Pagination
 
@@ -43,6 +47,8 @@ If `hasPagination` is set to `false`, `current`, `setCurrent`, `pageSize`, `setP
 
 <PaginationLivePreview/>
 
+<br/>
+
 ## Sorting
 
 `useTable` has a sorter feature. The sorter is done by using the `sorter` state. The `sorter` state is a [`CrudSorting`][crudsorting] type that contains the field and the order of the sort. You can change the sorter state by using the `setSorter` function. Every change will trigger a new fetch.
@@ -50,6 +56,8 @@ If `hasPagination` is set to `false`, `current`, `setCurrent`, `pageSize`, `setP
 Also you can add initial sorter state by passing the `initialSorter` prop and permanent sorter state by passing the `permanentSorter` prop to the `useTable` hook. Even if you change the sorter state, the `permanentSorter` will be used together with the sorter state.
 
 <SortingLivePreview/>
+
+<br/>
 
 ## Filtering
 
@@ -66,6 +74,15 @@ If you are using `merge` behavior and want to remove one of the filters; you sho
 :::
 
 <FilteringLivePreview/>
+
+<br/>
+
+## Realtime Updates
+
+> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+> When `useCreate` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on client side.
+
+[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
 
 <br/>
 
