@@ -584,7 +584,7 @@ const SimpleRestDataProvider = (
 | id        | [BaseKey][basekey] |         |
 | variables | `TVariables`       | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useUpdate`](../../core/hooks/data/useUpdate.md#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate#type-parameters) to type `variables`
 
 <br/>
 
@@ -602,7 +602,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdate documentation for more information. &#8594](/api-reference/core/hooks/data/useUpdate.md)
+> [Refer to the useUpdate documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useUpdate/)
 
 <br />
 
