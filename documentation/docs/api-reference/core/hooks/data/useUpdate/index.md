@@ -38,7 +38,7 @@ When `useUpdate` mutation runs successfully, it will call the `publish` method f
 
 ## Invalidating Queries
 
-When `useUpdate` mutation runs successfully, by default it will invalidate the following queries from the current `resource`: `"list"` and `"many"`. That means, if you use `useList` or `useMany` hooks in the same page, they will refetch the data after the mutation is completed. You can change this behavior by passing [`invalidates`](#invalidates) prop.
+When `useUpdate` mutation runs successfully, by default it will invalidate the following queries from the current `resource`: `"list"`, `"many"` and `"detail"`. That means, if you use `useList`, `useMany` or `useOne` hooks in the same page, they will refetch the data after the mutation is completed. You can change this behavior by passing [`invalidates`](#invalidates) prop.
 
 [Refer to the query invalidation documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/guides/query-invalidation)
 
@@ -277,13 +277,13 @@ mutate({
 
 `invalidates` is used to specify which queries should be invalidated after the mutation is completed.
 
-By default it's invalidates following queries from the current `resource`: `"list"` and `"many"`. That means, if you use `useList` or `useMany` hooks in the same page, they will refetch the data after the mutation is completed.
+By default it's invalidates following queries from the current `resource`: `"list"`, `"many"` and `"detail"`. That means, if you use `useList`, `useMany` or `useOne` hooks in the same page, they will refetch the data after the mutation is completed.
 
 ```tsx
 const { mutate } = useUpdate();
 
 mutate({
-    invalidates: ["list", "many"],
+    invalidates: ["list", "many", "detail"],
 });
 ```
 
@@ -325,8 +325,8 @@ Returns an object with react-query's `useMutation` return values.
 
 ### Return value
 
-| Description                               | Type                                                                                                                                                                                                      |
-| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description                               | Type                                                                                                                                                                                                              |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource:string; id: BaseKey; values: TVariables; },`<br/>` UpdateContext>`](https://tanstack.com/query/v4/docs/react/reference/useMutation)\* |
 
 > `*` `UpdateContext` is an internal type.
