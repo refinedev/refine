@@ -155,7 +155,7 @@ const siteConfig = {
             items: [
                 { to: "blog", label: "Blog", position: "left" },
                 {
-                    to: "blog/refine-hackathon/",
+                    to: "https://s.refine.dev/hackathon",
                     label: "Hackathon",
                     position: "left",
                 },
