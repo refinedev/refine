@@ -299,15 +299,15 @@ const { data } = useList({
 
 ## Supported Hooks
 
-| Supported data hooks                                            | Supported form hooks                                                      | Supported other hooks                                                            |
-| --------------------------------------------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| [`useList` &#8594](/docs/api-reference/core/hooks/data/useList) | [`useForm` &#8594](/api-reference/core/hooks/useForm.md)                  | [`useTable` &#8594](/docs/api-reference/core/hooks/useTable/)                    |
-| [`useOne` &#8594](/api-reference/core/hooks/data/useOne.md)     | [`useModalForm` &#8594](/api-reference/antd/hooks/form/useModalForm.md)   | [`useEditableTable` &#8594](/api-reference/antd/hooks/table/useEditableTable.md) |
-| [`useMany` &#8594](/api-reference/core/hooks/data/useMany.md)   | [`useDrawerForm` &#8594](/api-reference/antd/hooks/form/useDrawerForm.md) | [`useSimpleList` &#8594](/api-reference/antd/hooks/list/useSimpleList.md)        |
-|                                                                 | [`useStepsForm` &#8594](/api-reference/antd/hooks/form/useStepsForm.md)   | [`useShow` &#8594](/api-reference/core/hooks/show/useShow.md)                    |
-|                                                                 |                                                                           | [`useCheckboxGroup` &#8594](/api-reference/antd/hooks/field/useCheckboxGroup.md) |
-|                                                                 |                                                                           | [`useSelect` &#8594](/api-reference/core/hooks/useSelect.md)                     |
-|                                                                 |                                                                           | [`useRadioGroup` &#8594](/api-reference/antd/hooks/field/useRadioGroup.md)       |
+| Supported data hooks                                             | Supported form hooks                                                      | Supported other hooks                                                               |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| [`useList` &#8594](/docs/api-reference/core/hooks/data/useList/) | [`useForm` &#8594](/api-reference/core/hooks/useForm.md)                  | [`useTable` &#8594](/docs/api-reference/antd/hooks/table/usetable/)                 |
+| [`useOne` &#8594](/docs/api-reference/core/hooks/data/useOne/)   | [`useModalForm` &#8594](/api-reference/antd/hooks/form/useModalForm.md)   | [`useEditableTable` &#8594](/docs/api-reference/antd/hooks/table/useeditabletable/) |
+| [`useMany` &#8594](/docs/api-reference/core/hooks/data/useMany/) | [`useDrawerForm` &#8594](/api-reference/antd/hooks/form/useDrawerForm.md) | [`useSimpleList` &#8594](/api-reference/antd/hooks/list/useSimpleList.md)           |
+|                                                                  | [`useStepsForm` &#8594](/api-reference/antd/hooks/form/useStepsForm.md)   | [`useShow` &#8594](/api-reference/core/hooks/show/useShow.md)                       |
+|                                                                  |                                                                           | [`useCheckboxGroup` &#8594](/api-reference/antd/hooks/field/useCheckboxGroup.md)    |
+|                                                                  |                                                                           | [`useSelect` &#8594](/api-reference/core/hooks/useSelect.md)                        |
+|                                                                  |                                                                           | [`useRadioGroup` &#8594](/api-reference/antd/hooks/field/useRadioGroup.md)          |
 
 ## Supported Hooks Subscriptions
 
