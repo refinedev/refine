@@ -110,7 +110,7 @@ module.exports = {
                                     type: "category",
                                     label: "Field",
                                     items: [
-                                        "api-reference/core/hooks/useSelect",
+                                        "api-reference/core/hooks/useSelect/index",
                                     ],
                                 },
                                 {
@@ -686,6 +686,7 @@ module.exports = {
                     items: [
                         "examples/core/useImport",
                         "examples/core/useModal",
+                        "examples/core/useSelect",
                     ],
                 },
                 {
