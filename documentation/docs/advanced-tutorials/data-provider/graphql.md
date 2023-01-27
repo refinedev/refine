@@ -19,15 +19,9 @@ In order to create a GraphQL query, our `dataProvider` has to take some options,
 
 Hooks and components that support `MetaDataQuery`:
 
-<<<<<<< docs/useupdate-doc
-| Supported data hooks                                        | Supported other hooks                                                            | Supported components                                                        |
-| ----------------------------------------------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [`useUpdate` &#8594](/docs/api-reference/core/hooks/data/useUpdate/)         | [`useForm` &#8594](/api-reference/core/hooks/useForm.md)                                       | [`DeleteButton` &#8594](/api-reference/antd/components/buttons/delete.md)   |
-=======
 | Supported data hooks                                                      | Supported other hooks                                                            | Supported components                                                        |
 | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [`useUpdate` &#8594](/api-reference/core/hooks/data/useUpdate.md)         | [`useForm` &#8594](/api-reference/core/hooks/useForm.md)                         | [`DeleteButton` &#8594](/api-reference/antd/components/buttons/delete.md)   |
->>>>>>> next
+| [`useUpdate` &#8594](/docs/api-reference/core/hooks/data/useUpdate/)      | [`useForm` &#8594](/api-reference/core/hooks/useForm.md)                         | [`DeleteButton` &#8594](/api-reference/antd/components/buttons/delete.md)   |
 | [`useUpdateMany` &#8594](/api-reference/core/hooks/data/useUpdateMany.md) | [`useModalForm` &#8594](/api-reference/antd/hooks/form/useModalForm.md)          | [`RefreshButton` &#8594](/api-reference/antd/components/buttons/refresh.md) |
 | [`useDelete` &#8594](/api-reference/core/hooks/data/useDelete.md)         | [`useDrawerForm` &#8594](/api-reference/antd/hooks/form/useDrawerForm.md)        |                                                                             |
 | [`useDeleteMany` &#8594](/api-reference/core/hooks/data/useDeleteMany.md) | [`useStepsForm` &#8594](/api-reference/antd/hooks/form/useStepsForm.md)          |                                                                             |
