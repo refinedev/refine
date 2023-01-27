@@ -1,7 +1,7 @@
 ```tsx live url=http://localhost:3000/products previewHeight=600px hideCode
 setInitialRoutes(["/categories/create"]);
 // visible-block-start
-import { useSelect, Select, Form } from "@pankod/refine-antd";
+import { useSelect, Select, Button } from "@pankod/refine-antd";
 
 interface ICategory {
     id: number;
@@ -25,27 +25,9 @@ const ProductCreate: React.FC = () => {
 
     return (
         <>
-            Order: 
-            <Select value={order} style={{ width: 200 }} onChange={val => setOrder(val)} options={[
-                {
-                    label: "ASC",
-                    value: "asc",
-                }, 
-                {
-                    label: "DESC",
-                    value: "desc",
-                }
-            ]} />
-            <Form layout="vertical">
-                <Form.Item
-                    label="Select Category"
-                    name="category"
-                >
-                    <Select {...selectProps} />
-                </Form.Item>
-            </Form>
+            <Select placeholder={`Ordered Categories: ${order}`} {...selectProps} style={{ width: 200 }} />
+            <Button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>Toggle Order</Button>
         </>
-        
     );
 };
 // visible-block-end
