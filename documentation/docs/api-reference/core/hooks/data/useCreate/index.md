@@ -3,8 +3,6 @@ title: useCreate
 siderbar_label: useCreate
 ---
 
-import BasicUsageLivePreview from "./basic-usage-live-preview.md";
-
 `useCreate` is a extended version of `react-query`'s [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation). It support all the features of `useMutation` and adds some extra features.
 
 -   It uses the `create` method as the **mutation function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
@@ -15,9 +13,23 @@ It is useful when you want to create a new record.
 
 `useCreate` hook returns many useful properties and methods. One of them is `mutate` method which expects `values` and `resource` as parameters. These parameters will be passed to the `create` method from the `dataProvider` as parameters.
 
-<BasicUsageLivePreview />
+```tsx
+import { useCreate } from "@pankod/refine-core";
+
+const { mutate } = useCreate();
+
+mutate({
+    resource: "products",
+    values: {
+        name: "New Product",
+        material: "Wood",
+    },
+});
+```
 
 ## Realtime Updates
+
+> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
 
 When `useCreate` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on client side.
 
@@ -30,6 +42,8 @@ When `useCreate` mutation runs successfully, by default it will invalidate the f
 [Refer to the query invalidation documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/guides/query-invalidation)
 
 ## Audit Logs
+
+> This feature is only available if you use a [Audit Log Provider](/docs/api-reference/core/providers/audit-log-provider/).
 
 When `useCreate` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data` etc. It is useful when you want to log the changes to the database.
 
