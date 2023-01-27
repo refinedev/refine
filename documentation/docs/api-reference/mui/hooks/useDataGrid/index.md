@@ -321,7 +321,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 Also you can give URL path to the `resource` prop.
 
 ```tsx
-const dataGrid = useDataGrid({
+useDataGrid({
     resource: "categories/subcategory", // <BASE_URL_FROM_DATA_PROVIDER>/categories/subcategory
 });
 ```
@@ -331,7 +331,7 @@ const dataGrid = useDataGrid({
 If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. It is useful when you want to use a different `dataProvider` for a specific resource.
 
 ```tsx
-const dataGrid = useDataGrid({
+useDataGrid({
     dataProviderName: "second-data-provider",
 });
 ```
@@ -343,7 +343,7 @@ const dataGrid = useDataGrid({
 Sets the initial value of the page index.
 
 ```tsx
-const dataGrid = useDataGrid({
+useDataGrid({
     initialCurrent: 2, // This will cause the table to initially display the data for page 2, rather than the default of page 1
 });
 ```
@@ -355,7 +355,7 @@ const dataGrid = useDataGrid({
 Sets the initial value of the page size.
 
 ```tsx
-const dataGrid = useDataGrid({
+useDataGrid({
     initialPageSize: 20, // This will cause the table to initially display 20 rows per page, rather than the default of 10
 });
 ```
@@ -367,7 +367,7 @@ const dataGrid = useDataGrid({
 Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
 
 ```tsx
-const dataGrid = useDataGrid({
+useDataGrid({
     initialSorter: [
         {
             field: "title",
@@ -384,7 +384,7 @@ const dataGrid = useDataGrid({
 Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
 
 ```tsx
-const dataGrid = useDataGrid({
+useDataGrid({
     permanentSorter: [
         {
             field: "title",
@@ -401,7 +401,7 @@ const dataGrid = useDataGrid({
 Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
 
 ```tsx
-const dataGrid = useDataGrid({
+useDataGrid({
     initialFilter: [
         {
             field: "title",
@@ -419,7 +419,7 @@ const dataGrid = useDataGrid({
 Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
 
 ```tsx
-const dataGrid = useDataGrid({
+useDataGrid({
     permanentFilter: [
         {
             field: "title",
@@ -443,7 +443,7 @@ The filter behavior can be set to either `"merge"` or `"merge"`.
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
 ```tsx
-const dataGrid = useDataGrid({
+useDataGrid({
     defaultSetFilterBehavior: "replace",
 });
 ```
@@ -455,10 +455,8 @@ const dataGrid = useDataGrid({
 Determines whether to use server-side pagination or not.
 
 ```tsx
-const dataGrid = useDataGrid({
-    // highlight-start
+useDataGrid({
     hasPagination: false,
-    // highlight-end
 });
 ```
 
@@ -471,10 +469,8 @@ When you use the syncWithLocation feature, the `useDataGrid`'s state (e.g. sort 
 Also you can set this value globally on [`<Refine>`][refine swl] component.
 
 ```tsx
-const dataGrid = useDataGrid({
-    // highlight-start
+useDataGrid({
     syncWithLocation: true,
-    // highlight-end
 });
 ```
 
@@ -483,12 +479,10 @@ const dataGrid = useDataGrid({
 `useDataGrid` uses [`useList`](/docs/api-reference/core/hooks/data/useList/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
-const dataGrid = useDataGrid({
-    // highlight-start
+useDataGrid({
     queryOptions: {
         retry: 3,
     },
-    // highlight-end
 });
 ```
 
@@ -502,12 +496,10 @@ const dataGrid = useDataGrid({
 In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
-const dataGrid = useDataGrid({
-    // highlight-start
+useDataGrid({
     metaData: {
         headers: { "x-meta-data": "true" },
     },
-    // highlight-end
 });
 
 const myDataProvider = {
@@ -546,8 +538,7 @@ const myDataProvider = {
 After data is fetched successfully, `useDataGrid` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
 ```tsx
-const dataGrid = useDataGrid({
-    // highlight-start
+useDataGrid({
     successNotification: (data, values, resource) => {
         return {
             message: `${data.title} Successfully fetched.`,
@@ -555,7 +546,6 @@ const dataGrid = useDataGrid({
             type: "success",
         };
     },
-    // highlight-end
 });
 ```
 
@@ -566,8 +556,7 @@ const dataGrid = useDataGrid({
 After data fetching is failed, `useDataGrid` will call `open` function from [`NotificationProvider`][notification-provider] to show a error notification. With this prop, you can customize the error notification.
 
 ```tsx
-const dataGrid = useDataGrid({
-    // highlight-start
+useDataGrid({
     errorNotification: (data, values, resource) => {
         return {
             message: `Something went wrong when getting ${data.id}`,
@@ -575,7 +564,6 @@ const dataGrid = useDataGrid({
             type: "error",
         };
     },
-    // highlight-end
 });
 ```
 
@@ -587,10 +575,8 @@ Determines whether to update data automatically ("auto") or not ("manual") if a 
 For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
-const dataGrid = useDataGrid({
-    // highlight-start
+useDataGrid({
     liveMode: "auto",
-    // highlight-end
 });
 ```
 
@@ -601,12 +587,10 @@ const dataGrid = useDataGrid({
 The callback function that is executed when new events from a subscription are arrived.
 
 ```tsx
-const dataGrid = useDataGrid({
-    // highlight-start
+useDataGrid({
     onLiveEvent: (event) => {
         console.log(event);
     },
-    // highlight-end
 });
 ```
 

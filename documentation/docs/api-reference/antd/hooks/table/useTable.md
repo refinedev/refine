@@ -199,7 +199,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 Also you can give URL path to the `resource` prop.
 
 ```tsx
-const table = useTable({
+useTable({
     resource: "categories/subcategory", // <BASE_URL_FROM_DATA_PROVIDER>/categories/subcategory
 });
 ```
@@ -246,7 +246,7 @@ const { searchFormProps, tableProps } = useTable({
 If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. It is useful when you want to use a different `dataProvider` for a specific resource.
 
 ```tsx
-const table = useTable({
+useTable({
     dataProviderName: "second-data-provider",
 });
 ```
@@ -258,7 +258,7 @@ const table = useTable({
 Sets the initial value of the page index.
 
 ```tsx
-const table = useTable({
+useTable({
     initialCurrent: 2, // This will cause the table to initially display the data for page 2, rather than the default of page 1
 });
 ```
@@ -270,7 +270,7 @@ const table = useTable({
 Sets the initial value of the page size.
 
 ```tsx
-const table = useTable({
+useTable({
     initialPageSize: 20, // This will cause the table to initially display 20 rows per page, rather than the default of 10
 });
 ```
@@ -282,7 +282,7 @@ const table = useTable({
 Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
 
 ```tsx
-const table = useTable({
+useTable({
     initialSorter: [
         {
             field: "title",
@@ -299,7 +299,7 @@ const table = useTable({
 Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
 
 ```tsx
-const table = useTable({
+useTable({
     permanentSorter: [
         {
             field: "title",
@@ -316,7 +316,7 @@ const table = useTable({
 Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
 
 ```tsx
-const table = useTable({
+useTable({
     initialFilter: [
         {
             field: "title",
@@ -334,7 +334,7 @@ const table = useTable({
 Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
 
 ```tsx
-const table = useTable({
+useTable({
     permanentFilter: [
         {
             field: "title",
@@ -358,7 +358,7 @@ The filter behavior can be set to either `"merge"` or `"merge"`.
 You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
 
 ```tsx
-const table = useTable({
+useTable({
     defaultSetFilterBehavior: "replace",
 });
 ```
@@ -370,10 +370,8 @@ const table = useTable({
 Determines whether to use server-side pagination or not.
 
 ```tsx
-const table = useTable({
-    // highlight-start
+useTable({
     hasPagination: false,
-    // highlight-end
 });
 ```
 
@@ -386,10 +384,8 @@ When you use the syncWithLocation feature, the `useTable`'s state (e.g. sort ord
 Also you can set this value globally on [`<Refine>`][refine swl] component.
 
 ```tsx
-const table = useTable({
-    // highlight-start
+useTable({
     syncWithLocation: true,
-    // highlight-end
 });
 ```
 
@@ -398,12 +394,10 @@ const table = useTable({
 `useTable` uses [`useList`](/docs/api-reference/core/hooks/data/useList/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
-const table = useTable({
-    // highlight-start
+useTable({
     queryOptions: {
         retry: 3,
     },
-    // highlight-end
 });
 ```
 
@@ -417,7 +411,7 @@ const table = useTable({
 In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
-const table = useTable({
+useTable({
     // highlight-start
     metaData: {
         headers: { "x-meta-data": "true" },
@@ -461,8 +455,7 @@ const myDataProvider = {
 After data is fetched successfully, `useTable` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
 ```tsx
-const table = useTable({
-    // highlight-start
+useTable({
     successNotification: (data, values, resource) => {
         return {
             message: `${data.title} Successfully fetched.`,
@@ -470,7 +463,6 @@ const table = useTable({
             type: "success",
         };
     },
-    // highlight-end
 });
 ```
 
@@ -481,8 +473,7 @@ const table = useTable({
 After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show a error notification. With this prop, you can customize the error notification.
 
 ```tsx
-const table = useTable({
-    // highlight-start
+useTable({
     errorNotification: (data, values, resource) => {
         return {
             message: `Something went wrong when getting ${data.id}`,
@@ -490,7 +481,6 @@ const table = useTable({
             type: "error",
         };
     },
-    // highlight-end
 });
 ```
 
@@ -502,10 +492,8 @@ Determines whether to update data automatically ("auto") or not ("manual") if a 
 For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
-const table = useTable({
-    // highlight-start
+useTable({
     liveMode: "auto",
-    // highlight-end
 });
 ```
 
@@ -516,12 +504,10 @@ const table = useTable({
 The callback function that is executed when new events from a subscription are arrived.
 
 ```tsx
-const table = useTable({
-    // highlight-start
+useTable({
     onLiveEvent: (event) => {
         console.log(event);
     },
-    // highlight-end
 });
 ```
 
