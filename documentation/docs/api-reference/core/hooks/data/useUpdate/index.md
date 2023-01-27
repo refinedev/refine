@@ -111,7 +111,7 @@ mutate({
 
 ### `id` <PropTag required />
 
-It will be passed to the `getOne` method from the `dataProvider` as parameter. It is used to determine which record to update.
+It will be passed to the `update` method from the `dataProvider` as parameter. It is used to determine which record to update.
 
 ```tsx
 const { mutate } = useUpdate();
