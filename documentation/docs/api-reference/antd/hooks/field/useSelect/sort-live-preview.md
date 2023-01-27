@@ -1,7 +1,7 @@
-```tsx live url=http://localhost:3000/products previewHeight=200px hideCode
+```tsx live url=http://localhost:3000/products previewHeight=600px hideCode
 setInitialRoutes(["/categories/create"]);
 // visible-block-start
-import { useSelect, HttpError } from "@pankod/refine-core";
+import { useSelect, Select, Form } from "@pankod/refine-antd";
 
 interface ICategory {
     id: number;
@@ -11,7 +11,7 @@ interface ICategory {
 const ProductCreate: React.FC = () => {
     const [order, setOrder] = React.useState<"asc" | "desc">("asc");
 
-    const { options } = useSelect<ICategory>({
+    const { selectProps } = useSelect<ICategory>({
         resource: "categories",
         // highlight-start
         sort: [
@@ -24,25 +24,26 @@ const ProductCreate: React.FC = () => {
     });
 
     return (
-        <> 
-            <label>
-                Sort Items:
-                <select value={order} onChange={(val: any) => setOrder(val.target.value)}>
-                    <option>asc</option>
-                    <option>desc</option>
-                </select>
-            </label>
-            <br />
-            <label>
-                Select a category:
-                <select>
-                    {options?.map((option) => (
-                        <option key={option.value} value={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </select>
-            </label>
+        <>
+            Order: 
+            <Select value={order} style={{ width: 200 }} onChange={val => setOrder(val)} options={[
+                {
+                    label: "ASC",
+                    value: "asc",
+                }, 
+                {
+                    label: "DESC",
+                    value: "desc",
+                }
+            ]} />
+            <Form layout="vertical">
+                <Form.Item
+                    label="Select Category"
+                    name="category"
+                >
+                    <Select {...selectProps} />
+                </Form.Item>
+            </Form>
         </>
         
     );

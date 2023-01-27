@@ -11,7 +11,7 @@ interface ICategory {
 const ProductCreate: React.FC = () => {
     const [order, setOrder] = React.useState<"asc" | "desc">("asc");
 
-    const { selectProps, onSearch } = useSelect<ICategory>({
+    const { selectProps } = useSelect<ICategory>({
         resource: "categories",
         
         // highlight-start
@@ -26,21 +26,14 @@ const ProductCreate: React.FC = () => {
     });
 
     return (
-        <>
-            <p>
-                Filter:
-                <Input onChange={(value) => onSearch(value)} />
-            </p>
-
-            <Form layout="vertical">
-                <Form.Item
-                    label="Select Category"
-                    name="category"
-                >
-                    <Select {...selectProps} />
-                </Form.Item>
-            </Form>
-        </>
+        <Form layout="vertical">
+            <Form.Item
+                label="Select Category"
+                name="category"
+            >
+                <Select {...selectProps} />
+            </Form.Item>
+        </Form>
     );
 };
 // visible-block-end
