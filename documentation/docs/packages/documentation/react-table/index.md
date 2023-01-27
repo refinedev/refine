@@ -202,6 +202,8 @@ const table = useTable({
 
 ### `initialSorter`
 
+> Type: [`CrudSort[]`][crudsorting]
+
 Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
 
 ```tsx
@@ -218,6 +220,8 @@ const table = useTable({
 ```
 
 ### `permanentSorter`
+
+> Type: [`CrudSort[]`][crudsorting]
 
 Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
 
@@ -236,6 +240,8 @@ const table = useTable({
 
 ### `initialFilter`
 
+> Type: [`CrudFilter[]`][crudfilters]
+
 Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
 
 ```tsx
@@ -253,6 +259,8 @@ const table = useTable({
 ```
 
 ### `permanentFilter`
+
+> Type: [`CrudFilter[]`][crudfilters]
 
 Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
 
@@ -591,3 +599,4 @@ You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fe
 [notification-provider]: /api-reference/core/providers/notification-provider.md
 [crudsorting]: /api-reference/core/interfaces.md#crudsorting
 [crudfilters]: /api-reference/core/interfaces.md#crudfilters
+[refine swl]: /api-reference/core/components/refine-config.md#syncwithlocation
