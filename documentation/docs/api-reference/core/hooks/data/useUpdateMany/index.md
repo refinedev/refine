@@ -115,7 +115,7 @@ mutate({
 
 ### `ids` <PropTag required />
 
-It will be passed to the `updateMany` method from the `dataProvider` as parameter. It is used to determine which record to update.
+It will be passed to the `updateMany` method from the `dataProvider` as parameter. It is used to determine which records will be updated.
 
 ```tsx
 const { mutate } = useUpdateMany();
@@ -240,22 +240,27 @@ mutate({
 
 const myDataProvider = {
     //...
-    update: async ({
+    updateMany: async ({
         resource,
-        id,
+        ids,
         variables,
         // highlight-next-line
         metaData,
     }) => {
         // highlight-next-line
         const headers = metaData?.headers ?? {};
-        const url = `${apiUrl}/${resource}/${id}`;
+        const url = `${apiUrl}/${resource}`;
 
         //...
         //...
 
-        // highlight-next-line
-        const { data } = await httpClient.patch(url, variables, { headers });
+        // highlight-start
+        const { data } = await httpClient.patch(
+            url,
+            { ids, variables },
+            { headers },
+        );
+        // highlight-end
 
         return {
             data,
