@@ -3,7 +3,6 @@ id: graphql
 title: GraphQL
 ---
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -19,20 +18,20 @@ In order to create a GraphQL query, our `dataProvider` has to take some options,
 
 Hooks and components that support `MetaDataQuery`:
 
-| Supported data hooks                                        | Supported other hooks                                                            | Supported components                                                        |
-| ----------------------------------------------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [`useUpdate` &#8594](/api-reference/core/hooks/data/useUpdate.md)         | [`useForm` &#8594](/api-reference/core/hooks/useForm.md)                                       | [`DeleteButton` &#8594](/api-reference/antd/components/buttons/delete.md)   |
-| [`useUpdateMany` &#8594](/api-reference/core/hooks/data/useUpdateMany.md) | [`useModalForm` &#8594](/api-reference/antd/hooks/form/useModalForm.md)          | [`RefreshButton` &#8594](/api-reference/antd/components/buttons/refresh.md) |
-| [`useDelete` &#8594](/api-reference/core/hooks/data/useDelete.md)         | [`useDrawerForm` &#8594](/api-reference/antd/hooks/form/useDrawerForm.md)        |                                                                             |
-| [`useDeleteMany` &#8594](/api-reference/core/hooks/data/useDeleteMany.md) | [`useStepsForm` &#8594](/api-reference/antd/hooks/form/useStepsForm.md)          |                                                                             |
-| [`useCreate` &#8594](/api-reference/core/hooks/data/useCreate.md)         | [`useTable` &#8594](/api-reference/core/hooks/useTable.md)                                     |                                                                             |
+| Supported data hooks                                                         | Supported other hooks                                                            | Supported components                                                        |
+| ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| [`useUpdate` &#8594](/docs/api-reference/core/hooks/data/useUpdate/)         | [`useForm` &#8594](/api-reference/core/hooks/useForm.md)                         | [`DeleteButton` &#8594](/api-reference/antd/components/buttons/delete.md)   |
+| [`useUpdateMany` &#8594](/api-reference/core/hooks/data/useUpdateMany.md)    | [`useModalForm` &#8594](/api-reference/antd/hooks/form/useModalForm.md)          | [`RefreshButton` &#8594](/api-reference/antd/components/buttons/refresh.md) |
+| [`useDelete` &#8594](/api-reference/core/hooks/data/useDelete.md)            | [`useDrawerForm` &#8594](/api-reference/antd/hooks/form/useDrawerForm.md)        |                                                                             |
+| [`useDeleteMany` &#8594](/api-reference/core/hooks/data/useDeleteMany.md)    | [`useStepsForm` &#8594](/api-reference/antd/hooks/form/useStepsForm.md)          |                                                                             |
+| [`useCreate` &#8594](/docs/api-reference/core/hooks/data/useCreate/)         | [`useTable` &#8594](/api-reference/core/hooks/useTable.md)                       |                                                                             |
 | [`useCreateMany` &#8594](/docs/api-reference/core/hooks/data/useCreateMany/) | [`useEditableTable` &#8594](/api-reference/antd/hooks/table/useEditableTable.md) |                                                                             |
 | [`useList` &#8594](/docs/api-reference/core/hooks/data/useList/)             | [`useSimpleList` &#8594](/api-reference/antd/hooks/list/useSimpleList.md)        |                                                                             |
-| [`useOne` &#8594](/docs/api-reference/core/hooks/data/useOne/)               | [`useShow` &#8594](/api-reference/core/hooks/show/useShow.md)                                  |                                                                             |
-| [`useMany` &#8594](/docs/api-reference/core/hooks/data/useMany/)             | [`useExport` &#8594](/api-reference/core/hooks/import-export/useExport.md)                     |                                                                             |
-| [`useCustom` &#8594](/api-reference/core/hooks/data/useCustom.md)         | [`useCheckboxGroup` &#8594](/api-reference/antd/hooks/field/useCheckboxGroup.md) |                                                                             |
-|                                                             | [`useSelect` &#8594](/api-reference/core/hooks/useSelect.md)                                   |                                                                             |
-|                                                             | [`useRadioGroup` &#8594](/api-reference/antd/hooks/field/useRadioGroup.md)       |                                                                             |
+| [`useOne` &#8594](/docs/api-reference/core/hooks/data/useOne/)               | [`useShow` &#8594](/api-reference/core/hooks/show/useShow.md)                    |                                                                             |
+| [`useMany` &#8594](/docs/api-reference/core/hooks/data/useMany/)             | [`useExport` &#8594](/api-reference/core/hooks/import-export/useExport.md)       |                                                                             |
+| [`useCustom` &#8594](/api-reference/core/hooks/data/useCustom.md)            | [`useCheckboxGroup` &#8594](/api-reference/antd/hooks/field/useCheckboxGroup.md) |                                                                             |
+|                                                                              | [`useSelect` &#8594](/docs/api-reference/core/hooks/useSelect/)                  |                                                                             |
+|                                                                              | [`useRadioGroup` &#8594](/api-reference/antd/hooks/field/useRadioGroup.md)       |                                                                             |
 
 ## Setup
 
@@ -319,7 +318,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                             required: true,
                         },
                     ]}
-                >   
+                >
                     <MDEditor data-color-mode="light" />
                 </Form.Item>
             </Form>

@@ -71,7 +71,7 @@ const dataProvider = {
 <br/>
 
 :::caution
-**refine** consumes these methods using [data hooks](/api-reference/core/hooks/data/useCreate.md).
+**refine** consumes these methods using [data hooks](/docs/api-reference/core/hooks/data/useCreate/).
 
 Data hooks are used to operate CRUD actions like creating a new record, listing a resource or deleting a record, etc.
 
@@ -367,7 +367,7 @@ const SimpleRestDataProvider = (
 | resource  | `string`     |         |
 | variables | `TVariables` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreate`](../../core/hooks/data/useCreate.md#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/api-reference/core/hooks/data/useCreate#type-parameters) to type `variables`
 
 <br/>
 
@@ -386,7 +386,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreate documentation for more information. &#8594](/api-reference/core/hooks/data/useCreate.md)
+> [Refer to the useCreate documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useCreate/)
 
 <br />
 
@@ -584,7 +584,7 @@ const SimpleRestDataProvider = (
 | id        | [BaseKey][basekey] |         |
 | variables | `TVariables`       | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useUpdate`](../../core/hooks/data/useUpdate.md#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate#type-parameters) to type `variables`
 
 <br/>
 
@@ -602,7 +602,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdate documentation for more information. &#8594](/api-reference/core/hooks/data/useUpdate.md)
+> [Refer to the useUpdate documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useUpdate/)
 
 <br />
 

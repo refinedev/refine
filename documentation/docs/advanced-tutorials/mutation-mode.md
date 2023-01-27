@@ -89,7 +89,7 @@ Mutation mode can be set application-wide in [`<Refine>`](/api-reference/core/co
 
 <br />
 
-It can also be set in supported [data hooks](/docs/api-reference/core/hooks/data/useUpdate.md#mutation-mode) and [form hooks](/docs/api-reference/core/hooks/useForm.md#properties) for fine-grained configuration.
+It can also be set in supported [data hooks](/docs/api-reference/core/hooks/data/useUpdate#mutation-mode) and [form hooks](/docs/api-reference/core/hooks/useForm.md#properties) for fine-grained configuration.
 
 ```tsx
 import { useUpdate } from "@pankod/refine-core";
@@ -109,7 +109,7 @@ mutate({
 
 ### Supported data hooks
 
--   [`useUpdate` &#8594](/api-reference/core/hooks/data/useUpdate.md)
+-   [`useUpdate` &#8594](/docs/api-reference/core/hooks/data/useUpdate/)
 -   [`useUpdateMany` &#8594](/api-reference/core/hooks/data/useUpdateMany.md)
 -   [`useDelete` &#8594](/api-reference/core/hooks/data/useDelete.md)
 -   [`useDeleteMany` &#8594](/api-reference/core/hooks/data/useDeleteMany.md)
