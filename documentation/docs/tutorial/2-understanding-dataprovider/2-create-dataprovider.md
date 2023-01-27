@@ -539,7 +539,7 @@ deleteOne: async ({ resource, id, variables }) => {
 | id        | [BaseKey](../../api-reference/core/interfaces.md#basekey) |         |
 | variables | `TVariables[]`                                            | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useDelete`](../../api-reference/core/hooks/data/useDelete.md) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) to type `variables`
 
 <br/>
 
@@ -553,7 +553,7 @@ const { mutate } = useDelete();
 mutate({ resource: "posts", id: 2 });
 ```
 
-> [Refer to the useDelete documentation for more information. &#8594](../../api-reference/core/hooks/data/useDelete.md)
+> [Refer to the useDelete documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useDelete/)
 
 ### getOne
 

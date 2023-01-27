@@ -5,7 +5,7 @@ swizzle: true
 ---
 
 `<DeleteButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) and [`<Popconfirm>`](https://ant.design/components/popconfirm/) components.
-When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/api-reference/core/hooks/data/useDelete.md) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
+When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -107,7 +107,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/api-reference/core/hooks/data/useDelete.md) method and then the record whose resource is "post" and whose id is "1" gets deleted.
+Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method and then the record whose resource is "post" and whose id is "1" gets deleted.
 
 :::note
 **`<DeleteButton>`** component reads the id information from the route by default.
@@ -161,7 +161,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/api-reference/core/hooks/data/useDelete.md) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
+Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
 
 :::note
 **`<DeleteButton>`** component reads the resource name from the route by default.

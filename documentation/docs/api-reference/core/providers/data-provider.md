@@ -482,7 +482,7 @@ const SimpleRestDataProvider = (
 | id        | [BaseKey][basekey] |         |
 | variables | `TVariables[]`     | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useDelete`](/api-reference/core/hooks/data/useDelete.md) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) to type `variables`
 
 <br/>
 
@@ -496,7 +496,7 @@ const { mutate } = useDelete();
 mutate({ resource: "categories", id: "2" });
 ```
 
-> [Refer to the useDelete documentation for more information. &#8594](/api-reference/core/hooks/data/useDelete.md)
+> [Refer to the useDelete documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useDelete/)
 
 <br />
 
