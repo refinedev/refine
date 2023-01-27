@@ -26,14 +26,6 @@ const ProductCreate: React.FC = () => {
     return (
         <> 
             <label>
-                Sort Items:
-                <select value={order} onChange={(val: any) => setOrder(val.target.value)}>
-                    <option>asc</option>
-                    <option>desc</option>
-                </select>
-            </label>
-            <br />
-            <label>
                 Select a category:
                 <select>
                     {options?.map((option) => (
@@ -42,7 +34,8 @@ const ProductCreate: React.FC = () => {
                         </option>
                     ))}
                 </select>
-            </label>
+                <button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>Toggle</button>
+            </label>            
         </>
         
     );

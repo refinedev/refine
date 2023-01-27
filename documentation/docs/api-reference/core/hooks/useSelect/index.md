@@ -375,6 +375,31 @@ useSelect({
 });
 ```
 
+### Can I create the options manually?
+
+Sometimes it may not be enough to create `optionLabel` and `optionValue` options. In this case we create options with `queryResult`.
+
+```tsx
+const { queryResult } = useSelect({
+    resource: "categories",
+});
+
+const options = queryResult.data?.data.map((item) => ({
+    label: item.name,
+    value: item.id,
+}));
+
+return (
+    <select>
+        {options?.map((option) => (
+            <option key={option.value} value={option.value}>
+                {option.label}
+            </option>
+        ))}
+    </select>
+);
+```
+
 ## API Reference
 
 ### Properties
