@@ -21,7 +21,9 @@ You can win **$1500** and a special gifts along with **limited edition** swag ki
 We can't wait to see what amazing projects the participants will build projects using **refine**. 
 
 
-[Please submit your project on refine Devpost Hackathon page](https://refine-open-source-hackathon.devpost.com/)
+[👉 Please submit your project on refine Devpost Hackathon platform](https://refine-open-source-hackathon.devpost.com/)
+
+[👉 Discover potential teammates for your hackathon project](https://refine-open-source-hackathon.devpost.com/participants)
 
 ## Together with Open Source Community
 

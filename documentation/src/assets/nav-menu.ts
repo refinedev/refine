@@ -87,7 +87,7 @@ export const POPOVERMENUS: NavMenu[] = [
                 icon: RefineWeekIcon,
             },
         ],
-        imageLink: "/blog/refine-hackathon",
+        imageLink: "https://s.refine.dev/hackathon",
         // imageLink: "/examples",
         // imageURL:
         //     "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/community.png",

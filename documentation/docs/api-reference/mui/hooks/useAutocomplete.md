@@ -166,13 +166,13 @@ const { autocompleteProps } = useAutocomplete({
 });
 ```
 
-Adds extra `options` to [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/#main-content) component. It uses [`useMany`](/api-reference/core/hooks/data/useMany.md) so `defaultValue` can be an array of strings like follows.
+Adds extra `options` to [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/#main-content) component. It uses [`useMany`](/docs/api-reference/core/hooks/data/useMany/) so `defaultValue` can be an array of strings like follows.
 
 ```ts
 defaultValue: ["1", "2"],
 ```
 
-[Refer to the `useMany` documentation for detailed usage. &#8594](/api-reference/core/hooks/data/useMany.md)
+[Refer to the `useMany` documentation for detailed usage. &#8594](/docs/api-reference/core/hooks/data/useMany/)
 
 :::tip
 Can use `defaultValue` property when edit a record in `<Edit>` component.
@@ -265,7 +265,7 @@ const { autocompleteProps } = useAutocomplete({
 
 ### `defaultValueQueryOptions`
 
-When the `defaultValue` property is given, the [`useMany`](/api-reference/core/hooks/data/useMany.md) data hook is called for the selected records. With this property, you can change the options of this query. If not given, the values given in `queryOptions` will be used.
+When the `defaultValue` property is given, the [`useMany`](/docs/api-reference/core/hooks/data/useMany/) data hook is called for the selected records. With this property, you can change the options of this query. If not given, the values given in `queryOptions` will be used.
 
 ```tsx
 const { autocompleteProps } = useAutocomplete({

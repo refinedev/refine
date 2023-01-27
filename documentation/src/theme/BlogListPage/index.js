@@ -48,7 +48,7 @@ function BlogListPageContent(props) {
         <BlogLayout>
             {/* {isFirstPage && <FeaturedBlogPostItems items={featuredPosts} />} */}
             {isFirstPage && (
-                <Link to="https://refine.dev/blog/refine-hackathon/">
+                <Link to="https://s.refine.dev/hackathon">
                     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social.png"></img>
                 </Link>
             )}

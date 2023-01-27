@@ -34,7 +34,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<RefreshButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button/) component to update the data shown on the page via the [`useOne`](/api-reference/core/hooks/data/useOne.md) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
+`<RefreshButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button/) component to update the data shown on the page via the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -148,7 +148,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useOne`](/api-reference/core/hooks/data/useOne.md) method and then fetches the record whose resource is "post" and whose id is "123".
+Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "post" and whose id is "123".
 
 :::note
 `<RefreshButton>` component reads the id information from the route by default.
@@ -193,7 +193,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useOne`](/api-reference/core/hooks/data/useOne.md) method and then fetches the record whose resource is "categories" and whose id is "2".
+Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
 
 :::note
 `<RefreshButton>` component reads the resource name from the route by default.
