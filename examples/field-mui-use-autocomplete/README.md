@@ -34,12 +34,12 @@
 ## Try it out on your local
 
 ```bash
-npm create refine-app@latest -- --example field-antd-use-select-mui
+npm create refine-app@latest -- --example field-mui-use-autocomplete
 ```
 
 ## Try it out on CodeSandbox
 
 <br/>
 
-[![Open field-antd-use-select-mui example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/field-antd-use-select-mui?view=preview&theme=dark&codemirror=1)
+[![Open field-mui-use-autocomplete example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/field-mui-use-autocomplete?view=preview&theme=dark&codemirror=1)
         

@@ -91,7 +91,7 @@ module.exports = {
                                     label: "Data",
                                     items: [
                                         "api-reference/core/hooks/data/useApiUrl",
-                                        "api-reference/core/hooks/data/useCreate",
+                                        "api-reference/core/hooks/data/useCreate/index",
                                         "api-reference/core/hooks/data/useCreateMany",
                                         "api-reference/core/hooks/data/useCustom",
                                         "api-reference/core/hooks/data/useCustomMutation",
@@ -110,7 +110,7 @@ module.exports = {
                                     type: "category",
                                     label: "Field",
                                     items: [
-                                        "api-reference/core/hooks/useSelect",
+                                        "api-reference/core/hooks/useSelect/index",
                                     ],
                                 },
                                 {
@@ -686,6 +686,7 @@ module.exports = {
                     items: [
                         "examples/core/useImport",
                         "examples/core/useModal",
+                        "examples/core/useSelect",
                     ],
                 },
                 {

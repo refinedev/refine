@@ -130,7 +130,7 @@ Highlighted lines are the ones the CLI generator automatically added to register
 
 With this configuration, refine can now communicate with Supabase API and perform all required data service CRUD methods using data hooks.
 
-[Refer to documentation to learn more about how to use data hooks &#8594](/docs/api-reference/core/hooks/data/useCreate.md)
+[Refer to documentation to learn more about how to use data hooks &#8594](/docs/api-reference/core/hooks/data/useCreate/)
 
 ## Understanding the Auth Provider
 

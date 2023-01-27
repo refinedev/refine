@@ -23,6 +23,8 @@ When these properties are changed, `useOne` hook will trigger a new request.
 
 ## Realtime Updates
 
+> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
+
 When `useOne` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to the live updates.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)

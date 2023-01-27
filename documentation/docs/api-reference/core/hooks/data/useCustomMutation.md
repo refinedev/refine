@@ -9,7 +9,11 @@ siderbar_label: useCustomMutation
 It uses the `custom` method from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
 :::danger attention
+<<<<<<< docs/useupdate-doc
 `useCustomMutation` should **not** be used when creating, updating or deleting a resource. To do these; [useCreate](/api-reference/core/hooks/data/useCreate.md), [useUpdate](/docs/api-reference/core/hooks/data/useUpdate/) or [useDelete](useDelete.md) hooks should be used instead.
+=======
+`useCustomMutation` should **not** be used when creating, updating or deleting a resource. To do these; [useCreate](/docs/api-reference/core/hooks/data/useCreate/), [useUpdate](useUpdate.md) or [useDelete](useDelete.md) hooks should be used instead.
+>>>>>>> next
 
 This is because `useCustomMutation`, unlike other data hooks, does not [invalidate queries](https://react-query.tanstack.com/guides/query-invalidation) and therefore will not update the application state either.
 
