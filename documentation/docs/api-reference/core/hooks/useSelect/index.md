@@ -364,7 +364,7 @@ In some cases we only have `id`, it may be necessary to show it selected in the 
 ### How do change the `label` and `value` on options?
 
 [`optionLabel` and `optionValue`](/docs/api-reference/core/hooks/useSelect/#optionlabel-and-optionvalue) are used to change the value of your options.
-The default values are optionsLabel="title" and optionsValue="id".
+The default values are `optionsLabel="title"` and `optionsValue="id"`.
 
 To change to `name` and `categoryId`;
 
