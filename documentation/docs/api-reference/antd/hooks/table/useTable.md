@@ -206,7 +206,7 @@ useTable({
 
 ### `onSearch`
 
-When [`searchFormProps.onFinish`](#searchformprops) is called, the `onSearch` function is called with the values of the form. The `onSearch` function should return `CrudFilters | Promise<CrudFilters>`.
+When [`searchFormProps.onFinish`](#searchformprops) is called, the `onSearch` function is called with the values of the form. The `onSearch` function should return [`CrudFilters | Promise<CrudFilters>`][crudfilters].
 Also `onSearch` will set current page to 1.
 
 It's useful when you want to filter the data with any query.
