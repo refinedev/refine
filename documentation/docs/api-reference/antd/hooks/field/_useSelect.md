@@ -231,22 +231,7 @@ const { selectProps } = useSelect({
 ```
 If defined, it allows us to override the filters to use when fetching list of records. Thus, it . It should return [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters).
 
-#### Client-side filtering
 
-```tsx
-const { selectProps } = useSelect({
-    resource: "categories",
-});
-
-<Select
-    {...selectProps}
-// highlight-start
-    onSearch={undefined}
-    filterOption={true}
-    optionFilterProp="label" // or "value"
-// highlight-end
-/>
-```
 
 
 ### `queryOptions`
@@ -285,25 +270,3 @@ const { selectProps } = useSelect({
 
 [useQuery](https://react-query.tanstack.com/reference/useQuery) options for default value query can be set by passing `queryOptions` property.
 
-## API Reference
-
-### Properties
-
-<PropsTable module="@pankod/refine-antd/useSelect"/>
-
-### Return values
-
-| Property                   | Description                                    | Type                                                                                          |
-| -------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| selectProps                | Ant design Select props                        | [`Select`](https://ant.design/components/select/#API)                                         |
-| queryResult                | Result of the query of a record                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
-| defaultValueQueryResult    | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
-| defaultValueQueryOnSuccess | Default value onSuccess method                 | `() => void`                                                                                  |
-
-## Example
-
-<CodeSandboxExample path="field-antd-use-select-basic" />
-
-## Infinite Loading Example
-
-<CodeSandboxExample path="field-antd-use-select-infinite" />
