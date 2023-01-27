@@ -31,6 +31,8 @@ Here is a basic example of how to use `useSelect` hook.
 
 ## Realtime Updates
 
+> This feature is only available if you use a [Live Provider](docs/api-reference/core/providers/live-provider) 
+
 When `useSelect` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`. 
 It is useful when you want to subscribe to the live updates.
 
@@ -55,8 +57,8 @@ Default values are `optionLabel = "title"` and `optionValue = "id"`
 ```tsx
 useSelect<ICategory>({
     resource: "products",
-    // highlight-next-line
     optionLabel: "name"
+    optionValue: "productId"
 });
 ```
 
@@ -67,10 +69,8 @@ Supports nested properties with option [Object path](https://lodash.com/docs/4.1
 ```tsx
 const { options } = useSelect({
     resource: "categories",
-    // highlight-start
     optionLabel: "nested.title",
     optionValue: "nested.id",
-    // highlight-end
 });
 ```
 :::
@@ -131,7 +131,6 @@ It allows us to `debounce` the `onSearch` function.
 ```tsx
 useSelect({
     resource: "categories",
-    // highlight-next-line
     debounce: 500,
 });
 ```
@@ -195,13 +194,11 @@ When the `defaultValue` property is given, the `useMany` data hook is called for
 ```tsx
 const { options } = useSelect({
     resource: "categories",
-    // highlight-start
     defaultValueQueryOptions: {
         onSuccess: (data) => {
             console.log("triggers when on query return on success");
         },
     },
-    // highlight-end
 });
 ```
 
@@ -230,11 +227,9 @@ const { selectProps } = useSelect({
 
 <Select
     {...selectProps}
-// highlight-start
     onSearch={undefined}
     filterOption={true}
     optionFilterProp="label" // or "value"
-// highlight-end
 />
 ```
 
