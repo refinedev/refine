@@ -32,6 +32,11 @@ export const UserList = () => {
                             ID
                         </h4>
                     }
+                    render={(_, record: TUser) => (
+                        <h4 style={{ textAlign: "center", fontWeight: "bold" }}>
+                            {record?.id}
+                        </h4>
+                    )}
                 />
                 <Table.Column
                     dataIndex="email"
@@ -40,6 +45,11 @@ export const UserList = () => {
                             Email
                         </h4>
                     }
+                    render={(_, record: TUser) => (
+                        <h5 style={{ textAlign: "center", fontWeight: "bold" }}>
+                            Not listed
+                        </h5>
+                    )}
                 />
                 <Table.Column
                     dataIndex="full_name"
@@ -50,7 +60,14 @@ export const UserList = () => {
                     }
                     render={(_, record: TUser) =>
                         record.full_name ? (
-                            record.full_name
+                            <p
+                                style={{
+                                    textAlign: "center",
+                                    fontWeight: "bold",
+                                }}
+                            >
+                                {record.full_name}
+                            </p>
                         ) : (
                             <p
                                 style={{
@@ -72,7 +89,14 @@ export const UserList = () => {
                     }
                     render={(_, record: TUser) =>
                         record.username ? (
-                            record.username
+                            <p
+                                style={{
+                                    textAlign: "center",
+                                    fontWeight: "bold",
+                                }}
+                            >
+                                {record.username}
+                            </p>
                         ) : (
                             <p
                                 style={{
