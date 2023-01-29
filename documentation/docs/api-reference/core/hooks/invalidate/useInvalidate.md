@@ -14,7 +14,7 @@ This hook is used on mutation hooks. when a mutation is success, this hook will 
 
 :::info-tip
 
-The hook is used internal in **refine**. Normally you don't need this hook, but we export it as it may be useful for some use-cases.
+The hook is used internally by **refine**. In most of the cases, you won't need this hook, but we export it as it may be useful for some use-cases that may require customized invalidation.
 
 :::
 
