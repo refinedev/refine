@@ -716,7 +716,7 @@ Now our page looks like this:
 
 Now let's put in approve and reject buttons to change the status of the post shown on the page. When these buttons are clicked, we will change the status of the post using `useUpdate`.
 
-[Refer to the `useUpdate` documentation for detailed usage. &#8594](/api-reference/core/hooks/data/useUpdate.md)
+[Refer to the `useUpdate` documentation for detailed usage. &#8594](/docs/api-reference/core/hooks/data/useUpdate/)
 
 ```tsx title="src/pages/post-review.tsx"
 import {
