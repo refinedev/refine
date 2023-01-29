@@ -103,7 +103,7 @@ module.exports = {
                                         "api-reference/core/hooks/data/useMany/index",
                                         "api-reference/core/hooks/data/useOne/index",
                                         "api-reference/core/hooks/data/useUpdate/index",
-                                        "api-reference/core/hooks/data/useUpdateMany",
+                                        "api-reference/core/hooks/data/useUpdateMany/index",
                                     ],
                                 },
                                 {
