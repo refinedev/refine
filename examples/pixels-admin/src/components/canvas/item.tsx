@@ -4,8 +4,6 @@ import { Typography } from "@pankod/refine-antd";
 import { TPixel, TCanvas } from "types";
 import { DEFAULT_SCALE, PIXEL_SIZE } from "utility/constants";
 
-const { Text } = Typography;
-
 type CanvasItemProps = {
     canvas: TCanvas;
     pixels: TPixel[] | undefined;
@@ -16,7 +14,7 @@ type CanvasItemProps = {
 };
 
 export const CanvasItem: React.FC<CanvasItemProps> = ({
-    canvas: { id, name, width, height },
+    canvas: { width, height },
     pixels,
     scale = DEFAULT_SCALE,
     border = true,

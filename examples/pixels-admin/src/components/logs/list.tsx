@@ -2,9 +2,10 @@ import React from "react";
 import { useLogList } from "@pankod/refine-core";
 import { Avatar, AntdList, Typography } from "@pankod/refine-antd";
 import { formattedDate, timeFromNow } from "utility/time";
+import { TCanvas } from "types";
 
 type TLogListProps = {
-    currentCanvas: any;
+    currentCanvas: TCanvas | {};
 };
 
 export const LogList = ({ currentCanvas }: TLogListProps) => {

@@ -33,9 +33,7 @@ export const UserList = () => {
                         </h4>
                     }
                     render={(_, record: TUser) => (
-                        <h4 style={{ textAlign: "center", fontWeight: "bold" }}>
-                            {record?.id}
-                        </h4>
+                        <p style={{ textAlign: "center" }}>{record?.id}</p>
                     )}
                 />
                 <Table.Column
@@ -45,10 +43,8 @@ export const UserList = () => {
                             Email
                         </h4>
                     }
-                    render={(_, record: TUser) => (
-                        <h5 style={{ textAlign: "center", fontWeight: "bold" }}>
-                            Not listed
-                        </h5>
+                    render={() => (
+                        <p style={{ textAlign: "center" }}>Not listed</p>
                     )}
                 />
                 <Table.Column
@@ -63,7 +59,6 @@ export const UserList = () => {
                             <p
                                 style={{
                                     textAlign: "center",
-                                    fontWeight: "bold",
                                 }}
                             >
                                 {record.full_name}
