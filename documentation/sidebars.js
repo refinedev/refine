@@ -92,7 +92,7 @@ module.exports = {
                                     items: [
                                         "api-reference/core/hooks/data/useApiUrl",
                                         "api-reference/core/hooks/data/useCreate/index",
-                                        "api-reference/core/hooks/data/useCreateMany",
+                                        "api-reference/core/hooks/data/useCreateMany/index",
                                         "api-reference/core/hooks/data/useCustom",
                                         "api-reference/core/hooks/data/useCustomMutation",
                                         "api-reference/core/hooks/data/useDataProvider",

@@ -14,7 +14,7 @@ import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 It is useful when you want to fetch multiple records from the API. It will return the data and some functions to control the query.
 
 :::caution
-If your data provider does not have a `getMany` method, `useMany` uses the `getOne` method instead. It is not recommended, because it will make requests one by one for each id. It is better to implement the `getMany` method in the data provider.
+If your data provider does not have a `getMany` method, `useMany` will use the `getOne` method instead. It is not recommended, because it will make requests one by one for each id. It is better to implement the `getMany` method in the data provider.
 :::
 
 ## Basic Usage

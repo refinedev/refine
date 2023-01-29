@@ -206,7 +206,7 @@ Now, parsed data is mapped to conform our APIs requirements.
 | TVariables | Values for mutation function                                               | `any`                      |
 
 [usecreate]: /docs/api-reference/core/hooks/data/useCreate/
-[usecreatemany]: /api-reference/core/hooks/data/useCreateMany.md
+[usecreatemany]: /docs/api-reference/core/hooks/data/useCreateMany/
 [dataprovider]: /api-reference/core/providers/data-provider.md
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror

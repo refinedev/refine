@@ -421,7 +421,7 @@ const SimpleRestDataProvider = (
 | resource  | `string`       |         |
 | variables | `TVariables[]` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreateMany`](/api-reference/core/hooks/data/useCreateMany.md) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useCreateMany`](/docs/api-reference/core/hooks/data/useCreateMany/) to type `variables`
 
 <br/>
 
@@ -445,7 +445,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreateMany documentation for more information. &#8594](/api-reference/core/hooks/data/useCreateMany.md)
+> [Refer to the useCreateMany documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useCreateMany/)
 
 <br />
 

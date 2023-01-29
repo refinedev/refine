@@ -214,7 +214,7 @@ Now, parsed data is mapped to conform our APIs requirements.
 [Upload]: https://ant.design/components/upload/
 [ImportButton]: /api-reference/antd/components/buttons/import.md
 [useCreate]: /docs/api-reference/core/hooks/data/useCreate/
-[useCreateMany]: /api-reference/core/hooks/data/useCreateMany.md
+[useCreateMany]: /docs/api-reference/core/hooks/data/useCreateMany/
 [DataProvider]: /api-reference/core/providers/data-provider.md
 [BaseRecord]: /api-reference/core/interfaces.md#baserecord
 [HttpError]: /api-reference/core/interfaces.md#httperror
