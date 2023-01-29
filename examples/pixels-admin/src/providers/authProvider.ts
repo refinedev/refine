@@ -14,16 +14,14 @@ export const authProvider: AuthProvider = {
             return Promise.reject(error);
         }
 
-        const role = await authProvider.getPermissions();
+        const role = user?.app_metadata?.role;
 
         if (role === "editor" || role === "admin") {
             return Promise.resolve();
         }
 
-        if (role != "editor" || role != "admin") {
-            await supabaseClient.auth.signOut();
-            return Promise.reject(new Error("User not authorized."));
-        }
+        await supabaseClient.auth.signOut();
+        return Promise.reject(new Error("User not authorized."));
     },
     register: async ({ email, password }) => {
         const { user, error } = await supabaseClient.auth.signUp({
@@ -102,7 +100,7 @@ export const authProvider: AuthProvider = {
         if (user) {
             return Promise.resolve({
                 ...user,
-                name: user.email,
+                name: user?.email,
             });
         }
     },
