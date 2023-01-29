@@ -1,6 +1,7 @@
 ---
 title: useList
 siderbar_label: useList
+source: https://github.com/refinedev/refine/blob/next/packages/core/src/hooks/data/useList.ts
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
@@ -8,7 +9,7 @@ import PaginationLivePreview from "./pagination-live-preview.md";
 import FilteringLivePreview from "./filtering-live-preview.md";
 import SortingLivePreview from "./sorting-live-preview.md";
 
-`useList` is a extended version of `react-query`'s [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It support all the features of `useQuery` and adds some extra features.
+`useList` is an extended version of `react-query`'s [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It support all the features of `useQuery` and adds some extra features.
 
 -   It uses the `getList` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
@@ -147,13 +148,15 @@ useList({
 });
 ```
 
-### `hasPagination`
+### `config.hasPagination`
 
 `hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter. It is used to determine whether to use server-side pagination or not.
 
 ```tsx
 useList({
-    hasPagination: false,
+    config: {
+        hasPagination: false,
+    },
 });
 ```
 
@@ -302,7 +305,7 @@ successNotification-default='`false`'
 errorNotification-default='"Error (status code: `statusCode`)"'
 />
 
-### Config parameters
+### Config Parameters
 
 ```ts
 interface UseListConfig {
