@@ -108,7 +108,7 @@ The states you want to invalidate. You can use the following values:
 
 ## API Reference
 
-### Properties
+### Invalidation Parameters
 
 | Property                                                                                              | Description                                                       | Type                                                    | Default   |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------- | --------- |
