@@ -1031,6 +1031,8 @@ interface IPost {
 }
 ```
 
+<br/>
+
 ## Properties
 
 :::tip
@@ -1071,6 +1073,8 @@ const stepsForm = useStepsForm({
 });
 ```
 
+<br/>
+
 ## Return Values
 
 :::tip
@@ -1105,6 +1109,35 @@ A function that can submit the form. It's useful when you want to submit the for
 ### `defaultFormValuesLoading`
 
 When `action` is `"edit"` or `"clone"`, `useStepsForm` will fetch the data from the API and set it as default values. This prop is `true` when the data is being fetched.
+
+<br/>
+
+## FAQ
+
+### How can I change the form data before submitting it to the API?
+
+You may need to modify the form data before it is sent to the API.
+
+For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`. We can do this by overriding the `submit` function.
+
+```tsx title="pages/user/create.tsx"
+// --
+useStepsForm({
+    submit: (formValues) => {
+        // highlight-start
+        const data = {
+            fullName: `${formValues.name} ${formValues.surname}`,
+            age: formValues.age,
+            city: formValues.city,
+        };
+        onFinish(data as any);
+        // highlight-end
+    },
+});
+// --
+```
+
+<br/>
 
 ## API Reference
 
