@@ -38,7 +38,7 @@ const { data } = useCan({
     queryOptions: {
         staleTime: 5 * 60 * 1000, // 5 minutes
     }
-);
+});
 ```
 
 <br/>
@@ -47,27 +47,45 @@ const { data } = useCan({
 
 ### `resource` <PropTag required />
 
-> Type: `string`
+Passes to [Access Control Provider's][access-control-provider] `can` function's `resource` parameter
 
-Resource name for API data interactions.
+```ts
+useCan({
+    resource: "resource-you-ask-for-access",
+});
+```
 
 ### `action` <PropTag required />
 
-> Type: `string`
+Passes to [Access Control Provider's][access-control-provider] `can` function's `action` parameter
 
-Intended action on resource.
+```ts
+useCan({
+    action: "resource-you-ask-for-access",
+});
+```
 
 ### `params`
 
-> Type: `{ resource? : IResourceItem, id?: BaseKey, [key: string]: any }`
+Passes to [Access Control Provider's][access-control-provider] `can` function's `params` parameter
 
-Parameters associated with the resource
+```ts
+useCan({
+    params: { foo: "optional-params" },
+});
+```
 
 ### `queryOptions`
 
-> Type: [`QueryOptions`][query-options]
-
 Query options for [TanStack Query's][tanstack-query] [`useQuery`][use-query].
+
+```ts
+useCan({
+    queryOptions: {
+        staleTime: 5 * 60 * 1000, // 5 minutes
+    },
+});
+```
 
 <br/>
 
@@ -95,7 +113,7 @@ For example if you want to check if the user can create a post return value will
     }}
 
     // ...
-/>
+/>;
 
 // inside your component
 const { data: canCreatePost } = useCan({
