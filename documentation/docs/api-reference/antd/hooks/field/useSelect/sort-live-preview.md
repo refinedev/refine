@@ -1,4 +1,4 @@
-```tsx live url=http://localhost:3000/products previewHeight=600px hideCode
+```tsx live url=http://localhost:3000 previewHeight=300px
 setInitialRoutes(["/categories/create"]);
 // visible-block-start
 import { useSelect, Select, Button } from "@pankod/refine-antd";
@@ -8,7 +8,7 @@ interface ICategory {
     title: string;
 }
 
-const ProductCreate: React.FC = () => {
+const CategoryCreate: React.FC = () => {
     const [order, setOrder] = React.useState<"asc" | "desc">("asc");
 
     const { selectProps } = useSelect<ICategory>({
@@ -25,7 +25,10 @@ const ProductCreate: React.FC = () => {
 
     return (
         <>
-            <Select placeholder={`Ordered Categories: ${order}`} {...selectProps} style={{ width: 200 }} />
+            <Select 
+                placeholder={`Ordered Categories: ${order}`} style={{ width: 300 }}
+                {...selectProps}
+            />
             <Button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>Toggle Order</Button>
         </>
     );
@@ -35,7 +38,7 @@ setRefineProps({
     resources: [
         {
             name: "categories",
-            create: ProductCreate,
+            create: CategoryCreate,
         },
     ],
 });

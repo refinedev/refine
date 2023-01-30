@@ -1,4 +1,4 @@
-```tsx live url=http://localhost:3000/products previewHeight=200px hideCode
+```tsx live url=http://localhost:3000 previewHeight=300px
 setInitialRoutes(["/categories/create"]);
 // visible-block-start
 import { useSelect, Select, Form } from "@pankod/refine-antd";
@@ -8,7 +8,7 @@ interface ICategory {
     title: string;
 }
 
-const ProductCreate: React.FC = () => {
+const CategoryCreate: React.FC = () => {
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
         // highlight-next-line
@@ -16,14 +16,10 @@ const ProductCreate: React.FC = () => {
     });
 
     return (
-        <Form layout="vertical">
-            <Form.Item
-                label="Select Category"
-                name="category"
-            >
-                <Select {...selectProps} />
-            </Form.Item>
-        </Form>
+        <Select 
+            placeholder="Select a category" style={{ width: 300 }}
+            {...selectProps}
+        />
     );
 };
 // visible-block-end
@@ -31,7 +27,7 @@ setRefineProps({
     resources: [
         {
             name: "categories",
-            create: ProductCreate,
+            create: CategoryCreate,
         },
     ],
 });
