@@ -802,7 +802,7 @@ interface IPost {
 :::tip
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
-[Refer to `useSelect` documentation for detailed usage. &#8594](/api-reference/antd/hooks/field/useSelect.md)
+[Refer to `useSelect` documentation for detailed usage. &#8594](/docs/api-reference/antd/hooks/field/useSelect/)
 
 :::
 
