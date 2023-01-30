@@ -71,7 +71,7 @@ const dataProvider = {
 <br/>
 
 :::caution
-**refine** consumes these methods using [data hooks](/api-reference/core/hooks/data/useCreate.md).
+**refine** consumes these methods using [data hooks](/docs/api-reference/core/hooks/data/useCreate/).
 
 Data hooks are used to operate CRUD actions like creating a new record, listing a resource or deleting a record, etc.
 
@@ -367,7 +367,7 @@ const SimpleRestDataProvider = (
 | resource  | `string`     |         |
 | variables | `TVariables` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreate`](../../core/hooks/data/useCreate.md#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/api-reference/core/hooks/data/useCreate#type-parameters) to type `variables`
 
 <br/>
 
@@ -386,7 +386,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreate documentation for more information. &#8594](/api-reference/core/hooks/data/useCreate.md)
+> [Refer to the useCreate documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useCreate/)
 
 <br />
 
@@ -421,7 +421,7 @@ const SimpleRestDataProvider = (
 | resource  | `string`       |         |
 | variables | `TVariables[]` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreateMany`](/api-reference/core/hooks/data/useCreateMany.md) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useCreateMany`](/docs/api-reference/core/hooks/data/useCreateMany/) to type `variables`
 
 <br/>
 
@@ -445,7 +445,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreateMany documentation for more information. &#8594](/api-reference/core/hooks/data/useCreateMany.md)
+> [Refer to the useCreateMany documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useCreateMany/)
 
 <br />
 
@@ -482,7 +482,7 @@ const SimpleRestDataProvider = (
 | id        | [BaseKey][basekey] |         |
 | variables | `TVariables[]`     | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useDelete`](/api-reference/core/hooks/data/useDelete.md) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) to type `variables`
 
 <br/>
 
@@ -496,7 +496,7 @@ const { mutate } = useDelete();
 mutate({ resource: "categories", id: "2" });
 ```
 
-> [Refer to the useDelete documentation for more information. &#8594](/api-reference/core/hooks/data/useDelete.md)
+> [Refer to the useDelete documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useDelete/)
 
 <br />
 
@@ -584,7 +584,7 @@ const SimpleRestDataProvider = (
 | id        | [BaseKey][basekey] |         |
 | variables | `TVariables`       | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useUpdate`](../../core/hooks/data/useUpdate.md#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate#type-parameters) to type `variables`
 
 <br/>
 
@@ -602,7 +602,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdate documentation for more information. &#8594](/api-reference/core/hooks/data/useUpdate.md)
+> [Refer to the useUpdate documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useUpdate/)
 
 <br />
 
@@ -637,7 +637,7 @@ const SimpleRestDataProvider = (
 | ids       | [BaseKey[]][basekey] |         |
 | variables | `TVariables`         | `{}`    |
 
-> TVariables is a user defined type which can be passed to [`useUpdateMany`](../../core/hooks/data/useUpdateMany.md#type-parameters) to type `variables`
+> TVariables is a user defined type which can be passed to [`useUpdateMany`](/docs/api-reference/core/hooks/data/useUpdateMany#type-parameters) to type `variables`
 
 <br/>
 
@@ -655,7 +655,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdateMany documentation for more information. &#8594](/api-reference/core/hooks/data/useUpdateMany.md)
+> [Refer to the useUpdateMany documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useUpdateMany/)
 
 <br />
 

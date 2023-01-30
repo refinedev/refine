@@ -171,7 +171,7 @@ render(<Wrapper><App /></Wrapper>);
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property refine adds the buttons by default.
 
-When clicked on, delete button executes the [`useDelete`](/api-reference/core/hooks/data/useDelete.md) method provided by the [`dataProvider`](/api-reference/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
+When clicked on, delete button executes the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method provided by the [`dataProvider`](/api-reference/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
 
 Refer to the [`<DeleteButton>`](/api-reference/mui/components/buttons/delete.md) and the [`<EditButton>`](/api-reference/mui/components/buttons/edit.md) documentation for detailed usage.
 

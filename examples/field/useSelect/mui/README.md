@@ -1,3 +1,3 @@
-# field-antd-use-select-mui
+# field-mui-use-autocomplete
 
-This example has been moved to [field-antd-use-select-mui](../../.././field-antd-use-select-mui)
+This example has been moved to [field-mui-use-autocomplete](../../.././field-mui-use-autocomplete)

@@ -139,7 +139,7 @@ The use of `useAutocomplete` with [`useForm`](/packages/documentation/react-hook
 <br/>
 
 :::info
-By default, refine does the search using the [`useList`](/api-reference/core/hooks/data/useDelete.md) hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://mui.com/material-ui/react-autocomplete/#search-as-you-type) documentation.
+By default, refine does the search using the [`useList`](/docs/api-reference/core/hooks/data/useDelete/) hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://mui.com/material-ui/react-autocomplete/#search-as-you-type) documentation.
 :::
 
 ## Options
@@ -311,4 +311,4 @@ const { autocompleteProps } = useAutocomplete({
 
 ## Example
 
-<CodeSandboxExample path="field-antd-use-select-mui" />
+<CodeSandboxExample path="field-mui-use-autocomplete" />
