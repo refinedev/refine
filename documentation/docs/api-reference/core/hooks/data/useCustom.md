@@ -13,7 +13,7 @@ It uses the `custom` method from the [`dataProvider`](/api-reference/core/provid
 
 This is because `useCustom`, unlike other data hooks, does not [invalidate queries](https://react-query.tanstack.com/guides/query-invalidation) and therefore will not update the application state either.
 
-If you need to custom mutation request, use the [useCustomMutation](/api-reference/core/hooks/data/useCustomMutation.md) hook.
+If you need to custom mutation request, use the [useCustomMutation](/docs/api-reference/core/hooks/data/useCustomMutation/) hook.
 :::
 
 ### Features
