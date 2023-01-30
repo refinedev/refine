@@ -4,10 +4,10 @@ siderbar_label: useSelect
 source: https://github.com/refinedev/refine/blob/next/packages/mantine/src/hooks/useSelect/index.ts
 ---
 
-<!-- import BasicUsageLivePreview from "./basic-usage-live-preview.md";
+import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 import OnSearchLivePreview from "./on-search-live-preview.md";
 import SortLivePreview from "./sort-live-preview.md";
-import DefaultValueLivePreview from "./default-value-live-preview.md"; -->
+import DefaultValueLivePreview from "./default-value-live-preview.md";
 
 `useSelect` hook allows you to manage Mantine [`<Select>`](https://mantine.dev/core/select/) component when records in a resource needs to be used as select options.
 
@@ -26,7 +26,7 @@ If you're looking for a complete select library, refine has out-of-the-box suppo
 
 Here is a basic example of how to use `useSelect` hook.
 
-<!-- <BasicUsageLivePreview /> -->
+<BasicUsageLivePreview />
 
 ## Realtime Updates
 
@@ -92,7 +92,7 @@ useSelect({
 });
 ```
 
-<!-- <SortLivePreview /> -->
+<SortLivePreview />
 
 ### `filters`
 
@@ -207,7 +207,7 @@ It allows us to `AutoComplete` the `options`.
 
 [Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
-<!-- <OnSearchLivePreview /> -->
+<OnSearchLivePreview />
 
 :::info
 **If defined, it allows us to override the filters to use when fetching list of records.** 
@@ -359,13 +359,13 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 
 [`onSearch`](/docs/api-reference/core/hooks/useSelect/#onsearch) is a function that is used to set the search value. It is useful when you want to search for a specific value. A simple example of this is shown below.
 
-<!-- <OnSearchLivePreview /> -->
+<OnSearchLivePreview />
 
 ### How can selected the option by default?
 
 In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/api-reference/core/hooks/data/useMany/), gets the data and mark as seleted.
 
-<!-- <DefaultValueLivePreview /> -->
+<DefaultValueLivePreview />
 
 ### How do change the `label` and `value` on options?
 
