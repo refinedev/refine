@@ -1121,105 +1121,20 @@ You may need to modify the form data before it is sent to the API.
 For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`. We can do this by overriding the `submit` function.
 
 ```tsx title="pages/user/create.tsx"
-import React from "react";
-import { HttpError } from "@pankod/refine-core";
-import {
-    Button,
-    Create,
-    Form,
-    Input,
-    SaveButton,
-    Steps,
-    useStepsForm,
-} from "@pankod/refine-antd";
-
-interface IUser {
-    id: string;
-    name: string;
-    surname: string;
-    age: number;
-    city: string;
-}
-
-export const UserCreate: React.FC = () => {
-    const {
-        current,
-        gotoStep,
-        stepsProps,
-        formProps,
-        saveButtonProps,
-        onFinish,
-    } = useStepsForm<IUser, HttpError, IUser>({
-        submit: (formValues) => {
-            // highlight-start
-            const data = {
-                fullName: `${formValues.name} ${formValues.surname}`,
-                age: formValues.age,
-                city: formValues.city,
-            };
-            onFinish(data as any);
-            // highlight-end
-        },
-    });
-
-    const formList = [
-        <>
-            <Form.Item label="Name" name="name">
-                <Input />
-            </Form.Item>
-            <Form.Item label="Surname" name="surname">
-                <Input />
-            </Form.Item>
-        </>,
-        <>
-            <Form.Item label="Age" name="age">
-                <Input />
-            </Form.Item>
-            <Form.Item label="City" name="city">
-                <Input />
-            </Form.Item>
-        </>,
-    ];
-
-    return (
-        <Create
-            footerButtons={
-                <>
-                    {current > 0 && (
-                        <Button
-                            onClick={() => {
-                                gotoStep(current - 1);
-                            }}
-                        >
-                            Previous
-                        </Button>
-                    )}
-                    {current < formList.length - 1 && (
-                        <Button
-                            onClick={() => {
-                                gotoStep(current + 1);
-                            }}
-                        >
-                            Next
-                        </Button>
-                    )}
-                    {current === formList.length - 1 && (
-                        <SaveButton {...saveButtonProps} />
-                    )}
-                </>
-            }
-        >
-            <Steps {...stepsProps}>
-                <Steps.Step title="User Identity" />
-                <Steps.Step title="User Bio" />
-            </Steps>
-
-            <Form {...formProps} layout="vertical" style={{ marginTop: 30 }}>
-                {formList[current]}
-            </Form>
-        </Create>
-    );
-};
+// --
+useStepsForm<IUser, HttpError, IUser>({
+    submit: (formValues) => {
+        // highlight-start
+        const data = {
+            fullName: `${formValues.name} ${formValues.surname}`,
+            age: formValues.age,
+            city: formValues.city,
+        };
+        onFinish(data as any);
+        // highlight-end
+    },
+});
+// --
 ```
 
 <br/>
