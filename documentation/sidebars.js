@@ -99,7 +99,7 @@ module.exports = {
                                         "api-reference/core/hooks/data/useDelete/index",
                                         "api-reference/core/hooks/data/useDeleteMany",
                                         "api-reference/core/hooks/data/useList/index",
-                                        "api-reference/core/hooks/data/useInfiniteList",
+                                        "api-reference/core/hooks/data/useInfiniteList/index",
                                         "api-reference/core/hooks/data/useMany/index",
                                         "api-reference/core/hooks/data/useOne/index",
                                         "api-reference/core/hooks/data/useUpdate/index",

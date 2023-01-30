@@ -1,39 +1,46 @@
 ---
-title: useList
-siderbar_label: useList
-source: https://github.com/refinedev/refine/blob/next/packages/core/src/hooks/data/useList.ts
+title: useInfiniteList
+siderbar_label: useInfiniteList
+source: https://github.com/refinedev/refine/blob/next/packages/core/src/hooks/data/useInfiniteList.ts
+description: useInfiniteList data hook from refine is a modified version of react-query's useInfiniteQuery for retrieving items from a resource with pagination, search, sort, and filter configurations.
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
-import PaginationLivePreview from "./pagination-live-preview.md";
-import FilteringLivePreview from "./filtering-live-preview.md";
 import SortingLivePreview from "./sorting-live-preview.md";
+import FilteringLivePreview from "./filtering-live-preview.md";
 
-`useList` is an extended version of `react-query`'s [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It support all the features of `useQuery` and adds some extra features.
+`useInfiniteList` is an extended version of `react-query`'s [`useInfiniteQuery`](https://react-query.tanstack.com/guides/useInfiniteQuery) used for retrieving items from a `resource` with pagination, sort, and filter configurations. It is ideal for lists where the total number of records is unknown and the user loads the next pages with a button.
 
--   It uses the `getList` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
+-   It uses the `getList` method as the query function from the [`dataProvider`](/docs/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
 -   It uses query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the `react-query` devtools.
 
-When you need to fetch data according to sort, filter, pagination etc. from a resource, you can use `useList` hook. It will return the data and some functions to control the query.
-
 ## Basic Usage
 
-Here is a basic example of how to use `useList` hook.
+Here is a basic example of how to use `useInfiniteList` hook.
 
 <BasicUsageLivePreview />
 
 ## Pagination
 
-`useList` hook supports pagination feature. You can pass `pagination` property to enable pagination. In order to handle pagination, `useList` hook passes `pagination` property to the `getList` method from the `dataProvider`.
+`useInfiniteList` hook supports pagination properties just like [`useList`](/docs/api-reference/core/hooks/data/useList/). In order to handle pagination, `useInfiniteList` hook passes `pagination` property to the `getList` method from the `dataProvider`.
 
-Dynamically changing the `pagination` properties will trigger a new request.
+Dynamically changing the `pagination` properties will trigger a new request. Also `fetchNextPage` method will increase the `pagination.current` property by one and trigger a new request.
 
-<PaginationLivePreview />
+```ts
+import { useInfiniteList } from "@pankod/refine-core";
+
+const postListQueryResult = useInfiniteList({
+    resource: "posts",
+    config: {
+        pagination: { current: 3, pageSize: 8 },
+    },
+});
+```
 
 ## Sorting
 
-`useList` hook supports sorting feature. You can pass `sort` property to enable sorting. In order to handle sorting, `useList` hook passes `sort` property to the `getList` method from the `dataProvider`.
+`useInfiniteList` hook supports sorting feature. You can pass `sort` property to enable sorting. In order to handle sorting, `useInfiniteList` hook passes `sort` property to the `getList` method from the `dataProvider`.
 
 Dynamically changing the `sort` property will trigger a new request.
 
@@ -41,7 +48,7 @@ Dynamically changing the `sort` property will trigger a new request.
 
 ## Filtering
 
-`useList` hook supports filtering feature. You can pass `filters` property to enable filtering. In order to handle filtering, `useList` hook passes `filters` property to the `getList` method from the `dataProvider`.
+`useInfiniteList` hook supports filtering feature. You can pass `filters` property to enable filtering. In order to handle filtering, `useInfiniteList` hook passes `filters` property to the `getList` method from the `dataProvider`.
 
 Dynamically changing the `filters` property will trigger a new request.
 
@@ -51,7 +58,7 @@ Dynamically changing the `filters` property will trigger a new request.
 
 > This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
 
-When `useList` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to the live updates.
+When `useInfiniteList` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to the live updates.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
 
@@ -62,7 +69,7 @@ When `useList` hook is mounted, it will call the `subscribe` method from the `li
 It will be passed to the `getList` method from the `dataProvider` as parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resource are handled.
 
 ```tsx
-useList({
+useInfiniteList({
     resource: "categories",
 });
 ```
@@ -72,7 +79,7 @@ useList({
 If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
 
 ```tsx
-useList({
+useInfiniteList({
     dataProviderName: "second-data-provider",
 });
 ```
@@ -84,7 +91,7 @@ useList({
 [Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
-useList({
+useInfiniteList({
     config: {
         filters: [
             {
@@ -104,7 +111,7 @@ useList({
 [Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
-useList({
+useInfiniteList({
     config: {
         sort: [
             {
@@ -125,7 +132,7 @@ useList({
 You can pass the `current` page number to the `pagination` property.
 
 ```tsx
-useList({
+useInfiniteList({
     config: {
         pagination: {
             current: 2,
@@ -139,7 +146,7 @@ useList({
 You can pass the `pageSize` to the `pagination` property.
 
 ```tsx
-useList({
+useInfiniteList({
     config: {
         pagination: {
             pageSize: 20,
@@ -153,7 +160,7 @@ useList({
 `hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter. It is used to determine whether to use server-side pagination or not.
 
 ```tsx
-useList({
+useInfiniteList({
     config: {
         hasPagination: false,
     },
@@ -167,7 +174,7 @@ useList({
 [Refer to the `useQuery` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 
 ```tsx
-useList({
+useInfiniteList({
     queryOptions: {
         retry: 3,
     },
@@ -184,7 +191,7 @@ useList({
 In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
-useList({
+useInfiniteList({
     // highlight-start
     metaData: {
         headers: { "x-meta-data": "true" },
@@ -225,10 +232,10 @@ const myDataProvider = {
 
 > [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
-After data is fetched successfully, `useList` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
+After data is fetched successfully, `useInfiniteList` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
 ```tsx
-useList({
+useInfiniteList({
     successNotification: (data, values, resource) => {
         return {
             message: `${data.title} Successfully fetched.`,
@@ -243,10 +250,10 @@ useList({
 
 > [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
-After data fetching is failed, `useList` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
+After data fetching is failed, `useInfiniteList` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
 
 ```tsx
-useList({
+useInfiniteList({
     errorNotification: (data, values, resource) => {
         return {
             message: `Something went wrong when getting ${data.id}`,
@@ -265,7 +272,7 @@ Determines whether to update data automatically ("auto") or not ("manual") if a 
 For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
-useList({
+useInfiniteList({
     liveMode: "auto",
 });
 ```
@@ -277,7 +284,7 @@ useList({
 The callback function that is executed when new events from a subscription are arrived.
 
 ```tsx
-useList({
+useInfiniteList({
     onLiveEvent: (event) => {
         console.log(event);
     },
@@ -292,15 +299,97 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 
 ## Return Values
 
-Returns an object with react-query's `useQuery` return values.
+Returns an object with react-query's `useInfiniteQuery` return values.
 
-[Refer to the `useQuery` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
+[Refer to the `useInfiniteQuery` documentation for more information &#8594](https://react-query.tanstack.com/reference/useInfiniteQuery)
+
+## FAQ
+
+### How to use cursor based pagination?
+
+Some APIs use the `cursor-pagination` method for its benefits. This method uses a `cursor` object to determine the next set of data. The cursor can be a number or a string and is passed to the API as a query parameter.
+
+**Preparing the data provider:**
+
+Consumes data from data provider `useInfiniteList` with `getList` method. First of all, we need to make the this method in the data provider convenient for this API. The `cursor` data is kept in `pagination` and should be set to `0` by default.
+
+```ts
+getList: async ({ resource, pagination }) => {
+    const { current } = pagination;
+    const { data } = await axios.get(
+        `https://api.fake-rest.refine.dev/${resource}?cursor=${current || 0}`,
+    );
+
+    return {
+        data: data[resource],
+        total: 0,
+    };
+},
+```
+
+:::tip
+As the `total` data is only needed in the `offset-pagination` method, define it as `0` here.
+:::
+
+After this process, we have successfully retrieved the first page data. Let's fill the `cursor` object for the next page.
+
+```ts
+getList: async ({ resource, pagination }) => {
+    const { current } = pagination;
+    const { data } = await axios.get(
+        `https://api.fake-rest.refine.dev/${resource}?cursor=${current || 0}`,
+    );
+
+    return {
+        data: data[resource],
+        total: 0,
+        // highlight-start
+        cursor: {
+            next: data.cursor.next,
+            prev: data.cursor.prev,
+        },
+        // highlight-end
+    };
+},
+```
+
+### How to override the `getNextPageParam` method?
+
+By default, `refine` expects you to return the `cursor` object, but is not required. This is because some APIs don't work that way. To fix this problem you need to override the `getNextPageParam` method and return the next `cursor`.
+
+```tsx
+import { useInfiniteList } from "@pankod/refine-core";
+
+const {
+    data,
+    error,
+    hasNextPage,
+    isLoading,
+    fetchNextPage,
+    isFetchingNextPage,
+} = useInfiniteList({
+    resource: "posts",
+    // highlight-start
+    queryOptions: {
+        getNextPageParam: (lastPage, allPages) => {
+            // return the last post's id
+            const { data } = lastPage;
+            const lastPost = data[data.length - 1];
+            return lastPost.id;
+        },
+    },
+    // highlight-end
+});
+```
+:::tip
+When you override this method, you can access the `lastPage` and `allPages`.
+:::
 
 ## API
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useList" 
+<PropsTable module="@pankod/refine-core/useInfiniteList" 
 successNotification-default='`false`'
 errorNotification-default='"Error (status code: `statusCode`)"'
 />
@@ -308,7 +397,7 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 ### Config Parameters
 
 ```ts
-interface UseListConfig {
+interface UseInfiniteListConfig {
     hasPagination?: boolean;
     pagination?: {
         current?: number;
@@ -335,6 +424,10 @@ interface UseListConfig {
 
 ### Return Values
 
-| Description                              | Type                                                                                                                                                 |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
+| Description                                      | Type                                                                                                                                                         |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Result of the `react-query`'s `useInfiniteQuery` | [`InfiniteQueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`](https://react-query.tanstack.com/reference/useInfiniteQuery) |
+
+## Example
+
+<CodeSandboxExample path="use-infinite-list" />
