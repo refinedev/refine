@@ -406,7 +406,7 @@ return (
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/useSelect"  />
+<PropsTable module="@pankod/refine-mantine/useSelect"  />
 
 ### Return values
 
