@@ -8,6 +8,7 @@ import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 import OnSearchLivePreview from "./on-search-live-preview.md";
 import SortLivePreview from "./sort-live-preview.md";
 import DefaultValueLivePreview from "./default-value-live-preview.md";
+import CrudLivePreview from "./crud-live-preview.md";
 
 `useSelect` hook allows you to manage Mantine [`<Select>`](https://mantine.dev/core/select/) component when records in a resource needs to be used as select options.
 
@@ -397,6 +398,9 @@ return (
     <Select options={options} />
 );
 ```
+### How do I use it with `CRUD` components and `useForm`?
+
+<CrudLivePreview />
 
 ## API Reference
 
