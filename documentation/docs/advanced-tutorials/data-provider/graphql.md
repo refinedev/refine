@@ -29,7 +29,7 @@ Hooks and components that support `MetaDataQuery`:
 | [`useList` &#8594](/docs/api-reference/core/hooks/data/useList/)             | [`useSimpleList` &#8594](/api-reference/antd/hooks/list/useSimpleList.md)        |                                                                             |
 | [`useOne` &#8594](/docs/api-reference/core/hooks/data/useOne/)               | [`useShow` &#8594](/api-reference/core/hooks/show/useShow.md)                    |                                                                             |
 | [`useMany` &#8594](/docs/api-reference/core/hooks/data/useMany/)             | [`useExport` &#8594](/api-reference/core/hooks/import-export/useExport.md)       |                                                                             |
-| [`useCustom` &#8594](/api-reference/core/hooks/data/useCustom.md)            | [`useCheckboxGroup` &#8594](/api-reference/antd/hooks/field/useCheckboxGroup.md) |                                                                             |
+| [`useCustom` &#8594](/docs/api-reference/core/hooks/data/useCustom/)            | [`useCheckboxGroup` &#8594](/api-reference/antd/hooks/field/useCheckboxGroup.md) |                                                                             |
 |                                                                              | [`useSelect` &#8594](/docs/api-reference/core/hooks/useSelect/)                  |                                                                             |
 |                                                                              | [`useRadioGroup` &#8594](/api-reference/antd/hooks/field/useRadioGroup.md)       |                                                                             |
 
