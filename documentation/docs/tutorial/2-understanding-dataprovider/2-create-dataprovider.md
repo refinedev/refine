@@ -704,7 +704,7 @@ const { data, isLoading } = useCustom({
 });
 ```
 
-> [Refer to the useCustom documentation for more information. &#8594](../../api-reference/core/hooks/data/useCustom.md)
+> [Refer to the useCustom documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useCustom/)
 
 ## Bulk Actions
 
@@ -820,7 +820,7 @@ deleteMany: async ({ resource, ids }) => {
 | ids       | [[BaseKey](../../api-reference/core/interfaces.md#basekey)] |         |
 | variables | `TVariables[]`                                              | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useDeleteMany`](../../api-reference/core/hooks/data/useDeleteMany.md) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useDeleteMany`](/docs/api-reference/core/hooks/data/useDeleteMany/) to type `variables`
 
 <br/>
 
@@ -837,7 +837,7 @@ mutate({
 });
 ```
 
-> [Refer to the useDeleteMany documentation for more information. &#8594](../../api-reference/core/hooks/data/useDeleteMany.md)
+> [Refer to the useDeleteMany documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useDeleteMany/)
 
 ### updateMany
 

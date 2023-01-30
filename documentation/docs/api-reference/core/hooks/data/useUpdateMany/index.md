@@ -46,14 +46,6 @@ When `useUpdateMany` mutation runs successfully, by default it will invalidate t
 
 [Refer to the query invalidation documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/guides/query-invalidation)
 
-## Audit Logs
-
-> This feature is only available if you use a [Audit Log Provider](/docs/api-reference/core/providers/audit-log-provider/).
-
-When `useUpdateMany` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data`, `previousData` etc. It is useful when you want to log the changes to the database.
-
-[Refer to the `auditLogProvider` documentation for more information &#8594](/docs/api-reference/core/providers/audit-log-provider/)
-
 ## Properties
 
 ### `mutationOptions`
@@ -148,7 +140,9 @@ Each mode corresponds to a different type of user experience.
 [Refer to the mutation mode documentation for more information &#8594](/docs/advanced-tutorials/mutation-mode)
 
 ```tsx
-useUpdateMany({
+const { mutate } = useUpdateMany();
+
+mutate({
     mutationMode: "undoable",
 });
 ```
@@ -158,7 +152,9 @@ useUpdateMany({
 When `mutationMode` is set to `undoable`, `undoableTimeout` is used to determine duration to wait before executing the mutation. Default value is `5000` milliseconds.
 
 ```tsx
-useUpdateMany({
+const { mutate } = useUpdateMany();
+
+mutate({
     mutationMode: "undoable",
     undoableTimeout: 10000,
 });
@@ -169,7 +165,9 @@ useUpdateMany({
 When `mutationMode` is set to `undoable`, `onCancel` is used to determine what to do when the user cancels the mutation.
 
 ```tsx
-useUpdateMany({
+const { mutate } = useUpdateMany();
+
+mutate({
     mutationMode: "undoable",
     onCancel: (cancelMutation) => {
         cancelMutation();
