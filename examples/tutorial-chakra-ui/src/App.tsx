@@ -1,39 +1,45 @@
+import React from "react";
+
 import { Refine } from "@pankod/refine-core";
 import {
+    notificationProvider,
     ChakraProvider,
-    ErrorComponent,
-    Layout,
     refineTheme,
     ReadyPage,
-    notificationProvider,
+    ErrorComponent,
+    Layout,
 } from "@pankod/refine-chakra-ui";
+
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "./pages";
+import { ProductList } from "pages/products/list";
+import { ProductCreate } from "pages/products/create";
+import { ProductEdit } from "pages/products/edit";
+import { ProductShow } from "pages/products/show";
 
-const App: React.FC = () => {
+function App() {
     return (
         <ChakraProvider theme={refineTheme}>
             <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
+                notificationProvider={notificationProvider()}
                 ReadyPage={ReadyPage}
                 catchAll={<ErrorComponent />}
+                Layout={Layout}
+                routerProvider={routerProvider}
                 resources={[
                     {
-                        name: "posts",
-                        list: PostList,
-                        show: PostShow,
-                        create: PostCreate,
-                        edit: PostEdit,
+                        name: "products",
+                        list: ProductList,
+                        show: ProductShow,
+                        create: ProductCreate,
+                        edit: ProductEdit,
                     },
                 ]}
             />
         </ChakraProvider>
     );
-};
+}
 
 export default App;

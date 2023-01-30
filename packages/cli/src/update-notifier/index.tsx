@@ -5,6 +5,7 @@ import { getUpdateWarningTable } from "@components/update-warning-table";
 import { RefinePackageInstalledVersionData } from "@definitions/package";
 import { getInstalledRefinePackages } from "@utils/package";
 import { ENV } from "@utils/env";
+import { stringToBase64 } from "@utils/encode";
 
 const STORE_NAME = "refine-update-notifier";
 
@@ -133,7 +134,7 @@ export const generateKeyFromPackages = async () => {
     const currentVersionsWithName = packages.map(
         (p) => `${p.name}@${p.version}`,
     );
-    const hash = btoa(currentVersionsWithName.toString());
+    const hash = stringToBase64(currentVersionsWithName.toString());
 
     return hash;
 };

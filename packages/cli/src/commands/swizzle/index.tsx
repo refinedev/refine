@@ -146,6 +146,8 @@ const action = async (_options: OptionValues) => {
         swizzle: { items, transform },
     } = selectedPackage.config;
 
+    let selectedComponent: SwizzleFile | undefined = undefined;
+
     if (items.length === 0) {
         console.log(
             `No swizzle items found for ${chalk.bold(
@@ -153,22 +155,34 @@ const action = async (_options: OptionValues) => {
             )}`,
         );
         return;
+    } else if (items.length === 1) {
+        selectedComponent = items[0];
+    } else if (items.length > 1) {
+        const response = await inquirer.prompt<{
+            selectedComponent: SwizzleFile;
+        }>([
+            {
+                type: "list",
+                pageSize: 10,
+                name: "selectedComponent",
+                message: "Which component do you want to swizzle?",
+                emptyText: "No components found.",
+                choices: getAutocompleteSource(
+                    items.sort((a, b) => a.group.localeCompare(b.group)),
+                )({}, ""),
+            },
+        ]);
+        selectedComponent = response.selectedComponent;
     }
 
-    const { selectedComponent } = await inquirer.prompt<{
-        selectedComponent: SwizzleFile;
-    }>([
-        {
-            type: "list",
-            pageSize: 10,
-            name: "selectedComponent",
-            message: "Which component do you want to swizzle?",
-            emptyText: "No components found.",
-            choices: getAutocompleteSource(
-                items.sort((a, b) => a.group.localeCompare(b.group)),
-            )({}, ""),
-        },
-    ]);
+    if (!selectedComponent) {
+        console.log(
+            `No swizzle items selected for ${chalk.bold(
+                selectedPackage.config?.name ?? selectedPackage.name,
+            )}`,
+        );
+        return;
+    }
 
     // this will be prepended to `destPath` values
     const projectPathPrefix = getPathPrefix();

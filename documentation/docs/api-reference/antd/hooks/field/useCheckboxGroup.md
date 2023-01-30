@@ -58,7 +58,7 @@ interface ITag {
 <br/>
 
 All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.Group>` component.
-`useCheckboxGroup` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](/api-reference/core/hooks/data/useList.md)
+`useCheckboxGroup` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](/docs/api-reference/core/hooks/data/useList)
 
 <div class="img-container">
     <div class="window">
@@ -211,4 +211,4 @@ const { selectProps } = useSelect({
 
 ## Example
 
-<StackblitzExample path="field-antd-use-checkbox-group" />
+<CodeSandboxExample path="field-antd-use-checkbox-group" />

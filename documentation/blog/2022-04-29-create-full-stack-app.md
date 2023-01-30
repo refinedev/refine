@@ -43,7 +43,7 @@ With the Data Provider feature it provides, you don't need to think about your A
 
 📦 Out-of-the-box : Routing, networking, authentication, state management, i18n and UI.
 
-🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, GraphQL, NestJs CRUD, Airtable, Strapi, Strapi v4, Strapi GraphQL, Supabase, Hasura, Nhost, Appwrite, Firebase, Directus and Altogic.
+🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, GraphQL, NestJs CRUD, Airtable, Strapi, Strapi v4, Strapi GraphQL, Supabase, Hasura, Nhost, Appwrite, Firebase, and Directus.
 
 📝 Native Typescript Core : You can always opt out for plain JavaScript.
 
@@ -51,7 +51,7 @@ With the Data Provider feature it provides, you don't need to think about your A
 
 📝 Boilerplate-free Code : Keeps your codebase clean and readable.
 
-To learn more about **refine** features, we recommend that you read the [Overview](/docs/getting-started/overview/) document.
+To learn more about **refine** features, we recommend that you read the [Overview](/docs/) document.
 
 ### Benchmark
 
@@ -74,7 +74,6 @@ As we mentioned above, you can easily handle any API and GraphQL queries without
 **refine** includes many out-of-the-box data providers to use in your projects like:
 
 -   [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable)
--   [Altogic](https://github.com/refinedev/refine/tree/master/packages/altogic)
 -   [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite)
 -   [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
 -   [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
@@ -299,7 +298,7 @@ As you have seen, we have listed and paginated the titles coming from an API by 
 -   Dynamic Multi-level Menus
 -   All features of **refine** are available as **open source**.
 
-[For more information about all **refine** features and **refine** →](/docs/getting-started/overview/)
+[For more information about all **refine** features and **refine** →](/docs/)
 
 [Comparison | Refine vs React-Admin vs AdminBro vs Retool →](/docs/comparison/)
 

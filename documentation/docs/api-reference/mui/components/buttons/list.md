@@ -13,12 +13,13 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-```tsx title="src/pages/posts/show.tsx"
+```tsx live url=http://localhost:3000/posts previewHeight=340px
+// visible-block-start
 import { useShow } from "@pankod/refine-core";
 // highlight-next-line
 import { ListButton, Show, Typography, Stack } from "@pankod/refine-mui";
 
-export const ShowPage: React.FC = () => {
+const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
@@ -26,13 +27,11 @@ export const ShowPage: React.FC = () => {
     return (
         <Show
             isLoading={isLoading}
-            cardHeaderProps={{
-                action: (
+            headerButtons={(
                     // highlight-start
                     <ListButton />
                     // highlight-end
-                ),
-            }}
+            )}
         >
             <Stack gap="10px">
                 <Typography fontWeight="bold">Id</Typography>
@@ -48,19 +47,21 @@ interface IPost {
     id: number;
     title: string;
 }
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/posts/show/123"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => <RefineMui.List><p>Rest of the page here...</p></RefineMui.List>,
+                show: PostShow,
+            },
+        ]}
+    />,
+);
 ```
-
-Will look like this:
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/list/list-mui.png" alt="Default list button" />
-</div>
-<br/>
 
 :::note
 The button text is defined automatically by **refine** based on _resource_ object name property.
@@ -72,12 +73,34 @@ The button text is defined automatically by **refine** based on _resource_ objec
 
 Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
 
-```tsx
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
 import { ListButton } from "@pankod/refine-mui";
 
-export const MyListComponent = () => {
-    return <ListButton resourceNameOrRouteName="categories" />;
+const MyListComponent = () => {
+    return (
+        <ListButton resourceNameOrRouteName="categories" recordItemId="2" />
+    );
 };
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+            },
+            {
+                name: "categories",
+                list: () => <RefineMui.List><p>Rest of the page here...</p></RefineMui.List>,
+            },
+        ]}
+        DashboardPage={MyListComponent}
+    />,
+);
 ```
 
 Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
@@ -86,12 +109,36 @@ Clicking the button will trigger the `list` method of [`useNavigation`](/api-ref
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
 import { ListButton } from "@pankod/refine-mui";
 
-export const MyListComponent = () => {
-    return <ListButton hideText />;
+const MyListComponent = () => {
+    return (
+        <ListButton
+            resourceNameOrRouteName="posts"
+            // highlight-next-line
+            hideText
+        />
+    );
 };
+
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => <RefineMui.List><p>Rest of the page here...</p></RefineMui.List>,
+            },
+        ]}
+        DashboardPage={MyListComponent}
+    />,
+);
 ```
 
 ### `accessControl`

@@ -3,7 +3,7 @@ id: inferencer
 title: Inferencer
 ---
 
-You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `MantineInferencer`, `MantineInferencer`, `MantineInferencer` and `MantineInferencer` components.
+You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `MantineListInferencer`, `MantineShowInferencer`, `MantineEditInferencer`, `MantineCreateInferencer` and `MantineInferencer` (which combines all in one place) components.
 
 ## Usage
 
@@ -349,6 +349,6 @@ render(<App />);
 
 ## Example
 
-Below you'll find a Live StackBlitz Example displaying a fully setup `Refine` app with `@pankod/refine-inferencer/mantine` components.
+Below you'll find a Live CodeSandbox Example displaying a fully setup `Refine` app with `@pankod/refine-inferencer/mantine` components.
 
-<StackblitzExample path="inferencer-mantine" />
+<CodeSandboxExample path="inferencer-mantine" />

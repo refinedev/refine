@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, ComponentType } from "react";
 import { UseQueryResult } from "@tanstack/react-query";
 import { ILogData } from "src/interfaces";
 
@@ -43,10 +43,10 @@ export interface IResourceComponentsProps<
     logQueryResult?: UseQueryResult<TLogQueryResult>;
 }
 export interface IResourceComponents {
-    list?: React.FunctionComponent<IResourceComponentsProps<any, any>>;
-    create?: React.FunctionComponent<IResourceComponentsProps<any, any>>;
-    edit?: React.FunctionComponent<IResourceComponentsProps<any, any>>;
-    show?: React.FunctionComponent<IResourceComponentsProps<any, any>>;
+    list?: ComponentType<IResourceComponentsProps<any, any>>;
+    create?: ComponentType<IResourceComponentsProps<any, any>>;
+    edit?: ComponentType<IResourceComponentsProps<any, any>>;
+    show?: ComponentType<IResourceComponentsProps<any, any>>;
 }
 
 export interface IResourceItem extends IResourceComponents {

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import {
     useMutation,
+    UseMutationOptions,
     UseMutationResult,
     useQueryClient,
 } from "@tanstack/react-query";
@@ -29,6 +30,25 @@ export type UseLogReturnType<TLogData, TLogRenameData> = {
     >;
 };
 
+export type UseLogMutationProps<
+    TLogData,
+    TLogRenameData extends LogRenameData = LogRenameData,
+> = {
+    logMutationOptions?: Omit<
+        UseMutationOptions<TLogData, Error, LogParams, unknown>,
+        "mutationFn"
+    >;
+    renameMutationOptions?: Omit<
+        UseMutationOptions<
+            TLogRenameData,
+            Error,
+            { id: BaseKey; name: string },
+            unknown
+        >,
+        "mutationFn" | "onSuccess"
+    >;
+};
+
 /**
  * useLog is used to `create` a new and `rename` the existing audit log.
  * @see {@link https://refine.dev/docs/core/hooks/audit-log/useLog} for more details.
@@ -37,7 +57,13 @@ export type UseLogReturnType<TLogData, TLogRenameData> = {
 export const useLog = <
     TLogData,
     TLogRenameData extends LogRenameData = LogRenameData,
->(): UseLogReturnType<TLogData, TLogRenameData> => {
+>({
+    logMutationOptions,
+    renameMutationOptions,
+}: UseLogMutationProps<TLogData, TLogRenameData> = {}): UseLogReturnType<
+    TLogData,
+    TLogRenameData
+> => {
     const queryClient = useQueryClient();
     const auditLogContext = useContext(AuditLogContext);
 
@@ -73,6 +99,7 @@ export const useLog = <
                 author: identityData ?? authorData?.data,
             });
         },
+        logMutationOptions,
     );
 
     const rename = useMutation<
@@ -91,6 +118,7 @@ export const useLog = <
                     queryClient.invalidateQueries(queryKey.logList());
                 }
             },
+            ...renameMutationOptions,
         },
     );
 

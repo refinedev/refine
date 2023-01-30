@@ -11,4 +11,4 @@ Connect your [Appwrite](https://appwrite.io/) database with [**refine** Appwrite
 **Password**: `demodemo`
 :::
 
-<StackblitzExample path="data-provider-appwrite" />
+<CodeSandboxExample path="data-provider-appwrite" />

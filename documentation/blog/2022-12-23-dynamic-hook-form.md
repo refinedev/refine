@@ -38,7 +38,7 @@ Here are some of the benefits of using refine:
 - Open source: refine has a strong community of maintainers and contributors.
 - Workflow independence: refine prevents vendors lock-in, thus giving you and your team complete control over your project.
 
-Refer to the [documentation](https://refine.dev/docs/getting-started/overview/) to learn more about refine.
+Refer to the [documentation](https://refine.dev/docs/) to learn more about refine.
 
 ## What is React hook form
 
@@ -1081,8 +1081,8 @@ In this article, we introduced refine and React hook forms and looked at their b
 We also looked at how to set up a dynamic form using React hook form’s `useFieldArray` hook and how to fix the quirks that come with using the tool.
 
 
-## Live StackBlitz Example
+## Live CodeSandbox Example
 
-<StackblitzExample path="blog-react-hook-dynamic-form" />
+<CodeSandboxExample path="blog-react-hook-dynamic-form" />
 
 ---

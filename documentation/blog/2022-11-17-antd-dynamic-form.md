@@ -1120,6 +1120,6 @@ We also looked at creating a dynamic form that renders and deletes fields on dem
 
 ## Example
 
-<StackblitzExample path="blog-refine-antd-dynamic-form" />
+<CodeSandboxExample path="blog-refine-antd-dynamic-form" />
 
 ---

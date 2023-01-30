@@ -1,7 +1,6 @@
 import { IntegrationsType } from "../types/integrations";
 import {
     Airtable,
-    Altogic,
     Antd,
     Appwrite,
     Directus,
@@ -130,14 +129,6 @@ export const integrations: IntegrationsType = {
             description:
                 "<strong>Medusa</strong> connector for your e-commerce projects.",
             url: "https://www.npmjs.com/package/@pankod/refine-medusa",
-            status: "stable",
-        },
-        {
-            name: "Altogic Data Provider",
-            icon: Altogic,
-            description:
-                "Connect backends created with <strong>Altogic</strong>",
-            url: "https://www.npmjs.com/package/@pankod/refine-altogic",
             status: "stable",
         },
         {

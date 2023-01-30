@@ -76,8 +76,8 @@ You can pass a `reason` along with `can`. It will be accessible using `useCan`. 
 :::tip
 You can find access control examples made with **refine**
 
--   **Casbin** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-casbin) - [Demo](https://stackblitz.com/github/refinedev/refine/tree/master/examples/access-control-casbin/?preset=node)
--   **Cerbos** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-cerbos) - [Demo](https://stackblitz.com/github/refinedev/refine/tree/master/examples/access-control-cerbos/?preset=node)
+-   **Casbin** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-casbin) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/access-control-casbin/?view=preview&theme=dark&codemirror=1)
+-   **Cerbos** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-cerbos) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/access-control-cerbos/?view=preview&theme=dark&codemirror=1)
 
 :::
 
@@ -192,7 +192,7 @@ These buttons will be disabled if access control returns `{ can: false }`
 
 ## Example
 
-<StackblitzExample path="access-control-casbin" />
+<CodeSandboxExample path="access-control-casbin" />
 
 [nextjsrouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
 [reactrouter]: https://www.npmjs.com/package/@pankod/refine-react-router

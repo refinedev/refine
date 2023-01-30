@@ -9,4 +9,4 @@ The **refine** `useCheckboxGroup` hook allows you to manage your data in the for
 
 [Refer to the **refine** useCheckboxGroup hook documentation for more information. →](/docs/api-reference/antd/hooks/field/useCheckboxGroup/)
 
-<StackblitzExample path="field-antd-use-checkbox-group" />
+<CodeSandboxExample path="field-antd-use-checkbox-group" />

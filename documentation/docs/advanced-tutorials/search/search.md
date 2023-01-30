@@ -94,7 +94,7 @@ export default App;
 
 Now let's get our [`<AutoComplete>`](https://ant.design/components/auto-complete) input ready to search. So, let's fetch our posts according to the value entered in our input.
 
-In order to fetch more than one record, we will use the [`useList`](/api-reference/core/hooks/data/useList.md) data hook, and we will filter and fetch this data according to the search value.
+In order to fetch more than one record, we will use the [`useList`](/docs/api-reference/core/hooks/data/useList) data hook, and we will filter and fetch this data according to the search value.
 
 Before we start, let's create the interfaces of our [`<AutoComplete>`](https://ant.design/components/auto-complete)'s `options` property and the post source.
 
@@ -215,7 +215,7 @@ export const Header: React.FC = () => {
 };
 ```
 
-We created states to dynamically manage the `value` and `options` properties of the [`<AutoComplete>`](https://ant.design/components/auto-complete) component. The [`useList`](/api-reference/core/hooks/data/useList.md) hook is triggered whenever the value changes. Likewise, the filter used to fetch the data is updated each time the value changes.
+We created states to dynamically manage the `value` and `options` properties of the [`<AutoComplete>`](https://ant.design/components/auto-complete) component. The [`useList`](/docs/api-reference/core/hooks/data/useList) hook is triggered whenever the value changes. Likewise, the filter used to fetch the data is updated each time the value changes.
 
 <br />
 
@@ -300,4 +300,4 @@ By doing the same implementation on your other resources, you can search more th
 
 ## Example
 
-<StackblitzExample path="search" />
+<CodeSandboxExample path="search" />

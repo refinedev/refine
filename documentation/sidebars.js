@@ -4,29 +4,13 @@ module.exports = {
         {
             type: "category",
             label: "Getting Started",
-            link: {
-                type: "generated-index",
-                title: "Getting Started",
-                slug: "/getting-started",
-            },
             items: ["getting-started/overview", "getting-started/quickstart"],
             collapsed: false,
         },
         {
-            type: "category",
-            label: "Basic Tutorials",
-            link: {
-                type: "doc",
-                id: "tutorials",
-            },
-            items: [
-                "tutorials/ant-design-tutorial",
-                "tutorials/chakra-ui-tutorial",
-                "tutorials/mantine-tutorial",
-                "tutorials/material-ui-tutorial",
-                "tutorials/headless-tutorial",
-            ],
-            collapsed: true,
+            type: "doc",
+            id: "tutorial/introduction/index",
+            label: "Tutorial",
         },
         {
             type: "category",
@@ -107,25 +91,26 @@ module.exports = {
                                     label: "Data",
                                     items: [
                                         "api-reference/core/hooks/data/useApiUrl",
-                                        "api-reference/core/hooks/data/useCreate",
-                                        "api-reference/core/hooks/data/useCreateMany",
+                                        "api-reference/core/hooks/data/useCreate/index",
+                                        "api-reference/core/hooks/data/useCreateMany/index",
                                         "api-reference/core/hooks/data/useCustom",
                                         "api-reference/core/hooks/data/useCustomMutation",
                                         "api-reference/core/hooks/data/useDataProvider",
-                                        "api-reference/core/hooks/data/useDelete",
+                                        "api-reference/core/hooks/data/useDelete/index",
                                         "api-reference/core/hooks/data/useDeleteMany",
-                                        "api-reference/core/hooks/data/useList",
-                                        "api-reference/core/hooks/data/useMany",
-                                        "api-reference/core/hooks/data/useOne",
-                                        "api-reference/core/hooks/data/useUpdate",
-                                        "api-reference/core/hooks/data/useUpdateMany",
+                                        "api-reference/core/hooks/data/useList/index",
+                                        "api-reference/core/hooks/data/useInfiniteList",
+                                        "api-reference/core/hooks/data/useMany/index",
+                                        "api-reference/core/hooks/data/useOne/index",
+                                        "api-reference/core/hooks/data/useUpdate/index",
+                                        "api-reference/core/hooks/data/useUpdateMany/index",
                                     ],
                                 },
                                 {
                                     type: "category",
                                     label: "Field",
                                     items: [
-                                        "api-reference/core/hooks/useSelect",
+                                        "api-reference/core/hooks/useSelect/index",
                                     ],
                                 },
                                 {
@@ -225,6 +210,7 @@ module.exports = {
                                 "api-reference/core/components/auth-page",
                                 "api-reference/core/components/refine-config",
                                 "api-reference/core/components/layout-wrapper",
+                                "api-reference/core/components/inferencer",
                                 {
                                     type: "category",
                                     label: "Authorization",
@@ -688,6 +674,7 @@ module.exports = {
                     items: [
                         "examples/auth-provider/auth0",
                         "examples/auth-provider/google-auth",
+                        "examples/auth-provider/keycloak",
                         "examples/auth-provider/otpLogin",
                     ],
                 },
@@ -699,6 +686,7 @@ module.exports = {
                     items: [
                         "examples/core/useImport",
                         "examples/core/useModal",
+                        "examples/core/useSelect",
                     ],
                 },
                 {
@@ -719,7 +707,6 @@ module.exports = {
                     label: "Data Provider",
                     items: [
                         "examples/data-provider/airtable",
-                        "examples/data-provider/altogic",
                         "examples/data-provider/appwrite",
                         "examples/data-provider/directus",
                         "examples/data-provider/elide",
@@ -844,6 +831,7 @@ module.exports = {
                     label: "Notification Provider",
                     items: ["examples/notification-provider/react-toastify"],
                 },
+                "examples/persistQuery",
                 /*                 {
                     type: "category",
                     label: "Remix",
@@ -891,6 +879,7 @@ module.exports = {
                             label: "Material UI",
                             items: [
                                 "examples/table/mui/advanced",
+                                "examples/table/mui/cursor-pagination",
                                 "examples/table/mui/filter",
                                 "examples/table/mui/useDataGrid",
                                 "examples/table/mui/useDeleteMany",

@@ -139,7 +139,7 @@ The use of `useAutocomplete` with [`useForm`](/packages/documentation/react-hook
 <br/>
 
 :::info
-By default, refine does the search using the [`useList`](/api-reference/core/hooks/data/useDelete.md) hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://mui.com/material-ui/react-autocomplete/#search-as-you-type) documentation.
+By default, refine does the search using the [`useList`](/docs/api-reference/core/hooks/data/useDelete/) hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://mui.com/material-ui/react-autocomplete/#search-as-you-type) documentation.
 :::
 
 ## Options
@@ -166,13 +166,13 @@ const { autocompleteProps } = useAutocomplete({
 });
 ```
 
-Adds extra `options` to [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/#main-content) component. It uses [`useMany`](/api-reference/core/hooks/data/useMany.md) so `defaultValue` can be an array of strings like follows.
+Adds extra `options` to [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/#main-content) component. It uses [`useMany`](/docs/api-reference/core/hooks/data/useMany/) so `defaultValue` can be an array of strings like follows.
 
 ```ts
 defaultValue: ["1", "2"],
 ```
 
-[Refer to the `useMany` documentation for detailed usage. &#8594](/api-reference/core/hooks/data/useMany.md)
+[Refer to the `useMany` documentation for detailed usage. &#8594](/docs/api-reference/core/hooks/data/useMany/)
 
 :::tip
 Can use `defaultValue` property when edit a record in `<Edit>` component.
@@ -265,7 +265,7 @@ const { autocompleteProps } = useAutocomplete({
 
 ### `defaultValueQueryOptions`
 
-When the `defaultValue` property is given, the [`useMany`](/api-reference/core/hooks/data/useMany.md) data hook is called for the selected records. With this property, you can change the options of this query. If not given, the values given in `queryOptions` will be used.
+When the `defaultValue` property is given, the [`useMany`](/docs/api-reference/core/hooks/data/useMany/) data hook is called for the selected records. With this property, you can change the options of this query. If not given, the values given in `queryOptions` will be used.
 
 ```tsx
 const { autocompleteProps } = useAutocomplete({
@@ -311,4 +311,4 @@ const { autocompleteProps } = useAutocomplete({
 
 ## Example
 
-<StackblitzExample path="field-antd-use-select-mui" />
+<CodeSandboxExample path="field-mui-use-autocomplete" />

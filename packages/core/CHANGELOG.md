@@ -1,5 +1,189 @@
 # @pankod/refine-core
 
+## 3.99.2
+
+### Patch Changes
+
+-   [#3455](https://github.com/refinedev/refine/pull/3455) [`0405eb18e88`](https://github.com/refinedev/refine/commit/0405eb18e88214722a86f2cd0d5321248666e623) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fix error translation key on `useInfiniteList` hook.
+
+## 3.99.1
+
+### Patch Changes
+
+-   [#3455](https://github.com/refinedev/refine/pull/3455) [`0405eb18e88`](https://github.com/refinedev/refine/commit/0405eb18e88214722a86f2cd0d5321248666e623) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fix error translation key on `useInfiniteList` hook.
+
+## 3.99.0
+
+### Minor Changes
+
+-   [`0767d7a07a7`](https://github.com/refinedev/refine/commit/0767d7a07a71366946e54486ae3869499337433e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Added the `useInfiniteList` hook 🥳. This hook is a modified version of react-query's [`useInfiniteQuery`](https://tanstack.com/query/latest/docs/react/guides/infinite-queries) used for retrieving items from a resource with pagination, sort, and filter configurations.
+
+    [Refer to `useInfiniteList` docs for further information. →](https://refine.dev/docs/api-reference/core/hooks/data/useInfiniteList/)
+
+## 3.98.0
+
+### Minor Changes
+
+-   [`0767d7a07a7`](https://github.com/refinedev/refine/commit/0767d7a07a71366946e54486ae3869499337433e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Added the `useInfiniteList` hook 🥳. This hook is a modified version of react-query's [`useInfiniteQuery`](https://tanstack.com/query/latest/docs/react/guides/infinite-queries) used for retrieving items from a resource with pagination, sort, and filter configurations.
+
+    [Refer to `useInfiniteList` docs for further information. →](https://refine.dev/docs/api-reference/core/hooks/data/useInfiniteList/)
+
+## 3.97.0
+
+### Minor Changes
+
+-   [#3442](https://github.com/refinedev/refine/pull/3442) [`8f2954611fa`](https://github.com/refinedev/refine/commit/8f2954611fa1dd1ebcc7519c416c6ef2554ca395) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added swizzle support for `@pankod/refine-core` package.
+
+    Swizzleable components:
+
+    -   `Authenticated`
+    -   `CanAccess`
+    -   `ErrorPage`
+    -   Authentication Pages
+        -   `Login`
+        -   `Logout`
+        -   `Register`
+        -   `ForgotPassword`
+        -   `UpdatePassword`
+
+### Patch Changes
+
+-   [#3436](https://github.com/refinedev/refine/pull/3436) [`ea74f3a8408`](https://github.com/refinedev/refine/commit/ea74f3a8408bb53097f0e4a6b3b733d515b2a4d3) Thanks [@sevkioruc](https://github.com/sevkioruc)! - Fix useList, useCustom and useCustomMutation hooks i18n issue in the error messages.
+
+-   [#3440](https://github.com/refinedev/refine/pull/3440) [`96d93eb2d71`](https://github.com/refinedev/refine/commit/96d93eb2d714d2559faf25c7eab5b4db31f1bf4c) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Made the auth provider's `usePermissions` method optional.
+
+## 3.96.0
+
+### Minor Changes
+
+-   [#3442](https://github.com/refinedev/refine/pull/3442) [`8f2954611fa`](https://github.com/refinedev/refine/commit/8f2954611fa1dd1ebcc7519c416c6ef2554ca395) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added swizzle support for `@pankod/refine-core` package.
+
+    Swizzleable components:
+
+    -   `Authenticated`
+    -   `CanAccess`
+    -   `ErrorPage`
+    -   Authentication Pages
+        -   `Login`
+        -   `Logout`
+        -   `Register`
+        -   `ForgotPassword`
+        -   `UpdatePassword`
+
+### Patch Changes
+
+-   [#3436](https://github.com/refinedev/refine/pull/3436) [`ea74f3a8408`](https://github.com/refinedev/refine/commit/ea74f3a8408bb53097f0e4a6b3b733d515b2a4d3) Thanks [@sevkioruc](https://github.com/sevkioruc)! - Fix useList, useCustom and useCustomMutation hooks i18n issue in the error messages.
+
+-   [#3440](https://github.com/refinedev/refine/pull/3440) [`96d93eb2d71`](https://github.com/refinedev/refine/commit/96d93eb2d714d2559faf25c7eab5b4db31f1bf4c) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Made the auth provider's `usePermissions` method optional.
+
+## 3.95.3
+
+### Patch Changes
+
+-   [#3382](https://github.com/refinedev/refine/pull/3382) [`6604586b030`](https://github.com/refinedev/refine/commit/6604586b030576c4b582a675de97678dc63dbb10) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Fixed: The link in the jsDOC of the `liveMode` replaced with the correct link.
+
+    ```diff
+    - * @type  [`"auto" | "manual" | "off"`](/docs/api-reference/core/interfaceReferences/#crudsorting)
+    + * @type  [`"auto" | "manual" | "off"`](/docs/api-reference/core/providers/live-provider/#livemode)
+    ```
+
+## 3.95.2
+
+### Patch Changes
+
+-   [#3382](https://github.com/refinedev/refine/pull/3382) [`6604586b030`](https://github.com/refinedev/refine/commit/6604586b030576c4b582a675de97678dc63dbb10) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Fixed: The link in the jsDOC of the `liveMode` replaced with the correct link.
+
+    ```diff
+    - * @type  [`"auto" | "manual" | "off"`](/docs/api-reference/core/interfaceReferences/#crudsorting)
+    + * @type  [`"auto" | "manual" | "off"`](/docs/api-reference/core/providers/live-provider/#livemode)
+    ```
+
+## 3.95.1
+
+### Patch Changes
+
+-   [#3399](https://github.com/refinedev/refine/pull/3399) [`22b44a857a8`](https://github.com/refinedev/refine/commit/22b44a857a8ede3473965ab6baff70fc8ae31332) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fix `useTable` hook error return type.
+
+## 3.95.0
+
+### Minor Changes
+
+-   [`22b44a857a8`](https://github.com/refinedev/refine/commit/22b44a857a8ede3473965ab6baff70fc8ae31332) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fix `useTable` hook error return type.
+
+## 3.94.2
+
+### Patch Changes
+
+-   [#3364](https://github.com/refinedev/refine/pull/3364) [`98a1fbec65a`](https://github.com/refinedev/refine/commit/98a1fbec65abd38da9d6081e04c23b5fe4174acd) Thanks [@aliemir](https://github.com/aliemir)! - Changed `IResourceComponents` from `IResourceContext` to use `React.ComponentType` rather than `React.FunctionComponent` to make it compatible with other types and interfaces.
+
+-   [#3356](https://github.com/refinedev/refine/pull/3356) [`310ebd05990`](https://github.com/refinedev/refine/commit/310ebd05990dd629e64d0a2afcd2b371fe42440f) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed checkError hook is not called in onError of useCustomMutation
+
+## 3.94.1
+
+### Patch Changes
+
+-   [#3364](https://github.com/refinedev/refine/pull/3364) [`98a1fbec65a`](https://github.com/refinedev/refine/commit/98a1fbec65abd38da9d6081e04c23b5fe4174acd) Thanks [@aliemir](https://github.com/aliemir)! - Changed `IResourceComponents` from `IResourceContext` to use `React.ComponentType` rather than `React.FunctionComponent` to make it compatible with other types and interfaces.
+
+-   [#3356](https://github.com/refinedev/refine/pull/3356) [`310ebd05990`](https://github.com/refinedev/refine/commit/310ebd05990dd629e64d0a2afcd2b371fe42440f) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed checkError hook is not called in onError of useCustomMutation
+
+## 3.94.0
+
+### Minor Changes
+
+-   [#3335](https://github.com/refinedev/refine/pull/3335) [`ce6acf2b3d4`](https://github.com/refinedev/refine/commit/ce6acf2b3d4c181a87cbdb6c1264fd6e59a504f5) Thanks [@omeraplak](https://github.com/omeraplak)! - feat: `useResource` hook can now also return the current `action`
+
+## 3.93.0
+
+### Minor Changes
+
+-   [#3335](https://github.com/refinedev/refine/pull/3335) [`ce6acf2b3d4`](https://github.com/refinedev/refine/commit/ce6acf2b3d4c181a87cbdb6c1264fd6e59a504f5) Thanks [@omeraplak](https://github.com/omeraplak)! - feat: `useResource` hook can now also return the current `action`
+
+## 3.92.0
+
+### Minor Changes
+
+-   [#3324](https://github.com/refinedev/refine/pull/3324) [`9bfb34749bc`](https://github.com/refinedev/refine/commit/9bfb34749bc8ddaaf80ccffbd0ad6d0a4487309b) Thanks [@aliemir](https://github.com/aliemir)! - Added the ability to pass mutation options to `useMutation` hooks in mutation hooks:
+    -   `useCreate` (data)
+    -   `useUpdate` (data)
+    -   `useDelete` (data)
+    -   `useDeleteMany` (data)
+    -   `useUpdateMany` (data)
+    -   `useCreateMany` (data)
+    -   `useCustomMutation` (data)
+    -   `useLogin` (auth)
+    -   `useLogout` (auth)
+    -   `useRegister` (auth)
+    -   `useForgotPassword` (auth)
+    -   `useUpdatePassword` (auth)
+    -   `useForm` (form)
+
+### Patch Changes
+
+-   [`814eb1009da`](https://github.com/refinedev/refine/commit/814eb1009da53505f7e82f5ed49f2f90e260c316) Thanks [@omeraplak](https://github.com/omeraplak)! - chore: re-exported `@tanstack/react-query`
+
+## 3.91.0
+
+### Minor Changes
+
+-   [#3324](https://github.com/refinedev/refine/pull/3324) [`9bfb34749bc`](https://github.com/refinedev/refine/commit/9bfb34749bc8ddaaf80ccffbd0ad6d0a4487309b) Thanks [@aliemir](https://github.com/aliemir)! - Added the ability to pass mutation options to `useMutation` hooks in mutation hooks:
+    -   `useCreate` (data)
+    -   `useUpdate` (data)
+    -   `useDelete` (data)
+    -   `useDeleteMany` (data)
+    -   `useUpdateMany` (data)
+    -   `useCreateMany` (data)
+    -   `useCustomMutation` (data)
+    -   `useLogin` (auth)
+    -   `useLogout` (auth)
+    -   `useRegister` (auth)
+    -   `useForgotPassword` (auth)
+    -   `useUpdatePassword` (auth)
+    -   `useForm` (form)
+
+### Patch Changes
+
+-   [`814eb1009da`](https://github.com/refinedev/refine/commit/814eb1009da53505f7e82f5ed49f2f90e260c316) Thanks [@omeraplak](https://github.com/omeraplak)! - chore: re-exported `@tanstack/react-query`
+
 ## 3.90.6
 
 ### Patch Changes

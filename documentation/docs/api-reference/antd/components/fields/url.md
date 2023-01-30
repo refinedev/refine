@@ -15,7 +15,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 Let's see how we can use `<UrlField>` with an example:
 
-```tsx  title="pages/posts/list.tsx"
+```tsx live
 import {
     List,
     Table,
@@ -24,7 +24,7 @@ import {
     UrlField 
 } from "@pankod/refine-antd";
 
-export const PostList: React.FC = () => {
+const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     return (
@@ -34,6 +34,7 @@ export const PostList: React.FC = () => {
                     dataIndex="title"
                     title="Title"
                     key="title"
+                    width="50%"
                 />
                 <Table.Column
                     dataIndex={["image", "0", "url"]}
@@ -41,6 +42,7 @@ export const PostList: React.FC = () => {
                     key="image"
                     // highlight-next-line
                     render={(value: string) => <UrlField value={value} />}
+                    width="50%"
                 />
             </Table>
         </List>
@@ -48,6 +50,7 @@ export const PostList: React.FC = () => {
 };
 
 interface IPost {
+    id: number;
     title: string;
     image: IImage[];
 }
@@ -55,17 +58,19 @@ interface IPost {
 interface IImage {
     url: string;
 }
-```
+// visible-block-end
 
-<br/>
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/url/urlField.png" alt="UrlField" />
-</div>
+render(
+    <RefineAntdDemo
+        resources={[
+            {
+                name: "posts",
+                list: PostList
+            },
+        ]}
+    />,
+);
+```
 
 ## API Reference
 

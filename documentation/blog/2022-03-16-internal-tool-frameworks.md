@@ -81,7 +81,7 @@ npm install -g blitz
 
 📦 Out-of-the-box : Routing, networking, authentication, state management, i18n and UI.
 
-🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, GraphQL, NestJs CRUD, Airtable, Strapi, Strapi v4, Strapi GraphQL, Supabase, Hasura, Nhost, Appwrite, Medusa, Firebase, Directus and Altogic.
+🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, GraphQL, NestJs CRUD, Airtable, Strapi, Strapi v4, Strapi GraphQL, Supabase, Hasura, Nhost, Appwrite, Medusa, Firebase, and Directus.
 
 📝 Native Typescript Core : You can always opt out for plain JavaScript.
 
@@ -211,4 +211,4 @@ yarn add react-admin
 
 In this article, we have listed the popular open-source ReactJS internal-tool frameworks. If you want a more detailed review article, you can like and share this article. Thank you for your interest and reading.
 
-[For more information about **refine** ->](https://refine.dev/docs/getting-started/overview/)
+[For more information about **refine** ->](https://refine.dev/docs/)

@@ -15,3 +15,4 @@ export { useCustom } from "./useCustom";
 export { useCustomMutation } from "./useCustomMutation";
 
 export { useDataProvider } from "./useDataProvider";
+export { useInfiniteList } from "./useInfiniteList";

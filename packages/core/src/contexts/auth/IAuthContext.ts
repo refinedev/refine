@@ -12,7 +12,7 @@ export interface AuthProvider {
     logout: (params: any) => Promise<TLogoutData>;
     checkAuth: (params?: any) => Promise<any>;
     checkError: (error: any) => Promise<void>;
-    getPermissions: (params?: any) => Promise<any>;
+    getPermissions?: (params?: any) => Promise<any>;
     getUserIdentity?: (params?: any) => Promise<any>;
 }
 

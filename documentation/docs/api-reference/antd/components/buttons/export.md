@@ -17,7 +17,8 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 Use it like any other Ant Design [`<Button>`][button]. You can use it with [useExport][useexport]:
 
-```tsx  title="/src/pages/posts/list.tsx"
+```tsx live
+// visible-block-start
 import { useExport } from "@pankod/refine-core";
 import {
     List,
@@ -27,23 +28,21 @@ import {
     ExportButton,
 } from "@pankod/refine-antd";
 
-export const PostList: React.FC = () => {
+const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     const { triggerExport, isLoading: exportLoading } = useExport<IPost>();
 
     return (
         <List
-            pageHeaderProps={{
-                extra: (
-                    // highlight-start
-                    <ExportButton
-                        onClick={triggerExport}
-                        loading={exportLoading}
-                    />
-                    // highlight-end
-                ),
-            }}
+            headerButtons={(
+                // highlight-start
+                <ExportButton
+                    onClick={triggerExport}
+                    loading={exportLoading}
+                />
+                // highlight-end
+            )}
         >
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
@@ -57,18 +56,19 @@ interface IPost {
     id: number;
     title: string;
 }
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        resources={[
+            {
+                name: "posts",
+                list: PostList,
+            },
+        ]}
+    />,
+);
 ```
-
-It looks like this:
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/export/export.png" alt="Default export button" />
-</div>
 
 ## Properties
 
@@ -76,12 +76,34 @@ It looks like this:
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx 
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
 import { ExportButton } from "@pankod/refine-antd";
 
-export const MyExportComponent = () => {
-    return <ExportButton hideText />;
+const MyExportComponent = () => {
+    return (
+        <ExportButton
+            // highlight-next-line
+            hideText={true}
+        />
+    );
 };
+
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                list: MyExportComponent,
+            },
+        ]}
+    />,
+);
 ```
 
 ## API Reference

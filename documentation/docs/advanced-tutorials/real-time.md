@@ -28,7 +28,7 @@ Since we will need `apiKey` from Ably, you must first register and get the key f
 
 The app will have one resource: **posts** with [CRUD pages(list, create, edit and show) similar to base example](https://github.com/refinedev/refine/tree/master/examples/base-antd/src/pages/posts).
 
-[You can also refer to StackBlitz to see final state of the app &#8594](#live-stackblitz-example)
+[You can also refer to CodeSandbox to see final state of the app &#8594](#example)
 
 ## Adding `liveProvider`
 
@@ -181,7 +181,7 @@ export const PostEdit: React.FC = () => {
 
 We can also implement similar thing in show page.
 
-[Refer to the StackBlitz example for detailed information. &#8594](#live-stackblitz-example)
+[Refer to the CodeSandbox example for detailed information. &#8594](#example)
 :::
 
 <br/>
@@ -457,4 +457,4 @@ useSubscription({
 
 ## Example
 
-<StackblitzExample path="live-provider-ably" />
+<CodeSandboxExample path="live-provider-ably" />

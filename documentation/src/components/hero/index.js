@@ -66,7 +66,7 @@ export const Hero = () => {
                             "button--lg",
                             styles.docButton,
                         )}
-                        to={useBaseUrl("docs/getting-started/overview")}
+                        to={useBaseUrl("docs/")}
                     >
                         Read the docs
                         <IoIosArrowForward />

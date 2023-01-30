@@ -14,7 +14,7 @@ Although you could take the time to manually set up your environment and install
 To get started, please run the following command. The **CLI wizard** will assist you for the rest of the setup process:
 
 ```
-npm create refine-app@latest  my-project
+npm create refine-app@latest my-project
 ```
 
 It will create your **refine** project and install the required packages according to your selections. After completing the setup, navigate to the project folder and start your application with:

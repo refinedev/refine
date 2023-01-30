@@ -15,82 +15,106 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 Let's see how we can use `<BooleanField>` with the example in the post list.
 
-```tsx title="src/pages/posts/list.tsx"
-import { useTable } from "@pankod/refine-core";
+```tsx live url=http://localhost:3000/posts previewHeight=340px
+const IconX = () => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-x"
+        width={18}
+        height={18}
+        viewBox="0 0 24 24"
+        strokeWidth="2"
+        stroke="currentColor"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <line x1={18} y1={6} x2={6} y2={18}></line>
+        <line x1={6} y1={6} x2={18} y2={18}></line>
+    </svg>
+);
+const IconCheck = () => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-check"
+        width={18}
+        height={18}
+        viewBox="0 0 24 24"
+        strokeWidth="2"
+        stroke="currentColor"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M5 12l5 5l10 -10"></path>
+    </svg>
+);
+// visible-block-start
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableRow,
+    useDataGrid,
+    DataGrid,
+    GridColumns,
+    List,
     // highlight-next-line
     BooleanField,
-    List,
 } from "@pankod/refine-mui";
-import { Check, Close } from "@mui/icons-material";
 
-export const PostList: React.FC = () => {
-    const { tableQueryResult } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
-    });
+const columns: GridColumns = [
+    { field: "id", headerName: "ID", type: "number" },
+    { field: "title", headerName: "Title", minWidth: 100, flex: 1 },
+    {
+        field: "status",
+        headerName: "Published",
+        renderCell: function render({ row }) {
+            // highlight-start
+            return (
+                <BooleanField
+                    value={row.status === "published"}
+                    trueIcon={<IconX />}
+                    falseIcon={<IconCheck />}
+                    valueLabelTrue="published"
+                    valueLabelFalse="unpublished"
+                />
+            );
+            // highlight-end
+        },
+        align: "center",
+        headerAlign: "center",
+        minWidth: 100,
+        flex: 1,
+    },
+];
 
-    const { data } = tableQueryResult;
+const PostsList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>();
 
     return (
         <List>
-            <Table aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Title</TableCell>
-                        <TableCell align="center">Status</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data?.data.map((row) => (
-                        <TableRow key={row.id}>
-                            <TableCell component="th" scope="row">
-                                {row.title}
-                            </TableCell>
-                            <TableCell align="center">
-                                // highlight-start
-                                <BooleanField
-                                    value={row.status === "published"}
-                                    trueIcon={<Check />}
-                                    falseIcon={<Close />}
-                                    valueLabelTrue="published"
-                                    valueLabelFalse="unpublished"
-                                />
-                                // highlight-end
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
 
-export interface IPost {
+interface IPost {
     id: number;
     title: string;
     status: "published" | "draft" | "rejected";
 }
-```
+// visible-block-end
 
-<br/>
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/boolean/booleanFieldMui.png" alt="BooleanField" />
-</div>
+render(
+    <RefineMuiDemo
+        resources={[
+            {
+                name: "posts",
+                list: PostsList,
+            },
+        ]}
+    />,
+);
+```
 
 ## API Reference
 

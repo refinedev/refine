@@ -8,4 +8,4 @@ Access Control is a complex topic with a variety of sophisticated solutions that
 
 [Refer to the refine Access Control Provider documentation for more information. →](/docs/api-reference/core/providers/accessControl-provider/)
 
-<StackblitzExample path="access-control-casbin" />
+<CodeSandboxExample path="access-control-casbin" />

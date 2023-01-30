@@ -301,4 +301,4 @@ close?.("displayed-notification-key");
 
 ## Example
 
-<StackblitzExample path="with-react-toastify" />
+<CodeSandboxExample path="with-react-toastify" />

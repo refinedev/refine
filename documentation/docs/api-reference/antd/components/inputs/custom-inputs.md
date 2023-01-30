@@ -75,4 +75,4 @@ export const PostEdit: React.FC = (props) => {
 
 ## Example
 
-<StackblitzExample path="input-custom" />
+<CodeSandboxExample path="input-custom" />

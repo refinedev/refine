@@ -36,6 +36,7 @@ Authorization hooks are used to manage authentication and authorization operatio
 You can find auth provider examples made with **refine**
 
 -   **Auth0** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-auth0/) - [Demo](examples/auth-provider/auth0.md)
+-   **Keycloak** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-keycloak) - [Demo](examples/auth-provider/keycloak.md)
 -   **Google** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-google-login) - [Demo](examples/auth-provider/google-auth.md)
 -   **OTP Login** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-otp) - [Demo](examples/auth-provider/otpLogin.md)
 
@@ -897,4 +898,4 @@ These hooks can be used with the `authProvider` authentication and authorization
 
 ## Example
 
-<StackblitzExample path="auth-antd" />
+<CodeSandboxExample path="auth-antd" />

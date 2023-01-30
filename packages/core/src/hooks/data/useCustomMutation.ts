@@ -1,6 +1,15 @@
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import {
+    useMutation,
+    UseMutationOptions,
+    UseMutationResult,
+} from "@tanstack/react-query";
 
-import { useDataProvider, useHandleNotification, useTranslate } from "@hooks";
+import {
+    useCheckError,
+    useDataProvider,
+    useHandleNotification,
+    useTranslate,
+} from "@hooks";
 import {
     CreateResponse,
     BaseRecord,
@@ -33,6 +42,22 @@ export type UseCustomMutationReturnType<
     unknown
 >;
 
+export type UseCustomMutationProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {},
+> = {
+    mutationOptions?: Omit<
+        UseMutationOptions<
+            CreateResponse<TData>,
+            TError,
+            useCustomMutationParams<TVariables>,
+            unknown
+        >,
+        "mutationFn" | "onError" | "onSuccess"
+    >;
+};
+
 /**
  * `useCustomMutation` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for create mutations.
  *
@@ -50,7 +75,14 @@ export const useCustomMutation = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
->(): UseCustomMutationReturnType<TData, TError, TVariables> => {
+>({
+    mutationOptions,
+}: UseCustomMutationProps<
+    TData,
+    TError,
+    TVariables
+> = {}): UseCustomMutationReturnType<TData, TError, TVariables> => {
+    const { mutate: checkError } = useCheckError();
     const handleNotification = useHandleNotification();
     const dataProvider = useDataProvider();
     const translate = useTranslate();
@@ -111,6 +143,8 @@ export const useCustomMutation = <
                     metaData,
                 },
             ) => {
+                checkError(err);
+
                 const notificationConfig =
                     typeof errorNotificationFromProp === "function"
                         ? errorNotificationFromProp(err, {
@@ -122,7 +156,7 @@ export const useCustomMutation = <
                 handleNotification(notificationConfig, {
                     key: `${method}-notification`,
                     message: translate(
-                        "common:notifications.error",
+                        "notifications.error",
                         { statusCode: err.statusCode },
                         `Error (status code: ${err.statusCode})`,
                     ),
@@ -130,6 +164,7 @@ export const useCustomMutation = <
                     type: "error",
                 });
             },
+            ...mutationOptions,
         },
     );
 

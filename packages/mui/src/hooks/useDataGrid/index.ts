@@ -63,13 +63,14 @@ export type UseDataGridProps<
     /**
      * @deprecated columns is deprecated and will be removed in the next major version. # https://github.com/refinedev/refine/pull/2072
      */
-    columns?: DataGridProps<TData>["columns"];
+    columns?: DataGridProps["columns"];
 };
 
 export type UseDataGridReturnType<
     TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
     TSearchVariables = unknown,
-> = useTableReturnTypeCore<TData> & {
+> = useTableReturnTypeCore<TData, TError> & {
     dataGridProps: DataGridPropsType;
     search: (value: TSearchVariables) => Promise<void>;
 };
@@ -84,16 +85,18 @@ export type UseDataGridNoPaginationReturnType<
 
 export type UseDataGridWithColumnsReturnType<
     TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
     TSearchVariables = unknown,
-> = useTableReturnTypeCore<TData> & {
+> = useTableReturnTypeCore<TData, TError> & {
     dataGridProps: DataGridPropsType & Pick<DataGridProps, "columns">;
     search: (value: TSearchVariables) => Promise<void>;
 };
 
 export type UseDataGridWithColumnsNoPaginationReturnType<
     TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
     TSearchVariables = unknown,
-> = useTableNoPaginationReturnTypeCore<TData> & {
+> = useTableNoPaginationReturnTypeCore<TData, TError> & {
     dataGridProps: DataGridPropsType & Pick<DataGridProps, "columns">;
     search: (value: TSearchVariables) => Promise<void>;
 };
@@ -107,7 +110,7 @@ export function useDataGrid<
         hasPagination?: true;
         columns?: undefined;
     },
-): UseDataGridReturnType<TData, TSearchVariables>;
+): UseDataGridReturnType<TData, TError, TSearchVariables>;
 export function useDataGrid<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -127,7 +130,7 @@ export function useDataGrid<
         hasPagination?: true;
         columns: DataGridProps<TData>["columns"];
     },
-): UseDataGridWithColumnsReturnType<TData, TSearchVariables>;
+): UseDataGridWithColumnsReturnType<TData, TError, TSearchVariables>;
 export function useDataGrid<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -137,7 +140,11 @@ export function useDataGrid<
         hasPagination: false;
         columns: DataGridProps<TData>["columns"];
     },
-): UseDataGridWithColumnsNoPaginationReturnType<TData, TSearchVariables>;
+): UseDataGridWithColumnsNoPaginationReturnType<
+    TData,
+    TError,
+    TSearchVariables
+>;
 export function useDataGrid<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -164,10 +171,14 @@ export function useDataGrid<
     metaData,
     dataProviderName,
 }: UseDataGridProps<TData, TError, TSearchVariables> = {}):
-    | UseDataGridReturnType<TData, TSearchVariables>
+    | UseDataGridReturnType<TData, TError, TSearchVariables>
     | UseDataGridNoPaginationReturnType<TData, TSearchVariables>
-    | UseDataGridWithColumnsReturnType<TData, TSearchVariables>
-    | UseDataGridWithColumnsNoPaginationReturnType<TData, TSearchVariables> {
+    | UseDataGridWithColumnsReturnType<TData, TError, TSearchVariables>
+    | UseDataGridWithColumnsNoPaginationReturnType<
+          TData,
+          TError,
+          TSearchVariables
+      > {
     const [columnsTypes, setColumnsType] = useState<Record<string, string>>();
 
     const {
@@ -182,7 +193,7 @@ export function useDataGrid<
         setSorter,
         pageCount,
         createLinkForSyncWithLocation,
-    } = useTableCore({
+    } = useTableCore<TData, TError>({
         permanentSorter,
         permanentFilter,
         initialCurrent,

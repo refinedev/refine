@@ -39,7 +39,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 To learn more about **refine**, please check out the [Documentation](https://refine.dev/docs)
 
-- **Material UI** [Docs](https://refine.dev/docs/ui-frameworks/mui/tutorial/)
+- **Material UI** [Docs](https://refine.dev/docs/tutorial/introduction/index/)
 - **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
 - **REST Data Provider** [Docs](https://refine.dev/docs/core/providers/data-provider/#overview)
 

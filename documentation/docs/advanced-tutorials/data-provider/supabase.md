@@ -14,7 +14,7 @@ refine offers built-in data provider support for Supabase and handles all requir
 
 We'll build a simple CRUD app with refine and use Supabase as a data provider. We'll also see how to use Supabase's authentication features on refine app.
 
-We are assuming that you have already know how refine works. If not, please check out the [Tutorial](/docs/tutorials/antd.md) section first.
+We are assuming that you have already know how refine works. If not, please check out the [Tutorial](/docs/tutorial/introduction/index/) section first.
 
 [Refer to docs for more information about data provider &#8594](/docs/api-reference/core/providers/data-provider.md)
 
@@ -130,7 +130,7 @@ Highlighted lines are the ones the CLI generator automatically added to register
 
 With this configuration, refine can now communicate with Supabase API and perform all required data service CRUD methods using data hooks.
 
-[Refer to documentation to learn more about how to use data hooks &#8594](/docs/api-reference/core/hooks/data/useCreate.md)
+[Refer to documentation to learn more about how to use data hooks &#8594](/docs/api-reference/core/hooks/data/useCreate/)
 
 ## Understanding the Auth Provider
 
@@ -308,7 +308,7 @@ Now it's time to add some resources to our app.
 Before diving into Supabase features, we'll add simple CRUD pages to make the app more interactive.
 
 :::note
-Since this post focuses on Supabase implementation, we'll not discuss how to create CRUD pages and how it works. You can refer to [Tutorial](/docs/tutorials/antd.md/#creating-a-list-page) to learn more about creating CRUD pages.
+Since this post focuses on Supabase implementation, we'll not discuss how to create CRUD pages and how it works. You can refer to [Tutorial](/docs/tutorial/introduction/index/) to learn more about creating CRUD pages.
 :::
 
 ### Adding a List page
@@ -1102,7 +1102,7 @@ For live features to work automatically, we setted `liveMode: "auto"` in the opt
 :::tip
 **refine** offers out-of-the-box live provider support:
 
--   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://stackblitz.com/github/refinedev/refine/tree/master/examples/live-provider-ably/?preset=node)
+-   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
 -   **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
 -   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
 -   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
@@ -1157,7 +1157,7 @@ const { tableProps, sorter } = useTable<IUser>({
 
 `metaData` `id` property is used to match the column name of the primary key(in case the column name is different than "id") in your Supabase data table to the column name you have assigned.
 
-refine's [useMany](/docs/api-reference/core/hooks/data/useMany.md) hook accepts `metaData` property and uses `getMany` method of data provider.
+refine's [useMany](/docs/api-reference/core/hooks/data/useMany/) hook accepts `metaData` property and uses `getMany` method of data provider.
 
 ```tsx
 useMany({
@@ -1210,6 +1210,6 @@ If you filter based on a table from an inner join, you will need to use `.select
 
 ## Example
 
-<StackblitzExample path="data-provider-supabase" />
+<CodeSandboxExample path="data-provider-supabase" />
 
 ---

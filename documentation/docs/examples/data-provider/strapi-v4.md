@@ -11,4 +11,4 @@ example-tags: [antd,data-provider,strapi,strapi-v4,auth-provider]
 **Password**: demodemo
 :::
 
-<StackblitzExample path="data-provider-strapi-v4" />
+<CodeSandboxExample path="data-provider-strapi-v4" />

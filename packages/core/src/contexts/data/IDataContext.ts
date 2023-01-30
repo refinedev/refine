@@ -87,6 +87,7 @@ export interface CustomResponse<TData = BaseRecord> {
 export interface GetListResponse<TData = BaseRecord> {
     data: TData[];
     total: number;
+    [key: string]: any;
 }
 
 export interface CreateResponse<TData = BaseRecord> {

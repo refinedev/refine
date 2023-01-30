@@ -9,4 +9,4 @@ When records in a resource need to be used as select options, the **refine** `us
 
 [Refer to the **refine** useSelect hook documentation for more information. →](/docs/api-reference/antd/hooks/field/useSelect/)
 
-<StackblitzExample path="field-antd-use-select-basic" />
+<CodeSandboxExample path="field-antd-use-select-basic" />

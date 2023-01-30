@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example field-antd-use-select-infinite
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open field-antd-use-select-infinite example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/field-antd-use-select-infinite?terminal=start&preset=node)
+[![Open field-antd-use-select-infinite example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/field-antd-use-select-infinite?view=preview&theme=dark&codemirror=1)
         

@@ -4,6 +4,7 @@ import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
 export default defineConfig({
     entry: {
         index: "src/index.tsx",
+        headless: "src/inferencers/headless/index.tsx",
         mantine: "src/inferencers/mantine/index.tsx",
         mui: "src/inferencers/mui/index.tsx",
         antd: "src/inferencers/antd/index.tsx",

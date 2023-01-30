@@ -124,7 +124,7 @@ But apart from all these, there is one last item that I want to talk to you abou
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-02-high-quality-free-resources/refine.jpg" alt="refine" />
  
 
-If you're looking for a framework that will let your data- intensive application run at top speeds with extreme customizability, then look no further than refine. This React based headless system has been designed specifically for speed - allowing users to bring their own UI and update it via [refine's](https://refine.dev/docs/getting-started/overview/) powerful interface!
+If you're looking for a framework that will let your data- intensive application run at top speeds with extreme customizability, then look no further than refine. This React based headless system has been designed specifically for speed - allowing users to bring their own UI and update it via [refine's](https://refine.dev/docs/) powerful interface!
 
 **Key features**
 ​
@@ -134,7 +134,7 @@ If you're looking for a framework that will let your data- intensive application
 
 📦 **Out-of-the-box** : Routing, networking, authentication, state management, i18n and UI.
 
-🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura), [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite), [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa), [Firebase](https://firebase.google.com/) and [Altogic](https://github.com/refinedev/refine/tree/master/packages/altogic).
+🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura), [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite), [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa), and [Firebase](https://firebase.google.com/).
 
 📝 **Native Typescript Core** : You can always opt out for plain JavaScript.
 

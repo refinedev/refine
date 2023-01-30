@@ -15,24 +15,29 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 Let's see how we can use `<BooleanField>` with the example in the post list.
 
-```tsx
+```tsx live
+// visible-block-start
 import {
     List,
     Table,
+    useTable,
     // highlight-start
     BooleanField,
     Icons
     // highlight-end
 } from "@pankod/refine-antd";
 
-export const PostList: React.FC = () => {
+const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+
     // highlight-next-line
     const { CloseCircleOutlined, CheckCircleOutlined } = Icons;
 
     return (
         <List>
-            <Table rowKey="id">
-                ...
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" width="50%" />
                 <Table.Column
                     dataIndex="status"
                     title="Published"
@@ -47,22 +52,31 @@ export const PostList: React.FC = () => {
                         />
                         // highlight-end
                     )}
+                    width="50%"
                 />
             </Table>
         </List>
     );
 };
-```
 
-<br/>
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/boolean/booleanfield.png" alt="BooleanField" />
-</div>
+interface IPost {
+    id: number;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        resources={[
+            {
+                name: "posts",
+                list: PostList
+            },
+        ]}
+    />,
+);
+```
 
 ## API Reference
 

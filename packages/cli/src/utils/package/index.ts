@@ -35,7 +35,9 @@ export const getScripts = (): Record<string, string> => {
 
 export const getInstalledRefinePackages = async () => {
     try {
-        const execution = await execa("npm", ["ls", "--depth=0", "--json"]);
+        const execution = await execa("npm", ["ls", "--depth=0", "--json"], {
+            reject: false,
+        });
 
         const dependencies = JSON.parse(execution.stdout)?.dependencies || {};
         const refineDependencies = Object.keys(dependencies).filter(

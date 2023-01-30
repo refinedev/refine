@@ -8,4 +8,4 @@ With **refine** Notification Provider, you can show notification messages in you
 
 [Refer to the refine Notification Provider documentation for more information. →](/docs/api-reference/core/providers/notification-provider/)
 
-<StackblitzExample path="with-react-toastify" />
+<CodeSandboxExample path="with-react-toastify" />

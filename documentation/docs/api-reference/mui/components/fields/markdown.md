@@ -15,28 +15,42 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 Let's see how we can use `<MarkdownField>` in a show page.
 
-```tsx title="pages/posts/show.tsx"
-import { useShow } from "@pankod/refine-core";
+```tsx live url=http://localhost:3000/posts previewHeight=340px
+// visible-block-start
 import {
-    Show,
-    Typography,
+    useDataGrid,
+    DataGrid,
+    GridColumns,
+    List,
     // highlight-next-line
     MarkdownField,
 } from "@pankod/refine-mui";
 
-export const PostShow: React.FC = () => {
-    const { queryResult } = useShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+const columns: GridColumns = [
+    { field: "id", headerName: "ID", type: "number" },
+    { field: "title", headerName: "Title", minWidth: 100, flex: 1 },
+    {
+        field: "content",
+        headerName: "Content",
+        renderCell: function render({ row }) {
+            // highlight-start
+            return (
+                <MarkdownField value={row?.content} />
+            );
+            // highlight-end
+        },
+        minWidth: 100,
+        flex: 2,
+    },
+];
+
+const PostsList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>();
 
     return (
-        <Show isLoading={isLoading}>
-            <Typography>Id</Typography>
-            <Typography>{record?.id}</Typography>
-            <Typography>Content</Typography>
-            // highlight-next-line
-            <MarkdownField value={record?.content} />
-        </Show>
+        <List>
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
+        </List>
     );
 };
 
@@ -45,17 +59,19 @@ interface IPost {
     title: string;
     content: string;
 }
-```
+// visible-block-end
 
-<br/>
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/markdown/mardownFieldMui.png" alt="MarkdownField" />
-</div>
+render(
+    <RefineMuiDemo
+        resources={[
+            {
+                name: "posts",
+                list: PostsList,
+            },
+        ]}
+    />,
+);
+```
 
 ## API Reference
 
@@ -65,4 +81,4 @@ interface IPost {
 
 ## Example
 
-<StackblitzExample path="input-custom" />
+<CodeSandboxExample path="input-custom" />

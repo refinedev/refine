@@ -3,11 +3,11 @@
     "version": "3.25.0",
     "private": true,
     "dependencies": {
-        "@pankod/refine-antd": "^4.5.0",
-        "@pankod/refine-core": "^3.90.6",
-        "@pankod/refine-cli": "^1.13.6",
+        "@pankod/refine-antd": "^4.7.1",
+        "@pankod/refine-core": "^3.99.2",
+        "@pankod/refine-cli": "^1.17.0",
         "@pankod/refine-react-router-v6": "^3.38.0",
-        "@pankod/refine-strapi-v4": "^3.39.4",
+        "@pankod/refine-strapi-v4": "^3.39.6",
         "@react-pdf/renderer": "^3.0.1",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
@@ -21,11 +21,12 @@
         "react-dom": "^18.0.0",
         "react-pdf": "^5.7.1",
         "react-scripts": "^5.0.0",
+        "cross-env": "^7.0.3",
         "typescript": "^4.7.4"
     },
     "scripts": {
-        "dev": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
-        "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
+        "dev": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
+        "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "refine": "refine"

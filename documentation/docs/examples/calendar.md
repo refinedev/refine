@@ -7,4 +7,4 @@ example-tags: [antd]
 
 In this example you can see how Ant Design's [Calendar](https://ant.design/components/calendar) component can be used with Refine data hooks.
 
-<StackblitzExample path="calendar-app" />
+<CodeSandboxExample path="calendar-app" />

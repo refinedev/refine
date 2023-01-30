@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example auth-chakra-ui
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open auth-chakra-ui example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/auth-chakra-ui?terminal=start&preset=node)
+[![Open auth-chakra-ui example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/auth-chakra-ui?view=preview&theme=dark&codemirror=1)
         

@@ -37,6 +37,7 @@ yarn add @pankod/refine-inferencer
 - [Material UI](/docs/api-reference/mui/components/inferencer)
 - [Mantine](/docs/api-reference/mantine/components/inferencer)
 - [Chakra UI](/docs/api-reference/chakra-ui/components/inferencer)
+- [Headless](/docs/api-reference/core/components/inferencer)
 
 :::info
 `@pankod/refine-inferencer` is an experimental package and it is now in the early stages of development. We are working on improving the package and adding new features.

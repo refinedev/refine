@@ -900,7 +900,7 @@ We created our `Client` and `Contact` pages. Now, let's create a Client with **r
 `Password`: demodemo
 :::
 
-<StackblitzExample path="blog-invoice-generator" />
+<CodeSandboxExample path="blog-invoice-generator" />
 
 ## Conclusion
 

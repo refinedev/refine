@@ -813,7 +813,7 @@ export interface IPost {
 
 ## Example
 
-<StackblitzExample path="i18n-react" />
+<CodeSandboxExample path="i18n-react" />
 
 [i18nnextjs]: /examples/i18n/i18n-nextjs.md
 [create-refine-app]: /docs/getting-started/quickstart.md

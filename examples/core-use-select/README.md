@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example core-use-select
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open core-use-select example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/core-use-select?terminal=start&preset=node)
+[![Open core-use-select example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/core-use-select?view=preview&theme=dark&codemirror=1)
         

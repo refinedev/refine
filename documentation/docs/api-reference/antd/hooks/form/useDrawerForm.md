@@ -3,227 +3,375 @@ id: useDrawerForm
 title: useDrawerForm
 ---
 
+`useDrawerForm` hook allows you to manage a form within a Drawer. It returns Ant Design [`<Form>`](https://ant.design/components/form/) and [`<Drawer>`](https://ant.design/components/drawer/) components props.
 
-`useDrawerForm` hook allows you to manage a form within a Drawer. It returns Ant Design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components props.
+:::info
+`useDrawerForm` hook is extended from [`useForm`](/api-reference/antd/hooks/form/useForm.md) from the [@pankod/refine-antd](https://github.com/refinedev/refine/tree/next/packages/antd) package. This means that you can use all the features of [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook.
+:::
 
-```ts
-import { useDrawerForm } from "@pankod/refine-antd";
+## Basic Usage
 
-const { drawerProps, formProps } = useDrawerForm<IPost>({
-    action: "create", // or "edit"
-});
-```
+We'll show two examples, one for creating and one for editing a post. Let's see how `useDrawerForm` is used in both.
 
-All we have to do is to pass the `drawerProps` to `<Drawer>` and `formProps` to `<Form>` components.
+<Tabs
+defaultValue="create"
+values={[
+{label: 'create', value: 'create'},
+{label: 'edit', value: 'edit'},
+]}>
 
-## Usage
+<TabItem value="create">
 
-We'll do two examples, one for creating and one for editing a post. Let's see how `useDrawerForm` is used in both.
+In this example, we will show you how to `"create"` a record with `useDrawerForm`.
 
-### Create Drawer
+```tsx live url=http://localhost:3000/posts previewHeight=420px
+setInitialRoutes(["/posts"]);
 
-```tsx  title="pages/posts/list.tsx"
-import { useDrawerForm, Drawer, Form, Create, Radio, List, Input } from "@pankod/refine-antd";
+// visible-block-start
+import React, { useState } from "react";
+import {
+    useShow,
+    IResourceComponentsProps,
+    HttpError,
+} from "@pankod/refine-core";
 
-export const PostList: React.FC = () => {
-// highlight-start
-    const {
-        formProps,
-        drawerProps,
-        show,
-        saveButtonProps,
-    } = useDrawerForm<IPost>({
+import {
+    List,
+    Create,
+    Table,
+    Form,
+    Select,
+    Input,
+    Drawer,
+    useTable,
+    useDrawerForm,
+} from "@pankod/refine-antd";
+
+interface IPost {
+    id: number;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+
+const PostList: React.FC<IResourceComponentsProps> = () => {
+    const { tableProps } = useTable<IPost, HttpError>();
+
+    // highlight-start
+    const { formProps, drawerProps, show, saveButtonProps } = useDrawerForm<
+        IPost,
+        HttpError,
+        IPost
+    >({
         action: "create",
     });
-// highlight-end
+    // highlight-end
 
     return (
         <>
             <List
-// highlight-start
+                canCreate
+                // highlight-start
                 createButtonProps={{
                     onClick: () => {
                         show();
                     },
                 }}
-// highlight-end
+                // highlight-end
             >
-                ...
+                <Table {...tableProps} rowKey="id">
+                    <Table.Column dataIndex="id" title="ID" />
+                    <Table.Column dataIndex="title" title="Title" />
+                </Table>
             </List>
-// highlight-start
+            {/* highlight-start */}
             <Drawer {...drawerProps}>
                 <Create saveButtonProps={saveButtonProps}>
                     <Form {...formProps} layout="vertical">
-                        <Form.Item label="Title" name="title">
+                        <Form.Item
+                            label="Title"
+                            name="title"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
                             <Input />
                         </Form.Item>
-                        <Form.Item label="Status" name="status">
-                            <Radio.Group>
-                                <Radio value="draft">Draft</Radio>
-                                <Radio value="published">Published</Radio>
-                                <Radio value="rejected">Rejected</Radio>
-                            </Radio.Group>
+                        <Form.Item
+                            label="Status"
+                            name="status"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Select
+                                options={[
+                                    {
+                                        label: "Published",
+                                        value: "published",
+                                    },
+                                    {
+                                        label: "Draft",
+                                        value: "draft",
+                                    },
+                                    {
+                                        label: "Rejected",
+                                        value: "rejected",
+                                    },
+                                ]}
+                            />
                         </Form.Item>
                     </Form>
                 </Create>
             </Drawer>
-// highlight-end
+            {/* highlight-end */}
         </>
-    )
-}
+    );
+};
+
+// visible-block-end
+setRefineProps({
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+        },
+    ],
+});
+
+render(<RefineAntdDemo />);
+```
+
+</TabItem>
+
+<TabItem value="edit">
+
+In this example, we will show you how to `"edit"` a record with `useDrawerForm`.
+
+```tsx live url=http://localhost:3000/posts previewHeight=420px
+setInitialRoutes(["/posts"]);
+
+// visible-block-start
+import React, { useState } from "react";
+import {
+    useShow,
+    IResourceComponentsProps,
+    HttpError,
+} from "@pankod/refine-core";
+
+import {
+    List,
+    Edit,
+    EditButton,
+    Table,
+    Form,
+    Select,
+    Input,
+    Drawer,
+    useTable,
+    useDrawerForm,
+    Space,
+} from "@pankod/refine-antd";
 
 interface IPost {
     id: number;
     title: string;
     status: "published" | "draft" | "rejected";
 }
-```
-<br/>
 
-`createButtonProps` allows us to create and manage a button above the table.
+const PostList: React.FC<IResourceComponentsProps> = () => {
+    const { tableProps } = useTable<IPost, HttpError>();
 
-```tsx
-    createButtonProps={{
-        onClick: () => {
-            show();
-        },
-    }}
-```
-
-This code block makes `<Drawer>` appear when you click the button.
-
-`saveButtonProps` allows us to manage the save button in the drawer.
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useDrawerForm/create.gif" alt="Create record action" />
-</div>
-
-<br />
-
-### Edit Drawer
-
-Let's learn how to add editing capabilities to the records that will be opening form in Drawer with using `action` prop.
-
-```tsx  title="pages/posts/list.tsx"
-import {
-    useDrawerForm,
-    Drawer,
-    Form,
-    Create,
-    Radio,
-    List,
-    Edit,
-    Table,
-    EditButton,
-    Input
-} from "@pankod/refine-antd";
-
-export const PostList: React.FC = () => {
-    const {
-        drawerProps,
-        formProps,
-        show,
-        saveButtonProps,
-        deleteButtonProps,
-        id,
-    } = useDrawerForm<IPost>({
-// highlight-next-line
+    // highlight-start
+    const { formProps, drawerProps, show, saveButtonProps, id } = useDrawerForm<
+        IPost,
+        HttpError,
+        IPost
+    >({
         action: "edit",
+        warnWhenUnsavedChanges: true,
     });
+    // highlight-end
 
     return (
         <>
-            <List>
-                <Table>
-                    ...
+            <List
+                canCreate
+                // highlight-start
+                createButtonProps={{
+                    onClick: () => {
+                        show();
+                    },
+                }}
+                // highlight-end
+            >
+                <Table {...tableProps} rowKey="id">
+                    <Table.Column dataIndex="id" title="ID" />
+                    <Table.Column dataIndex="title" title="Title" />
                     <Table.Column<IPost>
                         title="Actions"
                         dataIndex="actions"
                         key="actions"
-// highlight-start
-                        render={(_value, record) => (
-                            <EditButton
-                                size="small"
-                                recordItemId={record.id}
-                                onClick={() => show(record.id)}
-                            />
+                        render={(_, record) => (
+                            // highlight-start
+                            <Space>
+                                <EditButton
+                                    hideText
+                                    size="small"
+                                    recordItemId={record.id}
+                                    onClick={() => show(record.id)}
+                                />
+                            </Space>
+                            // highlight-end
                         )}
-// highlight-end
                     />
                 </Table>
             </List>
+            {/* highlight-start */}
             <Drawer {...drawerProps}>
-                <Edit
-// highlight-start
-                    saveButtonProps={saveButtonProps}
-                    deleteButtonProps={deleteButtonProps}
-                    recordItemId={id}
-// highlight-end
-                >
-// highlight-next-line
+                <Edit saveButtonProps={saveButtonProps} recordItemId={id}>
                     <Form {...formProps} layout="vertical">
-                        <Form.Item label="Title" name="title">
+                        <Form.Item
+                            label="Title"
+                            name="title"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
                             <Input />
                         </Form.Item>
-                        <Form.Item label="Status" name="status">
-                            <Radio.Group>
-                                <Radio value="draft">Draft</Radio>
-                                <Radio value="published">Published</Radio>
-                                <Radio value="rejected">Rejected</Radio>
-                            </Radio.Group>
+                        <Form.Item
+                            label="Status"
+                            name="status"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Select
+                                options={[
+                                    {
+                                        label: "Published",
+                                        value: "published",
+                                    },
+                                    {
+                                        label: "Draft",
+                                        value: "draft",
+                                    },
+                                    {
+                                        label: "Rejected",
+                                        value: "rejected",
+                                    },
+                                ]}
+                            />
                         </Form.Item>
                     </Form>
                 </Edit>
             </Drawer>
+            {/* highlight-end */}
         </>
-    )
-}
+    );
+};
 
-interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
-}
+// visible-block-end
+setRefineProps({
+    resources: [
+        {
+            name: "posts",
+            list: PostList,
+        },
+    ],
+});
+
+render(<RefineAntdDemo />);
 ```
 
 :::caution
-refine doesn't automatically add a edit button to the each record in `<PostList>` which opens edit form in `<Drawer>` when clicking.
+**refine** doesn't automatically add a `<EditButton/>` to the each record in `<PostList>` which opens edit form in `<Drawer>` when clicked.
 
-So, we have to put the edit buttons on our list. In that way, `<Edit>` form in `<Drawer>` can fetch data by the record `id`.
+So, we have to put the `<EditButton/>` on our list. In that way, `<Edit>` form in `<Drawer>` can fetch data by the record `id`.
 
 ```tsx
 <Table.Column<IPost>
     title="Actions"
     dataIndex="actions"
     key="actions"
-    render={(_value, record) => (
-        <EditButton
-            size="small"
-            recordItemId={record.id}
-            onClick={() => show(record.id)}
-        />
-    )}
+    render={(_value, record) => <EditButton onClick={() => show(record.id)} />}
 />
 ```
 
 :::
 
-The `saveButtonProps` and `deleteButtonProps` gives us the ability of saving and deleting buttons in the drawer.
+:::caution
+Don't forget to pass the record `"id"` to `show` to fetch the record data. This is necessary for both `"edit"` and `"clone"` forms.
+:::
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useDrawerForm/edit.gif" alt="Edit record action" />
-</div>
-<br />
+</TabItem>
+
+</Tabs>
+
+## Properties
+
+:::tip
+All [`useForm`][antd-use-form] props also available in `useDrawerForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) docs.
+:::
+
+## Return values
+
+### `show`
+
+A function that opens the `<Drawer>`. It takes an optional `id` parameter. If `id` is provided, it will fetch the record data and fill the `<Form>` with it.
+
+### `close`
+
+A function that closes the `<Drawer>`. Same as `[onClose][#onClose]`.
+
+### `saveButtonProps`
+
+It contains the props needed by the `"submit"` button within the `<Drawer>` (disabled,loading etc.). When `saveButtonProps.onClick` is called, it triggers `form.submit()`. You can manually pass these props to your custom button.
+
+### `deleteButtonProps`
+
+It contains the props needed by the `"delete"` button within the `<Drawer>` (disabled,loading etc.). When `deleteButtonProps.onSuccess` is called, it triggers it sets `id` to `undefined` and `open` to `false`. You can manually pass these props to your custom button.
+
+### `formProps`
+
+It's required to manage `<Form>` state and actions. Under the hood the `formProps` came from [`useForm`][antd-use-form].
+
+It contains the props to manage the [Antd `<Form>`](https://ant.design/components/form#api) component such as [_`onValuesChange`, `initialValues`, `onFieldsChange`, `onFinish` etc._](/docs/api-reference/antd/hooks/form/useForm/#return-values)
+
+### `drawerProps`
+
+It's required to manage [`<Drawer>`](https://ant.design/components/drawer/#API) state and actions.
+
+#### `width`
+
+> Default: `"500px"`
+
+It's the width of the `<Drawer>`.
+
+#### `onClose`
+
+A function that can close the `<Drawer>`. It's useful when you want to close the `<Drawer>` manually.
+When [`warnWhenUnsavedChanges`](/docs/api-reference/antd/hooks/form/useForm/#warnwhenunsavedchanges) is `true`, it will show a confirmation modal before closing the `<Drawer>`. If you override this function, you have to handle this confirmation modal manually.
+
+#### `open`
+
+> Default: `false`
+
+Current visible state of `<Drawer>`.
+
+#### `forceRender`
+
+> Default: `true`
+
+It renders `<Drawer>` instead of lazy rendering it.
 
 ## API Parameters
 
@@ -237,23 +385,17 @@ The `saveButtonProps` and `deleteButtonProps` gives us the ability of saving and
 
 ### Return Value
 
-| Key                      | Description                                                  | Type                                                                                                                                                                                  |
-| ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| show                     | A function that opens the drawer                             | `(id?: BaseKey) => void`                                                                                                                                                              |
-| formProps                | Ant Design form props                                        | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                                               |
-| drawerProps              | Props for managed drawer                                     | [`DrawerProps`](https://ant.design/components/drawer/#API)                                                                                                                            |
-| saveButtonProps          | Props for a submit button                                    | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                                                                                                                       |
-| deleteButtonProps        | Adds props for delete button                                 | [`DeleteButtonProps`](/api-reference/core/interfaces.md#delete-button-props)                                                                                                          |
-| formLoading              | Loading status of form                                       | `boolean`                                                                                                                                                                             |
-| submit                   | Submit method, the parameter is the value of the form fields | `() => void`                                                                                                                                                                          |
-| open                     | Whether the drawer is open or not                            | `boolean`                                                                                                                                                                             |
-| close                    | Specify a function that can close the drawer                 | `() => void`                                                                                                                                                                          |
-| defaultFormValuesLoading | DefaultFormValues loading status of form                     | `boolean`                                                                                                                                                                             |
-| form                     | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                                                                        |
-| id                       | Record id for edit action                                    | `string`                                                                                                                                                                              |
-| setId                    | `id` setter                                                  | `Dispatch<SetStateAction<` `string` \| `undefined>>`                                                                                                                                  |
-| queryResult              | Result of the query of a record                              | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery)                                                                                         |
-| mutationResult           | Result of the mutation triggered by submitting the form      | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+| Key               | Description                                                  | Type                                                                           |
+| ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| show              | A function that opens the drawer                             | `(id?: BaseKey) => void`                                                       |
+| form              | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance) |
+| formProps         | Ant Design form props                                        | [`FormProps`](/docs/api-reference/antd/hooks/form/useForm/#properties)         |
+| drawerProps       | Props for managed drawer                                     | [`DrawerProps`](#drawerprops)                                                  |
+| saveButtonProps   | Props for a submit button                                    | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                |
+| deleteButtonProps | Adds props for delete button                                 | [`DeleteButtonProps`](/api-reference/core/interfaces.md#delete-button-props)   |
+| submit            | Submit method, the parameter is the value of the form fields | `() => void`                                                                   |
+| open              | Whether the drawer is open or not                            | `boolean`                                                                      |
+| close             | Specify a function that can close the drawer                 | `() => void`                                                                   |
 
 ### Type Parameters
 
@@ -265,7 +407,8 @@ The `saveButtonProps` and `deleteButtonProps` gives us the ability of saving and
 
 ## Example
 
-<StackblitzExample path="form-antd-use-drawer-form" />
+<CodeSandboxExample path="form-antd-use-drawer-form" />
 
-[BaseRecord]: /api-reference/core/interfaces.md#baserecord
-[HttpError]: /api-reference/core/interfaces.md#httperror
+[baserecord]: /api-reference/core/interfaces.md#baserecord
+[httperror]: /api-reference/core/interfaces.md#httperror
+[antd-use-form]: /docs/api-reference/antd/hooks/form/useForm.md

@@ -1,5 +1,9 @@
 import React from "react";
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import {
+    useMutation,
+    UseMutationOptions,
+    UseMutationResult,
+} from "@tanstack/react-query";
 import qs from "qs";
 
 import { AuthContext } from "@contexts/auth";
@@ -9,6 +13,14 @@ import {
     TUpdatePasswordData,
     UpdatePasswordFormTypes,
 } from "../../../interfaces";
+
+export type UseUpdatePasswordProps<TVariables extends UpdatePasswordFormTypes> =
+    {
+        mutationOptions?: Omit<
+            UseMutationOptions<TUpdatePasswordData, Error, TVariables, unknown>,
+            "mutationFn" | "onError" | "onSuccess"
+        >;
+    };
 
 /**
  * `useUpdatePassword` calls `updatePassword` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
@@ -21,7 +33,14 @@ import {
  */
 export const useUpdatePassword = <
     TVariables extends UpdatePasswordFormTypes = {},
->(): UseMutationResult<TUpdatePasswordData, Error, TVariables, unknown> => {
+>({
+    mutationOptions,
+}: UseUpdatePasswordProps<TVariables> = {}): UseMutationResult<
+    TUpdatePasswordData,
+    Error,
+    TVariables,
+    unknown
+> => {
     const { replace } = useNavigation();
     const { updatePassword: updatePasswordFromContext } =
         React.useContext<IAuthContext>(AuthContext);
@@ -66,6 +85,7 @@ export const useUpdatePassword = <
                     type: "error",
                 });
             },
+            ...mutationOptions,
         },
     );
 

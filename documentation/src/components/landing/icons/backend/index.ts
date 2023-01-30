@@ -1,7 +1,5 @@
 export { default as AirtableAlt } from "./airtable-alt";
 export { default as Airtable } from "./airtable";
-export { default as AltogicAlt } from "./altogic-alt";
-export { default as Altogic } from "./altogic";
 export { default as AppwriteAlt } from "./appwrite-alt";
 export { default as Appwrite } from "./appwrite";
 export { default as DirectusAlt } from "./directus-alt";

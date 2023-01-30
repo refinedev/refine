@@ -8,4 +8,4 @@ example-tags: [next.js,i18n,antd]
 
 [Refer to the refine i18n Provider documentation for more information. →](/docs/api-reference/core/providers/i18n-provider/)
 
-<StackblitzExample path="i18n-nextjs" />
+<CodeSandboxExample path="i18n-nextjs" />

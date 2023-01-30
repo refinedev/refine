@@ -1,5 +1,29 @@
 # @pankod/refine-mantine
 
+## 1.15.8
+
+### Patch Changes
+
+-   [#3382](https://github.com/refinedev/refine/pull/3382) [`6604586b030`](https://github.com/refinedev/refine/commit/6604586b030576c4b582a675de97678dc63dbb10) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - added: description of `StepProps` to the jsDoc of the `useStepForm` hook.
+
+## 1.15.7
+
+### Patch Changes
+
+-   [#3382](https://github.com/refinedev/refine/pull/3382) [`6604586b030`](https://github.com/refinedev/refine/commit/6604586b030576c4b582a675de97678dc63dbb10) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - added: description of `StepProps` to the jsDoc of the `useStepForm` hook.
+
+## 1.15.6
+
+### Patch Changes
+
+-   [#3396](https://github.com/refinedev/refine/pull/3396) [`bb2774e3941`](https://github.com/refinedev/refine/commit/bb2774e39411c844b01f552d1cae2931d4f6b9f9) Thanks [@omeraplak](https://github.com/omeraplak)! - fix: `onSubmit` is set to nullable on [`<AuthPage>`](https://refine.dev/docs/api-reference/mantine/components/mantine-auth-page/)
+
+## 1.15.5
+
+### Patch Changes
+
+-   [#3396](https://github.com/refinedev/refine/pull/3396) [`bb2774e3941`](https://github.com/refinedev/refine/commit/bb2774e39411c844b01f552d1cae2931d4f6b9f9) Thanks [@omeraplak](https://github.com/omeraplak)! - fix: `onSubmit` is set to nullable on [`<AuthPage>`](https://refine.dev/docs/api-reference/mantine/components/mantine-auth-page/)
+
 ## 1.15.4
 
 ### Patch Changes

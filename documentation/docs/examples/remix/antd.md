@@ -6,4 +6,4 @@ example-tags: [remix,router-provider,antd]
 
 **refine** allows you to build your **SSR** supported web applications using [Remix](https://remix.run/). With this example, you can see how to make a simple SSR supported CMS Admin panel using [Ant Design](https://ant.design/).
 
-<StackblitzExample path="remix-antd" />
+<CodeSandboxExample path="remix-antd" />

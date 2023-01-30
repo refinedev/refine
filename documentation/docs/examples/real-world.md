@@ -13,7 +13,7 @@ While most "todo" demos provide an excellent cursory glance at a framework's cap
 
 [View Source Code](https://github.com/refinedev/real-world-example)
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/real-world-example?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://codesandbox.io/embed/github/refinedev/real-world-example?view=preview&theme=dark&codemirror=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-tutorial"
 ></iframe>

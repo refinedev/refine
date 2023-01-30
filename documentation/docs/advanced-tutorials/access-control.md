@@ -33,7 +33,7 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 
 The app will have three resources: **posts**, **users** and **categories** with CRUD pages(list, create, edit and show).
 
-[You can refer to StackBlitz to see how they are implemented &#8594](#live-stackblitz-example)
+[You can refer to CodeSandbox to see how they are implemented &#8594](#example)
 
 `App.tsx` will look like this before we begin implementing access control:
 
@@ -532,8 +532,8 @@ export const PostList: React.FC = () => {
 
 ### Casbin
 
-<StackblitzExample path="access-control-casbin" />
+<CodeSandboxExample path="access-control-casbin" />
 
 ### Cerbos
 
-<StackblitzExample path="access-control-cerbos" />
+<CodeSandboxExample path="access-control-cerbos" />

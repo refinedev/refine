@@ -81,7 +81,7 @@ All we have to do is pass the `selectProps` it returns to the `<Select>` compone
 By default, refine does the search using the `useList` hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://ant.design/components/select/#components-select-demo-search-sort) example.
 :::
 
-`useSelect` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](/api-reference/core/hooks/data/useList.md)
+`useSelect` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](/docs/api-reference/core/hooks/data/useList)
 
 ## Options
 
@@ -113,7 +113,7 @@ Adds extra `options` to `<Select>` component. It uses `useMany` so `defaultValue
 defaultValue: ["1", "2"],
 ```
 
-[Refer to the `useMany` documentation for detailed usage. &#8594](/api-reference/core/hooks/data/useMany.md)
+[Refer to the `useMany` documentation for detailed usage. &#8594](/docs/api-reference/core/hooks/data/useMany/)
 
 :::tip
 Can use `defaultValue` property when edit a record in `<Edit>` component.
@@ -302,8 +302,8 @@ const { selectProps } = useSelect({
 
 ## Example
 
-<StackblitzExample path="field-antd-use-select-basic" />
+<CodeSandboxExample path="field-antd-use-select-basic" />
 
 ## Infinite Loading Example
 
-<StackblitzExample path="field-antd-use-select-infinite" />
+<CodeSandboxExample path="field-antd-use-select-infinite" />

@@ -13,7 +13,6 @@ module.exports = {
         ...pathsToModuleNameMapper(paths, { prefix: "<rootDir>/" }),
         "\\.css$": "identity-obj-proxy",
     },
-    name: "chakra-ui",
     displayName: "chakra-ui",
     transform: {
         "^.+\\.svg$": "<rootDir>/test/svgTransform.ts",

@@ -17,60 +17,46 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 If Intl is not available, `<NumberField>` outputs numbers as is (and ignores the locales and options props).
 
-```tsx title="src/pages/posts/list.tsx"
-import { useTable } from "@pankod/refine-core";
+```tsx live url=http://localhost:3000/posts previewHeight=340px
+// visible-block-start
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableRow,
+    useDataGrid,
+    DataGrid,
+    GridColumns,
+    List,
     // highlight-next-line
     NumberField,
-    List,
 } from "@pankod/refine-mui";
 
-export const PageList: React.FC = () => {
-    const { tableQueryResult } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
-    });
+const columns: GridColumns = [
+    { field: "id", headerName: "ID", type: "number" },
+    { field: "title", headerName: "Title", minWidth: 100, flex: 1 },
+    {
+        field: "hit",
+        headerName: "Hit",
+        renderCell: function render({ row }) {
+            // highlight-start
+            return (
+                <NumberField
+                    value={row.hit}
+                    options={{
+                        notation: "compact",
+                    }}
+                />
+            );
+            // highlight-end
+        },
+        minWidth: 100,
+        flex: 1,
+    },
+];
 
-    const { data } = tableQueryResult;
+const PostsList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>();
 
     return (
         <List>
-            <Table aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Title</TableCell>
-                        <TableCell align="center">Hit</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data?.data.map((row) => (
-                        <TableRow key={row.id}>
-                            <TableCell component="th" scope="row">
-                                {row.title}
-                            </TableCell>
-                            <TableCell align="center">
-                                // highlight-start
-                                <NumberField
-                                    value={row.hit}
-                                    options={{
-                                        notation: "compact",
-                                    }}
-                                    // highlight-end
-                                />
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
@@ -80,17 +66,19 @@ interface IPost {
     title: string;
     hit: number;
 }
-```
+// visible-block-end
 
-<br/>
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/fields/number/numberFieldMui.png" alt="NumberField" />
-</div>
+render(
+    <RefineMuiDemo
+        resources={[
+            {
+                name: "posts",
+                list: PostsList,
+            },
+        ]}
+    />,
+);
+```
 
 ## API Reference
 

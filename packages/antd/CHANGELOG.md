@@ -1,5 +1,31 @@
 # @pankod/refine-antd
 
+## 4.7.1
+
+### Patch Changes
+
+-   [#3399](https://github.com/refinedev/refine/pull/3399) [`22b44a857a8`](https://github.com/refinedev/refine/commit/22b44a857a8ede3473965ab6baff70fc8ae31332) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fix `useTable` hook error return type.
+
+## 4.7.0
+
+### Minor Changes
+
+-   [#3324](https://github.com/refinedev/refine/pull/3324) [`9bfb34749bc`](https://github.com/refinedev/refine/commit/9bfb34749bc8ddaaf80ccffbd0ad6d0a4487309b) Thanks [@aliemir](https://github.com/aliemir)! - Added the ability to pass mutation options to `useMutation` hooks in mutation hooks:
+    -   `useForm`
+    -   `useStepsForm`
+    -   `useModalForm`
+    -   `useDrawerForm`
+
+## 4.6.0
+
+### Minor Changes
+
+-   [#3324](https://github.com/refinedev/refine/pull/3324) [`9bfb34749bc`](https://github.com/refinedev/refine/commit/9bfb34749bc8ddaaf80ccffbd0ad6d0a4487309b) Thanks [@aliemir](https://github.com/aliemir)! - Added the ability to pass mutation options to `useMutation` hooks in mutation hooks:
+    -   `useForm`
+    -   `useStepsForm`
+    -   `useModalForm`
+    -   `useDrawerForm`
+
 ## 4.5.0
 
 ### Minor Changes

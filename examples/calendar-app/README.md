@@ -37,9 +37,9 @@
 npm create refine-app@latest -- --example calendar-app
 ```
 
-## Try it out on StackBlitz
+## Try it out on CodeSandbox
 
 <br/>
 
-[![Open calendar-app example from refine](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/refinedev/refine/tree/master/examples/calendar-app?terminal=start&preset=node)
+[![Open calendar-app example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/calendar-app?view=preview&theme=dark&codemirror=1)
         

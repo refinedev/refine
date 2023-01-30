@@ -443,7 +443,7 @@ Throughout this tutorial, we've implemented how to create a CRUD application usi
 
 ## Example
 
-<StackblitzExample path="blog-sveltekit-crud" />
+<CodeSandboxExample path="blog-sveltekit-crud" />
 
 ---
 

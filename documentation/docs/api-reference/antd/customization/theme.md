@@ -348,4 +348,4 @@ render(<App />);
 
 ## Example
 
-<StackblitzExample path="customization-theme-antd" />
+<CodeSandboxExample path="customization-theme-antd" />

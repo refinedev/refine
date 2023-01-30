@@ -3,7 +3,7 @@ id: inferencer
 title: Inferencer
 ---
 
-You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `MuiInferencer`, `MuiInferencer`, `MuiInferencer` and `MuiInferencer` components.
+You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `MuiListInferencer`, `MuiShowInferencer`, `MuiEditInferencer`, `MuiCreateInferencer` and `MuiInferencer` (which combines all in one place) components.
 
 ## Usage
 
@@ -358,6 +358,6 @@ render(<App />);
 
 ## Example
 
-Below you'll find a Live StackBlitz Example displaying a fully setup `Refine` app with `@pankod/refine-inferencer/mui` components.
+Below you'll find a Live CodeSandbox Example displaying a fully setup `Refine` app with `@pankod/refine-inferencer/mui` components.
 
-<StackblitzExample path="inferencer-mui" />
+<CodeSandboxExample path="inferencer-mui" />

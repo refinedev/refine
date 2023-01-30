@@ -256,7 +256,7 @@ A React-based framework for building internal tools, rapidly. **refine** offers 
 
 📦 Out-of-the-box : Routing, networking, authentication, state management, i18n and UI.
 
-🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, Strapi, NestJs CRUD, Hasura, Nhost, Airtable, Medusa, Supabase, Appwrite and Altogic.
+🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, Strapi, NestJs CRUD, Hasura, Nhost, Airtable, Medusa, Supabase, and Appwrite.
 
 📝 Native Typescript Core : You can always opt-out for plain JavaScript.
 
@@ -264,7 +264,7 @@ A React-based framework for building internal tools, rapidly. **refine** offers 
 
 📝 Boilerplate-free Code : Keeps your codebase clean and readable.
 
-[Refer to the **refine** documentation for more information. →](https://refine.dev/docs/getting-started/overview/)
+[Refer to the **refine** documentation for more information. →](https://refine.dev/docs/)
 
 ## How to Multipart File Upload with Refine and React Hook Form?
 
@@ -404,4 +404,4 @@ As you can see, we have easily saved both our data such as title, category, stat
 
 ## Example
 
-<StackblitzExample path="form-react-hook-form-use-form" />
+<CodeSandboxExample path="form-react-hook-form-use-form" />

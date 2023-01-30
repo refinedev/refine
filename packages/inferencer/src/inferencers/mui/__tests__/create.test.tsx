@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { render, act, TestWrapper } from "@test";
-import { CreateInferencer } from "../create";
+import { CreateInferencer, renderer } from "../create";
 
 describe("MuiCreateInferencer", () => {
     it("should match the snapshot", async () => {
@@ -48,5 +48,60 @@ describe("MuiCreateInferencer", () => {
         const node = rendering.asFragment();
 
         expect(node).toMatchSnapshot();
+    });
+});
+
+describe("MuiCreateInferencer > renderer", () => {
+    it("should use `PostCreate` name when resource is `posts`", () => {
+        expect(
+            renderer({
+                infer: () => null,
+                resources: [],
+                isCustomPage: false,
+                fields: [],
+                resource: {
+                    name: "posts",
+                },
+            }),
+        ).toContain("export const PostCreate");
+    });
+    it("should use `InferredCreate` name when resource label is empty", () => {
+        expect(
+            renderer({
+                infer: () => null,
+                resources: [],
+                isCustomPage: false,
+                fields: [],
+                resource: {
+                    name: "",
+                },
+            }),
+        ).toContain("export const InferredCreate");
+    });
+    it("should use `InferredCreate` name when resource label is non [a-zA-Z] (Chinese)", () => {
+        expect(
+            renderer({
+                infer: () => null,
+                resources: [],
+                isCustomPage: false,
+                fields: [],
+                resource: {
+                    name: "用户",
+                },
+            }),
+        ).toContain("export const InferredCreate");
+    });
+    it("should use `InferredCreate` name when resource label is non [a-zA-Z] (Cyrillic)", () => {
+        expect(
+            renderer({
+                infer: () => null,
+                resources: [],
+                isCustomPage: false,
+                fields: [],
+                resource: {
+                    name: "пользователи",
+                },
+            }),
+        ).toContain("export const InferredCreate");
     });
 });

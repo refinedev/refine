@@ -13,50 +13,39 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-```tsx title="src/pages/posts/list.tsx"
-import { useTable } from "@pankod/refine-core";
-
+```tsx live url=http://localhost:3000/posts previewHeight=340px
+// visible-block-start
 import {
+    useDataGrid,
+    DataGrid,
+    GridColumns,
     List,
-    Table,
     // highlight-next-line
     ShowButton,
-    TableHead,
-    TableRow,
-    TableCell,
-    TableBody,
 } from "@pankod/refine-mui";
 
-export const PostList: React.FC = () => {
-    const { tableQueryResult } = useTable<IPost>();
+const columns: GridColumns = [
+    { field: "id", headerName: "ID", type: "number" },
+    { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+    {
+        field: "actions",
+        headerName: "Actions",
+        renderCell: function render({ row }) {
+            // highlight-next-line
+            return <ShowButton size="small" recordItemId={row.id} />;
+        },
+        align: "center",
+        headerAlign: "center",
+        minWidth: 80,
+    },
+];
 
-    const { data } = tableQueryResult;
+const PostsList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>();
 
     return (
         <List>
-            <Table aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>ID</TableCell>
-                        <TableCell>Title</TableCell>
-                        <TableCell align="center">Action</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data?.data.map((row) => (
-                        <TableRow key={row.id}>
-                            <TableCell>{row.id}</TableCell>
-                            <TableCell component="th" scope="row">
-                                {row.title}
-                            </TableCell>
-                            <TableCell align="center">
-                                // highlight-next-line
-                                <ShowButton recordItemId={row.id} />
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
@@ -65,18 +54,20 @@ interface IPost {
     id: number;
     title: string;
 }
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        resources={[
+            {
+                name: "posts",
+                list: PostsList,
+                show: () => <RefineMui.Show>Rest of the page here...</RefineMui.Show>,
+            },
+        ]}
+    />,
+);
 ```
-
-Will look like this:
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/show/show-mui.png" alt="Default show button" />
-</div>
 
 ## Properties
 
@@ -84,12 +75,38 @@ Will look like this:
 
 `recordItemId` is used to append the record id to the end of the route path.
 
-```tsx
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+// visible-block-start
 import { ShowButton } from "@pankod/refine-mui";
 
-export const MyShowComponent = () => {
-    return <ShowButton resourceName="posts" recordItemId="1" />;
+const MyShowComponent = () => {
+    return <ShowButton
+        resourceNameOrRouteName="posts"
+        // highlight-next-line
+        recordItemId="1"
+    />;
 };
+
+// visible-block-end
+
+const ShowPage = () => {
+    const params = useRouterContext().useParams();
+    return <div>{JSON.stringify(params)}</div>;
+};
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                show: ShowPage,
+            },
+        ]}
+        DashboardPage={MyShowComponent}
+    />,
+);
 ```
 
 Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/show/1`.
@@ -102,12 +119,44 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/api-ref
 
 Redirection endpoint(`resourceNameOrRouteName/show`) is defined by `resourceNameOrRouteName` property. By default, `<ShowButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
 
-```tsx
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
 import { ShowButton } from "@pankod/refine-mui";
 
-export const MyShowComponent = () => {
-    return <ShowButton resourceNameOrRouteName="categories" recordItemId="2" />;
+const MyShowComponent = () => {
+    return (
+        <ShowButton
+            // highlight-next-line
+            resourceNameOrRouteName="categories"
+            recordItemId="2"
+        />
+    );
 };
+
+// visible-block-end
+
+const ShowPage = () => {
+    const params = useRouterContext().useParams();
+    return <div>{JSON.stringify(params)}</div>;
+};
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+            },
+            {
+                name: "categories",
+                show: ShowPage,
+            },
+        ]}
+        DashboardPage={MyShowComponent}
+    />,
+);
 ```
 
 Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/show/2`.
@@ -116,12 +165,40 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/api-ref
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
 import { ShowButton } from "@pankod/refine-mui";
 
-export const MyShowComponent = () => {
-    return <ShowButton hideText />;
+const MyShowComponent = () => {
+    return (
+        <ShowButton
+            // highlight-next-line
+            hideText={true}
+        />
+    );
 };
+
+// visible-block-end
+
+const ShowPage = () => {
+    const params = useRouterContext().useParams();
+    return <div>{JSON.stringify(params)}</div>;
+};
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                list: MyShowComponent,
+                show: ShowPage,
+            },
+        ]}
+    />,
+);
 ```
 
 ### `accessControl`

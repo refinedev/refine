@@ -11,7 +11,7 @@ import {
 } from "./components";
 
 export type FormPropsType = UseFormInput<unknown> & {
-    onSubmit: (values: any) => void;
+    onSubmit?: (values: any) => void;
 };
 
 export type AuthProps = AuthPageProps<BoxProps, CardProps, FormPropsType>;

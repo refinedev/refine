@@ -1,14 +1,16 @@
 import * as React from "react";
 import { SVGProps } from "react";
 
-const SvgUseCases = (props: SVGProps<SVGSVGElement>) => (
+const SvgUseCases = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
     <svg
         width="32"
         height="24"
         viewBox="0 0 32 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        className={className ? className : undefined}
         {...props}
+        className={props.className ? props.className : undefined}
     >
         <path
             opacity="0.75"

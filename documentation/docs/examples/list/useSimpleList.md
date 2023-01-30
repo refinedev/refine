@@ -9,4 +9,4 @@ example-tags: [antd,refine-hooks]
 
 [Refer to the **refine** useSimpleList hook documentation for more information. →](/docs/api-reference/antd/hooks/list/useSimpleList/)
 
-<StackblitzExample path="use-simple-list-antd" />
+<CodeSandboxExample path="use-simple-list-antd" />

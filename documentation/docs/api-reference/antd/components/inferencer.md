@@ -3,7 +3,7 @@ id: inferencer
 title: Inferencer
 ---
 
-You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `AntdInferencer`, `AntdInferencer`, `AntdInferencer` and `AntdInferencer` components.
+You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `AntdListInferencer`, `AntdShowInferencer`, `AntdEditInferencer`, `AntdCreateInferencer` and `AntdInferencer` (which combines all in one place) components.
 
 ## Usage
 
@@ -307,6 +307,6 @@ render(<App />);
 
 ## Example
 
-Below you'll find a Live StackBlitz Example displaying a fully setup `Refine` app with `@pankod/refine-inferencer/antd` components.
+Below you'll find a Live CodeSandbox Example displaying a fully setup `Refine` app with `@pankod/refine-inferencer/antd` components.
 
-<StackblitzExample path="inferencer-antd" />
+<CodeSandboxExample path="inferencer-antd" />

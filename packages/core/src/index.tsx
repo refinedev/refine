@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+export * from "@tanstack/react-query";
 
 export * from "./components";
 export * from "./hooks";
@@ -93,5 +93,7 @@ export {
     importCSVMapper,
     routeGenerator,
     userFriendlyResourceName,
+    getNextPageParam,
+    getPreviousPageParam,
 } from "./definitions/helpers";
 export { file2Base64 } from "./definitions/upload";

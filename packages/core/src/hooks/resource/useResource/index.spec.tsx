@@ -73,6 +73,7 @@ describe("useResource Hook without prop", () => {
         });
 
         expect(result.current.resourceName).toBe("posts");
+        expect(result.current.action).toBe("edit");
     });
 
     it("should return resource which route is custom route", async () => {
@@ -102,6 +103,8 @@ describe("useResource Hook without prop", () => {
         expect(result.current.resource.options?.route).toBe(
             "custom-route-posts",
         );
+
+        expect(result.current.action).toBe(undefined);
     });
 });
 
@@ -128,6 +131,7 @@ describe("useResource Hook with resourceName:propResourceName prop", () => {
         );
 
         expect(result.current.resourceName).toBe("categories");
+        expect(result.current.action).toBe(undefined);
     });
 });
 
@@ -155,6 +159,7 @@ describe("useResource Hook with resourceNameOrRouteName prop", () => {
         );
 
         expect(result.current.resourceName).toBe("refine-makes");
+        expect(result.current.action).toBe(undefined);
     });
 });
 
@@ -181,5 +186,6 @@ describe("useResource Hook with recordItemId prop", () => {
         );
 
         expect(result.current.id).toBe("1");
+        expect(result.current.action).toBe(undefined);
     });
 });

@@ -13,7 +13,8 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-```tsx
+```tsx live url=http://localhost:3000/posts/show/123
+// visible-block-start
 import { useShow } from "@pankod/refine-core";
 import {
     Show,
@@ -24,14 +25,14 @@ import {
 
 const { Title, Text } = Typography;
 
-export const PostShow: React.FC = () => {
+const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
     return (
         // highlight-next-line
-        <Show pageHeaderProps={{ extra: <ListButton /> }} isLoading={isLoading}>
+        <Show headerButtons={<ListButton />} isLoading={isLoading}>
             <Title level={5}>Id</Title>
             <Text>{record?.id}</Text>
 
@@ -45,19 +46,27 @@ interface IPost {
     id: number;
     title: string;
 }
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/posts/show/123"]}
+        resources={[
+            {
+                name: "posts",
+                show: PostShow,
+                list: () => {
+                    return (
+                        <RefineAntd.List>
+                            <p>Your list page here</p>
+                        </RefineAntd.List>
+                    );
+                }
+            },
+        ]}
+    />,
+);
 ```
-
-Will look like this:
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/components/buttons/list/list.png" alt="Default list button" />
-</div>
-<br/>
 
 :::note
 The button text is defined automatically by **refine** based on _resource_ object name property.
@@ -69,13 +78,43 @@ The button text is defined automatically by **refine** based on _resource_ objec
 
 Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
 
-```tsx
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
 import { ListButton } from "@pankod/refine-antd";
 
-export const MyListComponent = () => {
-    return <ListButton resourceNameOrRouteName="categories" />;
+const MyListComponent = () => {
+    return (
+        <ListButton resourceNameOrRouteName="categories" />
+    );
 };
+
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+            },
+            {
+                name: "categories",
+                list: () => {
+                    return (
+                        <RefineAntd.List>
+                            <p>Your list page here</p>
+                        </RefineAntd.List>
+                    );
+                }
+            },
+        ]}
+        DashboardPage={MyListComponent}
+    />,
+);
 ```
+
 
 Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
 
@@ -83,12 +122,39 @@ Clicking the button will trigger the `list` method of [`useNavigation`](/api-ref
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx
+```tsx live disableScroll previewHeight=120px
+// visible-block-start
 import { ListButton } from "@pankod/refine-antd";
 
-export const MyListComponent = () => {
-    return <ListButton hideText />;
+const MyListComponent = () => {
+    return (
+        <ListButton
+            // highlight-next-line
+            hideText={true}
+        />
+    );
 };
+
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => {
+                    return (
+                        <RefineAntd.List>
+                            <p>Your list page here</p>
+                        </RefineAntd.List>
+                    );
+                }
+            },
+        ]}
+        DashboardPage={MyListComponent}
+    />,
+);
 ```
 
 ### `accessControl`

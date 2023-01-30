@@ -10,6 +10,7 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 /* You can override the default Infima variables here. */
 :root {
@@ -36,10 +37,35 @@
     --color-turquoise: #0ccee9;
     --color-blue: #0b82f0;
     --color-text-white: white;
-    --color-text-black: #1c1e21;
+    --color-text-black: #3a3e4a;
     --color-bg-white: white;
     --ifm-navbar-sidebar-width: 100%;
     --ifm-table-cell-padding: 6px 8px;
+    /* aliemir theme overrides start */
+    /* --ifm-scrollbar-thumb-hover-background-color: transparent; */
+    --doc-sidebar-width: 270px !important;
+    --ifm-scrollbar-track-background-color: transparent !important;
+    --ifm-menu-link-padding-horizontal: 0.375rem;
+    --ifm-menu-link-padding-vertical: 0.375rem;
+    --ifm-breadcrumb-item-background-active: transparent;
+    --ifm-breadcrumb-spacing: 0.25rem;
+    --ifm-breadcrumb-padding-horizontal: 0.4rem;
+    --ifm-font-color-base: #3a3e4a;
+    --tutorial-toc-bg-color: #f1f5f9;
+    --tutorial-toc-text-color: #292d3e;
+    --tutorial-toc-text-color-dark: #252527;
+    --tutorial-toc-text-color-light: #6b7280;
+    --prism-background-color: #292d3e;
+    --docusaurus-highlighted-code-line-bg: rgb(72 77 91);
+    --ifm-code-font-size: 85%;
+    --browser-window-bezel-color: #ebedf0;
+    --browser-window-bezel-color-accent: #ebedf0;
+    --ifm-alert-border-radius: 0.25rem;
+    --ifm-alert-shadow: 0.5px 1px 1px 0px rgba(0, 0, 0, 0.15);
+    /* var(--ifm-font-size-base)/var(--ifm-line-height-base) var(--ifm-font-family-base) */
+    --ifm-menu-link-sublist-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23a8a8a8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-up'%3E%3Cpolyline points='18 15 12 9 6 15'%3E%3C/polyline%3E%3C/svg%3E");
+    --ifm-font-family-base: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    /* aliemir theme overrides end */
     --tutorial-card-bg: var(--ifm-card-background-color);
     ---tutorial-card-bg-hover: var(--ifm-card-background-color);
 }
@@ -47,8 +73,15 @@
 [data-theme="dark"] {
     --tutorial-card-bg: #252527;
     --tutorial-card-bg-hover: #2c2e33;
+    --ifm-font-color-base: #f6f6f9;
+    --docusaurus-highlighted-code-line-bg: rgb(72 77 91);
+    --browser-window-bezel-color: #292d3e;
+    --browser-window-bezel-color-accent: #4e5264;
+    --tutorial-toc-bg-color: #27272a;
+    --tutorial-toc-text-color: #ebedf0;
+    --tutorial-toc-text-color-dark: #f1f1f1;
+    --tutorial-toc-text-color-light: #dddee0;
 }
-
 .img-container {
     display: flex;
     flex-direction: column;
@@ -377,8 +410,13 @@
     @apply relative;
 }
 
-.with-hoverline.hoverline-link:hover::after,
-.with-hoverline.navbar__link--active::after {
+.with-hoverline.hoverline-link:not([role=button]):hover::after,
+.with-hoverline.navbar__link--active:not([role=button])::after {
+    content: "";
+    @apply absolute bottom-[-5px] left-[calc(50%-12px)] h-1 w-6 rounded-sm bg-[#1890ff] transition-opacity duration-200 ease-in-out;
+}
+
+.with-hoverline.hoverline-link[role=button]:hover::before {
     content: "";
     @apply absolute bottom-[-5px] left-[calc(50%-12px)] h-1 w-6 rounded-sm bg-[#1890ff] transition-opacity duration-200 ease-in-out;
 }
@@ -491,13 +529,13 @@
     position: relative;
 }
 
-#__docusaurus
+/* #__docusaurus
     .with-hoverline
     .navbar-sidebar__items
     .menu__link--active::before {
     content: "";
     @apply absolute bottom-[-5px] left-[calc(50%-12px)] h-1 w-6 rounded-sm bg-[#1890ff] transition-opacity duration-200 ease-in-out;
-}
+} */
 
 #__docusaurus .with-hoverline.active-item::before {
     content: "";
@@ -606,7 +644,7 @@ html[data-page="index"] {
 }
 
 @media (min-width: 1024px) {
-    html[data-page="index"] footer.refine-footer {
+    html[data-page="index"] footer.refine-footer-index {
         scroll-snap-align: end;
     }
 }
@@ -824,6 +862,9 @@ html[data-theme="dark"]:not([data-customized="true"])
 .prop--tag__required {
     border-color: #1890ff;
     color: #1890ff;
+    font-size: 12px;
+    line-height: 18px;
+    vertical-align: middle;
 }
 
 .prop--tag__featured {
@@ -870,4 +911,209 @@ html[data-theme="dark"]:not([data-customized="true"])
 .docs-wrapper table {
     font-size: 14px;
     line-height: 1.5;
+}
+
+#__docusaurus .theme-doc-sidebar-container{
+    --ifm-font-size-base: 14px;
+    font-size: 14px;
+    border: none;
+}
+
+#__docusaurus .menu__link--sublist-caret::after,
+#__docusaurus .menu__caret::before {
+background: var(--ifm-menu-link-sublist-icon) 50% / 1.25rem 1.25rem;
+}
+
+#__docusaurus .theme-doc-breadcrumbs {
+    margin-bottom: 1.25rem;
+}
+
+#__docusaurus .doc-article {
+    max-width: 740px;
+    margin: 0 auto;
+}
+
+#__docusaurus .markdown h1:first-child {
+    --ifm-h1-font-size: 2.85rem;
+    margin-top: 0.25rem;
+}
+
+#__docusaurus .tabs-container > ul.tabs {
+    position: relative;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    gap: 8px;
+}
+#__docusaurus .tabs-container > ul.tabs::before {
+    content: "";
+    width: 100%;
+    height: 3px;
+    background-color: var(--ifm-toc-border-color);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 3px;
+    z-index: -1;
+}
+#__docusaurus .tabs-container > ul.tabs .tabs__item {
+    padding: 0.75rem;
+}
+
+#__docusaurus .theme-code-block {
+    /* color:  #bfc7d5; */
+    background-color: #292d3e !important;
+}
+
+#__docusaurus .theme-code-block pre.prism-code {
+    --prism-color: #bfc7d5;
+    --prism-background-color: #292d3e;
+}
+
+[data-theme="dark"] #__docusaurus .playground-code > .theme-code-block {
+    transition: 0.3s border-top ease-in-out;
+}
+
+[data-theme="dark"] #__docusaurus .playground-code-visible > .theme-code-block {
+    border-top: 2px solid var(--browser-window-bezel-color-accent);
+}
+
+#__docusaurus .doc--toc-desktop {
+    max-width: 285px;
+}
+
+@media (min-width: 997px) and (max-width: 1280px) {
+    aside.theme-doc-sidebar-container + main div.container div.row div.col.col--3 {
+            min-width: 30% !important;
+    }
+}
+
+#__docusaurus .theme-doc-sidebar-container nav.menu {
+    padding-top: 1.125rem;
+}
+
+#__docusaurus .tutorial__item-link {
+    color: var(--tutorial-toc-text-color);
+}
+
+#__docusaurus .tutorial__item--toc-item {
+    color: var(--tutorial-toc-text-color);
+}
+
+#__docusaurus .tutorial__item--toc-item.active,
+#__docusaurus .tutorial__item--toc-item.active:hover,
+#__docusaurus .tutorial__item--toc-item.active:active {
+    color: var(--ifm-color-primary);
+}
+
+#__docusaurus .tutorial__item--unit-item {
+    position: relative;
+}
+
+#__docusaurus .tutorial__item--unit-item::before {
+    content: "";
+    display: block;
+    width: 7px;
+    height: 7px;
+    background-color: var(--tutorial-toc-bg-color);
+    position: absolute;
+    right: -7px;
+    bottom: 0;
+}
+
+#__docusaurus .tutorial__item--unit-item::after {
+    content: "";
+    display: block;
+    width: 7px;
+    height: 7px;
+    background-color: var(--ifm-background-color);
+    position: absolute;
+    right: -7px;
+    bottom: 0;
+    border-bottom-left-radius: 100px;
+}
+
+.checklist-container {
+    @apply rounded px-6 py-5 mb-7;
+    border-left: 5px solid var(--ifm-color-primary);
+    background-color: var(--tutorial-toc-bg-color);
+}
+
+.checklist-container__title {
+    @apply text-2xl font-bold text-sky-600 mb-4 flex items-center flex-wrap gap-2;
+    color: var(--ifm-color-primary);
+}
+
+.checklist-item__button {
+    @apply w-5 h-5 p-0 appearance-none border border-solid rounded flex justify-center items-center;
+    border-color: var(--browser-window-bezel-color-accent);
+    background-color: var(--color-bg-white);
+}
+
+[data-theme="dark"] .checklist-item__button {
+    border-color: var(--browser-window-bezel-color-accent);
+    background-color: #3a3e4a;
+}
+
+.checklist-item__icon {
+    color: var(--ifm-color-primary);
+}
+
+.tutorial--framework-select--wrapper {
+    font-size: 12px;
+    text-align: center;
+    background-color: var(--tutorial-toc-bg-color);
+    @apply px-[10px] pt-[7px] pb-[10px];
+}
+
+.tutorial--framework-select--container {
+    @apply mt-4;
+}
+
+.tutorial--framework-select__title {
+    color: var(--tutorial-toc-text-color);
+    text-align: center;
+    font-size: 0.5rem;
+    @apply font-montserrat tracking-wide;
+}
+
+.tutorial--framework-select__box {
+    @apply pt-3 flex items-center justify-between;
+}
+
+.tutorial--framework-select--button {
+    @apply underline;
+}
+
+.sourcecode-badge {
+    @apply appearance-none no-underline text-xs font-bold bg-slate-800 text-white;
+    font-size: 12px;
+    line-height: 13px;
+    padding-top: 4px;
+    padding-bottom: 5px;
+    vertical-align: middle;
+
+    text-decoration: none;
+    background-color: #24292f;
+    color: white;
+}
+
+.sourcecode-badge:hover,
+.sourcecode-badge:active,
+.sourcecode-badge:focus,
+.sourcecode-badge:visited {
+    text-decoration: none;
+    background-color: #24292f;
+    color: white;
+}
+
+html[data-theme="dark"] .sourcecode-badge {
+    background-color: var(--ifm-color-secondary);
+    color: #24292f;
+}
+
+.sourcecode-badge svg {
+    margin-right: 6px;
+    height: 13px;
+    width: 13px;
+    margin-bottom: -2px;
 }

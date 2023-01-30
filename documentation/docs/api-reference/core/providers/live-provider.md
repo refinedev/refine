@@ -24,7 +24,7 @@ const liveProvider = {
 :::tip
 **refine** includes out-of-the-box live providers to use in your projects like:
 
--   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://stackblitz.com/github/refinedev/refine/tree/master/examples/live-provider-ably/?preset=node)
+-   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
 -   **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
 -   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
 -   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
@@ -299,15 +299,15 @@ const { data } = useList({
 
 ## Supported Hooks
 
-| Supported data hooks                            | Supported form hooks                                                      | Supported other hooks                                                            |
-| ----------------------------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| [`useList` &#8594](/api-reference/core/hooks/data/useList.md) | [`useForm` &#8594](/api-reference/core/hooks/useForm.md)                                | [`useTable` &#8594](/api-reference/core/hooks/useTable.md)                                     |
-| [`useOne` &#8594](/api-reference/core/hooks/data/useOne.md)   | [`useModalForm` &#8594](/api-reference/antd/hooks/form/useModalForm.md)   | [`useEditableTable` &#8594](/api-reference/antd/hooks/table/useEditableTable.md) |
-| [`useMany` &#8594](/api-reference/core/hooks/data/useMany.md) | [`useDrawerForm` &#8594](/api-reference/antd/hooks/form/useDrawerForm.md) | [`useSimpleList` &#8594](/api-reference/antd/hooks/list/useSimpleList.md)        |
-|                                                 | [`useStepsForm` &#8594](/api-reference/antd/hooks/form/useStepsForm.md)   | [`useShow` &#8594](/api-reference/core/hooks/show/useShow.md)                                  |
-|                                                 |                                                                           | [`useCheckboxGroup` &#8594](/api-reference/antd/hooks/field/useCheckboxGroup.md) |
-|                                                 |                                                                           | [`useSelect` &#8594](/api-reference/core/hooks/useSelect.md)                                   |
-|                                                 |                                                                           | [`useRadioGroup` &#8594](/api-reference/antd/hooks/field/useRadioGroup.md)       |
+| Supported data hooks                                             | Supported form hooks                                                      | Supported other hooks                                                            |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| [`useList` &#8594](/docs/api-reference/core/hooks/data/useList/) | [`useForm` &#8594](/api-reference/core/hooks/useForm.md)                  | [`useTable` &#8594](/api-reference/core/hooks/useTable.md)                       |
+| [`useOne` &#8594](/docs/api-reference/core/hooks/data/useOne/)   | [`useModalForm` &#8594](/api-reference/antd/hooks/form/useModalForm.md)   | [`useEditableTable` &#8594](/api-reference/antd/hooks/table/useEditableTable.md) |
+| [`useMany` &#8594](/docs/api-reference/core/hooks/data/useMany/) | [`useDrawerForm` &#8594](/api-reference/antd/hooks/form/useDrawerForm.md) | [`useSimpleList` &#8594](/api-reference/antd/hooks/list/useSimpleList.md)        |
+|                                                                  | [`useStepsForm` &#8594](/api-reference/antd/hooks/form/useStepsForm.md)   | [`useShow` &#8594](/api-reference/core/hooks/show/useShow.md)                    |
+|                                                                  |                                                                           | [`useCheckboxGroup` &#8594](/api-reference/antd/hooks/field/useCheckboxGroup.md) |
+|                                                                  |                                                                           | [`useSelect` &#8594](/docs/api-reference/core/hooks/useSelect/)                  |
+|                                                                  |                                                                           | [`useRadioGroup` &#8594](/api-reference/antd/hooks/field/useRadioGroup.md)       |
 
 ## Supported Hooks Subscriptions
 
@@ -333,7 +333,7 @@ Following hooks uses `useList` under the hood and subscribe to same event.
 -   [`useEditableTable`](/api-reference/antd/hooks/table/useEditableTable.md)
 -   [`useSimpleList`](/api-reference/antd/hooks/list/useSimpleList.md)
 -   [`useCheckboxGroup`](/api-reference/antd/hooks/field/useCheckboxGroup.md)
--   [`useSelect`](/api-reference/core/hooks/useSelect.md)
+-   [`useSelect`](/docs/api-reference/core/hooks/useSelect/)
 -   [`useRadioGroup`](/api-reference/antd/hooks/field/useRadioGroup.md)
 
 :::
@@ -380,7 +380,7 @@ useMany({ resource: "posts", ids: ["1", "2"] });
 :::tip
 Following hooks uses `useMany` under the hood and subscribe to same event.
 
--   [`useSelect`](/api-reference/core/hooks/useSelect.md)
+-   [`useSelect`](/docs/api-reference/core/hooks/useSelect/)
 
 :::
 

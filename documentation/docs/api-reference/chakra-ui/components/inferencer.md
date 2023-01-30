@@ -3,7 +3,7 @@ id: inferencer
 title: Inferencer
 ---
 
-You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `ChakraUIInferencer`, `ChakraUIInferencer`, `ChakraUIInferencer` and `ChakraUIInferencer` components.
+You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `ChakraUIListInferencer`, `ChakraUIShowInferencer`, `ChakraUIEditInferencer`, `ChakraUICreateInferencer` and `ChakraUIInferencer` (which combines all in one place) components.
 
 ## Usage
 
@@ -319,6 +319,6 @@ render(<App />);
 
 ## Example
 
-Below you'll find a Live StackBlitz Example displaying a fully setup `Refine` app with `@pankod/refine-inferencer/chakra-ui` components.
+Below you'll find a Live CodeSandbox Example displaying a fully setup `Refine` app with `@pankod/refine-inferencer/chakra-ui` components.
 
-<StackblitzExample path="inferencer-chakra-ui" />
+<CodeSandboxExample path="inferencer-chakra-ui" />

@@ -205,8 +205,8 @@ Now, parsed data is mapped to conform our APIs requirements.
 | TError     | Custom error object that extends [`HttpError`][httperror]                  | [`HttpError`][httperror]   |
 | TVariables | Values for mutation function                                               | `any`                      |
 
-[usecreate]: /api-reference/core/hooks/data/useCreate.md
-[usecreatemany]: /api-reference/core/hooks/data/useCreateMany.md
+[usecreate]: /docs/api-reference/core/hooks/data/useCreate/
+[usecreatemany]: /docs/api-reference/core/hooks/data/useCreateMany/
 [dataprovider]: /api-reference/core/providers/data-provider.md
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
@@ -218,4 +218,4 @@ Now, parsed data is mapped to conform our APIs requirements.
 
 ## Example
 
-<StackblitzExample path="core-use-import" />
+<CodeSandboxExample path="core-use-import" />

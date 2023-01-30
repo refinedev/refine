@@ -1,6 +1,5 @@
 export { default as Ably } from "./ably";
 export { default as Airtable } from "./airtable";
-export { default as Altogic } from "./altogic";
 export { default as Antd } from "./antd";
 export { default as Appwrite } from "./appwrite";
 export { default as Directus } from "./directus";

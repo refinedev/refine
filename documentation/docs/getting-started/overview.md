@@ -1,6 +1,7 @@
 ---
 id: overview
 title: Overview
+slug: /
 ---
 
 
@@ -28,7 +29,7 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 ⚙️ Zero-config, **one-minute setup** with a **single CLI command**
 
-🔌 Connectors for **15+ backend services** including [REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura), [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost), [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite), [Firebase](https://firebase.google.com/), [Directus](https://directus.io/) and [Altogic](https://github.com/refinedev/refine/tree/master/packages/altogic)
+🔌 Connectors for **15+ backend services** including [REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura), [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite), [Firebase](https://firebase.google.com/), and [Directus](https://directus.io/).
 
 🌐 **SSR support** with **Next.js** or **Remix**
 
@@ -70,5 +71,5 @@ You can find Refine's [Public Roadmap here!](https://github.com/refinedev/refine
 
 👉 Continue with [Quickstart guide](/docs/getting-started/quickstart/) to setup and run your first **refine** project.
 
-👉 Or jump directly to [Refine - Ant Design Tutorial](/docs/tutorials/ant-design-tutorial/) to learn refine by building a full-blown CRUD application.
+👉 Or jump directly to [Tutorial](/docs/tutorial/introduction/index/) to learn refine by building a full-blown CRUD application.
 

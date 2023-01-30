@@ -1,5 +1,81 @@
 # @pankod/refine-mantine
 
+## 2.2.4
+
+### Patch Changes
+
+-   [#3441](https://github.com/refinedev/refine/pull/3441) [`68eeacdbc15`](https://github.com/refinedev/refine/commit/68eeacdbc15695d419a4ac557b375acbdb216856) Thanks [@aliemir](https://github.com/aliemir)! - Update component name generation for non-latin characters with a fallback value to the resource name.
+
+-   Updated dependencies [[`8f2954611fa`](https://github.com/refinedev/refine/commit/8f2954611fa1dd1ebcc7519c416c6ef2554ca395), [`ea74f3a8408`](https://github.com/refinedev/refine/commit/ea74f3a8408bb53097f0e4a6b3b733d515b2a4d3), [`96d93eb2d71`](https://github.com/refinedev/refine/commit/96d93eb2d714d2559faf25c7eab5b4db31f1bf4c)]:
+    -   @pankod/refine-core@3.97.0
+
+## 2.2.3
+
+### Patch Changes
+
+-   [#3441](https://github.com/refinedev/refine/pull/3441) [`68eeacdbc15`](https://github.com/refinedev/refine/commit/68eeacdbc15695d419a4ac557b375acbdb216856) Thanks [@aliemir](https://github.com/aliemir)! - Update component name generation for non-latin characters with a fallback value to the resource name.
+
+-   Updated dependencies [[`8f2954611fa`](https://github.com/refinedev/refine/commit/8f2954611fa1dd1ebcc7519c416c6ef2554ca395), [`ea74f3a8408`](https://github.com/refinedev/refine/commit/ea74f3a8408bb53097f0e4a6b3b733d515b2a4d3), [`96d93eb2d71`](https://github.com/refinedev/refine/commit/96d93eb2d714d2559faf25c7eab5b4db31f1bf4c)]:
+    -   @pankod/refine-core@3.96.0
+
+## 2.2.2
+
+### Patch Changes
+
+-   [#3376](https://github.com/refinedev/refine/pull/3376) [`7de42162c6b`](https://github.com/refinedev/refine/commit/7de42162c6ba42fb4afe94972ffcee26a2634d43) Thanks [@aliemir](https://github.com/aliemir)! - Remove repeated `React` import from `headless/list` inferencer.
+
+## 2.2.1
+
+### Patch Changes
+
+-   [#3376](https://github.com/refinedev/refine/pull/3376) [`7de42162c6b`](https://github.com/refinedev/refine/commit/7de42162c6ba42fb4afe94972ffcee26a2634d43) Thanks [@aliemir](https://github.com/aliemir)! - Remove repeated `React` import from `headless/list` inferencer.
+
+## 2.2.0
+
+### Minor Changes
+
+-   [#3361](https://github.com/refinedev/refine/pull/3361) [`abcd9a7ed6b`](https://github.com/refinedev/refine/commit/abcd9a7ed6bc0070b386a9fdc4bf95d9187bf7c3) Thanks [@aliemir](https://github.com/aliemir)! - - fix: updated date inference logic to have a minimum length limit
+    -   feat: added headless inferencer using `@pankod/refine-react-table` and `@pankod/refine-react-hook-form` packages. exported from `/headless` path.
+
+### Patch Changes
+
+-   Updated dependencies [[`98a1fbec65a`](https://github.com/refinedev/refine/commit/98a1fbec65abd38da9d6081e04c23b5fe4174acd), [`310ebd05990`](https://github.com/refinedev/refine/commit/310ebd05990dd629e64d0a2afcd2b371fe42440f)]:
+    -   @pankod/refine-core@3.94.2
+
+## 2.1.0
+
+### Minor Changes
+
+-   [#3361](https://github.com/refinedev/refine/pull/3361) [`abcd9a7ed6b`](https://github.com/refinedev/refine/commit/abcd9a7ed6bc0070b386a9fdc4bf95d9187bf7c3) Thanks [@aliemir](https://github.com/aliemir)! - - fix: updated date inference logic to have a minimum length limit
+    -   feat: added headless inferencer using `@pankod/refine-react-table` and `@pankod/refine-react-hook-form` packages. exported from `/headless` path.
+
+### Patch Changes
+
+-   Updated dependencies [[`98a1fbec65a`](https://github.com/refinedev/refine/commit/98a1fbec65abd38da9d6081e04c23b5fe4174acd), [`310ebd05990`](https://github.com/refinedev/refine/commit/310ebd05990dd629e64d0a2afcd2b371fe42440f)]:
+    -   @pankod/refine-core@3.94.1
+
+## 2.0.2
+
+### Patch Changes
+
+-   [#3340](https://github.com/refinedev/refine/pull/3340) [`52489a0d8bc`](https://github.com/refinedev/refine/commit/52489a0d8bc746ad23eb1af984370a8222959c8d) Thanks [@aliemir](https://github.com/aliemir)! - Update `useInferFetch` hook logic to work without `id` in `list` and `create` type of inferencer.
+
+-   [#3339](https://github.com/refinedev/refine/pull/3339) [`8c764ecc566`](https://github.com/refinedev/refine/commit/8c764ecc566a0bdb9c7455c7b06680a93f1a8305) Thanks [@aliemir](https://github.com/aliemir)! - Fix type inconsistency in `useInferFetch` due to changes in `@pankod/refine-core`'s `useResource` hook.
+
+-   Updated dependencies [[`ce6acf2b3d4`](https://github.com/refinedev/refine/commit/ce6acf2b3d4c181a87cbdb6c1264fd6e59a504f5)]:
+    -   @pankod/refine-core@3.94.0
+
+## 2.0.1
+
+### Patch Changes
+
+-   [#3340](https://github.com/refinedev/refine/pull/3340) [`52489a0d8bc`](https://github.com/refinedev/refine/commit/52489a0d8bc746ad23eb1af984370a8222959c8d) Thanks [@aliemir](https://github.com/aliemir)! - Update `useInferFetch` hook logic to work without `id` in `list` and `create` type of inferencer.
+
+-   [#3339](https://github.com/refinedev/refine/pull/3339) [`8c764ecc566`](https://github.com/refinedev/refine/commit/8c764ecc566a0bdb9c7455c7b06680a93f1a8305) Thanks [@aliemir](https://github.com/aliemir)! - Fix type inconsistency in `useInferFetch` due to changes in `@pankod/refine-core`'s `useResource` hook.
+
+-   Updated dependencies [[`ce6acf2b3d4`](https://github.com/refinedev/refine/commit/ce6acf2b3d4c181a87cbdb6c1264fd6e59a504f5)]:
+    -   @pankod/refine-core@3.93.0
+
 ## 2.0.0
 
 ### Patch Changes

@@ -116,7 +116,7 @@ npm install react-bootstrap bootstrap@5.1.3
 
 ### 5. refine <a name="refine"></a>
 
-If you're looking for a framework that will let your data- intensive application run at top speeds with extreme customizability, then look no further than refine. This React based headless system has been designed specifically for speed - allowing users to bring their own UI and update it via [refine's](https://refine.dev/docs/getting-started/overview/) powerful interface!
+If you're looking for a framework that will let your data- intensive application run at top speeds with extreme customizability, then look no further than refine. This React based headless system has been designed specifically for speed - allowing users to bring their own UI and update it via [refine's](https://refine.dev/docs/) powerful interface!
 
 **Key features**
 
@@ -127,7 +127,7 @@ If you're looking for a framework that will let your data- intensive application
 
 📦 **Out-of-the-box** : Routing, networking, authentication, state management, i18n and UI.
 
-🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura), [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost), [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite), [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa), [Firebase](https://firebase.google.com/), [Directus](https://directus.io/) and [Altogic](https://github.com/refinedev/refine/tree/master/packages/altogic).
+🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura), [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost), [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite), [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa), [Firebase](https://firebase.google.com/), and [Directus](https://directus.io/).
 
 📝 **Native Typescript Core** : You can always opt out for plain JavaScript.
 
@@ -140,7 +140,7 @@ There are two ways to add UI elements to refine;
 1. Using a UI Library such as Tailwind, Chakra UI, etc.
 2. Using a complete UI Framework such as Ant Design, Material UI, etc.
 
-The recommended way is using the [superplate](https://github.com/pankod/superplate) tool. superplate's CLI wizard will let you create and customize your application in seconds. You can find tutorial from [here](https://refine.dev/docs/core/tutorial/)
+The recommended way is using the [superplate](https://github.com/pankod/superplate) tool. superplate's CLI wizard will let you create and customize your application in seconds. You can find tutorial from [here](https://refine.dev/docs/tutorial/introduction/index/)
 
 ```
 npx superplate-cli -p refine-react tutorial
