@@ -140,7 +140,9 @@ Each mode corresponds to a different type of user experience.
 [Refer to the mutation mode documentation for more information &#8594](/docs/advanced-tutorials/mutation-mode)
 
 ```tsx
-useUpdateMany({
+const { mutate } = useUpdateMany();
+
+mutate({
     mutationMode: "undoable",
 });
 ```
@@ -150,7 +152,9 @@ useUpdateMany({
 When `mutationMode` is set to `undoable`, `undoableTimeout` is used to determine duration to wait before executing the mutation. Default value is `5000` milliseconds.
 
 ```tsx
-useUpdateMany({
+const { mutate } = useUpdateMany();
+
+mutate({
     mutationMode: "undoable",
     undoableTimeout: 10000,
 });
@@ -161,7 +165,9 @@ useUpdateMany({
 When `mutationMode` is set to `undoable`, `onCancel` is used to determine what to do when the user cancels the mutation.
 
 ```tsx
-useUpdateMany({
+const { mutate } = useUpdateMany();
+
+mutate({
     mutationMode: "undoable",
     onCancel: (cancelMutation) => {
         cancelMutation();

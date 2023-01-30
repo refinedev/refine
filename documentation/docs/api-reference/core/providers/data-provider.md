@@ -1180,7 +1180,7 @@ const { data, isLoading } = useCustom({
 });
 ```
 
-> [Refer to the useCustom documentation for more information. &#8594](/api-reference/core/hooks/data/useCustom.md)
+> [Refer to the useCustom documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useCustom/)
 
 ### Error Format
 
