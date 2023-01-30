@@ -3,18 +3,18 @@ title: useCustom
 siderbar_label: useCustom
 ---
 
-`useCustom` is a extended version of `react-query`'s [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It support all the features of `useQuery` and adds some extra features.
+`useCustom` is a extended version of react-query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It support all the features of `useQuery` and adds some extra features.
 
 -   It uses the `custom` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
-It is useful when you want to send a custom request with using the react-query advantages.
+It is useful when you want to send a custom query request with using the react-query advantages.
 
 :::danger attention
 `useCustom` should **not** be used when creating, updating or deleting a resource. To do these; [useCreate](/docs/api-reference/core/hooks/data/useCreate/), [useUpdate](/docs/api-reference/core/hooks/data/useUpdate/) or [useDelete](/docs/api-reference/core/hooks/data/useDelete/) hooks should be used instead.
 
 This is because `useCustom`, unlike other data hooks, does not [invalidate queries](https://react-query.tanstack.com/guides/query-invalidation) and therefore will not update the application state either.
 
-If you need to custom mutation request, use the [useCustomMutation](/api-reference/core/hooks/data/useCustomMutation.md) hook.
+If you need to custom mutation request, use the [useCustomMutation](/docs/api-reference/core/hooks/data/useCustomMutation/) hook.
 :::
 
 ## Basic Usage
