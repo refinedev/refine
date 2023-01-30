@@ -6,8 +6,6 @@ siderbar_label: useCan
 
 `useCan` uses the [Access Control Provider's][access-control-provider] `can` function as the query function for [TanStack Query's][tanstack-query] [`useQuery`][use-query]. It takes the [parameters][can-params] that `can` takes. It can also be configured with [`queryOptions`][query-options] for [`useQuery`][use-query]. Returns the result of [`useQuery`][use-query].
 
-<br/>
-
 ## Basic Usage
 
 ```tsx
@@ -19,8 +17,6 @@ const { data } = useCan({
     params: { foo: "optional-params" },
 });
 ```
-
-<br/>
 
 ## Performance
 
@@ -40,8 +36,6 @@ const { data } = useCan({
     }
 });
 ```
-
-<br/>
 
 ## Properties
 
@@ -87,8 +81,6 @@ useCan({
 });
 ```
 
-<br/>
-
 ## Return values
 
 > Type: [`CanReturnType`](/docs/api-reference/core/interfaceReferences/#canreturntype)
@@ -123,8 +115,6 @@ const { data: canCreatePost } = useCan({
 
 console.log(canCreatePost); // { can: false, reason: "Unauthorized" }
 ```
-
-<br/>
 
 ## API
 
