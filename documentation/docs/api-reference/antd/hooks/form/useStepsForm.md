@@ -1122,7 +1122,7 @@ For example, Let's send the values we received from the user in two separate inp
 
 ```tsx title="pages/user/create.tsx"
 // --
-useStepsForm<IUser, HttpError, IUser>({
+useStepsForm({
     submit: (formValues) => {
         // highlight-start
         const data = {
