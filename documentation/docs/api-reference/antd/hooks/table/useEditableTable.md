@@ -12,15 +12,11 @@ import LivePreview from "./\_partial-use-editable-table-live-preview.md";
 `useEditeableTable` hook is extended from [`useTable`][usetable] hook from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/next/packages/antd) package. This means that you can use all the features of [`useTable`][usetable] hook.
 :::
 
-<br/>
-
 ## Basic Usage
 
 Here is a example of how to use `useEditableTable` hook. We will explain in detail the usage of the hook with the following sections:
 
 <LivePreview/>
-
-<br />
 
 ### Editing with buttons
 
@@ -60,8 +56,6 @@ interface IPost {
     title: string;
 }
 ```
-
-<br />
 
 Now lets add a column for edit buttons:
 
@@ -140,8 +134,6 @@ export const PostList: React.FC = () => {
 :::tip
 `isEditing` function that returns from `useEditableTable` lets us check whether a line is currently in edit mode or not.
 :::
-
-<br />
 
 For now, our post is not editable yet. If a post is being edited, we must show editable columns inside a `<Form.Item>` using conditional rendering:
 
@@ -240,8 +232,6 @@ With this, when a user clicks on the edit button, `isEditing(lineId)` will turn 
 By giving the `<Table.Column>` component a unique `render` property, you can render the value in that column however you want.
 Refer to [`<Table.Column>`][table.column] documentation for more information.
 :::
-
-<br />
 
 ### Editing by clicking to row
 
@@ -372,26 +362,24 @@ Takes a `id` as a parameter and returns `true` if the given `BaseKey` is equal t
 
 ### Return values
 
-| Property          | Description                                             | Type                                                                                              |
-| ----------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| searchFormProps   | Ant Design [`<Form>`][form] props                       | [`FormProps<TSearchVariables>`][form]                                                             |
-| tableProps        | Ant Design [`<Table>`][table] props                     | [`TableProps<TData>`][table]                                                                      |
-| tableQueryResult  | Result of the `react-query`'s `useQuery`                | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery] |
-| sorter            | Current sorting state                                   | [`CrudSorting`][crudsorting]                                                                      |
-| filters           | Current filters state                                   | [`CrudFilters`][crudfilters]                                                                      |
-| form              | Ant Design [`<Form>`][form] instance                    | [`FormInstance`][forminstance]                                                                    |
-| formProps         | Ant Design [`<Form>`][form] props                       | [`FormProps`][form]                                                                               |
-| saveButtonProps   | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; }`                                                     |
-| cancelButtonProps | Props for a cancel button                               | `{ onClick: () => void; }`                                                                        |
-| editButtonProps   | Props for an edit button                                | `{ onClick: () => void; }`                                                                        |
-| queryResult       | Result of the query of a record                         | [`QueryObserverResult<T>`][usequery]                                                              |
-| mutationResult    | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`][usemutation]                                                             |
-| formLoading       | Loading state of form request                           | `boolean`                                                                                         |
-| id                | Record id for edit action                               | [`BaseKey`][basekey]                                                                              |
-| setId             | `id` setter                                             | `Dispatch<SetStateAction<` [`BaseKey`][basekey] \| `undefined>>`                                  |
-| isEditing         | Check if is editing                                     | `(id: `[`BaseKey`][basekey]`) => boolean`                                                         |
-
-<br />
+| Property          | Description                                             | Type                                                                                 |
+| ----------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| searchFormProps   | Ant Design [`<Form>`][form] props                       | [`FormProps<TSearchVariables>`][form]                                                |
+| tableProps        | Ant Design [`<Table>`][table] props                     | [`TableProps<TData>`][table]                                                         |
+| tableQueryResult  | Result of the `react-query`'s `useQuery`                | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery] |
+| sorter            | Current sorting state                                   | [`CrudSorting`][crudsorting]                                                         |
+| filters           | Current filters state                                   | [`CrudFilters`][crudfilters]                                                         |
+| form              | Ant Design [`<Form>`][form] instance                    | [`FormInstance`][forminstance]                                                       |
+| formProps         | Ant Design [`<Form>`][form] props                       | [`FormProps`][form]                                                                  |
+| saveButtonProps   | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; }`                                        |
+| cancelButtonProps | Props for a cancel button                               | `{ onClick: () => void; }`                                                           |
+| editButtonProps   | Props for an edit button                                | `{ onClick: () => void; }`                                                           |
+| queryResult       | Result of the query of a record                         | [`QueryObserverResult<T>`][usequery]                                                 |
+| mutationResult    | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`][usemutation]                                                |
+| formLoading       | Loading state of form request                           | `boolean`                                                                            |
+| id                | Record id for edit action                               | [`BaseKey`][basekey]                                                                 |
+| setId             | `id` setter                                             | `Dispatch<SetStateAction<` [`BaseKey`][basekey] \| `undefined>>`                     |
+| isEditing         | Check if is editing                                     | `(id: `[`BaseKey`][basekey]`) => boolean`                                            |
 
 ## Example
 
