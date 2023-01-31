@@ -1,7 +1,7 @@
 ```tsx live url=http://localhost:3000/products previewHeight=200px
 setInitialRoutes(["/categories/create"]);
 // visible-block-start
-import { useSelect, HttpError } from "@pankod/refine-core";
+import { useSelect } from "@pankod/refine-core";
 
 interface ICategory {
     id: number;
@@ -30,7 +30,7 @@ const ProductCreate: React.FC = () => {
 setRefineProps({
     resources: [
         {
-            name: "categories",
+            name: "posts",
             create: ProductCreate,
         },
     ],
