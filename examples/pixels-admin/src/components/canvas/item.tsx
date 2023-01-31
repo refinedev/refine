@@ -1,5 +1,4 @@
 import React from "react";
-import { Typography } from "@pankod/refine-antd";
 
 import { TPixel, TCanvas } from "types";
 import { DEFAULT_SCALE, PIXEL_SIZE } from "utility/constants";
