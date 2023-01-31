@@ -83,8 +83,6 @@ useCan({
 
 ## Return values
 
-> Type: [`CanReturnType`](/docs/api-reference/core/interfaceReferences/#canreturntype)
-
 Query result of [TanStack Query's][tanstack-query] [`useQuery`][use-query].
 
 For example if you want to check if the user can create a post return value will be:
