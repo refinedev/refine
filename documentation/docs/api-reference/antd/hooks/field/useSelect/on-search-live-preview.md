@@ -1,14 +1,14 @@
 ```tsx live url=http://localhost:3000 previewHeight=600px
 setInitialRoutes(["/categories/create"]);
 // visible-block-start
-import { useSelect, Form, Select, Input } from "@pankod/refine-antd";
+import { useSelect, Select } from "@pankod/refine-antd";
 
 interface ICategory {
     id: number;
     title: string;
 }
 
-const CategoryCreate: React.FC = () => {
+const PostCreate: React.FC = () => {
     const [order, setOrder] = React.useState<"asc" | "desc">("asc");
 
     const { selectProps } = useSelect<ICategory>({
@@ -36,8 +36,8 @@ const CategoryCreate: React.FC = () => {
 setRefineProps({
     resources: [
         {
-            name: "categories",
-            create: CategoryCreate,
+            name: "posts",
+            create: PostCreate,
         },
     ],
 });

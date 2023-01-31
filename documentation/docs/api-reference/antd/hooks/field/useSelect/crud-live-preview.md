@@ -8,7 +8,7 @@ interface ICategory {
     title: string;
 }
 
-const CategoryCreate: React.FC = () => {
+const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<ICategory>();
 
     const { selectProps } = useSelect<ICategory>({
@@ -20,6 +20,7 @@ const CategoryCreate: React.FC = () => {
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Category"
+                    placeholder="Select a category"
                     name={["category", "id"]}
                     rules={[
                         {
@@ -37,8 +38,8 @@ const CategoryCreate: React.FC = () => {
 setRefineProps({
     resources: [
         {
-            name: "categories",
-            create: CategoryCreate,
+            name: "posts",
+            create: PostCreate,
         },
     ],
 });

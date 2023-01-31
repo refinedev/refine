@@ -8,7 +8,7 @@ interface ICategory {
     title: string;
 }
 
-const CategoryCreate: React.FC = () => {
+const PostCreate: React.FC = () => {
     const [order, setOrder] = React.useState<"asc" | "desc">("asc");
 
     const { selectProps } = useSelect<ICategory>({
@@ -37,10 +37,10 @@ const CategoryCreate: React.FC = () => {
 setRefineProps({
     resources: [
         {
-            name: "categories",
-            create: CategoryCreate,
+            name: "posts",
+            create: PostCreate,
         },
     ],
 });
-render(<RefineHeadlessDemo />);
+render(<RefineAntdDemo />);
 ```
