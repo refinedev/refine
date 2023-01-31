@@ -9,23 +9,23 @@ import PaginationLivePreview from "./pagination-live-preview.md";
 import FilteringLivePreview from "./filtering-live-preview.md";
 import SortingLivePreview from "./sorting-live-preview.md";
 
-`useList` is an extended version of `react-query`'s [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It support all the features of `useQuery` and adds some extra features.
+`useList` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It supports all the features of `useQuery` and adds some extra features.
 
 -   It uses the `getList` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
--   It uses query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the `react-query` devtools.
+-   It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the TanStack Query devtools.
 
-When you need to fetch data according to sort, filter, pagination etc. from a resource, you can use `useList` hook. It will return the data and some functions to control the query.
+When you need to fetch data according to sort, filter, pagination, etc. from a resource, you can use the `useList` hook. It will return the data and some functions to control the query.
 
 ## Basic Usage
 
-Here is a basic example of how to use `useList` hook.
+Here is a basic example of how to use the `useList` hook.
 
 <BasicUsageLivePreview />
 
 ## Pagination
 
-`useList` hook supports pagination feature. You can pass `pagination` property to enable pagination. In order to handle pagination, `useList` hook passes `pagination` property to the `getList` method from the `dataProvider`.
+The `useList` hook supports the pagination feature. You can pass the `pagination` property to enable pagination. To handle pagination, the `useList` hook passes the `pagination` property to the `getList` method from the `dataProvider`.
 
 Dynamically changing the `pagination` properties will trigger a new request.
 
@@ -33,7 +33,7 @@ Dynamically changing the `pagination` properties will trigger a new request.
 
 ## Sorting
 
-`useList` hook supports sorting feature. You can pass `sort` property to enable sorting. In order to handle sorting, `useList` hook passes `sort` property to the `getList` method from the `dataProvider`.
+The `useList` hook supports the sorting feature. You can pass the `sort` property to enable sorting. To handle sorting, the `useList` hook passes the `sort` property to the `getList` method from the `dataProvider`.
 
 Dynamically changing the `sort` property will trigger a new request.
 
@@ -41,7 +41,7 @@ Dynamically changing the `sort` property will trigger a new request.
 
 ## Filtering
 
-`useList` hook supports filtering feature. You can pass `filters` property to enable filtering. In order to handle filtering, `useList` hook passes `filters` property to the `getList` method from the `dataProvider`.
+The `useList` hook supports the filtering feature. You can pass the `filters` property to enable filtering. To handle filtering, the `useList` hook passes the `filters` property to the `getList` method from the `dataProvider`.
 
 Dynamically changing the `filters` property will trigger a new request.
 
@@ -51,7 +51,7 @@ Dynamically changing the `filters` property will trigger a new request.
 
 > This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
 
-When `useList` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to the live updates.
+When the `useList` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
 
@@ -59,7 +59,7 @@ When `useList` hook is mounted, it will call the `subscribe` method from the `li
 
 ### `resource` <PropTag required />
 
-It will be passed to the `getList` method from the `dataProvider` as parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resource are handled.
+It will be passed to the `getList` method from the `dataProvider` as a parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resources are handled.
 
 ```tsx
 useList({
@@ -79,7 +79,7 @@ useList({
 
 ### `config.filters`
 
-`filters` will be passed to the `getList` method from the `dataProvider` as parameter. It is used to send filter query parameters to the API.
+`filters` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send filter query parameters to the API.
 
 [Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
@@ -99,7 +99,7 @@ useList({
 
 ### `config.sort`
 
-`sort` will be passed to the `getList` method from the `dataProvider` as parameter. It is used to send sort query parameters to the API.
+`sort` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send sort query parameters to the API.
 
 [Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
@@ -118,7 +118,7 @@ useList({
 
 ### `config.pagination`
 
-`pagination` will be passed to the `getList` method from the `dataProvider` as parameter. It is used to send pagination query parameters to the API.
+`pagination` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send pagination query parameters to the API.
 
 #### `current`
 
@@ -150,7 +150,7 @@ useList({
 
 ### `config.hasPagination`
 
-`hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter. It is used to determine whether to use server-side pagination or not.
+`hasPagination` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to determine whether to use server-side pagination or not.
 
 ```tsx
 useList({
@@ -243,7 +243,7 @@ useList({
 
 > [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
-After data fetching is failed, `useList` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
+After data fetching is failed, `useList` will call `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
 useList({
@@ -274,7 +274,7 @@ useList({
 
 > [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
-The callback function that is executed when new events from a subscription are arrived.
+The callback function is executed when new events from a subscription have arrived.
 
 ```tsx
 useList({
@@ -292,7 +292,7 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 
 ## Return Values
 
-Returns an object with react-query's `useQuery` return values.
+Returns an object with TanStack Query's `useQuery` return values.
 
 [Refer to the `useQuery` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 
@@ -337,4 +337,4 @@ interface UseListConfig {
 
 | Description                              | Type                                                                                                                                                 |
 | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
+| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |

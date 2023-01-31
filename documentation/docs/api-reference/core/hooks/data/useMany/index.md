@@ -1,15 +1,16 @@
 ---
 title: useMany
 siderbar_label: useMany
+source: packages/core/src/hooks/data/useMany.ts
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 
-`useMany` is a extended version of `react-query`'s [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It support all the features of `useQuery` and adds some extra features.
+`useMany` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It supports all the features of `useQuery` and adds some extra features.
 
 -   It uses the `getMany` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
--   It uses query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the `react-query` devtools.
+-   It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the TanStack Query devtools.
 
 It is useful when you want to fetch multiple records from the API. It will return the data and some functions to control the query.
 
@@ -19,9 +20,9 @@ If your data provider does not have a `getMany` method, `useMany` will use the `
 
 ## Basic Usage
 
-`useMany` hook expects a `resource` and `ids` property. It will be passed to the `getMany` method from the `dataProvider` as parameter.
+The `useMany` hook expects a `resource` and `ids` property. It will be passed to the `getMany` method from the `dataProvider` as a parameter.
 
-When these properties are changed, `useMany` hook will trigger a new request.
+When these properties are changed, the `useMany` hook will trigger a new request.
 
 <BasicUsageLivePreview />
 
@@ -29,7 +30,7 @@ When these properties are changed, `useMany` hook will trigger a new request.
 
 > This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
 
-When `useMany` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to the live updates.
+When the `useMany` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
 
@@ -37,7 +38,7 @@ When `useMany` hook is mounted, it will call the `subscribe` method from the `li
 
 ### `resource` <PropTag required />
 
-It will be passed to the `getMany` method from the `dataProvider` as parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getMany` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resource are handled.
+It will be passed to the `getMany` method from the `dataProvider` as a parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getMany` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resources are handled.
 
 ```tsx
 useMany({
@@ -47,7 +48,7 @@ useMany({
 
 ### `ids` <PropTag required />
 
-It will be passed to the `getMany` method from the `dataProvider` as parameter. It is used to determine which records to fetch.
+It will be passed to the `getMany` method from the `dataProvider` as a parameter. It is used to determine which records to fetch.
 
 ```tsx
 useMany({
@@ -148,7 +149,7 @@ useMany({
 
 > [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
-After data fetching is failed, `useMany` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
+After data fetching is failed, `useMany` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
 useMany({
@@ -167,7 +168,7 @@ useMany({
 > [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
+For more information about live mode, please check the [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
 useMany({
@@ -179,7 +180,7 @@ useMany({
 
 > [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
-The callback function that is executed when new events from a subscription are arrived.
+The callback function is executed when new events from a subscription have arrived.
 
 ```tsx
 useMany({
@@ -197,7 +198,7 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 
 ## Return Values
 
-Returns an object with react-query's `useQuery` return values.
+Returns an object with TanStack Query's `useQuery` return values.
 
 [Refer to the `useQuery` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 
@@ -221,4 +222,4 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 
 | Description                              | Type                                                                                                     |
 | ---------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{ data: TData[]; }>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
+| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData[]; }>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |

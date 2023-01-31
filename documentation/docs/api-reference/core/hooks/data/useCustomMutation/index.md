@@ -1,25 +1,26 @@
 ---
 title: useCustomMutation
 siderbar_label: useCustomMutation
+source: packages/core/src/hooks/data/useCustomMutation.ts
 ---
 
-`useCustomMutation` is a extended version of react-query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation). It support all the features of `useMutation` and adds some extra features.
+`useCustomMutation` is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation). It supports all the features of `useMutation` and adds some extra features.
 
 -   It uses the `custom` method as the **mutation function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
 
-It is useful when you want to send a custom mutation request with using the react-query advantages.
+It is useful when you want to send a custom mutation request using the TanStack Query advantages.
 
 :::danger attention
-`useCustomMutation` should **not** be used when creating, updating or deleting a resource. To do these; [useCreate](/docs/api-reference/core/hooks/data/useCreate/), [useCustomMutation](/docs/api-reference/core/hooks/data/useCustomMutation/) or [useDelete](/docs/api-reference/core/hooks/data/useDelete/) hooks should be used instead.
+`useCustomMutation` should **not** be used when creating, updating, or deleting a resource. To do these; [useCreate](/docs/api-reference/core/hooks/data/useCreate/), [useCustomMutation](/docs/api-reference/core/hooks/data/useCustomMutation/) or [useDelete](/docs/api-reference/core/hooks/data/useDelete/) hooks should be used instead.
 
-This is because `useCustomMutation`, unlike other data hooks, does not [invalidate queries](https://react-query.tanstack.com/guides/query-invalidation) and therefore will not update the application state either.
+This is because `useCustomMutation`, unlike other data hooks, does not [invalidate queries](https://tanstack.com/query/latest/docs/react/guides/query-invalidation) and therefore will not update the application state either.
 
 If you need to custom query request, use the [useCustom](/docs/api-reference/core/hooks/data/useCustomMutation/) hook.
 :::
 
 ## Basic Usage
 
-`useCustomMutation` hook returns many useful properties and methods. One of them is `mutate` method which expects `values`, `method` and `url` as parameters. These parameters will be passed to the `custom` method from the `dataProvider` as parameters.
+The `useCustomMutation` hook returns many useful properties and methods. One of them is the `mutate` method which expects `values`, `method`, and `url` as parameters. These parameters will be passed to the `custom` method from the `dataProvider` as parameters.
 
 ```tsx
 import { useCustomMutation, useApiUrl } from "@pankod/refine-core";
@@ -60,7 +61,7 @@ useCustomMutation({
 
 :::tip
 
-`mutationOptions` does not support `onSuccess` and `onError` props because they override the default `onSuccess` and `onError` functions. If you want to use these props, you can pass them to mutate function like this:
+`mutationOptions` does not support `onSuccess` and `onError` props because they override the default `onSuccess` and `onError` functions. If you want to use these props, you can pass them to mutate functions like this:
 
 ```tsx
 const { mutate } = useCustomMutation();
@@ -90,7 +91,7 @@ mutate(
 
 ### `url` <PropTag required />
 
-It will be passed to the `custom` method from the `dataProvider` as a parameter. It usually used to specify the endpoint of the request.
+It will be passed to the `custom` method from the `dataProvider` as a parameter. It is usually used to specify the endpoint of the request.
 
 ```tsx
 const { mutate } = useCustomMutation();
@@ -102,7 +103,7 @@ mutate({
 
 ### `method` <PropTag required />
 
-It will be passed to the `custom` method from the `dataProvider` as a parameter. It usually used to specify the HTTP method of the request.
+It will be passed to the `custom` method from the `dataProvider` as a parameter. It is usually used to specify the HTTP method of the request.
 
 ```tsx
 const { mutate } = useCustomMutation();
@@ -114,7 +115,7 @@ mutate({
 
 ### `values` <PropTag required />
 
-It will be passed to the `custom` method from the `dataProvider` as parameter. The parameter is usually used as the data to be sent with the request.
+It will be passed to the `custom` method from the `dataProvider` as a parameter. The parameter is usually used as the data to be sent with the request.
 
 ```tsx
 const { mutate } = useCustomMutation();
@@ -167,7 +168,7 @@ mutate({
 
 > [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
-After data fetching is failed, `useCustomMutation` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
+After data fetching is failed, `useCustomMutation` will call `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
 const { mutate } = useCustomMutation();
@@ -237,7 +238,7 @@ mutate({
 
 ## Return Values
 
-Returns an object with react-query's `useMutation` return values.
+Returns an object with TanStack Query's `useMutation` return values.
 
 [Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
 
@@ -245,16 +246,16 @@ Returns an object with react-query's `useMutation` return values.
 
 ### Mutation Parameters
 
-| Property                                         | Description                                                                                                    | Type                                                                                                                                                                                       |
-| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| url <div className="required">Required</div>     | URL                                                                                                            | string                                                                                                                                                                                     |
-| method <div className="required">Required</div>  | Method                                                                                                         | `post`, `put`, `patch`, `delete`                                                                                                                                                           |
-| values <div className=" required">Required</div> | Values for mutation function                                                                                   | `TVariables`                                                                                                                                                                               |
-| config                                           | The config of your request. You can send `headers` using this field. | { headers?: {}; } |
-| successNotification                              | Successful mutation notification                                                                               | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification)                                                                                                   |
-| errorNotification                                | Unsuccessful mutation notification                                                                             | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification)                                                                                                   |
-| metaData                                         | Metadata query for `dataProvider`                                                                              | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                                                                                                                         |
-| dataProviderName                                 | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.             | `string`                                                                                                                                                                                   |
+| Property                                         | Description                                                                                        | Type                                                                                     |
+| ------------------------------------------------ | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| url <div className="required">Required</div>     | URL                                                                                                | string                                                                                   |
+| method <div className="required">Required</div>  | Method                                                                                             | `post`, `put`, `patch`, `delete`                                                         |
+| values <div className=" required">Required</div> | Values for mutation function                                                                       | `TVariables`                                                                             |
+| config                                           | The config of your request. You can send `headers` using this field.                               | { headers?: {}; }                                                                        |
+| successNotification                              | Successful mutation notification                                                                   | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification) |
+| errorNotification                                | Unsuccessful mutation notification                                                                 | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification) |
+| metaData                                         | Metadata query for `dataProvider`                                                                  | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                       |
+| dataProviderName                                 | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                                 |
 
 ### Type Parameters
 
@@ -269,4 +270,4 @@ Returns an object with react-query's `useMutation` return values.
 
 | Description                               | Type                                                                                                                                                                                          |
 | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`](https://tanstack.com/query/v4/docs/react/reference/useMutation) |
+| Result of the TanStack Query's useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`](https://tanstack.com/query/v4/docs/react/reference/useMutation) |
