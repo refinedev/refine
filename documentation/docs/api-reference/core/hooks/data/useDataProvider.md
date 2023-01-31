@@ -29,7 +29,7 @@ const App = () => {
 export default App;
 ```
 
-Now we can access the data providers with `useDataProvider` hook:
+Now we can access the data providers with the `useDataProvider` hook:
 
 ```tsx
 import { useDataProvider } from "@pankod/refine-core";

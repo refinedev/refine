@@ -13,19 +13,19 @@ import FilteringLivePreview from "./filtering-live-preview.md";
 
 -   It uses the `getList` method as the query function from the [`dataProvider`](/docs/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
--   It uses query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the `react-query` devtools.
+-   It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the `react-query` devtools.
 
 ## Basic Usage
 
-Here is a basic example of how to use `useInfiniteList` hook.
+Here is a basic example of how to use the `useInfiniteList` hook.
 
 <BasicUsageLivePreview />
 
 ## Pagination
 
-`useInfiniteList` hook supports pagination properties just like [`useList`](/docs/api-reference/core/hooks/data/useList/). In order to handle pagination, `useInfiniteList` hook passes `pagination` property to the `getList` method from the `dataProvider`.
+`useInfiniteList` hook supports pagination properties just like [`useList`](/docs/api-reference/core/hooks/data/useList/). To handle pagination, the `useInfiniteList` hook passes the `pagination` property to the `getList` method from the `dataProvider`.
 
-Dynamically changing the `pagination` properties will trigger a new request. Also `fetchNextPage` method will increase the `pagination.current` property by one and trigger a new request.
+Dynamically changing the `pagination` properties will trigger a new request. Also, the `fetchNextPage` method will increase the `pagination.current` property by one and trigger a new request.
 
 ```ts
 import { useInfiniteList } from "@pankod/refine-core";
@@ -40,7 +40,7 @@ const postListQueryResult = useInfiniteList({
 
 ## Sorting
 
-`useInfiniteList` hook supports sorting feature. You can pass `sort` property to enable sorting. In order to handle sorting, `useInfiniteList` hook passes `sort` property to the `getList` method from the `dataProvider`.
+The `useInfiniteList` hook supports the sorting feature. You can pass the `sort` property to enable sorting. To handle sorting, the `useInfiniteList` hook passes the `sort` property to the `getList` method from the `dataProvider`.
 
 Dynamically changing the `sort` property will trigger a new request.
 
@@ -48,7 +48,7 @@ Dynamically changing the `sort` property will trigger a new request.
 
 ## Filtering
 
-`useInfiniteList` hook supports filtering feature. You can pass `filters` property to enable filtering. In order to handle filtering, `useInfiniteList` hook passes `filters` property to the `getList` method from the `dataProvider`.
+The `useInfiniteList` hook supports the filtering feature. You can pass the `filters` property to enable filtering. To handle filtering, the `useInfiniteList` hook passes the `filters` property to the `getList` method from the `dataProvider`.
 
 Dynamically changing the `filters` property will trigger a new request.
 
@@ -58,7 +58,7 @@ Dynamically changing the `filters` property will trigger a new request.
 
 > This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
 
-When `useInfiniteList` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to the live updates.
+When the `useInfiniteList` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
 
@@ -66,7 +66,7 @@ When `useInfiniteList` hook is mounted, it will call the `subscribe` method from
 
 ### `resource` <PropTag required />
 
-It will be passed to the `getList` method from the `dataProvider` as parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resource are handled.
+It will be passed to the `getList` method from the `dataProvider` as a parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resources are handled.
 
 ```tsx
 useInfiniteList({
@@ -86,7 +86,7 @@ useInfiniteList({
 
 ### `config.filters`
 
-`filters` will be passed to the `getList` method from the `dataProvider` as parameter. It is used to send filter query parameters to the API.
+`filters` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send filter query parameters to the API.
 
 [Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
@@ -106,7 +106,7 @@ useInfiniteList({
 
 ### `config.sort`
 
-`sort` will be passed to the `getList` method from the `dataProvider` as parameter. It is used to send sort query parameters to the API.
+`sort` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send sort query parameters to the API.
 
 [Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
@@ -125,7 +125,7 @@ useInfiniteList({
 
 ### `config.pagination`
 
-`pagination` will be passed to the `getList` method from the `dataProvider` as parameter. It is used to send pagination query parameters to the API.
+`pagination` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send pagination query parameters to the API.
 
 #### `current`
 
@@ -157,7 +157,7 @@ useInfiniteList({
 
 ### `config.hasPagination`
 
-`hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter. It is used to determine whether to use server-side pagination or not.
+`hasPagination` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to determine whether to use server-side pagination or not.
 
 ```tsx
 useInfiniteList({
@@ -250,7 +250,7 @@ useInfiniteList({
 
 > [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
-After data fetching is failed, `useInfiniteList` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
+After data fetching is failed, `useInfiniteList` will call `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
 useInfiniteList({
@@ -269,7 +269,7 @@ useInfiniteList({
 > [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
+For more information about live mode, please check the [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
 useInfiniteList({
@@ -281,7 +281,7 @@ useInfiniteList({
 
 > [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
-The callback function that is executed when new events from a subscription are arrived.
+The callback function is executed when new events from a subscription have arrived.
 
 ```tsx
 useInfiniteList({
@@ -305,13 +305,13 @@ Returns an object with react-query's `useInfiniteQuery` return values.
 
 ## FAQ
 
-### How to use cursor based pagination?
+### How to use cursor-based pagination?
 
 Some APIs use the `cursor-pagination` method for its benefits. This method uses a `cursor` object to determine the next set of data. The cursor can be a number or a string and is passed to the API as a query parameter.
 
 **Preparing the data provider:**
 
-Consumes data from data provider `useInfiniteList` with `getList` method. First of all, we need to make the this method in the data provider convenient for this API. The `cursor` data is kept in `pagination` and should be set to `0` by default.
+Consumes data from data provider `useInfiniteList` with the `getList` method. First of all, we need to make this method in the data provider convenient for this API. The `cursor` data is kept in `pagination` and should be set to `0` by default.
 
 ```ts
 getList: async ({ resource, pagination }) => {
@@ -331,7 +331,7 @@ getList: async ({ resource, pagination }) => {
 As the `total` data is only needed in the `offset-pagination` method, define it as `0` here.
 :::
 
-After this process, we have successfully retrieved the first page data. Let's fill the `cursor` object for the next page.
+After this process, we successfully retrieved the first page of data. Let's fill the `cursor` object for the next page.
 
 ```ts
 getList: async ({ resource, pagination }) => {
@@ -381,6 +381,7 @@ const {
     // highlight-end
 });
 ```
+
 :::tip
 When you override this method, you can access the `lastPage` and `allPages`.
 :::

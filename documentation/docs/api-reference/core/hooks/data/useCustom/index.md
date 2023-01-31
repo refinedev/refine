@@ -3,14 +3,14 @@ title: useCustom
 siderbar_label: useCustom
 ---
 
-`useCustom` is a extended version of react-query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It support all the features of `useQuery` and adds some extra features.
+`useCustom` is an extended version of react-query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It supports all the features of `useQuery` and adds some extra features.
 
 -   It uses the `custom` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
-It is useful when you want to send a custom query request with using the react-query advantages.
+It is useful when you want to send a custom query request using the react-query advantages.
 
 :::danger attention
-`useCustom` should **not** be used when creating, updating or deleting a resource. To do these; [useCreate](/docs/api-reference/core/hooks/data/useCreate/), [useUpdate](/docs/api-reference/core/hooks/data/useUpdate/) or [useDelete](/docs/api-reference/core/hooks/data/useDelete/) hooks should be used instead.
+`useCustom` should **not** be used when creating, updating, or deleting a resource. To do these; [useCreate](/docs/api-reference/core/hooks/data/useCreate/), [useUpdate](/docs/api-reference/core/hooks/data/useUpdate/) or [useDelete](/docs/api-reference/core/hooks/data/useDelete/) hooks should be used instead.
 
 This is because `useCustom`, unlike other data hooks, does not [invalidate queries](https://react-query.tanstack.com/guides/query-invalidation) and therefore will not update the application state either.
 
@@ -19,9 +19,9 @@ If you need to custom mutation request, use the [useCustomMutation](/docs/api-re
 
 ## Basic Usage
 
-`useCustom` hook expects a `url` and `method` property. These parameters will be passed to the `custom` method from the `dataProvider` as parameter.
+The `useCustom` hook expects a `url` and `method` properties. These parameters will be passed to the `custom` method from the `dataProvider` as a parameter.
 
-When properties are changed, `useCustom` hook will trigger a new request.
+When properties are changed, the `useCustom` hook will trigger a new request.
 
 ```tsx
 import { useCustom, useApiUrl } from "@pankod/refine-core";
@@ -50,7 +50,7 @@ const { data, isLoading } = useCustom<PostUniqueCheckResponse>({
 
 ### `url` <PropTag required />
 
-It will be passed to the `custom` method from the `dataProvider` as a parameter. It usually used to specify the endpoint of the request.
+It will be passed to the `custom` method from the `dataProvider` as a parameter. It is usually used to specify the endpoint of the request.
 
 ```tsx
 useCustom({
@@ -60,7 +60,7 @@ useCustom({
 
 ### `method` <PropTag required />
 
-It will be passed to the `custom` method from the `dataProvider` as a parameter. It usually used to specify the HTTP method of the request.
+It will be passed to the `custom` method from the `dataProvider` as a parameter. It is usually used to specify the HTTP method of the request.
 
 ```tsx
 useCustom({
@@ -230,7 +230,7 @@ useCustom({
 
 > [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
-After data fetching is failed, `useCustom` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
+After data fetching is failed, `useCustom` will call `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
 useCustom({

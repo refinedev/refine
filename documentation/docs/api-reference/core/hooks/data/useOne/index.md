@@ -5,19 +5,19 @@ siderbar_label: useOne
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 
-`useOne` is a extended version of `react-query`'s [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It support all the features of `useQuery` and adds some extra features.
+`useOne` is an extended version of `react-query`'s [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It supports all the features of `useQuery` and adds some extra features.
 
 -   It uses the `getOne` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
--   It uses query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the `react-query` devtools.
+-   It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the `react-query` devtools.
 
 It is useful when you want to fetch a single record from the API. It will return the data and some functions to control the query.
 
 ## Basic Usage
 
-`useOne` hook expects a `resource` and `id` property. It will be passed to the `getOne` method from the `dataProvider` as parameter.
+The `useOne` hook expects a `resource` and `id` property. It will be passed to the `getOne` method from the `dataProvider` as a parameter.
 
-When these properties are changed, `useOne` hook will trigger a new request.
+When these properties are changed, the `useOne` hook will trigger a new request.
 
 <BasicUsageLivePreview />
 
@@ -25,7 +25,7 @@ When these properties are changed, `useOne` hook will trigger a new request.
 
 > This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
 
-When `useOne` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to the live updates.
+When the `useOne` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
 
@@ -33,7 +33,7 @@ When `useOne` hook is mounted, it will call the `subscribe` method from the `liv
 
 ### `resource` <PropTag required />
 
-It will be passed to the `getOne` method from the `dataProvider` as parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getOne` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resource are handled.
+It will be passed to the `getOne` method from the `dataProvider` as a parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getOne` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resources are handled.
 
 ```tsx
 useOne({
@@ -43,7 +43,7 @@ useOne({
 
 ### `id` <PropTag required />
 
-It will be passed to the `getOne` method from the `dataProvider` as parameter. It is used to determine which record to fetch.
+It will be passed to the `getOne` method from the `dataProvider` as a parameter. It is used to determine which record to fetch.
 
 ```tsx
 useOne({
@@ -142,7 +142,7 @@ useOne({
 
 > [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
-After data fetching is failed, `useOne` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
+After data fetching is failed, `useOne` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
 useOne({
@@ -161,7 +161,7 @@ useOne({
 > [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
+For more information about live mode, please check the [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
 useOne({
@@ -173,7 +173,7 @@ useOne({
 
 > [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
-The callback function that is executed when new events from a subscription are arrived.
+The callback function is executed when new events from a subscription have arrived.
 
 ```tsx
 useOne({
