@@ -52,15 +52,6 @@ function App() {
                                     type="login"
                                     providers={[
                                         {
-                                            name: "google",
-                                            icon: (
-                                                <GoogleOutlined
-                                                    style={{ fontSize: "18px" }}
-                                                />
-                                            ),
-                                            label: "Sign in with Google",
-                                        },
-                                        {
                                             name: "github",
                                             icon: (
                                                 <GithubOutlined

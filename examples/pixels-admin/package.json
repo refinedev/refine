@@ -25,6 +25,7 @@
     "react-scripts": "^5.0.0",
     "stream-browserify": "^3.0.0",
     "util": "^0.12.5",
+    "cross-env": "^7.0.3",
     "web-vitals": "^1.1.1"
   },
   "devDependencies": {
@@ -39,8 +40,8 @@
     "typescript": "^4.7.4"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-app-rewired start",
+    "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-app-rewired build",
     "eject": "react-scripts eject",
     "refine": "refine"
   },
