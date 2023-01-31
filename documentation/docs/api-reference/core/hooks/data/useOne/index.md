@@ -5,11 +5,11 @@ siderbar_label: useOne
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 
-`useOne` is an extended version of `react-query`'s [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It supports all the features of `useQuery` and adds some extra features.
+`useOne` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It supports all the features of `useQuery` and adds some extra features.
 
 -   It uses the `getOne` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
--   It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the `react-query` devtools.
+-   It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the TanStack Query devtools.
 
 It is useful when you want to fetch a single record from the API. It will return the data and some functions to control the query.
 
@@ -191,7 +191,7 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 
 ## Return Values
 
-Returns an object with react-query's `useQuery` return values.
+Returns an object with TanStack Query's `useQuery` return values.
 
 [Refer to the `useQuery` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 
@@ -215,4 +215,4 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 
 | Description                              | Type                                                                                                   |
 | ---------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{ data: TData; }>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
+| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData; }>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |

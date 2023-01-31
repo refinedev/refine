@@ -3,16 +3,16 @@ title: useCustom
 siderbar_label: useCustom
 ---
 
-`useCustom` is an extended version of react-query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It supports all the features of `useQuery` and adds some extra features.
+`useCustom` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It supports all the features of `useQuery` and adds some extra features.
 
 -   It uses the `custom` method as the **query function** from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
-It is useful when you want to send a custom query request using the react-query advantages.
+It is useful when you want to send a custom query request using the TanStack Query advantages.
 
 :::danger attention
 `useCustom` should **not** be used when creating, updating, or deleting a resource. To do these; [useCreate](/docs/api-reference/core/hooks/data/useCreate/), [useUpdate](/docs/api-reference/core/hooks/data/useUpdate/) or [useDelete](/docs/api-reference/core/hooks/data/useDelete/) hooks should be used instead.
 
-This is because `useCustom`, unlike other data hooks, does not [invalidate queries](https://react-query.tanstack.com/guides/query-invalidation) and therefore will not update the application state either.
+This is because `useCustom`, unlike other data hooks, does not [invalidate queries](https://tanstack.com/query/latest/docs/react/guides/query-invalidation) and therefore will not update the application state either.
 
 If you need to custom mutation request, use the [useCustomMutation](/docs/api-reference/core/hooks/data/useCustomMutation/) hook.
 :::
@@ -261,6 +261,6 @@ useCustom({
 
 ### Return value
 
-| Description                            | Type                                                                                                                |
-| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s useQuery | [`QueryObserverResult<CustomResponse<TData>, TError>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
+| Description                             | Type                                                                                                                |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Result of the TanStack Query's useQuery | [`QueryObserverResult<CustomResponse<TData>, TError>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |

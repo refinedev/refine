@@ -2,18 +2,18 @@
 title: useInfiniteList
 siderbar_label: useInfiniteList
 source: https://github.com/refinedev/refine/blob/next/packages/core/src/hooks/data/useInfiniteList.ts
-description: useInfiniteList data hook from refine is a modified version of react-query's useInfiniteQuery for retrieving items from a resource with pagination, search, sort, and filter configurations.
+description: useInfiniteList data hook from refine is a modified version of TanStack Query's useInfiniteQuery for retrieving items from a resource with pagination, search, sort, and filter configurations.
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 import SortingLivePreview from "./sorting-live-preview.md";
 import FilteringLivePreview from "./filtering-live-preview.md";
 
-`useInfiniteList` is an extended version of `react-query`'s [`useInfiniteQuery`](https://react-query.tanstack.com/guides/useInfiniteQuery) used for retrieving items from a `resource` with pagination, sort, and filter configurations. It is ideal for lists where the total number of records is unknown and the user loads the next pages with a button.
+`useInfiniteList` is an extended version of TanStack Query's [`useInfiniteQuery`](https://.tanstack.com/guides/useInfiniteQuery) used for retrieving items from a `resource` with pagination, sort, and filter configurations. It is ideal for lists where the total number of records is unknown and the user loads the next pages with a button.
 
 -   It uses the `getList` method as the query function from the [`dataProvider`](/docs/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
--   It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the `react-query` devtools.
+-   It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the TanStack Query devtools.
 
 ## Basic Usage
 
@@ -299,9 +299,9 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 
 ## Return Values
 
-Returns an object with react-query's `useInfiniteQuery` return values.
+Returns an object with TanStack Query's `useInfiniteQuery` return values.
 
-[Refer to the `useInfiniteQuery` documentation for more information &#8594](https://react-query.tanstack.com/reference/useInfiniteQuery)
+[Refer to the `useInfiniteQuery` documentation for more information &#8594](https://tanstack.com/query/latest/docs/react/reference/useInfiniteQuery)
 
 ## FAQ
 
@@ -425,9 +425,9 @@ interface UseInfiniteListConfig {
 
 ### Return Values
 
-| Description                                      | Type                                                                                                                                                         |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Result of the `react-query`'s `useInfiniteQuery` | [`InfiniteQueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`](https://react-query.tanstack.com/reference/useInfiniteQuery) |
+| Description                                       | Type                                                                                                                                                                     |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Result of the TanStack Query's `useInfiniteQuery` | [`InfiniteQueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`](https://tanstack.com/query/latest/docs/react/reference/useInfiniteQuery) |
 
 ## Example
 

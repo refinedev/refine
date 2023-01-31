@@ -3,16 +3,16 @@ title: useCustomMutation
 siderbar_label: useCustomMutation
 ---
 
-`useCustomMutation` is an extended version of react-query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation). It supports all the features of `useMutation` and adds some extra features.
+`useCustomMutation` is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation). It supports all the features of `useMutation` and adds some extra features.
 
 -   It uses the `custom` method as the **mutation function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
 
-It is useful when you want to send a custom mutation request using the react-query advantages.
+It is useful when you want to send a custom mutation request using the TanStack Query advantages.
 
 :::danger attention
 `useCustomMutation` should **not** be used when creating, updating, or deleting a resource. To do these; [useCreate](/docs/api-reference/core/hooks/data/useCreate/), [useCustomMutation](/docs/api-reference/core/hooks/data/useCustomMutation/) or [useDelete](/docs/api-reference/core/hooks/data/useDelete/) hooks should be used instead.
 
-This is because `useCustomMutation`, unlike other data hooks, does not [invalidate queries](https://react-query.tanstack.com/guides/query-invalidation) and therefore will not update the application state either.
+This is because `useCustomMutation`, unlike other data hooks, does not [invalidate queries](https://tanstack.com/query/latest/docs/react/guides/query-invalidation) and therefore will not update the application state either.
 
 If you need to custom query request, use the [useCustom](/docs/api-reference/core/hooks/data/useCustomMutation/) hook.
 :::
@@ -237,7 +237,7 @@ mutate({
 
 ## Return Values
 
-Returns an object with react-query's `useMutation` return values.
+Returns an object with TanStack Query's `useMutation` return values.
 
 [Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
 
@@ -269,4 +269,4 @@ Returns an object with react-query's `useMutation` return values.
 
 | Description                               | Type                                                                                                                                                                                          |
 | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`](https://tanstack.com/query/v4/docs/react/reference/useMutation) |
+| Result of the TanStack Query's useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`](https://tanstack.com/query/v4/docs/react/reference/useMutation) |
