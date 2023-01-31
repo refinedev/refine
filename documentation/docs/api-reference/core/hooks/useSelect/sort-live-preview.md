@@ -1,5 +1,5 @@
 ```tsx live url=http://localhost:3000/products previewHeight=200px hideCode
-setInitialRoutes(["/categories/create"]);
+setInitialRoutes(["/posts/create"]);
 // visible-block-start
 import { useSelect } from "@pankod/refine-core";
 
