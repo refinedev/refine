@@ -1,0 +1,52 @@
+```tsx live url=http://localhost:3000 previewHeight=300px
+setInitialRoutes(["/categories/create"]);
+// visible-block-start
+import {
+    Autocomplete,
+    useAutocomplete,
+    TextField,
+} from "@pankod/refine-mui";
+
+interface ICategory {
+    id: number;
+    title: string;
+}
+
+const CategoryCreate: React.FC = () => {
+    
+    const { autocompleteProps } = useAutocomplete<ICategory>({
+        resource: "categories",
+        // highlight-next-line
+        defaultValue: 11,
+    });
+
+    return (
+        <Autocomplete
+            {...autocompleteProps}
+            getOptionLabel={(item) => item.title}
+            isOptionEqualToValue={(option, value) =>
+                value === undefined || option.id.toString() === value.toString()
+            }
+            renderInput={(params) => (
+                <TextField
+                {...params}
+                label="Category"
+                margin="normal"
+                variant="outlined"
+                required
+                />
+            )}
+        />
+    );
+};
+// visible-block-end
+setRefineProps({
+    resources: [
+        {
+            name: "categories",
+            create: CategoryCreate,
+        },
+    ],
+});
+render(<RefineMuiDemo />);
+```
