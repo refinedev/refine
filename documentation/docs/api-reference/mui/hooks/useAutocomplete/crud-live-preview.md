@@ -1,5 +1,5 @@
 ```tsx live url=http://localhost:3000 previewHeight=400px
-setInitialRoutes(["/categories/create"]);
+setInitialRoutes(["/posts/create"]);
 // visible-block-start
 import {
     Create,
