@@ -91,7 +91,7 @@ If you're looking for a complete notification infrastructure, **refine** has out
 
 Here is a basic example of how to use `useNotification` hook.
 
-*TODO: Add example*
+*TODO: Add live preview example*
 
 ## Properties
 ### `open`
@@ -124,13 +124,12 @@ close?.("notification-key");
 You must pass a `key` to the `open` method. This key is used to close the notification.
 :::
 
-
 ## FAQ
 ### How to use a undoable notification?
 
 It should be `type=progress` to show undoable notifications. A function can then be triggered.
 
-
+*TODO: Add live preview example*
 
 
 ## API Reference
