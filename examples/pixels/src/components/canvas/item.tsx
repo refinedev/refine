@@ -8,7 +8,7 @@ const { Text } = Typography;
 
 type CanvasItemProps = {
     canvas: Canvas;
-    pixels: Pixel[];
+    pixels: Pixel[] | undefined;
     scale?: number;
     border?: boolean;
     active?: boolean;
@@ -43,7 +43,7 @@ export const CanvasItem: React.FC<CanvasItemProps> = ({
                                         ? "0.5px solid rgba(0,0,0,0.05)"
                                         : undefined,
                                     background:
-                                        pixels.find(
+                                        pixels?.find(
                                             (el) => el.x === j && el.y === i,
                                         )?.color ?? "transparent",
                                 }}

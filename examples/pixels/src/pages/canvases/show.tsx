@@ -5,19 +5,28 @@ import {
     useNavigation,
     useShow,
 } from "@pankod/refine-core";
-import { Button, Typography, Icons, Spin } from "@pankod/refine-antd";
+import {
+    Button,
+    Typography,
+    Icons,
+    Spin,
+    Modal,
+    useModal,
+} from "@pankod/refine-antd";
 
 import { CanvasItem, DisplayCanvas } from "components/canvas";
 import { ColorSelect } from "components/color-select";
 import { AvatarPanel } from "components/avatar";
 import { colors } from "utility";
 import { Canvas } from "types";
+import { LogList } from "components/logs";
 
 const { LeftOutlined } = Icons;
 const { Title } = Typography;
 
 export const CanvasShow: React.FC = () => {
     const [color, setColor] = useState<typeof colors[number]>("black");
+    const { modalProps, show, close } = useModal();
 
     const { data: identity } = useGetIdentity();
     const {
@@ -41,6 +50,9 @@ export const CanvasShow: React.FC = () => {
                     canvas_id: canvas?.id,
                     user_id: identity.id,
                 },
+                metaData: {
+                    canvas,
+                },
                 successNotification: false,
             });
         }
@@ -59,11 +71,27 @@ export const CanvasShow: React.FC = () => {
                         Back
                     </Button>
                     <Title level={3}>{canvas?.name ?? canvas?.id ?? ""}</Title>
-                    <Button type="text" style={{ visibility: "hidden" }}>
-                        <LeftOutlined />
-                        Back
+                    <Button type="primary" onClick={show}>
+                        View Changes
                     </Button>
                 </div>
+                <Modal
+                    title="Canvas Changes"
+                    {...modalProps}
+                    centered
+                    destroyOnClose
+                    onOk={close}
+                    onCancel={() => {
+                        close();
+                    }}
+                    footer={[
+                        <Button type="primary" key="close" onClick={close}>
+                            Close
+                        </Button>,
+                    ]}
+                >
+                    <LogList currentCanvas={canvas} />
+                </Modal>
 
                 {canvas ? (
                     <DisplayCanvas canvas={canvas}>
