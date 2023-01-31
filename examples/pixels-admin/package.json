@@ -14,7 +14,7 @@
     "browserify-fs": "^1.0.0",
     "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
-    "casbin": "^5.19.3",
+    "casbin": "^5.15.2",
     "crypto-browserify": "^3.12.0",
     "dotenv": "^16.0.3",
     "path-browserify": "^1.0.1",
