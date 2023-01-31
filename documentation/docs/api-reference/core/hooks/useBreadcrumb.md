@@ -1,7 +1,7 @@
 ---
 id: useBreadcrumb
 title: useBreadcrumb
-source: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/breadcrumb/index.ts
+source: packages/core/src/hooks/breadcrumb
 ---
 
 :::info Congratulations 🥇
