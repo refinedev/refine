@@ -15,7 +15,7 @@ interface ICategory {
     title: string;
 }
 
-const CategoryCreate: React.FC = () => {
+const PostCreate: React.FC = () => {
     const {
         saveButtonProps,
         refineCore: { formLoading, queryResult },
@@ -48,6 +48,7 @@ const CategoryCreate: React.FC = () => {
                                 value === undefined ||
                                 option.id.toString() === value.toString()
                             }
+                            placeholder="Select a category"
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
@@ -70,8 +71,8 @@ const CategoryCreate: React.FC = () => {
 setRefineProps({
     resources: [
         {
-            name: "categories",
-            create: CategoryCreate,
+            name: "posts",
+            create: PostCreate,
         },
     ],
 });

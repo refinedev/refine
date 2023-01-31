@@ -13,7 +13,7 @@ interface ICategory {
     title: string;
 }
 
-const CategoryCreate: React.FC = () => {
+const PostCreate: React.FC = () => {
     const [order, setOrder] = React.useState<"asc" | "desc">("asc");
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
@@ -35,6 +35,7 @@ const CategoryCreate: React.FC = () => {
                 isOptionEqualToValue={(option, value) =>
                     value === undefined || option.id.toString() === value.toString()
                 }
+                placeholder="Select a category"
                 renderInput={(params) => (
                     <TextField
                     {...params}
@@ -57,8 +58,8 @@ const CategoryCreate: React.FC = () => {
 setRefineProps({
     resources: [
         {
-            name: "categories",
-            create: CategoryCreate,
+            name: "posts",
+            create: PostCreate,
         },
     ],
 });
