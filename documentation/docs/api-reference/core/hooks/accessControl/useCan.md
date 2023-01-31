@@ -132,7 +132,7 @@ console.log(canCreatePost); // { can: false, reason: "Unauthorized" }
 | ------------------------------------------------------------------------ | ---------------------------------------------------------------- |
 | Result of the [TanStack Query's][tanstack-query] [`useQuery`][use-query] | [`QueryObserverResult<{ data: CanReturnType; }>`][query-options] |
 
-[access-control-provider]: http://localhost:3000/docs/api-reference/core/providers/accessControl-provider/
+[access-control-provider]: /docs/api-reference/core/providers/accessControl-provider/
 [use-query]: https://tanstack.com/query/latest/docs/react/guides/queries
 [tanstack-query]: https://tanstack.com/query/latest
 [query-options]: https://tanstack.com/query/v4/docs/react/reference/useQuery
