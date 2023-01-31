@@ -2,7 +2,7 @@ import { AuthProvider } from "@pankod/refine-core";
 
 import { supabaseClient } from "utility";
 
-const authProvider: AuthProvider = {
+export const authProvider: AuthProvider = {
     login: async ({ email, password, providerName }) => {
         const { user, error } = await supabaseClient.auth.signIn({
             email,
@@ -94,5 +94,3 @@ const authProvider: AuthProvider = {
         return Promise.reject();
     },
 };
-
-export default authProvider;
