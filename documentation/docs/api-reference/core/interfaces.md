@@ -212,10 +212,10 @@ ButtonProps
 
 ## CanParams
 
-| Key      | Type                                                                                                                                                   |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| resource | `string`                                                                                                                                               |
-| action   | `string`                                                                                                                                               |
+| Key      | Type                                                                                                                                                                               |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| resource | `string`                                                                                                                                                                           |
+| action   | `string`                                                                                                                                                                           |
 | params?  | { `resource`?: [IResourceItem](/docs/api-reference/core/interfaces.md#resourceitemprops), `id`?: [BaseKey](/docs/api-reference/core/interfaces.md#basekey), `[key: string]: any` } |
 
 ## CanReturnType
@@ -244,12 +244,12 @@ ButtonProps
 
 ## OptionsProps
 
-| Key           | Type     |
-| ------------- | -------- |
-| label?        | `string` |
-| route?        | `string` |
+| Key               | Type     |
+| ----------------- | -------- |
+| label?            | `string` |
+| route?            | `string` |
 | dataProviderName? | `string` |
-| [key: string] | `any`    |
+| [key: string]     | `any`    |
 
 ## ResourceItemProps
 
@@ -273,3 +273,19 @@ ButtonProps
 | pagination? | `{ current?: number; pageSize?: number }` |
 | sorter?     | [`CrudSorting`](#crudsorting)             |
 | filters?    | [`CrudSCrudFiltersorting`](#crudfilters)  |
+
+## Open Notification Params
+
+| Key              | Type         |
+| ---------------- | ------------ |
+| key?             | `string`     |
+| message          | `string`     |
+| description?     | `string`     |
+| cancelMutation?  | `() => void` |
+| undoableTimeout? | `number`     |
+
+## Close Notification Params
+
+| Key | Type     |
+| --- | -------- |
+| key | `string` |
