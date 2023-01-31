@@ -1,9 +1,8 @@
 ---
 id: useBreadcrumb
 title: useBreadcrumb
+source: packages/core/src/hooks/breadcrumb
 ---
-
-It is a hook that returns `breadcrumbs` to create breadcrumbs for the current page. The `breadcrumbs` are an array of objects with the following properties:
 
 :::info Congratulations 🥇
 The feature won first place with the joint votes of our team members in a May 2022 internal hackathon!
@@ -11,13 +10,11 @@ The feature won first place with the joint votes of our team members in a May 20
 Congratulations [@salihozdemir](https://github.com/salihozdemir)! It was great seeing your project take first place! We're all very proud of you. Keep up the good work and don't forget to have fun while working here 🎉
 :::
 
+It is a hook that returns `breadcrumbs` to create breadcrumbs for the current page. The `breadcrumbs` is an array of objects with the following properties:
+
 -   `label`: the label of the resource.
 -   `href`: the route of the resource.
 -   `icon`: the icon of the resource.
-
-:::tip
-You can refer to the [source-code][source-code] of the `useBreadcrumb` hook to see how it is built.
-:::
 
 ## Basic Usage
 
@@ -40,6 +37,10 @@ export const Breadcrumb: React.FC = () => {
     );
 };
 ```
+
+## Examples
+
+### Resource
 
 The `breadcrumbs` are created with your resource definitions. For example, if you have a resource with the following definition:
 
@@ -80,8 +81,10 @@ The `breadcrumbs` are created with your resource definitions. For example, if yo
     ```
 
 :::info
-If resource has no `icon` property, the `icon` property of the breadcrumbs is `undefined`. Likewise, if the resource's list page is not found, the `href` property of the breadcrumbs is `undefined`.
+If the resource has no `icon` property, the `icon` property of the breadcrumbs is `undefined`. Likewise, if the resource's list page is not found, the `href` property of the breadcrumbs is `undefined`.
 :::
+
+### Nested resource
 
 If you have a nested resource definition as below:
 
@@ -124,12 +127,13 @@ If you have a nested resource definition as below:
     ];
     ```
 
-### i18n support
+## i18n support
 
-If resource definition has `label` property, `useBreadcrumbs` uses the `label` property. Otherwise, the `name` property of the resource is used. Likewise, if resource definition has `route` property, `useBreadcrumbs` uses the `route` property. Otherwise, the `name` property of the resource is used.
+If the `resource` definition has a `label` property, `useBreadcrumbs` uses the `label` property. Otherwise, the `name` property of the `resource` is used. Likewise, if the `resource` definition has `route` property, `useBreadcrumbs` uses the `route` property. Otherwise, the `name` property of the `resource` is used.
 
 :::info
-If label is not provided in your `posts` resource `useBreadcrumb` uses the [`useTranslate`](/api-reference/core/hooks/translate/useTranslate.md) hook to translate the names.
+
+If a `label` is not provided in your `posts` resource, `useBreadcrumb` uses the [`useTranslate`](/api-reference/core/hooks/translate/useTranslate.md) hook to translate the names.
 
 For CRUD operations (`list`,`create`,`edit`,`show`) the `useBreadcrumb` uses the `actions` key to translate key `` translate(`actions.${action}`) ``.
 
@@ -154,5 +158,3 @@ For example; `create` action should look like : `` translate(`actions.create`) `
 >     icon?: React.ReactNode;
 > };
 > ```
->
-> [source-code]: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/breadcrumb/index.ts
