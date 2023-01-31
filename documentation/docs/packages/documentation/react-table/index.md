@@ -61,8 +61,6 @@ In basic usage `useTable` returns the data as it comes from the endpoint. By def
 
 <BasicUsageLivePreview/>
 
-<br/>
-
 ## Pagination
 
 [TanStack Table][tanstack-table] provides a bunch of methods that we can use to control the pagination. For example, we can use the `setPageSize` method to set the current `pageSize`. Every change in the `pageSize` and `pageIndex` will trigger a new request to the data provider.
@@ -73,15 +71,11 @@ In basic usage `useTable` returns the data as it comes from the endpoint. By def
 
 <PaginationLivePreview/>
 
-<br/>
-
 ## Sorting
 
 [TanStack Table][tanstack-table] provides a bunch of methods that we can use to control the sorting. For example, we can use the `setColumnOrder` method to set the current `sorting` value. Every change in the `sorting` state will trigger a new request to the data provider.
 
 <SortingLivePreview/>
-
-<br/>
 
 ## Filtering
 
@@ -91,8 +85,6 @@ You can specify which field will be filtered with which filter operator with the
 
 <FilteringLivePreview/>
 
-<br/>
-
 ## Realtime Updates
 
 > This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
@@ -100,8 +92,6 @@ You can specify which field will be filtered with which filter operator with the
 When [`useList`](/docs/api-reference/core/hooks/data/useList/) mutation runs successfully, it will call the `subscribe` method from `liveProvider` with some parameters such as (`channel`, `resource` etc.). It is useful when you want to subscribe to the live updates.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
-
-<br/>
 
 ## Properties
 
@@ -465,8 +455,6 @@ useTable({
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
-<br/>
-
 ## Return Values
 
 :::tip
@@ -539,8 +527,6 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 
 A function create accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
-<br/>
-
 ## FAQ
 
 ### How can I handle relational data ?
@@ -548,8 +534,6 @@ A function create accessible links for `syncWithLocation`. It takes an [SyncWith
 You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fetch relational data.
 
 <RelationalLivePreview/>
-
-<br/>
 
 ## API Reference
 

@@ -11,21 +11,15 @@ By using `useDataGrid`, you are able to get properties that are compatible with 
 
 > 💡 The `useDataGrid` hook works in compatible with both the [`<DataGrid>`][data-grid] and the [`<DataGridPro>`](https://mui.com/x/react-data-grid/#commercial-version) component.
 
-<br/>
-
 :::info
 This hook is extended from [`useTable`][use-table-core] from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
 :::
-
-<br/>
 
 ## Basic usage
 
 In basic usage `useDataGrid` returns the data as it comes from the endpoint. By default, it reads [`resource`](#resource) from the url.
 
 <BasicUsagePreview/>
-
-<br/>
 
 ## Pagination
 
@@ -68,8 +62,6 @@ export const PostsList: React.FC = () => {
     );
 };
 ```
-
-<br/>
 
 ## Sorting
 
@@ -160,8 +152,6 @@ return <DataGrid {...dataGridProps} sortModel={undefined} autoHeight />;
 When `sortModel` is not passed, it supports more than one criteria at a time, but cannot show which fields are sorted in `<DataGrid>` headers.
 
 :::
-
-<br/>
 
 ## Filtering
 
@@ -261,8 +251,6 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 
 :::
 
-<br/>
-
 ## Realtime Updates
 
 > This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
@@ -270,8 +258,6 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 When [`useList`](/docs/api-reference/core/hooks/data/useList/) mutation runs successfully, it will call the `subscribe` method from `liveProvider` with some parameters such as (`channel`, `resource` etc.). It is useful when you want to subscribe to the live updates.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
-
-<br/>
 
 ## Properties
 
@@ -601,8 +587,6 @@ useDataGrid({
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
-<br/>
-
 ## Return Values
 
 ### `dataGridProps`
@@ -763,8 +747,6 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 
 A function create accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
-<br/>
-
 ## FAQ
 
 ### How can I handle relational data ?
@@ -772,8 +754,6 @@ A function create accessible links for `syncWithLocation`. It takes an [SyncWith
 You can use [`useSelect`](http://localhost:3000/docs/api-reference/core/hooks/useSelect/) hook to fetch relational data and filter [`<DataGrid>`][data-grid] by categories.
 
 <RelationalPreview/>
-
-<br/>
 
 ## API
 
@@ -791,22 +771,22 @@ You can use [`useSelect`](http://localhost:3000/docs/api-reference/core/hooks/us
 
 ### Return values
 
-| Property                      | Description                                                                                                    | Type                                                                                              |
-| ----------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| dataGridProps                 | MUI X [`<DataGrid>`][data-grid] props                                                                          | `DataGridPropsType`\*                                                                             |
-| tableQueryResult              | Result of the `react-query`'s `useQuery`                                                                       | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery] |
-| search                        | It sends the parameters it receives to its `onSearch` function                                                 | `(value: TSearchVariables) => Promise<void>`                                                      |
-| current                       | Current page index state (returns `undefined` if pagination is disabled)                                       | `number` \| `undefined`                                                                           |
-| totalPage                     | Total page count (returns `undefined` if pagination is disabled)                                               | `number` \| `undefined`                                                                           |
-| setCurrent                    | A function that changes the current (returns `undefined` if pagination is disabled)                            | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                     |
-| pageSize                      | Current pageSize state (returns `undefined` if pagination is disabled)                                         | `number` \| `undefined`                                                                           |
-| setPageSize                   | A function that changes the pageSize (returns `undefined` if pagination is disabled)                           | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                     |
-| hideFooterPagination          | Whether to hide the footer pagination or not. This value is only returned if `hasPagination` is set to `false` | `boolean`                                                                                         |
-| sorter                        | Current sorting state                                                                                          | [`CrudSorting`][crudsorting]                                                                      |
-| setSorter                     | A function that accepts a new sorter state                                                                     | `(sorter: CrudSorting) => void`                                                                   |
-| filters                       | Current filters state                                                                                          | [`CrudFilters`][crudfilters]                                                                      |
-| setFilters                    | A function that accepts a new filter state                                                                     | `(filters: CrudFilters) => void`                                                                  |
-| createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                                                        | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`                         |
+| Property                      | Description                                                                                                    | Type                                                                                 |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| dataGridProps                 | MUI X [`<DataGrid>`][data-grid] props                                                                          | `DataGridPropsType`\*                                                                |
+| tableQueryResult              | Result of the `react-query`'s `useQuery`                                                                       | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery] |
+| search                        | It sends the parameters it receives to its `onSearch` function                                                 | `(value: TSearchVariables) => Promise<void>`                                         |
+| current                       | Current page index state (returns `undefined` if pagination is disabled)                                       | `number` \| `undefined`                                                              |
+| totalPage                     | Total page count (returns `undefined` if pagination is disabled)                                               | `number` \| `undefined`                                                              |
+| setCurrent                    | A function that changes the current (returns `undefined` if pagination is disabled)                            | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                        |
+| pageSize                      | Current pageSize state (returns `undefined` if pagination is disabled)                                         | `number` \| `undefined`                                                              |
+| setPageSize                   | A function that changes the pageSize (returns `undefined` if pagination is disabled)                           | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                        |
+| hideFooterPagination          | Whether to hide the footer pagination or not. This value is only returned if `hasPagination` is set to `false` | `boolean`                                                                            |
+| sorter                        | Current sorting state                                                                                          | [`CrudSorting`][crudsorting]                                                         |
+| setSorter                     | A function that accepts a new sorter state                                                                     | `(sorter: CrudSorting) => void`                                                      |
+| filters                       | Current filters state                                                                                          | [`CrudFilters`][crudfilters]                                                         |
+| setFilters                    | A function that accepts a new filter state                                                                     | `(filters: CrudFilters) => void`                                                     |
+| createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                                                        | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`            |
 
 > **DataGridProps**
 >
@@ -820,8 +800,6 @@ You can use [`useSelect`](http://localhost:3000/docs/api-reference/core/hooks/us
 > | page                    | `0`        | filterMode          | `"server"` |
 > | onPageChange            |            | filterModel         |            |
 > | onStateChange           |            | onFilterModelChange |            |
-
-<br/>
 
 ## Example
 

@@ -24,8 +24,6 @@ In basic usage `useTable` returns the data as it comes from the endpoint. By def
 
 <BasicUsageLivePreview />
 
-<br/>
-
 ## Pagination
 
 This feature comes out of the box with the `tableProps.pagination`. It generates the pagination links for the `<Table>` component instead of react state and overrides `<Table>`'s `pagination.itemRender` value. It's also syncs the pagination state with the URL.
@@ -54,8 +52,6 @@ const { tableProps } = useTable<IPost>();
 To disable pagination, you can set `hasPagination` property to `false` which is `true` by default. If `hasPagination` has set to `false`, pagination elements will be hidden in the `<Table/>`. If you want to handle the pagination on the client-side you can override the `pagination` property in `tableProps`.
 :::
 
-<br/>
-
 ## Sorting
 
 If we want to give a column the sorting property, the corresponding [`<Table.Column>`][table-column] component must be given the [sorter](https://ant.design/components/table/#components-table-demo-head) property.
@@ -73,15 +69,11 @@ It can be used when your DataIndex and your sorting key are different.
 When using multiple sorting, `multiple` value is required for `sorter` property. Which is specifies the priority of column in sorting.
 :::
 
-<br/>
-
 ## Filtering
 
 We can use the `filterDropdown` property from [`<Table.Column>`][table-column] to make filtering based on the column values. In order to do this, we need to put the filtering form inside the [`<FilterDropdown>`][filter-dropdown] component and pass the properties coming to the function to these component's properties.
 
 <FilteringPreview />
-
-<br/>
 
 ## Initial Filter and Sorter
 
@@ -134,15 +126,11 @@ const { tableProps, sorter, filters } = useTable({
 
 :::
 
-<br/>
-
 ## Search
 
 We can use [`onSearch`](#onsearch) and [`searchFormProps`](#searchformprops) properties to make custom filter form. `onSearch` is a function that is called when the form is submitted. `searchFormProps` is a property that is passed to the [`<Form>`](https://ant.design/components/form) component.
 
 <SearchPreview/>
-
-<br/>
 
 ## Realtime Updates
 
@@ -151,8 +139,6 @@ We can use [`onSearch`](#onsearch) and [`searchFormProps`](#searchformprops) pro
 When [`useList`](/docs/api-reference/core/hooks/data/useList/) mutation runs successfully, it will call the `subscribe` method from `liveProvider` with some parameters such as (`channel`, `resource` etc.). It is useful when you want to subscribe to the live updates.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
-
-<br/>
 
 ## Properties
 
@@ -518,8 +504,6 @@ useTable({
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
-<br/>
-
 ## Return Values
 
 ### `tableProps`
@@ -659,8 +643,6 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 
 A function create accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
-<br/>
-
 ## FAQ
 
 ### How can I handle relational data ?
@@ -685,20 +667,20 @@ You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fe
 
 ### Return values
 
-| Property         | Description                                                                           | Type                                                                                                                                                    |
-| ---------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| searchFormProps  | Ant Design [`<Form>`][form] props                                                     | [`FormProps<TSearchVariables>`][form]                                                                                                                   |
-| tableProps       | Ant Design [`<Table>`][table] props                                                   | [`TableProps<TData>`][table]                                                                                                                            |
-| tableQueryResult | Result of the `react-query`'s `useQuery`                                              | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery]                                                       |
-| current          | Current page index state (returns `undefined` if pagination is disabled)              | `number` \| `undefined`                                                                                                                                 |
-| totalPage        | Total page count (returns `undefined` if pagination is disabled)                      | `number` \| `undefined`                                                                                                                                 |
-| setCurrent       | A function that changes the current (returns `undefined` if pagination is disabled)   | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                           |
-| pageSize         | Current pageSize state (returns `undefined` if pagination is disabled)                | `number` \| `undefined`                                                                                                                                 |
-| setPageSize      | A function that changes the pageSize. (returns `undefined` if pagination is disabled) | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                           |
-| sorter           | Current sorting state                                                                 | [`CrudSorting`][crudsorting]                                                                                                                            |
-| filters          | Current filters state                                                                 | [`CrudFilters`][crudfilters]                                                                                                                            |
-| setFilters       | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` <br/> - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
-| setSorter        | A function that accepts a new sorter state.                                           | `(sorter: CrudSorting) => void`                                                                                                                         |
+| Property         | Description                                                                           | Type                                                                                                                                              |
+| ---------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| searchFormProps  | Ant Design [`<Form>`][form] props                                                     | [`FormProps<TSearchVariables>`][form]                                                                                                             |
+| tableProps       | Ant Design [`<Table>`][table] props                                                   | [`TableProps<TData>`][table]                                                                                                                      |
+| tableQueryResult | Result of the `react-query`'s `useQuery`                                              | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery]                                                              |
+| current          | Current page index state (returns `undefined` if pagination is disabled)              | `number` \| `undefined`                                                                                                                           |
+| totalPage        | Total page count (returns `undefined` if pagination is disabled)                      | `number` \| `undefined`                                                                                                                           |
+| setCurrent       | A function that changes the current (returns `undefined` if pagination is disabled)   | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                     |
+| pageSize         | Current pageSize state (returns `undefined` if pagination is disabled)                | `number` \| `undefined`                                                                                                                           |
+| setPageSize      | A function that changes the pageSize. (returns `undefined` if pagination is disabled) | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                     |
+| sorter           | Current sorting state                                                                 | [`CrudSorting`][crudsorting]                                                                                                                      |
+| filters          | Current filters state                                                                 | [`CrudFilters`][crudfilters]                                                                                                                      |
+| setFilters       | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
+| setSorter        | A function that accepts a new sorter state.                                           | `(sorter: CrudSorting) => void`                                                                                                                   |
 
 <br />
 

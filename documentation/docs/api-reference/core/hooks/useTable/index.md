@@ -21,15 +21,11 @@ If you're looking for a complete table library, Refine supports two table librar
 
 :::
 
-<br/>
-
 ## Basic Usage
 
 In basic usage `useTable` returns the data as it comes from the endpoint. By default, it reads [`resource`](#resource) from the url.
 
 <BasicUsageLivePreview />
-
-<br/>
 
 ## Pagination
 
@@ -47,8 +43,6 @@ If `hasPagination` is set to `false`, `current`, `setCurrent`, `pageSize`, `setP
 
 <PaginationLivePreview/>
 
-<br/>
-
 ## Sorting
 
 `useTable` has a sorter feature. The sorter is done by using the `sorter` state. The `sorter` state is a [`CrudSorting`][crudsorting] type that contains the field and the order of the sort. You can change the sorter state by using the `setSorter` function. Every change will trigger a new fetch.
@@ -56,8 +50,6 @@ If `hasPagination` is set to `false`, `current`, `setCurrent`, `pageSize`, `setP
 Also you can add initial sorter state by passing the `initialSorter` prop and permanent sorter state by passing the `permanentSorter` prop to the `useTable` hook. Even if you change the sorter state, the `permanentSorter` will be used together with the sorter state.
 
 <SortingLivePreview/>
-
-<br/>
 
 ## Filtering
 
@@ -75,8 +67,6 @@ If you are using `merge` behavior and want to remove one of the filters; you sho
 
 <FilteringLivePreview/>
 
-<br/>
-
 ## Realtime Updates
 
 > This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
@@ -84,8 +74,6 @@ If you are using `merge` behavior and want to remove one of the filters; you sho
 When [`useList`](/docs/api-reference/core/hooks/data/useList/) mutation runs successfully, it will call the `subscribe` method from `liveProvider` with some parameters such as (`channel`, `resource` etc.). It is useful when you want to subscribe to the live updates.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
-
-<br/>
 
 ## Properties
 
@@ -508,19 +496,19 @@ errorNotification-default='"There was an error creating resource (status code: `
 
 ### Return values
 
-| Property                      | Description                                                                           | Type                                                                                                                                                    |
-| ----------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| tableQueryResult              | Result of the `react-query`'s `useQuery`                                              | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery]                                                       |
-| current                       | Current page index state (returns `undefined` if pagination is disabled)              | `number` \| `undefined`                                                                                                                                 |
-| pageCount                     | Total page count (returns `undefined` if pagination is disabled)                      | `number` \| `undefined`                                                                                                                                 |
-| setCurrent                    | A function that changes the current (returns `undefined` if pagination is disabled)   | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                           |
-| pageSize                      | Current pageSize state (returns `undefined` if pagination is disabled)                | `number` \| `undefined`                                                                                                                                 |
-| setPageSize                   | A function that changes the pageSize. (returns `undefined` if pagination is disabled) | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                           |
-| sorter                        | Current sorting state s                                                               | [`CrudSorting`][crudsorting]                                                                                                                            |
-| setSorter                     | A function that accepts a new sorter state.                                           | `(sorter: CrudSorting) => void`                                                                                                                         |
-| filters                       | Current filters state                                                                 | [`CrudFilters`][crudfilters]                                                                                                                            |
-| setFilters                    | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` <br/> - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
-| createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                               | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`                                                                               |
+| Property                      | Description                                                                           | Type                                                                                                                                              |
+| ----------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| tableQueryResult              | Result of the `react-query`'s `useQuery`                                              | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery]                                                              |
+| current                       | Current page index state (returns `undefined` if pagination is disabled)              | `number` \| `undefined`                                                                                                                           |
+| pageCount                     | Total page count (returns `undefined` if pagination is disabled)                      | `number` \| `undefined`                                                                                                                           |
+| setCurrent                    | A function that changes the current (returns `undefined` if pagination is disabled)   | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                     |
+| pageSize                      | Current pageSize state (returns `undefined` if pagination is disabled)                | `number` \| `undefined`                                                                                                                           |
+| setPageSize                   | A function that changes the pageSize. (returns `undefined` if pagination is disabled) | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                     |
+| sorter                        | Current sorting state s                                                               | [`CrudSorting`][crudsorting]                                                                                                                      |
+| setSorter                     | A function that accepts a new sorter state.                                           | `(sorter: CrudSorting) => void`                                                                                                                   |
+| filters                       | Current filters state                                                                 | [`CrudFilters`][crudfilters]                                                                                                                      |
+| setFilters                    | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
+| createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                               | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`                                                                         |
 
 [table]: https://ant.design/components/table/#API
 [form]: https://ant.design/components/form/#API
