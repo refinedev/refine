@@ -1,5 +1,5 @@
 ```tsx live url=http://localhost:3000 previewHeight=300px
-setInitialRoutes(["/categories/create"]);
+setInitialRoutes(["/posts/create"]);
 // visible-block-start
 import { Select, useSelect } from "@pankod/refine-mantine";
 
