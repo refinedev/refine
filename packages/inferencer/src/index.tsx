@@ -1,2 +1,35 @@
 export { createInferencer } from "./create-inferencer";
-export * from "@/inferencers";
+
+export {
+    jsx,
+    accessor,
+    componentName,
+    dataProviderFromResource,
+    dotAccessor,
+    getFieldableKeys,
+    getOptionLabel,
+    getVariableName,
+    isIDKey,
+    noOp,
+    prettyString,
+    toPlural,
+    toSingular,
+    printImports,
+    removeRelationSuffix,
+} from "./utilities";
+
+export type {
+    AdditionalScopeType,
+    CodeViewerProps,
+    CreateInferencer,
+    CreateInferencerConfig,
+    FieldInferencer,
+    FieldTransformer,
+    ImportElement,
+    InferField,
+    InferType,
+    InferencerComponentProps,
+    InferencerResultComponent,
+    RecordField,
+    RendererContext,
+} from "./types";
