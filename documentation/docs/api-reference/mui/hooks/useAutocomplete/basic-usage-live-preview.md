@@ -13,7 +13,6 @@ interface ICategory {
 }
 
 const CategoryCreate: React.FC = () => {
-    
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
     });

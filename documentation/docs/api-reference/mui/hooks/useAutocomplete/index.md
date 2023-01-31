@@ -7,6 +7,7 @@ source: https://github.com/refinedev/refine/blob/next/packages/mui/src/hooks/use
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 import DefaultValueLivePreview from "./default-value-live-preview.md";
 import CrudLivePreview from "./crud-live-preview.md";
+import SortLivePreview from "./sort-live-preview.md";
 
 `useAutocomplete` hook allows you to manage Material UI [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/) component when records in a resource needs to be used as select options.
 
@@ -65,7 +66,7 @@ useSelect({
 });
 ```
 
-<!-- <SortLivePreview /> -->
+<SortLivePreview />
 
 ### `filters`
 
