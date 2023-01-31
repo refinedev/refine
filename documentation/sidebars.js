@@ -94,7 +94,7 @@ module.exports = {
                                         "api-reference/core/hooks/data/useCreate/index",
                                         "api-reference/core/hooks/data/useCreateMany/index",
                                         "api-reference/core/hooks/data/useCustom/index",
-                                        "api-reference/core/hooks/data/useCustomMutation",
+                                        "api-reference/core/hooks/data/useCustomMutation/index",
                                         "api-reference/core/hooks/data/useDataProvider",
                                         "api-reference/core/hooks/data/useDelete/index",
                                         "api-reference/core/hooks/data/useDeleteMany/index",
