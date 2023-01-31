@@ -1,6 +1,7 @@
 ---
 title: useUpdateMany
 siderbar_label: useUpdateMany
+source: packages/core/src/hooks/data/useUpdateMany.ts
 ---
 
 `useUpdateMany` is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation). It supports all the features of `useMutation` and adds some extra features.

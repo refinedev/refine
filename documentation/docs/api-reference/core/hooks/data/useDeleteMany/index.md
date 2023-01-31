@@ -1,6 +1,7 @@
 ---
 title: useDeleteMany
 siderbar_label: useDeleteMany
+source: packages/core/src/hooks/data/useDeleteMany.ts
 ---
 
 `useDeleteMany` is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation). It supports all the features of `useMutation` and adds some extra features.

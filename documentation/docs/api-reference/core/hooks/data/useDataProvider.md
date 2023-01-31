@@ -1,6 +1,7 @@
 ---
 id: useDataProvider
 title: useDataProvider
+source: packages/core/src/hooks/data/useDataProvider.tsx
 ---
 
 `useDataProvider` is a React hook that returns the `dataProvider` which is passed to [`<Refine>`][refine] component.

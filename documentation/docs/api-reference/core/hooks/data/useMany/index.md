@@ -1,6 +1,7 @@
 ---
 title: useMany
 siderbar_label: useMany
+source: packages/core/src/hooks/data/useMany.ts
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";

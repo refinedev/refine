@@ -1,6 +1,7 @@
 ---
 id: useApiUrl
 title: useApiUrl
+source: packages/core/src/hooks/data/useApiUrl.ts
 ---
 
 `useApiUrl` is a React hook that returns the API URL.

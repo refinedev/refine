@@ -1,6 +1,7 @@
 ---
 title: useOne
 siderbar_label: useOne
+source: packages/core/src/hooks/data/useOne.ts
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";

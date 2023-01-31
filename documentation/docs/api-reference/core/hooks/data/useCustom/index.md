@@ -1,6 +1,7 @@
 ---
 title: useCustom
 siderbar_label: useCustom
+source: packages/core/src/hooks/data/useCustom.ts
 ---
 
 `useCustom` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery). It supports all the features of `useQuery` and adds some extra features.
