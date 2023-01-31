@@ -4,9 +4,9 @@ title: useCan
 siderbar_label: useCan
 ---
 
-## Usage
+`useCan` uses the [Access Control Provider's][access-control-provider] `can` function as the query function for [TanStack Query's][tanstack-query] [`useQuery`][use-query]. It takes the [parameters][can-params] that `can` takes. It can also be configured with [`queryOptions`][query-options] for [`useQuery`][use-query]. Returns the result of [`useQuery`][use-query].
 
-`useCan` uses the `can` as the query function for **react-query**'s `useQuery`. It takes the parameters that `can` takes. It can also be configured with `queryOptions` for `useQuery`. Returns the result of `useQuery`.
+## Basic Usage
 
 ```tsx
 import { useCan } from "@pankod/refine-core";
@@ -20,7 +20,7 @@ const { data } = useCan({
 
 ## Performance
 
-As the number of points that checks for access control in your app increases the performance of your app may take a hit especially if its access control involves remote endpoints. Caching the access control checks helps a great deal. Since **refine** uses react-query it can be easily done configuring [`staleTime` and `cacheTime`](https://react-query.tanstack.com/reference/useQuery) properties.
+As the number of points that checks for access control in your app increases the performance of your app may take a hit especially if its access control involves remote endpoints. Caching the access control checks helps a great deal. Since **refine** uses [TanStack Query][tanstack-query] it can be easily done configuring [`staleTime` and `cacheTime`][query-options] properties.
 
 ```ts
 import { useCan } from "@pankod/refine-core";
@@ -34,7 +34,84 @@ const { data } = useCan({
     queryOptions: {
         staleTime: 5 * 60 * 1000, // 5 minutes
     }
-);
+});
+```
+
+## Properties
+
+### `resource` <PropTag required />
+
+Passes to [Access Control Provider's][access-control-provider] `can` function's `resource` parameter
+
+```ts
+useCan({
+    resource: "resource-you-ask-for-access",
+});
+```
+
+### `action` <PropTag required />
+
+Passes to [Access Control Provider's][access-control-provider] `can` function's `action` parameter
+
+```ts
+useCan({
+    action: "resource-you-ask-for-access",
+});
+```
+
+### `params`
+
+Passes to [Access Control Provider's][access-control-provider] `can` function's `params` parameter
+
+```ts
+useCan({
+    params: { foo: "optional-params" },
+});
+```
+
+### `queryOptions`
+
+Query options for [TanStack Query's][tanstack-query] [`useQuery`][use-query].
+
+```ts
+useCan({
+    queryOptions: {
+        staleTime: 5 * 60 * 1000, // 5 minutes
+    },
+});
+```
+
+## Return values
+
+Query result of [TanStack Query's][tanstack-query] [`useQuery`][use-query].
+
+For example if you want to check if the user can create a post return value will be:
+
+```tsx
+<Refine
+    accessControlProvider={{
+        can: async ({ resource, action }) => {
+            if (resource === "post" && action === "create") {
+                return Promise.resolve({
+                    can: false,
+                    reason: "Unauthorized",
+                });
+            }
+
+            return Promise.resolve({ can: true });
+        },
+    }}
+
+    // ...
+/>;
+
+// inside your component
+const { data: canCreatePost } = useCan({
+    action: "create",
+    resource: "post",
+});
+
+console.log(canCreatePost); // { can: false, reason: "Unauthorized" }
 ```
 
 ## API
@@ -51,6 +128,12 @@ const { data } = useCan({
 
 ### Return values
 
-| Description                              | Type                                                                                                   |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{ data: CanReturnType; }>`](https://react-query.tanstack.com/reference/useQuery) |
+| Description                                                              | Type                                                             |
+| ------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| Result of the [TanStack Query's][tanstack-query] [`useQuery`][use-query] | [`QueryObserverResult<{ data: CanReturnType; }>`][query-options] |
+
+[access-control-provider]: /docs/api-reference/core/providers/accessControl-provider/
+[use-query]: https://tanstack.com/query/latest/docs/react/guides/queries
+[tanstack-query]: https://tanstack.com/query/latest
+[query-options]: https://tanstack.com/query/v4/docs/react/reference/useQuery
+[can-params]: /docs/api-reference/core/interfaceReferences/#canparams
