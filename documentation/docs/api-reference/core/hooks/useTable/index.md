@@ -10,12 +10,12 @@ import SortingLivePreview from "./\_partial-sorting-live-preview.md";
 import FilteringLivePreview from "./\_partial-filtering-live-preview.md";
 import RelationalDataLivePreview from "./\_partial-relational-data-live-preview.md";
 
-`useTable` allows us to fetch data according to sorter, filter, and pagination states. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch.
+`useTable` allows us to fetch data according to sorter, filter, and pagination states. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch. Since it is designed as headless, It expects you to handle the UI.
 
 :::info
 If you're looking for a complete table library, Refine supports two table libraries out-of-the-box.
 
--   [React Table](https://react-table.tanstack.com/) (for Headless users) - [Documentation](/docs/packages/documentation/react-table) - [Example](/examples/table/react-table/basic.md)
+-   [React Table](https://react-table.tanstack.com/) (for TanStack Table users) - [Documentation](/docs/packages/documentation/react-table) - [Example](/examples/table/react-table/basic.md)
 -   [Ant Design Table](https://ant.design/components/table/#header) (for Ant Design users) - [Documentation](/docs/api-reference/antd/hooks/table/useTable) - [Example](/examples/table/antd/useTable.md)
 -   [Material UI Table](https://mui.com/x/react-data-grid/) (for Material UI users) - [Documentation](/docs/api-reference/mui/hooks/useDataGrid) - [Example](/examples/table/mui/useDataGrid.md)
 
