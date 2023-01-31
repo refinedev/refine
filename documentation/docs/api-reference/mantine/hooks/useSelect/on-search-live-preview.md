@@ -8,7 +8,7 @@ interface ICategory {
     title: string;
 }
 
-const CategoryCreate: React.FC = () => {
+const ProductCreate: React.FC = () => {
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
         // highlight-start
@@ -25,7 +25,7 @@ const CategoryCreate: React.FC = () => {
     return (
         <Select
             label="Category"
-            placeholder="Pick one"
+            placeholder="Select a category"
             withinPortal
             {...selectProps}
         />
@@ -35,8 +35,8 @@ const CategoryCreate: React.FC = () => {
 setRefineProps({
     resources: [
         {
-            name: "categories",
-            create: CategoryCreate,
+            name: "posts",
+            create: ProductCreate,
         },
     ],
 });

@@ -8,7 +8,7 @@ interface ICategory {
     title: string;
 }
 
-const CategoryCreate: React.FC = () => {
+const ProductCreate: React.FC = () => {
     const { saveButtonProps, getInputProps, errors } = useForm({
         initialValues: {
             category: {
@@ -29,7 +29,7 @@ const CategoryCreate: React.FC = () => {
                 <Select
                     mt={8}
                     label="Category"
-                    placeholder="Pick one"
+                    placeholder="Select a category"
                     {...getInputProps("category.id")}
                     {...selectProps}
                 />
@@ -41,8 +41,8 @@ const CategoryCreate: React.FC = () => {
 setRefineProps({
     resources: [
         {
-            name: "categories",
-            create: CategoryCreate,
+            name: "posts",
+            create: ProductCreate,
         },
     ],
 });

@@ -8,7 +8,7 @@ interface ICategory {
     title: string;
 }
 
-const CategoryCreate: React.FC = () => {
+const ProductCreate: React.FC = () => {
     const [order, setOrder] = React.useState<"asc" | "desc">("asc");
 
     const { selectProps } = useSelect<ICategory>({
@@ -28,7 +28,7 @@ const CategoryCreate: React.FC = () => {
             <Button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>Toggle Order</Button>
             <Select
                 label="Category"
-                placeholder="Pick one"
+                placeholder="Select a category"
                 withinPortal
                 {...selectProps}
             />
@@ -39,8 +39,8 @@ const CategoryCreate: React.FC = () => {
 setRefineProps({
     resources: [
         {
-            name: "categories",
-            create: CategoryCreate,
+            name: "posts",
+            create: ProductCreate,
         },
     ],
 });
