@@ -382,7 +382,7 @@ const myDataProvider = {
 
 ### `successNotification`
 
-> [`NotificationProvider`][notification-provider] is required.
+> [`NotificationProvider`][notification-provider] is required for this prop to work.
 
 After data is fetched successfully, `useTable` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
@@ -402,7 +402,7 @@ useTable({
 
 ### `errorNotification`
 
-> [`NotificationProvider`][notification-provider] is required.
+> [`NotificationProvider`][notification-provider] is required for this prop to work.
 
 After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show a error notification. With this prop, you can customize the error notification.
 
