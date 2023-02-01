@@ -25,6 +25,8 @@ In basic usage, `useDataGrid` returns the data as it comes from the endpoint. By
 
 The hook handles pagination by setting the `paginationMode`, `page`, `onPageChange`, `pageSize`, and `onPageSizeChange` props that are compatible with `<DataGrid>`.
 
+It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
+
 :::info
 To disable pagination, you can set `hasPagination` property to `false` which is `true` by default. If pagination is disabled, `hideFooterPagination` property will be sent as `true` with `paginationMode`, `page,` `onPageChange`, `pageSize` and `onPageSizeChange` set to undefined.
 :::
@@ -66,6 +68,8 @@ export const PostsList: React.FC = () => {
 ## Sorting
 
 The hook handles sorting by setting the `sortingMode`, `sortModel`, and `onSortModelChange`props that are compatible with `<DataGrid>`.
+
+It also syncs the sorting state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
 ```tsx
 export const PostsList: React.FC = () => {
@@ -156,6 +160,8 @@ When `sortModel` is not passed, it supports more than one criteria at a time, bu
 ## Filtering
 
 The hook handles filtering by setting the `filterMode`, `filterModel` and `onFilterModelChange`props that are compatible with `<DataGrid>`.
+
+It also syncs the filtering state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
 ```tsx
 export const PostsList: React.FC = () => {

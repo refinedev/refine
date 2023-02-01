@@ -65,6 +65,8 @@ In basic usage, `useTable` returns the data as it comes from the endpoint. By de
 
 [TanStack Table][tanstack-table] provides a bunch of methods that we can use to control the pagination. For example, we can use the `setPageSize` method to set the current `pageSize`. Every change in the `pageSize` and `pageIndex` will trigger a new request to the data provider.
 
+It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
+
 :::info
 `useTable` hook from `@pankod/refine-react-table` sets `manualPagination` to `true` by default to handle the pagination. If you set `hasPagination` to `false` in `refineCoreProps` property in the `useTable` config, it will disable the server-side pagination and it will let you handle the pagination on the client side.
 :::
@@ -75,11 +77,15 @@ In basic usage, `useTable` returns the data as it comes from the endpoint. By de
 
 [TanStack Table][tanstack-table] provides a bunch of methods that we can use to control the sorting. For example, we can use the `setColumnOrder` method to set the current `sorting` value. Every change in the `sorting` state will trigger a new request to the data provider.
 
+It also syncs the sorting state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
+
 <SortingLivePreview/>
 
 ## Filtering
 
 [TanStack Table][tanstack-table] provides a bunch of methods that we can use to control the filtering. For example, we can use the `setColumnFilters` method to set the current `columnFilters` value. Every change in the `filter` will trigger a new request to the data provider.
+
+It also syncs the filtering state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
 You can specify which field will be filtered with which filter operator with the `filterOperator` property in the `meta` object. `filterOperator` must be a [`CrudOperators`](/api-reference/core/interfaces.md#crudoperators) type.
 

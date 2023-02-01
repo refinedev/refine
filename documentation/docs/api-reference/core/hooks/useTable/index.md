@@ -31,6 +31,8 @@ In basic usage, `useTable` returns the data as it comes from the endpoint. By de
 
 `useTable` has a pagination feature. The pagination is done by using the `current` and `pageSize` props. The `current` is the current page and the `pageSize` is the number of records per page.
 
+It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
+
 By default, the `current` is 1 and the `pageSize` is 10. You can change default values by passing the `initialCurrent` and `initialPageSize` props to the `useTable` hook.
 
 You can also change the `current` and `pageSize` values by using the `setCurrent` and `setPageSize` functions that are returned by the `useTable` hook. Every change will trigger a new fetch.
@@ -47,6 +49,8 @@ If `hasPagination` is set to `false`, `current`, `setCurrent`, `pageSize`, `setP
 
 `useTable` has a sorter feature. The sorter is done by using the `sorter` state. The `sorter` state is a [`CrudSorting`][crudsorting] type that contains the field and the order of the sort. You can change the sorter state by using the `setSorter` function. Every change will trigger a new fetch.
 
+It also syncs the sorting state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
+
 Also, you can add an initial sorter state by passing the `initialSorter` prop and a permanent sorter state by passing the `permanentSorter` prop to the `useTable` hook. Even if you change the sorter state, the `permanentSorter` will be used together with the sorter state.
 
 <SortingLivePreview/>
@@ -54,6 +58,8 @@ Also, you can add an initial sorter state by passing the `initialSorter` prop an
 ## Filtering
 
 `useTable` has a filter feature. The filter is done by using the `filters` state. The `filters` state is a [`CrudFilters`][crudfilters] type that contains the field, the operator, and the value of the filter. You can change the filter state by using the `setFilters` function. Every change will trigger a new fetch.
+
+It also syncs the filtering state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
 Also you can add an initial filter state by passing the `initialFilter` prop and a permanent filter state by passing the `permanentFilter` prop to the `useTable` hook. Even if you change the filter state, the `permanentFilter` will be used together with the filter state.
 

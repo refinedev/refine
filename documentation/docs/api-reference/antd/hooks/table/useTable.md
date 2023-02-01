@@ -28,6 +28,8 @@ In basic usage, `useTable` returns the data as it comes from the endpoint. By de
 
 This feature comes out of the box with the `tableProps.pagination`. It generates the pagination links for the `<Table>` component instead of react state and overrides `<Table>`'s `pagination.itemRender` value. It also syncs the pagination state with the URL.
 
+It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
+
 If you want to make a change in the pagination of the `<Table>`. You should pass the pagination object of the `tableProps` to the pagination property of the `<Table>` as below. You can override the values of the pagination object as your need.
 
 ```tsx
@@ -56,6 +58,8 @@ To disable pagination, you can set `hasPagination` property to `false` which is 
 
 If we want to give a column the sorting property, the corresponding [`<Table.Column>`][table-column] component must be given the [sorter](https://ant.design/components/table/#components-table-demo-head) property.
 
+It also syncs the sorting state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
+
 <SorterLivePreview/>
 
 :::caution
@@ -72,6 +76,8 @@ When using multiple sorting, `multiple` value is required for `sorter` property.
 ## Filtering
 
 We can use the `filterDropdown` property from [`<Table.Column>`][table-column] to make filtering based on the column values. In order to do this, we need to put the filtering form inside the [`<FilterDropdown>`][filter-dropdown] component and pass the properties coming to the function to these component's properties.
+
+It also syncs the filtering state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
 <FilteringPreview />
 
