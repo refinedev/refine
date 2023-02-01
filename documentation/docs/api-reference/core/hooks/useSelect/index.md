@@ -214,7 +214,7 @@ The HTML select tag does not natively support AutoComplete. If AutoComplete is d
 :::
 
 :::info
-**If defined, it allows us to override the filters to use when fetching list of records.** 
+If `onSearch` is used, it will override the existing `filters`.
 :::
 
 [useQuery](https://react-query.tanstack.com/reference/useQuery) options for default value query can be set by passing `queryOptions` property.
@@ -343,25 +343,25 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 
 ## FAQ
 
-### How do get all the data without pagination?
+### How to get all the data without pagination?
 
 You may want to get all the data without pagination. In this case you should use the [`hasPagination`](/docs/api-reference/core/hooks/useSelect/#haspagination) prop.
 
 > Don't forget to implement it in the [data provider](/docs/api-reference/core/providers/data-provider/#getlist).
 
-### How can search for options (Autocomplete)?
+### How to add search to options (Autocomplete)?
 
 [`onSearch`](/docs/api-reference/core/hooks/useSelect/#onsearch) is a function that is used to set the search value. It is useful when you want to search for a specific value. A simple example of this is shown below.
 
 <OnSearchLivePreview />
 
-### How can selected the option by default?
+### How to ensure `defaultValue` is included in the options?
 
 In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/api-reference/core/hooks/data/useMany/), gets the data and mark as seleted.
 
 <DefaultValueLivePreview />
 
-### How do change the `label` and `value` on options?
+### How to change the `label` and `value` properties in options?
 
 [`optionLabel` and `optionValue`](/docs/api-reference/core/hooks/useSelect/#optionlabel-and-optionvalue) are used to change the value of your options.
 The default values are `optionsLabel="title"` and `optionsValue="id"`.
