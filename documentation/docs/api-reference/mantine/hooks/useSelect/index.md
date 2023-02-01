@@ -192,7 +192,6 @@ When the `defaultValue` property is given, the `useMany` data hook is called for
 
 ```tsx
 const { options } = useSelect({
-    resource: "categories",
     defaultValueQueryOptions: {
         onSuccess: (data) => {
             console.log("triggers when on query return on success");
