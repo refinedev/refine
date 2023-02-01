@@ -542,33 +542,56 @@ You can also use `searchFormProps.form.submit` to submit the form manually.
 It's useful when you want to create a filter form for your `<Table>`.
 
 ```tsx
-const { searchFormProps, tableProps } = useTable({
-    onSearch: (values) => {
-        return [
-            {
-                field: "title",
-                operator: "contains",
-                value: values.title,
-            },
-        ];
-    },
-});
+import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
+import {
+    List,
+    Table,
+    useTable,
+    Form,
+    SaveButton,
+    Input,
+} from "@pankod/refine-antd";
 
-// --
-<List>
-    <Form {...searchFormProps}>
-        <Space>
-            <Form.Item name="title">
-                <Input placeholder="Search by title" />
-            </Form.Item>
-            <SaveButton onClick={searchFormProps.form?.submit} />
-        </Space>
-    </Form>
-    <Table {...tableProps} rowKey="id">
-        <Table.Column title="Title" dataIndex="title" />
-    </Table>
-</List>;
-// ---
+interface IPost {
+    id: number;
+    title: string;
+}
+
+interface ISearch {
+    title: string;
+}
+
+const PostList: React.FC<IResourceComponentsProps> = () => {
+    const { searchFormProps, tableProps } = useTable<IPost, HttpError, ISearch>(
+        {
+            onSearch: (values) => {
+                return [
+                    {
+                        field: "title",
+                        operator: "contains",
+                        value: values.title,
+                    },
+                ];
+            },
+        },
+    );
+
+    return (
+        <List>
+            <Form {...searchFormProps} layout="inline">
+                <Form.Item name="title">
+                    <Input placeholder="Search by title" />
+                </Form.Item>
+                {/* highlight-next-line */}
+                <SaveButton onClick={searchFormProps.form?.submit} />
+            </Form>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column title="Title" dataIndex="title" />
+            </Table>
+        </List>
+    );
+};
 ```
 
 ### `tableQueryResult`

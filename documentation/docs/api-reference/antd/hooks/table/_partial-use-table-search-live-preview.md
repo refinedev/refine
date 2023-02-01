@@ -19,7 +19,6 @@ import {
     // highlight-start
     Form,
     SaveButton,
-    Space,
     Input,
     // highlight-end
 } from "@pankod/refine-antd";
@@ -55,17 +54,11 @@ const PostList: React.FC<IResourceComponentsProps> = () => {
     return (
         <List>
             {/* highlight-start */}
-            <Form {...searchFormProps}>
-                <Space
-                    style={{
-                        alignItems: "flex-start",
-                    }}
-                >
-                    <Form.Item name="title">
-                        <Input placeholder="Search by title" />
-                    </Form.Item>
-                    <SaveButton onClick={searchFormProps.form?.submit} />
-                </Space>
+            <Form {...searchFormProps} layout="inline">
+                <Form.Item name="title">
+                    <Input placeholder="Search by title" />
+                </Form.Item>
+                <SaveButton onClick={searchFormProps.form?.submit} />
             </Form>
             {/* highlight-end */}
             <Table {...tableProps} rowKey="id">
