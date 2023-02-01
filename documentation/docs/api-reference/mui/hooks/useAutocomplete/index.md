@@ -8,6 +8,7 @@ import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 import DefaultValueLivePreview from "./default-value-live-preview.md";
 import CrudLivePreview from "./crud-live-preview.md";
 import SortLivePreview from "./sort-live-preview.md";
+import OnSearchLivePreview from "./on-search-live-preview.md";
 
 `useAutocomplete` hook allows you to manage Material UI [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/) component when records in a resource needs to be used as select options.
 
@@ -188,7 +189,7 @@ It allows us to `AutoComplete` the `options`.
 
 [Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
-<!-- <OnSearchLivePreview /> -->
+<OnSearchLivePreview />
 
 :::info
 If `onSearch` is used, it will override the existing `filters`.

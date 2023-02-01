@@ -13,11 +13,17 @@ interface ICategory {
 }
 
 const PostCreate: React.FC = () => {
-    
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
-        // highlight-next-line
-        defaultValue: 11,
+        // highlight-start
+        onSearch: (value) => [
+            {
+                field: "title",
+                operator: "contains",
+                value,
+            }
+        ]
+        // highlight-end
     });
 
     return (

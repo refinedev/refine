@@ -27,11 +27,11 @@ const PostCreate: React.FC = () => {
             placeholder="Select a category"
             renderInput={(params) => (
                 <TextField
-                {...params}
-                label="Category"
-                margin="normal"
-                variant="outlined"
-                required
+                    {...params}
+                    label="Category"
+                    margin="normal"
+                    variant="outlined"
+                    required
                 />
             )}
         />
