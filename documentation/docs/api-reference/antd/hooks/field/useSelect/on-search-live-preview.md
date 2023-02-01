@@ -1,4 +1,4 @@
-```tsx live url=http://localhost:3000 previewHeight=600px
+```tsx live url=http://localhost:3000 previewHeight=300px
 setInitialRoutes(["/posts/create"]);
 // visible-block-start
 import { useSelect, Select } from "@pankod/refine-antd";
