@@ -32,6 +32,10 @@ const getAccessorKey = (field: InferField) => {
         : `accessorKey: "${field.key}"`;
 };
 
+/**
+ * a renderer function for list page in Chakra UI
+ * @internal used internally from inferencer components
+ */
 export const renderer = ({
     resource,
     fields,

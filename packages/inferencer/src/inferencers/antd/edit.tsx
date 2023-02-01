@@ -25,6 +25,10 @@ import {
 } from "@/types";
 import { shouldDotAccess } from "@/utilities/accessor";
 
+/**
+ * a renderer function for edit page in Ant Design
+ * @internal used internally from inferencer components
+ */
 export const renderer = ({
     resource,
     fields,

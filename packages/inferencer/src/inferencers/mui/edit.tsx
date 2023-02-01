@@ -25,6 +25,10 @@ import {
     RendererContext,
 } from "@/types";
 
+/**
+ * a renderer function for edit page in Material UI
+ * @internal used internally from inferencer components
+ */
 export const renderer = ({
     resource,
     fields,

@@ -1,3 +1,5 @@
+import { InferField } from "@/types";
+
 const dotAccessableRegex = /^[a-zA-Z_$][a-zA-Z_$0-9]*$/;
 
 export const shouldDotAccess = (property: string) => {
@@ -76,4 +78,12 @@ export const dotAccessor = (
     }
 
     return str;
+};
+
+export const getAccessorKey = (field: InferField) => {
+    return Array.isArray(field.accessor) || field.multiple
+        ? `accessorKey: "${field.key}"`
+        : field.accessor
+        ? `accessorKey: "${dotAccessor(field.key, undefined, field.accessor)}"`
+        : `accessorKey: "${field.key}"`;
 };

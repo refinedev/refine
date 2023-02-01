@@ -407,6 +407,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                       >
                         <div
                           class="MuiDataGrid-cellContent"
+                          title="11"
                         >
                           11
                         </div>
@@ -423,6 +424,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                       >
                         <div
                           class="MuiDataGrid-cellContent"
+                          title="Nobis exercitationem officia quia est."
                         >
                           Nobis exercitationem officia quia est.
                         </div>
@@ -439,6 +441,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                       >
                         <div
                           class="MuiDataGrid-cellContent"
+                          title="provident-culpa-facere"
                         >
                           provident-culpa-facere
                         </div>
@@ -465,6 +468,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                       >
                         <div
                           class="MuiDataGrid-cellContent"
+                          title="21"
                         >
                           21
                         </div>
@@ -481,6 +485,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                       >
                         <div
                           class="MuiDataGrid-cellContent"
+                          title="Eaque in nesciunt."
                         >
                           Eaque in nesciunt.
                         </div>
@@ -497,6 +502,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
                       >
                         <div
                           class="MuiDataGrid-cellContent"
+                          title="quod-quos-commodi"
                         >
                           quod-quos-commodi
                         </div>
