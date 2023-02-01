@@ -9,7 +9,6 @@ interface ICategory {
 }
 
 const ProductCreate: React.FC = () => {
-    const [order, setOrder] = React.useState<"asc" | "desc">("asc");
     const { options, onSearch } = useSelect<ICategory>({
         resource: "categories",
         
