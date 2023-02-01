@@ -103,7 +103,6 @@ It allows us to `debounce` the `onSearch` function.
 
 ```tsx
 useSelect({
-    resource: "categories",
     debounce: 500,
 });
 ```
