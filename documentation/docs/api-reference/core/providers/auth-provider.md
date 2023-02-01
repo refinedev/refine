@@ -8,16 +8,11 @@ import AuthProviderExamplesLinks from "@site/src/partials/auth-provider-examples
 
 Auth provider is an object which contains methods to handle authentication and authorization in your app. It provides a way to authenticate users and authorize them to access resources. **refine** consumes these methods via auth hooks.
 
-By default, **refine** doesn't require authentication configuration. When you need, **refine** lets you set authentication logic by providing the `authProvider` property to the `<Refine>` component.
+By default, **refine** doesn't handle authentication in the app. When you need, you can pass `authProvider` to the `<Refine>` component as a prop.
+
+Auth provider's methods expect to return a Promise. So, you can use async methods to create auth provider. Therefore, to create auth provider from scratch, you can use any third-party authentication service like [Auth0, Okta, etc.](#examples), or your own custom methods.
 
 [Refer to the "Create Auth Provider From Scratch" tutorial for more information &#8594][create-auth-provider-tutorial]
-
-:::caution
-
-**refine** consumes these methods using [authorization hooks](#hooks-and-components).
-Authorization hooks are used to manage authentication and authorization operations like login, logout, catching **HTTP** errors, etc.
-
-:::
 
 ## Usage
 
@@ -56,7 +51,9 @@ Auth provider's methods are expected to return a Promise. So, you can use these 
 An `authProvider` includes the following methods:
 
 ```tsx
-const authProvider = {
+import { AuthProvider } from "@pankod/refine-core";
+
+const authProvider: AuthProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
     forgotPassword: () => Promise.resolve(),
@@ -68,6 +65,13 @@ const authProvider = {
     getUserIdentity: () => Promise.resolve(),
 };
 ```
+
+:::caution
+
+**refine** consumes these methods using [authorization hooks](#hooks-and-components).
+Authorization hooks are used to manage authentication and authorization operations like login, logout, catching **HTTP** errors, etc.
+
+:::
 
 ## Required Methods
 
