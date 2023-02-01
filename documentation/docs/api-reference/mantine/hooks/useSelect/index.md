@@ -218,8 +218,6 @@ If `onSearch` is used, it will override the existing `filters`.
 
 Sometimes, you may want to filter the options on the client-side. You can do this by passing `onSearch` function as `undefined`. This will disable the server-side filtering and will filter the options on the client-side. Set the `searchValue` and `onSearchChange` properties to enable the search input.
 
-```tsx 
-
 ```tsx
 const { selectProps } = useSelect({
     resource: "categories",
