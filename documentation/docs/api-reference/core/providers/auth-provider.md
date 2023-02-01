@@ -4,36 +4,22 @@ title: Auth Provider
 sidebar_label: Auth Provider
 ---
 
-Auth provider is a object which contains methods to handle authentication and authorization in your app. It provides a way to authenticate users and authorize them to access resources. **refine** consumes these methods via auth hooks.
+import AuthProviderExamplesLinks from "@site/src/partials/auth-provider-examples-links.md";
 
-By default, **refine** doesn't require authentication configuration. When you need, **refine** let's you set authentication logic by providing the `authProvider` property to the `<Refine>` component.
+Auth provider is an object which contains methods to handle authentication and authorization in your app. It provides a way to authenticate users and authorize them to access resources. **refine** consumes these methods via auth hooks.
+
+By default, **refine** doesn't require authentication configuration. When you need, **refine** lets you set authentication logic by providing the `authProvider` property to the `<Refine>` component.
+
+[Refer to the "Create Auth Provider From Scratch" tutorial for more information &#8594][create-auth-provider-tutorial]
 
 :::caution
 
 **refine** consumes these methods using [authorization hooks](#hooks-and-components).
-Authorization hooks are used to manage authentication and authorization operations like login, logout and catching **HTTP** errors etc.
+Authorization hooks are used to manage authentication and authorization operations like login, logout, catching **HTTP** errors, etc.
 
 :::
 
-:::tip
-You can find auth provider examples made with **refine**
-
--   **Basic** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-headless) - [Demo](/docs/examples/authentication/headless/)
--   **Auth0** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-auth0/) - [Demo](examples/auth-provider/auth0.md)
--   **Keycloak** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-keycloak) - [Demo](examples/auth-provider/keycloak.md)
--   **Google** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-google-login) - [Demo](examples/auth-provider/google-auth.md)
--   **OTP Login** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-otp) - [Demo](examples/auth-provider/otpLogin.md)
--   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite) - [Demo](/docs/examples/data-provider/appwrite)
--   **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase) - [Demo](/docs/examples/data-provider/supabase)
--   **Strapi** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4) - [Demo](/docs/examples/data-provider/strapi-v4)
--   **Strapi GraphQL** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql) - [Demo](/docs/examples/data-provider/strapi-graphql)
--   **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/data-provider-nhost) - [Demo](/docs/examples/data-provider/nhost)
--   **Basic with Nextjs** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/with-nextjs) - [Demo](/docs/examples/next-js/)
--   **Basic with Remix** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/with-remix-headless) - [Demo](/docs/examples/remix/remix-headless)
-
-:::
-
-## Basic Usage
+## Usage
 
 To use `authProvider` in **refine**, we have to pass the `authProvider` to the `<Refine />` component.
 
@@ -59,13 +45,15 @@ const App = () => {
 };
 ```
 
-[Refer to the Auth Provider tutorial for more information and usage examples &#8594](/docs/tutorial/understanding-authprovider/create-authprovider)
+## Examples
+
+<AuthProviderExamplesLinks/>
 
 ## Methods
 
-Auth provider's methods are expected to return a Promise. So, you can use these async methods to create auth provider.
+Auth provider's methods are expected to return a Promise. So, you can use these async methods to [create auth provider][create-auth-provider-tutorial].
 
-An `authProvider` include the following methods:
+An `authProvider` includes the following methods:
 
 ```tsx
 const authProvider = {
@@ -80,6 +68,8 @@ const authProvider = {
     getUserIdentity: () => Promise.resolve(),
 };
 ```
+
+## Required Methods
 
 ### login <PropTag required />
 
@@ -124,6 +114,8 @@ You can use [`useLogout`][use-logout] hook to call `logout` method.
 -   If the Promise rejects, the `logout` method is called to log out the user and by default, the user is redirected to the `/login` route.
 
 You can use [`useCheckError`][use-check-error] hook to call `checkError` method.
+
+## Optional Methods
 
 ### getPermissions
 
@@ -188,7 +180,7 @@ These hooks can be used with the `authProvider` authentication and authorization
 
 [Refer to the "Create Auth Provider From Scratch" section in the tutorial for more information &#8594](/docs/tutorial/understanding-authprovider/create-authprovider/)
 
-### How can I set authorization credentials ?
+### How can I set authorization credentials?
 
 [Refer to the "Setting Authorization Credentials" section in the tutorial for more information &#8594](/docs/tutorial/understanding-authprovider/create-authprovider/#setting-authorization-credentials)
 
@@ -224,3 +216,4 @@ These hooks can be used with the `authProvider` authentication and authorization
 [use-register]: /docs/api-reference/core/hooks/auth/useRegister/
 [use-forgot-password]: /docs/api-reference/core/hooks/auth/useForgotPassword/
 [use-update-password]: /docs/api-reference/core/hooks/auth/useUpdatePassword/
+[create-auth-provider-tutorial]: /docs/tutorial/understanding-authprovider/create-authprovider
