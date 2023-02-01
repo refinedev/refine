@@ -9,7 +9,6 @@ interface ICategory {
 }
 
 const PostCreate: React.FC = () => {
-    const [order, setOrder] = React.useState<"asc" | "desc">("asc");
 
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
