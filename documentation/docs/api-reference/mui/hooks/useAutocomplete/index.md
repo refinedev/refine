@@ -189,23 +189,6 @@ It allows us to `AutoComplete` the `options`.
 
 [useQuery](https://react-query.tanstack.com/reference/useQuery) options for default value query can be set by passing `queryOptions` property.
 
-#### Client-side filtering
-
-Sometimes, you may want to filter the options on the client-side. You can do this by passing `onSearch` function as `undefined` and setting `filterOption` to `true`. You can also set `optionFilterProp` to `label` or `value` to filter the options by label or value respectively.
-
-```tsx
-const { selectProps } = useSelect({
-    resource: "categories",
-});
-
-<Select
-    {...selectProps}
-    onSearch={undefined}
-    filterOption={true}
-    optionFilterProp="label" // or "value"
-/>
-```
-
 ### `metaData`
 
 [`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
