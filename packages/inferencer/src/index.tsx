@@ -5,6 +5,8 @@ export {
     accessor,
     componentName,
     dataProviderFromResource,
+    shouldDotAccess,
+    getAccessorKey,
     dotAccessor,
     getFieldableKeys,
     getOptionLabel,

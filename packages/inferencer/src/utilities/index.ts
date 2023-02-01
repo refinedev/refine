@@ -23,7 +23,12 @@ export { jsx } from "./jsx";
 export { prepareLiveCode } from "./prepare-live-code";
 export { removeHiddenCode } from "./remove-hidden-code";
 
-export { accessor, dotAccessor } from "./accessor";
+export {
+    accessor,
+    dotAccessor,
+    shouldDotAccess,
+    getAccessorKey,
+} from "./accessor";
 export { printImports } from "./print-imports";
 
 export { toSingular } from "./to-singular";
