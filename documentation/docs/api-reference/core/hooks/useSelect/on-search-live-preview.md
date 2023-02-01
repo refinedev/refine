@@ -11,7 +11,6 @@ interface ICategory {
 const ProductCreate: React.FC = () => {
     const { options, onSearch } = useSelect<ICategory>({
         resource: "categories",
-        
         // highlight-start
         onSearch: (value) => [
             {

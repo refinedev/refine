@@ -9,10 +9,8 @@ interface ICategory {
 }
 
 const PostCreate: React.FC = () => {
-
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
-        
         // highlight-start
         onSearch: (value) => [
             {
