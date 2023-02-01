@@ -165,7 +165,14 @@ useSelect({
 When the `defaultValue` property is given, the `useMany` data hook is called for the selected records. With this property, you can change the options of this query. If not given, the values given in `queryOptions` will be used.
 
 ```tsx
-const { options } = useSelect({
+useSelect({
+    resource: "categories",
+    defaultValueQueryOptions: {
+        onSuccess: (data) => {
+            console.log("triggers when on query return on success");
+        },
+    },
+});
     resource: "categories",
     defaultValueQueryOptions: {
         onSuccess: (data) => {
