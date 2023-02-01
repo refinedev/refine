@@ -31,6 +31,10 @@ const getAccessorKey = (field: InferField) => {
         : `accessorKey: "${field.key}"`;
 };
 
+/**
+ * a renderer function for list page with unstyled html elements
+ * @internal used internally from inferencer components
+ */
 export const renderer = ({
     resource,
     fields,

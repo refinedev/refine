@@ -29,8 +29,20 @@ const MuiInferencer: React.FC<InferencerComponentProps> = ({
 };
 
 export { MuiInferencer };
-export { ShowInferencer as MuiShowInferencer } from "./show";
-export { EditInferencer as MuiEditInferencer } from "./edit";
-export { ListInferencer as MuiListInferencer } from "./list";
-export { CreateInferencer as MuiCreateInferencer } from "./create";
+export {
+    ShowInferencer as MuiShowInferencer,
+    renderer as MuiShowRenderer,
+} from "./show";
+export {
+    EditInferencer as MuiEditInferencer,
+    renderer as MuiEditRenderer,
+} from "./edit";
+export {
+    ListInferencer as MuiListInferencer,
+    renderer as MuiListRenderer,
+} from "./list";
+export {
+    CreateInferencer as MuiCreateInferencer,
+    renderer as MuiCreateRenderer,
+} from "./create";
 export * from "../../types";
