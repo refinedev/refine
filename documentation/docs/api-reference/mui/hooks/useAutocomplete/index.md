@@ -184,10 +184,50 @@ It allows us to `AutoComplete` the `options`.
 <!-- <OnSearchLivePreview /> -->
 
 :::info
-**If defined, it allows us to override the filters to use when fetching list of records.** 
+If `onSearch` is used, it will override the existing `filters`.
 :::
 
-[useQuery](https://react-query.tanstack.com/reference/useQuery) options for default value query can be set by passing `queryOptions` property.
+#### Client-side filtering
+
+Sometimes, you may want to filter the options on the client-side. You can do this by passing `onSearch` function as `undefined`. This will disable the server-side filtering and will filter the options on the client-side. 
+
+```tsx
+// highlight-next-line
+import { createFilterOptions } from "@pankod/refine-mui";
+
+const { autocompleteProps } = useSelect({
+    resource: "categories",
+});
+
+// highlight-start
+const filterOptions = createFilterOptions({
+    matchFrom: "start",
+    stringify: (option: any) => option.title,
+});
+// highlight-end
+
+<Autocomplete
+    {...autocompleteProps}
+    getOptionLabel={(item) => item.title}
+    // highlight-start
+    onInputChange={(event, value) => {}}
+    filterOptions={filterOptions}
+    // highlight-end
+    isOptionEqualToValue={(option, value) =>
+        value === undefined || option.id.toString() === value.toString()
+    }
+    placeholder="Select a category"
+    renderInput={(params) => (
+        <TextField
+            {...params}
+            label="Category"
+            margin="normal"
+            variant="outlined"
+            required
+        />
+    )}  
+/>
+```
 
 ### `metaData`
 
