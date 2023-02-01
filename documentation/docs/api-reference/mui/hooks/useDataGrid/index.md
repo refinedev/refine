@@ -7,9 +7,9 @@ source: /packages/mui/src/hooks/useDataGrid
 import BasicUsagePreview from "./\_partial-use-data-grid-basic-usage-live-preview.md";
 import RelationalPreview from "./\_partial-use-data-grid-relational-live-preview.md";
 
-By using `useDataGrid`, you are able to get properties that are compatible with MUI X [`<DataGrid>`][data-grid] component. All features such as sorting, filtering and pagination comes as out of box. For all the other features, you can refer to the MUI X [`<DataGrid>`][data-grid] documentation.
+By using `useDataGrid`, you can get properties that are compatible with MUI X [`<DataGrid>`][data-grid] component. All features such as sorting, filtering, and pagination come out of the box. For all the other features, you can refer to the MUI X [`<DataGrid>`][data-grid] documentation.
 
-> 💡 The `useDataGrid` hook works in compatible with both the [`<DataGrid>`][data-grid] and the [`<DataGridPro>`](https://mui.com/x/react-data-grid/#commercial-version) component.
+> 💡 The `useDataGrid` hook works in compatibility with both the [`<DataGrid>`][data-grid] and the [`<DataGridPro>`](https://mui.com/x/react-data-grid/#commercial-version) component.
 
 :::info
 This hook is extended from [`useTable`][use-table-core] from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
@@ -17,16 +17,16 @@ This hook is extended from [`useTable`][use-table-core] from the [`@pankod/refin
 
 ## Basic usage
 
-In basic usage `useDataGrid` returns the data as it comes from the endpoint. By default, it reads [`resource`](#resource) from the url.
+In basic usage, `useDataGrid` returns the data as it comes from the endpoint. By default, it reads [`resource`](#resource) from the URL.
 
 <BasicUsagePreview/>
 
 ## Pagination
 
-The hook handles pagination by setting the `paginationMode`, `page`, `onPageChange`, `pageSize` and `onPageSizeChange` props that are compatible with `<DataGrid>`.
+The hook handles pagination by setting the `paginationMode`, `page`, `onPageChange`, `pageSize`, and `onPageSizeChange` props that are compatible with `<DataGrid>`.
 
 :::info
-To disable pagination, you can set `hasPagination` property to `false` which is `true` by default. If pagination is disabled, `hideFooterPagination` property will be send as `true` with `paginationMode`, `page,` `onPageChange`, `pageSize` and `onPageSizeChange` set to undefined.
+To disable pagination, you can set `hasPagination` property to `false` which is `true` by default. If pagination is disabled, `hideFooterPagination` property will be sent as `true` with `paginationMode`, `page,` `onPageChange`, `pageSize` and `onPageSizeChange` set to undefined.
 :::
 
 ```tsx
@@ -65,7 +65,7 @@ export const PostsList: React.FC = () => {
 
 ## Sorting
 
-The hook handles sorting by setting the `sortingMode`, `sortModel` and `onSortModelChange`props that are compatible with `<DataGrid>`.
+The hook handles sorting by setting the `sortingMode`, `sortModel`, and `onSortModelChange`props that are compatible with `<DataGrid>`.
 
 ```tsx
 export const PostsList: React.FC = () => {
@@ -143,7 +143,7 @@ export const PostsList: React.FC = () => {
 
 Mui X community version only sorts the rows according to one criterion at a time. To use multi-sorting, you need to upgrade to the [Pro plan](https://mui.com/pricing/).
 
-However, multiple sorting can be done as server-side without specifying the `sortModel`.
+However, multiple sorting can be done server-side without specifying the `sortModel`.
 
 ```tsx
 return <DataGrid {...dataGridProps} sortModel={undefined} autoHeight />;
@@ -239,9 +239,9 @@ export const PostsList: React.FC = () => {
 
 :::tip
 
-Mui X community version only filter the rows according to one criterion at a time. To use multi-filtering, you need to upgrade to the [Pro plan](#).
+Mui X community version only filters the rows according to one criterion at a time. To use multi-filtering, you need to upgrade to the [Pro plan](#).
 
-However, multiple filtering can be done as server-side without specifying the `filterModel`.
+However, multiple filtering can be done server-side without specifying the `filterModel`.
 
 ```tsx
 return <DataGrid {...dataGridProps} filterModel={undefined} autoHeight />;
@@ -255,7 +255,7 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 
 > This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
 
-When [`useList`](/docs/api-reference/core/hooks/data/useList/) mutation runs successfully, it will call the `subscribe` method from `liveProvider` with some parameters such as (`channel`, `resource` etc.). It is useful when you want to subscribe to the live updates.
+When [`useList`](/docs/api-reference/core/hooks/data/useList/) mutation runs successfully, it will call the `subscribe` method from `liveProvider` with some parameters such as (`channel`, `resource` etc.). It is useful when you want to subscribe to live updates.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
 
@@ -263,11 +263,11 @@ When [`useList`](/docs/api-reference/core/hooks/data/useList/) mutation runs suc
 
 ### `resource`
 
-**refine** passes the `resource` to the `dataProvider` as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
+**refine** passes the `resource` to the `dataProvider` as a param. This parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how resources are handled.
 
 The `resource` value is determined from the active route where the component or the hook is used. It can be overridden by passing the `resource` prop.
 
-Use case for overriding the `resource` prop:
+A use case for overriding the `resource` prop:
 
 -   We can list a `category` from the `<PostList>` page.
 
@@ -305,7 +305,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-Also you can give URL path to the `resource` prop.
+Also, you can give a URL path to the `resource` prop.
 
 ```tsx
 useDataGrid({
@@ -413,7 +413,7 @@ useDataGrid({
 
 > Default: `merge`
 
-The filter behavior can be set to either `"merge"` or `"merge"`.
+The filtering behavior can be set to either `"merge"` or `"replace"`.
 
 -   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
@@ -443,9 +443,9 @@ useDataGrid({
 
 > Default: `false`
 
-When you use the syncWithLocation feature, the `useDataGrid`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useDataGrid` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views.
+When you use the syncWithLocation feature, the `useDataGrid`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useDataGrid` state is automatically updated to match. This makes it easy to share table states across different routes or pages and allows users to bookmark or share links to specific table views.
 
-Also you can set this value globally on [`<Refine>`][refine swl] component.
+Also, you can set this value globally on [`<Refine>`][refine swl] component.
 
 ```tsx
 useDataGrid({
@@ -532,7 +532,7 @@ useDataGrid({
 
 > [`NotificationProvider`][notification-provider] is required for this prop to work.
 
-After data fetching is failed, `useDataGrid` will call `open` function from [`NotificationProvider`][notification-provider] to show a error notification. With this prop, you can customize the error notification.
+After data fetching is failed, `useDataGrid` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
 useDataGrid({
@@ -563,7 +563,7 @@ useDataGrid({
 
 > [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
-The callback function that is executed when new events from a subscription are arrived.
+The callback function is executed when new events from a subscription have arrived.
 
 ```tsx
 useDataGrid({
@@ -713,7 +713,7 @@ Current page index state. If pagination is disabled, it will be `undefined`.
 React.Dispatch<React.SetStateAction<number>> | undefined
 ```
 
-A function to set current page index state. If pagination is disabled, it will be `undefined`.
+A function to set the current page index state. If pagination is disabled, it will be `undefined`.
 
 ### `pageSize`
 
@@ -725,7 +725,7 @@ Current page size state. If pagination is disabled, it will be `undefined`.
 React.Dispatch<React.SetStateAction<number>> | undefined
 ```
 
-A function to set current page size state. If pagination is disabled, it will be `undefined`.
+A function to set the current page size state. If pagination is disabled, it will be `undefined`.
 
 ### `pageCount`
 
@@ -737,11 +737,11 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 (params: SyncWithLocationParams) => string;
 ```
 
-A function create accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
+A function creates accessible links for `syncWithLocation`. It takes [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
 ## FAQ
 
-### How can I handle relational data ?
+### How can I handle relational data?
 
 You can use [`useSelect`](http://localhost:3000/docs/api-reference/core/hooks/useSelect/) hook to fetch relational data and filter [`<DataGrid>`][data-grid] by categories.
 

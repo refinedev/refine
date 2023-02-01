@@ -10,10 +10,10 @@ import SortingLivePreview from "./\_partial-sorting-live-preview.md";
 import FilteringLivePreview from "./\_partial-filtering-live-preview.md";
 import RelationalDataLivePreview from "./\_partial-relational-data-live-preview.md";
 
-`useTable` allows us to fetch data according to sorter, filter, and pagination states. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch. Since it is designed as headless, It expects you to handle the UI.
+`useTable` allows us to fetch data according to the sorter, filter, and pagination states. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch. Since it is designed as headless, It expects you to handle the UI.
 
 :::info
-If you're looking for a complete table library, Refine supports two table libraries out-of-the-box.
+If you're looking for a complete table library, Refine supports two table libraries out of the box.
 
 -   [React Table](https://react-table.tanstack.com/) (for TanStack Table users) - [Documentation](/docs/packages/documentation/react-table) - [Example](/examples/table/react-table/basic.md)
 -   [Ant Design Table](https://ant.design/components/table/#header) (for Ant Design users) - [Documentation](/docs/api-reference/antd/hooks/table/useTable) - [Example](/examples/table/antd/useTable.md)
@@ -23,7 +23,7 @@ If you're looking for a complete table library, Refine supports two table librar
 
 ## Basic Usage
 
-In basic usage `useTable` returns the data as it comes from the endpoint. By default, it reads [`resource`](#resource) from the url.
+In basic usage, `useTable` returns the data as it comes from the endpoint. By default, it reads [`resource`](#resource) from the URL.
 
 <BasicUsageLivePreview />
 
@@ -38,7 +38,7 @@ You can also change the `current` and `pageSize` values by using the `setCurrent
 If you want to disable pagination, you can use `hasPagination` property in `useTable` config and set it to `false`
 
 :::info
-If `hasPagination` is set to `false`, `current`, `setCurrent`, `pageSize`, `setPageSize` and `pageCount` will return `undefined`
+If `hasPagination` is set to `false`, `current`, `setCurrent`, `pageSize`, `setPageSize`, and `pageCount` will return `undefined`
 :::
 
 <PaginationLivePreview/>
@@ -47,17 +47,17 @@ If `hasPagination` is set to `false`, `current`, `setCurrent`, `pageSize`, `setP
 
 `useTable` has a sorter feature. The sorter is done by using the `sorter` state. The `sorter` state is a [`CrudSorting`][crudsorting] type that contains the field and the order of the sort. You can change the sorter state by using the `setSorter` function. Every change will trigger a new fetch.
 
-Also you can add initial sorter state by passing the `initialSorter` prop and permanent sorter state by passing the `permanentSorter` prop to the `useTable` hook. Even if you change the sorter state, the `permanentSorter` will be used together with the sorter state.
+Also, you can add an initial sorter state by passing the `initialSorter` prop and a permanent sorter state by passing the `permanentSorter` prop to the `useTable` hook. Even if you change the sorter state, the `permanentSorter` will be used together with the sorter state.
 
 <SortingLivePreview/>
 
 ## Filtering
 
-`useTable` has a filter feature. The filter is done by using the `filters` state. The `filters` state is a [`CrudFilters`][crudfilters] type that contains the field, the operator and the value of the filter. You can change the filter state by using the `setFilters` function. Every change will trigger a new fetch.
+`useTable` has a filter feature. The filter is done by using the `filters` state. The `filters` state is a [`CrudFilters`][crudfilters] type that contains the field, the operator, and the value of the filter. You can change the filter state by using the `setFilters` function. Every change will trigger a new fetch.
 
-Also you can add initial filter state by passing the `initialFilter` prop and permanent filter state by passing the `permanentFilter` prop to the `useTable` hook. Even if you change the filter state, the `permanentFilter` will be used together with the filter state.
+Also you can add an initial filter state by passing the `initialFilter` prop and a permanent filter state by passing the `permanentFilter` prop to the `useTable` hook. Even if you change the filter state, the `permanentFilter` will be used together with the filter state.
 
-`setFilters` function can work in two different behaviors; `merge` (default) and `replace`. You can set the behavior by passing it as the 2nd parameter. You can change default behavior with [`defaultSetFilterBehavior`](#defaultsetfilterbehavior) prop.
+`setFilters` function can work in two different behaviors; `merge` (default) and `replace`. You can set the behavior by passing it as the 2nd parameter. You can change the default behavior with [`defaultSetFilterBehavior`](#defaultsetfilterbehavior) prop.
 
 You can also call `setFilters` with a setter function.
 
@@ -71,7 +71,7 @@ If you are using `merge` behavior and want to remove one of the filters; you sho
 
 > This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
 
-When [`useList`](/docs/api-reference/core/hooks/data/useList/) mutation runs successfully, it will call the `subscribe` method from `liveProvider` with some parameters such as (`channel`, `resource` etc.). It is useful when you want to subscribe to the live updates.
+When [`useList`](/docs/api-reference/core/hooks/data/useList/) mutation runs successfully, it will call the `subscribe` method from `liveProvider` with some parameters such as (`channel`, `resource` etc.). It is useful when you want to subscribe to live updates.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
 
@@ -79,11 +79,11 @@ When [`useList`](/docs/api-reference/core/hooks/data/useList/) mutation runs suc
 
 ### `resource`
 
-**refine** passes the `resource` to the `dataProvider` as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
+**refine** passes the `resource` to the `dataProvider` as a param. This parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how resources are handled.
 
 The `resource` value is determined from the active route where the component or the hook is used. It can be overridden by passing the `resource` prop.
 
-Use case for overriding the `resource` prop:
+A use case for overriding the `resource` prop:
 
 -   We can list a `category` from the `<PostList>` page.
 
@@ -237,7 +237,7 @@ useTable({
 
 > Default: `merge`
 
-The filter behavior can be set to either `"merge"` or `"merge"`.
+The filtering behavior can be set to either `"merge"` or `"replace"`.
 
 -   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
@@ -358,7 +358,7 @@ useTable({
 
 > [`NotificationProvider`][notification-provider] is required for this prop to work.
 
-After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show a error notification. With this prop, you can customize the error notification.
+After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
 useTable({
@@ -389,7 +389,7 @@ useTable({
 
 > [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
-The callback function that is executed when new events from a subscription are arrived.
+The callback function is executed when new events from a subscription have arrived.
 
 ```tsx
 useTable({
@@ -445,7 +445,7 @@ Current page index state. If pagination is disabled, it will be `undefined`.
 React.Dispatch<React.SetStateAction<number>> | undefined
 ```
 
-A function to set current page index state. If pagination is disabled, it will be `undefined`.
+A function to set the current page index state. If pagination is disabled, it will be `undefined`.
 
 ### `pageSize`
 
@@ -457,7 +457,7 @@ Current page size state. If pagination is disabled, it will be `undefined`.
 React.Dispatch<React.SetStateAction<number>> | undefined
 ```
 
-A function to set current page size state. If pagination is disabled, it will be `undefined`.
+A function to set the current page size state. If pagination is disabled, it will be `undefined`.
 
 ### `pageCount`
 
@@ -469,7 +469,7 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 (params: SyncWithLocationParams) => string;
 ```
 
-A function create accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
+A function creates accessible links for `syncWithLocation`. It takes [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
 ## FAQ
 

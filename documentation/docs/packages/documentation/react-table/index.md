@@ -57,7 +57,7 @@ pnpm add @pankod/refine-react-table
 
 ## Basic Usage
 
-In basic usage `useTable` returns the data as it comes from the endpoint. By default, it reads [`resource`](#resource) from the url.
+In basic usage, `useTable` returns the data as it comes from the endpoint. By default, it reads [`resource`](#resource) from the url.
 
 <BasicUsageLivePreview/>
 
@@ -66,7 +66,7 @@ In basic usage `useTable` returns the data as it comes from the endpoint. By def
 [TanStack Table][tanstack-table] provides a bunch of methods that we can use to control the pagination. For example, we can use the `setPageSize` method to set the current `pageSize`. Every change in the `pageSize` and `pageIndex` will trigger a new request to the data provider.
 
 :::info
-`useTable` hook from `@pankod/refine-react-table` sets `manualPagination` to `true` by default to handle the pagination. If you set `hasPagination` to `false` in `refineCoreProps` property in the `useTable` config, it will disable the server-side pagination and it will let you handle the pagination in the client side.
+`useTable` hook from `@pankod/refine-react-table` sets `manualPagination` to `true` by default to handle the pagination. If you set `hasPagination` to `false` in `refineCoreProps` property in the `useTable` config, it will disable the server-side pagination and it will let you handle the pagination on the client side.
 :::
 
 <PaginationLivePreview/>
@@ -89,7 +89,7 @@ You can specify which field will be filtered with which filter operator with the
 
 > This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
 
-When [`useList`](/docs/api-reference/core/hooks/data/useList/) mutation runs successfully, it will call the `subscribe` method from `liveProvider` with some parameters such as (`channel`, `resource` etc.). It is useful when you want to subscribe to the live updates.
+When [`useList`](/docs/api-reference/core/hooks/data/useList/) mutation runs successfully, it will call the `subscribe` method from `liveProvider` with some parameters such as (`channel`, `resource` etc.). It is useful when you want to subscribe to live updates.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
 
@@ -141,7 +141,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-Also you can give URL path to the `resource` prop.
+Also, you can give a URL path to the `resource` prop.
 
 ```tsx
 useTable({
@@ -265,7 +265,7 @@ useTable({
 
 > Default: `merge`
 
-The filter behavior can be set to either `"merge"` or `"merge"`.
+The filtering behavior can be set to either `"merge"` or `"replace"`.
 
 -   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
@@ -299,7 +299,7 @@ useTable({
 
 > Default: `false`
 
-When you use the syncWithLocation feature, the `useTable`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views.
+When you use the syncWithLocation feature, the `useTable`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages and to allow users to bookmark or share links to specific table views.
 
 Also you can set this value globally on [`<Refine>`][refine swl] component.
 
@@ -396,7 +396,7 @@ useTable({
 
 > [`NotificationProvider`][notification-provider] is required for this prop to work.
 
-After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show a error notification. With this prop, you can customize the error notification.
+After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
 useTable({
@@ -431,7 +431,7 @@ useTable({
 
 > [`LiveProvider`](/docs/api-reference/core/providers/live-provider) is required.
 
-The callback function that is executed when new events from a subscription are arrived.
+The callback function is executed when new events from a subscription have arrived.
 
 ```tsx
 useTable({
@@ -493,7 +493,7 @@ Current page index state. If pagination is disabled, it will be `undefined`.
 React.Dispatch<React.SetStateAction<number>> | undefined
 ```
 
-A function to set current page index state. If pagination is disabled, it will be `undefined`.
+A function to set the current page index state. If pagination is disabled, it will be `undefined`.
 
 #### `pageSize`
 
@@ -505,7 +505,7 @@ Current page size state. If pagination is disabled, it will be `undefined`.
 React.Dispatch<React.SetStateAction<number>> | undefined
 ```
 
-A function to set current page size state. If pagination is disabled, it will be `undefined`.
+A function to set the current page size state. If pagination is disabled, it will be `undefined`.
 
 #### `pageCount`
 
@@ -517,11 +517,11 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 (params: SyncWithLocationParams) => string;
 ```
 
-A function create accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
+A function creates accessible links for `syncWithLocation`. It takes [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
 ## FAQ
 
-### How can I handle relational data ?
+### How can I handle relational data?
 
 You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fetch relational data.
 

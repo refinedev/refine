@@ -6,7 +6,7 @@ source: packages/antd/src/hooks/table/useTable
 
 import LivePreview from "./\_partial-use-editable-table-live-preview.md";
 
-`useEditeableTable` allows you to implement edit feature on the [`<Table>`][table] with ease. Return properties that can be used on Ant Desing's [`<Table>`][table] and [`<Form>`][form] components.
+`useEditeableTable` allows you to implement the edit feature on the [`<Table>`][table] with ease. Return properties that can be used on Ant Desing's [`<Table>`][table] and [`<Form>`][form] components.
 
 :::info
 `useEditeableTable` hook is extended from [`useTable`][usetable] hook from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/next/packages/antd) package. This means that you can use all the features of [`useTable`][usetable] hook.
@@ -14,7 +14,7 @@ import LivePreview from "./\_partial-use-editable-table-live-preview.md";
 
 ## Basic Usage
 
-Here is a example of how to use `useEditableTable` hook. We will explain in detail the usage of the hook with the following sections:
+Here is an example of how to use `useEditableTable` hook. We will explain in detail the usage of the hook in the following sections:
 
 <LivePreview/>
 
@@ -22,7 +22,7 @@ Here is a example of how to use `useEditableTable` hook. We will explain in deta
 
 Let's say that we want to make the `Post` data where we show the `id` and `title` values a listing page:
 
-This time, to add the edit feature, we have to cover the `<Table>` component with a `<Form>`component and pass the properties coming from `useEditableTable` to the corresponding components:
+This time, to add the edit feature, we have to cover the `<Table>` component with a `<Form>` component and pass the properties coming from `useEditableTable` to the corresponding components:
 
 ```tsx title="/pages/posts/list.tsx"
 import {
@@ -226,7 +226,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-With this, when a user clicks on the edit button, `isEditing(lineId)` will turn `true` for the relevant line. This will also cause `<TextInput>` to show up on the line thats being edited. When the editing is finished, new value can be saved by clicking `<SaveButton>`.
+With this, when a user clicks on the edit button, `isEditing(lineId)` will turn `true` for the relevant line. This will also cause `<TextInput>` to show up on the line that's being edited. When the editing is finished, a new value can be saved by clicking `<SaveButton>`.
 
 :::tip
 By giving the `<Table.Column>` component a unique `render` property, you can render the value in that column however you want.
@@ -235,11 +235,11 @@ Refer to [`<Table.Column>`][table.column] documentation for more information.
 
 ### Editing by clicking to row
 
-A line with the `id` value can be put to edit mode programatically by using the `setId` function that returns from `useEditableTable`.
+A line with the `id` value can be put to edit mode programmatically by using the `setId` function that returns from `useEditableTable`.
 
-The `onRow` property of the `<Table>` component can be used to put a line to editing mode when its clicked on. Function given to the `onRow` property is called everytime one of these lines are clicked on, with the information of which line was clicked on.
+The `onRow` property of the `<Table>` component can be used to put a line to editing mode when it's clicked on. The function given to the `onRow` property is called every time one of these lines is clicked on, with the information of which line was clicked on.
 
-We can use `setId` to put a line to edit mode whenever its clicked on.
+We can use `setId` to put a line to edit mode whenever it's clicked on.
 
 ```tsx title="/pages/posts/list.tsx"
 import {
@@ -327,7 +327,7 @@ cancelButtonProps: () => ButtonProps;
 
 ### `editButtonProps`
 
-Takes `id` as a parameter and returns the props for needed by the `<EditButton>`.
+Takes `id` as a parameter and returns the props needed by the `<EditButton>`.
 
 By default, `onClick` function is overridden by `useEditableTable`. When is triggered it will call `useForm's` `setId` function with the given `id`.
 
@@ -335,7 +335,7 @@ By default, `onClick` function is overridden by `useEditableTable`. When is trig
 editButtonProps: (id: BaseKey) => ButtonProps;
 ```
 
-Returns a function that takes a `id` as a parameter and returns the props for the edit button.
+Returns a function that takes an `id` as a parameter and returns the props for the edit button.
 
 ### `isEditing`
 

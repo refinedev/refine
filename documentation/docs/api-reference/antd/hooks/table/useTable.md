@@ -10,7 +10,7 @@ import FilteringPreview from "./\_partial-use-table-filtering-live-preview.md";
 import SearchPreview from "./\_partial-use-table-search-live-preview.md";
 import RelationalLivePreview from "./\_partial-use-table-relational-live-preview.md";
 
-By using `useTable`, you are able to get properties that are compatible with Ant Design [`<Table>`][table] component. All features such as sorting, filtering and pagination comes as out of box. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch.
+By using `useTable`, you can get properties that are compatible with Ant Design [`<Table>`][table] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch.
 
 For all the other features, you can refer to the Ant Design [`<Table>`][table] documentation.
 
@@ -20,15 +20,15 @@ For all the other features, you can refer to the Ant Design [`<Table>`][table] d
 
 ## Basic usage
 
-In basic usage `useTable` returns the data as it comes from the endpoint. By default, it reads [`resource`](#resource) from the url.
+In basic usage, `useTable` returns the data as it comes from the endpoint. By default, it reads [`resource`](#resource) from the URL.
 
 <BasicUsageLivePreview />
 
 ## Pagination
 
-This feature comes out of the box with the `tableProps.pagination`. It generates the pagination links for the `<Table>` component instead of react state and overrides `<Table>`'s `pagination.itemRender` value. It's also syncs the pagination state with the URL.
+This feature comes out of the box with the `tableProps.pagination`. It generates the pagination links for the `<Table>` component instead of react state and overrides `<Table>`'s `pagination.itemRender` value. It also syncs the pagination state with the URL.
 
-If you want to make a change in the pagination of the `<Table>`. You should pass the pagination object of the `tableProps` to the pagination property of the `<Table>` as below. You can override the values of the pagination object as your needs.
+If you want to make a change in the pagination of the `<Table>`. You should pass the pagination object of the `tableProps` to the pagination property of the `<Table>` as below. You can override the values of the pagination object as your need.
 
 ```tsx
 const { tableProps } = useTable<IPost>();
@@ -66,7 +66,7 @@ It can be used when your DataIndex and your sorting key are different.
 :::
 
 :::tip
-When using multiple sorting, `multiple` value is required for `sorter` property. Which is specifies the priority of column in sorting.
+When using multiple sorting, `multiple` value is required for `sorter` property. Which specifies the priority of the column in sorting.
 :::
 
 ## Filtering
@@ -144,11 +144,11 @@ When [`useList`](/docs/api-reference/core/hooks/data/useList/) mutation runs suc
 
 ### `resource`
 
-**refine** passes the `resource` to the `dataProvider` as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
+**refine** passes the `resource` to the `dataProvider` as a param. This parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resources` are handled.
 
 The `resource` value is determined from the active route where the component or the hook is used. It can be overridden by passing the `resource` prop.
 
-Use case for overriding the `resource` prop:
+A use case for overriding the `resource` prop:
 
 -   We can list a `category` from the `<PostList>` page.
 
@@ -183,7 +183,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-Also you can give URL path to the `resource` prop.
+Also, you can give a URL path to the `resource` prop.
 
 ```tsx
 useTable({
@@ -194,7 +194,7 @@ useTable({
 ### `onSearch`
 
 When [`searchFormProps.onFinish`](#searchformprops) is called, the `onSearch` function is called with the values of the form. The `onSearch` function should return [`CrudFilters | Promise<CrudFilters>`][crudfilters].
-Also `onSearch` will set current page to 1.
+Also, `onSearch` will set the current page to 1.
 
 It's useful when you want to filter the data with any query.
 
@@ -328,7 +328,7 @@ useTable({
 
 > Default: `merge`
 
-The filter behavior can be set to either `"merge"` or `"merge"`.
+The filtering behavior can be set to either `"merge"` or `"replace"`.
 
 -   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
@@ -360,7 +360,7 @@ useTable({
 
 When you use the syncWithLocation feature, the `useTable`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views.
 
-Also you can set this value globally on [`<Refine>`][refine swl] component.
+Also, you can set this value globally on [`<Refine>`][refine swl] component.
 
 ```tsx
 useTable({
@@ -449,7 +449,7 @@ useTable({
 
 > [`NotificationProvider`][notification-provider] is required for this prop to work.
 
-After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show a error notification. With this prop, you can customize the error notification.
+After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
 useTable({
@@ -480,7 +480,7 @@ useTable({
 
 > [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
-The callback function that is executed when new events from a subscription are arrived.
+The callback function is executed when new events from a subscription have arrived.
 
 ```tsx
 useTable({
@@ -504,7 +504,7 @@ The props needed by the [`<Table>`][table] component.
 
 #### `onChange`
 
-The callback function that is executed when a user interacts(filter, sort etc.) with the table.
+The callback function is executed when a user interacts(filter, sort, etc.) with the table.
 
 > 🚨 `useTable` handles sorting, filtering, and pagination with this function. If you override this function, you need to handle these operations manually.
 
@@ -526,7 +526,7 @@ Indicates whether the data is being fetched.
 
 #### `pagination`
 
-Returns pagination configuration values(pageSize, current, position etc.).
+Returns pagination configuration values(pageSize, current, position, etc.).
 
 #### `scroll`
 
@@ -609,7 +609,7 @@ Current page index state. If pagination is disabled, it will be `undefined`.
 React.Dispatch<React.SetStateAction<number>> | undefined
 ```
 
-A function to set current page index state. If pagination is disabled, it will be `undefined`.
+A function to set the current page index state. If pagination is disabled, it will be `undefined`.
 
 ### `pageSize`
 
@@ -621,7 +621,7 @@ Current page size state. If pagination is disabled, it will be `undefined`.
 React.Dispatch<React.SetStateAction<number>> | undefined
 ```
 
-A function to set current page size state. If pagination is disabled, it will be `undefined`.
+A function to set the current page size state. If pagination is disabled, it will be `undefined`.
 
 ### `pageCount`
 
@@ -633,11 +633,11 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 (params: SyncWithLocationParams) => string;
 ```
 
-A function create accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
+A function creates accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
 ## FAQ
 
-### How can I handle relational data ?
+### How can I handle relational data?
 
 You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fetch relational data and filter `<Table>` by categories with help of [`useSelect`](http://localhost:3000/docs/api-reference/antd/hooks/field/useSelect/)
 
