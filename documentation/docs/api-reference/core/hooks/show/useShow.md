@@ -3,209 +3,209 @@ id: useShow
 title: useShow
 ---
 
+import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 
-`useShow` hook allows you to fetch the desired record. It uses `getOne` method as query function from the dataProvider that is passed to `<Refine>`.
+`useShow` is an extended version of [`useOne`](/docs/api-reference/core/hooks/data/useOne/). It supports all the features of `useOne` and adds some extra features.
 
-```tsx
-const { queryResult } = useShow();
-```
-
-When no property is given, it tries to read the `resource` and `id` information from the route.
+It is useful when you want to fetch a single record from the API. It will return the data and some functions to control the query.
 
 ## Usage
 
-First, we'll create a page to show the records. Then we'll use this page for the show property of the resource.
+The `useShow` hook does not expect any properties. By default, it will try to read the `resource` and `id` values from the current URL. It will be passed to the `getOne` method from the `dataProvider` as a parameter.
 
-```tsx  title="src/pages/posts/show.tsx"
-// highlight-next-line
-import { useShow } from "@pankod/refine-core";
-import { Show, Typography } from "@pankod/refine-antd";
+If you define `resource` and `id` on the hook, when these properties are changed, the `useShow` hook will trigger a new request.
 
-const { Title, Text } = Typography;
+<BasicUsageLivePreview />
 
-export const PostShow: React.FC = () => {
-// highlight-next-line
-    const { queryResult } = useShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+## Realtime Updates
 
-    return (
-        <Show isLoading={isLoading}>
-            <Title level={5}>Id</Title>
-            <Text>{record?.id}</Text>
+> This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
 
-            <Title level={5}>Title</Title>
-            <Text>{record?.title}</Text>
-        </Show>
-    );
-};
+When the `useShow` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
-interface IPost {
-    id: number;
-    title: string;
-}
+[Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
+
+## Properties
+
+### `resource`
+
+> Default: It reads the `resource` value from the current URL.
+
+It will be passed to the `getOne` method from the `dataProvider` as a parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getOne` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resources are handled.
+
+```tsx
+useShow({
+    resource: "categories",
+});
 ```
 
-We didn't give any property to `useShow` because it can read `resource` and `id` information from the route.
+### `id`
 
-```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-json-server";
+> Default: It reads the `id` value from the current URL.
 
-// highlight-next-line
-import { PostShow } from "./pages/posts";
+It will be passed to the `getOne` method from the `dataProvider` as a parameter. It is used to determine which record to fetch.
 
-export const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-// highlight-next-line
-            resources={[{ name: "posts", show: PostShow }]}
-        />
-    );
-};
+```tsx
+useShow({
+    id: 123,
+});
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/hooks/useShow/show-usage.png" alt="useShow Basic Usage" />
-</div>
+### `metaData`
 
-<br />
+[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
 
-In the next example, we'll show how it is used for the modal.
+-   To pass additional information to data provider methods.
+-   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
 
-Let's simply create a post list showing posts.
+In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
-```tsx  title="src/pages/posts/list.tsx"
-import { List, Table, useTable } from "@pankod/refine-antd";
+```tsx
+useShow({
+    // highlight-start
+    metaData: {
+        headers: { "x-meta-data": "true" },
+    },
+    // highlight-end
+});
 
-export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+const myDataProvider = {
+    //...
+    getOne: async ({
+        resource,
+        id,
+        // highlight-next-line
+        metaData,
+    }) => {
+        // highlight-next-line
+        const headers = metaData?.headers ?? {};
+        const url = `${apiUrl}/${resource}/${id}`;
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-            </Table>
-        </List>
-    );
+        //...
+        //...
+
+        // highlight-next-line
+        const { data } = await httpClient.get(`${url}`, { headers });
+
+        return {
+            data,
+        };
+    },
+    //...
 };
 ```
 
-Let's add our modal.
+### `dataProviderName`
 
-```tsx  title="src/pages/posts/list.tsx"
-// highlight-next-line
-import { List, Table, useTable } from "@pankod/refine-core";
-import {
-    List,
-    Table,
-    useTable,
-// highlight-start
-    Modal,
-    Show,
-    ShowButton,
-    Typography,
-// highlight-end
-} from "@pankod/refine-antd";
+If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
 
-const { Title, Text } = Typography;
-
-export const PostList: React.FC = () => {
-    const [visible, setVisible] = useState(false);
-
-    const { tableProps } = useTable<IPost>();
-
-// highlight-next-line
-    const { queryResult, showId, setShowId } = useShow<IPost>();
-    const { data, isLoading } = queryResult;
-// highlight-next-line
-    const record = data?.data;
-
-    return (
-        <>
-            <List>
-                <Table {...tableProps} rowKey="id">
-                    <Table.Column dataIndex="id" title="ID" />
-                    <Table.Column dataIndex="title" title="Title" />
-                    <Table.Column<IPost>
-                        title="Actions"
-                        dataIndex="actions"
-// highlight-start
-                        render={(_, record) => (
-                            <ShowButton
-                                size="small"
-                                recordItemId={record.id}
-                                onClick={() => {
-                                    setShowId(record.id);
-                                    setVisible(true);
-                                }}
-                            />
-                        )}
-// highlight-end
-                    />
-                </Table>
-            </List>
-// highlight-start
-            <Modal visible={visible} onCancel={() => setVisible(false)}>
-                <Show isLoading={isLoading} recordItemId={showId}>
-                    <Title level={5}>Id</Title>
-                    <Text>{record?.id}</Text>
-
-                    <Title level={5}>Title</Title>
-                    <Text>{record?.title}</Text>
-                </Show>
-            </Modal>
-// highlight-end
-        </>
-    );
-};
+```tsx
+useShow({
+    dataProviderName: "second-data-provider",
+});
 ```
 
-Finally, let's pass this page to the `resources` as a list component.
+### `queryOptions`
 
-```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-json-server";
+`queryOptions` is used to pass additional options to the `useQuery` hook. It is useful when you want to pass additional options to the `useQuery` hook.
 
-// highlight-next-line
-import { PostList } from "./pages/posts";
+[Refer to the `useQuery` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 
-export const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-// highlight-next-line
-            resources={[{ name: "posts", list: PostList }]}
-        />
-    );
-};
+```tsx
+useShow({
+    queryOptions: {
+        retry: 3,
+        enabled: false,
+    },
+});
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/hooks/useShow/modal-usage.png" alt="useShow Modal Usage" />
-</div>
+### `successNotification`
 
-<br />
+> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
-:::tip
-To show data in the drawer, you can do it by simply replacing `<Modal>` with `<Drawer>`.
-:::
+After data is fetched successfully, `useShow` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
+
+```tsx
+useShow({
+    successNotification: (data, values, resource) => {
+        return {
+            message: `${data.title} Successfully fetched.`,
+            description: "Success with no errors",
+            type: "success",
+        };
+    },
+});
+```
+
+### `errorNotification`
+
+> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
+
+After data fetching is failed, `useShow` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
+
+```tsx
+useShow({
+    errorNotification: (data, values, resource) => {
+        return {
+            message: `Something went wrong when getting ${data.id}`,
+            description: "Error",
+            type: "error",
+        };
+    },
+});
+```
+
+### `liveMode`
+
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
+Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
+For more information about live mode, please check the [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
+
+```tsx
+useShow({
+    liveMode: "auto",
+});
+```
+
+### `onLiveEvent`
+
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
+The callback function is executed when new events from a subscription have arrived.
+
+```tsx
+useShow({
+    onLiveEvent: (event) => {
+        console.log(event);
+    },
+});
+```
+
+### `liveParams`
+
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
+
+Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
+
+## Return Values
+
+### `queryResult`
+
+It is TanStack Query's `useQuery` return values.
+
+[Refer to the `useQuery` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
+
+### `showId`
+
+It is the `id` value that is used on the `useShow` hook.
+
+### `setShowId`
+
+When you want to change the `showId` value, you can use this setter. It is useful when you want to change the `showId` value based on the user's action.
+
+It will trigger new request to fetch the data when the `showId` value is changed.
 
 ## API Reference
 
