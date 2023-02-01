@@ -30,10 +30,10 @@ It also syncs the pagination state with the URL if you enable the [`syncWithLoca
 If you want to make a change in the pagination of the `<List>`. You should pass the pagination object of the `listProps` to the pagination property of the `<List>` as below. You can override the values of the pagination object as your need.
 
 ```tsx
-...
+// ...
 const { listProps } = useSimpleList<IProduct>();
 
-...
+// ...
 
 return (
     <AntdList
@@ -421,7 +421,7 @@ When [`searchFormProps.onFinish`](#searchformprops) is called, the `onSearch` fu
 It's useful when you want to filter the data with multiple fields by using the `<Form>` component.
 
 ```tsx
-...
+// ...
 
 const { searchFormProps, listProps } = useSimpleList({
     onSearch: (values) => {
@@ -440,7 +440,7 @@ const { searchFormProps, listProps } = useSimpleList({
     },
 });
 
-...
+// ...
 
 return (
     <div>
@@ -474,7 +474,7 @@ You can also use `searchFormProps.form.submit` to submit the form manually.
 It's useful when you want to create a filter form for your `<List>`.
 
 ```tsx
-...
+// ...
 
 const { searchFormProps, listProps } = useSimpleList({
     onSearch: (values) => {
@@ -493,7 +493,7 @@ const { searchFormProps, listProps } = useSimpleList({
     },
 });
 
-...
+// ...
 
 return (
     <div>
