@@ -42,7 +42,7 @@ It is useful when you want to subscribe to the live updates.
 It will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resources are handled.
 
 ```tsx
-useSelect({
+useAutocomplete({
     resource: "categories",
 });
 ```
@@ -56,7 +56,7 @@ It allows to show the options in the desired order. `sort` will be passed to the
 
 
 ```tsx
-useSelect({
+useAutocomplete({
     sort: [
         {
             field: "title",
@@ -75,7 +75,7 @@ It is used to show options by filtering them. `filters` will be passed to the `g
 [Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
-useSelect({
+useAutocomplete({
     filter: [
         {
             field: "isActive",
@@ -90,7 +90,7 @@ useSelect({
 Allows to make options selected by default. Adds extra options to `<select>` component. In some cases like there are many entries for the `<select>` and pagination is required, `defaultValue` may not be present in the current visible options and this can break the `<select>` component. To avoid such cases, A seperate `useMany` query is sent to the backend with the `defaultValue` and appended to the options of `<select>`, ensuring the default values exist in the current options array. Since it uses `useMany` to query the necessary data, the `defaultValue` can be a single value or an array of values like the following:
 
 ```tsx
-useSelect({
+useAutocomplete({
     defaultValue: 1, // or [1, 2]
 });
 ```
@@ -102,7 +102,7 @@ useSelect({
 It allows us to `debounce` the `onSearch` function.  
 
 ```tsx
-useSelect({
+useAutocomplete({
     debounce: 500,
 });
 ```
@@ -114,7 +114,7 @@ useSelect({
 [Refer to the `useQuery` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 
 ```tsx
-useSelect({
+useAutocomplete({
     queryOptions: {
         retry: 3,
     },
@@ -130,7 +130,7 @@ useSelect({
 You can pass the `current` page number to the `pagination` property.
 
 ```tsx
-useSelect({
+useAutocomplete({
     pagination: {
         current: 2,
     },
@@ -142,7 +142,7 @@ useSelect({
 You can pass the `pageSize` to the `pagination` property.
 
 ```tsx
-useSelect({
+useAutocomplete({
     pagination: {
         pageSize: 20,
     },
@@ -155,7 +155,7 @@ useSelect({
 `hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to determine whether to use server-side pagination or not.
 
 ```tsx
-useSelect({
+useAutocomplete({
     hasPagination: false,
 });
 ```
@@ -165,7 +165,7 @@ useSelect({
 When the `defaultValue` property is given, the `useMany` data hook is called for the selected records. With this property, you can change the options of this query. If not given, the values given in `queryOptions` will be used.
 
 ```tsx
-useSelect({
+useAutocomplete({
     resource: "categories",
     defaultValueQueryOptions: {
         onSuccess: (data) => {
@@ -202,7 +202,7 @@ Sometimes, you may want to filter the options on the client-side. You can do thi
 // highlight-next-line
 import { createFilterOptions } from "@pankod/refine-mui";
 
-const { autocompleteProps } = useSelect({
+const { autocompleteProps } = useAutocomplete({
     resource: "categories",
 });
 
@@ -246,7 +246,7 @@ const filterOptions = createFilterOptions({
 In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
-useSelect({
+useAutocomplete({
     // highlight-start
     metaData: {
         headers: { "x-meta-data": "true" },
@@ -285,7 +285,7 @@ const myDataProvider = {
 If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
 
 ```tsx
-useSelect({
+useAutocomplete({
     dataProviderName: "second-data-provider",
 });
 ```
@@ -294,10 +294,10 @@ useSelect({
 
 > [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.  
 
-After data is fetched successfully, `useSelect` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
+After data is fetched successfully, `useAutocomplete` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
 ```tsx
-useSelect({
+useAutocomplete({
     successNotification: (data, values, resource) => {
         return {
             message: `${data.title} Successfully fetched.`,
@@ -312,10 +312,10 @@ useSelect({
 
 > [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.  
 
-After data fetching is failed, `useSelect` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
+After data fetching is failed, `useAutocomplete` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
 
 ```tsx
-useSelect({
+useAutocomplete({
     errorNotification: (data, values, resource) => {
         return {
             message: `Something went wrong when getting ${data.id}`,
@@ -334,7 +334,7 @@ Determines whether to update data automatically ("auto") or not ("manual") if a 
 For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
 
 ```tsx
-useSelect({
+useAutocomplete({
     liveMode: "auto",
 });
 ```
@@ -346,7 +346,7 @@ useSelect({
 The callback function that is executed when new events from a subscription are arrived.
 
 ```tsx
-useSelect({
+useAutocomplete({
     onLiveEvent: (event) => {
         console.log(event);
     },
@@ -371,7 +371,7 @@ In some cases we only have `id`, it may be necessary to show it selected in the 
 You can create a new `options` object with `queryResult`.
 
 ```tsx
-const { autocompleteProps, queryResult } = useSelect();
+const { autocompleteProps, queryResult } = useAutocomplete();
 
 const options = queryResult.data?.data.map((item) => ({
     title: item.title,
