@@ -17,11 +17,9 @@ const ProductCreate: React.FC = () => {
         },
     });
 
-    //highlight-start
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
     });
-    //highlight-end
 
     return (
         <Create saveButtonProps={saveButtonProps}>
