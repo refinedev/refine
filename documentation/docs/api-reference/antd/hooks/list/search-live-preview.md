@@ -48,16 +48,6 @@ const ProductList: React.FC = () => {
         },
     });
 
-    const renderItem = (item: IProduct) => {
-        const { id, name, description, price } = item;
-
-        return (
-            <AntdList.Item actions={[<Text key={id}>{price}</Text>]}>
-                <AntdList.Item.Meta title={name} description={description} />
-            </AntdList.Item>
-        );
-    };
-
     return (
         <div>
             <Form {...searchFormProps} layout="inline">
@@ -73,6 +63,16 @@ const ProductList: React.FC = () => {
             </Form>
             <AntdList {...listProps} renderItem={renderItem} />
         </div>
+    );
+};
+
+const renderItem = (item: IProduct) => {
+    const { id, name, description, price } = item;
+
+    return (
+        <AntdList.Item actions={[<Text key={id}>{price}</Text>]}>
+            <AntdList.Item.Meta title={name} description={description} />
+        </AntdList.Item>
     );
 };
 // visible-block-end

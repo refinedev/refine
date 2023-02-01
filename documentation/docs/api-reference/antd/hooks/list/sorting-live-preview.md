@@ -25,17 +25,17 @@ const ProductList: React.FC = () => {
         // highlight-end
     });
 
-    const renderItem = (item: IProduct) => {
-        const { id, name, description, price } = item;
-
-        return (
-            <AntdList.Item actions={[<Text key={id}>{price}</Text>]}>
-                <AntdList.Item.Meta title={name} description={description} />
-            </AntdList.Item>
-        );
-    };
-
     return <AntdList {...listProps} renderItem={renderItem} />;
+};
+
+const renderItem = (item: IProduct) => {
+    const { id, name, description, price } = item;
+
+    return (
+        <AntdList.Item actions={[<Text key={id}>{price}</Text>]}>
+            <AntdList.Item.Meta title={name} description={description} />
+        </AntdList.Item>
+    );
 };
 // visible-block-end
 
