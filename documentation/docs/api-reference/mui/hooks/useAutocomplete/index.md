@@ -152,7 +152,8 @@ useAutocomplete({
 
 ### `hasPagination`
 
-> Default: `false`
+> Default: `false` 
+
 `hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to determine whether to use server-side pagination or not.
 
 ```tsx
@@ -167,13 +168,6 @@ When the `defaultValue` property is given, the `useMany` data hook is called for
 
 ```tsx
 useAutocomplete({
-    resource: "categories",
-    defaultValueQueryOptions: {
-        onSuccess: (data) => {
-            console.log("triggers when on query return on success");
-        },
-    },
-});
     resource: "categories",
     defaultValueQueryOptions: {
         onSuccess: (data) => {
@@ -361,7 +355,7 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 
 ## FAQ
 
-### How can selected the option by default?
+### How to ensure `defaultValue` is included in the options? 
 
 In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/api-reference/core/hooks/data/useMany/), gets the data and mark as seleted.
 
