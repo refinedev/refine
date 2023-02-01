@@ -17,7 +17,7 @@ For all the other features, you can refer to the Ant Design [`<List>`](https://a
 
 In the following example, we will show how to use `useSimpleList` to list the products.
 
-It returns `listProps` which is compatible with Ant Design `<List>` component and infers [`resource`](#resource) from the current URL.
+It returns `listProps` which is compatible with Ant Design `<List>` component. By default, it reads [`resource`](#resource) from the current URL.
 
 <BasicUsageLivePreview />
 
@@ -64,7 +64,7 @@ It also syncs the sorting state with the URL if you enable the [`syncWithLocatio
 
 ## Filtering
 
-The `useSimpleList` hook supports the filtering feature. You can pass the `initialFilter` property to the hook to set the initial filtering state and you change the filtering state by using the `set filter` function.
+The `useSimpleList` hook supports the filtering feature. You can pass the `initialFilter` property to the hook to set the initial filtering state and you change the filtering state by using the `setFilter` function.
 
 It also syncs the filtering state with the URL if you enable the [`syncWithLocation`](#syncWithLocation).
 
@@ -140,7 +140,9 @@ useSimpleList({
 
 ### `initialCurrent`
 
-Sets the initial value of the page index. By default, the page index is 1.
+> Default: `1`
+
+Sets the initial value of the page index.
 
 ```tsx
 useSimpleList({
@@ -150,21 +152,13 @@ useSimpleList({
 
 ### `initialPageSize`
 
+> Default: `10`
+
 Sets the initial value of the page size. By default, the page size is 10.
 
 ```tsx
 useSimpleList({
     initialPageSize: 20, // This will cause the list to initially display 20 rows per page, rather than the default of 10
-});
-```
-
-### `hasPagination`
-
-Determines whether to use server-side pagination or not.
-
-```tsx
-useSimpleList({
-    hasPagination: false,
 });
 ```
 
@@ -199,24 +193,6 @@ useSimpleList({
             order: "asc",
         },
     ],
-});
-```
-
-### `defaultSetFilterBehavior`
-
-> Default: `merge`
-
-The filter behavior can be set to either `"merge"` or `"merge"`.
-
--   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
-
--   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
-
-You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
-
-```tsx
-useSimpleList({
-    defaultSetFilterBehavior: "replace",
 });
 ```
 
@@ -256,7 +232,39 @@ useSimpleList({
 });
 ```
 
+### `defaultSetFilterBehavior`
+
+> Default: `merge`
+
+The filter behavior can be set to either `"merge"` or `"replace"`.
+
+-   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+
+-   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+
+You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
+
+```tsx
+useSimpleList({
+    defaultSetFilterBehavior: "replace",
+});
+```
+
+### `hasPagination`
+
+> Default: `false`
+
+Determines whether to use server-side pagination or not.
+
+```tsx
+useSimpleList({
+    hasPagination: false,
+});
+```
+
 ### `syncWithLocation`
+
+> Default: `false`
 
 When you use the syncWithLocation feature, the `useSimpleList`'s state (e.g. sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useSimpleList` state is automatically updated to match. This makes it easy to share list states across different routes or pages and allows users to bookmark or share links to specific table views.
 
