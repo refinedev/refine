@@ -7,7 +7,9 @@ source: /packages/mui/src/hooks/useDataGrid
 import BasicUsagePreview from "./\_partial-use-data-grid-basic-usage-live-preview.md";
 import RelationalPreview from "./\_partial-use-data-grid-relational-live-preview.md";
 
-By using `useDataGrid`, you can get properties that are compatible with MUI X [`<DataGrid>`][data-grid] component. All features such as sorting, filtering, and pagination come out of the box. For all the other features, you can refer to the MUI X [`<DataGrid>`][data-grid] documentation.
+By using `useDataGrid`, you can get properties that are compatible with MUI X [`<DataGrid>`][data-grid] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch.
+
+For all the other features, you can refer to the MUI X [`<DataGrid>`][data-grid] documentation
 
 > 💡 The `useDataGrid` hook works in compatibility with both the [`<DataGrid>`][data-grid] and the [`<DataGridPro>`](https://mui.com/x/react-data-grid/#commercial-version) component.
 
