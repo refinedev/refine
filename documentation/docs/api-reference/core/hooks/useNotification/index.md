@@ -6,6 +6,8 @@ source: https://github.com/refinedev/refine/blob/next/packages/core/src/hooks/no
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import BasicUsageLivePreview from "./basic-usage-live-preview.md";
+
 
 It can be used to `open` or `close` notification at any time. It returns the `open` and `close` method from [`notificationProvider`](/docs/api-reference/core/providers/notification-provider/) under the hood.
 
@@ -17,7 +19,7 @@ If you're looking for a complete notification infrastructure, **refine** has out
 <Tabs
   defaultValue="antd"
   values={[ 
-    {label: 'Antd Design', value: 'antd'}, 
+    {label: 'Ant Design', value: 'antd'}, 
     {label: 'Material UI', value: 'mui'},
     {label: 'Mantine', value: 'mantine'},
     {label: 'Chakra UI', value: 'chakra'},
@@ -91,7 +93,7 @@ If you're looking for a complete notification infrastructure, **refine** has out
 
 Here is a basic example of how to use `useNotification` hook.
 
-*TODO: Add live preview example*
+<BasicUsageLivePreview />
 
 ## Properties
 ### `open`
@@ -107,7 +109,7 @@ open?.({
     description: "This is a success message",
 });
 ```
-> Refer to the [`Open Notification Params`](/docs/api-reference/core/interfaceReferences/#open-notification-params) interface for more information →
+> [Refer to the `Open Notification Params` interface for more information →](/docs/api-reference/core/interfaceReferences/#open-notification-params)
 
 ### `close`
 
@@ -118,7 +120,7 @@ const { close } = useNotification();
 
 close?.("notification-key");
 ```
-> Refer to the [`Close Notification Params`](/docs/api-reference/core/interfaceReferences/#close-notification-params) interface for more information →
+> [Refer to the `Close Notification Params` interface for more information →](/docs/api-reference/core/interfaceReferences/#close-notification-params)
 
 :::info
 You must pass a `key` to the `open` method. This key is used to close the notification.
@@ -129,7 +131,18 @@ You must pass a `key` to the `open` method. This key is used to close the notifi
 
 It should be `type=progress` to show undoable notifications. A function can then be triggered.
 
-*TODO: Add live preview example*
+```tsx
+const { open } = useNotification();
+
+open?.({
+    type: "progress",
+    message: "Progress",
+    undoableTimeout: 5,
+    cancelMutation: () => {
+      alert("cancelMutation")
+    }
+})
+```
 
 
 ## API Reference
