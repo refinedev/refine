@@ -15,7 +15,7 @@ You don't need to worry about creating data providers from scratch. **refine** o
 </div>
 
 :::note
-Data hooks use [TanStack Query](https://tanstack.com/query) to manage data fetching. React Query handles important concerns like caching, invalidation, loading states, etc.
+Data hooks use [TanStack Query](https://tanstack.com/query) to manage data fetching. It handles important concerns like caching, invalidation, loading states, etc.
 :::
 
 <br/>
@@ -178,8 +178,8 @@ You can pick data providers in two ways:
 
 -   **Using `dataProviderName` prop in the data hooks **and all **data-related** components/**functions.**
 
-```tsx title="posts/list.tsx"
-useTable<IPost>({
+```tsx
+useTable({
     dataProviderName: "example",
 });
 ```
@@ -188,7 +188,7 @@ useTable<IPost>({
 
 This will be the default data provider for the specified resource but you can still override it in the data hooks and components.
 
-```tsx title="App.tsx"
+```tsx
 const App = () => {
     return (
         <Refine
