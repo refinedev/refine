@@ -228,19 +228,26 @@ It takes `resource`, `sort`, `pagination`, and, `filters` as parameters and retu
 
 **refine** will consume this `getList` method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
 
-```ts title="src/data-provider.ts"
-getList: async ({ resource }) => {
-    const url = `${apiUrl}/${resource}`;
+```ts
+getList: async ({
+    resource,
+    hasPagination,
+    pagination,
+    sort,
+    filter,
+    metaData,
+}) => {
+    const { current, pageSize } = pagination;
+    const { field, order } = sort;
+    const { field, operator, value } = filter;
 
-    const { data, headers } = await axiosInstance.get(url);
-
-    const total = +headers["x-total-count"];
+    // handle fetching data from your API
 
     return {
         data,
         total,
-      };
-},
+    };
+};
 ```
 
 **Parameter Types:**
@@ -252,6 +259,7 @@ getList: async ({ resource }) => {
 | pagination?    | [`Pagination`][pagination]       |
 | sort?          | [`CrudSorting`][crud-sorting]    |
 | filters?       | [`CrudFilters`][crud-filters]    |
+| metaData?      | [`MetaDataQuery`][meta-data]     |
 
 ### create <PropTag required/>
 
@@ -259,12 +267,23 @@ The `create` method creates a new record with the `resource` and `variables` par
 
 **refine** will consume this `create` method using the [`useCreate`][use-create] data hook.
 
+```ts
+create: async ({ resource, variables, metaData }) => {
+    // handle fetching data from your API
+
+    return {
+        data,
+    };
+};
+```
+
 **Parameter Types**
 
-| Name      | Type         | Default |
-| --------- | ------------ | ------- |
-| resource  | `string`     |         |
-| variables | `TVariables` | `{}`    |
+| Name      | Type                         | Default |
+| --------- | ---------------------------- | ------- |
+| resource  | `string`                     |         |
+| variables | `TVariables`                 | `{}`    |
+| metaData? | [`MetaDataQuery`][meta-data] |
 
 > `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/api-reference/core/hooks/data/useCreate#type-parameters) to type `variables`.
 
@@ -274,13 +293,24 @@ The `update` method updates the record with the `resource`, `id`, and, `variable
 
 **refine** will consume this `update` method using the [`useUpdate`][use-update] data hook.
 
+```ts
+update: async ({ resource, id, variables, metaData }) => {
+    // handle fetching data from your API
+
+    return {
+        data,
+    };
+};
+```
+
 **Parameter Types:**
 
-| Name      | Type               | Default |
-| --------- | ------------------ | ------- |
-| resource  | `string`           |         |
-| id        | [BaseKey][basekey] |         |
-| variables | `TVariables`       | `{}`    |
+| Name      | Type                         | Default |
+| --------- | ---------------------------- | ------- |
+| resource  | `string`                     |         |
+| id        | [BaseKey][basekey]           |         |
+| variables | `TVariables`                 | `{}`    |
+| metaData? | [`MetaDataQuery`][meta-data] |
 
 > `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate#type-parameters) to type `variables`.
 
@@ -290,13 +320,24 @@ The `deleteOne` method delete the record with the `resource` and `id` parameters
 
 **refine** will consume this `deleteOne` method using the [`useDelete`][use-delete] data hook.
 
+```ts
+deleteOne: async ({ resource, id, variables, metaData }) => {
+    // handle fetching data from your API
+
+    return {
+        data,
+    };
+};
+```
+
 **Parameter Types:**
 
-| Name      | Type               | Default |
-| --------- | ------------------ | ------- |
-| resource  | `string`           |         |
-| id        | [BaseKey][basekey] |         |
-| variables | `TVariables[]`     | `{}`    |
+| Name      | Type                         | Default |
+| --------- | ---------------------------- | ------- |
+| resource  | `string`                     |         |
+| id        | [BaseKey][basekey]           |         |
+| variables | `TVariables[]`               | `{}`    |
+| metaData? | [`MetaDataQuery`][meta-data] |
 
 > `TVariables` is a user defined type which can be passed to [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) to type `variables`.
 
@@ -306,18 +347,38 @@ The `getOne` method gets the record with the `resource` and `id` parameters.
 
 **refine** will consume this `getOne` method using the [`useOne`][use-one] data hook.
 
+```ts
+getOne: async ({ resource, id, metaData }) => {
+    // handle fetching data from your API
+
+    return {
+        data,
+    };
+};
+```
+
 **Parameter Types:**
 
-| Name     | Type               | Default |
-| -------- | ------------------ | ------- |
-| resource | `string`           |         |
-| id       | [BaseKey][basekey] |         |
+| Name      | Type                         | Default |
+| --------- | ---------------------------- | ------- |
+| resource  | `string`                     |         |
+| id        | [BaseKey][basekey]           |         |
+| metaData? | [`MetaDataQuery`][meta-data] |
 
 ### getApiUrl <PropTag required />
 
 The `getApiUrl` method returns the `apiUrl` value.
 
 **refine** will consume this `getApiUrl` method using the [`useApiUrl`][use-api-url] data hook.
+
+```ts title="src/data-provider.ts"
+import { DataProvider } from "@pankod/refine-core";
+
+export const dataProvider = (apiUrl: string): DataProvider => ({
+    getApiUrl: () => apiUrl,
+    // ...
+});
+```
 
 ### custom <PropTag required />
 
@@ -326,17 +387,37 @@ It's useful if you have non-standard REST API endpoints or want to make a connec
 
 **refine** will consume this `custom` method using the [`useCustom`][use-custom] data hook.
 
+```ts
+custom: async ({
+    url,
+    method,
+    filters,
+    sort,
+    payload,
+    query,
+    headers,
+    metaData,
+}) => {
+    // handle fetching data from your API
+
+    return {
+        data,
+    };
+};
+```
+
 **Parameter Types**
 
-| Name     | Type                                                       |
-| -------- | ---------------------------------------------------------- |
-| url      | `string`                                                   |
-| method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch` |
-| sort?    | [`CrudSorting`][crud-sorting]                              |
-| filters? | [`CrudFilters`][crud-filters]                              |
-| payload? | `{}`                                                       |
-| query?   | `{}`                                                       |
-| headers? | `{}`                                                       |
+| Name      | Type                                                       |
+| --------- | ---------------------------------------------------------- |
+| url       | `string`                                                   |
+| method    | `get`, `delete`, `head`, `options`, `post`, `put`, `patch` |
+| sort?     | [`CrudSorting`][crud-sorting]                              |
+| filters?  | [`CrudFilters`][crud-filters]                              |
+| payload?  | `{}`                                                       |
+| query?    | `{}`                                                       |
+| headers?  | `{}`                                                       |
+| metaData? | [`MetaDataQuery`][meta-data]                               |
 
 ## Bulk Actions
 
@@ -352,12 +433,23 @@ The `getMany` method gets the records with the `resource` and `ids` parameters. 
 
 **refine** will consume this `getMany` method using the [`useMany`][use-many] data hook.
 
+```ts
+getMany: async ({ resource, ids, metaData }) => {
+    // handle fetching data from your API
+
+    return {
+        data,
+    };
+};
+```
+
 **Parameter Types:**
 
-| Name     | Type                 | Default |
-| -------- | -------------------- | ------- |
-| resource | `string`             |         |
-| ids      | [[BaseKey][basekey]] |         |
+| Name      | Type                         | Default |
+| --------- | ---------------------------- | ------- |
+| resource  | `string`                     |         |
+| ids       | [[BaseKey][basekey]]         |         |
+| metaData? | [`MetaDataQuery`][meta-data] |
 
 ### createMany
 
@@ -365,12 +457,23 @@ This method allows us to create multiple items in a resource. Implementation of 
 
 **refine** will consume this `createMany` method using the [`useCreateMany`][use-create-many] data hook.
 
+```ts
+createMany: async ({ resource, variables, metaData }) => {
+    // handle fetching data from your API
+
+    return {
+        data,
+    };
+};
+```
+
 **Parameter Types:**
 
-| Name      | Type           | Default |
-| --------- | -------------- | ------- |
-| resource  | `string`       |         |
-| variables | `TVariables[]` | `{}`    |
+| Name      | Type                         | Default |
+| --------- | ---------------------------- | ------- |
+| resource  | `string`                     |         |
+| variables | `TVariables[]`               | `{}`    |
+| metaData? | [`MetaDataQuery`][meta-data] |
 
 > `TVariables` is a user defined type which can be passed to [`useCreateMany`][use-create-many] to type `variables`.
 
@@ -380,11 +483,22 @@ This method allows us to delete multiple items in a resource. Implementation of 
 
 **refine** will consume this `deleteMany` method using the [`useDeleteMany`][use-delete-many] data hook.
 
-| Name      | Type                 | Default |
-| --------- | -------------------- | ------- |
-| resource  | `string`             |         |
-| ids       | [[BaseKey][basekey]] |         |
-| variables | `TVariables[]`       | `{}`    |
+```ts
+deleteMany: async ({ resource, ids, variables, metaData }) => {
+    // handle fetching data from your API
+
+    return {
+        data,
+    };
+};
+```
+
+| Name      | Type                         | Default |
+| --------- | ---------------------------- | ------- |
+| resource  | `string`                     |         |
+| ids       | [[BaseKey][basekey]]         |         |
+| variables | `TVariables[]`               | `{}`    |
+| metaData? | [`MetaDataQuery`][meta-data] |
 
 > `TVariables` is a user defined type which can be passed to [`useDeleteMany`][use-delete-many] to type `variables`.
 
@@ -394,11 +508,22 @@ This method allows us to update multiple items in a resource. Implementation of 
 
 **refine** will consume this `updateMany` method using the [`useUpdateMany`][use-update-many] data hook.
 
-| Name      | Type                 | Default |
-| --------- | -------------------- | ------- |
-| resource  | `string`             |         |
-| ids       | [[BaseKey][basekey]] |         |
-| variables | `TVariables[]`       | `{}`    |
+```ts
+updateMany: async ({ resource, ids, variables, metaData }) => {
+    // handle fetching data from your API
+
+    return {
+        data,
+    };
+};
+```
+
+| Name      | Type                         | Default |
+| --------- | ---------------------------- | ------- |
+| resource  | `string`                     |         |
+| ids       | [[BaseKey][basekey]]         |         |
+| variables | `TVariables[]`               | `{}`    |
+| metaData? | [`MetaDataQuery`][meta-data] |
 
 > `TVariables` is a user defined type which can be passed to [`useUpdateMany`][use-update-many] to type `variables`.
 
@@ -569,3 +694,4 @@ const myDataProvider = {
 [crud-filters]: /docs/api-reference/core/interfaceReferences/#crudfilters
 [pagination]: /docs/api-reference/core/interfaceReferences/#pagination
 [http-error]: /docs/api-reference/core/interfaceReferences/#httperror
+[meta-data]: /docs/api-reference/core/interfaceReferences/#metadataquery
