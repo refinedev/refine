@@ -28,8 +28,20 @@ const AntdInferencer: React.FC<InferencerComponentProps> = ({
 };
 
 export { AntdInferencer };
-export { ShowInferencer as AntdShowInferencer } from "./show";
-export { EditInferencer as AntdEditInferencer } from "./edit";
-export { ListInferencer as AntdListInferencer } from "./list";
-export { CreateInferencer as AntdCreateInferencer } from "./create";
+export {
+    ShowInferencer as AntdShowInferencer,
+    renderer as AntdShowRenderer,
+} from "./show";
+export {
+    EditInferencer as AntdEditInferencer,
+    renderer as AntdEditRenderer,
+} from "./edit";
+export {
+    ListInferencer as AntdListInferencer,
+    renderer as AntdListRenderer,
+} from "./list";
+export {
+    CreateInferencer as AntdCreateInferencer,
+    renderer as AntdCreateRenderer,
+} from "./create";
 export * from "../../types";

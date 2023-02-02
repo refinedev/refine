@@ -23,6 +23,10 @@ import {
     RendererContext,
 } from "@/types";
 
+/**
+ * a renderer function for list page in Material UI
+ * @internal used internally from inferencer components
+ */
 export const renderer = ({
     resource,
     fields,

@@ -22,6 +22,10 @@ import {
     RendererContext,
 } from "@/types";
 
+/**
+ * a renderer function for show page in Mantine
+ * @internal used internally from inferencer components
+ */
 export const renderer = ({
     resource,
     fields,

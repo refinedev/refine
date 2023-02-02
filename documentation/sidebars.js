@@ -93,13 +93,13 @@ module.exports = {
                                         "api-reference/core/hooks/data/useApiUrl",
                                         "api-reference/core/hooks/data/useCreate/index",
                                         "api-reference/core/hooks/data/useCreateMany/index",
-                                        "api-reference/core/hooks/data/useCustom",
-                                        "api-reference/core/hooks/data/useCustomMutation",
+                                        "api-reference/core/hooks/data/useCustom/index",
+                                        "api-reference/core/hooks/data/useCustomMutation/index",
                                         "api-reference/core/hooks/data/useDataProvider",
                                         "api-reference/core/hooks/data/useDelete/index",
-                                        "api-reference/core/hooks/data/useDeleteMany",
+                                        "api-reference/core/hooks/data/useDeleteMany/index",
                                         "api-reference/core/hooks/data/useList/index",
-                                        "api-reference/core/hooks/data/useInfiniteList",
+                                        "api-reference/core/hooks/data/useInfiniteList/index",
                                         "api-reference/core/hooks/data/useMany/index",
                                         "api-reference/core/hooks/data/useOne/index",
                                         "api-reference/core/hooks/data/useUpdate/index",
@@ -152,7 +152,7 @@ module.exports = {
                                     type: "category",
                                     label: "Notification",
                                     items: [
-                                        "api-reference/core/hooks/useNotification",
+                                        "api-reference/core/hooks/useNotification/index",
                                     ],
                                 },
                                 {
@@ -181,7 +181,7 @@ module.exports = {
                                     type: "category",
                                     label: "Table",
                                     items: [
-                                        "api-reference/core/hooks/useTable",
+                                        "api-reference/core/hooks/useTable/index",
                                     ],
                                 },
                                 {
@@ -250,7 +250,7 @@ module.exports = {
                                     items: [
                                         "api-reference/antd/hooks/field/useCheckboxGroup",
                                         "api-reference/antd/hooks/field/useRadioGroup",
-                                        "api-reference/antd/hooks/field/useSelect",
+                                        "api-reference/antd/hooks/field/useSelect/index",
                                     ],
                                 },
                                 {
@@ -460,7 +460,7 @@ module.exports = {
                                         "api-reference/mantine/hooks/form/useStepsForm",
                                     ],
                                 },
-                                "api-reference/mantine/hooks/useSelect",
+                                "api-reference/mantine/hooks/useSelect/index",
                             ],
                         },
                         {
@@ -539,7 +539,7 @@ module.exports = {
                             label: "Hooks",
                             items: [
                                 "api-reference/mui/hooks/useAutocomplete/index",
-                                "api-reference/mui/hooks/useDataGrid",
+                                "api-reference/mui/hooks/useDataGrid/index",
                             ],
                         },
                         {
@@ -626,7 +626,7 @@ module.exports = {
                     items: [
                         "packages/documentation/cli",
                         "packages/documentation/command-palette",
-                        "packages/documentation/react-table",
+                        "packages/documentation/react-table/index",
                         {
                             type: "category",
                             label: "React Hook Form",

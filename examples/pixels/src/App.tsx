@@ -14,7 +14,7 @@ import { CanvasFeaturedList, CanvasList, CanvasShow } from "pages/canvases";
 import { AuthPage } from "pages/auth";
 
 import { supabaseClient } from "utility";
-import authProvider from "./auth-provider";
+import { authProvider, auditLogProvider } from "./providers";
 
 import "@pankod/refine-antd/dist/reset.css";
 
@@ -38,9 +38,10 @@ function App() {
             }}
         >
             <Refine
+                auditLogProvider={auditLogProvider}
+                authProvider={authProvider}
                 dataProvider={dataProvider(supabaseClient)}
                 liveProvider={liveProvider(supabaseClient)}
-                authProvider={authProvider}
                 routerProvider={{
                     ...routerProvider,
                     routes: [
@@ -50,15 +51,6 @@ function App() {
                                 <AuthPage
                                     type="login"
                                     providers={[
-                                        {
-                                            name: "google",
-                                            icon: (
-                                                <GoogleOutlined
-                                                    style={{ fontSize: "18px" }}
-                                                />
-                                            ),
-                                            label: "Sign in with Google",
-                                        },
                                         {
                                             name: "github",
                                             icon: (

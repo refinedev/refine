@@ -1,0 +1,60 @@
+{
+  "name": "pixels-admin",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@pankod/refine-antd": "^4.7.1",
+    "@pankod/refine-core": "^3.18.0",
+    "@pankod/refine-react-router-v6": "^3.18.0",
+    "@pankod/refine-supabase": "^3.18.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.1.1",
+    "@testing-library/user-event": "^14.1.1",
+    "assert": "^2.0.0",
+    "browserify-fs": "^1.0.0",
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
+    "casbin": "^5.15.2",
+    "crypto-browserify": "^3.12.0",
+    "dotenv": "^16.0.3",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "react": "^18.0.0",
+    "react-app-rewired": "^2.2.1",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^5.0.0",
+    "stream-browserify": "^3.0.0",
+    "util": "^0.12.5",
+    "cross-env": "^7.0.3",
+    "web-vitals": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.4",
+    "@types/node": "^12.20.11",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "https-browserify": "^1.0.0",
+    "os-browserify": "^0.3.0",
+    "path": "^0.12.7",
+    "stream-http": "^3.2.0",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-app-rewired start",
+    "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-app-rewired build",
+    "eject": "react-scripts eject",
+    "refine": "refine"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

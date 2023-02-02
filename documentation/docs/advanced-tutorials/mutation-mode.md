@@ -112,7 +112,7 @@ mutate({
 -   [`useUpdate` &#8594](/docs/api-reference/core/hooks/data/useUpdate/)
 -   [`useUpdateMany` &#8594](/docs/api-reference/core/hooks/data/useUpdateMany/)
 -   [`useDelete` &#8594](/docs/api-reference/core/hooks/data/useDelete/)
--   [`useDeleteMany` &#8594](/api-reference/core/hooks/data/useDeleteMany.md)
+-   [`useDeleteMany` &#8594](/docs/api-reference/core/hooks/data/useDeleteMany/)
 
 <br />
 

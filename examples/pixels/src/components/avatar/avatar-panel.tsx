@@ -7,7 +7,7 @@ import { Pixel } from "types";
 const { Title } = Typography;
 
 type AvatarPanelProps = {
-    pixels: Pixel[];
+    pixels: Pixel[] | undefined;
 };
 
 export const AvatarPanel: React.FC<AvatarPanelProps> = ({ pixels }) => {

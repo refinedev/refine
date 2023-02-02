@@ -1,9 +1,10 @@
 ---
 title: useUpdateMany
 siderbar_label: useUpdateMany
+source: packages/core/src/hooks/data/useUpdateMany.ts
 ---
 
-`useUpdateMany` is a extended version of `react-query`'s [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation). It support all the features of `useMutation` and adds some extra features.
+`useUpdateMany` is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation). It supports all the features of `useMutation` and adds some extra features.
 
 -   It uses the `updateMany` method as the **mutation function** from the [`dataProvider`](/docs/api-reference/core/providers/data-provider/) which is passed to `<Refine>`.
 
@@ -15,7 +16,7 @@ If your data provider does not have a `updateMany` method, `useUpdateMany` will 
 
 ## Basic Usage
 
-`useUpdateMany` hook returns many useful properties and methods. One of them is `mutate` method which expects `values`, `resource` and `ids` as parameters. These parameters will be passed to the `updateMany` method from the `dataProvider` as parameters.
+The `useUpdateMany` hook returns many useful properties and methods. One of them is the `mutate` method which expects `values`, `resource`, and `ids` as parameters. These parameters will be passed to the `updateMany` method from the `dataProvider` as parameters.
 
 ```tsx
 import { useUpdateMany } from "@pankod/refine-core";
@@ -36,23 +37,15 @@ mutate({
 
 > This feature is only available if you use a [Live Provider](/docs/api-reference/core/providers/live-provider).
 
-When `useUpdateMany` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on client side.
+When the `useUpdateMany` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on the client side.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
 
 ## Invalidating Queries
 
-When `useUpdateMany` mutation runs successfully, by default it will invalidate the following queries from the current `resource`: `"list"`, `"many"` and `"detail"`. That means, if you use `useList`, `useMany` or `useOne` hooks in the same page, they will refetch the data after the mutation is completed. You can change this behavior by passing [`invalidates`](#invalidates) prop.
+When the `useUpdateMany` mutation runs successfully, by default it will invalidate the following queries from the current `resource`: `"list"`, `"many"`, and `"detail"`. That means, if you use `useList`, `useMany`, or `useOne` hooks on the same page, they will refetch the data after the mutation is completed. You can change this behavior by passing [`invalidates`](#invalidates) prop.
 
 [Refer to the query invalidation documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/guides/query-invalidation)
-
-## Audit Logs
-
-> This feature is only available if you use a [Audit Log Provider](/docs/api-reference/core/providers/audit-log-provider/).
-
-When `useUpdateMany` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data`, `previousData` etc. It is useful when you want to log the changes to the database.
-
-[Refer to the `auditLogProvider` documentation for more information &#8594](/docs/api-reference/core/providers/audit-log-provider/)
 
 ## Properties
 
@@ -72,7 +65,7 @@ useUpdateMany({
 
 :::tip
 
-`mutationOptions` does not support `onSuccess` and `onError` props because they override the default `onSuccess` and `onError` functions. If you want to use these props, you can pass them to mutate function like this:
+`mutationOptions` does not support `onSuccess` and `onError` props because they override the default `onSuccess` and `onError` functions. If you want to use these props, you can pass them to mutate functions like this:
 
 ```tsx
 const { mutate } = useUpdateMany();
@@ -103,7 +96,7 @@ mutate(
 
 ### `resource` <PropTag required />
 
-It will be passed to the `updateMany` method from the `dataProvider` as parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `updateMany` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resource are handled.
+It will be passed to the `updateMany` method from the `dataProvider` as a parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `updateMany` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resources are handled.
 
 ```tsx
 const { mutate } = useUpdateMany();
@@ -115,7 +108,7 @@ mutate({
 
 ### `ids` <PropTag required />
 
-It will be passed to the `updateMany` method from the `dataProvider` as parameter. It is used to determine which records will be updated.
+It will be passed to the `updateMany` method from the `dataProvider` as a parameter. It is used to determine which records will be updated.
 
 ```tsx
 const { mutate } = useUpdateMany();
@@ -127,7 +120,7 @@ mutate({
 
 ### `values` <PropTag required />
 
-It will be passed to the `updateMany` method from the `dataProvider` as parameter. The parameter is usually used as the data to be updated. It contains the new values of the record.
+It will be passed to the `updateMany` method from the `dataProvider` as a parameter. The parameter is usually used as the data to be updated. It contains the new values of the record.
 
 ```tsx
 const { mutate } = useUpdateMany();
@@ -142,13 +135,15 @@ mutate({
 
 ### `mutationMode`
 
-Mutation mode determines which mode the mutation runs with. Mutations can run under three different modes: `pessimistic`, `optimistic` and `undoable`. Default mode is `pessimistic`.
+Mutation mode determines which mode the mutation runs with. Mutations can run under three different modes: `pessimistic`, `optimistic`, and `undoable`. The default mode is `pessimistic`.
 Each mode corresponds to a different type of user experience.
 
 [Refer to the mutation mode documentation for more information &#8594](/docs/advanced-tutorials/mutation-mode)
 
 ```tsx
-useUpdateMany({
+const { mutate } = useUpdateMany();
+
+mutate({
     mutationMode: "undoable",
 });
 ```
@@ -158,7 +153,9 @@ useUpdateMany({
 When `mutationMode` is set to `undoable`, `undoableTimeout` is used to determine duration to wait before executing the mutation. Default value is `5000` milliseconds.
 
 ```tsx
-useUpdateMany({
+const { mutate } = useUpdateMany();
+
+mutate({
     mutationMode: "undoable",
     undoableTimeout: 10000,
 });
@@ -169,7 +166,9 @@ useUpdateMany({
 When `mutationMode` is set to `undoable`, `onCancel` is used to determine what to do when the user cancels the mutation.
 
 ```tsx
-useUpdateMany({
+const { mutate } = useUpdateMany();
+
+mutate({
     mutationMode: "undoable",
     onCancel: (cancelMutation) => {
         cancelMutation();
@@ -182,7 +181,7 @@ useUpdateMany({
 
 > [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
-After data is fetched successfully, `useUpdateMany` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
+After data is fetched successfully, `useUpdateMany` can call the `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
 ```tsx
 const { mutate } = useUpdateMany();
@@ -202,7 +201,7 @@ mutate({
 
 > [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
-After data fetching is failed, `useUpdateMany` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
+After data fetching is failed, `useUpdateMany` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
 const { mutate } = useUpdateMany();
@@ -286,7 +285,7 @@ mutate({
 
 `invalidates` is used to specify which queries should be invalidated after the mutation is completed.
 
-By default it's invalidates following queries from the current `resource`: `"list"`, `"many"` and `"detail"`. That means, if you use `useList`, `useMany` or `useOne` hooks in the same page, they will refetch the data after the mutation is completed.
+By default, it invalidates the following queries from the current `resource`: `"list"`, `"many"` and `"detail"`. That means, if you use `useList`, `useMany`, or `useOne` hooks on the same page, they will refetch the data after the mutation is completed.
 
 ```tsx
 const { mutate } = useUpdateMany();
@@ -298,7 +297,7 @@ mutate({
 
 ## Return Values
 
-Returns an object with react-query's `useMutation` return values.
+Returns an object with TanStack Query's `useMutation` return values.
 
 [Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
 
@@ -334,8 +333,8 @@ Returns an object with react-query's `useMutation` return values.
 
 ### Return value
 
-| Description                               | Type                                                                                                                                                                                                                 |
-| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource:string; ids: BaseKey[]; values: TVariables; },`<br/>` UpdateContext>`](https://tanstack.com/query/v4/docs/react/reference/useMutation)\* |
+| Description                                | Type                                                                                                                                                                                                                 |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Result of the TanStack Query's useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource:string; ids: BaseKey[]; values: TVariables; },`<br/>` UpdateContext>`](https://tanstack.com/query/v4/docs/react/reference/useMutation)\* |
 
 > `*` `UpdateContext` is an internal type.
