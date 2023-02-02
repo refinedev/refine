@@ -1,5 +1,17 @@
 # @pankod/refine-mantine
 
+## 2.4.0
+
+### Minor Changes
+
+-   [#3502](https://github.com/refinedev/refine/pull/3502) [`92c052a8d92`](https://github.com/refinedev/refine/commit/92c052a8d92a157025a98945de9b11f0ae2042e9) Thanks [@aliemir](https://github.com/aliemir)! - Export utilities used in inferencer components to let users create their own inferencer components through `createInferencer` function and utilities.
+
+## 2.3.0
+
+### Minor Changes
+
+-   [#3502](https://github.com/refinedev/refine/pull/3502) [`92c052a8d92`](https://github.com/refinedev/refine/commit/92c052a8d92a157025a98945de9b11f0ae2042e9) Thanks [@aliemir](https://github.com/aliemir)! - Export utilities used in inferencer components to let users create their own inferencer components through `createInferencer` function and utilities.
+
 ## 2.2.4
 
 ### Patch Changes
