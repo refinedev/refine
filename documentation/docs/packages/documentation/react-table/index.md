@@ -107,53 +107,13 @@ It also accepts all props of [TanStack Table](https://tanstack.com/table/v8/docs
 
 ### `resource`
 
-**refine** passes the `resource` to the `dataProvider` as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
+It will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resource are handled.
 
-The `resource` value is determined from the active route where the component or the hook is used. It can be overridden by passing the `resource` prop.
-
-Use case for overriding the `resource` prop:
-
--   We can list a `category` from the `<PostList>` page.
-
-```tsx
-import React from "react";
-import { HttpError, IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
-
-interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-}
-
-interface ICategory {
-    id: number;
-    name: string;
-}
-
-export const PostList: React.FC<IResourceComponentsProps> = () => {
-    // ---
-
-    const tablePosts = useTable<IPost, HttpError>();
-
-    const tableCategories = useTable<ICategory, HttpError>({
-        refineCoreProps: {
-            resource: "categories",
-        },
-    });
-
-    return <div>{/* ... */}</div>;
-};
-```
-
-Also, you can give a URL path to the `resource` prop.
+By default, the `resource` value is determined from the active route where the component or the hook is used. It can be overridden by passing the `resource` prop.
 
 ```tsx
 useTable({
-    refineCoreProps: {
-        resource: "categories/subcategory", // <BASE_URL_FROM_DATA_PROVIDER>/categories/subcategory
-    },
+    resource: "categories",
 });
 ```
 
