@@ -217,8 +217,6 @@ The HTML select tag does not natively support AutoComplete. If AutoComplete is d
 If `onSearch` is used, it will override the existing `filters`.
 :::
 
-[useQuery](https://react-query.tanstack.com/reference/useQuery) options for default value query can be set by passing `queryOptions` property.
-
 ### `metaData`
 
 [`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
