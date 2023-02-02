@@ -152,7 +152,7 @@ module.exports = {
                                     type: "category",
                                     label: "Notification",
                                     items: [
-                                        "api-reference/core/hooks/useNotification",
+                                        "api-reference/core/hooks/useNotification/index",
                                     ],
                                 },
                                 {
