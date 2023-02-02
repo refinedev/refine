@@ -4,99 +4,19 @@ title: Data Provider
 sidebar_label: Data Provider
 ---
 
+import SupportedDataProviders from "@site/src/partials/data-provider/supported-data-providers.md";
 
-## Overview
+The data provider acts as a data layer for your app that makes the HTTP requests and encapsulates how the data is retrieved. **refine** consumes these methods via data hooks.
 
-A data provider is the place where a refine app communicates with an API.
-Data providers also act as adapters for refine making it possible to consume different API's and data services conveniently.
-A data provider makes **HTTP** requests and returns response data back using predefined methods.
-
-A data provider must include following methods:
-
-```tsx
-const dataProvider = {
-    create: ({ resource, variables, metaData }) => Promise,
-    createMany: ({ resource, variables, metaData }) => Promise,
-    deleteOne: ({ resource, id, variables, metaData }) => Promise,
-    deleteMany: ({ resource, ids, variables, metaData }) => Promise,
-    getList: ({
-        resource,
-        pagination,
-        hasPagination,
-        sort,
-        filters,
-        metaData,
-    }) => Promise,
-    getMany: ({ resource, ids, metaData }) => Promise,
-    getOne: ({ resource, id, metaData }) => Promise,
-    update: ({ resource, id, variables, metaData }) => Promise,
-    updateMany: ({ resource, ids, variables, metaData }) => Promise,
-    custom: ({
-        url,
-        method,
-        sort,
-        filters,
-        payload,
-        query,
-        headers,
-        metaData,
-    }) => Promise,
-    getApiUrl: () => "",
-};
-```
-
-:::tip
-
-**refine** includes many out-of-the-box data providers to use in your projects like
-
--   [Simple REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
--   [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
--   [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
--   [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable)
--   [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
--   [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
--   [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
--   [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
--   [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite)
--   [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
-
-### Community ❤️
-
--   [Firebase](https://github.com/resulturan/refine-firebase) by [rturan29](https://github.com/resulturan)
--   [Directus](https://github.com/tspvivek/refine-directus) by [tspvivek](https://github.com/tspvivek)
--   [Elide](https://github.com/chirdeeptomar/refine-elide-rest) by [chirdeeptomar](https://github.com/chirdeeptomar)
-
-:::
-
-<br/>
-
-:::caution
-**refine** consumes these methods using [data hooks](/docs/api-reference/core/hooks/data/useCreate/).
-
-Data hooks are used to operate CRUD actions like creating a new record, listing a resource or deleting a record, etc.
-
-:::
-
-:::note
-Data hooks use [React Query](https://react-query.tanstack.com/) to manage data fetching. React Query handles important concerns like caching, invalidation, loading states, etc.
-
-:::
-
-<br/>
-<br/>
-<br/>
+You don't need to worry about creating data providers from scratch. **refine** offers built-in data provider support for the most popular [API providers](#supported-data-providers). So you can use one of them or you can [create your own data provider][create-a-data-provider] according to your needs.
 
 <div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/flow.png" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/tutorial_dataprovider_flog.png" />
 </div>
-
-<br/>
-<br/>
-<br/>
 
 ## Usage
 
-To activate data provider in refine, we have to pass the `dataProvider` to the `<Refine />` component.
+To activate the data provider in refine, we have to pass the `dataProvider` to the `<Refine />` component.
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
@@ -108,79 +28,13 @@ const App: React.FC = () => {
 };
 ```
 
-:::tip
+[Refer to the Data Provider tutorial for more information and usage examples →][data-provider-tutorial]
 
-To activate multiple data provider in refine, we have to pass the default key with `dataProvider` for default data provider and we can pass other data provider with any key to the `<Refine />` component.
-
-```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-
-import defaultDataProvider from "./dataProvider";
-import exampleDataProvider from "./dataProvider";
-
-const App: React.FC = () => {
-    return (
-        <Refine
-            dataProvider={{
-                default: defaultDataProvider,
-                example: exampleDataProvider,
-            }}
-        />
-    );
-};
-```
-
-:::
-
-### Using Multiple Data Providers
+## Multiple Data Providers
 
 **refine** gives you the ability to use multiple data providers in your app. All you need to do is to pass key, value pairs to the `dataProvider` prop of the `<Refine />` component in a form of value being the data provider and the key being the name of the data provider.
 
-:::tip
-`default` key is required for the default data provider and it will be used as the default data provider.
-:::
-
-```tsx title="App.tsx"
-const App = () => {
-    return (
-        <Refine
-            dataProvider={{
-                default: defaultDataProvider,
-                example: exampleDataProvider,
-            }}
-        />
-    );
-};
-```
-
-You can pick data providers in two ways:
-
-**Using `dataProviderName` prop in the data hooks and all data related components/functions.**
-
-```tsx title="posts/list.tsx"
-const { tableProps } = useTable<IPost>({
-    dataProviderName: "example",
-});
-```
-
-**Using `options.dataProviderName` property in your resource config**
-
-This will be the default data provider for the specified resource but you can still override it in the data hooks and components.
-
-```tsx title="App.tsx"
-const App = () => {
-    return (
-        <Refine
-            dataProvider={{
-                default: defaultDataProvider,
-                example: exampleDataProvider,
-            }}
-        />
-    );
-};
-```
-
-**Example usage of multiple data providers**
+Here is an example of using multiple data providers in your app:
 
 ```tsx live hideCode url=http://localhost:3000/posts previewHeight=420px
 setRefineProps({ Sider: () => null });
@@ -229,19 +83,19 @@ const App: React.FC = () => {
                         // highlight-next-line
                         // Refine will use the `fineFoods` data provider for this resource
                         dataProviderName: "fineFoods",
-                    }
-                }
+                    },
+                },
             ]}
         />
-    )
-}
+    );
+};
 
 const PostList: React.FC = () => {
     const { data: posts } = useList<IPost>({
         resource: "posts",
         // highlight-start
         // Data provider can be selected through props
-        dataProviderName: "default"
+        dataProviderName: "default",
         // highlight-end
     });
     // highlight-start
@@ -250,14 +104,23 @@ const PostList: React.FC = () => {
     // highlight-end
 
     console.log({
-        posts, products
-    })
+        posts,
+        products,
+    });
 
     return (
         <Collapse defaultActiveKey={["products"]}>
             <Collapse.Panel header="Posts" key="posts">
                 {posts?.data.map((post) => (
-                    <div key={post.title} style={{ display: "flex", flexDirection: "row", gap: "0.5rem", marginBottom: "0.25rem" }}>
+                    <div
+                        key={post.title}
+                        style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            gap: "0.5rem",
+                            marginBottom: "0.25rem",
+                        }}
+                    >
                         {post.title}
                         <Tag>{post.status}</Tag>
                     </div>
@@ -265,7 +128,15 @@ const PostList: React.FC = () => {
             </Collapse.Panel>
             <Collapse.Panel header="Products" key="products">
                 {products?.data.map((product) => (
-                    <div key={product.name} style={{ display: "flex", flexDirection: "row", gap: "0.5rem", marginBottom: "0.25rem" }}>
+                    <div
+                        key={product.name}
+                        style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            gap: "0.5rem",
+                            marginBottom: "0.25rem",
+                        }}
+                    >
                         {product.name}
                         <Tag>{product.price / 10}</Tag>
                     </div>
@@ -276,307 +147,134 @@ const PostList: React.FC = () => {
 };
 // visible-block-end
 
-render(<App/>);
+render(<App />);
 ```
 
-## Creating a data provider
+:::caution
+`default` key is required for the default data provider and it will be used as the default data provider.
 
-We will build **"Simple REST Dataprovider"** of `@pankod/refine-simple-rest` from scratch to show the logic of how data provider methods interact with the API.
+```tsx title="App.tsx"
+const App = () => {
+    return (
+        <Refine
+            dataProvider={{
+                default: defaultDataProvider,
+                example: exampleDataProvider,
+            }}
+        />
+    );
+};
+```
 
-We will provide you a fully working, _fake REST API_ located at https://api.fake-rest.refine.dev. You may take a look at available [resources and routes of the API](https://api.fake-rest.refine.dev) before proceeding to the next step.
-Our **"Simple REST Dataprovider"** will be consuming this _fake REST API_.
-
-:::note
-Fake REST API is based on [JSON Server Project](https://github.com/typicode/json-server). **Simple REST Dataprovider** is fully compatible with the REST rules and methods of the **JSON Server**.
 :::
 
-<br />
+You can pick data providers in two ways:
 
-Let's build a method that returns our data provider:
+-   **Using `dataProviderName` prop in the data hooks **and all **data-related** components/**functions.**
 
-```ts title="dataProvider.ts"
-import axios, { AxiosInstance } from "axios";
-import type { DataProvider } from "@pankod/refine-core";
-
-const axiosInstance = axios.create();
-
-const SimpleRestDataProvider = (
-    apiUrl: string,
-    httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
-    create: ({ resource, variables, metaData }) => Promise,
-    createMany?: ({ resource, variables, metaData }) => Promise,
-    deleteOne: ({ resource, id, variables, metaData }) => Promise,
-    deleteMany?: ({ resource, ids, variables, metaData }) => Promise,
-    getList: ({ resource, pagination, sort, filters, metaData }) => Promise,
-    getMany?: ({ resource, ids, metaData }) => Promise,
-    getOne: ({ resource, id, metaData }) => Promise,
-    update: ({ resource, id, variables, metaData }) => Promise,
-    updateMany?: ({ resource, ids, variables, metaData }) => Promise,
-    custom: ({
-        url,
-        method,
-        sort,
-        filters,
-        payload,
-        query,
-        headers,
-        metaData,
-    }) => Promise,
-    getApiUrl: () => "",
+```tsx title="posts/list.tsx"
+useTable<IPost>({
+    dataProviderName: "example",
 });
 ```
 
-It will take the API URL as a parameter and an optional **HTTP** client. We will use **axios** as the default **HTTP** client.
+-   **Using `options.dataProviderName` property in your resource config**
 
-:::note
-    `getMany`, `createMany`, `updateMany` and `deleteMany` properties are optional. If you don't implement them, Refine will use `getOne`, `create`, `update` and `deleteOne` methods to handle multiple requests. If your API supports these methods, you can implement them to improve performance.
-:::
+This will be the default data provider for the specified resource but you can still override it in the data hooks and components.
 
-<br/>
-
-### `create`
-
-This method allows us to create a single item in a resource.
-
-```ts title="dataProvider.ts"
-const SimpleRestDataProvider = (
-    apiUrl: string,
-    httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
-    ...
-// highlight-start
-    create: async ({ resource, variables }) => {
-        const url = `${apiUrl}/${resource}`;
-
-        const { data } = await httpClient.post(url, variables);
-
-        return {
-            data,
-        };
-    },
-// highlight-end
-    ...
-})
+```tsx title="App.tsx"
+const App = () => {
+    return (
+        <Refine
+            dataProvider={{
+                default: defaultDataProvider,
+                example: exampleDataProvider,
+            }}
+            resources={[
+                {
+                    // Refine will use the `default` data provider for this resource
+                    name: "posts",
+                },
+                {
+                    name: "products",
+                    options: {
+                        // Refine will use the `exampleDataProvider` data provider for this resource
+                        dataProviderName: "exampleDataProvider",
+                    },
+                },
+            ]}
+        />
+    );
+};
 ```
 
-#### Parameter Types
+## Methods
+
+:::caution
+**refine** consumes data provider methods using [data hooks](/docs/api-reference/core/hooks/data/useCreate/).
+
+Data hooks are used to operate CRUD actions like creating a new record, listing a resource or deleting a record, etc.
+
+:::
+
+Data provider's methods are expected to return a Promise. So, you can use these async methods to [create a data provider][create-a-data-provider].
+
+[Refer to the Data Provider tutorial for more information and usage examples →][data-provider-tutorial]
+
+### getList <PropTag required />
+
+`getList` method is used to get a list of resources with sorting, filtering, and pagination features.
+It takes `resource`, `sort`, `pagination`, and, `filters` as parameters and returns `data` and `total`.
+
+**refine** will consume this `getList` method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
+
+```ts title="src/data-provider.ts"
+getList: async ({ resource }) => {
+    const url = `${apiUrl}/${resource}`;
+
+    const { data, headers } = await axiosInstance.get(url);
+
+    const total = +headers["x-total-count"];
+
+    return {
+        data,
+        total,
+      };
+},
+```
+
+**Parameter Types:**
+
+| Name           | Type                             |
+| -------------- | -------------------------------- |
+| resource       | `string`                         |
+| hasPagination? | `boolean` _(defaults to `true`)_ |
+| pagination?    | [`Pagination`][pagination]       |
+| sort?          | [`CrudSorting`][crud-sorting]    |
+| filters?       | [`CrudFilters`][crud-filters]    |
+
+### create <PropTag required/>
+
+The `create` method creates a new record with the `resource` and `variables` parameters.
+
+**refine** will consume this `create` method using the [`useCreate`][use-create] data hook.
+
+**Parameter Types**
 
 | Name      | Type         | Default |
 | --------- | ------------ | ------- |
 | resource  | `string`     |         |
 | variables | `TVariables` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/api-reference/core/hooks/data/useCreate#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/api-reference/core/hooks/data/useCreate#type-parameters) to type `variables`.
 
-<br/>
+### update <PropTag required />
 
-**refine** will consume this `create` method using the `useCreate` data hook.
+The `update` method updates the record with the `resource`, `id`, and, `variables` parameters.
 
-```ts
-import { useCreate } from "@pankod/refine-core";
+**refine** will consume this `update` method using the [`useUpdate`][use-update] data hook.
 
-const { mutate } = useCreate();
-
-mutate({
-    resource: "categories",
-    values: {
-        title: "New Category",
-    },
-});
-```
-
-> [Refer to the useCreate documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useCreate/)
-
-<br />
-
-### `createMany`
-
-This method allows us to create multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `create` method to handle multiple requests.
-
-```ts title="dataProvider.ts"
-const SimpleRestDataProvider = (
-    apiUrl: string,
-    httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
-    ...
-// highlight-start
-    createMany: async ({ resource, variables }) => {
-        const response = await httpClient.post(
-            `${apiUrl}/${resource}/bulk`,
-            { values: variables },
-        );
-
-        return response;
-    },
-// highlight-end
-    ...
-})
-```
-
-#### Parameter Types
-
-| Name      | Type           | Default |
-| --------- | -------------- | ------- |
-| resource  | `string`       |         |
-| variables | `TVariables[]` | `{}`    |
-
-> `TVariables` is a user defined type which can be passed to [`useCreateMany`](/docs/api-reference/core/hooks/data/useCreateMany/) to type `variables`
-
-<br/>
-
-**refine** will consume this `createMany` method using the `useCreateMany` data hook.
-
-```ts
-import { useCreateMany } from "@pankod/refine-core";
-
-const { mutate } = useCreateMany();
-
-mutate({
-    resource: "categories",
-    values: [
-        {
-            title: "New Category",
-        },
-        {
-            title: "Another New Category",
-        },
-    ],
-});
-```
-
-> [Refer to the useCreateMany documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useCreateMany/)
-
-<br />
-
-### `deleteOne`
-
-This method allows us to delete an item in a resource.
-
-```ts title="dataProvider.ts"
-const SimpleRestDataProvider = (
-    apiUrl: string,
-    httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
-    ...
-// highlight-start
-    deleteOne: async ({ resource, id }) => {
-        const url = `${apiUrl}/${resource}/${id}`;
-
-        const { data } = await httpClient.delete(url);
-
-        return {
-            data,
-        };
-    },
-// highlight-end
-    ...
-})
-```
-
-#### Parameter Types
-
-| Name      | Type               | Default |
-| --------- | ------------------ | ------- |
-| resource  | `string`           |         |
-| id        | [BaseKey][basekey] |         |
-| variables | `TVariables[]`     | `{}`    |
-
-> `TVariables` is a user defined type which can be passed to [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) to type `variables`
-
-<br/>
-
-**refine** will consume this `deleteOne` method using the `useDelete` data hook.
-
-```ts
-import { useDelete } from "@pankod/refine-core";
-
-const { mutate } = useDelete();
-
-mutate({ resource: "categories", id: "2" });
-```
-
-> [Refer to the useDelete documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useDelete/)
-
-<br />
-
-### `deleteMany`
-
-This method allows us to delete multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `deleteOne` method to handle multiple requests.
-
-```ts title="dataProvider.ts"
-const SimpleRestDataProvider = (
-    apiUrl: string,
-    httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
-    ...
-// highlight-start
-    deleteMany: async ({ resource, ids }) => {
-        const response = await httpClient.delete(
-            `${apiUrl}/${resource}/bulk?ids=${ids.join(",")}`,
-        );
-        return response;
-    },
-// highlight-end
-    ...
-})
-```
-
-#### Parameter Types
-
-| Name      | Type                 | Default |
-| --------- | -------------------- | ------- |
-| resource  | `string`             |         |
-| ids       | [BaseKey[]][basekey] |         |
-| variables | `TVariables[]`       | `{}`    |
-
-> `TVariables` is a user defined type which can be passed to [`useDeleteMany`](/docs/api-reference/core/hooks/data/useDeleteMany/) to type `variables`
-
-<br/>
-
-**refine** will consume this `deleteMany` method using the `useDeleteMany` data hook.
-
-```ts
-import { useDeleteMany } from "@pankod/refine-core";
-
-const { mutate } = useDeleteMany();
-
-mutate({
-    resource: "categories",
-    ids: ["2", "3"],
-});
-```
-
-> [Refer to the useDeleteMany documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useDeleteMany/)
-
-<br />
-
-### `update`
-
-This method allows us to update an item in a resource.
-
-```ts title="dataProvider.ts"
-const SimpleRestDataProvider = (
-    apiUrl: string,
-    httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
-    ...
-// highlight-start
-    update: async ({ resource, id, variables }) => {
-        const url = `${apiUrl}/${resource}/${id}`;
-
-        const { data } = await httpClient.patch(url, variables);
-
-        return {
-            data,
-        };
-    },
-// highlight-end
-    ...
-})
-```
-
-#### Parameter Types
+**Parameter Types:**
 
 | Name      | Type               | Default |
 | --------- | ------------------ | ------- |
@@ -584,611 +282,142 @@ const SimpleRestDataProvider = (
 | id        | [BaseKey][basekey] |         |
 | variables | `TVariables`       | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate#type-parameters) to type `variables`.
 
-<br/>
+### deleteOne <PropTag required />
 
-**refine** will consume this `update` method using the `useUpdate` data hook.
+The `deleteOne` method delete the record with the `resource` and `id` parameters.
 
-```ts
-import { useUpdate } from "@pankod/refine-core";
+**refine** will consume this `deleteOne` method using the [`useDelete`][use-delete] data hook.
 
-const { mutate } = useUpdate();
+**Parameter Types:**
 
-mutate({
-    resource: "categories",
-    id: "2",
-    values: { title: "New Category Title" },
-});
-```
+| Name      | Type               | Default |
+| --------- | ------------------ | ------- |
+| resource  | `string`           |         |
+| id        | [BaseKey][basekey] |         |
+| variables | `TVariables[]`     | `{}`    |
 
-> [Refer to the useUpdate documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useUpdate/)
+> `TVariables` is a user defined type which can be passed to [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) to type `variables`.
 
-<br />
+### getOne <PropTag required />
 
-### `updateMany`
+The `getOne` method gets the record with the `resource` and `id` parameters.
 
-This method allows us to update multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `update` method to handle multiple requests.
+**refine** will consume this `getOne` method using the [`useOne`][use-one] data hook.
 
-```ts title="dataProvider.ts"
-const SimpleRestDataProvider = (
-    apiUrl: string,
-    httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
-    ...
-// highlight-start
-    updateMany: async ({ resource, ids, variables }) => {
-        const response = await httpClient.patch(
-            `${apiUrl}/${resource}/bulk`,
-            { ids, variables },
-        );
-        return response;
-    },
-// highlight-end
-    ...
-})
-```
-
-#### Parameter Types
-
-| Name      | Type                 | Default |
-| --------- | -------------------- | ------- |
-| resource  | `string`             |         |
-| ids       | [BaseKey[]][basekey] |         |
-| variables | `TVariables`         | `{}`    |
-
-> TVariables is a user defined type which can be passed to [`useUpdateMany`](/docs/api-reference/core/hooks/data/useUpdateMany#type-parameters) to type `variables`
-
-<br/>
-
-**refine** will consume this `updateMany` method using the `useUpdateMany` data hook.
-
-```ts
-import { useUpdateMany } from "@pankod/refine-core";
-
-const { mutate } = useUpdateMany();
-
-mutate({
-    resource: "posts",
-    ids: ["1", "2"],
-    values: { status: "draft" },
-});
-```
-
-> [Refer to the useUpdateMany documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useUpdateMany/)
-
-<br />
-
-### `getOne`
-
-This method allows us to retrieve a single item in a resource.
-
-```ts title="dataProvider.ts"
-const SimpleRestDataProvider = (
-    apiUrl: string,
-    httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
-    ...
-// highlight-start
-    getOne: async ({ resource, id }) => {
-        const url = `${apiUrl}/${resource}/${id}`;
-
-        const { data } = await httpClient.get(url);
-
-        return {
-            data,
-        };
-    },
-// highlight-end
-    ...
-})
-```
-
-#### Parameter Types
+**Parameter Types:**
 
 | Name     | Type               | Default |
 | -------- | ------------------ | ------- |
 | resource | `string`           |         |
 | id       | [BaseKey][basekey] |         |
 
-<br/>
+### getApiUrl <PropTag required />
 
-**refine** will consume this `getOne` method using the `useOne` data hook.
+The `getApiUrl` method returns the `apiUrl` value.
 
-```ts
-import { useOne } from "@pankod/refine-core";
+**refine** will consume this `getApiUrl` method using the [`useApiUrl`][use-api-url] data hook.
 
-const { data } = useOne<ICategory>({ resource: "categories", id: "1" });
-```
+### custom <PropTag required />
 
-> [Refer to the useOne documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useOne/)
-
-<br/>
-
-### `getMany`
-
-This method allows us to retrieve multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `getOne` method to handle multiple requests.
-
-```ts title="dataProvider.ts"
-import { stringify } from "query-string";
-
-const SimpleRestDataProvider = (
-    apiUrl: string,
-    httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
-    ...
-// highlight-start
-    getMany: async ({ resource, ids }) => {
-        const { data } = await httpClient.get(
-            `${apiUrl}/${resource}?${stringify({ id: ids })}`,
-        );
-
-        return {
-            data,
-        };
-    },
-// highlight-end
-    ...
-})
-```
-
-:::tip
-We are using the [`query-string`](https://www.npmjs.com/package/query-string) package for `stringify`.
-:::
-
-#### Parameter Types
-
-| Name     | Type                 | Default |
-| -------- | -------------------- | ------- |
-| resource | `string`             |         |
-| ids      | [BaseKey[]][basekey] |         |
-
-<br/>
-
-**refine** will consume this `getMany` method using the `useMany` data hook.
-
-```ts
-import { useMany } from "@pankod/refine-core";
-
-const { data } = useMany({ resource: "categories", ids: ["1", "2"] });
-```
-
-> [Refer to the useMany documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useMany/)
-
-<br />
-
-### `getList`
-
-This method allows us to retrieve a collection of items in a resource.
-
-```tsx title="dataProvider.ts"
-const SimpleRestDataProvider = (
-    apiUrl: string,
-    httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
-// highlight-start
-    getList: async ({ resource, hasPagination, pagination, filters, sort }) => {
-        const url = `${apiUrl}/${resource}`;
-
-        const { data, headers } = await httpClient.get(
-            `${url}`,
-        );
-
-        const total = +headers["x-total-count"];
-
-        return {
-            data,
-            total,
-        };
-    },
-// highlight-end
-}
-```
-
-#### Parameter Types
-
-| Name           | Type                                              |
-| -------------- | ------------------------------------------------- |
-| resource       | `string`                                          |
-| hasPagination? | `boolean` _(defaults to `true`)_                  |
-| pagination?    | [`Pagination`](/api-reference/core/interfaces.md#pagination);   |
-| sort?          | [`CrudSorting`](/api-reference/core/interfaces.md#crudsorting); |
-| filters?       | [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters); |
-
-<br/>
-
-**refine** will consume this `getList` method using the `useList` data hook.
-
-```ts
-import { useList } from "@pankod/refine-core";
-
-const { data } = useList({ resource: "posts" });
-```
-
-> [Refer to the useList documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useList)
-
-<br />
-
-**Adding pagination**
-
-We will send start and end parameters to list a certain size of items.
-
-```tsx title="dataProvider.ts"
-// highlight-next-line
-import { stringify } from "query-string";
-
-const SimpleRestDataProvider = (
-    apiUrl: string,
-    httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
-// highlight-next-line
-    getList: async ({ resource, hasPagination = true, pagination, filters, sort }) => {
-        const url = `${apiUrl}/${resource}`;
-
-// highlight-start
-        const current = pagination?.current || 1;
-        const pageSize = pagination?.pageSize || 10;
-// highlight-end
-
-// highlight-start
-        const query = hasPagination ? {
-            _start: (current - 1) * pageSize,
-            _end: current * pageSize,
-        } : {};
-// highlight-end
-
-        const { data, headers } = await httpClient.get(
-// highlight-next-line
-            `${url}?${stringify(query)}`,
-        );
-
-        const total = +headers["x-total-count"];
-
-        return {
-            data,
-            total,
-        };
-    },
-```
-
-<br />
-
-```ts
-import { useList } from "@pankod/refine-core";
-
-const { data } = useList({
-    resource: "posts",
-    config: {
-        // highlight-next-line
-        pagination: { current: 1, pageSize: 10 },
-        // highlight-next-line
-        hasPagination: true, // This can be omitted since it's default to `true` in the `getList` method of our data provider.
-    },
-});
-```
-
-> Listing will start from page 1 showing 10 records.
-
-<br />
-
-**Adding sorting**
-
-We'll sort records by specified order and field.
-
-> [CrudSorting](/api-reference/core/interfaces.md#crudoperators) ?
-
-```tsx title="dataProvider.ts"
-// highlight-start
-const generateSort = (sort?: CrudSorting) => {
-    let _sort = ["id"]; // default sorting field
-    let _order = ["desc"]; // default sorting
-
-    if (sort) {
-        _sort = [];
-        _order = [];
-
-        sort.map((item) => {
-            _sort.push(item.field);
-            _order.push(item.order);
-        });
-    }
-
-    return {
-        _sort,
-        _order,
-    };
-};
-// highlight-end
-
-const SimpleRestDataProvider = (
-    apiUrl: string,
-    httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
-    getList: async ({ resource, hasPagination = true, pagination, filters, sort }) => {
-        const url = `${apiUrl}/${resource}`;
-
-        const current = pagination?.current || 1;
-        const pageSize = pagination?.pageSize || 10;
-
-// highlight-next-line
-        const { _sort, _order } = generateSort(sort);
-
-        const query = {
-            ...(hasPagination ? {
-                _start: (current - 1) * pageSize,
-                _end: current * pageSize,
-            } : {}),
-// highlight-start
-            _sort: _sort.join(","),
-            _order: _order.join(","),
-// highlight-end
-        };
-
-        const { data, headers } = await httpClient.get(
-// highlight-next-line
-            `${url}?${stringify(query)}`,
-        );
-
-        const total = +headers["x-total-count"];
-
-        return {
-            data,
-            total,
-        };
-    },
-}
-```
-
-<br />
-
-Since our API accepts only certain parameter formats like `_sort` and `_order` we may need to transform some of the parameters.
-
-So we added the `generateSort` method to transform sort parameters.
-
-<br />
-
-```ts
-import { useList } from "@pankod/refine-core";
-
-const { data } = useList({
-    resource: "posts",
-    config: {
-        pagination: { current: 1, pageSize: 10 },
-        // highlight-next-line
-        sort: [{ order: "asc", field: "title" }],
-    },
-});
-```
-
-> Listing starts from ascending alphabetical order on title field.
-
-<br />
-
-**Adding filtering**
-
-Filters allow you to filter queries using [refine's filter operators](/api-reference/core/interfaces.md#crudoperators). It is configured via field, operator and value properties.
-
-```tsx title="dataProvider.ts"
-const generateSort = (sort?: CrudSorting) => {
-    let _sort = ["id"]; // default sorting field
-    let _order = ["desc"]; // default sorting
-
-    if (sort) {
-        _sort = [];
-        _order = [];
-
-        sort.map((item) => {
-            _sort.push(item.field);
-            _order.push(item.order);
-        });
-    }
-
-    return {
-        _sort,
-        _order,
-    };
-};
-
-// highlight-start
-const mapOperator = (operator: CrudOperators): string => {
-    switch (operator) {
-        case "ne":
-        case "gte":
-        case "lte":
-            return `_${operator}`;
-        case "contains":
-            return "_like";
-    }
-
-    return ""; // default "eq"
-};
-
-const generateFilter = (filters?: CrudFilters) => {
-    const queryFilters: { [key: string]: string } = {};
-    if (filters) {
-        filters.map(({ field, operator, value }) => {
-            const mappedOperator = mapOperator(operator);
-            queryFilters[`${field}${mappedOperator}`] = value;
-        });
-    }
-
-    return queryFilters;
-};
-// highlight-end
-
-const SimpleRestDataProvider = (
-    apiUrl: string,
-    httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
-    getList: async ({ resource, hasPagination = true, pagination, filters, sort }) => {
-        const url = `${apiUrl}/${resource}`;
-
-        const current = pagination?.current || 1;
-        const pageSize = pagination?.pageSize || 10;
-
-        const { _sort, _order } = generateSort(sort);
-
-// highlight-next-line
-        const queryFilters = generateFilter(filters);
-
-        const query = {
-            ...(hasPagination ? {
-                _start: (current - 1) * pageSize,
-                _end: current * pageSize,
-            } : {}),
-            _sort: _sort.join(","),
-            _order: _order.join(","),
-        };
-
-        const { data, headers } = await httpClient.get(
-// highlight-next-line
-            `${url}?${stringify(query)}&${stringify(queryFilters)}`,
-        );
-
-        const total = +headers["x-total-count"];
-
-        return {
-            data,
-            total,
-        };
-    },
-}
-```
-
-<br />
-
-Since our API accepts only certain parameter formats to filter the data, we may need to transform some parameters.
-
-So we added the `generateFilter` and `mapOperator` methods to the transform filter parameters.
-
-[Refer to the list of all filter operators &#8594](/api-reference/core/interfaces.md#crudoperators)
-
-```ts
-import { useList } from "@pankod/refine-core";
-
-const { data } = useList({
-    resource: "posts",
-    config: {
-        // highlight-start
-        pagination: { current: 1, pageSize: 10 },
-        sort: [{ order: "asc", field: "title" }],
-        filters: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "rejected",
-            },
-        ],
-    },
-    // highlight-end
-});
-```
-
-> Only lists records whose status equals to "rejected".
-
-<br />
-
-### `custom`
-
-An optional method named `custom` can be added to handle requests with custom parameters like URL, CRUD methods and configurations.
+An optional method named `custom` can be added to handle requests with custom parameters like URL, CRUD methods, and configurations.
 It's useful if you have non-standard REST API endpoints or want to make a connection with external resources.
 
-```ts title="dataProvider.ts"
-const SimpleRestDataProvider = (
-    apiUrl: string,
-    httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
- custom: async ({ url, method, filters, sort, payload, query, headers }) => {
-        let requestUrl = `${url}?`;
+**refine** will consume this `custom` method using the [`useCustom`][use-custom] data hook.
 
-        if (sort) {
-            const { _sort, _order } = generateSort(sort);
-            const sortQuery = {
-                _sort: _sort.join(","),
-                _order: _order.join(","),
-            };
-            requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
-        }
-
-        if (filters) {
-            const filterQuery = generateFilter(filters);
-            requestUrl = `${requestUrl}&${stringify(filterQuery)}`;
-        }
-
-        if (query) {
-            requestUrl = `${requestUrl}&${stringify(query)}`;
-        }
-
-        if (headers) {
-            httpClient.defaults.headers = {
-                ...httpClient.defaults.headers,
-                ...headers,
-            };
-        }
-
-        let axiosResponse;
-        switch (method) {
-            case "put":
-            case "post":
-            case "patch":
-                axiosResponse = await httpClient[method](url, payload);
-                break;
-            case "delete":
-                axiosResponse = await httpClient.delete(url, {
-                    data: payload,
-                });
-                break;
-            default:
-                axiosResponse = await httpClient.get(requestUrl);
-                break;
-        }
-
-        const { data } = axiosResponse;
-
-        return Promise.resolve({ data });
-    },
- }
-```
-
-#### Parameter Types
+**Parameter Types**
 
 | Name     | Type                                                       |
 | -------- | ---------------------------------------------------------- |
 | url      | `string`                                                   |
 | method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch` |
-| sort?    | [`CrudSorting`](/api-reference/core/interfaces.md#crudsorting);          |
-| filters? | [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters);          |
+| sort?    | [`CrudSorting`][crud-sorting]                              |
+| filters? | [`CrudFilters`][crud-filters]                              |
 | payload? | `{}`                                                       |
 | query?   | `{}`                                                       |
 | headers? | `{}`                                                       |
 
-<br/>
+## Bulk Actions
 
-**refine** will consume this `custom` method using the `useCustom` data hook.
+Bulk actions are actions that can be performed on multiple items at once. Performing bulk actions is a common pattern in admin panels. If your API supports bulk actions, you can implement them in your data provider.
 
-```ts
-import { useCustom } from "@pankod/refine-core";
+:::tip
+Bulk operations are a way to perform many database operations at once, improving speed and efficiency. They can be used for data [`import`](../../examples/core/useImport.md) and [`export`](../../api-reference/core/hooks/import-export/useExport.md), and have the added benefit of being atomic, meaning that they are treated as a single unit.
+:::
 
-const { data, isLoading } = useCustom({
-    url: `${apiURL}/posts-unique-check`,
-    method: "get",
-    config: {
-        query: {
-            title: "Foo bar",
-        },
-    },
-});
-```
+### getMany
 
-> [Refer to the useCustom documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useCustom/)
+The `getMany` method gets the records with the `resource` and `ids` parameters. Implementation of this method is optional. If you don't implement it, refine will use [`getOne`](#getone) method to handle multiple requests.
 
-### Error Format
+**refine** will consume this `getMany` method using the [`useMany`][use-many] data hook.
 
-**refine** expects errors to be extended from [`HttpError`](/api-reference/core/interfaces.md#httperror).
-Axios interceptor can be used to transform the error from response before Axios returns the response to your code. Interceptors are methods which are triggered before the main method.
+**Parameter Types:**
 
-```ts title="dataProvider.ts"
-...
+| Name     | Type                 | Default |
+| -------- | -------------------- | ------- |
+| resource | `string`             |         |
+| ids      | [[BaseKey][basekey]] |         |
+
+### createMany
+
+This method allows us to create multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use [`create`](#create) method to handle multiple requests.
+
+**refine** will consume this `createMany` method using the [`useCreateMany`][use-create-many] data hook.
+
+**Parameter Types:**
+
+| Name      | Type           | Default |
+| --------- | -------------- | ------- |
+| resource  | `string`       |         |
+| variables | `TVariables[]` | `{}`    |
+
+> `TVariables` is a user defined type which can be passed to [`useCreateMany`][use-create-many] to type `variables`.
+
+### deleteMany
+
+This method allows us to delete multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use [`deleteOne`](#deleteone) method to handle multiple requests.
+
+**refine** will consume this `deleteMany` method using the [`useDeleteMany`][use-delete-many] data hook.
+
+| Name      | Type                 | Default |
+| --------- | -------------------- | ------- |
+| resource  | `string`             |         |
+| ids       | [[BaseKey][basekey]] |         |
+| variables | `TVariables[]`       | `{}`    |
+
+> `TVariables` is a user defined type which can be passed to [`useDeleteMany`][use-delete-many] to type `variables`.
+
+### updateMany
+
+This method allows us to update multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use [`update`](#update) method to handle multiple requests.
+
+**refine** will consume this `updateMany` method using the [`useUpdateMany`][use-update-many] data hook.
+
+| Name      | Type                 | Default |
+| --------- | -------------------- | ------- |
+| resource  | `string`             |         |
+| ids       | [[BaseKey][basekey]] |         |
+| variables | `TVariables[]`       | `{}`    |
+
+> `TVariables` is a user defined type which can be passed to [`useUpdateMany`][use-update-many] to type `variables`.
+
+## Error Format
+
+**refine** expects errors to be extended from [`HttpError`][http-error].
+Axios interceptor can be used to transform the error from the response before Axios returns the response to your code. Interceptors are methods that are triggered before the main method.
+
+```ts title="src/data-provider.ts"
+// highlight-start
+import axios from "axios";
+import { DataProvider, HttpError } from "@pankod/refine-core";
+// highlight-end
+import { stringify } from "query-string";
+
+// highlight-start
+// Error handling with axios interceptors
+const axiosInstance = axios.create();
+
 axiosInstance.interceptors.response.use(
     (response) => {
         return response;
@@ -1203,7 +432,140 @@ axiosInstance.interceptors.response.use(
         return Promise.reject(customError);
     },
 );
-...
+// highlight-end
+
+export const dataProvider = (apiUrl: string): DataProvider => ({
+    // Methods
+});
 ```
 
-[basekey]: /api-reference/core/interfaces.md#basekey
+## metaData Usage
+
+When using APIs, you may wish to include custom parameters, such as a custom header. To accomplish this, you can utilize the `metaData` field, which allows the sent parameter to be easily accessed by the data provider.
+
+:::tip
+The `metaData` parameter can be used in all data, form, and table hooks.
+:::
+
+Here is an example of how to send a custom header parameter to the `getOne` method using `metaData`:
+
+-   Send a custom header parameter to the [`getOne`](#getone) method using `metaData`.
+
+```ts title="post/edit.tsx"
+import { useOne } from "@pankod/refine-core";
+
+useOne({
+    resource: "post",
+    id: "1",
+    metaData: {
+        headers: {
+            "x-custom-header": "hello world",
+        },
+    },
+});
+```
+
+-   Get the `metaData` parameter from the data provider.
+
+```ts title="src/data-provider.ts"
+import { DataProvider } from "@pankod/refine-core";
+
+export const dataProvider = (apiUrl: string): DataProvider => ({
+  ...
+  getOne: async ({ resource, id, variables, metaData }) => {
+    // highlight-next-line
+    const { headers } = metaData;
+    const url = `${apiUrl}/${resource}/${id}`;
+
+    // highlight-start
+    httpClient.defaults.headers = {
+      ...headers,
+    };
+    // highlight-end
+
+    const { data } = await httpClient.get(url, variables);
+
+    return {
+      data,
+    };
+  },
+});
+```
+
+## Supported Data Providers
+
+<SupportedDataProviders/>
+
+## Supported Hooks
+
+**refine** will consume:
+
+-   [`getList`](#getlist) method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
+-   [`create`](#create) method using the [`useCreate`][use-create] data hook.
+-   [`update`](#update) method using the [`useUpdate`][use-update] data hook.
+-   [`deleteOne`](#deleteone) method using the [`useDeleteOne`][use-delete] data hook.
+-   [`getOne`](#getone) method using the [`useOne`][use-one] data hook.
+-   [`getApiUrl`](#getapiurl) method using the [`useApiUrl`][use-api-url] data hook.
+-   [`custom`](#custom) method using the [`useCustom`][use-custom] data hook.
+-   [`getMany`](#getmany) method using the [`useMany`][use-many] data hook.
+-   [`createMany`](#createmany) method using the [`useCreateMany`][use-create-many] data hook.
+-   [`deleteMany`](#deletemany) method using the [`useDeleteMany`][use-delete-many] data hook.
+-   [`updateMany`](#updatemany) method using the [`useUpdateMany`][use-update-many] data hook.
+
+## FAQ
+
+### How can I create a custom data provider?
+
+[Refer to the "Create Data Provider From Scratch" section in the tutorial for more information →][data-provider-tutorial]
+
+### How can I customize existing data providers?
+
+[Refer to the "Create Data Provider with Swizzle" section in the tutorial for more information →][data-provider-tutorial]
+
+### How I can override a specific method of Data Providers?
+
+In some cases, you may need to override the method of Refine data providers. The simplest way to do this is to use the [Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+
+For example, Let's override the `update` function of the [`@pankod/refine-simple-rest`](https://github.com/refinedev/refine/tree/next/packages/simple-rest). `@pankod/refine-simple-rest` uses the `PATCH` HTTP method for `update`, let's change it to `PUT` without forking the whole data provider.
+
+```tsx
+import dataProvider from "@pankod/refine-simple-rest";
+
+const simpleRestProvider = dataProvider("API_URL");
+const myDataProvider = {
+    ...simpleRestProvider,
+    update: async ({ resource, id, variables }) => {
+        const url = `${apiUrl}/${resource}/${id}`;
+
+        const { data } = await httpClient.put(url, variables);
+
+        return {
+            data,
+        };
+    },
+};
+
+<Refine dataProvider={myDataProvider} />;
+```
+
+[basekey]: /docs/api-reference/core/interfaceReferences/#basekey
+[create-a-data-provider]: /docs/tutorial/understanding-dataprovider/create-dataprovider/
+[data-provider-tutorial]: /docs/tutorial/understanding-dataprovider/index/
+[use-api-url]: /docs/api-reference/core/hooks/data/useApiUrl/
+[use-create]: /docs/api-reference/core/hooks/data/useCreate/
+[use-create-many]: /docs/api-reference/core/hooks/data/useCreateMany/
+[use-custom]: /docs/api-reference/core/hooks/data/useCustom/
+[use-custom-mutation]: /docs/api-reference/core/hooks/data/useCustomMutation/
+[use-data-provider]: /docs/api-reference/core/hooks/data/useDataProvider/
+[use-delete]: /docs/api-reference/core/hooks/data/useDelete/
+[use-delete-many]: /docs/api-reference/core/hooks/data/useDeleteMany/
+[use-list]: /docs/api-reference/core/hooks/data/useList/
+[use-infinite-list]: /docs/api-reference/core/hooks/data/useInfiniteList/
+[use-many]: /docs/api-reference/core/hooks/data/useMany/
+[use-one]: /docs/api-reference/core/hooks/data/useOne/
+[use-update]: /docs/api-reference/core/hooks/data/useUpdate/
+[use-update-many]: /docs/api-reference/core/hooks/data/useUpdateMany/
+[crud-sorting]: /docs/api-reference/core/interfaceReferences/#crudsorting
+[crud-filters]: /docs/api-reference/core/interfaceReferences/#crudfilters
+[pagination]: /docs/api-reference/core/interfaceReferences/#pagination
+[http-error]: /docs/api-reference/core/interfaceReferences/#httperror

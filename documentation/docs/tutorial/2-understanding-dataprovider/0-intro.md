@@ -7,6 +7,8 @@ tutorial:
     next: tutorial/understanding-dataprovider/swizzle
 ---
 
+import SupportedDataProviders from "@site/src/partials/data-provider/supported-data-providers.md";
+
 :::info
 The data provider unit is optional for the tutorial and can be skipped to next unit - <UIConditional is="headless">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/headless/index)</UIConditional><UIConditional is="antd">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/antd/index)</UIConditional><UIConditional is="mantine">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/mantine/index)</UIConditional><UIConditional is="chakra-ui">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/chakra-ui/index)</UIConditional><UIConditional is="mui">[Adding CRUD Pages](/docs/tutorial/adding-crud-pages/mui/index)</UIConditional>
 if desired.
@@ -133,27 +135,7 @@ const dataProvider = {
 
 ## Supported Data Providers
 
-**refine** comes with many pre-loaded data providers. To include them in your project, you can use `npm install [packageName]` or you can select preferred data provider with the `npm create refine-app@latest projectName` during the project creation phase with CLI.  
-This will allow you to easily use these data providers in your project.
-
--   [Simple REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
--   [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
--   [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
--   [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable)
--   [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
--   [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
--   [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
--   [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
--   [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite)
--   [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
-
-**Community ❤️**
-
--   [Firebase](https://github.com/resulturan/refine-firebase) by [rturan29](https://github.com/resulturan)
--   [Directus](https://github.com/tspvivek/refine-directus) by [tspvivek](https://github.com/tspvivek)
--   [Elide](https://github.com/chirdeeptomar/refine-elide-rest) by [chirdeeptomar](https://github.com/chirdeeptomar)
-
-_If you have created a custom data provider and would like to share it with the community, please don't hesitate to get in touch with us. We would be happy to include it on this page for others to use._
+<SupportedDataProviders/>
 
 <Checklist>
 
