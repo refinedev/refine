@@ -6,6 +6,7 @@ source: /packages/mui/src/hooks/useDataGrid
 
 import BasicUsagePreview from "./\_partial-use-data-grid-basic-usage-live-preview.md";
 import RelationalPreview from "./\_partial-use-data-grid-relational-live-preview.md";
+import PropResource from "@site/src/partials/prop-resource";
 
 By using `useDataGrid`, you can get properties that are compatible with MUI X [`<DataGrid>`][data-grid] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch.
 
@@ -271,9 +272,16 @@ When the `useDataGrid` hook is mounted, it will call the `subscribe` method from
 
 ### `resource`
 
-It will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resource are handled.
-
-By default, the `resource` value is determined from the active route where the component or the hook is used. It can be overridden by passing the `resource` prop.
+<PropResource
+hook={{
+    name:"useList",
+    URL:"/docs/api-reference/core/hooks/data/useList/"
+}}
+method={{
+    name:"getList",
+    URL:"/docs/api-reference/core/providers/data-provider/#getlist"
+}}
+/>
 
 ```tsx
 useTable({

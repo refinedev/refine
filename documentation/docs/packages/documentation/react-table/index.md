@@ -8,6 +8,7 @@ import BasicUsageLivePreview from "./\_partial-basic-usage-live-preview.md";
 import PaginationLivePreview from "./\_partial-pagination-live-preview.md";
 import SortingLivePreview from "./\_partial-sorting-live-preview.md";
 import RelationalLivePreview from "./\_partial-relational-live-preview.md";
+import PropResource from "@site/src/partials/prop-resource";
 
 **refine** offers a [TanStack Table][tanstack-table] adapter with [@pankod/refine-react-table][refine-react-table] that allows you to use the TanStack Table library with **refine**. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch. Since it is designed as headless, It expects you to handle the UI.
 
@@ -107,9 +108,16 @@ It also accepts all props of [TanStack Table](https://tanstack.com/table/v8/docs
 
 ### `resource`
 
-It will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resource are handled.
-
-By default, the `resource` value is determined from the active route where the component or the hook is used. It can be overridden by passing the `resource` prop.
+<PropResource
+hook={{
+    name:"useList",
+    URL:"/docs/api-reference/core/hooks/data/useList/"
+}}
+method={{
+    name:"getList",
+    URL:"/docs/api-reference/core/providers/data-provider/#getlist"
+}}
+/>
 
 ```tsx
 useTable({
