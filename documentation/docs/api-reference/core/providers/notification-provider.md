@@ -34,19 +34,86 @@ interface OpenNotificationParams {
 }
 ```
 
-:::tip
-If you are using Ant Design you can use `notificationProvider` exported from `@pankod/refine-antd` package. It is compatible with Ant Design's [`notification`](https://ant.design/components/notification/#header) component.
+## Built-in Notification Providers
 
-```tsx
-import { notificationProvider } from "@pankod/refine-antd";
+If you're looking for a complete notification infrastructure, **refine** has out-of-the-box support for the libraries below:
 
-<Refine
-    ...
-    notificationProvider={notificationProvider}
-/>
-```
+<Tabs
+  defaultValue="antd"
+  values={[ 
+    {label: 'Ant Design', value: 'antd'}, 
+    {label: 'Material UI', value: 'mui'},
+    {label: 'Mantine', value: 'mantine'},
+    {label: 'Chakra UI', value: 'chakra'},
+    {label: 'Custom', value: 'custom'}, 
+  ]}>
 
-:::
+  <TabItem value="custom">
+
+  Create a custom notification provider by following the [guide](/docs/api-reference/core/providers/notification-provider/#creating-an-notificationprovider).
+
+  </TabItem>
+
+  <TabItem value="antd">
+
+  ```tsx
+  import { notificationProvider} from "@pankod/refine-antd";
+
+  return (
+    <Refine
+      //...
+      notificationProvider={notificationProvider}
+    />
+  );
+  ```
+  </TabItem>
+
+  <TabItem value="mui">
+
+  ```tsx
+  import { notificationProvider, RefineSnackbarProvider } from "@pankod/refine-mui";
+
+  return (
+    <RefineSnackbarProvider>
+      <Refine
+        //...
+        notificationProvider={notificationProvider}
+      />
+    </RefineSnackbarProvider>
+  );
+  ```
+  </TabItem>
+
+  <TabItem value="mantine">
+
+  ```tsx
+  import { notificationProvider, NotificationsProvider } from "@pankod/refine-mantine";
+
+  return (
+    <NotificationsProvider position="top-right">
+      <Refine
+        //...
+        notificationProvider={notificationProvider}
+      />
+    </NotificationsProvider>
+  );
+  ```
+  </TabItem>
+
+  <TabItem value="chakra">
+
+  ```tsx
+  import { notificationProvider } from "@pankod/refine-chakra";
+
+  return (
+    <Refine
+      //...
+      notificationProvider={notificationProvider()}
+    />
+  );
+  ```
+  </TabItem>
+</Tabs>
 
 ## Usage
 

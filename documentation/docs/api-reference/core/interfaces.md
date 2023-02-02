@@ -276,13 +276,14 @@ ButtonProps
 
 ## Open Notification Params
 
-| Key              | Type         |
-| ---------------- | ------------ |
-| key?             | `string`     |
-| message          | `string`     |
-| description?     | `string`     |
-| cancelMutation?  | `() => void` |
-| undoableTimeout? | `number`     |
+| Key              | Type                                     |
+| ---------------- | ---------------------------------------- |
+| key?             | `string`                                 |
+| type             | `"success"` \| `"error"` \| `"progress"` |
+| message          | `string`                                 |
+| description?     | `string`                                 |
+| cancelMutation?  | `() => void`                             |
+| undoableTimeout? | `number`                                 |
 
 ## Close Notification Params
 
