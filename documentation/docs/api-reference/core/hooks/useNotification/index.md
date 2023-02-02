@@ -82,7 +82,7 @@ If you're looking for a complete notification infrastructure, **refine** has out
   return (
     <Refine
       //...
-      notificationProvider={notificationProvider}
+      notificationProvider={notificationProvider()}
     />
   );
   ```
