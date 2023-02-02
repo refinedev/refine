@@ -409,8 +409,10 @@ The callback function is executed when new events from a subscription have arriv
 
 ```tsx
 useTable({
-    onLiveEvent: (event) => {
-        console.log(event);
+    refineCoreProps: {
+        onLiveEvent: (event) => {
+            console.log(event);
+        },
     },
 });
 ```
