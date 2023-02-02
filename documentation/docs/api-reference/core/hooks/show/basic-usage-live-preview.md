@@ -36,8 +36,6 @@ const ProductShow: React.FC = () => {
             <p>id: {product?.id}</p>
             <p>name: {product?.name}</p>
             <p>material: {product?.material}</p>
-
-            <br />
         </div>
     );
 };
