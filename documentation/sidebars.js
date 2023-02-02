@@ -181,7 +181,7 @@ module.exports = {
                                     type: "category",
                                     label: "Table",
                                     items: [
-                                        "api-reference/core/hooks/useTable",
+                                        "api-reference/core/hooks/useTable/index",
                                     ],
                                 },
                                 {
@@ -539,7 +539,7 @@ module.exports = {
                             label: "Hooks",
                             items: [
                                 "api-reference/mui/hooks/useAutocomplete",
-                                "api-reference/mui/hooks/useDataGrid",
+                                "api-reference/mui/hooks/useDataGrid/index",
                             ],
                         },
                         {
@@ -626,7 +626,7 @@ module.exports = {
                     items: [
                         "packages/documentation/cli",
                         "packages/documentation/command-palette",
-                        "packages/documentation/react-table",
+                        "packages/documentation/react-table/index",
                         {
                             type: "category",
                             label: "React Hook Form",

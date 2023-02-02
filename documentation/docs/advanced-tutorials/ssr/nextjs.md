@@ -126,11 +126,12 @@ const App = () => (
     <Refine
         resources={[
             // This will add an item to `<Sider/>` with route `/my-custom-item`
-            { name: "my-custom-item", list: () => null }
+            { name: "my-custom-item", list: () => null },
         ]}
     />
 );
 ```
+
 :::
 
 :::caution
@@ -415,7 +416,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 Next.js introduced a new way of defining pages within the `app/` directory. _This new directory has support for layouts, nested routes, and uses Server Components by default._ To learn more about the feature check out [Next.js Beta docs](https://beta.nextjs.org/docs/upgrade-guide)
 
-**refine** also follows this feature and provides a way to use `appDir` with your **refine** apps. 
+**refine** also follows this feature and provides a way to use `appDir` with your **refine** apps.
 
 :::caution
 
@@ -498,12 +499,12 @@ You can find the `app/` directory example with **refine** in [examples/nextjs/ap
 [nextjscustomapp]: https://nextjs.org/docs/advanced-features/custom-app
 [refine]: /api-reference/core/components/refine-config.md
 [nextjspages]: https://nextjs.org/docs/basic-features/pages
-[usetable]: /api-reference/core/hooks/useTable.md
+[usetable]: /docs/api-reference/core/hooks/useTable
 [reactqueryssr]: https://react-query.tanstack.com/guides/ssr#using-initialdata
 [reactquery]: https://react-query.tanstack.com/
 [getlist]: /api-reference/core/providers/data-provider.md#getlist
 [dataprovider]: /api-reference/core/providers/data-provider.md
-[usetable]: /api-reference/core/hooks/useTable.md
+[usetable]: /docs/api-reference/core/hooks/useTable
 [interfaces]: /api-reference/core/interfaces.md/#crudfilters
 [autostaticopt]: https://nextjs.org/docs/advanced-features/automatic-static-optimization
 [datafetching]: https://nextjs.org/docs/basic-features/data-fetching
