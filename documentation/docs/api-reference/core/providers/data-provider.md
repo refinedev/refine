@@ -14,6 +14,12 @@ You don't need to worry about creating data providers from scratch. **refine** o
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/tutorial_dataprovider_flog.png" />
 </div>
 
+:::note
+Data hooks use [TanStack Query](https://tanstack.com/query) to manage data fetching. React Query handles important concerns like caching, invalidation, loading states, etc.
+:::
+
+<br/>
+
 ## Usage
 
 To activate the data provider in refine, we have to pass the `dataProvider` to the `<Refine />` component.
