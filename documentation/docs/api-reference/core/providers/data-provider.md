@@ -647,11 +647,11 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 ### How can I create a custom data provider?
 
-[Refer to the "Create Data Provider From Scratch" section in the tutorial for more information →][data-provider-tutorial]
+[Refer to the "Create Data Provider From Scratch" section in the tutorial for more information →][create-a-data-provider]
 
 ### How can I customize existing data providers?
 
-[Refer to the "Create Data Provider with Swizzle" section in the tutorial for more information →][data-provider-tutorial]
+[Refer to the "Create Data Provider with Swizzle" section in the tutorial for more information →][swizzle-a-data-provider]
 
 ### How I can override a specific method of Data Providers?
 
@@ -681,6 +681,7 @@ const myDataProvider = {
 
 [basekey]: /docs/api-reference/core/interfaceReferences/#basekey
 [create-a-data-provider]: /docs/tutorial/understanding-dataprovider/create-dataprovider/
+[swizzle-a-data-provider]: /docs/tutorial/understanding-dataprovider/swizzle/
 [data-provider-tutorial]: /docs/tutorial/understanding-dataprovider/index/
 [use-api-url]: /docs/api-reference/core/hooks/data/useApiUrl/
 [use-create]: /docs/api-reference/core/hooks/data/useCreate/

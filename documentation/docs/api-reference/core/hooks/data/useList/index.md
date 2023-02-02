@@ -59,7 +59,7 @@ When the `useList` hook is mounted, it will call the `subscribe` method from the
 
 ### `resource` <PropTag required />
 
-It will be passed to the `getList` method from the `dataProvider` as a parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resources are handled.
+It will be passed to the `getList` method from the `dataProvider` as a parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/tutorial/understanding-dataprovider/create-dataprovider/) section for an example of how resources are handled.
 
 ```tsx
 useList({
@@ -335,6 +335,6 @@ interface UseListConfig {
 
 ### Return Values
 
-| Description                              | Type                                                                                                                                                 |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description                               | Type                                                                                                                                                 |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |

@@ -31,17 +31,18 @@ Here is a basic example of how to use `useSelect` hook.
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](docs/api-reference/core/providers/live-provider) 
+> This feature is only available if you use a [Live Provider](docs/api-reference/core/providers/live-provider)
 
-When `useSelect` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`. 
+When `useSelect` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider`.
 It is useful when you want to subscribe to the live updates.
 
 [Refer to the `liveProvider` documentation for more information &#8594](/docs/api-reference/core/providers/live-provider)
 
 ## Properties
+
 ### `resource` <PropTag required />
 
-It will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resource are handled.
+It will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/tutorial/understanding-dataprovider/create-dataprovider/) section for an example of how resource are handled.
 
 ```tsx
 useSelect({
@@ -73,6 +74,7 @@ const { options } = useSelect({
     optionValue: "nested.id",
 });
 ```
+
 :::
 
 ### `sort`
@@ -80,7 +82,6 @@ const { options } = useSelect({
 It allows to show the options in the desired order. `sort` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send sort query parameters to the API.
 
 [Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
-
 
 ```tsx
 useSelect({
@@ -112,6 +113,7 @@ useSelect({
     ],
 });
 ```
+
 ### `defaultValue`
 
 Allows to make options selected by default. Adds extra options to `<select>` component. In some cases like there are many entries for the `<select>` and pagination is required, `defaultValue` may not be present in the current visible options and this can break the `<select>` component. To avoid such cases, A seperate `useMany` query is sent to the backend with the `defaultValue` and appended to the options of `<select>`, ensuring the default values exist in the current options array. Since it uses `useMany` to query the necessary data, the `defaultValue` can be a single value or an array of values like the following:
@@ -126,7 +128,7 @@ useSelect({
 
 ### `debounce`
 
-It allows us to `debounce` the `onSearch` function.  
+It allows us to `debounce` the `onSearch` function.
 
 ```tsx
 useSelect({
@@ -204,14 +206,14 @@ const { options } = useSelect({
 
 ### `onSearch`
 
-It allows us to `AutoComplete` the `options`.  
+It allows us to `AutoComplete` the `options`.
 
 [Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 <OnSearchLivePreview />
 
 :::info
-**If defined, it allows us to override the filters to use when fetching list of records.** 
+**If defined, it allows us to override the filters to use when fetching list of records.**
 :::
 
 [useQuery](https://react-query.tanstack.com/reference/useQuery) options for default value query can be set by passing `queryOptions` property.
@@ -230,7 +232,7 @@ const { selectProps } = useSelect({
     onSearch={undefined}
     filterOption={true}
     optionFilterProp="label" // or "value"
-/>
+/>;
 ```
 
 ### `metaData`
@@ -289,7 +291,7 @@ useSelect({
 
 ### `successNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.  
+> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
 After data is fetched successfully, `useSelect` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -307,7 +309,7 @@ useSelect({
 
 ### `errorNotification`
 
-> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.  
+> [`NotificationProvider`](/docs/api-reference/core/providers/notification-provider/) is required for this prop to work.
 
 After data fetching is failed, `useSelect` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
 
@@ -325,7 +327,7 @@ useSelect({
 
 ### `liveMode`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.  
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
@@ -338,7 +340,7 @@ useSelect({
 
 ### `onLiveEvent`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.  
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 The callback function that is executed when new events from a subscription are arrived.
 
@@ -349,13 +351,15 @@ useSelect({
     },
 });
 ```
+
 ### `liveParams`
 
-> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.  
+> [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
 ## FAQ
+
 ### How can search for options (Autocomplete)?
 
 [`onSearch`](/docs/api-reference/core/hooks/useSelect/#onsearch) is a function that is used to set the search value. It is useful when you want to search for a specific value. A simple example of this is shown below.
@@ -394,9 +398,7 @@ const options = queryResult.data?.data.map((item) => ({
     value: item.id,
 }));
 
-return (
-    <Select options={options} />
-);
+return <Select options={options} />;
 ```
 
 ### How do I use it with `CRUD` components and `useForm`?
