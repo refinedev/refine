@@ -12,7 +12,7 @@ By using `useDataGrid`, you can get properties that are compatible with MUI X [`
 
 For all the other features, you can refer to the MUI X [`<DataGrid>`][data-grid] documentation
 
-> 💡 The `useDataGrid` hook works in compatibility with both the [`<DataGrid>`][data-grid] and the [`<DataGridPro>`](https://mui.com/x/react-data-grid/#commercial-version) component.
+> 💡 The `useDataGrid` hook is compatible with both the [`<DataGrid>`][data-grid] and the [`<DataGridPro>`](https://mui.com/x/react-data-grid/#commercial-version) components.
 
 :::info
 This hook is extended from [`useTable`][use-table-core] from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
