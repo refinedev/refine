@@ -1,17 +1,28 @@
 ---
 id: useEditableTable
 title: useEditableTable
+source: packages/antd/src/hooks/table/useTable
 ---
 
+import LivePreview from "./\_partial-use-editable-table-live-preview.md";
 
-`useEditeableTable` allows you to implement edit feature on the table with ease, on top of all the features that [`useTable`][usetable] provides.
-`useEditableTable` return properties that can be used on Ant Desing's [`<Table>`][table] and [`<Form>`][form] components.
+`useEditeableTable` allows you to implement the edit feature on the [`<Table>`][table] with ease. Return properties that can be used on Ant Desing's [`<Table>`][table] and [`<Form>`][form] components.
 
-## Editing with buttons
+:::info
+`useEditeableTable` hook is extended from [`useTable`][usetable] hook from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/next/packages/antd) package. This means that you can use all the features of [`useTable`][usetable] hook.
+:::
+
+## Basic Usage
+
+Here is an example of how to use `useEditableTable` hook. We will explain in detail the usage of the hook in the following sections:
+
+<LivePreview/>
+
+### Editing with buttons
 
 Let's say that we want to make the `Post` data where we show the `id` and `title` values a listing page:
 
-This time, to add the edit feature, we have to cover the `<Table>` component with a `<Form>`component and pass the properties coming from `useEditableTable` to the corresponding components:
+This time, to add the edit feature, we have to cover the `<Table>` component with a `<Form>` component and pass the properties coming from `useEditableTable` to the corresponding components:
 
 ```tsx title="/pages/posts/list.tsx"
 import {
@@ -45,8 +56,6 @@ interface IPost {
     title: string;
 }
 ```
-
-<br />
 
 Now lets add a column for edit buttons:
 
@@ -125,8 +134,6 @@ export const PostList: React.FC = () => {
 :::tip
 `isEditing` function that returns from `useEditableTable` lets us check whether a line is currently in edit mode or not.
 :::
-
-<br />
 
 For now, our post is not editable yet. If a post is being edited, we must show editable columns inside a `<Form.Item>` using conditional rendering:
 
@@ -219,29 +226,20 @@ export const PostList: React.FC = () => {
 };
 ```
 
-With this, when a user clicks on the edit button, `isEditing(lineId)` will turn `true` for the relevant line. This will also cause `<TextInput>` to show up on the line thats being edited. When the editing is finished, new value can be saved by clicking `<SaveButton>`.
+With this, when a user clicks on the edit button, `isEditing(lineId)` will turn `true` for the relevant line. This will also cause `<TextInput>` to show up on the line that's being edited. When the editing is finished, a new value can be saved by clicking `<SaveButton>`.
 
 :::tip
 By giving the `<Table.Column>` component a unique `render` property, you can render the value in that column however you want.
 Refer to [`<Table.Column>`][table.column] documentation for more information.
 :::
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useEditableTable/edit-button.gif" alt="Editing rows with edit button" />
-</div>
+### Editing by clicking to row
 
-## Editing by clicking to row
+A line with the `id` value can be put to edit mode programmatically by using the `setId` function that returns from `useEditableTable`.
 
-A line with the `id` value can be put to edit mode programatically by using the `setId` function that returns from `useEditableTable`.
+The `onRow` property of the `<Table>` component can be used to put a line to editing mode when it's clicked on. The function given to the `onRow` property is called every time one of these lines is clicked on, with the information of which line was clicked on.
 
-The `onRow` property of the `<Table>` component can be used to put a line to editing mode when its clicked on. Function given to the `onRow` property is called everytime one of these lines are clicked on, with the information of which line was clicked on.
-
-We can use `setId` to put a line to edit mode whenever its clicked on.
+We can use `setId` to put a line to edit mode whenever it's clicked on.
 
 ```tsx title="/pages/posts/list.tsx"
 import {
@@ -301,14 +299,51 @@ export const PostList: React.FC = () => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/hooks/useEditableTable/row-click-edit.gif" alt="Row click edit functionality in action" />
-</div>
+## Properties
+
+:::tip
+
+All `useForm` and [`useTable`][usetable] properties are available in `useEditableTable`. You can read the documentation of [`useForm`][useform] and [`useTable`][usetable] for more information.
+
+:::
+
+## Return Values
+
+:::tip
+
+All `useForm` and [`useTable`][usetable] return values are available in `useEditableTable`. You can read the documentation of [`useForm`][useform] and [`useTable`][usetable] for more information.
+
+:::
+
+### `cancelButtonProps`
+
+Returns the props for needed by the `<EditButton>`.
+
+By default, `onClick` function is overridden by `useEditableTable`. When is triggered it will call `useForm's` `setId` function with `undefined`.
+
+```tsx
+cancelButtonProps: () => ButtonProps;
+```
+
+### `editButtonProps`
+
+Takes `id` as a parameter and returns the props needed by the `<EditButton>`.
+
+By default, `onClick` function is overridden by `useEditableTable`. When is triggered it will call `useForm's` `setId` function with the given `id`.
+
+```tsx
+editButtonProps: (id: BaseKey) => ButtonProps;
+```
+
+Returns a function that takes an `id` as a parameter and returns the props for the edit button.
+
+### `isEditing`
+
+```tsx
+isEditing: (id: BaseKey) => boolean;
+```
+
+Takes a `id` as a parameter and returns `true` if the given `BaseKey` is equal to the selected `useForm's` `id`.
 
 ## API
 
@@ -327,26 +362,24 @@ export const PostList: React.FC = () => {
 
 ### Return values
 
-| Property          | Description                                             | Type                                                                                              |
-| ----------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| searchFormProps   | Ant Design [`<Form>`][form] props                       | [`FormProps<TSearchVariables>`][form]                                                             |
-| tableProps        | Ant Design [`<Table>`][table] props                     | [`TableProps<TData>`][table]                                                                      |
-| tableQueryResult  | Result of the `react-query`'s `useQuery`                | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery] |
-| sorter            | Current sorting state                                   | [`CrudSorting`][crudsorting]                                                                      |
-| filters           | Current filters state                                   | [`CrudFilters`][crudfilters]                                                                      |
-| form              | Ant Design [`<Form>`][form] instance                    | [`FormInstance`][forminstance]                                                                    |
-| formProps         | Ant Design [`<Form>`][form] props                       | [`FormProps`][form]                                                                               |
-| saveButtonProps   | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; }`                                                     |
-| cancelButtonProps | Props for a cancel button                               | `{ onClick: () => void; }`                                                                        |
-| editButtonProps   | Props for an edit button                                | `{ onClick: () => void; }`                                                                        |
-| queryResult       | Result of the query of a record                         | [`QueryObserverResult<T>`][usequery]                                                              |
-| mutationResult    | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`][usemutation]                                                             |
-| formLoading       | Loading state of form request                           | `boolean`                                                                                         |
-| id                | Record id for edit action                               | [`BaseKey`][basekey]                                                                              |
-| setId             | `id` setter                                             | `Dispatch<SetStateAction<` [`BaseKey`][basekey] \| `undefined>>`                                  |
-| isEditing         | Check if is editing                                     | `(id: `[`BaseKey`][basekey]`) => boolean`                                                         |
-
-<br />
+| Property          | Description                                             | Type                                                                                 |
+| ----------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| searchFormProps   | Ant Design [`<Form>`][form] props                       | [`FormProps<TSearchVariables>`][form]                                                |
+| tableProps        | Ant Design [`<Table>`][table] props                     | [`TableProps<TData>`][table]                                                         |
+| tableQueryResult  | Result of the `react-query`'s `useQuery`                | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery] |
+| sorter            | Current sorting state                                   | [`CrudSorting`][crudsorting]                                                         |
+| filters           | Current filters state                                   | [`CrudFilters`][crudfilters]                                                         |
+| form              | Ant Design [`<Form>`][form] instance                    | [`FormInstance`][forminstance]                                                       |
+| formProps         | Ant Design [`<Form>`][form] props                       | [`FormProps`][form]                                                                  |
+| saveButtonProps   | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; }`                                        |
+| cancelButtonProps | Props for a cancel button                               | `{ onClick: () => void; }`                                                           |
+| editButtonProps   | Props for an edit button                                | `{ onClick: () => void; }`                                                           |
+| queryResult       | Result of the query of a record                         | [`QueryObserverResult<T>`][usequery]                                                 |
+| mutationResult    | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`][usemutation]                                                |
+| formLoading       | Loading state of form request                           | `boolean`                                                                            |
+| id                | Record id for edit action                               | [`BaseKey`][basekey]                                                                 |
+| setId             | `id` setter                                             | `Dispatch<SetStateAction<` [`BaseKey`][basekey] \| `undefined>>`                     |
+| isEditing         | Check if is editing                                     | `(id: `[`BaseKey`][basekey]`) => boolean`                                            |
 
 ## Example
 
@@ -354,7 +387,8 @@ export const PostList: React.FC = () => {
 
 [table]: https://ant.design/components/table/#API
 [form]: https://ant.design/components/form/#API
-[usetable]: /api-reference/antd/hooks/table/useTable.md
+[useform]: /docs/api-reference/antd/hooks/table/useTable/
+[usetable]: /docs/api-reference/antd/hooks/table/useTable
 [usequery]: https://react-query.tanstack.com/reference/useQuery
 [usemutation]: https://react-query.tanstack.com/reference/useMutation
 [baserecord]: /api-reference/core/interfaces.md#baserecord

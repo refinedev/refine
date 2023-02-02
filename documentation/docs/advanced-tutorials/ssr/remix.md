@@ -127,11 +127,12 @@ const App = () => (
     <Refine
         resources={[
             // This will add an item to `<Sider/>` with route `/my-custom-item`
-            { name: "my-custom-item", list: () => null }
+            { name: "my-custom-item", list: () => null },
         ]}
     />
 );
 ```
+
 :::
 
 :::caution
@@ -869,12 +870,12 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 [routerprovider]: /api-reference/core/providers/router-provider.md
 [refine]: /api-reference/core/components/refine-config.md
 [remixroutes]: https://remix.run/docs/en/v1/api/conventions#routes
-[usetable]: /api-reference/core/hooks/useTable.md
+[usetable]: /docs/api-reference/core/hooks/useTable
 [reactqueryssr]: https://react-query.tanstack.com/guides/ssr#using-initialdata
 [reactquery]: https://react-query.tanstack.com/
 [getlist]: /api-reference/core/providers/data-provider.md#getlist
 [dataprovider]: /api-reference/core/providers/data-provider.md
-[usetable]: /api-reference/core/hooks/useTable.md
+[usetable]: /docs/api-reference/core/hooks/useTable
 [interfaces]: /api-reference/core/interfaces.md/#crudfilters
 [loaderfunction]: https://remix.run/docs/en/v1/api/conventions#loader
 [jokesapp]: https://remix.run/docs/en/v1/tutorials/jokes#authentication

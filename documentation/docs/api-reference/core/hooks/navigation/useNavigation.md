@@ -3,246 +3,223 @@ id: useNavigation
 title: useNavigation
 ---
 
-**refine** uses [`routerProvider`][routerProvider] and comes with all redirects out of the box. It allows you to manage your routing operations in refine. Using this hook, you can manage all the routing operations of your application very easily.
+`useNavigation` is a hook that provides methods to navigate the app.
 
-```tsx 
+Internally, it uses the `useHistory` of the [`routerProvider`][routerprovider].
+
+```tsx
 import { useNavigation } from "@pankod/refine-core";
 
-const { create, edit, clone, show, list, push, replace, goBack } = useNavigation();
+const {
+    list,
+    create,
+    edit,
+    show,
+    clone,
+    push,
+    replace,
+    goBack,
+    listUrl,
+    createUrl,
+    editUrl,
+    showUrl,
+    cloneUrl,
+} = useNavigation();
 ```
 
-:::tip
-`useNavigation` uses the `useHistory` of the [`routerProvider`][routerProvider].
-:::
+## Return Values
 
-### Usage
+### `list`
 
-We will make a button for each method to use.
-
-## List
-
-Let's imagine that we have a post list and we want to be redirected to this page. To do this we will use the list hook.
+It is a method that navigates to the list page of the given resource.
 
 ```tsx
-import {
-// highlight-next-line
-    useNavigation,
-} from "@pankod/refine-core";
+import { useNavigation } from "@pankod/refine-core";
 
-export const MyListButton = () => {
-// highlight-next-line
-    const { list } = useNavigation();
+const { list } = useNavigation();
 
-    return (
-        <button
-            onClick={(): void =>
-// highlight-next-line
-                list("posts")
-            }
-        >
-            Navigate to Post List Page
-        </button>
-    );
-};
+list("posts"); // It navigates to the `/posts` page
 ```
 
-### Create
+You can also give a `type` property as a second parameter to the `list` method.
 
-If we want to go to the post creation page to create a new post, we can use the create hook.
+### `create`
+
+It is a method that navigates to the create page of the given resource.
 
 ```tsx
-import {
-// highlight-next-line
-    useNavigation,
-} from "@pankod/refine-core";
+import { useNavigation } from "@pankod/refine-core";
 
-export const MyCreateButton = () => {
-// highlight-next-line
-    const { create } = useNavigation();
+const { create } = useNavigation();
 
-    return (
-        <button
-            onClick={(): void =>
-// highlight-next-line
-                create("posts")
-            }
-        >
-            Navigate to Create Page
-        </button>
-    );
-};
+create("posts"); // It navigates to the `/posts/create` page
 ```
 
-### Edit
+You can also give a `type` property as a second parameter to the `create` method.
 
-Let's see what we should do if we want to go to the editing page of one of our posts.
+### `edit`
+
+It is a method that navigates to the edit page of the given resource and id. When you use this method, you need to give the `id` of the record you want to edit.
 
 ```tsx
-import {
-// highlight-next-line
-    useNavigation,
-} from "@pankod/refine-core";
+import { useNavigation } from "@pankod/refine-core";
 
-export const MyEditButton = () => {
-// highlight-next-line
-    const { edit } = useNavigation();
+const { edit } = useNavigation();
 
-    return (
-        <button
-            onClick={(): void =>
-// highlight-next-line
-                edit("posts", "1")
-            }
-        >
-            Navigate to Edit Page
-        </button>
-    );
-};
+edit("posts", "1"); // It navigates to the `/posts/edit/1` page
 ```
 
-We used the `edit` to navigate to the post edit page, but you can see the differences in using it. `edit` requires the id property from us and clicking the button will trigger the edit method of useNavigation and then redirect the app to `/posts/edit/1`
+You can also give a `type` property as a third parameter to the `edit` method.
 
-:::caution Attention
-There is something we should pay attention to here. We need to give the `id` of which post we want to edit.
-:::
+### `show`
 
-:::tip
-You can also give a `type` property to the methods. You can look here to see the [properties.](#properties)
-:::
-
-### Show
-
-If you want to show the detail of your posts you can use show and you need `id` for show.
+It is a method that navigates to the show page of the given resource and id. When you use this method, you need to give the `id` of the record you want to show.
 
 ```tsx
-import {
-// highlight-next-line
-    useNavigation,
-} from "@pankod/refine-core";
+import { useNavigation } from "@pankod/refine-core";
 
-export const MyShowButton = () => {
-// highlight-next-line
-    const { show } = useNavigation();
+const { show } = useNavigation();
 
-    return (
-        <button
-            onClick={(): void =>
-// highlight-next-line
-                show("posts", "1")
-            }
-        >
-            Navigate to Show Page
-        </button>
-    );
-};
+show("posts", "1"); // It navigates to the `/posts/show/1` page
 ```
 
-:::caution Attention
-There is something we should pay attention to here. We need to give the `id` of which post we want to show.
-:::
+You can also give a `type` property as a third parameter to the `show` method.
 
-:::tip
-If you want to return to previous page. You can use `goBack` hook.
-:::
+### `clone`
 
-### Clone
-
-If we have the resources to clone a post and we want to go to this page, we will use `clone` with a record id.
+It is a method that navigates to the clone page of the given resource and id. When you use this method, you need to give the `id` of the record you want to clone.
 
 ```tsx
-import {
-// highlight-next-line
-    useNavigation,
-} from "@pankod/refine-core";
+import { useNavigation } from "@pankod/refine-core";
 
-export const MyCloneButton = () => {
-// highlight-next-line
-    const { clone } = useNavigation();
+const { clone } = useNavigation();
 
-    return (
-        <button
-            onClick={(): void =>
-// highlight-next-line
-                clone("posts", "1")
-            }
-        >
-            Navigate to Clone Page
-        </button>
-    );
-};
+clone("posts", "1"); // It navigates to the `/posts/clone/1` page
 ```
 
-:::caution Attention
-There is something we should pay attention to here. We need to give the `id` of which post we want to clone.
-:::
+You can also give a `type` property as a third parameter to the `clone` method.
 
-### Push, Replace and GoBack
+### `push`
 
-If we do not want to use the above methods and want to redirect ourselves, we should use `push` or `replace` methods and also we can use `goBack` to return to previous page. You can check out the differences between them [here](#return-values).
+It is a method that pushes a new entry onto the history stack. It uses the `push` method of the `useHistory` from the [`routerProvider`][routerprovider].
 
-```tsx 
-import {
-// highlight-next-line
-    useNavigation,
-} from "@pankod/refine-core";
+```tsx
+import { useNavigation } from "@pankod/refine-core";
 
-export const MyHistoryButtons = () => {
-// highlight-next-line
-    const { push, replace, goBack } = useNavigation();
+const { push } = useNavigation();
 
-    return (
-        <>
-            <button
-                onClick={(): void =>
-// highlight-next-line
-                    push("posts")
-                }
-            >
-                Push to posts Page
-            </button>
-            <button
-                onClick={(): void =>
-// highlight-next-line
-                    replace("posts")
-                }
-            >
-                Replaces to posts Page
-            </button>
-            <button
-                onClick={(): void =>
-// highlight-next-line
-                    goBack()
-                }
-            >
-                Go back to previous Page
-            </button>
-        </>
-    );
-};
+push("custom-page"); // It navigates to the `/custom-page` page
+```
+
+`push` method parameters are dependent on your router provider.
+
+### `replace`
+
+It is a method that replaces the current entry on the history stack. It uses the `replace` method of the `useHistory` from the [`routerProvider`][routerprovider].
+
+```tsx
+import { useNavigation } from "@pankod/refine-core";
+
+const { replace } = useNavigation();
+
+replace("custom-page"); // It navigates to the `/custom-page` page
+```
+
+`replace` method parameters are dependent on your router provider.
+
+### `goBack`
+
+It is a method that navigates to the previous page. It uses the `goBack` method of the `useHistory` from the [`routerProvider`][routerprovider].
+
+```tsx
+import { useNavigation } from "@pankod/refine-core";
+
+const { goBack } = useNavigation();
+
+goBack(); // It navigates to the previous page
+```
+
+`goBack` method parameters are dependent on your router provider.
+
+### `listUrl`
+
+It is a method that returns the list page URL of the given resource.
+
+```tsx
+import { useNavigation } from "@pankod/refine-core";
+
+const { listUrl } = useNavigation();
+
+listUrl("posts"); // It returns the `/posts` URL
+```
+
+### `createUrl`
+
+It is a method that returns the create page URL of the given resource.
+
+```tsx
+import { useNavigation } from "@pankod/refine-core";
+
+const { createUrl } = useNavigation();
+
+createUrl("posts"); // It returns the `/posts/create` URL
+```
+
+### `editUrl`
+
+It is a method that returns the edit page URL of the given resource and id.
+
+```tsx
+import { useNavigation } from "@pankod/refine-core";
+
+const { editUrl } = useNavigation();
+
+editUrl("posts", "1"); // It returns the `/posts/edit/1` URL
+```
+
+### `showUrl`
+
+It is a method that returns the show page URL of the given resource and id.
+
+```tsx
+import { useNavigation } from "@pankod/refine-core";
+
+const { showUrl } = useNavigation();
+
+showUrl("posts", "1"); // It returns the `/posts/show/1` URL
+```
+
+### `cloneUrl`
+
+It is a method that returns the clone page URL of the given resource and id.
+
+```tsx
+import { useNavigation } from "@pankod/refine-core";
+
+const { cloneUrl } = useNavigation();
+
+cloneUrl("posts", "1"); // It returns the `/posts/clone/1` URL
 ```
 
 ## API Reference
 
-### Properties
-
-| Property                                          | Description                                 | Type                      | Default  |
-| ------------------------------------------------- | ------------------------------------------- | ------------------------- | -------- |
-| resource <div className="required">Required</div> | Redirect the app to the given resource name | `string`                  |          |
-| type                                              | It is [`routerProvider`][routerProvider] history types            | [HistoryType](#interface) | `"push"` |
-| id                                                | It is used to append to the end of the path | `string`                  |          |
-
 ### Return values
 
-| Property | Description                                     | Type                                                                         |
-| -------- | ----------------------------------------------- | ---------------------------------------------------------------------------- |
-| create   | Navigate to `create page` of your resource      | `(resource: string, type:` [HistoryType](#interface) `) => void `            |
-| list     | Navigate to `list page` of your resource        | `(resource: string, type:` [HistoryType](#interface) `) => void`             |
-| edit     | Navigate to `edit page` of your resource        | `(resource: string, type:` [HistoryType](#interface) `, id: string) => void` |
-| clone    | Navigate to `clone page` of your resource       | `(resource: string, type:` [HistoryType](#interface) `, id: string) => void` |
-| show     | Navigate to `show page` of your resource        | `(resource: string, type:` [HistoryType](#interface) `, id: string) => void` |
-| push     | Pushes a new entry onto the history stack       | `(path: string, ...rest: unknown[]) => void`                                   |
-| replace  | Replaces the current entry on the history stack | `(path: string, ...rest: unknown[]) => void`                                   |
-| goBack   | Equivalent to go previous stack                 | `() => void`                                                                 |
+| Property  | Description                                                 | Type                                                                                  |
+| --------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| list      | Method that navigates to the list page                      | ( resource: string, type: [HistoryType](#interface) ) => void                         |
+| create    | Method that navigates to the create page                    | ( resource: string, type: [HistoryType](#interface) ) => void                         |
+| edit      | Method that navigates to the edit page                      | ( resource: string, id: [BaseKey][basekey], type: [HistoryType](#interface) ) => void |
+| show      | Method that navigates to the show page                      | ( resource: string, id: [BaseKey][basekey], type: [HistoryType](#interface) ) => void |
+| clone     | Method that navigates to the clone page                     | ( resource: string, id: [BaseKey][basekey], type: [HistoryType](#interface) ) => void |
+| push      | Method that pushes the given path to the history stack      | ( path: string, ...rest: unknown[] ) => void                                          |
+| replace   | Method that replaces the current entry on the history stack | ( path: string, ...rest: unknown[] ) => void                                          |
+| goBack    | Method that navigates to the previous page                  | () => void                                                                            |
+| listUrl   | Method that returns the list page URL                       | ( resource: string ) => string                                                        |
+| createUrl | Method that returns the create page URL                     | ( resource: string ) => string                                                        |
+| editUrl   | Method that returns the edit page URL                       | ( resource: string, id: [BaseKey][basekey] ) => string                                |
+| showUrl   | Method that returns the show page URL                       | ( resource: string, id: [BaseKey][basekey] ) => string                                |
+| cloneUrl  | Method that returns the clone page URL                      | ( resource: string, id: [BaseKey][basekey] ) => string                                |
 
 #### Interface
 
@@ -250,4 +227,5 @@ export const MyHistoryButtons = () => {
 export type HistoryType = "push" | "replace";
 ```
 
-[routerProvider]: /api-reference/core/providers/router-provider.md
+[routerprovider]: /api-reference/core/providers/router-provider.md
+[basekey]: /api-reference/core/interfaces.md#basekey
