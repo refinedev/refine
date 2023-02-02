@@ -247,7 +247,7 @@ getList: async ({
     const { field, order } = sort;
     const { field, operator, value } = filter;
 
-    // handle request
+    // "You can handle the request according to your API requirements."
 
     return {
         data,
@@ -275,7 +275,7 @@ The `create` method creates a new record with the `resource` and `variables` par
 
 ```ts
 create: async ({ resource, variables, metaData }) => {
-    // handle request
+    // "You can handle the request according to your API requirements."
 
     return {
         data,
@@ -301,7 +301,7 @@ The `update` method updates the record with the `resource`, `id`, and, `variable
 
 ```ts
 update: async ({ resource, id, variables, metaData }) => {
-    // handle request
+    // "You can handle the request according to your API requirements."
 
     return {
         data,
@@ -328,7 +328,7 @@ The `deleteOne` method delete the record with the `resource` and `id` parameters
 
 ```ts
 deleteOne: async ({ resource, id, variables, metaData }) => {
-    // handle request
+    // "You can handle the request according to your API requirements."
 
     return {
         data,
@@ -355,7 +355,7 @@ The `getOne` method gets the record with the `resource` and `id` parameters.
 
 ```ts
 getOne: async ({ resource, id, metaData }) => {
-    // handle request
+    // "You can handle the request according to your API requirements."
 
     return {
         data,
@@ -404,7 +404,7 @@ custom: async ({
     headers,
     metaData,
 }) => {
-    // handle request
+    // "You can handle the request according to your API requirements."
 
     return {
         data,
@@ -441,7 +441,7 @@ The `getMany` method gets the records with the `resource` and `ids` parameters. 
 
 ```ts
 getMany: async ({ resource, ids, metaData }) => {
-    // handle request
+    // "You can handle the request according to your API requirements."
 
     return {
         data,
@@ -465,7 +465,7 @@ This method allows us to create multiple items in a resource. Implementation of 
 
 ```ts
 createMany: async ({ resource, variables, metaData }) => {
-    // handle request
+    // "You can handle the request according to your API requirements."
 
     return {
         data,
@@ -491,7 +491,7 @@ This method allows us to delete multiple items in a resource. Implementation of 
 
 ```ts
 deleteMany: async ({ resource, ids, variables, metaData }) => {
-    // handle request
+    // "You can handle the request according to your API requirements."
 
     return {
         data,
@@ -516,7 +516,7 @@ This method allows us to update multiple items in a resource. Implementation of 
 
 ```ts
 updateMany: async ({ resource, ids, variables, metaData }) => {
-    // handle request
+    // "You can handle the request according to your API requirements."
 
     return {
         data,
