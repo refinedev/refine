@@ -34,6 +34,39 @@ interface OpenNotificationParams {
 }
 ```
 
+## Usage
+
+To use `notificationProvider` in refine, we have to pass the notificationProvider to the `<Refine>` component.
+
+```tsx
+import { Refine, NotificationProvider } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+
+//highlight-start
+const notificationProvider: NotificationProvider = {
+    open: () => {},
+    close: () => {},
+};
+//highlight-end
+
+const App = () => {
+    return (
+        <Refine
+            //highlight-next-line
+            notificationProvider={notificationProvider}
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        />
+    );
+};
+```
+
+By default, **refine** doesn't require `notificationProvider` configuration.
+
+If an `notificationProvider` property is not provided, **refine** will use the default `notificationProvider`. This default `notificationProvider` lets the app work without an notification.
+If your app doesn't require `notification`, no further setup is necessary for the app to work.
+
 ## Built-in Notification Providers
 
 If you're looking for a complete notification infrastructure, **refine** has out-of-the-box support for the libraries below:
@@ -114,39 +147,6 @@ If you're looking for a complete notification infrastructure, **refine** has out
   ```
   </TabItem>
 </Tabs>
-
-## Usage
-
-To use `notificationProvider` in refine, we have to pass the notificationProvider to the `<Refine>` component.
-
-```tsx
-import { Refine, NotificationProvider } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
-
-//highlight-start
-const notificationProvider: NotificationProvider = {
-    open: () => {},
-    close: () => {},
-};
-//highlight-end
-
-const App = () => {
-    return (
-        <Refine
-            //highlight-next-line
-            notificationProvider={notificationProvider}
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        />
-    );
-};
-```
-
-By default, **refine** doesn't require `notificationProvider` configuration.
-
-If an `notificationProvider` property is not provided, **refine** will use the default `notificationProvider`. This default `notificationProvider` lets the app work without an notification.
-If your app doesn't require `notification`, no further setup is necessary for the app to work.
 
 ## Creating an `notificationProvider`
 
