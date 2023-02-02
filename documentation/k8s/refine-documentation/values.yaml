@@ -68,9 +68,6 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-nodeSelector:
-  doks.digitalocean.com/node-pool: pool-a086amdxk
-
 tolerations: []
 
 affinity: {}
