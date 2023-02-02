@@ -54,13 +54,15 @@ An `authProvider` includes the following methods:
 import { AuthProvider } from "@pankod/refine-core";
 
 const authProvider: AuthProvider = {
+    // required methods
     login: () => Promise.resolve(),
+    checkAuth: () => Promise.resolve(),
+    logout: () => Promise.resolve(),
+    checkError: () => Promise.resolve(),
+    // optional methods
     register: () => Promise.resolve(),
     forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
     getPermissions: () => Promise.resolve(),
     getUserIdentity: () => Promise.resolve(),
 };
