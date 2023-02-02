@@ -17,7 +17,7 @@ interface IProduct {
 }
 
 const ProductShow: React.FC = () => {
-    const { queryResult, showId, setShowId } = useShow<IProduct>();
+    const { queryResult } = useShow<IProduct>();
 
     const { data, isLoading, isError } = queryResult;
     const product = data?.data;
@@ -38,16 +38,6 @@ const ProductShow: React.FC = () => {
             <p>material: {product?.material}</p>
 
             <br />
-
-            <button
-                onClick={() => setShowId((prev) => prev - 1)}
-                disabled={showId === 1}
-            >
-                {"<"} Prev Product
-            </button>
-            <button onClick={() => setShowId((prev) => prev + 1)}>
-                Next Product {">"}
-            </button>
         </div>
     );
 };
