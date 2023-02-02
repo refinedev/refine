@@ -211,10 +211,10 @@ It allows us to `AutoComplete` the `options`.
 <OnSearchLivePreview />
 
 :::info
-**If defined, it allows us to override the filters to use when fetching list of records.** 
-:::
 
-[useQuery](https://react-query.tanstack.com/reference/useQuery) options for default value query can be set by passing `queryOptions` property.
+If `onSearch` is used, it will override the existing `filters`.
+
+:::
 
 #### Client-side filtering
 
