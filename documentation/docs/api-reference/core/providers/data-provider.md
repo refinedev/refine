@@ -430,7 +430,7 @@ custom: async ({
 Bulk actions are actions that can be performed on multiple items at once. Performing bulk actions is a common pattern in admin panels. If your API supports bulk actions, you can implement them in your data provider.
 
 :::tip
-Bulk operations are a way to perform many database operations at once, improving speed and efficiency. They can be used for data [`import`](../../examples/core/useImport.md) and [`export`](../../api-reference/core/hooks/import-export/useExport.md), and have the added benefit of being atomic, meaning that they are treated as a single unit.
+Bulk operations are a way to perform many database operations at once, improving speed and efficiency. They can be used for data [`import`](/docs/api-reference/core/hooks/import-export/useImport/) and [`export`](/docs/api-reference/core/hooks/import-export/useExport/), and have the added benefit of being atomic, meaning that they are treated as a single unit.
 :::
 
 ### getMany
