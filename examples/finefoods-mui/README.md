@@ -34,7 +34,7 @@
 ## Try it out on your local
 
 ```bash
-npm create refine-app@latest -- --example finefoods-mui
+npm create refine-app@latest --example finefoods-mui
 ```
 
 ## Try it out on CodeSandbox
