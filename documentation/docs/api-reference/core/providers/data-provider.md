@@ -292,6 +292,12 @@ getList: async ({
 };
 ```
 
+:::tip
+
+`getList` also can support cursor-based pagination. Refer to [this example](/docs/api-reference/core/hooks/data/useInfiniteList/#how-to-use-cursor-based-pagination) for more information.
+
+:::
+
 **Parameter Types:**
 
 | Name           | Type                             |
