@@ -5,7 +5,7 @@ title: Notification Provider
 
 **refine** let's you set a notification API by providing the `notificationProvider` property to the `<Refine>` component.
 
-`notificationProvider` is an object with close and open methods. **refine** uses these methods to show and hide notifications. These methods can be called from anywhere in the application with [`useNotification`](/api-reference/core/hooks/useNotification.md) hook.
+`notificationProvider` is an object with close and open methods. **refine** uses these methods to show and hide notifications. These methods can be called from anywhere in the application with [`useNotification`](/docs/api-reference/core/hooks/useNotification/) hook.
 
 An `notificationProvider` must include following methods:
 
@@ -33,20 +33,6 @@ interface OpenNotificationParams {
     undoableTimeout?: number;
 }
 ```
-
-:::tip
-If you are using Ant Design you can use `notificationProvider` exported from `@pankod/refine-antd` package. It is compatible with Ant Design's [`notification`](https://ant.design/components/notification/#header) component.
-
-```tsx
-import { notificationProvider } from "@pankod/refine-antd";
-
-<Refine
-    ...
-    notificationProvider={notificationProvider}
-/>
-```
-
-:::
 
 ## Usage
 
@@ -80,6 +66,87 @@ By default, **refine** doesn't require `notificationProvider` configuration.
 
 If an `notificationProvider` property is not provided, **refine** will use the default `notificationProvider`. This default `notificationProvider` lets the app work without an notification.
 If your app doesn't require `notification`, no further setup is necessary for the app to work.
+
+## Built-in Notification Providers
+
+If you're looking for a complete notification infrastructure, **refine** has out-of-the-box support for the libraries below:
+
+<Tabs
+  defaultValue="antd"
+  values={[ 
+    {label: 'Ant Design', value: 'antd'}, 
+    {label: 'Material UI', value: 'mui'},
+    {label: 'Mantine', value: 'mantine'},
+    {label: 'Chakra UI', value: 'chakra'},
+    {label: 'Custom', value: 'custom'}, 
+  ]}>
+
+  <TabItem value="custom">
+
+  Create a custom notification provider by following the [guide](/docs/api-reference/core/providers/notification-provider/#creating-an-notificationprovider).
+
+  </TabItem>
+
+  <TabItem value="antd">
+
+  ```tsx
+  import { notificationProvider} from "@pankod/refine-antd";
+
+  return (
+    <Refine
+      //...
+      notificationProvider={notificationProvider}
+    />
+  );
+  ```
+  </TabItem>
+
+  <TabItem value="mui">
+
+  ```tsx
+  import { notificationProvider, RefineSnackbarProvider } from "@pankod/refine-mui";
+
+  return (
+    <RefineSnackbarProvider>
+      <Refine
+        //...
+        notificationProvider={notificationProvider}
+      />
+    </RefineSnackbarProvider>
+  );
+  ```
+  </TabItem>
+
+  <TabItem value="mantine">
+
+  ```tsx
+  import { notificationProvider, NotificationsProvider } from "@pankod/refine-mantine";
+
+  return (
+    <NotificationsProvider position="top-right">
+      <Refine
+        //...
+        notificationProvider={notificationProvider}
+      />
+    </NotificationsProvider>
+  );
+  ```
+  </TabItem>
+
+  <TabItem value="chakra">
+
+  ```tsx
+  import { notificationProvider } from "@pankod/refine-chakra";
+
+  return (
+    <Refine
+      //...
+      notificationProvider={notificationProvider()}
+    />
+  );
+  ```
+  </TabItem>
+</Tabs>
 
 ## Creating an `notificationProvider`
 
@@ -257,7 +324,7 @@ export const UndoableNotification: React.FC<UndoableNotification> = ({
 </details>
 
 :::tip
-`open` method will be accessible via [`useNotification`](/api-reference/core/hooks/useNotification.md) hook.
+`open` method will be accessible via [`useNotification`](/docs/api-reference/core/hooks/useNotification/) hook.
 
 ```tsx
 import { useNotification } from "@pankod/refine-core";
@@ -287,7 +354,7 @@ const notificationProvider: NotificationProvider = {
 ```
 
 :::tip
-`close` method will be accessible via [`useNotification`](/api-reference/core/hooks/useNotification.md) hook.
+`close` method will be accessible via [`useNotification`](/docs/api-reference/core/hooks/useNotification/) hook.
 
 ```tsx
 import { useNotification } from "@pankod/refine-core";

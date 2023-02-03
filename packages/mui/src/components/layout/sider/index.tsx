@@ -58,8 +58,12 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [open, setOpen] = useState<{ [k: string]: any }>({});
 
     React.useEffect(() => {
-        setOpen((previousOpen) => {
-            const previousOpenKeys: string[] = Object.keys(previousOpen);
+        setOpen((previous) => {
+            const previousKeys: string[] = Object.keys(previous);
+            const previousOpenKeys = previousKeys.filter(
+                (key) => previous[key],
+            );
+
             const uniqueKeys = new Set([
                 ...previousOpenKeys,
                 ...defaultOpenKeys,

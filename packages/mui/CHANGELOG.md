@@ -1,5 +1,17 @@
 # @pankod/refine-mui
 
+## 3.61.5
+
+### Patch Changes
+
+-   [#3517](https://github.com/refinedev/refine/pull/3517) [`ce6ed28ce3d`](https://github.com/refinedev/refine/commit/ce6ed28ce3d4c6909b6936342738e161af02ed5b) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fix multi-level Sider menu. (#3505)
+
+## 3.61.4
+
+### Patch Changes
+
+-   [#3517](https://github.com/refinedev/refine/pull/3517) [`ce6ed28ce3d`](https://github.com/refinedev/refine/commit/ce6ed28ce3d4c6909b6936342738e161af02ed5b) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fix multi-level Sider menu. (#3505)
+
 ## 3.61.3
 
 ### Patch Changes
