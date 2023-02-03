@@ -4,143 +4,197 @@ title: useImport
 description: useImport hook API references of @pankod/refine-core
 ---
 
+`useImport` hook allows you to import data from a `CSV` file. For each row in the file, it calls the `create` or `createMany` method of your data provider according to your configuration.
 
-`useImport` hook allows you to handle your `CSV` import logic easily. It uses [`papaparse`][papaparse] under the hood to parse `CSV` files.
+Internally, it uses [Papa Parse][papaparse] to parse the file contents.
 
-```ts
-import { useImport } from "@pankod/refine-core";
+## Basic Usage
 
-const { handleChange } = useImport(options);
-```
-
-## Usage
-
-Assume we have a `CSV` file of this contents:
-
-```csv title="dummy.csv"
-"title","categoryId"
-"dummy title 1","3"
-"dummy title 2","44"
-```
-
-This file should be parsed as:
-
-```ts
-[
-    {
-        title: "dummy title 1",
-        categoryId: "3",
-    },
-    {
-        title: "dummy title 2",
-        categoryId: "44",
-    },
-];
-```
-
-### With `input[type=file]`
+Here is a basic usage example of `useImport` hook:
 
 ```tsx
-import React from "react";
-import {
-    // highlight-next-line
-    useImport,
-} from "@pankod/refine-core";
-
-export const PostList: React.FC = () => {
-    const [total, setTotal] = React.useState(0);
-    const [processed, setProcessed] = React.useState(0);
-
-    // highlight-start
-    const { handleChange } = useImport<IPostFile>({
-        onFinish: (results) => {
-            window.alert(JSON.stringify(results));
-        },
-        onProgress: ({ totalAmount, processedAmount }) => {
-            setProcessed(processedAmount);
-            setTotal(totalAmount);
-        },
-    });
-    // highlight-end
-
-    return (
-        <>
-            <input
-                type="file"
-                // highlight-start
-                onChange={(event) => {
-                    if (event.target.files) {
-                        handleChange({
-                            file: event.target.files[0],
-                        });
-                    }
-                }}
-                // highlight-end
-            />
-            <span>{`${processed}/${total}`}</span>
-        </>
-    );
-};
+import { useImport } from "@pankod/refine-core";
 
 interface IPostFile {
     title: string;
     categoryId: string;
 }
-```
-
-<br />
-
-:::tip
-The `useImport` hook contains all the props that the HTML Input element needs (`type`, `accept`, `onChange`) so you can use directly `inputProps` in your HTML input elements like this
-
-```tsx
-import React from "react";
-import {
-    // highlight-next-line
-    useImport,
-} from "@pankod/refine-core";
 
 export const PostList: React.FC = () => {
-    // highlight-next-line
-    const { inputProps } = useImport();
-    return (
-        <input
-            // highlight-next-line
-            {...inputProps}
-        />
-    );
+    const { inputProps } = useImport<IPostFile>();
+
+    return <input {...inputProps} />;
 };
 ```
 
-:::
+## Properties
 
-<br />
+### `resourceName`
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/core/useImport/useImport.gif" alt="useImport usage" />
-</div>
+> Default: Read from the current route
 
-<br />
+Determines which resource is passed to the `create` or `createMany` method of your data provider.
 
-When user clicks the `<input>` element and selects a `CSV` file, `useImport` parses the content with [papaparse][papaparse], creates the resources one by one or as batches (depending on the configuration). Which endpoint to create the given resource is inferred from the current route.
+```ts
+useImport({
+    resourceName: "posts",
+});
+```
 
-Resources are added one by one ([`useCreate`][usecreate]) or as batches ([`useCreateMany`][usecreatemany]) if explicitly configured with [`batchSize`](#useimport-options) option. By default, `batchSize` is 1.
+### `mapData`
 
-:::caution
-If `batchSize` is more than 1, `createMany` method should be implemented in `DataProvider`.  
-[Refer to DataProvider documentation for further information about importing the default css. &#8594][dataprovider]
-:::
+If you want to map the data before sending it to a data provider method, you can use the `mapData` property.
+
+```ts
+useImport({
+    mapData: (data) => ({
+        ...data,
+        category: {
+            id: data.categoryId,
+        },
+    }),
+});
+```
+
+### `paparseOptions`
+
+You can pass any Papa Parse [options](https://www.papaparse.com/docs#config) to the `paparseOptions` property.
+
+```ts
+useImport({
+    paparseOptions: {
+        header: true,
+    },
+});
+```
+
+### `batchSize`
+
+> Default: [`Number.MAX_SAFE_INTEGER`][number.max_safe_integer]
+
+If you want to send the data in batches, you can use the `batchSize` property. When the `batchSize` is 1, it calls the `create` method of your data provider for each row in the file. When the `batchSize` is greater than 1, it calls the `createMany` method of your data provider for each batch.
+
+```ts
+useImport({
+    batchSize: 1,
+});
+```
+
+### `onFinish`
+
+If you want to do something after the import is finished, you can use the `onFinish` property. It returns an object with two properties: `succeeded` and `errored` which contain the responses of the successful and failed requests.
+
+```ts
+useImport({
+    onFinish: (result) => {
+        // success requests response
+        result.succeeded.forEach((item) => {
+            console.log(item);
+        });
+
+        // failed requests response
+        result.errored.forEach((item) => {
+            console.log(item);
+        });
+    },
+});
+```
+
+### `metaData`
+
+If you want to send additional data to the `create` or `createMany` method of your data provider, you can use the `metaData` property.
+
+```ts
+useImport({
+    metaData: {
+        foo: "bar",
+    },
+});
+```
+
+### `onProgress`
+
+A callback function that is called when the import progress changes. It returns an object with two properties: `totalAmount` and `processedAmount` which contain the total amount of rows and the processed amount of rows.
+
+```ts
+useImport({
+    onProgress: ({ totalAmount, processedAmount }) => {
+        // progress percentage
+        console.log((processedAmount / totalAmount) * 100);
+    },
+});
+```
+
+### `dataProviderName`
+
+If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
+
+```tsx
+useImport({
+    dataProviderName: "second-data-provider",
+});
+```
+
+## Return Values
+
+### `inputProps`
+
+`inputProps` is an object that contains the props of the `input` element. You can spread it to the `input` element.
+
+```tsx
+const { inputProps } = useImport();
+
+return <input {...inputProps} />;
+```
+
+#### `type`
+
+It is set to `file` by default.
+
+#### `accept`
+
+It is set to `.csv` by default.
+
+#### `onChange`
+
+It handles the file change event. If the file exists, it will call the [`handleChange`][#handlechange] method with the file as an argument.
+
+### `handleChange`
+
+`handleChange` is a function that handles the file change event. It accepts an object with a `file` property which is the file that is selected by the user.
+
+```tsx
+const { handleChange } = useImport();
+
+return (
+    <input
+        type="file"
+        onChange={(event) => {
+            if (event.target.files) {
+                handleChange({
+                    file: event.target.files[0],
+                });
+            }
+        }}
+    />
+);
+```
+
+### `isLoading`
+
+`isLoading` is a boolean that indicates whether the import is in progress or not.
+
+### `mutationResult`
+
+Returns the result of the [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useCreateMany`](/docs/api-reference/core/hooks/data/useCreateMany/) hook.
+
+## FAQ
 
 ### Handling Relational Data
 
-In some cases, you might want to change/process the data of `CSV` file after parsing. Example cases of this requirement: your data contains relational data and references to data in other places, your backend API requires your data to be sent in a specific format. You can further customize `useImport` to achieve this.
+Sometimes you need to process your parsed `CSV` data for certain cases, such as when your data includes relational data and references to other data, or when your backend API requires a specific data format. To handle this, you can use the `mapData` option in `useImport` to customize the process.
 
-Assume this is the `CSV` file we want to create resources from:
+For example, the `CSV` file is as follows:
 
 ```csv title="dummy.csv"
 "title","content","status","categoryId","userId"
@@ -149,12 +203,12 @@ Assume this is the `CSV` file we want to create resources from:
 "dummy title 3","cummy content 3","published","41","10"
 ```
 
-Since `user` and `category` are relational fields, we shouldn't store them as objects. Instead, we should keep only their `id` fields in our exported files. And `CSV` format doesn't support JSON data, we stored `category.id` as `categoryId` and `user.id` as `userId`.
+Since the user and category are relational fields, we store only their id fields in the exported file as userId and categoryId respectively. To create resources from this file, we need to map the data back to the required format of the backend API. To do this, we use the mapData option in useImport. Here's an example:
 
 When creating these resources back, we should map it back to our backend API's required format. `mapData` option allows us to do this. Here is an example:
 
 ```ts
-const importProps = useImport<IPostFile>({
+useImport<IPostFile>({
     mapData: (item) => {
         return {
             title: item.title,
@@ -179,7 +233,7 @@ interface IPostFile {
 }
 ```
 
-Now, parsed data is mapped to conform our APIs requirements.
+With this code, the parsed data will be mapped to conform to the API requirements.
 
 ## API Reference
 
@@ -205,13 +259,10 @@ Now, parsed data is mapped to conform our APIs requirements.
 | TError     | Custom error object that extends [`HttpError`][httperror]                  | [`HttpError`][httperror]   |
 | TVariables | Values for mutation function                                               | `any`                      |
 
-[usecreate]: /docs/api-reference/core/hooks/data/useCreate/
-[usecreatemany]: /docs/api-reference/core/hooks/data/useCreateMany/
-[dataprovider]: /api-reference/core/providers/data-provider.md
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
-[papaparse]: https://www.papaparse.com/docs
-[usemutation]: https://react-query.tanstack.com/reference/useMutation
+[papaparse]: https://www.papaparse.com/
+[usemutation]: https://tanstack.com/query/latest/docs/react/reference/useMutation
 [number.max_safe_integer]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
 [successerrornotification]: /api-reference/core/interfaces.md#successerrornotification
 [useimportinputpropstype]: /api-reference/core/interfaces.md#useimportinputpropstype
