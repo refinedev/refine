@@ -6,28 +6,7 @@ title: usePublish
 `usePublish` returns the [`publish`][live-provider-publish] method from [`liveProvider`][live-provider]. It is useful when you want to publish a custom event.
 
 :::info-tip
-After successful mutation, **refine** will call automatically [`publish`][live-provider-publish] method from [`liveProvider`][live-provider] to publish the event with following properties:
-
-```ts
-publish({
-    channel: `resources/${resource}`, // given resource to mutation hook
-    type: "updated", // or deleted
-    payload: {
-        ids: [ids], // or ids
-    },
-    date: new Date(),
-});
-```
-
-Following hooks are using `usePublish` internally after successful mutation:
-
--   [`useCreate`][use-create]
--   [`useUpdate`][use-update]
--   [`useDelete`][use-delete]
--   [`useCreateMany`][use-create-many]
--   [`useUpdateMany`][use-update-many]
--   [`useDeleteMany`][use-delete-many]
-
+**refine** use this hook internally in mutation hooks to `publish` event after successful mutation. You can refer liveProvider's [Publish Events from Hooks](/docs/api-reference/core/providers/live-provider/#publish-events-from-hooks) section for more information.
 :::
 
 ## Usage
@@ -78,12 +57,3 @@ The date of the event.
 [live-provider]: /docs/api-reference/core/providers/live-provider
 [live-provider-publish]: /docs/api-reference/core/providers/live-provider/#publish
 [live-event]: /docs/api-reference/core/interfaceReferences/#liveevent
-[base-key]: /docs/api-reference/core/interfaceReferences/#basekey
-[use-delete-many]: /docs/api-reference/core/hooks/data/useDeleteMany/
-[use-delete]: /docs/api-reference/core/hooks/data/useDelete/
-[use-create]: /docs/api-reference/core/hooks/data/useCreate/
-[use-create-many]: /docs/api-reference/core/hooks/data/useCreateMany/
-[use-update]: /docs/api-reference/core/hooks/data/useUpdate/
-[use-update-many]: /docs/api-reference/core/hooks/data/useUpdateMany/
-[use-update]: /docs/api-reference/core/hooks/data/useUpdate/
-[use-update-many]: /docs/api-reference/core/hooks/data/useUpdateMany/
