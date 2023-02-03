@@ -79,7 +79,7 @@ const App: React.FC = () => {
             resources={[
                 {
                     // highlight-next-line
-                    // Refine will use the `default` data provider for this resource
+                    // **refine** will use the `default` data provider for this resource
                     name: "posts",
                     list: PostList,
                 },
@@ -87,7 +87,7 @@ const App: React.FC = () => {
                     name: "products",
                     options: {
                         // highlight-next-line
-                        // Refine will use the `fineFoods` data provider for this resource
+                        // **refine** will use the `fineFoods` data provider for this resource
                         dataProviderName: "fineFoods",
                     },
                 },
@@ -198,13 +198,13 @@ const App = () => {
             }}
             resources={[
                 {
-                    // Refine will use the `default` data provider for this resource
+                    // **refine** will use the `default` data provider for this resource
                     name: "posts",
                 },
                 {
                     name: "products",
                     options: {
-                        // Refine will use the `exampleDataProvider` data provider for this resource
+                        // **refine** will use the `exampleDataProvider` data provider for this resource
                         dataProviderName: "exampleDataProvider",
                     },
                 },
@@ -691,7 +691,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 ### How I can override a specific method of Data Providers?
 
-In some cases, you may need to override the method of Refine data providers. The simplest way to do this is to use the [Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+In some cases, you may need to override the method of **refine** data providers. The simplest way to do this is to use the [Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
 
 For example, Let's override the `update` function of the [`@pankod/refine-simple-rest`](https://github.com/refinedev/refine/tree/next/packages/simple-rest). `@pankod/refine-simple-rest` uses the `PATCH` HTTP method for `update`, let's change it to `PUT` without forking the whole data provider.
 
