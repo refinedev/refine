@@ -70,7 +70,7 @@ title: List of Packages
 ### Integrations
 
 - `@pankod/refine-kbar` - [kbar](https://kbar.vercel.app/) integration. Add `command`/`crtrl`+`k` interfaces to your project.
--  `@pankod/refine-react-table` - [kbar](https://tanstack.com/table/v8) integration. Powerful tables & datagrids for your headless projects. 
+-  `@pankod/refine-react-table` - [React Table](https://tanstack.com/table/v8) integration. Powerful tables & datagrids for your headless projects. 
 -  `@pankod/refine-react-hook-form` - [React Hook Form](https://react-hook-form.com/) integration. Extensible forms and validation for your projects.
 
 ### React Frameworks
