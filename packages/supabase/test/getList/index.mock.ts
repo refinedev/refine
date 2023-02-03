@@ -65,7 +65,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
         select: "%2A",
         offset: "0",
         limit: "10",
-        order: "title.asc.nullslast",
+        order: "title.asc",
     })
     .reply(
         200,
@@ -681,5 +681,67 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "cloudflare",
             "alt-svc",
             'h3=":443"; ma=86400, h3-29=":443"; ma=86400',
+        ],
+    );
+
+nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
+    encodedQueryParams: true,
+})
+    .get("/rest/v1/posts")
+    .query({
+        select: "%2A",
+        offset: "0",
+        limit: "10",
+        or: "%28title.eq.Hello%2Ctitle.eq.World%29",
+    })
+    .reply(
+        200,
+        [
+            {
+                id: 3,
+                title: "Hello",
+                slug: "refine-nokta-kom",
+                createdAt: "2021-09-03T09:17:51+00:00",
+                content: "Hello lorem ipsum pala baba",
+                categoryId: 1,
+                image: {},
+            },
+            {
+                id: 2,
+                title: "World",
+                slug: "test-slug",
+                createdAt: "2021-09-03T07:36:42+00:00",
+                content: "test content",
+                categoryId: 1,
+                image: {},
+            },
+        ],
+        [
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "close",
+            "Date",
+            "Mon, 06 Sep 2021 09:12:46 GMT",
+            "Server",
+            "postgrest/8.0.0",
+            "Content-Range",
+            "0-1/2",
+            "Content-Location",
+            "/posts?limit=10&offset=0&order=title.asc.nullslast&select=%2A",
+            "Content-Profile",
+            "public",
+            "vary",
+            "Origin",
+            "Access-Control-Allow-Origin",
+            "*",
+            "X-Kong-Upstream-Latency",
+            "29",
+            "X-Kong-Proxy-Latency",
+            "1",
+            "Via",
+            "kong/2.2.1",
         ],
     );
