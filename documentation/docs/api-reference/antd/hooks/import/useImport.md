@@ -3,158 +3,177 @@ id: useImport
 title: useImport
 ---
 
-`useImport` hook allows you to handle your `CSV` import logic easily. It gives you the properties to pass to Ant Design's [`<Upload>`][Upload] and [`<Button>`][Button] components and handles the upload logic. It uses [`papaparse`][papaparse] under the hood to parse `CSV` files. 
+`useImport` hook allows you to import data from a `CSV` file. For each row in the file, it calls the `create` or `createMany` method of your data provider according to your configuration.
 
-It's return type is compatible with [`<ImportButton>`][ImportButton]. It can also be further customized by using it with Ant Design's [`<Upload>`][Upload] and [`<Button>`][Button] props.
+Internally, it uses [Papa Parse][papaparse] to parse the file contents.
 
-```ts
-import { useImport } from "@pankod/refine-antd";
+It will return properties that are compatible with Ant Design [`<Upload>`](https://ant.design/components/upload/) and [`<Button>`](https://ant.design/components/button/) components.
 
-const { uploadProps, buttonProps, mutationResult } = useImport(options);
-```
+**TODO: Add info about notification progress**
 
-## Usage
-
-Assume we have a `CSV` file of this contents:
-
-```csv title="dummy.csv"
-"title","categoryId"
-"dummy title 1","3"
-"dummy title 2","44"
-```
-
-This file should be parsed as:
-
-```ts
-[
-    {
-        title: "dummy title 1",
-        categoryId: "3",
-    },
-    {
-        title: "dummy title 2",
-        categoryId: "44",
-    }
-]
-```
-
-### With `<ImportButton>` (Recommended)
-
-```tsx
-import {
-    List,
-    Table,
-    useTable,
-// highlight-start
-    useImport,
-    ImportButton,
-// highlight-end
-} from "@pankod/refine-antd";
-
-export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
-
-// highlight-next-line
-    const importProps = useImport<IPostFile>();
-
-    return (
-        <List
-            pageHeaderProps={{
-// highlight-next-line
-                extra: <ImportButton {...importProps} />,
-            }}
-        >
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-                <Table.Column dataIndex="status" title="Status" />
-            </Table>
-        </List>
-    );
-};
-
-interface IPostFile {
-    title: string;
-    categoryId: string;
-}
-
-interface IPost {
-    id: number;
-    title: string;
-    status: string;
-}
-```
-
-[`<ImportButton`][ImportButton] accepts two properties: `buttonProps` and `uploadProps`. It just wraps [`<Button>`][Button] component with the [`<Upload>`][Upload] component to reduce some boilerplate code.
-
-<br />
-
-### With Ant Design's `<Upload>` and `<Button>` Components
-
-```tsx
-import {
-    List,
-    Table,
-    useTable,
-// highlight-start
-    useImport,
-    Button,
-    Icons,
-    Upload,
-// highlight-end
-} from "@pankod/refine-antd";
-
-const { ImportOutlined } = Icons;
-
-export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
-
-// highlight-next-line
-    const { buttonProps, uploadProps } = useImport<IPostFile>();
-
-    return (
-        <List
-// highlight-start
-            pageHeaderProps={{
-                extra: (
-                    <Upload {...uploadProps}>
-                        <Button icon={<ImportOutlined />} {...buttonProps}>
-                            Import
-                        </Button>
-                    </Upload>
-                ),
-            }}
-// highlight-end
-        >
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-            </Table>
-        </List>
-    );
-};
-```
-
-This usage is open to further customizations of Ant Design's [`<Button>`][Button] and [`<Upload>`][Upload] components.
-
-<br />
-
-In both examples, when user clicks the import buttons and selects a `CSV` file, `useImport` parses the content with [papaparse][papaparse], creates the resources one by one or as batches (depending on the configuration). Which endpoint to create the given resource is inferred from the current route.
-
-Resources are added one by one ([`useCreate`][useCreate]) or as batches ([`useCreateMany`][useCreateMany]) if explicitly configured with [`batchSize`](#useimport-options) option. By default, `batchSize` is 1.
-
-:::caution
-If `batchSize` is more than 1, `createMany` method should be implemented in `DataProvider`.  
-[Refer to DataProvider documentation for further information about importing the default css. &#8594][DataProvider]
+:::info
+`useImport` hook is extended from [`useImport`][use-import-core] hook from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useImport`][use-import-core] hook.
 :::
 
-<br />
+## Basic Usage
+
+Here is a basic usage example of `useImport` hook:
+
+```tsx
+import { useImport, ImportButton } from "@pankod/refine-antd";
+
+export const PostList: React.FC = () => {
+    const importProps = useImport();
+
+    return <ImportButton {...importProps}>Import</ImportButton>;
+};
+```
+
+[Refer to the `<ImportButton>` interface for more information &#8594](/docs/api-reference/antd/components/buttons/import-button/)
+
+Also, you can use the `inputProps` and `uploadProps` properties without the `<ImportButton>` component for more customization:
+
+```tsx
+import { useImport, Upload, Button } from "@pankod/refine-antd";
+
+export const PostList: React.FC = () => {
+    const { buttonProps, uploadProps } = useImport();
+
+    return (
+        <Upload {...uploadProps}>
+            <Button {...buttonProps}>Import</Button>
+        </Upload>
+    );
+};
+```
+
+## Properties
+
+### `resourceName`
+
+> Default: Read from the current route
+
+Determines which resource is passed to the `create` or `createMany` method of your data provider.
+
+```ts
+useImport({
+    resourceName: "posts",
+});
+```
+
+### `mapData`
+
+If you want to map the data before sending it to a data provider method, you can use the `mapData` property.
+
+```ts
+useImport({
+    mapData: (data) => ({
+        ...data,
+        category: {
+            id: data.categoryId,
+        },
+    }),
+});
+```
+
+### `paparseOptions`
+
+You can pass any Papa Parse [options](https://www.papaparse.com/docs#config) to the `paparseOptions` property.
+
+```ts
+useImport({
+    paparseOptions: {
+        header: true,
+    },
+});
+```
+
+### `batchSize`
+
+> Default: [`Number.MAX_SAFE_INTEGER`][number.max_safe_integer]
+
+If you want to send the data in batches, you can use the `batchSize` property. When the `batchSize` is 1, it calls the `create` method of your data provider for each row in the file. When the `batchSize` is greater than 1, it calls the `createMany` method of your data provider for each batch.
+
+```ts
+useImport({
+    batchSize: 1,
+});
+```
+
+### `onFinish`
+
+If you want to do something after the import is finished, you can use the `onFinish` property. It returns an object with two properties: `succeeded` and `errored` which contain the responses of the successful and failed requests.
+
+```ts
+useImport({
+    onFinish: (result) => {
+        // success requests response
+        result.succeeded.forEach((item) => {
+            console.log(item);
+        });
+
+        // failed requests response
+        result.errored.forEach((item) => {
+            console.log(item);
+        });
+    },
+});
+```
+
+### `metaData`
+
+If you want to send additional data to the `create` or `createMany` method of your data provider, you can use the `metaData` property.
+
+```ts
+useImport({
+    metaData: {
+        foo: "bar",
+    },
+});
+```
+
+### `onProgress`
+
+A callback function that is called when the import progress changes. It returns an object with two properties: `totalAmount` and `processedAmount` which contain the total amount of rows and the processed amount of rows.
+
+```ts
+useImport({
+    onProgress: ({ totalAmount, processedAmount }) => {
+        // progress percentage
+        console.log((processedAmount / totalAmount) * 100);
+    },
+});
+```
+
+### `dataProviderName`
+
+If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
+
+```tsx
+useImport({
+    dataProviderName: "second-data-provider",
+});
+```
+
+## Return Values
+
+### `inputProps`
+
+### `uploadProps`
+
+### `isLoading`
+
+### `mutationResult`
+
+## FAQ
 
 ### Handling Relational Data
 
-In some cases, you might want to change/process the data of `CSV` file after parsing. Example cases of this requirement: your data contains relational data and references to data in other places, your backend API requires your data to be sent in a specific format. You can further customize `useImport` to achieve this.
+**TODO: Check it again**
 
-Assume this is the `CSV` file we want to create resources from:
+Sometimes you need to process your parsed `CSV` data for certain cases, such as when your data includes relational data and references to other data, or when your backend API requires a specific data format. To handle this, you can use the `mapData` option in `useImport` to customize the process.
+
+For example, the `CSV` file is as follows:
 
 ```csv title="dummy.csv"
 "title","content","status","categoryId","userId"
@@ -163,12 +182,12 @@ Assume this is the `CSV` file we want to create resources from:
 "dummy title 3","cummy content 3","published","41","10"
 ```
 
-Since `user` and `category` are relational fields, we shouldn't store them as objects. Instead, we should keep only their `id` fields in our exported files. And `CSV` format doesn't support JSON data, we stored `category.id` as `categoryId` and `user.id` as `userId`.
+Since the user and category are relational fields, we store only their id fields in the exported file as userId and categoryId respectively. To create resources from this file, we need to map the data back to the required format of the backend API. To do this, we use the mapData option in useImport. Here's an example:
 
 When creating these resources back, we should map it back to our backend API's required format. `mapData` option allows us to do this. Here is an example:
 
 ```ts
-const importProps = useImport<IPostFile>({
+useImport<IPostFile>({
     mapData: (item) => {
         return {
             title: item.title,
@@ -189,10 +208,11 @@ interface IPostFile {
     status: string;
     content: string;
     categoryId: string;
-    userId: number;
+    userId: string;
 }
 ```
-Now, parsed data is mapped to conform our APIs requirements.
+
+With this code, the parsed data will be mapped to conform to the API requirements.
 
 ## API Reference
 
@@ -201,24 +221,28 @@ Now, parsed data is mapped to conform our APIs requirements.
 <PropsTable module="@pankod/refine-antd/useImport"/>
 
 ### Return Values
+
+**TODO: Add return values table**
+
 ### Type Parameters
 
 | Property   | Desription                                                                 | Default                    |
 | ---------- | -------------------------------------------------------------------------- | -------------------------- |
 | TItem      | Interface of parsed csv data                                               | `any`                      |
-| TData      | Result type of the data query type that extends [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] |
-| TError     | Custom error object that extends [`HttpError`][HttpError]                  | [`HttpError`][HttpError]   |
+| TData      | Result type of the data query type that extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError     | Custom error object that extends [`HttpError`][httperror]                  | [`HttpError`][httperror]   |
 | TVariables | Values for mutation function                                               | `any`                      |
 
-[Button]: https://ant.design/components/button/
-[Upload]: https://ant.design/components/upload/
-[ImportButton]: /api-reference/antd/components/buttons/import.md
-[useCreate]: /docs/api-reference/core/hooks/data/useCreate/
-[useCreateMany]: /docs/api-reference/core/hooks/data/useCreateMany/
-[DataProvider]: /api-reference/core/providers/data-provider.md
-[BaseRecord]: /api-reference/core/interfaces.md#baserecord
-[HttpError]: /api-reference/core/interfaces.md#httperror
+[button]: https://ant.design/components/button/
+[upload]: https://ant.design/components/upload/
+[importbutton]: /api-reference/antd/components/buttons/import.md
+[usecreate]: /docs/api-reference/core/hooks/data/useCreate/
+[usecreatemany]: /docs/api-reference/core/hooks/data/useCreateMany/
+[dataprovider]: /api-reference/core/providers/data-provider.md
+[baserecord]: /api-reference/core/interfaces.md#baserecord
+[httperror]: /api-reference/core/interfaces.md#httperror
 [papaparse]: https://www.papaparse.com/docs
-[useMutation]: https://react-query.tanstack.com/reference/useMutation
-[Number.MAX_SAFE_INTEGER]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
-[SuccessErrorNotification]: /api-reference/core/interfaces.md#successerrornotification
+[usemutation]: https://react-query.tanstack.com/reference/useMutation
+[number.max_safe_integer]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
+[successerrornotification]: /api-reference/core/interfaces.md#successerrornotification
+[use-import-core]: /docs/api-reference/core/hooks/import-export/useImport/
