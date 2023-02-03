@@ -3,7 +3,7 @@ id: useResourceWithRoute
 title: useResourceWithRoute
 ---
 
-`useResourceWithRoute` is used to get the properties of a resource defined as a element of the `resources`. It returns a function and this function allows us to access the resource with the `route` option we gave to the resource.
+`useResourceWithRoute` is used to get the resource object in resources array that you defined in `<Refine>` by route name.
 
 The hook is used internal in **refine**. Normally you don't need this hook, but we export it as it may be useful for some use-cases.
 
@@ -11,6 +11,8 @@ The hook is used internal in **refine**. Normally you don't need this hook, but 
 import { useResourceWithRoute } from "@pankod/refine-core";
 
 const resourceWithRoute = useResourceWithRoute();
+
+const resource = resourceWithRoute("posts");
 ```
 
 ## API Reference
@@ -20,5 +22,3 @@ const resourceWithRoute = useResourceWithRoute();
 | Description       | Type                                                                                      |
 | ----------------- | ----------------------------------------------------------------------------------------- |
 | resourceWithRoute | [`(route: string) => IResourceItem`](/api-reference/core/interfaces.md#resourceitemprops) |
-
-> The `canCreate`, `canShow` and `canEdit` properties are defined automatically if the `create`, `show` and `edit` components are defined on the `resources` property in `<Refine>`.

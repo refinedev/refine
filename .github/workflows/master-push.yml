@@ -118,4 +118,4 @@ jobs:
           cd documentation
           git config --global user.email "bot@pankod.com"
           git config --global user.name "pankod-bot"
-          LIVE_PREVIEW_URL=https://live-preview.refine.dev/preview npm run deploy
+          LIVE_PREVIEW_URL=https://next.live-previews.refine.dev/preview npm run deploy

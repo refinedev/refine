@@ -3,19 +3,49 @@ id: useResource
 title: useResource
 ---
 
-`useResource` is used to get `resources` that are defined as property of the `<Refine>` component.
+`useResource` is used to get the resources array that you defined in `<Refine>`. It also returns `resource` object, `resourceName` and query params `id` and `action`.
 
 ```ts
 import { useResource } from "@pankod/refine-core";
 
 const { resources, resource, action, id } = useResource();
+```
 
-// it also returns the resource with the props you provide as resourceNameOrRouteName.
+## Properties
+
+### `resourceNameOrRouteName`
+
+It is used to get resource object by name or route name.
+
+```ts
+import { useResource } from "@pankod/refine-core";
 
 const { resource } = useResource({
-    resourceNameOrRouteName,
+    resourceNameOrRouteName: "posts",
 });
 ```
+
+## Return Values
+
+### `resources`
+
+An array of resources that you defined in `<Refine>`.
+
+### `resource`
+
+Resource object.
+
+### `resourceName`
+
+Resource name of resource object.
+
+### `id`
+
+Query param `id`.
+
+### `action`
+
+Query param `action`.
 
 ## API Reference
 
