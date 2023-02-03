@@ -14,7 +14,7 @@
         "react-scripts": "^5.0.0",
         "cross-env": "^7.0.3",
         "web-vitals": "^1.1.1",
-        "@pankod/refine-mui": "^3.61.4",
+        "@pankod/refine-mui": "^3.61.5",
         "@pankod/refine-react-hook-form": "^3.37.2",
         "@mui/icons-material": "^5.8.3",
         "@pankod/refine-react-router-v6": "^3.38.0",
