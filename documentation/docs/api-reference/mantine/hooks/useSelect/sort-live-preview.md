@@ -1,14 +1,14 @@
 ```tsx live url=http://localhost:3000 previewHeight=300px
 setInitialRoutes(["/posts/create"]);
 // visible-block-start
-import { useSelect, Select, Button } from "@pankod/refine-antd";
+import { Select, useSelect, Button } from "@pankod/refine-mantine";
 
 interface ICategory {
     id: number;
     title: string;
 }
 
-const PostCreate: React.FC = () => {
+const ProductCreate: React.FC = () => {
     const [order, setOrder] = React.useState<"asc" | "desc">("asc");
 
     const { selectProps } = useSelect<ICategory>({
@@ -25,11 +25,13 @@ const PostCreate: React.FC = () => {
 
     return (
         <>
-            <Select 
-                placeholder={`Ordered Categories: ${order}`} style={{ width: 300 }}
+            <Button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>Toggle Order</Button>
+            <Select
+                label="Category"
+                placeholder="Select a category"
+                withinPortal
                 {...selectProps}
             />
-            <Button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>Toggle Order</Button>
         </>
     );
 };
@@ -38,9 +40,9 @@ setRefineProps({
     resources: [
         {
             name: "posts",
-            create: PostCreate,
+            create: ProductCreate,
         },
     ],
 });
-render(<RefineAntdDemo />);
+render(<RefineMantineDemo />);
 ```

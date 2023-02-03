@@ -1,7 +1,7 @@
 ```tsx live url=http://localhost:3000/products previewHeight=200px hideCode
-setInitialRoutes(["/categories/create"]);
+setInitialRoutes(["/posts/create"]);
 // visible-block-start
-import { useSelect, HttpError } from "@pankod/refine-core";
+import { useSelect } from "@pankod/refine-core";
 
 interface ICategory {
     id: number;
@@ -9,11 +9,8 @@ interface ICategory {
 }
 
 const ProductCreate: React.FC = () => {
-    const [order, setOrder] = React.useState<"asc" | "desc">("asc");
-
     const { options, onSearch } = useSelect<ICategory>({
         resource: "categories",
-        
         // highlight-start
         onSearch: (value) => [
             {
@@ -34,9 +31,9 @@ const ProductCreate: React.FC = () => {
 
             <select>
                 {options?.map((option) => (
-                <option key={option.value} value={option.value}>
-                    {option.label}
-                </option>
+                    <option key={option.value} value={option.value}>
+                        {option.label}
+                    </option>
                 ))}
             </select>
         </>
@@ -46,7 +43,7 @@ const ProductCreate: React.FC = () => {
 setRefineProps({
     resources: [
         {
-            name: "categories",
+            name: "posts",
             create: ProductCreate,
         },
     ],

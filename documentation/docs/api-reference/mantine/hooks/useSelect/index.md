@@ -1,7 +1,7 @@
 ---
 title: useSelect
 siderbar_label: useSelect
-source: https://github.com/refinedev/refine/blob/next/packages/antd/src/hooks/fields/useSelect/index.ts
+source: https://github.com/refinedev/refine/blob/next/packages/mantine/src/hooks/useSelect/index.ts
 ---
 
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
@@ -10,7 +10,7 @@ import SortLivePreview from "./sort-live-preview.md";
 import DefaultValueLivePreview from "./default-value-live-preview.md";
 import CrudLivePreview from "./crud-live-preview.md";
 
-`useSelect` hook allows you to manage Ant Design [`<Select>`](https://ant.design/components/select) component when records in a resource needs to be used as select options.
+`useSelect` hook allows you to manage Mantine [`<Select>`](https://mantine.dev/core/select/) component when records in a resource needs to be used as select options.
 
 This hook uses the `useList` hook for fetching data. [Refer to useList hook for details. →](/docs/api-reference/core/hooks/data/useList/)
 
@@ -18,8 +18,8 @@ This hook uses the `useList` hook for fetching data. [Refer to useList hook for 
 If you're looking for a complete select library, refine has out-of-the-box support for the libraries below:
 
 -   refine's `useSelect` (for Headless users) - [Documentation](/docs/api-reference/core/hooks/useSelect/) - [Example](/docs/examples/core/useSelect)
+-   [Ant Design Select](https://ant.design/components/select) (for Ant Design users) - [Documentation](/docs/api-reference/antd/hooks/field/useSelect) - [Example](/docs/examples/field/useSelect)
 -   [Material UI Autocomplete](https://mui.com/material-ui/react-autocomplete) (for Material UI users) - [Documentation](/docs/api-reference/mui/hooks/useAutocomplete)
--   [Mantine Select](https://mantine.dev/core/select/) (for Mantine users) - [Documentation](/docs/api-reference/mantine/hooks/useSelect)
 
 :::
 
@@ -41,7 +41,7 @@ It is useful when you want to subscribe to the live updates.
 ## Properties
 ### `resource` <PropTag required />
 
-It will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resource are handled.
+It will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `getList` method. See the [creating a data provider](/docs/api-reference/core/providers/data-provider#creating-a-data-provider) section for an example of how resources are handled.
 
 ```tsx
 useSelect({
@@ -130,7 +130,6 @@ It allows us to `debounce` the `onSearch` function.
 
 ```tsx
 useSelect({
-    resource: "categories",
     debounce: 500,
 });
 ```
@@ -193,7 +192,6 @@ When the `defaultValue` property is given, the `useMany` data hook is called for
 
 ```tsx
 const { options } = useSelect({
-    resource: "categories",
     defaultValueQueryOptions: {
         onSuccess: (data) => {
             console.log("triggers when on query return on success");
@@ -211,25 +209,28 @@ It allows us to `AutoComplete` the `options`.
 <OnSearchLivePreview />
 
 :::info
-
 If `onSearch` is used, it will override the existing `filters`.
-
 :::
 
 #### Client-side filtering
 
-Sometimes, you may want to filter the options on the client-side. You can do this by passing `onSearch` function as `undefined` and setting `filterOption` to `true`. You can also set `optionFilterProp` to `label` or `value` to filter the options by label or value respectively.
+Sometimes, you may want to filter the options on the client-side. You can do this by passing `onSearch` function as `undefined`. This will disable the server-side filtering and will filter the options on the client-side. Set the `searchValue` and `onSearchChange` properties to enable the search input.
 
 ```tsx
 const { selectProps } = useSelect({
     resource: "categories",
 });
 
+// highlight-next-line
+const [searchValue, onSearchChange] = useState('');
+
 <Select
     {...selectProps}
+    // highlight-start
     onSearch={undefined}
-    filterOption={true}
-    optionFilterProp="label" // or "value"
+    onSearchChange={onSearchChange}
+    searchValue={searchValue}
+    // highlight-end
 />
 ```
 
@@ -398,7 +399,6 @@ return (
     <Select options={options} />
 );
 ```
-
 ### How do I use it with `CRUD` components and `useForm`?
 
 <CrudLivePreview />
@@ -407,21 +407,27 @@ return (
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/useSelect"  />
+<PropsTable module="@pankod/refine-mantine/useSelect"  />
 
 ### Return values
 
 | Property                   | Description                                    | Type                                                                                          |
 | -------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| selectProps                | Ant design Select props                        | [`Select`](https://ant.design/components/select/#API)                                         |
+| selectProps                | Mantine Select props                           | [`SelectPropsType`](#selectpropstype)                                                         |
 | queryResult                | Result of the query of a record                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 | defaultValueQueryResult    | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 | defaultValueQueryOnSuccess | Default value onSuccess method                 | `() => void`                                                                                  |
 
+> #### SelectPropsType
+>
+> | Property                     | Description                                                             | Type                       |
+> | ---------------------------- | ----------------------------------------------------------------------- | -------------------------- |
+> | data                         | Select data used to renderer items in dropdown                          | `(string \| SelectItem)[]` |
+> | searchable                   | Set to true to enable search                                            | `boolean`                  |
+> | onSearchChange               | Called each time search value changes                                   | `(query: string) => void`  |
+> | filterDataOnExactSearchMatch | Should data be filtered when search value exactly matches selected item | `boolean`                  |
+
+
 ## Example
 
-<CodeSandboxExample path="field-antd-use-select-basic" />
-
-## Infinite Loading Example
-
-<CodeSandboxExample path="field-antd-use-select-infinite" />
+<CodeSandboxExample path="base-mantine" />

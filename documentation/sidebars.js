@@ -460,7 +460,7 @@ module.exports = {
                                         "api-reference/mantine/hooks/form/useStepsForm",
                                     ],
                                 },
-                                "api-reference/mantine/hooks/useSelect",
+                                "api-reference/mantine/hooks/useSelect/index",
                             ],
                         },
                         {
@@ -538,7 +538,7 @@ module.exports = {
                             type: "category",
                             label: "Hooks",
                             items: [
-                                "api-reference/mui/hooks/useAutocomplete",
+                                "api-reference/mui/hooks/useAutocomplete/index",
                                 "api-reference/mui/hooks/useDataGrid/index",
                             ],
                         },
