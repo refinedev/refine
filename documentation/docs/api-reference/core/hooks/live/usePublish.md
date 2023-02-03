@@ -75,8 +75,6 @@ The payload to publish.
 
 The date of the event.
 
-**Parameter Types:**
-
 [live-provider]: /docs/api-reference/core/providers/live-provider
 [live-provider-publish]: /docs/api-reference/core/providers/live-provider/#publish
 [live-event]: /docs/api-reference/core/interfaceReferences/#liveevent
