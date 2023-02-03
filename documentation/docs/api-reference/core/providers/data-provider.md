@@ -572,7 +572,47 @@ updateMany: async ({ resource, ids, variables, metaData }) => {
 ## Error Format
 
 **refine** expects errors to be extended from [`HttpError`][http-error].
-Axios interceptor can be used to transform the error from the response before Axios returns the response to your code. Interceptors are methods that are triggered before the main method.
+
+Here is a basic example of how to implement error handling in your data provider.
+
+```ts title="src/data-provider.ts"
+import { DataProvider, HttpError } from "@pankod/refine-core";
+
+export const dataProvider = (apiUrl: string): DataProvider => ({
+    getOne: async ({ resource, id }) => {
+        try {
+            const response = await fetch(
+                `https://api.example.com/${resource}/${id}`,
+            );
+
+            // highlight-start
+            if (!response.ok) {
+                const error: HttpError = {
+                    message: response.statusText,
+                    statusCode: response.status,
+                };
+                return Promise.reject(error);
+            }
+            // highlight-end
+
+            return {
+                data: response.data,
+            };
+        } catch (error) {
+            // highlight-start
+            const error: HttpError = {
+                message: error?.message || "Something went wrong",
+                statusCode: error?.status || 500,
+            };
+            return Promise.reject(error);
+            // highlight-end
+        }
+    },
+    // ...
+});
+```
+
+Also, Axios interceptor can be used to transform the error from the response before Axios returns the response to your code. Interceptors are methods that are triggered before the main method.
 
 ```ts title="src/data-provider.ts"
 // highlight-start
