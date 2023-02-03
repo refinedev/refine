@@ -40,6 +40,7 @@ The easiest way to create a new project is to use the **refine CLI**. This tool 
     ```bash
     yarn create refine-app -- -o refine-antd tutorial
     ```
+    > Only support yarn@1 version.
 
     </TabItem>
 
