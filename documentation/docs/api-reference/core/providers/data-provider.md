@@ -216,14 +216,50 @@ const App = () => {
 
 ## Methods
 
-:::caution
-**refine** consumes data provider methods using [data hooks](/docs/api-reference/core/hooks/data/useCreate/).
+Data provider's methods are expected to return a Promise. So, you can use these async methods to [create a data provider][create-a-data-provider].
+
+```tsx
+import { DataProvider } from "@pankod/refine-core";
+
+const dataProvider: DataProvider = {
+    // required methods
+    getList: ({
+        resource,
+        pagination,
+        hasPagination,
+        sort,
+        filters,
+        metaData,
+    }) => Promise,
+    create: ({ resource, variables, metaData }) => Promise,
+    update: ({ resource, id, variables, metaData }) => Promise,
+    deleteOne: ({ resource, id, variables, metaData }) => Promise,
+    getOne: ({ resource, id, metaData }) => Promise,
+    getApiUrl: () => "",
+    // optional methods
+    getMany: ({ resource, ids, metaData }) => Promise,
+    createMany: ({ resource, variables, metaData }) => Promise,
+    deleteMany: ({ resource, ids, variables, metaData }) => Promise,
+    updateMany: ({ resource, ids, variables, metaData }) => Promise,
+    custom: ({
+        url,
+        method,
+        filters,
+        sort,
+        payload,
+        query,
+        headers,
+        metaData,
+    }) => Promise,
+};
+```
+
+:::info
+**refine** consumes data provider methods using [data hooks](#supported-hooks).
 
 Data hooks are used to operate CRUD actions like creating a new record, listing a resource or deleting a record, etc.
 
 :::
-
-Data provider's methods are expected to return a Promise. So, you can use these async methods to [create a data provider][create-a-data-provider].
 
 [Refer to the Data Provider tutorial for more information and usage examples →][data-provider-tutorial]
 
@@ -386,7 +422,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 });
 ```
 
-### custom <PropTag required />
+### custom
 
 An optional method named `custom` can be added to handle requests with custom parameters like URL, CRUD methods, and configurations.
 It's useful if you have non-standard REST API endpoints or want to make a connection with external resources.
