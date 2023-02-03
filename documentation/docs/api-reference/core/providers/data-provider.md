@@ -254,7 +254,7 @@ const dataProvider: DataProvider = {
 };
 ```
 
-:::info
+:::info-tip
 **refine** consumes data provider methods using [data hooks](#supported-hooks).
 
 Data hooks are used to operate CRUD actions like creating a new record, listing a resource or deleting a record, etc.
