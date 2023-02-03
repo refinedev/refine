@@ -68,12 +68,14 @@ const authProvider: AuthProvider = {
 };
 ```
 
-:::caution
+:::info-tip
 
 **refine** consumes these methods using [authorization hooks](#hooks-and-components).
 Authorization hooks are used to manage authentication and authorization operations like login, logout, catching **HTTP** errors, etc.
 
 :::
+
+[Refer to the Auth Provider tutorial for more information and usage examples. &#8594][create-auth-provider-tutorial]
 
 ## Required Methods
 
