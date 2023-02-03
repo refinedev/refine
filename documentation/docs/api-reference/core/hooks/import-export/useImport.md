@@ -203,7 +203,7 @@ For example, the `CSV` file is as follows:
 "dummy title 3","cummy content 3","published","41","10"
 ```
 
-Since the user and category are relational fields, we store only their id fields in the exported file as userId and categoryId respectively. To create resources from this file, we need to map the data back to the required format of the backend API. To do this, we use the mapData option in useImport. Here's an example:
+Since the `user` and `category` are relational fields, we store only their `id` fields in the exported file as `userId` and `categoryId` respectively. To create resources from this file, we need to map the data back to the required format of the backend API. To do this, we use the mapData option in `useImport`. Here's an example:
 
 When creating these resources back, we should map it back to our backend API's required format. `mapData` option allows us to do this. Here is an example:
 

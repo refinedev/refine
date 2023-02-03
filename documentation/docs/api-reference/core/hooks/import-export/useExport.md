@@ -237,7 +237,7 @@ Consider this endpoint containing some relational data:
 
 We have the `category` and `user` fields as possible relational data keys. Their data is out of the responsibility of this export operation.
 
-If we want to save their id's without any other related data, we can use a mapping function to save `category.id` as `categoryId` and `user.id` as `userId`.
+If we want to save their `id`'s without any other related data, we can use a mapping function to save `category.id` as `categoryId` and `user.id` as `userId`.
 
 ```ts
 useExport<IPost>({
