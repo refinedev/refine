@@ -1,5 +1,4 @@
-**refine** comes with many pre-loaded data providers. To include them in your project, you can use `npm install [packageName]` or you can select the preferred data provider with the `npm create refine-app@latest projectName` during the project creation phase with CLI.  
-This will allow you to easily use these data providers in your project.
+**refine** supports many data providers. To include them in your project, you can use `npm install [packageName]` or you can select the preferred data provider with the `npm create refine-app@latest projectName` during the project creation phase with CLI. This will allow you to easily use these data providers in your project.
 
 -   [Simple REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
 -   [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
