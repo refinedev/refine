@@ -1404,14 +1404,14 @@ export const PostList: React.FC = () => {
 ### Adding Pagination
 Next, we will add Pagination to our application. in order to achieve this, the useTable() hook provides certain functions that handle pagination. They are:
 
-- getState: This is the useTable() state variable.
-- setPageIndex(): This is a function that handles setting the page index.
-- getCanPreviousPage(): This is a boolean value that indicates if a previous page exists or not.
-- getPageCount: This variable holds the number of pages.
-- getCanNextPage: This is a boolean value that indicates if a next page exists or not.
-- nextPage(): This function handles navigation to the next page.
-- previousPage: This function handles navigation to the previous page.
-- setPageSize(): This is a function that handles setting the content to be shown on a page (page size).
+- `getState`: This is the useTable() state variable.
+- `setPageIndex()`: This is a function that handles setting the page index.
+- `getCanPreviousPage()`: This is a boolean value that indicates if a previous page exists or not.
+- `getPageCount`: This variable holds the number of pages.
+- `getCanNextPage`: This is a boolean value that indicates if a next page exists or not.
+- `nextPage()`: This function handles navigation to the next page.
+- `previousPage`: This function handles navigation to the previous page.
+- `setPageSize()`: This is a function that handles setting the content to be shown on a page (page size).
 
 We will go to update the `<PostList/>` component with the highlighted code below:
 
@@ -1445,7 +1445,7 @@ export const PostList: React.FC = () => {
     nextPage,
     previousPage,
     setPageSize,
-  } = useTable<IPost>({ columns });
+`  } = useTable<IPost>({ columns });
   // highlight-end
   ...
   
