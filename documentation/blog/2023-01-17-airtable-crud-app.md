@@ -27,6 +27,7 @@ Steps we'll cover:
   - [Creating post record](#creating-post-record)
   - [Editing post record](#editing-post-record)
   - [Deleting post record](#deleting-post-record)
+  - [Adding Pagination](#adding-pagination)
 
 
 
@@ -176,7 +177,6 @@ import dataProvider from "./dataProvider";
 const App: React.FC = () => {
     return <Refine dataProvider={dataProvider} />;
 };
-
 ```
 To get more information about the dataProvider, you can always view the documentation [here](https://refine.dev/docs/api-reference/core/providers/data-provider/). 
 
@@ -260,7 +260,6 @@ We will implement the basic CRUD operations like create, list, delete and retrie
 We will add the /posts/ route to our refine application
 
 ```tsx title="src/App.tsx"
-
 import React from "react";
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-airtable";
@@ -285,7 +284,6 @@ function App() {
 }
  
 export default App;
-
 ```
 
 Preview of the posts route in the refine application
@@ -309,7 +307,7 @@ From the picture above, we can see a 404 error page on accessing the posts route
 
 
 ### Listing posts records
-First and foremost, To list our records, we will install the `@pankod/refine-react-table` to use the `useTable()` hook to display all posts records in a table format. To install the table, run the following command:
+First and foremost, To list our records, we will install the `@pankod/refine-react-table` to use the [`useTable()`](https://refine.dev/docs/examples/table/antd/useTable/) hook to display all posts records in a table format. To install the table, run the following command:
 
 ```tsx
 npm i @pankod/refine-react-table
@@ -319,15 +317,11 @@ Next, we will define an interface for the fetched data from our Airtable Base. t
 
 
 ```tsx title="src/interfaces/post.d.ts"
-
 export interface IPost {
  id: string;
  name: string;
- title: string;
- content: string,
  category: string,
  Status: "published" | "draft" | "rejected";
- createdAt: string;
 }
 ```
 
@@ -337,18 +331,18 @@ As shown above, we added the `id`, `name`,  `title`, `content`, `category`, `sta
 Next, we create a new folder named "pages" under `src`. Under that folder, create a `post` folder and add a `list.tsx` file with the following code:
 
 <details>
-<summary>Show Code</summary>
+<summary>Show pages/post/list.tsx code</summary>
 <p>
 
 ```tsx title="src/pages/post/list.tsx"
 import React from "react";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 import { IPost } from "../../interfaces/post";
-import { useNavigation } from "@pankod/refine-core";
- 
+import { useNavigation, useDelete } from "@pankod/refine-core";
  
 export const PostList: React.FC = () => {
  const { show, edit, create } = useNavigation();
+ const { mutate } = useDelete();
  
  const columns = React.useMemo<ColumnDef<IPost>[]>(
    () => [
@@ -363,16 +357,6 @@ export const PostList: React.FC = () => {
        accessorKey: "Name",
      },
      {
-       id: "title",
-       header: "Title",
-       accessorKey: "title",
-     },
-     {
-       id: "content",
-       header: "Content",
-       accessorKey: "content",
-     },
-     {
        id: "category",
        header: "Category",
        accessorKey: "category",
@@ -382,45 +366,41 @@ export const PostList: React.FC = () => {
        header: "Status",
        accessorKey: "Status",
      },
-     {
-       id: "createdAt",
-       header: "CreatedAt",
-       accessorKey: "createdAt",
-     },
-     {
-       id: "action",
-       header: "Action",
-       accessorKey: "id",
-       cell: function render({ getValue }) {
-         return (
-           <button
-             className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-             onClick={() =>
-               show("posts", getValue() as number)
-             }
-           >
-             View
-           </button>
-         );
-       },
-     },
-     {
-       id: "action",
-       header: "Action",
-       accessorKey: "id",
-       cell: function render({ getValue }) {
-         return (
-           <button
-             className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-             onClick={() =>
-               edit("posts", getValue() as number)
-             }
-           >
-             Edit
-           </button>
-         );
-       },
-     },
+      {
+        id: "action",
+        header: "Action",
+        accessorKey: "id",
+        cell: function render({ getValue }) {
+          return (
+            <>
+              <button
+                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                onClick={() => show("posts", getValue() as number)}
+              >
+                View
+              </button>
+              <button
+                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                onClick={() => edit("posts", getValue() as number)}
+              >
+                Edit
+              </button>
+
+              <button
+                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-red-500 hover:text-white"
+                onClick={() =>
+                  mutate({
+                    id: getValue() as number,
+                    resource: "posts"
+                  })
+                }
+              >
+                Delete
+              </button>
+            </>
+          );
+        }
+      }
    ],
    [],
  );
@@ -482,7 +462,9 @@ export const PostList: React.FC = () => {
 </p>
 </details>
 
-In the code above, we use the `useTable()` hook from the `@pankod/refine-react-table` package to fetch records from our Airtable base.
+In the code above, we use the [`useTable()`](https://refine.dev/docs/examples/table/antd/useTable/) hook from the `@pankod/refine-react-table` package to fetch records from our Airtable base. It allows us to fetch data according to the sorter, filter, and pagination states.  
+
+We also use the [`useNavigation()`](https://refine.dev/docs/api-references/hooks/navigation/useNavigation/) hook to navigate to the `show`, `edit`, and `create` pages of the `posts` resource.
 
 
 ---
@@ -496,15 +478,11 @@ In the code above, we use the `useTable()` hook from the `@pankod/refine-react-t
 Remember the records from our **posts** base on Airtable has a category field, we will map the  category fields to their corresponding titles on the **category** base we created on airtable. But first, we will add a category type to the `post.d.ts` file under `interfaces` under the `src` folder in the root directory of our application.
 
 ```tsx title="src/interfaces/post.d.ts"
-
 export interface IPost {
   id: string;
   name: string;
-  title: string;
-  content: string,
   category: string,
   Status: "published" | "draft" | "rejected";
-  createdAt: string;
 }
 
 export interface ICategory {
@@ -512,16 +490,15 @@ export interface ICategory {
   name: string;
   posts: string;
 }
-
 ```
 
-Next, we need to map records from different the **category** field to the **category** base on Airtable. For this, we're going to use the `useMany()` refine hook.
+Next, we need to map records from different the **category** field to the **category** base on Airtable. For this, we're going to use the [`useMany()`](https://refine.dev/docs/api-reference/core/hooks/data/useMany/) refine hook.
 
 The `useMany()` hook is a variant of the `react-query's` [useQuery()](https://tanstack.com/query/v4/docs/react/guides/queries?from=reactQueryV3&original=https%3A%2F%2Freact-query-v3.tanstack.com%2Fguides%2Fqueries) hook. it is used to obtain multiple items from a resource.
 To get more information about this hook, view its documentation [here](https://refine.dev/docs/api-reference/core/hooks/data/useMany/).
 
 
-Update the `<PostList/>` component with the code below:
+Update the `<PostList/>` component with the highlighted code below:
 
 <details>
 <summary>Show Code</summary>
@@ -531,118 +508,16 @@ Update the `<PostList/>` component with the code below:
 import React from "react";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 import { ICategory, IPost } from "../../interfaces/post";
+  //highlight-next-line
 import { useNavigation, useDelete, GetManyResponse, useMany } from "@pankod/refine-core";
 
-
 export const PostList: React.FC = () => {
-  const { show, edit, create } = useNavigation();
-  const { mutate } = useDelete();
+  
+  ...
+  /* code from previous block */
+  ...
 
-  const columns = React.useMemo<ColumnDef<IPost>[]>(
-    () => [
-      {
-        id: "id",
-        header: "ID",
-        accessorKey: "id",
-      },
-      {
-        id: "Name",
-        header: "Name",
-        accessorKey: "Name",
-      },
-      {
-        id: "title",
-        header: "Title",
-        accessorKey: "title",
-      },
-      {
-        id: "content",
-        header: "Content",
-        accessorKey: "content",
-      },
-      {
-        id: "category",
-        header: "Category",
-        accessorKey: "category",
-        cell: function render({ getValue, table }) {
-          const meta = table.options.meta as {
-            categoriesData: GetManyResponse<ICategory>;
-          };
-          let singleValue:string[] | any = getValue();
-          const category = meta.categoriesData?.data?.find(item =>  item.id === singleValue[0])
-          return category?.name ?? "Loading...";
-        },
-      },
-      {
-        id: "status",
-        header: "Status",
-        accessorKey: "Status",
-      },
-      {
-        id: "createdAt",
-        header: "CreatedAt",
-        accessorKey: "createdAt",
-      },
-      {
-        id: "action",
-        header: "Action",
-        accessorKey: "id",
-        cell: function render({ getValue }) {
-          return (
-            <button
-              className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-              onClick={() =>
-                show("posts", getValue() as number)
-              }
-            >
-              View
-            </button>
-          );
-        },
-      },
-      {
-        id: "action",
-        header: "Action",
-        accessorKey: "id",
-        cell: function render({ getValue }) {
-          return (
-            <button
-              className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-              onClick={() =>
-                edit("posts", getValue() as number)
-              }
-            >
-              Edit
-            </button>
-          );
-        },
-      },
-
-      {
-        id: "action",
-        header: "Action",
-        accessorKey: "id",
-        cell: function render({ getValue }) {
-          return (
-            <button
-              className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-red-500 hover:text-white"
-              onClick={() =>
-                mutate({
-                  id: getValue() as number,
-                  resource: "posts",
-                })
-              }
-            >
-              Delete
-            </button>
-
-          );
-        },
-      },
-    ],
-    [],
-  );
-
+  //highlight-start
   const {
     getHeaderGroups,
     getRowModel,
@@ -680,7 +555,6 @@ export const PostList: React.FC = () => {
           <span>Create Post</span>
         </button>
       </div>
-
       <table className="min-w-full table-fixed divide-y divide-gray-200 border">
         <thead className="bg-gray-100">
           {getHeaderGroups().map((headerGroup, idx) => (
@@ -728,8 +602,8 @@ export const PostList: React.FC = () => {
     </div>
   );
 };
+ //highlight-end
 ```
-
 
 </p>
 </details>
@@ -1197,7 +1071,7 @@ export default App;
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/creating_post_record-min.gif"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create.gif"  alt="react crud app airtable" />
 
 </div>
 
@@ -1453,7 +1327,7 @@ After this, we can now add the component `<PostEdit/>` in the `edit.tsx` file to
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/editing_post-min.gif"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/edit.gif"  alt="react crud app airtable" />
 
 </div>
 
@@ -1521,12 +1395,142 @@ export const PostList: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/deleting_record-min.gif"  alt="react crud app airtable" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/delete.gif"  alt="react crud app airtable" />
 
 </div>
 
 <br />
 
+### Adding Pagination
+Next, we will add Pagination to our application. in order to achieve this, the useTable() hook provides certain functions that handle pagination. They are:
+
+- getState: This is the useTable() state variable.
+- setPageIndex(): This is a function that handles setting the page index.
+- getCanPreviousPage(): This is a boolean value that indicates if a previous page exists or not.
+- getPageCount: This variable holds the number of pages.
+- getCanNextPage: This is a boolean value that indicates if a next page exists or not.
+- nextPage(): This function handles navigation to the next page.
+- previousPage: This function handles navigation to the previous page.
+- setPageSize(): This is a function that handles setting the content to be shown on a page (page size).
+
+We will go to update the `<PostList/>` component with the highlighted code below:
+
+<details>
+<summary>Show pages/post/list.tsx code</summary>
+<p>
+
+```tsx title="src/pages/post/list.tsx"
+import React from "react";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { ICategory, IPost } from "../../interfaces/post";
+import { useNavigation, useDelete, GetManyResponse, useMany } from "@pankod/refine-core";
+
+
+export const PostList: React.FC = () => {
+  ...
+
+  // highlight-start
+  const {
+    getHeaderGroups,
+    getRowModel,
+    setOptions,
+    refineCore: {
+      tableQueryResult: { data: tableData },
+    },
+    getState,
+    setPageIndex,
+    getCanPreviousPage,
+    getPageCount,
+    getCanNextPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+  } = useTable<IPost>({ columns });
+  // highlight-end
+  ...
+  
+  return (
+      
+      ...
+
+        // highlight-start
+      <div className="flex items-center justify-between mx-auto mt-12">
+        <div className="md:w-7/12 flex items-center justify-between mx-auto">
+          <button
+            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+            onClick={() => setPageIndex(0)}
+            disabled={!getCanPreviousPage()}
+          >
+            {"<<"}
+          </button>
+          <button
+            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+            onClick={() => previousPage()}
+            disabled={!getCanPreviousPage()}
+          >
+            {"<"}
+          </button>
+
+          <button  
+            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+            onClick={() => nextPage()} disabled={!getCanNextPage()}>
+            {">"}
+          </button>
+
+          <button
+            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+            onClick={() => setPageIndex(getPageCount() - 1)}
+            disabled={!getCanNextPage()}
+          >
+            {">>"}
+          </button>
+
+          <div className="w-[40%] px-5">
+            Page
+            <strong>
+            &nbsp; {getState().pagination.pageIndex + 1} of{" "}
+              {getPageCount()}
+            </strong>
+          </div>
+
+          <div className="px-5">
+            Go to page:
+            <input
+              className="p-2 block border rounded-[8px]"
+              type="number"
+              defaultValue={getState().pagination.pageIndex + 1}
+              onChange={(e) => {
+                const page = e.target.value
+                  ? Number(e.target.value) - 1
+                  : 0;
+                setPageIndex(page);
+              }}
+            />
+          </div>{" "}
+
+          <select
+            className="px-5 border w-[50%]"
+            value={getState().pagination.pageSize}
+            onChange={(e) => {
+              setPageSize(Number(e.target.value));
+            }}
+          >
+            {[10, 20, 30, 40, 50].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                Show {pageSize}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+    </div>
+  );
+};
+  // highlight-end
+```
+
+</p>
+</details>
 
 
 ## Conclusion
