@@ -1080,6 +1080,8 @@ In this article, we introduced refine and React hook forms and looked at their b
 
 We also looked at how to set up a dynamic form using React hook form’s `useFieldArray` hook and how to fix the quirks that come with using the tool.
 
+<a rel="dofollow" href="https://www.freecodecamp.org/news/how-to-build-an-react-admin-panel-with-refine/">Refer to building React admin panel with refine article </a>
+
 
 ## Live CodeSandbox Example
 
