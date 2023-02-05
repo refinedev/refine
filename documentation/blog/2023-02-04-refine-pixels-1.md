@@ -14,6 +14,29 @@ This post provides an introduction to [**refine**](https://github.com/refinedev/
 
 It also presents the [AWeekOfRefine](https://refine.dev/week-of-refine/) series - which is a seven part quickfire guide that aims to help developers learn the ins-and-outs of [**refine**](https://github.com/refinedev/refine) and [**Supabase**](https://supabase.com/) powerful capabilities and get going with **refine** within a week.
 
+At the end of this series, you'll be able to build a fully functional CRUD app named "**Pixels**" with **refine** and **Supabase**. 
+
+[The live version of the app is be available here.](https://pixels.refine.dev/)
+
+The final apps source codes are available on GitHub:
+ ### Pixels Client
+  [Source Code on GitHub](https://github.com/refinedev/refine/tree/master/examples/pixels)  
+
+  To get completed client source code simply run:
+   ```
+    npm create refine-app@latest -- --example pixels
+   ```
+
+  ### Pixels Admin
+
+  [Source Code on GitHub](https://github.com/refinedev/refine/tree/master/examples/pixels-admin)  
+
+  To get completed admin source code simply run: 
+   
+   ```
+    npm create refine-app@latest -- --example pixels-admin
+   ```
+
 
 
 
@@ -46,7 +69,6 @@ import authProvider from "./authProvider";
     resources={[]}
     ...
 />;
-
 ```
 
 The above snippet lists a few of the props and their objects.  
