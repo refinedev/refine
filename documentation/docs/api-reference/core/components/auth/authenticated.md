@@ -18,11 +18,11 @@ When:
 ```tsx
 import { Authenticated } from "@pankod/refine-core";
 
-// --
-
-<Authenticated>
-    <YourComponent />
-</Authenticated>;
+const MyPage = () => (
+    <Authenticated>
+        <YourComponent />
+    </Authenticated>
+);
 ```
 
 > Refer to [Custom Pages Example][custom pages example] and [it's explanation][custom pages explanation] to learn how to use it with custom pages. &#8594
