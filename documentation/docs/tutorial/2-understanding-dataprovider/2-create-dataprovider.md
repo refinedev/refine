@@ -398,7 +398,7 @@ access-control-expose-headers: X-Total-Count
 
 <br/>
 
-**refine** will consume this `getList` method using the `useList` data hook.
+**refine** will consume this `getList` method using the `useList` or `useInfiniteList` data hook.
 
 ```ts
 import { useList } from "@pankod/refine-core";
