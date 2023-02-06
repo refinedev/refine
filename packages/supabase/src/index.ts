@@ -5,6 +5,7 @@ import {
     LiveEvent,
     HttpError,
     CrudOperators,
+    CrudFilters,
 } from "@pankod/refine-core";
 import {
     createClient,
@@ -386,24 +387,32 @@ const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
                 }
             };
 
-            const client = supabaseClient.channel(`public:${resource}`).on(
+            const mapFilter = (filters?: CrudFilters): string | undefined => {
+                if (!filters) {
+                    return;
+                }
+
+                return filters
+                    .map((filter: CrudFilter): string | undefined => {
+                        if ("field" in filter) {
+                            return `${filter.field}=${mapOperator(
+                                filter.operator,
+                            )}.${filter.value}`;
+                        }
+                        return;
+                    })
+                    .join(",");
+            };
+
+            const client = supabaseClient.channel("any").on(
                 "postgres_changes",
                 {
                     event: supabaseTypes[types[0]] as any,
                     schema: "public",
+                    table: resource,
+                    filter: mapFilter(params?.filters),
                 },
                 listener,
-            );
-
-            types.slice(1).map((item) =>
-                client.on(
-                    "postgres_changes",
-                    {
-                        event: supabaseTypes[item] as any,
-                        schema: "public",
-                    },
-                    listener,
-                ),
             );
 
             return client.subscribe();
