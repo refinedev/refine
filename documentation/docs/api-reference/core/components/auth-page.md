@@ -915,7 +915,7 @@ interface OAuthProvider {
 }
 ```
 
-[auth-provider]: /docs/api-references/interfaces/authprovider
+[auth-provider]: /docs/api-reference/core/providers/auth-provider/
 [login]: /docs/api-reference/core/providers/auth-provider/#login-
 [register]: /docs/api-reference/core/providers/auth-provider/#register
 [forgot-password]: /docs/api-reference/core/providers/auth-provider/#forgotpassword
