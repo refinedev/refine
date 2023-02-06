@@ -123,6 +123,7 @@ function PostEdit(Props: any) {
                     })}
                 </>
             </Box>
+            {/* @ts-expect-error type inconsistency here - should be fixed by updating the hooks */}
             <p>{errors.skills && `${errors.skills?.root?.message}`}</p>
             <Button
                 variant="outlined"
