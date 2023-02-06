@@ -8,6 +8,10 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pix
 hide_table_of_contents: false
 ---
 
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/refine_supabase.png" alt="refine banner" />
+
+  <br/>
+  <br/>
 
 
 This post provides an introduction to [**refine**](https://github.com/refinedev/refine), a React framework used to rapidly build data heavy CRUD apps like dashboards, admin panels and e-commerce storefronts.
