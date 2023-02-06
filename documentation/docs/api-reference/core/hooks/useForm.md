@@ -716,11 +716,11 @@ render(<RefineHeadlessDemo />);
 
 > Default: It reads the `resource` value from the current URL.
 
-It will be passed to the [`dataProvider`](data-provider)'s method as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your [`dataProvider`](data-provider). See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
+It will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your [`dataProvider`][data-provider]. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
 
--   When `action` is `"create"`, it will be passed to the [`create`](create) method from the [`dataProvider`](data-provider).
--   When `action` is `"edit"`, it will be passed to the [`update`](update) and the [`getOne`](get-one) method from the [`dataProvider`](data-provider).
--   When `action` is `"clone"`, it will be passed to the [`create`](create) and the [`getOne`](get-one) method from the [`dataProvider`](data-provider).
+-   When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
+-   When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
+-   When `action` is `"clone"`, it will be passed to the [`create`][create] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
 
 ```tsx
 useForm({
