@@ -1,6 +1,7 @@
 ---
 id: useSubscription
 title: useSubscription
+source: packages/core/src/hooks/live/useSubscription/index.ts
 ---
 
 `useSubscription` calls the [`subscribe`][live-provider-subscribe] method from [`liveProvider`][live-provider] when mounted. It is useful when you want to subscribe to a Realtime channel.
