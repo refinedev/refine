@@ -1,10 +1,18 @@
 ---
 id: useMenu
 title: useMenu
+source: packages/core/src/hooks/menu/useMenu.tsx
 ---
 
-`useMenu` is used to get menu items derived from the resources. These items include a link to dashboard page (if it exists) and links to the user defined resources (passed as children to `<Refine>`).
-This hook can also be used to build custom menus, including multi-level support. `<Sider/>` components inside [`@pankod/refine-antd`](/docs/api-reference/antd/), [`@pankod/refine-mui`](/docs/api-reference/mui/), [`@pankod/refine-chakra-ui`](/docs/api-reference/chakra-ui/) and [`@pankod/refine-mantine`](/docs/api-reference/mantine/) packages are using this hook as a base for their menus.
+```css live shared
+body {
+    padding: 4px;
+    background: white;
+}
+```
+
+`useMenu` is used to get menu items derived from the resources. These items include a link to the dashboard page (if it exists) and links to the user-defined resources (passed as children to `<Refine>`).
+This hook can also be used to build custom menus, including multi-level support. `<Sider/>` components inside [`@pankod/refine-antd`](/docs/api-reference/antd/), [`@pankod/refine-mui`](/docs/api-reference/mui/), [`@pankod/refine-chakra-ui`](/docs/api-reference/chakra-ui/) and, [`@pankod/refine-mantine`](/docs/api-reference/mantine/) packages are using this hook as a base for their menus.
 
 ```ts
 const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
@@ -37,117 +45,131 @@ If you are using [`@pankod/refine-antd`](/docs/api-reference/antd/), [`@pankod/r
 
 ### Creating a Menu
 
-We will show you how to use `useMenu` to create a simple menu for your refine application.
+We will show you how to use `useMenu` to create a simple menu for your **refine** application.
 
-Create a `<Layout />` component inside `src/components/layout.tsx` with the following code;
+```tsx live hideCode url=http://localhost:3000
+setInitialRoutes(["/"]);
 
-```tsx title="src/components/layout.tsx"
-import { LayoutProps } from "@pankod/refine-core";
-import { useMenu, useNavigation, useRouterContext, useRefineContext } from "@pankod/refine-core";
+// visible-block-start
+import React from "react";
+import {
+    useMenu,
+    LayoutProps,
+    useRouterContext,
+    useRefineContext,
+    ITreeMenu,
+} from "@pankod/refine-core";
 
-export const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
+    // highlight-start
     const { menuItems, selectedKey } = useMenu();
+    // highlight-end
     const { hasDashboard } = useRefineContext();
     const { Link } = useRouterContext();
+
     // You can also use navigation helpers from `useNavigation` hook instead of `Link` from your Router Provider.
     // const { push } = useNavigation();
 
+    // highlight-start
+    const renderMenuItems = (items: ITreeMenu[]) => {
+        return (
+            <>
+                {menuItems.map(({ name, label, icon, route }) => {
+                    const isSelected = route === selectedKey;
+                    return (
+                        <li key={name}>
+                            <Link
+                                to={route}
+                                style={{
+                                    fontWeight: isSelected ? "bold" : "normal",
+                                }}
+                            >
+                                {icon}
+                                <span>{label ?? name}</span>
+                            </Link>
+                        </li>
+                    );
+                })}
+            </>
+        );
+    };
+    // highlight-end
+
     return (
-        <div className="flex min-h-screen flex-col">
-            <div className="mb-2 border-b py-2">
-                <div className="container mx-auto">
-                    <div className="flex items-center gap-2">
-                        <Link to="/">
-                            <img
-                                className="w-32"
-                                src="https://refine.dev/img/refine_logo.png"
-                                alt="Logo"
-                            />
-                        </Link>
-                        // highlight-start
-                        <ul>
-                            {hasDashboard && (
-                                <li>
-                                    <Link to="/">
-                                        <a style={{ fontWeight: selectedKey === "/" ? "bold" : "normal" }}>
-                                            <span>Dashboard</span>
-                                        </a>
-                                    </Link>
-                                </li>
-                            )}
-                            {menuItems.map(({ name, label icon, route }) => {
-                                const isSelected = route === selectedKey;
-                                return (
-                                    <li key={name}>
-                                        <Link to={route}>
-                                            <a style={{ fontWeight: isSelected ? "bold" : "normal" }}>
-                                                {icon}
-                                                <span>{label ?? name}</span>
-                                            </a>
-                                        </Link>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                        // highlight-end
-                    </div>
-                </div>
+        <div>
+            <div>
+                <Link to="/">
+                    <img
+                        src="https://refine.dev/img/refine_logo.png"
+                        alt="Logo"
+                    />
+                </Link>
+                {/* highlight-start */}
+                <ul>
+                    {hasDashboard && (
+                        <li>
+                            <Link
+                                to="/"
+                                style={{
+                                    fontWeight:
+                                        selectedKey === "/" ? "bold" : "normal",
+                                }}
+                            >
+                                <span>Dashboard</span>
+                            </Link>
+                        </li>
+                    )}
+                    {renderMenuItems(menuItems)}
+                </ul>
+                {/* highlight-end */}
             </div>
-            <div className="bg-white">{children}</div>
+            <div>{children}</div>
         </div>
     );
 };
+
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+
+import { Layout } from "components";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const App: React.FC = () => {
+    return (
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            routerProvider={routerProvider}
+            resources={[
+                {
+                    name: "posts",
+                    list: () => <div>dummy posts page</div>,
+                },
+                {
+                    name: "categories",
+                    list: () => <div>dummy categories page</div>,
+                },
+            ]}
+            Layout={Layout}
+        />
+    );
+};
+// visible-block-end
+
+render(App);
 ```
 
-We created a header with a logo and a list of links to all menu items (resources). The links are clickable and will navigate to the corresponding resource. To do this, we used the [`useMenu`](/api-reference/core/hooks/ui/useMenu.md) hook to get the menu items from the `<Refine/>` and the `useRouterContext` hook to get the `<Link/>` component from the router provider. Also [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) hook can be used to navigate between routes.
+We created `<Layout>` with a header with a logo and a list of links to all menu items (resources). The links are clickable and will navigate to the corresponding resource. To do this, we used the `useMenu` hook to get the menu items from the `<Refine/>` and the `useRouterContext` hook to get the `<Link/>` component from the router provider. Also [`useNavigation`][use-navigation] hook can be used to navigate between routes.
 
 `children` is the content of the layout. In our case, it is the content of the **Page** components.
 
 :::tip
 
-[Refer to Custom Layout guide for more detailed information on layout customization. &#8594](/advanced-tutorials/custom-layout.md)  
+[Refer to Custom Layout guide for more detailed information on layout customization. &#8594](/docs/advanced-tutorials/custom-layout/)  
 :::
 
-Now, we can use the `<Layout/>` in our application.
-
-```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
-
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/post";
-import { CategoryList, CategoryCreate, CategoryEdit } from "pages/category";
-// highlight-next-line
-import { Layout } from "components/layout";
-import { PostIcon } from "icons";
-
-export const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-                {
-                    name: "categories",
-                    list: CategoryList,
-                    create: CategoryCreate,
-                    edit: CategoryEdit,
-                    canDelete: true,
-                },
-            ]}
-            // highlight-next-line
-            Layout={Layout}
-        />
-    );
-};
-```
+After creating the `<Layout/>` component, we can use it in our application. We need to pass it to the `<Refine/>` component as a prop.
 
 ### Multi Level Menus
 
@@ -160,17 +182,15 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/post";
-import { CategoryList, CategoryCreate, CategoryEdit } from "pages/category";
-
 import { Layout } from "components/layout";
-import { PostIcon } from "icons";
 
-export const App: React.FC = () => {
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const App: React.FC = () => {
     return (
         <Refine
             routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            dataProvider={dataProvider(API_URL)}
             // highlight-start
             resources={[
                 {
@@ -179,18 +199,12 @@ export const App: React.FC = () => {
                 {
                     name: "posts",
                     parentName: "CMS",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
+                    list: () => <div>dummy posts page</div>,
                 },
                 {
                     name: "categories",
                     parentName: "CMS",
-                    list: CategoryList,
-                    create: CategoryCreate,
-                    edit: CategoryEdit,
-                    canDelete: true,
+                    list: () => <div>dummy categories page</div>,
                 },
             ]}
             // highlight-end
@@ -198,66 +212,116 @@ export const App: React.FC = () => {
         />
     );
 };
+
+export default App;
 ```
 
 Now you can update your `<Layout/>` to support multi level rendering with following code:
 
 ```tsx title="src/components/Layout.tsx"
-import { LayoutProps } from "@pankod/refine-core";
-import { useMenu, useNavigation, useRouterContext } from "@pankod/refine-core";
+import React from "react";
+import {
+    useMenu,
+    LayoutProps,
+    useRouterContext,
+    useRefineContext,
+    ITreeMenu,
+} from "@pankod/refine-core";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const { menuItems, selectedKey } = useMenu();
     const { Link } = useRouterContext();
 
     // highlight-start
-    const renderMenu = (items) => {
+    const renderMenuItems = (items: ITreeMenu[]) => {
         return (
-            <ul>
-                {items.map((item) => (
-                    <li key={item.label}>
-                        <span>{item.label}</span>
-                        {item.children ? renderMenu(item.children) : null}
-                    </li>
-                ))}
-            </ul>
+            <>
+                {items.map(({ name, label, icon, route, children, list }) => {
+                    if (!list) {
+                        return (
+                            <li key={label}>
+                                <span>{label ?? name}</span>
+                                {children ? renderMenuItems(children) : null}
+                            </li>
+                        );
+                    }
+
+                    const isSelected = route === selectedKey;
+
+                    return (
+                        <li key={label}>
+                            <Link
+                                to={route}
+                                style={{
+                                    fontWeight: isSelected ? "bold" : "normal",
+                                }}
+                            >
+                                {icon}
+                                <span>{label ?? name}</span>
+                            </Link>
+                        </li>
+                    );
+                })}
+            </>
         );
     };
     // highlight-end
 
     return (
-        <div className="flex min-h-screen flex-col">
-            <div className="mb-2 border-b py-2">
-                <div className="container mx-auto">
-                    <div className="flex items-center gap-2">
-                        <Link to="/">
-                            <img
-                                className="w-32"
-                                src="https://refine.dev/img/refine_logo.png"
-                                alt="Logo"
-                            />
-                        </Link>
-                        // highlight-start
-                        {renderMenu(menuItems)}
-                        // highlight-end
-                    </div>
-                </div>
+        <div>
+            <div>
+                <Link to="/">
+                    <img
+                        src="https://refine.dev/img/refine_logo.png"
+                        alt="Logo"
+                    />
+                </Link>
+                <ul>
+                    {hasDashboard && (
+                        <li>
+                            <Link
+                                to="/"
+                                style={{
+                                    fontWeight:
+                                        selectedKey === "/" ? "bold" : "normal",
+                                }}
+                            >
+                                <span>Dashboard</span>
+                            </Link>
+                        </li>
+                    )}
+                    {renderMenuItems(menuItems)}
+                </ul>
             </div>
-            <div className="bg-white">{children}</div>
+            <div>{children}</div>
         </div>
     );
 };
 ```
 
+## Return Values
+
+### `selectedKey`
+
+Key of the resource the user is viewing at the moment.
+
+### `menuItems`
+
+List of keys and routes and some metadata of resources and also the dashboard if exists.
+
+### `defaultOpenKeys`
+
+Array with the keys of default opened menus.
+
 ## API Reference
 
 ### Return values
 
-| Property        | Description                                                                             | Type                         |
-| --------------- | --------------------------------------------------------------------------------------- | ---------------------------- |
-| selectedKey     | Key of the resource the user is viewing at the moment                                   | `string`                     |
-| menuItems       | List of keys and routes and some metadata of resources and also the dashboard if exists | [`ITreeMenu[]`](#interfaces) |
-| defaultOpenKeys | Array with the keys of default opened menus.                                            | `string[]`                   |
+| Property        | Description                                                                              | Type                         |
+| --------------- | ---------------------------------------------------------------------------------------- | ---------------------------- |
+| selectedKey     | Key of the resource the user is viewing at the moment.                                   | `string`                     |
+| menuItems       | List of keys and routes and some metadata of resources and also the dashboard if exists. | [`ITreeMenu[]`](#interfaces) |
+| defaultOpenKeys | Array with the keys of default opened menus.                                             | `string[]`                   |
 
 #### Interfaces
 
@@ -312,6 +376,8 @@ type ITreeMenu = IMenuItem & {
 // highlight-end
 ```
 
-### Source Code
+## Example
 
-[View source code for `useMenu` on GitHub &#8594](https://github.com/refinedev/refine/blob/feat/use-menu-core/packages/core/src/hooks/menu/useMenu.tsx#L26)
+<CodeSandboxExample path="core-use-menu" />
+
+[use-navigation]: /docs/api-reference/core/hooks/navigation/useNavigation/
