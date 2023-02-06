@@ -29,7 +29,7 @@ import { Authenticated } from "@pankod/refine-core";
 
 ## Properties
 
-### fallback
+### `fallback`
 
 Component to render if the user is not logged in. If `undefined`, the page will be redirected to `/login`.
 
