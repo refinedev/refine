@@ -39,7 +39,7 @@ Component to render if the user is not logged in. If `undefined`, the page will 
 </Authenticated>
 ```
 
-### loading
+### `loading`
 
 Component to render while checking whether the user is logged in.
 
