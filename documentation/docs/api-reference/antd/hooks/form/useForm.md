@@ -956,3 +956,7 @@ export const UserCreate: React.FC = () => {
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
 [notification-provider]: /docs/api-reference/core/providers/notification-provider/
+[get-one]: /docs/api-reference/core/providers/data-provider/#getone-
+[create]: /docs/api-reference/core/providers/data-provider/#create-
+[update]: /docs/api-reference/core/providers/data-provider/#update-
+[data-provider]: /docs/api-reference/core/providers/data-provider
