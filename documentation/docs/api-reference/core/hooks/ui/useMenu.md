@@ -12,6 +12,7 @@ body {
 ```
 
 `useMenu` is used to get menu items derived from the resources. These items include a link to the dashboard page (if it exists) and links to the user-defined resources (passed as children to `<Refine>`).
+
 This hook can also be used to build custom menus, including multi-level support. `<Sider/>` components inside [`@pankod/refine-antd`](/docs/api-reference/antd/), [`@pankod/refine-mui`](/docs/api-reference/mui/), [`@pankod/refine-chakra-ui`](/docs/api-reference/chakra-ui/) and, [`@pankod/refine-mantine`](/docs/api-reference/mantine/) packages are using this hook as a base for their menus.
 
 ```ts
