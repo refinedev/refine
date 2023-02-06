@@ -176,7 +176,7 @@ const App = () => {
 
 You can pick data providers in two ways:
 
--   **Using `dataProviderName` prop in the data hooks **and all **data-related** components/**functions.**
+-   **Using `dataProviderName` prop in the data hooks and all data-related components/functions.**
 
 ```tsx
 useTable({
