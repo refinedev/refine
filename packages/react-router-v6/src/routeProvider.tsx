@@ -11,6 +11,7 @@ import {
     useRouterContext,
     CanAccess,
     ResourceRouterParams,
+    useDocumentTitle,
 } from "@pankod/refine-core";
 import { RefineRouteProps } from "./index";
 
@@ -20,6 +21,7 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
     const { resources } = useResource();
 
     const { action, id } = useParams<ResourceRouterParams>();
+    useDocumentTitle();
 
     const resource = resources.find((res) => res.route === route);
 
