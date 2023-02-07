@@ -220,12 +220,6 @@ const authProvider: AuthProvider = {
         }
 
         if (data) {
-            notification.open({
-                type: "success",
-                message: "Success",
-                description:
-                    "Please check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.",
-            });
             return Promise.resolve();
         }
     },
