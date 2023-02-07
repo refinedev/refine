@@ -249,226 +249,226 @@ Normally, for our own backend API, we have to define each method we need for sen
 
 ```tsx title="@pankod/refine-supabase/src/index.ts"
 const dataProvider = (
-	supabaseClient: SupabaseClient,
+    supabaseClient: SupabaseClient,
 ): Required<DataProvider> => {
-	return {
-		getList: async ({
-				resource,
-				hasPagination = true,
-				pagination = { current: 1, pageSize: 10 },
-				filters,
-				sort,
-				metaData,
-		}) => {
-			const { current = 1, pageSize = 10 } = pagination ?? {};
+    return {
+        getList: async ({
+            resource,
+            hasPagination = true,
+            pagination = { current: 1, pageSize: 10 },
+            filters,
+            sort,
+            metaData,
+        }) => {
+            const { current = 1, pageSize = 10 } = pagination ?? {};
 
-			const query = supabaseClient
-				.from(resource)
-				.select(metaData?.select ?? "*", {
-					count: "exact",
-				});
+            const query = supabaseClient
+                .from(resource)
+                .select(metaData?.select ?? "*", {
+                    count: "exact",
+                });
 
-			if (hasPagination) {
-				query.range((current - 1) * pageSize, current * pageSize - 1);
-			}
+            if (hasPagination) {
+                query.range((current - 1) * pageSize, current * pageSize - 1);
+            }
 
-			sort?.map((item) => {
-				const [foreignTable, field] = item.field.split(/\.(.*)/);
+            sort?.map((item) => {
+                const [foreignTable, field] = item.field.split(/\.(.*)/);
 
-				if (foreignTable && field) {
-					query
-						.select(
-							metaData?.select ?? `*, ${foreignTable}(${field})`,
-						)
-						.order(field, {
-							ascending: item.order === "asc",
-							foreignTable: foreignTable,
-						});
-				} else {
-					query.order(item.field, {
-						ascending: item.order === "asc",
-					});
-				}
-			});
+                if (foreignTable && field) {
+                    query
+                        .select(
+                            metaData?.select ?? `*, ${foreignTable}(${field})`,
+                        )
+                        .order(field, {
+                            ascending: item.order === "asc",
+                            foreignTable: foreignTable,
+                        });
+                } else {
+                    query.order(item.field, {
+                        ascending: item.order === "asc",
+                    });
+                }
+            });
 
-			filters?.map((item) => {
-				generateFilter(item, query);
-			});
+            filters?.map((item) => {
+                generateFilter(item, query);
+            });
 
-			const { data, count, error } = await query;
+            const { data, count, error } = await query;
 
-			if (error) {
-				return handleError(error);
-			}
+            if (error) {
+                return handleError(error);
+            }
 
-			return {
-				data: data || [],
-				total: count || 0,
-			};
-		},
+            return {
+                data: data || [],
+                total: count || 0,
+            } as any;
+        },
 
-		getMany: async ({ resource, ids, metaData }) => {
-			const { data, error } = await supabaseClient
-				.from(resource)
-				.select(metaData?.select ?? "*")
-				.in(metaData?.id ?? "id", ids);
+        getMany: async ({ resource, ids, metaData }) => {
+            const { data, error } = await supabaseClient
+                .from(resource)
+                .select(metaData?.select ?? "*")
+                .in(metaData?.id ?? "id", ids);
 
-			if (error) {
-				return handleError(error);
-			}
+            if (error) {
+                return handleError(error);
+            }
 
-			return {
-				data: data || [],
-			};
-		},
+            return {
+                data: data || [],
+            } as any;
+        },
 
-		create: async ({ resource, variables }) => {
-			const { data, error } = await supabaseClient
-				.from(resource)
-				.insert(variables);
+        create: async ({ resource, variables }) => {
+            const { data, error } = await supabaseClient
+                .from(resource)
+                .insert(variables);
 
-			if (error) {
-					return handleError(error);
-			}
+            if (error) {
+                return handleError(error);
+            }
 
-			return {
-				data: (data || [])[0] as any,
-			};
-		},
+            return {
+                data: (data || [])[0] as any,
+            };
+        },
 
-		createMany: async ({ resource, variables }) => {
-			const { data, error } = await supabaseClient
-				.from(resource)
-				.insert(variables);
+        createMany: async ({ resource, variables }) => {
+            const { data, error } = await supabaseClient
+                .from(resource)
+                .insert(variables);
 
-			if (error) {
-				return handleError(error);
-			}
+            if (error) {
+                return handleError(error);
+            }
 
-			return {
-				data: data as any,
-			};
-		},
+            return {
+                data: data as any,
+            };
+        },
 
-		update: async ({ resource, id, variables, metaData }) => {
-			const query = supabaseClient.from(resource).update(variables);
+        update: async ({ resource, id, variables, metaData }) => {
+            const query = supabaseClient.from(resource).update(variables);
 
-			if (metaData?.id) {
-				query.eq(metaData?.id, id);
-			} else {
-				query.match({ id });
-			}
+            if (metaData?.id) {
+                query.eq(metaData?.id, id);
+            } else {
+                query.match({ id });
+            }
 
-			const { data, error } = await query;
-			if (error) {
-				return handleError(error);
-			}
+            const { data, error } = await query;
+            if (error) {
+                return handleError(error);
+            }
 
-			return {
-				data: (data || [])[0] as any,
-			};
-		},
+            return {
+                data: (data || [])[0] as any,
+            };
+        },
 
-		updateMany: async ({ resource, ids, variables, metaData }) => {
-			const response = await Promise.all(
-				ids.map(async (id) => {
-					const query = supabaseClient
-						.from(resource)
-						.update(variables);
+        updateMany: async ({ resource, ids, variables, metaData }) => {
+            const response = await Promise.all(
+                ids.map(async (id) => {
+                    const query = supabaseClient
+                        .from(resource)
+                        .update(variables);
 
-					if (metaData?.id) {
-						query.eq(metaData?.id, id);
-					} else {
-						query.match({ id });
-					}
+                    if (metaData?.id) {
+                        query.eq(metaData?.id, id);
+                    } else {
+                        query.match({ id });
+                    }
 
-					const { data, error } = await query;
-					if (error) {
-						return handleError(error);
-					}
+                    const { data, error } = await query;
+                    if (error) {
+                        return handleError(error);
+                    }
 
-					return (data || [])[0];
-				}),
-			);
+                    return (data || [])[0] as any;
+                }),
+            );
 
-			return {
-				data: response,
-			};
-		},
+            return {
+                data: response,
+            };
+        },
 
-		getOne: async ({ resource, id, metaData }) => {
-			const query = supabaseClient
-				.from(resource)
-				.select(metaData?.select ?? "*");
+        getOne: async ({ resource, id, metaData }) => {
+            const query = supabaseClient
+                .from(resource)
+                .select(metaData?.select ?? "*");
 
-			if (metaData?.id) {
-				query.eq(metaData?.id, id);
-			} else {
-				query.match({ id });
-			}
+            if (metaData?.id) {
+                query.eq(metaData?.id, id);
+            } else {
+                query.match({ id });
+            }
 
-			const { data, error } = await query;
-			if (error) {
-				return handleError(error);
-			}
+            const { data, error } = await query;
+            if (error) {
+                return handleError(error);
+            }
 
-			return {
-				data: (data || [])[0] as any,
-			};
-		},
+            return {
+                data: (data || [])[0] as any,
+            };
+        },
 
-		deleteOne: async ({ resource, id, metaData }) => {
-			const query = supabaseClient.from(resource).delete();
+        deleteOne: async ({ resource, id, metaData }) => {
+            const query = supabaseClient.from(resource).delete();
 
-			if (metaData?.id) {
-				query.eq(metaData?.id, id);
-			} else {
-				query.match({ id });
-			}
+            if (metaData?.id) {
+                query.eq(metaData?.id, id);
+            } else {
+                query.match({ id });
+            }
 
-			const { data, error } = await query;
-			if (error) {
-				return handleError(error);
-			}
+            const { data, error } = await query;
+            if (error) {
+                return handleError(error);
+            }
 
-			return {
-				data: (data || [])[0] as any,
-			};
-		},
+            return {
+                data: (data || [])[0] as any,
+            };
+        },
 
-		deleteMany: async ({ resource, ids, metaData }) => {
-			const response = await Promise.all(
-				ids.map(async (id) => {
-					const query = supabaseClient.from(resource).delete();
+        deleteMany: async ({ resource, ids, metaData }) => {
+            const response = await Promise.all(
+                ids.map(async (id) => {
+                    const query = supabaseClient.from(resource).delete();
 
-					if (metaData?.id) {
-						query.eq(metaData?.id, id);
-					} else {
-						query.match({ id });
-					}
+                    if (metaData?.id) {
+                        query.eq(metaData?.id, id);
+                    } else {
+                        query.match({ id });
+                    }
 
-					const { data, error } = await query;
-					if (error) {
-						return handleError(error);
-					}
+                    const { data, error } = await query;
+                    if (error) {
+                        return handleError(error);
+                    }
 
-					return (data || [])[0];
-				}),
-			);
+                    return (data || [])[0] as any;
+                }),
+            );
 
-			return {
-				data: response,
-			};
-		},
+            return {
+                data: response,
+            };
+        },
 
-		getApiUrl: () => {
-			throw Error("Not implemented on refine-supabase data provider.");
-		},
+        getApiUrl: () => {
+            throw Error("Not implemented on refine-supabase data provider.");
+        },
 
-		custom: () => {
-			throw Error("Not implemented on refine-supabase data provider.");
-		},
-	};
+        custom: () => {
+            throw Error("Not implemented on refine-supabase data provider.");
+        },
+    };
 };
 ```
 
@@ -490,11 +490,18 @@ If we look inside `src/utility/`, we have a `supabaseClient.ts` file containing 
 ```tsx title="src/utility/supabaseClient.ts"
 import { createClient } from "@pankod/refine-supabase";
 
-const SUPABASE_URL = "https://iwdfzvfqbtokqetmbmbp.supabase.co";
+const SUPABASE_URL = "https://ifbdnkfqbypnkmwcfdes.supabase.co";
 const SUPABASE_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDU2NzAxMCwiZXhwIjoxOTQ2MTQzMDEwfQ._gr6kXGkQBi9BM9dx5vKaNKYj_DJN1xlkarprGpM_fU";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlmYmRua2ZxYnlwbmttd2NmZGVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzA5MTgzOTEsImV4cCI6MTk4NjQ5NDM5MX0.ThQ40H-xay-Hi5cf7H9mKccMCvAX3iCvYVJDe0KiHtw";
 
-export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
+    db: {
+        schema: "public",
+    },
+    auth: {
+        persistSession: true,
+    },
+});
 ```
 
 This file was also generated for us by `create refine-app` using **refine**'s **Supabase** package.
@@ -529,106 +536,119 @@ Earlier on, the `authProvider` object was already created by `create refine-app`
 import { AuthProvider } from "@pankod/refine-core";
 import { supabaseClient } from "utility";
 
-const authProvider: AuthProvider = {
-	login: async ({ email, password, providerName }) => {
-		const { user, error } = await supabaseClient.auth.signIn({
-			email,
-			password,
-			provider: providerName,
-		});
+export const authProvider: AuthProvider = {
+    login: async ({ email, password, providerName }) => {
+        // sign in with oauth
+        if (providerName) {
+            const { data, error } = await supabaseClient.auth.signInWithOAuth({
+                provider: providerName,
+            });
 
-		if (error) {
-			return Promise.reject(error);
-		}
+            if (error) {
+                return Promise.reject(error);
+            }
 
-		if (user) {
-			return Promise.resolve();
-		}
+            if (data?.url) {
+                return Promise.resolve();
+            }
+        }
 
-		// for third-party login
-		return Promise.resolve(false);
-	},
-	register: async ({ email, password }) => {
-		const { user, error } = await supabaseClient.auth.signUp({
-			email,
-			password,
-		});
+        // sign in with email and password
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+            email,
+            password,
+        });
 
-		if (error) {
-			return Promise.reject(error);
-		}
+        if (error) {
+            return Promise.reject(error);
+        }
 
-		if (user) {
-			return Promise.resolve();
-		}
-	},
-	forgotPassword: async ({ email }) => {
-		const {
-			data,
-			error,
-		} = await supabaseClient.auth.api.resetPasswordForEmail(email, {
-			redirectTo: `${window.location.origin}/update-password`,
-		});
+        if (data?.user) {
+            return Promise.resolve();
+        }
 
-		if (error) {
-			return Promise.reject(error);
-		}
+        // for third-party login
+        return Promise.resolve(false);
+    },
+    register: async ({ email, password }) => {
+        const { data, error } = await supabaseClient.auth.signUp({
+            email,
+            password,
+        });
 
-		if (data) {
-			return Promise.resolve();
-		}
-	},
-	updatePassword: async ({ password }) => {
-		const { data, error } = await supabaseClient.auth.update({ password });
+        if (error) {
+            return Promise.reject(error);
+        }
 
-		if (error) {
-			return Promise.reject(error);
-		}
+        if (data) {
+            return Promise.resolve();
+        }
+    },
+    forgotPassword: async ({ email }) => {
+        const { data, error } = await supabaseClient.auth.resetPasswordForEmail(
+            email,
+            {
+                redirectTo: `${window.location.origin}/update-password`,
+            },
+        );
 
-		if (data) {
-			return Promise.resolve("/");
-		}
-	},
-	logout: async () => {
-		const { error } = await supabaseClient.auth.signOut();
+        if (error) {
+            return Promise.reject(error);
+        }
 
-		if (error) {
-			return Promise.reject(error);
-		}
+        if (data) {
+            return Promise.resolve();
+        }
+    },
+    updatePassword: async ({ password }) => {
+        const { data, error } = await supabaseClient.auth.updateUser({
+            password,
+        });
 
-		return Promise.resolve("/");
-	},
-	checkError: () => Promise.resolve(),
-	checkAuth: async () => {
-		const session = supabaseClient.auth.session();
-		const sessionFromURL = await supabaseClient.auth.getSessionFromUrl();
+        if (error) {
+            return Promise.reject(error);
+        }
 
-		if (session || sessionFromURL?.data?.user) {
-			return Promise.resolve();
-		}
+        if (data) {
+            return Promise.resolve("/");
+        }
+    },
+    logout: async () => {
+        const { error } = await supabaseClient.auth.signOut();
 
-		return Promise.reject();
-	},
-	getPermissions: async () => {
-		const user = supabaseClient.auth.user();
+        if (error) {
+            return Promise.reject(error);
+        }
 
-		if (user) {
-			return Promise.resolve(user.role);
-		}
-	},
-	getUserIdentity: async () => {
-		const user = supabaseClient.auth.user();
+        return Promise.resolve("/");
+    },
+    checkError: () => Promise.resolve(),
+    checkAuth: async () => {
+        await supabaseClient.auth.getSession();
+        return Promise.resolve();
+    },
+    getPermissions: async () => {
+        const { data } = await supabaseClient.auth.getUser();
+        const { user } = data;
 
-		if (user) {
-			return Promise.resolve({
-				...user,
-				name: user.email,
-			});
-		}
-	},
+        if (user) {
+            return Promise.resolve(user.role);
+        }
+    },
+    getUserIdentity: async () => {
+        const { data } = await supabaseClient.auth.getUser();
+        const { user } = data;
+
+        if (user) {
+            return Promise.resolve({
+                ...user,
+                name: user.email,
+            });
+        }
+
+        return Promise.reject();
+    },
 };
-
-export default authProvider;
 ```
 
 </p>
