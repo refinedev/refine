@@ -3,8 +3,7 @@ id: real-time
 title: Live / Realtime
 ---
 
-
-**refine** lets you add Realtime support to your app via `liveProvider` prop for [`<Refine>`](/api-reference/core/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
+**refine** lets you add Realtime support to your app via the `liveProvider` prop for [`<Refine>`](/api-reference/core/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
 
 [Refer to the Live Provider documentation for detailed information. &#8594](/api-reference/core/providers/live-provider.md)
 
@@ -12,27 +11,27 @@ We will be using [Ably](https://ably.com) in this guide to provide Realtime feat
 
 ## Installation
 
-We need to install Ably live provider package from **refine**.
+We need to install the Ably live provider package from **refine**.
 
 ```bash
 npm install @pankod/refine-ably
 ```
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 ## Setup
 
 Since we will need `apiKey` from Ably, you must first register and get the key from [Ably](https://ably.com).
 
-The app will have one resource: **posts** with [CRUD pages(list, create, edit and show) similar to base example](https://github.com/refinedev/refine/tree/master/examples/base-antd/src/pages/posts).
+The app will have one resource: **posts** with [CRUD pages(list, create, edit, and show) similar to base example](https://github.com/refinedev/refine/tree/master/examples/base-antd/src/pages/posts).
 
-[You can also refer to CodeSandbox to see final state of the app &#8594](#example)
+[You can also refer to CodeSandbox to see the final state of the app &#8594](#example)
 
 ## Adding `liveProvider`
 
-Firstly we create a ably client for [`@pankod/refine-ably`](https://github.com/refinedev/refine/tree/master/packages/ably) live provider.
+Firstly we create ab Ably client for [`@pankod/refine-ably`](https://github.com/refinedev/refine/tree/master/packages/ably) live provider.
 
 ```ts title="src/utility/ablyClient.ts"
 import { Ably } from "@pankod/refine-ably";
@@ -94,7 +93,7 @@ export default App;
 
 :::note
 
-For live features to work automatically we added `liveMode: "auto"` in `options` prop.
+For live features to work automatically we added `liveMode: "auto"` in the `options` prop.
 
 [Refer to the Live Provider documentation for detailed information. &#8594](/api-reference/core/providers/live-provider.md#livemode)
 :::
@@ -106,16 +105,16 @@ For live features to work automatically we added `liveMode: "auto"` in `options`
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/real-time/real-time.gif" alt="Realtime Demo" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/Realtime/real-time.gif" alt="Realtime Demo" />
 </div>
 
 ## Configuring `liveMode`
 
-We may not want to make Realtime changes instantly in some cases. In these cases we can use `manual` mode to prevent the data changing instantly. Then we can handle the event manually.
+We may not want to make Realtime changes instantly in some cases. In these cases, we can use `manual` mode to prevent the data from changing instantly. Then we can handle the event manually.
 
 For example in an edit page for a record, It would be better to handle Realtime data manually to prevent synchronization problems caused by multiple editing sources. We would not want the data changing while we are trying to edit a record.
 
-We will be alerting about changes in an alert box on top of the form instead of changing the data instantly.
+We will be alerted about changes in an alert box on top of the form instead of changing the data instantly.
 
 ```tsx title="src/pages/posts/edit.tsx"
 // ...
@@ -179,7 +178,7 @@ export const PostEdit: React.FC = () => {
 
 :::note
 
-We can also implement similar thing in show page.
+We can also implement a similar thing on the show page.
 
 [Refer to the CodeSandbox example for detailed information. &#8594](#example)
 :::
@@ -198,7 +197,7 @@ We can also implement similar thing in show page.
 
 You can subscribe to events emitted within **refine** in any place in your app with `useSubscription`.
 
-For example, we can subscribe to **_create_** event for **_posts_** resource and we can show a badge for number of events in the sider menu.
+For example, we can subscribe to **_create_** event for **_posts_** resource and we can show a badge for the number of events in the sider menu.
 
 Firstly, let's implement a custom sider like in [this example](/examples/customization/customSider.md).
 
@@ -299,7 +298,7 @@ export const CustomSider: React.FC = () => {
 
 </details>
 
-Now, let's add a badge for number of create and update events for **_posts_** menu item.
+Now, let's add a badge for the number of create and update events for **_posts_** menu items.
 
 ```tsx
 import React, { useState } from "react";
