@@ -12,7 +12,7 @@ It internally uses [`useCan`][use-can]'s return values to provide its functional
 When access control returns:
 
 -   `true`, it renders the children.
--   `false`, it renders [`fallback`](#fallback) prop if provided. Otherwise, it renders `null` page.
+-   `false`, it renders [`fallback`](#fallback) prop if provided. Otherwise, it renders `null`.
 
 [Refer to Access Control Provider for more information. &#8594][access-control-provider]
 
