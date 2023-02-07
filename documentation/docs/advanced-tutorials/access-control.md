@@ -4,10 +4,9 @@ title: Access Control
 sidebar_label: Access Control
 ---
 
-
 ## Introduction
 
-Access control is a broad topic where there are lots of advanced solutions that provide different set of features. **refine** is deliberately agnostic for its own API to be able to integrate different methods (RBAC, ABAC, ACL, etc.) and different libraries ([Casbin](https://casbin.org/), [CASL](https://casl.js.org/v5/en/), [Cerbos](https://cerbos.dev/), [AccessControl.js](https://onury.io/accesscontrol/)). `can` method would be the entry point for those solutions.
+Access control is a broad topic where there are lots of advanced solutions that provide a different sets of features. **refine** is deliberately agnostic for its own API to be able to integrate different methods (RBAC, ABAC, ACL, etc.) and different libraries ([Casbin](https://casbin.org/), [CASL](https://casl.js.org/v5/en/), [Cerbos](https://cerbos.dev/), [AccessControl.js](https://onury.io/accesscontrol/)). `can` method would be the entry point for those solutions.
 
 [Refer to the Access Control Provider documentation for detailed information. &#8594](/api-reference/core/providers/accessControl-provider.md)
 
@@ -26,12 +25,12 @@ npm install casbin
 ```
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 ## Setup
 
-The app will have three resources: **posts**, **users** and **categories** with CRUD pages(list, create, edit and show).
+The app will have three resources: **posts**, **users**, and **categories** with CRUD pages(list, create, edit, and show).
 
 [You can refer to CodeSandbox to see how they are implemented &#8594](#example)
 
@@ -174,9 +173,9 @@ const App: React.FC = () => {
 export default App;
 ```
 
-Whenever a part of the app checks for access control, refine passes `resource`, `action` and `params` parameters to `can` and then we can use these parameters to integrate our specific access control solution which is **Casbin** in this case.
+Whenever a part of the app checks for access control, refine passes `resource`, `action`, and `params` parameters to `can` and then we can use these parameters to integrate our specific access control solution which is **Casbin** in this case.
 
-Our model provides that user with role **editor** have access for **list** action on **posts** resource. Even though we have two other resources, since our policy doesn't include them, they will not appear on sidebar menu. Also in list page of `posts`, buttons for **create**, **edit** and **show** buttons will be disabled since they are not included in the policy.
+Our model provides that user with role **editor** have access for **list** action on **posts** resource. Even though we have two other resources, since our policy doesn't include them, they will not appear on the sidebar menu. Also in the list page of `posts`, buttons for **create**, **edit** and **show** buttons will be disabled since they are not included in the policy.
 
 <div class="img-container">
     <div class="window">
@@ -190,7 +189,7 @@ Our model provides that user with role **editor** have access for **list** actio
 
 ## Adding Different Roles
 
-We can provide different access rights to different type of users for different parts of the app. We can do that by adding policies for the different roles.
+We can provide different access rights to a different types of users for different parts of the app. We can do that by adding policies for the different roles.
 
 ```ts
 export const adapter = new MemoryAdapter(`
@@ -293,7 +292,7 @@ export const Header: React.FC<HeaderProps> = ({ role, setRole }) => {
 
 ### ID Based Access
 
-Let's update our policies to handle **id** based access control points like **edit**, **show** pages and **delete** button.
+Let's update our policies to handle **id** based access control points like **edit**, **show** pages, and **delete** button.
 
 ```ts
 export const adapter = new MemoryAdapter(`
@@ -321,7 +320,7 @@ p, editor, categories, list
 -   **editor** will have **edit** and **show** access for **posts**
 
 :::tip
-`*` is wildcard. Specific ids can be targeted too. For example If you want **editor** role to have **delete** access for **post** with **id** `5`, you can add this policy:
+`*` is a wildcard. Specific ids can be targeted too. For example If you want **editor** role to have **delete** access for **post** with **id** `5`, you can add this policy:
 
 ```ts
 export const adapter = new MemoryAdapter(`
