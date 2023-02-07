@@ -39,12 +39,12 @@ It's also accepts all the properties of [`useCan`](/docs/api-reference/core/hook
 
 ### `fallback`
 
-Component to render if the user is not logged in. If `undefined`, the page will be redirected to `/login`.
+Component to render if [`useCan`][use-can] returns false. If `undefined`, it renders `null`.
 
 ```tsx
-<Authenticated fallback={<div>You cannot access this section</div>}>
+<CanAccess fallback={<div>You cannot access this section</div>}>
     <YourComponent />
-</Authenticated>
+</CanAccess>
 ```
 
 ## API Reference
