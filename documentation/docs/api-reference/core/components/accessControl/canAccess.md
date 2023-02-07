@@ -2,6 +2,7 @@
 id: can-access
 title: <CanAccess>
 siderbar_label: <CanAccess>
+source: packages/core/src/components/canAccess/index.tsx
 ---
 
 `<CanAccess>` is the component form of [`useCan`][use-can].
