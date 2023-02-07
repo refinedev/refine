@@ -9,7 +9,7 @@ source: packages/core/src/components/canAccess/index.tsx
 
 It internally uses [`useCan`][use-can]'s return values to provide its functionality.
 
-When access control returns:
+Passes the given properties to the `can` method from your [access control provider][access-control-provider]. After, if it returns:
 
 -   `true`, it renders the children.
 -   `false`, it renders [`fallback`](#fallback) prop if provided. Otherwise, it renders `null`.
@@ -22,14 +22,14 @@ When access control returns:
 import { CanAccess } from "@pankod/refine-core";
 
 const MyComponent = () => (
-  <CanAccess
-    resource="posts"
-    action="edit"
-    params={{ id: 1 }}
-    fallback={<CustomFallback />}
->
-    <YourComponent />
-</CanAccess>;
+    <CanAccess
+        resource="posts"
+        action="edit"
+        params={{ id: 1 }}
+        fallback={<CustomFallback />}
+    >
+        <YourComponent />
+    </CanAccess>
 );
 ```
 
@@ -55,3 +55,4 @@ Component to render if [`useCan`][use-can] returns false. If `undefined`, it ren
 
 [use-can]: /docs/api-reference/core/hooks/accessControl/useCan/
 [access-control-provider]: /docs/api-reference/core/providers/accessControl-provider/
+[can]: /docs/api-reference/core/hooks/accessControl/useCan/#can
