@@ -9,8 +9,6 @@ Internally, it uses [Papa Parse][papaparse] to parse the file contents.
 
 It will return properties that are compatible with Ant Design [`<Upload>`](https://ant.design/components/upload/) and [`<Button>`](https://ant.design/components/button/) components.
 
-**TODO: Add info about notification progress**
-
 :::info
 `useImport` hook is extended from [`useImport`][use-import-core] hook from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useImport`][use-import-core] hook.
 :::
@@ -145,6 +143,8 @@ useImport({
 });
 ```
 
+By default, it shows a notification with the progress percentage. You can override this behavior by passing a custom `onProgress` function.
+
 ### `dataProviderName`
 
 If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
@@ -157,19 +157,69 @@ useImport({
 
 ## Return Values
 
-### `inputProps`
+### `buttonProps`
+
+Button properties that are compatible with Ant Design [`<Button>`](https://ant.design/components/button/) component.
+
+```tsx
+import { useImport, Button } from "@pankod/refine-antd";
+
+export const PostList: React.FC = () => {
+    const { buttonProps } = useImport();
+
+    return <Button {...buttonProps}>Import</Button>;
+};
+```
+
+#### `type`
+
+It is set to `default` by default.
+
+#### `loading`
+
+If the import is in progress, it sets the loading state of the button.
 
 ### `uploadProps`
 
+Upload properties that are compatible with Ant Design [`<Upload>`](https://ant.design/components/upload/) component.
+
+```tsx
+import { useImport, Upload } from "@pankod/refine-antd";
+
+export const PostList: React.FC = () => {
+    const { uploadProps } = useImport();
+
+    return <Upload {...uploadProps}>Import</Upload>;
+};
+```
+
+#### `onChange`
+
+Handles the file upload.
+
+#### `beforeUpload`
+
+By default, `() => false` is set to prevent the file from being uploaded automatically.
+
+#### `showUploadList`
+
+By default, `false` is set to hide the upload list.
+
+#### `accept`
+
+By default, `".csv"` is set to accept only CSV files.
+
 ### `isLoading`
 
+It is a boolean value that indicates whether the import is in progress.
+
 ### `mutationResult`
+
+Result of the [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) or [`useCreateMany`](/docs/api-reference/core/hooks/data/useCreateMany/) method of your data provider.
 
 ## FAQ
 
 ### Handling Relational Data
-
-**TODO: Check it again**
 
 Sometimes you need to process your parsed `CSV` data for certain cases, such as when your data includes relational data and references to other data, or when your backend API requires a specific data format. To handle this, you can use the `mapData` option in `useImport` to customize the process.
 
@@ -222,7 +272,12 @@ With this code, the parsed data will be mapped to conform to the API requirement
 
 ### Return Values
 
-**TODO: Add return values table**
+| Property       | Description                                                            | Type                                                                                                                                                                                                                                                                                          |
+| -------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| buttonProps    | Properties that are compatible with Ant Design `<Button>` component    | [`ButtonProps`](#buttonprops)                                                                                                                                                                                                                                                                 |
+| uploadProps    | Properties that are compatible with Ant Design `<Upload>` component    | [`UploadProps`](#uploadprops)                                                                                                                                                                                                                                                                 |
+| isLoading      | It can be used to handle the `loading` status for the Import operation | `boolean`                                                                                                                                                                                                                                                                                     |
+| mutationResult | Result of the mutation/mutations of creating imported resources        | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`][usemutation]) \| [`UseMutationResult<`<br/>`{ data: TData[]},`<br/>`TError,`<br/>` { resource: string; values: TVariables[]; },`<br/>` unknown>`][usemutation]) |
 
 ### Type Parameters
 
