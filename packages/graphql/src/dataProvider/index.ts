@@ -9,7 +9,7 @@ import * as gql from "gql-query-builder";
 import pluralize from "pluralize";
 import camelCase from "camelcase";
 
-export const genereteSort = (sort?: CrudSorting) => {
+export const generateSort = (sort?: CrudSorting) => {
     if (sort && sort.length > 0) {
         const sortQuery = sort.map((i) => {
             return `${i.field}:${i.order}`;
