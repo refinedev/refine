@@ -358,7 +358,7 @@ mutation ($input: updatePostInput) {
 
 ## Show Page
 
-Show component includes the [`<RefreshButton>`](/docs/api-reference/antd/components/buttons/refresh) by default. We can pass `refetch` method of `queryResult` to it's `onClick`. This method repeats the last request made by the query. So it refreshes the data that is shown in page.
+`<Show>` component includes the [`<RefreshButton>`](/docs/api-reference/antd/components/buttons/refresh-button) by default. We can pass `refetch` method of `queryResult` to its `onClick`. This method repeats the last request made by the query. So it refreshes the data that is shown in page.
 
 <Tabs
 defaultValue="usage"
