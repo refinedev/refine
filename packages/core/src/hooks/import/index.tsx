@@ -49,8 +49,14 @@ export type ImportOptions<
     /**
      * Resource name for API data interactions.
      * @default Resource name that it reads from route
+     * @deprecated `resourceName` is deprecated. Use `resource` instead.
      */
     resourceName?: string;
+    /**
+     * Resource name for API data interactions.
+     * @default Resource name that it reads from route
+     */
+    resource?: string;
     /**
      * A mapping function that runs for every record. Mapped data will be included in the file contents.
      */
@@ -129,6 +135,7 @@ export const useImport = <
     TVariables = any,
 >({
     resourceName,
+    resource: resourceFromProps,
     mapData = (item) => item as unknown as TVariables,
     paparseOptions,
     batchSize = Number.MAX_SAFE_INTEGER,
@@ -150,7 +157,7 @@ export const useImport = <
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
     const { name: resource } = resourceWithRoute(
-        resourceName ?? routeResourceName,
+        resourceFromProps ?? resourceName ?? routeResourceName,
     );
 
     const createMany = useCreateMany<TData, TError, TVariables>();

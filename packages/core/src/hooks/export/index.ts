@@ -23,8 +23,14 @@ type UseExportOptionsType<
     /**
      * Resource name for API data interactions
      * @default Resource name that it reads from route
+     * @deprecated `resourceName` is deprecated. Use `resource` instead.
      */
     resourceName?: string;
+    /**
+     * Resource name for API data interactions
+     * @default Resource name that it reads from route
+     */
+    resource?: string;
     /**
      * A mapping function that runs for every record. Mapped data will be included in the file contents
      */
@@ -80,6 +86,7 @@ export const useExport = <
     TVariables = any,
 >({
     resourceName,
+    resource: resourceFromProps,
     sorter,
     filters,
     maxItemCount,
@@ -100,11 +107,9 @@ export const useExport = <
     const { useParams } = useRouterContext();
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-    let { name: resource } = resourceWithRoute(routeResourceName);
-
-    if (resourceName) {
-        resource = resourceName;
-    }
+    const { name: resource } = resourceWithRoute(
+        resourceFromProps ?? resourceName ?? routeResourceName,
+    );
 
     const filename = `${userFriendlyResourceName(
         resource,
