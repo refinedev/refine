@@ -22,7 +22,7 @@ Each headless CMS has strengths and weaknesses. Some of them are tailor-made for
 
 ### Strapi
 
-[Strapi](https://strapi.io/) is a popular open-source headless CMS built using JavaScript. It has an intuitive, customizable UI for creating content. While writing this article, Strapi's cloud hosting platform is still in beta. Therefore, you need to self-host your Strapi project at the moment. Strapi has several out-of-the-box integrations for some of the most popular tools and frameworks.
+[Strapi](https://strapi.io/) is a popular open-source headless CMS built based on Node.js. It has an intuitive, customizable UI for creating content. While writing this article, Strapi's cloud hosting platform is still in beta. Therefore, you need to self-host your Strapi project at the moment. Strapi has several out-of-the-box integrations for some of the most popular tools and frameworks.
 
 With Strapi, you can access the content API using REST or GraphQL API. Internally, Strapi uses the Koa web framework. If you want to customize the Strapi back end, you need a working knowledge of Koa.
 
