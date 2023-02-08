@@ -392,7 +392,7 @@ export const useUpdate = <
                         UpdateResponse<TData>
                     >(context.queryKey.detail(id));
 
-                    previousData = Object.keys(values).reduce<any>(
+                    previousData = Object.keys(values || {}).reduce<any>(
                         (acc, item) => {
                             acc[item] = queryData?.data?.[item];
                             return acc;
