@@ -7,7 +7,7 @@ swizzle: true
 source: packages/antd/src/components/pages/auth/index.tsx
 ---
 
-`<AuthPage>` component from **refine** for **ant design** contains authentication pages that can be used to login, register, forgot password, and update password.
+`<AuthPage>` component from **refine** for **Ant Design** contains authentication pages that can be used to login, register, forgot password, and update password.
 
 Before using `<AuthPage>` component you need to add [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
 
