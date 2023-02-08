@@ -39,10 +39,27 @@ export type UseListProps<TData, TError> = {
     /**
      * Configuration for pagination, sorting and filtering
      * @type [`UseListConfig`](/docs/api-reference/core/hooks/data/useList/#config-parameters)
+     * @deprecated `config` property is deprecated. Use `pagination`, `hasPagination`, `sorters` and `filters` instead.
      */
     config?: UseListConfig;
     /**
-     * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options,
+     * Pagination properties
+     */
+    pagination?: Pagination;
+    /**
+     * Whether to use server-side pagination or not
+     */
+    hasPagination?: boolean;
+    /**
+     * Sorter parameters
+     */
+    sorters?: CrudSorting;
+    /**
+     * Filter parameters
+     */
+    filters?: CrudFilters;
+    /**
+     * Tanstack Query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     /**
@@ -50,7 +67,7 @@ export type UseListProps<TData, TError> = {
      */
     metaData?: MetaDataQuery;
     /**
-     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use
      */
     dataProviderName?: string;
 } & SuccessErrorNotification &
@@ -73,6 +90,10 @@ export const useList = <
 >({
     resource,
     config,
+    filters,
+    hasPagination,
+    pagination,
+    sorters,
     queryOptions,
     successNotification,
     errorNotification,
@@ -108,10 +129,10 @@ export const useList = <
         types: ["*"],
         params: {
             metaData,
-            pagination: config?.pagination,
-            hasPagination: config?.hasPagination,
-            sort: config?.sort,
-            filters: config?.filters,
+            pagination: pagination ?? config?.pagination,
+            hasPagination: hasPagination ?? config?.hasPagination,
+            sort: sorters ?? config?.sort,
+            filters: filters ?? config?.filters,
             subscriptionType: "useList",
             ...liveParams,
         },
@@ -122,13 +143,19 @@ export const useList = <
     });
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
-        queryKey.list(config),
+        queryKey.list({
+            filters: filters ?? config?.filters,
+            hasPagination: hasPagination ?? config?.hasPagination,
+            pagination: pagination ?? config?.pagination,
+            sort: sorters ?? config?.sort,
+        }),
         ({ queryKey, pageParam, signal }) => {
-            const { hasPagination, ...restConfig } = config || {};
             return getList<TData>({
                 resource,
-                ...restConfig,
-                hasPagination,
+                pagination: pagination ?? config?.pagination,
+                hasPagination: hasPagination ?? config?.hasPagination,
+                filters: filters ?? config?.filters,
+                sort: sorters ?? config?.sort,
                 metaData: {
                     ...metaData,
                     queryContext: {
@@ -148,7 +175,15 @@ export const useList = <
                     typeof successNotification === "function"
                         ? successNotification(
                               data,
-                              { metaData, config },
+                              {
+                                  metaData,
+                                  filters: filters ?? config?.filters,
+                                  hasPagination:
+                                      hasPagination ?? config?.hasPagination,
+                                  pagination: pagination ?? config?.pagination,
+                                  sorters: sorters ?? config?.sort,
+                                  config,
+                              },
                               resource,
                           )
                         : successNotification;
@@ -161,7 +196,19 @@ export const useList = <
 
                 const notificationConfig =
                     typeof errorNotification === "function"
-                        ? errorNotification(err, { metaData, config }, resource)
+                        ? errorNotification(
+                              err,
+                              {
+                                  metaData,
+                                  filters: filters ?? config?.filters,
+                                  hasPagination:
+                                      hasPagination ?? config?.hasPagination,
+                                  pagination: pagination ?? config?.pagination,
+                                  sorters: sorters ?? config?.sort,
+                                  config,
+                              },
+                              resource,
+                          )
                         : errorNotification;
 
                 handleNotification(notificationConfig, {
