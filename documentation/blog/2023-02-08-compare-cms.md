@@ -1,6 +1,6 @@
 ---
 title: Comparing the best headless CMS solutions
-description: This article will compare React Hook Form and Formik by highlighting their strengths and weaknesses.
+description: We compared best headless CMS solutions -  Strapi, Hasura, and Hygraph. We'll highlight their pros and cons.
 slug: best-headless-cms
 authors: joseph_mawa
 tags: [comparison, strapi, headless-cms]
