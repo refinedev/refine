@@ -71,6 +71,20 @@ export {
     IRouterProvider,
     ITreeMenu,
     IQueryKeys,
+    AuthBindings,
+    AccessControlBindings,
+    DataBindings,
+    i18nBindings,
+    LiveBindings,
+    NotificationsBindings,
+    ResourceBindings,
+    RouterBindings,
+    ParseResponse,
+    ParsedParams,
+    GoConfig,
+    BackFunction,
+    GoFunction,
+    ParseFunction,
 } from "./interfaces";
 
 // all auth types
