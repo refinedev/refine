@@ -132,6 +132,7 @@ export const useList = <
             pagination: pagination ?? config?.pagination,
             hasPagination: hasPagination ?? config?.hasPagination,
             sort: sorters ?? config?.sort,
+            sorters: sorters ?? config?.sort,
             filters: filters ?? config?.filters,
             subscriptionType: "useList",
             ...liveParams,
