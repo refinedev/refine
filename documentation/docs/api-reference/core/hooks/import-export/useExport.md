@@ -30,7 +30,7 @@ export const PostList: React.FC = () => {
 
 ## Properties
 
-### `resourceName`
+### `resource`
 
 > Default: Read from the current route
 
@@ -38,7 +38,7 @@ Determines which resource is passed to the `getList` method of your data provide
 
 ```ts
 useExport({
-    resourceName: "posts",
+    resource: "posts",
 });
 ```
 
@@ -174,6 +174,12 @@ useExport({
     },
 });
 ```
+
+### ~~`resourceName`~~
+
+:::caution Deprecated
+Use `resource` instead.
+:::
 
 ## Return Values
 
