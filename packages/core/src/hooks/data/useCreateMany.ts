@@ -20,6 +20,7 @@ import {
     useHandleNotification,
     useDataProvider,
     useInvalidate,
+    useLog,
 } from "@hooks";
 import { handleMultiple, pickDataProvider } from "@definitions";
 
@@ -87,6 +88,7 @@ export const useCreateMany = <
     const publish = usePublish();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
+    const { log } = useLog();
 
     const mutation = useMutation<
         CreateManyResponse<TData>,
@@ -130,6 +132,7 @@ export const useCreateMany = <
                     dataProviderName,
                     invalidates = ["list", "many"],
                     values,
+                    metaData,
                 },
             ) => {
                 const resourcePlural = pluralize.plural(resource);
@@ -176,6 +179,24 @@ export const useCreateMany = <
                         ids,
                     },
                     date: new Date(),
+                });
+
+                const { fields, operation, variables, ...rest } =
+                    metaData || {};
+
+                log?.mutate({
+                    action: "createMany",
+                    resource,
+                    data: values,
+                    meta: {
+                        dataProviderName: pickDataProvider(
+                            resource,
+                            dataProviderName,
+                            resources,
+                        ),
+                        ids,
+                        ...rest,
+                    },
                 });
             },
             onError: (err: TError, { resource, errorNotification, values }) => {
