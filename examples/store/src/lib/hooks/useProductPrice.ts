@@ -20,20 +20,18 @@ export const useProductPrice = ({ id, variantId }: UseProductPriceProps) => {
         isError,
     } = useList<Product>({
         resource: "products",
-        config: {
-            filters: [
-                {
-                    field: "id",
-                    value: id,
-                    operator: "eq",
-                },
-                {
-                    field: "cart_id",
-                    value: cart?.id,
-                    operator: "eq",
-                },
-            ],
-        },
+        filters: [
+            {
+                field: "id",
+                value: id,
+                operator: "eq",
+            },
+            {
+                field: "cart_id",
+                value: cart?.id,
+                operator: "eq",
+            },
+        ],
         queryOptions: {
             enabled: !!cart?.id,
         },

@@ -53,9 +53,7 @@ export const Header: React.FC = () => {
 
     const { refetch: refetchOrders } = useList<IOrder>({
         resource: "orders",
-        config: {
-            filters: [{ field: "q", operator: "contains", value }],
-        },
+        filters: [{ field: "q", operator: "contains", value }],
         queryOptions: {
             enabled: false,
             onSuccess: (data) => {
@@ -79,9 +77,7 @@ export const Header: React.FC = () => {
 
     const { refetch: refetchStores } = useList<IStore>({
         resource: "stores",
-        config: {
-            filters: [{ field: "q", operator: "contains", value }],
-        },
+        filters: [{ field: "q", operator: "contains", value }],
         queryOptions: {
             enabled: false,
             onSuccess: (data) => {
@@ -103,9 +99,7 @@ export const Header: React.FC = () => {
 
     const { refetch: refetchCouriers } = useList<ICourier>({
         resource: "couriers",
-        config: {
-            filters: [{ field: "q", operator: "contains", value }],
-        },
+        filters: [{ field: "q", operator: "contains", value }],
         queryOptions: {
             enabled: false,
             onSuccess: (data) => {
