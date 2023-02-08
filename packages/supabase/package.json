@@ -33,11 +33,11 @@
     "tsup": "^5.11.13"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^1.22.4"
+    "@supabase/supabase-js": "^2.7.0"
   },
   "peerDependencies": {
     "@pankod/refine-core": "^3.23.2",
-    "@supabase/supabase-js": "^1.22.4"
+    "@supabase/supabase-js": "^2.7.0"
   },
   "repository": {
     "type": "git",
