@@ -15,7 +15,7 @@ export const dataProvider = (
         hasPagination = true,
         pagination = { current: 1, pageSize: 10 },
         filters,
-        sort,
+        sorters,
     }) => {
         const url = `${apiUrl}/${resource}`;
 
@@ -35,7 +35,7 @@ export const dataProvider = (
               }
             : {};
 
-        const generatedSort = generateSort(sort);
+        const generatedSort = generateSort(sorters);
         if (generatedSort) {
             const { _sort, _order } = generatedSort;
             query._sort = _sort.join(",");
@@ -110,11 +110,19 @@ export const dataProvider = (
         return apiUrl;
     },
 
-    custom: async ({ url, method, filters, sort, payload, query, headers }) => {
+    custom: async ({
+        url,
+        method,
+        filters,
+        sorters,
+        payload,
+        query,
+        headers,
+    }) => {
         let requestUrl = `${url}?`;
 
-        if (sort) {
-            const generatedSort = generateSort(sort);
+        if (sorters) {
+            const generatedSort = generateSort(sorters);
             if (generatedSort) {
                 const { _sort, _order } = generatedSort;
                 const sortQuery = {

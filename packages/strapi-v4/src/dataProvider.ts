@@ -49,11 +49,11 @@ const mapOperator = (operator: CrudOperators) => {
     return operator;
 };
 
-const generateSort = (sort?: CrudSorting) => {
+const generateSort = (sorters?: CrudSorting) => {
     const _sort: string[] = [];
 
-    if (sort) {
-        sort.map((item) => {
+    if (sorters) {
+        sorters.map((item) => {
             if (item.order) {
                 _sort.push(`${item.field}:${item.order}`);
             }
@@ -171,7 +171,7 @@ export const DataProvider = (
         hasPagination = true,
         pagination = { current: 1, pageSize: 10 },
         filters,
-        sort,
+        sorters,
         metaData,
     }) => {
         const url = `${apiUrl}/${resource}`;
@@ -183,7 +183,7 @@ export const DataProvider = (
         const populate = metaData?.populate;
         const publicationState = metaData?.publicationState;
 
-        const quertSorters = generateSort(sort);
+        const quertSorters = generateSort(sorters);
         const queryFilters = generateFilter(filters);
 
         const query = {
@@ -360,11 +360,19 @@ export const DataProvider = (
         return apiUrl;
     },
 
-    custom: async ({ url, method, filters, sort, payload, query, headers }) => {
+    custom: async ({
+        url,
+        method,
+        filters,
+        sorters,
+        payload,
+        query,
+        headers,
+    }) => {
         let requestUrl = `${url}?`;
 
-        if (sort) {
-            const sortQuery = generateSort(sort);
+        if (sorters) {
+            const sortQuery = generateSort(sorters);
             if (sortQuery.length > 0) {
                 requestUrl = `${requestUrl}&${stringify({
                     sort: sortQuery.join(","),

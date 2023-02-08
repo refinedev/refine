@@ -16,8 +16,8 @@ export type GenerateSortingType = {
     (sorting?: CrudSorting): HasuraSortingType | undefined;
 };
 
-export const generateSorting: GenerateSortingType = (sorting?: CrudSorting) => {
-    if (!sorting) {
+export const generateSorting: GenerateSortingType = (sorters?: CrudSorting) => {
+    if (!sorters) {
         return undefined;
     }
 
@@ -26,7 +26,7 @@ export const generateSorting: GenerateSortingType = (sorting?: CrudSorting) => {
         "asc" | "desc" | HasuraSortingType
     > = {};
 
-    sorting.forEach((sortItem) => {
+    sorters.forEach((sortItem) => {
         set(sortingQueryResult, sortItem.field, sortItem.order);
     });
 
@@ -199,7 +199,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
 
         getList: async ({
             resource,
-            sort,
+            sorters,
             filters,
             hasPagination = true,
             pagination = { current: 1, pageSize: 10 },
@@ -207,7 +207,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
         }) => {
             const { current = 1, pageSize: limit = 10 } = pagination ?? {};
 
-            const hasuraSorting = generateSorting(sort);
+            const hasuraSorting = generateSorting(sorters);
             const hasuraFilters = generateFilters(filters);
 
             const operation = metaData?.operation ?? resource;

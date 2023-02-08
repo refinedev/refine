@@ -80,11 +80,11 @@ export const getAppwriteFilters: GetAppwriteFiltersType = (filters) => {
     return appwriteFilters;
 };
 
-export const getAppwriteSorting: GetAppwriteSortingType = (sort) => {
+export const getAppwriteSorting: GetAppwriteSortingType = (sorters) => {
     const sorts: string[] = [];
 
-    if (sort) {
-        sort.map((item) => {
+    if (sorters) {
+        sorters.map((item) => {
             const field = item.field === "id" ? "$id" : item.field;
             if (item.order === "asc") {
                 sorts.push(Query.orderAsc(field));
@@ -117,14 +117,14 @@ export const dataProvider = (
             hasPagination = true,
             pagination = { current: 1, pageSize: 10 },
             filters,
-            sort,
+            sorters,
         }) => {
             const appwriteFilters = getAppwriteFilters(filters);
             const appwritePagination = hasPagination
                 ? getAppwritePagination(pagination)
                 : [];
 
-            const appwriteSorts = getAppwriteSorting(sort);
+            const appwriteSorts = getAppwriteSorting(sorters);
 
             const { total: total, documents: data } =
                 await database.listDocuments<any>(databaseId, resource, [
