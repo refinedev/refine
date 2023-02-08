@@ -27,11 +27,12 @@ const App = () => (
     <Refine
         resources={[
             // This will add an item to `<Sider/>` with route `/my-custom-item`
-            { name: "my-custom-item", list: () => null }
+            { name: "my-custom-item", list: () => null },
         ]}
     />
 );
 ```
+
 :::
 
 ## Public Custom Pages
@@ -520,16 +521,14 @@ import { useList } from "@pankod/refine-core";
 const PostReview = () => {
     const { data, isLoading } = useList<IPost>({
         resource: "posts",
-        config: {
-            filters: [
-                {
-                    field: "status",
-                    operator: "eq",
-                    value: "draft",
-                },
-            ],
-            pagination: { pageSize: 1 },
-        },
+        filters: [
+            {
+                field: "status",
+                operator: "eq",
+                value: "draft",
+            },
+        ],
+        pagination: { pageSize: 1 },
     });
 };
 
@@ -560,16 +559,14 @@ import { useList, useOne } from "@pankod/refine-core";
 export const PostReview = () => {
     const { data, isLoading } = useList<IPost>({
         resource: "posts",
-        config: {
-            filters: [
-                {
-                    field: "status",
-                    operator: "eq",
-                    value: "draft",
-                },
-            ],
-            pagination: { pageSize: 1 },
-        },
+        filters: [
+            {
+                field: "status",
+                operator: "eq",
+                value: "draft",
+            },
+        ],
+        pagination: { pageSize: 1 },
     });
 
     // highlight-start
@@ -609,16 +606,14 @@ const { Title, Text } = Typography;
 export const PostReview = () => {
     const { data, isLoading } = useList<IPost>({
         resource: "posts",
-        config: {
-            filters: [
-                {
-                    field: "status",
-                    operator: "eq",
-                    value: "draft",
-                },
-            ],
-            pagination: { pageSize: 1 },
-        },
+        filters: [
+            {
+                field: "status",
+                operator: "eq",
+                value: "draft",
+            },
+        ],
+        pagination: { pageSize: 1 },
     });
     const record = data?.data[0];
 
@@ -740,16 +735,14 @@ const { Title, Text } = Typography;
 export const PostReview = () => {
     const { data, isLoading } = useList<IPost>({
         resource: "posts",
-        config: {
-            filters: [
-                {
-                    field: "status",
-                    operator: "eq",
-                    value: "draft",
-                },
-            ],
-            pagination: { pageSize: 1 },
-        },
+        filters: [
+            {
+                field: "status",
+                operator: "eq",
+                value: "draft",
+            },
+        ],
+        pagination: { pageSize: 1 },
     });
     const record = data?.data[0];
 

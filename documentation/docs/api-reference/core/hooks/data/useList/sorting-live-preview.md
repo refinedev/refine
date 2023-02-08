@@ -25,14 +25,12 @@ const ProductList: React.FC = () => {
     const { data, isLoading, isError } = useList<IProduct, HttpError>({
         resource: "products",
         //highlight-start
-        config: {
-            sort: [
-                {
-                    field: "name",
-                    order,
-                },
-            ],
-        },
+        sorters: [
+            {
+                field: "name",
+                order,
+            },
+        ],
         //highlight-end
     });
 

@@ -405,21 +405,19 @@ import { useList } from "@pankod/refine-core";
 
 const { data } = useList({
     resource: "posts",
-    config: {
-        sort: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
-        filters: [
-            {
-                field: "title",
-                operator: "contains",
-                value: "hello",
-            },
-        ],
-    },
+    sorters: [
+        {
+            field: "id",
+            order: "desc",
+        },
+    ],
+    filters: [
+        {
+            field: "title",
+            operator: "contains",
+            value: "hello",
+        },
+    ],
 });
 ```
 
