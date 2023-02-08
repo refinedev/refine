@@ -502,7 +502,7 @@ You can find the `app/` directory example with **refine** in [examples/nextjs/ap
 [usetable]: /docs/api-reference/core/hooks/useTable
 [reactqueryssr]: https://react-query.tanstack.com/guides/ssr#using-initialdata
 [reactquery]: https://react-query.tanstack.com/
-[getlist]: /api-reference/core/providers/data-provider.md#getlist
+[getlist]: /docs/api-reference/core/providers/data-provider/#getlist-
 [dataprovider]: /api-reference/core/providers/data-provider.md
 [usetable]: /docs/api-reference/core/hooks/useTable
 [interfaces]: /api-reference/core/interfaces.md/#crudfilters

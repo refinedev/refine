@@ -3,106 +3,207 @@ id: useExport
 title: useExport
 ---
 
-`useExport` hook allows you to make your resources exportable.
+`useExport` hook allows you to export data as a `CSV` file. It calls the `getList` method of your data provider and downloads the data as a `CSV` file.
 
-This hook accepts [`export-to-csv`][export-to-csv]'s options to create `CSV` files.
+Internally, it uses [`export-to-csv`][export-to-csv] to create the `CSV` file.
 
-```ts
+## Basic Usage
+
+Here is a basic usage example of `useExport` hook:
+
+```tsx
 import { useExport } from "@pankod/refine-core";
-
-const { triggerExport, isLoading } = useExport(options);
-```
-
-## Usage
-
-Let's say that we have an endpoint like this:
-
-```json title="https://api.fake-rest.refine.dev/posts"
-[
-    {
-        "id": 1,
-        "title": "Tempora nesciunt sunt temporibus.",
-        "slug": "quisquam-in-dolore",
-        "content": "Id qui nostrum hic nostrum voluptatem...",
-        "status": "rejected",
-    },
-    {
-        "id": 2,
-        "title": "Omnis est quis reiciendis blanditiis.",
-        "slug": "deleniti-voluptas-tempore",
-        "content": "Laudantium eos ut consequuntur dignissimos...",
-        "status": "published",
-    },
-    ...
-]
-```
-
-To enable export functionality for this endpoint, we can use the `useExport` hook to create an export button.
-
-```tsx title="src/pages/posts/list.tsx"
-import {
-    // highlight-start
-    useExport,
-    ExportButton,
-    // highlight-end
-} from "@pankod/refine-core";
-
-import { List, Table, useTable } from "@pankod/refine-antd";
-
-export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
-
-    // highlight-next-line
-    const { triggerExport, isLoading } = useExport<IPost>();
-
-    return (
-        <List
-            pageHeaderProps={{
-                extra: (
-                    // highlight-next-line
-                    <ExportButton onClick={triggerExport} loading={isLoading} />
-                ),
-            }}
-        >
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-            </Table>
-        </List>
-    );
-};
 
 interface IPost {
     id: number;
+    slug: string;
     title: string;
     content: string;
-    slug: string;
-    status: "published" | "draft" | "rejected";
 }
+
+export const PostList: React.FC = () => {
+    const { triggerExport } = useExport<IPost>();
+
+    return <button onClick={triggerExport}>Export Button</button>;
+};
 ```
 
-:::info
-In the examples, instead of [<Button\>][button], [<ExportButton\>][exportbutton] is used. [<ExportButton\>][exportbutton] is nothing more than a default Ant Design [<Button\>][button] with an icon and a default text.
+## Properties
 
-[Refer to ExportButton docs for more detailed information. &#8594][exportbutton]
-:::
-<br />
+### `resourceName`
 
-When the user clicks this button, `triggerExport` fetches all the data in the resource and downloads it as a `CSV` file with these contents in it:
+> Default: Read from the current route
 
-```csv title="Posts-2021-06-29-14-40-14.csv"
-id,title,slug,content,status,categoryId,userId
-1,"Tempora nesciunt sunt temporibus.","quisquam-in-dolore","Id qui nostrum hic nostrum voluptatem...","rejected",2,1
-2,"Omnis est quis reiciendis blanditiis.","deleniti-voluptas-tempore","Laudantium eos ut consequuntur dignissimos...","published",24,39
-...
+Determines which resource is passed to the `getList` method of your data provider.
+
+```ts
+useExport({
+    resourceName: "posts",
+});
 ```
+
+### `mapData`
+
+If you want to map the data before exporting it, you can use the `mapData` property.
+
+```ts
+interface IPost {
+    id: number;
+    slug: string;
+    title: string;
+    content: string;
+    category: {
+        id: number;
+    };
+}
+
+useExport<IPost>({
+    mapData: (item) => {
+        return {
+            id: item.id,
+            slug: item.slug,
+            title: item.title,
+            content: item.content,
+            categoryId: item.category.id,
+        };
+    },
+});
+```
+
+### `sorter`
+
+If you want to sort the data before exporting it, you can use the `sorter` property. It will be passed to the `getList` method of your data provider.
+
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+
+```ts
+useExport({
+    sorter: [
+        {
+            field: "title",
+            order: "asc",
+        },
+    ],
+});
+```
+
+### `filters`
+
+If you want to filter the data before exporting it, you can use the `filters` property. It will be passed to the `getList` method of your data provider.
+
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
+```ts
+useExport({
+    filters: [
+        {
+            field: "title",
+            operator: "contains",
+            value: "foo",
+        },
+    ],
+});
+```
+
+### `maxItemCount`
+
+By default, the `useExport` hook will export all the data. If you want to limit the number of items to be exported, you can use the `maxItemCount` property.
+
+```ts
+useExport({
+    maxItemCount: 100,
+});
+```
+
+### `pageSize`
+
+> Default: 20
+
+Requests to fetch data are made in batches. The `pageSize` property determines the number of items to be fetched in each request.
+
+```ts
+useExport({
+    pageSize: 50,
+});
+```
+
+### `exportOptions`
+
+You can pass additional options to the `export-to-csv` package by using the `exportOptions` property.
+
+[Refer to the `ExportToCsv` options for more information &#8594](https://github.com/alexcaza/export-to-csv#api)
+
+```ts
+useExport({
+    exportOptions: {
+        filename: "posts",
+    },
+});
+```
+
+### `metaData`
+
+If you want to send additional data to the `create` or `createMany` method of your data provider, you can use the `metaData` property.
+
+```ts
+useExport({
+    metaData: {
+        foo: "bar",
+    },
+});
+```
+
+### `dataProviderName`
+
+If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
+
+```tsx
+useExport({
+    dataProviderName: "second-data-provider",
+});
+```
+
+### `onError`
+
+Callback function that is called when an error occurs while fetching data.
+
+```ts
+useExport({
+    onError: (error) => {
+        console.log(error);
+    },
+});
+```
+
+## Return Values
+
+### `triggerExport`
+
+A function that triggers the export process.
+
+```tsx
+const { triggerExport } = useExport();
+
+return <button onClick={triggerExport}>Export Button</button>;
+```
+
+### `isLoading`
+
+A boolean value that indicates whether the export process is in progress.
+
+```tsx
+const { isLoading } = useExport();
+
+return isLoading ? <div>Loading...</div> : <div>Loaded</div>;
+```
+
+## FAQ
 
 ### Handling Relational Data
 
-You can run a mapping function for all entries before they are saved. This is useful in cases of being required to reference relational data or saving files in a specific way to process them in different applications etc.
-This mapping function is similar to the mapping function of [`useImport`][useimport#handling-relational-data].
+A mapping function can be run on all entries before saving them, which is useful in cases where you need to reference relational data or save files in a specific format for processing in other applications.
 
-Let's assume that we have this endpoint with some relational data in it:
+Consider this endpoint containing some relational data:
 
 ```json
 [
@@ -117,7 +218,6 @@ Let's assume that we have this endpoint with some relational data in it:
     "user": {
       "id": 10
     },
-    "status": "published",
   },
   {
     "id": 3,
@@ -130,25 +230,23 @@ Let's assume that we have this endpoint with some relational data in it:
     "user": {
       "id": 50
     },
-    "status": "published",
   },
   ...
 ]
 ```
 
-We have the `category` and `user` fields as possible relational data keys. Their data is out of the responsibility of this export operation. We want to save their id's without any other related data. It may be required to export and backup those entities separately.
+We have the `category` and `user` fields as possible relational data keys. Their data is out of the responsibility of this export operation.
 
-We can save `category.id` as `categoryId` and `user.id` as `userId`. Thus using a mapping function that looks like this:
+If we want to save their `id`'s without any other related data, we can use a mapping function to save `category.id` as `categoryId` and `user.id` as `userId`.
 
 ```ts
-const { triggerExport, isLoading } = useExport<IPost>({
+useExport<IPost>({
     mapData: (item) => {
         return {
             id: item.id,
             title: item.title,
             slug: item.slug,
             content: item.content,
-            status: item.status,
             categoryId: item.category.id,
             userId: item.user.id,
         };
@@ -160,37 +258,47 @@ interface ICategory {
     title: string;
 }
 
-interface IUser {
-    id: number;
-}
-
 interface IPost {
     id: number;
     title: string;
     content: string;
     slug: string;
-    status: "published" | "draft" | "rejected";
     category: { id: number };
-    user: IUser;
+    user: { id: number };
 }
 ```
 
-Such an `IPost` may should work fine:
+This will save the data as follows:
 
-This is all you need to handle mapping.
-
-:::tip
-You can pass more options to further customize the exporting process.  
-[Refer to export-to-csv docs for more detailed information. &#8594][export-to-csv]
-:::
+```json
+[
+  {
+    "id": 2,
+    "title": "Et architecto et aut ex.",
+    "slug": "dolorum-et-quia",
+    "content": "Reprehenderit qui voluptatem in cum qui odio et.",
+    "categoryId": 35,
+    "userId": 10
+  },
+  {
+    "id": 3,
+    "title": "Quam maiores officia suscipit quia vel asperiores nisi non excepturi.",
+    "slug": "delectus-laborum-provident",
+    "content": "Placeat eos esse.",
+    "categoryId": 4,
+    "userId": 50
+  },
+  ...
+]
+```
 
 ## API Reference
 
-### `useExport` Options
+### Properties
 
 <PropsTable module="@pankod/refine-core/useExport" />
 
-### `useExport` Return Values
+### Return Values
 
 | Key           | Description                                | Type               |
 | ------------- | ------------------------------------------ | ------------------ |
@@ -204,12 +312,5 @@ You can pass more options to further customize the exporting process.
 | TData      | Result type of the data query type that extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TVariables | Values for params                                                          | `any`                      |
 
-[button]: https://ant.design/components/button/
-[exportbutton]: /api-reference/antd/components/buttons/export.md
-[useimport]: /api-reference/core/hooks/import-export/useImport.md
-[useimport#handling-relational-data]: /api-reference/core/hooks/import-export/useImport.md#handling-relational-data
 [export-to-csv]: https://github.com/alexcaza/export-to-csv
-[export-to-csv#api]: https://github.com/alexcaza/export-to-csv#api
 [baserecord]: /api-reference/core/interfaces.md#baserecord
-[crudsorting]: /api-reference/core/interfaces.md#crudsorting
-[crudfilters]: /api-reference/core/interfaces.md#crudfilters

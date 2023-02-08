@@ -6,26 +6,23 @@ title: i18n Provider
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+**refine** can work with any i18n framework, but an `i18nProvider` must be created, based on the chosen library.
 
-refine is capable of supporting any i18n framework but a `i18nProvider` according to the relevant library must be created.
+The default language of **refine** is currently English. If you want to use other languages, follow the instructions in the next sections. If your application is in English, you don't need to create an `i18nProvider`.
 
-The default language of refine is currently English. If you want to use other languages, follow the instructions above. If your application is in English, you don't need to create an i18nProvider.
+## Usage
 
-If you want to add i18n support in the app, refine expects the `i18nProvider` type as follows.
+If you want to add i18n support in the app, **refine** expects the `i18nProvider` type as follows.
 
 ```ts
-const i18nProvider = {
-    translate: (key: string, params: object) => string,
-    changeLocale: (lang: string) => Promise,
+import { I18nProvider } from "@pankod/refine-core";
+
+const i18nProvider: I18nProvider = {
+    translate: (key: string, options?: any, defaultMessage?: string) => string,
+    changeLocale: (lang: string, options?: any) => Promise,
     getLocale: () => string,
 };
 ```
-
-`i18nProvider` allows us to put translation features to hooks (`useTranslate`, `useSetLocale`, `useGetLocale`).
-
--   `useTranslate` shows translation between different languages.
--   `useSetLocale` changes locale at runtime.
--   `useGetLocale` getting current locale.
 
 After creating a `i18nProvider`, you can pass it to the `<Refine>` component.
 
@@ -48,31 +45,67 @@ const App: React.FC = () => {
 };
 ```
 
+`i18nProvider` allows us to put translation features to the followings hooks:
+
+-   [`useTranslate`][use-translate] shows translation between different languages.
+-   [`useSetLocale`][use-setlocale] changes locale at runtime.
+-   [`useGetLocale`][use-getlocale] getting current locale.
+
 ## Example
 
 :::tip
-We recommend using [`create refine-app`][create-refine-app] to initialize your refine projects. It configures the project according to your needs including i18n provider.
+We recommend using [`create refine-app`][create-refine-app] to initialize your refine projects. It configures the project according to your needs including the i18n provider.
 :::
 
 :::caution
 This example is for SPA react apps, for Next.js [refer to i18n Nextjs example ][i18nnextjs]
 :::
 
-Let's add multi-language support using the `react-i18next` framework. At the end of our example, our application will support both German and English.
+Let's add multi-language support using the [`react-i18next`][react-i18next] framework. At the end of our example, our application will support both German and English.
 
 [Refer to the react-i18next docs for detailed information &#8594](https://react.i18next.com/getting-started)
 
 ### Installation
 
-Run the following command within your project directory to install both `react-i18next` and `i18next` packages :
+Run the following command within your project directory to install both [`react-i18next`][react-i18next] and `i18next` packages :
 
-```
+<Tabs
+defaultValue="npm"
+values={[
+{label: 'use npm', value: 'npm'},
+{label: 'use yarn', value: 'yarn'},
+{label: 'use pnpm', value: 'pnpm'},
+]}>
+
+<TabItem value="npm">
+
+```bash
 npm install react-i18next i18next
 ```
 
+</TabItem>
+
+<TabItem value="yarn">
+
+```bash
+yarn add react-i18next i18next
+```
+
+</TabItem>
+
+<TabItem value="pnpm">
+
+```bash
+pnpm install react-i18next i18next
+```
+
+</TabItem>
+
+</Tabs>
+
 ### Creating i18n Instance
 
-First, we will create an i18n instance using `react-i18next`.
+First, we will create an i18n instance using [`react-i18next`][react-i18next].
 
 ```ts title="src/i18n.ts"
 import i18n from "i18next";
@@ -126,10 +159,11 @@ We use `React.Suspense` because it improves performance by preventing the app fr
 
 ### Creating i18n Provider
 
-Next, we will include the i18n instance and create the `i18nProvider` using `react-i18next`.
+Next, we will include the i18n instance and create the `i18nProvider` using [`react-i18next`][react-i18next].
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+// highlight-next-line
+import { Refine, I18nProvider } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 // highlight-next-line
@@ -141,8 +175,8 @@ const App: React.FC = () => {
     // highlight-start
     const { t, i18n } = useTranslation();
 
-    const i18nProvider = {
-        translate: (key: string, params: object) => t(key, params),
+    const i18nProvider: I18nProvider = {
+        translate: (key: string, options?: any) => t(key, options),
         changeLocale: (lang: string) => i18n.changeLanguage(lang),
         getLocale: () => i18n.language,
     };
@@ -160,11 +194,14 @@ const App: React.FC = () => {
 };
 ```
 
-After we pass the i18nProvider to the `<Refine>` component, translation hooks(`useTranslate`, `useSetLocale`, `useGetLocale`) are fully ready to use.
+After we pass the `i18nProvider` to the `<Refine>` component, translation hooks([`useTranslate`][use-translate], [`useSetLocale`][use-setlocale], [`useGetLocale`][use-getlocale]) are fully ready to use.
 
 ### Adding Translations Files
 
-Before we get started, let's look at the translations that refine uses in components.
+Before we get started, let's look at the translations that **refine** uses in components.
+
+<details>
+<summary>Show translation file</summary>
 
 ```json
 {
@@ -280,7 +317,9 @@ Before we get started, let's look at the translations that refine uses in compon
 }
 ```
 
-All components of refine supports i18n. If you want to change the refine component texts, you can create your own translation file with reference to the keys above.
+</details>
+
+All components of **refine** supports i18n. If you want to change the **refine** component texts, you can create your own translation file with reference to the keys above.
 
 Now, let's add the language files:
 
@@ -300,6 +339,9 @@ Now, let's add the language files:
 defaultValue="en"
 values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
 <TabItem value="en">
+
+<details>
+<summary>Show translation file</summary>
 
 ```json title="/locales/en/common.json"
 {
@@ -440,8 +482,13 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
 }
 ```
 
+</details>
+
 </TabItem>
 <TabItem value="de">
+
+<details>
+<summary>Show translation file</summary>
 
 ```json title="/locales/de/common.json"
 {
@@ -582,6 +629,8 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
 }
 ```
 
+</details>
+
 </TabItem>
 </Tabs>
 
@@ -684,7 +733,7 @@ const App: React.FC = () => {
     const { t, i18n } = useTranslation();
 
     const i18nProvider = {
-        translate: (key: string, params: object) => t(key, params),
+        translate: (key: string, options?: any) => t(key, options),
         changeLocale: (lang: string) => i18n.changeLanguage(lang),
         getLocale: () => i18n.language,
     };
@@ -811,9 +860,115 @@ export interface IPost {
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/i18n/changing-language.gif" alt="Language change action" />
 </div>
 
+## Methods
+
+### translate
+
+`translate` takes parameters and passes them to the provided `i18nProvider` and expects a string as a return value.
+
+It has two [function signatures](https://developer.mozilla.org/en-US/docs/Glossary/Signature/Function) with different parameters, which is known as function overloading.
+
+```ts
+function translate(key: string, options?: any, defaultMessage?: string): string;
+function translate(key: string, defaultMessage?: string): string;
+```
+
+It means that you can use it in two different ways. The first one is to pass the `key`, `options`, and, `defaultMessage` as parameters. The second one is to pass the `key` and `defaultMessage` parameters. The `options` parameter is optional.
+
+-   Example of the `key` and `defaultMessage` function signature
+
+```tsx
+import { I18nProvider } from "@pankod/refine-core";
+import { useTranslation } from "react-i18next";
+
+// ...
+
+const { t } = useTranslation();
+
+const i18nProvider: I18nProvider = {
+    translate: (key: string, defaultMessage?: string) => t(key, defaultMessage),
+    // ...
+};
+
+// ...
+```
+
+```tsx
+import { useTranslate } from "@pankod/refine-core";
+
+// ...
+
+const translate = useTranslate();
+
+// ...
+
+translate("posts.fields.title", "Title");
+
+// ...
+```
+
+-   Example of the `key`, `options` and, `defaultMessage` function signature
+
+```tsx
+import { I18nProvider } from "@pankod/refine-core";
+import { useTranslation } from "react-i18next";
+
+// ...
+
+const { t } = useTranslation();
+
+const i18nProvider: I18nProvider = {
+    translate: (key: string, options?: any, defaultMessage?: string) =>
+        t(key, defaultMessage, options),
+    // ...
+};
+
+// ...
+```
+
+```tsx
+import { useTranslate } from "@pankod/refine-core";
+
+// ...
+
+const translate = useTranslate();
+
+// ...
+
+const title = translate("posts.fields.title", { ns: "resources" }, "Title");
+
+// ...
+```
+
+You can use the [`useTranslate`][use-translate] hook to call `translate` method.
+
+### changeLocale
+
+`translate` takes parameters and passes them to the provided `i18nProvider` and expects a Promise as a return value.
+
+```ts
+changeLocale: (locale: string, options?: any) => Promise<any>;
+```
+
+You can use the [`useSetLocale`][use-setlocale] hook to call `changeLocale` method.
+
+### getLocale
+
+`getLocale` expects a string as a return value. It should return the current locale from your `i18nProvider`.
+
+```ts
+getLocale: () => string;
+```
+
+You can use the [`useGetLocale`][use-getlocale] hook to call `getLocale` method.
+
 ## Example
 
 <CodeSandboxExample path="i18n-react" />
 
 [i18nnextjs]: /examples/i18n/i18n-nextjs.md
+[react-i18next]: https://react.i18next.com/
 [create-refine-app]: /docs/getting-started/quickstart.md
+[use-translate]: /docs/api-reference/core/hooks/translate/useTranslate/
+[use-getlocale]: /docs/api-reference/core/hooks/translate/useGetLocale/
+[use-setlocale]: /docs/api-reference/core/hooks/translate/useSetLocale/

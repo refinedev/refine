@@ -1,5 +1,29 @@
 # @pankod/refine-core
 
+## 3.99.4
+
+### Patch Changes
+
+-   [#3548](https://github.com/refinedev/refine/pull/3548) [`8795efb04dd`](https://github.com/refinedev/refine/commit/8795efb04ddc39bf701bf3edb0554eacea15b246) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: wrong `initialCurrent` value on `useTable` jsDoc
+
+    ````diff
+       - * @default 10
+       + * @default 1
+       ```
+    ````
+
+## 3.99.3
+
+### Patch Changes
+
+-   [#3548](https://github.com/refinedev/refine/pull/3548) [`8795efb04dd`](https://github.com/refinedev/refine/commit/8795efb04ddc39bf701bf3edb0554eacea15b246) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: wrong `initialCurrent` value on `useTable` jsDoc
+
+    ````diff
+       - * @default 10
+       + * @default 1
+       ```
+    ````
+
 ## 3.99.2
 
 ### Patch Changes

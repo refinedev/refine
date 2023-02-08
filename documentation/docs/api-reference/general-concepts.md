@@ -8,7 +8,7 @@ title: General Concepts
 
 ### `resource`
 
-**refine** passes the `resource` to the `dataProvider` as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
+**refine** passes the `resource` to the `dataProvider` as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/docs/tutorial/understanding-dataprovider/create-dataprovider/) section for an example of how `resource` are handled.
 
 How does refine know what the resource value is?
 
