@@ -49,7 +49,7 @@ export const PostList: React.FC = () => {
 
 ### `resourceName`
 
-> Default: Read from the current route
+> Default: It reads the `resource` value from the current URL.
 
 Determines which resource is passed to the `create` or `createMany` method of your data provider.
 
