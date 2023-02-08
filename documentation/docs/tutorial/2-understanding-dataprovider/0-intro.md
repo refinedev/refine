@@ -42,7 +42,7 @@ const dataProvider: DataProvider = {
         resource,
         pagination,
         hasPagination,
-        sort,
+        sorters,
         filters,
         metaData,
     }) => Promise,
@@ -111,7 +111,7 @@ const dataProvider = {
         /*
         {
           "resource": "posts",
-          "sort": [
+          "sorters": [
             {
               "field": "id",
               "order": "desc"

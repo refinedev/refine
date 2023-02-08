@@ -208,7 +208,7 @@ access-control-expose-headers: X-Total-Count
     :::
 
     ```ts title="src/data-provider.ts"
-    getList: async ({ resource, pagination, sort }) => {
+    getList: async ({ resource, pagination, sorters }) => {
         const url = `${apiUrl}/${resource}`;
 
         const { current = 1, pageSize = 10 } = pagination ?? {};
@@ -226,9 +226,9 @@ access-control-expose-headers: X-Total-Count
         };
 
         // highlight-start
-        if (sort && sort.length > 0) {
-            query._sort = sort[0].field;
-            query._order = sort[0].order;
+        if (sorters && sorters.length > 0) {
+            query._sort = sorters[0].field;
+            query._order = sorters[0].order;
         }
         // highlight-end
 
@@ -306,7 +306,7 @@ access-control-expose-headers: X-Total-Count
     };
     // highlight-end
 
-    getList: async ({ resource, pagination, sort, filters }) => {
+    getList: async ({ resource, pagination, sorters, filters }) => {
       const url = `${apiUrl}/${resource}`;
 
       const { current = 1, pageSize = 10 } = pagination ?? {};
@@ -321,9 +321,9 @@ access-control-expose-headers: X-Total-Count
         _end: current * pageSize,
       };
 
-      if (sort && sort.length > 0) {
-        query._sort = sort[0].field;
-        query._order = sort[0].order;
+      if (sorters && sorters.length > 0) {
+        query._sort = sorters[0].field;
+        query._order = sorters[0].order;
       }
 
       // highlight-next-line
