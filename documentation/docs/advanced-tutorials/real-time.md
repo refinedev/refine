@@ -31,7 +31,7 @@ The app will have one resource: **posts** with [CRUD pages(list, create, edit, a
 
 ## Adding `liveProvider`
 
-Firstly we create ab Ably client for [`@pankod/refine-ably`](https://github.com/refinedev/refine/tree/master/packages/ably) live provider.
+Firstly we create a Ably client for [`@pankod/refine-ably`](https://github.com/refinedev/refine/tree/master/packages/ably) live provider.
 
 ```ts title="src/utility/ablyClient.ts"
 import { Ably } from "@pankod/refine-ably";
