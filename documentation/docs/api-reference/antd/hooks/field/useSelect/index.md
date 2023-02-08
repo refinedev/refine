@@ -181,11 +181,13 @@ useSelect({
 
 ### `hasPagination`
 
+> Default: `false`
+
 `hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to determine whether to use server-side pagination or not.
 
 ```tsx
 useSelect({
-    hasPagination: false,
+    hasPagination: true,
 });
 ```
 
