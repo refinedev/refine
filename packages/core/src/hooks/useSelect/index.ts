@@ -29,12 +29,12 @@ export type UseSelectProps<TData, TError> = {
      * Set the option's value
      * @default `"title"`
      */
-    optionLabel?: string;
+    optionLabel?: keyof TData extends string ? keyof TData : never;
     /**
      * Set the option's label value
      * @default `"id"`
      */
-    optionValue?: string;
+    optionValue?: keyof TData extends string ? keyof TData : never;
     /**
      * Allow us to sort the options
      */
@@ -144,8 +144,8 @@ export const useSelect = <
         (data: GetManyResponse<TData>) => {
             setSelectedOptions(
                 data.data.map((item) => ({
-                    label: get(item, optionLabel),
-                    value: get(item, optionValue),
+                    label: get(item, optionLabel) as string,
+                    value: get(item, optionValue) as string,
                 })),
             );
         },
@@ -178,8 +178,8 @@ export const useSelect = <
             {
                 setOptions(
                     data.data.map((item) => ({
-                        label: get(item, optionLabel),
-                        value: get(item, optionValue),
+                        label: get(item, optionLabel) as string,
+                        value: get(item, optionValue) as string,
                     })),
                 );
             }
