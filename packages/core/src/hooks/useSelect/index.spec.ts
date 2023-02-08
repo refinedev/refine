@@ -596,7 +596,7 @@ describe("useSelect Hook", () => {
                 },
             },
             pagination: {},
-            sort: undefined,
+            sorters: undefined,
         });
 
         await act(async () => {
@@ -625,7 +625,7 @@ describe("useSelect Hook", () => {
                     },
                 },
                 pagination: {},
-                sort: undefined,
+                sorters: undefined,
             });
         });
     });

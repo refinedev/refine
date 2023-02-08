@@ -37,8 +37,13 @@ export type UseSelectProps<TData, TError> = {
     optionValue?: string;
     /**
      * Allow us to sort the options
+     * @deprecated Use `sorters` instead
      */
     sort?: CrudSorting;
+    /**
+     * Allow us to sort the options
+     */
+    sorters?: CrudSorting;
     /**
      * Resource name for API data interactions
      */
@@ -116,6 +121,7 @@ export const useSelect = <
     const {
         resource,
         sort,
+        sorters,
         filters = [],
         optionLabel = "title",
         optionValue = "id",
@@ -189,15 +195,13 @@ export const useSelect = <
 
     const queryResult = useList<TData, TError>({
         resource,
-        config: {
-            sort,
-            filters: filters.concat(search),
-            pagination: {
-                current: pagination?.current,
-                pageSize: pagination?.pageSize ?? fetchSize,
-            },
-            hasPagination,
+        sorters: sorters ?? sort,
+        filters: filters.concat(search),
+        pagination: {
+            current: pagination?.current,
+            pageSize: pagination?.pageSize ?? fetchSize,
         },
+        hasPagination,
         queryOptions: {
             ...queryOptions,
             onSuccess: (data) => {
