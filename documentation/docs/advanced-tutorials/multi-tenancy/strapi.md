@@ -9,12 +9,12 @@ Multitenancy refers to a kind of architecture where a single instance of softwar
 
 ## Introduction​
 
-In this guide, we will create an application with you in the logic of Multi Tenant(Multitenancy). We can say multi tenant application is to separate and manage multiple contents independently from each other in a single application.
+In this guide, we will create an application with you in the logic of Multi Tenant(Multitenancy). We can say multi tenant application is separate and manage multiple contents independently from each other in a single application.
 
-We will make a Cake House application using **refine** and [Strapi-v4](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html). Our Cake House will consist of two separate stores and there will be special products for these stores. We will explain step by step how to manage these stores, products and orders separately.
+We will make a Cake House application using **refine** and [Strapi-v4](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html). Our Cake House will consist of two separate stores and there will be special products for these stores. We will explain step by step how to manage these stores, products, and orders separately.
 
 :::caution
-This guide has been prepared assuming you know the basics of **refine**. If you haven't learned these basics yet, we recommend reading the [Tutorial](https://refine.dev/docs/).
+This guide has been prepared to assume you know the basics of **refine**. If you haven't learned these basics yet, we recommend reading the [Tutorial](https://refine.dev/docs/).
 :::
 
 ## Setup
@@ -24,7 +24,7 @@ npm i @pankod/refine-strapi-v4
 ```
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 ## Usage
@@ -157,7 +157,7 @@ You can find detailed usage information and the source code [here](https://githu
 
 ## Create Collections
 
-We created three collections on Strapi as store, product and order and added a relation between them. For detailed information on how to create a collection, you can check [here](https://docs.strapi.io/developer-docs/latest/getting-started/quick-start.html).
+We created three collections on Strapi as store, product, and order and added a relation between them. For detailed information on how to create a collection, you can check [here](https://docs.strapi.io/developer-docs/latest/getting-started/quick-start.html).
 
 `Stores`
 
@@ -216,9 +216,9 @@ Now that we have completed the setup and our collections, we can now log in with
 
 ## Store Context
 
-In order to view the products and orders of two different stores separately, we need to filter by storeId. We will use the storeId information in more than one place. For example, when creating a store-specific order.
+To view the products and orders of two different stores separately, we need to filter by `storeId`. We will use the `storeId` information in more than one place. For example, when creating a store-specific order.
 
-For this reason, we will create a [React Context](https://en.reactjs.org/docs/context.html) and keep the storeId state information in it and send it to the relevant **refine** components.
+For this reason, we will create a [React Context](https://en.reactjs.org/docs/context.html) and keep the `storeId` state information in it and send it to the relevant **refine** components.
 
 ```tsx title="src/contexts/StoreContext.tsx"
 import { createContext, useState } from "react";
@@ -438,15 +438,15 @@ export const CustomSider: React.FC = () => {
 </p>
 </details>
 
-|             <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/sider.png" alt="sider" />              |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| _As you can see, you can now choose the store you want and create products and orders specifically for the store we have chosen according to the storeId information._ |
+|              <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/sider.png" alt="sider" />               |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| _As you can see, you can now choose the store you want and create products and orders specifically for the store we have chosen according to the `storeId` information._ |
 
 ## Product List Page
 
-Now we can list the products of the selected store according to the storeId information by filtering it. We can do this filtering by using the `permanetFilter` property within the **refine**'s `useSimpleList` hook.
+Now we can list the products of the selected store according to the `storeId` information by filtering it. We can do this filtering by using the `permanetFilter` property within the **refine**'s `useSimpleList` hook.
 
-We separate the products of different stores by using the `permanentFilter` with the storeId we get from the Store Context. So we can control more than single content in one application.
+We separate the products of different stores by using the `permanentFilter` with the `storeId` we get from the Store Context. So we can control more than single content in one application.
 
 ```tsx
 //highlight-start
@@ -695,7 +695,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 
 ## Conclusion
 
-In this guide and in our example app, we talked about how we can build Multitenancy apps with **refine**. Developing a Multitenancy application with **refine** is quite simple. By creating a context and with the hooks that **refine** provides, you can quickly and easily produce similar applications in this logic.
+In this guide and our example app, we talked about how we can build Multitenancy apps with **refine**. Developing a Multitenancy application with **refine** is quite simple. By creating a context and with the hooks that **refine** provides, you can quickly and easily produce similar applications in this logic.
 
 ## Example
 

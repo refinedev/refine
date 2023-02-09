@@ -251,7 +251,7 @@ type NextRouteComponentProps = {
 };
 ```
 
-`initialData` must be passed as props from `getServerSideProps`. `NextRouteComponent` will pass this data as `initialData` to the `list`, `create`, `edit` and `show` components.
+`initialData` must be passed as props from `getServerSideProps`. `NextRouteComponent` will pass this data as `initialData` to the `list`, `create`, `edit`, and `show` components.
 
 For example, for a `list` component that will be rendered for `/[resource]`, the page can use SSR like this:
 
@@ -476,13 +476,13 @@ export default NextRouteComponent;
 Note that we're importing `NextRouteComponent` from `@pankod/refine-nextjs-router/app` instead of `@pankod/refine-nextjs-router`. This is because we're using the `app/` directory and we need to import the `app` version of the `NextRouteComponent`.
 
 :::note
-`"use client";` is a directive that instructs Next.js to opt-out from Server Components. This is because **refine** and dependencies are not yet compatible with Server Components. Thats why we're using it in both `layout.tsx` and `page.tsx` files.
+`"use client";` is a directive that instructs Next.js to opt-out from Server Components. This is because **refine** and dependencies are not yet compatible with Server Components. That's why we're using it in both `layout.tsx` and `page.tsx` files.
 :::
 
 :::note
-`checkAuthentication` does not work with `app/` directory. You need to handle the authentication your views while using `app/` directory.
+`checkAuthentication` does not work with `app/` directory. You need to handle the authentication of your views while using `app/` directory.
 
-**refine** aims to provide a middleware for `app/` directory to substitue `checkAuthentication` but it's not available yet.
+**refine** aims to provide a middleware for `app/` directory to substitute `checkAuthentication` but it's not available yet.
 :::
 
 :::info
