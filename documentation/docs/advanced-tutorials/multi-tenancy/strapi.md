@@ -3,7 +3,6 @@ id: strapi-v4
 title: Strapi-v4
 ---
 
-
 ## What is Multitenancy?
 
 Multitenancy refers to a kind of architecture where a single instance of software runs on a server and serves multiple customers. In a multi-tenant environment, separate customers tap into the same hardware and data storage, creating a dedicated instance for each customer. Each tenant’s data is isolated and remains invisible to others, but is running on the same server.
@@ -439,7 +438,7 @@ export const CustomSider: React.FC = () => {
 </p>
 </details>
 
-|                                                                    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/sider.png" alt="sider" />                                                                     |
+|             <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/strapi/sider.png" alt="sider" />              |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | _As you can see, you can now choose the store you want and create products and orders specifically for the store we have chosen according to the storeId information._ |
 
@@ -494,7 +493,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List
-            pageHeaderProps={{
+            headerProps={{
                 extra: <CreateButton onClick={() => createShow()} />,
             }}
         >
