@@ -1,0 +1,57 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@mui/icons-material": "^5.8.3",
+    "@pankod/refine-cli": "^1.2.0",
+    "@pankod/refine-core": "^3.18.0",
+    "@pankod/refine-inferencer": "^2.0.2",
+    "@pankod/refine-mui": "^3.30.0",
+    "@pankod/refine-react-hook-form": "^3.27.1",
+    "@pankod/refine-react-router-v6": "^3.18.0",
+    "@pankod/refine-simple-rest": "^3.18.0",
+    "@testing-library/jest-dom": "^5.12.0",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/user-event": "^12.8.3",
+    "@types/jest": "^26.0.23",
+    "apexcharts": "^3.36.3",
+    "axios": "^0.26.1",
+    "react": "^18.2.0",
+    "react-apexcharts": "^1.4.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.0",
+    "web-vitals": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.20.10",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "dev": "refine start",
+    "build": "refine build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "refine": "refine"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
