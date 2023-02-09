@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-core": patch
+"@pankod/refine-core": minor
 ---
 
 added: `optionLabel` and `optionValue` type changed for better type inference
