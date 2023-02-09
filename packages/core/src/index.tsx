@@ -109,5 +109,6 @@ export {
     userFriendlyResourceName,
     getNextPageParam,
     getPreviousPageParam,
+    pickNotDeprecated,
 } from "./definitions/helpers";
 export { file2Base64 } from "./definitions/upload";
