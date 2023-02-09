@@ -16,3 +16,4 @@ export {
     getNextPageParam,
     getPreviousPageParam,
 } from "./useInfinitePagination";
+export { pickNotDeprecated } from "./pickNotDeprecated";
