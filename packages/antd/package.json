@@ -23,6 +23,7 @@
         "react-dom": "^17.0.0 || ^18.0.0"
     },
     "devDependencies": {
+        "antd": "^5.0.5",
         "@pankod/refine-cli": "^1.15.0",
         "@pankod/refine-ui-tests": "^0.11.6",
         "@pankod/refine-core": "^3.95.1",
@@ -51,7 +52,6 @@
         "@ant-design/pro-layout": "^7.3.4",
         "@pankod/refine-ui-types": "^0.14.2",
         "@tanstack/react-query": "^4.10.1",
-        "antd": "^5.0.5",
         "dayjs": "^1.10.7",
         "react-markdown": "^6.0.1",
         "remark-gfm": "^1.0.0",
