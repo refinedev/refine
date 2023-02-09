@@ -37,8 +37,13 @@ type UseExportOptionsType<
     mapData?: MapDataFn<TData, TVariables>;
     /**
      *  Sorts records
+     *  @deprecated `sorter` is deprecated. Use `sorters` instead.
      */
     sorter?: CrudSorting;
+    /**
+     *  Sorts records
+     */
+    sorters?: CrudSorting;
     /**
      *  Filters records
      */
@@ -88,6 +93,7 @@ export const useExport = <
     resourceName,
     resource: resourceFromProps,
     sorter,
+    sorters,
     filters,
     maxItemCount,
     pageSize = 20,
@@ -133,6 +139,7 @@ export const useExport = <
                     resource,
                     filters,
                     sort: sorter,
+                    sorters: sorters ?? sorter,
                     pagination: {
                         current,
                         pageSize,
