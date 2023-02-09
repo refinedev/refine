@@ -1,0 +1,65 @@
+---
+"@pankod/refine-antd": minor
+---
+
+-   Deprecated `congig` props of `useList` and `useInfinite` hooks. Use `sorters`, `filters`, `pagination`, and `hasPagination` props instead.
+
+```diff
+useList({
+-    config: {
+-        sort,
+-        filters,
+-        pagination,
+-        hasPagination,
+-    },
++    sorters,
++    filters,
++    pagination,
++    hasPagination,
+})
+
+useInfinite({
+-    config: {
+-        sort,
+-        filters,
+-        pagination,
+-        hasPagination,
+-    },
++    sorters,
++    filters,
++    pagination,
++    hasPagination,
+})
+```
+
+-   Deprecated `resourceName` props of `useImport` and `useExport` hooks. Use `resource` prop instead.
+
+```diff
+useImport({
+-    resourceName,
++    resource,
+})
+
+useExport({
+-    resourceName,
++    resource,
+})
+```
+
+-   Deprecated `sorter` props of `useExport` hook. Use `sorters` prop instead.
+
+```diff
+useExport({
+-    sorter,
++    sorters,
+})
+```
+
+-   Deprecated `sort` props of `useSelect` hook. Use `sorters` prop instead.
+
+```diff
+useSelect({
+-    sort,
++    sorters,
+})
+```
