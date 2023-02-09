@@ -63,3 +63,14 @@ useSelect({
 +    sorters,
 })
 ```
+
+- Deprecated `config.sort` props of `useCustom` hook. Use `config.sorters` prop instead.
+
+```diff
+useCustom({
+    config: {
+-       sort,
++       sorters,
+    }
+})
+```
