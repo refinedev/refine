@@ -1107,6 +1107,10 @@ For live features to work automatically, we setted `liveMode: "auto"` in the opt
 [Refer to Live Provider docs for more information &#8594](/docs/api-reference/core/providers/live-provider.md/#livemode)
 :::
 
+:::caution
+With [Supabase JS client v2](#), multiple subscription calls are not supported. Check out the related issue, [supabase/realtime#271](https://github.com/supabase/realtime/issues/271). Multiple subscriptions needs to be made in a single call, which is not supported by the current version of the `@pankod/refine-supabase` data provider. You can check out the related documentation in [Supabase Realtime Guides](https://supabase.com/docs/guides/realtime/postgres-changes#combination-changes).
+:::
+
 <br/>
 
 ### Let see how real-time feature works in the app
