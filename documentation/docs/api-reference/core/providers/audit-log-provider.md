@@ -122,12 +122,12 @@ const auditLogProvider: AuditLogProvider = {
 
 This method can take the following parameters via hooks. You can use these parameters to filter the events.
 
-| Name     | Type                                               |
-| -------- | -------------------------------------------------- |
-| resource | `string`                                           |
-| action   | `"create"` \| `"update"` \| `"delete"` \| `string` |
-| meta     | `Record<string, any>`                              |
-| author   | `Record<string, any>`                              |
+| Name     | Type                                                                                                     |
+| -------- | -------------------------------------------------------------------------------------------------------- |
+| resource | `string`                                                                                                 |
+| action   | `"create"` \| `"update"` \| `"delete"` \| `"createMany"` \| `"updateMany"` \| `"deleteMany"` \| `string` |
+| meta     | `Record<string, any>`                                                                                    |
+| author   | `Record<string, any>`                                                                                    |
 
 ### `create`
 
@@ -250,13 +250,13 @@ const auditLogProvider: AuditLogProvider = {
 
 This method can take the following parameters.
 
-| Name     | Type                                               |
-| -------- | -------------------------------------------------- |
-| resource | `string`                                           |
-| action   | `"create"` \| `"update"` \| `"delete"` \| `string` |
-| meta     | `Record<string, any>`                              |
-| data     | `Record<string, any>`                              |
-| author   | `Record<string, any>`                              |
+| Name     | Type                                                                                                     |
+| -------- | -------------------------------------------------------------------------------------------------------- |
+| resource | `string`                                                                                                 |
+| action   | `"create"` \| `"update"` \| `"delete"` \| `"createMany"` \| `"updateMany"` \| `"deleteMany"` \| `string` |
+| meta     | `Record<string, any>`                                                                                    |
+| data     | `Record<string, any>`                                                                                    |
+| author   | `Record<string, any>`                                                                                    |
 
 <br/>
 
@@ -418,6 +418,117 @@ mutate({
     "resource": "posts",
     "meta": {
         "id": 1
+    }
+}
+```
+
+### `useCreateMany`
+
+When `useCreateMany` is called, `refine` sends the following parameters to audit log provider's `create` method.
+
+```ts
+const { mutate } = useCreateMany();
+
+mutate({
+    resource: "posts",
+    values: [
+        {
+            "title": "Title1",
+            "status": "published",
+            "content": "New Post Content1"
+        },
+        {
+            "title": "Title2",
+            "status": "published",
+            "content": "New Post Content2"
+        }
+    ],
+    metaData: {
+        foo: "bar",
+    },
+});
+```
+
+```json title="CreateMany event"
+{
+    "action": "createMany",
+    "resource": "posts",
+    "data": [
+        {
+            "title": "Title1",
+            "status": "published",
+            "content": "New Post Content1"
+        },
+        {
+            "title": "Title2",
+            "status": "published",
+            "content": "New Post Content2"
+        }
+    ],
+    "meta": {
+        "ids": [1, 2],
+        // `metaData` is included in `meta`.
+        "foo": "bar"
+    }
+}
+```
+
+### `useUpdateMany`
+
+When `useUpdateMany` is called, `refine` sends the following parameters to audit log provider's `create` method.
+
+```ts
+const { mutate } = useUpdateMany();
+
+mutate({
+    ids: [1, 2],
+    resource: "posts",
+    values: {
+        title: "Updated New Title",
+    },
+});
+```
+
+```json title="UpdateMany event"
+{
+    "action": "updateMany",
+    "resource": "posts",
+    "data": {
+        "title": "Updated New Title",
+    },
+    "previousData": [
+        {
+            "title": "Title1",
+        },
+        {
+            "title": "Title2",
+        }
+    ],
+    "meta": {
+        "ids": [1, 2]
+    }
+}
+```
+
+### `useDeleteMany`
+
+When `useDeleteMany` is called, `refine` sends the following parameters to audit log provider's `create` method.
+
+```ts
+const { mutate } = useDeleteMany();
+
+mutate({
+    ids: [1, 2],
+    resource: "posts",
+});
+```
+
+```json title="DeleteMany event"
+{
+    "action": "deleteMany",
+    "resource": "posts",
+    "meta": {
+        "ids": [1, 2]
     }
 }
 ```
