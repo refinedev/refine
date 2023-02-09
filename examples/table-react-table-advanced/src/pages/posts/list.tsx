@@ -332,18 +332,18 @@ export const PostList: React.FC = () => {
                 <input
                     id="title"
                     type="text"
-                    value={(titleColumn.getFilterValue() as string) ?? ""}
+                    value={(titleColumn?.getFilterValue() as string) ?? ""}
                     onChange={(event) =>
-                        titleColumn.setFilterValue(event.target.value)
+                        titleColumn?.setFilterValue(event.target.value)
                     }
                 />
                 <label htmlFor="Category">Category</label>
                 <select
                     id="category"
                     aria-label="Category select"
-                    value={(categoryColumn.getFilterValue() as string) ?? ""}
+                    value={(categoryColumn?.getFilterValue() as string) ?? ""}
                     onChange={(event) =>
-                        categoryColumn.setFilterValue(event.target.value)
+                        categoryColumn?.setFilterValue(event.target.value)
                     }
                 >
                     <option value={[]}>All Categories</option>

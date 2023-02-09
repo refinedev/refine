@@ -2,11 +2,12 @@
 id: antd-auth-page
 title: <AuthPage>
 sidebar_label: <AuthPage>
-description: <AuthPage> component from refine is a authentication page that can be used to login, register, forgot password and update password.
+description: <AuthPage> component from refine is an authentication page that can be used to login, register, forgot password, and update password.
 swizzle: true
+source: packages/antd/src/components/pages/auth/index.tsx
 ---
 
-`<AuthPage>` component from **refine** for **ant design** contains authentication pages that can be used to login, register, forgot password and update password.
+`<AuthPage>` component from **refine** for **Ant Design** contains authentication pages that can be used to login, register, forgot password, and update password.
 
 Before using `<AuthPage>` component you need to add [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
 
@@ -14,8 +15,9 @@ Before using `<AuthPage>` component you need to add [authProvider](/api-referenc
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
 :::
 
-```tsx live shared
-const { useNavigation: useNavigationShared, useLogout: useLogoutShared } = RefineCore;
+```tsx live  shared
+const { useNavigation: useNavigationShared, useLogout: useLogoutShared } =
+    RefineCore;
 const {
     Typography: { Title: SharedTitle },
     Button,
@@ -24,12 +26,17 @@ const {
 window.__refineAuthStatus = false;
 
 const authProvider = {
-    login: () => { window.__refineAuthStatus = true },
+    login: () => {
+        window.__refineAuthStatus = true;
+    },
     register: () => Promise.resolve(),
     forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
-    logout: () => { window.__refineAuthStatus = false },
-    checkAuth: () => window.__refineAuthStatus ? Promise.resolve() : Promise.reject(),
+    logout: () => {
+        window.__refineAuthStatus = false;
+    },
+    checkAuth: () =>
+        window.__refineAuthStatus ? Promise.resolve() : Promise.reject(),
     checkError: () => Promise.resolve(),
     getPermissions: () => Promise.resolve(),
     getUserIdentity: () => Promise.resolve(),
@@ -63,9 +70,9 @@ const DashboardPage = () => {
 
 ## Usage
 
-`<AuthPage>` component can be used like below 👇🏻
+`<AuthPage>` component can be used like this:
 
-```tsx live url=http://localhost:3000 previewHeight=460px hideCode
+```tsx live url=http://localhost:3000/login previewHeight=460px
 setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 // visible-block-start
@@ -114,13 +121,13 @@ render(<App />);
 -   [`login`](#login) - a type of login page and default type.
 -   [`register`](#register) - a type of registration page.
 -   [`forgotPassword`](#forgotpassword) - a type of forgot password page.
--   [`updatePassword`](#updatepassword) - type of update password page.
+-   [`updatePassword`](#updatepassword) - a type of update password page.
 
 ### Login
 
 `login` will be used as the default type of the `<AuthPage>` component. The login page will be used to log in to the system.
 
-```tsx live url=http://localhost:3000/login previewHeight=460px
+```tsx live hideCode url=http://localhost:3000/login previewHeight=460px
 setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
@@ -149,11 +156,30 @@ const App = () => {
 render(<App />);
 ```
 
+After form submission, the [`login`][login] method of the [`authProvider`][auth-provider] will be called with the form values.
+
+```tsx title="src/authProvider.ts"
+import { AuthProvider } from "@pankod/refine-core";
+
+const authProvider: AuthProvider = {
+    // --
+    login: async ({ email, password, remember, providerName }) => {
+        // You can handle the login process according to your needs.
+
+        // If the process is successful.
+        return Promise.resolve();
+
+        return Promise.reject();
+    },
+    // --
+};
+```
+
 ### Register
 
 The register page will be used to register new users. You can use the following props for the `<AuthPage>` component when the type is `"register"`:
 
-```tsx live url=http://localhost:3000/register previewHeight=460px
+```tsx live hideCode url=http://localhost:3000/register previewHeight=460px
 setInitialRoutes(["/register"]);
 setRefineProps({ Sider: () => null });
 
@@ -191,11 +217,30 @@ const App = () => {
 render(<App />);
 ```
 
+After form submission, the [`register`][register] method of the [`authProvider`][auth-provider] will be called with the form values.
+
+```tsx title="src/authProvider.ts"
+import { AuthProvider } from "@pankod/refine-core";
+
+const authProvider: AuthProvider = {
+    // --
+    register: async ({ email, password, providerName }) => {
+        // You can handle the register process according to your needs.
+
+        // If the process is successful.
+        return Promise.resolve();
+
+        return Promise.reject();
+    },
+    // --
+};
+```
+
 ### ForgotPassword
 
 The `forgotPassword` type is a page that allows users to reset their passwords. You can use this page to reset your password.
 
-```tsx live url=http://localhost:3000/forgot-password
+```tsx live hideCode url=http://localhost:3000/forgot-password
 setInitialRoutes(["/forgot-password"]);
 setRefineProps({ Sider: () => null });
 
@@ -233,11 +278,30 @@ const App = () => {
 render(<App />);
 ```
 
+After form submission, the [`forgotPassword`][forgot-password] method of the [`authProvider`][auth-provider] will be called with the form values.
+
+```tsx title="src/authProvider.ts"
+import { AuthProvider } from "@pankod/refine-core";
+
+const authProvider: AuthProvider = {
+    // --
+    forgotPassword: async ({ email }) => {
+        // You can handle the reset password process according to your needs.
+
+        // If process is successful.
+        return Promise.resolve();
+
+        return Promise.reject();
+    },
+    // --
+};
+```
+
 ### UpdatePassword
 
 The `updatePassword` type is the page used to update the password of the user.
 
-```tsx live url=http://localhost:3000/update-password
+```tsx live hideCode url=http://localhost:3000/update-password
 setInitialRoutes(["/update-password"]);
 setRefineProps({ Sider: () => null });
 
@@ -275,6 +339,25 @@ const App = () => {
 render(<App />);
 ```
 
+After form submission, the [`updatePassword`][update-password] method of the [`authProvider`][auth-provider] will be called with the form values.
+
+```tsx title="src/authProvider.ts"
+import { AuthProvider } from "@pankod/refine-core";
+
+const authProvider: AuthProvider = {
+    // --
+    updatePassword: async ({ password, confirmPassword }) => {
+        // You can handle the update password process according to your needs.
+
+        // If the process is successful.
+        return Promise.resolve();
+
+        return Promise.reject();
+    },
+    // --
+};
+```
+
 ## Props
 
 ### `providers`
@@ -285,7 +368,7 @@ render(<App />);
 
 `providers` property defines the list of providers used to handle login authentication. `providers` accepts an array of `Provider` type. Check out the [Interface](#interface) section for more information.
 
-```tsx live previewHeight=560px url=http://localhost:3000/login
+```tsx live hideCode previewHeight=560px url=http://localhost:3000/login
 setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
@@ -329,9 +412,7 @@ const App = () => {
     );
 };
 // visible-block-end
-render(
-    <App />,
-);
+render(<App />);
 ```
 
 ### `rememberMe`
@@ -346,7 +427,7 @@ render(
 You have to wrap your remember me component with `Form.Item` component from **antd** and pass the `name` prop to it then you can access its value from the `formProps` `onFinish` function with `formValues`.
 :::
 
-```tsx live previewHeight=500px url=http://localhost:3000/login
+```tsx live hideCode previewHeight=500px url=http://localhost:3000/login
 setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
@@ -392,9 +473,7 @@ const App = () => {
     );
 };
 // visible-block-end
-render(
-    <App />,
-);
+render(<App />);
 ```
 
 ### `loginLink`
@@ -403,9 +482,9 @@ render(
 `loginLink` property is only available for types `register` and `forgotPassword`.
 :::
 
-`loginLink` property defines the link to the login page and also you can give a node to render. Default value is `"/login"`.
+`loginLink` property defines the link to the login page and also you can give a node to render. The default value is `"/login"`.
 
-```tsx live previewHeight=500px url=http://localhost:3000/register
+```tsx live hideCode previewHeight=500px url=http://localhost:3000/register
 setInitialRoutes(["/register"]);
 setRefineProps({ Sider: () => null });
 
@@ -471,9 +550,9 @@ render(<App />);
 `registerLink` property is only available for type `login`.
 :::
 
-`registerLink` property defines the link to the registration page and also you can give a node to render. Default value is `"/register"`.
+`registerLink` property defines the link to the registration page and also you can give a node to render. The default value is `"/register"`.
 
-```tsx live previewHeight=500px url=http://localhost:3000/login
+```tsx live hideCode previewHeight=500px url=http://localhost:3000/login
 setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
@@ -516,7 +595,7 @@ const App = () => {
                 ...routerProvider,
                 routes: [
                     { path: "/register", element: <Auth type="register" /> },
-                ]
+                ],
             }}
             // highlight-next-line
             LoginPage={Auth}
@@ -536,9 +615,9 @@ render(<App />);
 `forgotPasswordLink` property is only available for type `login`.
 :::
 
-`forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. Default value is `"/forgot-password"`.
+`forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. The default value is `"/forgot-password"`.
 
-```tsx live previewHeight=500px url=http://localhost:3000/login
+```tsx live hideCode previewHeight=500px url=http://localhost:3000/login
 setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
@@ -580,8 +659,11 @@ const App = () => {
             routerProvider={{
                 ...routerProvider,
                 routes: [
-                    { path: "/forgot-password", element: <Auth type="forgotPassword" /> },
-                ]
+                    {
+                        path: "/forgot-password",
+                        element: <Auth type="forgotPassword" />,
+                    },
+                ],
             }}
             // highlight-next-line
             LoginPage={Auth}
@@ -599,7 +681,7 @@ render(<App />);
 
 `wrapperProps` uses for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
 
-```tsx live previewHeight=500px url=http://localhost:3000/login
+```tsx live hideCode previewHeight=500px url=http://localhost:3000/login
 setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
@@ -639,9 +721,9 @@ render(<App />);
 
 ### `contentProps`
 
-`contentProps` uses for passing props to the content component which is the card component. In the example below you can see that the title, header and content styles are changed with `contentProps`.
+`contentProps` uses for passing props to the content component which is the card component. In the example below you can see that the title, header, and content styles are changed with `contentProps`.
 
-```tsx live previewHeight=500px url=http://localhost:3000/login
+```tsx live hideCode previewHeight=500px url=http://localhost:3000/login
 setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
@@ -688,7 +770,7 @@ render(<App />);
 
 `formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onFinish` function is changed.
 
-```tsx live previewHeight=500px url=http://localhost:3000/login
+```tsx live hideCode previewHeight=500px url=http://localhost:3000/login
 setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
@@ -733,7 +815,7 @@ render(<App />);
 
 `renderContent` uses to render the form content. You can use this property to render your own content or `renderContent` gives you default content you can use to add some extra elements to the content.
 
-```tsx live previewHeight=500px url=http://localhost:3000/login
+```tsx live hideCode previewHeight=500px url=http://localhost:3000/login
 setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
@@ -801,9 +883,18 @@ rememberMe-default="[`<Checkbox>Remember me</Checkbox>`](/docs/api-reference/ant
 ### Interface
 
 ```tsx
-interface IProvider {
+interface OAuthProvider {
     name: string;
     icon?: React.ReactNode;
     label?: string;
 }
 ```
+
+[auth-provider]: /docs/api-reference/core/providers/auth-provider/
+[login]: /docs/api-reference/core/providers/auth-provider/#login-
+[register]: /docs/api-reference/core/providers/auth-provider/#register
+[forgot-password]: /docs/api-reference/core/providers/auth-provider/#forgotpassword
+[update-password]: /docs/api-reference/core/providers/auth-provider/#updatepassword
+[get-permissions]: /docs/api-reference/core/providers/auth-provider/#getpermissions-
+[check-auth]: /docs/api-reference/core/providers/auth-provider/#checkauth-
+[logout]: /docs/api-reference/core/providers/auth-provider/#logout-

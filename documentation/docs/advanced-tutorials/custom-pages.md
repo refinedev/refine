@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 :::caution
 
-This document is related to how to create custom pages for **react** applications. Since **Nextjs** and **Remix** has a file system based router built on the page concept, you can create your custom pages under the `pages` or `routes` folder.
+This document is related to how to create custom pages for **react** applications. Since **Nextjs** and **Remix** have a file system based router built on the page concept, you can create your custom pages under the `pages` or `routes` folder.
 
 [Refer to the `Nextjs Guide` documentation for detailed information. &#8594][ssrnextjs]
 
@@ -449,7 +449,7 @@ By default, custom pages don't have any layout. If you want to show your custom 
 
 Let's make a custom page for posts. On this page, the editor can approve or reject the posts with the "draft" status.
 
-Before starting the example, let's assume that our [`dataProvider`](/api-reference/core/providers/data-provider.md) has an endpoint that returns posts as following.
+Before starting the example, let's assume that our [`dataProvider`](/api-reference/core/providers/data-provider.md) has an endpoint that returns posts as follows.
 
 ```ts title="https://api.fake-rest.refine.dev/posts"
 {
@@ -511,7 +511,7 @@ const App = () => {
 export default App;
 ```
 
-Now, let's create the custom page with the name `<PostReview>`. We will use the properties of `useList`, `filter` and `pagination` to fetch a post with "draft" status.
+Now, let's create the custom page with the name `<PostReview>`. We will use the properties of `useList`, `filter`, and `pagination` to fetch a post with "draft" status.
 
 [Refer to the `useList` documentation for detailed usage. &#8594](/docs/api-reference/core/hooks/data/useList/)
 
@@ -548,7 +548,7 @@ interface IPost {
 
 <br/>
 
-We set the filtering process with `filters` then page size set with `pagination` to return only one post.
+We set the filtering process with `filters` then the page size set with `pagination` to return only one post.
 
 Post's category is relational. So we will use the post's category "id" to get the category title. Let's use `useOne` to fetch the category we want.
 
@@ -633,7 +633,7 @@ export const PostReview = () => {
             resource="posts"
             recordItemId={record?.id}
             isLoading={isLoading || categoryIsLoading}
-            pageHeaderProps={{
+            headerProps={{
                 backIcon: false,
             }}
         >
@@ -775,11 +775,11 @@ export const PostReview = () => {
             resource="posts"
             recordItemId={record?.id}
             isLoading={isLoading || categoryIsLoading}
-            pageHeaderProps={{
+            headerProps={{
                 backIcon: false,
             }}
             // highlight-start
-            actionButtons={
+            headerButtons={
                 <Space
                     key="action-buttons"
                     style={{ float: "right", marginRight: 24 }}

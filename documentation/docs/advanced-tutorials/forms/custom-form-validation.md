@@ -3,15 +3,14 @@ id: custom-form-validation
 title: Custom Form Validation
 ---
 
-
-In refine, we can use the form validation that comes with `Ant Design` with the [rules](https://ant.design/components/form/#Rule) property of the [Form.Item](https://ant.design/components/form/#Form.Item) component.
+In **refine**, we can use the form validation that comes with `Ant Design` with the [rules](https://ant.design/components/form/#Rule) property of the [Form.Item](https://ant.design/components/form/#Form.Item) component.
 
 ```tsx
 <Form>
     <Form.Item
         label="Title"
         name="title"
-// highlight-start
+        // highlight-start
         rules={[
             {
                 required: true,
@@ -20,7 +19,7 @@ In refine, we can use the form validation that comes with `Ant Design` with the 
                 min: 5,
             },
         ]}
-// highlight-end
+        // highlight-end
     >
         <Input />
     </Form.Item>
@@ -43,18 +42,14 @@ Now let's prepare a rule that checks if the titles of the posts are unique. We h
 ```tsx
 import { useState } from "react";
 // highlight-start
-import {
-    useApiUrl,
-    useCustom,
-    HttpError
-} from "@pankod/refine-core";
+import { useApiUrl, useCustom, HttpError } from "@pankod/refine-core";
 import { useForm, Form, Create, Input } from "@pankod/refine-antd";
 //highlight-end
 
 export const PostCreate = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
-// highlight-start
+    // highlight-start
     const [title, setTitle] = useState("");
 
     const apiUrl = useApiUrl();
@@ -63,8 +58,7 @@ export const PostCreate = () => {
         PostUniqueCheckResponse,
         HttpError,
         PostUniqueCheckRequestQuery
-    >
-    ({
+    >({
         url,
         method: "get",
         config: {
@@ -76,7 +70,7 @@ export const PostCreate = () => {
             enabled: false,
         },
     });
-// highlight-end
+    // highlight-end
 
     return (
         <Create saveButtonProps={saveButtonProps}>
@@ -84,7 +78,7 @@ export const PostCreate = () => {
                 <Form.Item
                     label="Title"
                     name="title"
-// highlight-start
+                    // highlight-start
                     rules={[
                         {
                             required: true,
@@ -102,9 +96,9 @@ export const PostCreate = () => {
                             },
                         },
                     ]}
-// highlight-end
+                    // highlight-end
                 >
-// highlight-next-line
+                    // highlight-next-line
                     <Input onChange={(event) => setTitle(event.target.value)} />
                 </Form.Item>
                 ...
@@ -127,6 +121,7 @@ interface PostUniqueCheckRequestQuery {
 ```
 
 <>
+
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>

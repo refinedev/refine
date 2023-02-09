@@ -5,30 +5,36 @@ import {
     LiveEvent,
     HttpError,
     CrudOperators,
+    CrudFilters,
 } from "@pankod/refine-core";
 import {
     createClient,
     PostgrestError,
-    RealtimeSubscription,
+    RealtimeChannel,
+    RealtimePostgresChangesPayload,
+    REALTIME_POSTGRES_CHANGES_LISTEN_EVENT,
     SupabaseClient,
 } from "@supabase/supabase-js";
-import {
-    SupabaseEventTypes,
-    SupabaseRealtimePayload,
-} from "@supabase/supabase-js/dist/main/lib/types";
+import {} from "@supabase/supabase-js/dist/main/lib/types";
 
-const liveTypes: Record<SupabaseEventTypes, LiveEvent["type"]> = {
+const liveTypes: Record<
+    REALTIME_POSTGRES_CHANGES_LISTEN_EVENT,
+    LiveEvent["type"]
+> = {
     INSERT: "created",
     UPDATE: "updated",
     DELETE: "deleted",
     "*": "*",
 };
 
-const supabaseTypes: Record<LiveEvent["type"], SupabaseEventTypes> = {
-    created: "INSERT",
-    updated: "UPDATE",
-    deleted: "DELETE",
-    "*": "*",
+const supabaseTypes: Record<
+    LiveEvent["type"],
+    REALTIME_POSTGRES_CHANGES_LISTEN_EVENT
+> = {
+    created: REALTIME_POSTGRES_CHANGES_LISTEN_EVENT.INSERT,
+    updated: REALTIME_POSTGRES_CHANGES_LISTEN_EVENT.UPDATE,
+    deleted: REALTIME_POSTGRES_CHANGES_LISTEN_EVENT.DELETE,
+    "*": REALTIME_POSTGRES_CHANGES_LISTEN_EVENT.ALL,
 };
 
 const mapOperator = (operator: CrudOperators) => {
@@ -91,7 +97,9 @@ const generateFilter = (filter: CrudFilter, query: any) => {
                         item.operator !== "and" &&
                         "field" in item
                     ) {
-                        return `${item.field}.${item.operator}.${item.value}`;
+                        return `${item.field}.${mapOperator(item.operator)}.${
+                            item.value
+                        }`;
                     }
                     return;
                 })
@@ -176,7 +184,7 @@ const dataProvider = (
             return {
                 data: data || [],
                 total: count || 0,
-            };
+            } as any;
         },
 
         getMany: async ({ resource, ids, metaData }) => {
@@ -191,7 +199,7 @@ const dataProvider = (
 
             return {
                 data: data || [],
-            };
+            } as any;
         },
 
         create: async ({ resource, variables }) => {
@@ -259,7 +267,7 @@ const dataProvider = (
                         return handleError(error);
                     }
 
-                    return (data || [])[0];
+                    return (data || [])[0] as any;
                 }),
             );
 
@@ -324,7 +332,7 @@ const dataProvider = (
                         return handleError(error);
                     }
 
-                    return (data || [])[0];
+                    return (data || [])[0] as any;
                 }),
             );
 
@@ -345,15 +353,10 @@ const dataProvider = (
 
 const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
     return {
-        subscribe: ({
-            channel,
-            types,
-            params,
-            callback,
-        }): RealtimeSubscription => {
+        subscribe: ({ channel, types, params, callback }): RealtimeChannel => {
             const resource = channel.replace("resources/", "");
 
-            const listener = (payload: SupabaseRealtimePayload<any>) => {
+            const listener = (payload: RealtimePostgresChangesPayload<any>) => {
                 if (
                     types.includes("*") ||
                     types.includes(liveTypes[payload.eventType])
@@ -386,19 +389,39 @@ const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
                 }
             };
 
-            const client = supabaseClient
-                .from(resource)
-                .on(supabaseTypes[types[0]], listener);
+            const mapFilter = (filters?: CrudFilters): string | undefined => {
+                if (!filters) {
+                    return;
+                }
 
-            types
-                .slice(1)
-                .map((item) => client.on(supabaseTypes[item], listener));
+                return filters
+                    .map((filter: CrudFilter): string | undefined => {
+                        if ("field" in filter) {
+                            return `${filter.field}=${mapOperator(
+                                filter.operator,
+                            )}.${filter.value}`;
+                        }
+                        return;
+                    })
+                    .join(",");
+            };
+
+            const client = supabaseClient.channel("any").on(
+                "postgres_changes",
+                {
+                    event: supabaseTypes[types[0]] as any,
+                    schema: "public",
+                    table: resource,
+                    filter: mapFilter(params?.filters),
+                },
+                listener,
+            );
 
             return client.subscribe();
         },
 
-        unsubscribe: async (subscription: RealtimeSubscription) => {
-            supabaseClient.removeSubscription(subscription);
+        unsubscribe: async (channel: RealtimeChannel) => {
+            supabaseClient.removeChannel(channel);
         },
     };
 };

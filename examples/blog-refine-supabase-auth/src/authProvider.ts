@@ -4,16 +4,17 @@ import { supabaseClient } from "utility";
 
 const authProvider: AuthProvider = {
     login: async ({ mobileNo, otp }) => {
-        const { user, error } = await supabaseClient.auth.verifyOTP({
+        const { data, error } = await supabaseClient.auth.verifyOtp({
             phone: mobileNo,
             token: otp,
+            type: "sms",
         });
 
         if (error) {
             return Promise.reject(error);
         }
 
-        if (user) {
+        if (data) {
             return Promise.resolve();
         }
     },
@@ -27,25 +28,20 @@ const authProvider: AuthProvider = {
         return Promise.resolve("/");
     },
     checkError: () => Promise.resolve(),
-    checkAuth: () => {
-        const session = supabaseClient.auth.session();
-
-        if (session) {
-            return Promise.resolve();
-        }
-
-        return Promise.reject();
+    checkAuth: async () => {
+        await supabaseClient.auth.getSession();
+        return Promise.resolve();
     },
     getPermissions: async () => {
-        const user = supabaseClient.auth.user();
+        const { data } = await supabaseClient.auth.getUser();
 
-        if (user) {
-            return Promise.resolve(user.role);
+        if (data) {
+            return Promise.resolve(data.user?.role);
         }
     },
     getUserIdentity: async () => {
-        const user = supabaseClient.auth.user();
-
+        const { data } = await supabaseClient.auth.getUser();
+        const { user } = data;
         if (user) {
             return Promise.resolve({
                 ...user,

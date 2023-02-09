@@ -93,7 +93,7 @@ export default App;
 
 Now let's get our [`<AutoComplete>`](https://ant.design/components/auto-complete) input ready to search. So, let's fetch our posts according to the value entered in our input.
 
-In order to fetch more than one record, we will use the [`useList`](/docs/api-reference/core/hooks/data/useList) data hook, and we will filter and fetch this data according to the search value.
+To fetch more than one record, we will use the [`useList`](/docs/api-reference/core/hooks/data/useList) data hook, and we will filter and fetch this data according to the search value.
 
 Before we start, let's create the interfaces of our [`<AutoComplete>`](https://ant.design/components/auto-complete)'s `options` property and the post source.
 
@@ -216,7 +216,7 @@ We created states to dynamically manage the `value` and `options` properties of 
 
 <br />
 
-Search value is currently only searched and fetched inside posts. Let's update our code to search both posts and categories according to search value.
+Search value is currently only searched and fetched inside posts. Let's update our code to search both posts and categories according to the search value.
 
 ```tsx title="src/components/header.tsx"
 ...
@@ -288,7 +288,7 @@ export const Header: React.FC = () => {
 ```
 
 :::tip
-By doing the same implementation on your other resources, you can search more than one resource with a value.
+By doing the same implementation on your other resources, you can search for more than one resource with a value.
 :::
 
 ## Example

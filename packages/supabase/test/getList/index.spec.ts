@@ -1,4 +1,5 @@
 import { SupabaseClient } from "@supabase/supabase-js";
+import nock from "nock";
 import { dataProvider } from "../../src/index";
 import supabaseClient from "../supabaseClient";
 import "./index.mock";
@@ -239,5 +240,32 @@ describe("filtering", () => {
         expect(data[0]["title"]).toBe("Supabase");
         expect(data[0]["slug"]).toBe("supabase-data-provider");
         expect(total).toBe(1);
+    });
+
+    it("or operator should work correctly", async () => {
+        const { data, total } = await dataProvider(supabaseClient).getList({
+            resource: "posts",
+            filters: [
+                {
+                    operator: "or",
+                    value: [
+                        {
+                            field: "title",
+                            operator: "eq",
+                            value: "Hello",
+                        },
+                        {
+                            field: "title",
+                            operator: "eq",
+                            value: "World",
+                        },
+                    ],
+                },
+            ],
+        });
+
+        expect(data[0]["title"]).toBe("Hello");
+        expect(data[1]["title"]).toBe("World");
+        expect(total).toBe(2);
     });
 });
