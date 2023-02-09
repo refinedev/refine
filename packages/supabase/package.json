@@ -1,7 +1,7 @@
 {
   "name": "@pankod/refine-supabase",
   "description": "refine Supabase data provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "3.35.0",
+  "version": "4.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
