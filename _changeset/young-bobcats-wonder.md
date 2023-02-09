@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-supabase": major
+"@pankod/refine-supabase": minor
 ---
 
 Updated `supabase-js` to v2. `supabase` has published a [migration guide](https://supabase.com/docs/reference/javascript/v1/upgrade-guide). These are some of the changes to `refine`.
