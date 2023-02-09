@@ -221,6 +221,7 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
 
         getList: async ({
             resource,
+            sort,
             sorters,
             filters,
             hasPagination = true,
@@ -232,7 +233,7 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
         }) => {
             const { current = 1, pageSize: limit = 10 } = pagination ?? {};
 
-            const hasuraSorting = generateSorting(sorters);
+            const hasuraSorting = generateSorting(sorters ?? sort);
             const hasuraFilters = generateFilters(filters);
 
             const operation = metaData?.operation ?? resource;

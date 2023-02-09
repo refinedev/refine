@@ -120,12 +120,13 @@ const AirtableDataProvider = (
             resource,
             hasPagination = true,
             pagination = { current: 1, pageSize: 10 },
+            sort,
             sorters,
             filters,
         }) => {
             const { current = 1, pageSize = 10 } = pagination ?? {};
 
-            const generetedSort = generateSort(sorters) || [];
+            const generetedSort = generateSort(sorters ?? sort) || [];
             const queryFilters = generateFilter(filters);
 
             const { all } = base(resource).select({

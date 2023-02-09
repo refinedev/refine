@@ -14,6 +14,7 @@ type GenereteUseListSubscriptionParams = {
     metaData: MetaDataQuery;
     pagination?: Pagination;
     hasPagination?: boolean;
+    sort?: CrudSorting;
     sorters?: CrudSorting;
     filters?: CrudFilters;
 };
@@ -29,12 +30,13 @@ export const genereteUseListSubscription = ({
     metaData,
     pagination,
     hasPagination,
+    sort,
     sorters,
     filters,
 }: GenereteUseListSubscriptionParams): GenereteUseListSubscriptionReturnValues => {
     const { current = 1, pageSize = 10 } = pagination ?? {};
 
-    const sortBy = genereteSort(sorters);
+    const sortBy = genereteSort(sorters ?? sort);
     const filterBy = generateFilter(filters);
 
     const camelResource = camelCase(resource);

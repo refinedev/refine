@@ -15,6 +15,7 @@ export const dataProvider = (
         hasPagination = true,
         pagination = { current: 1, pageSize: 10 },
         filters,
+        sort,
         sorters,
     }) => {
         const url = `${apiUrl}/${resource}`;
@@ -35,7 +36,7 @@ export const dataProvider = (
               }
             : {};
 
-        const generatedSort = generateSort(sorters);
+        const generatedSort = generateSort(sorters ?? sort);
         if (generatedSort) {
             const { _sort, _order } = generatedSort;
             query._sort = _sort.join(",");
@@ -114,6 +115,7 @@ export const dataProvider = (
         url,
         method,
         filters,
+        sort,
         sorters,
         payload,
         query,
@@ -121,8 +123,8 @@ export const dataProvider = (
     }) => {
         let requestUrl = `${url}?`;
 
-        if (sorters) {
-            const generatedSort = generateSort(sorters);
+        if (sorters || sort) {
+            const generatedSort = generateSort(sorters ?? sort);
             if (generatedSort) {
                 const { _sort, _order } = generatedSort;
                 const sortQuery = {

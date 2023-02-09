@@ -13,6 +13,7 @@ type GenereteUseListSubscriptionParams = {
     metaData: MetaDataQuery;
     pagination?: Pagination;
     hasPagination?: boolean;
+    sort?: CrudSorting;
     sorters?: CrudSorting;
     filters?: CrudFilters;
 };
@@ -28,12 +29,13 @@ export const genereteUseListSubscription = ({
     metaData,
     pagination,
     hasPagination,
+    sort,
     sorters,
     filters,
 }: GenereteUseListSubscriptionParams): GenereteUseListSubscriptionReturnValues => {
     const { current = 1, pageSize: limit = 10 } = pagination ?? {};
 
-    const hasuraSorting = generateSorting(sorters);
+    const hasuraSorting = generateSorting(sorters ?? sort);
     const hasuraFilters = generateFilters(filters);
 
     const operation = metaData.operation ?? resource;

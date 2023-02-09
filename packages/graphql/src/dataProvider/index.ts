@@ -62,13 +62,14 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             resource,
             hasPagination = true,
             pagination = { current: 1, pageSize: 10 },
+            sort,
             sorters,
             filters,
             metaData,
         }) => {
             const { current = 1, pageSize = 10 } = pagination ?? {};
 
-            const sortBy = genereteSort(sorters);
+            const sortBy = genereteSort(sorters ?? sort);
             const filterBy = generateFilter(filters);
 
             const camelResource = camelCase(resource);

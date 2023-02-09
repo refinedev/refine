@@ -113,6 +113,7 @@ const AltogicDataProvider = (
         hasPagination = true,
         pagination = { current: 1, pageSize: 10 },
         filters,
+        sort,
         sorters,
     }) => {
         const { current: page = 1, pageSize: size = 10 } = pagination ?? {};
@@ -127,7 +128,7 @@ const AltogicDataProvider = (
             sort?: string;
         } = hasPagination ? { page, size } : {};
 
-        const generatedSort = generateSort(sorters);
+        const generatedSort = generateSort(sorters ?? sort);
         if (generatedSort) {
             const { _sort } = generatedSort;
 
@@ -242,6 +243,7 @@ const AltogicDataProvider = (
         url,
         method,
         filters,
+        sort,
         sorters,
         payload,
         query,
@@ -249,8 +251,8 @@ const AltogicDataProvider = (
     }) => {
         let requestUrl = `${url}?`;
 
-        if (sorters) {
-            const generatedSort = generateSort(sorters);
+        if (sort) {
+            const generatedSort = generateSort(sorters ?? sort);
             if (generatedSort) {
                 const { _sort } = generatedSort;
                 const sortQuery = {

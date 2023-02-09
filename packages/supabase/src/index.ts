@@ -127,6 +127,7 @@ const dataProvider = (
             hasPagination = true,
             pagination = { current: 1, pageSize: 10 },
             filters,
+            sort,
             sorters,
             metaData,
         }) => {
@@ -142,7 +143,7 @@ const dataProvider = (
                 query.range((current - 1) * pageSize, current * pageSize - 1);
             }
 
-            sorters?.map((item) => {
+            (sorters ?? sort)?.map((item) => {
                 const [foreignTable, field] = item.field.split(/\.(.*)/);
 
                 if (foreignTable && field) {

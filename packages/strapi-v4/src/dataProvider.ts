@@ -171,6 +171,7 @@ export const DataProvider = (
         hasPagination = true,
         pagination = { current: 1, pageSize: 10 },
         filters,
+        sort,
         sorters,
         metaData,
     }) => {
@@ -183,7 +184,7 @@ export const DataProvider = (
         const populate = metaData?.populate;
         const publicationState = metaData?.publicationState;
 
-        const quertSorters = generateSort(sorters);
+        const quertSorters = generateSort(sorters ?? sort);
         const queryFilters = generateFilter(filters);
 
         const query = {
@@ -364,6 +365,7 @@ export const DataProvider = (
         url,
         method,
         filters,
+        sort,
         sorters,
         payload,
         query,
@@ -371,8 +373,8 @@ export const DataProvider = (
     }) => {
         let requestUrl = `${url}?`;
 
-        if (sorters) {
-            const sortQuery = generateSort(sorters);
+        if (sorters || sort) {
+            const sortQuery = generateSort(sorters ?? sort);
             if (sortQuery.length > 0) {
                 requestUrl = `${requestUrl}&${stringify({
                     sort: sortQuery.join(","),

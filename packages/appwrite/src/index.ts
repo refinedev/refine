@@ -117,6 +117,7 @@ export const dataProvider = (
             hasPagination = true,
             pagination = { current: 1, pageSize: 10 },
             filters,
+            sort,
             sorters,
         }) => {
             const appwriteFilters = getAppwriteFilters(filters);
@@ -124,7 +125,7 @@ export const dataProvider = (
                 ? getAppwritePagination(pagination)
                 : [];
 
-            const appwriteSorts = getAppwriteSorting(sorters);
+            const appwriteSorts = getAppwriteSorting(sorters ?? sort);
 
             const { total: total, documents: data } =
                 await database.listDocuments<any>(databaseId, resource, [

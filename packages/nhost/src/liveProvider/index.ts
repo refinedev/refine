@@ -21,6 +21,7 @@ export const liveProvider = (client: Client): LiveProvider => {
                 metaData,
                 pagination,
                 hasPagination,
+                sort,
                 sorters,
                 filters,
                 subscriptionType,
@@ -56,6 +57,7 @@ export const liveProvider = (client: Client): LiveProvider => {
                 hasPagination,
                 metaData,
                 pagination,
+                sort,
                 sorters,
             });
 

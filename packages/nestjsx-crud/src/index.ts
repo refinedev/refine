@@ -183,6 +183,7 @@ const NestsxCrud = (
         hasPagination = true,
         pagination = { current: 1, pageSize: 10 },
         filters,
+        sort,
         sorters,
         metaData,
     }) => {
@@ -195,7 +196,7 @@ const NestsxCrud = (
         query = handleFilter(query, filters);
         query = handleJoin(query, metaData?.join);
         query = handlePagination(query, hasPagination, pageSize, current);
-        query = handleSort(query, sorters);
+        query = handleSort(query, sorters ?? sort);
 
         const { data } = await httpClient.get(`${url}?${query.query()}`);
 
@@ -308,6 +309,7 @@ const NestsxCrud = (
         method,
         metaData,
         filters,
+        sort,
         sorters,
         payload,
         query,
@@ -319,7 +321,7 @@ const NestsxCrud = (
 
         requestQueryBuilder = handleJoin(requestQueryBuilder, metaData?.join);
 
-        requestQueryBuilder = handleSort(requestQueryBuilder, sorters);
+        requestQueryBuilder = handleSort(requestQueryBuilder, sorters ?? sort);
 
         let requestUrl = `${url}?${requestQueryBuilder.query()}`;
 
