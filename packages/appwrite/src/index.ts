@@ -125,6 +125,7 @@ export const dataProvider = (
                 ? getAppwritePagination(pagination)
                 : [];
 
+            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
             const appwriteSorts = getAppwriteSorting(sorters ?? sort);
 
             const { total: total, documents: data } =

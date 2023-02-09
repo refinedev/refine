@@ -128,6 +128,7 @@ const AltogicDataProvider = (
             sort?: string;
         } = hasPagination ? { page, size } : {};
 
+        //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
         const generatedSort = generateSort(sorters ?? sort);
         if (generatedSort) {
             const { _sort } = generatedSort;
@@ -251,7 +252,8 @@ const AltogicDataProvider = (
     }) => {
         let requestUrl = `${url}?`;
 
-        if (sort) {
+        if (sorters || sort) {
+            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
             const generatedSort = generateSort(sorters ?? sort);
             if (generatedSort) {
                 const { _sort } = generatedSort;

@@ -36,6 +36,7 @@ export const dataProvider = (
               }
             : {};
 
+        //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
         const generatedSort = generateSort(sorters ?? sort);
         if (generatedSort) {
             const { _sort, _order } = generatedSort;
@@ -124,6 +125,7 @@ export const dataProvider = (
         let requestUrl = `${url}?`;
 
         if (sorters || sort) {
+            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
             const generatedSort = generateSort(sorters ?? sort);
             if (generatedSort) {
                 const { _sort, _order } = generatedSort;

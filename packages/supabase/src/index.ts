@@ -143,6 +143,7 @@ const dataProvider = (
                 query.range((current - 1) * pageSize, current * pageSize - 1);
             }
 
+            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
             (sorters ?? sort)?.map((item) => {
                 const [foreignTable, field] = item.field.split(/\.(.*)/);
 

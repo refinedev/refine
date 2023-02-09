@@ -69,6 +69,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
         }) => {
             const { current = 1, pageSize = 10 } = pagination ?? {};
 
+            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
             const sortBy = genereteSort(sorters ?? sort);
             const filterBy = generateFilter(filters);
 

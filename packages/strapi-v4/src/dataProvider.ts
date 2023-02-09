@@ -184,6 +184,7 @@ export const DataProvider = (
         const populate = metaData?.populate;
         const publicationState = metaData?.publicationState;
 
+        //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
         const quertSorters = generateSort(sorters ?? sort);
         const queryFilters = generateFilter(filters);
 
@@ -374,6 +375,7 @@ export const DataProvider = (
         let requestUrl = `${url}?`;
 
         if (sorters || sort) {
+            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
             const sortQuery = generateSort(sorters ?? sort);
             if (sortQuery.length > 0) {
                 requestUrl = `${requestUrl}&${stringify({
