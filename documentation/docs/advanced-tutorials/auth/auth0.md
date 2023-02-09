@@ -3,7 +3,6 @@ id: auth0
 title: Auth0 Login
 ---
 
-
 [Auth0](https://auth0.com/) is a flexible, drop-in solution for adding authentication and authorization services to your applications. Your team and organization can avoid the cost, time, and risk that comes with building your own solution to authenticate and authorize users. You can check the [Auth0 document](https://auth0.com/docs) for details.
 
 We will show you how to use Auth0 with refine
@@ -102,7 +101,7 @@ After clicking the `Login` button, you will be directed to the auth0 login scree
 </div>
 <br/>
 
-### Auth Provider
+## Auth Provider
 
 In refine, authentication and authorization processes are performed with the auth provider. Let's write a provider for Auth0.
 
@@ -190,6 +189,8 @@ const App = () => {
 
 export default App;
 ```
+
+### Methods
 
 #### login
 

@@ -9,7 +9,7 @@ import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 import SortingLivePreview from "./sorting-live-preview.md";
 import FilteringLivePreview from "./filtering-live-preview.md";
 
-`useInfiniteList` is an extended version of TanStack Query's [`useInfiniteQuery`](https://.tanstack.com/guides/useInfiniteQuery) used for retrieving items from a `resource` with pagination, sort, and filter configurations. It is ideal for lists where the total number of records is unknown and the user loads the next pages with a button.
+`useInfiniteList` is an extended version of TanStack Query's [`useInfiniteQuery`](https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery) used for retrieving items from a `resource` with pagination, sort, and filter configurations. It is ideal for lists where the total number of records is unknown and the user loads the next pages with a button.
 
 -   It uses the `getList` method as the query function from the [`dataProvider`](/docs/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 

@@ -101,6 +101,7 @@ export const CustomSider: React.FC = () => {
             <Menu
                 selectedKeys={[selectedKey]}
                 mode="inline"
+                theme="dark"
                 onClick={({ key }) => {
                     if (!breakpoint.lg) {
                         setCollapsed(true);

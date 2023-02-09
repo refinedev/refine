@@ -5,7 +5,7 @@ title: Custom Layout
 
 You can create custom layouts using [`<Refine>`][refine] and [`<LayoutWrapper>`][layoutwrapper] components.
 
-Both of these components can accept the listed props for customization. [`<Refine>`][refine] being for global customization and the [`<LayoutWrapper>`][layoutwrapper] being for local.
+Both of these components can accept the listed props for customization. [`<Refine>`][refine] is for global customization and the [`<LayoutWrapper>`][layoutwrapper] is for local.
 
 -   [`Layout`][layout]
 -   [`Sider`][sider]
@@ -17,7 +17,7 @@ Both of these components can accept the listed props for customization. [`<Refin
 ## Usage
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 Let's look at an example of modifying the default layout to have a top menu layout.
@@ -81,7 +81,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-Here, we override the [`<Title>`][title] and [`<Layout>`][layout] components. When we override [`<Layout>`][layout], we put the `<CustomSider>` (insted of the [`<Sider>`][sider] that was provided to [`<Layout>`][layout] to render it by default) on top of [`<AntdLayout>`][antdlayout].
+Here, we override the [`<Title>`][title] and [`<Layout>`][layout] components. When we override [`<Layout>`][layout], we put the `<CustomSider>` (instead of the [`<Sider>`][sider] that was provided to [`<Layout>`][layout] to render it by default) on top of [`<AntdLayout>`][antdlayout].
 
 So, we just provided a custom [`<Sider>`][sider]. Here's our custom sider that looks horizontal, instead of the default vertical one:
 
@@ -131,16 +131,16 @@ Here's how it looks in the end:
 
 <CodeSandboxExample path="customization-top-menu-layout" />
 
-[refine]: /api-reference/core/components/refine-config.md
-[layout]: /api-reference/core/components/refine-config.md#layout
-[sider]: /api-reference/core/components/refine-config.md#sider
-[footer]: /api-reference/core/components/refine-config.md#footer
-[header]: /api-reference/core/components/refine-config.md#header
-[offlayoutarea]: /api-reference/core/components/refine-config.md#offlayoutarea
-[title]: /api-reference/core/components/refine-config.md#title
-[layoutwrapper]: /api-reference/core/components/layout-wrapper.md
-[custom page example]: /advanced-tutorials/custom-pages.md
-[custom page example code]: /examples/customization/topMenuLayout.md
+[refine]: /docs/api-reference/core/components/refine-config
+[layout]: /docs/api-reference/core/components/refine-config#layout
+[sider]: /docs/api-reference/core/components/refine-config#sider
+[footer]: /docs/api-reference/core/components/refine-config#footer
+[header]: /docs/api-reference/core/components/refine-config#header
+[offlayoutarea]: /docs/api-reference/core/components/refine-config#offlayoutarea
+[title]: /docs/api-reference/core/components/refine-config#title
+[layoutwrapper]: /docs/api-reference/core/components/layout-wrapper
+[custom page example]: /advanced-tutorials/custom-pages
+[custom page example code]: /examples/customization/topMenuLayout
 [antdlayout]: https://ant.design/components/layout/
-[usemenu]: /api-reference/core/hooks/ui/useMenu.md
-[usetitle]: /api-reference/core/hooks/refine/useTitle.md
+[usemenu]: /docs/api-reference/core/hooks/ui/useMenu
+[usetitle]: /docs/api-reference/core/hooks/refine/useTitle

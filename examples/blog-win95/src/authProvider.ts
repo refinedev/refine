@@ -3,9 +3,9 @@ import { AuthProvider } from "@pankod/refine-core";
 import { supabaseClient } from "utility";
 
 const authProvider: AuthProvider = {
-    login: async ({ username, password }) => {
-        const { user, error } = await supabaseClient.auth.signIn({
-            email: username,
+    login: async ({ email, password }) => {
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+            email,
             password,
         });
 
@@ -13,7 +13,7 @@ const authProvider: AuthProvider = {
             return Promise.reject(error);
         }
 
-        if (user) {
+        if (data?.user) {
             return Promise.resolve();
         }
     },
@@ -27,24 +27,21 @@ const authProvider: AuthProvider = {
         return Promise.resolve("/");
     },
     checkError: () => Promise.resolve(),
-    checkAuth: () => {
-        const session = supabaseClient.auth.session();
-
-        if (session) {
-            return Promise.resolve();
-        }
-
-        return Promise.reject();
+    checkAuth: async () => {
+        await supabaseClient.auth.getSession();
+        return Promise.resolve();
     },
     getPermissions: async () => {
-        const user = supabaseClient.auth.user();
+        const { data } = await supabaseClient.auth.getUser();
+        const { user } = data;
 
         if (user) {
             return Promise.resolve(user.role);
         }
     },
     getUserIdentity: async () => {
-        const user = supabaseClient.auth.user();
+        const { data } = await supabaseClient.auth.getUser();
+        const { user } = data;
 
         if (user) {
             return Promise.resolve({

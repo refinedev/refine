@@ -136,7 +136,7 @@ const App = () => (
 :::
 
 :::caution
-Notice how we passed `resource` prop to [`useTable`][usetable]. This is necessary since for `useTable` to be able to get `resource` name from route, it needs to be a route parameter in a dynamic route. [Refer here](#standard-crud-page) where standard CRUD pages can be built with dynamic routing.
+Notice how we passed `resource` prop to [`useTable`][usetable]. This is necessary since for `useTable` to be able to get `resource` name from the route, it needs to be a route parameter in a dynamic route. [Refer here](#standard-crud-page) where standard CRUD pages can be built with dynamic routing.
 :::
 
 :::caution
@@ -263,7 +263,7 @@ Export `RemixRouteComponent` as default in the following pages:
 
 ### SSR
 
-`RemixRouteComponent` accepts a `initialData` prop for SSR data.
+`RemixRouteComponent` accepts an `initialData` prop for SSR data.
 
 ```ts
 type RemixRouteComponentProps = {
@@ -271,7 +271,7 @@ type RemixRouteComponentProps = {
 };
 ```
 
-`initialData` must be passed as props from `loader`. `RemixRouteComponent` will pass this data as `initialData` to the `list`, `create`, `edit` and `show` components.
+`initialData` must be passed as props from `loader`. `RemixRouteComponent` will pass this data as `initialData` to the `list`, `create`, `edit`, and `show` components.
 
 For example, for a `list` component that will be rendered for `/$.tsx`, the page can use SSR like this:
 
@@ -858,7 +858,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 };
 ```
 
-`parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accepts them.
+`parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accept them.
 
 ## Examples
 
