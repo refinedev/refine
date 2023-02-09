@@ -41,6 +41,7 @@ export const useCheckboxGroup = <
 >({
     resource,
     sort,
+    sorters,
     filters,
     optionLabel,
     optionValue,
@@ -57,6 +58,7 @@ export const useCheckboxGroup = <
     const { queryResult, options } = useSelect({
         resource,
         sort,
+        sorters,
         filters,
         optionLabel,
         optionValue,
