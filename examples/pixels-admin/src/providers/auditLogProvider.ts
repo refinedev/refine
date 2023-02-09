@@ -18,7 +18,7 @@ export const auditLogProvider: AuditLogProvider = {
                     value: `"${meta?.canvas?.id}"`,
                 },
             ],
-            sort: [{ order: "desc", field: "created_at" }],
+            sorters: [{ order: "desc", field: "created_at" }],
         });
 
         return data;

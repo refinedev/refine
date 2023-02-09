@@ -97,7 +97,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const { show } = useNavigation();
 
     const { isLoading, triggerExport } = useExport<IOrder>({
-        sorter,
+        sorters: sorter,
         filters,
         pageSize: 50,
         maxItemCount: 50,
