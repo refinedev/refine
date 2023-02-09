@@ -10,6 +10,7 @@ import {
     useImport as useImportCore,
     UseImportReturnType,
     ImportOptions,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 
 /**
@@ -51,7 +52,7 @@ export const useImport = <
     const { useParams } = useRouterContext();
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
     const { name: resource } = resourceWithRoute(
-        resourceFromProp ?? resourceName ?? routeResourceName,
+        pickNotDeprecated(resourceFromProp, resourceName) ?? routeResourceName,
     );
 
     const { mutationResult, isLoading, handleChange } = useImportCore<

@@ -19,6 +19,7 @@ import {
     BaseKey,
     Pagination,
 } from "../../interfaces";
+import { pickNotDeprecated } from "@definitions/helpers";
 
 export type UseSelectProps<TData, TError> = {
     /**
@@ -195,7 +196,7 @@ export const useSelect = <
 
     const queryResult = useList<TData, TError>({
         resource,
-        sorters: sorters ?? sort,
+        sorters: pickNotDeprecated(sorters, sort),
         filters: filters.concat(search),
         pagination: {
             current: pagination?.current,

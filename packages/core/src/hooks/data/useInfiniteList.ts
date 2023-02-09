@@ -27,6 +27,7 @@ import {
     pickDataProvider,
     getNextPageParam,
     getPreviousPageParam,
+    pickNotDeprecated,
 } from "@definitions/helpers";
 
 export interface UseInfiniteListConfig {
@@ -134,11 +135,14 @@ export const useInfiniteList = <
         types: ["*"],
         params: {
             metaData,
-            pagination: pagination ?? config?.pagination,
-            hasPagination: hasPagination ?? config?.hasPagination,
-            sort: sorters ?? config?.sort,
-            sorters: sorters ?? config?.sort,
-            filters: filters ?? config?.filters,
+            pagination: pickNotDeprecated(pagination, config?.pagination),
+            hasPagination: pickNotDeprecated(
+                hasPagination,
+                config?.hasPagination,
+            ),
+            sort: pickNotDeprecated(sorters, config?.sort),
+            sorters: pickNotDeprecated(sorters, config?.sort),
+            filters: pickNotDeprecated(filters, config?.filters),
             subscriptionType: "useList",
             ...liveParams,
         },
@@ -150,23 +154,35 @@ export const useInfiniteList = <
 
     const queryResponse = useInfiniteQuery<GetListResponse<TData>, TError>(
         queryKey.list({
-            filters: filters ?? config?.filters,
-            hasPagination: hasPagination ?? config?.hasPagination,
-            pagination: pagination ?? config?.pagination,
-            sort: sorters ?? config?.sort,
+            filters: pickNotDeprecated(filters, config?.filters),
+            hasPagination: pickNotDeprecated(
+                hasPagination,
+                config?.hasPagination,
+            ),
+            pagination: pickNotDeprecated(pagination, config?.pagination),
+            ...(sorters && {
+                sorters,
+            }),
+            ...(config?.sort && {
+                sort: config?.sort,
+            }),
         }),
         ({ queryKey, pageParam, signal }) => {
             const paginationProperties = {
-                ...(pagination ?? config?.pagination),
+                ...pickNotDeprecated(pagination, config?.pagination),
                 current: pageParam,
             };
 
             return getList<TData>({
                 resource,
-                filters: filters ?? config?.filters,
-                sort: sorters ?? config?.sort,
                 pagination: paginationProperties,
-                hasPagination: hasPagination ?? config?.hasPagination,
+                hasPagination: pickNotDeprecated(
+                    hasPagination,
+                    config?.hasPagination,
+                ),
+                filters: pickNotDeprecated(filters, config?.filters),
+                sort: pickNotDeprecated(sorters, config?.sort),
+                sorters: pickNotDeprecated(sorters, config?.sort),
                 metaData: {
                     ...metaData,
                     queryContext: {
@@ -197,12 +213,29 @@ export const useInfiniteList = <
                               data,
                               {
                                   metaData,
-                                  filters: filters ?? config?.filters,
-                                  hasPagination:
-                                      hasPagination ?? config?.hasPagination,
-                                  pagination: pagination ?? config?.pagination,
-                                  sorters: sorters ?? config?.sort,
-                                  config,
+                                  filters: pickNotDeprecated(
+                                      filters,
+                                      config?.filters,
+                                  ),
+                                  hasPagination: pickNotDeprecated(
+                                      hasPagination,
+                                      config?.hasPagination,
+                                  ),
+                                  pagination: pickNotDeprecated(
+                                      pagination,
+                                      config?.pagination,
+                                  ),
+                                  sorters: pickNotDeprecated(
+                                      sorters,
+                                      config?.sort,
+                                  ),
+                                  config: {
+                                      ...config,
+                                      sort: pickNotDeprecated(
+                                          sorters,
+                                          config?.sort,
+                                      ),
+                                  },
                               },
                               resource,
                           )
@@ -220,12 +253,29 @@ export const useInfiniteList = <
                               err,
                               {
                                   metaData,
-                                  filters: filters ?? config?.filters,
-                                  hasPagination:
-                                      hasPagination ?? config?.hasPagination,
-                                  pagination: pagination ?? config?.pagination,
-                                  sorters: sorters ?? config?.sort,
-                                  config,
+                                  filters: pickNotDeprecated(
+                                      filters,
+                                      config?.filters,
+                                  ),
+                                  hasPagination: pickNotDeprecated(
+                                      hasPagination,
+                                      config?.hasPagination,
+                                  ),
+                                  pagination: pickNotDeprecated(
+                                      pagination,
+                                      config?.pagination,
+                                  ),
+                                  sorters: pickNotDeprecated(
+                                      sorters,
+                                      config?.sort,
+                                  ),
+                                  config: {
+                                      ...config,
+                                      sort: pickNotDeprecated(
+                                          sorters,
+                                          config?.sort,
+                                      ),
+                                  },
                               },
                               resource,
                           )

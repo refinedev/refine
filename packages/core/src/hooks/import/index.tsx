@@ -15,7 +15,11 @@ import {
     ResourceRouterParams,
     MetaDataQuery,
 } from "../../interfaces";
-import { importCSVMapper, sequentialPromises } from "@definitions";
+import {
+    importCSVMapper,
+    sequentialPromises,
+    pickNotDeprecated,
+} from "@definitions";
 import { UseCreateReturnType } from "../../hooks/data/useCreate";
 import { UseCreateManyReturnType } from "../../hooks/data/useCreateMany";
 
@@ -157,7 +161,7 @@ export const useImport = <
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
     const { name: resource } = resourceWithRoute(
-        resourceFromProps ?? resourceName ?? routeResourceName,
+        pickNotDeprecated(resourceFromProps, resourceName) ?? routeResourceName,
     );
 
     const createMany = useCreateMany<TData, TError, TVariables>();

@@ -13,7 +13,11 @@ import {
     CrudFilters,
     MetaDataQuery,
 } from "../../interfaces";
-import { userFriendlyResourceName, pickDataProvider } from "@definitions";
+import {
+    userFriendlyResourceName,
+    pickDataProvider,
+    pickNotDeprecated,
+} from "@definitions";
 import { ExportToCsv, Options } from "export-to-csv-fix-source-map";
 
 type UseExportOptionsType<
@@ -114,7 +118,7 @@ export const useExport = <
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
     const { name: resource } = resourceWithRoute(
-        resourceFromProps ?? resourceName ?? routeResourceName,
+        pickNotDeprecated(resourceFromProps, resourceName) ?? routeResourceName,
     );
 
     const filename = `${userFriendlyResourceName(
@@ -138,8 +142,8 @@ export const useExport = <
                 const { data, total } = await getList<TData>({
                     resource,
                     filters,
-                    sort: sorter,
-                    sorters: sorters ?? sorter,
+                    sort: pickNotDeprecated(sorters, sorter),
+                    sorters: pickNotDeprecated(sorters, sorter),
                     pagination: {
                         current,
                         pageSize,
