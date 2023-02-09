@@ -363,7 +363,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
     return (
         <>
             <List
-                pageHeaderProps={{
+                headerProps={{
                     extra: <CreateButton onClick={() => createShow()} />,
                 }}
             >

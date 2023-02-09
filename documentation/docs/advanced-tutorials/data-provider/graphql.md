@@ -6,32 +6,32 @@ title: GraphQL
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-**refine** [graphql](https://github.com/refinedev/refine/tree/master/packages/graphql) and [strapi-graphql](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql) data provider built with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and [graphql-request](https://github.com/prisma-labs/graphql-request) is made for GraphQL implemantation. It aims to create a query dynamically with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and send requests with [graphql-request](https://github.com/prisma-labs/graphql-request).
+**refine** [graphql](https://github.com/refinedev/refine/tree/master/packages/graphql) and [strapi-graphql](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql) data provider built with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and [graphql-request](https://github.com/prisma-labs/graphql-request) is made for GraphQL implementation. It aims to create a query dynamically with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and send requests with [graphql-request](https://github.com/prisma-labs/graphql-request).
 
 ## GraphQL Query Builder
 
-[GraphQL Query Builder](https://github.com/atulmy/gql-query-builder) allows us to build queries and mutations. The `getList`, `getMany` and `getOne` methods in our `dataProvider` generate a query to send a request. On the other hand, the `create`, `createMany`, `update`, `updateMany`, `deleteOne` and `deleteMany` methods generate a mutation to send a request.
+[GraphQL Query Builder](https://github.com/atulmy/gql-query-builder) allows us to build queries and mutations. The `getList`, `getMany`, and, `getOne` methods in our [`dataProvider`][data-provider] generate a query to send a request. On the other hand, the `create`, `createMany`, `update`, `updateMany`, `deleteOne`, and, `deleteMany` methods generate a mutation to send a request.
 
-In order to create a GraphQL query, our `dataProvider` has to take some options, such as specifying which fields will come in response, we pass these options to our `dataProvider` methods with `MetaDataQuery`.
+In order to create a GraphQL query, our [`dataProvider`][data-provider] has to take some options, such as specifying which fields will come in response, we pass these options to our [`dataProvider`][data-provider] methods with `MetaDataQuery`.
 
 [Refer to the `MetaDataQuery` properties for detailed usage. &#8594](https://github.com/atulmy/gql-query-builder#options)
 
 Hooks and components that support `MetaDataQuery`:
 
-| Supported data hooks                                                         | Supported other hooks                                                            | Supported components                                                        |
-| ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [`useUpdate` &#8594](/docs/api-reference/core/hooks/data/useUpdate/)         | [`useForm` &#8594](/api-reference/core/hooks/useForm.md)                         | [`DeleteButton` &#8594](/api-reference/antd/components/buttons/delete.md)   |
-| [`useUpdateMany` &#8594](/docs/api-reference/core/hooks/data/useUpdateMany/) | [`useModalForm` &#8594](/api-reference/antd/hooks/form/useModalForm.md)          | [`RefreshButton` &#8594](/api-reference/antd/components/buttons/refresh.md) |
-| [`useDelete` &#8594](/docs/api-reference/core/hooks/data/useDelete/)         | [`useDrawerForm` &#8594](/api-reference/antd/hooks/form/useDrawerForm.md)        |                                                                             |
-| [`useDeleteMany` &#8594](/docs/api-reference/core/hooks/data/useDeleteMany/) | [`useStepsForm` &#8594](/api-reference/antd/hooks/form/useStepsForm.md)          |                                                                             |
-| [`useCreate` &#8594](/docs/api-reference/core/hooks/data/useCreate/)         | [`useTable` &#8594](/docs/api-reference/core/hooks/useTable)                     |                                                                             |
-| [`useCreateMany` &#8594](/docs/api-reference/core/hooks/data/useCreateMany/) | [`useEditableTable` &#8594](/api-reference/antd/hooks/table/useEditableTable.md) |                                                                             |
-| [`useList` &#8594](/docs/api-reference/core/hooks/data/useList/)             | [`useSimpleList` &#8594](/api-reference/antd/hooks/list/useSimpleList.md)        |                                                                             |
-| [`useOne` &#8594](/docs/api-reference/core/hooks/data/useOne/)               | [`useShow` &#8594](/api-reference/core/hooks/show/useShow.md)                    |                                                                             |
-| [`useMany` &#8594](/docs/api-reference/core/hooks/data/useMany/)             | [`useExport` &#8594](/api-reference/core/hooks/import-export/useExport.md)       |                                                                             |
-| [`useCustom` &#8594](/docs/api-reference/core/hooks/data/useCustom/)         | [`useCheckboxGroup` &#8594](/api-reference/antd/hooks/field/useCheckboxGroup.md) |                                                                             |
-|                                                                              | [`useSelect` &#8594](/docs/api-reference/core/hooks/useSelect/)                  |                                                                             |
-|                                                                              | [`useRadioGroup` &#8594](/api-reference/antd/hooks/field/useRadioGroup.md)       |                                                                             |
+| Supported data hooks                                                         | Supported other hooks                                                              | Supported components                                                                 |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| [`useUpdate` &#8594](/docs/api-reference/core/hooks/data/useUpdate/)         | [`useForm` &#8594](/docs/api-reference/core/hooks/useForm)                         | [`DeleteButton` &#8594](/docs/api-reference/antd/components/buttons/delete-button)   |
+| [`useUpdateMany` &#8594](/docs/api-reference/core/hooks/data/useUpdateMany/) | [`useModalForm` &#8594](/docs/api-reference/antd/hooks/form/useModalForm)          | [`RefreshButton` &#8594](/docs/api-reference/antd/components/buttons/refresh-button) |
+| [`useDelete` &#8594](/docs/api-reference/core/hooks/data/useDelete/)         | [`useDrawerForm` &#8594](/docs/api-reference/antd/hooks/form/useDrawerForm)        |                                                                                      |
+| [`useDeleteMany` &#8594](/docs/api-reference/core/hooks/data/useDeleteMany/) | [`useStepsForm` &#8594](/docs/api-reference/antd/hooks/form/useStepsForm)          |                                                                                      |
+| [`useCreate` &#8594](/docs/api-reference/core/hooks/data/useCreate/)         | [`useTable` &#8594](/docs/api-reference/core/hooks/useTable)                       |                                                                                      |
+| [`useCreateMany` &#8594](/docs/api-reference/core/hooks/data/useCreateMany/) | [`useEditableTable` &#8594](/docs/api-reference/antd/hooks/table/useEditableTable) |                                                                                      |
+| [`useList` &#8594](/docs/api-reference/core/hooks/data/useList/)             | [`useSimpleList` &#8594](/docs/api-reference/antd/hooks/list/useSimpleList)        |                                                                                      |
+| [`useOne` &#8594](/docs/api-reference/core/hooks/data/useOne/)               | [`useShow` &#8594](/docs/api-reference/core/hooks/show/useShow)                    |                                                                                      |
+| [`useMany` &#8594](/docs/api-reference/core/hooks/data/useMany/)             | [`useExport` &#8594](/docs/api-reference/core/hooks/import-export/useExport)       |                                                                                      |
+| [`useCustom` &#8594](/docs/api-reference/core/hooks/data/useCustom/)         | [`useCheckboxGroup` &#8594](/docs/api-reference/antd/hooks/field/useCheckboxGroup) |                                                                                      |
+|                                                                              | [`useSelect` &#8594](/docs/api-reference/core/hooks/useSelect/)                    |                                                                                      |
+|                                                                              | [`useRadioGroup` &#8594](/docs/api-reference/antd/hooks/field/useRadioGroup)       |                                                                                      |
 
 ## Setup
 
@@ -49,7 +49,7 @@ We used [strapi-graphql](https://github.com/refinedev/refine/tree/master/package
 
 ## Usage
 
-To activate data provider in `@pankod/refine-strapi-graphql`, we have to pass the API address with `GraphQLClient`.
+To activate the data provider in `@pankod/refine-strapi-graphql`, we have to pass the API address with `GraphQLClient`.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
@@ -234,7 +234,7 @@ query ($sort: String, $where: JSON, $start: Int, $limit: Int) {
 
 ## Edit Page
 
-On the edit page [`useForm`](/api-reference/core/hooks/useForm.md) sends a request with the record id to fill the form. `fields` must be sent in `metaData` to determine which fields will come in this request.
+On the edit page, `useForm` sends a request with the record id to fill the form. `fields` must be sent in `metaData` to determine which fields will come in this request.
 
 <Tabs
 defaultValue="usage"
@@ -328,7 +328,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 ```
 
 :::info
-The create page is largely the same as the edit page, there is no need to pass `metaData` to [`useForm`](/api-reference/core/hooks/useForm.md) on the create page. If you want to use the created record as a response after the request, you can pass the `fields` with `metaData`.
+The create page is largely the same as the edit page, there is no need to pass `metaData` to [`useForm`](/docs/api-reference/core/hooks/useForm) on the create page. If you want to use the created record as a response after the request, you can pass the `fields` with `metaData`.
 :::
 
 </TabItem>
@@ -358,7 +358,7 @@ mutation ($input: updatePostInput) {
 
 ## Show Page
 
-Show component includes the [`<RefreshButton>`](/api-reference/antd/components/buttons/refresh.md) by default. We can pass `refetch` method of `queryResult` to it's `onClick`. This method repeats the last request made by the query. So it refreshes the data that is shown in page.
+`<Show>` component includes the [`<RefreshButton>`](/docs/api-reference/antd/components/buttons/refresh-button) by default. We can pass `refetch` method of `queryResult` to its `onClick`. This method repeats the last request made by the query. So it refreshes the data that is shown in page.
 
 <Tabs
 defaultValue="usage"
@@ -392,7 +392,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
         <Show
             isLoading={isLoading}
             // highlight-next-line
-            pageHeaderProps={{
+            headerProps={{
                 extra: <RefreshButton onClick={() => queryResult.refetch()} />,
             }}
         >
@@ -436,3 +436,9 @@ mutation ($input: updatePostInput) {
     </div>
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/graphql-show.png" alt="GraphQL show page" />
 </div>
+
+## Example
+
+<CodeSandboxExample path="data-provider-strapi-graphql" />
+
+[data-provider]: /docs/api-reference/core/providers/data-provider/

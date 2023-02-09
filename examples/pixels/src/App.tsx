@@ -20,7 +20,7 @@ import "@pankod/refine-antd/dist/reset.css";
 
 import "styles/style.css";
 
-const { GoogleOutlined, GithubOutlined } = Icons;
+const { GithubOutlined } = Icons;
 
 function App() {
     return (
