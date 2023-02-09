@@ -8,7 +8,7 @@
         "@pankod/refine-react-hook-form": "^3.37.2",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-react-table": "^4.9.1",
-        "@pankod/refine-supabase": "^3.35.0",
+        "@pankod/refine-supabase": "^4.0.0",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",
