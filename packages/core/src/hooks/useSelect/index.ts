@@ -187,8 +187,6 @@ export const useSelect = <
         [optionLabel, optionValue],
     );
 
-    console.log(pagination);
-
     const queryResult = useList<TData, TError>({
         resource,
         config: {

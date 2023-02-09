@@ -491,6 +491,7 @@ describe("useSelect Hook", () => {
                 useSelect({
                     resource: "posts",
                     defaultValue: ["1", "2"],
+                    hasPagination: true,
                     fetchSize: 20,
                 }),
             {
@@ -506,6 +507,7 @@ describe("useSelect Hook", () => {
 
         expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
             filters: [],
+            hasPagination: true,
             pagination: { pageSize: 20 },
             resource: "posts",
             metaData: {
@@ -516,6 +518,7 @@ describe("useSelect Hook", () => {
                         "list",
                         {
                             filters: [],
+                            hasPagination: true,
                             pagination: {
                                 pageSize: 20,
                             },
@@ -577,7 +580,7 @@ describe("useSelect Hook", () => {
 
         expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
             filters: [],
-            hasPagination: undefined,
+            hasPagination: false,
             resource: "posts",
             metaData: {
                 queryContext: {
@@ -587,6 +590,7 @@ describe("useSelect Hook", () => {
                         "posts",
                         "list",
                         {
+                            hasPagination: false,
                             filters: [],
                             pagination: {},
                             sort: undefined,
@@ -606,7 +610,7 @@ describe("useSelect Hook", () => {
         await waitFor(() => {
             expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
                 filters,
-                hasPagination: undefined,
+                hasPagination: false,
                 resource: "posts",
                 metaData: {
                     queryContext: {
@@ -616,6 +620,7 @@ describe("useSelect Hook", () => {
                             "posts",
                             "list",
                             {
+                                hasPagination: false,
                                 filters,
                                 pagination: {},
                                 sort: undefined,
@@ -661,6 +666,7 @@ describe("useSelect Hook", () => {
                 useSelect({
                     resource: "posts",
                     defaultValue: ["1", "2", "3"],
+                    hasPagination: true,
                     pagination: {
                         current: 2,
                         pageSize: 1,
@@ -680,6 +686,7 @@ describe("useSelect Hook", () => {
         expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
             filters: [],
             pagination: { current: 2, pageSize: 1 },
+            hasPagination: true,
             resource: "posts",
             metaData: {
                 queryContext: {
@@ -689,6 +696,7 @@ describe("useSelect Hook", () => {
                         "list",
                         {
                             filters: [],
+                            hasPagination: true,
                             pagination: {
                                 current: 2,
                                 pageSize: 1,
