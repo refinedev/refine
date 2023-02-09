@@ -29,6 +29,7 @@ export const useImport = <
     TError extends HttpError = HttpError,
     TVariables = any,
 >({
+    resource: resourceFromProp,
     resourceName,
     mapData = (item) => item as unknown as TVariables,
     paparseOptions,
@@ -50,7 +51,7 @@ export const useImport = <
     const { useParams } = useRouterContext();
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
     const { name: resource } = resourceWithRoute(
-        resourceName ?? routeResourceName,
+        resourceFromProp ?? resourceName ?? routeResourceName,
     );
 
     const { mutationResult, isLoading, handleChange } = useImportCore<
@@ -59,7 +60,7 @@ export const useImport = <
         TError,
         TVariables
     >({
-        resourceName,
+        resource,
         mapData,
         paparseOptions,
         batchSize,
