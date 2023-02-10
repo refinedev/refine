@@ -31,7 +31,7 @@ export const DemoSidebar: React.FC<DemoSidebarProps> = ({
             width={300}
             onClose={() => setShow(false)}
             placement="right"
-            handler={
+            extra={
                 <div
                     style={handlerStyles}
                     className="ant-drawer-handle"

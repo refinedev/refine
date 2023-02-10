@@ -3,21 +3,16 @@ id: list-search
 title: List Search
 ---
 
-
 We will examine how to make an extensive search and filtering with the [`useSimpleList`](/api-reference/antd/hooks/list/useSimpleList.md) hook that works with the Ant Design's [`<List>`](https://ant.design/components/list) component.
 
 To do this, let's list posts using the posts resource.
 
 ```tsx title="pages/posts/list.tsx"
-import {
-    // highlight-next-line
-    useMany,
-} from "@pankod/refine-core";
+import { useMany } from "@pankod/refine-core";
 import {
     List,
-    // highlight-start
+    // highlight-next-line
     useSimpleList,
-    // highlight-end
     AntdList,
     Typography,
     Space,
@@ -27,7 +22,7 @@ import {
 const { Text } = Typography;
 
 export const PostList: React.FC = () => {
-    // highlight-start
+    // highlight-next-line
     const { listProps } = useSimpleList<IPost>();
 
     const categoryIds =
@@ -39,7 +34,6 @@ export const PostList: React.FC = () => {
             enabled: categoryIds.length > 0,
         },
     });
-    // highlight-end
 
     const renderItem = (item: IPost) => {
         const { title, hit, content } = item;
@@ -89,7 +83,7 @@ interface IPost {
 }
 ```
 
-After creating the `<PostList>` component, add it to resource with `list` prop:
+After creating the `<PostList>` component, add it to the resource with `list` prop:
 
 ```tsx
 import { Refine } from "@pankod/refine-core";
@@ -240,7 +234,7 @@ When the form is submitted, the `onSearch` method runs and we get the search for
 <br />
 
 :::caution
-[`CrudFilters`](/api-reference/core/interfaces.md#crudfilters) type object has `field`, `operator` and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
+[`CrudFilters`](/api-reference/core/interfaces.md#crudfilters) type object has `field`, `operator`, and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
 :::
 
 ## Example

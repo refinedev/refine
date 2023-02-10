@@ -135,17 +135,12 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                                 if (error) {
                                     return onError?.(error);
                                 }
-                                const { data, error: urlError } =
-                                    await supabaseClient.storage
-                                        .from("refine")
-                                        .getPublicUrl(fileUrl);
-
-                                if (urlError) {
-                                    return onError?.(urlError);
-                                }
+                                const { data } = await supabaseClient.storage
+                                    .from("refine")
+                                    .getPublicUrl(fileUrl);
 
                                 onSuccess?.(
-                                    { url: data?.publicURL },
+                                    { url: data?.publicUrl },
                                     new XMLHttpRequest(),
                                 );
                             }}

@@ -360,9 +360,9 @@ export const PostList: React.FC = () => {
                         label="Search by title"
                         id="title"
                         type="search"
-                        value={(titleColumn.getFilterValue() as string) ?? ""}
+                        value={(titleColumn?.getFilterValue() as string) ?? ""}
                         onChange={(event) =>
-                            titleColumn.setFilterValue(event.target.value)
+                            titleColumn?.setFilterValue(event.target.value)
                         }
                     />
 
@@ -372,7 +372,7 @@ export const PostList: React.FC = () => {
                         label="Category Select"
                         defaultValue={"0"}
                         onChange={(event) => {
-                            categoryColumn.setFilterValue(
+                            categoryColumn?.setFilterValue(
                                 event.target.value === "0"
                                     ? undefined
                                     : event.target.value.toString(),
