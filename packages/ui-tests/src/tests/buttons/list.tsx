@@ -49,9 +49,7 @@ export const buttonListTests = function (
                 </Routes>,
                 {
                     wrapper: TestWrapper({
-                        resources: [
-                            { name: "posts", options: { label: "test" } },
-                        ],
+                        resources: [{ name: "posts", meta: { label: "test" } }],
                         routerInitialEntries: ["/posts"],
                     }),
                 },
@@ -192,7 +190,7 @@ export const buttonListTests = function (
                         resources: [
                             {
                                 name: "posts",
-                                options: { route: "custom-route-posts" },
+                                meta: { route: "custom-route-posts" },
                             },
                             { name: "posts" },
                         ],
