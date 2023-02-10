@@ -4,7 +4,6 @@ title: <Refine>
 sidebar_label: <Refine>
 ---
 
-
 `<Refine>` component is the entry point of a **refine** app. It is where the highest level of configuration of the app occurs.
 
 [`dataProvider`](/api-reference/core/providers/data-provider.md) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
@@ -126,21 +125,21 @@ export default App;
 These components will receive some properties.
 
 ```tsx title="PostList.tsx"
-type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
+type MetaProps<TExtends = { [key: string]: any }> = TExtends & {
     label?: string;
     route?: string;
     dataProviderName?: string;
     hide?: boolean;
 }
 
-interface IResourceComponentsProps<TCrudData = any, TOptionsPropsExtends = { [key: string]: any }> {
+interface IResourceComponentsProps<TCrudData = any, TMetaPropsExtends = { [key: string]: any }> {
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
     canShow?: boolean;
     name?: string;
     initialData?: TCrudData;
-    options?: OptionsProps<TOptionsPropsExtends>;
+    meta?: MetaProps<TMetaPropsExtends>;
 }
 
 const PostList: React.FC<IResourceComponentsProps> = (props) => {
@@ -226,7 +225,7 @@ An icon element can be passed as properties for the icon in the menu.
 />
 ```
 
-### `options`
+### `meta`
 
 Menu item name and route on clicking can be customized.
 
@@ -237,7 +236,7 @@ Menu item name and route on clicking can be customized.
         {
             ...
             // highlight-next-line
-            options: { label: "custom", route: "/custom" }
+            meta: { label: "custom", route: "/custom" }
         },
     ]}
 />
@@ -260,7 +259,7 @@ Default data provider name to use for the resource. If not specified, the defaul
 Can be used to hide a `resource` in `Sider`. This resource is also filtered in the `useMenu` hook.
 
 :::tip
-You can also pass any type of property into the options object. This property you pass can be received from the [useResource](/api-reference/core/hooks/resource/useResource.md) and [useResourceWithRoute](/api-reference/core/hooks/resource/useResourceWithRoute.md) hooks as well as the components rendered in the `list`, `create`, `edit` and `show` pages.
+You can also pass any type of property into the `meta` object. This property you pass can be received from the [useResource](/api-reference/core/hooks/resource/useResource.md) and [useResourceWithRoute](/api-reference/core/hooks/resource/useResourceWithRoute.md) hooks as well as the components rendered in the `list`, `create`, `edit` and `show` pages.
 
 ```tsx
 type DataType = {
@@ -368,6 +367,7 @@ const App: React.FC = () => {
 ```
 
 To disable the breadcrumb
+
 ```tsx title="App.tsx"
 const App: React.FC = () => {
     return (

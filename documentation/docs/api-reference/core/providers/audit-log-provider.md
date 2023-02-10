@@ -442,7 +442,7 @@ In this case, only events will be created for the `create` mutation.
             show: PostShow,
             canDelete: true,
             // highlight-start
-            options: {
+            meta: {
                 auditLog: {
                     permissions: ["create"],
                 },
