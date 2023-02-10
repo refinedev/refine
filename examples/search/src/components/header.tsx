@@ -41,7 +41,9 @@ export const Header: React.FC = () => {
 
     const { refetch: refetchPosts } = useList<IPost>({
         resource: "posts",
-        filters: [{ field: "title", operator: "contains", value }],
+        config: {
+            filters: [{ field: "title", operator: "contains", value }],
+        },
         queryOptions: {
             enabled: false,
             onSuccess: (data) => {
@@ -63,7 +65,9 @@ export const Header: React.FC = () => {
 
     const { refetch: refetchCategories } = useList<ICategory>({
         resource: "categories",
-        filters: [{ field: "title", operator: "contains", value }],
+        config: {
+            filters: [{ field: "title", operator: "contains", value }],
+        },
         queryOptions: {
             enabled: false,
             onSuccess: (data) => {

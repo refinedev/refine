@@ -21,33 +21,37 @@ const now = dayjs();
 export const DashboardPage: React.FC = () => {
     const currentHackathons = useList<HackathonType>({
         resource: "hackathons",
-        filters: [
-            {
-                field: "start",
-                operator: "lte",
-                value: now,
-            },
-            {
-                field: "end",
-                operator: "gte",
-                value: now,
-            },
-        ],
+        config: {
+            filters: [
+                {
+                    field: "start",
+                    operator: "lte",
+                    value: now,
+                },
+                {
+                    field: "end",
+                    operator: "gte",
+                    value: now,
+                },
+            ],
+        },
     });
 
     const currentHackathon = currentHackathons.data?.data[0];
 
     const projects = useList<ProjectType>({
         resource: "projects",
-        filters: [
-            {
-                field: "hackathon_id",
-                operator: "eq",
-                value: currentHackathon?.id,
+        config: {
+            filters: [
+                {
+                    field: "hackathon_id",
+                    operator: "eq",
+                    value: currentHackathon?.id,
+                },
+            ],
+            pagination: {
+                pageSize: 1000,
             },
-        ],
-        pagination: {
-            pageSize: 1000,
         },
         queryOptions: {
             enabled: !currentHackathons.isLoading,
@@ -58,13 +62,15 @@ export const DashboardPage: React.FC = () => {
 
     const criterias = useList<CriteriaType>({
         resource: "criterias",
-        filters: [
-            {
-                field: "hackathon_id",
-                operator: "eq",
-                value: currentHackathon?.id,
-            },
-        ],
+        config: {
+            filters: [
+                {
+                    field: "hackathon_id",
+                    operator: "eq",
+                    value: currentHackathon?.id,
+                },
+            ],
+        },
         queryOptions: {
             enabled: !projects.isLoading && !currentHackathons.isLoading,
         },
@@ -72,13 +78,15 @@ export const DashboardPage: React.FC = () => {
 
     const projectScores = useList<ProjectScoreType>({
         resource: "projectscores",
-        filters: [
-            {
-                field: "project_id",
-                operator: "in",
-                value: projectIds,
-            },
-        ],
+        config: {
+            filters: [
+                {
+                    field: "project_id",
+                    operator: "in",
+                    value: projectIds,
+                },
+            ],
+        },
         queryOptions: {
             enabled: !projects.isLoading,
         },

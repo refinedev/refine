@@ -15,14 +15,16 @@ const { Title, Text } = Typography;
 export const PostReview: React.FC = () => {
     const { data, isLoading } = useList<IPost>({
         resource: "posts",
-        filters: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "draft",
-            },
-        ],
-        pagination: { pageSize: 1 },
+        config: {
+            filters: [
+                {
+                    field: "status",
+                    operator: "eq",
+                    value: "draft",
+                },
+            ],
+            pagination: { pageSize: 1 },
+        },
     });
 
     const record = data?.data[0];
