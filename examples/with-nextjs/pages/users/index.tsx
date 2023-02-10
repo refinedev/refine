@@ -79,7 +79,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             current: parsedCurrent || 1,
             pageSize: parsedPageSize || 10,
         },
-        sorters: parsedSorter,
+        sort: parsedSorter,
     });
 
     return {

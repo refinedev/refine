@@ -20,7 +20,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { radioGroupProps: languageRadioGroupProps } =
         useRadioGroup<ILanguage>({
             resource: "languages",
-            sorters: [
+            sort: [
                 {
                     field: "title",
                     order: "asc",
