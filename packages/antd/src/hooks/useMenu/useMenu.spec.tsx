@@ -35,7 +35,7 @@ xdescribe("useMenu Hook", () => {
                 resources: [
                     {
                         name: "posts",
-                        options: {
+                        meta: {
                             label: "Posts",
                             route: "refine/posts",
                         },
@@ -137,11 +137,11 @@ xdescribe("useMenu Hook", () => {
                     { name: "posts" },
                     {
                         name: "categories",
-                        options: { label: "categories label text" },
+                        meta: { label: "categories label text" },
                     },
                     {
                         name: "users",
-                        options: {
+                        meta: {
                             label: "users label text",
                         },
                     },

@@ -6,7 +6,11 @@ import {
     useRouterContext,
 } from "..";
 import { IMenuItem, ITreeMenu } from "../../interfaces";
-import { userFriendlyResourceName, createTreeView } from "@definitions";
+import {
+    userFriendlyResourceName,
+    createTreeView,
+    pickNotDeprecated,
+} from "@definitions";
 
 type useMenuReturnType = {
     defaultOpenKeys: string[];
@@ -123,7 +127,9 @@ export const useMenu: () => useMenuReturnType = () => {
             menus: ITreeMenu[],
         ): ITreeMenu[] => {
             return menus.reduce((menuItem: ITreeMenu[], obj) => {
-                if (obj.children.length > 0 && obj.options?.hide !== true)
+                const meta = pickNotDeprecated(obj?.meta, obj?.options);
+
+                if (obj.children.length > 0 && meta?.hide !== true)
                     return [
                         ...menuItem,
                         {
@@ -133,10 +139,7 @@ export const useMenu: () => useMenuReturnType = () => {
                             ),
                         },
                     ];
-                else if (
-                    typeof obj.list !== "undefined" &&
-                    obj.options?.hide !== true
-                )
+                else if (typeof obj.list !== "undefined" && meta?.hide !== true)
                     return [...menuItem, obj];
 
                 return menuItem;

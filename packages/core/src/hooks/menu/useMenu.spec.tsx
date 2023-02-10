@@ -13,9 +13,9 @@ const prepareResources = (items: IResourceItem[]): IResourceItem[] => {
         resources.push({
             key: resource.key,
             name: resource.name,
-            label: resource.options?.label,
+            label: resource.meta?.label,
             icon: resource.icon,
-            route: resource.options?.route ?? routeGenerator(resource, items),
+            route: resource.meta?.route ?? routeGenerator(resource, items),
             canCreate: !!resource.create,
             canEdit: !!resource.edit,
             canShow: !!resource.show,
@@ -24,7 +24,7 @@ const prepareResources = (items: IResourceItem[]): IResourceItem[] => {
             show: resource.show,
             list: resource.list,
             edit: resource.edit,
-            options: resource.options,
+            meta: resource.meta,
             parentName: resource.parentName,
         });
     });
@@ -144,7 +144,7 @@ describe("useMenu Hook", () => {
                     {
                         name: "posts",
                         parentName: "categories",
-                        options: {
+                        meta: {
                             label: "else-new",
                             route: "else-new",
                         },
@@ -179,7 +179,7 @@ describe("useMenu Hook", () => {
                     {
                         name: "posts",
                         parentName: "categories",
-                        options: {
+                        meta: {
                             label: "else-new",
                             route: "else-new",
                         },
@@ -206,13 +206,13 @@ describe("useMenu Hook", () => {
                     },
                     {
                         name: "hidden",
-                        options: {
+                        meta: {
                             hide: true,
                         },
                     },
                     {
                         name: "hidden-parent-menu",
-                        options: {
+                        meta: {
                             hide: true,
                         },
                     },
@@ -226,7 +226,7 @@ describe("useMenu Hook", () => {
                     {
                         name: "Shop-1",
                         parentName: "CMS",
-                        options: {
+                        meta: {
                             hide: true,
                         },
                     },
@@ -275,7 +275,7 @@ describe("useMenu Hook", () => {
                     },
                     {
                         name: "hidden-level-1",
-                        options: {
+                        meta: {
                             hide: true,
                         },
                     },
@@ -285,7 +285,7 @@ describe("useMenu Hook", () => {
                     },
                     {
                         name: "hidden-parent-level-1",
-                        options: {
+                        meta: {
                             hide: true,
                         },
                     },
@@ -303,7 +303,7 @@ describe("useMenu Hook", () => {
                     },
                     {
                         name: "CMS",
-                        options: {
+                        meta: {
                             hide: true,
                         },
                     },
