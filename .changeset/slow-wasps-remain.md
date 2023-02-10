@@ -2,7 +2,7 @@
 "@pankod/refine-core": minor
 ---
 
--   Deprecated `congig` props of `useList` and `useInfinite` hooks. Use `sorters`, `filters`, `pagination`, and `hasPagination` props instead.
+-   Deprecated `congig` props of `useList` and `useInfiniteList` hooks. Use `sorters`, `filters`, `pagination`, and `hasPagination` props instead.
 
 ```diff
 useList({
