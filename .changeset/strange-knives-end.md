@@ -5,7 +5,7 @@
 -   Deprecated `sort` props of `useAutocomplete` hook. Use `sorters` prop instead.
 
 ```diff
-useSelect({
+useAutocomplete({
 -    sort,
 +    sorters,
 })
