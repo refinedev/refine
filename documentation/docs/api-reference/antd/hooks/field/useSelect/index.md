@@ -221,7 +221,7 @@ If `onSearch` is used, it will override the existing `filters`.
 ### ~~`sort`~~
 
 :::caution Deprecated
-Use `soters` instead.
+Use `sorters` instead.
 :::
 
 #### Client-side filtering
