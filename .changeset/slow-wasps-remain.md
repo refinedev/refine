@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-antd": minor
+"@pankod/refine-core": minor
 ---
 
 -   Deprecated `congig` props of `useList` and `useInfinite` hooks. Use `sorters`, `filters`, `pagination`, and `hasPagination` props instead.
