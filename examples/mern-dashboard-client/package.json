@@ -17,6 +17,7 @@
     "@types/jest": "^29.2.4",
     "apexcharts": "^3.36.3",
     "axios": "^0.26.1",
+    "cross-env": "^7.0.3",
     "react": "^18.0.0",
     "react-apexcharts": "^1.4.0",
     "react-dom": "^18.0.0",
@@ -30,8 +31,8 @@
     "typescript": "^4.7.4"
   },
   "scripts": {
-    "dev": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
-    "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "dev": "cross-env DISABLE_ESLINT_PLUGIN=true refine start",
+    "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "refine": "refine"
