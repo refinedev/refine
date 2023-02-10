@@ -52,3 +52,10 @@ Alongside building this application, you'll learn how to use the most in-demand 
 
 Developed by [@adrianhajdin](https://github.com/adrianhajdin) ([JavaScript Mastery](https://www.youtube.com/@javascriptmastery)).
 Launch your development career with project-based coaching - [JS Mastery Pro](https://www.jsmastery.pro)
+
+
+## Try it out on your local
+
+```bash
+npm create refine-app@latest -- --example mern-dashboard-server
+```
