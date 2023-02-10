@@ -49,7 +49,7 @@ function App() {
                     show: AdminMovieShow,
                     edit: AdminMovieEdit,
 
-                    options: {
+                    meta: {
                         route: "admin/movies",
                     },
                 },

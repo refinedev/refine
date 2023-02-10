@@ -40,7 +40,7 @@ function App() {
             resources={[
                 {
                     name: "companies",
-                    options: { label: "Company" },
+                    meta: { label: "Company" },
                     list: CompanyList,
                     icon: <InfoCircleOutlined />,
                 },
