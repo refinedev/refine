@@ -18,12 +18,12 @@ const PostCreate: React.FC = () => {
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
         // highlight-start
-        sort: [
+        sorters: [
             {
                 field: "title",
                 order,
-            }
-        ]
+            },
+        ],
         // highlight-end
     });
 
@@ -33,7 +33,8 @@ const PostCreate: React.FC = () => {
                 {...autocompleteProps}
                 getOptionLabel={(item) => item.title}
                 isOptionEqualToValue={(option, value) =>
-                    value === undefined || option.id.toString() === value.toString()
+                    value === undefined ||
+                    option.id.toString() === value.toString()
                 }
                 placeholder="Select a category"
                 renderInput={(params) => (
@@ -46,11 +47,13 @@ const PostCreate: React.FC = () => {
                     />
                 )}
             />
-            <Button 
-                onClick={() => setOrder(order === "asc" ? "desc" : "asc")} 
-                variant="contained" 
+            <Button
+                onClick={() => setOrder(order === "asc" ? "desc" : "asc")}
+                variant="contained"
                 size="small"
-            >Toggle Order</Button>
+            >
+                Toggle Order
+            </Button>
         </>
     );
 };

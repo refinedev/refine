@@ -38,7 +38,7 @@ describe("getList", () => {
             axiosInstance,
         ).getList({
             resource: "post",
-            sort: [
+            sorters: [
                 {
                     field: "title",
                     order: "asc",
@@ -83,7 +83,7 @@ describe("getList", () => {
                     value: ["61373e585d65d30019e2b0a2"],
                 },
             ],
-            sort: [
+            sorters: [
                 {
                     field: "title",
                     order: "asc",

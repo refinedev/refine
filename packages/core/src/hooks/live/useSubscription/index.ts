@@ -36,7 +36,11 @@ export type UseSubscriptionProps = {
         metaData?: MetaDataQuery;
         pagination?: Pagination;
         hasPagination?: boolean;
+        /**
+         * @deprecated `sort` is deprecated, use `sorters` instead.
+         */
         sort?: CrudSorting;
+        sorters?: CrudSorting;
         filters?: CrudFilters;
         subscriptionType?: "useList" | "useOne" | "useMany";
         resource?: string;

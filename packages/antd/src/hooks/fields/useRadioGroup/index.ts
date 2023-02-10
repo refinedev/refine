@@ -40,6 +40,7 @@ export const useRadioGroup = <
 >({
     resource,
     sort,
+    sorters,
     filters,
     optionLabel,
     optionValue,
@@ -56,6 +57,7 @@ export const useRadioGroup = <
     const { queryResult, options } = useSelect({
         resource,
         sort,
+        sorters,
         filters,
         optionLabel,
         optionValue,

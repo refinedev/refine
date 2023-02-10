@@ -13,7 +13,11 @@ import {
     CrudFilters,
     MetaDataQuery,
 } from "../../interfaces";
-import { userFriendlyResourceName, pickDataProvider } from "@definitions";
+import {
+    userFriendlyResourceName,
+    pickDataProvider,
+    pickNotDeprecated,
+} from "@definitions";
 import { ExportToCsv, Options } from "export-to-csv-fix-source-map";
 
 type UseExportOptionsType<
@@ -23,16 +27,27 @@ type UseExportOptionsType<
     /**
      * Resource name for API data interactions
      * @default Resource name that it reads from route
+     * @deprecated `resourceName` is deprecated. Use `resource` instead.
      */
     resourceName?: string;
+    /**
+     * Resource name for API data interactions
+     * @default Resource name that it reads from route
+     */
+    resource?: string;
     /**
      * A mapping function that runs for every record. Mapped data will be included in the file contents
      */
     mapData?: MapDataFn<TData, TVariables>;
     /**
      *  Sorts records
+     *  @deprecated `sorter` is deprecated. Use `sorters` instead.
      */
     sorter?: CrudSorting;
+    /**
+     *  Sorts records
+     */
+    sorters?: CrudSorting;
     /**
      *  Filters records
      */
@@ -80,7 +95,9 @@ export const useExport = <
     TVariables = any,
 >({
     resourceName,
+    resource: resourceFromProps,
     sorter,
+    sorters,
     filters,
     maxItemCount,
     pageSize = 20,
@@ -100,11 +117,9 @@ export const useExport = <
     const { useParams } = useRouterContext();
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-    let { name: resource } = resourceWithRoute(routeResourceName);
-
-    if (resourceName) {
-        resource = resourceName;
-    }
+    const { name: resource } = resourceWithRoute(
+        pickNotDeprecated(resourceFromProps, resourceName) ?? routeResourceName,
+    );
 
     const filename = `${userFriendlyResourceName(
         resource,
@@ -127,7 +142,8 @@ export const useExport = <
                 const { data, total } = await getList<TData>({
                     resource,
                     filters,
-                    sort: sorter,
+                    sort: pickNotDeprecated(sorters, sorter),
+                    sorters: pickNotDeprecated(sorters, sorter),
                     pagination: {
                         current,
                         pageSize,

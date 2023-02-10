@@ -53,11 +53,11 @@ const mapOperator = (operator: CrudOperators): string => {
     }
 };
 
-const generateSort = (sort?: CrudSorting) => {
-    if (sort && sort.length > 0) {
+const generateSort = (sorters?: CrudSorting) => {
+    if (sorters && sorters.length > 0) {
         const _sort: string[] = [];
 
-        sort.map((item) => {
+        sorters.map((item) => {
             _sort.push(`${item.field}:${item.order}`);
         });
 
@@ -114,6 +114,7 @@ const AltogicDataProvider = (
         pagination = { current: 1, pageSize: 10 },
         filters,
         sort,
+        sorters,
     }) => {
         const { current: page = 1, pageSize: size = 10 } = pagination ?? {};
 
@@ -127,7 +128,8 @@ const AltogicDataProvider = (
             sort?: string;
         } = hasPagination ? { page, size } : {};
 
-        const generatedSort = generateSort(sort);
+        //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
+        const generatedSort = generateSort(sorters ?? sort);
         if (generatedSort) {
             const { _sort } = generatedSort;
 
@@ -238,11 +240,21 @@ const AltogicDataProvider = (
         return apiUrl;
     },
 
-    custom: async ({ url, method, filters, sort, payload, query, headers }) => {
+    custom: async ({
+        url,
+        method,
+        filters,
+        sort,
+        sorters,
+        payload,
+        query,
+        headers,
+    }) => {
         let requestUrl = `${url}?`;
 
-        if (sort) {
-            const generatedSort = generateSort(sort);
+        if (sorters || sort) {
+            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
+            const generatedSort = generateSort(sorters ?? sort);
             if (generatedSort) {
                 const { _sort } = generatedSort;
                 const sortQuery = {

@@ -58,7 +58,7 @@ const dataProvider = {
     createMany: ({ resource, variables, metaData }) => Promise,
     deleteOne: ({ resource, id, metaData }) => Promise,
     deleteMany: ({ resource, ids, metaData }) => Promise,
-    getList: ({ resource, pagination, sort, filters, metaData }) => Promise,
+    getList: ({ resource, pagination, sorters, filters, metaData }) => Promise,
     getMany: ({ resource, ids, metaData }) => Promise,
     getOne: ({ resource, id, metaData }) => Promise,
     update: ({ resource, id, variables, metaData }) => Promise,
@@ -121,7 +121,7 @@ getList({
         page: 1,
         perPage: 10,
     },
-    sort: [
+    sorters: [
         {
             field: "title",
             order: "asc",

@@ -14,6 +14,7 @@ type GenereteUseListSubscriptionParams = {
     pagination?: Pagination;
     hasPagination?: boolean;
     sort?: CrudSorting;
+    sorters?: CrudSorting;
     filters?: CrudFilters;
 };
 
@@ -29,11 +30,13 @@ export const genereteUseListSubscription = ({
     pagination,
     hasPagination,
     sort,
+    sorters,
     filters,
 }: GenereteUseListSubscriptionParams): GenereteUseListSubscriptionReturnValues => {
     const { current = 1, pageSize: limit = 10 } = pagination ?? {};
 
-    const hasuraSorting = generateSorting(sort);
+    //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
+    const hasuraSorting = generateSorting(sorters ?? sort);
     const hasuraFilters = generateFilters(filters);
 
     const operation = metaData.operation ?? resource;

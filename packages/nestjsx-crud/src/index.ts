@@ -165,8 +165,8 @@ const handlePagination = (
     return query;
 };
 
-const handleSort = (query: RequestQueryBuilder, sort?: CrudSorting) => {
-    const sortBy = generateSort(sort);
+const handleSort = (query: RequestQueryBuilder, sorters?: CrudSorting) => {
+    const sortBy = generateSort(sorters);
     if (sortBy) {
         query.sortBy(sortBy);
     }
@@ -184,6 +184,7 @@ const NestsxCrud = (
         pagination = { current: 1, pageSize: 10 },
         filters,
         sort,
+        sorters,
         metaData,
     }) => {
         const url = `${apiUrl}/${resource}`;
@@ -195,7 +196,8 @@ const NestsxCrud = (
         query = handleFilter(query, filters);
         query = handleJoin(query, metaData?.join);
         query = handlePagination(query, hasPagination, pageSize, current);
-        query = handleSort(query, sort);
+        //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
+        query = handleSort(query, sorters ?? sort);
 
         const { data } = await httpClient.get(`${url}?${query.query()}`);
 
@@ -309,6 +311,7 @@ const NestsxCrud = (
         metaData,
         filters,
         sort,
+        sorters,
         payload,
         query,
         headers,
@@ -319,7 +322,8 @@ const NestsxCrud = (
 
         requestQueryBuilder = handleJoin(requestQueryBuilder, metaData?.join);
 
-        requestQueryBuilder = handleSort(requestQueryBuilder, sort);
+        //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
+        requestQueryBuilder = handleSort(requestQueryBuilder, sorters ?? sort);
 
         let requestUrl = `${url}?${requestQueryBuilder.query()}`;
 

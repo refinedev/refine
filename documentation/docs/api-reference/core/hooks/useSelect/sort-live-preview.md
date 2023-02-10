@@ -13,17 +13,17 @@ const ProductCreate: React.FC = () => {
     const { options } = useSelect<ICategory>({
         resource: "categories",
         // highlight-start
-        sort: [
+        sorters: [
             {
                 field: "title",
                 order,
-            }
-        ]
+            },
+        ],
         // highlight-end
     });
 
     return (
-        <> 
+        <>
             <label>
                 Select a category:
                 <select>
@@ -33,10 +33,13 @@ const ProductCreate: React.FC = () => {
                         </option>
                     ))}
                 </select>
-                <button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>Toggle</button>
-            </label>            
+                <button
+                    onClick={() => setOrder(order === "asc" ? "desc" : "asc")}
+                >
+                    Toggle
+                </button>
+            </label>
         </>
-        
     );
 };
 // visible-block-end
