@@ -4,7 +4,6 @@ title: Multi Level Menu
 sidebar_label: Multi Level Menu
 ---
 
-
 This document is related to how to create a multi-level menu for **refine** applications.
 
 ### What is Multi-level Menu?
@@ -51,7 +50,7 @@ To do this, it is necessary to create an object array with the following [resour
 :::tip
 
 The `parentName` you give in the resource objects must be strictly equal to the resource name you want to group under.<br />
-A resource given as a group can only have a `name` and a `parentName`. They should not have other props such as list, edit, create etc.
+A resource given as a group can only have a `name` and a `parentName`. They should not have other props such as list, edit, create, etc.
 
 :::
 
@@ -140,7 +139,7 @@ export const Sider: React.FC = () => {
 
 The Sider component allows you to create the groups you want in the sider menu. By default, the sider will group menu items by their top-level heading. However, you can also add sub menu items to each group via `parentName`.
 
-This gives you more control over the side menu, and allows you to customize it to better suit your needs.
+This gives you more control over the side menu and allows you to customize it to better suit your needs.
 
 <div class="img-container">
     <div class="window">

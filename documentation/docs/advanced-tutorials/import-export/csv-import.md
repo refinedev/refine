@@ -3,59 +3,30 @@ id: csv-import
 title: CSV Import
 ---
 
+You can easily import CSV files for any resource by using **refine**'s customizable `useImport` hook, optionally with `<ImportButton>` component. `useImport` hook returns the necessary props for `<ImportButton>` component.
 
-You can easily import CSV files for any resource by using **refine**'s customizable `useImport` hook, optionally with `<ImportButton>` component. `useImport` hook returns the necessary props for `<ImportButton>` component. **refine** uses [Papa Parse][papa parse] parser under the hood to parse CSV files.
-
-You can call the `useImport` hook and add an `<ImportButton>` with properties returned from `useImport` on a list page, configured with a mapping function to format the files data into API's data. When the button gets triggered, it creates the imported resources using [`create`][create] or [`createMany`][createmany] [dataProvider][dataprovider] methods under the hood.
+Internally, `useImport` uses [Papa Parse][papa parse] to parse the CSV file contents.
 
 ## Usage
 
-Let's look at an example of adding a custom import button:
+We'll use the `useImport` hook and add the `<ImportButton>` with properties returned from `useImport`. When the button gets triggered, it creates the imported resources using [`create`][create] or [`createMany`][createmany] [dataProvider][dataprovider] methods under the hood.
 
 ```tsx title="pages/posts/list.tsx"
-import { useMany } from "@pankod/refine-core";
-import {
-    List,
-    useTable,
-    // highlight-start
-    useImport,
-    ImportButton,
-    // highlight-end
-} from "@pankod/refine-antd";
+import { List, useImport, ImportButton } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
-
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
-
-    // highlight-next-line
     const importProps = useImport<IPostFile>();
 
     return (
         <List
-            // highlight-start
-            pageHeaderProps={{
+            headerProps={{
                 extra: <ImportButton {...importProps} />,
             }}
-            // highlight-end
         >
             ...
         </List>
     );
 };
-
-interface ICategory {
-    id: number;
-    title: string;
-}
 
 interface IPostFile {
     id: number;
@@ -72,20 +43,11 @@ interface IPost {
     content: string;
     status: "published" | "draft" | "rejected";
     category: { id: number };
+    user: { id: number };
 }
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/csv-import/import-button.png" alt="Import button" />
-</div>
-<br />
-
-We should map CSV data into `Post` data. Assume that this is the CSV file content we have:
+As an example, let's say we have a CSV file like this:
 
 ```csv title="dummy.csv"
 "title","content","status","categoryId","userId"
@@ -94,26 +56,14 @@ We should map CSV data into `Post` data. Assume that this is the CSV file conten
 "dummy title 3","cummy content 3","published","41","10"
 ```
 
-It has 3 entries. We should map `categoryId` to `category.id` and `userId` to `user.id`. Since these are objects, we store any relational data as their id in CSV.
+We need to map the CSV data to the API's data. In our case, we have a `categoryId` and `userId` in CSV. For the API, we need to send the `category` and `user` objects. To do this, we'll use the `mapData` prop of `useImport` hook.
 
-This would make our `useImport` call look like this:
+```tsx title="pages/posts/list.tsx"
+import { List, useImport, ImportButton } from "@pankod/refine-antd";
 
-```tsx title="/src/pages/posts/list.tsx"
 export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
-
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
-
-    // highlight-start
     const importProps = useImport<IPostFile>({
+        // highlight-start
         mapData: (item) => {
             return {
                 title: item.title,
@@ -127,11 +77,37 @@ export const PostList: React.FC = () => {
                 },
             };
         },
+        // highlight-end
     });
-    // highlight-end
 
-    return <></>;
+    return (
+        <List
+            headerProps={{
+                extra: <ImportButton {...importProps} />,
+            }}
+        >
+            ...
+        </List>
+    );
 };
+
+interface IPostFile {
+    id: number;
+    title: string;
+    content: string;
+    userId: number;
+    categoryId: number;
+    status: "published" | "draft" | "rejected";
+}
+
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: { id: number };
+    user: { id: number };
+}
 ```
 
 And it's done. When you click on the button and provide a CSV file of the headers `"title"`,`"content"`,`"status"`,`"categoryId"` and `"userId"`, it should be mapped and imported. Mapped data is the request payload. Either as part of an array or by itself as part of every request. In our example, it fires `POST` request/requests like this:
@@ -150,16 +126,6 @@ And it's done. When you click on the button and provide a CSV file of the header
 }
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/csv-import/importing.gif" alt="Importing CSV" />
-</div>
-<br />
-
 Depending on the [`batchSize`][batchsize] option, posts can get sent one by one or as batches. By default, all records are sent in one [`createMany`][createmany] call.
 
 ## Example
@@ -167,7 +133,7 @@ Depending on the [`batchSize`][batchsize] option, posts can get sent one by one 
 <CodeSandboxExample path="import-export-antd" />
 
 [papa parse]: https://www.papaparse.com/
-[batchsize]: /api-reference/core/hooks/import-export/useImport.md#api-reference
+[batchsize]: /docs/api-reference/core/hooks/import-export/useImport/#batchsize
 [dataprovider]: /api-reference/core/providers/data-provider.md
 [create]: /api-reference/core/providers/data-provider.md#create
 [createmany]: /api-reference/core/providers/data-provider.md#createmany
