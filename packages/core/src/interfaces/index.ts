@@ -68,3 +68,5 @@ export interface Option {
 }
 
 export * from "./auth";
+
+export * from "./bindings";
