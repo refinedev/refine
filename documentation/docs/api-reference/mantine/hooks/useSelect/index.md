@@ -235,7 +235,7 @@ const [searchValue, onSearchChange] = useState("");
     onSearchChange={onSearchChange}
     searchValue={searchValue}
     // highlight-end
-/>;
+/>
 ```
 
 ### `metaData`
