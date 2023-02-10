@@ -16,6 +16,9 @@ const authProvider: AuthProvider = {
         if (data?.user) {
             return Promise.resolve();
         }
+
+        // for third-party login
+        return Promise.resolve(false);
     },
     logout: async () => {
         const { error } = await supabaseClient.auth.signOut();
@@ -32,21 +35,19 @@ const authProvider: AuthProvider = {
         return Promise.resolve();
     },
     getPermissions: async () => {
-        const { data } = await supabaseClient.auth.getUser();
-        const { user } = data;
+        const user = await supabaseClient.auth.getUser();
 
         if (user) {
-            return Promise.resolve(user.role);
+            return Promise.resolve(user.data.user?.role);
         }
     },
     getUserIdentity: async () => {
         const { data } = await supabaseClient.auth.getUser();
-        const { user } = data;
 
-        if (user) {
+        if (data?.user) {
             return Promise.resolve({
-                ...user,
-                name: user.email,
+                ...data.user,
+                name: data.user.email,
             });
         }
     },
