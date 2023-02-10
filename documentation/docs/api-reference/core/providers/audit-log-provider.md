@@ -400,7 +400,7 @@ This method can take the following parameters.
 
 ## Supported Hooks
 
-**refine** creates an audit log event when the mutation is successful on hooks that `useCreate`, `useUpdate` and `useDelete` hooks. The `useCreateMany`, `useUpdateMany` and `useDeleteMany` hooks are not create audit log events.
+**refine** creates an audit log event when the mutation is successful on hooks that `useCreate`, `useUpdate`, `useDelete`, `useCreateMany`, `useUpdateMany` and `useDeleteMany` hooks.
 
 ### `useCreate`
 
@@ -435,65 +435,6 @@ mutate({
         "id": "1",
         // `metaData` is included in `meta`.
         "foo": "bar"
-    }
-}
-```
-
-### `useUpdate`
-
-When `useUpdate` is called, `refine` sends the following parameters to audit log provider's `create` method.
-
-```ts
-const { mutate } = useUpdate();
-
-mutate({
-    id: 1,
-    resource: "posts",
-    values: {
-        title: "Updated New Title",
-    },
-});
-```
-
-```json title="Update event"
-{
-    "action": "update",
-    "resource": "posts",
-    "data": {
-        "title": "Updated New Title",
-        "status": "published",
-        "content": "New Post Content"
-    },
-    "previousData": {
-        "title": "Title",
-        "status": "published",
-        "content": "New Post Content"
-    },
-    "meta": {
-        "id": 1
-    }
-}
-```
-
-### `useDelete`
-
-When `useDelete` is called, `refine` sends the following parameters to audit log provider's `create` method.
-
-```ts
-const { mutate } = useDelete();
-
-mutate({
-    id: 1,
-    resource: "posts",
-});
-```
-
-```json title="Delete event"
-{
-    "action": "delete",
-    "resource": "posts",
-    "meta": {
-        "id": 1
     }
 }
 ```
@@ -549,6 +490,42 @@ mutate({
 }
 ```
 
+### `useUpdate`
+
+When `useUpdate` is called, `refine` sends the following parameters to audit log provider's `create` method.
+
+```ts
+const { mutate } = useUpdate();
+
+mutate({
+    id: 1,
+    resource: "posts",
+    values: {
+        title: "Updated New Title",
+    },
+});
+```
+
+```json title="Update event"
+{
+    "action": "update",
+    "resource": "posts",
+    "data": {
+        "title": "Updated New Title",
+        "status": "published",
+        "content": "New Post Content"
+    },
+    "previousData": {
+        "title": "Title",
+        "status": "published",
+        "content": "New Post Content"
+    },
+    "meta": {
+        "id": 1
+    }
+}
+```
+
 ### `useUpdateMany`
 
 When `useUpdateMany` is called, `refine` sends the following parameters to audit log provider's `create` method.
@@ -582,6 +559,29 @@ mutate({
     ],
     "meta": {
         "ids": [1, 2]
+    }
+}
+```
+
+### `useDelete`
+
+When `useDelete` is called, `refine` sends the following parameters to audit log provider's `create` method.
+
+```ts
+const { mutate } = useDelete();
+
+mutate({
+    id: 1,
+    resource: "posts",
+});
+```
+
+```json title="Delete event"
+{
+    "action": "delete",
+    "resource": "posts",
+    "meta": {
+        "id": 1
     }
 }
 ```
