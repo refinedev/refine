@@ -18,7 +18,7 @@ useList({
 +    hasPagination,
 })
 
-useInfinite({
+useInfiniteList({
 -    config: {
 -        sort,
 -        filters,
