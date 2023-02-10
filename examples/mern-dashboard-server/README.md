@@ -36,7 +36,7 @@
 
 [Refer to the client app source code](https://github.com/refinedev/refine/tree/master/examples/mern-dashboard-client)
 
-![Refine Dashboard](IMG URL)
+
 
 With modern material design, a fully functional dashboard, a property management page, and a users page - both connected to our database and a profile page that connects the two, this video is the updated full-stack MERN course you’ve all been waiting for.
 
