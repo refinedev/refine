@@ -3,9 +3,11 @@ import { API, JSCodeshift, Collection, FileInfo } from "jscodeshift";
 export const parser = "tsx";
 
 const REFINE_ANTD_PATH = "@pankod/refine-antd";
+const REFINE_MUI_PATH = "@pankod/refine-mui";
 const REFINE_CORE_PATH = "@pankod/refine-core";
 
 const ANTD_IMPORTS_TO_MOVE_CORE = ["useMenu"];
+const MUI_IMPORTS_TO_MOVE_CORE = ["useMenu"];
 
 const moveImports = (
     j: JSCodeshift,
@@ -60,8 +62,6 @@ const moveImports = (
 };
 
 export default function transformer(file: FileInfo, api: API): string {
-    if (file.path !== "src/components/sider/index.tsx") return;
-
     const j = api.jscodeshift;
     const source = j(file.source);
 
@@ -70,6 +70,14 @@ export default function transformer(file: FileInfo, api: API): string {
         source,
         ANTD_IMPORTS_TO_MOVE_CORE,
         REFINE_ANTD_PATH,
+        REFINE_CORE_PATH,
+    );
+
+    moveImports(
+        j,
+        source,
+        MUI_IMPORTS_TO_MOVE_CORE,
+        REFINE_MUI_PATH,
         REFINE_CORE_PATH,
     );
 

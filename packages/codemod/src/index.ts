@@ -127,8 +127,8 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         value: "use-data-grid-columns",
     },
     {
-        name: "refine3-to-refine4: Transform from refine 3.x.x to at least 4.0.0",
-        value: "refine3-to-refine4",
+        name: "use-menu-to-core: Transform useMenu imports to core",
+        value: "use-menu-to-core",
     },
     {
         name: "refine2-to-refine3: Transform from refine 2.x.x to at least 3.0.0",
