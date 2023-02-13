@@ -71,7 +71,7 @@ export type UseSelectProps<TData, TError> = {
     /**
      * Disabling pagination option from [`useList()`](/docs/api-reference/core/hooks/data/useList/)
      * @type boolean
-     * @default `undefined`
+     * @default `false`
      */
     hasPagination?: boolean;
     /**
@@ -133,7 +133,7 @@ export const useSelect = <
         queryOptions,
         fetchSize,
         pagination,
-        hasPagination,
+        hasPagination = false,
         liveMode,
         defaultValue = [],
         onLiveEvent,
