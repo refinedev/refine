@@ -1,5 +1,16 @@
-import { useResourceWithRoute, useRouterContext } from "@hooks";
-import { BaseKey } from "../../interfaces";
+import { useResourceWithRoute, useRouterContext, useResource } from "@hooks";
+import { BaseKey, IResourceItem, MetaDataQuery } from "../../interfaces";
+import { useGo } from "@hooks/router/use-go";
+import { useParsed } from "@hooks/router/use-parsed";
+import { useRouterType } from "@contexts/router-picker";
+import { getDefaultActionPath } from "../../definitions/helpers/router/get-default-action-path";
+import {
+    getActionRoutesFromResource,
+    getParentPrefixForResource,
+} from "@definitions/helpers/router";
+import { pickResource } from "@definitions/helpers/pick-resource";
+import { composeRoute } from "@definitions/helpers/router/compose-route";
+import { useBack } from "@hooks/router/use-back";
 
 export type HistoryType = "push" | "replace";
 
@@ -8,88 +19,357 @@ export type HistoryType = "push" | "replace";
  * It allows you to manage your routing operations in refine.
  * Using this hook, you can manage all the routing operations of your application very easily.
  *
+ * @internal This is an internal hook of refine. Do not use it directly.
+ *
  * @see {@link https://refine.dev/docs/core/hooks/navigation/useNavigation} for more details.
  */
 export const useNavigation = () => {
+    const { resources } = useResource();
+    const routerType = useRouterType();
     const { useHistory } = useRouterContext();
     const history = useHistory();
+    const parsed = useParsed();
+    const go = useGo();
+    const back = useBack();
     const resourceWithRoute = useResourceWithRoute();
 
     const handleUrl = (url: string, type: HistoryType = "push") => {
-        type === "push" ? history.push(url) : history.replace(url);
+        if (routerType === "legacy") {
+            history[type](url);
+        } else {
+            go({ to: url, type });
+        }
     };
 
-    const createUrl = (resource: string) => {
-        const resourceName = resourceWithRoute(resource);
-        return `/${resourceName.route}/create`;
+    const createUrl = (
+        resource: string | IResourceItem,
+        meta: MetaDataQuery = {},
+    ) => {
+        if (routerType === "legacy") {
+            const resourceItem =
+                typeof resource === "string"
+                    ? pickResource(resource, resources, true) ?? {
+                          name: resource,
+                          route: resource,
+                      }
+                    : resource;
+
+            const createActionRoute = getActionRoutesFromResource(
+                resourceItem,
+                resources,
+                true,
+            ).find((r) => r.action === "create");
+
+            if (!createActionRoute) {
+                return "";
+            }
+
+            return composeRoute(createActionRoute.route, parsed, meta);
+        } else {
+            const resourceItem =
+                typeof resource === "string"
+                    ? pickResource(resource, resources) ?? { name: resource }
+                    : resource;
+
+            const createActionRoute = getActionRoutesFromResource(
+                resourceItem,
+                resources,
+            ).find((r) => r.action === "create")?.route;
+
+            if (!createActionRoute) {
+                return "";
+            }
+
+            return go({
+                to: composeRoute(createActionRoute, parsed, meta),
+                type: "path",
+            }) as string;
+        }
     };
 
-    const editUrl = (resource: string, id: BaseKey) => {
-        const resourceName = resourceWithRoute(resource);
+    const editUrl = (
+        resource: string | IResourceItem,
+        id: BaseKey,
+        meta: MetaDataQuery = {},
+    ) => {
+        const encodedId = encodeURIComponent(id);
+        if (routerType === "legacy") {
+            const resourceItem =
+                typeof resource === "string"
+                    ? pickResource(resource, resources, true) ?? {
+                          name: resource,
+                          route: resource,
+                      }
+                    : resource;
+
+            const editActionRoute = getActionRoutesFromResource(
+                resourceItem,
+                resources,
+                true,
+            ).find((r) => r.action === "edit");
+
+            if (!editActionRoute) {
+                return "";
+            }
+
+            return composeRoute(editActionRoute.route, parsed, {
+                ...meta,
+                id: encodedId,
+            });
+        } else {
+            const resourceItem =
+                typeof resource === "string"
+                    ? pickResource(resource, resources) ?? { name: resource }
+                    : resource;
+
+            const editActionRoute = getActionRoutesFromResource(
+                resourceItem,
+                resources,
+            ).find((r) => r.action === "edit")?.route;
+
+            if (!editActionRoute) {
+                return "";
+            }
+
+            return go({
+                to: composeRoute(editActionRoute, parsed, {
+                    ...meta,
+                    id: encodedId,
+                }),
+                type: "path",
+            }) as string;
+        }
+    };
+
+    const cloneUrl = (
+        resource: string | IResourceItem,
+        id: BaseKey,
+        meta: MetaDataQuery = {},
+    ) => {
         const encodedId = encodeURIComponent(id);
 
-        return `/${resourceName.route}/edit/${encodedId}`;
+        if (routerType === "legacy") {
+            const resourceItem =
+                typeof resource === "string"
+                    ? pickResource(resource, resources, true) ?? {
+                          name: resource,
+                          route: resource,
+                      }
+                    : resource;
+
+            const cloneActionRoute = getActionRoutesFromResource(
+                resourceItem,
+                resources,
+                true,
+            ).find((r) => r.action === "clone");
+
+            if (!cloneActionRoute) {
+                return "";
+            }
+
+            return composeRoute(cloneActionRoute.route, parsed, {
+                ...meta,
+                id: encodedId,
+            });
+        } else {
+            const resourceItem =
+                typeof resource === "string"
+                    ? pickResource(resource, resources) ?? { name: resource }
+                    : resource;
+
+            const cloneActionRoute = getActionRoutesFromResource(
+                resourceItem,
+                resources,
+            ).find((r) => r.action === "clone")?.route;
+
+            if (!cloneActionRoute) {
+                return "";
+            }
+
+            return go({
+                to: composeRoute(cloneActionRoute, parsed, {
+                    ...meta,
+                    id: encodedId,
+                }),
+                type: "path",
+            }) as string;
+        }
     };
 
-    const cloneUrl = (resource: string, id: BaseKey) => {
-        const resourceName = resourceWithRoute(resource);
+    const showUrl = (
+        resource: string | IResourceItem,
+        id: BaseKey,
+        meta: MetaDataQuery = {},
+    ) => {
         const encodedId = encodeURIComponent(id);
-        return `/${resourceName.route}/clone/${encodedId}`;
+        if (routerType === "legacy") {
+            const resourceItem =
+                typeof resource === "string"
+                    ? pickResource(resource, resources, true) ?? {
+                          name: resource,
+                          route: resource,
+                      }
+                    : resource;
+
+            const showActionRoute = getActionRoutesFromResource(
+                resourceItem,
+                resources,
+                true,
+            ).find((r) => r.action === "show");
+
+            if (!showActionRoute) {
+                return "";
+            }
+
+            return composeRoute(showActionRoute.route, parsed, {
+                ...meta,
+                id: encodedId,
+            });
+        } else {
+            const resourceItem =
+                typeof resource === "string"
+                    ? pickResource(resource, resources) ?? { name: resource }
+                    : resource;
+
+            const showActionRoute = getActionRoutesFromResource(
+                resourceItem,
+                resources,
+            ).find((r) => r.action === "show")?.route;
+
+            if (!showActionRoute) {
+                return "";
+            }
+
+            return go({
+                to: composeRoute(showActionRoute, parsed, {
+                    ...meta,
+                    id: encodedId,
+                }),
+                type: "path",
+            }) as string;
+        }
     };
 
-    const showUrl = (resource: string, id: BaseKey) => {
-        const resourceName = resourceWithRoute(resource);
-        const encodedId = encodeURIComponent(id);
-        return `/${resourceName.route}/show/${encodedId}`;
+    const listUrl = (
+        resource: string | IResourceItem,
+        meta: MetaDataQuery = {},
+    ) => {
+        if (routerType === "legacy") {
+            const resourceItem =
+                typeof resource === "string"
+                    ? pickResource(resource, resources, true) ?? {
+                          name: resource,
+                          route: resource,
+                      }
+                    : resource;
+
+            const showActionRoute = getActionRoutesFromResource(
+                resourceItem,
+                resources,
+                true,
+            ).find((r) => r.action === "show");
+
+            if (!showActionRoute) {
+                return "";
+            }
+
+            return composeRoute(showActionRoute.route, parsed, meta);
+        } else {
+            const resourceItem =
+                typeof resource === "string"
+                    ? pickResource(resource, resources) ?? { name: resource }
+                    : resource;
+
+            const showActionRoute = getActionRoutesFromResource(
+                resourceItem,
+                resources,
+            ).find((r) => r.action === "show")?.route;
+
+            if (!showActionRoute) {
+                return "";
+            }
+
+            return go({
+                to: composeRoute(showActionRoute, parsed, meta),
+                type: "path",
+            }) as string;
+        }
     };
 
-    const listUrl = (resource: string) => {
-        const resourceName = resourceWithRoute(resource);
-        return `/${resourceName.route}`;
-    };
-
-    const create = (resource: string, type: HistoryType = "push") => {
-        handleUrl(createUrl(resource), type);
+    const create = (
+        resource: string | IResourceItem,
+        type: HistoryType = "push",
+        meta: MetaDataQuery = {},
+    ) => {
+        handleUrl(createUrl(resource, meta), type);
     };
 
     const edit = (
-        resource: string,
+        resource: string | IResourceItem,
         id: BaseKey,
         type: HistoryType = "push",
+        meta: MetaDataQuery = {},
     ) => {
-        handleUrl(editUrl(resource, id), type);
+        handleUrl(editUrl(resource, id, meta), type);
     };
 
     const clone = (
-        resource: string,
+        resource: string | IResourceItem,
         id: BaseKey,
         type: HistoryType = "push",
+        meta: MetaDataQuery = {},
     ) => {
-        handleUrl(cloneUrl(resource, id), type);
+        handleUrl(cloneUrl(resource, id, meta), type);
     };
 
     const show = (
-        resource: string,
+        resource: string | IResourceItem,
         id: BaseKey,
         type: HistoryType = "push",
+        meta: MetaDataQuery = {},
     ) => {
-        handleUrl(showUrl(resource, id), type);
+        handleUrl(showUrl(resource, id, meta), type);
     };
 
-    const list = (resource: string, type: HistoryType = "push") => {
-        handleUrl(listUrl(resource), type);
+    const list = (
+        resource: string | IResourceItem,
+        type: HistoryType = "push",
+        meta: MetaDataQuery = {},
+    ) => {
+        handleUrl(listUrl(resource, meta), type);
     };
 
+    /**
+     * @deprecated Please use `useGo` hook instead.
+     */
     const push = (path: string, ...rest: unknown[]) => {
-        history.push(path, ...rest);
+        if (routerType === "legacy") {
+            history.push(path, ...rest);
+        } else {
+            go({ to: path, type: "push" });
+        }
     };
 
+    /**
+     * @deprecated Please use `useGo` hook instead.
+     */
     const replace = (path: string, ...rest: unknown[]) => {
-        history.replace(path, ...rest);
+        if (routerType === "legacy") {
+            history.replace(path, ...rest);
+        } else {
+            go({ to: path, type: "replace" });
+        }
     };
 
+    /**
+     * @deprecated Please use `useBack` hook instead.
+     */
     const goBack = () => {
-        history.goBack();
+        if (routerType === "legacy") {
+            history.goBack();
+        } else {
+            back();
+        }
     };
 
     return {
