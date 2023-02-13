@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 2.4.1
+
+### Patch Changes
+
+-   [#3592](https://github.com/refinedev/refine/pull/3592) [`ea015a22797`](https://github.com/refinedev/refine/commit/ea015a22797127ddd5f87c4d2476e0948c7d0e7e) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the syntax error at `MuiListInferencer` in `@pankod/refine-inferencer/mui`
+
 ## 2.4.0
 
 ### Minor Changes
