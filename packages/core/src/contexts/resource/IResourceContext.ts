@@ -1,23 +1,44 @@
 import { ReactNode, ComponentType } from "react";
 import { UseQueryResult } from "@tanstack/react-query";
-import { ILogData } from "src/interfaces";
-
+import { ILogData } from "../../interfaces";
+import { IResourceItem } from "../../interfaces/bindings/resource";
 const auditLogPermissions = ["create", "update", "delete"] as const;
+
 type AuditLogPermissions = typeof auditLogPermissions;
 
-export interface IResourceContext {
-    resources: IResourceItem[];
+export type ResourceRouteComponent = ComponentType<
+    IResourceComponentsProps<any, any>
+>;
+
+export type ResourceRoutePath = string;
+
+export type ResourceRouteDefinition = {
+    path: ResourceRoutePath;
+    component: ResourceRouteComponent;
+};
+
+export type ResourceRouteComposition =
+    | ResourceRouteDefinition
+    | ResourceRoutePath
+    | ResourceRouteComponent;
+
+export interface IResourceComponents {
+    list?: ResourceRouteComposition;
+    create?: ResourceRouteComposition;
+    clone?: ResourceRouteComposition;
+    edit?: ResourceRouteComposition;
+    show?: ResourceRouteComposition;
 }
 
 type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
     label?: string;
     route?: string;
+    hide?: boolean;
     dataProviderName?: string;
     auditLog?: {
         permissions?: AuditLogPermissions[number][] | string[];
     };
     [key: string]: any;
-    hide?: boolean;
 };
 
 export interface ResourceProps extends IResourceComponents {
@@ -28,6 +49,15 @@ export interface ResourceProps extends IResourceComponents {
     parentName?: string;
     key?: string;
 }
+
+export interface RouteableProperties {
+    canCreate?: boolean;
+    canEdit?: boolean;
+    canShow?: boolean;
+    canDelete?: boolean;
+    canList?: boolean;
+}
+
 export interface IResourceComponentsProps<
     TCrudData = any,
     TOptionsPropsExtends = { [key: string]: any },
@@ -42,23 +72,9 @@ export interface IResourceComponentsProps<
     options?: OptionsProps<TOptionsPropsExtends>;
     logQueryResult?: UseQueryResult<TLogQueryResult>;
 }
-export interface IResourceComponents {
-    list?: ComponentType<IResourceComponentsProps<any, any>>;
-    create?: ComponentType<IResourceComponentsProps<any, any>>;
-    edit?: ComponentType<IResourceComponentsProps<any, any>>;
-    show?: ComponentType<IResourceComponentsProps<any, any>>;
-}
 
-export interface IResourceItem extends IResourceComponents {
-    name: string;
-    label?: string;
-    route?: string;
-    icon?: ReactNode;
-    canCreate?: boolean;
-    canEdit?: boolean;
-    canShow?: boolean;
-    canDelete?: boolean;
-    options?: OptionsProps;
-    parentName?: string;
-    key?: string;
+export { IResourceItem };
+
+export interface IResourceContext {
+    resources: IResourceItem[];
 }
