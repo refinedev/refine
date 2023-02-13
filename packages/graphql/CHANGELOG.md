@@ -1,5 +1,11 @@
 # @pankod/refine-graphql
 
+## 4.12.0
+
+### Minor Changes
+
+-   [#3597](https://github.com/refinedev/refine/pull/3597) [`69140d996ed`](https://github.com/refinedev/refine/commit/69140d996ed20a4afbed34e791082b8dd61450b1) Thanks [@aliemir](https://github.com/aliemir)! - Fix typo in variable names. Exported helper `genereteSort` is renamed to `generateSort` but the old name is still exported for backward compatibility.
+
 ## 4.11.0
 
 ### Minor Changes
