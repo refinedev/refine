@@ -14,6 +14,7 @@
         "@types/react-dom": "^18.0.0",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
+        "react-router-dom": "6.3.0",
         "react-scripts": "^5.0.0",
         "cross-env": "^7.0.3",
         "typescript": "^4.7.4"

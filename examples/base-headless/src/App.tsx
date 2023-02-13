@@ -1,24 +1,43 @@
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
-import "./App.css";
+import routerBindings, { RefineRoutes } from "@pankod/refine-react-router-v6";
 
-import { PostList, PostCreate, PostEdit } from "pages/posts";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { PostCreate, PostEdit } from "pages/posts";
+
+import "./App.css";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                router={routerBindings}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "posts",
+                        create: {
+                            path: "posts/:id/create",
+                            component: PostCreate,
+                        },
+                        show: "posts/test/:id",
+                        edit: PostEdit,
+                    },
+                ]}
+            >
+                <RefineRoutes>
+                    {(routes) => (
+                        <Routes>
+                            {routes}
+                            <Route path="posts/test/:id" element={<>test</>} />
+                            <Route path="custom-route" element={<>custom</>} />
+                            <Route path="posts" element={<>posts list</>} />
+                        </Routes>
+                    )}
+                </RefineRoutes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
