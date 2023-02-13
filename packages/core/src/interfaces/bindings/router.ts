@@ -27,7 +27,7 @@
  */
 
 import { CrudFilters, CrudSorting } from "@contexts/data/IDataContext";
-import { BaseKey, RouteAction } from "src";
+import { Action, BaseKey, IResourceItem } from "src";
 
 export type GoConfig = {
     to?: string;
@@ -37,10 +37,11 @@ export type GoConfig = {
         keepQuery?: boolean;
         keepHash?: boolean;
     };
-    type?: "push" | "replace";
+    type?: "push" | "replace" | "path";
 };
 
 export type ParsedParams = {
+    pathname?: string;
     filters?: CrudFilters;
     sorters?: CrudSorting;
     current?: number;
@@ -52,12 +53,12 @@ export type ParsedParams = {
 
 export type ParseResponse = {
     params?: ParsedParams;
-    resource?: string;
+    resource?: string | IResourceItem;
     id?: BaseKey;
-    action?: RouteAction;
+    action?: Action;
 };
 
-export type GoFunction = (config: GoConfig) => void;
+export type GoFunction = (config: GoConfig) => void | string;
 
 export type BackFunction = () => void;
 
