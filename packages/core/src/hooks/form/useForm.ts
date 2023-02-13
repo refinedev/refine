@@ -28,6 +28,7 @@ import {
     BaseKey,
     IQueryKeys,
     FormAction,
+    IResourceItem,
 } from "../../interfaces";
 import {
     UpdateParams,
@@ -36,6 +37,10 @@ import {
 } from "../data/useUpdate";
 import { UseCreateProps, UseCreateReturnType } from "../data/useCreate";
 import { redirectPage } from "@definitions/helpers";
+import { useRouterType } from "@contexts/router-picker";
+import { useParsed } from "@hooks/router/use-parsed";
+import { pickResource } from "@definitions/helpers/pick-resource";
+import { useResource } from "../resource/useResource";
 
 export type ActionParams = {
     /**
@@ -155,6 +160,7 @@ export type UseFormReturnType<
     redirect: (
         redirect: RedirectAction,
         idFromFunction?: BaseKey | undefined,
+        routeParams?: Record<string, string | number>,
     ) => void;
 };
 
@@ -199,16 +205,35 @@ export const useForm = <
     TVariables
 > => {
     const { options } = useRefineContext();
+    const { resources } = useResource();
+    const routerType = useRouterType();
+    const {
+        resource: resourceFromRouter,
+        id: idFromRouter,
+        action: actionFromRouter,
+    } = useParsed();
     const { useParams } = useRouterContext();
     const {
-        resource: resourceFromRoute,
-        action: actionFromRoute,
-        id: idFromParams,
+        resource: legacyResourceFromRoute,
+        action: legacyActionFromRoute,
+        id: legacyIdFromParams,
     } = useParams<ResourceRouterParams>();
 
+    const newResourceNameFromRouter =
+        typeof resourceFromRouter === "string"
+            ? resourceFromRouter
+            : resourceFromRouter?.name;
+
+    /** We only accept `id` from URL params if `resource` is not explicitly passed. */
+    /** This is done to avoid sending wrong requests for custom `resource` and an async `id` */
     const defaultId =
-        !resourceFromProps || resourceFromProps === resourceFromRoute
-            ? idFromProps ?? idFromParams
+        !resourceFromProps ||
+        resourceFromProps ===
+            (routerType === "legacy"
+                ? legacyResourceFromRoute
+                : newResourceNameFromRouter)
+            ? idFromProps ??
+              (routerType === "legacy" ? legacyIdFromParams : idFromRouter)
             : idFromProps;
 
     // id state is needed to determine selected record in a context for example useModal
@@ -220,14 +245,64 @@ export const useForm = <
         }
     }, [idFromProps]);
 
-    const resourceName = resourceFromProps ?? resourceFromRoute;
+    /** `resourceName` fallback value depends on the router type */
+    const resourceName =
+        resourceFromProps ??
+        (routerType === "legacy"
+            ? legacyResourceFromRoute
+            : newResourceNameFromRouter);
+    /** `action` fallback value depends on the router type */
+    /**
+     * In earlier versions, we've trivially inferred the action type as `create` in `show` types.
+     * This is probably done to cover cases with modals and drawers.
+     *
+     * This is not right, as we should not do trivial inference of the action type.
+     * Users should explicitly pass the action type when needed.
+     */
+    const fallbackAction =
+        routerType === "legacy" ? legacyActionFromRoute : actionFromRouter;
     const action =
         actionFromProps ??
-        (actionFromRoute === "show" ? "create" : actionFromRoute) ??
+        (fallbackAction === "show" ? "create" : fallbackAction) ??
         "create";
 
     const resourceWithRoute = useResourceWithRoute();
-    const resource = resourceWithRoute(resourceName);
+    let resource: IResourceItem | undefined;
+
+    if (routerType === "legacy") {
+        if (resourceName) {
+            resource = resourceWithRoute(resourceName);
+        }
+    } else {
+        /** If `resource` is provided by the user, then try to pick the resource of create a dummy one */
+        if (resourceFromProps) {
+            const picked = pickResource(resourceFromProps, resources);
+            if (picked) {
+                resource = picked;
+            } else {
+                resource = {
+                    name: resourceFromProps,
+                    route: resourceFromProps,
+                };
+            }
+        } else {
+            /** If `resource` is not provided, check the resource from the router params */
+            if (typeof resourceFromRouter === "string") {
+                const picked = pickResource(resourceFromRouter, resources);
+                if (picked) {
+                    resource = picked;
+                } else {
+                    resource = {
+                        name: resourceFromRouter,
+                        route: resourceFromRouter,
+                    };
+                }
+            } else {
+                /** If `resource` is passed as an IResourceItem, use it or `resource` is undefined and cannot be inferred. */
+                resource = resourceFromRouter;
+            }
+        }
+    }
 
     const { mutationMode: mutationModeContext } = useMutationMode();
     const mutationMode = mutationModeProp ?? mutationModeContext;
@@ -236,7 +311,10 @@ export const useForm = <
     const isEdit = action === "edit";
     const isClone = action === "clone";
 
-    const redirect = redirectPage({
+    /**
+     * Designated `redirect` route
+     */
+    const designatedRedirectAction = redirectPage({
         redirectFromProps,
         action,
         redirectOptions: options.redirect,
@@ -245,7 +323,7 @@ export const useForm = <
     const enableQuery = id !== undefined && (isEdit || isClone);
 
     const queryResult = useOne<TData>({
-        resource: resource.name,
+        resource: resource?.name,
         id: id ?? "",
         queryOptions: {
             enabled: enableQuery,
@@ -281,9 +359,10 @@ export const useForm = <
 
         const onSuccess = (id?: BaseKey) => {
             handleSubmitWithRedirect({
-                redirect,
+                redirect: designatedRedirectAction,
                 resource,
                 id,
+                meta: metaData,
             });
         };
 
@@ -297,6 +376,9 @@ export const useForm = <
             if (mutationMode !== "pessimistic") {
                 resolve();
             }
+
+            if (!resource) return;
+
             return mutateCreate(
                 {
                     values,
@@ -333,6 +415,8 @@ export const useForm = <
     const onFinishUpdate = async (values: TVariables) => {
         setWarnWhen(false);
 
+        if (!resource) return;
+
         const variables: UpdateParams<TVariables> = {
             id: id ?? "",
             values,
@@ -350,9 +434,10 @@ export const useForm = <
             // If it is in modal mode set it to undefined. Otherwise set it to current id from route.
             setId(defaultId);
             handleSubmitWithRedirect({
-                redirect,
+                redirect: designatedRedirectAction,
                 resource,
                 id,
+                meta: metaData,
             });
         };
 
@@ -421,6 +506,7 @@ export const useForm = <
                         : "edit",
                 resource,
                 id: idFromFunction ?? id,
+                meta: metaData,
             });
         },
     };

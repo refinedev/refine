@@ -1,12 +1,18 @@
 import { useCallback } from "react";
 
-import { BaseKey, IResourceItem, RedirectAction } from "../../interfaces";
+import {
+    BaseKey,
+    IResourceItem,
+    MetaDataQuery,
+    RedirectAction,
+} from "../../interfaces";
 import { useNavigation } from "@hooks";
 
 export type UseRedirectionAfterSubmissionType = () => (options: {
     redirect: RedirectAction;
-    resource: IResourceItem;
+    resource?: IResourceItem;
     id?: BaseKey;
+    meta?: MetaDataQuery;
 }) => void;
 
 export const useRedirectionAfterSubmission: UseRedirectionAfterSubmissionType =
@@ -18,25 +24,27 @@ export const useRedirectionAfterSubmission: UseRedirectionAfterSubmissionType =
                 redirect,
                 resource,
                 id,
+                meta = {},
             }: {
                 redirect: RedirectAction;
-                resource: IResourceItem;
+                resource?: IResourceItem;
                 id?: BaseKey;
+                meta?: MetaDataQuery;
             }) => {
-                if (redirect && resource.route) {
-                    if (resource.canShow && redirect === "show" && id) {
-                        return show(resource.route, id);
+                if (redirect && resource) {
+                    if (!!resource.show && redirect === "show" && id) {
+                        return show(resource, id, undefined, meta);
                     }
 
-                    if (resource.canEdit && redirect === "edit" && id) {
-                        return edit(resource.route, id);
+                    if (!!resource.edit && redirect === "edit" && id) {
+                        return edit(resource, id, undefined, meta);
                     }
 
-                    if (resource.canCreate && redirect === "create") {
-                        return create(resource.route);
+                    if (!!resource.create && redirect === "create") {
+                        return create(resource, undefined, meta);
                     }
 
-                    return list(resource.route, "push");
+                    return list(resource, "push", meta);
                 } else {
                     return;
                 }
