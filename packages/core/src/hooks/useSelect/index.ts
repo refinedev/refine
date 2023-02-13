@@ -20,6 +20,8 @@ import {
     Pagination,
 } from "../../interfaces";
 import { pickNotDeprecated } from "@definitions/helpers";
+import { pickResource } from "@definitions/helpers/pick-resource";
+import { useResource } from "../resource/useResource/index";
 
 export type UseSelectProps<TData, TError> = {
     /**
@@ -120,7 +122,7 @@ export const useSelect = <
     const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
 
     const {
-        resource,
+        resource: resourceFromProps,
         sort,
         sorters,
         filters = [],
@@ -142,6 +144,15 @@ export const useSelect = <
         metaData,
         dataProviderName,
     } = props;
+
+    const { resources } = useResource();
+
+    /**
+     * Since `identifier` is an optional but prioritized way to match resources, users can provide identifier instead of resource name.
+     */
+    const pickedResource = pickResource(resourceFromProps, resources);
+
+    const resource = pickedResource?.name ?? resourceFromProps;
 
     const defaultValues = Array.isArray(defaultValue)
         ? defaultValue

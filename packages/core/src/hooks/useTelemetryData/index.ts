@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "@contexts/auth";
 import { AuditLogContext } from "@contexts/auditLog";
 import { LiveContext } from "@contexts/live";
-import { RouterContext } from "@contexts/router";
+import { RouterContext } from "@contexts/legacy-router";
 import { DataContext } from "@contexts/data";
 import { TranslationContext } from "@contexts/translation";
 import { NotificationContext } from "@contexts/notification";

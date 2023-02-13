@@ -19,6 +19,8 @@ import {
     pickNotDeprecated,
 } from "@definitions";
 import { ExportToCsv, Options } from "export-to-csv-fix-source-map";
+import { useRouterType } from "@contexts/router-picker";
+import { useParsed } from "@hooks/router/use-parsed";
 
 type UseExportOptionsType<
     TData extends BaseRecord = BaseRecord,
@@ -109,17 +111,36 @@ export const useExport = <
 }: UseExportOptionsType<TData, TVariables> = {}): UseExportReturnType => {
     const [isLoading, setIsLoading] = useState(false);
 
+    const dataProvider = useDataProvider();
+
     const { resources } = useResource();
 
     const resourceWithRoute = useResourceWithRoute();
-    const dataProvider = useDataProvider();
 
+    const routerType = useRouterType();
+
+    const parsed = useParsed();
     const { useParams } = useRouterContext();
-
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-    const { name: resource } = resourceWithRoute(
-        pickNotDeprecated(resourceFromProps, resourceName) ?? routeResourceName,
-    );
+    let resource: string = resourceName ?? "";
+
+    if (routerType === "legacy") {
+        const { name: legacyResourceName } = resourceWithRoute(
+            pickNotDeprecated(resourceFromProps, resourceName) ??
+                routeResourceName,
+        );
+        resource = legacyResourceName;
+    } else {
+        if (typeof parsed.resource === "string") {
+            resource = parsed.resource;
+        } else if (parsed.resource) {
+            resource = parsed.resource?.identifier ?? parsed.resource?.name;
+        }
+    }
+
+    if (pickNotDeprecated(resourceFromProps, resourceName)) {
+        resource = pickNotDeprecated(resourceFromProps, resourceName)!;
+    }
 
     const filename = `${userFriendlyResourceName(
         resource,

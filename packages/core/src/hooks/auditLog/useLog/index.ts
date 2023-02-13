@@ -10,7 +10,12 @@ import { AuditLogContext } from "@contexts/auditLog";
 import { ResourceContext } from "@contexts/resource";
 import { useGetIdentity } from "@hooks/auth";
 import { BaseKey, LogParams } from "../../../interfaces";
-import { hasPermission, queryKeys } from "@definitions/helpers";
+import {
+    hasPermission,
+    pickNotDeprecated,
+    queryKeys,
+} from "@definitions/helpers";
+import { pickResource } from "@definitions/helpers/pick-resource";
 
 type LogRenameData =
     | {
@@ -80,8 +85,12 @@ export const useLog = <
 
     const log = useMutation<TLogData, Error, LogParams, unknown>(
         async (params) => {
-            const resource = resources.find((p) => p.name === params.resource);
-            const logPermissions = resource?.options?.auditLog?.permissions;
+            const resource = pickResource(params.resource, resources);
+            const logPermissions = pickNotDeprecated(
+                resource?.meta?.audit,
+                resource?.options?.audit,
+                resource?.options?.auditLog?.permissions,
+            );
 
             if (logPermissions) {
                 if (!hasPermission(logPermissions, params.action)) {

@@ -22,6 +22,8 @@ import {
 } from "@definitions";
 import { UseCreateReturnType } from "../../hooks/data/useCreate";
 import { UseCreateManyReturnType } from "../../hooks/data/useCreateMany";
+import { useRouterType } from "@contexts/router-picker";
+import { useParsed } from "@hooks/router/use-parsed";
 
 export type ImportSuccessResult<TVariables, TData> = {
     request: TVariables[];
@@ -156,13 +158,32 @@ export const useImport = <
     const [totalAmount, setTotalAmount] = useState<number>(0);
     const [isLoading, setIsLoading] = useState(false);
 
-    const resourceWithRoute = useResourceWithRoute();
-    const { useParams } = useRouterContext();
+    const routerType = useRouterType();
 
+    const parsed = useParsed();
+    const { useParams } = useRouterContext();
+    const resourceWithRoute = useResourceWithRoute();
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-    const { name: resource } = resourceWithRoute(
-        pickNotDeprecated(resourceFromProps, resourceName) ?? routeResourceName,
-    );
+
+    let resource: string = resourceName ?? "";
+
+    if (routerType === "legacy") {
+        const { name: legacyResourceName } = resourceWithRoute(
+            pickNotDeprecated(resourceFromProps, resourceName) ??
+                routeResourceName,
+        );
+        resource = legacyResourceName;
+    } else {
+        if (typeof parsed.resource === "string") {
+            resource = parsed.resource;
+        } else if (parsed.resource) {
+            resource = parsed.resource?.identifier ?? parsed.resource?.name;
+        }
+    }
+
+    if (pickNotDeprecated(resourceFromProps, resourceName)) {
+        resource = pickNotDeprecated(resourceFromProps, resourceName)!;
+    }
 
     const createMany = useCreateMany<TData, TError, TVariables>();
     const create = useCreate<TData, TError, TVariables>();

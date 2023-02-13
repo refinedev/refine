@@ -7,6 +7,7 @@ import {
 
 import { AccessControlContext } from "@contexts/accessControl";
 import { CanParams, CanReturnType } from "../../../interfaces";
+import { sanitizeResource } from "@definitions/helpers/sanitize-resource";
 
 export type UseCanProps = CanParams & {
     /**
@@ -38,15 +39,7 @@ export const useCan = ({
     const { resource: _resource, ...paramsRest } = params ?? {};
 
     /* eslint-disable @typescript-eslint/no-unused-vars */
-    const {
-        icon: _icon,
-        list: _list,
-        edit: _edit,
-        create: _create,
-        show: _show,
-        children: _children,
-        ...restResource
-    } = _resource ?? {};
+    const sanitizedResource = sanitizeResource(_resource ?? {});
     /* eslint-enable @typescript-eslint/no-unused-vars */
 
     const queryResponse = useQuery<CanReturnType>(
@@ -55,7 +48,7 @@ export const useCan = ({
             {
                 action,
                 resource,
-                params: { ...paramsRest, resource: restResource },
+                params: { ...paramsRest, resource: sanitizedResource },
                 enabled: queryOptions?.enabled,
             },
         ],
