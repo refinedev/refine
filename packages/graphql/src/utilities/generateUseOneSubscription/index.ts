@@ -1,41 +1,40 @@
 import { MetaDataQuery, BaseKey } from "@pankod/refine-core";
 import * as gql from "gql-query-builder";
+import pluralize from "pluralize";
 import camelCase from "camelcase";
 
-type GenereteUseManySubscriptionParams = {
+type GenerateUseOneSubscriptionParams = {
     resource: string;
     metaData: MetaDataQuery;
-    ids?: BaseKey[];
+    id?: BaseKey;
 };
 
-type GenereteUseManySubscriptionReturnValues = {
+type GenerateUseOneSubscriptionReturnValues = {
     variables: any;
     query: string;
     operation: string;
 };
 
-export const genereteUseManySubscription = ({
+export const generateUseOneSubscription = ({
     resource,
     metaData,
-    ids,
-}: GenereteUseManySubscriptionParams): GenereteUseManySubscriptionReturnValues => {
-    if (!ids) {
+    id,
+}: GenerateUseOneSubscriptionParams): GenerateUseOneSubscriptionReturnValues => {
+    if (!id) {
         console.error(
-            "[useSubscription]: `ids` is required in `params` for graphql subscriptions",
+            "[useSubscription]: `id` is required in `params` for graphql subscriptions",
         );
     }
 
-    const camelResource = camelCase(resource);
+    const singularResource = pluralize.singular(resource);
+    const camelResource = camelCase(singularResource);
 
     const operation = metaData.operation ?? camelResource;
 
     const { query, variables } = gql.query({
         operation,
         variables: {
-            where: {
-                value: { id_in: ids },
-                type: "JSON",
-            },
+            id: { value: id, type: "ID", required: true },
         },
         fields: metaData.fields,
     });
