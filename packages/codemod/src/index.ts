@@ -138,6 +138,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         name: "refine1-to-refine2: Transform from refine 1.x.x to at least 2.0.0",
         value: "refine1-to-refine2",
     },
+    {
+        name: "router-to-legacy-router: Transform existing router definitions to legacy router",
+        value: "router-to-legacy-router",
+    },
 ];
 
 function expandFilePathsIfNeeded(filesBeforeExpansion) {
