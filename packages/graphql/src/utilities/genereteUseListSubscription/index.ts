@@ -15,6 +15,7 @@ type GenereteUseListSubscriptionParams = {
     pagination?: Pagination;
     hasPagination?: boolean;
     sort?: CrudSorting;
+    sorters?: CrudSorting;
     filters?: CrudFilters;
 };
 
@@ -30,11 +31,13 @@ export const genereteUseListSubscription = ({
     pagination,
     hasPagination,
     sort,
+    sorters,
     filters,
 }: GenereteUseListSubscriptionParams): GenereteUseListSubscriptionReturnValues => {
     const { current = 1, pageSize = 10 } = pagination ?? {};
 
-    const sortBy = genereteSort(sort);
+    //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
+    const sortBy = genereteSort(sorters ?? sort);
     const filterBy = generateFilter(filters);
 
     const camelResource = camelCase(resource);

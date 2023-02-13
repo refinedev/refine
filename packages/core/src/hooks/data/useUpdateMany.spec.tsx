@@ -140,4 +140,56 @@ describe("useUpdateMany Hook", () => {
             });
         });
     });
+
+    describe("useLog", () => {
+        it("publish log on success", async () => {
+            const createMock = jest.fn();
+
+            const { result } = renderHook(() => useUpdateMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                    auditLogProvider: {
+                        create: createMock,
+                        get: jest.fn(),
+                        update: jest.fn(),
+                    },
+                }),
+            });
+
+            result.current.mutate({
+                resource: "posts",
+                mutationMode: "undoable",
+                undoableTimeout: 0,
+                ids: ["1", "2"],
+                values: { status: "published" },
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(createMock).toBeCalled();
+            expect(createMock).toHaveBeenCalledWith({
+                action: "updateMany",
+                author: {},
+                data: {
+                    status: "published",
+                },
+                meta: {
+                    dataProviderName: "default",
+                    ids: ["1", "2"],
+                },
+                previousData: [
+                    {
+                        status: undefined,
+                    },
+                    {
+                        status: undefined,
+                    },
+                ],
+                resource: "posts",
+            });
+        });
+    });
 });

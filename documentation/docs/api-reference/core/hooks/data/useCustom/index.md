@@ -111,14 +111,14 @@ useCustom({
 });
 ```
 
-### `config.sort`
+### `config.sorters`
 
 It will be passed to the `custom` method from the `dataProvider` as a parameter. It can be used to send the sort query parameters of the request.
 
 ```tsx
 useCustom({
     config: {
-        sort: [
+        sorters: [
             {
                 field: "title",
                 order: "asc",
@@ -145,6 +145,12 @@ useCustom({
     },
 });
 ```
+
+### ~~`config.sort`~~
+
+:::caution Deprecated
+Use `config.sorters` instead.
+:::
 
 ### `queryOptions`
 

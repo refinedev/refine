@@ -47,7 +47,7 @@ export const PostList: React.FC = () => {
 
 ## Properties
 
-### `resourceName`
+### `resource`
 
 > Default: It reads the `resource` value from the current URL.
 
@@ -55,7 +55,7 @@ Determines which resource is passed to the `create` or `createMany` method of yo
 
 ```ts
 useImport({
-    resourceName: "posts",
+    resource: "posts",
 });
 ```
 
@@ -154,6 +154,12 @@ useImport({
     dataProviderName: "second-data-provider",
 });
 ```
+
+### ~~`resourceName`~~
+
+:::caution Deprecated
+Use `resource` instead.
+:::
 
 ## Return Values
 

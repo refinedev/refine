@@ -16,6 +16,7 @@ export const dataProvider = (
         pagination = { current: 1, pageSize: 10 },
         filters,
         sort,
+        sorters,
     }) => {
         const url = `${apiUrl}/${resource}`;
 
@@ -35,7 +36,8 @@ export const dataProvider = (
               }
             : {};
 
-        const generatedSort = generateSort(sort);
+        //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
+        const generatedSort = generateSort(sorters ?? sort);
         if (generatedSort) {
             const { _sort, _order } = generatedSort;
             query._sort = _sort.join(",");
@@ -110,11 +112,21 @@ export const dataProvider = (
         return apiUrl;
     },
 
-    custom: async ({ url, method, filters, sort, payload, query, headers }) => {
+    custom: async ({
+        url,
+        method,
+        filters,
+        sort,
+        sorters,
+        payload,
+        query,
+        headers,
+    }) => {
         let requestUrl = `${url}?`;
 
-        if (sort) {
-            const generatedSort = generateSort(sort);
+        if (sorters || sort) {
+            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
+            const generatedSort = generateSort(sorters ?? sort);
             if (generatedSort) {
                 const { _sort, _order } = generatedSort;
                 const sortQuery = {

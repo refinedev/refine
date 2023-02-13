@@ -30,7 +30,7 @@ export const PostList: React.FC = () => {
 
 ## Properties
 
-### `resourceName`
+### `resource`
 
 > Default: Read from the current route
 
@@ -38,7 +38,7 @@ Determines which resource is passed to the `getList` method of your data provide
 
 ```ts
 useExport({
-    resourceName: "posts",
+    resource: "posts",
 });
 ```
 
@@ -70,15 +70,15 @@ useExport<IPost>({
 });
 ```
 
-### `sorter`
+### `sorters`
 
-If you want to sort the data before exporting it, you can use the `sorter` property. It will be passed to the `getList` method of your data provider.
+If you want to sort the data before exporting it, you can use the `sorters` property. It will be passed to the `getList` method of your data provider.
 
 [Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```ts
 useExport({
-    sorter: [
+    sorters: [
         {
             field: "title",
             order: "asc",
@@ -174,6 +174,18 @@ useExport({
     },
 });
 ```
+
+### ~~`resourceName`~~
+
+:::caution Deprecated
+Use `resource` instead.
+:::
+
+### ~~`sorter`~~
+
+:::caution Deprecated
+Use `sorters` instead.
+:::
 
 ## Return Values
 

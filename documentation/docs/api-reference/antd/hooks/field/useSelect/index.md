@@ -77,15 +77,15 @@ const { options } = useSelect({
 
 :::
 
-### `sort`
+### `sorters`
 
-It allows to show the options in the desired order. `sort` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send sort query parameters to the API.
+It allows to show the options in the desired order. `sorters` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send sort query parameters to the API.
 
 [Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useSelect({
-    sort: [
+    sorters: [
         {
             field: "title",
             order: "asc",
@@ -220,6 +220,12 @@ If `onSearch` is used, it will override the existing `filters`.
 
 :::
 
+### ~~`sort`~~
+
+:::caution Deprecated
+Use `sorters` instead.
+:::
+
 #### Client-side filtering
 
 Sometimes, you may want to filter the options on the client-side. You can do this by passing `onSearch` function as `undefined` and setting `filterOption` to `true`. You can also set `optionFilterProp` to `label` or `value` to filter the options by label or value respectively.
@@ -261,7 +267,7 @@ const myDataProvider = {
         resource,
         pagination,
         hasPagination,
-        sort,
+        sorters,
         filters,
         // highlight-next-line
         metaData,

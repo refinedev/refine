@@ -43,10 +43,8 @@ describe("useInfiniteList Hook", () => {
             () =>
                 useInfiniteList({
                     resource: "posts",
-                    config: {
-                        pagination: {
-                            pageSize: 1,
-                        },
+                    pagination: {
+                        pageSize: 1,
                     },
                 }),
             {
@@ -89,10 +87,8 @@ describe("useInfiniteList Hook", () => {
             () =>
                 useInfiniteList({
                     resource: "posts",
-                    config: {
-                        pagination: {
-                            pageSize: 1,
-                        },
+                    pagination: {
+                        pageSize: 1,
                     },
                 }),
             {

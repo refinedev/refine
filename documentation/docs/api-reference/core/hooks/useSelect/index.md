@@ -76,15 +76,15 @@ const { options } = useSelect({
 
 :::
 
-### `sort`
+### `sorters`
 
-It allows to show the options in the desired order. `sort` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send sort query parameters to the API.
+It allows to show the options in the desired order. `sorters` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send sort query parameters to the API.
 
 [Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useSelect({
-    sort: [
+    sorters: [
         {
             field: "title",
             order: "asc",
@@ -245,7 +245,7 @@ const myDataProvider = {
         resource,
         pagination,
         hasPagination,
-        sort,
+        sorters,
         filters,
         // highlight-next-line
         metaData,
@@ -343,6 +343,12 @@ useSelect({
 > [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
+
+### ~~`sort`~~
+
+:::caution Deprecated
+Use `sorters` instead.
+:::
 
 ## FAQ
 

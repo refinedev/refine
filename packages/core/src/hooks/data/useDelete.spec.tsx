@@ -112,4 +112,43 @@ describe("useDelete Hook", () => {
             });
         });
     });
+
+    describe("useLog", () => {
+        it("publish log on success", async () => {
+            const createMock = jest.fn();
+
+            const { result } = renderHook(() => useDelete(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                    auditLogProvider: {
+                        create: createMock,
+                        get: jest.fn(),
+                        update: jest.fn(),
+                    },
+                }),
+            });
+
+            result.current.mutate({
+                id: "1",
+                resource: "posts",
+                mutationMode: "pessimistic",
+            });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(createMock).toBeCalled();
+            expect(createMock).toHaveBeenCalledWith({
+                action: "delete",
+                author: {},
+                meta: {
+                    dataProviderName: "default",
+                    id: "1",
+                },
+                resource: "posts",
+            });
+        });
+    });
 });
