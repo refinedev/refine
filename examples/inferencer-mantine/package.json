@@ -11,7 +11,7 @@
         "@pankod/refine-mantine": "^1.15.8",
         "@pankod/refine-core": "^3.99.4",
         "@pankod/refine-cli": "^1.17.0",
-        "@pankod/refine-inferencer": "^2.5.0",
+        "@pankod/refine-inferencer": "^2.6.0",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-simple-rest": "^3.37.4",
         "@pankod/refine-react-table": "^4.9.1",
