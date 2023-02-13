@@ -17,6 +17,7 @@ import {
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
     useTableReturnType as useTableCoreReturnType,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 
 import {
@@ -70,29 +71,32 @@ export const useTable = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
->(
-    {
-        onSearch,
-        initialCurrent,
-        initialPageSize,
-        hasPagination = true,
-        initialSorter,
-        permanentSorter,
-        initialFilter,
-        permanentFilter,
-        defaultSetFilterBehavior,
-        syncWithLocation: syncWithLocationProp,
-        resource: resourceFromProp,
-        successNotification,
-        errorNotification,
-        queryOptions,
-        liveMode: liveModeFromProp,
-        onLiveEvent,
-        liveParams,
-        metaData,
-        dataProviderName,
-    }: useTableProps<TData, TError, TSearchVariables> = { hasPagination: true },
-): useTableReturnType<TData, TError, TSearchVariables> => {
+>({
+    onSearch,
+    initialCurrent,
+    initialPageSize,
+    hasPagination = true,
+    pagination,
+    initialSorter,
+    permanentSorter,
+    initialFilter,
+    permanentFilter,
+    defaultSetFilterBehavior,
+    syncWithLocation: syncWithLocationProp,
+    resource: resourceFromProp,
+    successNotification,
+    errorNotification,
+    queryOptions,
+    liveMode: liveModeFromProp,
+    onLiveEvent,
+    liveParams,
+    metaData,
+    dataProviderName,
+}: useTableProps<TData, TError, TSearchVariables> = {}): useTableReturnType<
+    TData,
+    TError,
+    TSearchVariables
+> => {
     const {
         tableQueryResult,
         current,
@@ -110,8 +114,8 @@ export const useTable = <
         permanentFilter,
         initialCurrent,
         initialPageSize,
-        // @ts-expect-error currently boolean casting is not supported in overloaded types.
-        hasPagination: hasPagination,
+        pagination,
+        hasPagination,
         initialSorter,
         initialFilter,
         syncWithLocation: syncWithLocationProp,
@@ -139,7 +143,7 @@ export const useTable = <
     const { data, isFetched, isLoading } = tableQueryResult;
 
     const onChange = (
-        pagination: TablePaginationConfig,
+        paginationState: TablePaginationConfig,
         tableFilters: Record<
             string,
             (string | number | boolean) | (string | number | boolean)[] | null
@@ -163,9 +167,12 @@ export const useTable = <
         }
 
         // tablePropsSunflower.onChange(pagination, filters, sorter);
-        if (hasPagination) {
-            setCurrent?.(pagination.current || 1);
-            setPageSize?.(pagination.pageSize || 10);
+        if (
+            pickNotDeprecated(pagination?.mode, hasPagination) !== "off" ||
+            pickNotDeprecated(pagination?.mode, hasPagination) === true
+        ) {
+            setCurrent?.(paginationState.current || 1);
+            setPageSize?.(paginationState.pageSize || 10);
         }
     };
 
@@ -173,14 +180,21 @@ export const useTable = <
         if (onSearch) {
             const searchFilters = await onSearch(value);
             setFilters(searchFilters);
-            if (hasPagination) {
+
+            if (
+                pickNotDeprecated(pagination?.mode, hasPagination) !== "off" ||
+                pickNotDeprecated(pagination?.mode, hasPagination) === true
+            ) {
                 setCurrent?.(1);
             }
         }
     };
 
     const antdPagination = (): false | TablePaginationConfig => {
-        if (hasPagination) {
+        if (
+            pickNotDeprecated(pagination?.mode, hasPagination) !== "off" ||
+            pickNotDeprecated(pagination?.mode, hasPagination) === true
+        ) {
             return {
                 itemRender: (page, type, element) => {
                     const link = createLinkForSyncWithLocation({
