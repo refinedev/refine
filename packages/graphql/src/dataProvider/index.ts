@@ -21,6 +21,11 @@ export const generateSort = (sort?: CrudSorting) => {
     return [];
 };
 
+/**
+ * @deprecated Please use `generateSort` instead.
+ */
+export const genereteSort = generateSort;
+
 export const generateFilter = (filters?: CrudFilters) => {
     const queryFilters: { [key: string]: any } = {};
 
