@@ -110,5 +110,9 @@ export {
     getNextPageParam,
     getPreviousPageParam,
     pickNotDeprecated,
+    legacyResourceTransform,
+    matchResourceFromRoute,
 } from "./definitions/helpers";
 export { file2Base64 } from "./definitions/upload";
+
+export { ResourceContext } from "./contexts/resource/index";
