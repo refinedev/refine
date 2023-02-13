@@ -7,9 +7,9 @@ import {
 import * as gql from "gql-query-builder";
 import camelCase from "camelcase";
 
-import { generateFilter, genereteSort } from "../../dataProvider";
+import { generateFilter, generateSort } from "../../dataProvider";
 
-type GenereteUseListSubscriptionParams = {
+type GenerateUseListSubscriptionParams = {
     resource: string;
     metaData: MetaDataQuery;
     pagination?: Pagination;
@@ -19,13 +19,13 @@ type GenereteUseListSubscriptionParams = {
     filters?: CrudFilters;
 };
 
-type GenereteUseListSubscriptionReturnValues = {
+type GenerateUseListSubscriptionReturnValues = {
     variables: any;
     query: string;
     operation: string;
 };
 
-export const genereteUseListSubscription = ({
+export const generateUseListSubscription = ({
     resource,
     metaData,
     pagination,
@@ -33,11 +33,11 @@ export const genereteUseListSubscription = ({
     sort,
     sorters,
     filters,
-}: GenereteUseListSubscriptionParams): GenereteUseListSubscriptionReturnValues => {
+}: GenerateUseListSubscriptionParams): GenerateUseListSubscriptionReturnValues => {
     const { current = 1, pageSize = 10 } = pagination ?? {};
 
     //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-    const sortBy = genereteSort(sorters ?? sort);
+    const sortBy = generateSort(sorters ?? sort);
     const filterBy = generateFilter(filters);
 
     const camelResource = camelCase(resource);

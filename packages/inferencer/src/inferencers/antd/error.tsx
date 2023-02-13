@@ -13,7 +13,13 @@ export const ErrorComponent: CreateInferencerConfig["errorComponent"] = ({
                 <Col>
                     <Alert
                         message="Error"
-                        description={error ?? ""}
+                        description={
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: error ?? "",
+                                }}
+                            />
+                        }
                         type="error"
                         showIcon
                     />
