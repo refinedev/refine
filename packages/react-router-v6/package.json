@@ -2,10 +2,9 @@
   "name": "@pankod/refine-react-router-v6",
   "description": "refine react-router router provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "version": "3.38.0",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
   "private": false,
+  "author": "refine",
+  "license": "MIT",
   "files": [
     "dist",
     "src"
@@ -13,14 +12,35 @@
   "engines": {
     "node": ">=10"
   },
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "module": "dist/esm/index.js",
+  "exports": {
+      ".": {
+          "import": "./dist/esm/index.js",
+          "require": "./dist/index.js"
+      },
+      "./legacy": {
+          "import": "./dist/esm/legacy.js",
+          "require": "./dist/legacy.js"
+      }
+  },
+  "typesVersions": {
+      "*": {
+          ".": [
+              "dist/index.d.ts"
+          ],
+          "legacy": [
+              "dist/legacy/index.d.ts"
+          ]
+      }
+  },
   "scripts": {
     "start": "tsup --watch --format esm,cjs,iife --legacy-output",
     "build": "tsup --format esm,cjs,iife --minify --legacy-output",
     "test": "jest --passWithNoTests --runInBand",
     "prepare": "npm run build"
   },
-  "author": "refine",
-  "module": "dist/esm/index.js",
   "devDependencies": {
     "@pankod/refine-core": "^3.90.2",
     "@esbuild-plugins/node-resolve": "^0.1.4",
@@ -32,7 +52,8 @@
     "tsup": "^5.11.13"
   },
   "dependencies": {
-    "react-router-dom": "6.3.0"
+    "react-router-dom": "6.3.0",
+    "qs": "^6.10.1"
   },
   "peerDependencies": {
     "@pankod/refine-core": "^3.23.2",
