@@ -1,6 +1,7 @@
 import { useContext, useCallback } from "react";
 import { ResourceContext } from "@contexts/resource";
 import { IResourceItem } from "../../../interfaces";
+import { pickResource } from "@definitions/helpers/pick-resource";
 
 export type UseResourceWithRouteReturnType = (route: string) => IResourceItem;
 
@@ -9,18 +10,11 @@ export const useResourceWithRoute = (): UseResourceWithRouteReturnType => {
 
     const resourceWithRoute = useCallback(
         (route: string) => {
-            const resource = resources.find((p) => p.route === route);
-
-            if (!resource) {
-                const resourceWithName = resources.find(
-                    (p) => p.name === route,
-                );
-                return (
-                    resourceWithName ??
-                    ({ name: route, route: route } as IResourceItem)
-                );
+            const picked = pickResource(route, resources, true);
+            if (picked) {
+                return picked;
             }
-            return resource;
+            return { name: route, route: route } as IResourceItem;
         },
         [resources],
     );
