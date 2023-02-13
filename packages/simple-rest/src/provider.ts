@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import { stringify } from "query-string";
-import { DataProvider } from "@pankod/refine-core";
+import { DataProvider, pickNotDeprecated } from "@pankod/refine-core";
 import { axiosInstance, generateSort, generateFilter } from "./utils";
 
 export const dataProvider = (
@@ -13,28 +13,34 @@ export const dataProvider = (
     getList: async ({
         resource,
         hasPagination = true,
-        pagination = { current: 1, pageSize: 10 },
+        pagination,
         filters,
         sort,
         sorters,
     }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { current = 1, pageSize = 10 } = pagination ?? {};
+        const { current = 1, pageSize = 10, mode } = pagination ?? {};
 
         const queryFilters = generateFilter(filters);
 
-        const query: {
+        let query: {
             _start?: number;
             _end?: number;
             _sort?: string;
             _order?: string;
-        } = hasPagination
-            ? {
-                  _start: (current - 1) * pageSize,
-                  _end: current * pageSize,
-              }
-            : {};
+        } = {};
+
+        //`hasPagination` is deprecated with refine@4, refine will pass `pagination.mode` instead, however, we still support `hasPagination` for backward compatibility
+        if (
+            pickNotDeprecated(mode, hasPagination) === "server" ||
+            pickNotDeprecated(mode, hasPagination) === true
+        ) {
+            query = {
+                _start: (current - 1) * pageSize,
+                _end: current * pageSize,
+            };
+        }
 
         //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
         const generatedSort = generateSort(sorters ?? sort);
@@ -52,7 +58,7 @@ export const dataProvider = (
 
         return {
             data,
-            total,
+            total: total || data.length,
         };
     },
 
