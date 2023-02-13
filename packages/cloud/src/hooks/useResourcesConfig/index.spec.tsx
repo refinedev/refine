@@ -27,7 +27,7 @@ describe("useResourceConfig Hook", () => {
         expect(result.current.data).toEqual([
             {
                 name: "posts",
-                options: {
+                meta: {
                     auditLog: {
                         permissions: ["*"],
                     },

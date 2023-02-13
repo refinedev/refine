@@ -59,7 +59,7 @@ export const crudListTests = function (
                 resources: [
                     {
                         name: "posts",
-                        options: { route: "posts", label: "test" },
+                        meta: { route: "posts", label: "test" },
                     },
                 ],
                 routerInitialEntries: ["/posts"],

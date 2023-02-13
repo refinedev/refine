@@ -66,7 +66,7 @@ Query param `action`.
 #### Interfaces
 
 ```ts
-type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
+type MetaProps<TExtends = { [key: string]: any }> = TExtends & {
     label?: string;
     route?: string;
     hide?: boolean;
@@ -77,7 +77,7 @@ type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
 
 interface IResourceComponentsProps<
     TCrudData = any,
-    TOptionsPropsExtends = { [key: string]: any },
+    TMetaPropsExtends = { [key: string]: any },
 > {
     canCreate?: boolean;
     canEdit?: boolean;
@@ -85,7 +85,7 @@ interface IResourceComponentsProps<
     canShow?: boolean;
     name?: string;
     initialData?: TCrudData;
-    options?: OptionsProps<TOptionsPropsExtends>;
+    meta?: MetaProps<TMetaPropsExtends>;
 }
 
 interface IResourceComponents {
@@ -104,7 +104,7 @@ interface IResourceItem extends IResourceComponents {
     canEdit?: boolean;
     canShow?: boolean;
     canDelete?: boolean;
-    options?: OptionsProps;
+    meta?: MetaProps;
     parentName?: string;
 }
 ```

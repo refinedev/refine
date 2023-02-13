@@ -85,7 +85,7 @@ const App: React.FC = () => {
                 },
                 {
                     name: "products",
-                    options: {
+                    meta: {
                         // highlight-next-line
                         // **refine** will use the `fineFoods` data provider for this resource
                         dataProviderName: "fineFoods",
@@ -184,7 +184,7 @@ useTable({
 });
 ```
 
--   **Using `options.dataProviderName` property in your resource config**
+-   **Using `meta.dataProviderName` property in your resource config**
 
 This will be the default data provider for the specified resource but you can still override it in the data hooks and components.
 
@@ -203,7 +203,7 @@ const App = () => {
                 },
                 {
                     name: "products",
-                    options: {
+                    meta: {
                         // **refine** will use the `exampleDataProvider` data provider for this resource
                         dataProviderName: "exampleDataProvider",
                     },

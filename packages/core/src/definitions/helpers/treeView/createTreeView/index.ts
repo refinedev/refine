@@ -1,3 +1,4 @@
+import { pickNotDeprecated } from "@definitions/helpers/pickNotDeprecated";
 import { IResourceItem, ITreeMenu, IMenuItem } from "src/interfaces";
 
 export const createTreeView = (
@@ -12,7 +13,10 @@ export const createTreeView = (
     for (let i = 0; i < resources.length; i++) {
         parent = resources[i];
 
-        const route = parent.route ?? parent.options?.route ?? "";
+        const route =
+            parent.route ??
+            pickNotDeprecated(parent?.meta, parent.options)?.route ??
+            "";
 
         resourcesRouteObject[route] = parent;
         resourcesRouteObject[route]["children"] = [];

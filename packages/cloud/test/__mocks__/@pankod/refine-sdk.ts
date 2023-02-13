@@ -73,7 +73,7 @@ class Config {
         return Promise.resolve([
             {
                 name: "posts",
-                options: {
+                meta: {
                     auditLog: {
                         permissions: ["*"],
                     },
