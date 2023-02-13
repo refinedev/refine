@@ -18,7 +18,7 @@
         "@pankod/refine-react-table": "^4.9.1",
         "@tabler/icons": "^1.1.0",
         "@pankod/refine-react-router-v6": "^3.18.0",
-        "@pankod/refine-inferencer": "^2.4.1"
+        "@pankod/refine-inferencer": "^2.5.0"
     },
     "devDependencies": {
         "@types/react": "^18.0.0",
