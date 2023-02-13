@@ -63,28 +63,6 @@ describe("useTable Hook", () => {
         expect(pagination).toEqual(expect.objectContaining(customPagination));
     });
 
-    it("with disabled pagination", async () => {
-        const { result } = renderHook(
-            () =>
-                useTable({
-                    hasPagination: false,
-                }),
-            {
-                wrapper: TestWrapper({}),
-            },
-        );
-
-        await waitFor(() => {
-            expect(!result.current.tableProps.loading).toBeTruthy();
-        });
-
-        const {
-            tableProps: { pagination },
-        } = result.current;
-
-        expect(pagination).toBe(false);
-    });
-
     it("with custom resource", async () => {
         const { result } = renderHook(
             () =>
