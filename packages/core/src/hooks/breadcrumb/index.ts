@@ -1,11 +1,16 @@
 import React, { useContext } from "react";
 import warnOnce from "warn-once";
 
-import { useResource, useRouterContext, useTranslate } from "@hooks";
+import { useResource, useTranslate } from "@hooks";
 import { TranslationContext } from "@contexts/translation";
-import { humanizeString } from "@definitions";
+import { humanizeString, pickNotDeprecated } from "@definitions";
 
-import { ResourceRouterParams } from "../../interfaces";
+import { IResourceItem } from "../../interfaces";
+import { useRouterType } from "@contexts/router-picker";
+import { getActionRoutesFromResource } from "@definitions/helpers/router";
+import { pickResource } from "../../definitions/helpers/pick-resource/index";
+import { composeRoute } from "@definitions/helpers/router/compose-route";
+import { useParsed } from "@hooks/router/use-parsed";
 
 export type BreadcrumbsType = {
     label: string;
@@ -17,15 +22,23 @@ type UseBreadcrumbReturnType = {
     breadcrumbs: BreadcrumbsType[];
 };
 
-export const useBreadcrumb = (): UseBreadcrumbReturnType => {
-    const { useParams } = useRouterContext();
+type UseBreadcrumbProps = {
+    /**
+     * Additional params to be used in the route generation process.
+     */
+    params?: Record<string, string | number>;
+};
+
+export const useBreadcrumb = ({
+    params: paramsFromProps = {},
+}: UseBreadcrumbProps): UseBreadcrumbReturnType => {
+    const routerType = useRouterType();
     const { i18nProvider } = useContext(TranslationContext);
+    const parsed = useParsed();
 
     const translate = useTranslate();
 
-    const { resources, resource } = useResource();
-
-    const { action } = useParams<ResourceRouterParams>();
+    const { resources, resource, action } = useResource();
 
     const breadcrumbs: BreadcrumbsType[] = [];
 
@@ -33,47 +46,54 @@ export const useBreadcrumb = (): UseBreadcrumbReturnType => {
         return { breadcrumbs };
     }
 
-    const addBreadcrumb = (parentName: string) => {
-        const parentResource = resources.find(
-            (resource) => resource.name === parentName,
-        );
+    const addBreadcrumb = (parentName: string | IResourceItem) => {
+        const parentResource =
+            typeof parentName === "string"
+                ? pickResource(parentName, resources)
+                : parentName;
 
         if (parentResource) {
-            if (parentResource.parentName) {
-                addBreadcrumb(parentResource.parentName);
+            const grandParentName = pickNotDeprecated(
+                parentResource?.meta?.parent,
+                parentResource?.parentName,
+            );
+            if (grandParentName) {
+                addBreadcrumb(grandParentName);
             }
+            const hrefRaw = getActionRoutesFromResource(
+                parentResource,
+                resources,
+                routerType === "legacy",
+            ).find((r) => r.action === "list")?.route;
+            const href = hrefRaw
+                ? routerType === "legacy"
+                    ? hrefRaw
+                    : composeRoute(hrefRaw, parsed, paramsFromProps)
+                : undefined;
+
             breadcrumbs.push({
                 label:
-                    parentResource.label ??
+                    pickNotDeprecated(
+                        parentResource.meta?.label,
+                        parentResource.options?.label,
+                    ) ??
                     translate(
                         `${parentResource.name}.${parentResource.name}`,
                         humanizeString(parentResource.name),
                     ),
-
-                href: !!parentResource.list
-                    ? `/${parentResource.route}`
-                    : undefined,
-                icon: parentResource.icon,
+                href: href,
+                icon: pickNotDeprecated(
+                    parentResource.meta?.icon,
+                    parentResource.options?.icon,
+                    parentResource.icon,
+                ),
             });
         }
     };
 
-    if (resource.parentName) {
-        addBreadcrumb(resource.parentName);
-    }
+    addBreadcrumb(resource);
 
-    breadcrumbs.push({
-        label:
-            resource.label ??
-            translate(
-                `${resource.name}.${resource.name}`,
-                humanizeString(resource.name),
-            ),
-        href: !!resource.list ? `/${resource.route}` : undefined,
-        icon: resource.icon,
-    });
-
-    if (action) {
+    if (action && action !== "list") {
         const key = `actions.${action}`;
         const actionLabel = translate(key);
         if (typeof i18nProvider !== "undefined" && actionLabel === key) {
