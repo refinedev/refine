@@ -158,7 +158,8 @@ export const useList = <
                 hasPagination,
                 config?.hasPagination,
             ),
-            ...(pagination?.mode === "server" && {
+            ...((pagination?.mode === "server" ||
+                typeof pagination?.mode === "undefined") && {
                 pagination: pickNotDeprecated(pagination, config?.pagination),
             }),
             ...(sorters && {
