@@ -52,6 +52,7 @@ export type UseListProps<TData, TError> = {
     pagination?: Pagination;
     /**
      * Whether to use server-side pagination or not
+     * @deprecated `hasPagination` property is deprecated. Use `pagination.mode` instead.
      */
     hasPagination?: boolean;
     /**
@@ -157,7 +158,9 @@ export const useList = <
                 hasPagination,
                 config?.hasPagination,
             ),
-            pagination: pickNotDeprecated(pagination, config?.pagination),
+            ...(pagination?.mode === "server" && {
+                pagination: pickNotDeprecated(pagination, config?.pagination),
+            }),
             ...(sorters && {
                 sorters,
             }),
