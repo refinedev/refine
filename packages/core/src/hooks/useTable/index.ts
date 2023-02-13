@@ -32,6 +32,9 @@ import {
     MetaDataQuery,
     LiveModeProps,
 } from "../../interfaces";
+import { useParse } from "@hooks/router/use-parse";
+import { useGo } from "@hooks/router/use-go";
+import warnOnce from "warn-once";
 
 type SetFilterBehavior = "merge" | "replace";
 
@@ -197,26 +200,56 @@ export function useTable<
 
     const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
 
-    const { useLocation, useParams } = useRouterContext();
-    const { search, pathname } = useLocation();
     const liveMode = useLiveMode(liveModeFromProp);
 
+    const { useLocation, useParams } = useRouterContext();
+    const { search, pathname } = useLocation();
+
+    const parse = useParse();
+
+    const { resource: resourceFromBindings, ...parsedParams } = React.useMemo(
+        () => parse(),
+        [parse],
+    );
+
+    /** `parseTableParams` is redundant with the new routing */
     // We want to always parse the query string even when syncWithLocation is
     // deactivated, for hotlinking to work properly
     const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
-        parseTableParams(search);
+        parseTableParams(search ?? "?");
 
-    const defaultCurrent = parsedCurrent || initialCurrent;
-    const defaultPageSize = parsedPageSize || initialPageSize;
-    const defaultSorter = parsedSorter.length ? parsedSorter : initialSorter;
-    const defaultFilter = parsedFilters.length ? parsedFilters : initialFilter;
+    const defaultCurrent =
+        parsedParams?.params?.current || parsedCurrent || initialCurrent;
+    const defaultPageSize =
+        parsedParams?.params?.pageSize || parsedPageSize || initialPageSize;
+    const defaultSorter =
+        parsedParams?.params?.sorters ||
+        (parsedSorter.length ? parsedSorter : initialSorter);
+    const defaultFilter =
+        parsedParams?.params?.filters ||
+        (parsedFilters.length ? parsedFilters : initialFilter);
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const { replace } = useNavigation();
+    /** New way of `replace` calls to the router is using `useGo` */
+    const go = useGo();
+
     const resourceWithRoute = useResourceWithRoute();
 
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
+
+    const resourceInUse =
+        typeof resourceFromBindings === "string"
+            ? resourceFromBindings
+            : resourceFromBindings?.name ?? resource?.name;
+
+    React.useEffect(() => {
+        warnOnce(
+            typeof resourceInUse === "undefined",
+            `useTable: \`resource\` is not defined.`,
+        );
+    }, [resourceInUse]);
 
     const [sorter, setSorter] = useState<CrudSorting>(
         setInitialSorters(permanentSorter, defaultSorter ?? []),
@@ -232,18 +265,33 @@ export function useTable<
         sorter,
         filters,
     }: SyncWithLocationParams) => {
-        const currentQueryParams = qs.parse(search?.substring(1)); // remove first ? character
+        if (
+            (go as { __provided?: boolean })?.__provided &&
+            (parse as { __provided?: boolean })?.__provided
+        ) {
+            return (
+                go({
+                    type: "path",
+                    options: {
+                        keepHash: true,
+                        keepQuery: true,
+                    },
+                }) ?? ""
+            );
+        } else {
+            const currentQueryParams = qs.parse(search?.substring(1)); // remove first ? character
 
-        const stringifyParams = stringifyTableParams({
-            pagination: {
-                pageSize,
-                current,
-            },
-            sorter,
-            filters,
-            ...currentQueryParams,
-        });
-        return `${pathname}?${stringifyParams}`;
+            const stringifyParams = stringifyTableParams({
+                pagination: {
+                    pageSize,
+                    current,
+                },
+                sorter,
+                filters,
+                ...currentQueryParams,
+            });
+            return `${pathname ?? ""}?${stringifyParams ?? ""}`;
+        }
     };
 
     useEffect(() => {
@@ -256,44 +304,72 @@ export function useTable<
     }, [search]);
 
     const currentQueryParams = (): object => {
-        // We get QueryString parameters that are uncontrolled by refine.
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { sorter, filters, pageSize, current, ...rest } = qs.parse(
-            search,
-            {
-                ignoreQueryPrefix: true,
-            },
-        );
+        if ((parse as { __provided?: boolean })?.__provided) {
+            const { sorters, filters, pageSize, current, ...rest } =
+                parsedParams?.params ?? {};
 
-        return rest;
+            return rest;
+        } else {
+            // We get QueryString parameters that are uncontrolled by refine.
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const { sorter, filters, pageSize, current, ...rest } = qs.parse(
+                search,
+                {
+                    ignoreQueryPrefix: true,
+                },
+            );
+
+            return rest;
+        }
     };
 
     useEffect(() => {
         if (syncWithLocation) {
-            const queryParams = currentQueryParams();
-            const stringifyParams = stringifyTableParams({
-                ...(hasPagination
-                    ? {
-                          pagination: {
-                              pageSize,
-                              current,
-                          },
-                      }
-                    : {}),
-                sorter: differenceWith(sorter, permanentSorter, isEqual),
-                filters: differenceWith(filters, permanentFilter, isEqual),
-                ...queryParams,
-            });
-
             // Careful! This triggers render
-            return replace(`${pathname}?${stringifyParams}`, undefined, {
-                shallow: true,
-            });
+            const queryParams = currentQueryParams();
+
+            if ((go as { __provided?: boolean })?.__provided) {
+                go({
+                    type: "replace",
+                    query: {
+                        current,
+                        pageSize,
+                        sorter: differenceWith(
+                            sorter,
+                            permanentSorter,
+                            isEqual,
+                        ),
+                        filters: differenceWith(
+                            filters,
+                            permanentFilter,
+                            isEqual,
+                        ),
+                        queryParams,
+                    },
+                });
+            } else if (replace) {
+                const stringifyParams = stringifyTableParams({
+                    ...(hasPagination
+                        ? {
+                              pagination: {
+                                  pageSize,
+                                  current,
+                              },
+                          }
+                        : {}),
+                    sorter: differenceWith(sorter, permanentSorter, isEqual),
+                    filters: differenceWith(filters, permanentFilter, isEqual),
+                    ...queryParams,
+                });
+                return replace(`${pathname}?${stringifyParams}`, undefined, {
+                    shallow: true,
+                });
+            }
         }
     }, [syncWithLocation, current, pageSize, sorter, filters]);
 
     const queryResult = useList<TData, TError>({
-        resource: resource.name,
+        resource: resourceInUse,
         hasPagination,
         pagination: { current, pageSize },
         filters: unionFilters(permanentFilter, filters),
