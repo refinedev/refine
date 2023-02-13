@@ -33,6 +33,7 @@
 
 
 # Full Stack MERN Dashboard App Using Refine - Server App
+![app_cover](https://user-images.githubusercontent.com/18739364/218060605-19c3e8cd-75e9-4afd-a796-d4801237c0fe.png)
 
 [Refer to the client app source code](https://github.com/refinedev/refine/tree/master/examples/mern-dashboard-client)
 
