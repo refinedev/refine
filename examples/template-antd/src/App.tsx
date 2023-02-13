@@ -10,7 +10,7 @@ import {
 import "@pankod/refine-antd/dist/reset.css";
 
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 function App() {
     return (

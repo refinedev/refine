@@ -1,8 +1,6 @@
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider, {
-    MemoryRouterComponent,
-} from "@pankod/refine-react-router-v6";
+import routerProvider, { MemoryRouterComponent } from "@pankod/refine-react-router-v6/legacy";
 import { useDarkMode } from "storybook-dark-mode";
 import {
     DarkTheme,

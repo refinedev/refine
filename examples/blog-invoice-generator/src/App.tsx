@@ -5,7 +5,7 @@ import {
     LoginPage,
     Icons,
 } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import "@pankod/refine-antd/dist/reset.css";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 import { authProvider, axiosInstance } from "./authProvider";

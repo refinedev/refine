@@ -11,7 +11,7 @@ import {
     LoginPage,
     ErrorComponent,
 } from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 
 import { authProvider, axiosInstance } from "./authProvider";

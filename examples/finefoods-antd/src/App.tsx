@@ -1,7 +1,7 @@
 import React from "react";
 import { Refine } from "@pankod/refine-core";
 import { RefineKbarProvider } from "@pankod/refine-kbar";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import {
     Icons,
     notificationProvider,

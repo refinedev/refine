@@ -14,7 +14,7 @@ import {
     Global,
 } from "@pankod/refine-mantine";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
 import { Header } from "./components";

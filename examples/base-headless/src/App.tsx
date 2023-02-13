@@ -1,6 +1,8 @@
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerBindings, { RefineRoutes } from "@pankod/refine-react-router-v6";
+import routerBindings, {
+    RefineRoutes,
+} from "@pankod/refine-react-router-v6/legacy";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PostCreate, PostEdit } from "pages/posts";

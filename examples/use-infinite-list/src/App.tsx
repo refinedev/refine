@@ -1,5 +1,5 @@
 import { LayoutProps, Refine } from "@pankod/refine-core";
-import routerProvider, { Link } from "@pankod/refine-react-router-v6";
+import routerProvider, { Link } from "@pankod/refine-react-router-v6/legacy";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import { githubDataProvider } from "github-data-provider";

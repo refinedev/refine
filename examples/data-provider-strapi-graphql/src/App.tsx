@@ -5,7 +5,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import dataProvider, { GraphQLClient } from "@pankod/refine-strapi-graphql";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import "@pankod/refine-antd/dist/reset.css";
 

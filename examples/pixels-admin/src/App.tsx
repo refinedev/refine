@@ -10,7 +10,7 @@ import {
 } from "@pankod/refine-antd";
 import { Title } from "./components/layout";
 import { dataProvider, liveProvider } from "@pankod/refine-supabase";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import { supabaseClient } from "utility";
 import "@pankod/refine-antd/dist/reset.css";
 

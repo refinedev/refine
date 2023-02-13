@@ -7,7 +7,7 @@ import {
     Icons,
     Typography,
 } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import debounce from "lodash/debounce";
 
 const { Link } = routerProvider;

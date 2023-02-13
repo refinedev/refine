@@ -5,7 +5,7 @@ import {
     ThemeProvider,
     LightTheme,
 } from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import dataProvider from "@pankod/refine-simple-rest";
 import Layout from "./components/Layout";
 import EmployeeList from "./pages/employees";

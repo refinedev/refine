@@ -1,6 +1,6 @@
 import React from "react";
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import { postList, categoryList, userList, eventList } from "pages";

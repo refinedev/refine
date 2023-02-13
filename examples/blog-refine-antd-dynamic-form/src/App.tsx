@@ -6,7 +6,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import "@pankod/refine-antd/dist/reset.css";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import dataProvider from "@pankod/refine-simple-rest";
 import PostCreate from "pages/PostCreate";
 import PostEdit from "pages/PostEdit";

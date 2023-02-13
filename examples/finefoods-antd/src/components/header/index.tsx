@@ -22,7 +22,7 @@ import {
     AntdLayout,
 } from "@pankod/refine-antd";
 
-import RefineReactRouter from "@pankod/refine-react-router-v6";
+import RefineReactRouter from "@pankod/refine-react-router-v6/legacy";
 
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";

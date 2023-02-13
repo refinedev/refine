@@ -4,7 +4,7 @@ import "@pankod/refine-antd/dist/reset.css";
 import { Refine } from "@pankod/refine-core";
 import { Layout } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider, { MemoryRouterComponent } from "@pankod/refine-react-router-v6";
+import routerProvider, { MemoryRouterComponent } from "@pankod/refine-react-router-v6/legacy";
 
 
 

@@ -5,7 +5,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";

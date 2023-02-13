@@ -18,7 +18,7 @@ import {
 } from "@mui/icons-material";
 
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import axios, { AxiosRequestConfig } from "axios";
 import { Title, Sider, Layout, Header } from "components/layout";
 import { ColorModeContextProvider } from "contexts";

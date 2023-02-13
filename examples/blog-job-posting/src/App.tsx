@@ -1,5 +1,5 @@
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import nestjsxCrudDataProvider from "@pankod/refine-nestjsx-crud";
 import {
     notificationProvider,

@@ -1,5 +1,5 @@
 import { useOne } from "@pankod/refine-core";
-import { useParams } from "@pankod/refine-react-router-v6";
+import { useParams } from "@pankod/refine-react-router-v6/legacy";
 
 import { Profile } from "components";
 

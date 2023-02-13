@@ -11,7 +11,7 @@ import {
 } from "@pankod/refine-mantine";
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 const App: React.FC = () => {
     return (
