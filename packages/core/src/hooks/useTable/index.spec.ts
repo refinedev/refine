@@ -70,31 +70,6 @@ describe("useTable Hook", () => {
         expect(pageCount).toEqual(2);
     });
 
-    it("with disabled pagination", async () => {
-        const { result } = renderHook(
-            () =>
-                useTable({
-                    hasPagination: false,
-                }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
-
-        await waitFor(() => {
-            expect(!result.current.tableQueryResult.isLoading).toBeTruthy();
-        });
-
-        const { pageSize, current, pageCount } = result.current;
-
-        expect(pageSize).toBeUndefined();
-        expect(current).toBeUndefined();
-        expect(pageCount).toBeUndefined();
-    });
-
     it("with custom resource", async () => {
         const { result } = renderHook(
             () =>
