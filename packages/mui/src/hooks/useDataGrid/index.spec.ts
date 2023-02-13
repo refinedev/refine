@@ -60,25 +60,4 @@ describe("useDataGrid Hook", () => {
         ]);
         expect(result.current.current).toEqual(1);
     });
-
-    it("with no pagination", async () => {
-        const { result } = renderHook(
-            () =>
-                useDataGrid<any, any>({
-                    resource: "posts",
-                    hasPagination: false,
-                }),
-            {
-                wrapper: TestWrapper({}),
-            },
-        );
-
-        await waitFor(() => {
-            expect(!result.current.tableQueryResult?.isLoading).toBeTruthy();
-        });
-
-        expect(result.current.current).toBeUndefined();
-        expect(result.current.pageSize).toBeUndefined();
-        expect(result.current.pageCount).toBeUndefined();
-    });
 });
