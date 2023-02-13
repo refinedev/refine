@@ -19,7 +19,7 @@ export const ErrorComponent: CreateInferencerConfig["errorComponent"] = ({
             >
                 <Alert severity="error">
                     <AlertTitle>Error</AlertTitle>
-                    {error ?? ""}
+                    <div dangerouslySetInnerHTML={{ __html: error ?? "" }} />
                 </Alert>
             </Box>
         );

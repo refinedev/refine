@@ -12,7 +12,7 @@ export const ErrorComponent: CreateInferencerConfig["errorComponent"] = ({
         return (
             <Center style={{ minHeight: 300 }}>
                 <Alert title="Error" color="red" icon={<IconAlertCircle />}>
-                    {error ?? ""}
+                    <div dangerouslySetInnerHTML={{ __html: error ?? "" }} />
                 </Alert>
             </Center>
         );
