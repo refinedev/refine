@@ -30,7 +30,7 @@ const App: React.FC = () => {
                 },
                 {
                     name: "categories",
-                    meta: {
+                    options: {
                         dataProviderName: "categories",
                     },
                 },

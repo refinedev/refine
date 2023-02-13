@@ -35,7 +35,7 @@ function App() {
                         name: "61cb01b17ef57",
                         list: ProductList,
                         show: ProductShow,
-                        meta: {
+                        options: {
                             label: "Products",
                             route: "products",
                         },
@@ -45,7 +45,7 @@ function App() {
                         list: OrderList,
                         create: CreateOrder,
                         edit: OrderEdit,
-                        meta: {
+                        options: {
                             label: "Orders",
                             route: "orders",
                         },
