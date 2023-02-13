@@ -1,0 +1,77 @@
+import { API, JSCodeshift, Collection, FileInfo } from "jscodeshift";
+
+export const parser = "tsx";
+
+const REFINE_ANTD_PATH = "@pankod/refine-antd";
+const REFINE_CORE_PATH = "@pankod/refine-core";
+
+const ANTD_IMPORTS_TO_MOVE_CORE = ["useMenu"];
+
+const moveImports = (
+    j: JSCodeshift,
+    source: Collection,
+    importNamesToMove: string[],
+    fromModule: string,
+    toModule: string,
+) => {
+    importNamesToMove.forEach((importName) => {
+        // get the import declaration to be moved
+        const importsFromModule = source
+            .find(j.ImportDeclaration)
+            .filter((path) => path.node.source.value === fromModule)
+            .find(j.ImportSpecifier);
+
+        // filter the imports to be moved
+        const importsToBeMoved = importsFromModule.filter(
+            (path) =>
+                path.node.imported.name === importName ||
+                path.node.local?.name === importName,
+        );
+
+        if (!importsToBeMoved?.length) return;
+
+        importsToBeMoved.forEach((importToMove) => {
+            // get the import declaration of the import to move
+            const importsToModule = source
+                .find(j.ImportDeclaration)
+                .filter((path) => path.node.source.value === toModule);
+
+            // add new import from importsToBeMoved
+            importsToModule.forEach((importTo) =>
+                j(importTo).replaceWith(
+                    j.importDeclaration(
+                        [...importTo.node.specifiers, importToMove.get().node],
+                        importTo.node.source,
+                    ),
+                ),
+            );
+
+            // remove the  moved import
+            j(importToMove).remove();
+        });
+    });
+
+    // remove empty import declarations after moving imports e.g. import { } from "@pankod/refine-antd"
+    source
+        .find(j.ImportDeclaration)
+        .filter((path) => path.node.source.value === fromModule)
+        .filter((path) => !path.node.specifiers?.length)
+        .forEach((path) => j(path).remove());
+};
+
+export default function transformer(file: FileInfo, api: API): string {
+    if (file.path !== "src/components/sider/index.tsx") return;
+
+    const j = api.jscodeshift;
+    const source = j(file.source);
+
+    moveImports(
+        j,
+        source,
+        ANTD_IMPORTS_TO_MOVE_CORE,
+        REFINE_ANTD_PATH,
+        REFINE_CORE_PATH,
+    );
+
+    return source.toSource();
+}
