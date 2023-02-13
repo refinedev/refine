@@ -268,8 +268,8 @@ export function useTable<
         if (syncWithLocation) {
             const queryParams = currentQueryParams();
             const stringifyParams = stringifyTableParams({
-                ...(pickNotDeprecated(pagination?.mode, hasPagination) ===
-                    "server" ||
+                ...(pickNotDeprecated(pagination?.mode, hasPagination) !==
+                    "off" ||
                 pickNotDeprecated(pagination?.mode, hasPagination) === true
                     ? {
                           pagination: {
