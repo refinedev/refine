@@ -1,5 +1,6 @@
 import { ResourceProps } from "src/interfaces/bindings/resource";
 import { getParentPrefixForResource } from "../router";
+import { pickNotDeprecated } from "../pickNotDeprecated";
 
 /**
  * generates route for the resource based on parents and custom routes
@@ -18,7 +19,8 @@ export const routeGenerator = (
     );
 
     if (parentPrefix) {
-        route = `${parentPrefix}/${item.options?.route ?? item.name}`;
+        const meta = pickNotDeprecated(item.meta, item.options);
+        route = `${parentPrefix}/${meta?.route ?? item.name}`;
     } else {
         route = item.options?.route ?? item.name;
     }
