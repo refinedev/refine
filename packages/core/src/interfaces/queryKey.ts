@@ -18,6 +18,6 @@ export interface IQueryKeys {
             | undefined,
     ) => QueryKey;
     many: (ids?: BaseKey[]) => QueryKey;
-    detail: (id: BaseKey) => QueryKey;
+    detail: (id?: BaseKey) => QueryKey;
     logList: (meta?: Record<number | string, any>) => QueryKey;
 }
