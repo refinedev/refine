@@ -19,7 +19,7 @@ import {
 import { TranslationContextProvider } from "@contexts/translation";
 import { RefineContextProvider } from "@contexts/refine";
 import { IRefineContextProvider } from "@contexts/refine/IRefineContext";
-import { RouterContextProvider } from "@contexts/router";
+import { LegacyRouterContextProvider } from "@contexts/legacy-router";
 import { AccessControlContextProvider } from "@contexts/accessControl";
 import { LiveContextProvider } from "@contexts/live";
 import { NotificationContextProvider } from "@contexts/notification";
@@ -159,13 +159,13 @@ export const TestWrapper: (
         );
 
         return (
-            <RouterContextProvider {...MockRouterProvider}>
+            <LegacyRouterContextProvider {...MockRouterProvider}>
                 <MemoryRouter initialEntries={routerInitialEntries}>
                     <QueryClientProvider client={queryClient}>
                         {withRefine}
                     </QueryClientProvider>
                 </MemoryRouter>
-            </RouterContextProvider>
+            </LegacyRouterContextProvider>
         );
     };
 };
