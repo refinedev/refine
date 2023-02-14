@@ -10,14 +10,6 @@ const defaultPagination = {
     total: 2,
 };
 
-const customPagination = {
-    current: 2,
-    defaultCurrent: 2,
-    defaultPageSize: 1,
-    pageSize: 1,
-    total: 2,
-};
-
 describe("useSimpleList Hook", () => {
     it("default", async () => {
         const { result } = renderHook(() => useSimpleList(), {
@@ -48,7 +40,12 @@ describe("useSimpleList Hook", () => {
         const { result } = renderHook(
             () =>
                 useSimpleList({
-                    pagination: customPagination,
+                    pagination: {
+                        current: 2,
+                        pageSize: 1,
+                    },
+                    initialCurrent: 10,
+                    initialPageSize: 20,
                 }),
             {
                 wrapper: TestWrapper({
@@ -62,16 +59,12 @@ describe("useSimpleList Hook", () => {
             expect(!result.current.listProps.loading).toBeTruthy();
         });
 
-        const {
-            listProps: { pagination },
-        } = result.current;
-
-        expect(pagination).toEqual({
-            ...customPagination,
-            onChange: (pagination as any).onChange,
-            itemRender: (pagination as any).itemRender,
-            simple: true,
-        });
+        expect(result.current.listProps.pagination).toEqual(
+            expect.objectContaining({
+                pageSize: 1,
+                current: 2,
+            }),
+        );
     });
 
     it("with disabled pagination", async () => {
@@ -119,5 +112,76 @@ describe("useSimpleList Hook", () => {
         } = result.current;
 
         expect(dataSource).toHaveLength(2);
+    });
+
+    it.each(["client", "server"] as const)(
+        "when pagination mode is %s, should set pagination props",
+        async (mode) => {
+            const { result } = renderHook(
+                () =>
+                    useSimpleList({
+                        pagination: {
+                            mode,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(result.current.listProps.pagination).toEqual(
+                expect.objectContaining({
+                    pageSize: 10,
+                    current: 1,
+                }),
+            );
+        },
+    );
+
+    it("when pagination mode is off, pagination should be false", async () => {
+        const { result } = renderHook(
+            () =>
+                useSimpleList({
+                    pagination: {
+                        mode: "off",
+                    },
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        expect(result.current.listProps.pagination).toBeFalsy();
+    });
+
+    it("pagination should be prioritized over hasPagination", async () => {
+        const { result } = renderHook(
+            () =>
+                useSimpleList({
+                    pagination: {
+                        mode: "off",
+                    },
+                    hasPagination: true,
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        expect(result.current.listProps.pagination).toBeFalsy();
+    });
+
+    it("when hasPagination is false and pagination mode is not defined, pagination should be false", async () => {
+        const { result } = renderHook(
+            () =>
+                useSimpleList({
+                    hasPagination: false,
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        expect(result.current.listProps.pagination).toBeFalsy();
     });
 });
