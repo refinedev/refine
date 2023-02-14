@@ -90,13 +90,7 @@ export const authProvider: AuthProvider = {
     },
     checkError: () => Promise.resolve(),
     checkAuth: async () => {
-        const { data } = await supabaseClient.auth.getSession();
-        const { session } = data;
-
-        if (!session) {
-            return Promise.reject();
-        }
-
+        await supabaseClient.auth.getSession();
         return Promise.resolve();
     },
     getPermissions: async () => {
