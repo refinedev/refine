@@ -290,7 +290,7 @@ export const integrations: IntegrationsType = {
             ],
         },
         {
-            name: "ent-refine",
+            name: "Ent refine",
             icon: EntRefine,
             description:
                 "A library that generates fully customizable UI based on Entgo ORM and GraphQL API with refine.",
