@@ -1,4 +1,4 @@
-import { ModalProps } from "../../../components/antd";
+import { ModalProps } from "antd";
 import {
     useModal as useCoreModal,
     useModalReturnType as useCoreModelReturnType,

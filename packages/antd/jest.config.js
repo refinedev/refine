@@ -26,7 +26,6 @@ module.exports = {
     },
     coveragePathIgnorePatterns: [
         "<rootDir>/src/index.ts",
-        "<rootDir>/src/components/antd/",
         "<rootDir>/src/interfaces/",
     ],
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import { FormInstance, FormProps, Form } from "antd";
 import { useForm as useFormSF } from "sunflower-antd";
+import { ButtonProps } from "antd";
 
 import {
     HttpError,
@@ -12,8 +13,6 @@ import {
     CreateResponse,
     UpdateResponse,
 } from "@pankod/refine-core";
-
-import { ButtonProps } from "../../components/antd";
 
 export type UseFormProps<
     TData extends BaseRecord = BaseRecord,
