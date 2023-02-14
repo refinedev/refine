@@ -15,47 +15,45 @@ import { Tweet } from "react-twitter-widgets";
 
 const timeline = [
     {
-        date: "30th October 2022",
+        date: "14th February 2023",
         title: "Pilot & refine architecture",
-        description: `Overview about <strong className="font-bold">refine</strong> and the app we built during the article series`,
+        description: `Overview about <strong className="font-bold">refine</strong> and <strong className="font-bold">Supabase</strong> the app we built during the article series`,
+        link: "https://refine.dev/blog/refine-pixels-1/",
+    },
+    {
+        date: "15th February 2023",
+        title: "Setting Up the Client App",
+        description: `We start with setting up the Pixels client app using <strong className="font-bold">create refine-app</strong> by choosing <strong className="font-bold">Ant Design</strong> as a UI framework and <strong className="font-bold">Supabase</strong> as a dataprovider`,
         link: null,
     },
     {
-        date: "30th October 2022",
-        title: "Installation of the Client App",
-        description: `Bootstraping the <strong className="font-bold">refine</strong> client app with <strong className="font-bold">superplate CLI</strong> by choosing <strong className="font-bold">Ant Design</strong> as a UI framework and <strong className="font-bold">Supabase</strong> as a dataprovider`,
+        date: "16th October 2022",
+        title: "Adding CRUD Actions & Authentication",
+        description: `We start implementing CRUD functionalities like creating, showing a canvas, drawing pixels and user authentication using <strong className="font-bold">Supabase</strong>`,
         link: null,
     },
     {
-        date: "30th October 2022",
-        title: "Create Public Dashboard page & Canvas create page",
-        description: `Public dashboard that lists all canvases and has two pages.`,
-        link: null,
-    },
-    {
-        date: "30th October 2022",
-        title: "Live Provider",
+        date: "17th October 2022",
+        title: "Adding Realtime Collaboration",
         description: `Adding <strong className="font-bold">Supabase</strong> as live provider to the project in order that multiple users drawing on the same canvas can see each other's paintings in real-time.`,
         link: null,
     },
     {
-        date: "30th October 2022",
-        title: "Create admin app",
-        description: `We’ll built a simple admin panel by bootstrapping the app with <strong className="font-bold">superplate CLI</strong><br/>
-            UI Framework => <strong className="font-bold">Ant design</strong><br/>
-            data provider => <strong className="font-bold">Supabase</strong>`,
+        date: "18th October 2022",
+        title: "Initialize and Build Pixels Admin App",
+        description: `We'll implement an admin dashboard app and explore how refine's Ant Design support module is geared to rapidly build CRUD pages for a refine app`,
         link: null,
     },
     {
-        date: "30th October 2022",
-        title: "Setting Access control provider to admin app",
-        description: `There will be two role based access control&nbsp;in&nbsp;the&nbsp;admin&nbsp;app:<br/>
-            Admin & Editor`,
+        date: "19th October 2022",
+        title: "Add Role Based Authorization",
+        description:
+            "We implement user role based authorization to our admin app",
         link: null,
     },
     {
-        date: "30th October 2022",
-        title: "Audit log provider",
+        date: "20th October 2022",
+        title: "Add Audit Log to Client App and Admin App",
         description: `Well record each canvas creation and pixel drawings to audit logs table in <strong className="font-bold">Supabase</strong>. And then we’ll be able to display this logs on the admin and the client app.`,
         link: null,
     },
@@ -94,9 +92,15 @@ const additionalSources = [
 
 const tweetUrl = "https://twitter.com/intent/tweet?text=%23refineweek";
 const tweetIDs = [
-    "1598580077146640384",
+    "1615260152822628352",
     "1597878371760979970",
-    "1598232457966678016",
+    "1621513516036526080",
+    "1621932348009861132",
+    "1624015381403955200",
+    "1616390215068688384",
+    "1617841995233529861",
+    "1620724625536880641",
+    "1618180208414322689",
 ];
 
 const RefineWeek = () => {
