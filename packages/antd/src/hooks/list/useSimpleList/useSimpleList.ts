@@ -12,18 +12,19 @@ import {
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
     useTableReturnType,
+    CrudSorting,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import { useLiveMode } from "@pankod/refine-core";
 import { PaginationLink } from "@hooks/table/useTable/paginationLink";
 import { PaginationConfig } from "antd/lib/pagination";
 
 export type useSimpleListProps<TData, TError, TSearchVariables> =
-    ListProps<TData> &
-        useTablePropsCore<TData, TError> & {
-            onSearch?: (
-                data: TSearchVariables,
-            ) => CrudFilters | Promise<CrudFilters>;
-        } & SuccessErrorNotification &
+    useTablePropsCore<TData, TError> & {
+        onSearch?: (
+            data: TSearchVariables,
+        ) => CrudFilters | Promise<CrudFilters>;
+    } & SuccessErrorNotification &
         LiveModeProps;
 
 export type useSimpleListReturnType<
@@ -35,6 +36,13 @@ export type useSimpleListReturnType<
     searchFormProps: FormProps<TSearchVariables>;
     filters: CrudFilters;
     setFilters: useTableReturnType<TData>["setFilters"];
+    sorter?: CrudSorting;
+    setSorter: useTableReturnType<TData>["setSorter"];
+    current?: number;
+    setCurrent: useTableReturnType<TData>["setCurrent"];
+    pageSize: number;
+    setPageSize: useTableReturnType<TData>["setPageSize"];
+    pageCount: number;
 };
 
 /**
@@ -53,55 +61,53 @@ export const useSimpleList = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
->(
-    {
-        resource: resourceFromProp,
-        initialCurrent,
-        initialPageSize,
-        hasPagination = true,
-        initialSorter,
-        permanentSorter,
-        initialFilter,
-        permanentFilter,
-        defaultSetFilterBehavior,
-        onSearch,
-        queryOptions,
-        syncWithLocation: syncWithLocationProp,
-        successNotification,
-        errorNotification,
-        liveMode: liveModeFromProp,
-        onLiveEvent,
-        liveParams,
-        metaData,
-        dataProviderName,
-        ...listProps
-    }: useSimpleListProps<TData, TError, TSearchVariables> = {
-        hasPagination: true,
-    },
-): useSimpleListReturnType<TData, TSearchVariables> => {
+>({
+    resource,
+    initialCurrent,
+    initialPageSize,
+    pagination,
+    hasPagination = true,
+    initialSorter,
+    permanentSorter,
+    initialFilter,
+    permanentFilter,
+    defaultSetFilterBehavior,
+    onSearch,
+    queryOptions,
+    syncWithLocation,
+    successNotification,
+    errorNotification,
+    liveMode: liveModeFromProp,
+    onLiveEvent,
+    liveParams,
+    metaData,
+    dataProviderName,
+}: useSimpleListProps<
+    TData,
+    TError,
+    TSearchVariables
+> = {}): useSimpleListReturnType<TData, TSearchVariables> => {
     const {
         sorter,
         filters,
         current,
         pageSize,
+        pageCount,
         setFilters,
         setCurrent,
         setPageSize,
+        setSorter,
         createLinkForSyncWithLocation,
         tableQueryResult: queryResult,
     } = useTableCore({
-        resource: resourceFromProp,
+        resource,
         initialSorter,
         permanentSorter,
         initialFilter,
         permanentFilter,
         defaultSetFilterBehavior,
-        initialCurrent: listProps.pagination
-            ? listProps.pagination.current
-            : initialCurrent,
-        initialPageSize: listProps.pagination
-            ? listProps.pagination.pageSize
-            : initialPageSize,
+        initialCurrent,
+        initialPageSize,
         queryOptions,
         successNotification,
         errorNotification,
@@ -109,11 +115,12 @@ export const useSimpleList = <
         onLiveEvent,
         liveParams,
         metaData,
-        syncWithLocation: syncWithLocationProp,
+        syncWithLocation,
         dataProviderName,
-        // @ts-expect-error currently boolean casting is not supported in overloaded types.
-        hasPagination: hasPagination,
+        hasPagination,
     });
+
+    const hasPaginationString = hasPagination ? "server" : "off";
 
     const breakpoint = Grid.useBreakpoint();
 
@@ -124,7 +131,9 @@ export const useSimpleList = <
     const { data, isFetched, isLoading } = queryResult;
 
     const onChange = (page: number, pageSize?: number): void => {
-        if (hasPagination) {
+        if (
+            pickNotDeprecated(pagination?.mode, hasPaginationString) !== "off"
+        ) {
             setCurrent(page);
             setPageSize(pageSize || 10);
         }
@@ -133,7 +142,10 @@ export const useSimpleList = <
     const onFinish = async (values: TSearchVariables) => {
         if (onSearch) {
             const searchFilters = await onSearch(values);
-            if (hasPagination) {
+            if (
+                pickNotDeprecated(pagination?.mode, hasPaginationString) !==
+                "off"
+            ) {
                 setCurrent?.(1);
             }
             return setFilters(searchFilters);
@@ -141,7 +153,9 @@ export const useSimpleList = <
     };
 
     const antdPagination = (): false | PaginationConfig => {
-        if (hasPagination) {
+        if (
+            pickNotDeprecated(pagination?.mode, hasPaginationString) !== "off"
+        ) {
             return {
                 itemRender: (page, type, element) => {
                     const link = createLinkForSyncWithLocation({
@@ -190,7 +204,6 @@ export const useSimpleList = <
                 simple: !breakpoint.sm,
                 total: data?.total,
                 onChange,
-                ...listProps.pagination,
             };
         }
 
@@ -203,7 +216,6 @@ export const useSimpleList = <
             onFinish,
         },
         listProps: {
-            ...listProps,
             dataSource: data?.data,
             loading: liveMode === "auto" ? isLoading : !isFetched,
             pagination: antdPagination(),
@@ -211,5 +223,12 @@ export const useSimpleList = <
         queryResult,
         filters,
         setFilters,
+        sorter,
+        setSorter,
+        current,
+        setCurrent,
+        pageSize,
+        setPageSize,
+        pageCount,
     };
 };
