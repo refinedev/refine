@@ -1,5 +1,12 @@
 # @pankod/refine-supabase
 
+## 4.1.1
+
+### Patch Changes
+
+-   [#3612](https://github.com/refinedev/refine/pull/3612) [`3b1a3a3dd63`](https://github.com/refinedev/refine/commit/3b1a3a3dd636ac7e525653714cf5a5d71ea586f1) Thanks [@aliemir](https://github.com/aliemir)! - - Fix realtime subscriptions without filters.
+    -   Remove `and` and `or` filter types in realtime subscriptions.
+
 ## 4.1.0
 
 ### Minor Changes
