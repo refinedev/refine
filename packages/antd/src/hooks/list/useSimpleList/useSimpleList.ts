@@ -117,6 +117,7 @@ export const useSimpleList = <
         metaData,
         syncWithLocation,
         dataProviderName,
+        pagination,
         hasPagination,
     });
 
