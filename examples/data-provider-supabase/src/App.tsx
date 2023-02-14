@@ -191,7 +191,12 @@ const App: React.FC = () => {
                     show: PostShow,
                 },
             ]}
-            options={{ liveMode: "auto" }}
+            /**
+             * Multiple subscriptions are currently not supported with the supabase JS client v2 and @pankod/refine-supabase v4.
+             * Therefore, enabling global live mode will cause unexpected behaviors.
+             * Please set `liveMode: "auto"` or `liveMode: "manual"` manually while using real-time features of refine.
+             */
+            options={{ liveMode: "off" }}
             notificationProvider={notificationProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}
