@@ -127,7 +127,11 @@ export interface IDataContextProvider {
         resource: string;
         pagination?: Pagination;
         hasPagination?: boolean;
+        /**
+         * @deprecated `sort` is deprecated, use `sorters` instead.
+         */
         sort?: CrudSorting;
+        sorters?: CrudSorting;
         filters?: CrudFilters;
         metaData?: MetaDataQuery;
         dataProviderName?: string;
@@ -204,7 +208,11 @@ export interface IDataContextProvider {
             | "post"
             | "put"
             | "patch";
+        /**
+         * @deprecated `sort` is deprecated, use `sorters` instead.
+         */
         sort?: CrudSorting;
+        sorters?: CrudSorting;
         filters?: CrudFilter[];
         payload?: TPayload;
         query?: TQuery;

@@ -72,7 +72,7 @@ describe("getList", () => {
                     value: ["1"],
                 },
             ],
-            sort: [
+            sorters: [
                 {
                     field: "id",
                     order: "asc",

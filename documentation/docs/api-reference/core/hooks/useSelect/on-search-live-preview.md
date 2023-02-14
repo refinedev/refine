@@ -17,8 +17,8 @@ const ProductCreate: React.FC = () => {
                 field: "title",
                 operator: "contains",
                 value,
-            }
-        ]
+            },
+        ],
         // highlight-end
     });
 

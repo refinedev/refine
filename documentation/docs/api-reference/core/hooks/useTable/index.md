@@ -283,7 +283,7 @@ const myDataProvider = {
         resource,
         pagination,
         hasPagination,
-        sort,
+        sorters,
         filters,
         // highlight-next-line
         metaData,

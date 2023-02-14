@@ -9,9 +9,9 @@ import * as gql from "gql-query-builder";
 import pluralize from "pluralize";
 import camelCase from "camelcase";
 
-export const genereteSort = (sort?: CrudSorting) => {
-    if (sort && sort.length > 0) {
-        const sortQuery = sort.map((i) => {
+export const generateSort = (sorters?: CrudSorting) => {
+    if (sorters && sorters.length > 0) {
+        const sortQuery = sorters.map((i) => {
             return `${i.field}:${i.order}`;
         });
 
@@ -20,6 +20,11 @@ export const genereteSort = (sort?: CrudSorting) => {
 
     return [];
 };
+
+/**
+ * @deprecated Please use `generateSort` instead.
+ */
+export const genereteSort = generateSort;
 
 export const generateFilter = (filters?: CrudFilters) => {
     const queryFilters: { [key: string]: any } = {};
@@ -63,12 +68,14 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             hasPagination = true,
             pagination = { current: 1, pageSize: 10 },
             sort,
+            sorters,
             filters,
             metaData,
         }) => {
             const { current = 1, pageSize = 10 } = pagination ?? {};
 
-            const sortBy = genereteSort(sort);
+            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
+            const sortBy = genereteSort(sorters ?? sort);
             const filterBy = generateFilter(filters);
 
             const camelResource = camelCase(resource);

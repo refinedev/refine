@@ -194,7 +194,7 @@ const dataProvider = {
     createMany: ({ resource, variables, metaData }) => Promise,
     deleteOne: ({ resource, id, metaData }) => Promise,
     deleteMany: ({ resource, ids, metaData }) => Promise,
-    getList: ({ resource, pagination, sort, filters, metaData }) => Promise,
+    getList: ({ resource, pagination, sorters, filters, metaData }) => Promise,
     getMany: ({ resource, ids, metaData }) => Promise,
     getOne: ({ resource, id, metaData }) => Promise,
     update: ({ resource, id, variables, metaData }) => Promise,
@@ -202,7 +202,7 @@ const dataProvider = {
     custom: ({
         url,
         method,
-        sort,
+        sorters,
         filters,
         payload,
         query,

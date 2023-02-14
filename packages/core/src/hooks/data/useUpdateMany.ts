@@ -16,6 +16,7 @@ import {
     useHandleNotification,
     useDataProvider,
     useInvalidate,
+    useLog,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -113,6 +114,7 @@ export const useUpdateMany = <
     const publish = usePublish();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
+    const { log } = useLog();
 
     const mutation = useMutation<
         UpdateManyResponse<TData>,
@@ -347,7 +349,15 @@ export const useUpdateMany = <
             },
             onSuccess: (
                 data,
-                { ids, resource, successNotification, values },
+                {
+                    ids,
+                    resource,
+                    metaData,
+                    dataProviderName,
+                    successNotification,
+                    values,
+                },
+                context,
             ) => {
                 const resourceSingular = pluralize.singular(resource);
 
@@ -382,6 +392,44 @@ export const useUpdateMany = <
                         ids: ids.map(String),
                     },
                     date: new Date(),
+                });
+
+                const previousData: any[] = [];
+                if (context) {
+                    ids.forEach((id) => {
+                        const queryData = queryClient.getQueryData<
+                            UpdateManyResponse<TData>
+                        >(context.queryKey.detail(id));
+
+                        previousData.push(
+                            Object.keys(values || {}).reduce<any>(
+                                (acc, item: any) => {
+                                    acc[item] = queryData?.data?.[item];
+                                    return acc;
+                                },
+                                {},
+                            ),
+                        );
+                    });
+                }
+
+                const { fields, operation, variables, ...rest } =
+                    metaData || {};
+
+                log?.mutate({
+                    action: "updateMany",
+                    resource,
+                    data: values,
+                    previousData,
+                    meta: {
+                        ids,
+                        dataProviderName: pickDataProvider(
+                            resource,
+                            dataProviderName,
+                            resources,
+                        ),
+                        ...rest,
+                    },
                 });
             },
             onError: (

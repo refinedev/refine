@@ -38,7 +38,13 @@ import dayjs from "dayjs";
 
 import { OrderStatus, OrderActions } from "components";
 
-import { IOrder, IStore, IOrderFilterVariables } from "interfaces";
+import {
+    IOrder,
+    IStore,
+    IOrderFilterVariables,
+    IOrderStatus,
+    IUser,
+} from "interfaces";
 import { useMemo } from "react";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
@@ -266,14 +272,14 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
         defaultValue: getDefaultFilter("store.id", filters),
     });
 
-    const { selectProps: orderSelectProps } = useSelect<IStore>({
+    const { selectProps: orderSelectProps } = useSelect<IOrderStatus>({
         resource: "orderStatuses",
         optionLabel: "text",
         optionValue: "text",
         defaultValue: getDefaultFilter("status.text", filters),
     });
 
-    const { selectProps: userSelectProps } = useSelect<IStore>({
+    const { selectProps: userSelectProps } = useSelect<IUser>({
         resource: "users",
         optionLabel: "fullName",
         defaultValue: getDefaultFilter("user.id", filters),

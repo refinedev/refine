@@ -127,20 +127,20 @@ access-control-expose-headers: X-Total-Count
 
     ```ts title="src/data-provider.ts"
     export const dataProvider = (apiUrl: string): DataProvider => ({
-      // ...
-      getList: async ({ resource }) => {
-        const url = `${apiUrl}/${resource}`;
+        // ...
+        getList: async ({ resource }) => {
+            const url = `${apiUrl}/${resource}`;
 
-        const { data, headers } = await axiosInstance.get(url);
+            const { data, headers } = await axiosInstance.get(url);
 
-        const total = +headers["x-total-count"];
+            const total = +headers["x-total-count"];
 
-        return {
-          data,
-          total,
-        };
-      },
-      // ...
+            return {
+                data,
+                total,
+            };
+        },
+        // ...
     });
     ```
 
@@ -164,32 +164,34 @@ access-control-expose-headers: X-Total-Count
 
     ```ts title="src/data-provider.ts"
     export const dataProvider = (apiUrl: string): DataProvider => ({
-      // ...
-      getList: async ({ resource, pagination }) => {
-        const url = `${apiUrl}/${resource}`;
+        // ...
+        getList: async ({ resource, pagination }) => {
+            const url = `${apiUrl}/${resource}`;
 
-        // highlight-start
-        const { current = 1, pageSize = 10 } = pagination ?? {};
+            // highlight-start
+            const { current = 1, pageSize = 10 } = pagination ?? {};
 
-        const query: {
-          _start?: number;
-          _end?: number;
-        } = {
-          _start: (current - 1) * pageSize,
-          _end: current * pageSize,
-        };
+            const query: {
+                _start?: number;
+                _end?: number;
+            } = {
+                _start: (current - 1) * pageSize,
+                _end: current * pageSize,
+            };
 
-        const { data, headers } = await axiosInstance.get(`${url}?${stringify(query)}`);
-        // highlight-end
+            const { data, headers } = await axiosInstance.get(
+                `${url}?${stringify(query)}`,
+            );
+            // highlight-end
 
-        const total = +headers["x-total-count"];
+            const total = +headers["x-total-count"];
 
-        return {
-          data,
-          total,
-        };
-      },
-      // ...
+            return {
+                data,
+                total,
+            };
+        },
+        // ...
     });
     ```
 
@@ -216,7 +218,7 @@ access-control-expose-headers: X-Total-Count
     :::
 
     ```ts title="src/data-provider.ts"
-    getList: async ({ resource, pagination, sort }) => {
+    getList: async ({ resource, pagination, sorters }) => {
       const url = `${apiUrl}/${resource}`;
 
       const { current = 1, pageSize = 10 } = pagination ?? {};
@@ -234,9 +236,9 @@ access-control-expose-headers: X-Total-Count
       };
 
       // highlight-start
-      if (sort && sort.length > 0) {
-        query._sort = sort[0].field;
-        query._order = sort[0].order;
+      if (sorters && sorters.length > 0) {
+        query._sort = sorters[0].field;
+        query._order = sorters[0].order;
       }
       // highlight-end
 
@@ -283,17 +285,17 @@ access-control-expose-headers: X-Total-Count
     ```ts
     // Map refine operators to API operators
     const mapOperator = (operator: CrudOperators): string => {
-      switch (operator) {
-        case "ne":
-        case "gte":
-        case "lte":
-          return `_${operator}`;
-        case "contains":
-          return "_like";
-        case "eq":
-        default:
-          return "";
-      }
+        switch (operator) {
+            case "ne":
+            case "gte":
+            case "lte":
+                return `_${operator}`;
+            case "contains":
+                return "_like";
+            case "eq":
+            default:
+                return "";
+        }
     };
     ```
 
@@ -314,7 +316,7 @@ access-control-expose-headers: X-Total-Count
     };
     // highlight-end
 
-    getList: async ({ resource, pagination, sort, filters }) => {
+    getList: async ({ resource, pagination, sorters, filters }) => {
       const url = `${apiUrl}/${resource}`;
 
       const { current = 1, pageSize = 10 } = pagination ?? {};
@@ -329,9 +331,9 @@ access-control-expose-headers: X-Total-Count
         _end: current * pageSize,
       };
 
-      if (sort && sort.length > 0) {
-        query._sort = sort[0].field;
-        query._order = sort[0].order;
+      if (sorters && sorters.length > 0) {
+        query._sort = sorters[0].field;
+        query._order = sorters[0].order;
       }
 
       // highlight-next-line
@@ -414,22 +416,20 @@ access-control-expose-headers: X-Total-Count
 import { useList } from "@pankod/refine-core";
 
 const { data } = useList({
-  resource: "posts",
-  config: {
-    sort: [
-      {
-        field: "id",
-        order: "desc",
-      },
+    resource: "posts",
+    sorters: [
+        {
+            field: "id",
+            order: "desc",
+        },
     ],
     filters: [
-      {
-        field: "title",
-        operator: "contains",
-        value: "hello",
-      },
+        {
+            field: "title",
+            operator: "contains",
+            value: "hello",
+        },
     ],
-  },
 });
 ```
 
@@ -441,17 +441,17 @@ The `create` method creates a new record with the `resource` and `variables` par
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  create: async({ resource, variables }) => {
-    const url = `${apiUrl}/${resource}`;
+    // ...
+    create: async ({ resource, variables }) => {
+        const url = `${apiUrl}/${resource}`;
 
-    const { data } = await axiosInstance.post(url, variables);
+        const { data } = await axiosInstance.post(url, variables);
 
-    return {
-      data,
-    };
-  },
-  // ...
+        return {
+            data,
+        };
+    },
+    // ...
 });
 ```
 
@@ -474,10 +474,10 @@ import { useCreate } from "@pankod/refine-core";
 const { mutate } = useCreate();
 
 mutate({
-  resource: "posts",
-  values: {
-    title: "New Post",
-  },
+    resource: "posts",
+    values: {
+        title: "New Post",
+    },
 });
 ```
 
@@ -489,17 +489,17 @@ The `update` method updates the record with the `resource`, `id` and `variables`
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  update: async ({ resource, id, variables }) => {
-    const url = `${apiUrl}/${resource}/${id}`;
+    // ...
+    update: async ({ resource, id, variables }) => {
+        const url = `${apiUrl}/${resource}/${id}`;
 
-    const { data } = await axiosInstance.patch(url, variables);
+        const { data } = await axiosInstance.patch(url, variables);
 
-    return {
-      data,
-    };
-  },
-  // ...
+        return {
+            data,
+        };
+    },
+    // ...
 });
 ```
 
@@ -523,9 +523,9 @@ import { useUpdate } from "@pankod/refine-core";
 const { mutate } = useUpdate();
 
 mutate({
-  resource: "posts",
-  id: 2,
-  values: { title: "New Post Title" },
+    resource: "posts",
+    id: 2,
+    values: { title: "New Post Title" },
 });
 ```
 
@@ -537,19 +537,19 @@ The `deleteOne` method delete the record with the `resource` and `id` parameters
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  deleteOne: async ({ resource, id, variables }) => {
-    const url = `${apiUrl}/${resource}/${id}`;
+    // ...
+    deleteOne: async ({ resource, id, variables }) => {
+        const url = `${apiUrl}/${resource}/${id}`;
 
-    const { data } = await axiosInstance.delete(url, {
-      data: variables,
-    });
+        const { data } = await axiosInstance.delete(url, {
+            data: variables,
+        });
 
-    return {
-      data,
-    };
-  },
-  // ...
+        return {
+            data,
+        };
+    },
+    // ...
 });
 ```
 
@@ -583,18 +583,18 @@ The `getOne` method gets the record with the `resource` and `id` parameters.
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  getOne: async ({ resource, id }) => {
-    const url = `${apiUrl}/${resource}/${id}`;
+    // ...
+    getOne: async ({ resource, id }) => {
+        const url = `${apiUrl}/${resource}/${id}`;
 
-    const { data } = await axiosInstance.get(url);
+        const { data } = await axiosInstance.get(url);
 
-    return {
-      data,
-    };
-  },
-  // ...
-})
+        return {
+            data,
+        };
+    },
+    // ...
+});
 ```
 
 **Parameter Types:**
@@ -626,9 +626,9 @@ The `getApiUrl` method returns the `apiUrl` value.
 import { DataProvider } from "@pankod/refine-core";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // highlight-next-line
-  getApiUrl: () => apiUrl,
-  // ...
+    // highlight-next-line
+    getApiUrl: () => apiUrl,
+    // ...
 });
 ```
 
@@ -649,55 +649,55 @@ It's useful if you have non-standard REST API endpoints or want to make a connec
 
 ```ts title="dataProvider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  custom: async({ url, method, filters, sort, payload, query, headers }) => {
-  let requestUrl = `${url}?`;
+    // ...
+    custom: async ({ url, method, filters, sort, payload, query, headers }) => {
+        let requestUrl = `${url}?`;
 
-  if (sort && sort.length > 0) {
-    const sortQuery = {
-      _sort: sort[0].field,
-      _order: sort[0].order,
-    };
-    requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
-  }
+        if (sort && sort.length > 0) {
+            const sortQuery = {
+                _sort: sort[0].field,
+                _order: sort[0].order,
+            };
+            requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
+        }
 
-  if (filters) {
-    const filterQuery = generateFilters(filters);
-    requestUrl = `${requestUrl}&${stringify(filterQuery)}`;
-  }
+        if (filters) {
+            const filterQuery = generateFilters(filters);
+            requestUrl = `${requestUrl}&${stringify(filterQuery)}`;
+        }
 
-  if (query) {
-    requestUrl = `${requestUrl}&${stringify(query)}`;
-  }
+        if (query) {
+            requestUrl = `${requestUrl}&${stringify(query)}`;
+        }
 
-  if (headers) {
-    axiosInstance.defaults.headers = {
-      ...axiosInstance.defaults.headers,
-      ...headers,
-    };
-  }
+        if (headers) {
+            axiosInstance.defaults.headers = {
+                ...axiosInstance.defaults.headers,
+                ...headers,
+            };
+        }
 
-  let axiosResponse;
-  switch (method) {
-    case "put":
-    case "post":
-    case "patch":
-      axiosResponse = await axiosInstance[method](url, payload);
-      break;
-    case "delete":
-      axiosResponse = await axiosInstance.delete(url, {
-        data: payload,
-      });
-      break;
-    default:
-      axiosResponse = await axiosInstance.get(requestUrl);
-      break;
-  }
+        let axiosResponse;
+        switch (method) {
+            case "put":
+            case "post":
+            case "patch":
+                axiosResponse = await axiosInstance[method](url, payload);
+                break;
+            case "delete":
+                axiosResponse = await axiosInstance.delete(url, {
+                    data: payload,
+                });
+                break;
+            default:
+                axiosResponse = await axiosInstance.get(requestUrl);
+                break;
+        }
 
-  const { data } = axiosResponse;
+        const { data } = axiosResponse;
 
-  return Promise.resolve({ data });
-},
+        return Promise.resolve({ data });
+    },
     // ...
 });
 ```
@@ -722,13 +722,13 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 import { useCustom, useApiUrl } from "@pankod/refine-core";
 
 const { data, isLoading } = useCustom({
-  url: `${apiURL}/posts-unique-check`,
-  method: "get",
-  config: {
-    query: {
-      title: "Foo bar",
+    url: `${apiURL}/posts-unique-check`,
+    method: "get",
+    config: {
+        query: {
+            title: "Foo bar",
+        },
     },
-  },
 });
 ```
 
@@ -748,17 +748,17 @@ The `getMany` method gets the records with the `resource` and `ids` parameters. 
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  getMany: async ({ resource, ids }) => {
-    const { data } = await axiosInstance.get(
-      `${apiUrl}/${resource}?${stringify({ id: ids })}`,
-    );
+    // ...
+    getMany: async ({ resource, ids }) => {
+        const { data } = await axiosInstance.get(
+            `${apiUrl}/${resource}?${stringify({ id: ids })}`,
+        );
 
-    return {
-      data,
-    };
-  },
-  // ...
+        return {
+            data,
+        };
+    },
+    // ...
 });
 ```
 
@@ -787,16 +787,16 @@ This method allows us to create multiple items in a resource. Implementation of 
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  createMany: async ({ resource, variables }) => {
-    const url = `${apiUrl}/${resource}/bulk`;
-    const { data } = await axiosInstance.post(url, { values: variables });
+    // ...
+    createMany: async ({ resource, variables }) => {
+        const url = `${apiUrl}/${resource}/bulk`;
+        const { data } = await axiosInstance.post(url, { values: variables });
 
-    return {
-      data,
-    };
-  },
-  // ...
+        return {
+            data,
+        };
+    },
+    // ...
 });
 ```
 
@@ -819,15 +819,15 @@ import { useCreateMany } from "@pankod/refine-core";
 const { mutate } = useCreateMany();
 
 mutate({
-  resource: "posts",
-  values: [
-    {
-      title: "New Post",
-    },
-    {
-      title: "Another New Post",
-    },
-  ],
+    resource: "posts",
+    values: [
+        {
+            title: "New Post",
+        },
+        {
+            title: "Another New Post",
+        },
+    ],
 });
 ```
 
@@ -839,16 +839,16 @@ This method allows us to delete multiple items in a resource. Implementation of 
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  deleteMany: async ({ resource, ids }) => {
-    const url = `${apiUrl}/${resource}/bulk?ids=${ids.join(",")}`;
-    const { data } = await axiosInstance.delete(url);
+    // ...
+    deleteMany: async ({ resource, ids }) => {
+        const url = `${apiUrl}/${resource}/bulk?ids=${ids.join(",")}`;
+        const { data } = await axiosInstance.delete(url);
 
-    return {
-      data
-    };
-  },
-  // ...
+        return {
+            data,
+        };
+    },
+    // ...
 });
 ```
 
@@ -872,8 +872,8 @@ import { useDeleteMany } from "@pankod/refine-core";
 const { mutate } = useDeleteMany();
 
 mutate({
-  resource: "posts",
-  ids: [2, 3],
+    resource: "posts",
+    ids: [2, 3],
 });
 ```
 
@@ -885,16 +885,16 @@ This method allows us to update multiple items in a resource. Implementation of 
 
 ```ts title="src/data-provider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  updateMany: async ({ resource, ids, variables }) => {
-    const url = `${apiUrl}/${resource}/bulk`;
-    const { data } = await axiosInstance.patch(url, { ids, variables });
+    // ...
+    updateMany: async ({ resource, ids, variables }) => {
+        const url = `${apiUrl}/${resource}/bulk`;
+        const { data } = await axiosInstance.patch(url, { ids, variables });
 
-    return {
-      data,
-    };
-  },
-  // ...
+        return {
+            data,
+        };
+    },
+    // ...
 });
 ```
 
@@ -906,9 +906,9 @@ import { useUpdateMany } from "@pankod/refine-core";
 const { mutate } = useUpdateMany();
 
 mutate({
-  resource: "posts",
-  ids: [1, 2],
-  values: { status: "draft" },
+    resource: "posts",
+    ids: [1, 2],
+    values: { status: "draft" },
 });
 ```
 
@@ -928,13 +928,13 @@ The `metaData` parameter can be used in all data, form, and table hooks.
 import { useOne } from "@pankod/refine-core";
 
 useOne({
-  resource: "post",
-  id: "1",
-  metaData: {
-    headers: {
-      "x-custom-header": "hello world",
+    resource: "post",
+    id: "1",
+    metaData: {
+        headers: {
+            "x-custom-header": "hello world",
+        },
     },
-  },
 });
 ```
 
@@ -944,25 +944,25 @@ Now let's get the `metaData` parameter from the data provider.
 import { DataProvider } from "@pankod/refine-core";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
-  // ...
-  getOne: async ({ resource, id, variables, metaData }) => {
-    // highlight-next-line
-    const { headers } = metaData;
-    const url = `${apiUrl}/${resource}/${id}`;
+    // ...
+    getOne: async ({ resource, id, variables, metaData }) => {
+        // highlight-next-line
+        const { headers } = metaData;
+        const url = `${apiUrl}/${resource}/${id}`;
 
-    // highlight-start
-    axiosInstance.defaults.headers = {
-      ...headers,
-    };
-    // highlight-end
+        // highlight-start
+        axiosInstance.defaults.headers = {
+            ...headers,
+        };
+        // highlight-end
 
-    const { data } = await axiosInstance.get(url, variables);
+        const { data } = await axiosInstance.get(url, variables);
 
-    return {
-      data,
-    };
-  },
-  // ...
+        return {
+            data,
+        };
+    },
+    // ...
 });
 ```
 

@@ -74,7 +74,7 @@ export const AdminMovieEdit: React.FC<IResourceComponentsProps> = () => {
                                     const xhr = new XMLHttpRequest();
                                     onSuccess &&
                                         onSuccess(
-                                            { url: data?.publicURL },
+                                            { url: data?.publicUrl },
                                             xhr,
                                         );
                                 } catch (error) {

@@ -21,7 +21,11 @@ import { AccessControlContextProvider } from "@contexts/accessControl";
 import { NotificationContextProvider } from "@contexts/notification";
 import { AuditLogContextProvider } from "@contexts/auditLog";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
-import { handleRefineOptions, routeGenerator } from "@definitions";
+import {
+    handleRefineOptions,
+    pickNotDeprecated,
+    routeGenerator,
+} from "@definitions";
 import { Telemetry } from "@components/telemetry";
 import { useDeepMemo } from "@hooks/deepMemo";
 
@@ -313,10 +317,13 @@ export const Refine: React.FC<RefineProps> = ({
         const _resources: IResourceItem[] = [];
 
         resourcesFromProps?.forEach((resource) => {
+            const meta = pickNotDeprecated(resource?.meta, resource?.options);
+
             _resources.push({
                 key: resource.key,
                 name: resource.name,
-                label: resource.options?.label,
+                label: pickNotDeprecated(resource.meta, resource.options)
+                    ?.label,
                 icon: resource.icon,
                 route: routeGenerator(resource, resourcesFromProps),
                 canCreate: !!resource.create,
@@ -327,7 +334,8 @@ export const Refine: React.FC<RefineProps> = ({
                 show: resource.show,
                 list: resource.list,
                 edit: resource.edit,
-                options: resource.options,
+                options: meta,
+                meta: meta,
                 parentName: resource.parentName,
             });
         });

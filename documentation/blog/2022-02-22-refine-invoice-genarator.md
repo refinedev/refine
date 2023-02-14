@@ -17,13 +17,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeho
 hide_table_of_contents: false
 ---
 
-
-
-
-
-
-
-
 Invoice management can be a daunting task for any business. With so many different software programs and options, it's hard to know where you need start or what will work best with your company culture! You can solve this problem with **refine**. With Refine, you can develop your own customizable invoice generator with ease.
 
 <!--truncate-->
@@ -376,7 +369,7 @@ function App() {
             resources={[
                 {
                     name: "companies",
-                    options: { label: "Your Company" },
+                    meta: { label: "Your Company" },
                     list: CompanyList,
                 },
             ]}

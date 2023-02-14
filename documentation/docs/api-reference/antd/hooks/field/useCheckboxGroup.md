@@ -3,7 +3,6 @@ id: useCheckboxGroup
 title: useCheckboxGroup
 ---
 
-
 `useCheckboxGroup` hook allows you to manage an Ant Design [Checkbox.Group](https://ant.design/components/checkbox/#components-checkbox-demo-group) component when records in a resource needs to be used as checkbox options.
 
 ## Usage
@@ -29,7 +28,7 @@ We will demonstrate how to get data at the `/tags` endpoint from the `https://ap
 }
 ```
 
-```tsx  title="pages/posts/create.tsx"
+```tsx title="pages/posts/create.tsx"
 import { Form, Checkbox, useCheckboxGroup } from "@pankod/refine-antd";
 
 export const PostCreate: React.FC = () => {
@@ -73,7 +72,7 @@ All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.
 
 ### `resource`
 
-```tsx 
+```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
 });
@@ -88,11 +87,13 @@ const { checkboxGroupProps } = useCheckboxGroup({
 ```tsx
 const { selectProps } = useCheckboxGroup({
     resource: "languages",
-// highlight-next-line
+    // highlight-next-line
     defaultValue: [1, 2],
 });
 ```
+
 The easiest way to selecting a default values for checkbox fields is by passing in `defaultValue`.
+
 ### `optionLabel` and `optionValue`
 
 ```tsx
@@ -114,12 +115,13 @@ Supports use with `optionLabel` and `optionValue` [Object path](https://lodash.c
 ```tsx
 const { options } = useSelect({
     resource: "categories",
-// highlight-start
+    // highlight-start
     optionLabel: "nested.title",
     optionValue: "nested.id",
-// highlight-end
+    // highlight-end
 });
 ```
+
 :::
 
 ### `filters`
@@ -141,13 +143,13 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 It allows us to add some filters while fetching the data. For example, if you want to list only the `titles` that are equal to `"Driver Deposit"` records.
 
-### `sort`
+### `sorters`
 
 ```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
     // highlight-start
-    sort: [
+    sorters: [
         {
             field: "title",
             order: "asc",
@@ -164,12 +166,13 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 ```tsx
 const { selectProps } = useCheckboxGroup({
     resource: "languages",
-// highlight-next-line
+    // highlight-next-line
     fetchSize: 20,
 });
 ```
 
 Amount of records to fetch in checkboxes.
+
 ### `queryOptions`
 
 ```tsx
@@ -197,11 +200,17 @@ For example imagine that we have 1000 post records:
 const { selectProps } = useSelect({
     resource: "categories",
     // highlight-next-line
-    pagination: { current: 3, pageSize: 8 }
+    pagination: { current: 3, pageSize: 8 },
 });
 ```
 
 > Listing will start from page 3 showing 8 records.
+
+### ~~`sort`~~
+
+:::caution Deprecated
+Use `sorters` instead.
+:::
 
 ## API Reference
 

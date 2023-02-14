@@ -17,8 +17,8 @@ export type GenerateSortingType = {
     (sorting?: CrudSorting): HasuraSortingType | undefined;
 };
 
-export const generateSorting: GenerateSortingType = (sorting?: CrudSorting) => {
-    if (!sorting) {
+export const generateSorting: GenerateSortingType = (sorters?: CrudSorting) => {
+    if (!sorters) {
         return undefined;
     }
 
@@ -27,7 +27,7 @@ export const generateSorting: GenerateSortingType = (sorting?: CrudSorting) => {
         "asc" | "desc" | HasuraSortingType
     > = {};
 
-    sorting.forEach((sortItem) => {
+    sorters.forEach((sortItem) => {
         set(sortingQueryResult, sortItem.field, sortItem.order);
     });
 
@@ -222,6 +222,7 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
         getList: async ({
             resource,
             sort,
+            sorters,
             filters,
             hasPagination = true,
             pagination = {
@@ -232,7 +233,8 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
         }) => {
             const { current = 1, pageSize: limit = 10 } = pagination ?? {};
 
-            const hasuraSorting = generateSorting(sort);
+            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
+            const hasuraSorting = generateSorting(sorters ?? sort);
             const hasuraFilters = generateFilters(filters);
 
             const operation = metaData?.operation ?? resource;

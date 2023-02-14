@@ -624,7 +624,7 @@ function App() {
                         name: "61cb01b17ef57",
                         list: ProductList,
                         show: ProductShow,
-                        options: {
+                        meta: {
                             label: "Products",
                             route: "products",
                         },

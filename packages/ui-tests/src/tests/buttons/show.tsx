@@ -251,7 +251,7 @@ export const buttonShowTests = function (
                         resources: [
                             {
                                 name: "posts",
-                                options: { route: "custom-route-posts" },
+                                meta: { route: "custom-route-posts" },
                             },
                             { name: "posts" },
                         ],

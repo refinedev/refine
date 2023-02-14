@@ -337,7 +337,7 @@ interface IResourceItem extends IResourceComponents {
     canShow?: boolean;
     canDelete?: boolean;
     parentName?: string;
-    options?: OptionsProps;
+    meta?: MetaProps;
 }
 
 interface IResourceComponents {
@@ -356,7 +356,7 @@ interface IResourceComponentsProps<TCrudData = any> {
     initialData?: TCrudData;
 }
 
-type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
+type MetaProps<TExtends = { [key: string]: any }> = TExtends & {
     label?: string;
     route?: string;
     auditLog?: {

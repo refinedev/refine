@@ -2,15 +2,15 @@ import { LiveProvider } from "@pankod/refine-core";
 import { Client } from "graphql-ws";
 
 import {
-    genereteUseListSubscription,
-    genereteUseManySubscription,
-    genereteUseOneSubscription,
+    generateUseListSubscription,
+    generateUseManySubscription,
+    generateUseOneSubscription,
 } from "../utilities";
 
 const subscriptions = {
-    useList: genereteUseListSubscription,
-    useOne: genereteUseOneSubscription,
-    useMany: genereteUseManySubscription,
+    useList: generateUseListSubscription,
+    useOne: generateUseOneSubscription,
+    useMany: generateUseManySubscription,
 };
 
 export const liveProvider = (client: Client): LiveProvider => {
@@ -22,6 +22,7 @@ export const liveProvider = (client: Client): LiveProvider => {
                 pagination,
                 hasPagination,
                 sort,
+                sorters,
                 filters,
                 subscriptionType,
                 id,
@@ -57,6 +58,7 @@ export const liveProvider = (client: Client): LiveProvider => {
                 metaData,
                 pagination,
                 sort,
+                sorters,
             });
 
             const onNext = (payload: any) => {

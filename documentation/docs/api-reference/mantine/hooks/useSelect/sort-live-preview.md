@@ -14,18 +14,20 @@ const ProductCreate: React.FC = () => {
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
         // highlight-start
-        sort: [
+        sorters: [
             {
                 field: "title",
                 order,
-            }
-        ]
+            },
+        ],
         // highlight-end
     });
 
     return (
         <>
-            <Button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>Toggle Order</Button>
+            <Button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>
+                Toggle Order
+            </Button>
             <Select
                 label="Category"
                 placeholder="Select a category"

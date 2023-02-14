@@ -215,7 +215,7 @@ describe("useImport hook", () => {
         const { result } = renderHook(
             () =>
                 useImport({
-                    resourceName: "tests",
+                    resource: "tests",
                     onFinish: () => {
                         expect(
                             mockDataProvider.default?.createMany,
@@ -293,7 +293,7 @@ describe("useImport hook", () => {
             const { result } = renderHook(
                 () =>
                     useImport({
-                        resourceName: "posts",
+                        resource: "posts",
                         onFinish: ({ succeeded }) => {
                             expect(succeeded[0].request).toEqual(parsedData);
                         },
@@ -331,7 +331,7 @@ describe("useImport hook", () => {
             const { result } = renderHook(
                 () =>
                     useImport({
-                        resourceName: "posts",
+                        resource: "posts",
                         onFinish: ({ errored }) => {
                             expect(errored[0].response[0]).toEqual({
                                 message: "something happened",
@@ -438,7 +438,7 @@ describe("useImport hook", () => {
                 () =>
                     useImport({
                         batchSize: 1,
-                        resourceName: "posts",
+                        resource: "posts",
                         onFinish: ({ succeeded }) => {
                             expect(succeeded[0].response[0]).toEqual(
                                 parsedData[0],

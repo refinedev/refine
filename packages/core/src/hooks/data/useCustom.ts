@@ -21,7 +21,11 @@ import {
 } from "@hooks";
 
 interface UseCustomConfig<TQuery, TPayload> {
+    /**
+     * @deprecated `sort` is deprecated, use `sorters` instead.
+     */
     sort?: CrudSorting;
+    sorters?: CrudSorting;
     filters?: CrudFilters;
     query?: TQuery;
     payload?: TPayload;
@@ -38,7 +42,7 @@ export type UseCustomProps<TData, TError, TQuery, TPayload> = {
      */
     method: "get" | "delete" | "head" | "options" | "post" | "put" | "patch";
     /**
-     * The config of your request. You can send headers, payload, query, filters and sort using this field
+     * The config of your request. You can send headers, payload, query, filters and sorters using this field
      */
     config?: UseCustomConfig<TQuery, TPayload>;
     /**
