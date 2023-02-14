@@ -31,6 +31,107 @@ describe("useList Hook", () => {
         expect(data?.total).toEqual(2);
     });
 
+    it.each(["server", undefined] as const)(
+        "should include pagination in queryKey",
+        async (mode) => {
+            const getListMock = jest.fn();
+
+            renderHook(
+                () =>
+                    useList({
+                        resource: "posts",
+                        pagination: {
+                            current: 1,
+                            pageSize: 10,
+                            mode,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                getList: getListMock,
+                            },
+                        },
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            expect(getListMock).toBeCalledWith({
+                resource: "posts",
+                pagination: {
+                    current: 1,
+                    pageSize: 10,
+                    mode,
+                },
+                metaData: {
+                    queryContext: {
+                        queryKey: [
+                            "default",
+                            "posts",
+                            "list",
+                            {
+                                pagination: {
+                                    current: 1,
+                                    pageSize: 10,
+                                    mode,
+                                },
+                            },
+                        ],
+                        signal: new AbortController().signal,
+                    },
+                },
+            });
+        },
+    );
+
+    it.each(["client", "off"] as const)(
+        "should not include pagination in queryKey",
+        async (mode) => {
+            const getListMock = jest.fn();
+
+            renderHook(
+                () =>
+                    useList({
+                        resource: "posts",
+                        pagination: {
+                            current: 1,
+                            pageSize: 10,
+                            mode,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                getList: getListMock,
+                            },
+                        },
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            expect(getListMock).toBeCalledWith({
+                resource: "posts",
+                pagination: {
+                    current: 1,
+                    pageSize: 10,
+                    mode,
+                },
+                metaData: {
+                    queryContext: {
+                        queryKey: ["default", "posts", "list", {}],
+                        signal: new AbortController().signal,
+                    },
+                },
+            });
+        },
+    );
+
     describe("useResourceSubscription", () => {
         it("useSubscription", async () => {
             const onSubscribeMock = jest.fn();
