@@ -401,6 +401,7 @@ const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
                         }
                         return;
                     })
+                    .filter(Boolean)
                     .join(",");
             };
 
