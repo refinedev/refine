@@ -1,10 +1,10 @@
 import { IResourceComponentsProps, useTranslate } from "@pankod/refine-core";
 
+import { Edit, useForm } from "@pankod/refine-antd";
+
 import {
-    Edit,
     Form,
     Input,
-    useForm,
     Avatar,
     Row,
     Col,
@@ -12,7 +12,7 @@ import {
     Space,
     Radio,
     InputProps,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import InputMask from "react-input-mask";
 

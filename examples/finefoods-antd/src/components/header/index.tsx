@@ -7,9 +7,10 @@ import {
     useList,
 } from "@pankod/refine-core";
 
+import { Icons } from "@pankod/refine-antd";
+
 import {
     Menu,
-    Icons,
     Dropdown,
     Input,
     Avatar,
@@ -19,8 +20,8 @@ import {
     Row,
     Col,
     AutoComplete,
-    AntdLayout,
-} from "@pankod/refine-antd";
+    Layout as AntdLayout,
+} from "antd";
 
 import RefineReactRouter from "@pankod/refine-react-router-v6";
 

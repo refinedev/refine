@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { IResourceComponentsProps, useResource } from "@pankod/refine-core";
-import { Show, Typography } from "@pankod/refine-antd";
+import { Show } from "@pankod/refine-antd";
+import { Typography } from "antd";
 import { useCloudMutation } from "@pankod/refine-cloud";
 
 import { IProduct } from "interfaces";

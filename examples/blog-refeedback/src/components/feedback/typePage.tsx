@@ -1,4 +1,6 @@
-import { Card, Typography, Icons } from "@pankod/refine-antd";
+import { Icons } from "@pankod/refine-antd";
+
+import { Card, Typography } from "antd";
 
 import { FeedBackCardTypes } from "interfaces";
 

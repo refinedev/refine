@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
 import { useList } from "@pankod/refine-core";
-import {
-    AntdLayout,
-    AutoComplete,
-    Input,
-    Icons,
-    Typography,
-} from "@pankod/refine-antd";
+import { Icons } from "@pankod/refine-antd";
+import { Layout as AntdLayout, AutoComplete, Input, Typography } from "antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import debounce from "lodash/debounce";
 

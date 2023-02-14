@@ -8,16 +8,12 @@ import {
 
 import {
     useSimpleList,
-    Row,
-    AntdList,
-    Col,
     CreateButton,
-    Form,
-    Input,
     Icons,
-    Typography,
     useDrawerForm,
 } from "@pankod/refine-antd";
+
+import { Row, List as AntdList, Col, Form, Input, Typography } from "antd";
 
 const { Text } = Typography;
 const { SearchOutlined } = Icons;

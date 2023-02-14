@@ -6,17 +6,15 @@ import {
 
 import {
     List,
-    Table,
-    Radio,
     FilterDropdown,
     TagField,
     useTable,
     getDefaultSortOrder,
     FilterDropdownProps,
     useSelect,
-    Select,
-    Input,
 } from "@pankod/refine-antd";
+
+import { Table, Radio, Select, Input } from "antd";
 
 import { ICategory, IPost } from "interfaces";
 

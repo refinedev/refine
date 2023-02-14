@@ -5,17 +5,16 @@ import {
 } from "@pankod/refine-core";
 import {
     List,
-    Table,
     TextField,
-    Space,
     EditButton,
     ShowButton,
     FilterDropdown,
-    Select,
-    Radio,
     TagField,
 } from "@pankod/refine-antd";
+import { Table, Space, Select, Radio } from "antd";
 import { useTable, useSelect } from "@pankod/refine-antd";
+
+import { Table, Space, Select, Radio } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 

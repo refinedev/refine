@@ -1,5 +1,6 @@
 import { useTranslate, useUpdate } from "@pankod/refine-core";
-import { Dropdown, Icons, Menu } from "@pankod/refine-antd";
+import { Icons } from "@pankod/refine-antd";
+import { Dropdown, Menu } from "antd";
 import { IOrder } from "interfaces";
 
 type OrderActionProps = {

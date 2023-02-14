@@ -6,7 +6,9 @@ import {
     useRouterContext,
 } from "@pankod/refine-core";
 
-import { AntdLayout, Menu, Icons, useMenu } from "@pankod/refine-antd";
+import { Icons, useMenu } from "@pankod/refine-antd";
+
+import { Layout as AntdLayout, Menu } from "antd";
 
 export const FixedSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);

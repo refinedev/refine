@@ -6,12 +6,11 @@ import {
     HttpError,
 } from "@pankod/refine-core";
 
+import { List, useTable, Icons } from "@pankod/refine-antd";
+
 import {
-    List,
     Table,
-    useTable,
     Card,
-    Icons,
     Button,
     Space,
     Row,
@@ -20,7 +19,7 @@ import {
     Typography,
     Rate,
     Avatar,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { ICourier, IOrder, IOrderFilterVariables } from "interfaces";
 

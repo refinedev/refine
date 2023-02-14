@@ -4,8 +4,8 @@ import {
     ReadyPage,
     ErrorComponent,
     Icons,
-    ConfigProvider,
 } from "@pankod/refine-antd";
+import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@pankod/refine-supabase";
 import routerProvider from "@pankod/refine-react-router-v6";
 

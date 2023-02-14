@@ -1,4 +1,4 @@
-import { Button, Space } from "@pankod/refine-antd";
+import { Button, Space } from "antd";
 import { FC } from "react";
 
 const IconSun = () => (

@@ -7,16 +7,14 @@ import {
 
 import {
     List,
-    Table,
     useTable,
     DateField,
-    Dropdown,
     BooleanField,
-    Menu,
     Icons,
-    Avatar,
     useModal,
 } from "@pankod/refine-antd";
+
+import { Table, Dropdown, Menu, Avatar } from "antd";
 
 const { FormOutlined } = Icons;
 

@@ -1,5 +1,6 @@
+import { Create, RcFile } from "@pankod/refine-antd";
+
 import {
-    Create,
     Drawer,
     DrawerProps,
     Form,
@@ -8,8 +9,7 @@ import {
     ButtonProps,
     Upload,
     Grid,
-    RcFile,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { appwriteClient, normalizeFile, storage } from "utility";
 import { StoreContext } from "context/store";

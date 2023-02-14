@@ -1,4 +1,6 @@
-import { Card, Icons, ShowButton } from "@pankod/refine-antd";
+import { Icons, ShowButton } from "@pankod/refine-antd";
+
+import { Card } from "antd";
 
 import { IProduct } from "interfaces";
 

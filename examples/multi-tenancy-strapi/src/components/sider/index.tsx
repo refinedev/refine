@@ -6,7 +6,8 @@ import {
     CanAccess,
     useRouterContext,
 } from "@pankod/refine-core";
-import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
+import { useMenu, Icons } from "@pankod/refine-antd";
+import { Layout as AntdLayout, Menu, Grid } from "antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 import { StoreSelect } from "components/select";

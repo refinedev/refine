@@ -6,7 +6,9 @@ import {
     useNavigation,
     useRouterContext,
 } from "@pankod/refine-core";
-import { Button, Image, Space, Icons, useModalForm } from "@pankod/refine-antd";
+import { Icons, useModalForm } from "@pankod/refine-antd";
+
+import { Button, Image, Space } from "antd";
 
 import { CreateCanvas } from "components/canvas";
 import { Canvas } from "types";

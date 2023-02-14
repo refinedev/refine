@@ -1,16 +1,16 @@
 import { useTranslate, BaseKey } from "@pankod/refine-core";
 
+import { Icons, NumberField } from "@pankod/refine-antd";
+
 import {
     Avatar,
     Card,
     Divider,
     InputNumber,
-    Icons,
     Dropdown,
     Menu,
-    NumberField,
     Typography,
-} from "@pankod/refine-antd";
+} from "antd";
 
 const { Text, Paragraph } = Typography;
 const { CloseCircleOutlined, FormOutlined } = Icons;

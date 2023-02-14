@@ -2,18 +2,16 @@ import { useState } from "react";
 import { useModal } from "@pankod/refine-core";
 import {
     List,
-    Table,
     useTable,
     DateField,
     TagField,
     EmailField,
-    Space,
     DeleteButton,
     EditButton,
     Icons,
-    Button,
-    Modal,
 } from "@pankod/refine-antd";
+
+import { Table, Space, Button, Modal } from "antd";
 
 import { IInvoice, IMission } from "interfaces";
 import { PdfLayout } from "components/pdf";

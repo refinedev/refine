@@ -4,7 +4,9 @@ import {
     useMany,
 } from "@pankod/refine-core";
 
-import { Show, Typography, MarkdownField, Tag } from "@pankod/refine-antd";
+import { Show, MarkdownField } from "@pankod/refine-antd";
+
+import { Typography, Tag } from "antd";
 
 import { IPost, ITag } from "interfaces";
 

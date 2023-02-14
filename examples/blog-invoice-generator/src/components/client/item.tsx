@@ -1,12 +1,7 @@
 import { useDelete } from "@pankod/refine-core";
-import {
-    Card,
-    TagField,
-    Typography,
-    Dropdown,
-    Menu,
-    Icons,
-} from "@pankod/refine-antd";
+import { TagField, Icons } from "@pankod/refine-antd";
+
+import { Card, Typography, Dropdown, Menu } from "antd";
 
 import { IClient } from "interfaces";
 

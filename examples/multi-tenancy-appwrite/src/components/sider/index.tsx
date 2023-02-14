@@ -8,7 +8,8 @@ import {
     useIsExistAuthentication,
     useMenu,
 } from "@pankod/refine-core";
-import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
+import { Icons } from "@pankod/refine-antd";
+import { Layout as AntdLayout, Menu, Grid } from "antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 import { StoreSelect } from "components/select";

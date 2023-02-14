@@ -5,14 +5,9 @@ import {
     useNavigation,
     useShow,
 } from "@pankod/refine-core";
-import {
-    Button,
-    Typography,
-    Icons,
-    Spin,
-    Modal,
-    useModal,
-} from "@pankod/refine-antd";
+import { Icons, useModal } from "@pankod/refine-antd";
+
+import { Button, Typography, Spin, Modal } from "antd";
 
 import { CanvasItem, DisplayCanvas } from "components/canvas";
 import { ColorSelect } from "components/color-select";

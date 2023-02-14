@@ -2,19 +2,15 @@ import React, { useState } from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
-    Alert,
-    Button,
     Edit,
-    Form,
-    Input,
     ListButton,
     RcFile,
     RefreshButton,
-    Select,
-    Upload,
     useForm,
     useSelect,
 } from "@pankod/refine-antd";
+
+import { Alert, Button, Form, Input, Select, Upload } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 

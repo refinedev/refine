@@ -1,14 +1,7 @@
 import React from "react";
-import {
-    Form,
-    FormProps,
-    Input,
-    useSelect,
-    Select,
-    DatePicker,
-    Icons,
-    Button,
-} from "@pankod/refine-antd";
+import { useSelect, Icons } from "@pankod/refine-antd";
+
+import { Form, FormProps, Input, Select, DatePicker, Button } from "antd";
 
 import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
 

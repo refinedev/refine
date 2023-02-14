@@ -1,5 +1,6 @@
 import React from "react";
-import { useTable, List, Table, Avatar, Icons } from "@pankod/refine-antd";
+import { useTable, List, Icons } from "@pankod/refine-antd";
+import { Table, Avatar } from "antd";
 import { TUser } from "types/user";
 
 const { UserOutlined } = Icons;

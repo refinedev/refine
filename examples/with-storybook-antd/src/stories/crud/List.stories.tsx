@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { List as AntdList } from "@pankod/refine-antd";
+import { List as AntdList } from "antd";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";
 
