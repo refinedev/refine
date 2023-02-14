@@ -43,7 +43,9 @@ export default function separateImports(payload: {
         // rename imports
         nextLibImports.forEach((item) => {
             if (renameImports[item.imported.name]) {
-                item.imported.name = renameImports[item.imported.name];
+                item.imported.name = `${renameImports[item.imported.name]} as ${
+                    item.imported.name
+                }`;
             }
         });
 
@@ -57,4 +59,14 @@ export default function separateImports(payload: {
                 j.importDeclaration(nextLibImports, j.literal(nextLibName)),
             );
     }
+
+    // remove empty imports
+    source
+        .find(j.ImportDeclaration, {
+            source: {
+                value: currentLibName,
+            },
+        })
+        .filter((path) => path.node.specifiers.length === 0)
+        .remove();
 }
