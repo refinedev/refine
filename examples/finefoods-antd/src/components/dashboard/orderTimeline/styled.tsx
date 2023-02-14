@@ -1,9 +1,5 @@
 import styled from "@emotion/styled";
-import { Typography } from "antd";
-
-import { Timeline as AntdTimeline } from "@pankod/refine-antd";
-
-import { Typography } from "antd";
+import { Typography, Timeline as AntdTimeline } from "antd";
 
 export const Timeline = styled(AntdTimeline)`
     .ant-timeline-item-head {
