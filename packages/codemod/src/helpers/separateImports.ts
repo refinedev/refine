@@ -39,7 +39,7 @@ export default function separateImports(payload: {
         return path.node;
     });
 
-    if (imports.length > 0) {
+    if (nextLibImports.length > 0) {
         // rename imports
         nextLibImports.forEach((item) => {
             if (renameImports[item.imported.name]) {
