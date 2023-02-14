@@ -24,6 +24,7 @@ import {
     Dp,
     Elide,
     EntRefine,
+    Chakra,
 } from "./integration-icons";
 
 export const integrations: IntegrationsType = {
@@ -50,6 +51,14 @@ export const integrations: IntegrationsType = {
             description:
                 " <strong>Mantine UI</strong> Framework support. 20+ framework-specific hooks and components incl. Table, Form, AutoComplete, Menu, Layout, Notification and CRUD components.",
             url: "https://www.npmjs.com/package/@pankod/refine-mantine",
+            status: "stable",
+        },
+        {
+            name: "Chakra UI",
+            icon: Chakra,
+            description:
+                " <strong>Chakra UI</strong> Framework support. 20+ framework-specific hooks and components incl. Table, Forms, Layout, Feedback and CRUD components.",
+            url: "https://www.npmjs.com/package/@pankod/refine-chakra-ui",
             status: "stable",
         },
     ],
