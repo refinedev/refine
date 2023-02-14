@@ -8,6 +8,7 @@
         "@pankod/refine-cli": "^1.17.0",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-supabase": "^4.1.0",
+        "antd": "^5.0.5",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",
