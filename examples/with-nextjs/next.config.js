@@ -1,9 +1,5 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-    reactStrictMode: true,
-    swcMinify: true,
+module.exports = {
     experimental: {
-        appDir: true,
         newNextLinkBehavior: true,
     },
     transpilePackages: [
@@ -18,5 +14,3 @@ const nextConfig = {
         "rc-picker",
     ],
 };
-
-module.exports = nextConfig;
