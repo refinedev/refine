@@ -15,7 +15,7 @@ export const authProvider: AuthProvider = {
             }
 
             if (data?.url) {
-                return Promise.resolve();
+                return Promise.resolve(false);
             }
         }
 
@@ -33,8 +33,7 @@ export const authProvider: AuthProvider = {
             return Promise.resolve();
         }
 
-        // for third-party login
-        return Promise.resolve(false);
+        return Promise.resolve();
     },
     register: async ({ email, password }) => {
         const { data, error } = await supabaseClient.auth.signUp({
