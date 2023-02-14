@@ -300,9 +300,11 @@ export function useTable<
         sorters: unionSorters(permanentSorter, sorter),
         queryOptions: {
             ...queryOptions,
-            select: (data) => {
+            select: (rawData) => {
+                let data = rawData;
+
                 if (pagination?.mode === "client") {
-                    return {
+                    data = {
                         data: data.data.slice(
                             (current - 1) * pageSize,
                             current * pageSize,
@@ -310,6 +312,11 @@ export function useTable<
                         total: data.total,
                     };
                 }
+
+                if (queryOptions?.select) {
+                    return queryOptions?.select?.(data);
+                }
+
                 return data;
             },
         },
