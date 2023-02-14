@@ -24,14 +24,14 @@ describe("useResource Hook", () => {
         );
     });
 
-    it("should successfully return options value", async () => {
+    it("should successfully return meta value", async () => {
         const { result } = renderHook(() => useResource(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
                 resources: [
                     {
                         name: "posts",
-                        options: {
+                        meta: {
                             isThatReallyWork: true,
                         },
                     },
@@ -43,7 +43,7 @@ describe("useResource Hook", () => {
             expect.arrayContaining([
                 expect.objectContaining({
                     name: "posts",
-                    options: {
+                    meta: {
                         isThatReallyWork: true,
                     },
                 }),
@@ -81,7 +81,7 @@ describe("useResource Hook without prop", () => {
             resources: [
                 {
                     name: "posts",
-                    options: { route: "custom-route-posts" },
+                    meta: { route: "custom-route-posts" },
                 },
             ],
             routerInitialEntries: ["/posts"],
@@ -100,9 +100,7 @@ describe("useResource Hook without prop", () => {
             wrapper: WrapperWith,
         });
 
-        expect(result.current.resource.options?.route).toBe(
-            "custom-route-posts",
-        );
+        expect(result.current.resource.meta?.route).toBe("custom-route-posts");
 
         expect(result.current.action).toBe(undefined);
     });

@@ -10,7 +10,7 @@ import * as gql from "gql-query-builder";
 import pluralize from "pluralize";
 import camelCase from "camelcase";
 
-export const genereteSort = (sorters?: CrudSorting) => {
+export const generateSort = (sorters?: CrudSorting) => {
     if (sorters && sorters.length > 0) {
         const sortQuery = sorters.map((i) => {
             return `${i.field}:${i.order}`;
@@ -21,6 +21,11 @@ export const genereteSort = (sorters?: CrudSorting) => {
 
     return [];
 };
+
+/**
+ * @deprecated Please use `generateSort` instead.
+ */
+export const genereteSort = generateSort;
 
 export const generateFilter = (filters?: CrudFilters) => {
     const queryFilters: { [key: string]: any } = {};

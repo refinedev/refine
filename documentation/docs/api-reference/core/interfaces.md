@@ -242,7 +242,7 @@ ButtonProps
 | liveParams?  | `{ids?: BaseKey[]; [x: string]: any; }` |
 | onLiveEvent? | `(event: LiveEvent) => void`            |
 
-## OptionsProps
+## MetaProps
 
 | Key               | Type     |
 | ----------------- | -------- |
@@ -256,14 +256,14 @@ ButtonProps
 | Key         | Type        |
 | ----------- | ----------- |
 | name        | `string`    |
-| label ?     | `string`    |
+| label?      | `string`    |
 | route?      | `string`    |
 | icon?       | `ReactNode` |
 | canCreate?  | `boolean`   |
 | canEdit?    | `boolean`   |
 | canShow?    | `boolean`   |
 | canDelete?  | `boolean`   |
-| options?    | `object`    |
+| meta?       | `object`    |
 | parentName? | `string`    |
 
 ## SyncWithLocationParams

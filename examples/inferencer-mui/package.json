@@ -5,7 +5,7 @@
     "dependencies": {
         "@pankod/refine-core": "^3.99.4",
         "@pankod/refine-cli": "^1.17.0",
-        "@pankod/refine-inferencer": "^2.4.0",
+        "@pankod/refine-inferencer": "^2.5.0",
         "@pankod/refine-mui": "^3.61.5",
         "@pankod/refine-react-hook-form": "^3.37.2",
         "@pankod/refine-react-router-v6": "^3.38.0",

@@ -9,7 +9,7 @@ export interface IResourceContext {
     resources: IResourceItem[];
 }
 
-type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
+type MetaProps<TExtends = { [key: string]: any }> = TExtends & {
     label?: string;
     route?: string;
     dataProviderName?: string;
@@ -24,13 +24,17 @@ export interface ResourceProps extends IResourceComponents {
     name: string;
     canDelete?: boolean;
     icon?: ReactNode;
-    options?: OptionsProps;
+    /**
+     * @deprecated `options` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `options` for backward compatibility.
+     */
+    options?: MetaProps;
+    meta?: MetaProps;
     parentName?: string;
     key?: string;
 }
 export interface IResourceComponentsProps<
     TCrudData = any,
-    TOptionsPropsExtends = { [key: string]: any },
+    TMetaPropsExtends = { [key: string]: any },
     TLogQueryResult = ILogData,
 > {
     canCreate?: boolean;
@@ -39,7 +43,11 @@ export interface IResourceComponentsProps<
     canShow?: boolean;
     name?: string;
     initialData?: TCrudData;
-    options?: OptionsProps<TOptionsPropsExtends>;
+    /**
+     * @deprecated `options` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `options` for backward compatibility.
+     */
+    options?: MetaProps<TMetaPropsExtends>;
+    meta?: MetaProps<TMetaPropsExtends>;
     logQueryResult?: UseQueryResult<TLogQueryResult>;
 }
 export interface IResourceComponents {
@@ -58,7 +66,11 @@ export interface IResourceItem extends IResourceComponents {
     canEdit?: boolean;
     canShow?: boolean;
     canDelete?: boolean;
-    options?: OptionsProps;
+    /**
+     * @deprecated `options` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `options` for backward compatibility.
+     */
+    options?: MetaProps;
+    meta?: MetaProps;
     parentName?: string;
     key?: string;
 }

@@ -8,15 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeho
 hide_table_of_contents: false
 ---
 
-
-
-
-
-
-
-
-
-
 Do you want to develop a web application quickly? You are at the right place! I will develop a simple movie web application with **refine** on the frontend and **Supabase** on the backend, you should continue reading. I will try to explain it step by step in a very simple way.
 
 <!--truncate-->
@@ -269,7 +260,7 @@ function App() {
                 {
                     name: "movies",
                     list: AdminMovieList,
-                    options: {
+                    meta: {
                         route: "admin/movies",
                     },
                 },
@@ -386,7 +377,7 @@ export interface IMovies {
             name: "movies",
             list: AdminMovieList,
             create: AdminMovieCreate,
-            options: {
+            meta: {
                 route: "admin/movies",
             },
         },
@@ -745,7 +736,7 @@ Final version of our `<Resource>`.
             create: AdminMovieCreate,
             show: AdminMovieShow,
             edit: AdminMovieEdit,
-            options: {
+            meta: {
                 route: "admin/movies",
             },
         },
@@ -806,7 +797,7 @@ function App() {
                     show: AdminMovieShow,
                     edit: AdminMovieEdit,
 
-                    options: {
+                    meta: {
                         route: "admin/movies",
                     },
                 },

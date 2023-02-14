@@ -29,7 +29,13 @@ const authProvider: AuthProvider = {
     },
     checkError: () => Promise.resolve(),
     checkAuth: async () => {
-        await supabaseClient.auth.getSession();
+        const { data } = await supabaseClient.auth.getSession();
+        const { session } = data;
+
+        if (!session) {
+            return Promise.reject();
+        }
+
         return Promise.resolve();
     },
     getPermissions: async () => {

@@ -158,7 +158,7 @@ useAutocomplete({
 
 ```tsx
 useAutocomplete({
-    hasPagination: false,
+    hasPagination: true,
 });
 ```
 
