@@ -85,7 +85,7 @@ const App: React.FC = () => {
                 },
                 {
                     name: "products",
-                    options: {
+                    meta: {
                         // highlight-next-line
                         // **refine** will use the `fineFoods` data provider for this resource
                         dataProviderName: "fineFoods",
@@ -184,7 +184,7 @@ useTable({
 });
 ```
 
--   **Using `options.dataProviderName` property in your resource config**
+-   **Using `meta.dataProviderName` property in your resource config**
 
 This will be the default data provider for the specified resource but you can still override it in the data hooks and components.
 
@@ -203,7 +203,7 @@ const App = () => {
                 },
                 {
                     name: "products",
-                    options: {
+                    meta: {
                         // **refine** will use the `exampleDataProvider` data provider for this resource
                         dataProviderName: "exampleDataProvider",
                     },
@@ -223,11 +223,11 @@ import { DataProvider } from "@pankod/refine-core";
 
 const dataProvider: DataProvider = {
     // required methods
-    getList: ({
+     ({
         resource,
         pagination,
         hasPagination,
-        sort,
+        sorters,
         filters,
         metaData,
     }) => Promise,
@@ -245,7 +245,7 @@ const dataProvider: DataProvider = {
         url,
         method,
         filters,
-        sort,
+        sorters,
         payload,
         query,
         headers,
@@ -266,7 +266,7 @@ Data hooks are used to operate CRUD actions like creating a new record, listing 
 ### getList <PropTag required />
 
 `getList` method is used to get a list of resources with sorting, filtering, and pagination features.
-It takes `resource`, `sort`, `pagination`, and, `filters` as parameters and returns `data` and `total`.
+It takes `resource`, `sorters`, `pagination`, and, `filters` as parameters and returns `data` and `total`.
 
 **refine** will consume this `getList` method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
 
@@ -275,12 +275,12 @@ getList: async ({
     resource,
     hasPagination,
     pagination,
-    sort,
+    sorters,
     filter,
     metaData,
 }) => {
     const { current, pageSize } = pagination;
-    const { field, order } = sort;
+    const { field, order } = sorters;
     const { field, operator, value } = filter;
 
     // You can handle the request according to your API requirements.

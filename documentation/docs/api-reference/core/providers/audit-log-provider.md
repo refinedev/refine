@@ -122,12 +122,12 @@ const auditLogProvider: AuditLogProvider = {
 
 This method can take the following parameters via hooks. You can use these parameters to filter the events.
 
-| Name     | Type                                               |
-| -------- | -------------------------------------------------- |
-| resource | `string`                                           |
-| action   | `"create"` \| `"update"` \| `"delete"` \| `string` |
-| meta     | `Record<string, any>`                              |
-| author   | `Record<string, any>`                              |
+| Name     | Type                                                                                                     |
+| -------- | -------------------------------------------------------------------------------------------------------- |
+| resource | `string`                                                                                                 |
+| action   | `"create"` \| `"update"` \| `"delete"` \| `"createMany"` \| `"updateMany"` \| `"deleteMany"` \| `string` |
+| meta     | `Record<string, any>`                                                                                    |
+| author   | `Record<string, any>`                                                                                    |
 
 ### `create`
 
@@ -142,9 +142,12 @@ When the mutations is successful, the `create` method is called with the followi
 <Tabs
 defaultValue="create"
 values={[
-{label: 'Create event', value: 'create'},
-{label: 'Update event', value: 'update'},
-{label: 'Delete event', value: 'delete'}
+{label: 'Create Event', value: 'create'},
+{label: 'Update Event', value: 'update'},
+{label: 'Delete Event', value: 'delete'},
+{label: 'Create Many Event', value: 'createMany'},
+{label: 'Update Many Event', value: 'updateMany'},
+{label: 'Delete Many Event', value: 'deleteMany'}
 ]}>
 <TabItem value="create">
 
@@ -155,14 +158,13 @@ When a record is created, refine automatically sends an event to `create` method
     "action": "create",
     "resource": "posts",
     "data": {
-        "id": "1",
         "title": "Hello World",
         "content": "Hello World"
     },
     "meta": {
         "dataProviderName": "simple-rest",
         // If request response has a `id` field, it will be add in the `meta` field.
-        "id": "1"
+        "id": 1
     }
 }
 ```
@@ -181,18 +183,16 @@ When a record is updated, refine automatically sends an event to `create` method
     "action": "update",
     "resource": "posts",
     "data": {
-        "id": "1",
         "title": "New Hello World",
         "content": "New Hello World"
     },
     "previousData": {
-        "id": "1",
         "title": "Hello World",
         "content": "Hello World"
     },
     "meta": {
         "dataProviderName": "simple-rest",
-        "id": "1"
+        "id": 1
     }
 }
 ```
@@ -212,7 +212,83 @@ When a record is deleted, refine automatically sends an event to `create` method
     "resource": "posts",
     "meta": {
         "dataProviderName": "simple-rest",
-        "id": "1"
+        "id": 1
+    }
+}
+```
+
+</TabItem>
+<TabItem value="createMany">
+
+When a record is created with the `useCreateMany` hook, refine automatically sends an event to the `create` method like this:
+
+```json
+{
+    "action": "createMany",
+    "resource": "posts",
+    "data": [
+        {
+            "title": "Hello World 1",
+        },
+        {
+            "title": "Hello World 2",
+        }
+    ],
+    "meta": {
+        "dataProviderName": "simple-rest",
+        // If request response has a `id` field, it will be add in the `meta` field.
+        "ids": [1, 2]
+    }
+}
+```
+
+:::info
+The `id` of the created record is added to the `meta` object. It can be used for filtering purposes.
+:::
+
+</TabItem>
+<TabItem value="updateMany">
+
+When a record is updated with the `useUpdateMany` hook, refine automatically sends an event to the `create` method like this:
+
+```json
+{
+    "action": "updateMany",
+    "resource": "posts",
+    "data": {
+        "status": "published",
+    },
+    "previousData": [
+        {
+            "status": "draft",
+        },
+        {
+            "status": "archived",
+        }
+    ],
+    "meta": {
+        "dataProviderName": "simple-rest",
+        "ids": [1, 2]
+    }
+}
+```
+
+:::info
+**refine** returns the `previousData` from the react-query cache. So, if it cannot find the previous data, it will return `undefined`.
+:::
+
+</TabItem>
+<TabItem value="deleteMany">
+
+When a record is deleted with the `useDeleteMany` hook, refine automatically sends an event to the `create` method like this:
+
+```json
+{
+    "action": "deleteMany",
+    "resource": "posts",
+    "meta": {
+        "dataProviderName": "simple-rest",
+        "id": [1, 2]
     }
 }
 ```
@@ -250,13 +326,13 @@ const auditLogProvider: AuditLogProvider = {
 
 This method can take the following parameters.
 
-| Name     | Type                                               |
-| -------- | -------------------------------------------------- |
-| resource | `string`                                           |
-| action   | `"create"` \| `"update"` \| `"delete"` \| `string` |
-| meta     | `Record<string, any>`                              |
-| data     | `Record<string, any>`                              |
-| author   | `Record<string, any>`                              |
+| Name     | Type                                                                                                     |
+| -------- | -------------------------------------------------------------------------------------------------------- |
+| resource | `string`                                                                                                 |
+| action   | `"create"` \| `"update"` \| `"delete"` \| `"createMany"` \| `"updateMany"` \| `"deleteMany"` \| `string` |
+| meta     | `Record<string, any>`                                                                                    |
+| data     | `Record<string, any>`                                                                                    |
+| author   | `Record<string, any>`                                                                                    |
 
 <br/>
 
@@ -324,7 +400,7 @@ This method can take the following parameters.
 
 ## Supported Hooks
 
-**refine** creates an audit log event when the mutation is successful on hooks that `useCreate`, `useUpdate` and `useDelete` hooks. The `useCreateMany`, `useUpdateMany` and `useDeleteMany` hooks are not create audit log events.
+**refine** creates an audit log event when the mutation is successful on hooks that `useCreate`, `useUpdate`, `useDelete`, `useCreateMany`, `useUpdateMany` and `useDeleteMany` hooks.
 
 ### `useCreate`
 
@@ -357,6 +433,57 @@ mutate({
     },
     "meta": {
         "id": "1",
+        // `metaData` is included in `meta`.
+        "foo": "bar"
+    }
+}
+```
+
+### `useCreateMany`
+
+When `useCreateMany` is called, `refine` sends the following parameters to audit log provider's `create` method.
+
+```ts
+const { mutate } = useCreateMany();
+
+mutate({
+    resource: "posts",
+    values: [
+        {
+            "title": "Title1",
+            "status": "published",
+            "content": "New Post Content1"
+        },
+        {
+            "title": "Title2",
+            "status": "published",
+            "content": "New Post Content2"
+        }
+    ],
+    metaData: {
+        foo: "bar",
+    },
+});
+```
+
+```json title="CreateMany event"
+{
+    "action": "createMany",
+    "resource": "posts",
+    "data": [
+        {
+            "title": "Title1",
+            "status": "published",
+            "content": "New Post Content1"
+        },
+        {
+            "title": "Title2",
+            "status": "published",
+            "content": "New Post Content2"
+        }
+    ],
+    "meta": {
+        "ids": [1, 2],
         // `metaData` is included in `meta`.
         "foo": "bar"
     }
@@ -399,6 +526,43 @@ mutate({
 }
 ```
 
+### `useUpdateMany`
+
+When `useUpdateMany` is called, `refine` sends the following parameters to audit log provider's `create` method.
+
+```ts
+const { mutate } = useUpdateMany();
+
+mutate({
+    ids: [1, 2],
+    resource: "posts",
+    values: {
+        title: "Updated New Title",
+    },
+});
+```
+
+```json title="UpdateMany event"
+{
+    "action": "updateMany",
+    "resource": "posts",
+    "data": {
+        "title": "Updated New Title",
+    },
+    "previousData": [
+        {
+            "title": "Title1",
+        },
+        {
+            "title": "Title2",
+        }
+    ],
+    "meta": {
+        "ids": [1, 2]
+    }
+}
+```
+
 ### `useDelete`
 
 When `useDelete` is called, `refine` sends the following parameters to audit log provider's `create` method.
@@ -418,6 +582,29 @@ mutate({
     "resource": "posts",
     "meta": {
         "id": 1
+    }
+}
+```
+
+### `useDeleteMany`
+
+When `useDeleteMany` is called, `refine` sends the following parameters to audit log provider's `create` method.
+
+```ts
+const { mutate } = useDeleteMany();
+
+mutate({
+    ids: [1, 2],
+    resource: "posts",
+});
+```
+
+```json title="DeleteMany event"
+{
+    "action": "deleteMany",
+    "resource": "posts",
+    "meta": {
+        "ids": [1, 2]
     }
 }
 ```
@@ -442,7 +629,7 @@ In this case, only events will be created for the `create` mutation.
             show: PostShow,
             canDelete: true,
             // highlight-start
-            options: {
+            meta: {
                 auditLog: {
                     permissions: ["create"],
                 },

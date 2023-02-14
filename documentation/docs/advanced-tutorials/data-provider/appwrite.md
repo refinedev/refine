@@ -3,7 +3,6 @@ id: appwrite
 title: Appwrite
 ---
 
-
 ## Introduction
 
 **refine** and [Appwrite](https://appwrite.io/) work in harmony, offering you quick development options. You can use your data (API, Database) very simply by using **refine**'s Appwrite data provider.
@@ -373,7 +372,7 @@ export const Login: React.FC = () => {
 Now we can login with the user we created by Appwrite. We can then list, create and edit posts.
 
 :::tip
-**refine** resource name must be the same as Appwrite Collection ID. You can change your label with resource options.
+**refine** resource name must be the same as Appwrite Collection ID. You can change your label with resource meta.
 
 ```tsx
 const App: React.FC = () => {
@@ -398,7 +397,7 @@ const App: React.FC = () => {
                     //highlight-start
                     name: "61bc3660648a6",
                     //highlight-end
-                    options: {
+                    meta: {
                         //highlight-start
                         label: "Post",
                         //highlight-end

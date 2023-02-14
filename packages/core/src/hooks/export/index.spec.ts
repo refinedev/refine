@@ -43,7 +43,7 @@ describe("useExport Hook", () => {
         const { result } = renderHook(
             () =>
                 useExport({
-                    resourceName: "posts",
+                    resource: "posts",
                 }),
             {
                 wrapper: TestWrapper({

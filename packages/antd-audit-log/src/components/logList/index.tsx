@@ -4,6 +4,7 @@ import {
     BaseKey,
     ILog,
     ILogData,
+    pickNotDeprecated,
     ResourceRouterParams,
     useLogList,
     useResourceWithRoute,
@@ -44,7 +45,7 @@ export const LogList: React.FC<LogListProps> = ({
     const logQueryResult = useLogList<ILogData>({
         resource: resourceName,
         meta: { id },
-        metaData: resource.options,
+        metaData: pickNotDeprecated(resource.meta, resource.options),
     });
 
     return (

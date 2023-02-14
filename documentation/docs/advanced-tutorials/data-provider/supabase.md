@@ -247,7 +247,13 @@ const authProvider: AuthProvider = {
     },
     checkError: () => Promise.resolve(),
     checkAuth: async () => {
-        await supabaseClient.auth.getSession();
+        const { data } = await supabaseClient.auth.getSession();
+        const { session } = data;
+
+        if (!session) {
+            return Promise.reject();
+        }
+
         return Promise.resolve();
     },
     getPermissions: async () => {
@@ -540,7 +546,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                                     const xhr = new XMLHttpRequest();
                                     onSuccess &&
                                         onSuccess(
-                                            { url: data?.publicURL },
+                                            { url: data?.publicUrl },
                                             xhr,
                                         );
                                 } catch (error) {
@@ -719,7 +725,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                                 }
 
                                 onSuccess?.(
-                                    { url: data?.publicURL },
+                                    { url: data?.publicUrl },
                                     new XMLHttpRequest(),
                                 );
                             }}

@@ -42,7 +42,7 @@ const dataProvider: DataProvider = {
         resource,
         pagination,
         hasPagination,
-        sort,
+        sorters,
         filters,
         metaData,
     }) => Promise,
@@ -86,21 +86,19 @@ import { useList } from "@pankod/refine-core";
 
 const postUseListResult = useList({
     resource: "posts",
-    config: {
-        sort: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
-        filters: [
-            {
-                field: "title",
-                operator: "contains",
-                value: "hello",
-            },
-        ],
-    },
+    sorters: [
+        {
+            field: "id",
+            order: "desc",
+        },
+    ],
+    filters: [
+        {
+            field: "title",
+            operator: "contains",
+            value: "hello",
+        },
+    ],
 });
 ```
 
@@ -113,7 +111,7 @@ const dataProvider = {
         /*
         {
           "resource": "posts",
-          "sort": [
+          "sorters": [
             {
               "field": "id",
               "order": "desc"

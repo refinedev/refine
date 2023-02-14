@@ -9,8 +9,8 @@ import { compile, Formula } from "@qualifyze/airtable-formulator";
 import Airtable from "airtable";
 import { AirtableBase } from "airtable/lib/airtable_base";
 
-const generateSort = (sort?: CrudSorting) => {
-    return sort?.map((item) => ({
+const generateSort = (sorters?: CrudSorting) => {
+    return sorters?.map((item) => ({
         field: item.field,
         direction: item.order,
     }));
@@ -121,11 +121,13 @@ const AirtableDataProvider = (
             hasPagination = true,
             pagination = { current: 1, pageSize: 10 },
             sort,
+            sorters,
             filters,
         }) => {
             const { current = 1, pageSize = 10 } = pagination ?? {};
 
-            const generetedSort = generateSort(sort) || [];
+            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
+            const generetedSort = generateSort(sorters ?? sort) || [];
             const queryFilters = generateFilter(filters);
 
             const { all } = base(resource).select({

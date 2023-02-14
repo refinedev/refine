@@ -26,11 +26,11 @@ axiosInstance.interceptors.response.use(
     },
 );
 
-const generateSort = (sort?: CrudSorting) => {
+const generateSort = (sorters?: CrudSorting) => {
     const _sort: string[] = [];
 
-    if (sort) {
-        sort.map((item) => {
+    if (sorters) {
+        sorters.map((item) => {
             if (item.order) {
                 _sort.push(`${item.field}:${item.order}`);
             }
@@ -91,12 +91,14 @@ export const DataProvider = (
         },
         filters,
         sort,
+        sorters,
     }) => {
         const url = `${apiUrl}/${resource}`;
 
         const { current = 1, pageSize: _limit = 10 } = pagination ?? {};
 
-        const _sort = generateSort(sort);
+        //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
+        const _sort = generateSort(sorters ?? sort);
         const queryFilters = generateFilter(filters);
 
         const query = {
@@ -206,11 +208,21 @@ export const DataProvider = (
         return apiUrl;
     },
 
-    custom: async ({ url, method, filters, sort, payload, query, headers }) => {
+    custom: async ({
+        url,
+        method,
+        filters,
+        sort,
+        sorters,
+        payload,
+        query,
+        headers,
+    }) => {
         let requestUrl = `${url}?`;
 
-        if (sort) {
-            const sortQuery = generateSort(sort);
+        if (sorters || sort) {
+            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
+            const sortQuery = generateSort(sorters ?? sort);
             if (sortQuery.length > 0) {
                 requestUrl = `${requestUrl}&${stringify({
                     _sort: sortQuery.join(","),

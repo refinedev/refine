@@ -32,17 +32,15 @@ import { useInfiniteList } from "@pankod/refine-core";
 
 const postListQueryResult = useInfiniteList({
     resource: "posts",
-    config: {
-        pagination: { current: 3, pageSize: 8 },
-    },
+    pagination: { current: 3, pageSize: 8 },
 });
 ```
 
 ## Sorting
 
-The `useInfiniteList` hook supports the sorting feature. You can pass the `sort` property to enable sorting. To handle sorting, the `useInfiniteList` hook passes the `sort` property to the `getList` method from the `dataProvider`.
+The `useInfiniteList` hook supports the sorting feature. You can pass the `sorters` property to enable sorting. To handle sorting, the `useInfiniteList` hook passes the `sorters` property to the `getList` method from the `dataProvider`.
 
-Dynamically changing the `sort` property will trigger a new request.
+Dynamically changing the `sorters` property will trigger a new request.
 
 <SortingLivePreview />
 
@@ -84,7 +82,7 @@ useInfiniteList({
 });
 ```
 
-### `config.filters`
+### `filters`
 
 `filters` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send filter query parameters to the API.
 
@@ -92,38 +90,34 @@ useInfiniteList({
 
 ```tsx
 useInfiniteList({
-    config: {
-        filters: [
-            {
-                field: "title",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
-    },
+    filters: [
+        {
+            field: "title",
+            operator: "contains",
+            value: "Foo",
+        },
+    ],
 });
 ```
 
-### `config.sort`
+### `sorters`
 
-`sort` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send sort query parameters to the API.
+`sorters` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send sort query parameters to the API.
 
 [Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useInfiniteList({
-    config: {
-        sort: [
-            {
-                field: "title",
-                order: "asc",
-            },
-        ],
-    },
+    sorters: [
+        {
+            field: "title",
+            order: "asc",
+        },
+    ],
 });
 ```
 
-### `config.pagination`
+### `pagination`
 
 `pagination` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send pagination query parameters to the API.
 
@@ -133,10 +127,8 @@ You can pass the `current` page number to the `pagination` property.
 
 ```tsx
 useInfiniteList({
-    config: {
-        pagination: {
-            current: 2,
-        },
+    pagination: {
+        current: 2,
     },
 });
 ```
@@ -147,23 +139,19 @@ You can pass the `pageSize` to the `pagination` property.
 
 ```tsx
 useInfiniteList({
-    config: {
-        pagination: {
-            pageSize: 20,
-        },
+    pagination: {
+        pageSize: 20,
     },
 });
 ```
 
-### `config.hasPagination`
+### `hasPagination`
 
 `hasPagination` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to determine whether to use server-side pagination or not.
 
 ```tsx
 useInfiniteList({
-    config: {
-        hasPagination: false,
-    },
+    hasPagination: false,
 });
 ```
 
@@ -205,7 +193,7 @@ const myDataProvider = {
         resource,
         pagination,
         hasPagination,
-        sort,
+        sorters,
         filters,
         // highlight-next-line
         metaData,
@@ -296,6 +284,12 @@ useInfiniteList({
 > [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
+
+### ~~`config`~~
+
+:::caution Deprecated
+Use `pagination`, `hasPagination`, `sorters` and `filters` instead.
+:::
 
 ## Return Values
 
@@ -394,27 +388,6 @@ When you override this method, you can access the `lastPage` and `allPages`.
 successNotification-default='`false`'
 errorNotification-default='"Error (status code: `statusCode`)"'
 />
-
-### Config Parameters
-
-```ts
-interface UseInfiniteListConfig {
-    hasPagination?: boolean;
-    pagination?: {
-        current?: number;
-        pageSize?: number;
-    };
-    sort?: Array<{
-        field: string;
-        order: "asc" | "desc";
-    }>;
-    filters?: Array<{
-        field: string;
-        operator: CrudOperators;
-        value: any;
-    }>;
-}
-```
 
 ### Type Parameters
 

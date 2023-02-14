@@ -1,4 +1,5 @@
 import { IResourceItem } from "@contexts/resource";
+import { pickNotDeprecated } from "../pickNotDeprecated";
 
 export const pickDataProvider = (
     resourceName?: string,
@@ -11,8 +12,9 @@ export const pickDataProvider = (
 
     const resource = resources?.find((item) => item.name === resourceName);
 
-    if (resource?.options?.dataProviderName) {
-        return resource.options.dataProviderName;
+    const meta = pickNotDeprecated(resource?.meta, resource?.options);
+    if (meta?.dataProviderName) {
+        return meta.dataProviderName;
     }
 
     return "default";

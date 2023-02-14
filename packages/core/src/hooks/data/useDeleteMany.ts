@@ -29,6 +29,7 @@ import {
     useHandleNotification,
     useDataProvider,
     useInvalidate,
+    useLog,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import { queryKeys, pickDataProvider, handleMultiple } from "@definitions";
@@ -108,6 +109,7 @@ export const useDeleteMany = <
     const publish = usePublish();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
+    const { log } = useLog();
 
     const { resources } = useResource();
     const queryClient = useQueryClient();
@@ -319,7 +321,13 @@ export const useDeleteMany = <
             },
             onSuccess: (
                 _data,
-                { ids, resource, successNotification },
+                {
+                    ids,
+                    resource,
+                    metaData,
+                    dataProviderName,
+                    successNotification,
+                },
                 context,
             ) => {
                 // Remove the queries from the cache:
@@ -353,6 +361,23 @@ export const useDeleteMany = <
                     type: "deleted",
                     payload: { ids },
                     date: new Date(),
+                });
+
+                const { fields, operation, variables, ...rest } =
+                    metaData || {};
+
+                log?.mutate({
+                    action: "deleteMany",
+                    resource,
+                    meta: {
+                        ids,
+                        dataProviderName: pickDataProvider(
+                            resource,
+                            dataProviderName,
+                            resources,
+                        ),
+                        ...rest,
+                    },
                 });
 
                 // Remove the queries from the cache:
