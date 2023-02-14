@@ -6,6 +6,7 @@ import {
     CrudSorting,
     CrudOperators,
     LogicalFilter,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import { stringify, parse } from "qs";
 
@@ -177,7 +178,12 @@ export const DataProvider = (
     }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { current = 1, pageSize = 10 } = pagination ?? {};
+        const { current = 1, pageSize = 10, mode } = pagination ?? {};
+
+        //`hasPagination` is deprecated with refine@4, refine will pass `pagination.mode` instead, however, we still support `hasPagination` for backward compatibility
+        const hasPaginationString = hasPagination ? "server" : "off";
+        const isServerPaginationEnabled =
+            pickNotDeprecated(mode, hasPaginationString) === "server";
 
         const locale = metaData?.locale;
         const fields = metaData?.fields;
@@ -185,11 +191,11 @@ export const DataProvider = (
         const publicationState = metaData?.publicationState;
 
         //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-        const quertSorters = generateSort(sorters ?? sort);
+        const quertSorters = generateSort(pickNotDeprecated(sorters, sort));
         const queryFilters = generateFilter(filters);
 
         const query = {
-            ...(hasPagination
+            ...(isServerPaginationEnabled
                 ? {
                       "pagination[page]": current,
                       "pagination[pageSize]": pageSize,
@@ -376,7 +382,7 @@ export const DataProvider = (
 
         if (sorters || sort) {
             //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-            const sortQuery = generateSort(sorters ?? sort);
+            const sortQuery = generateSort(pickNotDeprecated(sorters, sort));
             if (sortQuery.length > 0) {
                 requestUrl = `${requestUrl}&${stringify({
                     sort: sortQuery.join(","),

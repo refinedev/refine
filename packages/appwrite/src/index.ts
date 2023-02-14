@@ -6,6 +6,7 @@ import {
     CrudSorting,
     CrudFilter,
     Pagination,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import {
     Client as Appwrite,
@@ -121,12 +122,21 @@ export const dataProvider = (
             sorters,
         }) => {
             const appwriteFilters = getAppwriteFilters(filters);
-            const appwritePagination = hasPagination
+
+            //`hasPagination` is deprecated with refine@4, refine will pass `pagination.mode` instead, however, we still support `hasPagination` for backward compatibility
+            const hasPaginationString = hasPagination ? "server" : "off";
+            const isServerPaginationEnabled =
+                pickNotDeprecated(pagination?.mode, hasPaginationString) ===
+                "server";
+
+            const appwritePagination = isServerPaginationEnabled
                 ? getAppwritePagination(pagination)
                 : [];
 
             //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-            const appwriteSorts = getAppwriteSorting(sorters ?? sort);
+            const appwriteSorts = getAppwriteSorting(
+                pickNotDeprecated(sorters, sort),
+            );
 
             const { total: total, documents: data } =
                 await database.listDocuments<any>(databaseId, resource, [

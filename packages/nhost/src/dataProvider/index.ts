@@ -7,6 +7,7 @@ import {
     DataProvider,
     HttpError,
     CrudFilter,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import setWith from "lodash/setWith";
 import set from "lodash/set";
@@ -231,10 +232,21 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
             },
             metaData,
         }) => {
-            const { current = 1, pageSize: limit = 10 } = pagination ?? {};
+            const {
+                current = 1,
+                pageSize: limit = 10,
+                mode,
+            } = pagination ?? {};
+
+            //`hasPagination` is deprecated with refine@4, refine will pass `pagination.mode` instead, however, we still support `hasPagination` for backward compatibility
+            const hasPaginationString = hasPagination ? "server" : "off";
+            const isServerPaginationEnabled =
+                pickNotDeprecated(mode, hasPaginationString) === "server";
 
             //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-            const hasuraSorting = generateSorting(sorters ?? sort);
+            const hasuraSorting = generateSorting(
+                pickNotDeprecated(sorters, sort),
+            );
             const hasuraFilters = generateFilters(filters);
 
             const operation = metaData?.operation ?? resource;
@@ -249,7 +261,7 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
                     operation,
                     fields: metaData?.fields,
                     variables: {
-                        ...(hasPagination
+                        ...(isServerPaginationEnabled
                             ? {
                                   limit,
                                   offset: (current - 1) * limit,

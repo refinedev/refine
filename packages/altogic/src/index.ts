@@ -6,6 +6,7 @@ import {
     CrudOperators,
     CrudFilters,
     CrudSorting,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 
 const axiosInstance = axios.create();
@@ -116,7 +117,7 @@ const AltogicDataProvider = (
         sort,
         sorters,
     }) => {
-        const { current: page = 1, pageSize: size = 10 } = pagination ?? {};
+        const { current = 1, pageSize = 10, mode } = pagination ?? {};
 
         const url = `${apiUrl}/${resource}`;
 
@@ -126,10 +127,20 @@ const AltogicDataProvider = (
             page?: number;
             size?: number;
             sort?: string;
-        } = hasPagination ? { page, size } : {};
+        } = {};
+
+        //`hasPagination` is deprecated with refine@4, refine will pass `pagination.mode` instead, however, we still support `hasPagination` for backward compatibility
+        const hasPaginationString = hasPagination ? "server" : "off";
+        const isServerPaginationEnabled =
+            pickNotDeprecated(mode, hasPaginationString) === "server";
+
+        if (isServerPaginationEnabled) {
+            query.page = current;
+            query.size = pageSize;
+        }
 
         //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-        const generatedSort = generateSort(sorters ?? sort);
+        const generatedSort = generateSort(pickNotDeprecated(sorters, sort));
         if (generatedSort) {
             const { _sort } = generatedSort;
 
@@ -254,7 +265,9 @@ const AltogicDataProvider = (
 
         if (sorters || sort) {
             //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-            const generatedSort = generateSort(sorters ?? sort);
+            const generatedSort = generateSort(
+                pickNotDeprecated(sorters, sort),
+            );
             if (generatedSort) {
                 const { _sort } = generatedSort;
                 const sortQuery = {

@@ -24,7 +24,7 @@ export const dataProvider = (
 
         const queryFilters = generateFilter(filters);
 
-        let query: {
+        const query: {
             _start?: number;
             _end?: number;
             _sort?: string;
@@ -32,18 +32,17 @@ export const dataProvider = (
         } = {};
 
         //`hasPagination` is deprecated with refine@4, refine will pass `pagination.mode` instead, however, we still support `hasPagination` for backward compatibility
-        if (
-            pickNotDeprecated(mode, hasPagination) === "server" ||
-            pickNotDeprecated(mode, hasPagination) === true
-        ) {
-            query = {
-                _start: (current - 1) * pageSize,
-                _end: current * pageSize,
-            };
+        const hasPaginationString = hasPagination ? "server" : "off";
+        const isServerPaginationEnabled =
+            pickNotDeprecated(mode, hasPaginationString) === "server";
+
+        if (isServerPaginationEnabled) {
+            query._start = (current - 1) * pageSize;
+            query._end = current * pageSize;
         }
 
         //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-        const generatedSort = generateSort(sorters ?? sort);
+        const generatedSort = generateSort(pickNotDeprecated(sorters, sort));
         if (generatedSort) {
             const { _sort, _order } = generatedSort;
             query._sort = _sort.join(",");
@@ -132,7 +131,9 @@ export const dataProvider = (
 
         if (sorters || sort) {
             //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-            const generatedSort = generateSort(sorters ?? sort);
+            const generatedSort = generateSort(
+                pickNotDeprecated(sorters, sort),
+            );
             if (generatedSort) {
                 const { _sort, _order } = generatedSort;
                 const sortQuery = {

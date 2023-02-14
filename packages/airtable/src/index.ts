@@ -3,6 +3,7 @@ import {
     CrudFilters,
     CrudSorting,
     LogicalFilter,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import { compile, Formula } from "@qualifyze/airtable-formulator";
 
@@ -124,10 +125,16 @@ const AirtableDataProvider = (
             sorters,
             filters,
         }) => {
-            const { current = 1, pageSize = 10 } = pagination ?? {};
+            const { current = 1, pageSize = 10, mode } = pagination ?? {};
+
+            //`hasPagination` is deprecated with refine@4, refine will pass `pagination.mode` instead, however, we still support `hasPagination` for backward compatibility
+            const hasPaginationString = hasPagination ? "server" : "off";
+            const isServerPaginationEnabled =
+                pickNotDeprecated(mode, hasPaginationString) === "server";
 
             //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-            const generetedSort = generateSort(sorters ?? sort) || [];
+            const generetedSort =
+                generateSort(pickNotDeprecated(sorters, sort)) || [];
             const queryFilters = generateFilter(filters);
 
             const { all } = base(resource).select({
@@ -141,8 +148,12 @@ const AirtableDataProvider = (
             return {
                 data: data
                     .slice(
-                        hasPagination ? (current - 1) * pageSize : undefined,
-                        hasPagination ? current * pageSize : undefined,
+                        isServerPaginationEnabled
+                            ? (current - 1) * pageSize
+                            : undefined,
+                        isServerPaginationEnabled
+                            ? current * pageSize
+                            : undefined,
                     )
                     .map((p) => ({
                         id: p.id,

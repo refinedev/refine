@@ -6,6 +6,7 @@ import {
     HttpError,
     CrudOperators,
     CrudFilters,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import {
     createClient,
@@ -139,7 +140,7 @@ const dataProvider = (
             sorters,
             metaData,
         }) => {
-            const { current = 1, pageSize = 10 } = pagination ?? {};
+            const { current = 1, pageSize = 10, mode } = pagination ?? {};
 
             const query = supabaseClient
                 .from(resource)
@@ -147,12 +148,17 @@ const dataProvider = (
                     count: "exact",
                 });
 
-            if (hasPagination) {
+            //`hasPagination` is deprecated with refine@4, refine will pass `pagination.mode` instead, however, we still support `hasPagination` for backward compatibility
+            const hasPaginationString = hasPagination ? "server" : "off";
+            const isServerPaginationEnabled =
+                pickNotDeprecated(mode, hasPaginationString) === "server";
+
+            if (isServerPaginationEnabled) {
                 query.range((current - 1) * pageSize, current * pageSize - 1);
             }
 
             //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-            (sorters ?? sort)?.map((item) => {
+            pickNotDeprecated(sorters, sort)?.map((item) => {
                 const [foreignTable, field] = item.field.split(/\.(.*)/);
 
                 if (foreignTable && field) {
