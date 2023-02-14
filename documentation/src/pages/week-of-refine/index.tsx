@@ -311,7 +311,7 @@ const RefineWeek = () => {
                         </div>
                     </div>
 
-                    <div className="flex flex-col items-center justify-center mt-16 max-w-[592px] mx-auto">
+                    {/*       <div className="flex flex-col items-center justify-center mt-16 max-w-[592px] mx-auto">
                         <div className="flex items-center justify-center">
                             <RefineHatIcon className="mr-2" />
                             <h2 className="font-montserrat font-extrabold text-[#242436] tracking-wide text-3xl mb-0">
@@ -343,7 +343,7 @@ const RefineWeek = () => {
                                 week
                             </span>
                         </LinkButton>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="flex flex-col items-center justify-center mt-16 max-w-[800px] mx-auto">
