@@ -2,14 +2,8 @@ import React, { useState } from "react";
 import { DemoSidebarProps } from "./types";
 import { handlerStyles, formItemStyles } from "./styles";
 
-import {
-    Drawer,
-    Icons,
-    Switch,
-    Select,
-    Form,
-    InputNumber,
-} from "@pankod/refine-antd";
+import { Icons } from "@pankod/refine-antd";
+import { Drawer, Switch, Select, Form, InputNumber } from "antd";
 
 import { Group } from "..";
 
