@@ -65,8 +65,6 @@ export type useTableReturnType<
  * @see {@link https://refine.dev/docs/api-references/hooks/table/useTable} for more details.
  */
 
-// const defaultPermanentFilter: CrudFilters = [];
-
 export const useTable = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -82,8 +80,8 @@ export const useTable = <
     initialFilter,
     permanentFilter,
     defaultSetFilterBehavior,
-    syncWithLocation: syncWithLocationProp,
-    resource: resourceFromProp,
+    syncWithLocation,
+    resource,
     successNotification,
     errorNotification,
     queryOptions,
@@ -118,8 +116,8 @@ export const useTable = <
         hasPagination,
         initialSorter,
         initialFilter,
-        syncWithLocation: syncWithLocationProp,
-        resource: resourceFromProp,
+        syncWithLocation,
+        resource,
         defaultSetFilterBehavior,
         successNotification,
         errorNotification,
@@ -130,6 +128,10 @@ export const useTable = <
         metaData,
         dataProviderName,
     });
+
+    const hasPaginationString = hasPagination ? "server" : "off";
+    const isPaginationEnabled =
+        pickNotDeprecated(pagination?.mode, hasPaginationString) !== "off";
 
     const breakpoint = Grid.useBreakpoint();
 
@@ -166,11 +168,7 @@ export const useTable = <
             setSorter(crudSorting);
         }
 
-        // tablePropsSunflower.onChange(pagination, filters, sorter);
-        if (
-            pickNotDeprecated(pagination?.mode, hasPagination) !== "off" ||
-            pickNotDeprecated(pagination?.mode, hasPagination) === true
-        ) {
+        if (isPaginationEnabled) {
             setCurrent?.(paginationState.current || 1);
             setPageSize?.(paginationState.pageSize || 10);
         }
@@ -181,20 +179,14 @@ export const useTable = <
             const searchFilters = await onSearch(value);
             setFilters(searchFilters);
 
-            if (
-                pickNotDeprecated(pagination?.mode, hasPagination) !== "off" ||
-                pickNotDeprecated(pagination?.mode, hasPagination) === true
-            ) {
+            if (isPaginationEnabled) {
                 setCurrent?.(1);
             }
         }
     };
 
     const antdPagination = (): false | TablePaginationConfig => {
-        if (
-            pickNotDeprecated(pagination?.mode, hasPagination) !== "off" ||
-            pickNotDeprecated(pagination?.mode, hasPagination) === true
-        ) {
+        if (isPaginationEnabled) {
             return {
                 itemRender: (page, type, element) => {
                     const link = createLinkForSyncWithLocation({

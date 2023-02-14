@@ -183,6 +183,10 @@ export function useTable<
     metaData,
     dataProviderName,
 }: useTableProps<TData, TError> = {}): useTableReturnType<TData, TError> {
+    const hasPaginationString = hasPagination ? "server" : "off";
+    const isPaginationEnabled =
+        pickNotDeprecated(pagination?.mode, hasPaginationString) !== "off";
+
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
@@ -268,9 +272,7 @@ export function useTable<
         if (syncWithLocation) {
             const queryParams = currentQueryParams();
             const stringifyParams = stringifyTableParams({
-                ...(pickNotDeprecated(pagination?.mode, hasPagination) !==
-                    "off" ||
-                pickNotDeprecated(pagination?.mode, hasPagination) === true
+                ...(isPaginationEnabled
                     ? {
                           pagination: {
                               pageSize,

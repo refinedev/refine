@@ -39,13 +39,21 @@ export function useTable<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
 >({
-    refineCoreProps = {},
+    refineCoreProps: { hasPagination = true, ...refineCoreProps } = {},
     initialState: reactTableInitialState = {},
     ...rest
 }: UseTableProps<TData, TError>): UseTableReturnType<TData, TError> {
     const useTableResult = useTableCore<TData, TError>({
         ...refineCoreProps,
+        hasPagination,
     });
+
+    const hasPaginationString = hasPagination ? "server" : "off";
+    const isPaginationEnabled =
+        pickNotDeprecated(
+            refineCoreProps?.pagination?.mode,
+            hasPaginationString,
+        ) !== "off";
 
     const {
         tableQueryResult: { data },
@@ -122,17 +130,7 @@ export function useTable<
                 })),
             );
 
-            if (
-                sorting.length > 0 &&
-                (pickNotDeprecated(
-                    refineCoreProps.pagination?.mode,
-                    refineCoreProps.hasPagination,
-                ) !== "off" ||
-                    pickNotDeprecated(
-                        refineCoreProps.pagination?.mode,
-                        refineCoreProps.hasPagination,
-                    ) === true)
-            ) {
+            if (sorting.length > 0 && isPaginationEnabled) {
                 setCurrent(1);
             }
         }
@@ -172,17 +170,7 @@ export function useTable<
 
         setFilters(crudFilters);
 
-        if (
-            crudFilters.length > 0 &&
-            (pickNotDeprecated(
-                refineCoreProps.pagination?.mode,
-                refineCoreProps.hasPagination,
-            ) !== "off" ||
-                pickNotDeprecated(
-                    refineCoreProps.pagination?.mode,
-                    refineCoreProps.hasPagination,
-                ) === true)
-        ) {
+        if (crudFilters.length > 0 && isPaginationEnabled) {
             setCurrent(1);
         }
     }, [columnFilters]);

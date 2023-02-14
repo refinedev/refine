@@ -121,6 +121,8 @@ export const useSimpleList = <
     });
 
     const hasPaginationString = hasPagination ? "server" : "off";
+    const isPaginationEnabled =
+        pickNotDeprecated(pagination?.mode, hasPaginationString) !== "off";
 
     const breakpoint = Grid.useBreakpoint();
 
@@ -131,9 +133,7 @@ export const useSimpleList = <
     const { data, isFetched, isLoading } = queryResult;
 
     const onChange = (page: number, pageSize?: number): void => {
-        if (
-            pickNotDeprecated(pagination?.mode, hasPaginationString) !== "off"
-        ) {
+        if (isPaginationEnabled) {
             setCurrent(page);
             setPageSize(pageSize || 10);
         }
@@ -142,10 +142,7 @@ export const useSimpleList = <
     const onFinish = async (values: TSearchVariables) => {
         if (onSearch) {
             const searchFilters = await onSearch(values);
-            if (
-                pickNotDeprecated(pagination?.mode, hasPaginationString) !==
-                "off"
-            ) {
+            if (isPaginationEnabled) {
                 setCurrent?.(1);
             }
             return setFilters(searchFilters);
@@ -153,9 +150,7 @@ export const useSimpleList = <
     };
 
     const antdPagination = (): false | PaginationConfig => {
-        if (
-            pickNotDeprecated(pagination?.mode, hasPaginationString) !== "off"
-        ) {
+        if (isPaginationEnabled) {
             return {
                 itemRender: (page, type, element) => {
                     const link = createLinkForSyncWithLocation({

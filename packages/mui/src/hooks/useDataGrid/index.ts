@@ -99,6 +99,10 @@ export function useDataGrid<
     TError,
     TSearchVariables
 > = {}): UseDataGridReturnType<TData, TError, TSearchVariables> {
+    const hasPaginationString = hasPagination ? "server" : "off";
+    const isPaginationEnabled =
+        pickNotDeprecated(pagination?.mode, hasPaginationString) !== "off";
+
     const [columnsTypes, setColumnsType] = useState<Record<string, string>>();
 
     const {
@@ -144,18 +148,12 @@ export function useDataGrid<
     const liveMode = useLiveMode(liveModeFromProp);
 
     const handlePageChange = (page: number) => {
-        if (
-            pickNotDeprecated(pagination?.mode, hasPagination) !== "off" ||
-            pickNotDeprecated(pagination?.mode, hasPagination) === true
-        ) {
+        if (isPaginationEnabled) {
             setCurrent(page + 1);
         }
     };
     const handlePageSizeChange = (pageSize: number) => {
-        if (
-            pickNotDeprecated(pagination?.mode, hasPagination) !== "off" ||
-            pickNotDeprecated(pagination?.mode, hasPagination) === true
-        ) {
+        if (isPaginationEnabled) {
             setPageSize(pageSize);
         }
     };
@@ -169,10 +167,7 @@ export function useDataGrid<
         const crudFilters = transformFilterModelToCrudFilters(filterModel);
         setMuiCrudFilters(crudFilters);
         setFilters(crudFilters.filter((f) => f.value !== ""));
-        if (
-            pickNotDeprecated(pagination?.mode, hasPagination) !== "off" ||
-            pickNotDeprecated(pagination?.mode, hasPagination) === true
-        ) {
+        if (isPaginationEnabled) {
             setCurrent(1);
         }
     };
@@ -182,20 +177,14 @@ export function useDataGrid<
             const searchFilters = await onSearchProp(value);
             setMuiCrudFilters(searchFilters);
             setFilters(searchFilters.filter((f) => f.value !== ""));
-            if (
-                pickNotDeprecated(pagination?.mode, hasPagination) !== "off" ||
-                pickNotDeprecated(pagination?.mode, hasPagination) === true
-            ) {
+            if (isPaginationEnabled) {
                 setCurrent(1);
             }
         }
     };
 
     const dataGridPaginationValues = () => {
-        if (
-            pickNotDeprecated(pagination?.mode, hasPagination) !== "off" ||
-            pickNotDeprecated(pagination?.mode, hasPagination) === true
-        ) {
+        if (isPaginationEnabled) {
             return {
                 paginationMode: "server" as const,
                 page: (current ?? 1) - 1,
