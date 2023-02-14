@@ -57,7 +57,7 @@ export const integrations: IntegrationsType = {
             name: "Chakra UI",
             icon: Chakra,
             description:
-                " <strong>Chakra UI</strong> Framework support. 20+ framework-specific hooks and components incl. Table, Forms, Layout, Feedback and CRUD components.",
+                " <strong>Chakra UI</strong> Framework support. 20+ framework-specific components incl. Layout, Feedback, and CRUD components.",
             url: "https://www.npmjs.com/package/@pankod/refine-chakra-ui",
             status: "stable",
         },
