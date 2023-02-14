@@ -4,7 +4,7 @@ import path from "path";
 import { install } from "../helpers";
 import checkPackageLock from "../helpers/checkPackageLock";
 import separateImports from "../helpers/separateImports";
-import { exportedAntdItems } from "../definitions/export";
+import { exportedAntdItems, renameAntdItems } from "../definitions/export";
 
 export const parser = "tsx";
 
@@ -38,6 +38,7 @@ export default function transformer(file: FileInfo, api: API): string {
         j,
         source,
         imports: exportedAntdItems,
+        renameImports: renameAntdItems,
         currentLibName: "@pankod/refine-antd",
         nextLibName: "antd",
     });

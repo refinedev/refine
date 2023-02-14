@@ -156,3 +156,11 @@ export const exportedAntdItems: string[] = [
     "QRPropsCanvas",
     "TitleProps",
 ];
+
+export const renameAntdItems: { [key: string]: string } = {
+    AntdBreadcrumb: "Breadcrumb",
+    AntdLayout: "Layout",
+    AntdList: "List",
+    AntdBreadcrumbProps: "BreadcrumbProps",
+    AntdListProps: "ListProps",
+};
