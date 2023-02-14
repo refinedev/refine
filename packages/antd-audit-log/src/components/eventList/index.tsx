@@ -1,14 +1,14 @@
 import React from "react";
 import { UseQueryResult } from "@tanstack/react-query";
+import { Icons } from "@pankod/refine-antd";
 import {
-    AntdList,
+    List as AntdList,
     Dropdown,
     Menu,
-    Icons,
     Button,
     Badge,
     Typography,
-} from "@pankod/refine-antd";
+} from "antd";
 import { ILog, ILogData, useUpdate } from "@pankod/refine-core";
 import dayjs from "dayjs";
 

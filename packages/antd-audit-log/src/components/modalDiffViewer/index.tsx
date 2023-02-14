@@ -1,17 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Icons } from "@pankod/refine-antd";
 import {
     Modal,
     Dropdown,
     Menu,
     Button,
-    Icons,
     Divider,
     Row,
     Col,
     ModalProps,
     Typography,
     Space,
-} from "@pankod/refine-antd";
+} from "antd";
+
 import { useLog, ILogData, ILog } from "@pankod/refine-core";
 import ReactDiffViewer, {
     DiffMethod,
