@@ -27,32 +27,32 @@ const timeline = [
         link: null,
     },
     {
-        date: "16th October 2022",
+        date: "16th February 2022",
         title: "Adding CRUD Actions & Authentication",
         description: `We start implementing CRUD functionalities like creating, showing a canvas, drawing pixels and user authentication using <strong className="font-bold">Supabase</strong>`,
         link: null,
     },
     {
-        date: "17th October 2022",
+        date: "17th February 2022",
         title: "Adding Realtime Collaboration",
         description: `Adding <strong className="font-bold">Supabase</strong> as live provider to the project in order that multiple users drawing on the same canvas can see each other's paintings in real-time.`,
         link: null,
     },
     {
-        date: "18th October 2022",
+        date: "18th February 2022",
         title: "Initialize and Build Pixels Admin App",
         description: `We'll implement an admin dashboard app and explore how refine's Ant Design support module is geared to rapidly build CRUD pages for a refine app`,
         link: null,
     },
     {
-        date: "19th October 2022",
+        date: "19th February 2022",
         title: "Add Role Based Authorization",
         description:
             "We implement user role based authorization to our admin app",
         link: null,
     },
     {
-        date: "20th October 2022",
+        date: "20th February 2022",
         title: "Add Audit Log to Client App and Admin App",
         description: `Well record each canvas creation and pixel drawings to audit logs table in <strong className="font-bold">Supabase</strong>. And then we’ll be able to display this logs on the admin and the client app.`,
         link: null,
