@@ -32,7 +32,6 @@ export const transformerDirectory = path.join(
 const transformsWithPostTransform = [
     "refine1-to-refine2",
     "refine2-to-refine3",
-    "refine3-to-refine4",
 ];
 
 export function checkGitStatus(force) {
@@ -119,10 +118,6 @@ export function runTransform({ files, flags, transformer }) {
 }
 
 const TRANSFORMER_INQUIRER_CHOICES = [
-    {
-        name: "refine3-to-refine4: Transform from refine 3.x.x to at least 4.0.0",
-        value: "refine3-to-refine4",
-    },
     {
         name: "antd4-to-antd5: Transform from antd 4.x.x to at least 5.x.x",
         value: "antd4-to-antd5",
