@@ -8,7 +8,7 @@
         "refine": "refine"
     },
     "dependencies": {
-        "@pankod/refine-mantine": "^1.15.8",
+        "@pankod/refine-mantine": "^1.15.9",
         "@pankod/refine-core": "^3.99.4",
         "@pankod/refine-cli": "^1.17.0",
         "@pankod/refine-inferencer": "^2.5.0",
