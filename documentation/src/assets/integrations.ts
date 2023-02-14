@@ -23,6 +23,7 @@ import {
     Ably,
     Dp,
     Elide,
+    EntRefine,
 } from "./integration-icons";
 
 export const integrations: IntegrationsType = {
@@ -285,6 +286,20 @@ export const integrations: IntegrationsType = {
                 {
                     name: "chirdeeptomar",
                     url: "https://github.com/chirdeeptomar",
+                },
+            ],
+        },
+        {
+            name: "ent-refine",
+            icon: EntRefine,
+            description:
+                "A library that generates fully customizable UI based on Entgo ORM and GraphQL API with refine.",
+            url: "https://github.com/diazoxide/entrefine",
+            status: "stable",
+            contributors: [
+                {
+                    name: "diazoxide",
+                    url: "https://github.com/diazoxide",
                 },
             ],
         },
