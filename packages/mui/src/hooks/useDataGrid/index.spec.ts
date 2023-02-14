@@ -60,4 +60,93 @@ describe("useDataGrid Hook", () => {
         ]);
         expect(result.current.current).toEqual(1);
     });
+
+    it.each(["client", "server"] as const)(
+        "when pagination mode is %s, should set pagination props in dataGridProps",
+        async (mode) => {
+            const { result } = renderHook(
+                () =>
+                    useDataGrid({
+                        pagination: {
+                            mode,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(result.current.dataGridProps).toEqual(
+                expect.objectContaining({
+                    pageSize: 25,
+                    page: 0,
+                }),
+            );
+        },
+    );
+
+    it("when pagination mode is off, should not set pagination props in dataGridProps", async () => {
+        const { result } = renderHook(
+            () =>
+                useDataGrid({
+                    pagination: {
+                        mode: "off",
+                    },
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        expect(result.current.dataGridProps).toEqual(
+            expect.not.objectContaining({
+                pageSize: 25,
+                page: 0,
+            }),
+        );
+        expect(result.current.dataGridProps).toEqual(
+            expect.objectContaining({
+                hideFooterPagination: true,
+            }),
+        );
+    });
+
+    it("pagination should be prioritized over hasPagination", async () => {
+        const { result } = renderHook(
+            () =>
+                useDataGrid({
+                    pagination: {
+                        mode: "off",
+                    },
+                    hasPagination: true,
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        expect(result.current.dataGridProps).toEqual(
+            expect.objectContaining({
+                hideFooterPagination: true,
+            }),
+        );
+    });
+
+    it("when hasPagination is false and pagination mode is not defined, dataGridProps should contain hideFooterPagination", async () => {
+        const { result } = renderHook(
+            () =>
+                useDataGrid({
+                    hasPagination: false,
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        expect(result.current.dataGridProps).toEqual(
+            expect.objectContaining({
+                hideFooterPagination: true,
+            }),
+        );
+    });
 });

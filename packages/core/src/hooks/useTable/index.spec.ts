@@ -148,6 +148,91 @@ describe("useTable Hook", () => {
             expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
         });
     });
+
+    it("data should be sliced when pagination mode is client", async () => {
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    resource: "posts",
+                    pagination: {
+                        mode: "client",
+                        pageSize: 1,
+                        current: 1,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
+        expect(result.current.tableQueryResult.data?.data).toHaveLength(1);
+        expect(result.current.pageSize).toEqual(1);
+        expect(result.current.current).toEqual(1);
+    });
+
+    it("user should be able to use queryOptions's select to transform data when pagination mode is client", async () => {
+        const { result } = renderHook(
+            () =>
+                useTable<{ id: number }>({
+                    resource: "posts",
+                    pagination: {
+                        mode: "client",
+                    },
+                    queryOptions: {
+                        select: (data) => {
+                            return {
+                                data: data.data.map((item) => ({
+                                    id: item.id,
+                                })),
+                                total: data.total,
+                            };
+                        },
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
+        expect(result.current.tableQueryResult.data?.data).toStrictEqual([
+            { id: "1" },
+            { id: "2" },
+        ]);
+    });
+
+    it("pagination should be prioritized over initialCurrent and initialPageSize", async () => {
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialCurrent: 10,
+                    initialPageSize: 20,
+                    pagination: {
+                        current: 1,
+                        pageSize: 10,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        expect(result.current.pageSize).toBe(10);
+        expect(result.current.current).toBe(1);
+    });
 });
 
 describe("useTable Filters", () => {
