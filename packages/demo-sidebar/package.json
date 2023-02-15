@@ -23,7 +23,8 @@
         "@pankod/refine-core": "^3.23.2",
         "react": "^17.0.0 || ^18.0.0",
         "react-dom": "^17.0.0 || ^18.0.0",
-        "antd": "^5.0.3"
+        "antd": "^5.0.3",
+        "@ant-design/icons": "^4.5.0"
     },
     "author": "refine",
     "module": "dist/esm/index.js",

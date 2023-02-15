@@ -1,6 +1,6 @@
 import React from "react";
 import { UseQueryResult } from "@tanstack/react-query";
-import { Icons } from "@pankod/refine-antd";
+import * as Icons from "@ant-design/icons";
 import {
     List as AntdList,
     Dropdown,

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Icons } from "@pankod/refine-antd";
+import * as Icons from "@ant-design/icons";
 import {
     Modal,
     Dropdown,
