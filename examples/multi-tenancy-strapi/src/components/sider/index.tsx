@@ -5,8 +5,8 @@ import {
     ITreeMenu,
     CanAccess,
     useRouterContext,
+    useMenu,
 } from "@pankod/refine-core";
-import { useMenu } from "@pankod/refine-antd";
 import * as Icons from "@ant-design/icons";
 import { Layout as AntdLayout, Menu, Grid } from "antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
