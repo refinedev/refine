@@ -15,10 +15,5 @@ export default {
 } as ComponentMeta<typeof AntdList>;
 
 export const List: ComponentStory<typeof AntdList> = (args) => {
-    return (
-        <AntdList
-            {...args}
-            title={args.title === "" ? undefined : args.title}
-        />
-    );
+    return <AntdList {...args} />;
 };
