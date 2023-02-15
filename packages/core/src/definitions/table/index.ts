@@ -31,12 +31,11 @@ export const parseTableParamsFromQuery = (params: any) => {
     return parseTableParams(`/${url}`);
 };
 
+/**
+ * @internal This function is used to stringify table params from the useTable hook.
+ */
 export const stringifyTableParams = (params: {
     pagination?: { current?: number; pageSize?: number };
-    /**
-     * @deprecated `sorter` is deprecated. Use `sorters` instead.
-     */
-    sorter?: CrudSorting;
     sorters: CrudSorting;
     filters: CrudFilters;
     [key: string]: any;
