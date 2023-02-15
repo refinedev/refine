@@ -9,15 +9,6 @@ export const numberInfer: FieldInferencer = (key, value) => {
 
     const isNumeric = isNumericString || isNumber;
 
-    console.log({
-        key,
-        value,
-        isNumeric,
-        isNumber,
-        isNumericString,
-        isNotNaN,
-        isNonEmptyString,
-    });
 
     if (isNumeric) {
         return {
