@@ -31,7 +31,7 @@ The hook handles pagination by setting the `paginationMode`, `page`, `onPageChan
 It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
 :::info
-To disable pagination, you can set `hasPagination` property to `false` which is `true` by default. If pagination is disabled, `hideFooterPagination` property will be sent as `true` with `paginationMode`, `page,` `onPageChange`, `pageSize` and `onPageSizeChange` set to undefined.
+If you want to handle the pagination on client-side, you can pass the `pagination.mode` prop to the `useDataGrid` hook and set it to `"client"`.
 :::
 
 ```tsx
@@ -284,7 +284,7 @@ method={{
 />
 
 ```tsx
-useTable({
+useDataGrid({
     resource: "categories",
 });
 ```
@@ -299,7 +299,7 @@ useDataGrid({
 });
 ```
 
-### `initialCurrent`
+### `pagination.current`
 
 > Default: `1`
 
@@ -307,19 +307,41 @@ Sets the initial value of the page index.
 
 ```tsx
 useDataGrid({
-    initialCurrent: 2, // This will cause the table to initially display the data for page 2, rather than the default of page 1
+    pagination: {
+        current: 2,
+    },
 });
 ```
 
-### `initialPageSize`
+### `pagination.pageSize`
 
-> Default: `10`
+> Default: `25`
 
 Sets the initial value of the page size.
 
 ```tsx
 useDataGrid({
-    initialPageSize: 20, // This will cause the table to initially display 20 rows per page, rather than the default of 10
+    pagination: {
+        pageSize: 10,
+    },
+});
+```
+
+### `pagination.mode`
+
+> Default: `"server"`
+
+It can be `"off"`, `"server"` or `"client"`.
+
+-   **"off":** Pagination is disabled. All records will be fetched.
+-   **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
+-   **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
+
+```tsx
+useDataGrid({
+    pagination: {
+        mode: "client",
+    },
 });
 ```
 
@@ -400,18 +422,6 @@ You can also override the default value by using the second parameter of the [`s
 ```tsx
 useDataGrid({
     defaultSetFilterBehavior: "replace",
-});
-```
-
-### `hasPagination`
-
-> Default: `true`
-
-Determines whether to use server-side pagination or not.
-
-```tsx
-useDataGrid({
-    hasPagination: false,
 });
 ```
 
@@ -555,6 +565,54 @@ useDataGrid({
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
+### ~~`initialCurrent`~~
+
+:::caution Deprecated
+Use `pagination.current` instead.
+:::
+
+> Default: `1`
+
+Sets the initial value of the page index.
+
+```tsx
+useDataGrid({
+    initialCurrent: 2,
+});
+```
+
+### ~~`initialPageSize`~~
+
+:::caution Deprecated
+Use `pagination.pageSize` instead.
+:::
+
+> Default: `25`
+
+Sets the initial value of the page size.
+
+```tsx
+useDataGrid({
+    initialPageSize: 20,
+});
+```
+
+### ~~`hasPagination`~~
+
+:::caution Deprecated
+Use `pagination.mode` instead.
+:::
+
+> Default: `true`
+
+Determines whether to use server-side pagination or not.
+
+```tsx
+useDataGrid({
+    hasPagination: false,
+});
+```
+
 ## Return Values
 
 ### `dataGridProps`
@@ -655,17 +713,17 @@ Returns pagination configuration values(pageSize, current, setCurrent, etc.).
 
 Returned values from [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
 
-### `sorter`
+### `sorters`
 
-Current [sorter state][crudsorting].
+Current [sorters state][crudsorting].
 
-### `setSorter`
+### `setSorters`
+
+A function to set current [sorters state][crudsorting].
 
 ```tsx
- (sorter: CrudSorting) => void;
+ (sorters: CrudSorting) => void;
 ```
-
-A function to set current [sorter state][crudsorting].
 
 ### `filters`
 
@@ -715,6 +773,26 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 
 A function creates accessible links for `syncWithLocation`. It takes [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
+### ~~`sorter`~~
+
+:::caution Deprecated
+Use `sorters` instead.
+:::
+
+Current [sorters state][crudsorting].
+
+### ~~`setSorter`~~
+
+:::caution Deprecated
+Use `setSorters` instead.
+:::
+
+A function to set current [sorters state][crudsorting].
+
+```tsx
+ (sorters: CrudSorting) => void;
+```
+
 ## FAQ
 
 ### How can I handle relational data?
@@ -739,22 +817,24 @@ You can use [`useSelect`](http://localhost:3000/docs/api-reference/core/hooks/us
 
 ### Return values
 
-| Property                      | Description                                                                                                    | Type                                                                                 |
-| ----------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| dataGridProps                 | MUI X [`<DataGrid>`][data-grid] props                                                                          | `DataGridPropsType`\*                                                                |
-| tableQueryResult              | Result of the `react-query`'s `useQuery`                                                                       | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery] |
-| search                        | It sends the parameters it receives to its `onSearch` function                                                 | `(value: TSearchVariables) => Promise<void>`                                         |
-| current                       | Current page index state (returns `undefined` if pagination is disabled)                                       | `number` \| `undefined`                                                              |
-| totalPage                     | Total page count (returns `undefined` if pagination is disabled)                                               | `number` \| `undefined`                                                              |
-| setCurrent                    | A function that changes the current (returns `undefined` if pagination is disabled)                            | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                        |
-| pageSize                      | Current pageSize state (returns `undefined` if pagination is disabled)                                         | `number` \| `undefined`                                                              |
-| setPageSize                   | A function that changes the pageSize (returns `undefined` if pagination is disabled)                           | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                        |
-| hideFooterPagination          | Whether to hide the footer pagination or not. This value is only returned if `hasPagination` is set to `false` | `boolean`                                                                            |
-| sorter                        | Current sorting state                                                                                          | [`CrudSorting`][crudsorting]                                                         |
-| setSorter                     | A function that accepts a new sorter state                                                                     | `(sorter: CrudSorting) => void`                                                      |
-| filters                       | Current filters state                                                                                          | [`CrudFilters`][crudfilters]                                                         |
-| setFilters                    | A function that accepts a new filter state                                                                     | `(filters: CrudFilters) => void`                                                     |
-| createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                                                        | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`            |
+| Property                      | Description                                                                                        | Type                                                                                 |
+| ----------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| dataGridProps                 | MUI X [`<DataGrid>`][data-grid] props                                                              | `DataGridPropsType`\*                                                                |
+| tableQueryResult              | Result of the `react-query`'s `useQuery`                                                           | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery] |
+| search                        | It sends the parameters it receives to its `onSearch` function                                     | `(value: TSearchVariables) => Promise<void>`                                         |
+| current                       | Current page index state (returns `undefined` if pagination is disabled)                           | `number` \| `undefined`                                                              |
+| totalPage                     | Total page count (returns `undefined` if pagination is disabled)                                   | `number` \| `undefined`                                                              |
+| setCurrent                    | A function that changes the current (returns `undefined` if pagination is disabled)                | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                        |
+| pageSize                      | Current pageSize state (returns `undefined` if pagination is disabled)                             | `number` \| `undefined`                                                              |
+| setPageSize                   | A function that changes the pageSize (returns `undefined` if pagination is disabled)               | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                        |
+| hideFooterPagination          | Whether to hide the footer pagination accordingly your `pagination.mode` and `hasPagination` props | `boolean`                                                                            |
+| sorters                       | Current sorting state                                                                              | [`CrudSorting`][crudsorting]                                                         |
+| setSorters                    | A function that accepts a new sorters state                                                        | `(sorters: CrudSorting) => void`                                                     |
+| ~~sorter~~                    | Current sorting state                                                                              | [`CrudSorting`][crudsorting]                                                         |
+| ~~setSorter~~                 | A function that accepts a new sorters state                                                        | `(sorters: CrudSorting) => void`                                                     |
+| filters                       | Current filters state                                                                              | [`CrudFilters`][crudfilters]                                                         |
+| setFilters                    | A function that accepts a new filter state                                                         | `(filters: CrudFilters) => void`                                                     |
+| createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                                            | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`            |
 
 > **DataGridProps**
 >

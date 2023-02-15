@@ -30,29 +30,25 @@ In basic usage, `useTable` returns the data as it comes from the endpoint. By de
 
 ## Pagination
 
-`useTable` has a pagination feature. The pagination is done by using the `current` and `pageSize` props. The `current` is the current page and the `pageSize` is the number of records per page.
+`useTable` has a pagination feature. The pagination is done by using the `current` and `pageSize` props of `pagination`. The `current` is the current page and the `pageSize` is the number of records per page.
 
 It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
-By default, the `current` is 1 and the `pageSize` is 10. You can change default values by passing the `initialCurrent` and `initialPageSize` props to the `useTable` hook.
+By default, the `current` is 1 and the `pageSize` is 10. You can change default values by passing the `pagination.current` and `pagination.pageSize` props to the `useTable` hook.
 
 You can also change the `current` and `pageSize` values by using the `setCurrent` and `setPageSize` functions that are returned by the `useTable` hook. Every change will trigger a new fetch.
 
-If you want to disable pagination, you can use `hasPagination` property in `useTable` config and set it to `false`
-
-:::info
-If `hasPagination` is set to `false`, `current`, `setCurrent`, `pageSize`, `setPageSize`, and `pageCount` will return `undefined`
-:::
+If you want to handle the pagination on client-side, you can pass the `pagination.mode` prop to the `useTable` hook and set it to `"client"`.
 
 <PaginationLivePreview/>
 
 ## Sorting
 
-`useTable` has a sorter feature. The sorter is done by using the `sorter` state. The `sorter` state is a [`CrudSorting`][crudsorting] type that contains the field and the order of the sort. You can change the sorter state by using the `setSorter` function. Every change will trigger a new fetch.
+`useTable` has a sorter feature. The sorter is done by using the `sorters` state. The `sorters` state is a [`CrudSorting`][crudsorting] type that contains the field and the order of the sort. You can change the sorter state by using the `setSorters` function. Every change will trigger a new fetch.
 
 It also syncs the sorting state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
-Also, you can add an initial sorter state by passing the `initialSorter` prop and a permanent sorter state by passing the `permanentSorter` prop to the `useTable` hook. Even if you change the sorter state, the `permanentSorter` will be used together with the sorter state.
+Also, you can add an initial sorter state by passing the `initialSorter` prop and a permanent sorters state by passing the `permanentSorter` prop to the `useTable` hook. Even if you change the sorter state, the `permanentSorter` will be used together with the sorter state.
 
 <SortingLivePreview/>
 
@@ -113,7 +109,7 @@ useTable({
 });
 ```
 
-### `initialCurrent`
+### `pagination.current`
 
 > Default: `1`
 
@@ -121,11 +117,13 @@ Sets the initial value of the page index.
 
 ```tsx
 useTable({
-    initialCurrent: 2, // This will cause the table to initially display the data for page 2, rather than the default of page 1
+    pagination: {
+        current: 2,
+    },
 });
 ```
 
-### `initialPageSize`
+### `pagination.pageSize`
 
 > Default: `10`
 
@@ -133,7 +131,27 @@ Sets the initial value of the page size.
 
 ```tsx
 useTable({
-    initialPageSize: 20, // This will cause the table to initially display 20 rows per page, rather than the default of 10
+    pagination: {
+        pageSize: 20,
+    },
+});
+```
+
+### `pagination.mode`
+
+> Default: `"server"`
+
+It can be `"off"`, `"server"` or `"client"`.
+
+-   **"off":** Pagination is disabled. All records will be fetched.
+-   **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
+-   **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
+
+```tsx
+useTable({
+    pagination: {
+        mode: "client",
+    },
 });
 ```
 
@@ -218,18 +236,6 @@ You can also override the default value by using the second parameter of the [`s
 ```tsx
 useTable({
     defaultSetFilterBehavior: "replace",
-});
-```
-
-### `hasPagination`
-
-> Default: `true`
-
-Determines whether to use server-side pagination or not.
-
-```tsx
-useTable({
-    hasPagination: false,
 });
 ```
 
@@ -375,23 +381,71 @@ useTable({
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
+### ~~`initialCurrent`~~
+
+:::caution Deprecated
+Use `pagination.current` instead.
+:::
+
+> Default: `1`
+
+Sets the initial value of the page index.
+
+```tsx
+useTable({
+    initialCurrent: 2, // This will cause the table to initially display the data for page 2, rather than the default of page 1
+});
+```
+
+### ~~`initialPageSize`~~
+
+:::caution Deprecated
+Use `pagination.pageSize` instead.
+:::
+
+> Default: `10`
+
+Sets the initial value of the page size.
+
+```tsx
+useTable({
+    initialPageSize: 20, // This will cause the table to initially display 20 rows per page, rather than the default of 10
+});
+```
+
+### ~~`hasPagination`~~
+
+:::caution Deprecated
+Use `pagination.mode` instead.
+:::
+
+> Default: `true`
+
+Determines whether to use server-side pagination or not.
+
+```tsx
+useTable({
+    hasPagination: false,
+});
+```
+
 ## Return Values
 
 ### `tableQueryResult`
 
 Returned values from [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
 
-### `sorter`
+### `sorters`
 
-Current [sorter state][crudsorting].
+Current [sorters state][crudsorting].
 
-### `setSorter`
+### `setSorters`
+
+A function to set current [sorters state][crudsorting].
 
 ```tsx
- (sorter: CrudSorting) => void;
+ (sorters: CrudSorting) => void;
 ```
-
-A function to set current [sorter state][crudsorting].
 
 ### `filters`
 
@@ -441,6 +495,26 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 
 A function creates accessible links for `syncWithLocation`. It takes [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
+### ~~`sorter`~~
+
+:::caution Deprecated
+Use `sorters` instead.
+:::
+
+Current [sorters state][crudsorting].
+
+### ~~`setSorter`~~
+
+:::caution Deprecated
+Use `setSorters` instead.
+:::
+
+A function to set current [sorters state][crudsorting].
+
+```tsx
+ (sorters: CrudSorting) => void;
+```
+
 ## FAQ
 
 ### How can I handle relational data ?
@@ -474,8 +548,10 @@ errorNotification-default='"There was an error creating resource (status code: `
 | setCurrent                    | A function that changes the current (returns `undefined` if pagination is disabled)   | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                     |
 | pageSize                      | Current pageSize state (returns `undefined` if pagination is disabled)                | `number` \| `undefined`                                                                                                                           |
 | setPageSize                   | A function that changes the pageSize. (returns `undefined` if pagination is disabled) | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                     |
-| sorter                        | Current sorting state s                                                               | [`CrudSorting`][crudsorting]                                                                                                                      |
-| setSorter                     | A function that accepts a new sorter state.                                           | `(sorter: CrudSorting) => void`                                                                                                                   |
+| sorters                       | Current sorting states                                                                | [`CrudSorting`][crudsorting]                                                                                                                      |
+| setSorters                    | A function that accepts a new sorters state.                                          | `(sorters: CrudSorting) => void`                                                                                                                  |
+| ~~sorter~~                    | Current sorting states                                                                | [`CrudSorting`][crudsorting]                                                                                                                      |
+| ~~setSorter~~                 | A function that accepts a new sorters state.                                          | `(sorters: CrudSorting) => void`                                                                                                                  |
 | filters                       | Current filters state                                                                 | [`CrudFilters`][crudfilters]                                                                                                                      |
 | setFilters                    | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
 | createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                               | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`                                                                         |

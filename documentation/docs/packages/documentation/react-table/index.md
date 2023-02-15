@@ -69,7 +69,7 @@ In basic usage, `useTable` returns the data as it comes from the endpoint. By de
 It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
 :::info
-`useTable` hook from `@pankod/refine-react-table` sets `manualPagination` to `true` by default to handle the pagination. If you set `hasPagination` to `false` in `refineCoreProps` property in the `useTable` config, it will disable the server-side pagination and it will let you handle the pagination on the client side.
+If you want to handle the pagination on client-side, you can pass the `pagination.mode` prop to the `useTable` hook and set it to `"client"`.
 :::
 
 <PaginationLivePreview/>
@@ -121,7 +121,9 @@ method={{
 
 ```tsx
 useTable({
-    resource: "categories",
+    refineCoreProps: {
+        resource: "categories",
+    },
 });
 ```
 
@@ -137,7 +139,7 @@ useTable({
 });
 ```
 
-### `initialCurrent`
+### `pagination.current`
 
 > Default: `1`
 
@@ -146,21 +148,45 @@ Sets the initial value of the page index.
 ```tsx
 useTable({
     refineCoreProps: {
-        initialCurrent: 2, // This will cause the table to initially display the second page, rather than the default of the first page
+        pagination: {
+            current: 2,
+        },
     },
 });
 ```
 
-### `initialPageSize`
+### `pagination.pageSize`
 
-> Default: `10`
+> Default: `25`
 
 Sets the initial value of the page size.
 
 ```tsx
 useTable({
     refineCoreProps: {
-        initialPageSize: 20, // This will cause the table to initially display 20 rows per page, rather than the default of 10
+        pagination: {
+            pageSize: 10,
+        },
+    },
+});
+```
+
+### `pagination.mode`
+
+> Default: `"server"`
+
+It can be `"off"`, `"server"` or `"client"`.
+
+-   **"off":** Pagination is disabled. All records will be fetched.
+-   **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
+-   **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
+
+```tsx
+useTable({
+    refineCoreProps: {
+        pagination: {
+            mode: "client",
+        },
     },
 });
 ```
@@ -251,20 +277,6 @@ You can also override the default value by using the second parameter of the [`s
 useTable({
     refineCoreProps: {
         defaultSetFilterBehavior: "replace",
-    },
-});
-```
-
-### `hasPagination`
-
-> Default: `true`
-
-Determines whether to use server-side pagination or not.
-
-```tsx
-useTable({
-    refineCoreProps: {
-        hasPagination: false,
     },
 });
 ```
@@ -423,6 +435,60 @@ useTable({
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
+### ~~`initialCurrent`~~
+
+:::caution Deprecated
+Use `pagination.current` instead.
+:::
+
+> Default: `1`
+
+Sets the initial value of the page index.
+
+```tsx
+useTable({
+    refineCoreProps: {
+        initialCurrent: 2,
+    },
+});
+```
+
+### ~~`initialPageSize`~~
+
+:::caution Deprecated
+Use `pagination.pageSize` instead.
+:::
+
+> Default: `10`
+
+Sets the initial value of the page size.
+
+```tsx
+useTable({
+    refineCoreProps: {
+        initialPageSize: 20,
+    },
+});
+```
+
+### ~~`hasPagination`~~
+
+:::caution Deprecated
+Use `pagination.mode` instead.
+:::
+
+> Default: `true`
+
+Determines whether to use server-side pagination or not.
+
+```tsx
+useTable({
+    refineCoreProps: {
+        hasPagination: false,
+    },
+});
+```
+
 ## Return Values
 
 :::tip
@@ -435,17 +501,19 @@ It also have all return values of [TanStack Table](https://tanstack.com/table/v8
 
 Returned values from [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
 
-#### `sorter`
+### `sorters`
 
-Current [sorter state][crudsorting].
+Current [sorters state][crudsorting].
 
-#### `setSorter`
+### `setSorters`
+
+A function to set current [sorters state][crudsorting].
 
 ```tsx
- (sorter: CrudSorting) => void;
+ (sorters: CrudSorting) => void;
 ```
 
-A function to set current [sorter state][crudsorting].
+A function to set current [sorters state][crudsorting].
 
 #### `filters`
 
@@ -494,6 +562,26 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 ```
 
 A function creates accessible links for `syncWithLocation`. It takes [SyncWithLocationParams][syncwithlocationparams] as parameters.
+
+### ~~`sorter`~~
+
+:::caution Deprecated
+Use `sorters` instead.
+:::
+
+Current [sorters state][crudsorting].
+
+### ~~`setSorter`~~
+
+:::caution Deprecated
+Use `setSorters` instead.
+:::
+
+A function to set current [sorters state][crudsorting].
+
+```tsx
+ (sorters: CrudSorting) => void;
+```
 
 ## FAQ
 

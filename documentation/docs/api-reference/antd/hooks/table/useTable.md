@@ -52,7 +52,7 @@ const { tableProps } = useTable<IPost>();
 ```
 
 :::info
-To disable pagination, you can set `hasPagination` property to `false` which is `true` by default. If `hasPagination` has set to `false`, pagination elements will be hidden in the `<Table/>`. If you want to handle the pagination on the client-side you can override the `pagination` property in `tableProps`.
+If you want to handle the pagination on client-side, you can pass the `pagination.mode` prop to the `useTable` hook and set it to `"client"`.
 :::
 
 ## Sorting
@@ -89,7 +89,7 @@ If you're using the `initialSorter` or `initialFilter`, don't forget to add `get
 
 ```tsx
 // ---
-const { tableProps, sorter, filters } = useTable({
+const { tableProps, sorters, filters } = useTable({
     initialSorter: [
         {
             field: "title",
@@ -110,7 +110,7 @@ const { tableProps, sorter, filters } = useTable({
     dataIndex="title"
     title="Title"
     // highlight-next-line
-     defaultSortOrder={getDefaultSortOrder("title", sorter)}
+     defaultSortOrder={getDefaultSortOrder("title", sorters)}
 />
 <Table.Column
     dataIndex="status"
@@ -215,7 +215,7 @@ useTable({
 });
 ```
 
-### `initialCurrent`
+### `pagination.current`
 
 > Default: `1`
 
@@ -223,11 +223,13 @@ Sets the initial value of the page index.
 
 ```tsx
 useTable({
-    initialCurrent: 2, // This will cause the table to initially display the data for page 2, rather than the default of page 1
+    pagination: {
+        current: 2,
+    },
 });
 ```
 
-### `initialPageSize`
+### `pagination.pageSize`
 
 > Default: `10`
 
@@ -235,7 +237,27 @@ Sets the initial value of the page size.
 
 ```tsx
 useTable({
-    initialPageSize: 20, // This will cause the table to initially display 20 rows per page, rather than the default of 10
+    pagination: {
+        pageSize: 20,
+    },
+});
+```
+
+### `pagination.mode`
+
+> Default: `"server"`
+
+It can be `"off"`, `"server"` or `"client"`.
+
+-   **"off":** Pagination is disabled. All records will be fetched.
+-   **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
+-   **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
+
+```tsx
+useTable({
+    pagination: {
+        mode: "client",
+    },
 });
 ```
 
@@ -316,18 +338,6 @@ You can also override the default value by using the second parameter of the [`s
 ```tsx
 useTable({
     defaultSetFilterBehavior: "replace",
-});
-```
-
-### `hasPagination`
-
-> Default: `true`
-
-Determines whether to use server-side pagination or not.
-
-```tsx
-useTable({
-    hasPagination: false,
 });
 ```
 
@@ -473,6 +483,54 @@ useTable({
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
+### ~~`initialCurrent`~~
+
+:::caution Deprecated
+Use `pagination.current` instead.
+:::
+
+> Default: `1`
+
+Sets the initial value of the page index.
+
+```tsx
+useTable({
+    initialCurrent: 2,
+});
+```
+
+### ~~`initialPageSize`~~
+
+:::caution Deprecated
+Use `pagination.pageSize` instead.
+:::
+
+> Default: `10`
+
+Sets the initial value of the page size.
+
+```tsx
+useTable({
+    initialPageSize: 20,
+});
+```
+
+### ~~`hasPagination`~~
+
+:::caution Deprecated
+Use `pagination.mode` instead.
+:::
+
+> Default: `true`
+
+Determines whether to use server-side pagination or not.
+
+```tsx
+useTable({
+    hasPagination: false,
+});
+```
+
 ## Return Values
 
 ### `tableProps`
@@ -575,17 +633,17 @@ const PostList: React.FC<IResourceComponentsProps> = () => {
 
 Returned values from [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
 
-### `sorter`
+### `sorters`
 
-Current [sorter state][crudsorting].
+Current [sorters state][crudsorting].
 
-### `setSorter`
+### `setSorters`
+
+A function to set current [sorters state][crudsorting].
 
 ```tsx
- (sorter: CrudSorting) => void;
+ (sorters: CrudSorting) => void;
 ```
-
-A function to set current [sorter state][crudsorting].
 
 ### `filters`
 
@@ -635,6 +693,26 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 
 A function creates accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
+### ~~`sorter`~~
+
+:::caution Deprecated
+Use `sorters` instead.
+:::
+
+Current [sorters state][crudsorting].
+
+### ~~`setSorter`~~
+
+:::caution Deprecated
+Use `setSorters` instead.
+:::
+
+A function to set current [sorters state][crudsorting].
+
+```tsx
+ (sorters: CrudSorting) => void;
+```
+
 ## FAQ
 
 ### How can I handle relational data?
@@ -664,15 +742,17 @@ You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fe
 | searchFormProps  | Ant Design [`<Form>`][form] props                                                     | [`FormProps<TSearchVariables>`][form]                                                                                                             |
 | tableProps       | Ant Design [`<Table>`][table] props                                                   | [`TableProps<TData>`][table]                                                                                                                      |
 | tableQueryResult | Result of the `react-query`'s `useQuery`                                              | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery]                                                              |
-| current          | Current page index state (returns `undefined` if pagination is disabled)              | `number` \| `undefined`                                                                                                                           |
 | totalPage        | Total page count (returns `undefined` if pagination is disabled)                      | `number` \| `undefined`                                                                                                                           |
+| current          | Current page index state (returns `undefined` if pagination is disabled)              | `number` \| `undefined`                                                                                                                           |
 | setCurrent       | A function that changes the current (returns `undefined` if pagination is disabled)   | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                     |
 | pageSize         | Current pageSize state (returns `undefined` if pagination is disabled)                | `number` \| `undefined`                                                                                                                           |
 | setPageSize      | A function that changes the pageSize. (returns `undefined` if pagination is disabled) | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                     |
-| sorter           | Current sorting state                                                                 | [`CrudSorting`][crudsorting]                                                                                                                      |
+| sorters          | Current sorting state                                                                 | [`CrudSorting`][crudsorting]                                                                                                                      |
+| setSorters       | A function that accepts a new sorters state.                                          | `(sorters: CrudSorting) => void`                                                                                                                  |
+| ~~sorter~~       | Current sorting state                                                                 | [`CrudSorting`][crudsorting]                                                                                                                      |
+| ~~setSorter~~    | A function that accepts a new sorters state.                                          | `(sorters: CrudSorting) => void`                                                                                                                  |
 | filters          | Current filters state                                                                 | [`CrudFilters`][crudfilters]                                                                                                                      |
 | setFilters       | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
-| setSorter        | A function that accepts a new sorter state.                                           | `(sorter: CrudSorting) => void`                                                                                                                   |
 
 <br />
 

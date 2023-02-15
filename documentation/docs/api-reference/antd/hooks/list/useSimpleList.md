@@ -51,7 +51,7 @@ return (
 ```
 
 :::info
-To disable pagination, you can set `hasPagination` property to `false` which is `true` by default. If `hasPagination` has been set to `false`, pagination elements will be hidden in the `<List>` and you can handle the pagination on the client-side by overriding the `pagination` property in `listProps`.
+If you want to handle the pagination on client-side, you can pass the `pagination.mode` prop to the `useTable` hook and set it to `"client"`.
 :::
 
 ## Sorting
@@ -138,7 +138,7 @@ useSimpleList({
 });
 ```
 
-### `initialCurrent`
+### `pagination.current`
 
 > Default: `1`
 
@@ -146,19 +146,41 @@ Sets the initial value of the page index.
 
 ```tsx
 useSimpleList({
-    initialCurrent: 2, // This will cause the list to initially display the data for page 2, rather than the default of page 1
+    pagination: {
+        current: 2,
+    },
 });
 ```
 
-### `initialPageSize`
+### `pagination.pageSize`
 
 > Default: `10`
 
-Sets the initial value of the page size. By default, the page size is 10.
+Sets the initial value of the page size.
 
 ```tsx
 useSimpleList({
-    initialPageSize: 20, // This will cause the list to initially display 20 rows per page, rather than the default of 10
+    pagination: {
+        pageSize: 20,
+    },
+});
+```
+
+### `pagination.mode`
+
+> Default: `"server"`
+
+It can be `"off"`, `"server"` or `"client"`.
+
+-   **"off":** Pagination is disabled. All records will be fetched.
+-   **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
+-   **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
+
+```tsx
+useSimpleList({
+    pagination: {
+        mode: "client",
+    },
 });
 ```
 
@@ -247,18 +269,6 @@ You can also override the default value by using the second parameter of the [`s
 ```tsx
 useSimpleList({
     defaultSetFilterBehavior: "replace",
-});
-```
-
-### `hasPagination`
-
-> Default: `false`
-
-Determines whether to use server-side pagination or not.
-
-```tsx
-useSimpleList({
-    hasPagination: false,
 });
 ```
 
@@ -460,6 +470,54 @@ return (
 );
 ```
 
+### ~~`initialCurrent`~~
+
+:::caution Deprecated
+Use `pagination.current` instead.
+:::
+
+> Default: `1`
+
+Sets the initial value of the page index.
+
+```tsx
+useSimpleList({
+    initialCurrent: 2,
+});
+```
+
+### ~~`initialPageSize`~~
+
+:::caution Deprecated
+Use `pagination.pageSize` instead.
+:::
+
+> Default: `10`
+
+Sets the initial value of the page size.
+
+```tsx
+useSimpleList({
+    initialPageSize: 20,
+});
+```
+
+### ~~`hasPagination`~~
+
+:::caution Deprecated
+Use `pagination.mode` instead.
+:::
+
+> Default: `true`
+
+Determines whether to use server-side pagination or not.
+
+```tsx
+useSimpleList({
+    hasPagination: false,
+});
+```
+
 ## Return Values
 
 ### `queryResult`
@@ -529,6 +587,18 @@ Indicates whether the data is being fetched.
 
 Returns pagination configuration values(pageSize, current, position, etc.).
 
+### `sorters`
+
+Current [sorters state][crudsorting].
+
+### `setSorters`
+
+A function to set current [sorters state][crudsorting].
+
+```tsx
+ (sorters: CrudSorting) => void;
+```
+
 ### `filters`
 
 Current [filters state][crudfilters].
@@ -540,6 +610,62 @@ Current [filters state][crudfilters].
 ```
 
 A function to set current [filters state][crudfilters].
+
+### `current`
+
+Current page index state. If pagination is disabled, it will be `undefined`.
+
+### `setCurrent`
+
+```tsx
+React.Dispatch<React.SetStateAction<number>> | undefined
+```
+
+A function to set the current page index state. If pagination is disabled, it will be `undefined`.
+
+### `pageSize`
+
+Current page size state. If pagination is disabled, it will be `undefined`.
+
+### `setPageSize`
+
+```tsx
+React.Dispatch<React.SetStateAction<number>> | undefined
+```
+
+A function to set the current page size state. If pagination is disabled, it will be `undefined`.
+
+### `pageCount`
+
+Total page count state. If pagination is disabled, it will be `undefined`.
+
+### `createLinkForSyncWithLocation`
+
+```tsx
+(params: SyncWithLocationParams) => string;
+```
+
+A function creates accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
+
+### ~~`sorter`~~
+
+:::caution Deprecated
+Use `sorters` instead.
+:::
+
+Current [sorters state][crudsorting].
+
+### ~~`setSorter`~~
+
+:::caution Deprecated
+Use `setSorters` instead.
+:::
+
+A function to set current [sorters state][crudsorting].
+
+```tsx
+ (sorters: CrudSorting) => void;
+```
 
 ## API
 
@@ -557,13 +683,22 @@ A function to set current [filters state][crudfilters].
 
 ### Return values
 
-| Property        | Description                                | Type                                                                                                                                                    |
-| --------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| queryResult     | Result of the query of a record            | [`QueryObserverResult<{ data: TData }>`][usequery]                                                                                                      |
-| searchFormProps | Ant design Form props                      | [`Form`][form]                                                                                                                                          |
-| listProps       | Ant design List props                      | [`List`][list]                                                                                                                                          |
-| filters         | Current filters state                      | [`CrudFilters`][crudfilters]                                                                                                                            |
-| setFilters      | A function that accepts a new filter state | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` <br/> - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
+| Property        | Description                                                                           | Type                                                                                                                                                    |
+| --------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| queryResult     | Result of the query of a record                                                       | [`QueryObserverResult<{ data: TData }>`][usequery]                                                                                                      |
+| searchFormProps | Ant design Form props                                                                 | [`Form`][form]                                                                                                                                          |
+| listProps       | Ant design List props                                                                 | [`List`][list]                                                                                                                                          |
+| totalPage       | Total page count (returns `undefined` if pagination is disabled)                      | `number` \| `undefined`                                                                                                                                 |
+| current         | Current page index state (returns `undefined` if pagination is disabled)              | `number` \| `undefined`                                                                                                                                 |
+| setCurrent      | A function that changes the current (returns `undefined` if pagination is disabled)   | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                           |
+| pageSize        | Current pageSize state (returns `undefined` if pagination is disabled)                | `number` \| `undefined`                                                                                                                                 |
+| setPageSize     | A function that changes the pageSize. (returns `undefined` if pagination is disabled) | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                           |
+| sorters         | Current sorting state                                                                 | [`CrudSorting`][crudsorting]                                                                                                                            |
+| setSorters      | A function that accepts a new sorters state.                                           | `(sorters: CrudSorting) => void`                                                                                                                        |
+| ~~sorter~~      | Current sorting state                                                                 | [`CrudSorting`][crudsorting]                                                                                                                            |
+| ~~setSorter~~   | A function that accepts a new sorters state.                                           | `(sorters: CrudSorting) => void`                                                                                                                        |
+| filters         | Current filters state                                                                 | [`CrudFilters`][crudfilters]                                                                                                                            |
+| setFilters      | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` <br/> - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
 
 [crudfilters]: /api-reference/core/interfaces.md#crudfilters
 [crudsorting]: /api-reference/core/interfaces.md#crudsorting
