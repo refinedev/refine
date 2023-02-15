@@ -10,9 +10,10 @@ import {
     useTable,
     DateField,
     BooleanField,
-    Icons,
     useModal,
 } from "@pankod/refine-antd";
+
+import * as Icons from "@ant-design/icons";
 
 import { Table, Dropdown, Menu, Avatar } from "antd";
 

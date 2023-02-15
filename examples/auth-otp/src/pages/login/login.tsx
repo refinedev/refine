@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLogin } from "@pankod/refine-core";
 
-import { Icons } from "@pankod/refine-antd";
+import * as Icons from "@ant-design/icons";
 
 import {
     Row,

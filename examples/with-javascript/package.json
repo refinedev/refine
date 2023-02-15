@@ -9,6 +9,7 @@
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-simple-rest": "^3.37.4",
         "antd": "^5.0.5",
+        "@ant-design/icons": "^4.5.0",
         "cross-env": "^7.0.3",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",

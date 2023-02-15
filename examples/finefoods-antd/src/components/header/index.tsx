@@ -7,7 +7,7 @@ import {
     useList,
 } from "@pankod/refine-core";
 
-import { Icons } from "@pankod/refine-antd";
+import * as Icons from "@ant-design/icons";
 
 import {
     Menu,

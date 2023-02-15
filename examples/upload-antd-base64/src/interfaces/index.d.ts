@@ -1,4 +1,4 @@
-import { UploadFile } from "@pankod/refine-antd";
+import { UploadFile } from "antd/lib/upload/interface";
 
 export interface IUserAvatar {
     name: string;

@@ -4,11 +4,12 @@ import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
     Edit,
     ListButton,
-    RcFile,
     RefreshButton,
     useForm,
     useSelect,
 } from "@pankod/refine-antd";
+
+import { RcFile } from "antd/lib/upload/interface";
 
 import { Alert, Button, Form, Input, Select, Upload } from "antd";
 

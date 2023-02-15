@@ -13,8 +13,9 @@ import {
     ShowButton,
     useSelect,
     DateField,
-    Icons,
 } from "@pankod/refine-antd";
+
+import * as Icons from "@ant-design/icons";
 
 import {
     Table,

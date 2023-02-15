@@ -1,5 +1,5 @@
 import { useTranslate, useUpdate } from "@pankod/refine-core";
-import { Icons } from "@pankod/refine-antd";
+import * as Icons from "@ant-design/icons";
 import { Dropdown, Menu } from "antd";
 import { IOrder } from "interfaces";
 

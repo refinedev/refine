@@ -1,5 +1,7 @@
 import React from "react";
-import { useForm, Edit, Icons } from "@pankod/refine-antd";
+import { useForm, Edit } from "@pankod/refine-antd";
+
+import * as Icons from "@ant-design/icons";
 
 import { Form, Input, Button, Space } from "antd";
 

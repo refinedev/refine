@@ -1,4 +1,6 @@
-import { Create, RcFile } from "@pankod/refine-antd";
+import { Create } from "@pankod/refine-antd";
+
+import { RcFile } from "antd/lib/upload/interface";
 
 import {
     Drawer,

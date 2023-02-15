@@ -8,8 +8,8 @@ import {
     EmailField,
     DeleteButton,
     EditButton,
-    Icons,
 } from "@pankod/refine-antd";
+import * as Icons from "@ant-design/icons";
 
 import { Table, Space, Button, Modal } from "antd";
 

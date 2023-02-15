@@ -7,13 +7,14 @@ import {
 
 import {
     useTable,
-    Icons,
     List,
     TextField,
     getDefaultSortOrder,
     NumberField,
     DateField,
 } from "@pankod/refine-antd";
+
+import * as Icons from "@ant-design/icons";
 
 import {
     Typography,

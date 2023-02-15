@@ -6,11 +6,12 @@ import {
     BooleanField,
     useEditableTable,
     SaveButton,
-    Icons,
     NumberField,
     DateField,
     useDrawerForm,
 } from "@pankod/refine-antd";
+
+import * as Icons from "@ant-design/icons";
 
 import {
     Table,

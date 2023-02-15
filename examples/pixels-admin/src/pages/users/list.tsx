@@ -1,5 +1,6 @@
 import React from "react";
-import { useTable, List, Icons } from "@pankod/refine-antd";
+import { useTable, List } from "@pankod/refine-antd";
+import * as Icons from "@ant-design/icons";
 import { Table, Avatar } from "antd";
 import { TUser } from "types/user";
 

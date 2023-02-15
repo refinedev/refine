@@ -5,7 +5,9 @@ import {
     useTranslate,
     useUpdate,
 } from "@pankod/refine-core";
-import { Icons, List } from "@pankod/refine-antd";
+import { List } from "@pankod/refine-antd";
+
+import * as Icons from "@ant-design/icons";
 
 import {
     Row,

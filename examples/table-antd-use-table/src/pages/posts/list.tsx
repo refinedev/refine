@@ -10,9 +10,10 @@ import {
     TagField,
     useTable,
     getDefaultSortOrder,
-    FilterDropdownProps,
     useSelect,
 } from "@pankod/refine-antd";
+
+import { FilterDropdownProps } from "antd/lib/table/interface";
 
 import { Table, Radio, Select, Input } from "antd";
 

@@ -6,7 +6,9 @@ import {
     HttpError,
 } from "@pankod/refine-core";
 
-import { List, useTable, Icons } from "@pankod/refine-antd";
+import { List, useTable } from "@pankod/refine-antd";
+
+import * as Icons from "@ant-design/icons";
 
 import {
     Table,

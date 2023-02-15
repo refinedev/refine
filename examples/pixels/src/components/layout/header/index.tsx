@@ -6,7 +6,9 @@ import {
     useNavigation,
     useRouterContext,
 } from "@pankod/refine-core";
-import { Icons, useModalForm } from "@pankod/refine-antd";
+import { useModalForm } from "@pankod/refine-antd";
+
+import * as Icons from "@ant-design/icons";
 
 import { Button, Image, Space } from "antd";
 

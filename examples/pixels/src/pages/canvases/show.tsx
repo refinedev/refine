@@ -5,7 +5,9 @@ import {
     useNavigation,
     useShow,
 } from "@pankod/refine-core";
-import { Icons, useModal } from "@pankod/refine-antd";
+import { useModal } from "@pankod/refine-antd";
+
+import * as Icons from "@ant-design/icons";
 
 import { Button, Typography, Spin, Modal } from "antd";
 

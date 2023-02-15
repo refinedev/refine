@@ -14,11 +14,12 @@ import {
     useTable,
     getDefaultSortOrder,
     DateField,
-    Icons,
     NumberField,
     useSelect,
     ExportButton,
 } from "@pankod/refine-antd";
+
+import * as Icons from "@ant-design/icons";
 
 import {
     Table,

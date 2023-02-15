@@ -2,13 +2,14 @@ import { ComponentMeta } from "@storybook/react";
 import {
     DateField,
     EditButton,
-    Icons,
     List,
     ShowButton,
     TextField,
     useSelect,
     useTable,
 } from "@pankod/refine-antd";
+
+import * as Icons from "@ant-design/icons";
 
 import {
     Button,

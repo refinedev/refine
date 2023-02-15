@@ -1,4 +1,4 @@
-import { RcFile } from "@pankod/refine-antd";
+import { RcFile } from "antd/lib/upload/interface";
 
 import { Modal, Form, Input, ModalProps, FormProps, Upload } from "antd";
 

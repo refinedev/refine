@@ -9,9 +9,10 @@ import {
 import {
     useSimpleList,
     CreateButton,
-    Icons,
     useDrawerForm,
 } from "@pankod/refine-antd";
+
+import * as Icons from "@ant-design/icons";
 
 import { Row, List as AntdList, Col, Form, Input, Typography } from "antd";
 

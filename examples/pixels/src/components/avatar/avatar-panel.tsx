@@ -1,5 +1,5 @@
 import React from "react";
-import { Icons } from "@pankod/refine-antd";
+import * as Icons from "@ant-design/icons";
 
 import { Typography, Space, Avatar } from "antd";
 
