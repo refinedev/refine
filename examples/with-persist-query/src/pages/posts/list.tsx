@@ -77,9 +77,9 @@ export const PostList: React.FC = () => {
                 <input
                     id="title"
                     type="text"
-                    value={(titleColumn.getFilterValue() as string) ?? ""}
+                    value={(titleColumn?.getFilterValue() as string) ?? ""}
                     onChange={(event) =>
-                        titleColumn.setFilterValue(event.target.value)
+                        titleColumn?.setFilterValue(event.target.value)
                     }
                 />
             </div>

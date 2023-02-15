@@ -1,4 +1,4 @@
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import { Refine, AuthProvider, useGetIdentity } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -17,25 +17,39 @@ import { supabaseClient } from "utility";
 
 const authProvider: AuthProvider = {
     login: async ({ email, password, providerName }) => {
-        const { user, error } = await supabaseClient.auth.signIn({
+        // sign in with oauth
+        if (providerName) {
+            const { data, error } = await supabaseClient.auth.signInWithOAuth({
+                provider: providerName,
+            });
+
+            if (error) {
+                return Promise.reject(error);
+            }
+
+            if (data?.url) {
+                return Promise.resolve(false);
+            }
+        }
+
+        // sign in with email and password
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
             email,
             password,
-            provider: providerName,
         });
 
         if (error) {
             return Promise.reject(error);
         }
 
-        if (user) {
+        if (data?.user) {
             return Promise.resolve();
         }
 
-        // for third-party login
-        return Promise.resolve(false);
+        return Promise.resolve();
     },
     register: async ({ email, password }) => {
-        const { user, error } = await supabaseClient.auth.signUp({
+        const { data, error } = await supabaseClient.auth.signUp({
             email,
             password,
         });
@@ -44,15 +58,17 @@ const authProvider: AuthProvider = {
             return Promise.reject(error);
         }
 
-        if (user) {
+        if (data) {
             return Promise.resolve();
         }
     },
     forgotPassword: async ({ email }) => {
-        const { data, error } =
-            await supabaseClient.auth.api.resetPasswordForEmail(email, {
+        const { data, error } = await supabaseClient.auth.resetPasswordForEmail(
+            email,
+            {
                 redirectTo: `${window.location.origin}/update-password`,
-            });
+            },
+        );
 
         if (error) {
             return Promise.reject(error);
@@ -69,7 +85,9 @@ const authProvider: AuthProvider = {
         }
     },
     updatePassword: async ({ password }) => {
-        const { data, error } = await supabaseClient.auth.update({ password });
+        const { data, error } = await supabaseClient.auth.updateUser({
+            password,
+        });
 
         if (error) {
             return Promise.reject(error);
@@ -90,29 +108,29 @@ const authProvider: AuthProvider = {
     },
     checkError: () => Promise.resolve(),
     checkAuth: async () => {
-        const session = supabaseClient.auth.session();
-        const sessionFromURL = await supabaseClient.auth.getSessionFromUrl();
+        const { data } = await supabaseClient.auth.getSession();
+        const { session } = data;
 
-        if (session || sessionFromURL?.data?.user) {
-            return Promise.resolve();
+        if (!session) {
+            return Promise.reject();
         }
 
-        return Promise.reject();
+        return Promise.resolve();
     },
     getPermissions: async () => {
-        const user = supabaseClient.auth.user();
+        const user = await supabaseClient.auth.getUser();
 
         if (user) {
-            return Promise.resolve(user.role);
+            return Promise.resolve(user.data.user?.role);
         }
     },
     getUserIdentity: async () => {
-        const user = supabaseClient.auth.user();
+        const { data } = await supabaseClient.auth.getUser();
 
-        if (user) {
+        if (data?.user) {
             return Promise.resolve({
-                ...user,
-                name: user.email,
+                ...data.user,
+                name: data.user.email,
             });
         }
     },
@@ -172,7 +190,12 @@ const App: React.FC = () => {
                     show: PostShow,
                 },
             ]}
-            options={{ liveMode: "auto" }}
+            /**
+             * Multiple subscriptions are currently not supported with the supabase JS client v2 and @pankod/refine-supabase v4.
+             * Therefore, enabling global live mode will cause unexpected behaviors.
+             * Please set `liveMode: "auto"` or `liveMode: "manual"` manually while using real-time features of refine.
+             */
+            options={{ liveMode: "off" }}
             notificationProvider={notificationProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}

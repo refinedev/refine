@@ -1,5 +1,17 @@
 # @pankod/refine-demo-sidebar
 
+## 4.0.2
+
+### Patch Changes
+
+-   [#3582](https://github.com/refinedev/refine/pull/3582) [`a2632a8feb0`](https://github.com/refinedev/refine/commit/a2632a8feb00946c7682b9f1ac35cdca96982052) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Fixed: antd `<Drawer>` `handler` prop changed to `extra`.
+
+## 4.0.1
+
+### Patch Changes
+
+-   [#3582](https://github.com/refinedev/refine/pull/3582) [`a2632a8feb0`](https://github.com/refinedev/refine/commit/a2632a8feb00946c7682b9f1ac35cdca96982052) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Fixed: antd `<Drawer>` `handler` prop changed to `extra`.
+
 ## 4.0.0
 
 ### Patch Changes

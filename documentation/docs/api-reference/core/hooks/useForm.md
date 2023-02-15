@@ -1,6 +1,7 @@
 ---
 id: useForm
 title: useForm
+source: packages/core/src/hooks/form/useForm.ts
 ---
 
 ```tsx live shared
@@ -354,7 +355,7 @@ This is the default behavior of `useForm`. You can customize it by passing your 
 
 We'll show the basic usage of `useForm` by adding an creating form.
 
-```tsx title="src/posts/create.tsx"
+```tsx
 import { useState } from "react";
 import { useForm } from "@pankod/refine-core";
 
@@ -713,73 +714,17 @@ render(<RefineHeadlessDemo />);
 
 ### `resource`
 
-**refine** passes the `resource` to the `dataProvider` as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
+> Default: It reads the `resource` value from the current URL.
 
-The `resource` value is determined from the active route where the component or the hook is used. It can be overridden by passing the `resource` prop.
+It will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your [`dataProvider`][data-provider]. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
 
-Use case for overriding the `resource` prop:
-
--   We can create a `category` from the `<PostEdit>` page.
--   We can edit a `category` from the `<PostEdit>` page.
-
-In the following example, we'll show how to use `useForm` with `resource` prop.
-
-```tsx title="src/posts/edit.tsx"
-import { useState } from "react";
-import { useForm } from "@pankod/refine-core";
-import { PostForm } from "./PostForm";
-
-const PostEdit = () => {
-    return (
-        <div>
-            <PostForm />
-            <CategoryForm />
-        </div>
-    );
-};
-
-const CategoryForm = () => {
-    const [title, setTitle] = useState("");
-
-    // highlight-start
-    const { onFinish } = useForm({
-        action: "create",
-        resource: "categories",
-    });
-    // highlight-end
-
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        onFinish({ title });
-        setTitle("");
-    };
-
-    return (
-        <form
-            onSubmit={onSubmit}
-            style={{
-                display: "flex",
-                flexDirection: "column",
-            }}
-        >
-            <label htmlFor="categoryTitle">Category Title</label>
-            <input
-                id="categoryTitle"
-                onChange={(e) => setTitle(e.currentTarget.value)}
-                placeholder="Category Title"
-            />
-            <button type="submit">Create Category</button>
-        </form>
-    );
-};
-```
-
-Also you can give URL path to the `resource` prop.
+-   When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
+-   When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
+-   When `action` is `"clone"`, it will be passed to the [`create`][create] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
 
 ```tsx
-const form = useForm({
-    action: "create",
-    resource: "categories/subcategory", // <BASE_URL_FROM_DATA_PROVIDER>/categories/subcategory
+useForm({
+    resource: "categories",
 });
 ```
 
@@ -787,12 +732,12 @@ const form = useForm({
 
 `id` is used for determining the record to `edit` or `clone`. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
 
-It is usefull when you want to `edit` or `clone` a `resource` from a different page.
+It is useful when you want to `edit` or `clone` a `resource` from a different page.
 
 > Note: `id` is required when `action: "edit"` or `action: "clone"`.
 
 ```tsx
-const form = useForm({
+useForm({
     action: "edit", // or clone
     resource: "categories",
     id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
@@ -805,8 +750,8 @@ const form = useForm({
 
 It can be set to `"show" | "edit" | "list" | "create"` or `false` to prevent the page from redirecting to the list page after the form is submitted.
 
-```tsx title="src/posts/edit.tsx"
-const form = useForm({
+```tsx
+useForm({
     redirect: false,
 });
 ```
@@ -821,8 +766,8 @@ It receives the following parameters:
 -   `variables`: The variables passed to the mutation.
 -   `context`: react-query context.
 
-```tsx title="src/posts/edit.tsx"
-const form = useForm({
+```tsx
+useForm({
     onMutationSuccess: (data, variables, context) => {
         console.log({ data, variables, context });
     },
@@ -839,8 +784,8 @@ It receives the following parameters:
 -   `variables`: The variables passed to the mutation.
 -   `context`: react-query context.
 
-```tsx title="src/posts/edit.tsx"
-const form = useForm({
+```tsx
+useForm({
     onMutationError: (data, variables, context) => {
         console.log({ data, variables, context });
     },
@@ -856,8 +801,8 @@ By default it's invalidates following queries from the current `resource`:
 -   on `"create"` or `"clone"` mode: `"list"` and `"many"`
 -   on `"edit"` mode: `"list"`", `"many"` and `"detail"`
 
-```tsx title="src/posts/create.tsx"
-const form = useForm({
+```tsx
+useForm({
     invalidates: ["list", "many", "detail"],
 });
 ```
@@ -871,8 +816,8 @@ It is useful when you want to use a different `dataProvider` for a specific reso
 If you want to use a different `dataProvider` on all resource pages, you can use the [`dataProvider` prop ](docs/api-reference/core/components/refine-config/#dataprovidername) of the `<Refine>` component.
 :::
 
-```tsx title="src/posts/edit.tsx"
-const form = useForm({
+```tsx
+useForm({
     dataProviderName: "second-data-provider",
 });
 ```
@@ -884,22 +829,20 @@ Each mode corresponds to a different type of user experience.
 
 > For more information about mutation modes, please check [Mutation Mode documentation](/docs/advanced-tutorials/mutation-mode) page.
 
-```tsx title="src/posts/edit.tsx"
-const form = useForm({
-    action: "edit",
-    resource: "categories",
+```tsx
+useForm({
     mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
 });
 ```
 
 ### `successNotification`
 
-> [`NotificationProvider`][notification-provider] is required.
+> [`NotificationProvider`][notification-provider] is required for this prop to work.
 
 After form is submitted successfully, `useForm` will call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
-```tsx title="src/posts/create.tsx"
-const form = useForm({
+```tsx
+useForm({
     successNotification: (data, values, resource) => {
         return {
             message: `Post Successfully created with ${data.title}`,
@@ -912,14 +855,12 @@ const form = useForm({
 
 ### `errorNotification`
 
-> [`NotificationProvider`][notification-provider] is required.
+> [`NotificationProvider`][notification-provider] is required for this prop to work.
 
 After form is submit is failed, `useForm` will call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
-```tsx title="src/posts/create.tsx"
-const form = useForm({
-    action: "create",
-    resource: "post",
+```tsx
+useForm({
     errorNotification: (data, values, resource) => {
         return {
             message: `Something went wrong when deleting ${data.id}`,
@@ -947,13 +888,11 @@ const form = useForm({
 
 In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
-```tsx title="src/posts/create.tsx"
-const form = useForm({
-    // highlight-start
+```tsx
+useForm({
     metaData: {
         headers: { "x-meta-data": "true" },
     },
-    // highlight-end
 });
 
 const myDataProvider = {
@@ -981,13 +920,11 @@ const myDataProvider = {
 
 in `edit` or `clone` mode, **refine** uses [`useOne`](/docs/api-reference/core/hooks/data/useOne/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing `queryOptions` property.
 
-```tsx title="src/posts/edit.tsx"
-const form = useForm({
-    // highlight-start
+```tsx
+useForm({
     queryOptions: {
         retry: 3,
     },
-    // highlight-end
 });
 ```
 
@@ -997,13 +934,11 @@ const form = useForm({
 
 In `create` or `clone` mode, **refine** uses [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `createMutationOptions` property.
 
-```tsx title="src/posts/create.tsx"
-const form = useForm({
-    // highlight-start
+```tsx
+useForm({
     createMutationOptions: {
         retry: 3,
     },
-    // highlight-end
 });
 ```
 
@@ -1013,13 +948,11 @@ const form = useForm({
 
 In `edit` mode, **refine** uses [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
 
-```tsx title="src/posts/edit.tsx"
-const form = useForm({
-    // highlight-start
+```tsx
+useForm({
     updateMutationOptions: {
         retry: 3,
     },
-    // highlight-end
 });
 ```
 
@@ -1028,11 +961,9 @@ const form = useForm({
 Whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 For more information about live mode, please check [Live / Realtime](/docs/api-reference/core/providers/live-provider/#livemode) page.
 
-```tsx title="src/posts/edit.tsx"
-const form = useForm({
-    // highlight-start
+```tsx
+useForm({
     liveMode: "auto",
-    // highlight-end
 });
 ```
 
@@ -1040,13 +971,11 @@ const form = useForm({
 
 The callback function that is executed when new events from a subscription are arrived.
 
-```tsx title="src/posts/edit.tsx"
-const form = useForm({
-    // highlight-start
+```tsx
+useForm({
     onLiveEvent: (event) => {
         console.log(event);
     },
-    // highlight-end
 });
 ```
 
@@ -1060,7 +989,7 @@ Params to pass to [liveProvider's](/docs/api-reference/core/providers/live-provi
 
 If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/api-reference/core/hooks/data/useOne/) and set the returned values as the `queryResult` property.
 
-```tsx title="src/posts/edit.tsx"
+```tsx
 const { queryResult } = useForm();
 
 const { data } = queryResult;
@@ -1070,7 +999,7 @@ const { data } = queryResult;
 
 When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/api-reference/core/hooks/data/useCreate/). When in `"edit"` mode, it will call [`useUpdate`](/docs/api-reference/core/hooks/data/useUpdate/) and set the resulting values as the `mutationResult` property."
 
-```tsx title="src/posts/edit.tsx"
+```tsx
 const { mutationResult } = useForm();
 
 const { data } = mutationResult;
@@ -1080,7 +1009,7 @@ const { data } = mutationResult;
 
 `useForm` determine `id` from the router. If you want to change the `id` dynamically, you can use `setId` function.
 
-```tsx title="src/posts/edit.tsx"
+```tsx
 const { id, setId } = useForm();
 
 const handleIdChange = (id: string) => {
@@ -1100,7 +1029,7 @@ return (
 
 In the following example we will redirect to the `"show"` page after a successful mutation.
 
-```tsx title="src/posts/create.tsx"
+```tsx
 const { onFinish, redirect } = useForm();
 
 // --
@@ -1133,24 +1062,21 @@ You can invalidate other resources with help of [`useInvalidate`](/docs/api-refe
 
 It is useful when you want to `invalidate` other resources don't have relation with the current resource.
 
-```tsx title="src/posts/edit.tsx"
+```tsx
 import { useInvalidate, useForm } from "@pankod/refine-core";
 
 const PostEdit = () => {
     const invalidate = useInvalidate();
 
-    const form = useForm({
-        // highlight-start
+    useForm({
         onMutationSuccess: (data, variables, context) => {
             invalidate({
                 resource: "users",
                 invalidates: ["resourceAll"],
             });
         },
-        // highlight-end
     });
 
-    // ---
     // ---
 };
 ```
@@ -1227,3 +1153,7 @@ export const UserCreate: React.FC = () => {
 <CodeSandboxExample path="form-core-use-form" />
 
 [notification-provider]: /docs/api-reference/core/providers/notification-provider/
+[get-one]: /docs/api-reference/core/providers/data-provider/#getone-
+[create]: /docs/api-reference/core/providers/data-provider/#create-
+[update]: /docs/api-reference/core/providers/data-provider/#update-
+[data-provider]: /docs/api-reference/core/providers/data-provider

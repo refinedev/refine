@@ -72,6 +72,7 @@ export const createInferencer: CreateInferencer = ({
             data: record,
             loading: recordLoading,
             initial: isInitialLoad,
+            error: inferError,
         } = useInferFetch(type, resourceName ?? resource?.name, id);
 
         const rawResults: InferField[] = React.useMemo(() => {
@@ -141,7 +142,11 @@ export const createInferencer: CreateInferencer = ({
                     <>
                         <LiveComponent
                             fetchError={
-                                !recordLoading && !isInitialLoad && !record
+                                !recordLoading && inferError
+                                    ? inferError
+                                    : !recordLoading &&
+                                      !isInitialLoad &&
+                                      !record
                             }
                             code={prepareLiveCode(
                                 code,

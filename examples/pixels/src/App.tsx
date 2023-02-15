@@ -20,7 +20,7 @@ import "@pankod/refine-antd/dist/reset.css";
 
 import "styles/style.css";
 
-const { GoogleOutlined, GithubOutlined } = Icons;
+const { GithubOutlined } = Icons;
 
 function App() {
     return (
@@ -61,12 +61,6 @@ function App() {
                                             label: "Sign in with GitHub",
                                         },
                                     ]}
-                                    formProps={{
-                                        initialValues: {
-                                            email: "info@refine.dev",
-                                            password: "refine-supabase",
-                                        },
-                                    }}
                                 />
                             ),
                         },

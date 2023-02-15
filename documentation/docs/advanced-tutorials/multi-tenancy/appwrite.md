@@ -3,19 +3,18 @@ id: appwrite
 title: Appwrite
 ---
 
-
 ## What is Multitenancy?
 
 Multitenancy refers to a kind of architecture where a single instance of software runs on a server and serves multiple customers. In a multi-tenant environment, separate customers tap into the same hardware and data storage, creating a dedicated instance for each customer. Each tenant’s data is isolated and remains invisible to others, but is running on the same server.
 
 ## Introduction
 
-In this guide, we will create an application with you in the logic of Multi Tenant(Multitenancy). We can say multi tenant application is to separate and manage multiple contents independently from each other in a single application.
+In this guide, we will create an application with you in the logic of Multi Tenant(Multitenancy). We can say multi tenant application is separate and manage multiple contents independently from each other in a single application.
 
-We will make a Cake House application using **refine** and [Appwrite](https://appwrite.io/). Our Cake House will consist of two separate stores and there will be special products for these stores. We will explain step by step how to manage these stores, products and orders separately.
+We will make a Cake House application using **refine** and [Appwrite](https://appwrite.io/). Our Cake House will consist of two separate stores and there will be special products for these stores. We will explain step by step how to manage these stores, products, and orders separately.
 
 :::caution
-This guide has been prepared assuming you know the basics of **refine**. If you haven't learned these basics yet, we recommend reading the [Tutorial](https://refine.dev/docs/).
+This guide has been prepared to assume you know the basics of **refine**. If you haven't learned these basics yet, we recommend reading the [Tutorial](https://refine.dev/docs/).
 :::
 
 ## Setup
@@ -25,7 +24,7 @@ npm install @pankod/refine-appwrite
 ```
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 ## Usage
@@ -105,9 +104,9 @@ Now that we have completed the setup and our collections, we can now log in with
 
 ## Store Context
 
-In order to view the products and orders of two different stores separately, we need to filter by storeId. We will use the storeId information in more than one place. For example, when creating a store-specific order.
+To view the products and orders of two different stores separately, we need to filter by `storeId`. We will use the `storeId` information in more than one place. For example, when creating a store-specific order.
 
-For this reason, we will create a [React Context](https://en.reactjs.org/docs/context.html) and keep the storeId state information in it and send it to the relevant **refine** components.
+For this reason, we will create a [React Context](https://en.reactjs.org/docs/context.html) and keep the `storeId` state information in it and send it to the relevant **refine** components.
 
 ```tsx
 import { createContext, useState } from "react";
@@ -312,15 +311,15 @@ export const CustomSider: React.FC = () => {
 </p>
 </details>
 
-|                                                                    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/appwrite/sider.png" alt="sider" />                                                                     |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| _As you can see, you can now choose the store you want and create products and orders specifically for the store we have chosen according to the storeId information._ |
+|             <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/multi-tenant/appwrite/sider.png" alt="sider" />              |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| _As you can see, you can now choose the store you want and create products and orders specifically for the store we have chosen according to the `storeId` information._ |
 
 ## Product List Page
 
-Now we can list the products of the selected store according to the storeId information by filtering it. We can do this filtering by using the `permanetFilter` property within the **refine**'s `useSimpleList` hook.
+Now we can list the products of the selected store according to the `storeId` information by filtering it. We can do this filtering by using the `permanetFilter` property within the **refine**'s `useSimpleList` hook.
 
-We separate the products of different stores by using the `permanentFilter` with the storeId we get from the Store Context. So we can control more than single content in one application.
+We separate the products of different stores by using the `permanentFilter` with the `storeId` we get from the Store Context. So we can control more than single content in one application.
 
 ```tsx
 //highlight-start
@@ -364,7 +363,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
     return (
         <>
             <List
-                pageHeaderProps={{
+                headerProps={{
                     extra: <CreateButton onClick={() => createShow()} />,
                 }}
             >
@@ -403,7 +402,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 
 Now let's see how we can create store-specific products. Which store we choose in Sider, the product we will create will automatically be the product of the selected store.
 
-By overriding the `onFinish` method of the `form` and sending the selected storeId, we specify which store it will be the product of.
+By overriding the `onFinish` method of the `form` and sending the selected `storeId`, we specify which store it will be the product of.
 
 ```tsx
 //highlight-start

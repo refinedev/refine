@@ -81,7 +81,6 @@ export const OrderTimeline: React.FC = () => {
 
     return (
         <>
-            {/* @ts-expect-error Material UI packages are having issues with incompatibilities with react@17 types and react@18 types. Referring issue: https://github.com/mui/material-ui/issues/35287 */}
             <Timeline position="right" sx={{ mt: 0, pt: 0 }}>
                 {data?.data.map(({ createdAt, orderNumber, status, id }) => {
                     const text = orderStatusColor(status.id.toString())?.text;

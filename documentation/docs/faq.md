@@ -12,7 +12,6 @@ You may need to modify the form data before it is sent to the API.
 
 For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
 
-
 <Tabs
 defaultValue="core"
 values={[
@@ -87,7 +86,6 @@ export const UserCreate: React.FC = () => {
         </Form>
     );
 };
-
 ```
 
 </TabItem>
@@ -101,7 +99,7 @@ export const UserCreate: React.FC = () => {
     const {
         refineCore: { onFinish, formLoading },
         register,
-        handleSubmit
+        handleSubmit,
     } = useForm();
 
     const handleSubmitPostCreate = (values) => {
@@ -109,7 +107,7 @@ export const UserCreate: React.FC = () => {
         const fullName = `${name} ${surname}`;
         onFinish({
             ...value,
-            fullName
+            fullName,
         });
     };
 
@@ -153,7 +151,6 @@ const { queryResult: { refetch } } = useShow();
 </TabItem>
 <TabItem value="useinvalidate">
 
-
 ```tsx
 import { useInvalidate } from "@pankod/refine-core";
 
@@ -162,7 +159,7 @@ const invalidate = useInvalidate();
 // To invalidate the list and many states of the Posts resource
 invalidate({
     resource: "posts",
-    invalidates: ["list", "many"]
+    invalidates: ["list", "many"],
 });
 
 // To invalidate the state of a Posts with an id of 1
@@ -184,7 +181,6 @@ invalidate({
     dataProviderName: "second-data-provider",
     invalidates: ["all"],
 });
-
 ```
 
 [Refer to the **refine** useInvalidate hook documentation for more information. →](/docs/api-reference/core/hooks/invalidate/useInvalidate)
@@ -202,17 +198,17 @@ For example, If you want to make a request of the URL `/user/1/posts`.
 import { useTable, useOne } from "@pankod/refine-core";
 
 useTable({
-    resource: "/users/1/posts"
+    resource: "/users/1/posts",
 });
 ```
 
 ## How can I ensure a query is only run after a certain variable is available and not on load?
 
-Note that `data` related hooks (`useMany`, `useOne`, etc.) can also accept all `useQuery` options, which allows you to implement dependent queries whereby a query is only run after a certain data  is available. This is particularly useful if you want `useMany` to only run after a certain data is available and not on load.
+Note that `data` related hooks (`useMany`, `useOne`, etc.) can also accept all `useQuery` options, which allows you to implement dependent queries whereby a query is only run after a certain data is available. This is particularly useful if you want `useMany` to only run after a certain data is available and not on load.
 
-[Refer to react-query docs on **dependent queries** for more information  → ](https://react-query.tanstack.com/guides/dependent-queries)
+[Refer to react-query docs on **dependent queries** for more information → ](https://react-query.tanstack.com/guides/dependent-queries)
 
--   Suppose you want this query to run after `categoryIds` is fetched by a preceding query, you can set  `enabled` to `categoryIds.length > 0`. This will ensure that `useMany` is only run after `categoryIds` is fetched.
+-   Suppose you want this query to run after `categoryIds` is fetched by a preceding query, you can set `enabled` to `categoryIds.length > 0`. This will ensure that `useMany` is only run after `categoryIds` is fetched.
 
 ```tsx
 useMany({
@@ -227,9 +223,7 @@ useMany({
 
 **Yes!** You can work with JavaScript!
 
-[Refer to **Refine JavaScript** example  → ](https://github.com/refinedev/refine/tree/master/examples/with-javascript)
-
-
+[Refer to **Refine JavaScript** example → ](https://github.com/refinedev/refine/tree/master/examples/with-javascript)
 
 ## How I can override specific function of Data Providers?
 
@@ -254,7 +248,7 @@ const myDataProvider = {
     },
 };
 
-<Refine dataProvider={myDataProvider} />
+<Refine dataProvider={myDataProvider} />;
 ```
 
 What if we want to select `PUT` or `PATCH` on a request basis?
@@ -271,7 +265,7 @@ useUpdate({
     },
     metaData: {
         httpMethod: "patch",
-    }
+    },
 });
 
 // PUT Request
@@ -283,7 +277,7 @@ useUpdate({
     },
     metaData: {
         httpMethod: "put",
-    }
+    },
 });
 
 const simpleRestProvider = dataProvider("API_URL");
@@ -302,3 +296,19 @@ const myDataProvider = {
     },
 };
 ```
+
+## Why are API calls triggering twice
+
+This is the expected behavior if you use [`<React.StrictMode>`][react-strict-mode]. In this mode, React will render the components twice in development mode to identify unsafe life cycles, unexpected side effects, and legacy or deprecated APIs. It's used for highlighting possible problems.
+
+:::caution note
+
+[`<React.StrictMode>`][react-strict-mode] checks are run in development mode only; they do not impact the production build.
+
+:::
+
+> Refer to [`<React.StrictMode>` documentation][react-strict-mode] for more information. &#8594
+
+> Refer to [TanStack Query issue](https://github.com/TanStack/query/issues/3633) for more information. &#8594
+
+[react-strict-mode]: https://beta.reactjs.org/reference/react/StrictMode

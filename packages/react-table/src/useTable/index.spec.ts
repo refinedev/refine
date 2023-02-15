@@ -136,7 +136,7 @@ describe("useTable Hook", () => {
 
         act(() => {
             const titleColumn = getColumn("title");
-            titleColumn.setFilterValue("Hello");
+            titleColumn?.setFilterValue("Hello");
         });
 
         await waitFor(() => {
@@ -156,7 +156,7 @@ describe("useTable Hook", () => {
 
         act(() => {
             const titleColumn = getColumn("title");
-            titleColumn.setFilterValue(undefined);
+            titleColumn?.setFilterValue(undefined);
         });
 
         await waitFor(() => {
@@ -284,7 +284,7 @@ describe("useTable Hook", () => {
 
         act(() => {
             const titleColumn = getColumn("title");
-            titleColumn.setFilterValue("Test");
+            titleColumn?.setFilterValue("Test");
         });
 
         await waitFor(() => {
@@ -304,7 +304,7 @@ describe("useTable Hook", () => {
 
         act(() => {
             const titleColumn = getColumn("title");
-            titleColumn.setFilterValue(undefined);
+            titleColumn?.setFilterValue(undefined);
         });
 
         await waitFor(() => {
@@ -369,7 +369,7 @@ describe("useTable Hook", () => {
 
         act(() => {
             const titleColumn = getColumn("title");
-            titleColumn.toggleSorting(true, true);
+            titleColumn?.toggleSorting(true, true);
         });
 
         await waitFor(() => {

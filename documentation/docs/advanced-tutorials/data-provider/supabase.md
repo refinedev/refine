@@ -89,7 +89,14 @@ const SUPABASE_URL = "https://iwdfzvfqbtokqetmbmbp.supabase.co";
 const SUPABASE_KEY =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDU2NzAxMCwiZXhwIjoxOTQ2MTQzMDEwfQ._gr6kXGkQBi9BM9dx5vKaNKYj_DJN1xlkarprGpM_fU";
 
-export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
+    db: {
+        schema: "public",
+    },
+    auth: {
+        persistSession: true,
+    },
+});
 ```
 
 We'll use this example API credentials and `createClient` method that exposes from `refine-supabase` package for enabling refine to Supabase API connection.
@@ -154,17 +161,32 @@ import { supabaseClient } from "utility";
 
 const authProvider: AuthProvider = {
     login: async ({ email, password, providerName }) => {
-        const { user, error } = await supabaseClient.auth.signIn({
+        // sign in with oauth
+        if (providerName) {
+            const { data, error } = await supabaseClient.auth.signInWithOAuth({
+                provider: providerName,
+            });
+
+            if (error) {
+                return Promise.reject(error);
+            }
+
+            if (data?.url) {
+                return Promise.resolve(false);
+            }
+        }
+
+        // sign in with email and password
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
             email,
             password,
-            provider: providerName,
         });
 
         if (error) {
             return Promise.reject(error);
         }
 
-        if (user) {
+        if (data?.user) {
             return Promise.resolve();
         }
 
@@ -172,7 +194,7 @@ const authProvider: AuthProvider = {
         return Promise.resolve(false);
     },
     register: async ({ email, password }) => {
-        const { user, error } = await supabaseClient.auth.signUp({
+        const { data, error } = await supabaseClient.auth.signUp({
             email,
             password,
         });
@@ -181,15 +203,17 @@ const authProvider: AuthProvider = {
             return Promise.reject(error);
         }
 
-        if (user) {
+        if (data) {
             return Promise.resolve();
         }
     },
     forgotPassword: async ({ email }) => {
-        const { data, error } =
-            await supabaseClient.auth.api.resetPasswordForEmail(email, {
+        const { data, error } = await supabaseClient.auth.resetPasswordForEmail(
+            email,
+            {
                 redirectTo: `${window.location.origin}/update-password`,
-            });
+            },
+        );
 
         if (error) {
             return Promise.reject(error);
@@ -200,7 +224,9 @@ const authProvider: AuthProvider = {
         }
     },
     updatePassword: async ({ password }) => {
-        const { data, error } = await supabaseClient.auth.update({ password });
+        const { data, error } = await supabaseClient.auth.updateUser({
+            password,
+        });
 
         if (error) {
             return Promise.reject(error);
@@ -221,29 +247,29 @@ const authProvider: AuthProvider = {
     },
     checkError: () => Promise.resolve(),
     checkAuth: async () => {
-        const session = supabaseClient.auth.session();
-        const sessionFromURL = await supabaseClient.auth.getSessionFromUrl();
+        const { data } = await supabaseClient.auth.getSession();
+        const { session } = data;
 
-        if (session || sessionFromURL?.data?.user) {
-            return Promise.resolve();
+        if (!session) {
+            return Promise.reject();
         }
 
-        return Promise.reject();
+        return Promise.resolve();
     },
     getPermissions: async () => {
-        const user = supabaseClient.auth.user();
+        const user = await supabaseClient.auth.getUser();
 
         if (user) {
-            return Promise.resolve(user.role);
+            return Promise.resolve(user.data.user?.role);
         }
     },
     getUserIdentity: async () => {
-        const user = supabaseClient.auth.user();
+        const { data } = await supabaseClient.auth.getUser();
 
-        if (user) {
+        if (data?.user) {
             return Promise.resolve({
-                ...user,
-                name: user.email,
+                ...data.user,
+                name: data.user.email,
             });
         }
     },
@@ -520,7 +546,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                                     const xhr = new XMLHttpRequest();
                                     onSuccess &&
                                         onSuccess(
-                                            { url: data?.publicURL },
+                                            { url: data?.publicUrl },
                                             xhr,
                                         );
                                 } catch (error) {
@@ -699,7 +725,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                                 }
 
                                 onSuccess?.(
-                                    { url: data?.publicURL },
+                                    { url: data?.publicUrl },
                                     new XMLHttpRequest(),
                                 );
                             }}
@@ -1085,6 +1111,10 @@ function App() {
 For live features to work automatically, we setted `liveMode: "auto"` in the options prop.
 
 [Refer to Live Provider docs for more information &#8594](/docs/api-reference/core/providers/live-provider.md/#livemode)
+:::
+
+:::caution
+With [Supabase JS client v2](#), multiple subscription calls are not supported. Check out the related issue, [supabase/realtime#271](https://github.com/supabase/realtime/issues/271). Multiple subscriptions needs to be made in a single call, which is not supported by the current version of the `@pankod/refine-supabase` data provider. You can check out the related documentation in [Supabase Realtime Guides](https://supabase.com/docs/guides/realtime/postgres-changes#combination-changes).
 :::
 
 <br/>
