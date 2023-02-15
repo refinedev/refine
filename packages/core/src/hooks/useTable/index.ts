@@ -58,6 +58,7 @@ export type useTableProps<TData, TError> = {
         pageSize?: number;
         /**
          * Whether to use server side pagination or not.
+         * @default `"server"`
          */
         mode?: "client" | "server" | "off";
     };
