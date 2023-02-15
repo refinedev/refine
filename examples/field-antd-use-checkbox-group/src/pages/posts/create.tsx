@@ -2,7 +2,6 @@ import { useState } from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import { Create, useForm, useCheckboxGroup } from "@pankod/refine-antd";
-
 import { Form, Input, Checkbox } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";

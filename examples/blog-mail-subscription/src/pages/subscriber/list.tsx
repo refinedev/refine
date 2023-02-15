@@ -2,7 +2,6 @@ import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import { useTable, List, DateField, DeleteButton } from "@pankod/refine-antd";
-
 import { Table } from "antd";
 
 import { ISubscriber } from "interfaces";

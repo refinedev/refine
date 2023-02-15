@@ -7,7 +7,6 @@ import {
     ShowButton,
     BooleanField,
 } from "@pankod/refine-antd";
-
 import { Table, Space } from "antd";
 
 import { ICategory } from "interfaces";

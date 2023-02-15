@@ -7,7 +7,6 @@ import {
     EditButton,
     TextField,
 } from "@pankod/refine-antd";
-
 import { Table, Space } from "antd";
 
 import { HackathonerType, ProjectType, HackathonType } from "interfaces";

@@ -1,7 +1,6 @@
 import { IResourceComponentsProps, useTranslate } from "@pankod/refine-core";
 
 import { Create, useForm, useSelect } from "@pankod/refine-antd";
-
 import { Form, Input, Select } from "antd";
 
 import { IPost, ICategory } from "../../interfaces";

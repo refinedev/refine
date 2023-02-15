@@ -12,7 +12,6 @@ import {
     useSelect,
     FilterDropdown,
 } from "@pankod/refine-antd";
-
 import { Table, Space } from "antd";
 
 import { ICompany, IJob } from "interfaces";

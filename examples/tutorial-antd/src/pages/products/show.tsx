@@ -7,7 +7,6 @@ import {
     TextField,
     MarkdownField,
 } from "@pankod/refine-antd";
-
 import { Typography } from "antd";
 
 const { Title } = Typography;

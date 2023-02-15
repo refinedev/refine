@@ -5,7 +5,6 @@ import {
     useResource,
 } from "@pankod/refine-core";
 import { Edit } from "@pankod/refine-antd";
-
 import { Form, Input } from "antd";
 
 import { IProduct } from "interfaces";

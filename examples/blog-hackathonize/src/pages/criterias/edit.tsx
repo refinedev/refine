@@ -1,5 +1,4 @@
 import { Edit, useForm, useSelect } from "@pankod/refine-antd";
-
 import { Form, Input, Select } from "antd";
 
 import { CriteriaType, HackathonType } from "interfaces";

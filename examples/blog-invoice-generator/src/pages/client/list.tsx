@@ -6,7 +6,6 @@ import {
     useDrawerForm,
     CreateButton,
 } from "@pankod/refine-antd";
-
 import { List as AntdList } from "antd";
 
 import { IClient } from "interfaces";

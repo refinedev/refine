@@ -8,7 +8,6 @@ import {
     EditButton,
     RefreshButton,
 } from "@pankod/refine-antd";
-
 import { Typography, Alert } from "antd";
 
 import { IPost, ICategory } from "interfaces";

@@ -14,7 +14,6 @@ import {
     ExportButton,
     ImportButton,
 } from "@pankod/refine-antd";
-
 import { Space, Table } from "antd";
 
 import { IPost, ICategory, IPostFile } from "interfaces";

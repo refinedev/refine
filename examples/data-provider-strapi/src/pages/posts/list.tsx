@@ -13,7 +13,6 @@ import {
     EditButton,
     DeleteButton,
 } from "@pankod/refine-antd";
-
 import { Table, Select, Space } from "antd";
 
 import { IPost } from "interfaces";

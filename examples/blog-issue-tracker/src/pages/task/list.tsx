@@ -16,7 +16,6 @@ import {
     EditButton,
     DeleteButton,
 } from "@pankod/refine-antd";
-
 import { Table, Space, Row, Col, Card } from "antd";
 
 import {

@@ -1,6 +1,5 @@
 import { IResourceComponentsProps } from "@pankod/refine-core";
 import { Edit, useForm, useSelect } from "@pankod/refine-antd";
-
 import { Form, Select, Input } from "antd";
 
 import { IContact } from "interfaces";

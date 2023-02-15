@@ -1,6 +1,5 @@
 import React from "react";
 import { List, useTable, EditButton, DeleteButton } from "@pankod/refine-antd";
-
 import { Table, Space } from "antd";
 
 interface IFormValue {

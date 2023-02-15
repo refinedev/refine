@@ -9,7 +9,6 @@ import {
     FilterDropdown,
     useSelect,
 } from "@pankod/refine-antd";
-
 import { Table, Space, Select, SelectProps } from "antd";
 
 import { IPost, ICategory } from "interfaces";

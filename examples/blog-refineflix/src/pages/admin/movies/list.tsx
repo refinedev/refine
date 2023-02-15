@@ -9,7 +9,6 @@ import {
     CreateButton,
     DeleteButton,
 } from "@pankod/refine-antd";
-
 import { Table, Space } from "antd";
 
 import { IMovies } from "interfaces";

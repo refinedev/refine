@@ -12,11 +12,9 @@ import {
     FilterDropdown,
     TagField,
 } from "@pankod/refine-antd";
-
 import { Table, Space, Select, Radio } from "antd";
 
 import { useTable, useSelect } from "@pankod/refine-antd";
-
 import { Table, Space, Select, Radio } from "antd";
 
 import { IPost, ICategory } from "../../interfaces";

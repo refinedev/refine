@@ -9,7 +9,6 @@ import {
     TagField,
     ShowButton,
 } from "@pankod/refine-antd";
-
 import { Table, Space } from "antd";
 
 import { ICompany } from "interfaces";

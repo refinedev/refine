@@ -1,5 +1,4 @@
 import { useSelect } from "@pankod/refine-antd";
-
 import { Form, Modal, Input, ModalProps, FormProps, Select } from "antd";
 
 type CreateContactProps = {

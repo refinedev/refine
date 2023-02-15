@@ -1,7 +1,6 @@
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import { List, useTable } from "@pankod/refine-antd";
-
 import { Table } from "antd";
 
 export const UsersList: React.FC<IResourceComponentsProps> = () => {

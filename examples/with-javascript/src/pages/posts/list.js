@@ -7,7 +7,6 @@ import {
     EditButton,
     ShowButton,
 } from "@pankod/refine-antd";
-
 import { Table, Space } from "antd";
 
 export const PostList = () => {

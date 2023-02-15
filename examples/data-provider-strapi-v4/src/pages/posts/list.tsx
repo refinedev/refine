@@ -12,7 +12,6 @@ import {
     DeleteButton,
     ImageField,
 } from "@pankod/refine-antd";
-
 import { Table, Select, Space, Form, Radio, Tag } from "antd";
 
 import { IPost } from "interfaces";
