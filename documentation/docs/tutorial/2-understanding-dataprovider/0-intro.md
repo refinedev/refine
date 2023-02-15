@@ -36,18 +36,18 @@ The typical data provider has following methods:
 import { DataProvider } from "@pankod/refine-core";
 
 const dataProvider: DataProvider = {
-    create: ({ resource, variables, metaData }) => Promise,
-    deleteOne: ({ resource, id, variables, metaData }) => Promise,
+    create: ({ resource, variables, meta }) => Promise,
+    deleteOne: ({ resource, id, variables, meta }) => Promise,
     getList: ({
         resource,
         pagination,
         hasPagination,
         sorters,
         filters,
-        metaData,
+        meta,
     }) => Promise,
-    getOne: ({ resource, id, metaData }) => Promise,
-    update: ({ resource, id, variables, metaData }) => Promise,
+    getOne: ({ resource, id, meta }) => Promise,
+    update: ({ resource, id, variables, meta }) => Promise,
     getApiUrl: () => "",
     ...
 }

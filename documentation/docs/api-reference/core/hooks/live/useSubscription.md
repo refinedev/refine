@@ -49,7 +49,7 @@ Type of events to subscribe. `"\*"` means all events.
 
 You can pass any additional parameters to the [`liveProvider`][live-provider]'s [`subscribe`][live-provider-subscribe] method.
 
-Hooks that use `useSubscription` internally, send the query's parameters(pagination, metaData, sort, filters, etc.) information along with this prop.
+Hooks that use `useSubscription` internally, send the query's parameters(pagination, meta, sort, filters, etc.) information along with this prop.
 
 [Refer to LiveProvider's "Supported Hooks Subscription" section for which hooks are using `useSubscription` internally &#8594][supported-hooks-subscription]
 
