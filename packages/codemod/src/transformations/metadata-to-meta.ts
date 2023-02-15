@@ -14,7 +14,6 @@ const metaDataToMeta = (j: JSCodeshift, source: Collection) => {
 };
 
 export default function transformer(file: FileInfo, api: API): string {
-    if (file.path !== "src/pages/posts/list.tsx") return;
     const j = api.jscodeshift;
     const source = j(file.source);
 
