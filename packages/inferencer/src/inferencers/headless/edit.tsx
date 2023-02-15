@@ -179,7 +179,9 @@ export const renderer = ({
                                 }"
                                 `
                                         : ""
-                                } {...register(\`${val}\`, { required: "This field is required", })} />
+                                } {...register(\`${val}\`, { required: "This field is required", ${
+                    field.type === "number" ? "valueAsNumber: true," : ""
+                } })} />
                                 <span style={{color: "red"}}>
                                 {${accessor(valError, "message")} as string}
                                 </span>
@@ -216,6 +218,7 @@ export const renderer = ({
                     field.accessor,
                 )}", {
                     required: "This field is required",
+                    ${field.type === "number" ? "valueAsNumber: true," : ""}
                 })}
                 />
                 <span style={{ color: "red" }}>
