@@ -38,13 +38,29 @@ const moveImports = (
                 .find(j.ImportDeclaration)
                 .filter((path) => path.node.source.value === toModule);
 
-            // add new import from importsToBeMoved
-            importsToModule.forEach((importTo) =>
-                j(importTo).replaceWith(
-                    j.importDeclaration(
-                        [...importTo.node.specifiers, importToMove.get().node],
-                        importTo.node.source,
-                    ),
+            // if there is no import declaration for the import to move, create import declaration and add it to the top of the file.
+            if (!importsToModule?.length) {
+                source
+                    .get()
+                    .node.program.body.unshift(
+                        j.importDeclaration(
+                            [importToMove.get().node],
+                            j.stringLiteral(toModule),
+                        ),
+                    );
+
+                // remove the moved import
+                j(importToMove).remove();
+                return;
+            }
+
+            // add new import from importsToBeMoved to the existing import declaration.
+            // we select the first import declaration if there are multiple import declarations.
+            const importTo = importsToModule.at(0).paths().at(0).get();
+            j(importTo).replaceWith(
+                j.importDeclaration(
+                    [...importTo.node.specifiers, importToMove.get().node],
+                    importTo.node.source,
                 ),
             );
 
