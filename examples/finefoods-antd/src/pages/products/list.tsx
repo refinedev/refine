@@ -39,7 +39,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         HttpError,
         { name: string; categories: string[] }
     >({
-        pagination: { pageSize: 12, defaultCurrent: 2 },
+        pagination: { pageSize: 12, current: 2 },
         onSearch: ({ name, categories }) => {
             const productFilters: CrudFilters = [];
 
