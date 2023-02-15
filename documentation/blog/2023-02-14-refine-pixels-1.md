@@ -349,4 +349,4 @@ In this post, we introduced the **refine** framework and the [AWeekOfRefine](htt
 
 We layed out the plans for building a **Pixels** client app and an admin dashboard app in considerable depth.
 
-Tomorrow, on Day Two, we are ready to start "Setting Up the Client App". See you soon!
+Tomorrow, on [Day Two](https://refine.dev/blog/refine-pixels-2/), we are ready to start "Setting Up the Client App". See you soon!

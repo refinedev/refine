@@ -24,7 +24,7 @@ const timeline = [
         date: "15th February 2023",
         title: "Setting Up the Client App",
         description: `We start with setting up the Pixels client app using <strong className="font-bold">create refine-app</strong> by choosing <strong className="font-bold">Ant Design</strong> as a UI framework and <strong className="font-bold">Supabase</strong> as a dataprovider`,
-        link: null,
+        link: "https://refine.dev/blog/refine-pixels-2/",
     },
     {
         date: "16th February 2022",
