@@ -61,12 +61,6 @@ function App() {
                                             label: "Sign in with GitHub",
                                         },
                                     ]}
-                                    formProps={{
-                                        initialValues: {
-                                            email: "info@refine.dev",
-                                            password: "refine-supabase",
-                                        },
-                                    }}
                                 />
                             ),
                         },

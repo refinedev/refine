@@ -16,7 +16,7 @@
         "@pankod/refine-cli": "^1.17.0",
         "@pankod/refine-simple-rest": "^3.37.4",
         "@pankod/refine-remix-router": "^1.7.0",
-        "@pankod/refine-antd": "^4.7.1",
+        "@pankod/refine-antd": "^4.7.3",
         "antd": "^5.0.5",
         "@ant-design/icons": "^4.5.0",
         "cookie": "^0.5.0",

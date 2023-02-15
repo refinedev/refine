@@ -34,8 +34,10 @@ export const Header: React.FC = () => {
     const isLogin = !isError;
 
     const handleRedirect = () => {
+        console.log({ pathname });
         if (pathname === "/") {
             push("/login");
+            return;
         }
 
         push(`/login?to=${encodeURIComponent(pathname)}`);

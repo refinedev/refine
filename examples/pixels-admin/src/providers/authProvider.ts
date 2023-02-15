@@ -15,7 +15,7 @@ export const authProvider: AuthProvider = {
             }
 
             if (data?.url) {
-                return Promise.resolve();
+                return Promise.resolve(false);
             }
         }
 
@@ -35,6 +35,7 @@ export const authProvider: AuthProvider = {
         }
 
         await supabaseClient.auth.signOut();
+
         return Promise.reject(new Error("User not authorized."));
     },
     register: async ({ email, password }) => {

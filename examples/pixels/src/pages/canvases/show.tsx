@@ -3,6 +3,7 @@ import {
     useCreate,
     useGetIdentity,
     useNavigation,
+    useRouterContext,
     useShow,
 } from "@pankod/refine-core";
 import { useModal } from "@pankod/refine-antd";
@@ -22,6 +23,8 @@ const { LeftOutlined } = Icons;
 const { Title } = Typography;
 
 export const CanvasShow: React.FC = () => {
+    const { Link, useLocation } = useRouterContext();
+    const { pathname } = useLocation();
     const [color, setColor] = useState<typeof colors[number]>("black");
     const { modalProps, show, close } = useModal();
 
@@ -34,7 +37,7 @@ export const CanvasShow: React.FC = () => {
 
     const onSubmit = (x: number, y: number) => {
         if (!identity) {
-            return push("/login");
+            return push(`/login?to=${encodeURIComponent(pathname)}`);
         }
 
         if (typeof x === "number" && typeof y === "number" && canvas?.id) {
