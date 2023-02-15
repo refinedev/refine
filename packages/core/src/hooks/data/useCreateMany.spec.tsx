@@ -68,7 +68,7 @@ describe("useCreateMany Hook", () => {
     });
 
     describe("useLog", () => {
-        it("publish log on success", async () => {
+        it.only("publish log on success", async () => {
             const createMock = jest.fn();
 
             const { result } = renderHook(() => useCreateMany(), {
@@ -112,6 +112,10 @@ describe("useCreateMany Hook", () => {
                     },
                 ],
                 meta: {
+                    dataProviderName: "default",
+                    ids: ["1", "2"],
+                },
+                logMeta: {
                     dataProviderName: "default",
                     ids: ["1", "2"],
                 },

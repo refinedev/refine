@@ -147,6 +147,10 @@ describe("useDelete Hook", () => {
                     dataProviderName: "default",
                     id: "1",
                 },
+                logMeta: {
+                    dataProviderName: "default",
+                    id: "1",
+                },
                 resource: "posts",
             });
         });

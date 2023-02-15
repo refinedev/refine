@@ -180,6 +180,10 @@ describe("useUpdateMany Hook", () => {
                     dataProviderName: "default",
                     ids: ["1", "2"],
                 },
+                logMeta: {
+                    dataProviderName: "default",
+                    ids: ["1", "2"],
+                },
                 previousData: [
                     {
                         status: undefined,

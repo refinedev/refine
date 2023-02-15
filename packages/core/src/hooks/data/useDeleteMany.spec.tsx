@@ -144,6 +144,10 @@ describe("useDeleteMany Hook", () => {
                     dataProviderName: "default",
                     ids: ["1", "2"],
                 },
+                logMeta: {
+                    dataProviderName: "default",
+                    ids: ["1", "2"],
+                },
                 resource: "posts",
             });
         });
