@@ -59,6 +59,7 @@ export default function transformer(file: FileInfo, api: API): string {
             value: REFINE_ANTD_PATH,
         },
     });
+
     refineImport.replaceWith((path) => {
         for (const item of path.node.specifiers) {
             if (item.local.name === "Icons") {
@@ -84,6 +85,16 @@ export default function transformer(file: FileInfo, api: API): string {
 
         return path.node;
     });
+
+    // remove empty imports
+    source
+        .find(j.ImportDeclaration, {
+            source: {
+                value: REFINE_ANTD_PATH,
+            },
+        })
+        .filter((path) => path.node.specifiers.length === 0)
+        .remove();
 
     return source.toSource();
 }
