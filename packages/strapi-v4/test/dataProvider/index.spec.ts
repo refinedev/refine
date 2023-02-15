@@ -136,7 +136,7 @@ describe("dataProvider", () => {
                 axiosInstance,
             ).getList({
                 resource: "posts",
-                metaData: {
+                meta: {
                     locale: "de",
                 },
             });
@@ -152,7 +152,7 @@ describe("dataProvider", () => {
                 axiosInstance,
             ).getList({
                 resource: "posts",
-                metaData: {
+                meta: {
                     fields: ["title", "content"],
                 },
             });
@@ -172,7 +172,7 @@ describe("dataProvider", () => {
                 axiosInstance,
             ).getList({
                 resource: "posts",
-                metaData: {
+                meta: {
                     populate: ["category"],
                 },
             });
@@ -189,7 +189,7 @@ describe("dataProvider", () => {
                 .getMany!({
                 resource: "posts",
                 ids: ["30", "29"],
-                metaData: { populate: ["category"] },
+                meta: { populate: ["category"] },
             });
 
             expect(data[0].id).toBe(29);

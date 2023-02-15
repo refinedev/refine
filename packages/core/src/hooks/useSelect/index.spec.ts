@@ -510,7 +510,7 @@ describe("useSelect Hook", () => {
             hasPagination: true,
             pagination: { pageSize: 20 },
             resource: "posts",
-            metaData: {
+            meta: {
                 queryContext: {
                     queryKey: [
                         "default",
@@ -582,7 +582,7 @@ describe("useSelect Hook", () => {
             filters: [],
             hasPagination: false,
             resource: "posts",
-            metaData: {
+            meta: {
                 queryContext: {
                     pageParam: undefined,
                     queryKey: [
@@ -612,7 +612,7 @@ describe("useSelect Hook", () => {
                 filters,
                 hasPagination: false,
                 resource: "posts",
-                metaData: {
+                meta: {
                     queryContext: {
                         pageParam: undefined,
                         queryKey: [
@@ -688,7 +688,7 @@ describe("useSelect Hook", () => {
             pagination: { current: 2, pageSize: 1 },
             hasPagination: true,
             resource: "posts",
-            metaData: {
+            meta: {
                 queryContext: {
                     queryKey: [
                         "default",

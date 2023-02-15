@@ -3,6 +3,7 @@ import {
     CrudSorting,
     DataProvider,
     LogicalFilter,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import { GraphQLClient } from "graphql-request";
 import * as gql from "gql-query-builder";
@@ -65,6 +66,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             sort,
             sorters,
             filters,
+            meta: _meta,
             metaData,
         }) => {
             const { current = 1, pageSize = 10 } = pagination ?? {};
@@ -75,7 +77,8 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
 
             const camelResource = camelCase(resource);
 
-            const operation = metaData?.operation ?? camelResource;
+            const meta = pickNotDeprecated(_meta, metaData);
+            const operation = meta?.operation ?? camelResource;
 
             const operationConnection = `${operation}Connection`;
 
@@ -83,7 +86,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 {
                     operation: operationConnection,
                     variables: {
-                        ...metaData?.variables,
+                        ...meta?.variables,
                         where: { value: filterBy, type: "JSON" },
                     },
                     fields: [{ aggregate: ["count"] }],
@@ -91,7 +94,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 {
                     operation,
                     variables: {
-                        ...metaData?.variables,
+                        ...meta?.variables,
                         sort: sortBy,
                         where: { value: filterBy, type: "JSON" },
                         ...(hasPagination
@@ -101,7 +104,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                               }
                             : {}),
                     },
-                    fields: metaData?.fields,
+                    fields: meta?.fields,
                 },
             ]);
 
@@ -113,10 +116,11 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        getMany: async ({ resource, ids, metaData }) => {
+        getMany: async ({ resource, ids, meta: _meta, metaData }) => {
             const camelResource = camelCase(resource);
 
-            const operation = metaData?.operation ?? camelResource;
+            const meta = pickNotDeprecated(_meta, metaData);
+            const operation = meta?.operation ?? camelResource;
 
             const { query, variables } = gql.query({
                 operation,
@@ -126,7 +130,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                         type: "JSON",
                     },
                 },
-                fields: metaData?.fields,
+                fields: meta?.fields,
             });
 
             const response = await client.request(query, variables);
@@ -136,11 +140,12 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        create: async ({ resource, variables, metaData }) => {
+        create: async ({ resource, variables, meta: _meta, metaData }) => {
             const singularResource = pluralize.singular(resource);
             const camelCreateName = camelCase(`create-${singularResource}`);
 
-            const operation = metaData?.operation ?? camelCreateName;
+            const meta = pickNotDeprecated(_meta, metaData);
+            const operation = meta?.operation ?? camelCreateName;
 
             const { query, variables: gqlVariables } = gql.mutation({
                 operation,
@@ -150,7 +155,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                         type: `${camelCreateName}Input`,
                     },
                 },
-                fields: metaData?.fields ?? [
+                fields: meta?.fields ?? [
                     {
                         operation: singularResource,
                         fields: ["id"],
@@ -165,11 +170,12 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        createMany: async ({ resource, variables, metaData }) => {
+        createMany: async ({ resource, variables, meta: _meta, metaData }) => {
             const singularResource = pluralize.singular(resource);
             const camelCreateName = camelCase(`create-${singularResource}`);
 
-            const operation = metaData?.operation ?? camelCreateName;
+            const meta = pickNotDeprecated(_meta, metaData);
+            const operation = meta?.operation ?? camelCreateName;
 
             const response = await Promise.all(
                 variables.map(async (param) => {
@@ -181,7 +187,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                                 type: `${camelCreateName}Input`,
                             },
                         },
-                        fields: metaData?.fields ?? [
+                        fields: meta?.fields ?? [
                             {
                                 operation: singularResource,
                                 fields: ["id"],
@@ -199,11 +205,12 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        update: async ({ resource, id, variables, metaData }) => {
+        update: async ({ resource, id, variables, meta: _meta, metaData }) => {
             const singularResource = pluralize.singular(resource);
             const camelUpdateName = camelCase(`update-${singularResource}`);
 
-            const operation = metaData?.operation ?? camelUpdateName;
+            const meta = pickNotDeprecated(_meta, metaData);
+            const operation = meta?.operation ?? camelUpdateName;
 
             const { query, variables: gqlVariables } = gql.mutation({
                 operation,
@@ -216,7 +223,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 fields: [
                     {
                         operation: singularResource,
-                        fields: metaData?.fields ?? ["id"],
+                        fields: meta?.fields ?? ["id"],
                         variables: {},
                     },
                 ],
@@ -228,11 +235,18 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        updateMany: async ({ resource, ids, variables, metaData }) => {
+        updateMany: async ({
+            resource,
+            ids,
+            variables,
+            meta: _meta,
+            metaData,
+        }) => {
             const singularResource = pluralize.singular(resource);
             const camelUpdateName = camelCase(`update-${singularResource}`);
 
-            const operation = metaData?.operation ?? camelUpdateName;
+            const meta = pickNotDeprecated(_meta, metaData);
+            const operation = meta?.operation ?? camelUpdateName;
 
             const response = await Promise.all(
                 ids.map(async (id) => {
@@ -247,7 +261,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                         fields: [
                             {
                                 operation: singularResource,
-                                fields: metaData?.fields ?? ["id"],
+                                fields: meta?.fields ?? ["id"],
                                 variables: {},
                             },
                         ],
@@ -262,18 +276,19 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        getOne: async ({ resource, id, metaData }) => {
+        getOne: async ({ resource, id, meta: _meta, metaData }) => {
             const singularResource = pluralize.singular(resource);
             const camelResource = camelCase(singularResource);
 
-            const operation = metaData?.operation ?? camelResource;
+            const meta = pickNotDeprecated(_meta, metaData);
+            const operation = meta?.operation ?? camelResource;
 
             const { query, variables } = gql.query({
                 operation,
                 variables: {
                     id: { value: id, type: "ID", required: true },
                 },
-                fields: metaData?.fields,
+                fields: meta?.fields,
             });
 
             const response = await client.request(query, variables);
@@ -283,11 +298,12 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        deleteOne: async ({ resource, id, metaData }) => {
+        deleteOne: async ({ resource, id, meta: _meta, metaData }) => {
             const singularResource = pluralize.singular(resource);
             const camelDeleteName = camelCase(`delete-${singularResource}`);
 
-            const operation = metaData?.operation ?? camelDeleteName;
+            const meta = pickNotDeprecated(_meta, metaData);
+            const operation = meta?.operation ?? camelDeleteName;
 
             const { query, variables } = gql.mutation({
                 operation,
@@ -297,7 +313,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                         type: `${camelDeleteName}Input`,
                     },
                 },
-                fields: metaData?.fields ?? [
+                fields: meta?.fields ?? [
                     {
                         operation: singularResource,
                         fields: ["id"],
@@ -313,11 +329,12 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        deleteMany: async ({ resource, ids, metaData }) => {
+        deleteMany: async ({ resource, ids, meta: _meta, metaData }) => {
             const singularResource = pluralize.singular(resource);
             const camelDeleteName = camelCase(`delete-${singularResource}`);
 
-            const operation = metaData?.operation ?? camelDeleteName;
+            const meta = pickNotDeprecated(_meta, metaData);
+            const operation = meta?.operation ?? camelDeleteName;
 
             const response = await Promise.all(
                 ids.map(async (id) => {
@@ -329,7 +346,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                                 type: `${camelDeleteName}Input`,
                             },
                         },
-                        fields: metaData?.fields ?? [
+                        fields: meta?.fields ?? [
                             {
                                 operation: singularResource,
                                 fields: ["id"],
@@ -351,20 +368,22 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             throw Error("Not implemented on refine-graphql data provider.");
         },
 
-        custom: async ({ url, method, headers, metaData }) => {
+        custom: async ({ url, method, headers, meta: _meta, metaData }) => {
             let gqlClient = client;
 
             if (url) {
                 gqlClient = new GraphQLClient(url, { headers });
             }
 
-            if (metaData) {
-                if (metaData.operation) {
+            const meta = pickNotDeprecated(_meta, metaData);
+
+            if (meta) {
+                if (meta.operation) {
                     if (method === "get") {
                         const { query, variables } = gql.query({
-                            operation: metaData.operation,
-                            fields: metaData.fields,
-                            variables: metaData.variables,
+                            operation: meta.operation,
+                            fields: meta.fields,
+                            variables: meta.variables,
                         });
 
                         const response = await gqlClient.request(
@@ -373,13 +392,13 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                         );
 
                         return {
-                            data: response[metaData.operation],
+                            data: response[meta.operation],
                         };
                     } else {
                         const { query, variables } = gql.mutation({
-                            operation: metaData.operation,
-                            fields: metaData.fields,
-                            variables: metaData.variables,
+                            operation: meta.operation,
+                            fields: meta.fields,
+                            variables: meta.variables,
                         });
 
                         const response = await gqlClient.request(
@@ -388,7 +407,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                         );
 
                         return {
-                            data: response[metaData.operation],
+                            data: response[meta.operation],
                         };
                     }
                 } else {
@@ -396,7 +415,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 }
             } else {
                 throw Error(
-                    "GraphQL need to operation, fields and variables values in metaData object.",
+                    "GraphQL need to operation, fields and variables values in meta object.",
                 );
             }
         },

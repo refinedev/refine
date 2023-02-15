@@ -16,7 +16,7 @@ import {
     GetListResponse,
     PrevContext as DeleteContext,
     SuccessErrorNotification,
-    MetaDataQuery,
+    MetaQuery,
     IQueryKeys,
 } from "../../interfaces";
 import {
@@ -32,7 +32,12 @@ import {
     useLog,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
-import { queryKeys, pickDataProvider, handleMultiple } from "@definitions";
+import {
+    queryKeys,
+    pickDataProvider,
+    handleMultiple,
+    pickNotDeprecated,
+} from "@definitions";
 
 export type DeleteManyParams<TVariables> = {
     ids: BaseKey[];
@@ -40,7 +45,11 @@ export type DeleteManyParams<TVariables> = {
     mutationMode?: MutationMode;
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     dataProviderName?: string;
     invalidates?: Array<keyof IQueryKeys>;
     values?: TVariables;
@@ -126,6 +135,7 @@ export const useDeleteMany = <
             mutationMode,
             undoableTimeout,
             onCancel,
+            meta,
             metaData,
             dataProviderName,
             values,
@@ -145,7 +155,8 @@ export const useDeleteMany = <
                     return selectedDataProvider.deleteMany<TData, TVariables>({
                         resource,
                         ids,
-                        metaData,
+                        meta: pickNotDeprecated(meta, metaData),
+                        metaData: pickNotDeprecated(meta, metaData),
                         variables: values,
                     });
                 } else {
@@ -154,7 +165,8 @@ export const useDeleteMany = <
                             selectedDataProvider.deleteOne<TData, TVariables>({
                                 resource,
                                 id,
-                                metaData,
+                                meta: pickNotDeprecated(meta, metaData),
+                                metaData: pickNotDeprecated(meta, metaData),
                                 variables: values,
                             }),
                         ),
@@ -324,6 +336,7 @@ export const useDeleteMany = <
                 {
                     ids,
                     resource,
+                    meta,
                     metaData,
                     dataProviderName,
                     successNotification,
@@ -364,7 +377,7 @@ export const useDeleteMany = <
                 });
 
                 const { fields, operation, variables, ...rest } =
-                    metaData || {};
+                    pickNotDeprecated(meta, metaData) || {};
 
                 log?.mutate({
                     action: "deleteMany",

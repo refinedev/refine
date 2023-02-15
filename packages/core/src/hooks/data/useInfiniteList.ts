@@ -9,7 +9,7 @@ import {
     BaseRecord,
     HttpError,
     CrudSorting,
-    MetaDataQuery,
+    MetaQuery,
     SuccessErrorNotification,
     LiveModeProps,
     GetListResponse,
@@ -71,7 +71,12 @@ export type UseInfiniteListProps<TData, TError> = {
     /**
      *  Metadata query for `dataProvider`
      */
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     *  Metadata query for `dataProvider`
+     *  @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     /**
      * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use
      */
@@ -103,6 +108,7 @@ export const useInfiniteList = <
     queryOptions,
     successNotification,
     errorNotification,
+    meta,
     metaData,
     liveMode,
     onLiveEvent,
@@ -117,7 +123,8 @@ export const useInfiniteList = <
     const queryKey = queryKeys(
         resource,
         pickDataProvider(resource, dataProviderName, resources),
-        metaData,
+        pickNotDeprecated(meta, metaData),
+        pickNotDeprecated(meta, metaData),
     );
     const { getList } = dataProvider(
         pickDataProvider(resource, dataProviderName, resources),
@@ -134,7 +141,8 @@ export const useInfiniteList = <
         resource,
         types: ["*"],
         params: {
-            metaData,
+            meta: pickNotDeprecated(meta, metaData),
+            metaData: pickNotDeprecated(meta, metaData),
             pagination: pickNotDeprecated(pagination, config?.pagination),
             hasPagination: pickNotDeprecated(
                 hasPagination,
@@ -183,8 +191,16 @@ export const useInfiniteList = <
                 filters: pickNotDeprecated(filters, config?.filters),
                 sort: pickNotDeprecated(sorters, config?.sort),
                 sorters: pickNotDeprecated(sorters, config?.sort),
+                meta: {
+                    ...(pickNotDeprecated(meta, metaData) || {}),
+                    queryContext: {
+                        queryKey,
+                        pageParam,
+                        signal,
+                    },
+                },
                 metaData: {
-                    ...metaData,
+                    ...(pickNotDeprecated(meta, metaData) || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -212,7 +228,8 @@ export const useInfiniteList = <
                         ? successNotification(
                               data,
                               {
-                                  metaData,
+                                  meta: pickNotDeprecated(meta, metaData),
+                                  metaData: pickNotDeprecated(meta, metaData),
                                   filters: pickNotDeprecated(
                                       filters,
                                       config?.filters,
@@ -252,7 +269,8 @@ export const useInfiniteList = <
                         ? errorNotification(
                               err,
                               {
-                                  metaData,
+                                  meta: pickNotDeprecated(meta, metaData),
+                                  metaData: pickNotDeprecated(meta, metaData),
                                   filters: pickNotDeprecated(
                                       filters,
                                       config?.filters,

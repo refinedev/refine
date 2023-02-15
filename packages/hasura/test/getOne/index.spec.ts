@@ -3,11 +3,11 @@ import client from "../gqlClient";
 import "./index.mock";
 
 describe("useOne", () => {
-    it("correct response with metaData", async () => {
+    it("correct response with meta", async () => {
         const { data } = await dataProvider(client).getOne({
             resource: "posts",
             id: "cddd4ced-651d-4039-abe0-2a9dffbc8c82",
-            metaData: {
+            meta: {
                 fields: ["id", "title", "content", { category: ["id"] }],
             },
         });

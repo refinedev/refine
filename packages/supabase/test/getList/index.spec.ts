@@ -18,7 +18,7 @@ describe("getList", () => {
     it("correct response with metadata select", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
-            metaData: {
+            meta: {
                 select: "title",
             },
         });

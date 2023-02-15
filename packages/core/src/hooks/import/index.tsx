@@ -13,7 +13,7 @@ import {
     BaseRecord,
     HttpError,
     ResourceRouterParams,
-    MetaDataQuery,
+    MetaQuery,
 } from "../../interfaces";
 import {
     importCSVMapper,
@@ -81,7 +81,12 @@ export type ImportOptions<
     /**
      *  Metadata query for `dataProvider`
      */
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     *  Metadata query for `dataProvider`
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     /**
      *  A callback function that returns a current state of uploading process.
      *
@@ -144,6 +149,7 @@ export const useImport = <
     paparseOptions,
     batchSize = Number.MAX_SAFE_INTEGER,
     onFinish,
+    meta,
     metaData,
     onProgress,
     dataProviderName,
@@ -224,7 +230,11 @@ export const useImport = <
                                         successNotification: false,
                                         errorNotification: false,
                                         dataProviderName,
-                                        metaData,
+                                        meta: pickNotDeprecated(meta, metaData),
+                                        metaData: pickNotDeprecated(
+                                            meta,
+                                            metaData,
+                                        ),
                                     });
 
                                     return { response, value };
@@ -268,7 +278,14 @@ export const useImport = <
                                             successNotification: false,
                                             errorNotification: false,
                                             dataProviderName,
-                                            metaData,
+                                            meta: pickNotDeprecated(
+                                                meta,
+                                                metaData,
+                                            ),
+                                            metaData: pickNotDeprecated(
+                                                meta,
+                                                metaData,
+                                            ),
                                         });
 
                                     return {

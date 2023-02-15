@@ -7,7 +7,7 @@ describe("custom", () => {
         const response = await dataProvider(client).custom?.({
             url: "",
             method: "get",
-            metaData: {
+            meta: {
                 operation: "posts",
                 variables: {
                     sort: "id:asc",
@@ -25,7 +25,7 @@ describe("custom", () => {
         const response = await dataProvider(client).custom?.({
             url: "",
             method: "post",
-            metaData: {
+            meta: {
                 operation: "updatePost",
                 variables: {
                     input: {

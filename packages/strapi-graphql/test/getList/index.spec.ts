@@ -6,7 +6,7 @@ describe("getList", () => {
     it("correct response", async () => {
         const { data, total } = await dataProvider(client).getList({
             resource: "posts",
-            metaData: {
+            meta: {
                 fields: ["id", "title"],
             },
         });
@@ -24,7 +24,7 @@ describe("getList", () => {
                     order: "asc",
                 },
             ],
-            metaData: {
+            meta: {
                 fields: ["id", "title"],
             },
         });
@@ -46,7 +46,7 @@ describe("getList", () => {
                     value: "Delectus neque rerum nulla vel reiciendis.",
                 },
             ],
-            metaData: {
+            meta: {
                 fields: ["title"],
             },
         });
@@ -79,7 +79,7 @@ describe("getList", () => {
                     order: "asc",
                 },
             ],
-            metaData: {
+            meta: {
                 fields: ["id", "title", { category: ["id", "title"] }],
             },
         });

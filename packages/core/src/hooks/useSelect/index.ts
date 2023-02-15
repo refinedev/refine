@@ -14,10 +14,10 @@ import {
     CrudFilters,
     SuccessErrorNotification,
     HttpError,
-    MetaDataQuery,
     LiveModeProps,
     BaseKey,
     Pagination,
+    MetaQuery,
 } from "../../interfaces";
 import { pickNotDeprecated } from "@definitions/helpers";
 
@@ -84,10 +84,14 @@ export type UseSelectProps<TData, TError> = {
      */
     onSearch?: (value: string) => CrudFilters;
     /**
-     * Metadata query for `dataProvider`
-     * @default `{}`
+     * Additional meta data to pass to the `useMany` from the data provider
      */
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     * Additional meta data to pass to the `useMany` from the data provider
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     /**
      * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
      * @default `default`
@@ -139,6 +143,7 @@ export const useSelect = <
         onLiveEvent,
         onSearch: onSearchFromProp,
         liveParams,
+        meta,
         metaData,
         dataProviderName,
     } = props;
@@ -175,7 +180,8 @@ export const useSelect = <
                 defaultValueQueryOptions?.onSuccess?.(data);
             },
         },
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         liveMode: "off",
         dataProviderName,
     });
@@ -212,7 +218,8 @@ export const useSelect = <
         },
         successNotification,
         errorNotification,
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         liveMode,
         liveParams,
         onLiveEvent,
