@@ -12,7 +12,10 @@ hide_table_of_contents: false
 
 In this episode, we initialize our **Pixels** app using [**refine**](https://github.com/refinedev/refine) and get familiar with the boilerplate code to be created with the `create refine-app` CLI tool.
 
-This is Day 2 of the [**AWeekOfRefine**](https://refine.dev/week-of-refine/) series. **AWeekOfRefine** is a seven-part tutorial that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
+This is Day 2 of the [**refineWeek**](https://refine.dev/week-of-refine/) series. **refineWeek** is a seven-part tutorial that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
+
+### refineWeek series
+- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
 
 
 ## Overview
