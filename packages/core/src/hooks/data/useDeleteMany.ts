@@ -379,18 +379,21 @@ export const useDeleteMany = <
                 const { fields, operation, variables, ...rest } =
                     pickNotDeprecated(meta, metaData) || {};
 
+                const logMetaValues = {
+                    ids,
+                    dataProviderName: pickDataProvider(
+                        resource,
+                        dataProviderName,
+                        resources,
+                    ),
+                    ...rest,
+                };
+
                 log?.mutate({
                     action: "deleteMany",
                     resource,
-                    meta: {
-                        ids,
-                        dataProviderName: pickDataProvider(
-                            resource,
-                            dataProviderName,
-                            resources,
-                        ),
-                        ...rest,
-                    },
+                    logMeta: logMetaValues,
+                    meta: logMetaValues,
                 });
 
                 // Remove the queries from the cache:

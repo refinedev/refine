@@ -193,19 +193,22 @@ export const useCreateMany = <
                 const { fields, operation, variables, ...rest } =
                     pickNotDeprecated(meta, metaData) || {};
 
+                const logMetaValues = {
+                    dataProviderName: pickDataProvider(
+                        resource,
+                        dataProviderName,
+                        resources,
+                    ),
+                    ids,
+                    ...rest,
+                };
+
                 log?.mutate({
                     action: "createMany",
                     resource,
                     data: values,
-                    meta: {
-                        dataProviderName: pickDataProvider(
-                            resource,
-                            dataProviderName,
-                            resources,
-                        ),
-                        ids,
-                        ...rest,
-                    },
+                    logMeta: logMetaValues,
+                    meta: logMetaValues,
                 });
             },
             onError: (err: TError, { resource, errorNotification, values }) => {

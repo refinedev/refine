@@ -195,19 +195,22 @@ export const useCreate = <
                 const { fields, operation, variables, ...rest } =
                     pickNotDeprecated(meta, metaData) || {};
 
+                const logMetaValues = {
+                    dataProviderName: pickDataProvider(
+                        resource,
+                        dataProviderName,
+                        resources,
+                    ),
+                    id: data?.data?.id ?? undefined,
+                    ...rest,
+                };
+
                 log?.mutate({
                     action: "create",
                     resource,
                     data: values,
-                    meta: {
-                        dataProviderName: pickDataProvider(
-                            resource,
-                            dataProviderName,
-                            resources,
-                        ),
-                        id: data?.data?.id ?? undefined,
-                        ...rest,
-                    },
+                    logMeta: logMetaValues,
+                    meta: logMetaValues,
                 });
             },
             onError: (

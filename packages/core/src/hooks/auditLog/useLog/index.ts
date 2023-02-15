@@ -103,6 +103,8 @@ export const useLog = <
 
             return await auditLogContext.create?.({
                 ...params,
+                meta: pickNotDeprecated(params?.logMeta, params?.meta),
+                logMeta: pickNotDeprecated(params?.logMeta, params?.meta),
                 author: identityData ?? authorData?.data,
             });
         },

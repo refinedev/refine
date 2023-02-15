@@ -48,7 +48,10 @@ describe("useLog Hook", () => {
                 expect(result.current.log.isSuccess).toBeTruthy();
             });
 
-            expect(auditLogProviderCreateMock).toBeCalledWith(logEventPayload);
+            expect(auditLogProviderCreateMock).toBeCalledWith({
+                ...logEventPayload,
+                logMeta: logEventPayload.meta,
+            });
             expect(auditLogProviderCreateMock).toBeCalledTimes(1);
         });
 
