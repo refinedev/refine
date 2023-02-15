@@ -31,7 +31,8 @@ export async function postTransform(files: any, flags: any) {
     }
 
     if (!flags.dry) {
-        await install(rootDir, [`antd@^5.0.5`], {
+        // TODO: check if usage of antd icons
+        await install(rootDir, [`antd@^5.0.5`, `@ant-design/icons@^5.0.1`], {
             useYarn,
             isOnline: true,
         });
