@@ -164,3 +164,9 @@ export const renameAntdItems: { [key: string]: string } = {
     AntdBreadcrumbProps: "BreadcrumbProps",
     AntdListProps: "ListProps",
 };
+
+export const otherAntdImportItems: { [key: string]: string } = {
+    FilterDropdownProps: "antd/lib/table/interface",
+    RcFile: "antd/lib/upload/interface",
+    UploadFile: "antd/lib/upload/interface",
+};

@@ -12,12 +12,21 @@ export default function separateImports(payload: {
     source: Collection<any>;
     imports: string[];
     renameImports: { [key: string]: string };
+    otherImports: { [key: string]: string };
     currentLibName: string;
     nextLibName: string;
 }) {
-    const { j, source, imports, renameImports, currentLibName, nextLibName } =
-        payload;
+    const {
+        j,
+        source,
+        imports,
+        renameImports,
+        otherImports,
+        currentLibName,
+        nextLibName,
+    } = payload;
     const nextLibImports: ImportSpecifier[] = [];
+    const otherImportItems: ImportSpecifier[] = [];
 
     const refineImport = source.find(j.ImportDeclaration, {
         source: {
@@ -30,11 +39,15 @@ export default function separateImports(payload: {
             if (imports.includes(item.local.name)) {
                 nextLibImports.push(item as ImportSpecifier);
             }
+
+            if (otherImports[item.local.name]) {
+                otherImportItems.push(item as ImportSpecifier);
+            }
         }
 
-        path.node.specifiers = path.node.specifiers.filter(
-            (p) => !nextLibImports.includes(p as ImportSpecifier),
-        );
+        path.node.specifiers = path.node.specifiers
+            .filter((p) => !nextLibImports.includes(p as ImportSpecifier))
+            .filter((p) => !otherImportItems.includes(p as ImportSpecifier));
 
         return path.node;
     });
@@ -58,6 +71,35 @@ export default function separateImports(payload: {
             .insertAfter(
                 j.importDeclaration(nextLibImports, j.literal(nextLibName)),
             );
+    }
+
+    if (otherImportItems.length > 0) {
+        const otherImportPaths: { [key: string]: ImportSpecifier[] } = {};
+        otherImportItems.forEach((item) => {
+            // find import path
+            const importPath = otherImports[item.local.name];
+
+            if (otherImportPaths[importPath]) {
+                otherImportPaths[importPath].push(item);
+            } else {
+                otherImportPaths[importPath] = [item];
+            }
+        });
+
+        Object.keys(otherImportPaths).forEach((importPath) => {
+            source
+                .find(j.ImportDeclaration, {
+                    source: {
+                        value: currentLibName,
+                    },
+                })
+                .insertAfter(
+                    j.importDeclaration(
+                        otherImportPaths[importPath],
+                        j.literal(importPath),
+                    ),
+                );
+        });
     }
 
     // remove empty imports
