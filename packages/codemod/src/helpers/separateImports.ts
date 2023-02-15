@@ -73,6 +73,7 @@ export default function separateImports(payload: {
             );
     }
 
+    // add other imports
     if (otherImportItems.length > 0) {
         const otherImportPaths: { [key: string]: ImportSpecifier[] } = {};
         otherImportItems.forEach((item) => {
