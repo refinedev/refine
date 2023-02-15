@@ -1,18 +1,15 @@
 import { Children, createElement, Fragment } from "react";
-import { QueryObserverResult } from "@tanstack/react-query";
 import { ListProps, FormProps, Form, Grid } from "antd";
 
 import {
     BaseRecord,
     CrudFilters,
-    GetListResponse,
     SuccessErrorNotification,
     HttpError,
     LiveModeProps,
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
     useTableReturnType,
-    CrudSorting,
     pickNotDeprecated,
 } from "@pankod/refine-core";
 import { useLiveMode } from "@pankod/refine-core";
@@ -30,19 +27,10 @@ export type useSimpleListProps<TData, TError, TSearchVariables> =
 export type useSimpleListReturnType<
     TData extends BaseRecord = BaseRecord,
     TSearchVariables = unknown,
-> = {
+> = Omit<useTableReturnType<TData>, "tableQueryResult"> & {
     listProps: ListProps<TData>;
-    queryResult: QueryObserverResult<GetListResponse<TData>>;
+    queryResult: useTableReturnType["tableQueryResult"];
     searchFormProps: FormProps<TSearchVariables>;
-    filters: CrudFilters;
-    setFilters: useTableReturnType<TData>["setFilters"];
-    sorter?: CrudSorting;
-    setSorter: useTableReturnType<TData>["setSorter"];
-    current?: number;
-    setCurrent: useTableReturnType<TData>["setCurrent"];
-    pageSize: number;
-    setPageSize: useTableReturnType<TData>["setPageSize"];
-    pageCount: number;
 };
 
 /**
@@ -88,6 +76,7 @@ export const useSimpleList = <
     TSearchVariables
 > = {}): useSimpleListReturnType<TData, TSearchVariables> => {
     const {
+        sorters,
         sorter,
         filters,
         current,
@@ -97,6 +86,7 @@ export const useSimpleList = <
         setCurrent,
         setPageSize,
         setSorter,
+        setSorters,
         createLinkForSyncWithLocation,
         tableQueryResult: queryResult,
     } = useTableCore({
@@ -159,7 +149,7 @@ export const useSimpleList = <
                             pageSize,
                             current: page,
                         },
-                        sorter,
+                        sorters,
                         filters,
                     });
 
@@ -221,10 +211,13 @@ export const useSimpleList = <
         setFilters,
         sorter,
         setSorter,
+        sorters,
+        setSorters,
         current,
         setCurrent,
         pageSize,
         setPageSize,
         pageCount,
+        createLinkForSyncWithLocation,
     };
 };

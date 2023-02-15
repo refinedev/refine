@@ -61,8 +61,8 @@ export function useTable<
         setCurrent,
         pageSize: pageSizeCore,
         setPageSize: setPageSizeCore,
-        sorter,
-        setSorter,
+        sorters,
+        setSorters,
         filters: filtersCore,
         setFilters,
         pageCount,
@@ -87,7 +87,7 @@ export function useTable<
                 pageIndex: (current ?? 1) - 1,
                 pageSize: pageSizeCore,
             },
-            sorting: sorter.map((sorting) => ({
+            sorting: sorters.map((sorting) => ({
                 id: sorting.field,
                 desc: sorting.order === "desc",
             })),
@@ -123,7 +123,7 @@ export function useTable<
 
     useEffect(() => {
         if (sorting !== undefined) {
-            setSorter(
+            setSorters(
                 sorting?.map((sorting) => ({
                     field: sorting.id,
                     order: sorting.desc ? "desc" : "asc",

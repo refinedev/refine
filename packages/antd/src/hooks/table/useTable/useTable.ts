@@ -1,6 +1,5 @@
 import React, { Children, createElement, Fragment } from "react";
 import { Grid, FormProps, Form, TablePaginationConfig, TableProps } from "antd";
-import { QueryObserverResult } from "@tanstack/react-query";
 import { useForm as useFormSF } from "sunflower-antd";
 
 import { SorterResult } from "antd/lib/table/interface";
@@ -9,8 +8,6 @@ import {
     useLiveMode,
     BaseRecord,
     CrudFilters,
-    CrudSorting,
-    GetListResponse,
     SuccessErrorNotification,
     HttpError,
     LiveModeProps,
@@ -42,19 +39,9 @@ export type useTableReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
-> = {
+> = useTableCoreReturnType<TData, TError> & {
     searchFormProps: FormProps<TSearchVariables>;
     tableProps: TableProps<TData>;
-    tableQueryResult: QueryObserverResult<GetListResponse<TData>, TError>;
-    sorter?: CrudSorting;
-    filters?: CrudFilters;
-    current?: number;
-    setCurrent: useTableCoreReturnType<TData>["setCurrent"];
-    pageSize: number;
-    setPageSize: useTableCoreReturnType<TData>["setPageSize"];
-    pageCount: number;
-    setFilters: useTableCoreReturnType<TData>["setFilters"];
-    setSorter: useTableCoreReturnType<TData>["setSorter"];
 };
 
 /**
@@ -103,6 +90,8 @@ export const useTable = <
         setPageSize,
         filters,
         setFilters,
+        sorters,
+        setSorters,
         sorter,
         setSorter,
         createLinkForSyncWithLocation,
@@ -165,7 +154,7 @@ export const useTable = <
         if (sorter && Object.keys(sorter).length > 0) {
             // Map Antd:Sorter -> refine:CrudSorting
             const crudSorting = mapAntdSorterToCrudSorting(sorter);
-            setSorter(crudSorting);
+            setSorters(crudSorting);
         }
 
         if (isPaginationEnabled) {
@@ -194,7 +183,7 @@ export const useTable = <
                             pageSize,
                             current: page,
                         },
-                        sorter,
+                        sorters,
                         filters,
                     });
 
@@ -254,8 +243,10 @@ export const useTable = <
             scroll: { x: true },
         },
         tableQueryResult,
+        sorters,
         sorter,
         filters,
+        setSorters,
         setSorter,
         setFilters,
         current,
@@ -263,5 +254,6 @@ export const useTable = <
         pageSize,
         setPageSize,
         pageCount,
+        createLinkForSyncWithLocation,
     };
 };

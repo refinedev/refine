@@ -4,7 +4,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { MockJSONServer, TestWrapper } from "@test";
 
 import { useTable } from ".";
-import { CrudFilters } from "src/interfaces";
+import { CrudFilters, CrudSorting } from "src/interfaces";
 
 const defaultPagination = {
     pageSize: 10,
@@ -232,6 +232,36 @@ describe("useTable Hook", () => {
 
         expect(result.current.pageSize).toBe(10);
         expect(result.current.current).toBe(1);
+    });
+
+    it("when deprecated setSorter is called, it should update sorter and sorters", async () => {
+        const { result } = renderHook(() => useTable({}), {
+            wrapper: TestWrapper({}),
+        });
+
+        const sorters: CrudSorting = [{ field: "id", order: "asc" }];
+
+        await act(async () => {
+            result.current.setSorter(sorters);
+        });
+
+        expect(result.current.sorter).toStrictEqual(sorters);
+        expect(result.current.sorters).toStrictEqual(sorters);
+    });
+
+    it("when setSorters is called, it should update deprecated sorter and sorters", async () => {
+        const { result } = renderHook(() => useTable({}), {
+            wrapper: TestWrapper({}),
+        });
+
+        const sorters: CrudSorting = [{ field: "id", order: "asc" }];
+
+        await act(async () => {
+            result.current.setSorters(sorters);
+        });
+
+        expect(result.current.sorter).toStrictEqual(sorters);
+        expect(result.current.sorters).toStrictEqual(sorters);
     });
 });
 

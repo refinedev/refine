@@ -113,6 +113,8 @@ export function useDataGrid<
         setPageSize,
         filters,
         setFilters,
+        sorters,
+        setSorters,
         sorter,
         setSorter,
         pageCount,
@@ -160,7 +162,7 @@ export function useDataGrid<
 
     const handleSortModelChange = (sortModel: GridSortModel) => {
         const crudSorting = transformSortModelToCrudSorting(sortModel);
-        setSorter(crudSorting);
+        setSorters(crudSorting);
     };
 
     const handleFilterModelChange = (filterModel: GridFilterModel) => {
@@ -210,7 +212,7 @@ export function useDataGrid<
             ...dataGridPaginationValues(),
             sortingMode: "server",
             sortModel: transformCrudSortingToSortModel(
-                differenceWith(sorter, permanentSorter ?? [], isEqual),
+                differenceWith(sorters, permanentSorter ?? [], isEqual),
             ),
             onSortModelChange: handleSortModelChange,
             filterMode: "server",
@@ -253,6 +255,8 @@ export function useDataGrid<
         pageSize,
         setPageSize,
         pageCount,
+        sorters,
+        setSorters,
         sorter,
         setSorter,
         filters,

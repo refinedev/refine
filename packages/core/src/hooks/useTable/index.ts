@@ -126,7 +126,11 @@ type ReactSetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
 type SyncWithLocationParams = {
     pagination: { current?: number; pageSize?: number };
-    sorter: CrudSorting;
+    /**
+     * @deprecated `sorter` is deprecated. Use `sorters` instead.
+     */
+    sorter?: CrudSorting;
+    sorters: CrudSorting;
     filters: CrudFilters;
 };
 
@@ -135,8 +139,16 @@ export type useTableReturnType<
     TError extends HttpError = HttpError,
 > = {
     tableQueryResult: QueryObserverResult<GetListResponse<TData>, TError>;
+    /**
+     * @deprecated `sorter` is deprecated. Use `sorters` instead.
+     */
     sorter: CrudSorting;
+    sorters: CrudSorting;
+    /**
+     * @deprecated `setSorter` is deprecated. Use `setSorters` instead.
+     */
     setSorter: (sorter: CrudSorting) => void;
+    setSorters: (sorter: CrudSorting) => void;
     filters: CrudFilters;
     setFilters: ((filters: CrudFilters, behavior?: SetFilterBehavior) => void) &
         ((setter: (prevFilters: CrudFilters) => CrudFilters) => void);
@@ -218,7 +230,7 @@ export function useTable<
 
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
-    const [sorter, setSorter] = useState<CrudSorting>(
+    const [sorters, setSorters] = useState<CrudSorting>(
         setInitialSorters(permanentSorter, defaultSorter ?? []),
     );
     const [filters, setFilters] = useState<CrudFilters>(
@@ -230,6 +242,7 @@ export function useTable<
     const createLinkForSyncWithLocation = ({
         pagination: { current, pageSize },
         sorter,
+        sorters,
         filters,
     }: SyncWithLocationParams) => {
         const currentQueryParams = qs.parse(search?.substring(1)); // remove first ? character
@@ -239,7 +252,7 @@ export function useTable<
                 pageSize,
                 current,
             },
-            sorter,
+            sorters: sorters ?? sorter,
             filters,
             ...currentQueryParams,
         });
@@ -250,7 +263,7 @@ export function useTable<
         if (search === "") {
             setCurrent(defaultCurrent);
             setPageSize(defaultPageSize);
-            setSorter(setInitialSorters(permanentSorter, defaultSorter ?? []));
+            setSorters(setInitialSorters(permanentSorter, defaultSorter ?? []));
             setFilters(setInitialFilters(permanentFilter, defaultFilter ?? []));
         }
     }, [search]);
@@ -280,7 +293,7 @@ export function useTable<
                           },
                       }
                     : {}),
-                sorter: differenceWith(sorter, permanentSorter, isEqual),
+                sorters: differenceWith(sorters, permanentSorter, isEqual),
                 filters: differenceWith(filters, permanentFilter, isEqual),
                 ...queryParams,
             });
@@ -290,14 +303,14 @@ export function useTable<
                 shallow: true,
             });
         }
-    }, [syncWithLocation, current, pageSize, sorter, filters]);
+    }, [syncWithLocation, current, pageSize, sorters, filters]);
 
     const queryResult = useList<TData, TError>({
         resource: resource.name,
         hasPagination,
         pagination: { current, pageSize, mode: pagination?.mode },
         filters: unionFilters(permanentFilter, filters),
-        sorters: unionSorters(permanentSorter, sorter),
+        sorters: unionSorters(permanentSorter, sorters),
         queryOptions: {
             ...queryOptions,
             select: (rawData) => {
@@ -361,12 +374,14 @@ export function useTable<
     };
 
     const setSortWithUnion = (newSorter: CrudSorting) => {
-        setSorter(() => unionSorters(permanentSorter, newSorter));
+        setSorters(() => unionSorters(permanentSorter, newSorter));
     };
 
     return {
         tableQueryResult: queryResult,
-        sorter,
+        sorters,
+        setSorters: setSortWithUnion,
+        sorter: sorters,
         setSorter: setSortWithUnion,
         filters,
         setFilters: setFiltersFn,
