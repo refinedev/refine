@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import { NumberField } from "@pankod/refine-antd";
-
 import { Table, Typography } from "antd";
+import { IOrder } from "interfaces";
 
-export const RecentOrdersColumn = styled(Table.Column)`
+export const RecentOrdersColumn = styled(Table.Column<IOrder>)`
     vertical-align: top;
 `;
 
