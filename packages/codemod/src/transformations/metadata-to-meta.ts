@@ -8,7 +8,6 @@ const metaDataToMeta = (j: JSCodeshift, source: Collection) => {
     });
 
     metaData.forEach((path) => {
-        console.log(path.node);
         j(path).replaceWith(j.identifier("meta"));
     });
 };
