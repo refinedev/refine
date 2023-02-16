@@ -172,7 +172,7 @@ const authProvider: AuthProvider = {
             }
 
             if (data?.url) {
-                return Promise.resolve();
+                return Promise.resolve(false);
             }
         }
 

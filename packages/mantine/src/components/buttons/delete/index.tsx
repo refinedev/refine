@@ -95,7 +95,17 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     }
 
     return (
-        <Popover opened={opened} onChange={setOpened} withArrow withinPortal>
+        <Popover
+            opened={opened}
+            onChange={setOpened}
+            withArrow
+            withinPortal
+            disabled={
+                typeof rest?.disabled !== "undefined"
+                    ? rest.disabled
+                    : data?.can === false
+            }
+        >
             <Popover.Target>
                 {hideText ? (
                     <ActionIcon
