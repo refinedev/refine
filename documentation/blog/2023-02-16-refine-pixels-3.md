@@ -10,13 +10,17 @@ hide_table_of_contents: false
 
 
 
-# Adding CRUD Actions and Authentication
+
 
 In this post, we build on our existing understanding of [`dataProvider`](https://refine.dev/docs/tutorial/understanding-dataprovider/index/) and [`authProvider`](https://refine.dev/docs/tutorial/understanding-authprovider/index/) props of [`<Refine />`](http://localhost:3000/docs/api-reference/core/components/refine-config/) to implement CRUD operations in our **Pixels** app that we initialized in the previous post. While doing so, we discuss the roles of `<Refine />` component's [`resources`](https://refine.dev/docs/tutorial/understanding-resources/index/) and `routerProvider` props as well.
 
-CRUD actions are supported by the **Supabase** data provider we chose for our project and in this post we use them to build a public gallery of canvases. We implement creation and displaying of individual canvases as well as drawing on them. We also add authentication features supported by the `supabaseClient` we discussed on Day Two of the [**refineWeek**](https://refine.dev/week-of-refine/) series.
+CRUD actions are supported by the [**Supabase**](https://supabase.com/) data provider we chose for our project and in this post we use them to build a public gallery of canvases. We implement creation and displaying of individual canvases as well as drawing on them. We also add authentication features supported by the `supabaseClient` we discussed on Day Two of the [**refineWeek**](https://refine.dev/week-of-refine/) series.
 
 This is Day Three and **refineWeek** is a seven-part tutorial that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
+
+### refineWeek series
+- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
+- Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
 
 ## Overview
 
@@ -69,7 +73,7 @@ In order to add the above tables to your **Supabase** database, please follow th
 
 The `auth.users` table is concerned with authentication in our app. It is created by **Supabase** as part of its authentication module, so we don't need to do anything about it.
 
-**Supabase** supports a myriad of third party authentication providers as well as user input based email / password authentication. In our app, we'll implement Google and GitHub authentication besides the email / password based option.
+**Supabase** supports a myriad of third party authentication providers as well as user input based email / password authentication. In our app, we'll implement GitHub authentication besides the email / password based option.
 <br />
 
 **2.2 `public.users` Table**
@@ -270,12 +274,6 @@ function App() {
               label: "Sign in with Google",
             },
           ]}
-          formProps={{
-            initialValues: {
-              email: "info@refine.dev",
-              password: "refine-supabase",
-            },
-          }}
         />
       )}
       notificationProvider={notificationProvider}
@@ -373,6 +371,7 @@ import {
     notificationProvider,
     ReadyPage,
     ErrorComponent,
+    Icons
 } from '@pankod/refine-antd';
 import '@pankod/refine-antd/dist/reset.css';
 import { dataProvider, liveProvider } from '@pankod/refine-supabase';
@@ -383,6 +382,8 @@ import authProvider from './authProvider';
 import { Layout } from 'components/layout';
 import { CanvasFeaturedList, CanvasList, CanvasShow } from 'pages/canvases';
 import 'styles/style.css';
+
+const { GithubOutlined } = Icons;
 
 function App() {
     return (
@@ -412,16 +413,15 @@ function App() {
                     type="login"
                     providers={[
                         {
-                            name: 'google',
-                            label: 'Sign in with Google',
+                            name: 'github',
+                            icon: (
+                                    <GithubOutlined
+                                      style={{ fontSize: "18px" }}
+                                    />
+                                    ),
+                            label: 'Sign in with GitHub',
                         },
                     ]}
-                    formProps={{
-                        initialValues: {
-                            email: 'info@refine.dev',
-                            password: 'refine-supabase',
-                        },
-                    }}
                 />
             )}
             resources={[
@@ -1126,16 +1126,10 @@ The `LoginPage` prop was also added:
       type="login"
       providers={[
         {
-          name: "google",
-          label: "Sign in with Google",
+          name: "github",
+          label: "Sign in with GitHub",
         },
       ]}
-      formProps={{
-        initialValues: {
-          email: "info@refine.dev",
-          password: "refine-supabase",
-        },
-      }}
     />
 />
 ```
@@ -1173,7 +1167,7 @@ import "@pankod/refine-antd/dist/reset.css";
 
 import "styles/style.css";
 
-const { GoogleOutlined, GithubOutlined } = Icons;
+const { GithubOutlined } = Icons;
 
 function App() {
     return (
@@ -1203,15 +1197,6 @@ function App() {
                                 <AuthPage
                                     type="login"
                                     providers={[
-                                        {
-                                            name: "google",
-                                            icon: (
-                                                <GoogleOutlined
-                                                    style={{ fontSize: "18px" }}
-                                                />
-                                            ),
-                                            label: "Sign in with Google",
-                                        },
                                         {
                                             name: "github",
                                             icon: (
@@ -1301,29 +1286,12 @@ Feel free to create a few more canvases and draw on them so that the gallery get
 
 With the main features functioning now, let's focus on adding and activating third party authentication.
 
-We have a `providers` prop on `<AuthPage />`. And `google` authentication was already placed in the default component. We want to add GitHub authentication as well.
-
-Let's start with Google.
-
-### Google Authentication with Supabase in Refine
-
-If we try to sign in with our Google account, we get this error:
-
-```json
-{
-  "code":400,
-  "msg": "Unsupported provider: provider is not enabled"
-}
-```
-
-This is because we have not configured and enabled Google auth provider on **Supabase**. Let's configure and enable it from the **Supabase** dashboard by following this [guide](https://supabase.com/docs/guides/auth/auth-google).
-
-Now, if we use the `Sign in with Google` button, we are sent to Google authentication page from where we can log in to our **Pixels** app.
+We have a `providers` prop on `<AuthPage />`.  We want to add GitHub authentication as well.
 
 
 ### GitHub Authentication with Supabase in Refine
 
-Similarly, we can implement GitHub authentication with **Supabase** in our app.
+We implemented GitHub authentication with **Supabase** in our app.
 
 In order to do so, we just need to add the following object to the `providers` prop in `<AuthPage />` component:
 
@@ -1376,6 +1344,6 @@ I've done that and the featured canvases are listed in the `Home` route:
 
 In this post, we added `canvases` resource to our `<Refine />` component. We implemented `list` action on a public gallery and a dashboard page and the `show` action to display a canvas. The `create` action is implemented from inside a modal accessible on a button click. While working through these, we inspected into individual data provider methods and hooks for these actions.
 
-We also saw how **refine** handles a simple email/password based authentication out-of-the-box. We then went ahead implemented social login using `Google` and `GitHub` authentication providers.
+We also saw how **refine** handles a simple email/password based authentication out-of-the-box. We then went ahead implemented social login using `GitHub` authentication provider.
 
 In the next article, we'll move things to the next level by adding live collaboration features using **refine**'s **Supabase** `liveProvider`.

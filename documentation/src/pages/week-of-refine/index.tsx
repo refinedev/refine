@@ -30,7 +30,7 @@ const timeline = [
         date: "16th February 2022",
         title: "Adding CRUD Actions & Authentication",
         description: `We start implementing CRUD functionalities like creating, showing a canvas, drawing pixels and user authentication using <strong className="font-bold">Supabase</strong>`,
-        link: null,
+        link: "https://refine.dev/blog/refine-pixels-3/",
     },
     {
         date: "17th February 2022",
@@ -92,15 +92,16 @@ const additionalSources = [
 
 const tweetUrl = "https://twitter.com/intent/tweet?text=%23refineweek";
 const tweetIDs = [
+    "1625488050863353856",
     "1615260152822628352",
-    "1597878371760979970",
     "1621513516036526080",
     "1621932348009861132",
-    "1624015381403955200",
+    "1597878371760979970",
     "1616390215068688384",
     "1617841995233529861",
     "1620724625536880641",
     "1618180208414322689",
+    "1624015381403955200",
 ];
 
 const RefineWeek = () => {
