@@ -6,17 +6,13 @@ import {
 } from "@tanstack/react-query";
 
 import { AuditLogContext } from "@contexts/auditLog";
-import { pickNotDeprecated, queryKeys } from "@definitions/helpers";
+import { queryKeys } from "@definitions/helpers";
 import { HttpError, MetaDataQuery } from "../../../interfaces";
 
 export type UseLogProps<TData, TError> = {
     resource: string;
     action?: string;
-    /**
-     * @deprecated `meta` is deprecated with refine@4, refine will pass `logMeta` instead, however, we still support `meta` for backward compatibility.
-     */
     meta?: Record<number | string, any>;
-    logMeta?: Record<number | string, any>;
     author?: Record<number | string, any>;
     queryOptions?: UseQueryOptions<TData, TError>;
     metaData?: MetaDataQuery;
@@ -30,7 +26,6 @@ export const useLogList = <TData = any, TError extends HttpError = HttpError>({
     resource,
     action,
     meta,
-    logMeta,
     author,
     metaData,
     queryOptions,
@@ -40,14 +35,13 @@ export const useLogList = <TData = any, TError extends HttpError = HttpError>({
     const queryKey = queryKeys(resource, undefined, metaData);
 
     const queryResponse = useQuery<TData, TError>(
-        queryKey.logList(pickNotDeprecated(logMeta, meta)),
+        queryKey.logList(meta),
         () =>
             get?.({
                 resource,
                 action,
                 author,
-                meta: pickNotDeprecated(logMeta, meta),
-                logMeta: pickNotDeprecated(logMeta, meta),
+                meta,
                 metaData,
             }) ?? Promise.resolve([]),
         {

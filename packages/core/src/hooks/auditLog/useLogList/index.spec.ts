@@ -36,7 +36,6 @@ describe("useLogList Hook", () => {
             resource: "posts",
             action: "list",
             meta: { id: 1 },
-            logMeta: { id: 1 },
             metaData: { fields: ["id", "action", "data"] },
         });
     });

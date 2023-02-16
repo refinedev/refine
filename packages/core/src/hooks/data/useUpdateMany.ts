@@ -431,23 +431,20 @@ export const useUpdateMany = <
                 const { fields, operation, variables, ...rest } =
                     pickNotDeprecated(meta, metaData) || {};
 
-                const logMetaValues = {
-                    ids,
-                    dataProviderName: pickDataProvider(
-                        resource,
-                        dataProviderName,
-                        resources,
-                    ),
-                    ...rest,
-                };
-
                 log?.mutate({
                     action: "updateMany",
                     resource,
                     data: values,
                     previousData,
-                    logMeta: logMetaValues,
-                    meta: logMetaValues,
+                    meta: {
+                        ids,
+                        dataProviderName: pickDataProvider(
+                            resource,
+                            dataProviderName,
+                            resources,
+                        ),
+                        ...rest,
+                    },
                 });
             },
             onError: (

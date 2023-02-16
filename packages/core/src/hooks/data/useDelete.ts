@@ -349,21 +349,18 @@ export const useDelete = <
                 const { fields, operation, variables, ...rest } =
                     pickNotDeprecated(meta, metaData) || {};
 
-                const logMetaValues = {
-                    id,
-                    dataProviderName: pickDataProvider(
-                        resource,
-                        dataProviderName,
-                        resources,
-                    ),
-                    ...rest,
-                };
-
                 log?.mutate({
                     action: "delete",
                     resource,
-                    logMeta: logMetaValues,
-                    meta: logMetaValues,
+                    meta: {
+                        id,
+                        dataProviderName: pickDataProvider(
+                            resource,
+                            dataProviderName,
+                            resources,
+                        ),
+                        ...rest,
+                    },
                 });
 
                 // Remove the queries from the cache:

@@ -417,23 +417,20 @@ export const useUpdate = <
                 const { fields, operation, variables, ...rest } =
                     pickNotDeprecated(meta, metaData) || {};
 
-                const logMetaValues = {
-                    id,
-                    dataProviderName: pickDataProvider(
-                        resource,
-                        dataProviderName,
-                        resources,
-                    ),
-                    ...rest,
-                };
-
                 log?.mutate({
                     action: "update",
                     resource,
                     data: values,
                     previousData,
-                    logMeta: logMetaValues,
-                    meta: logMetaValues,
+                    meta: {
+                        id,
+                        dataProviderName: pickDataProvider(
+                            resource,
+                            dataProviderName,
+                            resources,
+                        ),
+                        ...rest,
+                    },
                 });
             },
             onError: (
