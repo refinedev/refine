@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import { List, EditButton, ShowButton } from "@pankod/refine-antd";
-import { Table, Space } from "antd";
-import { useTable } from "@pankod/refine-antd";
+import { List, EditButton, ShowButton, useTable } from "@pankod/refine-antd";
 import { Table, Space } from "antd";
 
 import { useCloudMutation } from "@pankod/refine-cloud";
