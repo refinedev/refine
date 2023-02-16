@@ -213,16 +213,30 @@ export function useTable<
     const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
         parseTableParams(search);
 
-    const defaultCurrent =
-        parsedCurrent ||
-        pickNotDeprecated(pagination?.current, initialCurrent) ||
-        1;
-    const defaultPageSize =
-        parsedPageSize ||
-        pickNotDeprecated(pagination?.pageSize, initialPageSize) ||
-        10;
-    const defaultSorter = parsedSorter.length ? parsedSorter : initialSorter;
-    const defaultFilter = parsedFilters.length ? parsedFilters : initialFilter;
+    let defaultCurrent: number;
+    let defaultPageSize: number;
+    let defaultSorter: CrudSorting | undefined;
+    let defaultFilter: CrudFilters | undefined;
+
+    if (syncWithLocation) {
+        defaultCurrent =
+            parsedCurrent ||
+            pickNotDeprecated(pagination?.current, initialCurrent) ||
+            1;
+        defaultPageSize =
+            parsedPageSize ||
+            pickNotDeprecated(pagination?.pageSize, initialPageSize) ||
+            10;
+        defaultSorter = parsedSorter.length ? parsedSorter : initialSorter;
+        defaultFilter = parsedFilters.length ? parsedFilters : initialFilter;
+    } else {
+        defaultCurrent =
+            pickNotDeprecated(pagination?.current, initialCurrent) || 1;
+        defaultPageSize =
+            pickNotDeprecated(pagination?.pageSize, initialPageSize) || 10;
+        defaultSorter = initialSorter;
+        defaultFilter = initialFilter;
+    }
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
