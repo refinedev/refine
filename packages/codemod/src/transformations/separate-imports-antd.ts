@@ -11,6 +11,7 @@ export const parser = "tsx";
 const REFINE_ANTD_PATH = "@pankod/refine-antd";
 const ANTD_PATH = "antd";
 const ANTD_ICONS_PATH = "@ant-design/icons";
+const ANTD_ICONS_VERSION = "^5.0.1";
 
 export async function postTransform(files: any, flags: any) {
     const rootDir = path.join(process.cwd(), files[0]);
@@ -27,8 +28,7 @@ export async function postTransform(files: any, flags: any) {
     }
 
     if (!flags.dry) {
-        // TODO: check if usage of antd icons
-        await install(rootDir, [`antd@^5.0.5`, `@ant-design/icons@^5.0.1`], {
+        await install(rootDir, [`antd@^5.0.5`], {
             useYarn,
             isOnline: true,
         });
@@ -56,9 +56,17 @@ export default function transformer(file: FileInfo, api: API): string {
         },
     });
 
-    refineImport.replaceWith((path) => {
-        for (const item of path.node.specifiers) {
+    refineImport.replaceWith((p) => {
+        for (const item of p.node.specifiers) {
             if (item.local.name === "Icons") {
+                // install `@antd-design/icons`
+                const rootDir = path.join(process.cwd(), file.path);
+                const useYarn = checkPackageLock(rootDir) === "yarn.lock";
+                install(rootDir, [`${ANTD_ICONS_PATH}@${ANTD_ICONS_VERSION}`], {
+                    useYarn,
+                    isOnline: true,
+                });
+
                 // add new icon namespace import
                 source
                     .find(j.ImportDeclaration, {
@@ -75,11 +83,11 @@ export default function transformer(file: FileInfo, api: API): string {
             }
         }
 
-        path.node.specifiers = path.node.specifiers.filter(
+        p.node.specifiers = p.node.specifiers.filter(
             (p) => p.local.name !== "Icons",
         );
 
-        return path.node;
+        return p.node;
     });
 
     // remove empty imports

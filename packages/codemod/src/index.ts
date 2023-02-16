@@ -32,6 +32,7 @@ export const transformerDirectory = path.join(
 const transformsWithPostTransform = [
     "refine1-to-refine2",
     "refine2-to-refine3",
+    "separate-imports-antd",
 ];
 
 export function checkGitStatus(force) {
