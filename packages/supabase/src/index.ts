@@ -396,7 +396,7 @@ const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
             };
 
             const mapFilter = (filters?: CrudFilters): string | undefined => {
-                if (!filters) {
+                if (!filters || filters?.length === 0) {
                     return;
                 }
 
@@ -409,6 +409,7 @@ const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
                         }
                         return;
                     })
+                    .filter(Boolean)
                     .join(",");
             };
 

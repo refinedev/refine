@@ -99,7 +99,11 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                     },
                 );
             }}
-            disabled={data?.can === false}
+            disabled={
+                typeof rest?.disabled !== "undefined"
+                    ? rest.disabled
+                    : data?.can === false
+            }
         >
             <Button
                 danger
