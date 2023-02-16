@@ -16,7 +16,7 @@
   "scripts": {
     "build": "tsc -d -p tsconfig.json",
     "dev": "tsc -w -d -p tsconfig.json",
-    "jscodeshift": "jscodeshift -d --transform=src/transformations/refine1-to-refine2.ts"
+    "jscodeshift": "jscodeshift -t src/transformations/fix-deprecated-values.ts ./test/list.tsx -d"
   },
   "author": "refine",
   "devDependencies": {
