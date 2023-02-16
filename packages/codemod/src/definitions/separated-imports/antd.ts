@@ -1,4 +1,4 @@
-export const exportedAntdItems: string[] = [
+export const exported: string[] = [
     "Affix",
     "Anchor",
     "AutoComplete",
@@ -157,7 +157,7 @@ export const exportedAntdItems: string[] = [
     "TitleProps",
 ];
 
-export const renameAntdItems: { [key: string]: string } = {
+export const rename: { [key: string]: string } = {
     AntdBreadcrumb: "Breadcrumb",
     AntdLayout: "Layout",
     AntdList: "List",
@@ -165,7 +165,7 @@ export const renameAntdItems: { [key: string]: string } = {
     AntdListProps: "ListProps",
 };
 
-export const otherAntdImportItems: { [key: string]: string } = {
+export const other: { [key: string]: string } = {
     FilterDropdownProps: "antd/lib/table/interface",
     RcFile: "antd/lib/upload/interface",
     UploadFile: "antd/lib/upload/interface",

@@ -141,8 +141,8 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         value: "refine1-to-refine2",
     },
     {
-        name: "separate-antd-imports: Moves `antd` components exported by `refine` into `antd`",
-        value: "separate-antd-imports",
+        name: "separate-imports-antd: Moves `antd` components exported by `refine` into `antd`",
+        value: "separate-imports-antd",
     },
 ];
 
