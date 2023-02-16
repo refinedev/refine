@@ -176,6 +176,11 @@ export const renderer = ({
                                 <Input
                                     {...register(\`${val}\`, {
                                         required: "This field is required",
+                                        ${
+                                            field.type === "number"
+                                                ? "valueAsNumber: true,"
+                                                : ""
+                                        }
                                     })}
                                 />
                                 <FormErrorMessage>
@@ -207,6 +212,11 @@ export const renderer = ({
                             field.accessor,
                         )}", {
                             required: "This field is required",
+                            ${
+                                field.type === "number"
+                                    ? "valueAsNumber: true,"
+                                    : ""
+                            }
                         })}
                     />
                     <FormErrorMessage>

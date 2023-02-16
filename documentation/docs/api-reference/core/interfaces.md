@@ -227,12 +227,12 @@ ButtonProps
 
 ## LiveEvent
 
-| Key     | Type                                                                  |
-| ------- | --------------------------------------------------------------------- |
-| channel | `string`                                                              |
-| types   | `Array<"deleted"` \| `"updated"` \| `"created"` \| "`*`" \| `string`> |
-| payload | `{ids?: BaseKey[]; [x: string]: any; }`                               |
-| date    | `Date`                                                                |
+| Key     | Type                                                           |
+| ------- | -------------------------------------------------------------- |
+| channel | `string`                                                       |
+| type    | `"deleted"` \| `"updated"` \| `"created"` \| "`*`" \| `string` |
+| payload | `{ids?: BaseKey[]; [x: string]: any; }`                        |
+| date    | `Date`                                                         |
 
 ## LiveModeProps
 

@@ -4,25 +4,39 @@ import { supabaseClient } from "utility";
 
 export const authProvider: AuthProvider = {
     login: async ({ email, password, providerName }) => {
-        const { user, error } = await supabaseClient.auth.signIn({
+        // sign in with oauth
+        if (providerName) {
+            const { data, error } = await supabaseClient.auth.signInWithOAuth({
+                provider: providerName,
+            });
+
+            if (error) {
+                return Promise.reject(error);
+            }
+
+            if (data?.url) {
+                return Promise.resolve(false);
+            }
+        }
+
+        // sign in with email and password
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
             email,
             password,
-            provider: providerName,
         });
 
         if (error) {
             return Promise.reject(error);
         }
 
-        if (user) {
+        if (data?.user) {
             return Promise.resolve();
         }
 
-        // for third-party login
-        return Promise.resolve(false);
+        return Promise.resolve();
     },
     register: async ({ email, password }) => {
-        const { user, error } = await supabaseClient.auth.signUp({
+        const { data, error } = await supabaseClient.auth.signUp({
             email,
             password,
         });
@@ -31,15 +45,17 @@ export const authProvider: AuthProvider = {
             return Promise.reject(error);
         }
 
-        if (user) {
+        if (data) {
             return Promise.resolve();
         }
     },
     forgotPassword: async ({ email }) => {
-        const { data, error } =
-            await supabaseClient.auth.api.resetPasswordForEmail(email, {
+        const { data, error } = await supabaseClient.auth.resetPasswordForEmail(
+            email,
+            {
                 redirectTo: `${window.location.origin}/update-password`,
-            });
+            },
+        );
 
         if (error) {
             return Promise.reject(error);
@@ -50,7 +66,9 @@ export const authProvider: AuthProvider = {
         }
     },
     updatePassword: async ({ password }) => {
-        const { data, error } = await supabaseClient.auth.update({ password });
+        const { data, error } = await supabaseClient.auth.updateUser({
+            password,
+        });
 
         if (error) {
             return Promise.reject(error);
@@ -71,18 +89,20 @@ export const authProvider: AuthProvider = {
     },
     checkError: () => Promise.resolve(),
     checkAuth: async () => {
-        await supabaseClient.auth.getSessionFromUrl();
+        await supabaseClient.auth.getSession();
         return Promise.resolve();
     },
     getPermissions: async () => {
-        const user = supabaseClient.auth.user();
+        const { data } = await supabaseClient.auth.getUser();
+        const { user } = data;
 
         if (user) {
             return Promise.resolve(user.role);
         }
     },
     getUserIdentity: async () => {
-        const user = supabaseClient.auth.user();
+        const { data } = await supabaseClient.auth.getUser();
+        const { user } = data;
 
         if (user) {
             return Promise.resolve({

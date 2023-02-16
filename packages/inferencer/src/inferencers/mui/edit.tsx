@@ -223,6 +223,11 @@ export const renderer = ({
                                 key={index}
                                 {...register(\`${val}\`, {
                                     required: "This field is required",
+                                    ${
+                                        field.type === "number"
+                                            ? "valueAsNumber: true,"
+                                            : ""
+                                    }
                                 })}
                                 error={!!${errorVal}}
                                 helperText={${errorVal}?.message as string}
@@ -257,6 +262,7 @@ export const renderer = ({
                         field.accessor,
                     )}", {
                         required: "This field is required",
+                        ${field.type === "number" ? "valueAsNumber: true," : ""}
                     })}
                     error={!!${accessor(
                         "(errors as any)",

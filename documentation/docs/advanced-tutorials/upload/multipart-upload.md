@@ -3,7 +3,6 @@ id: multipart-upload
 title: Multipart Upload
 ---
 
-
 We will show you how to multipart upload with **refine**.
 
 Let's start with the `creation form` first.
@@ -12,17 +11,17 @@ Let's start with the `creation form` first.
 
 Let's add the image field to the post `creation form`.
 
-```tsx  title="pages/posts/create.tsx"
-import { 
+```tsx title="pages/posts/create.tsx"
+import {
     // highlight-start
-    useApiUrl 
+    useApiUrl,
     // highlight-end
 } from "@pankod/refine-core";
-import { 
-// highlight-start
+import {
+    // highlight-start
     Upload,
     getValueFromEvent,
-// highlight-end
+    // highlight-end
     Create,
     Form,
     Input,
@@ -32,7 +31,7 @@ import {
 export const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
-// highlight-next-line
+    // highlight-next-line
     const apiUrl = useApiUrl();
 
     return (
@@ -53,11 +52,11 @@ export const PostCreate: React.FC = () => {
                     <Form.Item
                         name="image"
                         valuePropName="fileList"
-// highlight-next-line
+                        // highlight-next-line
                         getValueFromEvent={getValueFromEvent}
                         noStyle
                     >
-// highlight-start
+                        // highlight-start
                         <Upload.Dragger
                             name="file"
                             action={`${apiUrl}/media/upload`}
@@ -69,7 +68,7 @@ export const PostCreate: React.FC = () => {
                                 Drag & drop a file in this area
                             </p>
                         </Upload.Dragger>
-// highlight-end
+                        // highlight-end
                     </Form.Item>
                 </Form.Item>
             </Form>
@@ -98,8 +97,6 @@ We can reach the API URL by using the `useApiUrl` hook.
 :::
 
 It will look like this.
-
-
 
 <div class="img-container">
     <div class="window">
@@ -146,7 +143,7 @@ This end-point should respond similarly.
 We have to use the `getValueFromEvent` method to convert the uploaded files to [Antd UploadFile](https://ant.design/components/upload/#UploadFile) object.
 :::
 
-This data is sent to the API when form submitted.
+This data is sent to the API when the form is submitted.
 
 ```json title="[POST] https://api.fake-rest.refine.dev/posts"
 {
@@ -180,17 +177,17 @@ The following data are required for the [Antd Upload](https://ant.design/compone
 
 Let's add the image field to the post editing form.
 
-```tsx  title="pages/posts/edit.tsx"
-import { 
+```tsx title="pages/posts/edit.tsx"
+import {
     // highlight-start
-    useApiUrl 
+    useApiUrl,
     // highlight-end
 } from "@pankod/refine-core";
-import { 
-// highlight-start
+import {
+    // highlight-start
     Upload,
     getValueFromEvent,
-// highlight-end
+    // highlight-end
     Edit,
     Form,
     Input,
@@ -200,7 +197,7 @@ import {
 export const PostEdit: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
-// highlight-next-line
+    // highlight-next-line
     const apiUrl = useApiUrl();
 
     return (
@@ -221,11 +218,11 @@ export const PostEdit: React.FC = () => {
                     <Form.Item
                         name="image"
                         valuePropName="fileList"
-// highlight-next-line
+                        // highlight-next-line
                         getValueFromEvent={getValueFromEvent}
                         noStyle
                     >
-// highlight-start
+                        // highlight-start
                         <Upload.Dragger
                             name="file"
                             action={`${apiUrl}/media/upload`}
@@ -237,7 +234,7 @@ export const PostEdit: React.FC = () => {
                                 Drag & drop a file in this area
                             </p>
                         </Upload.Dragger>
-// highlight-end
+                        // highlight-end
                     </Form.Item>
                 </Form.Item>
             </Form>
@@ -299,12 +296,12 @@ This data is sent to the API when form is submitted.
 
 You may want to disable the "Save" button in the form while the upload is going on. To do this, you can use the `useFileUploadState` hook.
 
-```tsx  title="pages/posts/create.tsx"
+```tsx title="pages/posts/create.tsx"
 import { useApiUrl } from "@pankod/refine-core";
 import {
     Upload,
     getValueFromEvent,
-// highlight-next-line
+    // highlight-next-line
     useFileUploadState,
     Create,
     Form,
@@ -315,19 +312,19 @@ import {
 export const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
-// highlight-next-line
+    // highlight-next-line
     const { isLoading, onChange } = useFileUploadState();
 
     const apiUrl = useApiUrl();
 
     return (
         <Create
-// highlight-start
+            // highlight-start
             saveButtonProps={{
                 ...saveButtonProps,
                 disabled: isLoading,
             }}
-// highlight-end
+            // highlight-end
         >
             <Form {...formProps} layout="vertical">
                 <Form.Item
@@ -354,7 +351,7 @@ export const PostCreate: React.FC = () => {
                             listType="picture"
                             maxCount={5}
                             multiple
-// highlight-next-line
+                            // highlight-next-line
                             onChange={onChange}
                         >
                             <p className="ant-upload-text">
@@ -372,4 +369,3 @@ export const PostCreate: React.FC = () => {
 ## Example
 
 <CodeSandboxExample path="upload-antd-multipart" />
-   

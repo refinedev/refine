@@ -78,7 +78,7 @@ export type AdditionalScopeType = [
 ];
 
 export type LiveComponentProps = {
-    fetchError?: boolean;
+    fetchError?: boolean | string;
     code?: string;
     additionalScope?: Array<AdditionalScopeType>;
     errorComponent?: React.FC<{ error?: string }>;

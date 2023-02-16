@@ -24,14 +24,13 @@ export const ErrorComponent: CreateInferencerConfig["errorComponent"] = ({
                         transform: "translate(-50%, -50%)",
                     }}
                 >
-                    <span
+                    <div
                         style={{
                             fontSize: "1.5rem",
                             fontWeight: "bold",
                         }}
-                    >
-                        {error}
-                    </span>
+                        dangerouslySetInnerHTML={{ __html: error ?? "" }}
+                    />
                 </div>
             </div>
         );
