@@ -36,7 +36,11 @@ export default function separateImports(payload: {
 
     refineImport.replaceWith((path) => {
         for (const item of path.node.specifiers) {
-            if (imports.includes(item.local.name)) {
+            // also checking for imported name which is actually the correct one to check for renamed ones
+            if (
+                imports.includes(item.local.name) ||
+                imports.includes((item as ImportSpecifier)?.imported?.name)
+            ) {
                 nextLibImports.push(item as ImportSpecifier);
             }
 
@@ -56,9 +60,24 @@ export default function separateImports(payload: {
         // rename imports
         nextLibImports.forEach((item) => {
             if (renameImports[item.imported.name]) {
-                item.imported.name = `${renameImports[item.imported.name]} as ${
-                    item.imported.name
-                }`;
+                // if imported and local names are different, then means its renamed. we can continue to do our swap
+                // if imported and local are same, means we're changing the imported elements name, then we need to change the local name as well
+                if (item.imported.name !== item.local.name) {
+                    // if the renamed name is the same as local name, then we don't need to rename it
+                    if (item.local.name === renameImports[item.imported.name]) {
+                        item.imported.name = renameImports[item.imported.name];
+                        item.local = undefined;
+                    } else {
+                        item.imported.name = renameImports[item.imported.name];
+                    }
+                } else if (item.imported.name === item.local.name) {
+                    j(item).replaceWith(
+                        j.importSpecifier(
+                            j.identifier(renameImports[item.imported.name]),
+                            j.identifier(item.local.name),
+                        ),
+                    );
+                }
             }
         });
 
