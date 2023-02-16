@@ -50,6 +50,7 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
     >({
         resource: "products",
         pagination: { pageSize: 9 },
+        syncWithLocation: false,
         onSearch: ({ name, categories }) => {
             const productFilters: CrudFilters = [];
 
