@@ -68,9 +68,16 @@ export default function separateImports(payload: {
                     value: currentLibName,
                 },
             })
-            .insertAfter(
-                j.importDeclaration(nextLibImports, j.literal(nextLibName)),
-            );
+            .forEach((path, i) => {
+                if (i === 0) {
+                    path.insertAfter(
+                        j.importDeclaration(
+                            nextLibImports,
+                            j.literal(nextLibName),
+                        ),
+                    );
+                }
+            });
     }
 
     // add other imports
