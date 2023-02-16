@@ -5,7 +5,6 @@
     "dependencies": {
         "@pankod/refine-cli": "^1.2.0",
         "@pankod/refine-core": "^3.99.4",
-        "antd": "^5.0.5",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",

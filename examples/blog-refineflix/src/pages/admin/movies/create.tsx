@@ -1,7 +1,12 @@
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import { Create, useForm } from "@pankod/refine-antd";
-import { Form, Input, Upload } from "antd";
-import { RcFile } from "antd/lib/upload";
+import {
+    Create,
+    Form,
+    Input,
+    Upload,
+    useForm,
+    RcFile,
+} from "@pankod/refine-antd";
 import { IMovies } from "interfaces";
 import { supabaseClient, normalizeFile } from "utility";
 

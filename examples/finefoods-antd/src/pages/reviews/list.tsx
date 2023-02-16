@@ -6,12 +6,11 @@ import {
     IResourceComponentsProps,
 } from "@pankod/refine-core";
 
-import { List, useTable } from "@pankod/refine-antd";
-
-import * as Icons from "@ant-design/icons";
-
 import {
+    List,
     Table,
+    useTable,
+    Icons,
     Space,
     Button,
     Avatar,
@@ -19,7 +18,7 @@ import {
     Typography,
     Dropdown,
     Menu,
-} from "antd";
+} from "@pankod/refine-antd";
 
 import { IReview } from "interfaces";
 

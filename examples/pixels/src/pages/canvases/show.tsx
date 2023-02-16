@@ -6,11 +6,14 @@ import {
     useRouterContext,
     useShow,
 } from "@pankod/refine-core";
-import { useModal } from "@pankod/refine-antd";
-
-import * as Icons from "@ant-design/icons";
-
-import { Button, Typography, Spin, Modal } from "antd";
+import {
+    Button,
+    Typography,
+    Icons,
+    Spin,
+    Modal,
+    useModal,
+} from "@pankod/refine-antd";
 
 import { CanvasItem, DisplayCanvas } from "components/canvas";
 import { ColorSelect } from "components/color-select";

@@ -1,10 +1,10 @@
 import { Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
+    ConfigProvider,
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import { ConfigProvider } from "antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 

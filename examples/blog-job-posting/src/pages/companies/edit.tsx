@@ -1,6 +1,14 @@
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import { Edit, useForm } from "@pankod/refine-antd";
-import { Form, Input, Row, Col, Checkbox, Typography } from "antd";
+import {
+    Edit,
+    Form,
+    Input,
+    useForm,
+    Row,
+    Col,
+    Checkbox,
+    Typography,
+} from "@pankod/refine-antd";
 
 import { ICompany } from "interfaces";
 

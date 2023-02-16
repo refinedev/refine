@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Space } from "antd";
+import { Image, Space } from "@pankod/refine-antd";
 
 export function StackBanner() {
     return (

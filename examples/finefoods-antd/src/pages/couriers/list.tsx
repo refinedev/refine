@@ -5,11 +5,17 @@ import {
     useNavigation,
 } from "@pankod/refine-core";
 
-import { List, useTable } from "@pankod/refine-antd";
-
-import * as Icons from "@ant-design/icons";
-
-import { Table, Avatar, Dropdown, Menu, Space, Typography } from "antd";
+import {
+    List,
+    Table,
+    Avatar,
+    useTable,
+    Dropdown,
+    Menu,
+    Icons,
+    Space,
+    Typography,
+} from "@pankod/refine-antd";
 
 import { ICourier } from "interfaces";
 

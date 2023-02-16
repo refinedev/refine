@@ -1,13 +1,13 @@
 import { useList, useCreate } from "@pankod/refine-core";
 import {
-    List as AntdList,
+    AntdList,
     Card,
     Form,
     Rate,
     Button,
     Typography,
     Row,
-} from "antd";
+} from "@pankod/refine-antd";
 import dayjs from "dayjs";
 import {
     CriteriaType,

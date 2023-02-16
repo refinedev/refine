@@ -9,14 +9,18 @@ import {
 import {
     useTable,
     List,
+    Table,
     TextField,
     TagField,
     DateField,
+    Space,
     ShowButton,
     EditButton,
     DeleteButton,
+    Row,
+    Col,
+    Card,
 } from "@pankod/refine-antd";
-import { Table, Space, Row, Col, Card } from "antd";
 
 import {
     ILabel,

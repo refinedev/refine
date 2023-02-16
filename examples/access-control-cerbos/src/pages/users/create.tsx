@@ -1,8 +1,7 @@
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import { Create, useForm } from "@pankod/refine-antd";
-import { Form, Input } from "antd";
+import { Create, Form, Input, useForm } from "@pankod/refine-antd";
 
 import { IUser } from "interfaces";
 

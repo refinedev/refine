@@ -1,5 +1,11 @@
-import { List, useTable, ShowButton, EditButton } from "@pankod/refine-antd";
-import { Table, Space } from "antd";
+import {
+    List,
+    Table,
+    useTable,
+    Space,
+    ShowButton,
+    EditButton,
+} from "@pankod/refine-antd";
 
 import { TeamType } from "interfaces";
 

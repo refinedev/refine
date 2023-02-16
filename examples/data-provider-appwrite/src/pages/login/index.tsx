@@ -3,14 +3,14 @@ import { useLogin } from "@pankod/refine-core";
 import {
     Row,
     Col,
-    Layout as AntdLayout,
+    AntdLayout,
     Card,
     Typography,
     Form,
     Input,
     Button,
     Checkbox,
-} from "antd";
+} from "@pankod/refine-antd";
 import "./styles.css";
 
 const { Text, Title } = Typography;

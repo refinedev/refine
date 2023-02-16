@@ -1,11 +1,11 @@
 import {
     List,
+    Table,
     useTable,
     TagField,
     useModalForm,
     EditButton,
 } from "@pankod/refine-antd";
-import { Table } from "antd";
 
 import { IMission } from "interfaces";
 import { CreateMission, EditMission } from "components/mission";

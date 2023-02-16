@@ -4,13 +4,13 @@ import { useLogin, useNavigation } from "@pankod/refine-core";
 import {
     Row,
     Col,
-    Layout as AntdLayout,
+    AntdLayout,
     Card,
     Typography,
     Form,
     Input,
     Button,
-} from "antd";
+} from "@pankod/refine-antd";
 
 import "./styles.css";
 

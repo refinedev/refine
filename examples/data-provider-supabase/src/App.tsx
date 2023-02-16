@@ -4,8 +4,8 @@ import {
     Layout,
     ErrorComponent,
     AuthPage,
+    notification,
 } from "@pankod/refine-antd";
-import { notification } from "antd";
 import { dataProvider, liveProvider } from "@pankod/refine-supabase";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { GoogleOutlined } from "@ant-design/icons";

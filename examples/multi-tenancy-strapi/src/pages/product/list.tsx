@@ -3,12 +3,12 @@ import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
 
 import {
     useSimpleList,
+    AntdList,
     useModalForm,
     useDrawerForm,
     CreateButton,
     List,
 } from "@pankod/refine-antd";
-import { List as AntdList } from "antd";
 
 import { IProduct } from "interfaces";
 

@@ -6,16 +6,21 @@ import {
 
 import {
     List,
+    Table,
     TextField,
+    Space,
     EditButton,
     ShowButton,
     FilterDropdown,
+    Select,
+    Radio,
     TagField,
+    Collapse,
     useTable,
     useSelect,
     useSimpleList,
+    AntdList,
 } from "@pankod/refine-antd";
-import { Table, Space, Select, Radio, Collapse, List as AntdList } from "antd";
 
 import { IPost, ICategory, IProducts } from "interfaces";
 

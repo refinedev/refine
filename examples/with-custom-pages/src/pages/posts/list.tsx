@@ -6,13 +6,15 @@ import {
 
 import {
     List,
+    Table,
     TextField,
     useTable,
+    Space,
     EditButton,
     ShowButton,
     CreateButton,
+    Button,
 } from "@pankod/refine-antd";
-import { Table, Space, Button } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 

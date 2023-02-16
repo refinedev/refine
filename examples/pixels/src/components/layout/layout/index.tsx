@@ -1,6 +1,6 @@
 import React from "react";
 import { LayoutProps } from "@pankod/refine-core";
-import { Layout as AntdLayout } from "antd";
+import { AntdLayout } from "@pankod/refine-antd";
 
 import { Header } from "components/layout";
 

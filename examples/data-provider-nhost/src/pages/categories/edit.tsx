@@ -1,7 +1,13 @@
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import { Edit, ListButton, RefreshButton, useForm } from "@pankod/refine-antd";
-import { Form, Input } from "antd";
+import {
+    Edit,
+    Form,
+    Input,
+    ListButton,
+    RefreshButton,
+    useForm,
+} from "@pankod/refine-antd";
 
 import { ICategory } from "interfaces";
 

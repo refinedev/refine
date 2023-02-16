@@ -1,6 +1,12 @@
 import React, { useState } from "react";
-import { Create, useForm, useSelect } from "@pankod/refine-antd";
-import { Form, Input, Select } from "antd";
+import {
+    Create,
+    Form,
+    Input,
+    Select,
+    useForm,
+    useSelect,
+} from "@pankod/refine-antd";
 
 import MDEditor from "@uiw/react-md-editor";
 

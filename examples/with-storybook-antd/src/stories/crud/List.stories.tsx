@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { List as AntdList } from "antd";
+import { List as AntdList } from "@pankod/refine-antd";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";
 
@@ -15,5 +15,10 @@ export default {
 } as ComponentMeta<typeof AntdList>;
 
 export const List: ComponentStory<typeof AntdList> = (args) => {
-    return <AntdList {...args} />;
+    return (
+        <AntdList
+            {...args}
+            title={args.title === "" ? undefined : args.title}
+        />
+    );
 };

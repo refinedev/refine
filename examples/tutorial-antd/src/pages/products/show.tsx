@@ -2,12 +2,12 @@ import React from "react";
 import { IResourceComponentsProps, useShow, useOne } from "@pankod/refine-core";
 import {
     Show,
+    Typography,
     NumberField,
     TagField,
     TextField,
     MarkdownField,
 } from "@pankod/refine-antd";
-import { Typography } from "antd";
 
 const { Title } = Typography;
 

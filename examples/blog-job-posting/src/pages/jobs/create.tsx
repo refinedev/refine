@@ -1,6 +1,13 @@
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import { Create, useForm, useSelect } from "@pankod/refine-antd";
-import { Form, Input, Checkbox, Select } from "antd";
+import {
+    Create,
+    Form,
+    Input,
+    useForm,
+    Checkbox,
+    useSelect,
+    Select,
+} from "@pankod/refine-antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
