@@ -101,12 +101,16 @@ export default function separateImports(payload: {
                         value: currentLibName,
                     },
                 })
-                .insertAfter(
-                    j.importDeclaration(
-                        otherImportPaths[importPath],
-                        j.literal(importPath),
-                    ),
-                );
+                .forEach((path, i) => {
+                    if (i === 0) {
+                        path.insertAfter(
+                            j.importDeclaration(
+                                otherImportPaths[importPath],
+                                j.literal(importPath),
+                            ),
+                        );
+                    }
+                });
         });
     }
 

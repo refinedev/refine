@@ -71,12 +71,20 @@ export default function transformer(file: FileInfo, api: API): string {
                             value: REFINE_ANTD_PATH,
                         },
                     })
-                    .insertAfter(
-                        j.importDeclaration(
-                            [j.importNamespaceSpecifier(j.identifier("Icons"))],
-                            j.literal(ANTD_ICONS_PATH),
-                        ),
-                    );
+                    .forEach((path, i) => {
+                        if (i === 0) {
+                            path.insertAfter(
+                                j.importDeclaration(
+                                    [
+                                        j.importNamespaceSpecifier(
+                                            j.identifier("Icons"),
+                                        ),
+                                    ],
+                                    j.literal(ANTD_ICONS_PATH),
+                                ),
+                            );
+                        }
+                    });
             }
         }
 
