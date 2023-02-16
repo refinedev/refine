@@ -1,7 +1,7 @@
 import { API, FileInfo } from "jscodeshift";
 import fs from "fs";
 import path from "path";
-import { install } from "../helpers";
+import { addPackage, install } from "../helpers";
 import checkPackageLock from "../helpers/checkPackageLock";
 import separateImports from "../helpers/separateImports";
 import { exported, rename, other } from "../definitions/separated-imports/antd";
@@ -56,16 +56,13 @@ export default function transformer(file: FileInfo, api: API): string {
         },
     });
 
+    let addIcons = false;
+
     refineImport.replaceWith((p) => {
         for (const item of p.node.specifiers) {
             if (item.local.name === "Icons") {
-                // install `@antd-design/icons`
-                const rootDir = path.join(process.cwd(), file.path);
-                const useYarn = checkPackageLock(rootDir) === "yarn.lock";
-                install(rootDir, [`${ANTD_ICONS_PATH}@${ANTD_ICONS_VERSION}`], {
-                    useYarn,
-                    isOnline: true,
-                });
+                // flag for adding `@antd-design/icons` dependency
+                addIcons = true;
 
                 // add new icon namespace import
                 source
@@ -89,6 +86,10 @@ export default function transformer(file: FileInfo, api: API): string {
 
         return p.node;
     });
+
+    if (addIcons) {
+        addPackage(process.cwd(), { [ANTD_ICONS_PATH]: ANTD_ICONS_VERSION });
+    }
 
     // remove empty imports
     source
