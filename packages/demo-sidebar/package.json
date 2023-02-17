@@ -24,7 +24,7 @@
         "react": "^17.0.0 || ^18.0.0",
         "react-dom": "^17.0.0 || ^18.0.0",
         "antd": "^5.0.3",
-        "@ant-design/icons": "^4.5.0"
+        "@ant-design/icons": "^5.0.1"
     },
     "author": "refine",
     "module": "dist/esm/index.js",
