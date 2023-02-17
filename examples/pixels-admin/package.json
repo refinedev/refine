@@ -7,8 +7,6 @@
     "@pankod/refine-core": "^3.99.4",
     "@pankod/refine-react-router-v6": "^3.18.0",
     "@pankod/refine-supabase": "^4.1.2",
-    "antd": "^5.0.5",
-    "@ant-design/icons": "^4.5.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",
@@ -28,7 +26,9 @@
     "stream-browserify": "^3.0.0",
     "util": "^0.12.5",
     "cross-env": "^7.0.3",
-    "web-vitals": "^1.1.1"
+    "web-vitals": "^1.1.1",
+    "antd": "^5.0.5",
+    "@ant-design/icons": "^5.0.1"
   },
   "devDependencies": {
     "@types/jest": "^29.2.4",

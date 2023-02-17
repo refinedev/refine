@@ -5,9 +5,9 @@ import {
     EditButton,
     ShowButton,
     FilterDropdown,
-    useTable,
 } from "@pankod/refine-antd";
 import { Table, Space, Input } from "antd";
+import { useTable } from "@pankod/refine-antd";
 
 import { useCloudMutation } from "@pankod/refine-cloud";
 

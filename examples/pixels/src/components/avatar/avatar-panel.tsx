@@ -1,6 +1,5 @@
 import React from "react";
 import * as Icons from "@ant-design/icons";
-
 import { Typography, Space, Avatar } from "antd";
 
 import { getUniqueContributorsAvatarURL } from "utility";

@@ -1,5 +1,4 @@
 import * as Icons from "@ant-design/icons";
-
 import { Card, Typography } from "antd";
 
 import { FeedBackCardTypes } from "interfaces";

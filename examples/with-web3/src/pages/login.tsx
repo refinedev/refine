@@ -1,6 +1,7 @@
 import { useLogin } from "@pankod/refine-core";
 
-import Icon from "@ant-design/icons";
+import { Icon } from "@pankod/refine-antd";
+
 import { Layout as AntdLayout, Button, Row, Col } from "antd";
 
 export const Login: React.FC = () => {

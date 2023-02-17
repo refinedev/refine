@@ -9,8 +9,7 @@ import {
     useTranslate,
     useLogout,
 } from "@pankod/refine-core";
-import { useMenu } from "@pankod/refine-core";
-import { Sider } from "@pankod/refine-antd";
+import { useMenu, Sider } from "@pankod/refine-antd";
 import { Layout as AntdLayout, Menu, Grid } from "antd";
 import {
     DashboardOutlined,

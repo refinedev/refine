@@ -3,7 +3,6 @@ import { useTranslate, BaseKey } from "@pankod/refine-core";
 import { NumberField } from "@pankod/refine-antd";
 
 import * as Icons from "@ant-design/icons";
-
 import {
     Avatar,
     Card,

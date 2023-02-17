@@ -9,7 +9,6 @@ import {
 import { List, useTable } from "@pankod/refine-antd";
 
 import * as Icons from "@ant-design/icons";
-
 import {
     Table,
     Card,

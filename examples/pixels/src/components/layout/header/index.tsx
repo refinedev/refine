@@ -9,7 +9,6 @@ import {
 import { useModalForm } from "@pankod/refine-antd";
 
 import * as Icons from "@ant-design/icons";
-
 import { Button, Image, Space } from "antd";
 
 import { CreateCanvas } from "components/canvas";

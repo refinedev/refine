@@ -9,7 +9,6 @@ import {
 import { useModal } from "@pankod/refine-antd";
 
 import * as Icons from "@ant-design/icons";
-
 import { Button, Typography, Spin, Modal } from "antd";
 
 import { CanvasItem, DisplayCanvas } from "components/canvas";

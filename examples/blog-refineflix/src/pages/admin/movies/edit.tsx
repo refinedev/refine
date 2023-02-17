@@ -2,8 +2,9 @@ import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import { Edit, useForm } from "@pankod/refine-antd";
+
+import { RcFile } from "antd/lib/upload/interface";
 import { Form, Input, Upload } from "antd";
-import { RcFile } from "antd/lib/upload";
 
 import { IMovies } from "interfaces";
 import { supabaseClient, normalizeFile } from "utility";

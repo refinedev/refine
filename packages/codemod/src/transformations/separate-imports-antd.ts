@@ -1,7 +1,7 @@
 import { API, FileInfo } from "jscodeshift";
 import fs from "fs";
 import path from "path";
-import { install } from "../helpers";
+import { addPackage, install, isPackageJsonUpdated } from "../helpers";
 import checkPackageLock from "../helpers/checkPackageLock";
 import separateImports from "../helpers/separateImports";
 import { exported, rename, other } from "../definitions/separated-imports/antd";
@@ -10,12 +10,19 @@ export const parser = "tsx";
 
 const REFINE_ANTD_PATH = "@pankod/refine-antd";
 const ANTD_PATH = "antd";
+const ANTD_VERSION = "^5.0.5";
 const ANTD_ICONS_PATH = "@ant-design/icons";
+const ANTD_ICONS_VERSION = "^5.0.1";
 
 export async function postTransform(files: any, flags: any) {
     const rootDir = path.join(process.cwd(), files[0]);
     const packageJsonPath = path.join(rootDir, "package.json");
     const useYarn = checkPackageLock(rootDir) === "yarn.lock";
+    const needsInstall = isPackageJsonUpdated(rootDir);
+
+    if (!needsInstall) {
+        return;
+    }
 
     // Check root package.json exists
     try {
@@ -27,11 +34,12 @@ export async function postTransform(files: any, flags: any) {
     }
 
     if (!flags.dry) {
-        // TODO: check if usage of antd icons
-        await install(rootDir, [`antd@^5.0.5`, `@ant-design/icons@^5.0.1`], {
-            useYarn,
-            isOnline: true,
-        });
+        if (isPackageJsonUpdated(rootDir)) {
+            await install(rootDir, null, {
+                useYarn,
+                isOnline: true,
+            });
+        }
     }
 }
 
@@ -49,6 +57,15 @@ export default function transformer(file: FileInfo, api: API): string {
         nextLibName: ANTD_PATH,
     });
 
+    let addIcons = false;
+
+    const addAntd =
+        source.find(j.ImportDeclaration, {
+            source: {
+                value: ANTD_PATH,
+            },
+        }).length > 0;
+
     // check Icons import
     const refineImport = source.find(j.ImportDeclaration, {
         source: {
@@ -56,9 +73,12 @@ export default function transformer(file: FileInfo, api: API): string {
         },
     });
 
-    refineImport.replaceWith((path) => {
-        for (const item of path.node.specifiers) {
+    refineImport.replaceWith((p) => {
+        for (const item of p.node.specifiers) {
             if (item.local.name === "Icons") {
+                // flag for adding `@antd-design/icons` dependency
+                addIcons = true;
+
                 // add new icon namespace import
                 source
                     .find(j.ImportDeclaration, {
@@ -66,21 +86,36 @@ export default function transformer(file: FileInfo, api: API): string {
                             value: REFINE_ANTD_PATH,
                         },
                     })
-                    .insertAfter(
-                        j.importDeclaration(
-                            [j.importNamespaceSpecifier(j.identifier("Icons"))],
-                            j.literal(ANTD_ICONS_PATH),
-                        ),
-                    );
+                    .forEach((path, i) => {
+                        if (i === 0) {
+                            path.insertAfter(
+                                j.importDeclaration(
+                                    [
+                                        j.importNamespaceSpecifier(
+                                            j.identifier("Icons"),
+                                        ),
+                                    ],
+                                    j.literal(ANTD_ICONS_PATH),
+                                ),
+                            );
+                        }
+                    });
             }
         }
 
-        path.node.specifiers = path.node.specifiers.filter(
+        p.node.specifiers = p.node.specifiers.filter(
             (p) => p.local.name !== "Icons",
         );
 
-        return path.node;
+        return p.node;
     });
+
+    if (addIcons) {
+        addPackage(process.cwd(), { [ANTD_ICONS_PATH]: ANTD_ICONS_VERSION });
+    }
+    if (addAntd) {
+        addPackage(process.cwd(), { [ANTD_PATH]: ANTD_VERSION });
+    }
 
     // remove empty imports
     source

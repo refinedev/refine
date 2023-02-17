@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelect } from "@pankod/refine-antd";
-import * as Icons from "@ant-design/icons";
 
+import * as Icons from "@ant-design/icons";
 import { Form, FormProps, Input, Select, DatePicker, Button } from "antd";
 
 import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";

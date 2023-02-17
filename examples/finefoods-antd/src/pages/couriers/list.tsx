@@ -8,7 +8,6 @@ import {
 import { List, useTable } from "@pankod/refine-antd";
 
 import * as Icons from "@ant-design/icons";
-
 import { Table, Avatar, Dropdown, Menu, Space, Typography } from "antd";
 
 import { ICourier } from "interfaces";

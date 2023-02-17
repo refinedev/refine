@@ -9,8 +9,6 @@
         "@pankod/refine-inferencer": "^2.8.0",
         "@pankod/refine-react-router-v6": "^3.18.0",
         "@pankod/refine-simple-rest": "^3.18.0",
-        "antd": "^5.0.5",
-        "@ant-design/icons": "^4.5.0",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",
@@ -18,7 +16,8 @@
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
         "react-scripts": "^5.0.0",
-        "web-vitals": "^1.1.1"
+        "web-vitals": "^1.1.1",
+        "antd": "^5.0.5"
     },
     "devDependencies": {
         "@types/node": "^12.20.11",

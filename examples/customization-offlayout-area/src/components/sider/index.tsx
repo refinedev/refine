@@ -6,9 +6,9 @@ import {
     useRouterContext,
 } from "@pankod/refine-core";
 
-import { useMenu } from "@pankod/refine-core";
-import * as Icons from "@ant-design/icons";
+import { useMenu } from "@pankod/refine-antd";
 
+import * as Icons from "@ant-design/icons";
 import { Layout as AntdLayout, Menu } from "antd";
 
 export const FixedSider: React.FC = () => {
