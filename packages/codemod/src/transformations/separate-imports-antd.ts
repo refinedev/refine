@@ -1,7 +1,7 @@
 import { API, FileInfo } from "jscodeshift";
 import fs from "fs";
 import path from "path";
-import { addPackage, install } from "../helpers";
+import { addPackage, install, isPackageJsonUpdated } from "../helpers";
 import checkPackageLock from "../helpers/checkPackageLock";
 import separateImports from "../helpers/separateImports";
 import { exported, rename, other } from "../definitions/separated-imports/antd";
@@ -10,6 +10,7 @@ export const parser = "tsx";
 
 const REFINE_ANTD_PATH = "@pankod/refine-antd";
 const ANTD_PATH = "antd";
+const ANTD_VERSION = "^5.0.5";
 const ANTD_ICONS_PATH = "@ant-design/icons";
 const ANTD_ICONS_VERSION = "^5.0.1";
 
@@ -17,6 +18,11 @@ export async function postTransform(files: any, flags: any) {
     const rootDir = path.join(process.cwd(), files[0]);
     const packageJsonPath = path.join(rootDir, "package.json");
     const useYarn = checkPackageLock(rootDir) === "yarn.lock";
+    const needsInstall = isPackageJsonUpdated(rootDir);
+
+    if (!needsInstall) {
+        return;
+    }
 
     // Check root package.json exists
     try {
@@ -28,10 +34,12 @@ export async function postTransform(files: any, flags: any) {
     }
 
     if (!flags.dry) {
-        await install(rootDir, [`antd@^5.0.5`], {
-            useYarn,
-            isOnline: true,
-        });
+        if (isPackageJsonUpdated(rootDir)) {
+            await install(rootDir, null, {
+                useYarn,
+                isOnline: true,
+            });
+        }
     }
 }
 
@@ -49,14 +57,21 @@ export default function transformer(file: FileInfo, api: API): string {
         nextLibName: ANTD_PATH,
     });
 
+    let addIcons = false;
+
+    const addAntd =
+        source.find(j.ImportDeclaration, {
+            source: {
+                value: ANTD_PATH,
+            },
+        }).length > 0;
+
     // check Icons import
     const refineImport = source.find(j.ImportDeclaration, {
         source: {
             value: REFINE_ANTD_PATH,
         },
     });
-
-    let addIcons = false;
 
     refineImport.replaceWith((p) => {
         for (const item of p.node.specifiers) {
@@ -97,6 +112,9 @@ export default function transformer(file: FileInfo, api: API): string {
 
     if (addIcons) {
         addPackage(process.cwd(), { [ANTD_ICONS_PATH]: ANTD_ICONS_VERSION });
+    }
+    if (addAntd) {
+        addPackage(process.cwd(), { [ANTD_PATH]: ANTD_VERSION });
     }
 
     // remove empty imports
