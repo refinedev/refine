@@ -3,7 +3,7 @@ title: Pilot & refine architecture
 description: We'll be taking a look at the architecture of refine and how week of refine series will be structured.
 slug: refine-pixels-1
 authors: abdullah_numan
-tags: [aweekofrefine, refine, supabase]
+tags: [refine-week, refine, supabase]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/social.png
 hide_table_of_contents: false
 ---
