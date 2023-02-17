@@ -855,7 +855,7 @@ export const exported: { [key: string]: string } = {
     unstable_useEnhancedEffect: "@mui/material",
     unstable_useId: "@mui/material",
     unsupportedProp: "@mui/material",
-    useAutocomplete: "@mui/material",
+    // useAutocomplete: "@mui/material",
     useColorScheme: "@mui/material",
     useControlled: "@mui/material",
     useEventCallback: "@mui/material",
