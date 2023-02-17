@@ -8,8 +8,9 @@ import {
     useIsExistAuthentication,
     useTranslate,
     useLogout,
+    useMenu,
 } from "@pankod/refine-core";
-import { useMenu, Sider } from "@pankod/refine-antd";
+import { Sider } from "@pankod/refine-antd";
 import { Layout as AntdLayout, Menu, Grid } from "antd";
 import {
     DashboardOutlined,

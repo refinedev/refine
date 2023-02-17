@@ -37,14 +37,11 @@ export default function separateImports(payload: {
     refineImport.replaceWith((path) => {
         for (const item of path.node.specifiers) {
             // also checking for imported name which is actually the correct one to check for renamed ones
-            if (
-                imports.includes(item.local.name) ||
-                imports.includes((item as ImportSpecifier)?.imported?.name)
-            ) {
+            if (imports.includes((item as ImportSpecifier)?.imported?.name)) {
                 nextLibImports.push(item as ImportSpecifier);
             }
 
-            if (otherImports[item.local.name]) {
+            if (otherImports[(item as ImportSpecifier)?.imported?.name]) {
                 otherImportItems.push(item as ImportSpecifier);
             }
         }
@@ -101,7 +98,8 @@ export default function separateImports(payload: {
         const otherImportPaths: { [key: string]: ImportSpecifier[] } = {};
         otherImportItems.forEach((item) => {
             // find import path
-            const importPath = otherImports[item.local.name];
+            const importPath =
+                otherImports[(item as ImportSpecifier)?.imported?.name];
 
             if (otherImportPaths[importPath]) {
                 otherImportPaths[importPath].push(item);
