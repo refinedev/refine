@@ -71,12 +71,9 @@ export default function separateImports(payload: {
                         item.imported.name = renameImports[item.imported.name];
                     }
                 } else if (item.imported.name === item.local.name) {
-                    j(item).replaceWith(
-                        j.importSpecifier(
-                            j.identifier(renameImports[item.imported.name]),
-                            j.identifier(item.local.name),
-                        ),
-                    );
+                    item.imported.name = `${
+                        renameImports[item.imported.name]
+                    } as ${item.imported.name}`;
                 }
             }
         });
