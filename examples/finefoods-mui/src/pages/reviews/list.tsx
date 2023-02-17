@@ -7,19 +7,17 @@ import {
     BaseKey,
 } from "@pankod/refine-core";
 
+import { useDataGrid } from "@pankod/refine-mui";
+import { DataGrid, GridColumns, GridActionsCellItem } from "@mui/x-data-grid";
 import {
     Typography,
-    DataGrid,
-    useDataGrid,
-    GridColumns,
-    GridActionsCellItem,
     Tooltip,
     Avatar,
     Rating,
     Stack,
     Button,
     List,
-} from "@pankod/refine-mui";
+} from "@mui/material";
 import { Check, Clear } from "@mui/icons-material";
 
 import { IReview } from "interfaces";

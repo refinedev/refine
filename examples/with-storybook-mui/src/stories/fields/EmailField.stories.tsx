@@ -5,8 +5,9 @@ import {
     MarkdownField,
     TextFieldComponent,
     NumberField,
-    useTheme,
 } from "@pankod/refine-mui";
+
+import { useTheme } from "@mui/system";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";
 

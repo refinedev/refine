@@ -1,5 +1,8 @@
 import React from "react";
-import { useDataGrid, DataGrid, GridColumns, List } from "@pankod/refine-mui";
+import { useDataGrid } from "@pankod/refine-mui";
+
+import { List } from "@mui/material";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 import { ICommit } from "interfaces";
 

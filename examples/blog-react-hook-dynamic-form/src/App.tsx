@@ -4,14 +4,13 @@ import { Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
-    CssBaseline,
-    GlobalStyles,
     Layout,
-    ThemeProvider,
     LightTheme,
     ReadyPage,
     ErrorComponent,
 } from "@pankod/refine-mui";
+
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 
 import UserCreate from "pages/userCreate";
 import UserEdit from "pages/userEdit";

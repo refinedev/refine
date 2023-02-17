@@ -1,5 +1,5 @@
 import ReactApexChart from "react-apexcharts";
-import { Box, Typography, Stack } from "@pankod/refine-mui";
+import { Box, Typography, Stack } from "@mui/material";
 
 import { PieChartProps } from "interfaces/home";
 

@@ -5,15 +5,10 @@ import {
     useOne,
 } from "@pankod/refine-core";
 
-import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    ImportButton,
-    List,
-    ExportButton,
-    Stack,
-} from "@pankod/refine-mui";
+import { useDataGrid, ImportButton, ExportButton } from "@pankod/refine-mui";
+
+import { List, Stack } from "@mui/material";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 import { ICategory, IPost } from "../interfaces";
 

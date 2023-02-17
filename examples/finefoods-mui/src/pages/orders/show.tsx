@@ -6,6 +6,9 @@ import {
     useTranslate,
     useUpdate,
 } from "@pankod/refine-core";
+import { useTheme } from "@mui/system";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
+
 import {
     Avatar,
     Box,
@@ -13,8 +16,6 @@ import {
     Card,
     CardContent,
     CardHeader,
-    DataGrid,
-    GridColumns,
     IconButton,
     Stack,
     Step,
@@ -24,8 +25,8 @@ import {
     List,
     Paper,
     useMediaQuery,
-    useTheme,
-} from "@pankod/refine-mui";
+} from "@mui/material";
+
 import dayjs from "dayjs";
 
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";

@@ -1,9 +1,9 @@
 import {
-    createTheme,
     DarkTheme as DefaultDarkTheme,
     LightTheme as DefaultLightTheme,
-    responsiveFontSizes,
 } from "@pankod/refine-mui";
+
+import { createTheme, responsiveFontSizes } from "@mui/material";
 
 const LightTheme = createTheme({
     ...DefaultLightTheme,

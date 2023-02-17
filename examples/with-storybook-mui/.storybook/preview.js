@@ -4,14 +4,8 @@ import routerProvider, {
     MemoryRouterComponent,
 } from "@pankod/refine-react-router-v6";
 import { useDarkMode } from "storybook-dark-mode";
-import {
-    DarkTheme,
-    LightTheme,
-    ThemeProvider,
-    LoginPage,
-    ReadyPage,
-    ErrorComponent,
-} from "@pankod/refine-mui";
+import { DarkTheme, LightTheme, LoginPage, ReadyPage, ErrorComponent } from "@pankod/refine-mui";
+import { ThemeProvider } from "@mui/material";
 import { authProvider } from "../src/authProvider";
 
 export const parameters = {

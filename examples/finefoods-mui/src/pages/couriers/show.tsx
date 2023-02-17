@@ -7,20 +7,19 @@ import {
     useTranslate,
 } from "@pankod/refine-core";
 
+import { useDataGrid } from "@pankod/refine-mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 import {
     Avatar,
-    DataGrid,
     Grid,
-    GridColumns,
     List,
     Paper,
     Stack,
     Typography,
-    useDataGrid,
     Button,
     Tooltip,
     Rating,
-} from "@pankod/refine-mui";
+} from "@mui/material";
 import {
     LocalPhoneOutlined,
     MapOutlined,

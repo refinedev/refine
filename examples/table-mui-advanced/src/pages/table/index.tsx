@@ -12,10 +12,9 @@ import {
     flexRender,
     Row,
 } from "@pankod/refine-react-table";
+import { DeleteButton, EditButton, SaveButton } from "@pankod/refine-mui";
+
 import {
-    DeleteButton,
-    EditButton,
-    SaveButton,
     Button,
     TextField,
     Stack,
@@ -34,7 +33,8 @@ import {
     TableSortLabel,
     TablePagination,
     List,
-} from "@pankod/refine-mui";
+} from "@mui/material";
+
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
 
 import MDEditor from "@uiw/react-md-editor";

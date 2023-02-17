@@ -5,17 +5,9 @@ import {
     useDelete,
     useNavigation,
 } from "@pankod/refine-core";
-import {
-    DataGrid,
-    useDataGrid,
-    GridColumns,
-    GridActionsCellItem,
-    List,
-    Stack,
-    Avatar,
-    Typography,
-    Tooltip,
-} from "@pankod/refine-mui";
+import { useDataGrid } from "@pankod/refine-mui";
+import { List, Stack, Avatar, Typography, Tooltip } from "@mui/material";
+import { DataGrid, GridColumns, GridActionsCellItem } from "@mui/x-data-grid";
 import { Edit, Close } from "@mui/icons-material";
 
 import { ICourier } from "interfaces";

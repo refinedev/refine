@@ -3,12 +3,10 @@ import {
     Layout,
     ErrorComponent,
     LightTheme,
-    ThemeProvider,
     notificationProvider,
     RefineSnackbarProvider,
-    CssBaseline,
-    GlobalStyles,
 } from "@pankod/refine-mui";
+import { ThemeProvider, CssBaseline, GlobalStyles } from "@mui/material";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { dataProvider } from "rest-data-provider";

@@ -1,14 +1,13 @@
 import React from "react";
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     EditButton,
     ShowButton,
     DeleteButton,
-    List,
     MarkdownField,
 } from "@pankod/refine-mui";
+import { List } from "@mui/material";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 import { useMany } from "@pankod/refine-core";
 
 export const ProductList = () => {

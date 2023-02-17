@@ -5,11 +5,9 @@ import {
     CrudFilters,
     getDefaultFilter,
 } from "@pankod/refine-core";
+import { useDataGrid, TagField, useAutocomplete } from "@pankod/refine-mui";
+
 import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    TagField,
     List,
     Grid,
     Box,
@@ -19,9 +17,10 @@ import {
     CardHeader,
     InputAdornment,
     TextField,
-    useAutocomplete,
     Autocomplete,
-} from "@pankod/refine-mui";
+} from "@mui/material";
+
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 import { SearchOutlined } from "@mui/icons-material";
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
 

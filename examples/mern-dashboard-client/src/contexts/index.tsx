@@ -4,7 +4,7 @@ import React, {
     useEffect,
     useState,
 } from "react";
-import { ThemeProvider } from "@pankod/refine-mui";
+import { ThemeProvider } from "@mui/material";
 import { DarkTheme, LightTheme } from "@pankod/refine-mui";
 
 type ColorModeContextType = {
