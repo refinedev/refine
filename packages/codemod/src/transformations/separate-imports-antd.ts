@@ -4,7 +4,12 @@ import path from "path";
 import { addPackage, install, isPackageJsonUpdated } from "../helpers";
 import checkPackageLock from "../helpers/checkPackageLock";
 import separateImports from "../helpers/separateImports";
-import { exported, rename, other } from "../definitions/separated-imports/antd";
+import {
+    exported,
+    rename,
+    renameToDefault,
+    other,
+} from "../definitions/separated-imports/antd";
 
 export const parser = "tsx";
 
@@ -52,6 +57,7 @@ export default function transformer(file: FileInfo, api: API): string {
         source,
         imports: exported,
         renameImports: rename,
+        renameToDefault: renameToDefault,
         otherImports: other,
         currentLibName: REFINE_ANTD_PATH,
         nextLibName: ANTD_PATH,
