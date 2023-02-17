@@ -1,26 +1,30 @@
 import { ComponentMeta } from "@storybook/react";
 import {
-    Button,
-    Card,
-    Col,
     DateField,
-    DatePicker,
     EditButton,
-    Form,
-    FormProps,
-    Icons,
-    Input,
     List,
-    Row,
-    Select,
     ShowButton,
-    Space,
-    Table,
-    Tag,
     TextField,
     useSelect,
     useTable,
 } from "@pankod/refine-antd";
+import * as Icons from "@ant-design/icons";
+
+import {
+    Button,
+    Card,
+    Col,
+    DatePicker,
+    Form,
+    FormProps,
+    Input,
+    Row,
+    Select,
+    Space,
+    Table,
+    Tag,
+} from "antd";
+
 import { HttpError, CrudFilters, useMany } from "@pankod/refine-core";
 import { IPost, IPostFilterVariables, ICategory } from "../../interfaces";
 

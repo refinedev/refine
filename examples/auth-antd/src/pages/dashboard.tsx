@@ -1,6 +1,6 @@
 import { useGetIdentity, usePermissions } from "@pankod/refine-core";
 
-import { Row, Col, Card, Avatar, Typography, Space } from "@pankod/refine-antd";
+import { Row, Col, Card, Avatar, Typography, Space } from "antd";
 
 const { Text } = Typography;
 

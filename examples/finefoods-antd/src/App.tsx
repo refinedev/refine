@@ -3,11 +3,11 @@ import { Refine } from "@pankod/refine-core";
 import { RefineKbarProvider } from "@pankod/refine-kbar";
 import routerProvider from "@pankod/refine-react-router-v6";
 import {
-    Icons,
     notificationProvider,
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
+import * as Icons from "@ant-design/icons";
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
 import { authProvider } from "authProvider";
 

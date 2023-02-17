@@ -10,26 +10,30 @@ import {
 
 import {
     List,
-    Table,
     TextField,
     useTable,
     getDefaultSortOrder,
     DateField,
+    NumberField,
+    useSelect,
+    ExportButton,
+} from "@pankod/refine-antd";
+
+import * as Icons from "@ant-design/icons";
+
+import {
+    Table,
     Popover,
     Card,
     Input,
-    Icons,
     Form,
     DatePicker,
     Select,
-    NumberField,
-    useSelect,
     Button,
     FormProps,
     Row,
     Col,
-    ExportButton,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import dayjs from "dayjs";
 

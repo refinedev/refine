@@ -5,19 +5,18 @@ import {
 
 import {
     List,
-    Table,
     useTable,
-    Space,
     EditButton,
     ShowButton,
     DeleteButton,
     getDefaultSortOrder,
     FilterDropdown,
-    Select,
     useSelect,
     DateField,
     ImageField,
 } from "@pankod/refine-antd";
+
+import { Table, Space, Select } from "antd";
 
 import { ICategory, IPost } from "interfaces";
 

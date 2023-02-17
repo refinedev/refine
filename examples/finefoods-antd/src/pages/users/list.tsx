@@ -7,14 +7,19 @@ import {
 
 import {
     List,
-    Table,
-    Avatar,
     useTable,
     DateField,
     BooleanField,
+    ShowButton,
+} from "@pankod/refine-antd";
+
+import * as Icons from "@ant-design/icons";
+
+import {
+    Table,
+    Avatar,
     Card,
     Input,
-    Icons,
     Form,
     DatePicker,
     Button,
@@ -22,8 +27,7 @@ import {
     FormProps,
     Row,
     Col,
-    ShowButton,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { IUser, IUserFilterVariables } from "interfaces";
 

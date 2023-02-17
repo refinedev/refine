@@ -1,10 +1,10 @@
 import { Refine } from "@pankod/refine-core";
 import {
-    BackTop,
     notificationProvider,
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
+import { BackTop } from "antd";
 import { DemoSidebar, useDemoSidebar } from "@pankod/refine-demo-sidebar";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";

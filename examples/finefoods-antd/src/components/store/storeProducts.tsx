@@ -6,19 +6,22 @@ import {
 } from "@pankod/refine-core";
 
 import {
+    useSimpleList,
+    CreateButton,
+    useDrawerForm,
+} from "@pankod/refine-antd";
+
+import * as Icons from "@ant-design/icons";
+import {
     Typography,
     Row,
     Col,
-    AntdList,
-    useSimpleList,
+    List as AntdList,
     Input,
-    CreateButton,
     Form,
-    Icons,
-    useDrawerForm,
     Modal,
     ModalProps,
-} from "@pankod/refine-antd";
+} from "antd";
 
 const { Text } = Typography;
 const { SearchOutlined } = Icons;

@@ -1,11 +1,4 @@
-import {
-    Form,
-    Input,
-    ModalProps,
-    FormProps,
-    Modal,
-    InputNumber,
-} from "@pankod/refine-antd";
+import { Form, Input, ModalProps, FormProps, Modal, InputNumber } from "antd";
 
 type EditMissionProps = {
     modalProps: ModalProps;

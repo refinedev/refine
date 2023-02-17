@@ -1,12 +1,12 @@
 import { useTranslate, useNavigation } from "@pankod/refine-core";
+import { useSimpleList } from "@pankod/refine-antd";
 import {
     Typography,
-    useSimpleList,
-    AntdList,
+    List as AntdList,
     Tooltip,
     ConfigProvider,
     theme,
-} from "@pankod/refine-antd";
+} from "antd";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 

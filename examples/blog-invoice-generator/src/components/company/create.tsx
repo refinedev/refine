@@ -1,12 +1,5 @@
 import { useApiUrl } from "@pankod/refine-core";
-import {
-    Modal,
-    Form,
-    Input,
-    ModalProps,
-    FormProps,
-    Upload,
-} from "@pankod/refine-antd";
+import { Modal, Form, Input, ModalProps, FormProps, Upload } from "antd";
 
 import {
     useStrapiUpload,

@@ -1,14 +1,9 @@
 import { useState } from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import {
-    Edit,
-    Form,
-    Input,
-    useForm,
-    useRadioGroup,
-    Radio,
-} from "@pankod/refine-antd";
+import { Edit, useForm, useRadioGroup } from "@pankod/refine-antd";
+
+import { Form, Input, Radio } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
