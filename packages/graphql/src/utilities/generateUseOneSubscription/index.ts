@@ -1,11 +1,12 @@
-import { MetaDataQuery, BaseKey } from "@pankod/refine-core";
+import { MetaQuery, BaseKey, pickNotDeprecated } from "@pankod/refine-core";
 import * as gql from "gql-query-builder";
 import pluralize from "pluralize";
 import camelCase from "camelcase";
 
 type GenerateUseOneSubscriptionParams = {
     resource: string;
-    metaData: MetaDataQuery;
+    meta?: MetaQuery;
+    metaData?: MetaQuery;
     id?: BaseKey;
 };
 
@@ -17,6 +18,7 @@ type GenerateUseOneSubscriptionReturnValues = {
 
 export const generateUseOneSubscription = ({
     resource,
+    meta,
     metaData,
     id,
 }: GenerateUseOneSubscriptionParams): GenerateUseOneSubscriptionReturnValues => {
@@ -29,14 +31,15 @@ export const generateUseOneSubscription = ({
     const singularResource = pluralize.singular(resource);
     const camelResource = camelCase(singularResource);
 
-    const operation = metaData.operation ?? camelResource;
+    const operation =
+        pickNotDeprecated(meta, metaData)?.operation ?? camelResource;
 
     const { query, variables } = gql.query({
         operation,
         variables: {
             id: { value: id, type: "ID", required: true },
         },
-        fields: metaData.fields,
+        fields: pickNotDeprecated(meta, metaData)?.fields,
     });
 
     return { query, variables, operation };

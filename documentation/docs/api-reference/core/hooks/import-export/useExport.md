@@ -141,13 +141,13 @@ useExport({
 });
 ```
 
-### `metaData`
+### `meta`
 
-If you want to send additional data to the `create` or `createMany` method of your data provider, you can use the `metaData` property.
+If you want to send additional data to the `create` or `createMany` method of your data provider, you can use the `meta` property.
 
 ```ts
 useExport({
-    metaData: {
+    meta: {
         foo: "bar",
     },
 });

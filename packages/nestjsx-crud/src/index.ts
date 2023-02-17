@@ -17,6 +17,7 @@ import {
     CrudOperators,
     CrudSorting,
     CrudFilter,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import { stringify } from "query-string";
 
@@ -185,6 +186,7 @@ const NestsxCrud = (
         filters,
         sort,
         sorters,
+        meta,
         metaData,
     }) => {
         const url = `${apiUrl}/${resource}`;
@@ -194,7 +196,7 @@ const NestsxCrud = (
         let query = RequestQueryBuilder.create();
 
         query = handleFilter(query, filters);
-        query = handleJoin(query, metaData?.join);
+        query = handleJoin(query, pickNotDeprecated(meta, metaData)?.join);
         query = handlePagination(query, hasPagination, pageSize, current);
         //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
         query = handleSort(query, sorters ?? sort);
@@ -207,7 +209,7 @@ const NestsxCrud = (
         };
     },
 
-    getMany: async ({ resource, ids, metaData }) => {
+    getMany: async ({ resource, ids, meta, metaData }) => {
         const url = `${apiUrl}/${resource}`;
 
         let query = RequestQueryBuilder.create().setFilter({
@@ -216,7 +218,7 @@ const NestsxCrud = (
             value: ids,
         });
 
-        query = handleJoin(query, metaData?.join);
+        query = handleJoin(query, pickNotDeprecated(meta, metaData)?.join);
 
         const { data } = await httpClient.get(`${url}?${query.query()}`);
 
@@ -308,6 +310,7 @@ const NestsxCrud = (
     custom: async ({
         url,
         method,
+        meta,
         metaData,
         filters,
         sort,
@@ -320,7 +323,10 @@ const NestsxCrud = (
 
         requestQueryBuilder = handleFilter(requestQueryBuilder, filters);
 
-        requestQueryBuilder = handleJoin(requestQueryBuilder, metaData?.join);
+        requestQueryBuilder = handleJoin(
+            requestQueryBuilder,
+            pickNotDeprecated(meta, metaData)?.join,
+        );
 
         //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
         requestQueryBuilder = handleSort(requestQueryBuilder, sorters ?? sort);

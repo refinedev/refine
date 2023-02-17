@@ -3,7 +3,7 @@ import {
     BaseKey,
     DeleteOneResponse,
     IQueryKeys,
-    MetaDataQuery,
+    MetaQuery,
     MutationMode,
     SuccessErrorNotification,
 } from "@pankod/refine-core";
@@ -95,7 +95,12 @@ export type RefineDeleteButtonProps<
         /**
          * Additional meta data to pass to the delete mutation from the data provider
          */
-        metaData?: MetaDataQuery;
+        meta?: MetaQuery;
+        /**
+         * Additional meta data to pass to the delete mutation from the data provider
+         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+         */
+        metaData?: MetaQuery;
         /**
          * Target data provider name for API call to be made
          * @default `"default"`
@@ -177,7 +182,15 @@ export type RefineRefreshButtonProps<
     RefineButtonLinkingProps &
     TComponentProps &
     TExtraProps & {
-        metaData?: MetaDataQuery;
+        /**
+         * Additional meta data to pass to the `useOne` from the data provider
+         */
+        meta?: MetaQuery;
+        /**
+         * Additional meta data to pass to the `useOne` from the data provider
+         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+         */
+        metaData?: MetaQuery;
     };
 
 export type RefineSaveButtonProps<

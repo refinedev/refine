@@ -4,9 +4,10 @@ import {
     ITreeMenu,
     CanAccess,
     useRouterContext,
+    useMenu,
 } from "@pankod/refine-core";
 
-import { AntdLayout, Menu, Icons, useMenu } from "@pankod/refine-antd";
+import { AntdLayout, Menu, Icons } from "@pankod/refine-antd";
 
 export const FixedSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);

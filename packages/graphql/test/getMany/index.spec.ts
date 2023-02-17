@@ -3,11 +3,11 @@ import client from "../gqlClient";
 import "./index.mock";
 
 describe("getMany", () => {
-    it("correct response with metaData", async () => {
+    it("correct response with meta", async () => {
         const { data } = await dataProvider(client).getMany!({
             resource: "posts",
             ids: ["45", "46"],
-            metaData: {
+            meta: {
                 fields: ["id", "title", "content", { category: ["id"] }],
             },
         });

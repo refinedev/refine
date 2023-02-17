@@ -28,7 +28,7 @@ import {
     QueryResponse,
     PrevContext as UpdateContext,
     SuccessErrorNotification,
-    MetaDataQuery,
+    MetaQuery,
     GetListResponse,
     IQueryKeys,
 } from "../../interfaces";
@@ -36,6 +36,7 @@ import {
     queryKeys,
     pickDataProvider,
     handleMultiple,
+    pickNotDeprecated,
 } from "@definitions/helpers";
 
 type UpdateManyParams<TVariables> = {
@@ -45,7 +46,15 @@ type UpdateManyParams<TVariables> = {
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
     values: TVariables;
-    metaData?: MetaDataQuery;
+    /**
+     * meta data for `dataProvider`
+     */
+    meta?: MetaQuery;
+    /**
+     * meta data for `dataProvider`
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     dataProviderName?: string;
     invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification;
@@ -129,6 +138,7 @@ export const useUpdateMany = <
             onCancel,
             mutationMode,
             undoableTimeout,
+            meta,
             metaData,
             dataProviderName,
         }: UpdateManyParams<TVariables>) => {
@@ -148,7 +158,8 @@ export const useUpdateMany = <
                         resource,
                         ids,
                         variables: values,
-                        metaData,
+                        meta: pickNotDeprecated(meta, metaData),
+                        metaData: pickNotDeprecated(meta, metaData),
                     });
                 } else {
                     return handleMultiple(
@@ -157,7 +168,8 @@ export const useUpdateMany = <
                                 resource,
                                 id,
                                 variables: values,
-                                metaData,
+                                meta: pickNotDeprecated(meta, metaData),
+                                metaData: pickNotDeprecated(meta, metaData),
                             }),
                         ),
                     );
@@ -207,12 +219,14 @@ export const useUpdateMany = <
                 values,
                 mutationMode,
                 dataProviderName,
+                meta,
                 metaData,
             }) => {
                 const queryKey = queryKeys(
                     resource,
                     pickDataProvider(resource, dataProviderName, resources),
-                    metaData,
+                    pickNotDeprecated(meta, metaData),
+                    pickNotDeprecated(meta, metaData),
                 );
 
                 const mutationModePropOrContext =
@@ -352,6 +366,7 @@ export const useUpdateMany = <
                 {
                     ids,
                     resource,
+                    meta,
                     metaData,
                     dataProviderName,
                     successNotification,
@@ -414,7 +429,7 @@ export const useUpdateMany = <
                 }
 
                 const { fields, operation, variables, ...rest } =
-                    metaData || {};
+                    pickNotDeprecated(meta, metaData) || {};
 
                 log?.mutate({
                     action: "updateMany",

@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 
 module.exports = function override(config) {
+    config.module.unknownContextCritical = false;
     config.resolve.fallback = Object.assign(config.resolve.fallback || {}, {
         ...config.resolve.fallback,
         fs: false,
