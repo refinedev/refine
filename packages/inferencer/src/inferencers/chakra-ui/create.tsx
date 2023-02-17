@@ -153,6 +153,11 @@ export const renderer = ({
                             field.accessor,
                         )}", {
                             required: "This field is required",
+                            ${
+                                field.type === "number"
+                                    ? "valueAsNumber: true,"
+                                    : ""
+                            }
                         })}
                     />
                     <FormErrorMessage>

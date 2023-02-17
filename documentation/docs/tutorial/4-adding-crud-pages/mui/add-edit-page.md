@@ -79,7 +79,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-Instead of coding the edit page component from scratch, Inferencer created the required code base on API response, so that we can customize.
+Instead of coding the edit page component from scratch, Inferencer created the required code based on API response, so that we can customize.
 
 ## Understanding the Edit Component
 
