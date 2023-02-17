@@ -18,7 +18,7 @@
     "react-scripts": "^5.0.0",
     "cross-env": "^7.0.3",
     "web-vitals": "^1.1.1",
-    "@ant-design/icons": "^4.5.0",
+    "@ant-design/icons": "^5.0.1",
     "antd": "^5.0.5"
   },
   "devDependencies": {
