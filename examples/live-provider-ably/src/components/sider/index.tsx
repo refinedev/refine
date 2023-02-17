@@ -5,15 +5,9 @@ import {
     CanAccess,
     ITreeMenu,
     useRouterContext,
-} from "@pankod/refine-core";
-import {
-    AntdLayout,
-    Menu,
     useMenu,
-    Grid,
-    Icons,
-    Badge,
-} from "@pankod/refine-antd";
+} from "@pankod/refine-core";
+import { AntdLayout, Menu, Grid, Icons, Badge } from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const CustomSider: React.FC = () => {
