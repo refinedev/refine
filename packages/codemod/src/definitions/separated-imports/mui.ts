@@ -558,8 +558,6 @@ export const exported: { [key: string]: string } = {
     LinearProgressProps: "@mui/material",
     Link: "@mui/material",
     LinkProps: "@mui/material",
-    List: "@mui/material",
-    ListProps: "@mui/material",
     ListItem: "@mui/material",
     ListItemProps: "@mui/material",
     ListItemAvatar: "@mui/material",
