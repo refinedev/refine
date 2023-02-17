@@ -3,18 +3,17 @@ id: table-search
 title: Table Search
 ---
 
-
 We can make extensive search / filter operations using the `useTable` hook on the listing pages.
 
 First, we create a form by extracting `searchFormProps` from `useTable`. We will use this form for search / filtering.
 
-```tsx  title="pages/list.tsx"
+```tsx title="pages/list.tsx"
 import {
-// highlight-start
+    // highlight-start
     Form,
     Table,
     useTable,
-// highlight-end
+    // highlight-end
     Row,
     Col,
     Icons,
@@ -28,11 +27,11 @@ import {
 const { RangePicker } = DatePicker;
 
 export const ListPage: React.FC = () => {
-// highlight-next-line
+    // highlight-next-line
     const { searchFormProps } = useTable<IPost>();
 
     return (
-// highlight-start
+        // highlight-start
         <Row gutter={[16, 16]}>
             <Col lg={6} xs={24}>
                 <Form layout="vertical" {...searchFormProps}>
@@ -58,7 +57,7 @@ export const ListPage: React.FC = () => {
                 </List>
             </Col>
         </Row>
-// highlight-end
+        // highlight-end
     );
 };
 
@@ -117,10 +116,9 @@ const { searchFormProps } = useTable<IPost, HttpError, { title: string; createdA
 ```
 
 :::caution
-`CrudFilters` types object has `field`, `operator` and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
+`CrudFilters` types object has `field`, `operator`, and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
 :::
 
 ## Example
 
 <CodeSandboxExample path="table-antd-table-filter" />
-

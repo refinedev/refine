@@ -1,3 +1,3 @@
-export * from "./genereteUseListSubscription";
-export * from "./genereteUseManySubscription";
-export * from "./genereteUseOneSubscription";
+export * from "./generateUseListSubscription";
+export * from "./generateUseManySubscription";
+export * from "./generateUseOneSubscription";

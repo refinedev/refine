@@ -1,5 +1,39 @@
 # @pankod/refine-mantine
 
+## 2.8.0
+
+### Minor Changes
+
+-   [#3622](https://github.com/refinedev/refine/pull/3622) [`499e9ccc2f6`](https://github.com/refinedev/refine/commit/499e9ccc2f6d8f2404d1515841cd26a299b64426) Thanks [@aliemir](https://github.com/aliemir)! - Additional checks are added for `number` field types. Now, number check still works if the field value is a string.
+
+## 2.7.0
+
+### Minor Changes
+
+-   [#3622](https://github.com/refinedev/refine/pull/3622) [`499e9ccc2f6`](https://github.com/refinedev/refine/commit/499e9ccc2f6d8f2404d1515841cd26a299b64426) Thanks [@aliemir](https://github.com/aliemir)! - Additional checks are added for `number` field types. Now, number check still works if the field value is a string.
+
+## 2.6.0
+
+### Minor Changes
+
+-   [#3600](https://github.com/refinedev/refine/pull/3600) [`c733eeb7449`](https://github.com/refinedev/refine/commit/c733eeb7449bc8235a99eba428730a99c0b29484) Thanks [@aliemir](https://github.com/aliemir)! - Updated Error components of inferencer to reflect the errors in a more descriptive way. #3596
+
+### Patch Changes
+
+-   [#3592](https://github.com/refinedev/refine/pull/3592) [`ea015a22797`](https://github.com/refinedev/refine/commit/ea015a22797127ddd5f87c4d2476e0948c7d0e7e) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the syntax error at `MuiListInferencer` in `@pankod/refine-inferencer/mui`
+
+## 2.5.0
+
+### Minor Changes
+
+-   [#3600](https://github.com/refinedev/refine/pull/3600) [`c733eeb7449`](https://github.com/refinedev/refine/commit/c733eeb7449bc8235a99eba428730a99c0b29484) Thanks [@aliemir](https://github.com/aliemir)! - Updated Error components of inferencer to reflect the errors in a more descriptive way. #3596
+
+## 2.4.1
+
+### Patch Changes
+
+-   [#3592](https://github.com/refinedev/refine/pull/3592) [`ea015a22797`](https://github.com/refinedev/refine/commit/ea015a22797127ddd5f87c4d2476e0948c7d0e7e) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the syntax error at `MuiListInferencer` in `@pankod/refine-inferencer/mui`
+
 ## 2.4.0
 
 ### Minor Changes

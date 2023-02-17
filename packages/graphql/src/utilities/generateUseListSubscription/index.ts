@@ -7,9 +7,9 @@ import {
 import * as gql from "gql-query-builder";
 import camelCase from "camelcase";
 
-import { generateFilter, genereteSort } from "../../dataProvider";
+import { generateFilter, generateSort } from "../../dataProvider";
 
-type GenereteUseListSubscriptionParams = {
+type GenerateUseListSubscriptionParams = {
     resource: string;
     metaData: MetaDataQuery;
     pagination?: Pagination;
@@ -18,23 +18,23 @@ type GenereteUseListSubscriptionParams = {
     filters?: CrudFilters;
 };
 
-type GenereteUseListSubscriptionReturnValues = {
+type GenerateUseListSubscriptionReturnValues = {
     variables: any;
     query: string;
     operation: string;
 };
 
-export const genereteUseListSubscription = ({
+export const generateUseListSubscription = ({
     resource,
     metaData,
     pagination,
     hasPagination,
     sort,
     filters,
-}: GenereteUseListSubscriptionParams): GenereteUseListSubscriptionReturnValues => {
+}: GenerateUseListSubscriptionParams): GenerateUseListSubscriptionReturnValues => {
     const { current = 1, pageSize = 10 } = pagination ?? {};
 
-    const sortBy = genereteSort(sort);
+    const sortBy = generateSort(sort);
     const filterBy = generateFilter(filters);
 
     const camelResource = camelCase(resource);

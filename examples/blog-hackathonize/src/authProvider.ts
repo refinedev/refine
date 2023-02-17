@@ -4,7 +4,7 @@ import { supabaseClient } from "utility";
 
 const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
-        const { user, error } = await supabaseClient.auth.signIn({
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
             email,
             password,
         });
@@ -13,7 +13,7 @@ const authProvider: AuthProvider = {
             return Promise.reject(error);
         }
 
-        if (user) {
+        if (data?.user) {
             return Promise.resolve();
         }
     },
@@ -27,24 +27,27 @@ const authProvider: AuthProvider = {
         return Promise.resolve("/");
     },
     checkError: () => Promise.resolve(),
-    checkAuth: () => {
-        const session = supabaseClient.auth.session();
+    checkAuth: async () => {
+        const { data } = await supabaseClient.auth.getSession();
+        const { session } = data;
 
-        if (session) {
-            return Promise.resolve();
+        if (!session) {
+            return Promise.reject();
         }
 
-        return Promise.reject();
+        return Promise.resolve();
     },
     getPermissions: async () => {
-        const user = supabaseClient.auth.user();
+        const { data } = await supabaseClient.auth.getUser();
+        const { user } = data;
 
         if (user) {
             return Promise.resolve(user.role);
         }
     },
     getUserIdentity: async () => {
-        const user = supabaseClient.auth.user();
+        const { data } = await supabaseClient.auth.getUser();
+        const { user } = data;
 
         if (user) {
             return Promise.resolve({

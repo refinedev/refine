@@ -61,7 +61,8 @@ export const LoginPage = () => {
             setError("Please enter a valid mobile number");
             return;
         }
-        const { error } = await supabaseClient.auth.signIn({
+
+        const { error } = await supabaseClient.auth.signInWithOtp({
             phone: mobileNo,
         });
         if (error) {

@@ -23,6 +23,8 @@ import {
     Ably,
     Dp,
     Elide,
+    EntRefine,
+    Chakra,
 } from "./integration-icons";
 
 export const integrations: IntegrationsType = {
@@ -49,6 +51,14 @@ export const integrations: IntegrationsType = {
             description:
                 " <strong>Mantine UI</strong> Framework support. 20+ framework-specific hooks and components incl. Table, Form, AutoComplete, Menu, Layout, Notification and CRUD components.",
             url: "https://www.npmjs.com/package/@pankod/refine-mantine",
+            status: "stable",
+        },
+        {
+            name: "Chakra UI",
+            icon: Chakra,
+            description:
+                " <strong>Chakra UI</strong> Framework support. 20+ framework-specific components incl. Layout, Feedback, and CRUD components.",
+            url: "https://www.npmjs.com/package/@pankod/refine-chakra-ui",
             status: "stable",
         },
     ],
@@ -285,6 +295,20 @@ export const integrations: IntegrationsType = {
                 {
                     name: "chirdeeptomar",
                     url: "https://github.com/chirdeeptomar",
+                },
+            ],
+        },
+        {
+            name: "Ent refine",
+            icon: EntRefine,
+            description:
+                "A library that generates fully customizable UI based on Entgo ORM and GraphQL API with refine.",
+            url: "https://github.com/diazoxide/entrefine",
+            status: "stable",
+            contributors: [
+                {
+                    name: "diazoxide",
+                    url: "https://github.com/diazoxide",
                 },
             ],
         },

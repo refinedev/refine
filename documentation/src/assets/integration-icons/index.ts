@@ -22,3 +22,5 @@ export { default as Rest } from "./rest";
 export { default as Strapi } from "./strapi";
 export { default as Supabase } from "./supabase";
 export { default as Elide } from "./elide";
+export { default as EntRefine } from "./entrefine";
+export { default as Chakra } from "./chakra";

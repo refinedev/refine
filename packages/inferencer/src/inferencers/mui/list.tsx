@@ -606,7 +606,7 @@ export const renderer = ({
             if (!field.multiple && Array.isArray(field.accessor)) {
                 renderCell = `
                 renderCell: function render({ row }) {
-                    return 
+                    return (
                         <>{${accessor("row", field.key, field.accessor)}}</>
                     );
                 }

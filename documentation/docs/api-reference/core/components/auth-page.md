@@ -2,11 +2,11 @@
 id: auth-page
 title: <AuthPage>
 sidebar_label: <AuthPage>
-description: <AuthPage> component from refine is a authentication page that can be used to login, register, forgot password and update password.
+description: <AuthPage> component from refine is an authentication page that can be used to login, register, forgot password, and update password.
 source: packages/core/src/components/pages/auth/index.tsx
 ---
 
-`<AuthPage>` component from **refine** contains authentication pages that can be used to login, register, forgot password and update password.
+`<AuthPage>` component from **refine** contains authentication pages that can be used to login, register, forgot password, and update password.
 
 Before using `<AuthPage>` component you need to add [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
 
@@ -79,7 +79,7 @@ const Wrapper = (children) => {
 
 `<AuthPage>` component can be used like this:
 
-```tsx live disableScroll hideCode previewHeight=333px url=http://localhost:3000/login
+```tsx live disableScroll  previewHeight=333px url=http://localhost:3000/login
 setInitialRoutes(["/login"]);
 
 // visible-block-start
@@ -126,10 +126,10 @@ render(<App />);
 
 `<AuthPage>` component has the following types:
 
--   `"login"` - a type of the login page and default type.
--   `"register"` - type of the registration page.
--   `"forgotPassword"` - type of the forgot password page.
--   `"updatePassword"` - type of the update password page.
+-   [`login`](#login) - a type of login page and default type.
+-   [`register`](#register) - a type of registration page.
+-   [`forgotPassword`](#forgotpassword) - a type of forgot password page.
+-   [`updatePassword`](#updatepassword) - a type of update password page.
 
 ### Login
 
@@ -180,7 +180,7 @@ const authProvider: AuthProvider = {
     login: async ({ email, password, remember, providerName }) => {
         // You can handle the login process according to your needs.
 
-        // If process is successful.
+        // If the process is successful.
         return Promise.resolve();
 
         return Promise.reject();
@@ -239,7 +239,7 @@ const authProvider: AuthProvider = {
     register: async ({ email, password, providerName }) => {
         // You can handle the register process according to your needs.
 
-        // If process is successful.
+        // If the process is successful.
         return Promise.resolve();
 
         return Promise.reject();
@@ -357,7 +357,7 @@ const authProvider: AuthProvider = {
     updatePassword: async ({ password, confirmPassword }) => {
         // You can handle the update password process according to your needs.
 
-        // If process is successful.
+        // If the process is successful.
         return Promise.resolve();
 
         return Promise.reject();
@@ -517,7 +517,7 @@ render(<App />);
 `loginLink` property is only available for types `register` and `forgotPassword`.
 :::
 
-`loginLink` property defines the link to the login page and also you can give a node to render. Default value is `"/login"`.
+`loginLink` property defines the link to the login page and also you can give a node to render. The default value is `"/login"`.
 
 ```tsx live previewHeight=500px url=http://localhost:3000/register hideCode
 setInitialRoutes(["/register"]);
@@ -583,7 +583,7 @@ render(<App />);
 `registerLink` property is only available for type `login`.
 :::
 
-`registerLink` property defines the link to the registration page and also you can give a node to render. Default value is `"/register"`.
+`registerLink` property defines the link to the registration page and also you can give a node to render. The default value is `"/register"`.
 
 ```tsx live previewHeight=500px url=http://localhost:3000/login hideCode
 setInitialRoutes(["/login"]);
@@ -646,7 +646,7 @@ render(<App />);
 `forgotPasswordLink` property is only available for type `login`.
 :::
 
-`forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. Default value is `"/forgot-password"`.
+`forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. The default value is `"/forgot-password"`.
 
 ```tsx live previewHeight=500px url=http://localhost:3000/login hideCode
 setInitialRoutes(["/login"]);
@@ -754,7 +754,7 @@ render(<App />);
 
 ### `contentProps`
 
-`contentProps` uses for passing props to the content component which is the card component. In the example below you can see that the title, header and content styles are changed with `contentProps`.
+`contentProps` uses for passing props to the content component which is the card component. In the example below you can see that the title, header, and content styles are changed with `contentProps`.
 
 ```tsx live previewHeight=500px url=http://localhost:3000/login hideCode
 setInitialRoutes(["/login"]);

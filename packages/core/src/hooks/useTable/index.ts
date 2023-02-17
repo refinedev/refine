@@ -43,7 +43,7 @@ export type useTableProps<TData, TError> = {
     resource?: string;
     /**
      * Initial page index
-     * @default 10
+     * @default 1
      */
     initialCurrent?: number;
     /**

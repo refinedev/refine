@@ -3,8 +3,7 @@ id: save-and-continue
 title: Save and Continue
 ---
 
-
-refine provides you with the necessary methods to add this feature. This feature is familiar to [Django](https://www.djangoproject.com/) users.
+**refine** provides you with the necessary methods to add this feature. This feature is familiar to [Django](https://www.djangoproject.com/) users.
 
 We have three save options: `Save`, `Save and continue editing` and `Save and add another`.
 
@@ -54,7 +53,7 @@ export const PostList: React.FC = () => {
 </p>
 </details>
 
-### Disable `useForm` redirection after successfull mutation
+### Disable `useForm` redirection after successful mutation
 
 When we create our Create Page, we pass `redirect` false to the [`useForm`](/docs/api-reference/core/hooks/useForm) hook that we will use to manage the form. Thus, we will be able to do the redirection we want in our buttons.
 
@@ -203,10 +202,10 @@ export const PostCreate: React.FC = () => {
 
 ### Handling submit events on buttons
 
-We will use `handleSubmit` function to manage submit event when clicking the buttons we created.
+We will use `handleSubmit` function to manage to submit event when clicking the buttons we created.
 
 :::info
-`onFinish` function resolves to respect the `mutationMode` property. In `pessimistic` mode it will resolve after the response is returned from the request, in `optimistic` and `undoable` modes it will resolve immediately. Only real await will happen in pessimistic mode and this will resolve with the response data, others will resolve immediately with undefined data.
+`onFinish` function resolves to respect the `mutationMode` property. In `pessimistic` mode, it will resolve after the response is returned from the request, in `optimistic` and `undoable` modes it will resolve immediately. Only real await will happen in pessimistic mode and this will resolve with the response data, others will resolve immediately with undefined data.
 
 [Refer to the `mutationMode` documentation for more details. &#8594](/advanced-tutorials/mutation-mode.md)
 :::
