@@ -1,13 +1,13 @@
 import { useGetLocale, useSetLocale } from "@pankod/refine-core";
+import * as Icons from "@ant-design/icons";
 import {
-    AntdLayout,
+    Layout as AntdLayout,
     Space,
     Menu,
     Button,
-    Icons,
     Dropdown,
     Avatar,
-} from "@pankod/refine-antd";
+} from "antd";
 import { useTranslation } from "react-i18next";
 
 const { DownOutlined } = Icons;

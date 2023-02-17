@@ -1,7 +1,9 @@
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import { useTable, List, Table } from "@pankod/refine-antd";
+import { useTable, List } from "@pankod/refine-antd";
+
+import { Table } from "antd";
 
 import { IAuthUser } from "interfaces";
 

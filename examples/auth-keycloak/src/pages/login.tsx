@@ -1,4 +1,4 @@
-import { AntdLayout, Button } from "@pankod/refine-antd";
+import { Layout as AntdLayout, Button } from "antd";
 import { useLogin } from "@pankod/refine-core";
 
 export const Login: React.FC = () => {

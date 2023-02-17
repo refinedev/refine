@@ -5,11 +5,14 @@ import {
     useTranslate,
     useUpdate,
 } from "@pankod/refine-core";
+import { List } from "@pankod/refine-antd";
+
+import * as Icons from "@ant-design/icons";
+
 import {
     Row,
     Col,
     Button,
-    Icons,
     Steps,
     Grid,
     Space,
@@ -17,9 +20,8 @@ import {
     Typography,
     Card,
     Table,
-    List,
     Skeleton,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import dayjs from "dayjs";
 

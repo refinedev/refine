@@ -2,16 +2,19 @@ import { useMany, CrudFilters, HttpError } from "@pankod/refine-core";
 
 import {
     List,
-    Typography,
-    AntdList,
     useSimpleList,
     NumberField,
+    useSelect,
+} from "@pankod/refine-antd";
+
+import {
+    Typography,
+    List as AntdList,
     Space,
     Select,
-    useSelect,
     Form,
     DatePicker,
-} from "@pankod/refine-antd";
+} from "antd";
 
 const { RangePicker } = DatePicker;
 const { Text } = Typography;

@@ -1,10 +1,6 @@
 import { Refine } from "@pankod/refine-core";
-import {
-    notificationProvider,
-    Layout,
-    LoginPage,
-    Icons,
-} from "@pankod/refine-antd";
+import { notificationProvider, Layout, LoginPage } from "@pankod/refine-antd";
+import * as Icons from "@ant-design/icons";
 import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/reset.css";
 import { DataProvider } from "@pankod/refine-strapi-v4";

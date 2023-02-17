@@ -7,26 +7,30 @@ import {
 
 import {
     List,
-    Table,
     TextField,
     useTable,
-    Space,
     EditButton,
     ShowButton,
     useSelect,
+    DateField,
+} from "@pankod/refine-antd";
+
+import * as Icons from "@ant-design/icons";
+
+import {
+    Table,
+    Space,
     Form,
     Input,
     Button,
     DatePicker,
-    DateField,
     Card,
-    Icons,
     Select,
     Tag,
     FormProps,
     Row,
     Col,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { IPost, ICategory, IPostFilterVariables } from "interfaces";
 

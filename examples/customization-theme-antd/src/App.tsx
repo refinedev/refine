@@ -3,9 +3,8 @@ import {
     notificationProvider,
     Layout,
     ErrorComponent,
-    ConfigProvider,
-    theme,
 } from "@pankod/refine-antd";
+import { ConfigProvider, theme } from "antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 

@@ -7,7 +7,8 @@ import {
     useMenu,
 } from "@pankod/refine-core";
 
-import { AntdLayout, Menu, Icons } from "@pankod/refine-antd";
+import * as Icons from "@ant-design/icons";
+import { Layout as AntdLayout, Menu } from "antd";
 
 export const FixedSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);

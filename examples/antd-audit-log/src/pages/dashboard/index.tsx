@@ -1,13 +1,13 @@
 import React from "react";
 import {
-    AntdLayout,
+    Layout as AntdLayout,
     Button,
     Col,
     Form,
     Input,
     Row,
     Typography,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import refineSDK from "utils/refine-sdk";
 import { useLogList } from "@pankod/refine-core";

@@ -1,5 +1,6 @@
 import React from "react";
-import { Icons, Avatar } from "@pankod/refine-antd";
+import * as Icons from "@ant-design/icons";
+import { Avatar } from "antd";
 
 import { getUniqueContributorsAvatarURL } from "utility";
 import { Pixel } from "types";
