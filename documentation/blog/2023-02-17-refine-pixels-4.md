@@ -19,6 +19,11 @@ Here's a quick rundown of the features we'll work on:
 This is Day 4 in the series titled [**refineWeek**](https://refine.dev/week-of-refine/). **refineWeek** is a quickfire tutorial guide that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
 
 
+### refineWeek series
+- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
+- Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
+- Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
+  
 ## Overview
 
 On Day Three, we implemented CRUD operations using **Supabase** `dataProvider` methods and the `resources` prop, which leveraged RESTful routes in the [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/) object under the hood.
