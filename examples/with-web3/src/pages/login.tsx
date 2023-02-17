@@ -1,6 +1,6 @@
 import { useLogin } from "@pankod/refine-core";
 
-import { Icon } from "@pankod/refine-antd";
+import Icon from "@ant-design/icons";
 
 import { Layout as AntdLayout, Button, Row, Col } from "antd";
 

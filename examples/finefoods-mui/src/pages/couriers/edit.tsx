@@ -260,7 +260,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                                         ),
                                                     }}
                                                     // eslint-disable-next-line
-                                            defaultValue={null as any}
+                                                    defaultValue={null as any}
                                                     render={({ field }) => (
                                                         <Autocomplete
                                                             size="small"

@@ -12,6 +12,7 @@ export default function separateImports(payload: {
     source: Collection<any>;
     imports: string[];
     renameImports: { [key: string]: string };
+    renameToDefault?: { [key: string]: string };
     otherImports: { [key: string]: string };
     currentLibName: string;
     nextLibName: string;
@@ -21,6 +22,7 @@ export default function separateImports(payload: {
         source,
         imports,
         renameImports,
+        renameToDefault = {},
         otherImports,
         currentLibName,
         nextLibName,
@@ -36,13 +38,38 @@ export default function separateImports(payload: {
 
     refineImport.replaceWith((path) => {
         for (const item of path.node.specifiers) {
-            // also checking for imported name which is actually the correct one to check for renamed ones
-            if (imports.includes((item as ImportSpecifier)?.imported?.name)) {
-                nextLibImports.push(item as ImportSpecifier);
-            }
+            if (renameToDefault[(item as ImportSpecifier)?.imported?.name]) {
+                // means the imported element is going to be converted to default import from a package (value of renameToDefault)
+                const pkg =
+                    renameToDefault[(item as ImportSpecifier)?.imported?.name];
 
-            if (otherImports[(item as ImportSpecifier)?.imported?.name]) {
-                otherImportItems.push(item as ImportSpecifier);
+                const localName = (item as ImportSpecifier)?.local?.name;
+
+                // remove
+                path.node.specifiers = path.node.specifiers.filter(
+                    (p) => p !== item,
+                );
+
+                // insert
+                j(path)
+                    .at(0)
+                    .insertAfter(
+                        j.importDeclaration(
+                            [j.importDefaultSpecifier(j.identifier(localName))],
+                            j.stringLiteral(pkg),
+                        ),
+                    );
+            } else {
+                // also checking for imported name which is actually the correct one to check for renamed ones
+                if (
+                    imports.includes((item as ImportSpecifier)?.imported?.name)
+                ) {
+                    nextLibImports.push(item as ImportSpecifier);
+                }
+
+                if (otherImports[(item as ImportSpecifier)?.imported?.name]) {
+                    otherImportItems.push(item as ImportSpecifier);
+                }
             }
         }
 

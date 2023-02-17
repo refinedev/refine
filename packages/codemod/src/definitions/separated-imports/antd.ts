@@ -165,6 +165,10 @@ export const rename: { [key: string]: string } = {
     AntdListProps: "ListProps",
 };
 
+export const renameToDefault: { [key: string]: string } = {
+    Icon: "@ant-design/icons",
+};
+
 export const other: { [key: string]: string } = {
     FilterDropdownProps: "antd/lib/table/interface",
     RcFile: "antd/lib/upload/interface",
