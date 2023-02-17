@@ -1,8 +1,13 @@
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import { Create, useForm, useSelect } from "@pankod/refine-antd";
-
-import { Form, Input, Select } from "antd";
+import {
+    Create,
+    Form,
+    useForm,
+    Input,
+    useSelect,
+    Select,
+} from "@pankod/refine-antd";
 
 export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm();

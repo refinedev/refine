@@ -1,8 +1,13 @@
 import React from "react";
-import { useForm, Create } from "@pankod/refine-antd";
-
-import * as Icons from "@ant-design/icons";
-import { Button, Form, Input, Space } from "antd";
+import {
+    Button,
+    Form,
+    Input,
+    Space,
+    useForm,
+    Create,
+    Icons,
+} from "@pankod/refine-antd";
 
 interface IFormValue {
     name: string;

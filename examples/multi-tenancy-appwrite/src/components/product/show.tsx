@@ -1,6 +1,6 @@
 import { useShow, IResourceComponentsProps } from "@pankod/refine-core";
-import { Show, ImageField } from "@pankod/refine-antd";
-import { Typography, Space } from "antd";
+
+import { Show, Typography, Space, ImageField } from "@pankod/refine-antd";
 
 import { IProduct } from "interfaces";
 
@@ -17,30 +17,28 @@ export const ProductShow: React.FC<IResourceComponentsProps> = () => {
         <Show isLoading={isLoading}>
             <Title level={5}>Id</Title>
             <Text>{record?.id}</Text>
+
             <Title level={5}>Title</Title>
             <Text>{record?.title}</Text>
+
             <Title level={5}>Description</Title>
             <Text>{record?.description}</Text>
+
             <Title level={5}>Images</Title>
             <Space wrap>
                 {image ? (
-                    <>
-                        {image.map((img: any) => {
-                            return (
-                                <ImageField
-                                    key={img.name}
-                                    value={img.url}
-                                    title={img.name}
-                                    width={400}
-                                    height={300}
-                                />
-                            );
-                        })}
-                    </>
+                    // eslint-disable-next-line
+                    image.map((img: any) => (
+                        <ImageField
+                            key={img.name}
+                            value={img.url}
+                            title={img.name}
+                            width={400}
+                            height={300}
+                        />
+                    ))
                 ) : (
-                    <>
-                        <Text>Not found any images</Text>
-                    </>
+                    <Text>Not found any images</Text>
                 )}
             </Space>
         </Show>

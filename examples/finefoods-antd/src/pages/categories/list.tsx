@@ -2,28 +2,25 @@ import { useTranslate, IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
     List,
+    Table,
     useTable,
+    Space,
     BooleanField,
     useEditableTable,
-    SaveButton,
-    NumberField,
-    DateField,
-    useDrawerForm,
-} from "@pankod/refine-antd";
-
-import * as Icons from "@ant-design/icons";
-import {
-    Table,
-    Space,
     Form,
+    SaveButton,
     Button,
     Input,
     Checkbox,
     Dropdown,
+    Icons,
     Menu,
     Avatar,
+    NumberField,
+    DateField,
     Grid,
-} from "antd";
+    useDrawerForm,
+} from "@pankod/refine-antd";
 
 import { ICategory, IProduct } from "interfaces";
 import { EditProduct } from "components/product";

@@ -1,7 +1,5 @@
 import { ComponentMeta } from "@storybook/react";
-import { List, useTable } from "@pankod/refine-antd";
-
-import { Table } from "antd";
+import { List, Table, useTable } from "@pankod/refine-antd";
 
 import { RefineWithLayout } from "../../../.storybook/preview";
 

@@ -6,12 +6,12 @@ import {
 
 import {
     Show,
+    Typography,
+    Space,
     ImageField,
     RefreshButton,
     EditButton,
 } from "@pankod/refine-antd";
-
-import { Typography, Space } from "antd";
 
 import { IMovies } from "interfaces";
 

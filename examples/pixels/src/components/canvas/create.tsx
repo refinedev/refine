@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { useGetIdentity } from "@pankod/refine-core";
-import { Form, FormProps, Input, Modal, ModalProps, Radio } from "antd";
+import {
+    Form,
+    FormProps,
+    Input,
+    Modal,
+    ModalProps,
+    Radio,
+} from "@pankod/refine-antd";
 
 import { getRandomName, DEFAULT_CANVAS_SIZE } from "utility";
 

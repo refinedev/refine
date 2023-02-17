@@ -1,11 +1,9 @@
 import React from "react";
 import { useLogin } from "@pankod/refine-core";
-import * as Icons from "@ant-design/icons";
-
 import {
     Row,
     Col,
-    Layout as AntdLayout,
+    AntdLayout,
     Card,
     Typography,
     Form,
@@ -14,8 +12,8 @@ import {
     Checkbox,
     Space,
     Divider,
-} from "antd";
-
+    Icons,
+} from "@pankod/refine-antd";
 import { useAuthConfig } from "@pankod/refine-cloud";
 
 const { Text, Title } = Typography;

@@ -1,5 +1,11 @@
-import { NumberField, useSimpleList } from "@pankod/refine-antd";
-import { Typography, Avatar, Space, List as AntdList } from "antd";
+import {
+    Typography,
+    Avatar,
+    Space,
+    NumberField,
+    useSimpleList,
+    AntdList,
+} from "@pankod/refine-antd";
 import { Container, AvatarWrapper, AvatarCircle, TextWrapper } from "./styled";
 
 import { IOrder } from "interfaces";

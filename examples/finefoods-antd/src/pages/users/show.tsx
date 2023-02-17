@@ -6,26 +6,23 @@ import {
 } from "@pankod/refine-core";
 
 import {
-    useTable,
-    List,
-    TextField,
-    getDefaultSortOrder,
-    NumberField,
-    DateField,
-} from "@pankod/refine-antd";
-
-import * as Icons from "@ant-design/icons";
-import {
     Typography,
+    useTable,
     Avatar,
     Row,
     Col,
     Card,
     Space,
+    Icons,
+    List,
     Table,
     Grid,
+    TextField,
+    getDefaultSortOrder,
+    NumberField,
     Popover,
-} from "antd";
+    DateField,
+} from "@pankod/refine-antd";
 
 import { OrderStatus } from "components";
 

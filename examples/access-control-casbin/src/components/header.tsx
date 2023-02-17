@@ -1,4 +1,4 @@
-import { Layout as AntdLayout, Radio } from "antd";
+import { AntdLayout, Radio } from "@pankod/refine-antd";
 
 interface HeaderProps {
     role: string;

@@ -1,4 +1,4 @@
-import * as Icons from "@ant-design/icons";
+import { Icons } from "@pankod/refine-antd";
 import { RefineKbar } from "@pankod/refine-kbar";
 
 import { ToggleContainer } from "./styled";

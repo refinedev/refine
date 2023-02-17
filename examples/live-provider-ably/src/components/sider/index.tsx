@@ -7,8 +7,14 @@ import {
     useRouterContext,
     useMenu,
 } from "@pankod/refine-core";
-import * as Icons from "@ant-design/icons";
-import { Layout as AntdLayout, Menu, Grid, Badge } from "antd";
+import {
+    AntdLayout,
+    Menu,
+    useMenu,
+    Grid,
+    Icons,
+    Badge,
+} from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const CustomSider: React.FC = () => {

@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-import * as Icons from "@ant-design/icons";
-import { Card, Button, Typography } from "antd";
+import { Card, Button, Icons, Typography } from "@pankod/refine-antd";
 
 import { TypePage } from "./typePage";
 import { InputPage } from "./inputPage";

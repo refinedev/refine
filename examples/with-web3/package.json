@@ -22,8 +22,7 @@
         "cross-env": "^7.0.3",
         "typescript": "^4.7.4",
         "web3": "^1.6.1",
-        "web3modal": "^1.9.4",
-        "antd": "^5.0.5"
+        "web3modal": "^1.9.4"
     },
     "scripts": {
         "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",

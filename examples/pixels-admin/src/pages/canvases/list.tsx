@@ -4,9 +4,15 @@ import {
     List,
     useEditableTable,
     useModal,
+    Table,
+    Form,
+    Button,
     DeleteButton,
+    Space,
+    Tag,
+    Modal,
+    Avatar,
 } from "@pankod/refine-antd";
-import { Table, Form, Button, Space, Tag, Modal, Avatar } from "antd";
 import { TCanvas } from "types/canvas";
 import { LogList } from "components/logs";
 import { CanvasItem } from "components/canvas";

@@ -20,9 +20,7 @@
         "next-i18next": "^8.9.0",
         "nookies": "^2.5.2",
         "react": "^18.0.0",
-        "react-dom": "^18.0.0",
-        "@ant-design/icons": "^5.0.1",
-        "antd": "^5.0.5"
+        "react-dom": "^18.0.0"
     },
     "devDependencies": {
         "@types/node": "^12.20.11",

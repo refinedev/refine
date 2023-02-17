@@ -1,8 +1,14 @@
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import { Create, useForm, useSelect } from "@pankod/refine-antd";
-
-import { Form, Input, Select, DatePicker } from "antd";
+import {
+    Create,
+    Form,
+    Input,
+    Select,
+    useForm,
+    useSelect,
+    DatePicker,
+} from "@pankod/refine-antd";
 
 import { ICompany, IContact, IMission, IInvoice } from "interfaces";
 

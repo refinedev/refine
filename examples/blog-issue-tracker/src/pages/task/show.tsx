@@ -1,6 +1,5 @@
 import { useShow, useOne } from "@pankod/refine-core";
-import { Show, DateField } from "@pankod/refine-antd";
-import { Typography, Tag } from "antd";
+import { Show, Typography, Tag, DateField } from "@pankod/refine-antd";
 import { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
 
 const { Title, Text } = Typography;

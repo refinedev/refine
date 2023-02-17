@@ -1,5 +1,5 @@
 import { AuthProvider } from "@pankod/refine-core";
-import { notification } from "antd";
+import { notification } from "@pankod/refine-antd";
 
 export const TOKEN_KEY = "refine-auth";
 

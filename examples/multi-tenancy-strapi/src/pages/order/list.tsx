@@ -3,15 +3,15 @@ import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
     List,
+    Table,
     useTable,
     TagField,
     TextField,
+    Space,
     EditButton,
     DeleteButton,
     ImageField,
 } from "@pankod/refine-antd";
-
-import { Table, Space } from "antd";
 
 import { IOrder } from "interfaces";
 import { StoreContext } from "context/store";

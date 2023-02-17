@@ -1,6 +1,4 @@
-import { Create, useForm } from "@pankod/refine-antd";
-
-import { Form, Input } from "antd";
+import { Create, Form, Input, useForm } from "@pankod/refine-antd";
 
 import { TeamType } from "interfaces";
 

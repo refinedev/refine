@@ -4,8 +4,8 @@ import {
     notificationProvider,
     Layout,
     ErrorComponent,
+    Icons,
 } from "@pankod/refine-antd";
-import * as Icons from "@ant-design/icons";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/reset.css";
