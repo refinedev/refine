@@ -10,6 +10,9 @@
     "lint": "next lint",
     "test": "jest --passWithNoTests"
   },
+  "peerDependencies": {
+    "@mui/material": "^5.8.6"
+  },
   "dependencies": {
     "@pankod/refine-antd": "^4.1.0",
     "@pankod/refine-core": "^3.74.0",
