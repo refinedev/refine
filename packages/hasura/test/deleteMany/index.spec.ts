@@ -3,14 +3,14 @@ import client from "../gqlClient";
 import "./index.mock";
 
 describe("deleteMany", () => {
-    it("correct response with metaData", async () => {
+    it("correct response with meta", async () => {
         const { data } = await dataProvider(client).deleteMany!({
             resource: "posts",
             ids: [
                 "cddd4ced-651d-4039-abe0-2a9dffbc8c82",
                 "c82c71c5-0f0b-4042-b9a3-db977fe28a83",
             ],
-            metaData: {
+            meta: {
                 fields: ["id", "title"],
             },
         });
@@ -22,7 +22,7 @@ describe("deleteMany", () => {
         expect(data[1].title).toEqual("E-business alarm Bedfordshire");
     });
 
-    it("correct response without metaData", async () => {
+    it("correct response without meta", async () => {
         const { data } = await dataProvider(client).deleteMany!({
             resource: "posts",
             ids: [

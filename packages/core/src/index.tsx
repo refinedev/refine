@@ -35,6 +35,7 @@ export {
     LogicalFilter,
     LogParams,
     MapDataFn,
+    MetaQuery,
     MetaDataQuery,
     MutationMode,
     NotificationProvider,

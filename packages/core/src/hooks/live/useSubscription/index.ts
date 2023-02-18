@@ -7,7 +7,7 @@ import {
     CrudSorting,
     ILiveContext,
     LiveEvent,
-    MetaDataQuery,
+    MetaQuery,
     Pagination,
 } from "../../../interfaces";
 
@@ -33,7 +33,11 @@ export type UseSubscriptionProps = {
     params?: {
         ids?: BaseKey[];
         id?: BaseKey;
-        metaData?: MetaDataQuery;
+        meta?: MetaQuery;
+        /**
+         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+         */
+        metaData?: MetaQuery;
         pagination?: Pagination;
         hasPagination?: boolean;
         /**

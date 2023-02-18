@@ -8,6 +8,7 @@ import {
     useTableReturnType as useTableReturnTypeCore,
     useTableNoPaginationReturnType as useTableNoPaginationReturnTypeCore,
     useLiveMode,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import {
     DataGridProps,
@@ -168,6 +169,7 @@ export function useDataGrid<
     liveMode: liveModeFromProp,
     onLiveEvent,
     liveParams,
+    meta,
     metaData,
     dataProviderName,
 }: UseDataGridProps<TData, TError, TSearchVariables> = {}):
@@ -211,7 +213,8 @@ export function useDataGrid<
         liveMode: liveModeFromProp,
         onLiveEvent,
         liveParams,
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         dataProviderName,
     });
 

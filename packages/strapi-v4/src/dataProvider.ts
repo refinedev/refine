@@ -6,6 +6,7 @@ import {
     CrudSorting,
     CrudOperators,
     LogicalFilter,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import { stringify, parse } from "qs";
 
@@ -173,16 +174,18 @@ export const DataProvider = (
         filters,
         sort,
         sorters,
+        meta: _meta,
         metaData,
     }) => {
         const url = `${apiUrl}/${resource}`;
 
         const { current = 1, pageSize = 10 } = pagination ?? {};
 
-        const locale = metaData?.locale;
-        const fields = metaData?.fields;
-        const populate = metaData?.populate;
-        const publicationState = metaData?.publicationState;
+        const meta = pickNotDeprecated(_meta, metaData);
+        const locale = meta?.locale;
+        const fields = meta?.fields;
+        const populate = meta?.populate;
+        const publicationState = meta?.publicationState;
 
         //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
         const quertSorters = generateSort(sorters ?? sort);
@@ -215,13 +218,14 @@ export const DataProvider = (
         };
     },
 
-    getMany: async ({ resource, ids, metaData }) => {
+    getMany: async ({ resource, ids, meta: _meta, metaData }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const locale = metaData?.locale;
-        const fields = metaData?.fields;
-        const populate = metaData?.populate;
-        const publicationState = metaData?.publicationState;
+        const meta = pickNotDeprecated(_meta, metaData);
+        const locale = meta?.locale;
+        const fields = meta?.fields;
+        const populate = meta?.populate;
+        const publicationState = meta?.publicationState;
 
         const queryFilters = generateFilter([
             {
@@ -314,10 +318,11 @@ export const DataProvider = (
         return { data: response };
     },
 
-    getOne: async ({ resource, id, metaData }) => {
-        const locale = metaData?.locale;
-        const fields = metaData?.fields;
-        const populate = metaData?.populate;
+    getOne: async ({ resource, id, meta: _meta, metaData }) => {
+        const meta = pickNotDeprecated(_meta, metaData);
+        const locale = meta?.locale;
+        const fields = meta?.fields;
+        const populate = meta?.populate;
 
         const query = {
             locale,

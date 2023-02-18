@@ -325,7 +325,7 @@ import { CompanyItem } from "components/company";
 
 export const CompanyList: React.FC<IResourceComponentsProps> = () => {
     const { listProps } = useSimpleList<ICompany>({
-        metaData: { populate: ["logo"] },
+        meta: { populate: ["logo"] },
     });
 
     return (
@@ -413,7 +413,7 @@ import { CreateContact } from "components/contacts";
 export const ContactsList: React.FC = () => {
     //highlight-start
     const { tableProps } = useTable<IContact>({
-        metaData: { populate: ["client"] },
+        meta: { populate: ["client"] },
     });
     //highlight-end
 
@@ -813,7 +813,7 @@ import { ClientItem, CreateClient, EditClient } from "components/client";
 
 export const ClientList: React.FC<IResourceComponentsProps> = () => {
     const { listProps } = useSimpleList<IClient>({
-        metaData: { populate: ["contacts"] },
+        meta: { populate: ["contacts"] },
     });
 
     const {

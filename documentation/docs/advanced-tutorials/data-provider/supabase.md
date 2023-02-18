@@ -172,7 +172,7 @@ const authProvider: AuthProvider = {
             }
 
             if (data?.url) {
-                return Promise.resolve();
+                return Promise.resolve(false);
             }
         }
 
@@ -370,7 +370,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 order: "asc",
             },
         ],
-        metaData: {
+        meta: {
             select: "*, categories(title)",
         },
     });
@@ -1137,19 +1137,19 @@ With [Supabase JS client v2](#), multiple subscription calls are not supported. 
 -   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
 -   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
 -   **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
-:::
+    :::
 
-## Using `metaData` to pass values to data provider
+## Using `meta` to pass values to data provider
 
-The [`metaData`](/docs/api-reference/general-concepts.md/#metadata) property is used to pass additional information that can be read by data provider methods.
+The [`meta`](/docs/api-reference/general-concepts.md/#meta) property is used to pass additional information that can be read by data provider methods.
 
-We'll show an example of getting relational data from different tables on Supabase API using `metaData` property.
+We'll show an example of getting relational data from different tables on Supabase API using `meta` property.
 
 Take a look at the useTable hook in List page we created on the [previous sections](http://localhost:3000/docs/advanced-tutorials/data-provider/supabase/#adding-a-list-page).
 
 ### `select` - Handling one-to-many relationship
 
-We pass a `select` value in `metaData` object to perform relational database operation in [Supabase data provider](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts). The data provider methods are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) property internally.
+We pass a `select` value in `meta` object to perform relational database operation in [Supabase data provider](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts). The data provider methods are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) property internally.
 
 In this way, we can get the `title` data from the `categories` table and display it on the List page.
 
@@ -1159,24 +1159,24 @@ For example, for `posts -> categories` relationship, we can get the `title` data
 const { tableProps, sorter } = useTable<IPost>({
     //highlight-start
     resource: "posts",
-    metaData: {
+    meta: {
         select: "*, categories(title)",
     },
     // highlight-end
 });
 ```
 
-`useList`, `useOne`, `useMany` hooks are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) property internally. So you can pass parameters to the Supbase select method using `metaData` property.
+`useList`, `useOne`, `useMany` hooks are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) property internally. So you can pass parameters to the Supbase select method using `meta` property.
 
 ### `select` - Handling many-to-many relationships
 
-For example, for `movies <-> categories_movies <-> categories` many-to-many relationship, we can get the `categories` data of a user using `metaData` property.
+For example, for `movies <-> categories_movies <-> categories` many-to-many relationship, we can get the `categories` data of a user using `meta` property.
 
 ```tsx title="src/pages/users/list.tsx"
 const { tableProps, sorter } = useTable<IUser>({
     //highlight-start
     resource: "movies",
-    metaData: {
+    meta: {
         select: "*, categories!inner(name)",
     },
     // highlight-end
@@ -1185,9 +1185,9 @@ const { tableProps, sorter } = useTable<IUser>({
 
 ### `id`
 
-`metaData` `id` property is used to match the column name of the primary key(in case the column name is different than "id") in your Supabase data table to the column name you have assigned.
+`meta` `id` property is used to match the column name of the primary key(in case the column name is different than "id") in your Supabase data table to the column name you have assigned.
 
-refine's [useMany](/docs/api-reference/core/hooks/data/useMany/) hook accepts `metaData` property and uses `getMany` method of data provider.
+refine's [useMany](/docs/api-reference/core/hooks/data/useMany/) hook accepts `meta` property and uses `getMany` method of data provider.
 
 ```tsx
 useMany({
@@ -1198,14 +1198,14 @@ useMany({
 
 By default, it searches for posts in the `id` column of the data table.
 
-With passing `id` parameter to the `metaData` property, we can change the column name to the `post_id` that will be searched for the ids.
+With passing `id` parameter to the `meta` property, we can change the column name to the `post_id` that will be searched for the ids.
 
 ```tsx
 useMany({
     resource: "posts",
     ids: [1, 2],
     //highlight-start
-    metaData: {
+    meta: {
         id: "post_id",
     },
     // highlight-end
@@ -1227,7 +1227,7 @@ const { tableProps, sorter } = useTable({
     initialFilter: [
         { field: "categories.title", operator: "eq", value: "Beginning" },
     ],
-    metaData: {
+    meta: {
         select: "*, categories!inner(title)",
     },
     //highlight-end

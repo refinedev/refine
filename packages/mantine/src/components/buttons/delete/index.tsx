@@ -5,6 +5,7 @@ import {
     useMutationMode,
     useCan,
     useResource,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import { Group, Text, Button, Popover, ActionIcon } from "@mantine/core";
@@ -30,6 +31,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     hideText = false,
     accessControl,
     ignoreAccessControlProvider = false,
+    meta,
     metaData,
     dataProviderName,
     confirmTitle,
@@ -74,7 +76,8 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 mutationMode,
                 successNotification,
                 errorNotification,
-                metaData,
+                meta: pickNotDeprecated(meta, metaData),
+                metaData: pickNotDeprecated(meta, metaData),
                 dataProviderName,
             },
             {
@@ -92,7 +95,17 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     }
 
     return (
-        <Popover opened={opened} onChange={setOpened} withArrow withinPortal>
+        <Popover
+            opened={opened}
+            onChange={setOpened}
+            withArrow
+            withinPortal
+            disabled={
+                typeof rest?.disabled !== "undefined"
+                    ? rest.disabled
+                    : data?.can === false
+            }
+        >
             <Popover.Target>
                 {hideText ? (
                     <ActionIcon

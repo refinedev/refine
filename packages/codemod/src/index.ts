@@ -127,6 +127,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         value: "use-data-grid-columns",
     },
     {
+        name: "metadata-to-meta: Transform metaData to meta",
+        value: "metadata-to-meta",
+    },
+    {
         name: "use-menu-to-core: Transform useMenu imports to core",
         value: "use-menu-to-core",
     },

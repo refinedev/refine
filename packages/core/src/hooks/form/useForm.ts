@@ -22,13 +22,13 @@ import {
     ResourceRouterParams,
     RedirectAction,
     SuccessErrorNotification,
-    MetaDataQuery,
     UpdateResponse,
     MutationMode,
     BaseKey,
     IQueryKeys,
     FormAction,
     IResourceItem,
+    MetaQuery,
 } from "../../interfaces";
 import {
     UpdateParams,
@@ -41,6 +41,7 @@ import { useRouterType } from "@contexts/router-picker";
 import { useParsed } from "@hooks/router/use-parsed";
 import { pickResource } from "@definitions/helpers/pick-resource";
 import { useResource } from "../resource/useResource";
+import { pickNotDeprecated } from "@definitions/helpers";
 
 export type ActionParams = {
     /**
@@ -74,7 +75,12 @@ type ActionFormProps<
     /**
      * Metadata query for dataProvider
      */
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     * Metadata query for dataProvider
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     /**
      * [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)
      * @default `"pessimistic"*`
@@ -188,6 +194,7 @@ export const useForm = <
     redirect: redirectFromProps,
     successNotification,
     errorNotification,
+    meta,
     metaData,
     mutationMode: mutationModeProp,
     liveMode,
@@ -332,7 +339,8 @@ export const useForm = <
         liveMode,
         onLiveEvent,
         liveParams,
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         dataProviderName,
     });
 
@@ -385,7 +393,8 @@ export const useForm = <
                     resource: resource.name,
                     successNotification,
                     errorNotification,
-                    metaData,
+                    meta: pickNotDeprecated(meta, metaData),
+                    metaData: pickNotDeprecated(meta, metaData),
                     dataProviderName,
                     invalidates,
                 },
@@ -425,7 +434,8 @@ export const useForm = <
             undoableTimeout,
             successNotification,
             errorNotification,
-            metaData,
+            meta: pickNotDeprecated(meta, metaData),
+            metaData: pickNotDeprecated(meta, metaData),
             dataProviderName,
             invalidates,
         };

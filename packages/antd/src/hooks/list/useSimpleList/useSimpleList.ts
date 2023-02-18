@@ -12,6 +12,7 @@ import {
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
     useTableReturnType,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import { useLiveMode } from "@pankod/refine-core";
 import { PaginationLink } from "@hooks/table/useTable/paginationLink";
@@ -72,6 +73,7 @@ export const useSimpleList = <
         liveMode: liveModeFromProp,
         onLiveEvent,
         liveParams,
+        meta,
         metaData,
         dataProviderName,
         ...listProps
@@ -108,7 +110,8 @@ export const useSimpleList = <
         liveMode: liveModeFromProp,
         onLiveEvent,
         liveParams,
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         syncWithLocation: syncWithLocationProp,
         dataProviderName,
         // @ts-expect-error currently boolean casting is not supported in overloaded types.

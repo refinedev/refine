@@ -9,9 +9,9 @@ import {
     HttpError,
     BaseRecord,
     BaseKey,
-    MetaDataQuery,
     LiveModeProps,
     SuccessErrorNotification,
+    MetaQuery,
 } from "../../interfaces";
 import {
     useResource,
@@ -21,7 +21,7 @@ import {
     useHandleNotification,
     useDataProvider,
 } from "@hooks";
-import { queryKeys, pickDataProvider } from "@definitions";
+import { queryKeys, pickDataProvider, pickNotDeprecated } from "@definitions";
 
 export type UseOneProps<TData, TError> = {
     /**
@@ -40,7 +40,12 @@ export type UseOneProps<TData, TError> = {
     /**
      * Metadata query for `dataProvider`,
      */
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     * Meta data query for `dataProvider`,
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     /**
      * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
      * @default `"default"``
@@ -69,6 +74,7 @@ export const useOne = <
     queryOptions,
     successNotification,
     errorNotification,
+    meta,
     metaData,
     liveMode,
     onLiveEvent,
@@ -80,7 +86,8 @@ export const useOne = <
     const queryKey = queryKeys(
         resource,
         pickDataProvider(resource, dataProviderName, resources),
-        metaData,
+        pickNotDeprecated(meta, metaData),
+        pickNotDeprecated(meta, metaData),
     );
 
     const { getOne } = dataProvider(
@@ -97,7 +104,8 @@ export const useOne = <
         params: {
             ids: id ? [id] : [],
             id: id,
-            metaData,
+            meta: pickNotDeprecated(meta, metaData),
+            metaData: pickNotDeprecated(meta, metaData),
             subscriptionType: "useOne",
             ...liveParams,
         },
@@ -115,8 +123,16 @@ export const useOne = <
             getOne<TData>({
                 resource: resource!,
                 id: id!,
+                meta: {
+                    ...(pickNotDeprecated(meta, metaData) || {}),
+                    queryContext: {
+                        queryKey,
+                        pageParam,
+                        signal,
+                    },
+                },
                 metaData: {
-                    ...metaData,
+                    ...(pickNotDeprecated(meta, metaData) || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -135,7 +151,14 @@ export const useOne = <
 
                 const notificationConfig =
                     typeof successNotification === "function"
-                        ? successNotification(data, { id, metaData }, resource)
+                        ? successNotification(
+                              data,
+                              {
+                                  id,
+                                  ...(pickNotDeprecated(meta, metaData) || {}),
+                              },
+                              resource,
+                          )
                         : successNotification;
 
                 handleNotification(notificationConfig);
@@ -146,7 +169,14 @@ export const useOne = <
 
                 const notificationConfig =
                     typeof errorNotification === "function"
-                        ? errorNotification(err, { id, metaData }, resource)
+                        ? errorNotification(
+                              err,
+                              {
+                                  id,
+                                  ...(pickNotDeprecated(meta, metaData) || {}),
+                              },
+                              resource,
+                          )
                         : errorNotification;
 
                 handleNotification(notificationConfig, {

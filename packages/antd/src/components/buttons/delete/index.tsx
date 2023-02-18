@@ -7,6 +7,7 @@ import {
     useMutationMode,
     useCan,
     useResource,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 
@@ -31,6 +32,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     accessControl,
     ignoreAccessControlProvider = false,
     metaData,
+    meta,
     dataProviderName,
     confirmTitle,
     confirmOkText,
@@ -88,7 +90,8 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                         mutationMode,
                         successNotification,
                         errorNotification,
-                        metaData,
+                        meta: pickNotDeprecated(meta, metaData),
+                        metaData: pickNotDeprecated(meta, metaData),
                         dataProviderName,
                         invalidates,
                     },
@@ -99,7 +102,11 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                     },
                 );
             }}
-            disabled={data?.can === false}
+            disabled={
+                typeof rest?.disabled !== "undefined"
+                    ? rest.disabled
+                    : data?.can === false
+            }
         >
             <Button
                 danger

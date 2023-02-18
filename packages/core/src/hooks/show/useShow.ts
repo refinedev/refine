@@ -8,7 +8,7 @@ import {
     BaseRecord,
     GetOneResponse,
     SuccessErrorNotification,
-    MetaDataQuery,
+    MetaQuery,
     LiveModeProps,
     BaseKey,
     HttpError,
@@ -18,6 +18,7 @@ import { useRouterType } from "@contexts/router-picker";
 import { useParsed } from "@hooks/router/use-parsed";
 import { pickResource } from "@definitions/helpers/pick-resource";
 import { useResource } from "../resource/useResource";
+import { pickNotDeprecated } from "@definitions/helpers";
 
 export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
     queryResult: QueryObserverResult<GetOneResponse<TData>>;
@@ -46,7 +47,12 @@ export type useShowProps<
     /**
      * Additional meta data to pass to the data provider's `getOne`
      */
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     * Additional meta data to pass to the data provider's `getOne`
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     /**
      * Target data provider name for API call to be made
      * @default `"default"`
@@ -70,6 +76,7 @@ export const useShow = <
     id,
     successNotification,
     errorNotification,
+    meta,
     metaData,
     liveMode,
     onLiveEvent,
@@ -164,7 +171,8 @@ export const useShow = <
         },
         successNotification,
         errorNotification,
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         liveMode,
         onLiveEvent,
         dataProviderName,

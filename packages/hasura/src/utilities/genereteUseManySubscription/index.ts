@@ -1,9 +1,10 @@
-import { MetaDataQuery, BaseKey } from "@pankod/refine-core";
+import { MetaQuery, BaseKey, pickNotDeprecated } from "@pankod/refine-core";
 import * as gql from "gql-query-builder";
 
 type GenereteUseManySubscriptionParams = {
     resource: string;
-    metaData: MetaDataQuery;
+    meta: MetaQuery;
+    metaData: MetaQuery;
     ids?: BaseKey[];
 };
 
@@ -15,6 +16,7 @@ type GenereteUseManySubscriptionReturnValues = {
 
 export const genereteUseManySubscription = ({
     resource,
+    meta: _meta,
     metaData,
     ids,
 }: GenereteUseManySubscriptionParams): GenereteUseManySubscriptionReturnValues => {
@@ -24,12 +26,13 @@ export const genereteUseManySubscription = ({
         );
     }
 
-    const operation = metaData.operation ?? resource;
+    const meta = pickNotDeprecated(_meta, metaData);
+    const operation = meta.operation ?? resource;
 
     const { query, variables } = gql.subscription({
         operation,
-        fields: metaData.fields,
-        variables: metaData.variables ?? {
+        fields: meta.fields,
+        variables: meta.variables ?? {
             where: {
                 type: `${operation}_bool_exp`,
                 value: {
