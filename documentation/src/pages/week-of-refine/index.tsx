@@ -42,7 +42,7 @@ const timeline = [
         date: "18th February 2022",
         title: "Initialize and Build Pixels Admin App",
         description: `We'll implement an admin dashboard app and explore how refine's Ant Design support module is geared to rapidly build CRUD pages for a refine app`,
-        link: null,
+        link: "https://refine.dev/blog/refine-pixels-5/",
     },
     {
         date: "19th February 2022",
