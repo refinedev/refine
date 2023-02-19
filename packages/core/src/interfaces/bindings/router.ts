@@ -27,7 +27,8 @@
  */
 
 import { CrudFilters, CrudSorting } from "@contexts/data/IDataContext";
-import { Action, BaseKey, IResourceItem } from "src";
+import { IResourceItem } from "./resource";
+import { Action, BaseKey } from "..";
 
 export type GoConfig = {
     to?: string;
@@ -53,7 +54,7 @@ export type ParsedParams = {
 
 export type ParseResponse = {
     params?: ParsedParams;
-    resource?: string | IResourceItem;
+    resource?: IResourceItem;
     id?: BaseKey;
     action?: Action;
 };
@@ -68,4 +69,7 @@ export type RouterBindings = {
     go?: () => GoFunction;
     back?: () => BackFunction;
     parse?: () => ParseFunction;
+    Link?: React.ComponentType<
+        React.PropsWithChildren<{ to: string; [prop: string]: any }>
+    >;
 };
