@@ -22,11 +22,6 @@ export type RefineButtonResourceProps = {
      */
     resourceNameOrRouteName?: string;
     /**
-     * Whether to skip access control for the resource and the delete action or not
-     * @deprecated `ignoreAccessControlProvider` deprecated. Use `accessControl.enabled` instead.
-     */
-    ignoreAccessControlProvider?: boolean;
-    /**
      * Access Control configuration for the button
      * @default `{ enabled: true }`
      */
