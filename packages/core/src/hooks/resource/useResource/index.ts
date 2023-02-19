@@ -12,20 +12,30 @@ import { useRouterType } from "../../../contexts/router-picker";
 import { useParsed } from "../../router/use-parsed";
 import { pickResource } from "../../../definitions/helpers/pick-resource";
 
-export type UseResourcePropsType = {
+export type UseResourceLegacyProps = {
+    /**
+     * Determines which resource to use for redirection
+     * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/refinedev/refine/issues/1618
+     */
+    resourceName?: string;
     /**
      * Determines which resource to use for redirection
      * @default Resource name that it reads from route
-     * @deprecated Use `identifier` property instead. (`identifier` does not check by route name in new router)
      */
     resourceNameOrRouteName?: string;
     /**
-     * Matches the resource by identifier.
-     * If not provided, the resource from the route will be returned.
-     * If your resource does not explicitly define an identifier, the resource name will be used.
+     * Adds id to the end of the URL
+     * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/refinedev/refine/issues/1618
      */
-    identifier?: string;
+    recordItemId?: BaseKey;
 };
+
+/**
+ * Matches the resource by identifier.
+ * If not provided, the resource from the route will be returned.
+ * If your resource does not explicitly define an identifier, the resource name will be used.
+ */
+export type UseResourceParam = string;
 
 type UseResourceReturnType = {
     resources: IResourceItem[];
@@ -39,19 +49,38 @@ type UseResourceReturnType = {
 };
 
 /**
+ * @deprecated Use `useResource` with `identifier` property instead. (`identifier` does not check by route name in new router)
+ */
+export function useResource(
+    props: UseResourceLegacyProps,
+): UseResourceReturnType;
+export function useResource(
+    identifier?: UseResourceParam,
+): UseResourceReturnType;
+/**
  * `useResource` is used to get `resources` that are defined as property of the `<Refine>` component.
  *
  * @see {@link https://refine.dev/docs/core/hooks/resource/useResource} for more details.
  */
-export const useResource = ({
-    resourceNameOrRouteName,
-    identifier,
-}: UseResourcePropsType = {}): UseResourceReturnType => {
+export function useResource(
+    args?: UseResourceLegacyProps | UseResourceParam,
+): UseResourceReturnType {
     const { resources } = useContext(ResourceContext);
 
     const routerType = useRouterType();
 
     const params = useParsed();
+
+    const oldProps = {
+        resourceName:
+            args && typeof args !== "string" ? args.resourceName : args,
+        resourceNameOrRouteName:
+            args && typeof args !== "string"
+                ? args.resourceNameOrRouteName
+                : args,
+        recordItemId:
+            args && typeof args !== "string" ? args.recordItemId : undefined,
+    };
 
     /**
      * Legacy Router - Start
@@ -66,11 +95,14 @@ export const useResource = ({
 
     if (routerType === "legacy") {
         const legacyResource = resourceWithRoute(
-            resourceNameOrRouteName ?? identifier ?? legacyParams.resource,
+            oldProps.resourceNameOrRouteName
+                ? oldProps.resourceNameOrRouteName
+                : legacyParams.resource,
         );
-        const legacyId = legacyParams.id;
+        const legacyId = oldProps?.recordItemId ?? legacyParams.id;
         const legacyAction = legacyParams.action;
-        const legacyResourceName = legacyResource.name;
+        const legacyResourceName =
+            oldProps?.resourceName ?? legacyResource.name;
 
         return {
             resources,
@@ -85,31 +117,19 @@ export const useResource = ({
     /** New Router */
     let resource: IResourceItem | undefined = undefined;
     // we try to pick the resource from props first
-    if (identifier || resourceNameOrRouteName) {
-        const pickedFromProps = pickResource(
-            identifier ?? resourceNameOrRouteName,
-            resources,
-        );
+    const identifier =
+        typeof args === "string" ? args : oldProps?.resourceNameOrRouteName;
+    if (identifier) {
+        const pickedFromProps = pickResource(identifier, resources);
         if (pickedFromProps) {
             resource = pickedFromProps;
         } else {
             resource = {
-                name: (identifier ?? resourceNameOrRouteName) as string,
+                name: identifier as string,
             };
         }
-    } else {
-        if (typeof params?.resource === "string") {
-            const pickedFromParams = pickResource(params.resource, resources);
-            if (pickedFromParams) {
-                resource = pickedFromParams;
-            } else {
-                resource = { name: params.resource };
-            }
-        } else {
-            if (params.resource) {
-                resource = params.resource;
-            }
-        }
+    } else if (params?.resource) {
+        resource = params.resource;
     }
 
     return {
@@ -119,4 +139,4 @@ export const useResource = ({
         id: params.id,
         action: params.action,
     };
-};
+}
