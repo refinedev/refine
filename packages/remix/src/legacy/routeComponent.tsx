@@ -108,10 +108,39 @@ export function RemixRouteComponent(
             options,
         } = resource;
 
-        const List = list ?? (() => null);
-        const Create = create ?? (() => null);
-        const Edit = edit ?? (() => null);
-        const Show = show ?? (() => null);
+        const stringError = () =>
+            console.error(
+                `\`string\` resource routes are not supported in legacy router. Please switch to the new router or assign Components to the resource routes.`,
+            );
+        const definitionError = () =>
+            console.error(
+                `\`Object\` resource routes are not supported in legacy router. Please switch to the new router or assign Components to the resource routes.`,
+            );
+
+        const List =
+            (typeof list === "string"
+                ? stringError()
+                : typeof list === "object"
+                ? definitionError()
+                : list) ?? (() => null);
+        const Create =
+            (typeof create === "string"
+                ? stringError()
+                : typeof create === "object"
+                ? definitionError()
+                : create) ?? (() => null);
+        const Edit =
+            (typeof edit === "string"
+                ? stringError()
+                : typeof edit === "object"
+                ? definitionError()
+                : edit) ?? (() => null);
+        const Show =
+            (typeof show === "string"
+                ? stringError()
+                : typeof show === "object"
+                ? definitionError()
+                : show) ?? (() => null);
 
         const renderCrud = () => {
             switch (action) {
