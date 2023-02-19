@@ -1,7 +1,6 @@
 import React from "react";
 import {
     GoConfig,
-    IResourceItem,
     ParseResponse,
     RouterBindings,
     matchResourceFromRoute,
@@ -9,22 +8,14 @@ import {
 } from "@pankod/refine-core";
 import { useCallback, useContext } from "react";
 import { parse, stringify } from "qs";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { useNavigate, useLocation, useParams, Link } from "react-router-dom";
 
 export const stringifyConfig = {
     addQueryPrefix: true,
     skipNulls: true,
     arrayFormat: "indices" as const,
     encode: false,
-};
-
-export const getResourceName = (
-    resource?: string | IResourceItem | undefined,
-) => {
-    if (resource) {
-        return typeof resource === "string" ? resource : resource.name;
-    }
-    return undefined;
+    encodeValuesOnly: true,
 };
 
 export const routerBindings: RouterBindings = {
@@ -62,12 +53,7 @@ export const routerBindings: RouterBindings = {
                 const urlTo = to || "";
 
                 const fullPath = `${urlTo}${
-                    hasUrlQuery
-                        ? stringify(urlQuery, {
-                              ...stringifyConfig,
-                              encodeValuesOnly: true,
-                          })
-                        : ""
+                    hasUrlQuery ? stringify(urlQuery, stringifyConfig) : ""
                 }${hasUrlHash ? urlHash : ""}`;
 
                 if (type === "path") {
@@ -122,4 +108,5 @@ export const routerBindings: RouterBindings = {
 
         return fn;
     },
+    Link: ({ to, ...rest }) => <Link to={to} {...rest} />,
 };

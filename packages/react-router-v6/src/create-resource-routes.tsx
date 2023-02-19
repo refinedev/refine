@@ -1,26 +1,7 @@
 import React from "react";
-import {
-    Action,
-    IResourceComponentsProps,
-    ResourceProps,
-} from "@pankod/refine-core";
+import { Action, ResourceProps } from "@pankod/refine-core";
 
-import { Route, Navigate } from "react-router-dom";
-
-type ResourceRouteComponent = React.ComponentType<
-    IResourceComponentsProps<any, any>
->;
-
-export type ResourceRoutesOptions = {
-    /**
-     * @default: true
-     *
-     * If true, an index route will be created and it will redirect to the first resource with list route.
-     * If false, no index route will be created.
-     * If string, an index route will be created and it will redirect to the given route.
-     */
-    indexRedirect?: string | boolean;
-};
+import { Route } from "react-router-dom";
 
 export const createResourcePathWithAction = (
     resource: ResourceProps,
@@ -53,6 +34,9 @@ export const createResourcePathWithAction = (
         return edit.path;
     }
 
+    /**
+     * Default path fallback
+     */
     const nameSegment = `/${name}`;
     const actionSegment = `${
         ["edit", "create", "clone"].includes(action) ? action : ""
@@ -64,18 +48,11 @@ export const createResourcePathWithAction = (
     return [nameSegment, actionSegment, idSegment].filter(Boolean).join("/");
 };
 
-export const createResourceRoutes = (
-    resources: ResourceProps[],
-    options?: ResourceRoutesOptions,
-) => {
-    const { indexRedirect } = options ?? {
-        indexRedirect: true,
-    };
-
+export const createResourceRoutes = (resources: ResourceProps[]) => {
     const routes = resources.flatMap((resource) => {
         const actions: {
             action: Action;
-            element: ResourceRouteComponent;
+            element: React.ComponentType<any>;
             path: string;
         }[] = [];
 
@@ -109,22 +86,6 @@ export const createResourceRoutes = (
             );
         });
     });
-
-    if (indexRedirect) {
-        const firstListResource = resources.find((r) => !!r.list);
-        if (firstListResource) {
-            const path =
-                typeof indexRedirect === "string"
-                    ? indexRedirect
-                    : createResourcePathWithAction(firstListResource, "list");
-
-            const element = <Navigate to={path} />;
-
-            routes.unshift(
-                <Route key="index-redirect-path" index element={element} />,
-            );
-        }
-    }
 
     return routes;
 };

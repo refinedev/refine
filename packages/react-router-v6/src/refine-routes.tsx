@@ -3,7 +3,7 @@ import { useResource } from "@pankod/refine-core";
 import { createResourceRoutes } from "./create-resource-routes";
 import { Routes } from "react-router-dom";
 
-type ResourceRoutesProps = {
+type RefineRoutesProps = {
     indexRedirect?: boolean | string;
     children?: (routes: JSX.Element[]) => JSX.Element;
 };
@@ -11,7 +11,7 @@ type ResourceRoutesProps = {
 export const RefineRoutes = ({
     indexRedirect,
     children,
-}: ResourceRoutesProps) => {
+}: RefineRoutesProps) => {
     const { resources: resourcesFromContext } = useResource();
 
     const routes = React.useMemo(() => {
