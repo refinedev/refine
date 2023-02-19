@@ -48,8 +48,8 @@ const timeline = [
         date: "19th February 2022",
         title: "Add Role Based Authorization",
         description:
-            "We implement user role based authorization to our admin app",
-        link: null,
+            "We'll implement Role Based Access Control (RBAC) on our Pixels Admin app.",
+        link: "https://refine.dev/blog/refine-pixels-6/",
     },
     {
         date: "20th February 2022",

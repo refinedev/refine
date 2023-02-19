@@ -1,5 +1,5 @@
 ---
-title: Creating an Admin Dashboard with Refine
+title: Creating an Admin Dashboard with refine
 description: We'll be building a admin backend app for the Pixels client app.
 slug: refine-pixels-5
 authors: abdullah_numan
