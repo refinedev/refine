@@ -146,6 +146,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         name: "router-to-legacy-router: Transform existing router definitions to legacy router",
         value: "router-to-legacy-router",
     },
+    {
+        name: "move-deprecated-access-control: Move deprecated deprecated `ignoreAccessControlProvider` prop to new `accessControl`",
+        value: "move-deprecated-access-control",
+    },
 ];
 
 function expandFilePathsIfNeeded(filesBeforeExpansion) {
