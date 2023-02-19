@@ -18,7 +18,6 @@ import { RefreshButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/refresh-button} for more details.
  */
 export const RefreshButton: React.FC<RefreshButtonProps> = ({
-    resourceName: propResourceName,
     resourceNameOrRouteName: propResourceNameOrRouteName,
     recordItemId,
     hideText = false,
@@ -31,15 +30,11 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { resourceName, id } = useResource({
-        resourceName: propResourceName,
-        resourceNameOrRouteName: propResourceNameOrRouteName,
-        recordItemId,
-    });
+    const { resource, id } = useResource(propResourceNameOrRouteName);
 
     const { refetch, isFetching } = useOne({
-        resource: resourceName,
-        id: id ?? "",
+        resource: resource?.name,
+        id: recordItemId ?? id,
         queryOptions: {
             enabled: false,
         },

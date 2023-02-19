@@ -7,6 +7,8 @@ import {
     useTranslate,
     useResource,
     useRouterContext,
+    useRouterType,
+    useLink,
 } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 
@@ -20,34 +22,33 @@ import { EditButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/edit-button} for more details.
  */
 export const EditButton: React.FC<EditButtonProps> = ({
-    resourceName: propResourceName,
     resourceNameOrRouteName: propResourceNameOrRouteName,
     recordItemId,
     hideText = false,
     accessControl,
-    ignoreAccessControlProvider = false,
+    meta,
     children,
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled =
-        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const accessControlEnabled = accessControl?.enabled ?? true;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const translate = useTranslate();
 
-    const { editUrl: generateEditUrl } = useNavigation();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
 
-    const { resourceName, id, resource } = useResource({
-        resourceName: propResourceName,
-        resourceNameOrRouteName: propResourceNameOrRouteName,
-        recordItemId,
-    });
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
+
+    const { editUrl: generateEditUrl } = useNavigation();
+
+    const { id, resource } = useResource(propResourceNameOrRouteName);
 
     const { data } = useCan({
-        resource: resourceName,
+        resource: resource?.name,
         action: "edit",
-        params: { id, resource },
+        params: { id: recordItemId ?? id, resource },
         queryOptions: {
             enabled: accessControlEnabled,
         },
@@ -63,14 +64,21 @@ export const EditButton: React.FC<EditButtonProps> = ({
             );
     };
 
-    const editUrl = generateEditUrl(propResourceName ?? resource.route!, id!);
+    const editUrl =
+        (resource || propResourceNameOrRouteName) && (recordItemId || id)
+            ? generateEditUrl(
+                  resource! ?? propResourceNameOrRouteName!,
+                  recordItemId! || id!,
+                  meta,
+              )
+            : "";
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;
     }
 
     return (
-        <Link
+        <ActiveLink
             to={editUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -93,6 +101,6 @@ export const EditButton: React.FC<EditButtonProps> = ({
             >
                 {!hideText && (children ?? translate("buttons.edit", "Edit"))}
             </Button>
-        </Link>
+        </ActiveLink>
     );
 };

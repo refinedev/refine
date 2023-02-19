@@ -9,15 +9,13 @@ import {
     useMutationMode,
     useTranslate,
     useWarnAboutChange,
-    useResourceWithRoute,
-    useRouterContext,
     HttpError,
-    ResourceRouterParams,
     UseFormProps as UseFormPropsCore,
     BaseRecord,
     LiveModeProps,
     BaseKey,
     userFriendlyResourceName,
+    useResource,
 } from "@pankod/refine-core";
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 
@@ -147,12 +145,7 @@ export const useModalForm = <
         loading: formLoading,
     };
 
-    const { useParams } = useRouterContext();
-
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-
-    const resourceWithRoute = useResourceWithRoute();
-    const resource = resourceWithRoute(rest.resource ?? routeResourceName);
+    const { resource } = useResource(rest.resource);
 
     const handleClose = useCallback(() => {
         if (warnWhen) {
@@ -198,9 +191,14 @@ export const useModalForm = <
             width: "1000px",
             okButtonProps: saveButtonPropsSF,
             title: translate(
-                `${resource.name}.titles.${rest.action}`,
+                `${resource?.name}.titles.${rest.action}`,
                 `${userFriendlyResourceName(
-                    `${rest.action} ${resource.name}`,
+                    `${rest.action} ${
+                        resource?.meta?.label ??
+                        resource?.options?.label ??
+                        resource?.label ??
+                        resource?.name
+                    }`,
                     "singular",
                 )}`,
             ),
