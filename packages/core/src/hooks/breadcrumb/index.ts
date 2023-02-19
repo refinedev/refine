@@ -31,7 +31,7 @@ type UseBreadcrumbProps = {
 
 export const useBreadcrumb = ({
     params: paramsFromProps = {},
-}: UseBreadcrumbProps): UseBreadcrumbReturnType => {
+}: UseBreadcrumbProps = {}): UseBreadcrumbReturnType => {
     const routerType = useRouterType();
     const { i18nProvider } = useContext(TranslationContext);
     const parsed = useParsed();

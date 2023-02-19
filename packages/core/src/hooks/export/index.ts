@@ -1,12 +1,6 @@
 import { useState } from "react";
+import { useResource, useDataProvider } from "@hooks";
 import {
-    useResource,
-    useResourceWithRoute,
-    useRouterContext,
-    useDataProvider,
-} from "@hooks";
-import {
-    ResourceRouterParams,
     BaseRecord,
     MapDataFn,
     CrudSorting,
@@ -19,8 +13,6 @@ import {
     pickNotDeprecated,
 } from "@definitions";
 import { ExportToCsv, Options } from "export-to-csv-fix-source-map";
-import { useRouterType } from "@contexts/router-picker";
-import { useParsed } from "@hooks/router/use-parsed";
 
 type UseExportOptionsType<
     TData extends BaseRecord = BaseRecord,
@@ -119,42 +111,19 @@ export const useExport = <
 
     const dataProvider = useDataProvider();
 
-    const { resources } = useResource();
-
-    const resourceWithRoute = useResourceWithRoute();
-
-    const routerType = useRouterType();
-
-    const parsed = useParsed();
-    const { useParams } = useRouterContext();
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-    let resource: string = resourceName ?? "";
-
-    if (routerType === "legacy") {
-        const { name: legacyResourceName } = resourceWithRoute(
-            pickNotDeprecated(resourceFromProps, resourceName) ??
-                routeResourceName,
-        );
-        resource = legacyResourceName;
-    } else {
-        if (typeof parsed.resource === "string") {
-            resource = parsed.resource;
-        } else if (parsed.resource) {
-            resource = parsed.resource?.identifier ?? parsed.resource?.name;
-        }
-    }
-
-    if (pickNotDeprecated(resourceFromProps, resourceName)) {
-        resource = pickNotDeprecated(resourceFromProps, resourceName)!;
-    }
+    const { resource, resources } = useResource();
 
     const filename = `${userFriendlyResourceName(
-        resource,
+        resource?.name,
         "plural",
     )}-${new Date().toLocaleString()}`;
 
     const { getList } = dataProvider(
-        pickDataProvider(resource, dataProviderName, resources),
+        pickDataProvider(
+            resource?.identifier ?? resource?.name,
+            dataProviderName,
+            resources,
+        ),
     );
 
     const triggerExport = async () => {
@@ -167,7 +136,7 @@ export const useExport = <
         while (preparingData) {
             try {
                 const { data, total } = await getList<TData>({
-                    resource,
+                    resource: resource?.name ?? "",
                     filters,
                     sort: pickNotDeprecated(sorters, sorter),
                     sorters: pickNotDeprecated(sorters, sorter),

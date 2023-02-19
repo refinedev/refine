@@ -11,6 +11,7 @@ import {
 import { pickResource } from "@definitions/helpers/pick-resource";
 import { composeRoute } from "@definitions/helpers/router/compose-route";
 import { useBack } from "@hooks/router/use-back";
+import { useGetToPath } from "@hooks/router/use-get-to-path";
 
 export type HistoryType = "push" | "replace";
 
@@ -24,6 +25,7 @@ export type HistoryType = "push" | "replace";
  * @see {@link https://refine.dev/docs/core/hooks/navigation/useNavigation} for more details.
  */
 export const useNavigation = () => {
+    const getToPath = useGetToPath();
     const { resources } = useResource();
     const routerType = useRouterType();
     const { useHistory } = useRouterContext();

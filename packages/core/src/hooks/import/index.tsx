@@ -2,19 +2,8 @@ import { useEffect, useState } from "react";
 import { parse, ParseConfig } from "papaparse";
 import chunk from "lodash/chunk";
 
-import {
-    useCreate,
-    useCreateMany,
-    useResourceWithRoute,
-    useRouterContext,
-} from "@hooks";
-import {
-    MapDataFn,
-    BaseRecord,
-    HttpError,
-    ResourceRouterParams,
-    MetaQuery,
-} from "../../interfaces";
+import { useCreate, useCreateMany, useResource } from "@hooks";
+import { MapDataFn, BaseRecord, HttpError, MetaQuery } from "../../interfaces";
 import {
     importCSVMapper,
     sequentialPromises,
@@ -22,8 +11,6 @@ import {
 } from "@definitions";
 import { UseCreateReturnType } from "../../hooks/data/useCreate";
 import { UseCreateManyReturnType } from "../../hooks/data/useCreateMany";
-import { useRouterType } from "@contexts/router-picker";
-import { useParsed } from "@hooks/router/use-parsed";
 
 export type ImportSuccessResult<TVariables, TData> = {
     request: TVariables[];
@@ -164,32 +151,7 @@ export const useImport = <
     const [totalAmount, setTotalAmount] = useState<number>(0);
     const [isLoading, setIsLoading] = useState(false);
 
-    const routerType = useRouterType();
-
-    const parsed = useParsed();
-    const { useParams } = useRouterContext();
-    const resourceWithRoute = useResourceWithRoute();
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-
-    let resource: string = resourceName ?? "";
-
-    if (routerType === "legacy") {
-        const { name: legacyResourceName } = resourceWithRoute(
-            pickNotDeprecated(resourceFromProps, resourceName) ??
-                routeResourceName,
-        );
-        resource = legacyResourceName;
-    } else {
-        if (typeof parsed.resource === "string") {
-            resource = parsed.resource;
-        } else if (parsed.resource) {
-            resource = parsed.resource?.identifier ?? parsed.resource?.name;
-        }
-    }
-
-    if (pickNotDeprecated(resourceFromProps, resourceName)) {
-        resource = pickNotDeprecated(resourceFromProps, resourceName)!;
-    }
+    const { resource } = useResource(resourceFromProps ?? resourceName);
 
     const createMany = useCreateMany<TData, TError, TVariables>();
     const create = useCreate<TData, TError, TVariables>();
@@ -246,7 +208,7 @@ export const useImport = <
                             const valueFns = values.map((value) => {
                                 const fn = async () => {
                                     const response = await create.mutateAsync({
-                                        resource,
+                                        resource: resource?.name ?? "",
                                         values: value,
                                         successNotification: false,
                                         errorNotification: false,
@@ -294,7 +256,7 @@ export const useImport = <
                                 const fn = async () => {
                                     const response =
                                         await createMany.mutateAsync({
-                                            resource,
+                                            resource: resource?.name ?? "",
                                             values: chunkedValues,
                                             successNotification: false,
                                             errorNotification: false,

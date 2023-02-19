@@ -5,6 +5,10 @@ import { pickResource } from "@definitions/helpers/pick-resource";
 
 export type UseResourceWithRouteReturnType = (route: string) => IResourceItem;
 
+/**
+ * @deprecated Use `useResource` hook instead.
+ * @internal This hook is for internal use only. And is kept for backward compatibility.
+ */
 export const useResourceWithRoute = (): UseResourceWithRouteReturnType => {
     const { resources } = useContext(ResourceContext);
 

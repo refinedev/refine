@@ -91,10 +91,7 @@ export const useShow = <
     const { resource: legacyResourceFromRoute, id: legacyIdFromParams } =
         useParams<ResourceRouterParams>();
 
-    const newResourceNameFromRouter =
-        typeof resourceFromRouter === "string"
-            ? resourceFromRouter
-            : resourceFromRouter?.name;
+    const newResourceNameFromRouter = resourceFromRouter?.name;
 
     /** We only accept `id` from URL params if `resource` is not explicitly passed. */
     /** This is done to avoid sending wrong requests for custom `resource` and an async `id` */
