@@ -89,7 +89,8 @@ Let's say we want to show a list of users in `/users`. After creating `users.tsx
 
 ```tsx title="pages/users.tsx"
 import { LayoutWrapper } from "@pankod/refine-core";
-import { useTable, List, Table } from "@pankod/refine-antd";
+import { useTable } from "@pankod/refine-antd";
+import { List, Table } from "antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 // highlight-start
@@ -155,7 +156,8 @@ import {
     // highlight-next-line
     GetListResponse,
 } from "@pankod/refine-core";
-import { useTable, List, Table } from "@pankod/refine-antd";
+import { useTable } from "@pankod/refine-antd";
+import { List, Table } from "antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 // highlight-start
@@ -304,7 +306,8 @@ And in the `list` component for a `resource` e.g. "posts":
 
 ```tsx title="src/components/posts/list.tsx"
 import { GetListResponse, IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable, List, Table } from "@pankod/refine-antd";
+import { useTable } from "@pankod/refine-antd";
+import { List, Table } from "antd";
 
 export const PostList: React.FC<
     IResourceComponentsProps<GetListResponse<IPost>>

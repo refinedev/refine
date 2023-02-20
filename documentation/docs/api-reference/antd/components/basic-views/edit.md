@@ -26,14 +26,8 @@ interface IPost {
     category: { id: number };
 }
 
-import {
-    Edit,
-    Form,
-    Input,
-    Select,
-    useForm,
-    useSelect,
-} from "@pankod/refine-antd";
+import { Edit, useForm, useSelect } from "@pankod/refine-antd";
+import { Form, Input, Select } from "antd";
 
 const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
@@ -112,7 +106,9 @@ render(
                 list: () => (
                     <div>
                         <p>This page is empty.</p>
-                        <EditButton recordItemId="123">Edit Item 123</EditButton>
+                        <EditButton recordItemId="123">
+                            Edit Item 123
+                        </EditButton>
                     </div>
                 ),
                 edit: PostEdit,
@@ -285,7 +281,9 @@ render(
                 list: () => (
                     <div>
                         <p>This page is empty.</p>
-                        <EditButton recordItemId="123">Edit Item 123</EditButton>
+                        <EditButton recordItemId="123">
+                            Edit Item 123
+                        </EditButton>
                     </div>
                 ),
                 edit: PostEdit,
@@ -353,7 +351,8 @@ The `<Edit>` component reads the `id` information from the route by default. `re
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit, useModalForm, Modal, Button } from "@pankod/refine-antd";
+import { Edit, useModalForm } from "@pankod/refine-antd";
+import { Modal, Button } from "antd";
 
 const PostEdit: React.FC = () => {
     const { modalProps, id, show } = useModalForm({
@@ -421,14 +420,8 @@ interface IPost {
     category: { id: number };
 }
 
-import {
-    Edit,
-    Form,
-    Input,
-    Select,
-    useForm,
-    useSelect,
-} from "@pankod/refine-antd";
+import { Edit, useForm, useSelect } from "@pankod/refine-antd";
+import { Form, Input, Select } from "atnd";
 
 const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
@@ -562,12 +555,13 @@ To customize the back button or to disable it, you can use the `goBack` property
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit, Icons } from "@pankod/refine-antd";
+import { Edit } from "@pankod/refine-antd";
+import { SmileOutlined } from "@ant-design/icons";
 
 const PostEdit: React.FC = () => {
     return (
         /* highlight-next-line */
-        <Edit goBack={<Icons.SmileOutlined />}>
+        <Edit goBack={<SmileOutlined />}>
             <p>Rest of your page here</p>
         </Edit>
     );
@@ -583,7 +577,9 @@ render(
                 list: () => (
                     <div>
                         <p>This page is empty.</p>
-                        <EditButton recordItemId="123">Edit Item 123</EditButton>
+                        <EditButton recordItemId="123">
+                            Edit Item 123
+                        </EditButton>
                     </div>
                 ),
                 edit: PostEdit,
@@ -646,7 +642,8 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit, Breadcrumb } from "@pankod/refine-antd";
+import { Edit } from "@pankod/refine-antd";
+import { Breadcrumb } from "antd";
 
 const PostEdit: React.FC = () => {
     return (
@@ -843,7 +840,8 @@ You can customize the buttons at the header by using the `headerButtons` propert
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit, Button } from "@pankod/refine-antd";
+import { Edit } from "@pankod/refine-antd";
+import { Button } from "antd";
 
 const PostEdit: React.FC = () => {
     return (
@@ -892,7 +890,8 @@ You can customize the wrapper element of the buttons at the header by using the 
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit, Button } from "@pankod/refine-antd";
+import { Edit } from "@pankod/refine-antd";
+import { Button } from "antd";
 
 const PostEdit: React.FC = () => {
     return (
@@ -940,7 +939,8 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit, Button } from "@pankod/refine-antd";
+import { Edit } from "@pankod/refine-antd";
+import { Button } from "antd";
 
 const PostEdit: React.FC = () => {
     return (
@@ -989,7 +989,8 @@ You can customize the wrapper element of the buttons at the footer by using the 
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit, Button } from "@pankod/refine-antd";
+import { Edit } from "@pankod/refine-antd";
+import { Button } from "antd";
 
 const PostEdit: React.FC = () => {
     return (

@@ -4,7 +4,6 @@ title: Refresh
 swizzle: true
 ---
 
-
 `<RefreshButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component to update the data shown on the page via the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 :::info-tip Swizzle
@@ -20,8 +19,8 @@ import {
     // highlight-next-line
     RefreshButton,
     Show,
-    Typography,
 } from "@pankod/refine-antd";
+import { Typography } from "antd";
 
 const { Title, Text } = Typography;
 
@@ -64,7 +63,7 @@ render(
                             <p>Your list page here</p>
                         </RefineAntd.List>
                     );
-                }
+                },
             },
         ]}
     />,
@@ -84,7 +83,7 @@ import { RefreshButton } from "@pankod/refine-antd";
 const MyRefreshComponent = () => {
     return (
         <RefreshButton
-            resourceNameOrRouteName="posts" 
+            resourceNameOrRouteName="posts"
             // highlight-next-line
             recordItemId="1"
         />
@@ -123,7 +122,7 @@ const MyRefreshComponent = () => {
     return (
         <RefreshButton
             // highlight-next-line
-            resourceNameOrRouteName="posts" 
+            resourceNameOrRouteName="posts"
         />
     );
 };
@@ -137,8 +136,8 @@ render(
                 name: "posts",
             },
             {
-                name: "categories"
-            }
+                name: "categories",
+            },
         ]}
         DashboardPage={MyRefreshComponent}
     />,

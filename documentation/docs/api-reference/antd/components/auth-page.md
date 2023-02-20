@@ -374,13 +374,12 @@ setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout, Icons } from "@pankod/refine-antd";
+import { AuthPage, Layout } from "@pankod/refine-antd";
+import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
-
-const { GoogleOutlined, GithubOutlined } = Icons;
 
 const App = () => {
     return (
@@ -433,7 +432,8 @@ setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout, Form, Checkbox } from "@pankod/refine-antd";
+import { AuthPage, Layout } from "@pankod/refine-antd";
+import { Form, Checkbox } from "antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";

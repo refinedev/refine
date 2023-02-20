@@ -23,14 +23,8 @@ interface IPost {
 }
 
 // visible-block-start
-import {
-    Create,
-    Form,
-    Input,
-    Select,
-    useForm,
-    useSelect,
-} from "@pankod/refine-antd";
+import { Create, useForm, useSelect } from "@pankod/refine-antd";
+import { Form, Input, Select } from "antd";
 
 const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -258,12 +252,13 @@ To customize the back button or to disable it, you can use the `goBack` property
 const { CreateButton } = RefineAntd;
 
 // visible-block-start
-import { Create, Icons } from "@pankod/refine-antd";
+import { Create } from "@pankod/refine-antd";
+import { SmileOutlined } from "@ant-design/icons";
 
 const PostCreate: React.FC = () => {
     return (
         /* highlight-next-line */
-        <Create goBack={<Icons.SmileOutlined />}>
+        <Create goBack={<SmileOutlined />}>
             <p>Rest of your page here</p>
         </Create>
     );
@@ -342,7 +337,8 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 const { CreateButton } = RefineAntd;
 
 // visible-block-start
-import { Create, Breadcrumb } from "@pankod/refine-antd";
+import { Create } from "@pankod/refine-antd";
+import { Breadcrumb } from "antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -539,7 +535,8 @@ You can customize the buttons at the header by using the `headerButtons` propert
 const { CreateButton } = RefineAntd;
 
 // visible-block-start
-import { Create, Button } from "@pankod/refine-antd";
+import { Create } from "@pankod/refine-antd";
+import { Button } from "antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -588,7 +585,8 @@ You can customize the wrapper element of the buttons at the header by using the 
 const { CreateButton } = RefineAntd;
 
 // visible-block-start
-import { Create, Button } from "@pankod/refine-antd";
+import { Create } from "@pankod/refine-antd";
+import { Button } from "antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -636,7 +634,8 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 const { CreateButton } = RefineAntd;
 
 // visible-block-start
-import { Create, Button } from "@pankod/refine-antd";
+import { Create } from "@pankod/refine-antd";
+import { Button } from "antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -685,7 +684,8 @@ You can customize the wrapper element of the buttons at the footer by using the 
 const { CreateButton } = RefineAntd;
 
 // visible-block-start
-import { Create, Button } from "@pankod/refine-antd";
+import { Create } from "@pankod/refine-antd";
+import { Button } from "antd";
 
 const PostCreate: React.FC = () => {
     return (

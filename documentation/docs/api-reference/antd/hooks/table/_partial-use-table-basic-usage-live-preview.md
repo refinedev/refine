@@ -11,7 +11,8 @@ setInitialRoutes(["/posts"]);
 // visible-block-start
 import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
 
-import { List, Table, TagField, useTable } from "@pankod/refine-antd";
+import { List, TagField, useTable } from "@pankod/refine-antd";
+import { Table } from "antd";
 
 interface IPost {
     id: number;

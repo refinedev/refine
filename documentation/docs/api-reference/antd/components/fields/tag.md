@@ -4,7 +4,6 @@ title: Tag
 swizzle: true
 ---
 
-
 This field lets you display a value in a tag. It uses Ant Design's [`<Tag>`](https://ant.design/components/tag/) component.
 
 :::info-tip Swizzle
@@ -23,9 +22,9 @@ import {
     List,
     // highlight-next-line
     TagField,
-    Table,
     useTable,
 } from "@pankod/refine-antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -33,7 +32,7 @@ const PostList: React.FC = () => {
     return (
         <List>
             <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="title" title="Sitle"  width="50%"/>
+                <Table.Column dataIndex="title" title="Sitle" width="50%" />
                 <Table.Column
                     dataIndex="status"
                     title="Status"
@@ -58,7 +57,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,

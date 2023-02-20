@@ -4,7 +4,6 @@ title: Import
 swizzle: true
 ---
 
-
 `<ImportButton>` is compatible with the [`useImport`][useimport] hook and is meant to be used as it's upload button.
 It uses Ant Design's [`<Button>`][button] and [`<Upload>`][upload] components. It wraps a [`<Button>`][button] component with an [`<Upload>`][upload] component and accepts properties for [`<Button>`][button] and [`<Upload>`][upload] components separately.
 
@@ -17,13 +16,13 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 ```tsx live
 import {
     List,
-    Table,
     useTable,
     // highlight-start
     useImport,
     ImportButton,
     // highlight-end
 } from "@pankod/refine-antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -33,10 +32,10 @@ const PostList: React.FC = () => {
 
     return (
         <List
-            headerButtons={(
+            headerButtons={
                 // highlight-next-line
                 <ImportButton {...importProps} />
-            )}
+            }
         >
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />

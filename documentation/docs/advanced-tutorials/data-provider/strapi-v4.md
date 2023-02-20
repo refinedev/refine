@@ -162,16 +162,14 @@ import { useState } from "react";
 import { IResourceComponentsProps } from "@pankod/core";
 import {
     List,
-    Table,
     useTable,
     getDefaultSortOrder,
     FilterDropdown,
-    Select,
     useSelect,
-    Space,
     EditButton,
     DeleteButton,
 } from "@pankod/refine-antd";
+import { Table, Select, Space } from "antd";
 
 import { IPost } from "interfaces";
 
@@ -288,16 +286,14 @@ In order to pull the `categories` related to the posts, we can now show the cate
 import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
     List,
-    Table,
     useTable,
     getDefaultSortOrder,
     FilterDropdown,
-    Select,
     useSelect,
-    Space,
     EditButton,
     DeleteButton,
 } from "@pankod/refine-antd";
+import { Table, Select, Space } from "antd";
 
 import { IPost } from "interfaces";
 
@@ -434,22 +430,24 @@ import { useState } from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
     List,
-    Table,
     useTable,
     getDefaultSortOrder,
     FilterDropdown,
-    Select,
     useSelect,
     DateField,
-    Space,
     EditButton,
     DeleteButton,
+} from "@pankod/refine-antd";
+import {
+    Table,
+    Select,
+    Space,
     // highlight-start
     Form,
     Radio,
     Tag,
     // highlight-end
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { IPost } from "interfaces";
 
@@ -603,19 +601,14 @@ import { useState } from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
     List,
-    Table,
     useTable,
     getDefaultSortOrder,
     FilterDropdown,
-    Select,
     useSelect,
-    Space,
     EditButton,
     DeleteButton,
-    Form,
-    Radio,
-    Tag,
 } from "@pankod/refine-antd";
+import { Table, Select, Space, Form, Radio, Tag } from "antd";
 
 import { IPost } from "interfaces";
 

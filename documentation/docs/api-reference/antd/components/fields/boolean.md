@@ -4,7 +4,6 @@ title: Boolean
 swizzle: true
 ---
 
-
 This field is used to display boolean values. It uses the [`<Tooltip>`](https://ant.design/components/tooltip/#header) values from Ant Design.
 
 :::info-tip Swizzle
@@ -19,19 +18,17 @@ Let's see how we can use `<BooleanField>` with the example in the post list.
 // visible-block-start
 import {
     List,
-    Table,
     useTable,
     // highlight-start
     BooleanField,
-    Icons
     // highlight-end
 } from "@pankod/refine-antd";
+import { Table } from "antd";
+// highlight-next-line
+import { CloseCircleOutlined, CheckCircleOutlined } from "@ant-design/icons";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
-
-    // highlight-next-line
-    const { CloseCircleOutlined, CheckCircleOutlined } = Icons;
 
     return (
         <List>
@@ -71,7 +68,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,

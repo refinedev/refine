@@ -54,7 +54,7 @@ Refer to [**Auth0 docs**](https://auth0.com/docs/quickstart/spa/react#configure-
 First, we need to override the **refine** login page. In this way, we will redirect it to the Auth0 login page. We create a `login.tsx` file in the `/pages` folder.
 
 ```tsx title="/pages/login.tsx"
-import { AntdLayout, Button } from "@pankod/refine-antd";
+import { Layout, Button } from "antd";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export const Login: React.FC = () => {
@@ -62,7 +62,7 @@ export const Login: React.FC = () => {
     const { loginWithRedirect } = useAuth0();
 
     return (
-        <AntdLayout
+        <Layout
             style={{
                 background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
                 backgroundSize: "cover",
@@ -84,7 +84,7 @@ export const Login: React.FC = () => {
                     </Button>
                 </div>
             </div>
-        </AntdLayout>
+        </Layout>
     );
 };
 ```

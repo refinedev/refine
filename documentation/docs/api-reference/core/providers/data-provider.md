@@ -46,7 +46,8 @@ Here is an example of using multiple data providers in your app:
 setRefineProps({ Sider: () => null });
 // visible-block-start
 import { Refine, useList } from "@pankod/refine-core";
-import { Layout, Collapse, Tag } from "@pankod/refine-antd";
+import { Layout } from "@pankod/refine-antd";
+import { Collapse, Tag } from "antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 

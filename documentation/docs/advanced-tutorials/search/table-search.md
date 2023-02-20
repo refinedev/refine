@@ -10,19 +10,24 @@ First, we create a form by extracting `searchFormProps` from `useTable`. We will
 ```tsx title="pages/list.tsx"
 import {
     // highlight-start
+    useTable,
+    // highlight-end
+    List,
+} from "@pankod/refine-antd";
+import {
+    // highlight-start
     Form,
     Table,
-    useTable,
     // highlight-end
     Row,
     Col,
-    Icons,
-    List,
     Button,
     DatePicker,
     Space,
     Input,
-} from "@pankod/refine-antd";
+} from "antd";
+// highlight-next-line
+import { SearchOutlined } from "@ant-design/icons";
 
 const { RangePicker } = DatePicker;
 
@@ -38,7 +43,7 @@ export const ListPage: React.FC = () => {
                     <Form.Item label="Search" name="q">
                         <Input
                             placeholder="ID, Title, Content, etc."
-                            prefix={<Icons.SearchOutlined />}
+                            prefix={<SearchOutlined />}
                         />
                     </Form.Item>
                     <Form.Item label="Created At" name="createdAt">

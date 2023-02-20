@@ -4,7 +4,6 @@ title: List
 swizzle: true
 ---
 
-
 `<ListButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
 :::info-tip Swizzle
@@ -18,10 +17,10 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 import { useShow } from "@pankod/refine-core";
 import {
     Show,
-    Typography,
     // highlight-next-line
     ListButton,
 } from "@pankod/refine-antd";
+import { Typography } from "antd";
 
 const { Title, Text } = Typography;
 
@@ -61,7 +60,7 @@ render(
                             <p>Your list page here</p>
                         </RefineAntd.List>
                     );
-                }
+                },
             },
         ]}
     />,
@@ -85,9 +84,7 @@ const { useRouterContext } = RefineCore;
 import { ListButton } from "@pankod/refine-antd";
 
 const MyListComponent = () => {
-    return (
-        <ListButton resourceNameOrRouteName="categories" />
-    );
+    return <ListButton resourceNameOrRouteName="categories" />;
 };
 
 // visible-block-end
@@ -107,14 +104,13 @@ render(
                             <p>Your list page here</p>
                         </RefineAntd.List>
                     );
-                }
+                },
             },
         ]}
         DashboardPage={MyListComponent}
     />,
 );
 ```
-
 
 Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
 
@@ -149,7 +145,7 @@ render(
                             <p>Your list page here</p>
                         </RefineAntd.List>
                     );
-                }
+                },
             },
         ]}
         DashboardPage={MyListComponent}
@@ -165,7 +161,11 @@ This prop can be used to skip access control check with its `enabled` property o
 import { ListButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
-    return <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <ListButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
 };
 ```
 

@@ -33,18 +33,8 @@ setInitialRoutes(["/posts"]);
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import {
-    List,
-    Table,
-    Form,
-    Select,
-    Input,
-    Modal,
-    Space,
-    EditButton,
-    useTable,
-    useModalForm,
-} from "@pankod/refine-antd";
+import { List, EditButton, useTable, useModalForm } from "@pankod/refine-antd";
+import { Table, Form, Select, Input, Modal, Space } from "antd";
 
 const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>();
@@ -156,18 +146,8 @@ setInitialRoutes(["/posts"]);
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import {
-    List,
-    Table,
-    Form,
-    Select,
-    Input,
-    Modal,
-    Space,
-    EditButton,
-    useTable,
-    useModalForm,
-} from "@pankod/refine-antd";
+import { List, EditButton, useTable, useModalForm } from "@pankod/refine-antd";
+import { Table, Form, Select, Input, Modal, Space } from "antd";
 
 const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>();
@@ -307,18 +287,8 @@ setInitialRoutes(["/posts"]);
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import {
-    List,
-    Table,
-    Form,
-    Select,
-    Input,
-    Modal,
-    Space,
-    CloneButton,
-    useTable,
-    useModalForm,
-} from "@pankod/refine-antd";
+import { List, CloneButton, useTable, useModalForm } from "@pankod/refine-antd";
+import { Table, Form, Select, Input, Modal, Space } from "antd";
 
 const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>();
