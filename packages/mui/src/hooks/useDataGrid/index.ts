@@ -92,6 +92,7 @@ export function useDataGrid<
     liveMode: liveModeFromProp,
     onLiveEvent,
     liveParams,
+    meta,
     metaData,
     dataProviderName,
 }: UseDataGridProps<
@@ -137,7 +138,8 @@ export function useDataGrid<
         liveMode: liveModeFromProp,
         onLiveEvent,
         liveParams,
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         dataProviderName,
     });
 

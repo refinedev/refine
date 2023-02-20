@@ -75,6 +75,7 @@ export const useTable = <
     liveMode: liveModeFromProp,
     onLiveEvent,
     liveParams,
+    meta,
     metaData,
     dataProviderName,
 }: useTableProps<TData, TError, TSearchVariables> = {}): useTableReturnType<
@@ -114,7 +115,8 @@ export const useTable = <
         liveMode: liveModeFromProp,
         onLiveEvent,
         liveParams,
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         dataProviderName,
     });
 

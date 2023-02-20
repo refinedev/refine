@@ -3,11 +3,11 @@ import client from "../gqlClient";
 import "./index.mock";
 
 describe("deleteMany", () => {
-    it("correct response with metaData", async () => {
+    it("correct response with meta", async () => {
         const { data } = await dataProvider(client).deleteMany!({
             resource: "posts",
             ids: ["37", "38"],
-            metaData: {
+            meta: {
                 fields: [
                     {
                         operation: "post",
@@ -25,7 +25,7 @@ describe("deleteMany", () => {
         expect(data[1].title).toEqual("Loem");
     });
 
-    it("correct response without metaData", async () => {
+    it("correct response without meta", async () => {
         const { data } = await dataProvider(client).deleteMany!({
             resource: "posts",
             ids: ["34", "35"],

@@ -660,12 +660,12 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
 :::tip
 As we mentioned above, we need permissions to list or create documents in Appwrite. By default, Read Access and Write Access are public when creating documents from **refine** UI.
 
-If you want to restrict [permissions](https://appwrite.io/docs/permissions#permission-types) and only allow specific users, you need to specify it in metaData.
+If you want to restrict [permissions](https://appwrite.io/docs/permissions#permission-types) and only allow specific users, you need to specify it in meta.
 
 ```tsx
 import { Permission, Role } from "@pankod/refine-appwrite";
 const { formProps, saveButtonProps } = useForm<IPost>({
-    metaData: {
+    meta: {
         writePermissions: [Permission.read(Role.any())],
         readPermissions: [Permission.read(Role.any())],
     },

@@ -1,5 +1,10 @@
 import React from "react";
-import { useOne, useTranslate, useResource } from "@pankod/refine-core";
+import {
+    useOne,
+    useTranslate,
+    useResource,
+    pickNotDeprecated,
+} from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import { IconButton, Button } from "@chakra-ui/react";
 import { IconRefresh } from "@tabler/icons";
@@ -16,6 +21,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     resourceNameOrRouteName,
     recordItemId,
     hideText = false,
+    meta,
     metaData,
     dataProviderName,
     svgIconProps,
@@ -36,7 +42,8 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
         queryOptions: {
             enabled: false,
         },
-        metaData,
+        meta: pickNotDeprecated(metaData),
+        metaData: pickNotDeprecated(metaData),
         liveMode: "off",
         dataProviderName,
     });

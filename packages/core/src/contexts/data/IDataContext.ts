@@ -1,4 +1,4 @@
-import { BaseRecord, BaseKey, MetaDataQuery } from "../../interfaces";
+import { BaseRecord, BaseKey, MetaQuery } from "../../interfaces";
 
 export interface Pagination {
     current?: number;
@@ -137,24 +137,40 @@ export interface IDataContextProvider {
         sort?: CrudSorting;
         sorters?: CrudSorting;
         filters?: CrudFilters;
-        metaData?: MetaDataQuery;
+        meta?: MetaQuery;
+        /**
+         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+         */
+        metaData?: MetaQuery;
         dataProviderName?: string;
     }) => Promise<GetListResponse<TData>>;
     getMany?: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
         ids: BaseKey[];
-        metaData?: MetaDataQuery;
+        meta?: MetaQuery;
+        /**
+         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+         */
+        metaData?: MetaQuery;
         dataProviderName?: string;
     }) => Promise<GetManyResponse<TData>>;
     getOne: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
         id: BaseKey;
-        metaData?: MetaDataQuery;
+        meta?: MetaQuery;
+        /**
+         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+         */
+        metaData?: MetaQuery;
     }) => Promise<GetOneResponse<TData>>;
     create: <TData extends BaseRecord = BaseRecord, TVariables = {}>(params: {
         resource: string;
         variables: TVariables;
-        metaData?: MetaDataQuery;
+        meta?: MetaQuery;
+        /**
+         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+         */
+        metaData?: MetaQuery;
     }) => Promise<CreateResponse<TData>>;
     createMany?: <
         TData extends BaseRecord = BaseRecord,
@@ -162,13 +178,21 @@ export interface IDataContextProvider {
     >(params: {
         resource: string;
         variables: TVariables[];
-        metaData?: MetaDataQuery;
+        meta?: MetaQuery;
+        /**
+         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+         */
+        metaData?: MetaQuery;
     }) => Promise<CreateManyResponse<TData>>;
     update: <TData extends BaseRecord = BaseRecord, TVariables = {}>(params: {
         resource: string;
         id: BaseKey;
         variables: TVariables;
-        metaData?: MetaDataQuery;
+        meta?: MetaQuery;
+        /**
+         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+         */
+        metaData?: MetaQuery;
     }) => Promise<UpdateResponse<TData>>;
     updateMany?: <
         TData extends BaseRecord = BaseRecord,
@@ -177,7 +201,11 @@ export interface IDataContextProvider {
         resource: string;
         ids: BaseKey[];
         variables: TVariables;
-        metaData?: MetaDataQuery;
+        meta?: MetaQuery;
+        /**
+         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+         */
+        metaData?: MetaQuery;
     }) => Promise<UpdateManyResponse<TData>>;
     deleteOne: <
         TData extends BaseRecord = BaseRecord,
@@ -186,7 +214,11 @@ export interface IDataContextProvider {
         resource: string;
         id: BaseKey;
         variables?: TVariables;
-        metaData?: MetaDataQuery;
+        meta?: MetaQuery;
+        /**
+         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+         */
+        metaData?: MetaQuery;
     }) => Promise<DeleteOneResponse<TData>>;
     deleteMany?: <
         TData extends BaseRecord = BaseRecord,
@@ -195,7 +227,11 @@ export interface IDataContextProvider {
         resource: string;
         ids: BaseKey[];
         variables?: TVariables;
-        metaData?: MetaDataQuery;
+        meta?: MetaQuery;
+        /**
+         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+         */
+        metaData?: MetaQuery;
     }) => Promise<DeleteManyResponse<TData>>;
     getApiUrl: () => string;
     custom?: <
@@ -221,7 +257,11 @@ export interface IDataContextProvider {
         payload?: TPayload;
         query?: TQuery;
         headers?: {};
-        metaData?: MetaDataQuery;
+        meta?: MetaQuery;
+        /**
+         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+         */
+        metaData?: MetaQuery;
     }) => Promise<CustomResponse<TData>>;
 }
 

@@ -10,7 +10,7 @@ describe("create", () => {
         });
     });
 
-    it("correct response with metaData", async () => {
+    it("correct response with meta", async () => {
         const { data } = await dataProvider(nhost).create({
             resource: "posts",
             variables: {
@@ -18,7 +18,7 @@ describe("create", () => {
                 title: "Lorem ipsum dolore",
                 category_id: "73c14cb4-a58c-471d-9410-fc97ea6dac66",
             },
-            metaData: {
+            meta: {
                 fields: ["id", "title", "content", { category: ["id"] }],
             },
         });

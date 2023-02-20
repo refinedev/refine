@@ -19,7 +19,7 @@ describe("getOne", () => {
         const { data } = await dataProvider(supabaseClient).getOne({
             resource: "posts",
             id: "3",
-            metaData: {
+            meta: {
                 select: "title",
             },
         });

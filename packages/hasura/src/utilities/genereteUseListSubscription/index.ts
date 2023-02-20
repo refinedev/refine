@@ -1,5 +1,5 @@
 import {
-    MetaDataQuery,
+    MetaQuery,
     Pagination,
     CrudSorting,
     CrudFilters,
@@ -11,7 +11,8 @@ import { generateFilters, generateSorting } from "../../dataProvider";
 
 type GenereteUseListSubscriptionParams = {
     resource: string;
-    metaData: MetaDataQuery;
+    meta: MetaQuery;
+    metaData: MetaQuery;
     pagination?: Pagination;
     hasPagination?: boolean;
     sort?: CrudSorting;
@@ -27,6 +28,7 @@ type GenereteUseListSubscriptionReturnValues = {
 
 export const genereteUseListSubscription = ({
     resource,
+    meta: _meta,
     metaData,
     pagination,
     hasPagination,
@@ -45,7 +47,8 @@ export const genereteUseListSubscription = ({
     const hasuraSorting = generateSorting(pickNotDeprecated(sorters, sort));
     const hasuraFilters = generateFilters(filters);
 
-    const operation = metaData.operation ?? resource;
+    const meta = pickNotDeprecated(_meta, metaData);
+    const operation = meta.operation ?? resource;
 
     const hasuraSortingType = `[${operation}_order_by!]`;
     const hasuraFiltersType = `${operation}_bool_exp`;
@@ -53,7 +56,7 @@ export const genereteUseListSubscription = ({
     const { query, variables } = gql.subscription([
         {
             operation,
-            fields: metaData.fields,
+            fields: meta.fields,
             variables: {
                 ...(isServerPaginationEnabled
                     ? {

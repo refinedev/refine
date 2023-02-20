@@ -162,16 +162,17 @@ const handleError = (error: object | Error) => {
 
 const dataProvider = (client: NhostClient): Required<DataProvider> => {
     return {
-        getOne: async ({ resource, id, metaData }) => {
+        getOne: async ({ resource, id, meta: _meta, metaData }) => {
+            const meta = pickNotDeprecated(_meta, metaData);
             const operation = `${metaData?.operation ?? resource}_by_pk`;
 
             const { query, variables } = gql.query({
                 operation,
                 variables: {
                     id: { value: id, type: "uuid", required: true },
-                    ...metaData?.variables,
+                    ...meta?.variables,
                 },
-                fields: metaData?.fields,
+                fields: meta?.fields,
             });
 
             const { data, error } = await client.graphql.request(
@@ -188,13 +189,14 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
             };
         },
 
-        getMany: async ({ resource, ids, metaData }) => {
+        getMany: async ({ resource, ids, meta: _meta, metaData }) => {
+            const meta = pickNotDeprecated(_meta, metaData);
             const operation = metaData?.operation ?? resource;
 
             const { query, variables } = gql.query({
                 operation,
-                fields: metaData?.fields,
-                variables: metaData?.variables ?? {
+                fields: meta?.fields,
+                variables: meta?.variables ?? {
                     where: {
                         type: `${operation}_bool_exp`,
                         value: {
@@ -230,6 +232,7 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
                 current: 1,
                 pageSize: 10,
             },
+            meta: _meta,
             metaData,
         }) => {
             const {
@@ -249,7 +252,9 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
             );
             const hasuraFilters = generateFilters(filters);
 
-            const operation = metaData?.operation ?? resource;
+            const meta = pickNotDeprecated(_meta, metaData);
+
+            const operation = meta?.operation ?? resource;
 
             const aggregateOperation = `${operation}_aggregate`;
 
@@ -259,7 +264,7 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
             const { query, variables } = gql.query([
                 {
                     operation,
-                    fields: metaData?.fields,
+                    fields: meta?.fields,
                     variables: {
                         ...(isServerPaginationEnabled
                             ? {
@@ -308,8 +313,9 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
             };
         },
 
-        create: async ({ resource, variables, metaData }) => {
-            const operation = metaData?.operation ?? resource;
+        create: async ({ resource, variables, meta: _meta, metaData }) => {
+            const meta = pickNotDeprecated(_meta, metaData);
+            const operation = meta?.operation ?? resource;
 
             const insertOperation = `insert_${operation}_one`;
             const insertType = `${operation}_insert_input`;
@@ -323,7 +329,7 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
                         required: true,
                     },
                 },
-                fields: metaData?.fields ?? ["id", ...Object.keys(variables)],
+                fields: meta?.fields ?? ["id", ...Object.keys(variables || {})],
             });
 
             const { data, error } = await client.graphql.request(
@@ -339,7 +345,8 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
             };
         },
 
-        createMany: async ({ resource, variables, metaData }) => {
+        createMany: async ({ resource, variables, meta: _meta, metaData }) => {
+            const meta = pickNotDeprecated(_meta, metaData);
             const operation = metaData?.operation ?? resource;
 
             const insertOperation = `insert_${operation}`;
@@ -356,7 +363,7 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
                 },
                 fields: [
                     {
-                        returning: metaData?.fields ?? ["id"],
+                        returning: meta?.fields ?? ["id"],
                     },
                 ],
             });
@@ -375,8 +382,9 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
             };
         },
 
-        update: async ({ resource, id, variables, metaData }) => {
-            const operation = metaData?.operation ?? resource;
+        update: async ({ resource, id, variables, meta: _meta, metaData }) => {
+            const meta = pickNotDeprecated(_meta, metaData);
+            const operation = meta?.operation ?? resource;
 
             const updateOperation = `update_${operation}_by_pk`;
 
@@ -399,7 +407,7 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
                         required: true,
                     },
                 },
-                fields: metaData?.fields ?? ["id"],
+                fields: meta?.fields ?? ["id"],
             });
 
             const { data, error } = await client.graphql.request(
@@ -415,8 +423,15 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
                 data: (data as any)?.[updateOperation],
             };
         },
-        updateMany: async ({ resource, ids, variables, metaData }) => {
-            const operation = metaData?.operation ?? resource;
+        updateMany: async ({
+            resource,
+            ids,
+            variables,
+            meta: _meta,
+            metaData,
+        }) => {
+            const meta = pickNotDeprecated(_meta, metaData);
+            const operation = meta?.operation ?? resource;
 
             const updateOperation = `update_${operation}`;
 
@@ -443,7 +458,7 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
                 },
                 fields: [
                     {
-                        returning: metaData?.fields ?? ["id"],
+                        returning: meta?.fields ?? ["id"],
                     },
                 ],
             });
@@ -462,8 +477,9 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
             };
         },
 
-        deleteOne: async ({ resource, id, metaData }) => {
-            const operation = metaData?.operation ?? resource;
+        deleteOne: async ({ resource, id, meta: _meta, metaData }) => {
+            const meta = pickNotDeprecated(_meta, metaData);
+            const operation = meta?.operation ?? resource;
 
             const deleteOperation = `delete_${operation}_by_pk`;
 
@@ -471,9 +487,9 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
                 operation: deleteOperation,
                 variables: {
                     id: { value: id, type: "uuid", required: true },
-                    ...metaData?.variables,
+                    ...meta?.variables,
                 },
-                fields: metaData?.fields ?? ["id"],
+                fields: meta?.fields ?? ["id"],
             });
 
             const { data, error } = await client.graphql.request(
@@ -490,8 +506,9 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
             };
         },
 
-        deleteMany: async ({ resource, ids, metaData }) => {
-            const operation = metaData?.operation ?? resource;
+        deleteMany: async ({ resource, ids, meta: _meta, metaData }) => {
+            const meta = pickNotDeprecated(_meta, metaData);
+            const operation = meta?.operation ?? resource;
 
             const deleteOperation = `delete_${operation}`;
 
@@ -501,10 +518,10 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
                 operation: deleteOperation,
                 fields: [
                     {
-                        returning: metaData?.fields ?? ["id"],
+                        returning: meta?.fields ?? ["id"],
                     },
                 ],
-                variables: metaData?.variables ?? {
+                variables: meta?.variables ?? {
                     where: {
                         type: whereType,
                         required: true,

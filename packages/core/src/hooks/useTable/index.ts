@@ -30,9 +30,10 @@ import {
     GetListResponse,
     SuccessErrorNotification,
     HttpError,
-    MetaDataQuery,
+    MetaQuery,
     LiveModeProps,
 } from "../../interfaces";
+import { pickNotDeprecated } from "@definitions/helpers";
 
 type SetFilterBehavior = "merge" | "replace";
 
@@ -115,7 +116,12 @@ export type useTableProps<TData, TError> = {
     /**
      * Metadata query for dataProvider
      */
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     * Metadata query for dataProvider
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     /**
      * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
      */
@@ -193,6 +199,7 @@ export function useTable<
     liveMode: liveModeFromProp,
     onLiveEvent,
     liveParams,
+    meta,
     metaData,
     dataProviderName,
 }: useTableProps<TData, TError> = {}): useTableReturnType<TData, TError> {
@@ -350,7 +357,8 @@ export function useTable<
         },
         successNotification,
         errorNotification,
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         liveMode,
         liveParams,
         onLiveEvent,

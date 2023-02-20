@@ -143,6 +143,7 @@ describe("useInfiniteList Hook", () => {
                 params: {
                     filters: undefined,
                     hasPagination: undefined,
+                    meta: undefined,
                     metaData: undefined,
                     pagination: undefined,
                     resource: "posts",

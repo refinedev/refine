@@ -154,16 +154,17 @@ export const generateFilters: any = (filters?: CrudFilters) => {
 
 const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
     return {
-        getOne: async ({ resource, id, metaData }) => {
-            const operation = `${metaData?.operation ?? resource}_by_pk`;
+        getOne: async ({ resource, id, meta: _meta, metaData }) => {
+            const meta = pickNotDeprecated(_meta, metaData);
+            const operation = `${meta?.operation ?? resource}_by_pk`;
 
             const { query, variables } = gql.query({
                 operation,
                 variables: {
                     id: { value: id, type: "uuid", required: true },
-                    ...metaData?.variables,
+                    ...meta?.variables,
                 },
-                fields: metaData?.fields,
+                fields: meta?.fields,
             });
 
             const response = await client.request(query, variables);
@@ -173,13 +174,14 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        getMany: async ({ resource, ids, metaData }) => {
-            const operation = metaData?.operation ?? resource;
+        getMany: async ({ resource, ids, meta: _meta, metaData }) => {
+            const meta = pickNotDeprecated(_meta, metaData);
+            const operation = meta?.operation ?? resource;
 
             const { query, variables } = gql.query({
                 operation,
-                fields: metaData?.fields,
-                variables: metaData?.variables ?? {
+                fields: meta?.fields,
+                variables: meta?.variables ?? {
                     where: {
                         type: `${operation}_bool_exp`,
                         value: {
@@ -205,6 +207,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             filters,
             hasPagination = true,
             pagination = { current: 1, pageSize: 10 },
+            meta: _meta,
             metaData,
         }) => {
             const {
@@ -224,7 +227,9 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             );
             const hasuraFilters = generateFilters(filters);
 
-            const operation = metaData?.operation ?? resource;
+            const meta = pickNotDeprecated(_meta, metaData);
+
+            const operation = meta?.operation ?? resource;
 
             const aggregateOperation = `${operation}_aggregate`;
 
@@ -234,7 +239,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             const { query, variables } = gql.query([
                 {
                     operation,
-                    fields: metaData?.fields,
+                    fields: meta?.fields,
                     variables: {
                         ...(isServerPaginationEnabled
                             ? {
@@ -276,8 +281,9 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        create: async ({ resource, variables, metaData }) => {
-            const operation = metaData?.operation ?? resource;
+        create: async ({ resource, variables, meta: _meta, metaData }) => {
+            const meta = pickNotDeprecated(_meta, metaData);
+            const operation = meta?.operation ?? resource;
 
             const insertOperation = `insert_${operation}_one`;
             const insertType = `${operation}_insert_input`;
@@ -291,7 +297,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                         required: true,
                     },
                 },
-                fields: metaData?.fields ?? ["id", ...Object.keys(variables)],
+                fields: meta?.fields ?? ["id", ...Object.keys(variables || {})],
             });
 
             const response = await client.request(query, gqlVariables);
@@ -301,8 +307,9 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        createMany: async ({ resource, variables, metaData }) => {
-            const operation = metaData?.operation ?? resource;
+        createMany: async ({ resource, variables, meta: _meta, metaData }) => {
+            const meta = pickNotDeprecated(_meta, metaData);
+            const operation = meta?.operation ?? resource;
 
             const insertOperation = `insert_${operation}`;
             const insertType = `[${operation}_insert_input!]`;
@@ -318,7 +325,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 },
                 fields: [
                     {
-                        returning: metaData?.fields ?? ["id"],
+                        returning: meta?.fields ?? ["id"],
                     },
                 ],
             });
@@ -330,7 +337,8 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        update: async ({ resource, id, variables, metaData }) => {
+        update: async ({ resource, id, variables, meta: _meta, metaData }) => {
+            const meta = pickNotDeprecated(_meta, metaData);
             const operation = metaData?.operation ?? resource;
 
             const updateOperation = `update_${operation}_by_pk`;
@@ -354,7 +362,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                         required: true,
                     },
                 },
-                fields: metaData?.fields ?? ["id"],
+                fields: meta?.fields ?? ["id"],
             });
 
             const response = await client.request(query, gqlVariables);
@@ -363,7 +371,14 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 data: response[updateOperation],
             };
         },
-        updateMany: async ({ resource, ids, variables, metaData }) => {
+        updateMany: async ({
+            resource,
+            ids,
+            variables,
+            meta: _meta,
+            metaData,
+        }) => {
+            const meta = pickNotDeprecated(_meta, metaData);
             const operation = metaData?.operation ?? resource;
 
             const updateOperation = `update_${operation}`;
@@ -391,7 +406,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 },
                 fields: [
                     {
-                        returning: metaData?.fields ?? ["id"],
+                        returning: meta?.fields ?? ["id"],
                     },
                 ],
             });
@@ -403,7 +418,8 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        deleteOne: async ({ resource, id, metaData }) => {
+        deleteOne: async ({ resource, id, meta: _meta, metaData }) => {
+            const meta = pickNotDeprecated(_meta, metaData);
             const operation = metaData?.operation ?? resource;
 
             const deleteOperation = `delete_${operation}_by_pk`;
@@ -412,9 +428,9 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 operation: deleteOperation,
                 variables: {
                     id: { value: id, type: "uuid", required: true },
-                    ...metaData?.variables,
+                    ...meta?.variables,
                 },
-                fields: metaData?.fields ?? ["id"],
+                fields: meta?.fields ?? ["id"],
             });
 
             const response = await client.request(query, variables);
@@ -424,7 +440,8 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        deleteMany: async ({ resource, ids, metaData }) => {
+        deleteMany: async ({ resource, ids, meta: _meta, metaData }) => {
+            const meta = pickNotDeprecated(_meta, metaData);
             const operation = metaData?.operation ?? resource;
 
             const deleteOperation = `delete_${operation}`;
@@ -435,10 +452,10 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 operation: deleteOperation,
                 fields: [
                     {
-                        returning: metaData?.fields ?? ["id"],
+                        returning: meta?.fields ?? ["id"],
                     },
                 ],
-                variables: metaData?.variables ?? {
+                variables: meta?.variables ?? {
                     where: {
                         type: whereType,
                         required: true,
@@ -464,20 +481,21 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             );
         },
 
-        custom: async ({ url, method, headers, metaData }) => {
+        custom: async ({ url, method, headers, meta: _meta, metaData }) => {
+            const meta = pickNotDeprecated(_meta, metaData);
             let gqlClient = client;
 
             if (url) {
                 gqlClient = new GraphQLClient(url, { headers });
             }
 
-            if (metaData) {
-                if (metaData.operation) {
+            if (meta) {
+                if (meta.operation) {
                     if (method === "get") {
                         const { query, variables } = gql.query({
-                            operation: metaData.operation,
-                            fields: metaData.fields,
-                            variables: metaData.variables,
+                            operation: meta.operation,
+                            fields: meta.fields,
+                            variables: meta.variables,
                         });
 
                         const response = await gqlClient.request(
@@ -486,13 +504,13 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                         );
 
                         return {
-                            data: response[metaData.operation],
+                            data: response[meta.operation],
                         };
                     } else {
                         const { query, variables } = gql.mutation({
-                            operation: metaData.operation,
-                            fields: metaData.fields,
-                            variables: metaData.variables,
+                            operation: meta.operation,
+                            fields: meta.fields,
+                            variables: meta.variables,
                         });
 
                         const response = await gqlClient.request(
@@ -501,7 +519,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                         );
 
                         return {
-                            data: response[metaData.operation],
+                            data: response[meta.operation],
                         };
                     }
                 } else {

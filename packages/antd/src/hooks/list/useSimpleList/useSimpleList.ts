@@ -68,6 +68,7 @@ export const useSimpleList = <
     liveMode: liveModeFromProp,
     onLiveEvent,
     liveParams,
+    meta,
     metaData,
     dataProviderName,
 }: useSimpleListProps<
@@ -104,7 +105,8 @@ export const useSimpleList = <
         liveMode: liveModeFromProp,
         onLiveEvent,
         liveParams,
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         syncWithLocation,
         dataProviderName,
         pagination,
