@@ -1,5 +1,4 @@
 import * as React from "react";
-import { RefineReadyPageProps } from "@pankod/refine-ui-types";
 import { Row, Col, Typography, Space, Button } from "antd";
 import { ReadOutlined, FolderOutlined, TeamOutlined } from "@ant-design/icons";
 
@@ -36,12 +35,9 @@ const styles: { [key: string]: React.CSSProperties } = {
 const { Title } = Typography;
 
 /**
- * **refine** shows a default ready page on root route when no `resources` is passed to the `<Refine>` component as a property.
- *
- * @see {@link https://refine.dev/docs/api-references/components/refine-config#readypage} for more details.
- * @deprecated `ReadyPage` is deprecated and will be removed in the next major release.
+ * It is a page that welcomes you after the configuration is completed.
  */
-export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
+export const WelcomePage: React.FC = () => {
     return (
         <Row align="middle" justify="center" style={styles.root}>
             <Col style={{ textAlign: "center" }}>
@@ -52,11 +48,6 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
                 />
                 <Title style={styles.title}>Welcome on board</Title>
                 <p style={styles.p1}>Your configuration is completed.</p>
-                <p style={styles.p2}>
-                    Now you can get started by adding your resources to the{" "}
-                    <code style={styles.code}>{`resources`}</code> property of{" "}
-                    <code style={styles.code}>{`<Refine>`}</code>
-                </p>
                 <Space
                     size="large"
                     wrap
