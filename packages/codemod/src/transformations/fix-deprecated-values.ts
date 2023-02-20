@@ -8,6 +8,7 @@ import {
     Identifier,
     ObjectProperty,
     BooleanLiteral,
+    JSXAttribute,
 } from "jscodeshift";
 
 export const parser = "tsx";
@@ -566,6 +567,32 @@ const addCommentToUseSimpleList = (j: JSCodeshift, source: Collection) => {
     });
 };
 
+const refineOptionstoMeta = (j: JSCodeshift, source: Collection) => {
+    const refineElement = source.find(j.JSXElement, {
+        openingElement: {
+            name: {
+                name: "Refine",
+            },
+        },
+    });
+
+    if (refineElement.length === 0) {
+        return;
+    }
+
+    refineElement.forEach((path) => {
+        const optionsProperty = path.node.openingElement.attributes.find(
+            (p) => (p as JSXAttribute).name.name === "options",
+        );
+
+        if (!optionsProperty) {
+            return;
+        }
+
+        (optionsProperty as JSXAttribute).name.name = "meta";
+    });
+};
+
 export default function transformer(file: FileInfo, api: API): string {
     const j = api.jscodeshift;
     const source = j(file.source);
@@ -580,6 +607,7 @@ export default function transformer(file: FileInfo, api: API): string {
     useCustomConfigSortToSorters(j, source);
     setSortertoSetSorters(j, source);
     addCommentToUseSimpleList(j, source);
+    refineOptionstoMeta(j, source);
 
     return source.toSource();
 }
