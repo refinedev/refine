@@ -3,15 +3,20 @@ import { FieldInferencer } from "@/types";
 
 const dateSuffixRegexp = /(_at|_on|At|On|AT|ON)(\[\])?$/;
 
+const dateSeparators = ["/", ":", "-", "."];
+
 export const dateInfer: FieldInferencer = (key, value) => {
     const isDateField =
         dateSuffixRegexp.test(key) && dayjs(value as string).isValid();
+
     const isValidDateString =
         typeof value === "string" && dayjs(value).isValid();
 
-    const isAcceptableLength = typeof value === "string" && value.length > 4;
+    const hasDateSeparator =
+        typeof value === "string" &&
+        dateSeparators.some((s) => value.includes(s));
 
-    if (isDateField || (isValidDateString && isAcceptableLength)) {
+    if (hasDateSeparator && (isDateField || isValidDateString)) {
         return {
             key,
             type: "date",
