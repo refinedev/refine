@@ -950,7 +950,6 @@ It is useful when you want to `invalidate` other resources don't have relation w
 import React from "react";
 import { useInvalidate } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-mantine";
-import { Form, Input } from "antd";
 
 const PostEdit = () => {
     const invalidate = useInvalidate();
