@@ -4,7 +4,7 @@ title: General Concepts
 ---
 
 -   **refine** core is fully independent of UI. So you can use core components and hooks without any UI dependency.
--   All the **data** related hooks([`useTable`](/docs/api-reference/core/hooks/useTable/), [`useForm`](/api-reference/core/hooks/useForm.md), [`useList`](/docs/api-reference/core/hooks/data/useList) etc.) of **refine** can be given some common properties like `resource`, `metaData`, `queryOptions` etc.
+-   All the **data** related hooks([`useTable`](/docs/api-reference/core/hooks/useTable/), [`useForm`](/api-reference/core/hooks/useForm.md), [`useList`](/docs/api-reference/core/hooks/data/useList) etc.) of **refine** can be given some common properties like `resource`, `meta`, `queryOptions` etc.
 
 ### `resource`
 
@@ -64,21 +64,21 @@ How can I request an API with nested route?
 
 [Refer to how to use resource with nested routes documentation for more information. &#8594](/faq.md#how-can-i-request-an-api-with-nested-route)
 
-### `metaData`
+### `meta`
 
-`metaData` is used following two purposes:
+`meta` is used following two purposes:
 
 -   To pass additional information to data provider methods.
 -   Generate GraphQL queries using plain JavaScript Objects (JSON).
 
-How to use `metaData` to pass additional information to data provider methods?
+How to use `meta` to pass additional information to data provider methods?
 
 ```tsx
 useOne({
     resource: "posts",
     id: 1,
     // highlight-start
-    metaData: {
+    meta: {
         headers: { "x-meta-data": "true" },
     },
     // highlight-end
@@ -86,9 +86,9 @@ useOne({
 
 const myDataProvider = {
     ...
-    getOne: async ({ resource, id, metaData }) => {
+    getOne: async ({ resource, id, meta }) => {
         // highlight-next-line
-        const headers = metaData?.headers ?? {};
+        const headers = meta?.headers ?? {};
         const url = `${apiUrl}/${resource}/${id}`;
 
         //highlight-next-line
@@ -102,8 +102,8 @@ const myDataProvider = {
 };
 ```
 
-In the above example, we pass the `headers` property in the `metaData` object to the `getOne` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
+In the above example, we pass the `headers` property in the `meta` object to the `getOne` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
-[Refer to the how to pass `metaData` to your existing `dataProvider` methods. &#8594](/faq.md#how-i-can-override-specific-function-of-data-providers)
+[Refer to the how to pass `meta` to your existing `dataProvider` methods. &#8594](/faq.md#how-i-can-override-specific-function-of-data-providers)
 
-[Refer to the `GraphQL` guide to learn how to use `metaData` to create GraphQL queries. &#8594](/advanced-tutorials/data-provider/graphql.md)
+[Refer to the `GraphQL` guide to learn how to use `meta` to create GraphQL queries. &#8594](/advanced-tutorials/data-provider/graphql.md)

@@ -36,7 +36,7 @@ const timeline = [
         date: "17th February 2022",
         title: "Adding Realtime Collaboration",
         description: `Adding <strong className="font-bold">Supabase</strong> as live provider to the project in order that multiple users drawing on the same canvas can see each other's paintings in real-time.`,
-        link: null,
+        link: "https://refine.dev/blog/refine-pixels-4/",
     },
     {
         date: "18th February 2022",

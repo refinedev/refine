@@ -6,6 +6,7 @@ import {
     CrudSorting,
     CrudFilter,
     Pagination,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import {
     Client as Appwrite,
@@ -157,12 +158,12 @@ export const dataProvider = (
                 },
             } as any;
         },
-        update: async ({ resource, id, variables, metaData }) => {
+        update: async ({ resource, id, variables, meta, metaData }) => {
             const permissions = [
                 Permission.read(Role.any()),
                 Permission.write(Role.any()),
-                ...(metaData?.readPermissions ?? ""),
-                ...(metaData?.writePermissions ?? ""),
+                ...(pickNotDeprecated(meta, metaData)?.readPermissions ?? ""),
+                ...(pickNotDeprecated(meta, metaData)?.writePermissions ?? ""),
             ];
             const { $id, ...restData } = await database.updateDocument(
                 databaseId,
@@ -179,18 +180,18 @@ export const dataProvider = (
                 },
             } as any;
         },
-        create: async ({ resource, variables, metaData }) => {
+        create: async ({ resource, variables, meta, metaData }) => {
             const permissions = [
                 Permission.read(Role.any()),
                 Permission.write(Role.any()),
-                ...(metaData?.readPermissions ?? ""),
-                ...(metaData?.writePermissions ?? ""),
+                ...(pickNotDeprecated(meta, metaData)?.readPermissions ?? ""),
+                ...(pickNotDeprecated(meta, metaData)?.writePermissions ?? ""),
             ];
 
             const { $id, ...restData } = await database.createDocument(
                 databaseId,
                 resource,
-                metaData?.documentId ?? ID.unique(),
+                pickNotDeprecated(meta, metaData)?.documentId ?? ID.unique(),
                 variables as unknown as object,
                 permissions,
             );
@@ -202,19 +203,20 @@ export const dataProvider = (
                 },
             } as any;
         },
-        createMany: async ({ resource, variables, metaData }) => {
+        createMany: async ({ resource, variables, meta, metaData }) => {
             const permissions = [
                 Permission.read(Role.any()),
                 Permission.write(Role.any()),
-                ...(metaData?.readPermissions ?? ""),
-                ...(metaData?.writePermissions ?? ""),
+                ...(pickNotDeprecated(meta, metaData)?.readPermissions ?? ""),
+                ...(pickNotDeprecated(meta, metaData)?.writePermissions ?? ""),
             ];
             const data = await Promise.all(
                 variables.map((document) =>
                     database.createDocument<any>(
                         databaseId,
                         resource,
-                        metaData?.documentId ?? ID.unique(),
+                        pickNotDeprecated(meta, metaData)?.documentId ??
+                            ID.unique(),
                         document as unknown as any,
                         permissions,
                     ),
@@ -270,12 +272,12 @@ export const dataProvider = (
                 })),
             } as any;
         },
-        updateMany: async ({ resource, ids, variables, metaData }) => {
+        updateMany: async ({ resource, ids, variables, meta, metaData }) => {
             const permissions = [
                 Permission.read(Role.any()),
                 Permission.write(Role.any()),
-                ...(metaData?.readPermissions ?? ""),
-                ...(metaData?.writePermissions ?? ""),
+                ...(pickNotDeprecated(meta, metaData)?.readPermissions ?? ""),
+                ...(pickNotDeprecated(meta, metaData)?.writePermissions ?? ""),
             ];
             const data = await Promise.all(
                 ids.map((id) =>

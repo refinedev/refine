@@ -104,7 +104,7 @@ You can see the fields of the collections we created as below.
 
 ## List Page
 
-When sending the request, we must specify which fields will come, so we send `fields` in `metaData` to hooks that we will fetch data from.
+When sending the request, we must specify which fields will come, so we send `fields` in `meta` to hooks that we will fetch data from.
 
 <Tabs
 defaultValue="usage"
@@ -124,7 +124,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             },
         ],
         // highlight-start
-        metaData: {
+        meta: {
             fields: [
                 "id",
                 "title",
@@ -139,7 +139,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
         // highlight-start
-        metaData: {
+        meta: {
             fields: ["id", "title"],
         },
         // highlight-end
@@ -234,7 +234,7 @@ query ($sort: String, $where: JSON, $start: Int, $limit: Int) {
 
 ## Edit Page
 
-On the edit page, `useForm` sends a request with the record id to fill the form. `fields` must be sent in `metaData` to determine which fields will come in this request.
+On the edit page, `useForm` sends a request with the record id to fill the form. `fields` must be sent in `meta` to determine which fields will come in this request.
 
 <Tabs
 defaultValue="usage"
@@ -252,7 +252,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         IPost
     >({
         // highlight-start
-        metaData: {
+        meta: {
             fields: [
                 "id",
                 "title",
@@ -270,7 +270,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         resource: "categories",
         defaultValue: postData?.category.id,
         // highlight-start
-        metaData: {
+        meta: {
             fields: ["id", "title"],
         },
         // highlight-end
@@ -328,7 +328,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 ```
 
 :::info
-The create page is largely the same as the edit page, there is no need to pass `metaData` to [`useForm`](/docs/api-reference/core/hooks/useForm) on the create page. If you want to use the created record as a response after the request, you can pass the `fields` with `metaData`.
+The create page is largely the same as the edit page, there is no need to pass `meta` to [`useForm`](/docs/api-reference/core/hooks/useForm) on the create page. If you want to use the created record as a response after the request, you can pass the `fields` with `meta`.
 :::
 
 </TabItem>
@@ -373,7 +373,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>({
         resource: "posts",
         // highlight-start
-        metaData: {
+        meta: {
             fields: [
                 "id",
                 "title",

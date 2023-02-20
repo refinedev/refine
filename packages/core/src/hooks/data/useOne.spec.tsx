@@ -67,6 +67,7 @@ describe("useOne Hook", () => {
                 params: {
                     ids: ["1"],
                     id: "1",
+                    meta: undefined,
                     metaData: undefined,
                     resource: "posts",
                     subscriptionType: "useOne",

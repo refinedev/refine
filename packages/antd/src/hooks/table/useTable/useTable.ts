@@ -17,6 +17,7 @@ import {
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
     useTableReturnType as useTableCoreReturnType,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 
 import {
@@ -89,6 +90,7 @@ export const useTable = <
         liveMode: liveModeFromProp,
         onLiveEvent,
         liveParams,
+        meta,
         metaData,
         dataProviderName,
     }: useTableProps<TData, TError, TSearchVariables> = { hasPagination: true },
@@ -123,7 +125,8 @@ export const useTable = <
         liveMode: liveModeFromProp,
         onLiveEvent,
         liveParams,
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         dataProviderName,
     });
 

@@ -14,7 +14,7 @@ import {
     CrudFilters,
     CrudSorting,
     LiveEvent,
-    MetaDataQuery,
+    MetaQuery,
     Pagination,
 } from "src";
 
@@ -24,7 +24,8 @@ export type LiveListParams = {
     hasPagination?: boolean;
     sort?: CrudSorting;
     filters?: CrudFilters;
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    metaData?: MetaQuery;
 };
 
 export type LiveOneParams = {
