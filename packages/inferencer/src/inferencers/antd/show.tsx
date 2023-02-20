@@ -1,4 +1,5 @@
 import * as RefineAntd from "@pankod/refine-antd";
+import * as AntdPackage from "antd";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -43,7 +44,7 @@ export const renderer = ({
         ["IResourceComponentsProps", "@pankod/refine-core"],
         ["useShow", "@pankod/refine-core"],
         ["Show", "@pankod/refine-antd"],
-        ["Typography", "@pankod/refine-antd"],
+        ["Typography", "antd"],
     ];
 
     const relationFields: (InferField | null)[] = fields.filter(
@@ -465,7 +466,10 @@ export const renderer = ({
  */
 export const ShowInferencer: InferencerResultComponent = createInferencer({
     type: "show",
-    additionalScope: [["@pankod/refine-antd", "RefineAntd", RefineAntd]],
+    additionalScope: [
+        ["@pankod/refine-antd", "RefineAntd", RefineAntd],
+        ["antd", "AntdPackage", AntdPackage],
+    ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
