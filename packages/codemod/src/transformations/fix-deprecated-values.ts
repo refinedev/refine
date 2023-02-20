@@ -548,6 +548,24 @@ const setSortertoSetSorters = (j: JSCodeshift, source: Collection) => {
     });
 };
 
+const addCommentToUseSimpleList = (j: JSCodeshift, source: Collection) => {
+    const useSimpleListHooks = source.find(j.CallExpression, {
+        callee: {
+            name: "useSimpleList",
+        },
+    });
+
+    useSimpleListHooks.forEach((path) => {
+        const comment = j.commentLine(
+            "Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.",
+            false,
+            true,
+        );
+
+        path.parentPath.insertBefore(comment);
+    });
+};
+
 export default function transformer(file: FileInfo, api: API): string {
     const j = api.jscodeshift;
     const source = j(file.source);
@@ -561,6 +579,7 @@ export default function transformer(file: FileInfo, api: API): string {
     fixUseListHasPaginationToPaginationMode(j, source);
     useCustomConfigSortToSorters(j, source);
     setSortertoSetSorters(j, source);
+    addCommentToUseSimpleList(j, source);
 
     return source.toSource();
 }
