@@ -1,8 +1,6 @@
 import * as React from "react";
-import { RefineReadyPageProps } from "@pankod/refine-ui-types";
 import {
     BackgroundImage,
-    Code,
     Title,
     Text,
     Group,
@@ -11,10 +9,7 @@ import {
     Anchor,
 } from "@mantine/core";
 
-/**
- * @deprecated `ReadyPage` is deprecated and will be removed in the next major release.
- */
-export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
+export const WelcomePage: React.FC = () => {
     return (
         <BackgroundImage
             sx={{
@@ -39,10 +34,6 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
             </Title>
             <Text size="xl" sx={{ color: "white" }} mt="md" align="center">
                 Your configuration is completed.
-            </Text>
-            <Text size="lg" sx={{ color: "white" }} mt="md" align="center">
-                Now you can get started by adding your resources to the{" "}
-                <Code>resources</Code> property of <Code>Refine</Code>.
             </Text>
             <Space h={48} />
             <Group position="center">
