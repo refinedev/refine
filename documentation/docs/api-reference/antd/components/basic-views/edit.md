@@ -421,7 +421,7 @@ interface IPost {
 }
 
 import { Edit, useForm, useSelect } from "@pankod/refine-antd";
-import { Form, Input, Select } from "atnd";
+import { Form, Input, Select } from "antd";
 
 const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
