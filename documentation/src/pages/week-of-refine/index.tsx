@@ -53,9 +53,9 @@ const timeline = [
     },
     {
         date: "20th February 2022",
-        title: "Add Audit Log to Client App and Admin App",
-        description: `Well record each canvas creation and pixel drawings to audit logs table in <strong className="font-bold">Supabase</strong>. And then we’ll be able to display this logs on the admin and the client app.`,
-        link: null,
+        title: "Implementing Audit Logs",
+        description: `We'll record each canvas creation and pixel drawings to audit logs table in <strong className="font-bold">Supabase</strong>. And then we’ll be able to display this logs on the admin and the client app.`,
+        link: "https://refine.dev/blog/refine-pixels-7/",
     },
 ];
 
