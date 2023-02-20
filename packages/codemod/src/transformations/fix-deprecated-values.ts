@@ -514,6 +514,40 @@ const useCustomConfigSortToSorters = (j: JSCodeshift, source: Collection) => {
     });
 };
 
+const setSortertoSetSorters = (j: JSCodeshift, source: Collection) => {
+    const willCheckHooks = ["useTable", "useDataGrid"];
+
+    willCheckHooks.forEach((hook) => {
+        const updatedHooks = source.find(j.CallExpression, {
+            callee: {
+                name: hook,
+            },
+        });
+
+        if (updatedHooks.length === 0) {
+            return;
+        }
+
+        updatedHooks.forEach((path) => {
+            const setSorterProperty = path.parentPath.node.id.properties.find(
+                (p) => p.value.name === "setSorter",
+            );
+
+            if (setSorterProperty) {
+                setSorterProperty.value.name = "setSorters: setSorter";
+            }
+
+            const sorterPropery = path.parentPath.node.id.properties.find(
+                (p) => p.value.name === "sorter",
+            );
+
+            if (sorterPropery) {
+                sorterPropery.value.name = "sorters: sorter";
+            }
+        });
+    });
+};
+
 export default function transformer(file: FileInfo, api: API): string {
     const j = api.jscodeshift;
     const source = j(file.source);
@@ -526,6 +560,7 @@ export default function transformer(file: FileInfo, api: API): string {
     fixDeprecatedUseTableProps(j, source);
     fixUseListHasPaginationToPaginationMode(j, source);
     useCustomConfigSortToSorters(j, source);
+    setSortertoSetSorters(j, source);
 
     return source.toSource();
 }
