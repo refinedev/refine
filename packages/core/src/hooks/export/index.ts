@@ -11,7 +11,7 @@ import {
     MapDataFn,
     CrudSorting,
     CrudFilters,
-    MetaDataQuery,
+    MetaQuery,
 } from "../../interfaces";
 import {
     userFriendlyResourceName,
@@ -65,7 +65,12 @@ type UseExportOptionsType<
     /**
      *  Metadata query for `dataProvider`
      */
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     *  Metadata query for `dataProvider`
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     /**
      * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
      */
@@ -103,6 +108,7 @@ export const useExport = <
     pageSize = 20,
     mapData = (item) => item as any,
     exportOptions,
+    meta,
     metaData,
     dataProviderName,
     onError,
@@ -148,7 +154,8 @@ export const useExport = <
                         current,
                         pageSize,
                     },
-                    metaData,
+                    meta: pickNotDeprecated(meta, metaData),
+                    metaData: pickNotDeprecated(meta, metaData),
                 });
 
                 current++;

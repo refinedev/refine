@@ -10,7 +10,7 @@ import {
     CreateManyResponse,
     HttpError,
     SuccessErrorNotification,
-    MetaDataQuery,
+    MetaQuery,
     IQueryKeys,
 } from "../../interfaces";
 import {
@@ -22,12 +22,17 @@ import {
     useInvalidate,
     useLog,
 } from "@hooks";
-import { handleMultiple, pickDataProvider } from "@definitions";
+import {
+    handleMultiple,
+    pickDataProvider,
+    pickNotDeprecated,
+} from "@definitions";
 
 type useCreateManyParams<TVariables> = {
     resource: string;
     values: TVariables[];
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    metaData?: MetaQuery;
     dataProviderName?: string;
     invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification;
@@ -98,6 +103,7 @@ export const useCreateMany = <
         ({
             resource,
             values,
+            meta,
             metaData,
             dataProviderName,
         }: useCreateManyParams<TVariables>) => {
@@ -109,7 +115,8 @@ export const useCreateMany = <
                 return selectedDataProvider.createMany<TData, TVariables>({
                     resource,
                     variables: values,
-                    metaData,
+                    meta: pickNotDeprecated(meta, metaData),
+                    metaData: pickNotDeprecated(meta, metaData),
                 });
             } else {
                 return handleMultiple(
@@ -117,7 +124,8 @@ export const useCreateMany = <
                         selectedDataProvider.create<TData, TVariables>({
                             resource,
                             variables: val,
-                            metaData,
+                            meta: pickNotDeprecated(meta, metaData),
+                            metaData: pickNotDeprecated(meta, metaData),
                         }),
                     ),
                 );
@@ -132,6 +140,7 @@ export const useCreateMany = <
                     dataProviderName,
                     invalidates = ["list", "many"],
                     values,
+                    meta,
                     metaData,
                 },
             ) => {
@@ -182,7 +191,7 @@ export const useCreateMany = <
                 });
 
                 const { fields, operation, variables, ...rest } =
-                    metaData || {};
+                    pickNotDeprecated(meta, metaData) || {};
 
                 log?.mutate({
                     action: "createMany",

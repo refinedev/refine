@@ -10,7 +10,7 @@ describe("createMany", () => {
         });
     });
 
-    it("correct response with metaData", async () => {
+    it("correct response with meta", async () => {
         const { data } = await dataProvider(nhost).createMany!({
             resource: "posts",
             variables: [
@@ -25,7 +25,7 @@ describe("createMany", () => {
                     category_id: "3e5ff497-af3e-4234-876d-0fb7ccb078f5",
                 },
             ],
-            metaData: {
+            meta: {
                 fields: ["id", "title", "content", { category: ["id"] }],
             },
         });
@@ -47,7 +47,7 @@ describe("createMany", () => {
         );
     });
 
-    it("correct response without metaData", async () => {
+    it("correct response without meta", async () => {
         const { data } = await dataProvider(nhost).createMany!({
             resource: "posts",
             variables: [

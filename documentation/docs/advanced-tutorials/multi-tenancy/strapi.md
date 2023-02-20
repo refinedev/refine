@@ -106,7 +106,7 @@ If you need the population for the `/me` request, you can use it like this in yo
 const strapiAuthHelper = AuthHelper(API_URL + "/api");
 
 strapiAuthHelper.me("token", {
-    metaData: {
+    meta: {
         populate: ["role"],
     },
 });
@@ -487,7 +487,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         permanentFilter: [
             { field: "stores][id]", operator: "eq", value: store },
         ],
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
     });
     //highlight-end
 

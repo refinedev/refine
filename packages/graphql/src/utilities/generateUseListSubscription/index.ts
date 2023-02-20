@@ -1,8 +1,9 @@
 import {
-    MetaDataQuery,
+    MetaQuery,
     Pagination,
     CrudSorting,
     CrudFilters,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import * as gql from "gql-query-builder";
 import camelCase from "camelcase";
@@ -11,7 +12,8 @@ import { generateFilter, generateSort } from "../../dataProvider";
 
 type GenerateUseListSubscriptionParams = {
     resource: string;
-    metaData: MetaDataQuery;
+    meta?: MetaQuery;
+    metaData?: MetaQuery;
     pagination?: Pagination;
     hasPagination?: boolean;
     sort?: CrudSorting;
@@ -27,6 +29,7 @@ type GenerateUseListSubscriptionReturnValues = {
 
 export const generateUseListSubscription = ({
     resource,
+    meta,
     metaData,
     pagination,
     hasPagination,
@@ -42,12 +45,13 @@ export const generateUseListSubscription = ({
 
     const camelResource = camelCase(resource);
 
-    const operation = metaData.operation ?? camelResource;
+    const operation =
+        pickNotDeprecated(meta, metaData)?.operation ?? camelResource;
 
     const { query, variables } = gql.query({
         operation,
         variables: {
-            ...metaData.variables,
+            ...pickNotDeprecated(meta, metaData)?.variables,
             sort: sortBy,
             where: { value: filterBy, type: "JSON" },
             ...(hasPagination
@@ -57,7 +61,7 @@ export const generateUseListSubscription = ({
                   }
                 : {}),
         },
-        fields: metaData.fields,
+        fields: pickNotDeprecated(meta, metaData)?.fields,
     });
 
     return { query, variables, operation };

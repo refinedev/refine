@@ -3,7 +3,7 @@ import { client } from "../appwriteClient";
 import "./index.mock";
 
 describe("deleteOne", () => {
-    it("correct response with metaData", async () => {
+    it("correct response with meta", async () => {
         const { data } = await dataProvider(client, {
             databaseId: "632455a0b8d017403ce9",
         }).deleteOne({

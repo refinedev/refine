@@ -5,6 +5,7 @@ import {
     useMutationMode,
     useCan,
     useResource,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 
@@ -39,6 +40,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     errorNotification,
     hideText = false,
     accessControl,
+    meta,
     metaData,
     dataProviderName,
     confirmTitle,
@@ -82,7 +84,8 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 mutationMode,
                 successNotification,
                 errorNotification,
-                metaData,
+                meta: pickNotDeprecated(meta, metaData),
+                metaData: pickNotDeprecated(meta, metaData),
                 dataProviderName,
             },
             {

@@ -1,7 +1,12 @@
 import React from "react";
 import { Button } from "antd";
 import { RedoOutlined } from "@ant-design/icons";
-import { useOne, useTranslate, useResource } from "@pankod/refine-core";
+import {
+    useOne,
+    useTranslate,
+    useResource,
+    pickNotDeprecated,
+} from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 
 import { RefreshButtonProps } from "../types";
@@ -17,6 +22,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     resourceNameOrRouteName: propResourceNameOrRouteName,
     recordItemId,
     hideText = false,
+    meta,
     metaData,
     dataProviderName,
     children,
@@ -37,7 +43,8 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
         queryOptions: {
             enabled: false,
         },
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         liveMode: "off",
         dataProviderName,
     });

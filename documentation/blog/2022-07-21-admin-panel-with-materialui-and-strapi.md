@@ -319,7 +319,7 @@ Check that the URL is routed to **/posts** and posts are displayed correctly in 
 
 
 ### Handling relational data
-Relations are not populated when fetching entries. We'll use `metaData` option to use relational population for Strapi v4 API.
+Relations are not populated when fetching entries. We'll use `meta` option to use relational population for Strapi v4 API.
 
 The records from `/posts` endpoint that had a category id field. To get category titles automatically from `/categories` endpoint for each record  and show on our table, we need to use [`populate`](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/#relations-population) feature of Strapi v4. 
 
@@ -328,7 +328,7 @@ We'll set `populate` parameter to define which fields will be populated.
 ```tsx title="src/pages/post/list.tsx"
   const { dataGridProps } = useDataGrid<IPost>({
         //highlight-start
-        metaData: {
+        meta: {
             populate: ["category"],
         },
         //highlight-end
@@ -579,7 +579,7 @@ export const PostEdit: React.FC = () => {
         control,
         formState: { errors },
     } = useForm<IPost, HttpError, IPost & { category: ICategory }>({
-        refineCoreProps: { metaData: { populate: ["category"] } },
+        refineCoreProps: { meta: { populate: ["category"] } },
     });
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
@@ -683,7 +683,7 @@ import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>({
-        metaData: {
+        meta: {
             populate: ["category"],
         },
     });
@@ -823,7 +823,7 @@ import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>({
-        metaData: {
+        meta: {
             populate: ["category"],
         },
     });
