@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 2.8.1
+
+### Patch Changes
+
+-   [#3636](https://github.com/refinedev/refine/pull/3636) [`f4f4c38a0ea`](https://github.com/refinedev/refine/commit/f4f4c38a0eacb37b1130ffc0a4717ee5f2003475) Thanks [@BatuhanW](https://github.com/BatuhanW)! - Updated date inferencer to check existence of date separators.
+
 ## 2.8.0
 
 ### Minor Changes

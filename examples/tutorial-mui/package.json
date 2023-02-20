@@ -18,7 +18,7 @@
         "@pankod/refine-react-hook-form": "^3.27.1",
         "@mui/icons-material": "^5.8.3",
         "@pankod/refine-react-router-v6": "^3.18.0",
-        "@pankod/refine-inferencer": "^2.8.0"
+        "@pankod/refine-inferencer": "^2.8.1"
     },
     "devDependencies": {
         "@types/react": "^18.0.0",
