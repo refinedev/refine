@@ -1,6 +1,9 @@
 import * as React from "react";
 import { Box, Heading, Button, Link, Image } from "@chakra-ui/react";
 
+/**
+ * It is a page that welcomes you after the configuration is completed.
+ */
 export const WelcomePage: React.FC = () => {
     return (
         <Box
