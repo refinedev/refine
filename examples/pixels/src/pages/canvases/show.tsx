@@ -53,7 +53,7 @@ export const CanvasShow: React.FC = () => {
                     canvas_id: canvas?.id,
                     user_id: identity.id,
                 },
-                metaData: {
+                meta: {
                     canvas,
                 },
                 successNotification: false,

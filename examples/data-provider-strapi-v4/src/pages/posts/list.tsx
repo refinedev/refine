@@ -34,7 +34,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 order: "desc",
             },
         ],
-        metaData: {
+        meta: {
             populate: ["category", "cover"],
             locale,
             publicationState,
@@ -45,7 +45,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",
-        metaData: { locale },
+        meta: { locale },
     });
 
     return (

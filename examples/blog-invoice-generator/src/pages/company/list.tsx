@@ -12,7 +12,7 @@ import { CompanyItem, CreateCompany, EditCompany } from "components/company";
 
 export const CompanyList: React.FC<IResourceComponentsProps> = () => {
     const { listProps } = useSimpleList<ICompany>({
-        metaData: { populate: ["logo"] },
+        meta: { populate: ["logo"] },
     });
 
     const {
@@ -21,7 +21,7 @@ export const CompanyList: React.FC<IResourceComponentsProps> = () => {
         show: createShow,
     } = useModalForm<ICompany, HttpError, ICompany>({
         action: "create",
-        metaData: { populate: ["logo"] },
+        meta: { populate: ["logo"] },
     });
 
     const {
@@ -30,7 +30,7 @@ export const CompanyList: React.FC<IResourceComponentsProps> = () => {
         show: editShow,
     } = useModalForm<ICompany, HttpError, ICompany>({
         action: "edit",
-        metaData: { populate: ["logo"] },
+        meta: { populate: ["logo"] },
     });
 
     return (

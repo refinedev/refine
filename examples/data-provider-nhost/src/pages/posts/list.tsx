@@ -29,7 +29,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 order: "asc",
             },
         ],
-        metaData: {
+        meta: {
             fields: [
                 "id",
                 "title",
@@ -46,7 +46,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
-        metaData: {
+        meta: {
             fields: ["id", "title"],
         },
     });
@@ -129,7 +129,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
-                                metaData={{
+                                meta={{
                                     fields: [
                                         "id",
                                         "content",

@@ -24,7 +24,7 @@ const authProvider: AuthProvider = {
             const { data } = await gqlDataProvider.custom!({
                 url: "",
                 method: "post",
-                metaData: {
+                meta: {
                     operation: "login",
                     variables: {
                         input: {
@@ -68,7 +68,7 @@ const authProvider: AuthProvider = {
             const { data } = await gqlDataProvider.custom!({
                 url: "",
                 method: "get",
-                metaData: {
+                meta: {
                     operation: "me",
                     fields: [
                         {
@@ -90,7 +90,7 @@ const authProvider: AuthProvider = {
             const { data } = await gqlDataProvider.custom!({
                 url: "",
                 method: "get",
-                metaData: {
+                meta: {
                     operation: "me",
                     fields: ["id", "username", "email"],
                 },

@@ -21,7 +21,7 @@ export const OrderEdit: React.FC<IResourceComponentsProps> = () => {
         HttpError,
         IOrder
     >({
-        metaData: { populate: "product" },
+        meta: { populate: "product" },
     });
 
     const productData = queryResult?.data?.data;

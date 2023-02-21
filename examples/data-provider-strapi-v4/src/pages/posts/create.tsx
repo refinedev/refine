@@ -31,7 +31,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps } = useSelect({
         resource: "categories",
-        metaData: { locale },
+        meta: { locale },
     });
 
     const { ...uploadProps } = useStrapiUpload({

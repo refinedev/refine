@@ -13,7 +13,7 @@ import { IInvoice } from "interfaces";
 
 export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IInvoice>({
-        metaData: { populate: ["company", "contact", "missions"] },
+        meta: { populate: ["company", "contact", "missions"] },
     });
 
     const defaultValue = queryResult?.data?.data;

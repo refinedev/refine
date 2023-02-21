@@ -31,7 +31,7 @@ export const DisplayCanvas: React.FC<DisplayCanvasProps> = ({
             ],
             hasPagination: false,
         },
-        metaData: {
+        meta: {
             select: "*, users(id, full_name, avatar_url)",
         },
     });
