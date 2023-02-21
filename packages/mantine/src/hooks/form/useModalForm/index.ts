@@ -117,9 +117,7 @@ export const useModalForm = <
         }
     };
 
-    const { resourceName } = useResource({
-        resourceNameOrRouteName: resourceProp,
-    });
+    const { resource } = useResource(resourceProp);
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
     const handleClose = useCallback(() => {
@@ -148,10 +146,15 @@ export const useModalForm = <
     }, []);
 
     const title = translate(
-        `${resourceName}.titles.${actionProp}`,
+        `${resource?.name}.titles.${actionProp}`,
         undefined,
         `${userFriendlyResourceName(
-            `${actionProp} ${resourceName}`,
+            `${actionProp} ${
+                resource?.meta?.label ??
+                resource?.options?.label ??
+                resource?.label ??
+                resource?.name
+            }`,
             "singular",
         )}`,
     );

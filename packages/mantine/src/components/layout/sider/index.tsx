@@ -3,10 +3,12 @@ import {
     CanAccess,
     ITreeMenu,
     useIsExistAuthentication,
+    useLink,
     useLogout,
     useMenu,
     useRefineContext,
     useRouterContext,
+    useRouterType,
     useTitle,
     useTranslate,
 } from "@pankod/refine-core";
@@ -43,7 +45,11 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [collapsed, setCollapsed] = useState(false);
     const [opened, setOpened] = useState(false);
 
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const NewLink = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+    const Link = routerType === "legacy" ? LegacyLink : NewLink;
+
     const { defaultOpenKeys, menuItems, selectedKey } = useMenu();
     const Title = useTitle();
     const isExistAuthentication = useIsExistAuthentication();
@@ -104,7 +110,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
 
             const additionalLinkProps = isParent
                 ? {}
-                : { component: Link, to: route };
+                : { component: Link as any, to: route };
 
             return (
                 <CanAccess
@@ -152,7 +158,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                             : t("dashboard.title", "Dashboard")
                     }
                     icon={<IconDashboard size={18} />}
-                    component={Link}
+                    component={Link as any}
                     to="/"
                     active={selectedKey === "/"}
                     styles={commonNavLinkStyles}
