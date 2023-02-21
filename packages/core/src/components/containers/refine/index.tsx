@@ -1,11 +1,5 @@
 import React from "react";
-import {
-    QueryClientProvider,
-    QueryClient,
-    QueryCache,
-    MutationCache,
-    DefaultOptions,
-} from "@tanstack/react-query";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { AuthContextProvider } from "@contexts/auth";
@@ -27,7 +21,6 @@ import { useDeepMemo } from "@hooks/deepMemo";
 import { RouterBindings } from "src/interfaces/bindings";
 
 import {
-    MutationMode,
     IDataContextProvider,
     I18nProvider,
     LayoutProps,
@@ -48,11 +41,6 @@ import { RouterBindingsProvider } from "../../../contexts/router";
 import { ResourceProps } from "../../../interfaces/bindings/resource";
 import { RouterPickerProvider } from "@contexts/router-picker";
 
-interface QueryClientConfig {
-    queryCache?: QueryCache;
-    mutationCache?: MutationCache;
-    defaultOptions?: DefaultOptions;
-}
 export interface RefineProps {
     children?: React.ReactNode;
     /**
@@ -64,14 +52,14 @@ export interface RefineProps {
     /**
      * **refine** needs some router functions to create resource pages, handle navigation, etc. This provider allows you to use the router library you want
      * @type [`IRouterProvider`](/docs/api-reference/core/providers/router-provider/)
-     * @deprecated This property is deprecated and was the legacy way of routing. Please use `router` instead.
+     * @deprecated This property is deprecated and was the legacy way of routing. Please use `routerProvider` with new router bindings instead.
      */
-    routerProvider?: IRouterProvider;
+    legacyRouterProvider?: IRouterProvider;
     /**
      * Router bindings for **refine**. A simple interface for **refine** to interact with your router in a flexible way.
      * @type [`RouterBindings`](/docs/api-reference/core/bindings/router/)
      */
-    router?: RouterBindings;
+    routerProvider?: RouterBindings;
     /**
      * A `dataProvider` is the place where a refine app communicates with an API. Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.
      * @type [`IDataContextProvider` | `IDataMultipleContextProvider`](/docs/api-reference/core/providers/data-provider/)
@@ -167,74 +155,6 @@ export interface RefineProps {
      * @type [`IRefineOptions`](/docs/api-reference/core/components/refine-config/#options-1)
      * */
     options?: IRefineOptions;
-    /**
-     * **refine** implements a simple and transparent telemetry module for collecting usage statistics defined in a very limited scope. This telemetry module is used to improve the refine experience.
-     * @deprecated  `disableTelemetry`  property is deprecated. Use it from within [`options`](/docs/api-reference/core/components/refine-config/#options) instead.
-     * @type [`boolean`](/docs/api-reference/core/components/refine-config/#disabletelemetry)
-     */
-    disableTelemetry?: boolean;
-    /** 
-     *  Config for React Query client that refine uses.
-        @deprecated `reactQueryClientConfig` property is deprecated. Use `clientConfig` in `reactQuery` in [`options`](/docs/api-reference/core/components/refine-config/#options) instead.
-        @example  `options={{ reactQuery: { clientConfig: { queryCache: new QueryCache() } } }}`
-        @see https://refine.dev/docs/core/components/refine-config/#clientconfig
-          @type [`QueryClientConfig` | `false`](/docs/api-reference/core/components/refine-config/#reactquery)
-     */
-    reactQueryClientConfig?: QueryClientConfig;
-    /** 
-           *  Config for customize React Query Devtools.
-              @deprecated `reactQueryDevtoolConfig` property is deprecated. Use `devtoolConfig` in `reactQuery` in [`options`](/docs/api-reference/core/components/refine-config/#options) instead.
-              @example  `options={{ reactQuery: { devtoolConfig: false } }}`
-              @see https://refine.dev/docs/core/components/refine-config/#devtoolConfig
-              @type [`ReactQueryDevtools` | `false`](/docs/api-reference/core/components/refine-config/#devtoolconfig)
-           */
-    reactQueryDevtoolConfig?:
-        | React.ComponentProps<typeof ReactQueryDevtools>
-        | false;
-
-    /** 
-           *  Whether to update data automatically (auto) or not (manual) if a related live event is received. The off value is used to avoid creating a subscription.
-              @deprecated `liveMode` property is deprecated. Use it from within [`options`](/docs/api-reference/core/components/refine-config/#options) instead.
-              @example  `options={{ liveMode: "auto" }}`
-              @see https://refine.dev/docs/core/components/refine-config/#livemode
-              @type [`LiveModeProps["liveMode"]`](/docs/api-reference/core/components/refine-config/#livemode)
-           */
-    liveMode?: LiveModeProps["liveMode"];
-    /** 
-        @deprecated `disableTelemetry` property is deprecated. Use it from within [`options`](/docs/api-reference/core/components/refine-config/#options) instead.
-        @example  `options={{ disableTelemetry: true }}`
-     */
-    /**
-     * `mutationMode` determines which mode the mutations run with. (e.g. useUpdate, useDelete).
-     * @deprecated `mutationMode` property is deprecated at this level. Use it from within `options` instead.
-     * @type [`MutationMode`](/docs/api-reference/core/components/refine-config/#mutationmode)
-     * @default "pessimistic"
-     */
-    mutationMode?: MutationMode;
-    /** 
-       * List query parameter values can be edited manually by typing directly in the URL. To activate this feature syncWithLocation needs to be set to true.
-          @deprecated `syncWithLocation` property is deprecated at this level. Use it from within `options` instead.
-          @example  `options={{ syncWithLocation: true }}`
-          @see https://refine.dev/docs/core/components/refine-config/#syncwithlocation
-       *  @type [`boolean`](/docs/api-reference/core/components/refine-config/#syncwithlocation)
-       */
-    syncWithLocation?: boolean;
-    /** 
-       *  When you have unsaved changes and try to leave the current page, **refine** shows a confirmation modal box.
-          @deprecated `warnwhenunsavedchanges` property is deprecated at this level. Use it from within `options` instead.
-          @example  `options={{ warnwhenunsavedchanges: true }}`
-          @see https://refine.dev/docs/core/components/refine-config/#warnwhenunsavedchanges
-      *   @type [`boolean`](/docs/api-reference/core/components/refine-config/#warnwhenunsavedchanges)
-       */
-    warnWhenUnsavedChanges?: boolean;
-    /** 
-       *  The duration of the timeout period in undoable mode, shown in milliseconds. Mutations can be cancelled during this period.
-          @deprecated `undoableTimeout` property is deprecated at this level. Use it from within `options` instead.
-          @example  `options={{ undoableTimeout: 5000 }}`
-          @see https://refine.dev/docs/core/components/refine-config/#undoabletimeout
-      *   @type [`number`](/docs/api-reference/core/components/refine-config/#undoabletimeout)
-       */
-    undoableTimeout?: number;
 }
 
 /**
@@ -247,8 +167,8 @@ export interface RefineProps {
 export const Refine: React.FC<RefineProps> = ({
     authProvider,
     dataProvider,
+    legacyRouterProvider,
     routerProvider,
-    router,
     notificationProvider,
     accessControlProvider,
     auditLogProvider,
@@ -260,21 +180,13 @@ export const Refine: React.FC<RefineProps> = ({
     children,
     liveProvider,
     i18nProvider,
-    mutationMode,
-    syncWithLocation,
-    warnWhenUnsavedChanges,
-    undoableTimeout,
     Title,
     Layout,
     Sider,
     Header,
     Footer,
     OffLayoutArea,
-    reactQueryClientConfig,
-    reactQueryDevtoolConfig,
-    liveMode,
     onLiveEvent,
-    disableTelemetry,
     options,
 }) => {
     const {
@@ -283,14 +195,6 @@ export const Refine: React.FC<RefineProps> = ({
         reactQueryWithDefaults,
     } = handleRefineOptions({
         options,
-        disableTelemetry,
-        liveMode,
-        mutationMode,
-        reactQueryClientConfig,
-        reactQueryDevtoolConfig,
-        syncWithLocation,
-        warnWhenUnsavedChanges,
-        undoableTimeout,
     });
 
     const queryClient = useDeepMemo(() => {
@@ -322,10 +226,14 @@ export const Refine: React.FC<RefineProps> = ({
 
     /**
      * `<ReadyPage />` is only used in the legacy routing and is not used in the new routing.
-     * If `routerProvider` is provided and `router` is not, we'll check for the `resources` prop to be empty.
+     * If `legacyRouterProvider` is provided and `routerProvider` is not, we'll check for the `resources` prop to be empty.
      * If `resources` is empty, then we'll render `<ReadyPage />` component.
      */
-    if (routerProvider && !router && (resources ?? []).length === 0) {
+    if (
+        legacyRouterProvider &&
+        !routerProvider &&
+        (resources ?? []).length === 0
+    ) {
         return ReadyPage ? <ReadyPage /> : <DefaultReadyPage />;
     }
 
@@ -340,19 +248,7 @@ export const Refine: React.FC<RefineProps> = ({
      * we can achieve backward compability only when its provided by user
      *
      */
-    // const RouterProviderComponent = router
-    //     ? RouterBindingsProvider
-    //     : routerProvider
-    //     ? LegacyRouterContextProvider
-    //     : RouterBindingsProvider;
-
-    // const routerProps = router
-    //     ? { router }
-    //     : routerProvider
-    //     ? { ...routerProvider }
-    //     : {};
-
-    const { RouterComponent = React.Fragment } = routerProvider ?? {};
+    const { RouterComponent = React.Fragment } = legacyRouterProvider ?? {};
     /** */
 
     return (
@@ -366,12 +262,14 @@ export const Refine: React.FC<RefineProps> = ({
                         <LiveContextProvider liveProvider={liveProvider}>
                             <RouterPickerProvider
                                 value={
-                                    routerProvider && !router ? "legacy" : "new"
+                                    legacyRouterProvider && !routerProvider
+                                        ? "legacy"
+                                        : "new"
                                 }
                             >
-                                <RouterBindingsProvider router={router}>
+                                <RouterBindingsProvider router={routerProvider}>
                                     <LegacyRouterContextProvider
-                                        {...routerProvider}
+                                        {...legacyRouterProvider}
                                     >
                                         <ResourceContextProvider
                                             resources={resources ?? []}
