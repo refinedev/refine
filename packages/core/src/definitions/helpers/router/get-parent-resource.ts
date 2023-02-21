@@ -10,6 +10,7 @@ export const getParentResource = (
     resources: IResourceItem[],
 ): IResourceItem | undefined => {
     const parentName = pickNotDeprecated(
+        resource.meta?.parent,
         resource.options?.parent,
         resource.parentName,
     );

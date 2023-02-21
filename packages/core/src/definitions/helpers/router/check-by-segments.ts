@@ -22,7 +22,7 @@ export const checkBySegments = (route: string, resourceRoute: string) => {
     const routeSegments = splitToSegments(stdRoute);
     const resourceRouteSegments = splitToSegments(stdResourceRoute);
 
-    return routeSegments.every((segment, index) => {
-        return isParameter(segment) || segment === resourceRouteSegments[index];
+    return resourceRouteSegments.every((segment, index) => {
+        return isParameter(segment) || segment === routeSegments[index];
     });
 };
