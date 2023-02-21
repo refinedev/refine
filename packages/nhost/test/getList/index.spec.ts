@@ -13,7 +13,7 @@ describe("getList", () => {
     it("correct response", async () => {
         const { data, total } = await dataProvider(nhost).getList({
             resource: "posts",
-            metaData: {
+            meta: {
                 fields: ["id", "title"],
             },
         });
@@ -32,7 +32,7 @@ describe("getList", () => {
                     order: "asc",
                 },
             ],
-            metaData: {
+            meta: {
                 fields: ["id", "title"],
             },
         });
@@ -52,7 +52,7 @@ describe("getList", () => {
                     value: "73c14cb4-a58c-471d-9410-fc97ea6dac66",
                 },
             ],
-            metaData: {
+            meta: {
                 fields: ["id", "title", "category_id"],
             },
         });
@@ -78,7 +78,7 @@ describe("getList", () => {
                     order: "desc",
                 },
             ],
-            metaData: {
+            meta: {
                 fields: ["id", "title", { category: ["id", "title"] }],
             },
         });

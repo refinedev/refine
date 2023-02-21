@@ -510,6 +510,23 @@ describe("useSelect Hook", () => {
             hasPagination: true,
             pagination: { pageSize: 20 },
             resource: "posts",
+            meta: {
+                queryContext: {
+                    queryKey: [
+                        "default",
+                        "posts",
+                        "list",
+                        {
+                            filters: [],
+                            hasPagination: true,
+                            pagination: {
+                                pageSize: 20,
+                            },
+                        },
+                    ],
+                    signal: new AbortController().signal,
+                },
+            },
             metaData: {
                 queryContext: {
                     queryKey: [
@@ -582,6 +599,23 @@ describe("useSelect Hook", () => {
             filters: [],
             hasPagination: false,
             resource: "posts",
+            meta: {
+                queryContext: {
+                    pageParam: undefined,
+                    queryKey: [
+                        "default",
+                        "posts",
+                        "list",
+                        {
+                            hasPagination: false,
+                            filters: [],
+                            pagination: {},
+                            sort: undefined,
+                        },
+                    ],
+                    signal: new AbortController().signal,
+                },
+            },
             metaData: {
                 queryContext: {
                     pageParam: undefined,
@@ -612,6 +646,23 @@ describe("useSelect Hook", () => {
                 filters,
                 hasPagination: false,
                 resource: "posts",
+                meta: {
+                    queryContext: {
+                        pageParam: undefined,
+                        queryKey: [
+                            "default",
+                            "posts",
+                            "list",
+                            {
+                                hasPagination: false,
+                                filters,
+                                pagination: {},
+                                sort: undefined,
+                            },
+                        ],
+                        signal: new AbortController().signal,
+                    },
+                },
                 metaData: {
                     queryContext: {
                         pageParam: undefined,
@@ -688,6 +739,24 @@ describe("useSelect Hook", () => {
             pagination: { current: 2, pageSize: 1 },
             hasPagination: true,
             resource: "posts",
+            meta: {
+                queryContext: {
+                    queryKey: [
+                        "default",
+                        "posts",
+                        "list",
+                        {
+                            filters: [],
+                            hasPagination: true,
+                            pagination: {
+                                current: 2,
+                                pageSize: 1,
+                            },
+                        },
+                    ],
+                    signal: new AbortController().signal,
+                },
+            },
             metaData: {
                 queryContext: {
                     queryKey: [

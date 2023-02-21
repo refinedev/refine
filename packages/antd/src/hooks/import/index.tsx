@@ -36,6 +36,7 @@ export const useImport = <
     paparseOptions,
     batchSize = Number.MAX_SAFE_INTEGER,
     onFinish,
+    meta,
     metaData,
     dataProviderName,
     onProgress: onProgressFromProp,
@@ -65,7 +66,8 @@ export const useImport = <
         mapData,
         paparseOptions,
         batchSize,
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         dataProviderName,
         onFinish,
         onProgress:

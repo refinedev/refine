@@ -914,14 +914,14 @@ mutate({
 
 > [Refer to the useUpdateMany documentation for more information. &#8594](/docs/api-reference/core/hooks/data/useUpdateMany/)
 
-## metaData Usage
+## meta Usage
 
-When using APIs, you may wish to include custom parameters, such as a custom header. To accomplish this, you can utilize the `metaData` field, which allows the sent parameter to be easily accessed by the data provider.
+When using APIs, you may wish to include custom parameters, such as a custom header. To accomplish this, you can utilize the `meta` field, which allows the sent parameter to be easily accessed by the data provider.
 
-Now let's send a custom header parameter to the [`getOne`](#getone) method using `metaData`.
+Now let's send a custom header parameter to the [`getOne`](#getone) method using `meta`.
 
 :::tip
-The `metaData` parameter can be used in all data, form, and table hooks.
+The `meta` parameter can be used in all data, form, and table hooks.
 :::
 
 ```ts title="post/edit.tsx"
@@ -930,7 +930,7 @@ import { useOne } from "@pankod/refine-core";
 useOne({
     resource: "post",
     id: "1",
-    metaData: {
+    meta: {
         headers: {
             "x-custom-header": "hello world",
         },
@@ -938,16 +938,16 @@ useOne({
 });
 ```
 
-Now let's get the `metaData` parameter from the data provider.
+Now let's get the `meta` parameter from the data provider.
 
 ```ts title="src/data-provider.ts"
 import { DataProvider } from "@pankod/refine-core";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
     // ...
-    getOne: async ({ resource, id, variables, metaData }) => {
+    getOne: async ({ resource, id, variables, meta }) => {
         // highlight-next-line
-        const { headers } = metaData;
+        const { headers } = meta;
         const url = `${apiUrl}/${resource}/${id}`;
 
         // highlight-start
@@ -975,7 +975,7 @@ I understood how to create a data provider.
 I learned how to handle errors.
 </ChecklistItem>
 <ChecklistItem id="data-provider-create-your-data-provider-3">
-I understood how to use the `metaData` parameter.
+I understood how to use the `meta` parameter.
 </ChecklistItem>
 
 </Checklist>

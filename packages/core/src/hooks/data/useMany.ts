@@ -9,9 +9,9 @@ import {
     BaseKey,
     GetManyResponse,
     HttpError,
-    MetaDataQuery,
     LiveModeProps,
     SuccessErrorNotification,
+    MetaQuery,
 } from "../../interfaces";
 import {
     useResource,
@@ -25,6 +25,7 @@ import {
     queryKeys,
     pickDataProvider,
     handleMultiple,
+    pickNotDeprecated,
 } from "@definitions/helpers";
 
 export type UseManyProps<TData, TError> = {
@@ -44,7 +45,12 @@ export type UseManyProps<TData, TError> = {
     /**
      * Metadata query for `dataProvider`,
      */
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     * Metadata query for `dataProvider`,
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     /**
      * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
      * @default "default"
@@ -73,6 +79,7 @@ export const useMany = <
     queryOptions,
     successNotification,
     errorNotification,
+    meta,
     metaData,
     liveMode,
     onLiveEvent,
@@ -86,7 +93,8 @@ export const useMany = <
     const queryKey = queryKeys(
         resource,
         pickDataProvider(resource, dataProviderName, resources),
-        metaData,
+        pickNotDeprecated(meta, metaData),
+        pickNotDeprecated(meta, metaData),
     );
 
     const { getMany, getOne } = dataProvider(
@@ -105,7 +113,8 @@ export const useMany = <
         types: ["*"],
         params: {
             ids: ids ?? [],
-            metaData,
+            meta: pickNotDeprecated(meta, metaData),
+            metaData: pickNotDeprecated(meta, metaData),
             subscriptionType: "useMany",
             ...liveParams,
         },
@@ -123,7 +132,7 @@ export const useMany = <
                     resource,
                     ids,
                     metaData: {
-                        ...metaData,
+                        ...(pickNotDeprecated(meta, metaData) || {}),
                         queryContext: {
                             queryKey,
                             pageParam,
@@ -138,7 +147,7 @@ export const useMany = <
                             resource,
                             id,
                             metaData: {
-                                ...metaData,
+                                ...(pickNotDeprecated(meta, metaData) || {}),
                                 queryContext: {
                                     queryKey,
                                     pageParam,

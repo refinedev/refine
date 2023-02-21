@@ -54,15 +54,15 @@ A data provider must have the following properties:
 
 ```tsx
 const dataProvider = {
-    create: ({ resource, variables, metaData }) => Promise,
-    createMany: ({ resource, variables, metaData }) => Promise,
-    deleteOne: ({ resource, id, metaData }) => Promise,
-    deleteMany: ({ resource, ids, metaData }) => Promise,
-    getList: ({ resource, pagination, sorters, filters, metaData }) => Promise,
-    getMany: ({ resource, ids, metaData }) => Promise,
-    getOne: ({ resource, id, metaData }) => Promise,
-    update: ({ resource, id, variables, metaData }) => Promise,
-    updateMany: ({ resource, ids, variables, metaData }) => Promise,
+    create: ({ resource, variables, meta }) => Promise,
+    createMany: ({ resource, variables, meta }) => Promise,
+    deleteOne: ({ resource, id, meta }) => Promise,
+    deleteMany: ({ resource, ids, meta }) => Promise,
+    getList: ({ resource, pagination, sorters, filters, meta }) => Promise,
+    getMany: ({ resource, ids, meta }) => Promise,
+    getOne: ({ resource, id, meta }) => Promise,
+    update: ({ resource, id, variables, meta }) => Promise,
+    updateMany: ({ resource, ids, variables, meta }) => Promise,
 };
 ```
 
@@ -137,7 +137,7 @@ getList({
 });
 ```
 
-With `metaData` you can pass any parameters that you need to the data provider. You can handle it in the data provider.
+With `meta` you can pass any parameters that you need to the data provider. You can handle it in the data provider.
 
 All hooks that use data provider methods such as `useTable` work with [React Query](https://react-query.tanstack.com). So you can use all the features of React Query.
 

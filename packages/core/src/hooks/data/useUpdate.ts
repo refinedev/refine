@@ -14,7 +14,7 @@ import {
     PrevContext as UpdateContext,
     HttpError,
     SuccessErrorNotification,
-    MetaDataQuery,
+    MetaQuery,
     PreviousQuery,
     GetListResponse,
     IQueryKeys,
@@ -32,7 +32,11 @@ import {
     useLog,
     useInvalidate,
 } from "@hooks";
-import { queryKeys, pickDataProvider } from "@definitions/helpers";
+import {
+    queryKeys,
+    pickDataProvider,
+    pickNotDeprecated,
+} from "@definitions/helpers";
 
 export type UpdateParams<TVariables> = {
     /**
@@ -60,9 +64,14 @@ export type UpdateParams<TVariables> = {
      */
     values: TVariables;
     /**
-     * Metadata query for `dataProvider`,
+     * Metadata query for dataProvider
      */
-    metaData?: MetaDataQuery;
+    meta?: MetaQuery;
+    /**
+     * Metadata query for dataProvider
+     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+     */
+    metaData?: MetaQuery;
     /**
      * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
      * @default "default"
@@ -153,6 +162,7 @@ export const useUpdate = <
             mutationMode,
             undoableTimeout,
             onCancel,
+            meta,
             metaData,
             dataProviderName,
         }) => {
@@ -169,7 +179,8 @@ export const useUpdate = <
                     resource,
                     id,
                     variables: values,
-                    metaData,
+                    meta: pickNotDeprecated(meta, metaData),
+                    metaData: pickNotDeprecated(meta, metaData),
                 });
             }
             const updatePromise = new Promise<UpdateResponse<TData>>(
@@ -186,7 +197,8 @@ export const useUpdate = <
                                 resource,
                                 id,
                                 variables: values,
-                                metaData,
+                                meta: pickNotDeprecated(meta, metaData),
+                                metaData: pickNotDeprecated(meta, metaData),
                             })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
@@ -347,6 +359,7 @@ export const useUpdate = <
                     successNotification,
                     dataProviderName,
                     values,
+                    meta,
                     metaData,
                 },
                 context,
@@ -402,7 +415,7 @@ export const useUpdate = <
                 }
 
                 const { fields, operation, variables, ...rest } =
-                    metaData || {};
+                    pickNotDeprecated(meta, metaData) || {};
 
                 log?.mutate({
                     action: "update",

@@ -12,6 +12,7 @@ import {
     UseFormProps as UseFormPropsCore,
     CreateResponse,
     UpdateResponse,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 
 export type UseFormProps<
@@ -66,6 +67,7 @@ export const useForm = <
     redirect,
     successNotification,
     errorNotification,
+    meta,
     metaData,
     liveMode,
     liveParams,
@@ -99,7 +101,8 @@ export const useForm = <
         resource,
         successNotification,
         errorNotification,
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         liveMode,
         liveParams,
         mutationMode,

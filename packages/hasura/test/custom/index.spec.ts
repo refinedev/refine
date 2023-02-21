@@ -7,7 +7,7 @@ describe("custom", () => {
         const response = await dataProvider(client).custom?.({
             url: "https://flowing-mammal-24.hasura.app/v1/graphql",
             method: "get",
-            metaData: {
+            meta: {
                 operation: "posts_aggregate",
                 fields: [
                     {

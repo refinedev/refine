@@ -10,11 +10,11 @@ describe("useOne", () => {
         });
     });
 
-    it("correct response with metaData", async () => {
+    it("correct response with meta", async () => {
         const { data } = await dataProvider(nhost).getOne({
             resource: "posts",
             id: "72fab741-2352-49cb-8b31-06ae4be2f1d1",
-            metaData: {
+            meta: {
                 fields: ["id", "title", "content", { category: ["id"] }],
             },
         });
