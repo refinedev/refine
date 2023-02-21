@@ -207,6 +207,7 @@ export const useSelect = <
         pagination: {
             current: pagination?.current,
             pageSize: pagination?.pageSize ?? fetchSize,
+            mode: pagination?.mode,
         },
         hasPagination,
         queryOptions: {
