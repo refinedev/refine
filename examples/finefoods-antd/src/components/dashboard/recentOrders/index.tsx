@@ -1,12 +1,6 @@
 import { useNavigation, useTranslate } from "@pankod/refine-core";
-import {
-    Typography,
-    useTable,
-    Table,
-    Avatar,
-    Space,
-    Tag,
-} from "@pankod/refine-antd";
+import { useTable } from "@pankod/refine-antd";
+import { Typography, Table, Avatar, Space, Tag } from "antd";
 import {
     RecentOrdersColumn,
     Price,

@@ -667,7 +667,7 @@ module.exports = {
 
                 // for icons
                 if (importItem.importPath === "@ant-design/icons") {
-                    const newStatement = `import { Icons } from "@pankod/refine-antd";`;
+                    const newStatement = `import * as Icons from "@ant-design/icons";`;
 
                     const iconsLine = `
                     const ${importItem.namedImports} = Icons;

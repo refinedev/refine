@@ -1,14 +1,7 @@
 import React from "react";
 import { IResourceComponentsProps, useApiUrl } from "@pankod/refine-core";
-import {
-    Edit,
-    Form,
-    Input,
-    Select,
-    useForm,
-    useSelect,
-    Upload,
-} from "@pankod/refine-antd";
+import { Edit, useForm, useSelect } from "@pankod/refine-antd";
+import { Form, Input, Select, Upload } from "antd";
 import {
     useStrapiUpload,
     getValueProps,

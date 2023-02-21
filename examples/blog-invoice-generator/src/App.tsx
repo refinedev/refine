@@ -1,10 +1,12 @@
 import { Refine } from "@pankod/refine-core";
+import { notificationProvider, Layout, LoginPage } from "@pankod/refine-antd";
 import {
-    notificationProvider,
-    Layout,
-    LoginPage,
-    Icons,
-} from "@pankod/refine-antd";
+    FileAddOutlined,
+    UserAddOutlined,
+    TeamOutlined,
+    InfoCircleOutlined,
+    SlidersOutlined,
+} from "@ant-design/icons";
 import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/reset.css";
 import { DataProvider } from "@pankod/refine-strapi-v4";
@@ -17,14 +19,6 @@ import { InvoiceList, CreateInvoice, EditInvoice } from "pages/invoice";
 import { MissionList } from "pages/mission";
 
 import { API_URL } from "../src/constants";
-
-const {
-    FileAddOutlined,
-    UserAddOutlined,
-    TeamOutlined,
-    InfoCircleOutlined,
-    SlidersOutlined,
-} = Icons;
 
 function App() {
     const dataProvider = DataProvider(API_URL + "/api", axiosInstance);

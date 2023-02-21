@@ -1,9 +1,11 @@
 import React from "react";
 import { useLogin } from "@pankod/refine-core";
+import { GoogleOutlined } from "@ant-design/icons";
+
 import {
     Row,
     Col,
-    AntdLayout,
+    Layout as AntdLayout,
     Card,
     Typography,
     Form,
@@ -12,12 +14,11 @@ import {
     Checkbox,
     Space,
     Divider,
-    Icons,
-} from "@pankod/refine-antd";
+} from "antd";
+
 import { useAuthConfig } from "@pankod/refine-cloud";
 
 const { Text, Title } = Typography;
-const { GoogleOutlined } = Icons;
 
 export interface ILoginForm {
     username: string;

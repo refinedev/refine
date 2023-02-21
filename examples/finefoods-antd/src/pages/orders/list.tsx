@@ -10,26 +10,30 @@ import {
 
 import {
     List,
-    Table,
     TextField,
     useTable,
     getDefaultSortOrder,
     DateField,
+    NumberField,
+    useSelect,
+    ExportButton,
+} from "@pankod/refine-antd";
+
+import { SearchOutlined } from "@ant-design/icons";
+
+import {
+    Table,
     Popover,
     Card,
     Input,
-    Icons,
     Form,
     DatePicker,
     Select,
-    NumberField,
-    useSelect,
     Button,
     FormProps,
     Row,
     Col,
-    ExportButton,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import dayjs from "dayjs";
 
@@ -314,7 +318,7 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
                     <Form.Item label={t("orders.filter.search.label")} name="q">
                         <Input
                             placeholder={t("orders.filter.search.placeholder")}
-                            prefix={<Icons.SearchOutlined />}
+                            prefix={<SearchOutlined />}
                         />
                     </Form.Item>
                 </Col>

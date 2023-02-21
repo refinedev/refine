@@ -2,23 +2,19 @@ import { useState } from "react";
 import { useModal } from "@pankod/refine-core";
 import {
     List,
-    Table,
     useTable,
     DateField,
     TagField,
     EmailField,
-    Space,
     DeleteButton,
     EditButton,
-    Icons,
-    Button,
-    Modal,
 } from "@pankod/refine-antd";
+
+import { FilePdfOutlined } from "@ant-design/icons";
+import { Table, Space, Button, Modal } from "antd";
 
 import { IInvoice, IMission } from "interfaces";
 import { PdfLayout } from "components/pdf";
-
-const { FilePdfOutlined } = Icons;
 
 export const InvoiceList: React.FC = () => {
     const [record, setRecord] = useState<IInvoice>();

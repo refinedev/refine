@@ -1,15 +1,8 @@
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import {
-    Edit,
-    Form,
-    Input,
-    Select,
-    Row,
-    Col,
-    Upload,
-    RcFile,
-} from "@pankod/refine-antd";
+import { Edit } from "@pankod/refine-antd";
+import { RcFile } from "antd/lib/upload/interface";
+import { Form, Input, Select, Row, Col, Upload } from "antd";
 import { useForm, useSelect } from "@pankod/refine-antd";
 import { LogList } from "@pankod/refine-antd-audit-log";
 

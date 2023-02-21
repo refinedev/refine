@@ -6,12 +6,17 @@ import {
     useNavigation,
     useRouterContext,
 } from "@pankod/refine-core";
-import { Button, Image, Space, Icons, useModalForm } from "@pankod/refine-antd";
+import { useModalForm } from "@pankod/refine-antd";
+
+import {
+    PlusSquareOutlined,
+    LogoutOutlined,
+    LoginOutlined,
+} from "@ant-design/icons";
+import { Button, Image, Space } from "antd";
 
 import { CreateCanvas } from "components/canvas";
 import { Canvas } from "types";
-
-const { PlusSquareOutlined, LogoutOutlined, LoginOutlined } = Icons;
 
 export const Header: React.FC = () => {
     const { Link, useLocation } = useRouterContext();

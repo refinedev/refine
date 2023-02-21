@@ -21,9 +21,9 @@ import {
     List,
     // highlight-next-line
     TextField,
-    Table,
     useTable,
 } from "@pankod/refine-antd";
+import { Table } from "antd";
 
 const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps } = useTable<IPost>();
@@ -53,7 +53,8 @@ const PostList: React.FC<IResourceComponentsProps> = (props) => {
                         }
 
                         return (
-                            <TextField strong
+                            <TextField
+                                strong
                                 value={
                                     categoriesData?.data.find(
                                         (item) => item.id === value,
@@ -87,7 +88,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,
@@ -107,4 +108,3 @@ Table columns already render their data as text by default. If the rendered data
 :::tip External Props
 It also accepts all props of Ant Design [Text](https://ant.design/components/typography/#Typography.Text).
 :::
-

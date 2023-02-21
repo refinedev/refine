@@ -1,4 +1,6 @@
 import * as RefineAntd from "@pankod/refine-antd";
+import * as AntdPackage from "antd";
+
 import dayjs from "dayjs";
 
 import { createInferencer } from "@/create-inferencer";
@@ -44,9 +46,9 @@ export const renderer = ({
         ["React", "react", true],
         ["IResourceComponentsProps", "@pankod/refine-core"],
         ["Edit", "@pankod/refine-antd"],
-        ["Form", "@pankod/refine-antd"],
+        ["Form", "antd"],
         ["useForm", "@pankod/refine-antd"],
-        ["Input", "@pankod/refine-antd"],
+        ["Input", "antd"],
     ];
 
     const relationFields: (InferField | null)[] = fields.filter(
@@ -106,7 +108,7 @@ export const renderer = ({
 
     const renderRelationFields = (field: InferField) => {
         if (field.relation && field.resource) {
-            imports.push(["Select", "@pankod/refine-antd"]);
+            imports.push(["Select", "antd"]);
             const variableName = getVariableName(field.key, "SelectProps");
 
             const name = field.accessor
@@ -218,7 +220,7 @@ export const renderer = ({
     const imageFields = (field: InferField) => {
         if (field.type === "image") {
             imports.push(
-                ["Upload", "@pankod/refine-antd"],
+                ["Upload", "antd"],
                 ["getValueFromEvent", "@pankod/refine-antd"],
             );
             let valueProps = 'valuePropName="fileList"';
@@ -269,7 +271,7 @@ export const renderer = ({
 
     const booleanFields = (field: InferField) => {
         if (field.type === "boolean") {
-            imports.push(["Checkbox", "@pankod/refine-antd"]);
+            imports.push(["Checkbox", "antd"]);
 
             if (field.multiple) {
                 const val = accessor(field.key, "index", field.accessor)
@@ -320,10 +322,7 @@ export const renderer = ({
 
     const dateFields = (field: InferField) => {
         if (field.type === "date") {
-            imports.push(
-                ["DatePicker", "@pankod/refine-antd"],
-                ["dayjs", "dayjs", true],
-            );
+            imports.push(["DatePicker", "antd"], ["dayjs", "dayjs", true]);
 
             if (field.multiple) {
                 const val = accessor(field.key, "index", field.accessor)
@@ -453,6 +452,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
     additionalScope: [
         ["@pankod/refine-antd", "RefineAntd", RefineAntd],
         ["dayjs", "dayjs", dayjs, true],
+        ["antd", "AntdPackage", AntdPackage],
     ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,

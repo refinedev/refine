@@ -32,6 +32,7 @@ export const transformerDirectory = path.join(
 const transformsWithPostTransform = [
     "refine1-to-refine2",
     "refine2-to-refine3",
+    "separate-imports-antd",
 ];
 
 export function checkGitStatus(force) {
@@ -93,6 +94,8 @@ export function runTransform({ files, flags, transformer }) {
     args.push("--ignore-pattern=**/node_modules/**");
     args.push("--ignore-pattern=**/build/**");
     args.push("--ignore-pattern=**/.next/**");
+    args.push("--ignore-pattern=**/dist/**");
+    args.push("--ignore-pattern=**/.cache/**");
 
     args.push("--extensions=tsx,ts,jsx,js");
     args.push("--parser=tsx");
@@ -141,6 +144,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
     {
         name: "refine1-to-refine2: Transform from refine 1.x.x to at least 2.0.0",
         value: "refine1-to-refine2",
+    },
+    {
+        name: "separate-imports-antd: Moves `antd` components exported by `refine` into `antd`",
+        value: "separate-imports-antd",
     },
 ];
 

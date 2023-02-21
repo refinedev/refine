@@ -4,8 +4,8 @@ import {
     notificationProvider,
     Layout,
     ErrorComponent,
-    Icons,
 } from "@pankod/refine-antd";
+import { StarOutlined } from "@ant-design/icons";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/reset.css";
@@ -34,7 +34,7 @@ const App: React.FC = () => {
                         create: PostCreate,
                         edit: PostEdit,
                         show: PostShow,
-                        icon: <Icons.StarOutlined />,
+                        icon: <StarOutlined />,
                         canDelete: true,
                     },
                     {

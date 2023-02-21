@@ -520,14 +520,8 @@ It's useful when you want to create a filter form for your `<Table>`.
 
 ```tsx
 import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
-import {
-    List,
-    Table,
-    useTable,
-    Form,
-    SaveButton,
-    Input,
-} from "@pankod/refine-antd";
+import { List, useTable, SaveButton } from "@pankod/refine-antd";
+import { Table, Form, Input } from "antd";
 
 interface IPost {
     id: number;

@@ -213,7 +213,8 @@ import {
     useRouterContext,
     useMenu,
 } from "@pankod/refine-core";
-import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
+import { Layout, Menu, Grid } from "antd";
+import { UnorderedListOutlined } from "@ant-design/icons";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const CustomSider: React.FC = () => {
@@ -234,7 +235,7 @@ export const CustomSider: React.FC = () => {
                 return (
                     <SubMenu
                         key={route}
-                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
                         {renderTreeView(children, selectedKey)}
@@ -256,14 +257,10 @@ export const CustomSider: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={
-                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
-                        }
+                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
                         <Link to={route}>{label}</Link>
-                        {!collapsed && isSelected && (
-                            <Icons.UnorderedListOutlined />
-                        )}
+                        {!collapsed && isSelected && <UnorderedListOutlined />}
                     </Menu.Item>
                 </CanAccess>
             );
@@ -271,7 +268,7 @@ export const CustomSider: React.FC = () => {
     };
 
     return (
-        <AntdLayout.Sider
+        <Layout.Sider
             collapsible
             collapsedWidth={isMobile ? 0 : 80}
             collapsed={collapsed}
@@ -291,7 +288,7 @@ export const CustomSider: React.FC = () => {
             >
                 {renderTreeView(menuItems, selectedKey)}
             </Menu>
-        </AntdLayout.Sider>
+        </Layout.Sider>
     );
 };
 ```
@@ -312,14 +309,14 @@ import {
     //highlight-end
 } from "@pankod/refine-core";
 import {
-    AntdLayout,
+    Layout,
     Menu,
     Grid,
-    Icons,
     //highlight-start
     Badge,
     //highlight-end
-} from "@pankod/refine-antd";
+} from "antd";
+import { UnorderedListOutlined } from "@ant-design/icons";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const CustomSider: React.FC = () => {
@@ -349,7 +346,7 @@ export const CustomSider: React.FC = () => {
                 return (
                     <SubMenu
                         key={name}
-                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
                         {renderTreeView(children, selectedKey)}
@@ -371,9 +368,7 @@ export const CustomSider: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={
-                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
-                        }
+                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
                         //highlight-start
                         <div>
@@ -394,7 +389,7 @@ export const CustomSider: React.FC = () => {
     };
 
     return (
-        <AntdLayout.Sider
+        <Layout.Sider
             collapsible
             collapsedWidth={isMobile ? 0 : 80}
             collapsed={collapsed}
@@ -420,7 +415,7 @@ export const CustomSider: React.FC = () => {
             >
                 {renderTreeView(menuItems, selectedKey)}
             </Menu>
-        </AntdLayout.Sider>
+        </Layout.Sider>
     );
 };
 ```

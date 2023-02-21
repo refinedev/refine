@@ -1,5 +1,6 @@
 import React from "react";
-import { Typography, Space, Avatar, Icons } from "@pankod/refine-antd";
+import { UserOutlined } from "@ant-design/icons";
+import { Typography, Space, Avatar } from "antd";
 
 import { getUniqueContributorsAvatarURL } from "utility";
 import { Pixel } from "types";
@@ -24,7 +25,7 @@ export const AvatarPanel: React.FC<AvatarPanelProps> = ({ pixels }) => {
                 {contributors.map((avatar_url) => (
                     <Avatar
                         key={avatar_url}
-                        icon={<Icons.UserOutlined />}
+                        icon={<UserOutlined />}
                         src={avatar_url}
                     />
                 ))}

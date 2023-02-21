@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { DatePicker } from "@pankod/refine-antd";
+import { DatePicker } from "antd";
 
 export const DailyRevenueWrapper = styled.div`
     height: 232px;

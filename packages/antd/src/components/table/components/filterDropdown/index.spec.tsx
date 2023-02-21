@@ -1,6 +1,5 @@
 import React from "react";
-import { Input } from "antd";
-import { DatePicker, Select } from "@components/antd";
+import { Input, DatePicker, Select } from "antd";
 import dayjs from "dayjs";
 
 import { render, fireEvent } from "@test";

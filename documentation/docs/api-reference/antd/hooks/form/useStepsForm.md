@@ -8,22 +8,24 @@ import { useMany } from "@pankod/refine-core";
 
 import {
     List,
-    Table,
     TextField,
     useTable,
-    Space,
     EditButton,
-    Select as AntdSelect,
     useStepsForm as useStepsFormAntd,
     useSelect as useSelectAntd,
-    Input as AntdInput,
-    Form as AntdForm,
-    Steps as AntdSteps,
     SaveButton as AntdSaveButton,
     Edit as AntdEdit,
     Create as AntdCreate,
-    Button as AntdButton,
 } from "@pankod/refine-antd";
+import {
+    Table,
+    Space,
+    Select as AntdSelect,
+    Input as AntdInput,
+    Form as AntdForm,
+    Steps as AntdSteps,
+    Button as AntdButton,
+} from "antd";
 
 const PostList = () => {
     const { tableProps } = useTable<IPost>();
@@ -346,15 +348,11 @@ import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
 
 import {
     Create,
-    Form,
-    Input,
-    Select,
-    Button,
     SaveButton,
     useSelect,
     useStepsForm,
-    Steps,
 } from "@pankod/refine-antd";
+import { Form, Input, Select, Button, Steps } from "antd";
 
 const { Step } = Steps;
 
@@ -516,17 +514,8 @@ setInitialRoutes(["/posts/edit/123"]);
 import React from "react";
 import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
 
-import {
-    Edit,
-    Form,
-    Input,
-    Select,
-    Button,
-    SaveButton,
-    useSelect,
-    useStepsForm,
-    Steps,
-} from "@pankod/refine-antd";
+import { Edit, SaveButton, useSelect, useStepsForm } from "@pankod/refine-antd";
+import { Form, Input, Select, Button, Steps } from "antd";
 
 const { Step } = Steps;
 
@@ -732,13 +721,8 @@ Here, each item of `formList` corresponds to one step in form:
 ```tsx title="pages/posts/create.tsx"
 import React from "react";
 import { HttpError } from "@pankod/refine-core";
-import {
-    useStepsForm,
-    useSelect,
-    Form,
-    Input,
-    Select,
-} from "@pankod/refine-antd";
+import { useStepsForm, useSelect } from "@pankod/refine-antd";
+import { Form, Input, Select } from "antd";
 
 export const PostCreate: React.FC = () => {
     const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
@@ -816,14 +800,17 @@ import { HttpError } from "@pankod/refine-core";
 import {
     useStepsForm,
     useSelect,
+    // highlight-start
+    Create,
+    // highlight-end
+} from "@pankod/refine-antd";
+import {
     Form,
     Input,
     Select,
-    // highlight-start
-    Create,
+    // highlight-next-line
     Steps,
-    // highlight-end
-} from "@pankod/refine-antd";
+} from "antd";
 
 export const PostCreate: React.FC = () => {
     const {
@@ -914,16 +901,11 @@ import { HttpError } from "@pankod/refine-core";
 import {
     useStepsForm,
     useSelect,
-    Form,
-    Input,
-    Select,
     Create,
-    Steps,
-    // highlight-start
-    Button,
+    // highlight-next-line
     SaveButton,
-    // highlight-end
 } from "@pankod/refine-antd";
+import { Button, Form, Input, Select, Steps } from "antd";
 
 export const PostCreate: React.FC = () => {
     const {

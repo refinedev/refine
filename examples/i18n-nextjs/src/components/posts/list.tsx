@@ -2,12 +2,11 @@ import { useMany, useTranslate } from "@pankod/refine-core";
 import {
     useTable,
     List,
-    Table,
-    Space,
     EditButton,
     ShowButton,
     TextField,
 } from "@pankod/refine-antd";
+import { Table, Space } from "antd";
 import { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {

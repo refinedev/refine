@@ -7,9 +7,10 @@ import {
     useList,
 } from "@pankod/refine-core";
 
+import { SearchOutlined, DownOutlined } from "@ant-design/icons";
+
 import {
     Menu,
-    Icons,
     Dropdown,
     Input,
     Avatar,
@@ -19,8 +20,8 @@ import {
     Row,
     Col,
     AutoComplete,
-    AntdLayout,
-} from "@pankod/refine-antd";
+    Layout as AntdLayout,
+} from "antd";
 
 import RefineReactRouter from "@pankod/refine-react-router-v6";
 
@@ -29,7 +30,6 @@ import debounce from "lodash/debounce";
 
 const { Header: AntdHeader } = AntdLayout;
 const { Link } = RefineReactRouter;
-const { SearchOutlined, DownOutlined } = Icons;
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
 

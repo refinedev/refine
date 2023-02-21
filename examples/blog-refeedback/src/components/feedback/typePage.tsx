@@ -1,4 +1,9 @@
-import { Card, Typography, Icons } from "@pankod/refine-antd";
+import {
+    BulbFilled,
+    WarningTwoTone,
+    EllipsisOutlined,
+} from "@ant-design/icons";
+import { Card, Typography } from "antd";
 
 import { FeedBackCardTypes } from "interfaces";
 
@@ -7,7 +12,6 @@ export type FeedBackCardPageProps = {
 };
 
 const { Text } = Typography;
-const { BulbFilled, WarningTwoTone, EllipsisOutlined } = Icons;
 
 const FEEDBACK_TYPES = [
     {

@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import {
-    Button,
-    ButtonProps,
-    Icons,
-    ModalProps,
-    useModal,
-} from "@pankod/refine-antd";
+import { useModal } from "@pankod/refine-antd";
+import { Button, ButtonProps, ModalProps } from "antd";
+import * as Icons from "@ant-design/icons";
 import {
     useRouterContext,
     useTranslate,

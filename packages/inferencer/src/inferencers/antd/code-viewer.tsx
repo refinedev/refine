@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Modal, Icons, Space } from "@pankod/refine-antd";
+import * as Icons from "@ant-design/icons";
+import { Button, Modal, Space } from "antd";
 
 import { prettierFormat } from "@/utilities";
 import { CreateInferencerConfig } from "@/types";
