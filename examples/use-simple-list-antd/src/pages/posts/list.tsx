@@ -19,39 +19,44 @@ const { Text } = Typography;
 import { IPost, ICategory, IPostFilterVariables } from "interfaces";
 
 export const PostList: React.FC = () => {
-    const { listProps, searchFormProps } = useSimpleList<
-        IPost,
-        HttpError,
-        IPostFilterVariables
-    >({
-        pagination: {
-            pageSize: 3,
-        },
-        onSearch: (params) => {
-            const filters: CrudFilters = [];
-            const { category, createdAt } = params;
+    const //Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.,
+        { listProps, searchFormProps } = useSimpleList<
+            IPost,
+            HttpError,
+            IPostFilterVariables
+        >({
+            pagination: {
+                pageSize: 3,
+            },
+            onSearch: (params) => {
+                const filters: CrudFilters = [];
+                const { category, createdAt } = params;
 
-            filters.push(
-                {
-                    field: "category.id",
-                    operator: "eq",
-                    value: category,
-                },
-                {
-                    field: "createdAt",
-                    operator: "gte",
-                    value: createdAt ? createdAt[0].toISOString() : undefined,
-                },
-                {
-                    field: "createdAt",
-                    operator: "lte",
-                    value: createdAt ? createdAt[1].toISOString() : undefined,
-                },
-            );
+                filters.push(
+                    {
+                        field: "category.id",
+                        operator: "eq",
+                        value: category,
+                    },
+                    {
+                        field: "createdAt",
+                        operator: "gte",
+                        value: createdAt
+                            ? createdAt[0].toISOString()
+                            : undefined,
+                    },
+                    {
+                        field: "createdAt",
+                        operator: "lte",
+                        value: createdAt
+                            ? createdAt[1].toISOString()
+                            : undefined,
+                    },
+                );
 
-            return filters;
-        },
-    });
+                return filters;
+            },
+        });
 
     const categoryIds =
         listProps?.dataSource?.map((item) => item.category.id) ?? [];

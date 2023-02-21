@@ -36,7 +36,6 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
     const { mutate } = useUpdateMany<IReview>();
 
     const { dataGridProps } = useDataGrid<IReview>({
-        initialPageSize: 10,
         permanentFilter: [
             {
                 field: "status",
@@ -44,6 +43,9 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 value: "pending",
             },
         ],
+        pagination: {
+            pageSize: 10,
+        },
     });
 
     const handleUpdate = (id: BaseKey, status: IReview["status"]) => {

@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                 dataProvider={dataProvider}
                 resources={[{ name: "products" }]}
                 Layout={Layout}
-                options={{
+                meta={{
                     reactQuery: { devtoolConfig: { position: "bottom-left" } },
                 }}
             >

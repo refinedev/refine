@@ -4,8 +4,10 @@ import { List, Table, useTable } from "@pankod/refine-antd";
 
 export const UsersList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable({
-        hasPagination: false,
         syncWithLocation: true,
+        pagination: {
+            mode: "off",
+        },
     });
 
     return (

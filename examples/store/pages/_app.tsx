@@ -42,7 +42,7 @@ function MyApp({
                     },
                 ]}
                 warnWhenUnsavedChanges={true}
-                options={{
+                meta={{
                     reactQuery: {
                         clientConfig: {
                             defaultOptions: {

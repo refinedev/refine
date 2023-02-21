@@ -36,7 +36,9 @@ const SearchPage: React.FC<{
             initialData,
             keepPreviousData: false,
         },
-        hasPagination: false,
+        pagination: {
+            mode: "off",
+        },
     });
 
     return (

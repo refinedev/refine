@@ -27,7 +27,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     const [locale, setLocale] = useState("en");
     const [publicationState, setPublicationState] = useState("live");
 
-    const { tableProps, sorter } = useTable<IPost>({
+    const { tableProps, sorters: sorter } = useTable<IPost>({
         initialSorter: [
             {
                 field: "id",

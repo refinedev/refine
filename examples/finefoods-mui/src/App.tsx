@@ -115,7 +115,7 @@ const App: React.FC = () => {
                             />
                         )}
                         catchAll={<ErrorComponent />}
-                        options={{
+                        meta={{
                             syncWithLocation: true,
                             warnWhenUnsavedChanges: true,
                         }}

@@ -29,7 +29,7 @@ const App: React.FC = () => {
                  */
             }}
             dataProvider={dataProvider(API_URL)}
-            options={{
+            meta={{
                 syncWithLocation: true,
                 warnWhenUnsavedChanges: true,
             }}

@@ -6,11 +6,13 @@ import { ICommit } from "interfaces";
 export const PostsList: React.FC = () => {
     const [next, setNext] = React.useState<string | undefined>(undefined);
     const { dataGridProps, tableQueryResult } = useDataGrid<ICommit>({
-        initialPageSize: 5,
         metaData: {
             cursor: {
                 next,
             },
+        },
+        pagination: {
+            pageSize: 5,
         },
     });
 

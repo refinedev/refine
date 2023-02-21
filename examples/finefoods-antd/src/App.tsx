@@ -94,7 +94,7 @@ const App: React.FC = () => {
                 Title={Title}
                 Header={Header}
                 Layout={Layout}
-                options={{
+                meta={{
                     syncWithLocation: true,
                     warnWhenUnsavedChanges: true,
                 }}

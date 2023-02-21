@@ -36,8 +36,10 @@ export const OrderTimeline: React.FC = () => {
                     order: "desc",
                 },
             ],
-            initialPageSize: 5,
             syncWithLocation: false,
+            pagination: {
+                pageSize: 5,
+            },
         });
 
     const { data } = tableQueryResult;

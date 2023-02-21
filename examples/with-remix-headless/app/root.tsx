@@ -43,7 +43,7 @@ export default function App() {
                         },
                     ]}
                     LoginPage={AuthPage}
-                    options={{ syncWithLocation: true }}
+                    meta={{ syncWithLocation: true }}
                 >
                     <Outlet />
                 </Refine>

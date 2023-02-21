@@ -18,7 +18,7 @@ import {
 import { ICompany, IJob } from "interfaces";
 
 export const JobList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<IJob>({
+    const { tableProps, sorters: sorter } = useTable<IJob>({
         initialSorter: [
             {
                 field: "id",

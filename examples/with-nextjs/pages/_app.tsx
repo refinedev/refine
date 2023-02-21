@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                     canDelete: true,
                 },
             ]}
-            options={{ syncWithLocation: true }}
+            meta={{ syncWithLocation: true }}
             notificationProvider={notificationProvider}
             LoginPage={() => (
                 <AuthPage

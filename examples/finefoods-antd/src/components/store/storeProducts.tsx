@@ -43,35 +43,36 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
 }) => {
     const t = useTranslate();
 
-    const { listProps, searchFormProps, queryResult } = useSimpleList<
-        IProduct,
-        HttpError,
-        { name: string; categories: string[] }
-    >({
-        resource: "products",
-        pagination: { pageSize: 9 },
-        onSearch: ({ name, categories }) => {
-            const productFilters: CrudFilters = [];
+    const //Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.,
+        { listProps, searchFormProps, queryResult } = useSimpleList<
+            IProduct,
+            HttpError,
+            { name: string; categories: string[] }
+        >({
+            resource: "products",
+            pagination: { pageSize: 9 },
+            onSearch: ({ name, categories }) => {
+                const productFilters: CrudFilters = [];
 
-            if (categories.length > 0) {
-                productFilters.push({
-                    field: "category.id",
-                    operator: "in",
-                    value: categories,
-                });
-            }
+                if (categories.length > 0) {
+                    productFilters.push({
+                        field: "category.id",
+                        operator: "in",
+                        value: categories,
+                    });
+                }
 
-            if (name) {
-                productFilters.push({
-                    field: "name",
-                    operator: "contains",
-                    value: name,
-                });
-            }
+                if (name) {
+                    productFilters.push({
+                        field: "name",
+                        operator: "contains",
+                        value: name,
+                    });
+                }
 
-            return productFilters;
-        },
-    });
+                return productFilters;
+            },
+        });
     const { data: productData } = queryResult;
 
     const mergedData = productData?.data.map((product) => ({

@@ -12,9 +12,7 @@ import { IOrder } from "interfaces";
 export const TrendingMenu: React.FC = () => {
     const { data } = useList<IOrder>({
         resource: "orders",
-        config: {
-            pagination: { pageSize: 5 },
-        },
+        pagination: { pageSize: 5 },
     });
 
     return (

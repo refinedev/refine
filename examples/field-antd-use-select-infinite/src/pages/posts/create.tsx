@@ -19,17 +19,17 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
-        sort: [
-            {
-                field: "title",
-                order: "asc",
-            },
-        ],
         onSearch: (value) => [
             {
                 field: "title",
                 operator: "contains",
                 value,
+            },
+        ],
+        sorters: [
+            {
+                field: "title",
+                order: "asc",
             },
         ],
     });

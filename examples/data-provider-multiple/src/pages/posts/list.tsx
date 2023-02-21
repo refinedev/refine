@@ -31,10 +31,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         syncWithLocation: true,
     });
 
-    const { listProps } = useSimpleList<IProducts>({
-        resource: "products",
-        dataProviderName: "fineFoods",
-    });
+    const //Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.,
+        { listProps } = useSimpleList<IProducts>({
+            resource: "products",
+            dataProviderName: "fineFoods",
+        });
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];

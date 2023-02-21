@@ -195,7 +195,7 @@ const App: React.FC = () => {
              * Therefore, enabling global live mode will cause unexpected behaviors.
              * Please set `liveMode: "auto"` or `liveMode: "manual"` manually while using real-time features of refine.
              */
-            options={{ liveMode: "off" }}
+            meta={{ liveMode: "off" }}
             notificationProvider={notificationProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}

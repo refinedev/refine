@@ -38,7 +38,7 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
     const { data } = queryResult;
     const user = data?.data;
 
-    const { tableProps, sorter } = useTable<
+    const { tableProps, sorters: sorter } = useTable<
         IOrder,
         HttpError,
         IOrderFilterVariables
@@ -57,11 +57,13 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                 value: user?.id,
             },
         ],
-        initialPageSize: 4,
         queryOptions: {
             enabled: user !== undefined,
         },
         syncWithLocation: false,
+        pagination: {
+            pageSize: 4,
+        },
     });
 
     return (

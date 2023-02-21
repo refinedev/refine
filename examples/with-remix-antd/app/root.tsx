@@ -66,7 +66,7 @@ export default function App(): JSX.Element {
                             show: PostShow,
                         },
                     ]}
-                    options={{ syncWithLocation: true }}
+                    meta={{ syncWithLocation: true }}
                 >
                     <Outlet />
                 </Refine>

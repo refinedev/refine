@@ -17,12 +17,13 @@ import { StoreContext } from "context/store";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const [store] = useContext(StoreContext);
-    const { listProps } = useSimpleList<IProduct>({
-        permanentFilter: [
-            { field: "stores][id]", operator: "eq", value: store },
-        ],
-        metaData: { populate: ["image"] },
-    });
+    const //Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.,
+        { listProps } = useSimpleList<IProduct>({
+            permanentFilter: [
+                { field: "stores][id]", operator: "eq", value: store },
+            ],
+            metaData: { populate: ["image"] },
+        });
 
     const {
         drawerProps: createDrawerProps,

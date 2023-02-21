@@ -42,7 +42,7 @@ function App() {
                             canDelete: true,
                         },
                     ]}
-                    options={{
+                    meta={{
                         mutationMode: "undoable",
                         syncWithLocation: true,
                     }}

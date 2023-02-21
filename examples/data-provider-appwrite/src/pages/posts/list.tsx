@@ -14,7 +14,7 @@ import {
 import { IPost, ICategory } from "interfaces";
 
 export const PostsList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<IPost>({
+    const { tableProps, sorters: sorter } = useTable<IPost>({
         initialSorter: [
             {
                 field: "$id",

@@ -31,7 +31,7 @@ const App: React.FC = () => {
         <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             routerProvider={routerProvider}
-            options={{
+            meta={{
                 reactQuery: {
                     clientConfig: queryClient,
                 },

@@ -43,7 +43,7 @@ export default function RefineLayout({
                 },
                 { name: "users" },
             ]}
-            options={{ syncWithLocation: true }}
+            meta={{ syncWithLocation: true }}
             notificationProvider={notificationProvider}
             LoginPage={() => (
                 <AuthPage

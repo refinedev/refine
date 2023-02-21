@@ -20,7 +20,7 @@ import { API_URL } from "../../src/constants";
 export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
     users,
 }) => {
-    const { tableProps, sorter } = useTable<IPost>({
+    const { tableProps, sorters: sorter } = useTable<IPost>({
         resource: "users",
         queryOptions: {
             initialData: users,

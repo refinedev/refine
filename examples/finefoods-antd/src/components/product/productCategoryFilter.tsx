@@ -29,9 +29,7 @@ export const ProductCategoryFilter: React.FC<ProductItemProps> = ({
     const { data: categoryData, isLoading: categoryIsLoading } =
         useList<ICategory>({
             resource: "categories",
-            config: {
-                pagination: { pageSize: 30 },
-            },
+            pagination: { pageSize: 30 },
         });
 
     const toggleFilterCategory = (clickedCategory: string) => {
