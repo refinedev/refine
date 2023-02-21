@@ -86,6 +86,7 @@ export {
     BackFunction,
     GoFunction,
     ParseFunction,
+    Prettify,
 } from "./interfaces";
 
 // all auth types
