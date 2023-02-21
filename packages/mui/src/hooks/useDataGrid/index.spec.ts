@@ -106,7 +106,7 @@ describe("useDataGrid Hook", () => {
         );
         expect(result.current.dataGridProps).toEqual(
             expect.objectContaining({
-                hideFooterPagination: true,
+                paginationMode: "client",
             }),
         );
     });
@@ -127,12 +127,12 @@ describe("useDataGrid Hook", () => {
 
         expect(result.current.dataGridProps).toEqual(
             expect.objectContaining({
-                hideFooterPagination: true,
+                paginationMode: "client",
             }),
         );
     });
 
-    it("when hasPagination is false and pagination mode is not defined, dataGridProps should contain hideFooterPagination", async () => {
+    it("when hasPagination is false and pagination mode is not defined, paginationMode should be 'client'", async () => {
         const { result } = renderHook(
             () =>
                 useDataGrid({
@@ -145,7 +145,7 @@ describe("useDataGrid Hook", () => {
 
         expect(result.current.dataGridProps).toEqual(
             expect.objectContaining({
-                hideFooterPagination: true,
+                paginationMode: "client",
             }),
         );
     });

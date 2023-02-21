@@ -32,7 +32,7 @@ describe("useList Hook", () => {
     });
 
     it.each(["server", undefined] as const)(
-        "should include pagination in queryKey",
+        "should include pagination in queryKey when mode is %s",
         async (mode) => {
             const getListMock = jest.fn();
 
@@ -58,32 +58,28 @@ describe("useList Hook", () => {
                     }),
                 },
             );
-
-            expect(getListMock).toBeCalledWith({
-                resource: "posts",
-                pagination: {
-                    current: 1,
-                    pageSize: 10,
-                    mode,
-                },
-                metaData: {
-                    queryContext: {
-                        queryKey: [
-                            "default",
-                            "posts",
-                            "list",
-                            {
-                                pagination: {
-                                    current: 1,
-                                    pageSize: 10,
-                                    mode,
+            expect(getListMock).toBeCalledWith(
+                expect.objectContaining({
+                    meta: {
+                        queryContext: {
+                            queryKey: [
+                                "default",
+                                "posts",
+                                "list",
+                                {
+                                    hasPagination: true,
+                                    pagination: {
+                                        current: 1,
+                                        mode: "server",
+                                        pageSize: 10,
+                                    },
                                 },
-                            },
-                        ],
-                        signal: new AbortController().signal,
+                            ],
+                            signal: new AbortController().signal,
+                        },
                     },
-                },
-            });
+                }),
+            );
         },
     );
 
@@ -115,20 +111,27 @@ describe("useList Hook", () => {
                 },
             );
 
-            expect(getListMock).toBeCalledWith({
-                resource: "posts",
-                pagination: {
-                    current: 1,
-                    pageSize: 10,
-                    mode,
-                },
-                metaData: {
-                    queryContext: {
-                        queryKey: ["default", "posts", "list", {}],
-                        signal: new AbortController().signal,
+            expect(getListMock).toBeCalledWith(
+                expect.objectContaining({
+                    resource: "posts",
+                    pagination: {
+                        current: 1,
+                        pageSize: 10,
+                        mode,
                     },
-                },
-            });
+                    meta: {
+                        queryContext: {
+                            queryKey: [
+                                "default",
+                                "posts",
+                                "list",
+                                { hasPagination: false },
+                            ],
+                            signal: new AbortController().signal,
+                        },
+                    },
+                }),
+            );
         },
     );
 
@@ -162,21 +165,23 @@ describe("useList Hook", () => {
             });
 
             expect(onSubscribeMock).toBeCalled();
-            expect(onSubscribeMock).toHaveBeenCalledWith({
-                channel: "resources/posts",
-                callback: expect.any(Function),
-                params: {
-                    filters: undefined,
-                    hasPagination: undefined,
-                    meta: undefined,
-                    metaData: undefined,
-                    pagination: undefined,
-                    resource: "posts",
-                    sort: undefined,
-                    subscriptionType: "useList",
-                },
-                types: ["*"],
-            });
+            expect(onSubscribeMock).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    channel: "resources/posts",
+                    callback: expect.any(Function),
+                    params: {
+                        hasPagination: true,
+                        pagination: {
+                            current: 1,
+                            mode: "server",
+                            pageSize: 10,
+                        },
+                        resource: "posts",
+                        subscriptionType: "useList",
+                    },
+                    types: ["*"],
+                }),
+            );
         });
 
         it("liveMode = Off useSubscription", async () => {
