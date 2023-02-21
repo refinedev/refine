@@ -13,7 +13,9 @@ export const paramsFromCurrentPath = (
 
     matchingRouteParts.forEach((part, index) => {
         if (part.startsWith(":")) {
-            params[part.replace(":", "")] = pathnameParts[index];
+            if (pathnameParts[index]?.length > 0) {
+                params[part.replace(":", "")] = pathnameParts[index];
+            }
         }
     });
 
