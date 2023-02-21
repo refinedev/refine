@@ -227,6 +227,10 @@ const fixDeprecatedReactTableProps = (j: JSCodeshift, source: Collection) => {
     });
 
     useTableHooks.replaceWith((p) => {
+        if (p.node.arguments.length === 0) {
+            return p.node;
+        }
+
         const hasRefineCoreProps = (
             p.node.arguments[0] as ObjectExpression
         ).properties.find(
@@ -251,7 +255,7 @@ const fixDeprecatedReactTableProps = (j: JSCodeshift, source: Collection) => {
             );
 
             if (!property) {
-                return null;
+                return;
             }
 
             if (prop === "hasPagination") {
@@ -283,7 +287,7 @@ const fixDeprecatedReactTableProps = (j: JSCodeshift, source: Collection) => {
                 );
             }
 
-            return null;
+            return;
         });
 
         if (paginationProperties.filter(Boolean).length === 0) {
@@ -321,6 +325,10 @@ const fixDeprecatedUseTableProps = (j: JSCodeshift, source: Collection) => {
         });
 
         useTableHooks.replaceWith((p) => {
+            if (p.node.arguments.length === 0) {
+                return p.node;
+            }
+
             const otherProperties = (
                 p.node.arguments[0] as ObjectExpression
             ).properties.filter(
@@ -338,7 +346,7 @@ const fixDeprecatedUseTableProps = (j: JSCodeshift, source: Collection) => {
                 );
 
                 if (!property) {
-                    return null;
+                    return;
                 }
 
                 if (prop === "hasPagination") {
@@ -372,7 +380,7 @@ const fixDeprecatedUseTableProps = (j: JSCodeshift, source: Collection) => {
                     );
                 }
 
-                return null;
+                return;
             });
 
             if (paginationProperties.filter(Boolean).length === 0) {
@@ -405,6 +413,10 @@ const fixUseListHasPaginationToPaginationMode = (
     });
 
     useListHooks.replaceWith((p) => {
+        if (p.node.arguments.length === 0) {
+            return p.node;
+        }
+
         const hasPaginationProperty = (
             p.node.arguments[0] as ObjectExpression
         ).properties.find(
@@ -477,6 +489,10 @@ const useCustomConfigSortToSorters = (j: JSCodeshift, source: Collection) => {
     });
 
     useCustomHooks.replaceWith((p) => {
+        if (p.node.arguments.length === 0) {
+            return p.node;
+        }
+
         const configProperty = (
             p.node.arguments[0] as ObjectExpression
         ).properties.find(
@@ -582,7 +598,7 @@ const refineOptionstoMeta = (j: JSCodeshift, source: Collection) => {
 
     refineElement.forEach((path) => {
         const optionsProperty = path.node.openingElement.attributes.find(
-            (p) => (p as JSXAttribute).name.name === "options",
+            (p) => (p as JSXAttribute).name?.name === "options",
         );
 
         if (!optionsProperty) {
