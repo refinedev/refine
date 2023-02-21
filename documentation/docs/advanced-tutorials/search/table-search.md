@@ -9,9 +9,8 @@ First, we create a form by extracting `searchFormProps` from `useTable`. We will
 
 ```tsx title="pages/list.tsx"
 import {
-    // highlight-start
+    // highlight-next-line
     useTable,
-    // highlight-end
     List,
 } from "@pankod/refine-antd";
 import {
