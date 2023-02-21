@@ -1,24 +1,10 @@
 import * as React from "react";
-import { RefineReadyPageProps } from "@pankod/refine-ui-types";
 import { Stack, Grid, Typography, Button, Link } from "@mui/material";
 
 /**
- * @deprecated `ReadyPage` is deprecated and will be removed in the next major release.
+ * It is a page that welcomes you after the configuration is completed.
  */
-export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
-    const renderCode = (text: string) => (
-        <Typography
-            sx={{
-                backgroundColor: (theme) =>
-                    theme.palette.secondary.contrastText,
-                color: (theme) => theme.palette.secondary.main,
-                display: "inline-block",
-                fontFamily: "monospace",
-            }}
-        >
-            {text}
-        </Typography>
-    );
+export const WelcomePage: React.FC = () => {
     return (
         <>
             <Grid
@@ -59,11 +45,6 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
                     </Typography>
                     <Typography variant="h5" mt={2}>
                         Your configuration is completed.
-                    </Typography>
-                    <Typography variant="h6" mt={2}>
-                        Now you can get started by adding your resources to the{" "}
-                        {renderCode(`resources`)} property of{" "}
-                        {renderCode(`Refine`)}
                     </Typography>
                     <Grid
                         item

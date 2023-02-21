@@ -1,19 +1,10 @@
 import * as React from "react";
-import { RefineReadyPageProps } from "@pankod/refine-ui-types";
-import {
-    Box,
-    Code,
-    Heading,
-    Text,
-    Button,
-    Link,
-    Image,
-} from "@chakra-ui/react";
+import { Box, Heading, Button, Link, Image } from "@chakra-ui/react";
 
 /**
- * @deprecated `ReadyPage` is deprecated and will be removed in the next major release.
+ * It is a page that welcomes you after the configuration is completed.
  */
-export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
+export const WelcomePage: React.FC = () => {
     return (
         <Box
             p="4"
@@ -34,13 +25,9 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
             <Heading mb="6" as="h1" size="3xl" color="white" textAlign="center">
                 Welcome on board
             </Heading>
-            <Heading as="h3" size="md" color="white" mb="6" textAlign="center">
+            <Heading as="h3" size="md" color="white" mb="8" textAlign="center">
                 Your configuration is completed.
             </Heading>
-            <Text mb="8" fontSize="xl" color="white" textAlign="center">
-                Now you can get started by adding your resources to the{" "}
-                <Code>resources</Code> property of <Code>Refine</Code>
-            </Text>
 
             <Box display="flex" flexWrap="wrap" justifyContent="center" gap="3">
                 <Button
