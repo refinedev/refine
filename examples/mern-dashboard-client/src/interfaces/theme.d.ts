@@ -7,7 +7,7 @@ export interface CustomTheme {
     // };
 }
 
-declare module "@pankod/refine-mui" {
+declare module "@mui/material/styles" {
     // @ts-ignore
     interface Theme extends import("@pankod/refine-mui").Theme, CustomTheme {}
     interface ThemeOptions

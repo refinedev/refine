@@ -19,7 +19,7 @@ export interface CustomTheme {
     };
 }
 
-declare module "@pankod/refine-mui" {
+declare module "@mui/material/styles" {
     interface Theme extends import("@pankod/refine-mui").Theme, CustomTheme {}
     interface ThemeOptions
         extends import("@pankod/refine-mui").ThemeOptions,
