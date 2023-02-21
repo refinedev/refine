@@ -32,8 +32,8 @@ import {
     HttpError,
     MetaQuery,
     LiveModeProps,
+    Pagination,
 } from "../../interfaces";
-import { pickNotDeprecated } from "@definitions/helpers";
 
 type SetFilterBehavior = "merge" | "replace";
 
@@ -46,23 +46,7 @@ export type useTableProps<TData, TError> = {
     /**
      * Configuration for pagination
      */
-    pagination?: {
-        /**
-         * Initial page index
-         * @default 1
-         */
-        current?: number;
-        /**
-         * Initial number of items per page
-         * @default 10
-         */
-        pageSize?: number;
-        /**
-         * Whether to use server side pagination or not.
-         * @default `"server"`
-         */
-        mode?: "client" | "server" | "off";
-    };
+    pagination?: Pagination;
     /**
      * Initial page index
      * @default 1
@@ -203,22 +187,32 @@ export function useTable<
     metaData,
     dataProviderName,
 }: useTableProps<TData, TError> = {}): useTableReturnType<TData, TError> {
-    const hasPaginationString = hasPagination ? "server" : "off";
-    const isPaginationEnabled =
-        pickNotDeprecated(pagination?.mode, hasPaginationString) !== "off";
-
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
-
-    const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
-
     const { useLocation, useParams } = useRouterContext();
     const { search, pathname } = useLocation();
     const liveMode = useLiveMode(liveModeFromProp);
-
     // We want to always parse the query string even when syncWithLocation is
     // deactivated, for hotlinking to work properly
     const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
         parseTableParams(search);
+    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+    const { replace } = useNavigation();
+    const resourceWithRoute = useResourceWithRoute();
+
+    const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
+    const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
+    const hasPaginationString = hasPagination === false ? "off" : "server";
+    const isPaginationEnabled =
+        (pagination?.mode ?? hasPaginationString) !== "off";
+    const prefferedCurrent = pickNotDeprecated(
+        pagination?.current,
+        initialCurrent,
+    );
+    const prefferedPageSize = pickNotDeprecated(
+        pagination?.pageSize,
+        initialPageSize,
+    );
+    const preferredMeta = pickNotDeprecated(meta, metaData);
 
     let defaultCurrent: number;
     let defaultPageSize: number;
@@ -226,31 +220,16 @@ export function useTable<
     let defaultFilter: CrudFilters | undefined;
 
     if (syncWithLocation) {
-        defaultCurrent =
-            parsedCurrent ||
-            pickNotDeprecated(pagination?.current, initialCurrent) ||
-            1;
-        defaultPageSize =
-            parsedPageSize ||
-            pickNotDeprecated(pagination?.pageSize, initialPageSize) ||
-            10;
+        defaultCurrent = parsedCurrent || prefferedCurrent || 1;
+        defaultPageSize = parsedPageSize || prefferedPageSize || 10;
         defaultSorter = parsedSorter.length ? parsedSorter : initialSorter;
         defaultFilter = parsedFilters.length ? parsedFilters : initialFilter;
     } else {
-        defaultCurrent =
-            pickNotDeprecated(pagination?.current, initialCurrent) || 1;
-        defaultPageSize =
-            pickNotDeprecated(pagination?.pageSize, initialPageSize) || 10;
+        defaultCurrent = prefferedCurrent || 1;
+        defaultPageSize = prefferedPageSize || 10;
         defaultSorter = initialSorter;
         defaultFilter = initialFilter;
     }
-
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-
-    const { replace } = useNavigation();
-    const resourceWithRoute = useResourceWithRoute();
-
-    const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
     const [sorters, setSorters] = useState<CrudSorting>(
         setInitialSorters(permanentSorter, defaultSorter ?? []),
@@ -261,26 +240,6 @@ export function useTable<
     const [current, setCurrent] = useState<number>(defaultCurrent);
     const [pageSize, setPageSize] = useState<number>(defaultPageSize);
 
-    const createLinkForSyncWithLocation = ({
-        pagination: { current, pageSize },
-        sorter,
-        sorters,
-        filters,
-    }: SyncWithLocationParams) => {
-        const currentQueryParams = qs.parse(search?.substring(1)); // remove first ? character
-
-        const stringifyParams = stringifyTableParams({
-            pagination: {
-                pageSize,
-                current,
-            },
-            sorters: sorters ?? sorter,
-            filters,
-            ...currentQueryParams,
-        });
-        return `${pathname}?${stringifyParams}`;
-    };
-
     useEffect(() => {
         if (search === "") {
             setCurrent(defaultCurrent);
@@ -289,19 +248,6 @@ export function useTable<
             setFilters(setInitialFilters(permanentFilter, defaultFilter ?? []));
         }
     }, [search]);
-
-    const currentQueryParams = (): object => {
-        // We get QueryString parameters that are uncontrolled by refine.
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { sorter, filters, pageSize, current, ...rest } = qs.parse(
-            search,
-            {
-                ignoreQueryPrefix: true,
-            },
-        );
-
-        return rest;
-    };
 
     useEffect(() => {
         if (syncWithLocation) {
@@ -333,37 +279,49 @@ export function useTable<
         pagination: { current, pageSize, mode: pagination?.mode },
         filters: unionFilters(permanentFilter, filters),
         sorters: unionSorters(permanentSorter, sorters),
-        queryOptions: {
-            ...queryOptions,
-            select: (rawData) => {
-                let data = rawData;
-
-                if (pagination?.mode === "client") {
-                    data = {
-                        data: data.data.slice(
-                            (current - 1) * pageSize,
-                            current * pageSize,
-                        ),
-                        total: data.total,
-                    };
-                }
-
-                if (queryOptions?.select) {
-                    return queryOptions?.select?.(data);
-                }
-
-                return data;
-            },
-        },
+        queryOptions,
         successNotification,
         errorNotification,
-        meta: pickNotDeprecated(meta, metaData),
-        metaData: pickNotDeprecated(meta, metaData),
+        meta: preferredMeta,
+        metaData: preferredMeta,
         liveMode,
         liveParams,
         onLiveEvent,
         dataProviderName,
     });
+
+    const currentQueryParams = (): object => {
+        // We get QueryString parameters that are uncontrolled by refine.
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { sorter, filters, pageSize, current, ...rest } = qs.parse(
+            search,
+            {
+                ignoreQueryPrefix: true,
+            },
+        );
+
+        return rest;
+    };
+
+    const createLinkForSyncWithLocation = ({
+        pagination: { current, pageSize },
+        sorter,
+        sorters,
+        filters,
+    }: SyncWithLocationParams) => {
+        const currentQueryParams = qs.parse(search?.substring(1)); // remove first ? character
+
+        const stringifyParams = stringifyTableParams({
+            pagination: {
+                pageSize,
+                current,
+            },
+            sorters: sorters ?? sorter,
+            filters,
+            ...currentQueryParams,
+        });
+        return `${pathname}?${stringifyParams}`;
+    };
 
     const setFiltersAsMerge = (newFilters: CrudFilters) => {
         setFilters((prevFilters) =>
