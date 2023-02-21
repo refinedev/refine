@@ -35,7 +35,7 @@ export type UseResourceLegacyProps = {
  * If not provided, the resource from the route will be returned.
  * If your resource does not explicitly define an identifier, the resource name will be used.
  */
-export type UseResourceParam = string;
+export type UseResourceParam = string | undefined;
 
 type UseResourceReturnType = {
     resources: IResourceItem[];
@@ -48,15 +48,22 @@ type UseResourceReturnType = {
     action?: Action;
 };
 
+type UseResourceReturnTypeWithResource = UseResourceReturnType & {
+    resource: IResourceItem;
+};
+
 /**
  * @deprecated Use `useResource` with `identifier` property instead. (`identifier` does not check by route name in new router)
  */
 export function useResource(
     props: UseResourceLegacyProps,
 ): UseResourceReturnType;
-export function useResource(
-    identifier?: UseResourceParam,
-): UseResourceReturnType;
+export function useResource(): UseResourceReturnType;
+export function useResource<TIdentifier = UseResourceParam>(
+    identifier: TIdentifier,
+): TIdentifier extends NonNullable<UseResourceParam>
+    ? UseResourceReturnTypeWithResource
+    : UseResourceReturnType;
 /**
  * `useResource` is used to get `resources` that are defined as property of the `<Refine>` component.
  *
