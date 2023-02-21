@@ -1,5 +1,5 @@
 import { useList } from "@pankod/refine-core";
-import { Box, Typography } from "@pankod/refine-mui";
+import { Box, Typography } from "@mui/material";
 
 import { AgentCard } from "components";
 

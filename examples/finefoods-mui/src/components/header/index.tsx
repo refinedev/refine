@@ -13,7 +13,7 @@ import {
     FormControl,
     MenuItem,
     Select,
-} from "@pankod/refine-mui";
+} from "@mui/material";
 import {
     useList,
     useTranslate,

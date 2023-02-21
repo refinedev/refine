@@ -1,12 +1,8 @@
 import React from "react";
 import { useMany } from "@pankod/refine-core";
-import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    List,
-    EditButton,
-} from "@pankod/refine-mui";
+import { useDataGrid, List, EditButton } from "@pankod/refine-mui";
+
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 import { ICategory, IPost } from "interfaces";
 

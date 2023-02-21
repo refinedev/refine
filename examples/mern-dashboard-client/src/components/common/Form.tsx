@@ -9,7 +9,7 @@ import {
     Select,
     MenuItem,
     Button,
-} from "@pankod/refine-mui";
+} from "@mui/material";
 
 import { FormProps } from "interfaces/common";
 import CustomButton from "./CustomButton";
