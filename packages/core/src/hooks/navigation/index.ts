@@ -1,17 +1,12 @@
-import { useResourceWithRoute, useRouterContext, useResource } from "@hooks";
+import { useRouterContext, useResource } from "@hooks";
 import { BaseKey, IResourceItem, MetaDataQuery } from "../../interfaces";
 import { useGo } from "@hooks/router/use-go";
 import { useParsed } from "@hooks/router/use-parsed";
 import { useRouterType } from "@contexts/router-picker";
-import { getDefaultActionPath } from "../../definitions/helpers/router/get-default-action-path";
-import {
-    getActionRoutesFromResource,
-    getParentPrefixForResource,
-} from "@definitions/helpers/router";
+import { getActionRoutesFromResource } from "@definitions/helpers/router";
 import { pickResource } from "@definitions/helpers/pick-resource";
 import { composeRoute } from "@definitions/helpers/router/compose-route";
 import { useBack } from "@hooks/router/use-back";
-import { useGetToPath } from "@hooks/router/use-get-to-path";
 
 export type HistoryType = "push" | "replace";
 
@@ -25,7 +20,6 @@ export type HistoryType = "push" | "replace";
  * @see {@link https://refine.dev/docs/core/hooks/navigation/useNavigation} for more details.
  */
 export const useNavigation = () => {
-    const getToPath = useGetToPath();
     const { resources } = useResource();
     const routerType = useRouterType();
     const { useHistory } = useRouterContext();
@@ -33,7 +27,6 @@ export const useNavigation = () => {
     const parsed = useParsed();
     const go = useGo();
     const back = useBack();
-    const resourceWithRoute = useResourceWithRoute();
 
     const handleUrl = (url: string, type: HistoryType = "push") => {
         if (routerType === "legacy") {
