@@ -26,10 +26,12 @@ export async function postTransform(files: any, flags: any) {
         await install(
             rootDir,
             [
-                `@mui/icons-material@^5.8.3`,
-                `@mui/lab@^5.0.0-alpha.85`,
-                `@mui/material@^5.8.6`,
-                `@mui/x-data-grid@^5.12.1`,
+                "@emotion/react@^11.8.2",
+                "@emotion/styled@^11.8.1",
+                "@mui/icons-material@^5.8.3",
+                "@mui/lab@^5.0.0-alpha.85",
+                "@mui/material@^5.8.6",
+                "@mui/x-data-grid@^5.12.1",
             ],
             {
                 useYarn,
