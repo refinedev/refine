@@ -66,6 +66,34 @@ const DashboardPage = () => {
         </div>
     );
 };
+
+const GoogleIcon = (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+    >
+        <path
+            fill="#fff"
+            d="m23.7 12.3-.1-2.3H12.3v4.5h6.4a5.6 5.6 0 0 1-2.4 3.6v3h3.9c2.2-2.1 3.5-5.2 3.5-8.8Z M12.3 24c3.2 0 6-1 7.9-3l-3.9-3a7.2 7.2 0 0 1-10.8-3.7h-4v3c2 4 6 6.7 10.8 6.7Z M5.5 14.3a7 7 0 0 1 0-4.6v-3h-4a11.9 11.9 0 0 0 0 10.7l4-3.1Z M12.3 4.8c1.7 0 3.3.6 4.6 1.8L20.3 3A12 12 0 0 0 1.6 6.6l4 3.1c.9-2.8 3.5-5 6.7-5Z"
+        />
+    </svg>
+);
+
+const GithubIcon = (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+    >
+        <path
+            fill="#fff"
+            d="M12 0a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.4 1 .2-.8.5-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.1-.4-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.2 2.9.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.9 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 0z"
+        />
+    </svg>
+);
 ```
 
 ## Usage
@@ -375,7 +403,6 @@ setRefineProps({ Sider: () => null });
 // visible-block-start
 import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
 import { AuthPage, Layout } from "@pankod/refine-antd";
-import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
@@ -392,12 +419,12 @@ const App = () => {
                     providers={[
                         {
                             name: "google",
-                            icon: <GoogleOutlined />,
+                            icon: GoogleIcon,
                             label: "Sign in with Google",
                         },
                         {
                             name: "github",
-                            icon: <GithubOutlined />,
+                            icon: GithubIcon,
                             label: "Sign in with GitHub",
                         },
                     ]}

@@ -556,12 +556,12 @@ const { EditButton } = RefineAntd;
 
 // visible-block-start
 import { Edit } from "@pankod/refine-antd";
-import { SmileOutlined } from "@ant-design/icons";
 
 const PostEdit: React.FC = () => {
+    const BackButton = () => <Button>←</Button>;
     return (
         /* highlight-next-line */
-        <Edit goBack={<SmileOutlined />}>
+        <Edit goBack={<BackButton />}>
             <p>Rest of your page here</p>
         </Edit>
     );

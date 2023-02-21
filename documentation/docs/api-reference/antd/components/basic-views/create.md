@@ -250,15 +250,16 @@ To customize the back button or to disable it, you can use the `goBack` property
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 const { CreateButton } = RefineAntd;
+import { Button } from "antd";
 
 // visible-block-start
 import { Create } from "@pankod/refine-antd";
-import { SmileOutlined } from "@ant-design/icons";
 
 const PostCreate: React.FC = () => {
+    const BackButton = () => <Button>←</Button>;
     return (
         /* highlight-next-line */
-        <Create goBack={<SmileOutlined />}>
+        <Create goBack={<BackButton />}>
             <p>Rest of your page here</p>
         </Create>
     );

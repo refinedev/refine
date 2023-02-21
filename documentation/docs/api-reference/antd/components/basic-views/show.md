@@ -347,9 +347,10 @@ const { ShowButton } = RefineAntd;
 
 // visible-block-start
 import { Show } from "@pankod/refine-antd";
-import { SmileOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 
 const PostShow: React.FC = () => {
+    const BackButton = () => <Button>←</Button>;
     return (
         /* highlight-next-line */
         <Show goBack={<SmileOutlined />}>

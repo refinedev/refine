@@ -24,11 +24,13 @@ import {
     // highlight-end
 } from "@pankod/refine-antd";
 import { Table } from "antd";
-// highlight-next-line
-import { CloseCircleOutlined, CheckCircleOutlined } from "@ant-design/icons";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
+
+    const TrueIcon = () => <span>✅</span>;
+
+    const FalseIcon = () => <span>❌</span>;
 
     return (
         <List>
@@ -42,8 +44,8 @@ const PostList: React.FC = () => {
                         // highlight-start
                         <BooleanField
                             value={value === "published"}
-                            trueIcon={<CheckCircleOutlined />}
-                            falseIcon={<CloseCircleOutlined />}
+                            trueIcon={<TrueIcon />}
+                            falseIcon={<FalseIcon />}
                             valueLabelTrue="published"
                             valueLabelFalse="unpublished"
                         />
