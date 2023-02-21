@@ -20,6 +20,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     breadcrumbProps,
     showHome = true,
     hideIcons = false,
+    home,
 }) => {
     const routerType = useRouterType();
     const { breadcrumbs } = useBreadcrumb();
@@ -33,6 +34,23 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
         return null;
     }
 
+    const renderHome = () => {
+        if (home) {
+            return (
+                <AntdBreadcrumb.Item>
+                    <ActiveLink to={home.path ?? "/"}>
+                        {typeof home.icon !== "undefined" ? (
+                            home.icon
+                        ) : (
+                            <HomeOutlined />
+                        )}
+                    </ActiveLink>
+                </AntdBreadcrumb.Item>
+            );
+        }
+        return null;
+    };
+
     return (
         <AntdBreadcrumb {...breadcrumbProps}>
             {showHome && hasDashboard && (
@@ -42,6 +60,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                     </ActiveLink>
                 </AntdBreadcrumb.Item>
             )}
+            {renderHome()}
             {breadcrumbs.map(({ label, icon, href }) => {
                 return (
                     <AntdBreadcrumb.Item key={label}>

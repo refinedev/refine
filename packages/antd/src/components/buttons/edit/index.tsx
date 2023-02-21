@@ -65,10 +65,10 @@ export const EditButton: React.FC<EditButtonProps> = ({
     };
 
     const editUrl =
-        (resource || propResourceNameOrRouteName) && (recordItemId || id)
+        (resource || propResourceNameOrRouteName) && (recordItemId ?? id)
             ? generateEditUrl(
                   resource! ?? propResourceNameOrRouteName!,
-                  recordItemId! || id!,
+                  recordItemId! ?? id!,
                   meta,
               )
             : "";

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useResource } from "@pankod/refine-core";
+import { useGo, useResource, useRouterType } from "@pankod/refine-core";
 import { RefineErrorPageProps } from "@pankod/refine-ui-types";
 import { Button, Result, Typography, Space, Tooltip } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
@@ -17,6 +17,8 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
     const [errorMessage, setErrorMessage] = useState<string>();
     const translate = useTranslate();
     const { push } = useNavigation();
+    const go = useGo();
+    const routerType = useRouterType();
 
     const { resource, action } = useResource();
 
@@ -56,7 +58,16 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
                             </Tooltip>
                         )}
                     </Space>
-                    <Button type="primary" onClick={() => push("/")}>
+                    <Button
+                        type="primary"
+                        onClick={() => {
+                            if (routerType === "legacy") {
+                                push("/");
+                            } else {
+                                go({ to: "/" });
+                            }
+                        }}
+                    >
                         {translate("pages.error.backHome", "Back Home")}
                     </Button>
                 </Space>

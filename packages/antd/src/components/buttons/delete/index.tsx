@@ -76,10 +76,10 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             }
             okButtonProps={{ disabled: isLoading }}
             onConfirm={(): void => {
-                if (recordItemId && resource?.name) {
+                if ((recordItemId ?? id) && resource?.name) {
                     mutate(
                         {
-                            id: recordItemId || id || "",
+                            id: recordItemId ?? id ?? "",
                             resource: resource?.name,
                             mutationMode,
                             successNotification,
@@ -105,7 +105,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         >
             <Button
                 danger
-                loading={(recordItemId || id) === variables?.id && isLoading}
+                loading={(recordItemId ?? id) === variables?.id && isLoading}
                 icon={<DeleteOutlined />}
                 disabled={data?.can === false}
                 data-testid={RefineButtonTestIds.DeleteButton}

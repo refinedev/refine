@@ -125,6 +125,7 @@ export const Edit: React.FC<EditProps> = ({
                             go({ to: goListPath });
                         }
                     }}
+                    recordItemId={id}
                     dataProviderName={dataProviderName}
                     {...deleteButtonProps}
                 />

@@ -16,6 +16,8 @@ import {
     useRouterContext,
     useMenu,
     useRefineContext,
+    useLink,
+    useRouterType,
 } from "@pankod/refine-core";
 
 import { Title as DefaultTitle } from "@components";
@@ -29,7 +31,10 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const NewLink = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+    const Link = routerType === "legacy" ? LegacyLink : NewLink;
     const { mutate: mutateLogout } = useLogout();
     const Title = useTitle();
     const translate = useTranslate();
@@ -86,7 +91,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                         }}
                         icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
-                        <Link to={route}>{label}</Link>
+                        <Link to={route ?? ""}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
