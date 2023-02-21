@@ -1,5 +1,5 @@
 import { useList, useNavigation } from "@pankod/refine-core";
-import { Box } from "@pankod/refine-mui";
+import { Box } from "@mui/material";
 
 import { IOrder } from "interfaces";
 import { Map, MapMarker } from "components";

@@ -7,6 +7,7 @@ import {
     HttpError,
 } from "@pankod/refine-core";
 import { useModalForm } from "@pankod/refine-react-hook-form";
+import { CreateButton } from "@pankod/refine-mui";
 import {
     Grid,
     Paper,
@@ -15,8 +16,7 @@ import {
     IconButton,
     Stack,
     Pagination,
-    CreateButton,
-} from "@pankod/refine-mui";
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 import {

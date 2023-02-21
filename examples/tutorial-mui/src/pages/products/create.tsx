@@ -1,10 +1,5 @@
-import {
-    Create,
-    Box,
-    useAutocomplete,
-    TextField,
-    Autocomplete,
-} from "@pankod/refine-mui";
+import { Create, useAutocomplete } from "@pankod/refine-mui";
+import { Box, TextField, Autocomplete } from "@mui/material";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
 
 export const ProductCreate = () => {

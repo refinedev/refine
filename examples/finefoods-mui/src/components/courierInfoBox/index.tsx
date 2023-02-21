@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Avatar, Typography } from "@pankod/refine-mui";
+import { Box, Avatar, Typography } from "@mui/material";
 
 type CourierInfoBoxProps = {
     text: string;

@@ -7,7 +7,7 @@ import {
     CardMedia,
     CardContent,
     Stack,
-} from "@pankod/refine-mui";
+} from "@mui/material";
 
 import { PropertyCardProps } from "interfaces/property";
 

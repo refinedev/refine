@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { Sider as DefaultSider, MuiList } from "@pankod/refine-mui";
+
 import {
     Box,
     Drawer,
-    Sider as DefaultSider,
     ListItemButton,
     ListItemIcon,
     ListItemText,
@@ -10,8 +11,8 @@ import {
     Tooltip,
     Button,
     IconButton,
-    MuiList,
-} from "@pankod/refine-mui";
+} from "@mui/material";
+
 import {
     ListOutlined,
     Logout,
