@@ -1,6 +1,8 @@
 import React from "react";
 import {
     useTranslate,
+    useLink,
+    useRouterType,
     useRouterContext,
     useForgotPassword,
     ForgotPasswordFormTypes,
@@ -40,7 +42,12 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
     const { onSubmit, ...useFormProps } = formProps || {};
     const { mutate } = useForgotPassword<ForgotPasswordFormTypes>();
     const translate = useTranslate();
-    const { Link } = useRouterContext();
+
+    const routerType = useRouterType();
+    const NewLink = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+    const Link = routerType === "legacy" ? LegacyLink : NewLink;
+
     const {
         handleSubmit,
         register,

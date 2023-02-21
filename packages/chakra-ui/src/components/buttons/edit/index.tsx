@@ -5,6 +5,8 @@ import {
     useTranslate,
     useResource,
     useRouterContext,
+    useRouterType,
+    useLink,
 } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import { IconPencil } from "@tabler/icons";
@@ -25,26 +27,29 @@ export const EditButton: React.FC<EditButtonProps> = ({
     hideText = false,
     accessControl,
     svgIconProps,
+    meta,
     children,
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled;
+    const accessControlEnabled = accessControl?.enabled ?? true;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
-    const { resourceName, resource, id } = useResource({
-        resourceNameOrRouteName,
-        recordItemId,
-    });
-
     const translate = useTranslate();
 
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
+
     const { editUrl: generateEditUrl } = useNavigation();
-    const { Link } = useRouterContext();
+
+    const { id, resource } = useResource(resourceNameOrRouteName);
 
     const { data } = useCan({
-        resource: resourceName,
+        resource: resource?.name,
         action: "edit",
-        params: { id, resource },
+        params: { id: recordItemId ?? id, resource },
         queryOptions: {
             enabled: accessControlEnabled,
         },
@@ -60,14 +65,20 @@ export const EditButton: React.FC<EditButtonProps> = ({
             );
     };
 
-    const editUrl = generateEditUrl(resource.route!, id!);
-
+    const editUrl =
+        (resource || resourceNameOrRouteName) && (recordItemId ?? id)
+            ? generateEditUrl(
+                  resource! ?? resourceNameOrRouteName!,
+                  recordItemId! ?? id!,
+                  meta,
+              )
+            : "";
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;
     }
 
     return (
-        <Link
+        <ActiveLink
             to={editUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -100,6 +111,6 @@ export const EditButton: React.FC<EditButtonProps> = ({
                     {children ?? translate("buttons.edit", "Edit")}
                 </Button>
             )}
-        </Link>
+        </ActiveLink>
     );
 };

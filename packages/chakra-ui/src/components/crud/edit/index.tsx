@@ -1,14 +1,18 @@
 import React from "react";
 
 import {
-    ResourceRouterParams,
     useMutationMode,
     useNavigation,
-    useResourceWithRoute,
-    userFriendlyResourceName,
-    useRouterContext,
     useTranslate,
+    userFriendlyResourceName,
+    useRefineContext,
+    useRouterType,
+    useBack,
+    useResource,
+    useGo,
+    useToPath,
 } from "@pankod/refine-core";
+
 import { Box, Heading, HStack, IconButton, Spinner } from "@chakra-ui/react";
 
 // We use @tabler/icons for icons but you can use any icon library you want.
@@ -42,45 +46,62 @@ export const Edit: React.FC<EditProps> = (props) => {
         contentProps,
         headerProps,
         goBack: goBackFromProps,
-        breadcrumb = <Breadcrumb />,
+        breadcrumb: breadcrumbFromProps,
         title,
     } = props;
     const translate = useTranslate();
-
-    const { goBack, list } = useNavigation();
-
-    const resourceWithRoute = useResourceWithRoute();
-
-    const { useParams } = useRouterContext();
-
+    const { options: { breadcrumb: globalBreadcrumb } = {} } =
+        useRefineContext();
     const { mutationMode: mutationModeContext } = useMutationMode();
-
     const mutationMode = mutationModeFromProps ?? mutationModeContext;
 
-    const {
-        resource: routeResourceName,
-        action: routeFromAction,
-        id: idFromRoute,
-    } = useParams<ResourceRouterParams>();
+    const routerType = useRouterType();
+    const back = useBack();
+    const go = useGo();
+    const { goBack, list: legacyGoList } = useNavigation();
 
-    const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
+    const {
+        resource,
+        action,
+        id: idFromParams,
+    } = useResource(resourceFromProps);
+
+    const goListPath = useToPath({
+        resource,
+        action: "list",
+    });
+
+    const id = recordItemId ?? idFromParams;
+
+    const breadcrumb =
+        typeof breadcrumbFromProps === "undefined"
+            ? globalBreadcrumb
+            : breadcrumbFromProps;
 
     const isDeleteButtonVisible =
-        canDelete ?? (resource.canDelete || deleteButtonProps);
-
-    const id = recordItemId ?? idFromRoute;
+        canDelete ??
+        ((resource?.meta?.canDelete ?? resource?.canDelete) ||
+            deleteButtonProps);
 
     const defaultHeaderButtons = (
         <>
             {!recordItemId && (
                 <ListButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={resource.route}
+                    resourceNameOrRouteName={
+                        routerType === "legacy"
+                            ? resource?.route
+                            : resource?.identifier ?? resource?.name
+                    }
                 />
             )}
             <RefreshButton
                 {...(isLoading ? { disabled: true } : {})}
-                resourceNameOrRouteName={resource.route}
+                resourceNameOrRouteName={
+                    routerType === "legacy"
+                        ? resource?.route
+                        : resource?.identifier ?? resource?.name
+                }
                 recordItemId={id}
                 dataProviderName={dataProviderName}
             />
@@ -94,8 +115,15 @@ export const Edit: React.FC<EditProps> = (props) => {
                     {...(isLoading ? { disabled: true } : {})}
                     mutationMode={mutationMode}
                     onSuccess={() => {
-                        list(resource.route ?? resource.name);
+                        if (routerType === "legacy") {
+                            legacyGoList(
+                                resource?.route ?? resource?.name ?? "",
+                            );
+                        } else {
+                            go({ to: goListPath });
+                        }
                     }}
+                    recordItemId={id}
                     dataProviderName={dataProviderName}
                     {...deleteButtonProps}
                 />
@@ -113,7 +141,13 @@ export const Edit: React.FC<EditProps> = (props) => {
                 aria-label="back"
                 variant="ghost"
                 size="sm"
-                onClick={routeFromAction ? goBack : undefined}
+                onClick={
+                    action !== "list" && typeof action !== "undefined"
+                        ? routerType === "legacy"
+                            ? goBack
+                            : back
+                        : undefined
+                }
             >
                 {typeof goBackFromProps !== "undefined" ? (
                     goBackFromProps
@@ -153,9 +187,12 @@ export const Edit: React.FC<EditProps> = (props) => {
         return (
             <Heading as="h3" size="lg">
                 {translate(
-                    `${resource.name}.titles.edit`,
+                    `${resource?.name}.titles.edit`,
                     `Edit ${userFriendlyResourceName(
-                        resource.label ?? resource.name,
+                        resource?.meta?.label ??
+                            resource?.options?.label ??
+                            resource?.label ??
+                            resource?.name,
                         "singular",
                     )}`,
                 )}
@@ -190,7 +227,11 @@ export const Edit: React.FC<EditProps> = (props) => {
                 {...headerProps}
             >
                 <Box minW={200}>
-                    {breadcrumb}
+                    {typeof breadcrumb !== "undefined" ? (
+                        <>{breadcrumb}</> ?? undefined
+                    ) : (
+                        <Breadcrumb />
+                    )}
                     <HStack spacing={2}>
                         {buttonBack}
                         {renderTitle()}

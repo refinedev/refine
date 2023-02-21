@@ -3,10 +3,12 @@ import {
     CanAccess,
     ITreeMenu,
     useIsExistAuthentication,
+    useLink,
     useLogout,
     useMenu,
     useRefineContext,
     useRouterContext,
+    useRouterType,
     useTitle,
     useTranslate,
 } from "@pankod/refine-core";
@@ -42,7 +44,10 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [collapsed, setCollapsed] = useState(false);
     const [opened, setOpened] = useState(false);
 
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const NewLink = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+    const Link = routerType === "legacy" ? LegacyLink : NewLink;
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const Title = useTitle();
     const isExistAuthentication = useIsExistAuthentication();
