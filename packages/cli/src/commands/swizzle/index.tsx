@@ -118,7 +118,7 @@ const action = async (_options: OptionValues) => {
     );
 
     const { selectedPackage } = await inquirer.prompt<{
-        selectedPackage: typeof packageConfigs[number];
+        selectedPackage: (typeof packageConfigs)[number];
     }>([
         {
             type: "autocomplete",
