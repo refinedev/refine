@@ -21,7 +21,6 @@ import {
     useForm,
     // highlight-start
     getValueFromEvent,
-    // highlight-end
 } from "@pankod/refine-antd";
 import { Form, Upload, Input } from "antd";
 
