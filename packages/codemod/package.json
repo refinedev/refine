@@ -16,7 +16,7 @@
   "scripts": {
     "build": "tsc -d -p tsconfig.json",
     "dev": "tsc -w -d -p tsconfig.json",
-    "jscodeshift": "jscodeshift -t src/transformations/fix-deprecated-values.ts test/list.tsx"
+    "jscodeshift": "jscodeshift -t src/transformations/fix-v4-deprecations.ts test/list.tsx"
   },
   "author": "refine",
   "devDependencies": {
