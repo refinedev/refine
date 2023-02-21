@@ -42,20 +42,20 @@ const timeline = [
         date: "18th February 2022",
         title: "Initialize and Build Pixels Admin App",
         description: `We'll implement an admin dashboard app and explore how refine's Ant Design support module is geared to rapidly build CRUD pages for a refine app`,
-        link: null,
+        link: "https://refine.dev/blog/refine-pixels-5/",
     },
     {
         date: "19th February 2022",
         title: "Add Role Based Authorization",
         description:
-            "We implement user role based authorization to our admin app",
-        link: null,
+            "We'll implement Role Based Access Control (RBAC) on our Pixels Admin app.",
+        link: "https://refine.dev/blog/refine-pixels-6/",
     },
     {
         date: "20th February 2022",
-        title: "Add Audit Log to Client App and Admin App",
-        description: `Well record each canvas creation and pixel drawings to audit logs table in <strong className="font-bold">Supabase</strong>. And then we’ll be able to display this logs on the admin and the client app.`,
-        link: null,
+        title: "Implementing Audit Logs",
+        description: `We'll record each canvas creation and pixel drawings to audit logs table in <strong className="font-bold">Supabase</strong>. And then we’ll be able to display this logs on the admin and the client app.`,
+        link: "https://refine.dev/blog/refine-pixels-7/",
     },
 ];
 
