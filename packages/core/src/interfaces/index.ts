@@ -70,3 +70,5 @@ export interface Option {
 export * from "./auth";
 
 export * from "./bindings";
+
+export * from "./prettify";
