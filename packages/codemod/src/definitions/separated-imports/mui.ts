@@ -279,6 +279,7 @@ export const exported: { [key: string]: string } = {
     zhTW: "@mui/x-data-grid",
     GridColumns: "@mui/x-data-grid",
     GridValueFormatterParams: "@mui/x-data-grid",
+    GridSelectionModel: "@mui/x-data-grid",
     ////
     // Box: "@mui/system",
     // Container: "@mui/system",
