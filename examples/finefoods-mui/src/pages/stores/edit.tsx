@@ -4,9 +4,8 @@ import {
     useTranslate,
 } from "@pankod/refine-core";
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
-import { Edit } from "@pankod/refine-mui";
-
 import {
+    Edit,
     FormControl,
     FormControlLabel,
     Avatar,
@@ -19,8 +18,7 @@ import {
     Typography,
     FormHelperText,
     TextFieldProps,
-} from "@mui/material";
-
+} from "@pankod/refine-mui";
 import InputMask from "react-input-mask";
 
 import { IStore } from "interfaces";

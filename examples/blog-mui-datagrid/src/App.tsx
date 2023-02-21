@@ -1,7 +1,10 @@
 import { Refine } from "@pankod/refine-core";
-import { LightTheme } from "@pankod/refine-mui";
-import { ThemeProvider } from "@mui/material/styles";
-import { CssBaseline, GlobalStyles } from "@mui/material";
+import {
+    CssBaseline,
+    GlobalStyles,
+    ThemeProvider,
+    LightTheme,
+} from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import Layout from "./components/Layout";

@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box } from "@pankod/refine-mui";
 import { TooltipProps } from "recharts";
 
 type ChartTooltipProps = TooltipProps<number, string> & {

@@ -7,13 +7,13 @@ import {
 
 import {
     useDataGrid,
+    DataGrid,
+    GridColumns,
     ImportButton,
     List,
     ExportButton,
+    Stack,
 } from "@pankod/refine-mui";
-
-import { Stack } from "@mui/material";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 import { ICategory, IPost } from "../interfaces";
 

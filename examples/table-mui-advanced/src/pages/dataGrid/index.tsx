@@ -1,14 +1,14 @@
 import React from "react";
 import { Option, useSelect } from "@pankod/refine-core";
-import { useDataGrid, List } from "@pankod/refine-mui";
-
 import {
+    useDataGrid,
     DataGrid,
     GridColumns,
     GridToolbar,
     GridActionsCellItem,
+    List,
     GridValueFormatterParams,
-} from "@mui/x-data-grid";
+} from "@pankod/refine-mui";
 
 import { ICategory, IPost } from "interfaces";
 

@@ -5,8 +5,6 @@ import {
     Controller,
     UseModalFormReturnType,
 } from "@pankod/refine-react-hook-form";
-import { Create, useAutocomplete } from "@pankod/refine-mui";
-
 import {
     Drawer,
     FormControlLabel,
@@ -24,9 +22,10 @@ import {
     OutlinedInput,
     InputAdornment,
     FormHelperText,
+    Create,
+    useAutocomplete,
     TextField,
-} from "@mui/material";
-
+} from "@pankod/refine-mui";
 import { CloseOutlined } from "@mui/icons-material";
 
 import { ICategory, IProduct } from "interfaces";
