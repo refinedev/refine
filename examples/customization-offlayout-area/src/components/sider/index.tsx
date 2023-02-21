@@ -7,10 +7,7 @@ import {
     useMenu,
 } from "@pankod/refine-core";
 
-import {
-    UnorderedListOutlined,
-    UnorderedListOutlined,
-} from "@ant-design/icons";
+import { UnorderedListOutlined } from "@ant-design/icons";
 import { Layout as AntdLayout, Menu } from "antd";
 
 export const FixedSider: React.FC = () => {
