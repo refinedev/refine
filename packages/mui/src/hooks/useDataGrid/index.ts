@@ -8,6 +8,8 @@ import {
     useTableReturnType as useTableReturnTypeCore,
     useLiveMode,
     pickNotDeprecated,
+    Pagination,
+    Prettify,
 } from "@pankod/refine-core";
 import {
     DataGridProps,
@@ -39,12 +41,11 @@ type DataGridPropsType = Required<
         | "sx"
         | "disableSelectionOnClick"
         | "onStateChange"
+        | "paginationMode"
     >
 > &
     Pick<
         DataGridProps,
-        | "hideFooterPagination"
-        | "paginationMode"
         | "page"
         | "onPageChange"
         | "pageSize"
@@ -52,12 +53,20 @@ type DataGridPropsType = Required<
         | "filterModel"
     >;
 
-export type UseDataGridProps<
-    TData,
-    TError,
-    TSearchVariables = unknown,
-> = useTablePropsCore<TData, TError> & {
+export type UseDataGridProps<TData, TError, TSearchVariables = unknown> = Omit<
+    useTablePropsCore<TData, TError>,
+    "pagination"
+> & {
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
+    pagination?: Prettify<
+        Omit<Pagination, "pageSize"> & {
+            /**
+             * Initial number of items per page
+             * @default 25
+             */
+            pageSize?: number;
+        }
+    >;
 };
 
 export type UseDataGridReturnType<
@@ -100,9 +109,8 @@ export function useDataGrid<
     TError,
     TSearchVariables
 > = {}): UseDataGridReturnType<TData, TError, TSearchVariables> {
-    const hasPaginationString = hasPagination ? "server" : "off";
-    const isPaginationEnabled =
-        pickNotDeprecated(pagination?.mode, hasPaginationString) !== "off";
+    const theme = useTheme();
+    const liveMode = useLiveMode(liveModeFromProp);
 
     const [columnsTypes, setColumnsType] = useState<Record<string, string>>();
 
@@ -145,11 +153,11 @@ export function useDataGrid<
 
     const [muiCrudFilters, setMuiCrudFilters] = useState<CrudFilters>(filters);
 
-    const theme = useTheme();
-
     const { data, isFetched, isLoading } = tableQueryResult;
 
-    const liveMode = useLiveMode(liveModeFromProp);
+    const hasPaginationString = hasPagination === false ? "off" : "server";
+    const isPaginationEnabled =
+        (pagination?.mode ?? hasPaginationString) !== "off";
 
     const handlePageChange = (page: number) => {
         if (isPaginationEnabled) {
@@ -191,15 +199,14 @@ export function useDataGrid<
         if (isPaginationEnabled) {
             return {
                 paginationMode: "server" as const,
-                page: (current ?? 1) - 1,
+                page: current - 1,
                 onPageChange: handlePageChange,
-                pageSize: pageSize,
+                pageSize,
                 onPageSizeChange: handlePageSizeChange,
             };
         }
 
         return {
-            hideFooterPagination: true,
             paginationMode: "client" as const,
         };
     };

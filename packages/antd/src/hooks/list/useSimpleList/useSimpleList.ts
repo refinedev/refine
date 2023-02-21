@@ -113,9 +113,9 @@ export const useSimpleList = <
         hasPagination,
     });
 
-    const hasPaginationString = hasPagination ? "server" : "off";
+    const hasPaginationString = hasPagination === false ? "off" : "server";
     const isPaginationEnabled =
-        pickNotDeprecated(pagination?.mode, hasPaginationString) !== "off";
+        (pagination?.mode ?? hasPaginationString) !== "off";
 
     const breakpoint = Grid.useBreakpoint();
 

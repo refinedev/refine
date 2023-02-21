@@ -119,19 +119,16 @@ export const useTable = <
         metaData: pickNotDeprecated(meta, metaData),
         dataProviderName,
     });
-
-    const hasPaginationString = hasPagination ? "server" : "off";
-    const isPaginationEnabled =
-        pickNotDeprecated(pagination?.mode, hasPaginationString) !== "off";
-
     const breakpoint = Grid.useBreakpoint();
-
     const [form] = Form.useForm<TSearchVariables>();
     const formSF = useFormSF<any, TSearchVariables>({
         form: form,
     });
-
     const liveMode = useLiveMode(liveModeFromProp);
+
+    const hasPaginationString = hasPagination === false ? "off" : "server";
+    const isPaginationEnabled =
+        (pagination?.mode ?? hasPaginationString) !== "off";
 
     const { data, isFetched, isLoading } = tableQueryResult;
 

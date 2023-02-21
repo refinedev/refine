@@ -4,7 +4,6 @@ import {
     CrudOperators,
     HttpError,
     LogicalFilter,
-    pickNotDeprecated,
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
     useTableReturnType as useTableReturnTypeCore,
@@ -48,12 +47,9 @@ export function useTable<
         hasPagination,
     });
 
-    const hasPaginationString = hasPagination ? "server" : "off";
+    const hasPaginationString = hasPagination === false ? "off" : "server";
     const isPaginationEnabled =
-        pickNotDeprecated(
-            refineCoreProps?.pagination?.mode,
-            hasPaginationString,
-        ) !== "off";
+        (refineCoreProps.pagination?.mode ?? hasPaginationString) !== "off";
 
     const {
         tableQueryResult: { data },
@@ -84,7 +80,7 @@ export function useTable<
         data: data?.data ?? [],
         initialState: {
             pagination: {
-                pageIndex: (current ?? 1) - 1,
+                pageIndex: current - 1,
                 pageSize: pageSizeCore,
             },
             sorting: sorters.map((sorting) => ({
