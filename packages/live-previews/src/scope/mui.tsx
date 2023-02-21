@@ -2,6 +2,8 @@ import React from "react";
 import type { RefineProps } from "@pankod/refine-core";
 import { RefineCommonScope } from "./common";
 import * as RefineMui from "@pankod/refine-mui";
+import { ThemeProvider } from "@mui/material/styles";
+import { CssBaseline, GlobalStyles } from "@mui/material";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
@@ -15,11 +17,9 @@ const RefineMuiDemo: React.FC<
     }
 
     return (
-        <RefineMui.ThemeProvider theme={RefineMui.LightTheme}>
-            <RefineMui.CssBaseline />
-            <RefineMui.GlobalStyles
-                styles={{ html: { WebkitFontSmoothing: "auto" } }}
-            />
+        <ThemeProvider theme={RefineMui.LightTheme}>
+            <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineMui.RefineSnackbarProvider>
                 <RefineCommonScope.RefineCore.Refine
                     routerProvider={
@@ -41,7 +41,7 @@ const RefineMuiDemo: React.FC<
                     {...rest}
                 />
             </RefineMui.RefineSnackbarProvider>
-        </RefineMui.ThemeProvider>
+        </ThemeProvider>
     );
 };
 
