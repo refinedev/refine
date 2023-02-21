@@ -7,7 +7,12 @@ import {
 } from "@pankod/refine-core";
 import { List } from "@pankod/refine-antd";
 
-import * as Icons from "@ant-design/icons";
+import {
+    CheckCircleOutlined,
+    CloseCircleOutlined,
+    LoadingOutlined,
+    MobileOutlined,
+} from "@ant-design/icons";
 
 import {
     Row,
@@ -102,7 +107,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                     <Button
                         disabled={!canAcceptOrder}
                         key="accept"
-                        icon={<Icons.CheckCircleOutlined />}
+                        icon={<CheckCircleOutlined />}
                         type="primary"
                         onClick={() =>
                             handleMutate({
@@ -117,7 +122,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         disabled={!canRejectOrder}
                         key="reject"
                         danger
-                        icon={<Icons.CloseCircleOutlined />}
+                        icon={<CloseCircleOutlined />}
                         onClick={() =>
                             handleMutate({
                                 id: 5,
@@ -146,7 +151,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                             title={t(`enum.orderStatuses.${event.status}`)}
                             icon={
                                 notFinishedCurrentStep(event, index) && (
-                                    <Icons.LoadingOutlined />
+                                    <LoadingOutlined />
                                 )
                             }
                             description={
@@ -197,7 +202,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 <CourierBoxContainer xl={12} lg={14} md={24}>
                     {courierInfoBox(
                         t("orders.courier.phone"),
-                        <Icons.MobileOutlined
+                        <MobileOutlined
                             style={{ color: "#ffff", fontSize: 32 }}
                         />,
                         record?.courier.gsm,

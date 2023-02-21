@@ -11,7 +11,7 @@ import {
     useDrawerForm,
 } from "@pankod/refine-antd";
 
-import * as Icons from "@ant-design/icons";
+import { FormOutlined, MoreOutlined } from "@ant-design/icons";
 import {
     Table,
     Space,
@@ -61,7 +61,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <Icons.FormOutlined
+                    <FormOutlined
                         style={{
                             color: "#52c41a",
                             fontSize: 17,
@@ -165,7 +165,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                                     overlay={moreMenu(record)}
                                     trigger={["click"]}
                                 >
-                                    <Icons.MoreOutlined
+                                    <MoreOutlined
                                         onClick={(e) => e.stopPropagation()}
                                         style={{
                                             fontSize: 24,
@@ -221,7 +221,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <Icons.FormOutlined
+                    <FormOutlined
                         style={{
                             color: "#52c41a",
                             fontSize: 17,
@@ -289,7 +289,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                             overlay={moreMenu(record)}
                             trigger={["click"]}
                         >
-                            <Icons.MoreOutlined
+                            <MoreOutlined
                                 onClick={(e) => e.stopPropagation()}
                                 style={{
                                     fontSize: 24,

@@ -11,7 +11,7 @@ import {
     useDrawerForm,
 } from "@pankod/refine-antd";
 
-import * as Icons from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 import {
     Typography,
     Row,
@@ -24,7 +24,6 @@ import {
 } from "antd";
 
 const { Text } = Typography;
-const { SearchOutlined } = Icons;
 
 import { IStore, IProduct } from "interfaces";
 import {

@@ -8,7 +8,12 @@ import {
 
 import { List, useTable } from "@pankod/refine-antd";
 
-import * as Icons from "@ant-design/icons";
+import {
+    CheckCircleOutlined,
+    CloseCircleOutlined,
+    StarOutlined,
+    MoreOutlined,
+} from "@ant-design/icons";
 import {
     Table,
     Space,
@@ -91,7 +96,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <Icons.CheckCircleOutlined
+                    <CheckCircleOutlined
                         style={{
                             color: "#52c41a",
                             fontSize: 17,
@@ -112,7 +117,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <Icons.CloseCircleOutlined
+                    <CloseCircleOutlined
                         style={{
                             color: "#EE2A1E",
                             fontSize: 17,
@@ -136,7 +141,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                             onClick={() => updateSelectedItems("approved")}
                             loading={isLoading}
                             icon={
-                                <Icons.CheckCircleOutlined
+                                <CheckCircleOutlined
                                     style={{ color: "green" }}
                                 />
                             }
@@ -148,9 +153,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                             onClick={() => updateSelectedItems("rejected")}
                             loading={isLoading}
                             icon={
-                                <Icons.CloseCircleOutlined
-                                    style={{ color: "red" }}
-                                />
+                                <CloseCircleOutlined style={{ color: "red" }} />
                             }
                         >
                             {t("buttons.rejectAll")}
@@ -208,7 +211,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                                 {value}
                             </Typography.Text>
                             <Rate
-                                character={<Icons.StarOutlined />}
+                                character={<StarOutlined />}
                                 disabled
                                 value={value}
                                 style={{
@@ -226,7 +229,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                             overlay={moreMenu(record.id)}
                             trigger={["click"]}
                         >
-                            <Icons.MoreOutlined
+                            <MoreOutlined
                                 style={{
                                     fontSize: 24,
                                 }}

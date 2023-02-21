@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLogin } from "@pankod/refine-core";
 
-import * as Icons from "@ant-design/icons";
+import { PhoneOutlined, NumberOutlined } from "@ant-design/icons";
 import {
     Row,
     Col,
@@ -11,8 +11,6 @@ import {
     Input,
     Button,
 } from "antd";
-
-const { PhoneOutlined, NumberOutlined } = Icons;
 export interface ILoginForm {
     gsmNumber: string;
     code: string;

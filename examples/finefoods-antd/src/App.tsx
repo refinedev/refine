@@ -7,7 +7,12 @@ import {
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import * as Icons from "@ant-design/icons";
+import {
+    ShoppingOutlined,
+    UsergroupAddOutlined,
+    ShopOutlined,
+    StarOutlined,
+} from "@ant-design/icons";
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
 import { authProvider } from "authProvider";
 
@@ -103,13 +108,13 @@ const App: React.FC = () => {
                         name: "orders",
                         list: OrderList,
                         show: OrderShow,
-                        icon: <Icons.ShoppingOutlined />,
+                        icon: <ShoppingOutlined />,
                     },
                     {
                         name: "users",
                         list: UserList,
                         show: UserShow,
-                        icon: <Icons.UsergroupAddOutlined />,
+                        icon: <UsergroupAddOutlined />,
                     },
                     {
                         name: "products",
@@ -122,7 +127,7 @@ const App: React.FC = () => {
                         list: StoreList,
                         edit: StoreEdit,
                         create: StoreCreate,
-                        icon: <Icons.ShopOutlined />,
+                        icon: <ShopOutlined />,
                     },
                     {
                         name: "categories",
@@ -139,7 +144,7 @@ const App: React.FC = () => {
                     {
                         name: "reviews",
                         list: ReviewsList,
-                        icon: <Icons.StarOutlined />,
+                        icon: <StarOutlined />,
                     },
                 ]}
                 notificationProvider={notificationProvider}

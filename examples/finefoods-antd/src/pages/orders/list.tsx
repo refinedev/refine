@@ -19,7 +19,7 @@ import {
     ExportButton,
 } from "@pankod/refine-antd";
 
-import * as Icons from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 
 import {
     Table,
@@ -318,7 +318,7 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
                     <Form.Item label={t("orders.filter.search.label")} name="q">
                         <Input
                             placeholder={t("orders.filter.search.placeholder")}
-                            prefix={<Icons.SearchOutlined />}
+                            prefix={<SearchOutlined />}
                         />
                     </Form.Item>
                 </Col>

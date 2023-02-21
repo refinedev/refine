@@ -1,5 +1,5 @@
 import { useGetLocale } from "@pankod/refine-core";
-import * as Icons from "@ant-design/icons";
+import { DownOutlined } from "@ant-design/icons";
 import {
     Layout as AntdLayout,
     Space,
@@ -12,8 +12,6 @@ import NextRouter from "@pankod/refine-nextjs-router";
 import { useRouter } from "next/router";
 
 const { Link } = NextRouter;
-
-const { DownOutlined } = Icons;
 
 export const Header: React.FC = () => {
     const locale = useGetLocale();

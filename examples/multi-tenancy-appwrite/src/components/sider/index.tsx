@@ -8,7 +8,11 @@ import {
     useIsExistAuthentication,
     useMenu,
 } from "@pankod/refine-core";
-import * as Icons from "@ant-design/icons";
+import {
+    UnorderedListOutlined,
+    LogoutOutlined,
+    AppstoreAddOutlined,
+} from "@ant-design/icons";
 import { Layout as AntdLayout, Menu, Grid } from "antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
@@ -35,7 +39,7 @@ export const CustomSider: React.FC = () => {
                 return (
                     <SubMenu
                         key={route}
-                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
                         {renderTreeView(children, selectedKey)}
@@ -58,9 +62,7 @@ export const CustomSider: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={
-                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
-                        }
+                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
                         <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
@@ -76,7 +78,7 @@ export const CustomSider: React.FC = () => {
         <Menu.Item
             key="logout"
             onClick={() => mutateLogout()}
-            icon={<Icons.LogoutOutlined />}
+            icon={<LogoutOutlined />}
         >
             Logout
         </Menu.Item>
@@ -101,7 +103,7 @@ export const CustomSider: React.FC = () => {
                     }
                 }}
             >
-                <Menu.Item key={"/"} icon={<Icons.AppstoreAddOutlined />}>
+                <Menu.Item key={"/"} icon={<AppstoreAddOutlined />}>
                     <StoreSelect />
                 </Menu.Item>
                 {renderTreeView(menuItems, selectedKey)}

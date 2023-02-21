@@ -7,7 +7,10 @@ import {
     useMenu,
 } from "@pankod/refine-core";
 
-import * as Icons from "@ant-design/icons";
+import {
+    UnorderedListOutlined,
+    UnorderedListOutlined,
+} from "@ant-design/icons";
 import { Layout as AntdLayout, Menu } from "antd";
 
 export const FixedSider: React.FC = () => {
@@ -25,7 +28,7 @@ export const FixedSider: React.FC = () => {
                 return (
                     <SubMenu
                         key={route}
-                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
                         {renderTreeView(children, selectedKey)}
@@ -48,9 +51,7 @@ export const FixedSider: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={
-                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
-                        }
+                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
                         <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (

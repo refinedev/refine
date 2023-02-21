@@ -4,7 +4,7 @@ import {
     ReadyPage,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import * as Icons from "@ant-design/icons";
+import { GithubOutlined } from "@ant-design/icons";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@pankod/refine-supabase";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -19,8 +19,6 @@ import { authProvider, auditLogProvider } from "./providers";
 import "@pankod/refine-antd/dist/reset.css";
 
 import "styles/style.css";
-
-const { GithubOutlined } = Icons;
 
 function App() {
     return (

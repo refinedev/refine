@@ -15,7 +15,7 @@ import {
     DateField,
 } from "@pankod/refine-antd";
 
-import * as Icons from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 
 import {
     Table,
@@ -184,7 +184,7 @@ const Filter: React.FC<{ formProps: FormProps }> = ({ formProps }) => {
             <Form.Item label="Search" name="q">
                 <Input
                     placeholder="ID, Title, Content, etc."
-                    prefix={<Icons.SearchOutlined />}
+                    prefix={<SearchOutlined />}
                 />
             </Form.Item>
             <Form.Item label="Status" name="status">
