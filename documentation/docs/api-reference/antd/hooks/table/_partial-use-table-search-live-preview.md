@@ -13,15 +13,19 @@ import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
 
 import {
     List,
-    Table,
     TagField,
     useTable,
     // highlight-start
-    Form,
     SaveButton,
-    Input,
     // highlight-end
 } from "@pankod/refine-antd";
+import {
+    Table,
+    // highlight-start
+    Form,
+    Input,
+    // highlight-end
+} from "antd";
 
 interface IPost {
     id: number;

@@ -16,12 +16,12 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 ```tsx live
 // visible-block-start
 import {
-    Table,
     List,
     useTable,
     // highlight-next-line
     DeleteButton,
 } from "@pankod/refine-antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -94,12 +94,8 @@ render(
             {
                 name: "posts",
                 list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
-                }
+                    return <RefineAntd.List>List page here...</RefineAntd.List>;
+                },
             },
         ]}
         DashboardPage={MyEditComponent}
@@ -138,22 +134,14 @@ render(
             {
                 name: "posts",
                 list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
-                }
+                    return <RefineAntd.List>List page here...</RefineAntd.List>;
+                },
             },
             {
                 name: "categories",
                 list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
-                }
+                    return <RefineAntd.List>List page here...</RefineAntd.List>;
+                },
             },
         ]}
         DashboardPage={MyDeleteComponent}
@@ -223,9 +211,7 @@ const App = () => {
     );
 };
 
-render(
-    <App />
-);
+render(<App />);
 ```
 
 ### `mutationMode`
@@ -235,7 +221,8 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 [Refer to the mutation mode docs for further information. &#8594](/advanced-tutorials/mutation-mode.md)
 
 ```tsx
-import { List, Table, DeleteButton, useTable } from "@pankod/refine-antd";
+import { List, DeleteButton, useTable } from "@pankod/refine-antd";
+import { Table } from "antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();

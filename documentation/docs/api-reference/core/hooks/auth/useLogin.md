@@ -19,7 +19,7 @@ If we want to build a custom login page instead of default one that comes with r
 
 ```tsx title="pages/customLoginPage"
 import { useLogin } from "@pankod/refine-core";
-import { Form } from "@pankod/refine-antd";
+import { Form } from "antd";
 
 type LoginVariables = {
     username: string;

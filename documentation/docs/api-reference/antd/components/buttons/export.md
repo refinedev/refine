@@ -4,7 +4,6 @@ title: Export
 swizzle: true
 ---
 
-
 `<ExportButton>` is an Ant Design [`<Button>`][button] with a default export icon and a default text with "Export". It only has presentational value.
 
 [Refer to the for more detailed information about `useExport`. &#8594][useexport]
@@ -22,11 +21,11 @@ Use it like any other Ant Design [`<Button>`][button]. You can use it with [useE
 import { useExport } from "@pankod/refine-core";
 import {
     List,
-    Table,
     useTable,
     // highlight-next-line
     ExportButton,
 } from "@pankod/refine-antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -35,14 +34,11 @@ const PostList: React.FC = () => {
 
     return (
         <List
-            headerButtons={(
+            headerButtons={
                 // highlight-start
-                <ExportButton
-                    onClick={triggerExport}
-                    loading={exportLoading}
-                />
+                <ExportButton onClick={triggerExport} loading={exportLoading} />
                 // highlight-end
-            )}
+            }
         >
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />

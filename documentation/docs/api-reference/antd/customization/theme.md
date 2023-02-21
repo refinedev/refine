@@ -14,15 +14,11 @@ import {
     Edit,
     ShowButton,
     EditButton,
-    Table,
     useTable,
-    Space,
     TextField,
-    Form,
-    Input,
     useForm,
-    Typography,
 } from "@pankod/refine-antd";
+import { Table, Space, Form, Input, Typography } from "antd";
 
 const { Title, Text } = Typography;
 
@@ -258,7 +254,7 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { FC, useState } from "react";
-import { Button } from "@pankod/refine-antd";
+import { Button } from "antd";
 import { Refine } from "@pankod/refine-core";
 import {
     notificationProvider,

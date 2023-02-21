@@ -16,12 +16,12 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 const { useRouterContext } = RefineCore;
 // visible-block-start
 import {
-    Table,
     List,
     useTable,
     // highlight-next-line
-    CreateButton
+    CreateButton,
 } from "@pankod/refine-antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -81,7 +81,7 @@ const MyCreateComponent = () => {
     return (
         <CreateButton
             // highlight-next-line
-            resourceNameOrRouteName="categories" 
+            resourceNameOrRouteName="categories"
         />
     );
 };

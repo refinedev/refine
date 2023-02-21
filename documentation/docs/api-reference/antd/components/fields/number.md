@@ -20,11 +20,11 @@ If Intl is not available, `<NumberField>` outputs numbers as is (and ignores the
 // visible-block-start
 import {
     List,
-    Table,
     // highlight-next-line
     NumberField,
-    useTable
+    useTable,
 } from "@pankod/refine-antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -67,7 +67,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,

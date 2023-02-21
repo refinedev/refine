@@ -246,7 +246,7 @@ export default App;
 <summary>Header Component</summary>
 
 ```tsx title="src/components/header.tsx"
-import { AntdLayout, Radio } from "@pankod/refine-antd";
+import { Layout, Radio } from "antd";
 
 interface HeaderProps {
     role: string;
@@ -255,7 +255,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ role, setRole }) => {
     return (
-        <AntdLayout.Header
+        <Layout.Header
             style={{
                 display: "flex",
                 justifyContent: "center",
@@ -271,7 +271,7 @@ export const Header: React.FC<HeaderProps> = ({ role, setRole }) => {
                 <Radio.Button value="admin">Admin</Radio.Button>
                 <Radio.Button value="editor">Editor</Radio.Button>
             </Radio.Group>
-        </AntdLayout.Header>
+        </Layout.Header>
     );
 };
 ```

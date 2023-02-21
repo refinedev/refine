@@ -12,7 +12,31 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px disableScroll
 // visible-block-start
-import { Show, Breadcrumb } from "@pankod/refine-antd";
+import { Show } from "@pankod/refine-antd";
+import { Breadcrumb } from "antd";
+
+const PostIcon = (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-list"
+        width={18}
+        height={18}
+        viewBox="0 0 24 24"
+        strokeWidth="2"
+        stroke="currentColor"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <line x1={9} y1={6} x2={20} y2={6}></line>
+        <line x1={9} y1={12} x2={20} y2={12}></line>
+        <line x1={9} y1={18} x2={20} y2={18}></line>
+        <line x1={5} y1={6} x2={5} y2="6.01"></line>
+        <line x1={5} y1={12} x2={5} y2="12.01"></line>
+        <line x1={5} y1={18} x2={5} y2="18.01"></line>
+    </svg>
+);
 
 const PostShow: React.FC = () => {
     return (
@@ -31,7 +55,7 @@ const PostList = () => {
         <RefineAntd.List>
             <p>Content of your list page...</p>
         </RefineAntd.List>
-    )
+    );
 };
 
 render(
@@ -40,7 +64,7 @@ render(
         resources={[
             {
                 name: "posts",
-                icon: <RefineAntd.Icons.ProfileOutlined style={{ width: "18px", height: "18px" }} />,
+                icon: PostIcon,
                 show: PostShow,
                 list: PostList,
             },
@@ -56,7 +80,8 @@ render(
 `<Breadcrumb>` component uses the Ant Design [Breadcrumb][antd-breadcrumb] component so it can be configured with the `breadcrumbProps` property.
 
 ```tsx
-import { List, Breadcrumb } from "@pankod/refine-antd";
+import { List } from "@pankod/refine-antd";
+import { Breadcrumb } from "antd";
 
 export const PostList: React.FC = () => {
     return (
@@ -75,7 +100,8 @@ export const PostList: React.FC = () => {
 If your application has a [DashboardPage](/api-reference/core/components/refine-config.md#dashboardpage), the home button is shown to the top of the hierarchy by default. If you don't want to show the home button, you can set `showHome` to `false`.
 
 ```tsx
-import { List, Breadcrumb } from "@pankod/refine-antd";
+import { List } from "@pankod/refine-antd";
+import { Breadcrumb } from "antd";
 
 export const PostList: React.FC = () => {
     return (
@@ -94,7 +120,8 @@ export const PostList: React.FC = () => {
 If you don't want to show the resource icons on the breadcrumb, you can set `hideIcons` to `true`.
 
 ```tsx
-import { List, Breadcrumb } from "@pankod/refine-antd";
+import { List } from "@pankod/refine-antd";
+import { Breadcrumb } from "antd";
 
 export const PostList: React.FC = () => {
     return (
@@ -116,7 +143,6 @@ export const PostList: React.FC = () => {
 breadcrumbProps-type="[BreadcrumbProps](https://ant.design/components/breadcrumb/#API)"
 breadcrumbProps-description="Passes properties for [`<Breadcrumb>`](https://ant.design/components/breadcrumb/#Breadcrumb)"
 />
-
 
 [antd-breadcrumb]: https://ant.design/components/breadcrumb
 [antd-breadcrumb-props]: https://ant.design/components/breadcrumb/#Breadcrumb

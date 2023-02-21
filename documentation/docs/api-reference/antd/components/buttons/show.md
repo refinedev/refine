@@ -4,7 +4,6 @@ title: Show
 swizzle: true
 ---
 
-
 `<ShowButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `show` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
 
 :::info-tip Swizzle
@@ -16,12 +15,12 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 ```tsx live
 // visible-block-start
 import {
-    Table,
     List,
     useTable,
     // highlight-next-line
     ShowButton,
 } from "@pankod/refine-antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -93,19 +92,11 @@ render(
             {
                 name: "posts",
                 list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
+                    return <RefineAntd.List>List page here...</RefineAntd.List>;
                 },
                 show: () => {
-                    return (
-                        <RefineAntd.Show>
-                            Show page here...
-                        </RefineAntd.Show>
-                    )
-                }
+                    return <RefineAntd.Show>Show page here...</RefineAntd.Show>;
+                },
             },
         ]}
         DashboardPage={MyShowComponent}
@@ -148,42 +139,27 @@ render(
             {
                 name: "posts",
                 list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
+                    return <RefineAntd.List>List page here...</RefineAntd.List>;
                 },
                 show: () => {
-                    return (
-                        <RefineAntd.Show>
-                            Show page here...
-                        </RefineAntd.Show>
-                    )
-                }
+                    return <RefineAntd.Show>Show page here...</RefineAntd.Show>;
+                },
             },
             {
                 name: "categories",
                 list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
+                    return <RefineAntd.List>List page here...</RefineAntd.List>;
                 },
                 show: () => {
-                    return (
-                        <RefineAntd.Show>
-                            Show page here...
-                        </RefineAntd.Show>
-                    )
-                }
+                    return <RefineAntd.Show>Show page here...</RefineAntd.Show>;
+                },
             },
         ]}
         DashboardPage={MyShowComponent}
     />,
 );
 ```
+
 Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/show/2`.
 
 ### `hideText`
@@ -216,12 +192,8 @@ render(
                 name: "posts",
                 list: MyShowComponent,
                 show: () => {
-                    return (
-                        <RefineAntd.Show>
-                            Show page here...
-                        </RefineAntd.Show>
-                    )
-                }
+                    return <RefineAntd.Show>Show page here...</RefineAntd.Show>;
+                },
             },
         ]}
     />,
@@ -241,7 +213,7 @@ export const MyListComponent = () => {
             // highlight-start
             accessControl={{
                 enabled: true,
-                hideIfUnauthorized: true
+                hideIfUnauthorized: true,
             }}
             // highlight-end
         />

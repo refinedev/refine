@@ -4,7 +4,6 @@ title: Edit
 swizzle: true
 ---
 
-
 `<EditButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `edit` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the edit page with the record id route of resource.
 
 :::info-tip Swizzle
@@ -16,12 +15,12 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 ```tsx live
 // visible-block-start
 import {
-    Table,
     List,
     useTable,
     // highlight-next-line
     EditButton,
 } from "@pankod/refine-antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -93,19 +92,11 @@ render(
             {
                 name: "posts",
                 list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
+                    return <RefineAntd.List>List page here...</RefineAntd.List>;
                 },
                 edit: () => {
-                    return (
-                        <RefineAntd.Edit>
-                            Edit page here...
-                        </RefineAntd.Edit>
-                    )
-                }
+                    return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
+                },
             },
         ]}
         DashboardPage={MyEditComponent}
@@ -148,36 +139,20 @@ render(
             {
                 name: "posts",
                 list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
+                    return <RefineAntd.List>List page here...</RefineAntd.List>;
                 },
                 edit: () => {
-                    return (
-                        <RefineAntd.Edit>
-                            Edit page here...
-                        </RefineAntd.Edit>
-                    )
-                }
+                    return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
+                },
             },
             {
                 name: "categories",
                 list: () => {
-                    return (
-                        <RefineAntd.List>
-                            List page here...
-                        </RefineAntd.List>
-                    )
+                    return <RefineAntd.List>List page here...</RefineAntd.List>;
                 },
                 edit: () => {
-                    return (
-                        <RefineAntd.Edit>
-                            Edit page here...
-                        </RefineAntd.Edit>
-                    )
-                }
+                    return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
+                },
             },
         ]}
         DashboardPage={MyEditComponent}
@@ -217,12 +192,8 @@ render(
                 name: "posts",
                 list: MyEditComponent,
                 edit: () => {
-                    return (
-                        <RefineAntd.Edit>
-                            Edit page here...
-                        </RefineAntd.Edit>
-                    )
-                }
+                    return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
+                },
             },
         ]}
     />,
@@ -242,7 +213,7 @@ export const MyListComponent = () => {
             // highlight-start
             accessControl={{
                 enabled: true,
-                hideIfUnauthorized: true
+                hideIfUnauthorized: true,
             }}
             // highlight-end
         />
