@@ -29,6 +29,8 @@ import {
     useTitle,
     useTranslate,
     useRouterContext,
+    useRouterType,
+    useLink,
     useMenu,
     useRefineContext,
 } from "@pankod/refine-core";
@@ -46,7 +48,10 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     };
 
     const t = useTranslate();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
     const { hasDashboard } = useRefineContext();
     const translate = useTranslate();
 
@@ -185,7 +190,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                         arrow
                     >
                         <ListItemButton
-                            component={Link}
+                            component={ActiveLink}
                             to={route}
                             selected={isSelected}
                             onClick={() => {
@@ -236,7 +241,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 arrow
             >
                 <ListItemButton
-                    component={Link}
+                    component={ActiveLink}
                     to="/"
                     selected={selectedKey === "/"}
                     onClick={() => {

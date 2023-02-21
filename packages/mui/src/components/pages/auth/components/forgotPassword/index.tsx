@@ -22,6 +22,8 @@ import {
     HttpError,
     useTranslate,
     useRouterContext,
+    useRouterType,
+    useLink,
     useForgotPassword,
 } from "@pankod/refine-core";
 
@@ -56,7 +58,11 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
 
     const { mutate, isLoading } = useForgotPassword<ForgotPasswordFormTypes>();
     const translate = useTranslate();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     const Content = (
         <Card {...(contentProps ?? {})}>
@@ -117,7 +123,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                             </Typography>{" "}
                             <MuiLink
                                 variant="body2"
-                                component={Link}
+                                component={ActiveLink}
                                 underline="none"
                                 to="/register"
                                 fontWeight="bold"

@@ -1,8 +1,10 @@
 import React from "react";
 import {
     useBreadcrumb,
+    useLink,
     useRefineContext,
     useRouterContext,
+    useRouterType,
 } from "@pankod/refine-core";
 import { RefineBreadcrumbProps } from "@pankod/refine-ui-types";
 
@@ -23,9 +25,15 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     breadcrumbProps,
     showHome = true,
     hideIcons = false,
+    home,
 }) => {
     const { breadcrumbs } = useBreadcrumb();
-    const { Link: RouterLink } = useRouterContext();
+    const routerType = useRouterType();
+    const NewLink = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : NewLink;
+
     const { hasDashboard } = useRefineContext();
 
     if (breadcrumbs.length === 1) {
@@ -33,8 +41,35 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     }
 
     const LinkRouter = (props: LinkProps & { to?: string }) => (
-        <Link {...props} component={RouterLink} />
+        <Link {...props} component={ActiveLink} />
     );
+
+    const renderHome = () => {
+        if (home) {
+            return (
+                <LinkRouter
+                    underline="hover"
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                    }}
+                    color="inherit"
+                    to={home?.path ?? "/"}
+                >
+                    {typeof home.icon !== "undefined" ? (
+                        home.icon
+                    ) : (
+                        <HomeOutlined
+                            sx={{
+                                fontSize: "18px",
+                            }}
+                        />
+                    )}
+                </LinkRouter>
+            );
+        }
+        return null;
+    };
 
     return (
         <Breadcrumbs

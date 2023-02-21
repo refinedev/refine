@@ -6,6 +6,8 @@ import {
     userFriendlyResourceName,
     useResource,
     useRouterContext,
+    useRouterType,
+    useLink,
 } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import { Button } from "@mui/material";
@@ -24,26 +26,27 @@ export const ListButton: React.FC<ListButtonProps> = ({
     resourceNameOrRouteName,
     hideText = false,
     accessControl,
-    ignoreAccessControlProvider = false,
     svgIconProps,
+    meta,
     children,
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled =
-        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const accessControlEnabled = accessControl?.enabled ?? true;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
-    const { resource, resourceName } = useResource({
-        resourceNameOrRouteName,
-    });
-
     const { listUrl: generateListUrl } = useNavigation();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     const translate = useTranslate();
 
+    const { resource } = useResource(resourceNameOrRouteName);
+
     const { data } = useCan({
-        resource: resourceName,
+        resource: resource?.name,
         action: "list",
         queryOptions: {
             enabled: accessControlEnabled,
@@ -63,7 +66,10 @@ export const ListButton: React.FC<ListButtonProps> = ({
             );
     };
 
-    const listUrl = generateListUrl(resource.route!);
+    const listUrl =
+        resource || resourceNameOrRouteName
+            ? generateListUrl(resource! || resourceNameOrRouteName!, meta)
+            : "";
 
     const { sx, ...restProps } = rest;
 
@@ -72,7 +78,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
     }
 
     return (
-        <Link
+        <ActiveLink
             to={listUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -100,14 +106,19 @@ export const ListButton: React.FC<ListButtonProps> = ({
                 ) : (
                     children ??
                     translate(
-                        `${resourceName}.titles.list`,
+                        `${
+                            resource?.name ?? resourceNameOrRouteName
+                        }.titles.list`,
                         userFriendlyResourceName(
-                            resource.label ?? resourceName,
+                            resource?.meta?.label ??
+                                resource?.label ??
+                                resource?.name ??
+                                resourceNameOrRouteName,
                             "plural",
                         ),
                     )
                 )}
             </Button>
-        </Link>
+        </ActiveLink>
     );
 };
