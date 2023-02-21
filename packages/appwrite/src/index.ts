@@ -98,7 +98,8 @@ export const getAppwriteSorting: GetAppwriteSortingType = (sorters) => {
     return sorts;
 };
 
-export const getAppwritePagination = (pagination: Pagination) => {
+export const getAppwritePagination = (pagination?: Pagination) => {
+    // `pagination` has default values. However, it will be removed next major version
     const { current = 1, pageSize = 10 } = pagination ?? {};
 
     return [Query.offset((current - 1) * pageSize), Query.limit(pageSize)];
@@ -116,7 +117,7 @@ export const dataProvider = (
         getList: async ({
             resource,
             hasPagination = true,
-            pagination = { current: 1, pageSize: 10 },
+            pagination,
             filters,
             sort,
             sorters,
@@ -124,7 +125,8 @@ export const dataProvider = (
             const appwriteFilters = getAppwriteFilters(filters);
 
             //`hasPagination` is deprecated with refine@4, refine will pass `pagination.mode` instead, however, we still support `hasPagination` for backward compatibility
-            const hasPaginationString = hasPagination ? "server" : "off";
+            const hasPaginationString =
+                hasPagination === false ? "off" : "server";
             const isServerPaginationEnabled =
                 pickNotDeprecated(pagination?.mode, hasPaginationString) ===
                 "server";

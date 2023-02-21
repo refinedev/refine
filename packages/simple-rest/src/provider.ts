@@ -20,6 +20,7 @@ export const dataProvider = (
     }) => {
         const url = `${apiUrl}/${resource}`;
 
+        // `pagination` has default values. However, it will be removed next major version
         const { current = 1, pageSize = 10, mode } = pagination ?? {};
 
         const queryFilters = generateFilter(filters);
@@ -32,7 +33,7 @@ export const dataProvider = (
         } = {};
 
         //`hasPagination` is deprecated with refine@4, refine will pass `pagination.mode` instead, however, we still support `hasPagination` for backward compatibility
-        const hasPaginationString = hasPagination ? "server" : "off";
+        const hasPaginationString = hasPagination === false ? "off" : "server";
         const isServerPaginationEnabled =
             pickNotDeprecated(mode, hasPaginationString) === "server";
 

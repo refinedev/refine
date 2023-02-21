@@ -206,10 +206,11 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             sorters,
             filters,
             hasPagination = true,
-            pagination = { current: 1, pageSize: 10 },
+            pagination,
             meta: _meta,
             metaData,
         }) => {
+            // `pagination` has default values. However, it will be removed next major version
             const {
                 current = 1,
                 pageSize: limit = 10,
@@ -217,7 +218,8 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             } = pagination ?? {};
 
             //`hasPagination` is deprecated with refine@4, refine will pass `pagination.mode` instead, however, we still support `hasPagination` for backward compatibility
-            const hasPaginationString = hasPagination ? "server" : "off";
+            const hasPaginationString =
+                hasPagination === false ? "off" : "server";
             const isServerPaginationEnabled =
                 pickNotDeprecated(mode, hasPaginationString) === "server";
 
