@@ -135,6 +135,108 @@ describe("useList Hook", () => {
         },
     );
 
+    it("data should be sliced when pagination mode is client", async () => {
+        const { result } = renderHook(
+            () =>
+                useList({
+                    resource: "posts",
+                    pagination: {
+                        mode: "client",
+                        pageSize: 1,
+                        current: 1,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(result.current.data?.data).toHaveLength(1);
+    });
+
+    it("user should be able to use queryOptions's select to transform data when pagination mode is client", async () => {
+        const { result } = renderHook(
+            () =>
+                useList<{ id: number }>({
+                    resource: "posts",
+                    pagination: {
+                        mode: "client",
+                    },
+                    queryOptions: {
+                        select: (data) => {
+                            return {
+                                data: data.data.map((item) => ({
+                                    id: item.id,
+                                })),
+                                total: data.total,
+                            };
+                        },
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(result.current.data?.data).toStrictEqual([
+            { id: "1" },
+            { id: "2" },
+        ]);
+    });
+
+    it("when pagination mode is client and the user use queryOptions's select, useList should return the data from dataProvider", async () => {
+        const { result } = renderHook(
+            () =>
+                useList({
+                    resource: "posts",
+                    pagination: {
+                        mode: "client",
+                    },
+                    queryOptions: {
+                        select: (data) => {
+                            return data;
+                        },
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            getList: () =>
+                                Promise.resolve({
+                                    data: [],
+                                    total: 0,
+                                    foo: "bar",
+                                }),
+                        },
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(result.current.data?.foo).toBe("bar");
+    });
+
     describe("useResourceSubscription", () => {
         it("useSubscription", async () => {
             const onSubscribeMock = jest.fn();
