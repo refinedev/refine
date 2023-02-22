@@ -7,7 +7,7 @@ import {
 
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext, TLogoutData } from "../../../interfaces";
-import { useNavigation, useNotification } from "@hooks";
+import { useGo, useNavigation, useNotification, useRouterType } from "@hooks";
 
 type Variables = {
     redirectPath?: string | false;
@@ -39,7 +39,10 @@ export const useLogout = <TVariables = {}>({
     (TVariables & Variables) | void,
     unknown
 > => {
+    const routerType = useRouterType();
+    const go = useGo();
     const { push } = useNavigation();
+
     const { logout: logoutFromContext } =
         React.useContext<IAuthContext>(AuthContext);
     const { open } = useNotification();
@@ -58,11 +61,19 @@ export const useLogout = <TVariables = {}>({
             }
 
             if (redirectPath) {
-                push(redirectPath);
+                if (routerType === "legacy") {
+                    push(redirectPath);
+                } else {
+                    go({ to: redirectPath });
+                }
                 return;
             }
 
-            push("/login");
+            if (routerType === "legacy") {
+                push("/login");
+            } else {
+                go({ to: "/login" });
+            }
         },
         onError: (error: Error) => {
             open?.({

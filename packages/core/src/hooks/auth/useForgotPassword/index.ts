@@ -6,7 +6,7 @@ import {
 } from "@tanstack/react-query";
 
 import { AuthContext } from "@contexts/auth";
-import { useNavigation, useNotification } from "@hooks";
+import { useGo, useNavigation, useNotification, useRouterType } from "@hooks";
 
 import { IAuthContext, TForgotPasswordData } from "../../../interfaces";
 
@@ -34,7 +34,10 @@ export const useForgotPassword = <TVariables = {}>({
     TVariables,
     unknown
 > => {
+    const routerType = useRouterType();
+    const go = useGo();
     const { replace } = useNavigation();
+
     const { forgotPassword: forgotPasswordFromContext } =
         React.useContext<IAuthContext>(AuthContext);
 
@@ -49,7 +52,11 @@ export const useForgotPassword = <TVariables = {}>({
         onSuccess: (redirectPathFromAuth) => {
             if (redirectPathFromAuth !== false) {
                 if (redirectPathFromAuth) {
-                    replace(redirectPathFromAuth);
+                    if (routerType === "legacy") {
+                        replace(redirectPathFromAuth);
+                    } else {
+                        go({ to: redirectPathFromAuth, type: "replace" });
+                    }
                 }
             }
             close?.("forgot-password-error");

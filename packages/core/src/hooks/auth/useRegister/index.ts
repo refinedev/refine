@@ -6,7 +6,7 @@ import {
 } from "@tanstack/react-query";
 
 import { AuthContext } from "@contexts/auth";
-import { useNavigation, useNotification } from "@hooks";
+import { useNavigation, useRouterType, useGo, useNotification } from "@hooks";
 
 import { IAuthContext, TRegisterData } from "../../../interfaces";
 
@@ -34,7 +34,10 @@ export const useRegister = <TVariables = {}>({
     TVariables,
     unknown
 > => {
+    const routerType = useRouterType();
+    const go = useGo();
     const { replace } = useNavigation();
+
     const { register: registerFromContext } =
         React.useContext<IAuthContext>(AuthContext);
 
@@ -49,9 +52,17 @@ export const useRegister = <TVariables = {}>({
         onSuccess: (redirectPathFromAuth) => {
             if (redirectPathFromAuth !== false) {
                 if (redirectPathFromAuth) {
-                    replace(redirectPathFromAuth);
+                    if (routerType === "legacy") {
+                        replace(redirectPathFromAuth);
+                    } else {
+                        go({ to: redirectPathFromAuth, type: "replace" });
+                    }
                 } else {
-                    replace("/");
+                    if (routerType === "legacy") {
+                        replace("/");
+                    } else {
+                        go({ to: "/", type: "replace" });
+                    }
                 }
             }
             close?.("register-error");

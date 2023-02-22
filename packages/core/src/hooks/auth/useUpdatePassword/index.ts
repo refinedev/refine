@@ -7,7 +7,14 @@ import {
 import qs from "qs";
 
 import { AuthContext } from "@contexts/auth";
-import { useNavigation, useNotification, useRouterContext } from "@hooks";
+import {
+    useNavigation,
+    useRouterType,
+    useGo,
+    useParsed,
+    useNotification,
+    useRouterContext,
+} from "@hooks";
 import {
     IAuthContext,
     TUpdatePasswordData,
@@ -41,18 +48,30 @@ export const useUpdatePassword = <
     TVariables,
     unknown
 > => {
+    const routerType = useRouterType();
+
+    const go = useGo();
     const { replace } = useNavigation();
+
     const { updatePassword: updatePasswordFromContext } =
         React.useContext<IAuthContext>(AuthContext);
 
     const { close, open } = useNotification();
-    const { useLocation } = useRouterContext();
 
+    const parsed = useParsed();
+    const { useLocation } = useRouterContext();
     const { search } = useLocation();
 
-    const queryStrings = qs.parse(search, {
-        ignoreQueryPrefix: true,
-    });
+    const params = React.useMemo(() => {
+        if (routerType === "legacy") {
+            const queryStrings = qs.parse(search, {
+                ignoreQueryPrefix: true,
+            });
+            return queryStrings ?? {};
+        } else {
+            return parsed.params ?? {};
+        }
+    }, [search, parsed, routerType]);
 
     const queryResponse = useMutation<
         TUpdatePasswordData,
@@ -63,7 +82,7 @@ export const useUpdatePassword = <
         ["useUpdatePassword"],
         async (variables) => {
             return updatePasswordFromContext?.({
-                ...queryStrings,
+                ...params,
                 ...variables,
             });
         },

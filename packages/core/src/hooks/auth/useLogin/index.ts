@@ -6,7 +6,14 @@ import {
 } from "@tanstack/react-query";
 import qs from "qs";
 
-import { useNavigation, useRouterContext, useNotification } from "@hooks";
+import {
+    useNavigation,
+    useRouterContext,
+    useNotification,
+    useRouterType,
+    useParsed,
+    useGo,
+} from "@hooks";
 import { AuthContext } from "@contexts/auth";
 
 import { IAuthContext, TLoginData } from "../../../interfaces";
@@ -35,17 +42,31 @@ export const useLogin = <TVariables = {}>({
     TVariables,
     unknown
 > => {
-    const { replace } = useNavigation();
     const { login: loginFromContext } =
         React.useContext<IAuthContext>(AuthContext);
 
+    const routerType = useRouterType();
+
+    const go = useGo();
+    const { replace } = useNavigation();
+
+    const parsed = useParsed();
+
     const { useLocation } = useRouterContext();
     const { search } = useLocation();
+
     const { close, open } = useNotification();
 
-    const { to } = qs.parse(search, {
-        ignoreQueryPrefix: true,
-    });
+    const to = React.useMemo(() => {
+        if (routerType === "legacy") {
+            const legacySearch = qs.parse(search, {
+                ignoreQueryPrefix: true,
+            });
+            return legacySearch.to;
+        } else {
+            return parsed.params?.to;
+        }
+    }, [routerType, parsed.params, search]);
 
     const queryResponse = useMutation<TLoginData, Error, TVariables, unknown>(
         ["useLogin"],
@@ -53,14 +74,26 @@ export const useLogin = <TVariables = {}>({
         {
             onSuccess: (redirectPathFromAuth) => {
                 if (to) {
-                    return replace(to as string);
+                    if (routerType === "legacy") {
+                        return replace(to as string);
+                    } else {
+                        return go({ to: to as string, type: "replace" });
+                    }
                 }
 
                 if (redirectPathFromAuth !== false) {
                     if (typeof redirectPathFromAuth === "string") {
-                        replace(redirectPathFromAuth);
+                        if (routerType === "legacy") {
+                            replace(redirectPathFromAuth);
+                        } else {
+                            go({ to: redirectPathFromAuth, type: "replace" });
+                        }
                     } else {
-                        replace("/");
+                        if (routerType === "legacy") {
+                            replace("/");
+                        } else {
+                            go({ to: "/", type: "replace" });
+                        }
                     }
                 }
                 close?.("login-error");
