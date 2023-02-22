@@ -1,3 +1,4 @@
+import { Pagination } from "@pankod/refine-core";
 import axios from "axios";
 
 import JsonServer from "../../src/index";
@@ -5,12 +6,18 @@ import "./index.mock";
 
 axios.defaults.adapter = require("axios/lib/adapters/http");
 
+const defaultPagination: Required<Pagination> = {
+    current: 1,
+    pageSize: 10,
+    mode: "server",
+};
+
 describe("getList", () => {
     it("correct response", async () => {
         const response = await JsonServer(
             "https://api.fake-rest.refine.dev",
             axios,
-        ).getList({ resource: "posts" });
+        ).getList({ resource: "posts", pagination: defaultPagination });
 
         expect(response.data[0]["id"]).toBe(1);
         expect(response.data[0]["title"]).toBe(
@@ -25,7 +32,8 @@ describe("getList", () => {
             axios,
         ).getList({
             resource: "posts",
-            sort: [
+            pagination: defaultPagination,
+            sorters: [
                 {
                     field: "id",
                     order: "asc",
@@ -46,6 +54,7 @@ describe("getList", () => {
             axios,
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [
                 {
                     field: "category.id",
@@ -65,6 +74,7 @@ describe("getList", () => {
             axios,
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [
                 {
                     field: "category.id",

@@ -1,3 +1,4 @@
+import { Pagination } from "@pankod/refine-core";
 import axios from "axios";
 
 import JsonServer from "../../src/index";
@@ -5,12 +6,18 @@ import "./index.mock";
 
 axios.defaults.adapter = require("axios/lib/adapters/http");
 
+const defaultPagination: Required<Pagination> = {
+    current: 1,
+    pageSize: 10,
+    mode: "server",
+};
+
 describe("getList", () => {
     it("correct response", async () => {
         const { data, total } = await JsonServer(
             "https://api.nestjsx-crud.refine.dev",
             axios,
-        ).getList({ resource: "posts" });
+        ).getList({ resource: "posts", pagination: defaultPagination });
 
         expect(data[0]["id"]).toBe("1b175cdc-4407-49d9-82cd-35e9f31afec2");
         expect(data[0]["title"]).toBe("User-friendly New Mexico Bedfordshire");
@@ -23,7 +30,8 @@ describe("getList", () => {
             axios,
         ).getList({
             resource: "posts",
-            sort: [
+            pagination: defaultPagination,
+            sorters: [
                 {
                     field: "id",
                     order: "asc",
@@ -42,6 +50,7 @@ describe("getList", () => {
             axios,
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [
                 {
                     field: "category.id",
@@ -61,6 +70,7 @@ describe("getList", () => {
             axios,
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [
                 {
                     field: "category.id",
@@ -68,7 +78,7 @@ describe("getList", () => {
                     value: ["73bdc4c0-0cc2-49bb-bd6f-550deb795468"],
                 },
             ],
-            sort: [
+            sorters: [
                 {
                     field: "id",
                     order: "asc",
@@ -86,6 +96,7 @@ describe("getList", () => {
             axios,
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [
                 {
                     key: "1",

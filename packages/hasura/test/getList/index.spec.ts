@@ -1,11 +1,19 @@
+import { Pagination } from "@pankod/refine-core";
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
 import "./index.mock";
+
+const defaultPagination: Required<Pagination> = {
+    current: 1,
+    pageSize: 10,
+    mode: "server",
+};
 
 describe("getList", () => {
     it("correct response", async () => {
         const { data, total } = await dataProvider(client).getList({
             resource: "posts",
+            pagination: defaultPagination,
             meta: {
                 fields: ["id", "title"],
             },
@@ -19,7 +27,8 @@ describe("getList", () => {
     it("correct sorting response", async () => {
         const { data, total } = await dataProvider(client).getList({
             resource: "posts",
-            sort: [
+            pagination: defaultPagination,
+            sorters: [
                 {
                     field: "id",
                     order: "asc",
@@ -38,6 +47,7 @@ describe("getList", () => {
     it("correct filter response", async () => {
         const { data, total } = await dataProvider(client).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [
                 {
                     field: "category_id",
@@ -58,6 +68,7 @@ describe("getList", () => {
     it("correct nested filter response", async () => {
         const { data } = await dataProvider(client).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [
                 {
                     field: "category.id",
@@ -76,6 +87,7 @@ describe("getList", () => {
     it("correct filter and sort response", async () => {
         const { data, total } = await dataProvider(client).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [
                 {
                     field: "category_id",
@@ -83,7 +95,7 @@ describe("getList", () => {
                     value: "170b5abd-d8e6-476c-b3fd-bd2474b0f369",
                 },
             ],
-            sort: [
+            sorters: [
                 {
                     field: "title",
                     order: "asc",

@@ -1,9 +1,16 @@
+import { Pagination } from "@pankod/refine-core";
 import axios from "axios";
 
 import DataProvider from "../../src/index";
 import "./index.mock";
 
 axios.defaults.adapter = require("axios/lib/adapters/http");
+
+const defaultPagination: Required<Pagination> = {
+    current: 1,
+    pageSize: 10,
+    mode: "server",
+};
 
 describe("create", () => {
     it("correct response", async () => {
@@ -12,6 +19,7 @@ describe("create", () => {
             axios,
         ).getList({
             resource: "products",
+            pagination: defaultPagination,
         });
 
         const { data, total } = response;
@@ -28,6 +36,7 @@ describe("create", () => {
             axios,
         ).getList({
             resource: "products",
+            pagination: defaultPagination,
             filters: [
                 {
                     field: "tags",

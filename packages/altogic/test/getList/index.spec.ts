@@ -1,3 +1,4 @@
+import { Pagination } from "@pankod/refine-core";
 import axios from "axios";
 
 import JsonServer from "../../src/index";
@@ -11,6 +12,12 @@ const YOUR_SECRET_API_KEY =
 const axiosInstance = axios.create();
 axiosInstance.defaults.headers.common["Authorization"] = YOUR_SECRET_API_KEY;
 
+const defaultPagination: Required<Pagination> = {
+    current: 1,
+    pageSize: 10,
+    mode: "server",
+};
+
 describe("getList", () => {
     it("correct response", async () => {
         const response = await JsonServer(
@@ -18,6 +25,7 @@ describe("getList", () => {
             axiosInstance,
         ).getList({
             resource: "post",
+            pagination: defaultPagination,
             filters: [
                 {
                     field: "_id",
@@ -38,6 +46,7 @@ describe("getList", () => {
             axiosInstance,
         ).getList({
             resource: "post",
+            pagination: defaultPagination,
             sorters: [
                 {
                     field: "title",
@@ -57,6 +66,7 @@ describe("getList", () => {
             axiosInstance,
         ).getList({
             resource: "post",
+            pagination: defaultPagination,
             filters: [
                 {
                     field: "categoryId",
@@ -76,6 +86,7 @@ describe("getList", () => {
             axiosInstance,
         ).getList({
             resource: "post",
+            pagination: defaultPagination,
             filters: [
                 {
                     field: "categoryId",

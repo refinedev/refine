@@ -1,6 +1,12 @@
-import { ConditionalFilter } from "@pankod/refine-core";
+import { ConditionalFilter, Pagination } from "@pankod/refine-core";
 import dataProvider from "../../src/index";
 import "./index.mock";
+
+const defaultPagination: Required<Pagination> = {
+    current: 1,
+    pageSize: 10,
+    mode: "server",
+};
 
 describe("getList", () => {
     it("correct response", async () => {
@@ -9,6 +15,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
         });
 
         expect(response.data[0]["id"]).toBe("rec9GbXLzd6dxn4Il");
@@ -22,7 +29,8 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
-            sort: [
+            pagination: defaultPagination,
+            sorters: [
                 {
                     field: "title",
                     order: "desc",
@@ -47,6 +55,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [filter],
         });
 
@@ -67,6 +76,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [filter],
         });
 
@@ -87,6 +97,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [filter],
         });
 
@@ -107,6 +118,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [filter],
         });
 
@@ -127,6 +139,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [filter],
         });
 
@@ -147,6 +160,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [filter],
         });
 
@@ -167,6 +181,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [filter],
         });
 
@@ -187,6 +202,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [filter],
         });
 
@@ -207,6 +223,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [filter],
         });
 
@@ -227,6 +244,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [filter],
         });
 
@@ -247,6 +265,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [filter],
         });
 
@@ -269,6 +288,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [filter],
         });
 
@@ -291,6 +311,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [filter],
         });
 
@@ -311,6 +332,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [filter],
         });
 
@@ -334,6 +356,7 @@ describe("getList", () => {
                     "appKYl1H4k9g73sBT",
                 ).getList({
                     resource: "posts",
+                    pagination: defaultPagination,
                     filters: [filter],
                 });
             }).rejects.toThrow(
@@ -355,6 +378,7 @@ describe("getList", () => {
                 "appKYl1H4k9g73sBT",
             ).getList({
                 resource: "posts",
+                pagination: defaultPagination,
                 filters: [filter],
             });
         }).rejects.toThrow(
@@ -384,6 +408,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: [filter],
         });
 
@@ -433,6 +458,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
+            pagination: defaultPagination,
             filters: filters,
         });
 
