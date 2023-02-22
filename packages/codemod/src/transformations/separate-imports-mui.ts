@@ -47,11 +47,13 @@ export default function transformer(file: FileInfo, api: API): string {
     separateImports({
         j,
         source,
-        imports: [],
-        renameImports: {},
+        imports: ["MuiList"],
+        renameImports: {
+            MuiList: "List",
+        },
         otherImports: exported,
         currentLibName: "@pankod/refine-mui",
-        nextLibName: "",
+        nextLibName: "@mui/material",
     });
 
     return source.toSource();
