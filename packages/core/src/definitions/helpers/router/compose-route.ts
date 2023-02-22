@@ -22,7 +22,7 @@ export const composeRoute = (
     // replace route params with prepared route params
     return designatedRoute.replace(/:([^\/]+)/g, (match, key) => {
         const fromParams = preparedRouteParams[key];
-        if (typeof fromParams !== undefined) {
+        if (typeof fromParams !== "undefined") {
             return `${fromParams}`;
         }
         return match;

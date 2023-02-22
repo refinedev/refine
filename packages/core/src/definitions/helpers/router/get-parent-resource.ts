@@ -20,7 +20,7 @@ export const getParentResource = (
     }
 
     const parentResource = resources.find(
-        (resource) => resource.name === parentName,
+        (resource) => (resource.identifier ?? resource.name) === parentName,
     );
 
     /**

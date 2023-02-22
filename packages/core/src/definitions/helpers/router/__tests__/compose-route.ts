@@ -1,6 +1,12 @@
 import { composeRoute } from "../compose-route";
 
 describe("composeRoute", () => {
+    it("should compose single slash", () => {
+        const result = composeRoute("/");
+
+        expect(result).toEqual("/");
+    });
+
     it("should return the route as same if no params are found", () => {
         const result = composeRoute("/users", { id: 1 });
 
