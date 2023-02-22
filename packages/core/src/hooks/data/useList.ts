@@ -26,6 +26,7 @@ import {
     queryKeys,
     pickDataProvider,
     pickNotDeprecated,
+    handlePagination,
 } from "@definitions/helpers";
 
 export interface UseListConfig {
@@ -135,21 +136,11 @@ export const useList = <
         hasPagination,
         config?.hasPagination,
     );
-    const hasPaginationString =
-        prefferedHasPagination === false ? "off" : "server";
-    const prefferedPagination = {
-        current:
-            pickNotDeprecated(
-                pagination?.current,
-                config?.pagination?.current,
-            ) ?? 1,
-        pageSize:
-            pickNotDeprecated(
-                pagination?.pageSize,
-                config?.pagination?.pageSize,
-            ) ?? 10,
-        mode: pagination?.mode ?? hasPaginationString,
-    };
+    const prefferedPagination = handlePagination({
+        pagination,
+        configPagination: config?.pagination,
+        hasPagination: prefferedHasPagination,
+    });
     const isServerPagination = prefferedPagination.mode === "server";
     const notificationValues = {
         meta: preferredMeta,
@@ -245,6 +236,7 @@ export const useList = <
 
                 if (mode === "client") {
                     data = {
+                        ...data,
                         data: data.data.slice(
                             (current - 1) * pageSize,
                             current * pageSize,
