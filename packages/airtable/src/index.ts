@@ -3,7 +3,6 @@ import {
     CrudFilters,
     CrudSorting,
     LogicalFilter,
-    pickNotDeprecated,
 } from "@pankod/refine-core";
 import { compile, Formula } from "@qualifyze/airtable-formulator";
 
@@ -117,26 +116,10 @@ const AirtableDataProvider = (
         airtableClient || new Airtable({ apiKey: apiKey }).base(baseId);
 
     return {
-        getList: async ({
-            resource,
-            hasPagination = true,
-            pagination,
-            sort,
-            sorters,
-            filters,
-        }) => {
-            // `pagination` has default values. However, it will be removed next major version
-            const { current = 1, pageSize = 10, mode } = pagination ?? {};
+        getList: async ({ resource, pagination, sorters, filters }) => {
+            const { current, pageSize, mode } = pagination;
 
-            //`hasPagination` is deprecated with refine@4, refine will pass `pagination.mode` instead, however, we still support `hasPagination` for backward compatibility
-            const hasPaginationString =
-                hasPagination === false ? "off" : "server";
-            const isServerPaginationEnabled =
-                pickNotDeprecated(mode, hasPaginationString) === "server";
-
-            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-            const generetedSort =
-                generateSort(pickNotDeprecated(sorters, sort)) || [];
+            const generetedSort = generateSort(sorters) || [];
             const queryFilters = generateFilter(filters);
 
             const { all } = base(resource).select({
@@ -146,6 +129,7 @@ const AirtableDataProvider = (
             });
 
             const data = await all();
+            const isServerPaginationEnabled = mode === "server";
 
             return {
                 data: data

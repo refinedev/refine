@@ -6,7 +6,6 @@ import {
     CrudSorting,
     BaseKey,
     LogicalFilter,
-    pickNotDeprecated,
 } from "@pankod/refine-core";
 import { stringify } from "query-string";
 
@@ -83,30 +82,16 @@ export const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): Required<IDataProvider> => ({
-    getList: async ({
-        resource,
-        hasPagination = true,
-        pagination,
-        filters,
-        sort,
-        sorters,
-    }) => {
+    getList: async ({ resource, pagination, filters, sorters }) => {
         const url = `${apiUrl}/${resource}`;
 
-        // `pagination` has default values. However, it will be removed next major version
-        const { current = 1, pageSize: _limit = 10, mode } = pagination ?? {};
+        const { current, pageSize: _limit, mode } = pagination;
 
-        //`hasPagination` is deprecated with refine@4, refine will pass `pagination.mode` instead, however, we still support `hasPagination` for backward compatibility
-        const hasPaginationString = hasPagination === false ? "off" : "server";
-        const isServerPaginationEnabled =
-            pickNotDeprecated(mode, hasPaginationString) === "server";
-
-        //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-        const _sort = generateSort(pickNotDeprecated(sorters, sort));
+        const _sort = generateSort(sorters);
         const queryFilters = generateFilter(filters);
 
         const query = {
-            ...(isServerPaginationEnabled
+            ...(mode === "server"
                 ? {
                       _start: (current - 1) * _limit,
                       _limit,
@@ -216,7 +201,6 @@ export const DataProvider = (
         url,
         method,
         filters,
-        sort,
         sorters,
         payload,
         query,
@@ -224,9 +208,8 @@ export const DataProvider = (
     }) => {
         let requestUrl = `${url}?`;
 
-        if (sorters || sort) {
-            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-            const sortQuery = generateSort(pickNotDeprecated(sorters, sort));
+        if (sorters) {
+            const sortQuery = generateSort(sorters);
             if (sortQuery.length > 0) {
                 requestUrl = `${requestUrl}&${stringify({
                     _sort: sortQuery.join(","),

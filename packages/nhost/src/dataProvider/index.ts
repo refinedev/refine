@@ -7,7 +7,6 @@ import {
     DataProvider,
     HttpError,
     CrudFilter,
-    pickNotDeprecated,
 } from "@pankod/refine-core";
 import setWith from "lodash/setWith";
 import set from "lodash/set";
@@ -162,9 +161,8 @@ const handleError = (error: object | Error) => {
 
 const dataProvider = (client: NhostClient): Required<DataProvider> => {
     return {
-        getOne: async ({ resource, id, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
-            const operation = `${metaData?.operation ?? resource}_by_pk`;
+        getOne: async ({ resource, id, meta }) => {
+            const operation = `${meta?.operation ?? resource}_by_pk`;
 
             const { query, variables } = gql.query({
                 operation,
@@ -189,9 +187,8 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
             };
         },
 
-        getMany: async ({ resource, ids, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
-            const operation = metaData?.operation ?? resource;
+        getMany: async ({ resource, ids, meta }) => {
+            const operation = meta?.operation ?? resource;
 
             const { query, variables } = gql.query({
                 operation,
@@ -222,36 +219,11 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
             };
         },
 
-        getList: async ({
-            resource,
-            sort,
-            sorters,
-            filters,
-            hasPagination = true,
-            pagination,
-            meta: _meta,
-            metaData,
-        }) => {
-            // `pagination` has default values. However, it will be removed next major version
-            const {
-                current = 1,
-                pageSize: limit = 10,
-                mode,
-            } = pagination ?? {};
+        getList: async ({ resource, sorters, filters, pagination, meta }) => {
+            const { current, pageSize: limit, mode } = pagination;
 
-            //`hasPagination` is deprecated with refine@4, refine will pass `pagination.mode` instead, however, we still support `hasPagination` for backward compatibility
-            const hasPaginationString =
-                hasPagination === false ? "off" : "server";
-            const isServerPaginationEnabled =
-                pickNotDeprecated(mode, hasPaginationString) === "server";
-
-            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-            const hasuraSorting = generateSorting(
-                pickNotDeprecated(sorters, sort),
-            );
+            const hasuraSorting = generateSorting(sorters);
             const hasuraFilters = generateFilters(filters);
-
-            const meta = pickNotDeprecated(_meta, metaData);
 
             const operation = meta?.operation ?? resource;
 
@@ -265,7 +237,7 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
                     operation,
                     fields: meta?.fields,
                     variables: {
-                        ...(isServerPaginationEnabled
+                        ...(mode === "server"
                             ? {
                                   limit,
                                   offset: (current - 1) * limit,
@@ -312,8 +284,7 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
             };
         },
 
-        create: async ({ resource, variables, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
+        create: async ({ resource, variables, meta }) => {
             const operation = meta?.operation ?? resource;
 
             const insertOperation = `insert_${operation}_one`;
@@ -344,9 +315,8 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
             };
         },
 
-        createMany: async ({ resource, variables, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
-            const operation = metaData?.operation ?? resource;
+        createMany: async ({ resource, variables, meta }) => {
+            const operation = meta?.operation ?? resource;
 
             const insertOperation = `insert_${operation}`;
             const insertType = `[${operation}_insert_input!]`;
@@ -381,8 +351,7 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
             };
         },
 
-        update: async ({ resource, id, variables, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
+        update: async ({ resource, id, variables, meta }) => {
             const operation = meta?.operation ?? resource;
 
             const updateOperation = `update_${operation}_by_pk`;
@@ -422,14 +391,7 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
                 data: (data as any)?.[updateOperation],
             };
         },
-        updateMany: async ({
-            resource,
-            ids,
-            variables,
-            meta: _meta,
-            metaData,
-        }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
+        updateMany: async ({ resource, ids, variables, meta }) => {
             const operation = meta?.operation ?? resource;
 
             const updateOperation = `update_${operation}`;
@@ -476,8 +438,7 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
             };
         },
 
-        deleteOne: async ({ resource, id, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
+        deleteOne: async ({ resource, id, meta }) => {
             const operation = meta?.operation ?? resource;
 
             const deleteOperation = `delete_${operation}_by_pk`;
@@ -505,8 +466,7 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
             };
         },
 
-        deleteMany: async ({ resource, ids, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
+        deleteMany: async ({ resource, ids, meta }) => {
             const operation = meta?.operation ?? resource;
 
             const deleteOperation = `delete_${operation}`;

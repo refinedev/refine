@@ -5,8 +5,6 @@ import {
     CrudFilters,
     CrudSorting,
     CrudFilter,
-    Pagination,
-    pickNotDeprecated,
 } from "@pankod/refine-core";
 import {
     Client as Appwrite,
@@ -21,7 +19,6 @@ const getRefineEvent = (event: string): LiveEvent["type"] | undefined => {
     if (event.includes(".create")) {
         return "created";
     } else if (event.includes(".update")) {
-        return "updated";
     } else if (event.includes(".delete")) {
         return "deleted";
     }
@@ -98,10 +95,7 @@ export const getAppwriteSorting: GetAppwriteSortingType = (sorters) => {
     return sorts;
 };
 
-export const getAppwritePagination = (pagination?: Pagination) => {
-    // `pagination` has default values. However, it will be removed next major version
-    const { current = 1, pageSize = 10 } = pagination ?? {};
-
+export const getAppwritePagination = (current: number, pageSize: number) => {
     return [Query.offset((current - 1) * pageSize), Query.limit(pageSize)];
 };
 
@@ -114,31 +108,17 @@ export const dataProvider = (
     const database = new Databases(appwriteClient);
 
     return {
-        getList: async ({
-            resource,
-            hasPagination = true,
-            pagination,
-            filters,
-            sort,
-            sorters,
-        }) => {
+        getList: async ({ resource, pagination, filters, sorters }) => {
+            const { current, pageSize, mode } = pagination;
+
             const appwriteFilters = getAppwriteFilters(filters);
 
-            //`hasPagination` is deprecated with refine@4, refine will pass `pagination.mode` instead, however, we still support `hasPagination` for backward compatibility
-            const hasPaginationString =
-                hasPagination === false ? "off" : "server";
-            const isServerPaginationEnabled =
-                pickNotDeprecated(pagination?.mode, hasPaginationString) ===
-                "server";
+            const appwritePagination =
+                mode === "server"
+                    ? getAppwritePagination(current, pageSize)
+                    : [];
 
-            const appwritePagination = isServerPaginationEnabled
-                ? getAppwritePagination(pagination)
-                : [];
-
-            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-            const appwriteSorts = getAppwriteSorting(
-                pickNotDeprecated(sorters, sort),
-            );
+            const appwriteSorts = getAppwriteSorting(sorters);
 
             const { total: total, documents: data } =
                 await database.listDocuments<any>(databaseId, resource, [
@@ -169,12 +149,12 @@ export const dataProvider = (
                 },
             } as any;
         },
-        update: async ({ resource, id, variables, meta, metaData }) => {
+        update: async ({ resource, id, variables, meta }) => {
             const permissions = [
                 Permission.read(Role.any()),
                 Permission.write(Role.any()),
-                ...(pickNotDeprecated(meta, metaData)?.readPermissions ?? ""),
-                ...(pickNotDeprecated(meta, metaData)?.writePermissions ?? ""),
+                ...(meta?.readPermissions ?? ""),
+                ...(meta?.writePermissions ?? ""),
             ];
             const { $id, ...restData } = await database.updateDocument(
                 databaseId,
@@ -191,18 +171,18 @@ export const dataProvider = (
                 },
             } as any;
         },
-        create: async ({ resource, variables, meta, metaData }) => {
+        create: async ({ resource, variables, meta }) => {
             const permissions = [
                 Permission.read(Role.any()),
                 Permission.write(Role.any()),
-                ...(pickNotDeprecated(meta, metaData)?.readPermissions ?? ""),
-                ...(pickNotDeprecated(meta, metaData)?.writePermissions ?? ""),
+                ...(meta?.readPermissions ?? ""),
+                ...(meta?.writePermissions ?? ""),
             ];
 
             const { $id, ...restData } = await database.createDocument(
                 databaseId,
                 resource,
-                pickNotDeprecated(meta, metaData)?.documentId ?? ID.unique(),
+                meta?.documentId ?? ID.unique(),
                 variables as unknown as object,
                 permissions,
             );
@@ -214,20 +194,19 @@ export const dataProvider = (
                 },
             } as any;
         },
-        createMany: async ({ resource, variables, meta, metaData }) => {
+        createMany: async ({ resource, variables, meta }) => {
             const permissions = [
                 Permission.read(Role.any()),
                 Permission.write(Role.any()),
-                ...(pickNotDeprecated(meta, metaData)?.readPermissions ?? ""),
-                ...(pickNotDeprecated(meta, metaData)?.writePermissions ?? ""),
+                ...(meta?.readPermissions ?? ""),
+                ...(meta?.writePermissions ?? ""),
             ];
             const data = await Promise.all(
                 variables.map((document) =>
                     database.createDocument<any>(
                         databaseId,
                         resource,
-                        pickNotDeprecated(meta, metaData)?.documentId ??
-                            ID.unique(),
+                        meta?.documentId ?? ID.unique(),
                         document as unknown as any,
                         permissions,
                     ),
@@ -283,12 +262,12 @@ export const dataProvider = (
                 })),
             } as any;
         },
-        updateMany: async ({ resource, ids, variables, meta, metaData }) => {
+        updateMany: async ({ resource, ids, variables, meta }) => {
             const permissions = [
                 Permission.read(Role.any()),
                 Permission.write(Role.any()),
-                ...(pickNotDeprecated(meta, metaData)?.readPermissions ?? ""),
-                ...(pickNotDeprecated(meta, metaData)?.writePermissions ?? ""),
+                ...(meta?.readPermissions ?? ""),
+                ...(meta?.writePermissions ?? ""),
             ];
             const data = await Promise.all(
                 ids.map((id) =>

@@ -60,14 +60,9 @@ const DataProvider = (
     httpClient: AxiosInstance = axiosInstance,
 ): Required<DataProviderType> => {
     return {
-        getList: async ({
-            resource,
-            hasPagination = true,
-            pagination = { current: 1, pageSize: 10 },
-            filters,
-        }) => {
+        getList: async ({ resource, pagination, filters }) => {
             const url = `${apiUrl}/${resource}`;
-            const { current = 1, pageSize = 3 } = pagination ?? {};
+            const { current, pageSize, mode } = pagination;
 
             const queryFilters = generateFilter(filters);
 
@@ -79,7 +74,7 @@ const DataProvider = (
                 limit?: number;
                 offset?: number;
             } = {
-                ...(hasPagination
+                ...(mode === "server"
                     ? {
                           offset: (current - 1) * pageSize,
                           limit: pageSize,

@@ -1,4 +1,4 @@
-import { BaseRecord, BaseKey, MetaQuery } from "../../interfaces";
+import { BaseRecord, BaseKey, MetaQuery, Prettify } from "../../interfaces";
 
 export interface Pagination {
     /**
@@ -138,7 +138,7 @@ export interface DeleteManyResponse<TData = BaseRecord> {
 export interface IDataContextProvider {
     getList: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
-        pagination?: Pagination;
+        pagination: Prettify<Required<Pagination>>;
         /**
          * @deprecated `hasPagination` is deprecated, use `pagination.mode` instead.
          */

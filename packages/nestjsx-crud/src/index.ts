@@ -17,7 +17,6 @@ import {
     CrudOperators,
     CrudSorting,
     CrudFilter,
-    pickNotDeprecated,
     Pagination,
 } from "@pankod/refine-core";
 import { stringify } from "query-string";
@@ -153,18 +152,11 @@ const handleJoin = (
 
 const handlePagination = (
     query: RequestQueryBuilder,
-    hasPagination: boolean,
-    pagination?: Pagination,
+    pagination: Required<Pagination>,
 ) => {
-    // `pagination` has default values. However, it will be removed next major version
-    const { current = 1, pageSize = 10, mode } = pagination ?? {};
+    const { current, pageSize, mode } = pagination;
 
-    //`hasPagination` is deprecated with refine@4, refine will pass `pagination.mode` instead, however, we still support `hasPagination` for backward compatibility
-    const hasPaginationString = hasPagination === false ? "off" : "server";
-    const isServerPaginationEnabled =
-        pickNotDeprecated(mode, hasPaginationString) === "server";
-
-    if (isServerPaginationEnabled) {
+    if (mode === "server") {
         query
             .setLimit(pageSize)
             .setPage(current)
@@ -187,25 +179,15 @@ const NestsxCrud = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): Required<DataProvider> => ({
-    getList: async ({
-        resource,
-        hasPagination = true,
-        pagination,
-        filters,
-        sort,
-        sorters,
-        meta,
-        metaData,
-    }) => {
+    getList: async ({ resource, pagination, filters, sorters, meta }) => {
         const url = `${apiUrl}/${resource}`;
 
         let query = RequestQueryBuilder.create();
 
         query = handleFilter(query, filters);
-        query = handleJoin(query, pickNotDeprecated(meta, metaData)?.join);
-        query = handlePagination(query, hasPagination, pagination);
-        //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-        query = handleSort(query, pickNotDeprecated(sorters, sort));
+        query = handleJoin(query, meta?.join);
+        query = handlePagination(query, pagination);
+        query = handleSort(query, sorters);
 
         const { data } = await httpClient.get(`${url}?${query.query()}`);
 
@@ -215,7 +197,7 @@ const NestsxCrud = (
         };
     },
 
-    getMany: async ({ resource, ids, meta, metaData }) => {
+    getMany: async ({ resource, ids, meta }) => {
         const url = `${apiUrl}/${resource}`;
 
         let query = RequestQueryBuilder.create().setFilter({
@@ -224,7 +206,7 @@ const NestsxCrud = (
             value: ids,
         });
 
-        query = handleJoin(query, pickNotDeprecated(meta, metaData)?.join);
+        query = handleJoin(query, meta?.join);
 
         const { data } = await httpClient.get(`${url}?${query.query()}`);
 
@@ -317,9 +299,7 @@ const NestsxCrud = (
         url,
         method,
         meta,
-        metaData,
         filters,
-        sort,
         sorters,
         payload,
         query,
@@ -329,16 +309,9 @@ const NestsxCrud = (
 
         requestQueryBuilder = handleFilter(requestQueryBuilder, filters);
 
-        requestQueryBuilder = handleJoin(
-            requestQueryBuilder,
-            pickNotDeprecated(meta, metaData)?.join,
-        );
+        requestQueryBuilder = handleJoin(requestQueryBuilder, meta?.join);
 
-        //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-        requestQueryBuilder = handleSort(
-            requestQueryBuilder,
-            pickNotDeprecated(sorters, sort),
-        );
+        requestQueryBuilder = handleSort(requestQueryBuilder, sorters);
 
         let requestUrl = `${url}?${requestQueryBuilder.query()}`;
 
