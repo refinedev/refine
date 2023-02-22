@@ -47,6 +47,11 @@ export const useInferFetch = (
                 if (type === "list" || type === "create") {
                     const response = await dp.getList({
                         resource: resourceName,
+                        pagination: {
+                            current: 1,
+                            pageSize: 10,
+                            mode: "server",
+                        },
                     });
                     const r = response.data?.[0];
 
