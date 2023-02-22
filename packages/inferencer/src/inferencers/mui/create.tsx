@@ -338,13 +338,13 @@ export const renderer = ({
 
         return (
             <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-                <div
+                <Box
                     component="form"
                     sx={{ display: "flex", flexDirection: "column" }}
                     autoComplete="off"
                 >
                     ${renderedFields.join("")}
-                </div>
+                </Box>
             </Create>
         );
     };
