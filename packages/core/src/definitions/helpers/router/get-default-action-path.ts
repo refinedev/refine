@@ -24,10 +24,10 @@ export const getDefaultActionPath = (
     } else if (action === "edit") {
         path = `${path}/edit/:id`;
     } else if (action === "show") {
-        path = `${path}/:id`;
+        path = `${path}/show/:id`;
     } else if (action === "clone") {
         path = `${path}/clone/:id`;
     }
 
-    return path;
+    return `/${path.replace(/^\//, "")}`;
 };
