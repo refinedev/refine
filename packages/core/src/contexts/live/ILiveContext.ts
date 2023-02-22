@@ -5,7 +5,6 @@ import {
     LiveEvent,
     MetaQuery,
     Pagination,
-    Prettify,
 } from "../../interfaces";
 
 export type ILiveContext =
@@ -21,7 +20,7 @@ export type ILiveContext =
                    * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
                    */
                   metaData?: MetaQuery;
-                  pagination?: Prettify<Required<Pagination>>;
+                  pagination?: Pagination;
                   /**
                    * @deprecated `hasPagination` is deprecated, use `pagination.mode` instead.
                    */
