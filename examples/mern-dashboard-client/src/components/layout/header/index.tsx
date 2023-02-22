@@ -1,6 +1,6 @@
 import React from "react";
 import { useGetIdentity } from "@pankod/refine-core";
-import { AppBar, Avatar, Stack, Toolbar, Typography } from "@mui/material";
+import { AppBar, Avatar, Stack, Toolbar, Typography } from "@pankod/refine-mui";
 
 export const Header: React.FC = () => {
     const { data: user } = useGetIdentity();

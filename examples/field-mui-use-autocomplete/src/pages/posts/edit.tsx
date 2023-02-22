@@ -1,7 +1,11 @@
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
-import { Edit, useAutocomplete } from "@pankod/refine-mui";
-
-import { Box, TextField, Autocomplete } from "@mui/material";
+import {
+    Edit,
+    Box,
+    TextField,
+    Autocomplete,
+    useAutocomplete,
+} from "@pankod/refine-mui";
 
 import { ICategory, IPost } from "interfaces";
 import { HttpError } from "@pankod/refine-core";

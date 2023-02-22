@@ -1,4 +1,5 @@
-import { Typography, Box, Stack } from "@mui/material";
+/* eslint-disable no-restricted-globals */
+import { Typography, Box, Stack } from "@pankod/refine-mui";
 import { useDelete, useGetIdentity, useShow } from "@pankod/refine-core";
 import { useParams, useNavigate } from "@pankod/refine-react-router-v6";
 import {

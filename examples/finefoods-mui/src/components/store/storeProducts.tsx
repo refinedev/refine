@@ -6,8 +6,6 @@ import {
     HttpError,
 } from "@pankod/refine-core";
 import { useModalForm } from "@pankod/refine-react-hook-form";
-import { CreateButton } from "@pankod/refine-mui";
-
 import {
     Grid,
     Paper,
@@ -19,8 +17,8 @@ import {
     Pagination,
     Modal,
     Fade,
-} from "@mui/material";
-
+    CreateButton,
+} from "@pankod/refine-mui";
 import { SearchOutlined, CloseOutlined } from "@mui/icons-material";
 
 import {

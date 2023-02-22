@@ -7,7 +7,7 @@ import {
     TextField,
     Select,
     MenuItem,
-} from "@mui/material";
+} from "@pankod/refine-mui";
 import { useNavigate } from "@pankod/refine-react-router-v6";
 import { useMemo } from "react";
 

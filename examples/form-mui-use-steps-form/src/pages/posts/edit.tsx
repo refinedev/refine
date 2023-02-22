@@ -1,18 +1,18 @@
 import { HttpError } from "@pankod/refine-core";
-import { Edit, useAutocomplete, SaveButton } from "@pankod/refine-mui";
-import { useTheme } from "@mui/material/styles";
-
 import {
+    Edit,
     Box,
     TextField,
     Autocomplete,
+    useAutocomplete,
     Button,
+    SaveButton,
     Step,
     StepButton,
     Stepper,
     useMediaQuery,
-} from "@mui/material";
-
+    useTheme,
+} from "@pankod/refine-mui";
 import { Controller, useStepsForm } from "@pankod/refine-react-hook-form";
 
 import { ICategory, IPost } from "interfaces";

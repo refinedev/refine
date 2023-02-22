@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AppBar, Box, IconButton, Stack } from "@mui/material";
+import { AppBar, Box, IconButton, Stack } from "@pankod/refine-mui";
 import { DarkModeOutlined, LightModeOutlined } from "@mui/icons-material";
 
 import { ColorModeContext } from "../contexts";

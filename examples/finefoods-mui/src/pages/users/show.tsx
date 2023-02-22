@@ -1,10 +1,12 @@
 import React from "react";
-import { DateField, List, NumberField, useDataGrid } from "@pankod/refine-mui";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
-
 import {
     Avatar,
+    DataGrid,
+    DateField,
     Grid,
+    GridColumns,
+    List,
+    NumberField,
     Paper,
     Stack,
     Table,
@@ -14,8 +16,8 @@ import {
     TableHead,
     TableRow,
     Typography,
-} from "@mui/material";
-
+    useDataGrid,
+} from "@pankod/refine-mui";
 import {
     HttpError,
     IResourceComponentsProps,

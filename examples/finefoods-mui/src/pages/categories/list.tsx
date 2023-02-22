@@ -14,31 +14,29 @@ import {
 import {
     List,
     BooleanField,
-    EditButton,
-    SaveButton,
-    useDataGrid,
-    DateField,
-    NumberField,
-} from "@pankod/refine-mui";
-
-import { GridColumns, DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
-
-import {
     Checkbox,
     TableContainer,
     Table,
     Stack,
+    EditButton,
     TableBody,
     TableRow,
     Button,
+    SaveButton,
     TableCell,
     TextField,
     TableHead,
     IconButton,
     Typography,
     TablePagination,
+    useDataGrid,
     Avatar,
-} from "@mui/material";
+    GridColumns,
+    DataGrid,
+    DateField,
+    NumberField,
+    GridActionsCellItem,
+} from "@pankod/refine-mui";
 
 import {
     Edit,
