@@ -25,5 +25,5 @@ export const routeGenerator = (
         route = item.options?.route ?? item.name;
     }
 
-    return route;
+    return `/${route.replace(/^\//, "")}`;
 };

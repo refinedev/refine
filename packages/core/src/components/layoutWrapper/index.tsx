@@ -48,6 +48,8 @@ export interface LayoutWrapperProps {
  * It can be used in custom pages to use global layout.
  *
  * @see {@link https://refine.dev/docs/core/components/layout-wrapper} for more details.
+ *
+ * @deprecated This component is obsolete and only works with the legacy router providers.
  */
 export const LayoutWrapper: React.FC<LayoutWrapperProps> = ({
     children,

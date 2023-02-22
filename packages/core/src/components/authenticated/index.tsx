@@ -1,6 +1,11 @@
 import React from "react";
 
-import { useAuthenticated, useNavigation, useRouterContext } from "@hooks";
+import {
+    useAuthenticated,
+    useNavigation,
+    useRouterContext,
+    useRouterType,
+} from "@hooks";
 
 export type AuthenticatedProps = {
     /**
@@ -26,6 +31,7 @@ export const Authenticated: React.FC<AuthenticatedProps> = ({
 }) => {
     const { isSuccess, isLoading, isError } = useAuthenticated();
 
+    const routerType = useRouterType();
     const { replace } = useNavigation();
     const { useLocation } = useRouterContext();
     const { pathname, search } = useLocation();
@@ -33,11 +39,14 @@ export const Authenticated: React.FC<AuthenticatedProps> = ({
     if (isLoading) {
         return <>{loading}</> || null;
     }
+
     if (isError) {
         if (!fallback) {
-            const toURL = `${pathname}${search}`;
-            if (!pathname.includes("/login")) {
-                replace(`/login?to=${encodeURIComponent(toURL)}`);
+            if (routerType === "legacy") {
+                const toURL = `${pathname}${search}`;
+                if (!pathname?.includes("/login")) {
+                    replace(`/login?to=${encodeURIComponent(toURL)}`);
+                }
             }
             return null;
         }

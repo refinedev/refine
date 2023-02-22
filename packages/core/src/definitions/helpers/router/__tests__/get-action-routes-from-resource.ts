@@ -31,23 +31,23 @@ describe("getActionRoutesFromResource", () => {
             expect.arrayContaining([
                 expect.objectContaining({
                     action: "list",
-                    route: "users",
+                    route: "/users",
                 }),
                 expect.objectContaining({
                     action: "create",
-                    route: "users/create",
+                    route: "/users/create",
                 }),
                 expect.objectContaining({
                     action: "edit",
-                    route: "users/edit/:id",
+                    route: "/users/edit/:id",
                 }),
                 expect.objectContaining({
                     action: "show",
-                    route: "users/:id",
+                    route: "/users/show/:id",
                 }),
                 expect.objectContaining({
                     action: "clone",
-                    route: "users/clone/:id",
+                    route: "/users/clone/:id",
                 }),
             ]),
         );
@@ -69,7 +69,7 @@ describe("getActionRoutesFromResource", () => {
             expect.arrayContaining([
                 expect.objectContaining({
                     action: "edit",
-                    route: "orgs/users/edit/:id",
+                    route: "/orgs/users/edit/:id",
                 }),
             ]),
         );
@@ -94,7 +94,7 @@ describe("getActionRoutesFromResource", () => {
             expect.arrayContaining([
                 expect.objectContaining({
                     action: "edit",
-                    route: "edit/:id",
+                    route: "/edit/:id",
                 }),
             ]),
         );
@@ -118,7 +118,7 @@ describe("getActionRoutesFromResource", () => {
             expect.arrayContaining([
                 expect.objectContaining({
                     action: "list",
-                    route: "orgs/custom-users",
+                    route: "/orgs/custom-users",
                 }),
             ]),
         );

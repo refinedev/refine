@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { LoginPageProps, LoginFormTypes } from "../../../../../interfaces";
 
-import { useRouterContext, useLogin } from "@hooks";
+import { useRouterContext, useLink, useRouterType, useLogin } from "@hooks";
 import { useTranslate } from "@hooks/translate";
 
 import { DivPropsType, FormPropsType } from "../..";
@@ -18,7 +18,12 @@ export const LoginPage: React.FC<LoginProps> = ({
     renderContent,
     formProps,
 }) => {
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [remember, setRemember] = useState(false);
@@ -30,7 +35,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     const renderLink = (link: React.ReactNode, text?: string) => {
         if (link) {
             if (typeof link === "string") {
-                return <Link to={link}>{text}</Link>;
+                return <ActiveLink to={link}>{text}</ActiveLink>;
             }
             return link;
         }

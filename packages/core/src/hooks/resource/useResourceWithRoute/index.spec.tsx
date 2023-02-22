@@ -16,9 +16,8 @@ describe("useResourceWithRoute Hook", () => {
             }),
         });
 
-        expect(result.current("posts")).toEqual({
-            name: "posts",
-            route: "posts",
-        });
+        expect(result.current("posts")).toEqual(
+            expect.objectContaining({ name: "posts", route: "/posts" }),
+        );
     });
 });

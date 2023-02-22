@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 
-import { TestWrapper } from "@test";
+import { TestWrapper, mockRouterBindings } from "@test";
 
 import { useMenu } from ".";
 import { IResourceItem } from "src/interfaces";
@@ -117,7 +117,13 @@ describe("useMenu Hook", () => {
     it("should have the selectedKey = `/posts/create`", async () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({
-                routerInitialEntries: ["/posts/create"],
+                routerProvider: mockRouterBindings({
+                    resource: {
+                        name: "posts",
+                    },
+                    action: "create",
+                    pathname: "/posts/create",
+                }),
             }),
         });
 
@@ -127,7 +133,12 @@ describe("useMenu Hook", () => {
     it("should have the defaultOpenKeys = [/CMS]", async () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({
-                routerInitialEntries: ["/CMS/posts"],
+                routerProvider: mockRouterBindings({
+                    pathname: "/CMS/posts",
+                    resource: {
+                        name: "posts",
+                    },
+                }),
                 resources: prepareResources([
                     {
                         name: "CMS",
@@ -162,7 +173,12 @@ describe("useMenu Hook", () => {
     it("should have the defaultOpenKeys = [/CMS]", async () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({
-                routerInitialEntries: ["/else-new"],
+                routerProvider: mockRouterBindings({
+                    pathname: "/CMS/categories/else-new",
+                    resource: {
+                        name: "posts",
+                    },
+                }),
                 resources: prepareResources([
                     {
                         name: "CMS",

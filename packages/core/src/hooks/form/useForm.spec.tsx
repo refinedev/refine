@@ -4,41 +4,41 @@ import { MockJSONServer, TestWrapper, act } from "@test";
 import { useForm } from "./useForm";
 
 import React from "react";
-import { Route, Routes } from "react-router-dom";
 
 import { posts } from "@test/dataMocks";
+import { mockRouterBindings } from "@test";
 
 const SimpleWrapper = TestWrapper({});
 
 const EditWrapper = TestWrapper({
     dataProvider: MockJSONServer,
-    routerInitialEntries: ["/posts/edit/1"],
+    routerProvider: mockRouterBindings({
+        resource: {
+            name: "posts",
+        },
+        action: "edit",
+        id: "1",
+    }),
 });
 
 const CloneWrapper = TestWrapper({
     dataProvider: MockJSONServer,
-    routerInitialEntries: ["/posts/clone/1"],
+    routerProvider: mockRouterBindings({
+        resource: {
+            name: "posts",
+        },
+        action: "clone",
+        id: "1",
+    }),
 });
 
 const EditWrapperWithRoute: React.FC<{
     children?: React.ReactNode;
-}> = ({ children }) => (
-    <EditWrapper>
-        <Routes>
-            <Route path="/:resource/:action/:id" element={children} />
-        </Routes>
-    </EditWrapper>
-);
+}> = ({ children }) => <EditWrapper>{children}</EditWrapper>;
 
 const CloneWrapperWithRoute: React.FC<{
     children?: React.ReactNode;
-}> = ({ children }) => (
-    <CloneWrapper>
-        <Routes>
-            <Route path="/:resource/:action/:id" element={children} />
-        </Routes>
-    </CloneWrapper>
-);
+}> = ({ children }) => <CloneWrapper>{children}</CloneWrapper>;
 
 describe("useForm Hook", () => {
     it("renders with form", async () => {

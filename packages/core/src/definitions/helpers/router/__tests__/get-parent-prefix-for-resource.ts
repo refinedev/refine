@@ -27,7 +27,7 @@ describe("getParentPrefixForResource", () => {
         ];
 
         expect(getParentPrefixForResource(resources[1], resources)).toBe(
-            "users",
+            "/users",
         );
     });
 
@@ -51,7 +51,7 @@ describe("getParentPrefixForResource", () => {
         ];
 
         expect(getParentPrefixForResource(resources[2], resources)).toBe(
-            "users/posts",
+            "/users/posts",
         );
     });
 
@@ -78,7 +78,7 @@ describe("getParentPrefixForResource", () => {
         ];
 
         expect(getParentPrefixForResource(resources[2], resources, true)).toBe(
-            "custom-users/posts",
+            "/custom-users/posts",
         );
     });
 });

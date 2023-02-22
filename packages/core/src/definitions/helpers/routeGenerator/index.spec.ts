@@ -1,5 +1,5 @@
 import { routeGenerator } from ".";
-import { ResourceProps } from "src/interfaces";
+import { ResourceProps } from "src/interfaces/bindings/resource";
 
 const mockResources: ResourceProps[] = [
     { name: "posts" },
@@ -36,7 +36,7 @@ describe("routeGenerator", () => {
             mockItemResourcePropsWithoutParent,
             mockResources,
         );
-        expect(route).toEqual("category");
+        expect(route).toEqual("/category");
     });
 
     it("should equal return with parent route", async () => {
@@ -44,7 +44,7 @@ describe("routeGenerator", () => {
             mockItemResourcePropsWithParent,
             mockResources,
         );
-        expect(route).toEqual("posts/active");
+        expect(route).toEqual("/posts/active");
     });
 
     it("should return exect route", async () => {
@@ -52,6 +52,6 @@ describe("routeGenerator", () => {
             mockItemResourcePropsWithTwoParent,
             mockResources,
         );
-        expect(route).toEqual("posts/active/first");
+        expect(route).toEqual("/posts/active/first");
     });
 });

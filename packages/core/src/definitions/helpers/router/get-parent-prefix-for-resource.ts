@@ -1,5 +1,6 @@
 import { ResourceProps } from "src/interfaces/bindings/resource";
 import { getParentResource } from "./get-parent-resource";
+import { removeLeadingTrailingSlashes } from "./remove-leading-trailing-slashes";
 
 /**
  * Returns the parent prefix for a resource
@@ -26,10 +27,13 @@ export const getParentPrefixForResource = (
         return undefined;
     }
 
-    return parents
+    return `/${parents
         .reverse()
-        .map((parent) =>
-            legacy ? parent.options?.route ?? parent.name : parent.name,
-        )
-        .join("/");
+        .map((parent) => {
+            const v = legacy
+                ? parent.options?.route ?? parent.name
+                : parent.name;
+            return removeLeadingTrailingSlashes(v);
+        })
+        .join("/")}`;
 };

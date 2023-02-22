@@ -258,17 +258,17 @@ export const useNavigation = () => {
                       }
                     : resource;
 
-            const showActionRoute = getActionRoutesFromResource(
+            const listActionRoute = getActionRoutesFromResource(
                 resourceItem,
                 resources,
                 true,
-            ).find((r) => r.action === "show");
+            ).find((r) => r.action === "list");
 
-            if (!showActionRoute) {
+            if (!listActionRoute) {
                 return "";
             }
 
-            return composeRoute(showActionRoute.route, parsed, meta);
+            return composeRoute(listActionRoute.route, parsed, meta);
         } else {
             const resourceItem =
                 typeof resource === "string"

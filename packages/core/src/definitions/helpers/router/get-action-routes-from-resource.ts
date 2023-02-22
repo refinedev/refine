@@ -34,7 +34,8 @@ export const getActionRoutesFromResource = (
     );
 
     actionList.forEach((action) => {
-        const item = resource[action];
+        const item =
+            legacy && action === "clone" ? resource.create : resource[action];
 
         let route: string | undefined = undefined;
 
@@ -56,7 +57,11 @@ export const getActionRoutesFromResource = (
         }
 
         if (route) {
-            actions.push({ action, resource, route });
+            actions.push({
+                action,
+                resource,
+                route: `/${route.replace(/^\//, "")}`,
+            });
         }
     });
 

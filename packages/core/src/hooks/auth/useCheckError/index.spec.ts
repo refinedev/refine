@@ -1,20 +1,21 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import ReactRouterDom from "react-router-dom";
 
-import { act, TestWrapper } from "@test";
+import { act, mockLegacyRouterProvider, TestWrapper } from "@test";
 
 import { useCheckError } from "./";
 
-const mHistory = jest.fn();
+const mockFn = jest.fn();
 
-jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
-}));
-
+const mockRouterProvider = {
+    ...mockLegacyRouterProvider(),
+    useHistory: () => ({
+        push: mockFn,
+        replace: mockFn,
+    }),
+};
 describe("useCheckError Hook", () => {
     beforeEach(() => {
-        mHistory.mockReset();
+        mockFn.mockReset();
 
         jest.spyOn(console, "error").mockImplementation((message) => {
             if (message === "rejected" || message === "/customPath") return;
@@ -36,6 +37,7 @@ describe("useCheckError Hook", () => {
                     logout: logoutMock,
                     getUserIdentity: () => Promise.resolve(),
                 },
+                legacyRouterProvider: mockRouterProvider,
             }),
         });
 
@@ -50,7 +52,7 @@ describe("useCheckError Hook", () => {
         });
 
         expect(logoutMock).toBeCalledTimes(1);
-        expect(mHistory).toBeCalledWith("/login");
+        expect(mockFn).toBeCalledWith("/login");
     });
 
     it("logout and redirect to custom path if check error rejected", async () => {
@@ -67,6 +69,7 @@ describe("useCheckError Hook", () => {
                     },
                     getUserIdentity: () => Promise.resolve(),
                 },
+                legacyRouterProvider: mockRouterProvider,
             }),
         });
 
@@ -81,7 +84,7 @@ describe("useCheckError Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory).toBeCalledWith("/customPath");
+            expect(mockFn).toBeCalledWith("/customPath");
         });
     });
 });

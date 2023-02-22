@@ -1,8 +1,12 @@
 import React from "react";
 import { act, waitFor } from "@testing-library/react";
-import ReactRouterDom from "react-router-dom";
 
-import { MockJSONServer, render, TestWrapper } from "@test";
+import {
+    MockJSONServer,
+    mockLegacyRouterProvider,
+    render,
+    TestWrapper,
+} from "@test";
 import { Authenticated } from "./";
 
 const mockAuthProvider = {
@@ -14,12 +18,18 @@ const mockAuthProvider = {
     getUserIdentity: () => Promise.resolve(),
 };
 
-const mHistory = jest.fn();
+const mockReplace = jest.fn();
 
-jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
-}));
+const mockLegacyRouter = {
+    ...mockLegacyRouterProvider(),
+    useHistory: () => ({
+        replace: mockReplace,
+    }),
+    useLocation: () => ({
+        pathname: "/posts",
+        search: "",
+    }),
+};
 
 describe("Authenticated", () => {
     beforeEach(() => {
@@ -55,13 +65,14 @@ describe("Authenticated", () => {
                     dataProvider: MockJSONServer,
                     authProvider: mockAuthProvider,
                     resources: [{ name: "posts", route: "posts" }],
+                    legacyRouterProvider: mockLegacyRouter,
                 }),
             },
         );
 
         await waitFor(() => {
             expect(queryByText("Custom Authenticated")).toBeNull();
-            expect(mHistory).toBeCalledTimes(1);
+            expect(mockReplace).toBeCalledTimes(1);
         });
     });
 
