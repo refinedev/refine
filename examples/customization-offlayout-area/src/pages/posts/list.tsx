@@ -8,7 +8,9 @@ import { IPost } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>({
-        initialPageSize: 50,
+        pagination: {
+            pageSize: 50,
+        },
     });
 
     return (

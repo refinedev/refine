@@ -12,10 +12,8 @@ import "./index.css";
 export const CalendarPage: React.FC<IResourceComponentsProps> = () => {
     const { data } = useList<IEvent>({
         resource: "events",
-        config: {
-            pagination: {
-                pageSize: 100,
-            },
+        pagination: {
+            pageSize: 100,
         },
     });
 

@@ -7,17 +7,15 @@ import { Map, MapMarker } from "components";
 export const DeliveryMap: React.FC = () => {
     const { data: orderData } = useList<IOrder>({
         resource: "orders",
-        config: {
-            filters: [
-                {
-                    field: "status.text",
-                    operator: "eq",
-                    value: "On The Way",
-                },
-            ],
-            pagination: {
-                pageSize: 1000,
+        filters: [
+            {
+                field: "status.text",
+                operator: "eq",
+                value: "On The Way",
             },
+        ],
+        pagination: {
+            pageSize: 1000,
         },
     });
 

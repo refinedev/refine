@@ -15,7 +15,7 @@ import { Table, Space } from "antd";
 import { ICompany } from "interfaces";
 
 export const CompanyList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<ICompany>({
+    const { tableProps, sorters: sorter } = useTable<ICompany>({
         initialSorter: [
             {
                 field: "id",

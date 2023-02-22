@@ -30,7 +30,7 @@ const App: React.FC = () => {
                         {
                             name: "repos/refinedev/refine/commits",
                             list: PostsList,
-                            options: {
+                            meta: {
                                 label: "Commits",
                             },
                         },

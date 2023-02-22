@@ -26,13 +26,15 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
     const { mutate: mutateDelete } = useDelete();
 
     const { dataGridProps } = useDataGrid<ICourier>({
-        initialPageSize: 10,
         initialSorter: [
             {
                 field: "id",
                 order: "desc",
             },
         ],
+        pagination: {
+            pageSize: 10,
+        },
     });
 
     const columns = React.useMemo<GridColumns<ICourier>>(

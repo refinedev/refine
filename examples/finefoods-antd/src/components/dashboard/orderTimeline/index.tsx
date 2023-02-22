@@ -25,19 +25,20 @@ export const OrderTimeline: React.FC = () => {
     const t = useTranslate();
     const { show } = useNavigation();
 
-    const { listProps } = useSimpleList<IOrder>({
-        resource: "orders",
-        initialSorter: [
-            {
-                field: "createdAt",
-                order: "desc",
+    const //Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.,
+        { listProps } = useSimpleList<IOrder>({
+            resource: "orders",
+            initialSorter: [
+                {
+                    field: "createdAt",
+                    order: "desc",
+                },
+            ],
+            pagination: {
+                pageSize: 6,
             },
-        ],
-        pagination: {
-            pageSize: 6,
-        },
-        syncWithLocation: false,
-    });
+            syncWithLocation: false,
+        });
 
     const { dataSource } = listProps;
 

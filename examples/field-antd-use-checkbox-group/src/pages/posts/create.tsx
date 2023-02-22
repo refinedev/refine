@@ -15,7 +15,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { checkboxGroupProps: tagsCheckboxGroupProps } =
         useCheckboxGroup<ITag>({
             resource: "tags",
-            sort: [
+            sorters: [
                 {
                     field: "title",
                     order: "asc",

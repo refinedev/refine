@@ -58,13 +58,11 @@ export const useEnrichedLineItems = (
 
     const { data: productData } = useList<Product>({
         resource: "products",
-        config: {
-            filters,
-        },
         queryOptions: {
             enabled: !!lineItems || !!cart?.items?.length,
             keepPreviousData: true,
         },
+        filters,
     });
     const products = productData?.data;
 

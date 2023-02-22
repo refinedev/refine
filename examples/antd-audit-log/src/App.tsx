@@ -71,7 +71,7 @@ const App: React.FC = () => {
                     edit: PostEdit,
                     show: PostShow,
                     canDelete: true,
-                    options: {
+                    meta: {
                         auditLog: {
                             permissions: ["create", "delete", "update"],
                         },

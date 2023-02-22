@@ -11,11 +11,9 @@ export const PostList: React.FC = () => {
 
     const { data } = useList<IPost>({
         resource: "posts",
-        config: {
-            pagination: {
-                current: page,
-                pageSize: PAGE_SIZE,
-            },
+        pagination: {
+            current: page,
+            pageSize: PAGE_SIZE,
         },
     });
 

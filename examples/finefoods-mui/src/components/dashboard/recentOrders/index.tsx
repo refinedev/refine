@@ -29,7 +29,6 @@ export const RecentOrders: React.FC = () => {
                 order: "desc",
             },
         ],
-        initialPageSize: 4,
         permanentFilter: [
             {
                 field: "status.text",
@@ -38,6 +37,9 @@ export const RecentOrders: React.FC = () => {
             },
         ],
         syncWithLocation: false,
+        pagination: {
+            pageSize: 4,
+        },
     });
 
     const columns = React.useMemo<GridColumns<IOrder>>(

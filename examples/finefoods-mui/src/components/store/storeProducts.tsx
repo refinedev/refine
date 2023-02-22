@@ -45,8 +45,10 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
     const { tableQueryResult, setFilters, setCurrent, filters, pageCount } =
         useTable<IProduct>({
             resource: "products",
-            initialPageSize: 12,
             syncWithLocation: false,
+            pagination: {
+                pageSize: 12,
+            },
         });
 
     const createDrawerFormProps = useModalForm<IProduct, HttpError, IProduct>({

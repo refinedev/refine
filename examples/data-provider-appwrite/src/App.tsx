@@ -76,7 +76,7 @@ const App: React.FC = () => {
                     list: PostsList,
                     edit: PostsEdit,
                     show: PostsShow,
-                    options: {
+                    meta: {
                         label: "Post",
                     },
                 },

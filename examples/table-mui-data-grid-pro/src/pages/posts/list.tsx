@@ -11,8 +11,6 @@ import { ICategory, IPost } from "interfaces";
 
 export const PostsList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>({
-        initialCurrent: 2,
-        initialPageSize: 10,
         initialSorter: [
             {
                 field: "title",
@@ -36,6 +34,10 @@ export const PostsList: React.FC = () => {
             },
         ],
         syncWithLocation: true,
+        pagination: {
+            current: 2,
+            pageSize: 10,
+        },
     });
 
     const {
