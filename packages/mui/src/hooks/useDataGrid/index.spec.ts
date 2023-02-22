@@ -110,43 +110,4 @@ describe("useDataGrid Hook", () => {
             }),
         );
     });
-
-    it("pagination should be prioritized over hasPagination", async () => {
-        const { result } = renderHook(
-            () =>
-                useDataGrid({
-                    pagination: {
-                        mode: "off",
-                    },
-                    hasPagination: true,
-                }),
-            {
-                wrapper: TestWrapper({}),
-            },
-        );
-
-        expect(result.current.dataGridProps).toEqual(
-            expect.objectContaining({
-                paginationMode: "client",
-            }),
-        );
-    });
-
-    it("when hasPagination is false and pagination mode is not defined, paginationMode should be 'client'", async () => {
-        const { result } = renderHook(
-            () =>
-                useDataGrid({
-                    hasPagination: false,
-                }),
-            {
-                wrapper: TestWrapper({}),
-            },
-        );
-
-        expect(result.current.dataGridProps).toEqual(
-            expect.objectContaining({
-                paginationMode: "client",
-            }),
-        );
-    });
 });

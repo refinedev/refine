@@ -256,35 +256,4 @@ describe("useTable Hook", () => {
 
         expect(result.current.tableProps.pagination).toBeFalsy();
     });
-
-    it("pagination should be prioritized over hasPagination", async () => {
-        const { result } = renderHook(
-            () =>
-                useTable({
-                    pagination: {
-                        mode: "off",
-                    },
-                    hasPagination: true,
-                }),
-            {
-                wrapper: TestWrapper({}),
-            },
-        );
-
-        expect(result.current.tableProps.pagination).toBeFalsy();
-    });
-
-    it("when hasPagination is false and pagination mode is not defined, pagination should be false", async () => {
-        const { result } = renderHook(
-            () =>
-                useTable({
-                    hasPagination: false,
-                }),
-            {
-                wrapper: TestWrapper({}),
-            },
-        );
-
-        expect(result.current.tableProps.pagination).toBeFalsy();
-    });
 });

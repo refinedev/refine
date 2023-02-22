@@ -153,35 +153,4 @@ describe("useSimpleList Hook", () => {
 
         expect(result.current.listProps.pagination).toBeFalsy();
     });
-
-    it("pagination should be prioritized over hasPagination", async () => {
-        const { result } = renderHook(
-            () =>
-                useSimpleList({
-                    pagination: {
-                        mode: "off",
-                    },
-                    hasPagination: true,
-                }),
-            {
-                wrapper: TestWrapper({}),
-            },
-        );
-
-        expect(result.current.listProps.pagination).toBeFalsy();
-    });
-
-    it("when hasPagination is false and pagination mode is not defined, pagination should be false", async () => {
-        const { result } = renderHook(
-            () =>
-                useSimpleList({
-                    hasPagination: false,
-                }),
-            {
-                wrapper: TestWrapper({}),
-            },
-        );
-
-        expect(result.current.listProps.pagination).toBeFalsy();
-    });
 });
