@@ -2,9 +2,17 @@ export const checkPackage = (code = "") => {
     const set = new Set<string>();
 
     const hasAntd =
-        code.includes("@pankod/refine-antd") || code.includes("RefineAntd");
+        code.includes("@pankod/refine-antd") ||
+        code.includes("RefineAntd") ||
+        code.includes(`from "antd"`);
     const hasMui =
-        code.includes("@pankod/refine-mui") || code.includes("RefineMui");
+        code.includes("@pankod/refine-mui") ||
+        code.includes("RefineMui") ||
+        code.includes("@emotion/react") ||
+        code.includes("@emotion/styled") ||
+        code.includes("@mui/lab") ||
+        code.includes("@mui/material") ||
+        code.includes("@mui/x-data-grid");
     const hasMantine =
         code.includes("@pankod/refine-mantine") ||
         code.includes("RefineMantine");

@@ -2,6 +2,13 @@ import React from "react";
 import type { RefineProps } from "@pankod/refine-core";
 import { RefineCommonScope } from "./common";
 import * as RefineMui from "@pankod/refine-mui";
+
+import * as EmotionReact from "@emotion/react";
+import * as EmotionStyled from "@emotion/styled";
+import * as MuiLab from "@mui/lab";
+import * as MuiMaterial from "@mui/material";
+import * as MuiXDataGrid from "@mui/x-data-grid";
+
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 
@@ -49,6 +56,11 @@ const MuiScope = {
     // ...RefineCommonScope,
     RefineMuiDemo,
     RefineMui,
+    EmotionReact,
+    EmotionStyled,
+    MuiLab,
+    MuiMaterial,
+    MuiXDataGrid,
     // RefineMantine,
     // RefineMantineDemo,
     // RefineChakra,
