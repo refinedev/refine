@@ -1,6 +1,9 @@
 import { pickNotDeprecated } from "@definitions/helpers/pickNotDeprecated";
 import { IResourceItem, ITreeMenu, IMenuItem } from "src/interfaces";
 
+/**
+ * @deprecated This helper is deprecated. Please use `createTree` instead.
+ */
 export const createTreeView = (
     resources: IResourceItem[] | IMenuItem[],
 ): ITreeMenu[] | ITreeMenu[] => {

@@ -1,21 +1,31 @@
 import React from "react";
+import { useTranslate, useResource } from "..";
+import { userFriendlyResourceName, pickNotDeprecated } from "@definitions";
+import { useRouterType } from "../../contexts/router-picker";
+import { createResourceKey } from "../../definitions/helpers/menu/create-resource-key";
+import { useGetToPath } from "../router/use-get-to-path/index";
+import { getParentResource } from "@definitions/helpers/router";
 import {
-    useRefineContext,
-    useTranslate,
-    useResource,
-    useRouterContext,
-} from "..";
-import { IMenuItem, ITreeMenu } from "../../interfaces";
-import {
-    userFriendlyResourceName,
-    createTreeView,
-    pickNotDeprecated,
-} from "@definitions";
+    FlatTreeItem,
+    createTree,
+} from "@definitions/helpers/menu/create-tree";
 
-type useMenuReturnType = {
+type UseMenuReturnType = {
     defaultOpenKeys: string[];
-    selectedKey: string;
-    menuItems: ITreeMenu[];
+    selectedKey: string | undefined;
+    menuItems: TreeMenuItem[];
+};
+
+export type UseMenuProps = {
+    meta?: Record<string, any>;
+    hideOnMissingParameter?: boolean;
+};
+
+export type TreeMenuItem = FlatTreeItem & {
+    route?: string;
+    icon?: React.ReactNode;
+    label?: string;
+    children: TreeMenuItem[];
 };
 
 /**
@@ -26,132 +36,97 @@ type useMenuReturnType = {
  *
  * @see {@link https://refine.dev/docs/core/hooks/ui/useMenu} for more details.
  */
-export const useMenu: () => useMenuReturnType = () => {
-    const { resources } = useResource();
+export const useMenu = (
+    { meta, hideOnMissingParameter }: UseMenuProps = {
+        hideOnMissingParameter: true,
+    },
+): UseMenuReturnType => {
     const translate = useTranslate();
 
-    const { useLocation, useParams } = useRouterContext();
-    const location = useLocation();
-    const params = useParams<{ resource: string }>();
+    const getToPath = useGetToPath();
+    const routerType = useRouterType();
+    const { resource, resources } = useResource();
 
-    const { hasDashboard } = useRefineContext();
+    const selectedKey = resource ? createResourceKey(resource, resources) : "";
 
-    const selectedKey = React.useMemo(() => {
-        let selectedResource = resources.find(
-            (el) => location?.pathname === `/${el.route}`,
-        );
-
-        if (!selectedResource) {
-            selectedResource = resources.find(
-                (el) => params?.resource === (el.route as string),
-            );
+    const defaultOpenKeys = React.useMemo(() => {
+        if (!resource) return [];
+        let parent = getParentResource(resource, resources);
+        const keys = [createResourceKey(resource, resources)];
+        while (parent) {
+            keys.push(createResourceKey(parent, resources));
+            parent = getParentResource(parent, resources);
         }
+        return keys;
+    }, []);
 
-        let _selectedKey: string;
-        if (selectedResource?.route) {
-            _selectedKey = `/${selectedResource?.route}`;
-        } else if (location.pathname === "/") {
-            _selectedKey = "/";
-        } else {
-            _selectedKey = location?.pathname;
-        }
-        return _selectedKey;
-    }, [resources, location, params]);
+    const prepareItem = React.useCallback(
+        (item: FlatTreeItem): TreeMenuItem | undefined => {
+            if (item?.meta?.hide ?? item?.options?.hide) return undefined;
+            if (!item?.list && item.children.length === 0) return undefined;
 
-    const treeMenuItems: IMenuItem[] = React.useMemo(
-        () =>
-            resources.map((resource) => {
-                const route = `/${resource.route}`;
+            const composed = item.list
+                ? getToPath({
+                      resource: item,
+                      action: "list",
+                      legacy: routerType === "legacy",
+                      meta,
+                  })
+                : undefined;
 
-                return {
-                    ...resource,
-                    icon: resource.icon,
-                    route: route,
-                    key: resource.key ?? route,
-                    label:
-                        resource.label ??
-                        translate(
-                            `${resource.name}.${resource.name}`,
-                            userFriendlyResourceName(resource.name, "plural"),
-                        ),
-                };
-            }),
-        [resources, hasDashboard, translate],
-    );
-    const menuItems: ITreeMenu[] = React.useMemo(
-        () => createTreeView(treeMenuItems),
-        [treeMenuItems],
-    );
+            if (
+                hideOnMissingParameter &&
+                composed &&
+                composed.match(/(\/|^):(.+?)(\/|$){1}/)
+            )
+                return undefined;
 
-    const crawlNestedKeys = React.useCallback(
-        (
-            currentKey: string,
-            currentResources: typeof resources,
-            isParent = false,
-        ): string[] => {
-            const currentElement = currentResources.find((el) =>
-                isParent ? el.name === currentKey : el.route === currentKey,
-            );
-
-            if (currentElement) {
-                const keysArray: string[] = [];
-
-                if (isParent && currentElement.route) {
-                    keysArray.unshift(...[currentElement.route]);
-                }
-
-                if (currentElement.parentName) {
-                    keysArray.unshift(
-                        ...crawlNestedKeys(
-                            currentElement.parentName,
-                            currentResources,
-                            true,
-                        ),
-                    );
-                }
-                return keysArray;
-            }
-
-            return [];
+            return {
+                ...item,
+                route: composed,
+                icon: pickNotDeprecated(
+                    item.meta?.icon,
+                    item.options?.icon,
+                    item.icon,
+                ),
+                label:
+                    pickNotDeprecated(
+                        item?.meta?.label,
+                        item?.options?.label,
+                    ) ??
+                    translate(
+                        `${item.name}.${item.name}`,
+                        userFriendlyResourceName(item.name, "plural"),
+                    ),
+            };
         },
-        [],
+        [routerType, meta, hideOnMissingParameter],
     );
 
-    const defaultOpenKeys = React.useMemo(
-        () => crawlNestedKeys(selectedKey, treeMenuItems),
-        [selectedKey, treeMenuItems],
-    );
+    const treeItems = React.useMemo(() => {
+        const treeMenuItems = createTree(resources);
 
-    const values = React.useMemo(() => {
-        const filterMenuItemsByListViewAndHideOption = (
-            menus: ITreeMenu[],
-        ): ITreeMenu[] => {
-            return menus.reduce((menuItem: ITreeMenu[], obj) => {
-                const meta = pickNotDeprecated(obj?.meta, obj?.options);
+        // add paths to items and their nodes recursively
+        const prepare = (items: TreeMenuItem[]): TreeMenuItem[] => {
+            return items.flatMap((item) => {
+                const preparedNodes = prepare(item.children);
+                const newItem = prepareItem({
+                    ...item,
+                    children: preparedNodes,
+                });
 
-                if (obj.children.length > 0 && meta?.hide !== true)
-                    return [
-                        ...menuItem,
-                        {
-                            ...obj,
-                            children: filterMenuItemsByListViewAndHideOption(
-                                obj.children,
-                            ),
-                        },
-                    ];
-                else if (typeof obj.list !== "undefined" && meta?.hide !== true)
-                    return [...menuItem, obj];
+                if (!newItem) return [];
 
-                return menuItem;
-            }, []);
+                return [newItem];
+            });
         };
 
-        return {
-            defaultOpenKeys,
-            selectedKey,
-            menuItems: filterMenuItemsByListViewAndHideOption(menuItems),
-        };
-    }, [defaultOpenKeys, selectedKey, menuItems]);
+        return prepare(treeMenuItems);
+    }, [resources]);
 
-    return values;
+    return {
+        defaultOpenKeys,
+        selectedKey,
+        menuItems: treeItems,
+    };
 };

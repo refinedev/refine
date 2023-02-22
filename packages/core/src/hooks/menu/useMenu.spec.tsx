@@ -3,33 +3,8 @@ import { renderHook } from "@testing-library/react";
 import { TestWrapper, mockRouterBindings } from "@test";
 
 import { useMenu } from ".";
-import { IResourceItem } from "src/interfaces";
-import { routeGenerator } from "@definitions/helpers";
+import { legacyResourceTransform } from "@definitions/helpers";
 import React from "react";
-
-const prepareResources = (items: IResourceItem[]): IResourceItem[] => {
-    const resources: IResourceItem[] = [];
-    items?.map((resource) => {
-        resources.push({
-            key: resource.key,
-            name: resource.name,
-            label: resource.meta?.label,
-            icon: resource.icon,
-            route: resource.meta?.route ?? routeGenerator(resource, items),
-            canCreate: !!resource.create,
-            canEdit: !!resource.edit,
-            canShow: !!resource.show,
-            canDelete: resource.canDelete,
-            create: resource.create,
-            show: resource.show,
-            list: resource.list,
-            edit: resource.edit,
-            meta: resource.meta,
-            parentName: resource.parentName,
-        });
-    });
-    return resources;
-};
 
 describe("useMenu Hook", () => {
     it("should be empty by default", async () => {
@@ -114,7 +89,7 @@ describe("useMenu Hook", () => {
         );
     });
 
-    it("should have the selectedKey = `/posts/create`", async () => {
+    it("should have the selectedKey = `posts`", async () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({
                 routerProvider: mockRouterBindings({
@@ -127,7 +102,7 @@ describe("useMenu Hook", () => {
             }),
         });
 
-        expect(result.current.selectedKey).toEqual("/posts/create");
+        expect(result.current.selectedKey).toEqual("posts");
     });
 
     it("should have the defaultOpenKeys = [/CMS]", async () => {
@@ -137,16 +112,22 @@ describe("useMenu Hook", () => {
                     pathname: "/CMS/posts",
                     resource: {
                         name: "posts",
+                        parentName: "CMS",
+                        options: {
+                            route: "asdasd",
+                        },
                     },
                 }),
-                resources: prepareResources([
+                resources: legacyResourceTransform([
                     {
                         name: "CMS",
                     },
                     {
                         name: "posts",
                         parentName: "CMS",
-                        route: "asdasd",
+                        options: {
+                            route: "asdasd",
+                        },
                     },
                     {
                         name: "categories",
@@ -166,7 +147,7 @@ describe("useMenu Hook", () => {
         });
 
         expect(result.current.defaultOpenKeys).toEqual(
-            expect.arrayContaining(["/CMS"]),
+            expect.arrayContaining(["CMS", "CMS/posts"]),
         );
     });
 
@@ -177,16 +158,25 @@ describe("useMenu Hook", () => {
                     pathname: "/CMS/categories/else-new",
                     resource: {
                         name: "posts",
+                        parentName: "categories",
+                        meta: {
+                            label: "else-new",
+                            route: "else-new",
+                        },
+                        list: () => null,
+                        canDelete: true,
                     },
                 }),
-                resources: prepareResources([
+                resources: legacyResourceTransform([
                     {
                         name: "CMS",
                     },
                     {
                         name: "posts",
                         parentName: "CMS",
-                        route: "asdasd",
+                        options: {
+                            route: "asdasd",
+                        },
                     },
                     {
                         name: "categories",
@@ -199,6 +189,7 @@ describe("useMenu Hook", () => {
                             label: "else-new",
                             route: "else-new",
                         },
+                        list: () => null,
                         canDelete: true,
                     },
                 ]),
@@ -206,14 +197,18 @@ describe("useMenu Hook", () => {
         });
 
         expect(result.current.defaultOpenKeys).toEqual(
-            expect.arrayContaining(["/CMS", "/CMS/categories"]),
+            expect.arrayContaining([
+                "CMS",
+                "CMS/categories",
+                "CMS/categories/posts",
+            ]),
         );
     });
 
     it("should tree view render all except hide true", async () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({
-                resources: prepareResources([
+                resources: legacyResourceTransform([
                     {
                         name: "visible",
                         list: function list() {
@@ -282,7 +277,7 @@ describe("useMenu Hook", () => {
     it("should hide all necessary resources with nested structure", async () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({
-                resources: prepareResources([
+                resources: legacyResourceTransform([
                     {
                         name: "visible",
                         list: function list() {
@@ -354,6 +349,71 @@ describe("useMenu Hook", () => {
                 expect.objectContaining({
                     name: "categories",
                 }),
+            ]),
+        );
+    });
+
+    it("should create `to` property by checking the existing meta and params", () => {
+        const { result } = renderHook(
+            () =>
+                useMenu({
+                    hideOnMissingParameter: true,
+                    meta: { repoId: "2" },
+                }),
+            {
+                wrapper: TestWrapper({
+                    routerProvider: mockRouterBindings({
+                        params: {
+                            orgId: "1",
+                        },
+                    }),
+                    resources: legacyResourceTransform([
+                        {
+                            name: "projects",
+                            list: ":orgId/repos/:repoId/projects",
+                        },
+                    ]),
+                }),
+            },
+        );
+
+        expect(result.current.menuItems).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    name: "projects",
+                    route: "/1/repos/2/projects",
+                }),
+            ]),
+        );
+    });
+
+    it("should hide item if parameter is missing", async () => {
+        const { result } = renderHook(
+            () => useMenu({ hideOnMissingParameter: true }),
+            {
+                wrapper: TestWrapper({
+                    resources: legacyResourceTransform([
+                        {
+                            name: "visible",
+                            list: () => null,
+                        },
+                        {
+                            name: "org-users",
+                            list: "orgs/:orgId/users",
+                        },
+                    ]),
+                }),
+            },
+        );
+
+        expect(result.current.menuItems).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({ name: "visible" }),
+            ]),
+        );
+        expect(result.current.menuItems).toEqual(
+            expect.not.arrayContaining([
+                expect.objectContaining({ name: "org-users" }),
             ]),
         );
     });
