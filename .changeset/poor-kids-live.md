@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-mui": patch
+"@pankod/refine-mui": major
 ---
 
 All `MUI` components re-exported by `refine` are removed. You should import them from `MUI` directly.
