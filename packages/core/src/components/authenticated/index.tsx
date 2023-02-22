@@ -2,7 +2,9 @@ import React from "react";
 
 import {
     useAuthenticated,
+    useGo,
     useNavigation,
+    useParsed,
     useRouterContext,
     useRouterType,
 } from "@hooks";
@@ -32,6 +34,8 @@ export const Authenticated: React.FC<AuthenticatedProps> = ({
     const { isSuccess, isLoading, isError } = useAuthenticated();
 
     const routerType = useRouterType();
+    const parsed = useParsed();
+    const go = useGo();
     const { replace } = useNavigation();
     const { useLocation } = useRouterContext();
     const { pathname, search } = useLocation();
@@ -47,6 +51,16 @@ export const Authenticated: React.FC<AuthenticatedProps> = ({
                 if (!pathname?.includes("/login")) {
                     replace(`/login?to=${encodeURIComponent(toURL)}`);
                 }
+            } else {
+                go({
+                    // needs to be adjusted by the return value of `checkAuth`
+                    to: "/login",
+                    query: parsed.params?.pathname
+                        ? {
+                              to: parsed.params?.pathname,
+                          }
+                        : {},
+                });
             }
             return null;
         }
