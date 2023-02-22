@@ -5,14 +5,9 @@ import {
     HttpError,
 } from "@pankod/refine-core";
 
-import {
-    Edit,
-    Form,
-    Input,
-    Upload,
-    useForm,
-    getValueFromEvent,
-} from "@pankod/refine-antd";
+import { Edit, useForm, getValueFromEvent } from "@pankod/refine-antd";
+
+import { Form, Input, Upload } from "antd";
 
 import { IUser, IUserVariable } from "interfaces";
 

@@ -6,14 +6,10 @@ import {
     useRouterContext,
     useShow,
 } from "@pankod/refine-core";
-import {
-    Button,
-    Typography,
-    Icons,
-    Spin,
-    Modal,
-    useModal,
-} from "@pankod/refine-antd";
+import { useModal } from "@pankod/refine-antd";
+
+import { LeftOutlined } from "@ant-design/icons";
+import { Button, Typography, Spin, Modal } from "antd";
 
 import { CanvasItem, DisplayCanvas } from "components/canvas";
 import { ColorSelect } from "components/color-select";
@@ -22,7 +18,6 @@ import { colors } from "utility";
 import { Canvas } from "types";
 import { LogList } from "components/logs";
 
-const { LeftOutlined } = Icons;
 const { Title } = Typography;
 
 export const CanvasShow: React.FC = () => {

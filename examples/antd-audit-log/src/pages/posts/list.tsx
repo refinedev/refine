@@ -2,19 +2,16 @@ import { useMany } from "@pankod/refine-core";
 
 import {
     List,
-    Table,
     TextField,
-    Space,
     EditButton,
     ShowButton,
     FilterDropdown,
-    Select,
-    Radio,
     TagField,
     getDefaultFilter,
     useTable,
     useSelect,
 } from "@pankod/refine-antd";
+import { Table, Space, Select, Radio } from "antd";
 import { LogButton } from "@pankod/refine-antd-audit-log";
 
 import { IPost, ICategory } from "interfaces";

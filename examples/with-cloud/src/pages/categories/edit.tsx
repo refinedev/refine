@@ -4,7 +4,9 @@ import {
     useNavigation,
     useResource,
 } from "@pankod/refine-core";
-import { Edit, Form, Input } from "@pankod/refine-antd";
+import { Edit } from "@pankod/refine-antd";
+
+import { Form, Input } from "antd";
 
 import { IProduct } from "interfaces";
 import { useCloudMutation } from "@pankod/refine-cloud";

@@ -68,6 +68,8 @@
         "@pankod/refine-mui": "^3.55.0",
         "@pankod/refine-react-hook-form": "^3.33.2",
         "@pankod/refine-react-table": "^4.9.0",
+        "antd": "^5.0.3",
+        "@ant-design/icons": "^5.0.1",
         "@types/react": "^17.0.0 || ^18.0.0",
         "@types/react-dom": "^17.0.0 || ^18.0.0",
         "dayjs": "^1.10.7",

@@ -56,7 +56,8 @@ export const UserCreate: React.FC = () => {
 
 ```tsx
 import React from "react";
-import { useForm, Form, Input } from "@pankod/refine-antd";
+import { useForm } from "@pankod/refine-antd";
+import { Form, Input } from "antd";
 
 export const UserCreate: React.FC = () => {
     const { formProps } = useForm();

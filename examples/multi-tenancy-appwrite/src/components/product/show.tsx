@@ -1,6 +1,8 @@
 import { useShow, IResourceComponentsProps } from "@pankod/refine-core";
 
-import { Show, Typography, Space, ImageField } from "@pankod/refine-antd";
+import { Show, ImageField } from "@pankod/refine-antd";
+
+import { Typography, Space } from "antd";
 
 import { IProduct } from "interfaces";
 

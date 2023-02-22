@@ -375,16 +375,14 @@ const App: React.FC = () => {
 +    TextField,
 +    TagField,
 +    DateField,
-+    Table,
 +    useTable,
-+    Space,
 +    EditButton,
 +    ShowButton,
 +    FilterDropdown,
-+    Select,
 +    useSelect,
 +    DeleteButton,
 +} from "@pankod/refine-antd";
++ import { Table, Space, Select } from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -683,16 +681,17 @@ import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
     List,
-    Table,
-    Form,
-    Space,
-    Button,
     SaveButton,
     EditButton,
-    Input,
     TextField,
     useEditableTable,
 } from "@pankod/refine-antd";
+import { Table,
+    Form,
+    Space,
+    Button,
+    Input
+} from "antd";
 
 import { IPost } from "interfaces";
 

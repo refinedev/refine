@@ -2,6 +2,7 @@ import React from "react";
 import type { RefineProps } from "@pankod/refine-core";
 import { RefineCommonScope } from "./common";
 import * as RefineAntd from "@pankod/refine-antd";
+import * as AntdCore from "antd";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
@@ -39,6 +40,7 @@ const AntdScope = {
     // ...RefineCommonScope,
     RefineAntdDemo,
     RefineAntd,
+    AntdCore,
     // RefineMuiDemo,
     // RefineMui,
     // RefineMantine,

@@ -66,7 +66,8 @@ In this tutorial, we will add filters capabilities to the `category` column. To 
 1. Open `src/pages/products/list.tsx` file and import the following components and hooks like below.
 
     ```tsx
-    import { FilterDropdown, Select, useSelect } from "@pankod/refine-antd";
+    import { FilterDropdown, useSelect } from "@pankod/refine-antd";
+    import { Select } from "antd";
     ```
 
 2. Call `useSelect` hook with `categories` resource to fill the `<Select/>` component with category options.

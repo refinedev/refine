@@ -19,14 +19,17 @@ import {
 } from "@pankod/refine-core";
 import {
     // highlight-start
-    Upload,
     getValueFromEvent,
     // highlight-end
     Create,
-    Form,
-    Input,
     useForm,
 } from "@pankod/refine-antd";
+import {
+    // highlight-next-line
+    Upload,
+    Form,
+    Input,
+} from "antd";
 
 export const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -185,14 +188,17 @@ import {
 } from "@pankod/refine-core";
 import {
     // highlight-start
-    Upload,
     getValueFromEvent,
     // highlight-end
     Edit,
-    Form,
-    Input,
     useForm,
 } from "@pankod/refine-antd";
+import {
+    // highlight-next-line
+    Upload,
+    Form,
+    Input,
+} from "antd";
 
 export const PostEdit: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -299,15 +305,13 @@ You may want to disable the "Save" button in the form while the upload is going 
 ```tsx title="pages/posts/create.tsx"
 import { useApiUrl } from "@pankod/refine-core";
 import {
-    Upload,
     getValueFromEvent,
     // highlight-next-line
     useFileUploadState,
     Create,
-    Form,
-    Input,
     useForm,
 } from "@pankod/refine-antd";
+import { Upload, Form, Input } from "antd";
 
 export const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();

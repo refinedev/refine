@@ -16,12 +16,12 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 ```tsx live
 // visible-block-start
 import {
-    Table,
     List,
     useTable,
     // highlight-next-line
     CloneButton,
 } from "@pankod/refine-antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -199,7 +199,7 @@ export const MyListComponent = () => {
         <CloneButton
             accessControl={{
                 enabled: true,
-                hideIfUnauthorized: true
+                hideIfUnauthorized: true,
             }}
         />
     );

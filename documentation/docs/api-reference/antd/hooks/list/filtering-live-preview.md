@@ -2,12 +2,8 @@
 setInitialRoutes(["/products"]);
 
 // visible-block-start
-import {
-    Typography,
-    AntdList,
-    useSimpleList,
-    Input,
-} from "@pankod/refine-antd";
+import { useSimpleList } from "@pankod/refine-antd";
+import { Typography, List, Input } from "antd";
 
 const { Text } = Typography;
 
@@ -43,7 +39,7 @@ const ProductList: React.FC = () => {
                     ]);
                 }}
             />
-            <AntdList {...listProps} renderItem={renderItem} />
+            <List {...listProps} renderItem={renderItem} />
         </div>
     );
 };
@@ -52,9 +48,9 @@ const renderItem = (item: IProduct) => {
     const { id, name, description, price } = item;
 
     return (
-        <AntdList.Item actions={[<Text key={id}>{price}</Text>]}>
-            <AntdList.Item.Meta title={name} description={description} />
-        </AntdList.Item>
+        <List.Item actions={[<Text key={id}>{price}</Text>]}>
+            <List.Item.Meta title={name} description={description} />
+        </List.Item>
     );
 };
 // visible-block-end

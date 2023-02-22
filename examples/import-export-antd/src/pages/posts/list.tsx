@@ -7,8 +7,6 @@ import {
 import {
     useTable,
     useImport,
-    Space,
-    Table,
     EditButton,
     ShowButton,
     List,
@@ -16,6 +14,8 @@ import {
     ExportButton,
     ImportButton,
 } from "@pankod/refine-antd";
+
+import { Space, Table } from "antd";
 
 import { IPost, ICategory, IPostFile } from "interfaces";
 

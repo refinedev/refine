@@ -7,15 +7,14 @@ import {
 import {
     useTable,
     List,
-    Table,
-    Space,
     EditButton,
     ShowButton,
     MarkdownField,
     FilterDropdown,
     useSelect,
-    Select,
 } from "@pankod/refine-antd";
+
+import { Table, Space, Select } from "antd";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable({

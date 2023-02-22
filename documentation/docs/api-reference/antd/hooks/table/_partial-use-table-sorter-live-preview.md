@@ -13,12 +13,12 @@ import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
 
 import {
     List,
-    Table,
     TagField,
     useTable,
     // highlight-next-line
     getDefaultSortOrder,
 } from "@pankod/refine-antd";
+import { Table } from "antd";
 
 interface IPost {
     id: number;

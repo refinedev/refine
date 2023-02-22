@@ -43,7 +43,8 @@ Now let's prepare a rule that checks if the titles of the posts are unique. We h
 import { useState } from "react";
 // highlight-start
 import { useApiUrl, useCustom, HttpError } from "@pankod/refine-core";
-import { useForm, Form, Create, Input } from "@pankod/refine-antd";
+import { useForm, Create } from "@pankod/refine-antd";
+import { Form, Input } from "antd";
 //highlight-end
 
 export const PostCreate = () => {

@@ -7,7 +7,9 @@ import {
     useRouterContext,
     useMenu,
 } from "@pankod/refine-core";
-import { AntdLayout, Menu, Grid, Icons, Badge } from "@pankod/refine-antd";
+
+import { UnorderedListOutlined } from "@ant-design/icons";
+import { Layout as AntdLayout, Menu, Grid, Badge } from "antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const CustomSider: React.FC = () => {
@@ -37,7 +39,7 @@ export const CustomSider: React.FC = () => {
                 return (
                     <SubMenu
                         key={route}
-                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
                         {renderTreeView(children, selectedKey)}
@@ -60,9 +62,7 @@ export const CustomSider: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={
-                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
-                        }
+                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
                         <Link to={route}>{label}</Link>
                         {label === "Posts" && (

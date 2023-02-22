@@ -9,7 +9,6 @@ title: Azure AD Login
 
 The Microsoft Authentication Library (MSAL) enables developers to acquire security tokens from the Microsoft identity platform to authenticate users and access secured web APIs. It can be used to provide secure access to Microsoft Graph, other Microsoft APIs, third-party web APIs, or your own web API. MSAL supports many different application architectures and platforms including .NET, JavaScript, Java, Python, Android, and iOS.
 
-
 :::tip
 We use Azure AD B2C in our example but authentication with Azure AD should be very similar.
 :::
@@ -27,8 +26,8 @@ npm install @azure/msal-browser @azure/msal-react
 Detailed documentation for using msal with react can be found here: [docs](https://learn.microsoft.com/en-us/azure/active-directory/develop/single-page-app-quickstart?pivots=devlang-react)
 
 ## Configure the MsalProvider component
-We've create config file in `src/config.ts` folder. This file contains the configuration for the msal library. You can find more information about the configuration options here: [docs](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-js-initializing-client-applications)
 
+We've create config file in `src/config.ts` folder. This file contains the configuration for the msal library. You can find more information about the configuration options here: [docs](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-js-initializing-client-applications)
 
 ```ts title="src/config.ts"
 import { Configuration, LogLevel } from "@azure/msal-browser";
@@ -126,33 +125,28 @@ root.render(
 );
 ```
 
-
 ## Override login page
+
 First, we need to override the refine login page. In this way, we will redirect it to the Azure AD login page. We create a `login.tsx` file in the `/src` folder.
 
 ```tsx title="src/login.tsx"
 import React from "react";
 import { useLogin } from "@pankod/refine-core";
-import { AntdLayout, Button } from "@pankod/refine-antd";
+import { Layout, Button } from "antd";
 
 const LoginPage = () => {
     const SignInButton = () => {
         const { mutate: login } = useLogin();
 
         return (
-            <Button
-                type="primary"
-                size="large"
-                block
-                onClick={() => login()}
-            >
+            <Button type="primary" size="large" block onClick={() => login()}>
                 Sign in
             </Button>
         );
     };
 
     return (
-        <AntdLayout
+        <Layout
             style={{
                 background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
                 backgroundSize: "cover",
@@ -166,14 +160,15 @@ const LoginPage = () => {
                     <SignInButton />
                 </div>
             </div>
-        </AntdLayout>
+        </Layout>
     );
-
 };
 
 export default LoginPage;
 ```
+
 ## Auth Provider
+
 In refine, authentication and authorization processes are performed with the auth provider. Let's write a provider for Azure AD.
 
 ```tsx title="src/App.tsx"
@@ -271,7 +266,7 @@ const App: React.FC = () => {
             resources={[
                 {
                     name: "posts",
-                }
+                },
             ]}
         />
     );

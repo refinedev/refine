@@ -276,7 +276,8 @@ We will create a select component in the Sider Menu where the user will select t
 
 ```tsx title="scr/components/select/StoreSelect.tsx"
 import { useContext } from "react";
-import { Select, useSelect } from "@pankod/refine-antd";
+import { useSelect } from "@pankod/refine-antd";
+import { Select } from "antd";
 
 import { StoreContext } from "context/store";
 import { IStore } from "interfaces";
@@ -335,7 +336,12 @@ import {
     ITreeMenu,
     useRouterContext,
 } from "@pankod/refine-core";
-import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
+import { Layout, Menu, Grid } from "antd";
+import {
+    UnorderedListOutlined,
+    AppstoreAddOutlined,
+    LoginOutlined,
+} from "@ant-design/icons";
 
 import { StoreSelect } from "components/select";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
@@ -359,7 +365,7 @@ export const CustomSider: React.FC = () => {
                 return (
                     <SubMenu
                         key={route}
-                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
                         {renderTreeView(children, selectedKey)}
@@ -381,9 +387,7 @@ export const CustomSider: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={
-                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
-                        }
+                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
                         <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
@@ -396,7 +400,7 @@ export const CustomSider: React.FC = () => {
     };
 
     return (
-        <AntdLayout.Sider
+        <Layout.Sider
             collapsible
             collapsedWidth={isMobile ? 0 : 80}
             collapsed={collapsed}
@@ -414,7 +418,7 @@ export const CustomSider: React.FC = () => {
                     }
                 }}
             >
-                <Menu.Item key={route} icon={<Icons.AppstoreAddOutlined />}>
+                <Menu.Item key={route} icon={<AppstoreAddOutlined />}>
                     <StoreSelect
                         onSelect={() => {
                             setCollapsed(true);
@@ -425,12 +429,12 @@ export const CustomSider: React.FC = () => {
                 <Menu.Item
                     key="logout"
                     onClick={() => logout()}
-                    icon={<Icons.LoginOutlined />}
+                    icon={<LoginOutlined />}
                 >
                     Logout
                 </Menu.Item>
             </Menu>
-        </AntdLayout.Sider>
+        </Layout.Sider>
     );
 };
 ```
@@ -468,12 +472,12 @@ import { useContext } from "react";
 import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
 import {
     useSimpleList,
-    AntdList,
     useModalForm,
     useDrawerForm,
     CreateButton,
     List,
 } from "@pankod/refine-antd";
+import { List as AntdList } from "antd";
 
 import { IProduct } from "interfaces";
 
@@ -561,8 +565,8 @@ const [store, setStore] = useContext(StoreContext);
 ```tsx title="CreateProduct"
 import { useContext } from "react";
 import { useApiUrl } from "@pankod/refine-core";
+import { Create } from "@pankod/refine-antd";
 import {
-    Create,
     Drawer,
     DrawerProps,
     Form,
@@ -571,7 +575,7 @@ import {
     ButtonProps,
     Upload,
     Grid,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { StoreContext } from "context/store";
 

@@ -87,7 +87,7 @@ So, we just provided a custom [`<Sider>`][sider]. Here's our custom sider that l
 
 ```tsx title="/src/components/sider/index.tsx"
 import { useTitle, useMenu } from "@pankod/refine-core";
-import { Menu } from "@pankod/refine-antd";
+import { Menu } from "antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 const { Link } = routerProvider;

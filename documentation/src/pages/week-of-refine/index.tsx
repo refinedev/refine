@@ -128,35 +128,35 @@ const RefineWeek = () => {
             <Head title="Week of Refine | refine">
                 <html data-page="week-of-refine" data-customized="true" />
             </Head>
-            <div className="pt-0 pb-24 lg:pb-48 md:pt-12 lg:pt-24 relative px-2 md:px-4 lg:px-0">
+            <div className="relative px-2 pt-0 pb-24 md:px-4 md:pt-12 lg:px-0 lg:pb-48 lg:pt-24">
                 <div className="font-montserrat flex flex-col">
-                    <div className="flex flex-col-reverse md:flex-row h-auto lg:h-[432px] max-w-[904px] mx-auto">
-                        <div className="flex flex-col justify-center items-center md:items-start">
+                    <div className="mx-auto flex h-auto max-w-[904px] flex-col-reverse md:flex-row lg:h-[432px]">
+                        <div className="flex flex-col items-center justify-center md:items-start">
                             <div className="flex items-center gap-2">
                                 <img
                                     src="/week-of-refine/refine-week-calendar.png"
                                     alt="Refine week calendar logo"
-                                    className="block w-[48px] h-[48px]"
+                                    className="block h-[48px] w-[48px]"
                                 />
                                 <img
                                     src="/week-of-refine/refine-week-ft-supabase.png"
                                     alt="Refine week ft. supabase logo"
-                                    className="block w-[160px] h-[46px]"
+                                    className="block h-[46px] w-[160px]"
                                 />
                             </div>
-                            <h2 className="font-montserrat text-[#242436] text-xl lg:text-[28px] lg:leading-9 font-medium mt-8 mb-0 max-w-[384px] text-center md:text-start">
+                            <h2 className="font-montserrat mt-8 mb-0 max-w-[384px] text-center text-xl font-medium text-[#242436] md:text-start lg:text-[28px] lg:leading-9">
                                 Stay tuned all week and learn the basics of
                                 creating a CRUD app via{" "}
                                 <strong className="font-bold">refine</strong> &{" "}
                                 <strong className="font-bold">supabase</strong>{" "}
                                 on a fun project in a week.
                             </h2>
-                            <div className="flex flex-col sm:flex-row gap-2 mt-4">
+                            <div className="mt-4 flex flex-col gap-2 sm:flex-row">
                                 <GradientButton onClick={goToTimeline}>
                                     Join Event
                                 </GradientButton>
                                 <LinkButton href={tweetUrl} variant="white">
-                                    <div className="w-[16px] h-[16px] mr-3">
+                                    <div className="mr-3 h-[16px] w-[16px]">
                                         <TwitterIcon
                                             color="#00AAEC"
                                             width="16"
@@ -173,7 +173,7 @@ const RefineWeek = () => {
                                 </LinkButton>
                             </div>
                         </div>
-                        <div className="flex-1 lg:translate-x-[80px] min-h-[318px]">
+                        <div className="min-h-[318px] flex-1 lg:translate-x-[80px]">
                             <img
                                 src="/week-of-refine/refine-week-pixel-logo.png"
                                 alt="Refine Pixel app logo"
@@ -188,12 +188,12 @@ const RefineWeek = () => {
                             className="flex items-center justify-center"
                         >
                             <TimelineIcon className="mr-2" />
-                            <h2 className="font-montserrat font-extrabold text-[#242436] tracking-wide text-3xl mb-0">
+                            <h2 className="font-montserrat mb-0 text-3xl font-extrabold tracking-wide text-[#242436]">
                                 TIMELINE
                             </h2>
                         </div>
 
-                        <div className="flex flex-col items-center gap-[2px] mt-8 pr-1 sm:pr-0">
+                        <div className="mt-8 flex flex-col items-center gap-[2px] pr-1 sm:pr-0">
                             {timeline.map((item, index) => {
                                 const { title, description, date, link } = item;
 
@@ -207,12 +207,12 @@ const RefineWeek = () => {
                                 return (
                                     <div
                                         key={index}
-                                        className="flex max-w-[384px] h-[285px]"
+                                        className="flex h-[285px] max-w-[384px]"
                                     >
                                         <div className="flex flex-col items-center">
                                             <div
                                                 className={clsx(
-                                                    "border-[2px] border-solid border-[#1890FF] rounded-full w-[10px] h-[10px] mt-[6px] mb-[6px]",
+                                                    "mt-[6px] mb-[6px] h-[10px] w-[10px] rounded-full border-[2px] border-solid border-[#1890FF]",
                                                     hasLink
                                                         ? "border-[#1890FF]"
                                                         : "border-[#C1C1C6]",
@@ -221,7 +221,7 @@ const RefineWeek = () => {
                                             {hasBorder && (
                                                 <div
                                                     className={clsx(
-                                                        " w-[2px] h-full rounded-sm",
+                                                        " h-full w-[2px] rounded-sm",
                                                         hasLink
                                                             ? "bg-[#1890FF]"
                                                             : "bg-[#C1C1C6]",
@@ -231,12 +231,12 @@ const RefineWeek = () => {
                                         </div>
 
                                         <div className="ml-4">
-                                            <div className="flex items-center h-[22px]">
-                                                <div className="font-medium text-[#96969E] text-xs">
+                                            <div className="flex h-[22px] items-center">
+                                                <div className="text-xs font-medium text-[#96969E]">
                                                     {date}
                                                 </div>
                                                 {hasNewBadge && (
-                                                    <div className="flex items-center justify-center border border-solid border-[#C2E5A7] bg-[#67BE23] rounded-[4px] text-white text-xs ml-2 w-[48px] h-[22px]">
+                                                    <div className="ml-2 flex h-[22px] w-[48px] items-center justify-center rounded-[4px] border border-solid border-[#C2E5A7] bg-[#67BE23] text-xs text-white">
                                                         NEW
                                                     </div>
                                                 )}
@@ -258,7 +258,7 @@ const RefineWeek = () => {
                                             </div>
                                             <div
                                                 className={clsx(
-                                                    "font-medium text-xs",
+                                                    "text-xs font-medium",
                                                     hasLink
                                                         ? "text-[#242436]"
                                                         : "text-[#C1C1C6]",
@@ -283,16 +283,16 @@ const RefineWeek = () => {
                         </div>
                     </div>
 
-                    <div className="flex flex-col items-center justify-center mt-24 mx-auto max-w-[1024px]">
+                    <div className="mx-auto mt-24 flex max-w-[1024px] flex-col items-center justify-center">
                         <div className="flex items-center justify-center">
-                            <div className="flex items-center justify-center w-[24px] h-[24px] mr-4 bg-[#00AAEC] rounded-full">
+                            <div className="mr-4 flex h-[24px] w-[24px] items-center justify-center rounded-full bg-[#00AAEC]">
                                 <TwitterIcon
                                     color="#ffffff"
                                     width="12"
                                     height="12"
                                 />
                             </div>
-                            <h2 className="font-montserrat tracking-wide text-3xl mb-0">
+                            <h2 className="font-montserrat mb-0 text-3xl tracking-wide">
                                 <span className="font-extrabold text-[#242436]">
                                     JOIN
                                 </span>{" "}
@@ -301,7 +301,7 @@ const RefineWeek = () => {
                                 </span>
                             </h2>
                         </div>
-                        <div className="grid grid-cols-1 mx-6 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8 min-w-full">
+                        <div className="mx-6 mt-8 grid min-w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                             {tweetIDs.map((id) => {
                                 return (
                                     <div key={id} className="w-full">
@@ -347,11 +347,11 @@ const RefineWeek = () => {
                     </div> */}
                 </div>
 
-                <div className="flex flex-col items-center justify-center mt-16 max-w-[800px] mx-auto">
-                    <h2 className="font-montserrat font-extrabold text-[#242436] tracking-wide text-3xl mb-0 text-center">
+                <div className="mx-auto mt-16 flex max-w-[800px] flex-col items-center justify-center">
+                    <h2 className="font-montserrat mb-0 text-center text-3xl font-extrabold tracking-wide text-[#242436]">
                         ADDITIONAL SOURCES
                     </h2>
-                    <div className="flex flex-wrap items-center justify-center mt-8 gap-4">
+                    <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
                         {additionalSources.map((item, index) => {
                             const { title, label, icon, color, link } = item;
 
@@ -364,13 +364,13 @@ const RefineWeek = () => {
                                     style={{
                                         backgroundColor: color,
                                     }}
-                                    className="flex justify-between items-center rounded-md px-3 py-4 w-[176px]"
+                                    className="flex w-[176px] items-center justify-between rounded-md px-3 py-4"
                                 >
-                                    <div className="font-montserrat text-white text-xs uppercase mr-2 text-center">
+                                    <div className="font-montserrat mr-2 text-center text-xs uppercase text-white">
                                         <div className="font-medium">
                                             {title}
                                         </div>
-                                        <div className="font-bold whitespace-nowrap">
+                                        <div className="whitespace-nowrap font-bold">
                                             {label}
                                         </div>
                                     </div>

@@ -1,11 +1,6 @@
 import { Refine } from "@pankod/refine-core";
-import {
-    BackTop,
-    AntdLayout,
-    Grid,
-    notificationProvider,
-    ErrorComponent,
-} from "@pankod/refine-antd";
+import { notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import { BackTop, Layout as AntdLayout, Grid } from "antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 

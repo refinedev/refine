@@ -349,16 +349,14 @@ import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
     List,
-    Table,
     useTable,
-    Space,
     EditButton,
     ShowButton,
     getDefaultSortOrder,
     FilterDropdown,
-    Select,
     useSelect,
 } from "@pankod/refine-antd";
+import { Table, Space, Select } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -452,16 +450,9 @@ We'll need a page for creating a new record in Supabase API. Copy and paste foll
 import { useState } from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import {
-    Create,
-    Form,
-    Input,
-    Select,
-    Upload,
-    useForm,
-    useSelect,
-    RcFile,
-} from "@pankod/refine-antd";
+import { Create, useForm, useSelect } from "@pankod/refine-antd";
+import { Form, Input, Select, Upload } from "antd";
+import { RcFile } from "antd/lib/upload/interface";
 
 import MDEditor from "@uiw/react-md-editor";
 
@@ -582,19 +573,14 @@ import React, { useState } from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
-    Alert,
-    Button,
     Edit,
-    Form,
-    Input,
     ListButton,
-    RcFile,
     RefreshButton,
-    Select,
-    Upload,
     useForm,
     useSelect,
 } from "@pankod/refine-antd";
+import { Alert, Button, Form, Input, Select, Upload } from "antd";
+import { RcFile } from "antd/lib/upload/interface";
 
 import MDEditor from "@uiw/react-md-editor";
 
@@ -786,7 +772,7 @@ Also, the `normalizeFile` function needed to be added to the `src/utility/normal
 <p>
 
 ```tsx title="src/utility/normalize.ts"
-import { UploadFile } from "@pankod/refine-antd";
+import { UploadFile } from "antd/lib/upload/interface";
 
 interface UploadResponse {
     url: string;
