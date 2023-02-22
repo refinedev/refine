@@ -1028,7 +1028,7 @@ const SampleList = () => {
 
     return (
         <RefineMui.List>
-            <RefineMui.DataGrid
+            <MuiXDataGrid.DataGrid
                 {...dataGridProps}
                 columns={columns}
                 autoHeight
@@ -1039,13 +1039,13 @@ const SampleList = () => {
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMui.ThemeProvider theme={RefineMui.LightTheme}>
-            <RefineMui.CssBaseline />
-            <RefineMui.GlobalStyles
+        <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
+            <MuiMaterial.CssBaseline />
+            <MuiMaterial.GlobalStyles
                 styles={{ html: { WebkitFontSmoothing: "auto" } }}
             />
             {children}
-        </RefineMui.ThemeProvider>
+        </MuiMaterial.ThemeProvider>
     );
 };
 ```

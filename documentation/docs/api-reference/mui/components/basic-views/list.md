@@ -13,8 +13,8 @@ We will show what `<List>` does using properties with examples.
 // visible-block-start
 import React from "react";
 import { useMany } from "@pankod/refine-core";
-import { List, useDataGrid } from "@pankod/refine-mui";
-import { DataGrid, DateField, GridColumns } from "@mui/x-data-grid";
+import { List, useDataGrid, DateField } from "@pankod/refine-mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const SampleList = () => {
     const { dataGridProps } = useDataGrid();
@@ -572,13 +572,13 @@ createButtonProps-type="[`CreateButtonProps`](https://refine.dev/docs/api-refere
 ```tsx live shared
 const Wrapper = ({ children }) => {
     return (
-        <RefineMui.ThemeProvider theme={RefineMui.LightTheme}>
-            <RefineMui.CssBaseline />
-            <RefineMui.GlobalStyles
+        <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
+            <MuiMaterial.CssBaseline />
+            <MuiMaterial.GlobalStyles
                 styles={{ html: { WebkitFontSmoothing: "auto" } }}
             />
             {children}
-        </RefineMui.ThemeProvider>
+        </MuiMaterial.ThemeProvider>
     );
 };
 ```
