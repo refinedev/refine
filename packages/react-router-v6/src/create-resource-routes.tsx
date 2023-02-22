@@ -39,7 +39,7 @@ export const createResourcePathWithAction = (
      */
     const nameSegment = `/${name}`;
     const actionSegment = `${
-        ["edit", "create", "clone"].includes(action) ? action : ""
+        ["edit", "create", "clone", "show"].includes(action) ? action : ""
     }`;
     const idSegment = `${
         ["edit", "show", "clone"].includes(action) ? ":id" : ""
