@@ -1,3 +1,6 @@
+import { TreeMenuItem } from "../hooks/menu/useMenu";
+import { IResourceItem } from "./bindings/resource";
+
 // contexts
 export * from "../contexts/data/IDataContext";
 export * from "../contexts/live/ILiveContext";
@@ -47,9 +50,6 @@ export * from "./metaData";
 //queryKeys
 export * from "./queryKey";
 
-//menuItem
-export * from "./menuItem";
-
 //metaData
 export * from "./live";
 
@@ -66,6 +66,13 @@ export interface Option {
     label: string;
     value: string;
 }
+
+export type ITreeMenu = TreeMenuItem;
+
+export type IMenuItem = IResourceItem & {
+    key: string;
+    route: string;
+};
 
 export * from "./auth";
 
