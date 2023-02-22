@@ -11,13 +11,8 @@ We'll show what `<Create>` does using properties with examples.
 ```tsx live hideCode url=http://localhost:3000/posts/create
 // visible-block-start
 import React from "react";
-import {
-    Create,
-    useAutocomplete,
-    TextField,
-    Autocomplete,
-    Box,
-} from "@pankod/refine-mui";
+import { Create, useAutocomplete } from "@pankod/refine-mui";
+import { Autocomplete, Box, TextField } from "@mui/material";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
 
 const SampleCreate = () => {
@@ -114,7 +109,14 @@ const SampleCreate = () => {
 };
 // visible-block-end
 
-render(<RefineMuiDemo initialRoutes={["/samples/create"]} resources={[ { name: "samples", create: SampleCreate, list: SampleList } ]} />)
+render(
+    <RefineMuiDemo
+        initialRoutes={["/samples/create"]}
+        resources={[
+            { name: "samples", create: SampleCreate, list: SampleList },
+        ]}
+    />,
+);
 ```
 
 :::info-tip Swizzle
@@ -129,7 +131,8 @@ It allows adding title inside the `<Create>` component. if you don't pass title 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create, Typography } from "@pankod/refine-mui";
+import { Create } from "@pankod/refine-mui";
+import { Typography } from "@mui/material";
 
 const CreatePage: React.FC = () => {
     return (
@@ -158,7 +161,7 @@ render(
                 create: CreatePage,
             },
         ]}
-    />
+    />,
 );
 ```
 
@@ -209,7 +212,11 @@ const App: React.FC = () => {
 };
 // visible-block-end
 
-render(<Wrapper><App /></Wrapper>);
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
 ```
 
 ### `saveButtonProps`
@@ -257,14 +264,15 @@ To customize the back button or to disable it, you can use the `goBack` property
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create, Button } from "@pankod/refine-mui";
+import { Create } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 import { useNavigation } from "@pankod/refine-core";
 
 const BackButton = () => {
     const { goBack } = useNavigation();
 
-    return <Button onClick={() => goBack()}>BACK!</Button>
-}
+    return <Button onClick={() => goBack()}>BACK!</Button>;
+};
 
 const PostCreate: React.FC = () => {
     return (
@@ -543,7 +551,8 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create, Button } from "@pankod/refine-mui";
+import { Create } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 
 const PostCreate: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -592,7 +601,8 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create, Button } from "@pankod/refine-mui";
+import { Create } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 
 const PostCreate: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -644,7 +654,8 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create, Button } from "@pankod/refine-mui";
+import { Create } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 
 const PostCreate: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -693,7 +704,8 @@ You can customize the wrapper element of the buttons at the footer by using the 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create, Button } from "@pankod/refine-mui";
+import { Create } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 
 const PostCreate: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -749,7 +761,8 @@ Use `headerButtons` or `footerButtons` instead.
 
 ```tsx title="src/pages/posts/create.tsx"
 // highlight-next-line
-import { Create, Button } from "@pankod/refine-mui";
+import { Create } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 
 export const CreatePage: React.FC = () => {
     return (
@@ -787,7 +800,8 @@ Use `headerProps` instead.
 
 ```tsx
 // highlight-next-line
-import { Create, Typography } from "@pankod/refine-mui";
+import { Create } from "@pankod/refine-mui";
+import { Typography } from "@mui/material";
 
 export const CreatePage: React.FC = () => {
     return (
@@ -830,13 +844,16 @@ Use `headerButtonProps` and `footerButtonProps` instead.
 const SampleList = () => {
     const { dataGridProps } = RefineMui.useDataGrid();
 
-    const { data: categoryData, isLoading: categoryIsLoading } = RefineCore.useMany({
-        resource: "categories",
-        ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
-        queryOptions: {
-            enabled: !!dataGridProps?.rows,
-        },
-    });
+    const { data: categoryData, isLoading: categoryIsLoading } =
+        RefineCore.useMany({
+            resource: "categories",
+            ids:
+                dataGridProps?.rows?.map((item: any) => item?.category?.id) ??
+                [],
+            queryOptions: {
+                enabled: !!dataGridProps?.rows,
+            },
+        });
 
     const columns = React.useMemo<GridColumns<any>>(
         () => [
@@ -883,18 +900,24 @@ const SampleList = () => {
 
     return (
         <RefineMui.List>
-            <RefineMui.DataGrid {...dataGridProps} columns={columns} autoHeight />
+            <RefineMui.DataGrid
+                {...dataGridProps}
+                columns={columns}
+                autoHeight
+            />
         </RefineMui.List>
     );
 };
 
-const Wrapper = ({children}) => {
+const Wrapper = ({ children }) => {
     return (
         <RefineMui.ThemeProvider theme={RefineMui.LightTheme}>
             <RefineMui.CssBaseline />
-            <RefineMui.GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+            <RefineMui.GlobalStyles
+                styles={{ html: { WebkitFontSmoothing: "auto" } }}
+            />
             {children}
         </RefineMui.ThemeProvider>
-    )
-}
+    );
+};
 ```

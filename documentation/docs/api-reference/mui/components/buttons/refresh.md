@@ -4,7 +4,6 @@ title: Refresh
 swizzle: true
 ---
 
-
 `<RefreshButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component to update the data shown on the page via the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 :::info-tip Swizzle
@@ -17,7 +16,8 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 // visible-block-start
 import { useShow } from "@pankod/refine-core";
 // highlight-next-line
-import { Show, Typography, Stack, RefreshButton } from "@pankod/refine-mui";
+import { Show, RefreshButton } from "@pankod/refine-mui";
+import { Typography, Stack } from "@mui/material";
 
 const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
@@ -27,11 +27,11 @@ const PostShow: React.FC = () => {
     return (
         <Show
             isLoading={isLoading}
-            headerButtons={(
-                    // highlight-start
-                    <RefreshButton />
-                    // highlight-end
-            )}
+            headerButtons={
+                // highlight-start
+                <RefreshButton />
+                // highlight-end
+            }
         >
             <Typography fontWeight="bold">Id</Typography>
             <Typography>{record?.id}</Typography>
@@ -53,7 +53,11 @@ render(
         resources={[
             {
                 name: "posts",
-                list: () => <RefineMui.List><p>Rest of the page here...</p></RefineMui.List>,
+                list: () => (
+                    <RefineMui.List>
+                        <p>Rest of the page here...</p>
+                    </RefineMui.List>
+                ),
                 show: PostShow,
             },
         ]}
@@ -183,4 +187,4 @@ render(
 
 :::tip External Props
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).
-:::         
+:::

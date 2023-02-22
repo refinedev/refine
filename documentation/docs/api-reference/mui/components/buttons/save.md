@@ -4,7 +4,6 @@ title: Save
 swizzle: true
 ---
 
-
 `<SaveButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses it for presantation purposes only. Some of the hooks that **refine** has adds features to this button.
 
 :::info-tip Swizzle
@@ -18,7 +17,8 @@ For example, let's add logic to the `<SaveButton>` component with the `saveButto
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
 // visible-block-start
 import { useForm } from "@pankod/refine-react-hook-form";
-import { Edit, Box, TextField } from "@pankod/refine-mui";
+import { Edit } from "@pankod/refine-mui";
+import { Box, TextField } from "@mui/material";
 
 const PostEdit: React.FC = () => {
     const {
@@ -117,4 +117,4 @@ render(
 
 :::tip External Props
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).
-::: 
+:::

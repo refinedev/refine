@@ -14,13 +14,12 @@ import React from "react";
 import { useShow, useOne } from "@pankod/refine-core";
 import {
     Show,
-    Stack,
-    Typography,
     NumberField,
     TextFieldComponent as TextField,
     MarkdownField,
     DateField,
 } from "@pankod/refine-mui";
+import { Stack, Typography } from "@mui/material";
 
 const SampleShow = () => {
     const { queryResult } = useShow();
@@ -69,7 +68,12 @@ const SampleShow = () => {
 };
 // visible-block-end
 
-render(<RefineMuiDemo initialRoutes={["/samples/show/123"]} resources={[ { name: "samples", show: SampleShow, list: SampleList } ]} />)
+render(
+    <RefineMuiDemo
+        initialRoutes={["/samples/show/123"]}
+        resources={[{ name: "samples", show: SampleShow, list: SampleList }]}
+    />,
+);
 ```
 
 :::info-tip Swizzle
@@ -84,7 +88,8 @@ It allows adding title inside the `<Show>` component. if you don't pass title pr
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Show, Typography } from "@pankod/refine-mui";
+import { Show } from "@pankod/refine-mui";
+import { Typography } from "@mui/material";
 
 const ShowPage: React.FC = () => {
     return (
@@ -113,7 +118,7 @@ render(
                 show: ShowPage,
             },
         ]}
-    />
+    />,
 );
 ```
 
@@ -164,7 +169,11 @@ const App: React.FC = () => {
 };
 // visible-block-end
 
-render(<Wrapper><App /></Wrapper>);
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
 ```
 
 ### `canDelete` and `canEdit`
@@ -208,7 +217,10 @@ const PostShow: React.FC = () => {
         <Show
             /* highlight-start */
             canDelete={permissionsData?.includes("admin")}
-            canEdit={permissionsData?.includes("editor") || permissionsData?.includes("admin")}
+            canEdit={
+                permissionsData?.includes("editor") ||
+                permissionsData?.includes("admin")
+            }
             /* highlight-end */
         >
             <p>Rest of your page here</p>
@@ -284,7 +296,11 @@ const App: React.FC = () => {
 };
 // visible-block-end
 
-render(<Wrapper><App /></Wrapper>);
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
 ```
 
 :::note
@@ -333,14 +349,15 @@ To customize the back button or to disable it, you can use the `goBack` property
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
 // visible-block-start
-import { Show, Button } from "@pankod/refine-mui";
+import { Show } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 import { useNavigation } from "@pankod/refine-core";
 
 const BackButton = () => {
     const { goBack } = useNavigation();
 
-    return <Button onClick={() => goBack()}>BACK!</Button>
-}
+    return <Button onClick={() => goBack()}>BACK!</Button>;
+};
 
 const PostShow: React.FC = () => {
     return (
@@ -619,7 +636,8 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
 // visible-block-start
-import { Show, Button } from "@pankod/refine-mui";
+import { Show } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 
 const PostShow: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -668,7 +686,8 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
 // visible-block-start
-import { Show, Button } from "@pankod/refine-mui";
+import { Show } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 
 const PostShow: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -720,7 +739,8 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
 // visible-block-start
-import { Show, Button } from "@pankod/refine-mui";
+import { Show } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 
 const PostShow: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -769,7 +789,8 @@ You can customize the wrapper element of the buttons at the footer by using the 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
 // visible-block-start
-import { Show, Button } from "@pankod/refine-mui";
+import { Show } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 
 const PostShow: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -815,7 +836,6 @@ render(
 );
 ```
 
-
 ### ~~`actionButtons`~~
 
 :::caution Deprecated
@@ -826,7 +846,8 @@ Use `headerButtons` or `footerButtons` instead.
 
 ```tsx title="src/pages/posts/show.tsx"
 // highlight-next-line
-import { Show, Button } from "@pankod/refine-mui";
+import { Show } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 
 export const ShowPage: React.FC = () => {
     return (
@@ -865,7 +886,8 @@ Use `headerProps` instead.
 ```tsx title="src/pages/posts/show.tsx"
 import { useShow } from "@pankod/refine-core";
 // highlight-next-line
-import { Show, Typography, Stack } from "@pankod/refine-mui";
+import { Show } from "@pankod/refine-mui";
+import { Typography, Stack } from "@mui/material";
 
 export const ShowPage: React.FC = () => {
     const { queryResult } = useShow<IPost>();
@@ -933,13 +955,16 @@ goBack-type="`ReactNode`"
 const SampleList = () => {
     const { dataGridProps } = RefineMui.useDataGrid();
 
-    const { data: categoryData, isLoading: categoryIsLoading } = RefineCore.useMany({
-        resource: "categories",
-        ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
-        queryOptions: {
-            enabled: !!dataGridProps?.rows,
-        },
-    });
+    const { data: categoryData, isLoading: categoryIsLoading } =
+        RefineCore.useMany({
+            resource: "categories",
+            ids:
+                dataGridProps?.rows?.map((item: any) => item?.category?.id) ??
+                [],
+            queryOptions: {
+                enabled: !!dataGridProps?.rows,
+            },
+        });
 
     const columns = React.useMemo<GridColumns<any>>(
         () => [
@@ -986,7 +1011,10 @@ const SampleList = () => {
                 renderCell: function render({ row }) {
                     return (
                         <>
-                            <RefineMui.ShowButton hideText recordItemId={row.id} />
+                            <RefineMui.ShowButton
+                                hideText
+                                recordItemId={row.id}
+                            />
                         </>
                     );
                 },
@@ -1000,18 +1028,24 @@ const SampleList = () => {
 
     return (
         <RefineMui.List>
-            <RefineMui.DataGrid {...dataGridProps} columns={columns} autoHeight />
+            <RefineMui.DataGrid
+                {...dataGridProps}
+                columns={columns}
+                autoHeight
+            />
         </RefineMui.List>
     );
 };
 
-const Wrapper = ({children}) => {
+const Wrapper = ({ children }) => {
     return (
         <RefineMui.ThemeProvider theme={RefineMui.LightTheme}>
             <RefineMui.CssBaseline />
-            <RefineMui.GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+            <RefineMui.GlobalStyles
+                styles={{ html: { WebkitFontSmoothing: "auto" } }}
+            />
             {children}
         </RefineMui.ThemeProvider>
-    )
-}
+    );
+};
 ```

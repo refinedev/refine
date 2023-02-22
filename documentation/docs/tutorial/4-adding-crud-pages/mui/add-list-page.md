@@ -34,12 +34,10 @@ import {
     ReadyPage,
     ErrorComponent,
     LightTheme,
-    CssBaseline,
-    GlobalStyles,
-    ThemeProvider,
     RefineSnackbarProvider,
     notificationProvider,
 } from "@pankod/refine-mui";
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
@@ -181,12 +179,10 @@ import {
     ReadyPage,
     ErrorComponent,
     LightTheme,
-    CssBaseline,
-    GlobalStyles,
-    ThemeProvider,
     RefineSnackbarProvider,
     notificationProvider,
 } from "@pankod/refine-mui";
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
