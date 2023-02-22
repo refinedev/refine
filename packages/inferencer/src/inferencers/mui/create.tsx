@@ -1,5 +1,10 @@
 import * as RefineMui from "@pankod/refine-mui";
 import * as RefineReactHookForm from "@pankod/refine-react-hook-form";
+import * as EmotionReact from "@emotion/react";
+import * as EmotionStyled from "@emotion/styled";
+import * as MuiLab from "@mui/lab";
+import * as MuiMaterial from "@mui/material";
+import * as MuiXDataGrid from "@mui/x-data-grid";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -40,7 +45,7 @@ export const renderer = ({
     );
     const imports: Array<ImportElement> = [
         ["Create", "@pankod/refine-mui"],
-        ["Box", "@pankod/refine-mui"],
+        ["Box", "@mui/material"],
         ["useForm", "@pankod/refine-react-hook-form"],
     ];
 
@@ -71,7 +76,7 @@ export const renderer = ({
     const renderRelationFields = (field: InferField) => {
         if (field.relation && field.resource) {
             imports.push(
-                ["Autocomplete", "@pankod/refine-mui"],
+                ["Autocomplete", "@mui/material"],
                 ["Controller", "@pankod/refine-react-hook-form"],
             );
             const variableName = getVariableName(
@@ -186,7 +191,7 @@ export const renderer = ({
                 return undefined;
             }
 
-            imports.push(["TextField", "@pankod/refine-mui"]);
+            imports.push(["TextField", "@mui/material"]);
 
             if (field.multiple) {
                 return undefined;
@@ -234,8 +239,8 @@ export const renderer = ({
     const booleanFields = (field: InferField) => {
         if (field.type === "boolean") {
             imports.push(
-                ["Checkbox", "@pankod/refine-mui"],
-                ["FormControlLabel", "@pankod/refine-mui"],
+                ["Checkbox", "@mui/material"],
+                ["FormControlLabel", "@mui/material"],
                 ["Controller", "@pankod/refine-react-hook-form"],
             );
 
@@ -333,13 +338,13 @@ export const renderer = ({
 
         return (
             <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-                <Box
+                <div
                     component="form"
                     sx={{ display: "flex", flexDirection: "column" }}
                     autoComplete="off"
                 >
                     ${renderedFields.join("")}
-                </Box>
+                </div>
             </Create>
         );
     };
@@ -358,6 +363,11 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
             "RefineReactHookForm",
             RefineReactHookForm,
         ],
+        ["@emotion/react", "EmotionReact", EmotionReact],
+        ["@emotion/styled", "EmotionStyled", EmotionStyled],
+        ["@mui/lab", "MuiLab", MuiLab],
+        ["@mui/material", "MuiMaterial", MuiMaterial],
+        ["@mui/x-data-grid", "MuiXDataGrid", MuiXDataGrid],
     ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,

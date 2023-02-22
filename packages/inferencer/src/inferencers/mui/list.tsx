@@ -1,4 +1,9 @@
 import * as RefineMui from "@pankod/refine-mui";
+import * as EmotionReact from "@emotion/react";
+import * as EmotionStyled from "@emotion/styled";
+import * as MuiLab from "@mui/lab";
+import * as MuiMaterial from "@mui/material";
+import * as MuiXDataGrid from "@mui/x-data-grid";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -40,8 +45,8 @@ export const renderer = ({
     const imports: Array<ImportElement> = [
         ["React", "react", true],
         ["useDataGrid", "@pankod/refine-mui"],
-        ["DataGrid", "@pankod/refine-mui"],
-        ["GridColumns", "@pankod/refine-mui"],
+        ["DataGrid", "@mui/x-data-grid"],
+        ["GridColumns", "@mui/x-data-grid"],
         ["EditButton", "@pankod/refine-mui"],
         ["ShowButton", "@pankod/refine-mui"],
         ["DeleteButton", "@pankod/refine-mui"],
@@ -726,7 +731,14 @@ export const renderer = ({
  */
 export const ListInferencer: InferencerResultComponent = createInferencer({
     type: "list",
-    additionalScope: [["@pankod/refine-mui", "RefineMui", RefineMui]],
+    additionalScope: [
+        ["@pankod/refine-mui", "RefineMui", RefineMui],
+        ["@emotion/react", "EmotionReact", EmotionReact],
+        ["@emotion/styled", "EmotionStyled", EmotionStyled],
+        ["@mui/lab", "MuiLab", MuiLab],
+        ["@mui/material", "MuiMaterial", MuiMaterial],
+        ["@mui/x-data-grid", "MuiXDataGrid", MuiXDataGrid],
+    ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
