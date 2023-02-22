@@ -18,6 +18,7 @@ import {
     BaseKey,
     Pagination,
     MetaQuery,
+    Prettify,
 } from "../../interfaces";
 import { pickNotDeprecated } from "@definitions/helpers";
 
@@ -67,11 +68,20 @@ export type UseSelectProps<TData, TError> = {
      * @type {  current?: number; pageSize?: number;}
      * @default `undefined`
      */
-    pagination?: Pagination;
+    pagination?: Prettify<
+        Omit<Pagination, "mode"> & {
+            /**
+             * Whether to use server side pagination or not.
+             * @default "off"
+             */
+            mode?: Pagination["mode"];
+        }
+    >;
     /**
      * Disabling pagination option from [`useList()`](/docs/api-reference/core/hooks/data/useList/)
      * @type boolean
      * @default `false`
+     * @deprecated `hasPagination` is deprecated, use `pagination.mode` instead.
      */
     hasPagination?: boolean;
     /**
