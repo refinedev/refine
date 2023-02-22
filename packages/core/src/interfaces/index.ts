@@ -1,4 +1,3 @@
-import { TreeMenuItem } from "../hooks/menu/useMenu";
 import { IResourceItem } from "./bindings/resource";
 
 // contexts
@@ -67,7 +66,11 @@ export interface Option {
     value: string;
 }
 
-export type ITreeMenu = TreeMenuItem;
+/* Backward compatible version of 'TreeMenuItem' */
+export type ITreeMenu = IResourceItem & {
+    key?: string;
+    children: ITreeMenu[];
+};
 
 export type IMenuItem = IResourceItem & {
     key: string;
