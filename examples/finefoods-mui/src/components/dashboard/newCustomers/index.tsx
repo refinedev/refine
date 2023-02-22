@@ -1,5 +1,5 @@
 import { useApiUrl, useCustom, useTranslate } from "@pankod/refine-core";
-import { Box, Stack, Typography } from "@pankod/refine-mui";
+import { Box, Stack, Typography } from "@mui/material";
 import { BarChart, Bar, Tooltip, ResponsiveContainer } from "recharts";
 import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
 

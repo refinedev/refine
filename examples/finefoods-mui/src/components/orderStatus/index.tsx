@@ -1,5 +1,6 @@
 import { useTranslate } from "@pankod/refine-core";
-import { Chip, ChipProps, useTheme } from "@pankod/refine-mui";
+import { useTheme } from "@mui/material/styles";
+import { Chip, ChipProps } from "@mui/material";
 
 type OrderStatusProps = {
     status?: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";

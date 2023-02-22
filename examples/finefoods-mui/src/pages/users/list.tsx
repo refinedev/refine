@@ -7,14 +7,16 @@ import {
     useTranslate,
 } from "@pankod/refine-core";
 import {
-    DataGrid,
-    Grid,
-    GridColumns,
-    Avatar,
     useDataGrid,
     BooleanField,
     DateField,
     ShowButton,
+    List,
+} from "@pankod/refine-mui";
+
+import {
+    Grid,
+    Avatar,
     Button,
     TextField,
     Box,
@@ -26,8 +28,9 @@ import {
     CardHeader,
     Card,
     CardContent,
-    List,
-} from "@pankod/refine-mui";
+} from "@mui/material";
+
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
