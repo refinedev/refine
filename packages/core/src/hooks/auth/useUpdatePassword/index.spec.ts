@@ -1,20 +1,11 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import ReactRouterDom from "react-router-dom";
 
 import { TestWrapper, act } from "@test";
 
 import { useUpdatePassword } from "./";
 
-const mHistory = jest.fn();
-
-jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
-}));
-
 describe("useUpdatePassword Hook", () => {
     beforeEach(() => {
-        mHistory.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
             if (message?.message === "Missing fields") return;
             if (typeof message === "undefined") return;
@@ -53,8 +44,6 @@ describe("useUpdatePassword Hook", () => {
         await waitFor(() => {
             expect(result.current.isSuccess).toBeTruthy();
         });
-
-        expect(mHistory).not.toBeCalledWith();
     });
 
     it("fail update password", async () => {
