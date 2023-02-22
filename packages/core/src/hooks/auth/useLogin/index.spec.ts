@@ -1,20 +1,21 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import ReactRouterDom from "react-router-dom";
 
-import { TestWrapper, act } from "@test";
+import { TestWrapper, act, mockRouterBindings } from "@test";
 
 import { useLogin } from "./";
 
-const mHistory = jest.fn();
+const mockGo = jest.fn();
 
-jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
-}));
+const mockRouterProvider = mockRouterBindings({
+    fns: {
+        go: () => mockGo,
+    },
+});
 
 describe("useLogin Hook", () => {
     beforeEach(() => {
-        mHistory.mockReset();
+        mockGo.mockReset();
+
         jest.spyOn(console, "error").mockImplementation((message) => {
             if (message?.message === "Wrong email") return;
             if (typeof message === "undefined") return;
@@ -39,6 +40,7 @@ describe("useLogin Hook", () => {
                     logout: () => Promise.resolve(),
                     getUserIdentity: () => Promise.resolve({ id: 1 }),
                 },
+                routerProvider: mockRouterProvider,
             }),
         });
 
@@ -52,7 +54,7 @@ describe("useLogin Hook", () => {
             expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(mHistory).toBeCalledWith("/", { replace: true });
+        expect(mockGo).toBeCalledWith({ to: "/", type: "replace" });
     });
 
     it("should successfully login with no redirect", async () => {
@@ -72,6 +74,7 @@ describe("useLogin Hook", () => {
                     logout: () => Promise.resolve(),
                     getUserIdentity: () => Promise.resolve({ id: 1 }),
                 },
+                routerProvider: mockRouterProvider,
             }),
         });
 
@@ -85,7 +88,7 @@ describe("useLogin Hook", () => {
             expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(mHistory).not.toBeCalled();
+        expect(mockGo).not.toBeCalled();
     });
 
     it("login and redirect to custom path", async () => {
@@ -105,6 +108,7 @@ describe("useLogin Hook", () => {
                     logout: () => Promise.resolve(),
                     getUserIdentity: () => Promise.resolve({ id: 1 }),
                 },
+                routerProvider: mockRouterProvider,
             }),
         });
 
@@ -118,7 +122,7 @@ describe("useLogin Hook", () => {
             expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(mHistory).toBeCalledWith("/custom-path", { replace: true });
+        expect(mockGo).toBeCalledWith({ to: "/custom-path", type: "replace" });
     });
 
     it("If URL has 'to' params the app will redirect to 'to' values", async () => {
@@ -138,7 +142,14 @@ describe("useLogin Hook", () => {
                     logout: () => Promise.resolve(),
                     getUserIdentity: () => Promise.resolve({ id: 1 }),
                 },
-                routerInitialEntries: ["?to=/show/posts/5"],
+                routerProvider: mockRouterBindings({
+                    fns: {
+                        go: () => mockGo,
+                    },
+                    params: {
+                        to: "/show/posts/5",
+                    },
+                }),
             }),
         });
 
@@ -152,7 +163,7 @@ describe("useLogin Hook", () => {
             expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(mHistory).toBeCalledWith("/show/posts/5", { replace: true });
+        expect(mockGo).toBeCalledWith({ type: "replace", to: "/show/posts/5" });
     });
 
     it("fail login", async () => {
