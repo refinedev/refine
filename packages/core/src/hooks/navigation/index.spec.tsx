@@ -51,7 +51,7 @@ describe("useNavigation Hook", () => {
         }),
     });
 
-    fit("navigate to show with custom route", async () => {
+    it("navigate to show with custom route", async () => {
         result.current.show("users", "1", "push");
 
         expect(legacyPushMock).toBeCalledWith("/users-custom-route/show/1");
