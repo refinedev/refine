@@ -5,7 +5,7 @@ import { useNavigation } from "@hooks";
 import { ILegacyAuthContext, IAuthBindingsContext } from "../../interfaces";
 
 /**
- * @deprecated `AuthContext` is deprecated with refine@4, use `AuthBindingsContext` instead, however, we still support `AuthBindingsContext` for backward compatibility.
+ * @deprecated `LegacyAuthContext` is deprecated with refine@4, use `AuthBindingsContext` instead, however, we still support `LegacyAuthContext` for backward compatibility.
  */
 export const LegacyAuthContext = React.createContext<ILegacyAuthContext>({});
 
