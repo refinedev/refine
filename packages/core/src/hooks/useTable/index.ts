@@ -73,10 +73,15 @@ export type useTableProps<TData, TError> = {
          */
         permanent?: CrudSorting;
     };
+    /**
+     * Initial sorter state
+     * @deprecated `initialSorter` property is deprecated. Use `sorters.initial` instead.
+     */
     initialSorter?: CrudSorting;
     /**
      * Default and unchangeable sorter state
      *  @default `[]`
+     *  @deprecated `permanentSorter` property is deprecated. Use `sorters.permanent` instead.
      */
     permanentSorter?: CrudSorting;
     /**
@@ -98,15 +103,21 @@ export type useTableProps<TData, TError> = {
          */
         defaultBehavior?: SetFilterBehavior;
     };
+    /**
+     * Initial filter state
+     * @deprecated `initialFilter` property is deprecated. Use `filters.initial` instead.
+     */
     initialFilter?: CrudFilters;
     /**
      * Default and unchangeable filter state
      * @default `[]`
+     * @deprecated `permanentFilter` property is deprecated. Use `filters.permanent` instead.
      */
     permanentFilter?: CrudFilters;
     /**
      *Default behavior of the `setFilters` function
      * @default `"merge"`
+     * @deprecated `defaultSetFilterBehavior` property is deprecated. Use `filters.defaultBehavior` instead.
      */
     defaultSetFilterBehavior?: SetFilterBehavior;
     /**
