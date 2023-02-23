@@ -20,7 +20,7 @@ const legacyRouterProvider: IRouterContext = {
     },
 };
 
-describe("useNavigation Hook", () => {
+describe("useNavigation Hook [legacy]", () => {
     beforeEach(() => {
         legacyBackMock.mockReset();
         legacyPushMock.mockReset();

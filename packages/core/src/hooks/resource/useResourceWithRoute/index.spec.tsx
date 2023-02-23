@@ -20,4 +20,20 @@ describe("useResourceWithRoute Hook", () => {
             expect.objectContaining({ name: "posts", route: "/posts" }),
         );
     });
+
+    it("should match by route first", async () => {
+        const { result } = renderHook(() => useResourceWithRoute(), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [
+                    { name: "posts", route: "posts" },
+                    { name: "users", route: "custom-route" },
+                ],
+            }),
+        });
+
+        expect(result.current("custom-route")).toEqual(
+            expect.objectContaining({ name: "users" }),
+        );
+    });
 });

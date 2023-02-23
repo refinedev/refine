@@ -1,4 +1,5 @@
 import { IResourceItem } from "src/interfaces/bindings/resource";
+import { pickNotDeprecated } from "../pickNotDeprecated";
 
 /**
  * Picks the resource based on the provided identifier.
@@ -18,9 +19,15 @@ export const pickResource = (
     }
 
     if (legacy) {
-        const resource = resources.find(
-            (r) => r.route === identifier || r.name === identifier,
+        const resourceByRoute = resources.find(
+            (r) =>
+                pickNotDeprecated(r.meta?.route, r.options?.route, r.route) ===
+                identifier,
         );
+
+        const resource = resourceByRoute
+            ? resourceByRoute
+            : resources.find((r) => r.name === identifier);
 
         return resource;
     }

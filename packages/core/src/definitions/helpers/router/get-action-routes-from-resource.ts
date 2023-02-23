@@ -43,7 +43,10 @@ export const getActionRoutesFromResource = (
             // means we're fallbacking to default path for the action
             route = getDefaultActionPath(
                 legacy
-                    ? resource.route ?? resource.options?.route ?? resource.name
+                    ? resource.meta?.route ??
+                          resource.options?.route ??
+                          resource.route ??
+                          resource.name
                     : resource.name,
                 action,
                 parentPrefix,
