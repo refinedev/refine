@@ -130,7 +130,7 @@ export const exported: string[] = [
     // "useCss",
     // "useEmotionCache",
     "useInputProps",
-    // "useMantineColorScheme",
+    "useMantineColorScheme",
     // "useMantineTheme",
     "validateJson",
     // types
@@ -531,6 +531,6 @@ export const other: { [key: string]: string } = {
     useComponentDefaultProps: "@mantine/styles",
     useCss: "@mantine/styles",
     useEmotionCache: "@mantine/styles",
-    useMantineColorScheme: "@mantine/styles",
+    // useMantineColorScheme: "@mantine/styles",
     useMantineTheme: "@mantine/styles",
 };
