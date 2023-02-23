@@ -1,4 +1,5 @@
 import * as RefineMantine from "@pankod/refine-mantine";
+import * as MantineCore from "@mantine/core";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -87,7 +88,7 @@ export const renderer = ({
             const variableName = getVariableName(field.key, "SelectProps");
 
             if (field.multiple) {
-                imports.push(["MultiSelect", "@pankod/refine-mantine"]);
+                imports.push(["MultiSelect", "@mantine/core"]);
 
                 return jsx`
                     <MultiSelect mt="sm" label="${prettyString(
@@ -99,7 +100,7 @@ export const renderer = ({
                 `;
             }
 
-            imports.push(["Select", "@pankod/refine-mantine"]);
+            imports.push(["Select", "@mantine/core"]);
 
             return jsx`
                 <Select mt="sm" label="${prettyString(
@@ -125,7 +126,7 @@ export const renderer = ({
                 return undefined;
             }
 
-            imports.push(["TextInput", "@pankod/refine-mantine"]);
+            imports.push(["TextInput", "@mantine/core"]);
 
             initialValues = {
                 ...initialValues,
@@ -165,7 +166,7 @@ export const renderer = ({
 
     const booleanFields = (field: InferField) => {
         if (field.type === "boolean") {
-            imports.push(["Checkbox", "@pankod/refine-mantine"]);
+            imports.push(["Checkbox", "@mantine/core"]);
 
             initialValues = {
                 ...initialValues,
@@ -208,7 +209,7 @@ export const renderer = ({
 
     const richtextFields = (field: InferField) => {
         if (field.type === "richtext") {
-            imports.push(["Textarea", "@pankod/refine-mantine"]);
+            imports.push(["Textarea", "@mantine/core"]);
 
             initialValues = {
                 ...initialValues,
@@ -332,6 +333,7 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
     type: "create",
     additionalScope: [
         ["@pankod/refine-mantine", "RefineMantine", RefineMantine],
+        ["@mantine/core", "MantineCore", MantineCore],
     ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
