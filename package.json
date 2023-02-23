@@ -10,7 +10,7 @@
     "build": "lerna run build --ignore @pankod/refine-react-router --scope @pankod/refine* --scope create-refine-app",
     "lint": "eslint -c ./.eslintrc packages examples",
     "test": "lerna run test --stream --scope @pankod/refine* --scope create-refine-app",
-    "bootstrap": "npm run bootstrap:codemod && lerna bootstrap --hoist --strict  --ignore @pankod/refine-react-location --ignore @pankod/refine-react-router --scope @pankod/refine* --scope create-refine-app",
+    "bootstrap": "lerna bootstrap --hoist --strict  --ignore @pankod/refine-react-location --ignore @pankod/refine-react-router --scope @pankod/refine* --scope create-refine-app",
     "changeset": "changeset",
     "nuke": "echo 'Removing all node_modules, builds and lockfiles'; npm run nuke:node_modules; npm run nuke:builds; npm run nuke:lockfiles;",
     "coffee": "npm run nuke && npm i && npm run bootstrap && npm run build",
@@ -20,7 +20,6 @@
     "nuke:builds": "lerna exec -- rm -rf dist && lerna exec -- rm -rf .next && lerna exec -- rm -rf build",
     "nuke:lockfiles": "lerna exec --ignore @pankod/refine-codemod -- rm -rf package-lock.json && lerna exec --ignore @pankod/refine-codemod -- rm -rf yarn.lock && lerna exec --ignore @pankod/refine-codemod -- rm -rf pnpm-lock.yaml",
     "nuke:node_modules": "lerna clean --yes",
-    "bootstrap:codemod": "cd packages/codemod && npm ci && cd ../..",
     "lint:fix": "npm run lint -- --quiet --fix",
     "lint:staged": "lint-staged",
     "test:coverage": "npm run test --stream -- -- -- --coverage"
