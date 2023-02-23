@@ -14,6 +14,7 @@ const authHookNames = [
     "usePermission",
     "useRegister",
     "useUpdatePassword",
+    "usePermissions",
 ];
 
 const addLegacyTrueToAuthHooks = (j: JSCodeshift, root: Collection<any>) => {
