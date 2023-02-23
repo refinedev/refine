@@ -153,6 +153,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         name: "add-legacy-true-to-auth-hooks: Add legacy: true to auth hooks",
         value: "add-legacy-true-to-auth-hooks",
     },
+    {
+        name: "authProvider-to-legacyAuthProvider: Transform authProvider to use legacyAuthProvider",
+        value: "authProvider-to-legacyAuthProvider",
+    },
 ];
 
 function expandFilePathsIfNeeded(filesBeforeExpansion) {
