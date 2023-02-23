@@ -149,6 +149,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         name: "separate-imports-antd: Moves `antd` components exported by `refine` into `antd`",
         value: "separate-imports-antd",
     },
+    {
+        name: "add-legacy-true-to-auth-hooks: Add legacy: true to auth hooks",
+        value: "add-legacy-true-to-auth-hooks",
+    },
 ];
 
 function expandFilePathsIfNeeded(filesBeforeExpansion) {
