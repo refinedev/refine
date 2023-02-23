@@ -1,4 +1,4 @@
-import { AuthProvider } from "@pankod/refine-core";
+import { LegacyAuthProvider as AuthProvider } from "@pankod/refine-core";
 import nookies from "nookies";
 
 const mockUsers = [

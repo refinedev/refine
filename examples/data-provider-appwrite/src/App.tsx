@@ -1,4 +1,7 @@
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import {
+    Refine,
+    LegacyAuthProvider as AuthProvider,
+} from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -66,7 +69,7 @@ const App: React.FC = () => {
                 databaseId: "default",
             })}
             options={{ liveMode: "auto" }}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             routerProvider={routerProvider}
             LoginPage={Login}
             resources={[

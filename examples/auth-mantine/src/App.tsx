@@ -1,4 +1,7 @@
-import { AuthProvider, Refine } from "@pankod/refine-core";
+import {
+    LegacyAuthProvider as AuthProvider,
+    Refine,
+} from "@pankod/refine-core";
 import {
     AuthPage,
     MantineProvider,
@@ -85,7 +88,7 @@ const App: React.FC = () => {
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}
-                    authProvider={authProvider}
+                    legacyAuthProvider={authProvider}
                     routerProvider={{
                         ...routerProvider,
                         routes: [

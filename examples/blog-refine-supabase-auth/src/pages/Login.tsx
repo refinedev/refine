@@ -11,7 +11,9 @@ export const LoginPage = () => {
         "SEND_OTP",
     );
 
-    const { mutate: login } = useLogin();
+    const { mutate: login } = useLogin({
+        legacy: true,
+    });
 
     const onLogin = () => {
         login(

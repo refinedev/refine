@@ -23,7 +23,9 @@ export interface ILoginForm {
 export const Login: React.FC = () => {
     const [form] = Form.useForm<ILoginForm>();
 
-    const { mutate: login } = useLogin<ILoginForm>();
+    const { mutate: login } = useLogin<ILoginForm>({
+        legacy: true,
+    });
 
     const CardTitle = (
         <Title level={3} className="title">

@@ -21,7 +21,9 @@ function checkImage(url: any) {
 
 const PropertyDetails = () => {
     const navigate = useNavigate();
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity({
+        legacy: true,
+    });
     const { queryResult } = useShow();
     const { mutate } = useDelete();
     const { id } = useParams();

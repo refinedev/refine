@@ -32,7 +32,9 @@ const AgentCard = ({
     avatar,
     noOfProperties,
 }: AgentCardProp) => {
-    const { data: currentUser } = useGetIdentity();
+    const { data: currentUser } = useGetIdentity({
+        legacy: true,
+    });
 
     const generateLink = () => {
         if (currentUser.email === email) return "/my-profile";

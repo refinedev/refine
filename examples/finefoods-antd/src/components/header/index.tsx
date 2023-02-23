@@ -50,7 +50,9 @@ export const Header: React.FC = () => {
     const { i18n } = useTranslation();
     const locale = useGetLocale();
     const changeLanguage = useSetLocale();
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity({
+        legacy: true,
+    });
     const screens = useBreakpoint();
     const t = useTranslate();
 

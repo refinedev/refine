@@ -24,7 +24,9 @@ export const DashboardPage: React.FC = () => {
     const { data, isLoading } = useGetIdentity<{
         address: string;
         balance: string;
-    }>();
+    }>({
+        legacy: true,
+    });
     const { modalProps, show, close } = useModal();
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);

@@ -1,5 +1,5 @@
 import { AppwriteException } from "@pankod/refine-appwrite";
-import { AuthProvider } from "@pankod/refine-core";
+import { LegacyAuthProvider as AuthProvider } from "@pankod/refine-core";
 
 import { account } from "utility";
 

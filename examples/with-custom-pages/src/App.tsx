@@ -1,4 +1,8 @@
-import { Refine, AuthProvider, Authenticated } from "@pankod/refine-core";
+import {
+    Refine,
+    LegacyAuthProvider as AuthProvider,
+    Authenticated,
+} from "@pankod/refine-core";
 import {
     notificationProvider,
     AuthPage,
@@ -62,7 +66,7 @@ const App: React.FC = () => {
                     },
                 ] as typeof routerProvider.routes,
             }}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             resources={[
                 {
                     name: "posts",

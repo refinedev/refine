@@ -25,7 +25,9 @@ export const CustomSider: React.FC = () => {
     const { SubMenu } = Menu;
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
-    const { mutate: mutateLogout } = useLogout();
+    const { mutate: mutateLogout } = useLogout({
+        legacy: true,
+    });
     const isExistAuthentication = useIsExistAuthentication();
 
     const isMobile =

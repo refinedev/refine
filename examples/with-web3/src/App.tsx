@@ -20,7 +20,7 @@ function App() {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             LoginPage={Login}
             DashboardPage={DashboardPage}
             resources={[

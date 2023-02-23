@@ -47,7 +47,9 @@ export const Header: React.FC = () => {
     const changeLanguage = useSetLocale();
     const locale = useGetLocale();
     const currentLocale = locale();
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity({
+        legacy: true,
+    });
 
     const t = useTranslate();
 

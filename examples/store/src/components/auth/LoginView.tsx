@@ -22,8 +22,12 @@ const LoginView: React.FC = () => {
 
     // Form State
     const { setModalView, closeModal } = useUI();
-    const { mutate: login, isLoading } = useLogin();
-    const { isSuccess } = useAuthenticated();
+    const { mutate: login, isLoading } = useLogin({
+        legacy: true,
+    });
+    const { isSuccess } = useAuthenticated({
+        legacy: true,
+    });
 
     useEffect(() => {
         if (isSuccess) {

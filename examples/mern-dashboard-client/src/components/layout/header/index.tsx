@@ -3,7 +3,9 @@ import { useGetIdentity } from "@pankod/refine-core";
 import { AppBar, Avatar, Stack, Toolbar, Typography } from "@pankod/refine-mui";
 
 export const Header: React.FC = () => {
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity({
+        legacy: true,
+    });
     const showUserInfo = user && (user.name || user.avatar);
 
     return (

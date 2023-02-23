@@ -33,7 +33,7 @@ function MyApp({
                     <Layout {...rest} categories={categories} />
                 )}
                 DashboardPage={Dashboard}
-                authProvider={authProvider(PROXY_URL)}
+                legacyAuthProvider={authProvider(PROXY_URL)}
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(PROXY_URL)}
                 resources={[

@@ -5,7 +5,9 @@ import { FieldValues, useForm } from "@pankod/refine-react-hook-form";
 import Form from "components/common/Form";
 
 const CreateProperty = () => {
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity({
+        legacy: true,
+    });
     const [propertyImage, setPropertyImage] = useState({ name: "", url: "" });
     const {
         refineCore: { onFinish, formLoading },

@@ -5,7 +5,9 @@ import { Customer } from "@medusajs/medusa";
 export const Avatar: React.FC = () => {
     const ref = useRef() as React.MutableRefObject<HTMLInputElement>;
 
-    const { data } = useGetIdentity<Customer>();
+    const { data } = useGetIdentity<Customer>({
+        legacy: true,
+    });
 
     return (
         <div

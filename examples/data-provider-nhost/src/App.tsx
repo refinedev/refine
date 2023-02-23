@@ -1,4 +1,7 @@
-import { AuthProvider, Refine } from "@pankod/refine-core";
+import {
+    LegacyAuthProvider as AuthProvider,
+    Refine,
+} from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -85,7 +88,7 @@ const App: React.FC = () => {
                 // Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
                 // liveProvider={liveProvider(gqlWebSocketClient)}
                 // options={{ liveMode: "auto" }}
-                authProvider={authProvider}
+                legacyAuthProvider={authProvider}
                 resources={[
                     {
                         name: "posts",

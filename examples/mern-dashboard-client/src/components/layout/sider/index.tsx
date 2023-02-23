@@ -52,7 +52,9 @@ export const Sider: typeof DefaultSider = ({ render }) => {
 
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const isExistAuthentication = useIsExistAuthentication();
-    const { mutate: mutateLogout } = useLogout();
+    const { mutate: mutateLogout } = useLogout({
+        legacy: true,
+    });
     const Title = useTitle();
 
     const [open, setOpen] = useState<{ [k: string]: any }>({});

@@ -23,7 +23,7 @@ function App() {
     return (
         <Refine
             dataProvider={dataProvider(supabaseClient)}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             LoginPage={Login}
             routerProvider={{
                 ...routerProvider,

@@ -18,7 +18,9 @@ const SignUpView: React.FC = () => {
     const { setModalView, closeModal } = useUI();
     const [errorMsg, setErrorMsg] = useState("");
 
-    const { mutate: login } = useLogin();
+    const { mutate: login } = useLogin({
+        legacy: true,
+    });
     const {
         refineCore: { onFinish, formLoading },
         register,

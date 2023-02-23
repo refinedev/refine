@@ -9,7 +9,9 @@ export const DashboardPage: React.FC = () => {
         id: string;
         name: string;
         avatar: string;
-    }>();
+    }>({
+        legacy: true,
+    });
     const permissions = usePermissions();
 
     return (
