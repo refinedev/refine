@@ -268,10 +268,10 @@ export const RouteProvider = ({
                             element={route.element}
                         />
                     ))}
-                <Route
-                    index
-                    element={
-                        DashboardPage ? (
+                {DashboardPage ? (
+                    <Route
+                        index
+                        element={
                             <CanAccess
                                 resource="dashboard"
                                 action="list"
@@ -279,16 +279,23 @@ export const RouteProvider = ({
                             >
                                 <DashboardPage />
                             </CanAccess>
-                        ) : (
+                        }
+                    />
+                ) : (
+                    <Route
+                        index
+                        element={
                             <Navigate
                                 to={
                                     initialRoute ??
-                                    `/${resources.find((p) => p.list)?.route}`
+                                    `/${resources
+                                        .find((p) => p.list)
+                                        ?.route?.replace(/^\//, "")}`
                                 }
                             />
-                        )
-                    }
-                />
+                        }
+                    />
+                )}
                 {...[...(resourceRoutes || [])]}
                 <Route path="*" element={<ResourceComponent route="" />} />
             </Route>
