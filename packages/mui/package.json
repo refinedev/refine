@@ -15,7 +15,13 @@
     "peerDependencies": {
         "@pankod/refine-core": "^3.23.2",
         "react": "^17.0.0 || ^18.0.0",
-        "react-dom": "^17.0.0 || ^18.0.0"
+        "react-dom": "^17.0.0 || ^18.0.0",
+        "dayjs": "^1.10.7",
+        "@emotion/react": "^11.8.2",
+        "@emotion/styled": "^11.8.1",
+        "@mui/lab": "^5.0.0-alpha.85",
+        "@mui/material": "^5.8.6",
+        "@mui/x-data-grid": "^5.12.1"
     },
     "devDependencies": {
         "@pankod/refine-cli": "^1.11.0",
