@@ -30,7 +30,7 @@ In basic usage, `useTable` returns the data as it comes from the endpoint. By de
 
 ## Pagination
 
-`useTable` has a pagination feature. The pagination is done by using the `current` and `pageSize` props of `pagination`. The `current` is the current page and the `pageSize` is the number of records per page.
+`useTable` has a pagination feature. The pagination is done by passing `current` and `pageSize` keys to `pagination` object. The `current` is the current page and the `pageSize` is the number of records per page.
 
 It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
