@@ -2,8 +2,9 @@ import React from "react";
 import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 
 import { act, render, TestWrapper, waitFor } from "@test";
+import { AuthBindings, LegacyAuthProvider } from "@pankod/refine-core";
 
-const mockLegacyAuthProvider = {
+const mockLegacyAuthProvider: LegacyAuthProvider & { isProvided: boolean } = {
     login: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkError: () => Promise.resolve(),
@@ -11,6 +12,14 @@ const mockLegacyAuthProvider = {
     getPermissions: () => Promise.resolve(["admin"]),
     getUserIdentity: () => Promise.resolve(),
     isProvided: true,
+};
+
+const mockAuthProvider: AuthBindings = {
+    check: () => Promise.resolve({ authenticated: true }),
+    login: () => Promise.resolve({ success: true }),
+    logout: () => Promise.resolve({ success: true }),
+    getPermissions: () => Promise.resolve(["admin"]),
+    onError: () => Promise.resolve({}),
 };
 
 export const layoutSiderTests = function (
@@ -51,7 +60,8 @@ export const layoutSiderTests = function (
             );
         });
 
-        it("should work logout menu item click", async () => {
+        // NOTE : Will be removed in v5
+        it("should work legacy logout menu item click", async () => {
             const logoutMockedAuthProvider = {
                 ...mockLegacyAuthProvider,
                 logout: jest.fn().mockImplementation(() => Promise.resolve()),
@@ -59,6 +69,28 @@ export const layoutSiderTests = function (
             const { getAllByText } = render(<SiderElement />, {
                 wrapper: TestWrapper({
                     legacyAuthProvider: logoutMockedAuthProvider,
+                }),
+            });
+
+            await act(async () => {
+                getAllByText("Logout")[0].click();
+            });
+
+            expect(logoutMockedAuthProvider.logout).toBeCalledTimes(1);
+        });
+
+        it("should work logout menu item click", async () => {
+            const logoutMockedAuthProvider = {
+                ...mockAuthProvider,
+                logout: jest
+                    .fn()
+                    .mockImplementation(() =>
+                        Promise.resolve({ success: true }),
+                    ),
+            };
+            const { getAllByText } = render(<SiderElement />, {
+                wrapper: TestWrapper({
+                    authProvider: logoutMockedAuthProvider,
                 }),
             });
 
