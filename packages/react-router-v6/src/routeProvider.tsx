@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React from "react";
+import React, { useMemo } from "react";
 import { Route, Routes, Navigate, Outlet } from "react-router-dom";
 import {
     LoginPage as DefaultLoginPage,
@@ -179,6 +179,15 @@ export const RouteProvider = ({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
+    const isAuthenticated = useMemo(() => {
+        if (authProvider?.isLegacy) {
+            const hasAuthError = isError || authData?.error;
+            return hasAuthError ? false : true;
+        }
+
+        return authData?.isAuthenticated;
+    }, [authData, isError, authProvider?.isLegacy]);
+
     if (isFetching) {
         return (
             <Routes>
@@ -186,9 +195,6 @@ export const RouteProvider = ({
             </Routes>
         );
     }
-
-    const hasAuthError = isError || authData?.error || !authData.authenticated;
-    const isAuthenticated = hasAuthError ? false : true;
 
     const CustomPathAfterLogin: React.FC = (): JSX.Element | null => {
         const { pathname, search } = location;
