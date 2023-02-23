@@ -20,4 +20,8 @@ export type RefineBreadcrumbProps<
         icon?: React.ReactNode;
         path?: string;
     };
+    /**
+     * Additional params to be used in the route generation process.
+     */
+    meta?: Record<string, string | number>;
 };

@@ -26,8 +26,9 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     showHome = true,
     hideIcons = false,
     home,
+    meta,
 }) => {
-    const { breadcrumbs } = useBreadcrumb();
+    const { breadcrumbs } = useBreadcrumb({ meta });
     const routerType = useRouterType();
     const NewLink = useLink();
     const { Link: LegacyLink } = useRouterContext();
