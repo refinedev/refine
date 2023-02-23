@@ -98,18 +98,20 @@ export function useResource(
 
     const { useParams } = useRouterContext();
 
-    const legacyParams = useParams<ResourceRouterParams>();
+    const legacyParams = useParams<Partial<ResourceRouterParams>>();
 
     if (routerType === "legacy") {
-        const legacyResource = resourceWithRoute(
-            oldProps.resourceNameOrRouteName
-                ? oldProps.resourceNameOrRouteName
-                : legacyParams.resource,
-        );
+        const resourceKeyToCheck = oldProps.resourceNameOrRouteName
+            ? oldProps.resourceNameOrRouteName
+            : legacyParams.resource;
+
+        const legacyResource = resourceKeyToCheck
+            ? resourceWithRoute(resourceKeyToCheck)
+            : undefined;
         const legacyId = oldProps?.recordItemId ?? legacyParams.id;
         const legacyAction = legacyParams.action;
         const legacyResourceName =
-            oldProps?.resourceName ?? legacyResource.name;
+            oldProps?.resourceName ?? legacyResource?.name;
 
         return {
             resources,
