@@ -117,7 +117,11 @@ const AirtableDataProvider = (
 
     return {
         getList: async ({ resource, pagination, sorters, filters }) => {
-            const { current, pageSize, mode } = pagination;
+            const {
+                current = 1,
+                pageSize = 10,
+                mode = "server",
+            } = pagination ?? {};
 
             const generetedSort = generateSort(sorters) || [];
             const queryFilters = generateFilter(filters);

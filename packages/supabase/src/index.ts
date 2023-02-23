@@ -131,7 +131,11 @@ const dataProvider = (
 ): Required<DataProvider> => {
     return {
         getList: async ({ resource, pagination, filters, sorters, meta }) => {
-            const { current, pageSize, mode } = pagination;
+            const {
+                current = 1,
+                pageSize = 10,
+                mode = "server",
+            } = pagination ?? {};
 
             const query = supabaseClient
                 .from(resource)

@@ -152,9 +152,9 @@ const handleJoin = (
 
 const handlePagination = (
     query: RequestQueryBuilder,
-    pagination: Required<Pagination>,
+    pagination?: Pagination,
 ) => {
-    const { current, pageSize, mode } = pagination;
+    const { current = 1, pageSize = 10, mode = "server" } = pagination ?? {};
 
     if (mode === "server") {
         query

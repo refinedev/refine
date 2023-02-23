@@ -62,7 +62,11 @@ const DataProvider = (
     return {
         getList: async ({ resource, pagination, filters }) => {
             const url = `${apiUrl}/${resource}`;
-            const { current, pageSize, mode } = pagination;
+            const {
+                current = 1,
+                pageSize = 10,
+                mode = "server",
+            } = pagination ?? {};
 
             const queryFilters = generateFilter(filters);
 

@@ -11,7 +11,7 @@ import { generateFilters, generateSorting } from "../../dataProvider";
 type GenereteUseListSubscriptionParams = {
     resource: string;
     meta: MetaQuery;
-    pagination?: Required<Pagination>;
+    pagination?: Pagination;
     sorters?: CrudSorting;
     filters?: CrudFilters;
 };

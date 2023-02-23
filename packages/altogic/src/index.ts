@@ -109,7 +109,11 @@ const AltogicDataProvider = (
     httpClient: AxiosInstance = axiosInstance,
 ): Required<DataProvider> => ({
     getList: async ({ resource, pagination, filters, sorters }) => {
-        const { current, pageSize, mode } = pagination;
+        const {
+            current = 1,
+            pageSize = 10,
+            mode = "server",
+        } = pagination ?? {};
 
         const url = `${apiUrl}/${resource}`;
 
