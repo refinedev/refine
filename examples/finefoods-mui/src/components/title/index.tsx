@@ -1,5 +1,5 @@
 import { useRouterContext } from "@pankod/refine-core";
-import { Box } from "@pankod/refine-mui";
+import { Box } from "@mui/material";
 
 import { BikeWhiteIcon } from "components/icons/bike-white";
 

@@ -1,13 +1,8 @@
 ```tsx live url=http://localhost:3000 previewHeight=400px
 setInitialRoutes(["/posts/create"]);
 // visible-block-start
-import {
-    Create,
-    Box,
-    Autocomplete,
-    useAutocomplete,
-    TextField,
-} from "@pankod/refine-mui";
+import { Create, useAutocomplete } from "@pankod/refine-mui";
+import { Box, Autocomplete, TextField } from "@mui/material";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
 
 interface ICategory {

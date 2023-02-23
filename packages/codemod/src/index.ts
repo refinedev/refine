@@ -149,6 +149,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         name: "separate-imports-antd: Moves `antd` components exported by `refine` into `antd`",
         value: "separate-imports-antd",
     },
+    {
+        name: "separate-imports-mui: Moves `MUI` components exported by `refine` into `MUI`",
+        value: "separate-imports-mui",
+    },
 ];
 
 function expandFilePathsIfNeeded(filesBeforeExpansion) {

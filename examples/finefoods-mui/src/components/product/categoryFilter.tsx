@@ -6,7 +6,7 @@ import {
     useList,
     useTranslate,
 } from "@pankod/refine-core";
-import { Stack, Grid } from "@pankod/refine-mui";
+import { Stack, Grid } from "@mui/material";
 
 import { ICategory } from "interfaces";
 

@@ -4,7 +4,6 @@ title: Edit
 swizzle: true
 ---
 
-
 `<Edit>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a [`<RefreshButton>`](/api-reference/mui/components/buttons/refresh.md).
 
 We will show what `<Edit>` does using properties with examples.
@@ -12,13 +11,8 @@ We will show what `<Edit>` does using properties with examples.
 ```tsx live hideCode url=http://localhost:3000/posts/edit/123
 // visible-block-start
 import React from "react";
-import {
-    Edit,
-    useAutocomplete,
-    TextField,
-    Autocomplete,
-    Box,
-} from "@pankod/refine-mui";
+import { Edit, useAutocomplete } from "@pankod/refine-mui";
+import { TextField, Autocomplete, Box } from "@mui/material";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
 
 const SampleEdit = () => {
@@ -119,7 +113,12 @@ const SampleEdit = () => {
 };
 // visible-block-end
 
-render(<RefineMuiDemo initialRoutes={["/samples/edit/123"]} resources={[ { name: "samples", edit: SampleEdit, list: SampleList } ]} />)
+render(
+    <RefineMuiDemo
+        initialRoutes={["/samples/edit/123"]}
+        resources={[{ name: "samples", edit: SampleEdit, list: SampleList }]}
+    />,
+);
 ```
 
 :::info-tip Swizzle
@@ -134,7 +133,8 @@ It allows adding title inside the `<Edit>` component. if you don't pass title pr
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Edit, Typography } from "@pankod/refine-mui";
+import { Edit } from "@pankod/refine-mui";
+import { Typography } from "@mui/material";
 
 const EditPage: React.FC = () => {
     return (
@@ -163,7 +163,7 @@ render(
                 edit: EditPage,
             },
         ]}
-    />
+    />,
 );
 ```
 
@@ -214,7 +214,11 @@ const App: React.FC = () => {
 };
 // visible-block-end
 
-render(<Wrapper><App /></Wrapper>);
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
 ```
 
 ### `saveButtonProps`
@@ -321,7 +325,9 @@ render(
                 list: () => (
                     <div>
                         <p>This page is empty.</p>
-                        <RefineMui.EditButton recordItemId="123">Edit Item 123</RefineMui.EditButton>
+                        <RefineMui.EditButton recordItemId="123">
+                            Edit Item 123
+                        </RefineMui.EditButton>
                     </div>
                 ),
                 edit: PostEdit,
@@ -376,7 +382,11 @@ const App: React.FC = () => {
 };
 // visible-block-end
 
-render(<Wrapper><App /></Wrapper>);
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
 ```
 
 :::note
@@ -392,13 +402,9 @@ Determines which mode mutation will have while executing [`<DeleteButton>`](/api
 ```tsx live hideCode url=http://localhost:3000/posts/edit/123
 // visible-block-start
 import React from "react";
-import {
-    Edit,
-    useAutocomplete,
-    TextField,
-    Autocomplete,
-    Box,
-} from "@pankod/refine-mui";
+import { Edit, useAutocomplete } from "@pankod/refine-mui";
+import { TextField, Autocomplete, Box } from "@mui/material";
+
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
 
 const SampleEdit = () => {
@@ -504,7 +510,12 @@ const SampleEdit = () => {
 };
 // visible-block-end
 
-render(<RefineMuiDemo initialRoutes={["/samples/edit/123"]} resources={[ { name: "samples", edit: SampleEdit, list: SampleList } ]} />)
+render(
+    <RefineMuiDemo
+        initialRoutes={["/samples/edit/123"]}
+        resources={[{ name: "samples", edit: SampleEdit, list: SampleList }]}
+    />,
+);
 ```
 
 ### `dataProviderName`
@@ -545,14 +556,15 @@ To customize the back button or to disable it, you can use the `goBack` property
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
-import { Edit, Button } from "@pankod/refine-mui";
+import { Edit } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 import { useNavigation } from "@pankod/refine-core";
 
 const BackButton = () => {
     const { goBack } = useNavigation();
 
-    return <Button onClick={() => goBack()}>BACK!</Button>
-}
+    return <Button onClick={() => goBack()}>BACK!</Button>;
+};
 
 const PostEdit: React.FC = () => {
     return (
@@ -831,7 +843,8 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
-import { Edit, Button } from "@pankod/refine-mui";
+import { Edit } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -880,7 +893,8 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
-import { Edit, Button } from "@pankod/refine-mui";
+import { Edit } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -932,7 +946,8 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
-import { Edit, Button } from "@pankod/refine-mui";
+import { Edit } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -981,7 +996,8 @@ You can customize the wrapper element of the buttons at the footer by using the 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
-import { Edit, Button } from "@pankod/refine-mui";
+import { Edit } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -1037,7 +1053,8 @@ Use `headerButtons` or `footerButtons` instead.
 
 ```tsx title="src/pages/posts/edit.tsx"
 // highlight-next-line
-import { Edit, Button } from "@pankod/refine-mui";
+import { Edit } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 
 export const EditPage: React.FC = () => {
     return (
@@ -1075,7 +1092,8 @@ Use `headerProps` instead.
 
 ```tsx title="src/pages/posts/edit.tsx"
 // highlight-next-line
-import { Edit, Typography } from "@pankod/refine-mui";
+import { Edit } from "@pankod/refine-mui";
+import { Typography } from "@mui/material";
 
 export const EditPage: React.FC = () => {
     return (
@@ -1131,13 +1149,16 @@ goBack-type="`ReactNode`"
 const SampleList = () => {
     const { dataGridProps } = RefineMui.useDataGrid();
 
-    const { data: categoryData, isLoading: categoryIsLoading } = RefineCore.useMany({
-        resource: "categories",
-        ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
-        queryOptions: {
-            enabled: !!dataGridProps?.rows,
-        },
-    });
+    const { data: categoryData, isLoading: categoryIsLoading } =
+        RefineCore.useMany({
+            resource: "categories",
+            ids:
+                dataGridProps?.rows?.map((item: any) => item?.category?.id) ??
+                [],
+            queryOptions: {
+                enabled: !!dataGridProps?.rows,
+            },
+        });
 
     const columns = React.useMemo<GridColumns<any>>(
         () => [
@@ -1184,7 +1205,10 @@ const SampleList = () => {
                 renderCell: function render({ row }) {
                     return (
                         <>
-                            <RefineMui.EditButton hideText recordItemId={row.id} />
+                            <RefineMui.EditButton
+                                hideText
+                                recordItemId={row.id}
+                            />
                         </>
                     );
                 },
@@ -1198,18 +1222,24 @@ const SampleList = () => {
 
     return (
         <RefineMui.List>
-            <RefineMui.DataGrid {...dataGridProps} columns={columns} autoHeight />
+            <MuiXDataGrid.DataGrid
+                {...dataGridProps}
+                columns={columns}
+                autoHeight
+            />
         </RefineMui.List>
     );
 };
 
-const Wrapper = ({children}) => {
+const Wrapper = ({ children }) => {
     return (
-        <RefineMui.ThemeProvider theme={RefineMui.LightTheme}>
-            <RefineMui.CssBaseline />
-            <RefineMui.GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+        <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
+            <MuiMaterial.CssBaseline />
+            <MuiMaterial.GlobalStyles
+                styles={{ html: { WebkitFontSmoothing: "auto" } }}
+            />
             {children}
-        </RefineMui.ThemeProvider>
-    )
-}
+        </MuiMaterial.ThemeProvider>
+    );
+};
 ```
