@@ -113,7 +113,14 @@ export const TestWrapper: (
         );
 
         const withResource = resources ? (
-            <ResourceContextProvider resources={resources}>
+            <ResourceContextProvider
+                resources={resources.map((r) => ({
+                    ...r,
+                    options: {
+                        route: r.options?.route ?? r.route,
+                    },
+                }))}
+            >
                 {withRouterBindings}
             </ResourceContextProvider>
         ) : (
