@@ -101,7 +101,13 @@ export const buttonEditTests = function (
 
         it("should skip access control", async () => {
             const { container, getByText } = render(
-                <EditButton ignoreAccessControlProvider>Edit</EditButton>,
+                <EditButton
+                    accessControl={{
+                        enabled: false,
+                    }}
+                >
+                    Edit
+                </EditButton>,
                 {
                     wrapper: TestWrapper({
                         accessControlProvider: {
