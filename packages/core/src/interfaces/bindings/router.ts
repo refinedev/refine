@@ -47,9 +47,10 @@ export type ParsedParams = {
     sorters?: CrudSorting;
     current?: number;
     pageSize?: number;
-    step?: number | string;
-    modal?: string | boolean;
-    [key: string]: unknown;
+    // drawer?: { [drawerKey: string]: string };
+    // step?: { [stepKey: string]: string };
+    // modal?: { [modalKey: string]: string };
+    [key: string & { _ignore?: boolean }]: unknown;
 };
 
 export type ParseResponse = {
