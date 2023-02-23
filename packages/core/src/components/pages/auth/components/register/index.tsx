@@ -4,6 +4,7 @@ import { RegisterPageProps } from "../../../../../interfaces";
 import { useTranslate, useRouterContext, useRegister } from "@hooks";
 
 import { DivPropsType, FormPropsType } from "../..";
+import { useProvidedAuthProvider } from "@definitions/helpers";
 
 type RegisterProps = RegisterPageProps<
     DivPropsType,
@@ -26,7 +27,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 
     const translate = useTranslate();
 
-    const { mutate: register, isLoading } = useRegister();
+    const authProvider = useProvidedAuthProvider();
+    const { mutate: register, isLoading } = useRegister({
+        legacy: Boolean(authProvider?.isLegacy),
+    });
 
     const renderLink = (link: React.ReactNode, text?: string) => {
         if (link) {

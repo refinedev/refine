@@ -33,18 +33,21 @@
 
 export type CheckResponse = {
     authenticated: boolean;
-    redirect?: string | false;
+    redirectTo?: string;
     logout?: boolean;
+    error?: Error;
 };
 
 export type OnErrorResponse = {
-    redirect?: string | false;
+    redirectTo?: string;
     logout?: boolean;
+    error?: Error;
 };
 
 export type AuthActionResponse = {
     success: boolean;
-    redirect?: string | false;
+    redirectTo?: string;
+    error?: Error;
     [key: string]: unknown;
 };
 
@@ -53,13 +56,17 @@ export type PermissionResponse = unknown;
 export type IdentityResponse = unknown;
 
 export type AuthBindings = {
-    login: (params: unknown) => Promise<AuthActionResponse>;
-    logout: (params: unknown) => Promise<AuthActionResponse>;
-    check: (params?: unknown) => Promise<CheckResponse>;
-    onError: (error: unknown) => Promise<OnErrorResponse>;
-    register?: (params: unknown) => Promise<AuthActionResponse>;
-    forgotPassword?: (params: unknown) => Promise<AuthActionResponse>;
-    updatePassword?: (params: unknown) => Promise<AuthActionResponse>;
-    getPermissions?: (params?: unknown) => Promise<PermissionResponse>;
-    getIdentity?: (params?: unknown) => Promise<IdentityResponse>;
+    login: (params: any) => Promise<AuthActionResponse>;
+    logout: (params: any) => Promise<AuthActionResponse>;
+    check: (params?: any) => Promise<CheckResponse>;
+    onError: (error: any) => Promise<OnErrorResponse>;
+    register?: (params: any) => Promise<AuthActionResponse>;
+    forgotPassword?: (params: any) => Promise<AuthActionResponse>;
+    updatePassword?: (params: any) => Promise<AuthActionResponse>;
+    getPermissions?: (params?: any) => Promise<PermissionResponse>;
+    getIdentity?: (params?: any) => Promise<IdentityResponse>;
 };
+
+export interface IAuthBindingsContext extends Partial<AuthBindings> {
+    isProvided: boolean;
+}

@@ -15,13 +15,18 @@ import {
 } from "../../interfaces";
 import {
     useResource,
-    useCheckError,
     useTranslate,
     useResourceSubscription,
     useHandleNotification,
     useDataProvider,
+    useOnError,
 } from "@hooks";
-import { queryKeys, pickDataProvider, pickNotDeprecated } from "@definitions";
+import {
+    queryKeys,
+    pickDataProvider,
+    pickNotDeprecated,
+    useProvidedAuthProvider,
+} from "@definitions";
 
 export type UseOneProps<TData, TError> = {
     /**
@@ -94,7 +99,10 @@ export const useOne = <
         pickDataProvider(resource, dataProviderName, resources),
     );
     const translate = useTranslate();
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useProvidedAuthProvider();
+    const { mutate: checkError } = useOnError({
+        legacy: Boolean(authProvider?.isLegacy),
+    });
     const handleNotification = useHandleNotification();
 
     useResourceSubscription({

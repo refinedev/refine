@@ -33,7 +33,7 @@ describe("routeChangeHandler", () => {
         await act(async () => {
             render(<RouteChangeHandler />, {
                 wrapper: TestWrapper({
-                    authProvider: checkAuthMockedAuthProvider,
+                    legacyAuthProvider: checkAuthMockedAuthProvider,
                 }),
             });
         });
@@ -50,7 +50,7 @@ describe("routeChangeHandler", () => {
         await act(async () => {
             render(<RouteChangeHandler />, {
                 wrapper: TestWrapper({
-                    authProvider: checkAuthMockedAuthProvider,
+                    legacyAuthProvider: checkAuthMockedAuthProvider,
                 }),
             });
         });

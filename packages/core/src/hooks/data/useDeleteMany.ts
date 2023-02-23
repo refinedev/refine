@@ -24,12 +24,12 @@ import {
     useTranslate,
     useMutationMode,
     useCancelNotification,
-    useCheckError,
     usePublish,
     useHandleNotification,
     useDataProvider,
     useInvalidate,
     useLog,
+    useOnError,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -37,6 +37,7 @@ import {
     pickDataProvider,
     handleMultiple,
     pickNotDeprecated,
+    useProvidedAuthProvider,
 } from "@definitions";
 
 export type DeleteManyParams<TVariables> = {
@@ -105,7 +106,10 @@ export const useDeleteMany = <
     TError,
     TVariables
 > => {
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useProvidedAuthProvider();
+    const { mutate: checkError } = useOnError({
+        legacy: Boolean(authProvider?.isLegacy),
+    });
 
     const {
         mutationMode: mutationModeContext,

@@ -16,11 +16,11 @@ import {
 } from "../../interfaces";
 import {
     useResource,
-    useCheckError,
     useHandleNotification,
     useResourceSubscription,
     useTranslate,
     useDataProvider,
+    useOnError,
 } from "@hooks";
 import {
     queryKeys,
@@ -28,6 +28,7 @@ import {
     getNextPageParam,
     getPreviousPageParam,
     pickNotDeprecated,
+    useProvidedAuthProvider,
 } from "@definitions/helpers";
 
 export interface UseInfiniteListConfig {
@@ -131,7 +132,10 @@ export const useInfiniteList = <
     );
 
     const translate = useTranslate();
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useProvidedAuthProvider();
+    const { mutate: checkError } = useOnError({
+        legacy: Boolean(authProvider?.isLegacy),
+    });
     const handleNotification = useHandleNotification();
 
     const isEnabled =

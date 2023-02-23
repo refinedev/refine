@@ -17,3 +17,4 @@ export {
     getPreviousPageParam,
 } from "./useInfinitePagination";
 export { pickNotDeprecated } from "./pickNotDeprecated";
+export { useProvidedAuthProvider } from "./useProvidedAuthProvider";

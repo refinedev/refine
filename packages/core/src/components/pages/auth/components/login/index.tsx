@@ -5,6 +5,7 @@ import { useRouterContext, useLogin } from "@hooks";
 import { useTranslate } from "@hooks/translate";
 
 import { DivPropsType, FormPropsType } from "../..";
+import { useProvidedAuthProvider } from "@definitions/helpers";
 
 type LoginProps = LoginPageProps<DivPropsType, DivPropsType, FormPropsType>;
 
@@ -25,7 +26,10 @@ export const LoginPage: React.FC<LoginProps> = ({
 
     const translate = useTranslate();
 
-    const { mutate: login } = useLogin<LoginFormTypes>();
+    const authProvider = useProvidedAuthProvider();
+    const { mutate: login } = useLogin<LoginFormTypes>({
+        legacy: Boolean(authProvider?.isLegacy),
+    });
 
     const renderLink = (link: React.ReactNode, text?: string) => {
         if (link) {

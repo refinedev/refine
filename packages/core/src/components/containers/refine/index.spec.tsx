@@ -33,7 +33,7 @@ describe("Refine Container", () => {
     it("should render without resource", async () => {
         const { getByText } = render(
             <Refine
-                authProvider={mockAuthProvider}
+                legacyAuthProvider={mockAuthProvider}
                 dataProvider={MockJSONServer}
                 routerProvider={MockRouterProvider}
             />,
@@ -52,7 +52,7 @@ describe("Refine Container", () => {
         };
         const { getByTestId, getByText } = render(
             <Refine
-                authProvider={mockAuthProvider}
+                legacyAuthProvider={mockAuthProvider}
                 dataProvider={MockJSONServer}
                 routerProvider={MockRouterProvider}
                 ReadyPage={readyPage}

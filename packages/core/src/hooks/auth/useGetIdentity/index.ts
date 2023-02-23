@@ -1,16 +1,52 @@
-import React from "react";
 import {
     useQuery,
     UseQueryResult,
     UseQueryOptions,
 } from "@tanstack/react-query";
 
-import { AuthContext } from "@contexts/auth";
-import { IAuthContext } from "../../../interfaces";
+import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
+import { IdentityResponse } from "../../../interfaces";
 
-export type UseGetIdentityProps<TData> = {
+export type UseGetIdentityLegacyProps<TData> = {
+    legacy: true;
     queryOptions?: UseQueryOptions<TData>;
 };
+
+export type UseGetIdentityProps<TData = IdentityResponse> = {
+    legacy?: false;
+    queryOptions?: UseQueryOptions<TData>;
+};
+
+export type UseGetIdentityCombinedProps<TData = any> = {
+    legacy: boolean;
+    queryOptions?: UseQueryOptions<TData> | UseQueryOptions<IdentityResponse>;
+};
+
+export type UseGetIdentityLegacyReturnType<TData> = UseQueryResult<
+    TData,
+    unknown
+>;
+
+export type UseGetIdentityReturnType<TData = IdentityResponse> = UseQueryResult<
+    TData,
+    unknown
+>;
+
+export type UsePermissionsCombinedReturnType<TData = any> =
+    | UseQueryResult<TData, unknown>
+    | UseQueryResult<IdentityResponse, unknown>;
+
+export function useGetIdentity<TData = any>(
+    props: UseGetIdentityLegacyProps<TData>,
+): UseGetIdentityLegacyReturnType<TData>;
+
+export function useGetIdentity<TData = IdentityResponse>(
+    props?: UseGetIdentityProps<TData>,
+): UseGetIdentityReturnType<TData>;
+
+export function useGetIdentity<TData = any>(
+    props?: UseGetIdentityCombinedProps<TData>,
+): UsePermissionsCombinedReturnType<TData>;
 
 /**
  * `useGetIdentity` calls the `getUserIdentity` method from the {@link https://refine.dev/docs/core/providers/auth-provider `authProvider`} under the hood.
@@ -20,21 +56,37 @@ export type UseGetIdentityProps<TData> = {
  * @typeParam TData - Result data of the query
  *
  */
-export const useGetIdentity = <TData = any>({
+export function useGetIdentity<TData = any>({
+    legacy = false,
     queryOptions,
-}: UseGetIdentityProps<TData> = {}): UseQueryResult<TData, unknown> => {
-    const { getUserIdentity } = React.useContext<IAuthContext>(AuthContext);
+}: UseGetIdentityProps<TData> | UseGetIdentityLegacyProps<TData> = {}):
+    | UseGetIdentityReturnType<TData>
+    | UseGetIdentityLegacyReturnType<TData> {
+    const { getUserIdentity: legacyGetUserIdentity } = useLegacyAuthContext();
+    const { getIdentity } = useAuthBindingsContext();
 
     const queryResponse = useQuery<TData>(
         ["getUserIdentity"],
         // Enabled check for `getUserIdentity` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
-        getUserIdentity ?? (() => Promise.resolve({})),
+        (getIdentity as (params?: unknown) => Promise<TData>) ??
+            (() => Promise.resolve({})),
         {
-            enabled: !!getUserIdentity,
+            enabled: !legacy && !!getIdentity,
             retry: false,
-            ...queryOptions,
+            ...(legacy === true ? {} : queryOptions),
         },
     );
 
-    return queryResponse;
-};
+    const legacyQueryResponse = useQuery<TData>(
+        ["getUserIdentity"],
+        // Enabled check for `getUserIdentity` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
+        legacyGetUserIdentity ?? (() => Promise.resolve({})),
+        {
+            enabled: legacy && !!legacyGetUserIdentity,
+            retry: false,
+            ...(legacy ? queryOptions : {}),
+        },
+    );
+
+    return legacy ? legacyQueryResponse : queryResponse;
+}

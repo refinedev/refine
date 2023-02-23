@@ -7,6 +7,7 @@ import {
 import { useTranslate, useUpdatePassword } from "@hooks";
 
 import { DivPropsType, FormPropsType } from "../..";
+import { useProvidedAuthProvider } from "@definitions/helpers";
 
 type UpdatePasswordProps = UpdatePasswordPageProps<
     DivPropsType,
@@ -22,8 +23,11 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
 }) => {
     const translate = useTranslate();
 
+    const authProvider = useProvidedAuthProvider();
     const { mutate: updatePassword, isLoading } =
-        useUpdatePassword<UpdatePasswordFormTypes>();
+        useUpdatePassword<UpdatePasswordFormTypes>({
+            legacy: Boolean(authProvider?.isLegacy),
+        });
 
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");

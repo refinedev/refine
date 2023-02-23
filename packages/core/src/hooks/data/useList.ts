@@ -16,16 +16,17 @@ import {
 } from "../../interfaces";
 import {
     useResource,
-    useCheckError,
     useHandleNotification,
     useResourceSubscription,
     useTranslate,
     useDataProvider,
+    useOnError,
 } from "@hooks";
 import {
     queryKeys,
     pickDataProvider,
     pickNotDeprecated,
+    useProvidedAuthProvider,
 } from "@definitions/helpers";
 
 export interface UseListConfig {
@@ -129,7 +130,10 @@ export const useList = <
     );
 
     const translate = useTranslate();
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useProvidedAuthProvider();
+    const { mutate: checkError } = useOnError({
+        legacy: Boolean(authProvider?.isLegacy),
+    });
     const handleNotification = useHandleNotification();
 
     const isEnabled =
