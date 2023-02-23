@@ -1,4 +1,4 @@
-import { Icon } from "@pankod/refine-antd";
+import Icon from "@ant-design/icons";
 
 const BikeWhiteSVG: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     <svg

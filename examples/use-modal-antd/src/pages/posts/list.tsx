@@ -1,13 +1,8 @@
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import {
-    List,
-    Table,
-    useTable,
-    useModal,
-    Modal,
-    Button,
-} from "@pankod/refine-antd";
+import { List, useTable, useModal } from "@pankod/refine-antd";
+
+import { Table, Modal, Button } from "antd";
 
 import { IPost } from "interfaces";
 

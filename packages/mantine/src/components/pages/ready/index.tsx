@@ -11,6 +11,9 @@ import {
     Anchor,
 } from "@mantine/core";
 
+/**
+ * @deprecated `ReadyPage` is deprecated and will be removed in the next major release.
+ */
 export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
     return (
         <BackgroundImage

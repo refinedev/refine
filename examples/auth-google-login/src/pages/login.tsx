@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useLogin } from "@pankod/refine-core";
-import { AntdLayout } from "@pankod/refine-antd";
+import { Layout as AntdLayout } from "antd";
 
 const clientId =
     "1041339102270-jlljcjl19jo1hkgf695em3ibr7q2m734.apps.googleusercontent.com";

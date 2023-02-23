@@ -598,7 +598,7 @@ import {
     Show,
     MarkdownField,
     // highlight-end
-} from "@pankod/refine-antd";
+} from "antd";
 
 // highlight-next-line
 const { Title, Text } = Typography;
@@ -720,6 +720,7 @@ import {
     //highlight-next-line
     useUpdate,
 } from "@pankod/refine-core";
+import { Show } from "@pankod/refine-antd";
 import {
     Typography,
     Show,
@@ -728,7 +729,7 @@ import {
     Space,
     Button,
     // highlight-end
-} from "@pankod/refine-antd";
+} from "antd";
 
 const { Title, Text } = Typography;
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Card, ModalProps, useModal } from "@pankod/refine-antd";
+import { useModal } from "@pankod/refine-antd";
+import { Card, ModalProps } from "antd";
 import {
     BaseKey,
     ILog,

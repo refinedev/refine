@@ -1,11 +1,4 @@
-import {
-    Modal,
-    Form,
-    Input,
-    ModalProps,
-    FormProps,
-    Upload,
-} from "@pankod/refine-antd";
+import { Modal, Form, Input, ModalProps, FormProps, Upload } from "antd";
 
 import {
     useStrapiUpload,

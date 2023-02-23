@@ -10,6 +10,9 @@ import {
     Image,
 } from "@chakra-ui/react";
 
+/**
+ * @deprecated `ReadyPage` is deprecated and will be removed in the next major release.
+ */
 export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
     return (
         <Box

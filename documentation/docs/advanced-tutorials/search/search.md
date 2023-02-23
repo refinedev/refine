@@ -19,13 +19,12 @@ We will now examine how to search within the application with this component.
 To do this, let's first create our `<Header>` component.
 
 ```tsx title="src/components/header.tsx"
-import { AntdLayout, AutoComplete, Input, Icons } from "@pankod/refine-antd";
-
-const { SearchOutlined } = Icons;
+import { Layout, AutoComplete, Input } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
 
 export const Header: React.FC = () => {
     return (
-        <AntdLayout.Header
+        <Layout.Header
             style={{
                 padding: "0px 24px",
                 backgroundColor: "#FFF",
@@ -41,7 +40,7 @@ export const Header: React.FC = () => {
                     suffix={<SearchOutlined />}
                 />
             </AutoComplete>
-        </AntdLayout.Header>
+        </Layout.Header>
     );
 };
 ```
@@ -122,13 +121,7 @@ export interface IOptions {
 ```tsx title="src/components/header.tsx"
 import { useState, useEffect } from "react";
 import { useList } from "@pankod/refine-core";
-import {
-    AntdLayout,
-    AutoComplete,
-    Input,
-    Icons,
-    Typography,
-} from "@pankod/refine-antd";
+import { Layout, AutoComplete, Input, Icons, Typography } from "antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 const { Link } = routerProvider;
@@ -189,7 +182,7 @@ export const Header: React.FC = () => {
     }, [value]);
 
     return (
-        <AntdLayout.Header
+        <Layout.Header
             style={{
                 padding: "0px 24px",
                 backgroundColor: "#FFF",
@@ -207,7 +200,7 @@ export const Header: React.FC = () => {
                     suffix={<SearchOutlined />}
                 />
             </AutoComplete>
-        </AntdLayout.Header>
+        </Layout.Header>
     );
 };
 ```

@@ -10,7 +10,8 @@ We will show what `<Show>` does using properties with examples.
 
 ```tsx live hideCode url=http://localhost:3000/posts/show/2
 // visible-block-start
-import { Show, Typography, MarkdownField } from "@pankod/refine-antd";
+import { Show, MarkdownField } from "@pankod/refine-antd";
+import { Typography } from "antd";
 import { useShow, IResourceComponentsProps, useOne } from "@pankod/refine-core";
 
 const { Title, Text } = Typography;
@@ -260,7 +261,8 @@ render(
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show, useModalForm, Modal, Button } from "@pankod/refine-antd";
+import { Show, useModalForm } from "@pankod/refine-antd";
+import { Modal, Button } from "antd";
 
 const PostShow: React.FC = () => {
     const { modalProps, id, show } = useModalForm({
@@ -344,12 +346,14 @@ To customize the back button or to disable it, you can use the `goBack` property
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show, Icons } from "@pankod/refine-antd";
+import { Show } from "@pankod/refine-antd";
+import { Button } from "antd";
 
 const PostShow: React.FC = () => {
+    const BackButton = () => <Button>←</Button>;
     return (
         /* highlight-next-line */
-        <Show goBack={<Icons.SmileOutlined />}>
+        <Show goBack={<SmileOutlined />}>
             <p>Rest of your page here</p>
         </Show>
     );
@@ -428,7 +432,8 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show, Breadcrumb } from "@pankod/refine-antd";
+import { Show } from "@pankod/refine-antd";
+import { Breadcrumb } from "antd";
 
 const PostShow: React.FC = () => {
     return (
@@ -625,7 +630,8 @@ You can customize the buttons at the header by using the `headerButtons` propert
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show, Button } from "@pankod/refine-antd";
+import { Show } from "@pankod/refine-antd";
+import { Button } from "antd";
 
 const PostShow: React.FC = () => {
     return (
@@ -674,7 +680,8 @@ You can customize the wrapper element of the buttons at the header by using the 
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show, Button } from "@pankod/refine-antd";
+import { Show } from "@pankod/refine-antd";
+import { Button } from "antd";
 
 const PostShow: React.FC = () => {
     return (
@@ -722,7 +729,8 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show, Button } from "@pankod/refine-antd";
+import { Show } from "@pankod/refine-antd";
+import { Button } from "antd";
 
 const PostShow: React.FC = () => {
     return (
@@ -771,7 +779,8 @@ You can customize the wrapper element of the buttons at the footer by using the 
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show, Button } from "@pankod/refine-antd";
+import { Show } from "@pankod/refine-antd";
+import { Button } from "antd";
 
 const PostShow: React.FC = () => {
     return (

@@ -2,14 +2,14 @@ import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
 
 import {
     List,
-    Table,
     TextField,
     useTable,
-    Space,
     EditButton,
     ShowButton,
     DeleteButton,
 } from "@pankod/refine-antd";
+
+import { Table, Space } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 

@@ -1,4 +1,5 @@
 import * as RefineAntd from "@pankod/refine-antd";
+import * as AntdPackage from "antd";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -42,8 +43,8 @@ export const renderer = ({
         ["BaseRecord", "@pankod/refine-core"],
         ["useTable", "@pankod/refine-antd"],
         ["List", "@pankod/refine-antd"],
-        ["Table", "@pankod/refine-antd"],
-        ["Space", "@pankod/refine-antd"],
+        ["Table", "antd"],
+        ["Space", "antd"],
     ];
 
     const relationFields: (InferField | null)[] = fields.filter(
@@ -531,7 +532,10 @@ export const renderer = ({
  */
 export const ListInferencer: InferencerResultComponent = createInferencer({
     type: "list",
-    additionalScope: [["@pankod/refine-antd", "RefineAntd", RefineAntd]],
+    additionalScope: [
+        ["@pankod/refine-antd", "RefineAntd", RefineAntd],
+        ["antd", "AntdPackage", AntdPackage],
+    ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,

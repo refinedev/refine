@@ -35,17 +35,8 @@ import {
     HttpError,
 } from "@pankod/refine-core";
 
-import {
-    List,
-    Create,
-    Table,
-    Form,
-    Select,
-    Input,
-    Drawer,
-    useTable,
-    useDrawerForm,
-} from "@pankod/refine-antd";
+import { List, Create, useTable, useDrawerForm } from "@pankod/refine-antd";
+import { Table, Form, Select, Input, Drawer } from "antd";
 
 interface IPost {
     id: number;
@@ -166,15 +157,10 @@ import {
     List,
     Edit,
     EditButton,
-    Table,
-    Form,
-    Select,
-    Input,
-    Drawer,
     useTable,
     useDrawerForm,
-    Space,
 } from "@pankod/refine-antd";
+import { Table, Form, Select, Input, Drawer, Space } from "antd";
 
 interface IPost {
     id: number;

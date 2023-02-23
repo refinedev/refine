@@ -429,7 +429,8 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 // visible-block-start
-import { List, Button } from "@pankod/refine-antd";
+import { List } from "@pankod/refine-antd";
+import { Button } from "antd";
 
 const PostList: React.FC = () => {
     return (
@@ -470,7 +471,8 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 // visible-block-start
-import { List, Button } from "@pankod/refine-antd";
+import { List } from "@pankod/refine-antd";
+import { Button } from "antd";
 
 const PostList: React.FC = () => {
     return (

@@ -335,7 +335,7 @@ The value set in individual CRUD components ([ANTD](/docs/api-reference/antd/com
 [Refer to the Breadcrumb docs for further information. &#8594](/docs/api-reference/antd/components/breadcrumb/)
 
 ```tsx title="App.tsx"
-import { Breadcrumb } from "@pankod/refine-antd";
+import { Breadcrumb } from "antd";
 OR
 import { Breadcrumb } from "@pankod/refine-mantine";
 OR

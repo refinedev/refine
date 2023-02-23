@@ -232,14 +232,14 @@ import { useLogin } from "@pankod/refine-core";
 import {
     Row,
     Col,
-    AntdLayout,
+    Layout,
     Card,
     Typography,
     Form,
     Input,
     Button,
     Checkbox,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import "./styles.css";
 
@@ -263,7 +263,7 @@ export const Login: React.FC = () => {
     );
 
     return (
-        <AntdLayout className="layout">
+        <Layout className="layout">
             <Row
                 justify="center"
                 align="middle"
@@ -350,7 +350,7 @@ export const Login: React.FC = () => {
                     </div>
                 </Col>
             </Row>
-        </AntdLayout>
+        </Layout>
     );
 };
 ```
@@ -425,14 +425,13 @@ Now that we've created our collections, we can create and list documents. Let's 
 import { useMany, IResourceComponentsProps } from "@pankod/refine-core";
 import {
     List,
-    Table,
     TextField,
     useTable,
-    Space,
     EditButton,
     ShowButton,
     getDefaultSortOrder,
 } from "@pankod/refine-antd";
+import { Table, Space } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -534,16 +533,9 @@ We can now create posts and set categories from our **refine** UI.
 import { useState } from "react";
 
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import {
-    Create,
-    Form,
-    Input,
-    Select,
-    Upload,
-    useForm,
-    useSelect,
-    RcFile,
-} from "@pankod/refine-antd";
+import { Create, useForm, useSelect } from "@pankod/refine-antd";
+import { Form, Input, Select, Upload } from "antd";
+import { RcFile } from "antd/lib/upload/interface";
 
 import MDEditor from "@uiw/react-md-editor";
 
@@ -686,16 +678,9 @@ You can edit the posts and categories we have created update your data.
 import React from "react";
 
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import {
-    Edit,
-    Form,
-    Input,
-    RcFile,
-    Select,
-    Upload,
-    useForm,
-    useSelect,
-} from "@pankod/refine-antd";
+import { Edit, useForm, useSelect } from "@pankod/refine-antd";
+import { Form, Input, Select, Upload } from "antd";
+import { RcFile } from "antd/lib/upload/interface";
 
 import MDEditor from "@uiw/react-md-editor";
 

@@ -125,13 +125,14 @@ We need to override the refine login page. In this way, we will redirect it to t
 
 ```tsx title="/src/page/login.tsx"
 import { useLogin } from "@pankod/refine-core";
-import { AntdLayout, Button, Icon, Row, Col } from "@pankod/refine-antd";
+import { Layout, Button, Row, Col } from "antd";
+import Icon from "@ant-design/icons";
 
 export const Login: React.FC = () => {
     const { mutate: login, isLoading } = useLogin();
 
     return (
-        <AntdLayout
+        <Layout
             style={{
                 background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
                 backgroundSize: "cover",
@@ -177,7 +178,7 @@ export const Login: React.FC = () => {
                     </div>
                 </Col>
             </Row>
-        </AntdLayout>
+        </Layout>
     );
 };
 ```
@@ -199,6 +200,7 @@ After connecting with our account, we can now retrieve account information. We w
 ```tsx title="src/pages/dashboard"
 import React from "react";
 import { useGetIdentity } from "@pankod/refine-core";
+import { useModal } from "@pankod/refine-antd";
 import {
     Row,
     Col,
@@ -207,10 +209,9 @@ import {
     Space,
     Button,
     Modal,
-    useModal,
     Form,
     Input,
-} from "@pankod/refine-antd";
+} from "antd";
 
 const { Text } = Typography;
 
@@ -289,6 +290,7 @@ export const sendEthereum = async (
 ```tsx title"src/pages/dashboard.tsx"
 import React, { useState } from "react";
 import { useGetIdentity } from "@pankod/refine-core";
+import { useModal } from "@pankod/refine-antd";
 import {
     Row,
     Col,
@@ -297,11 +299,10 @@ import {
     Space,
     Button,
     Modal,
-    useModal,
     Form,
     Input,
     notification,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { sendEthereum } from "../utility";
 

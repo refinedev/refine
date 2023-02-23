@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Drawer as AntdDrawer } from "@pankod/refine-antd";
+import { Drawer as AntdDrawer } from "antd";
 
 export const Drawer = styled(AntdDrawer)`
     .ant-page-header-heading {

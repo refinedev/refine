@@ -3,15 +3,13 @@ import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
     List,
-    Table,
     useTable,
-    Space,
     EditButton,
     DateField,
     DeleteButton,
-    Form,
-    Radio,
 } from "@pankod/refine-antd";
+
+import { Table, Space, Form, Radio } from "antd";
 
 import { ICategory } from "interfaces";
 
