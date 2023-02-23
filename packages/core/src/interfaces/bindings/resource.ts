@@ -29,7 +29,7 @@ export interface IResourceComponents {
     show?: ResourceRouteComposition;
 }
 
-export type AnyString = string & { __ignore: never };
+export type AnyString = string & { __ignore?: never };
 
 export type ResourceAuditLogPermissions =
     | "create"

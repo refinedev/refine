@@ -3,11 +3,10 @@ import { UseQueryResult } from "@tanstack/react-query";
 import { ILogData } from "../../interfaces";
 import {
     IResourceItem,
+    ResourceMeta,
     ResourceProps,
 } from "../../interfaces/bindings/resource";
 const auditLogPermissions = ["create", "update", "delete"] as const;
-
-type AuditLogPermissions = typeof auditLogPermissions;
 
 export type ResourceRouteComponent = ComponentType<
     IResourceComponentsProps<any, any>
@@ -33,16 +32,7 @@ export interface IResourceComponents {
     show?: ResourceRouteComposition;
 }
 
-type MetaProps<TExtends = { [key: string]: any }> = TExtends & {
-    label?: string;
-    route?: string;
-    hide?: boolean;
-    dataProviderName?: string;
-    auditLog?: {
-        permissions?: AuditLogPermissions[number][] | string[];
-    };
-    [key: string]: any;
-};
+type MetaProps<TExtends = { [key: string]: any }> = ResourceMeta & TExtends;
 
 export interface RouteableProperties {
     canCreate?: boolean;
