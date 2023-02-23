@@ -110,10 +110,6 @@ export function useLogin<TVariables = {}>({
                 close?.("login-error");
             }
 
-            if (redirectTo) {
-                replace(redirectTo);
-            }
-
             if (error) {
                 open?.({
                     message: error.name,
@@ -121,6 +117,14 @@ export function useLogin<TVariables = {}>({
                     key: "login-error",
                     type: "error",
                 });
+            }
+
+            if (to) {
+                return replace(to as string);
+            }
+
+            if (redirectTo) {
+                return replace(redirectTo);
             }
         },
         ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
