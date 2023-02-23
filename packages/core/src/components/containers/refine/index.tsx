@@ -98,51 +98,61 @@ export interface RefineProps {
     /**
      * A custom error component.
      * @type [`ReactNode`](/docs/api-reference/core/components/refine-config/#catchall)
+     * @deprecated Please use the `catchAll` element in your routes instead.
      */
     catchAll?: React.ReactNode;
     /**
      * Custom login component can be passed to the `LoginPage` property.
      * @type [`React.FC`](/docs/api-reference/core/components/refine-config/#loginpage)
+     * @deprecated Please use the `LoginPage` component in your routes instead.
      */
     LoginPage?: React.FC;
     /**
      * A custom dashboard page can be passed to the `DashboardPage` prop which is accessible on root route.
      * @type [`React.FC<DashboardPageProps>`](/docs/api-reference/core/components/refine-config/#dashboardpage)
+     * @deprecated Please use the `DashboardPage` component in your routes instead.
      */
     DashboardPage?: React.FC<DashboardPageProps>;
     /**
      * Custom ready page component can be set by passing to `ReadyPage` property.
      * @type [`React.FC`](/docs/api-reference/core/components/refine-config/#readypage)
+     * @deprecated This component is only used with the legacy router and will be removed in the future.
      */
     ReadyPage?: React.FC;
     /**
      * Default layout can be customized by passing the `Layout` property.
      * @type [`React.FC<LayoutProps>`](/docs/api-reference/core/components/refine-config/#layout)
+     * @deprecated Please use the `Layout` component as a children instead of a prop.
      */
     Layout?: React.FC<LayoutProps>;
     /**
      * The default sidebar can be customized by using refine hooks and passing custom components to `Sider` property.
      * @type [`React.FC`](/docs/api-reference/core/components/refine-config/#sider)
+     * @deprecated Please pass the `Sider` component to your `Layout` component.
      */
     Sider?: React.FC;
     /**
      * The default app header can be customized by passing the `Header` property.
      * @type [`React.FC`](/docs/api-reference/core/components/refine-config/#header)
+     * @deprecated Please pass the `Header` component to your `Layout` component.
      */
     Header?: React.FC;
     /**
      *The default app footer can be customized by passing the `Footer` property.
      * @type [`React.FC`](/docs/api-reference/core/components/refine-config/#footer)
+     * @deprecated Please pass the `Footer` component to your `Layout` component.
      */
     Footer?: React.FC;
     /**
      * The component wanted to be placed out of app layout structure can be set by passing to `OffLayoutArea` prop.
      * @type [`React.FC`](/docs/api-reference/core/components/refine-config/#offlayoutarea)
+     * @deprecated Please use your `OffLayoutArea` component as a children instead of a prop.
      */
     OffLayoutArea?: React.FC;
     /**
      * TThe app title can be set by passing the `Title` property.
      * @type [`React.FC<TitleProps>`](/docs/api-reference/core/components/refine-config/#title)
+     * @deprecated Please pass the `Title` component to your `Layout` component.
      */
     Title?: React.FC<TitleProps>;
     /**
@@ -248,7 +258,9 @@ export const Refine: React.FC<RefineProps> = ({
      * we can achieve backward compability only when its provided by user
      *
      */
-    const { RouterComponent = React.Fragment } = legacyRouterProvider ?? {};
+    const { RouterComponent = React.Fragment } = !routerProvider
+        ? legacyRouterProvider ?? {}
+        : {};
     /** */
 
     return (
