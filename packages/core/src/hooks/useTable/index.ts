@@ -210,7 +210,7 @@ export function useTable<
     pagination,
     initialSorter,
     permanentSorter = defaultPermanentSorter,
-    defaultSetFilterBehavior = "merge",
+    defaultSetFilterBehavior,
     initialFilter,
     permanentFilter = defaultPermanentFilter,
     filters: filtersFromProp,
@@ -269,6 +269,12 @@ export function useTable<
     const preferredPermanentSorters =
         pickNotDeprecated(sortersFromProp?.permanent, permanentSorter) ??
         defaultPermanentSorter;
+
+    const prefferedFilterBehavior =
+        pickNotDeprecated(
+            filtersFromProp?.defaultBehavior,
+            defaultSetFilterBehavior,
+        ) ?? "merge";
 
     let defaultCurrent: number;
     let defaultPageSize: number;
@@ -421,7 +427,7 @@ export function useTable<
 
     const setFiltersFn: useTableReturnType<TData>["setFilters"] = (
         setterOrFilters,
-        behavior: SetFilterBehavior = defaultSetFilterBehavior,
+        behavior: SetFilterBehavior = prefferedFilterBehavior,
     ) => {
         if (typeof setterOrFilters === "function") {
             setFiltersWithSetter(setterOrFilters);
