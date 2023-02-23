@@ -1,5 +1,5 @@
-import { LayoutProps, Refine } from "@pankod/refine-core";
-import routerProvider, { Link } from "@pankod/refine-react-router-v6/legacy";
+import { LayoutProps, Refine, useRouterContext } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import { githubDataProvider } from "github-data-provider";
@@ -8,6 +8,7 @@ import { CommitList } from "pages/commits/list";
 import "./App.css";
 
 const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
+    const { Link } = useRouterContext();
     return (
         <div>
             <ul>
