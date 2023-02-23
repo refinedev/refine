@@ -1576,7 +1576,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             class="MuiBox-root css-10egq61"
           >
             <a
-              href="/undefined"
+              href="/custom-page"
               style="text-decoration: none;"
             >
               <button
@@ -2537,7 +2537,7 @@ exports[`MuiInferencer should match the snapshot 4`] = `
             class="MuiBox-root css-10egq61"
           >
             <a
-              href="/undefined"
+              href="/custom-page"
               style="text-decoration: none;"
             >
               <button
