@@ -4,7 +4,6 @@ title: Show
 swizzle: true
 ---
 
-
 `<ShowButton>` uses Material UI [`<Button>`](https://ant.design/components/button/) component. It uses the `show` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
 
 :::info-tip Swizzle
@@ -17,12 +16,11 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 // visible-block-start
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     List,
     // highlight-next-line
     ShowButton,
 } from "@pankod/refine-mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -62,7 +60,9 @@ render(
             {
                 name: "posts",
                 list: PostsList,
-                show: () => <RefineMui.Show>Rest of the page here...</RefineMui.Show>,
+                show: () => (
+                    <RefineMui.Show>Rest of the page here...</RefineMui.Show>
+                ),
             },
         ]}
     />,
@@ -81,11 +81,13 @@ const { useRouterContext } = RefineCore;
 import { ShowButton } from "@pankod/refine-mui";
 
 const MyShowComponent = () => {
-    return <ShowButton
-        resourceNameOrRouteName="posts"
-        // highlight-next-line
-        recordItemId="1"
-    />;
+    return (
+        <ShowButton
+            resourceNameOrRouteName="posts"
+            // highlight-next-line
+            recordItemId="1"
+        />
+    );
 };
 
 // visible-block-end
@@ -209,9 +211,14 @@ This prop can be used to skip access control check with its `enabled` property o
 import { ShowButton } from "@pankod/refine-mui";
 
 export const MyListComponent = () => {
-    return <ShowButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <ShowButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
 };
 ```
+
 ```
 
 ## API Reference
@@ -222,4 +229,5 @@ export const MyListComponent = () => {
 
 :::tip External Props
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).
-:::        
+:::
+```

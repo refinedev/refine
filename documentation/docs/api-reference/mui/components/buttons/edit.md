@@ -4,7 +4,6 @@ title: Edit
 swizzle: true
 ---
 
-
 `<EditButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses the `edit` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the edit page route of resource.
 
 :::info-tip Swizzle
@@ -17,12 +16,11 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 // visible-block-start
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     List,
     // highlight-next-line
     EditButton,
 } from "@pankod/refine-mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -62,7 +60,9 @@ render(
             {
                 name: "posts",
                 list: PostsList,
-                edit: () => <RefineMui.Edit>Rest of the page here...</RefineMui.Edit>,
+                edit: () => (
+                    <RefineMui.Edit>Rest of the page here...</RefineMui.Edit>
+                ),
             },
         ]}
     />,
@@ -81,11 +81,13 @@ const { useRouterContext } = RefineCore;
 import { EditButton } from "@pankod/refine-mui";
 
 const MyEditComponent = () => {
-    return <EditButton
-        resourceNameOrRouteName="posts"
-        // highlight-next-line
-        recordItemId="1"
-    />;
+    return (
+        <EditButton
+            resourceNameOrRouteName="posts"
+            // highlight-next-line
+            recordItemId="1"
+        />
+    );
 };
 
 // visible-block-end
@@ -209,7 +211,11 @@ This prop can be used to skip access control check with its `enabled` property o
 import { EditButton } from "@pankod/refine-mui";
 
 export const MyListComponent = () => {
-    return <EditButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <EditButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
 };
 ```
 

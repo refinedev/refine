@@ -1,4 +1,9 @@
 import * as RefineMui from "@pankod/refine-mui";
+import * as EmotionReact from "@emotion/react";
+import * as EmotionStyled from "@emotion/styled";
+import * as MuiLab from "@mui/lab";
+import * as MuiMaterial from "@mui/material";
+import * as MuiXDataGrid from "@mui/x-data-grid";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -40,8 +45,8 @@ export const renderer = ({
     const imports: Array<ImportElement> = [
         ["useShow", "@pankod/refine-core"],
         ["Show", "@pankod/refine-mui"],
-        ["Typography", "@pankod/refine-mui"],
-        ["Stack", "@pankod/refine-mui"],
+        ["Typography", "@mui/material"],
+        ["Stack", "@mui/material"],
     ];
 
     const relationFields: (InferField | null)[] = fields.filter(
@@ -530,7 +535,14 @@ export const renderer = ({
  */
 export const ShowInferencer: InferencerResultComponent = createInferencer({
     type: "show",
-    additionalScope: [["@pankod/refine-mui", "RefineMui", RefineMui]],
+    additionalScope: [
+        ["@pankod/refine-mui", "RefineMui", RefineMui],
+        ["@emotion/react", "EmotionReact", EmotionReact],
+        ["@emotion/styled", "EmotionStyled", EmotionStyled],
+        ["@mui/lab", "MuiLab", MuiLab],
+        ["@mui/material", "MuiMaterial", MuiMaterial],
+        ["@mui/x-data-grid", "MuiXDataGrid", MuiXDataGrid],
+    ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,

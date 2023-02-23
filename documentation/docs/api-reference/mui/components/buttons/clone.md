@@ -17,12 +17,11 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 // visible-block-start
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     List,
     // highlight-next-line
     CloneButton,
 } from "@pankod/refine-mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -62,7 +61,11 @@ render(
             {
                 name: "posts",
                 list: PostsList,
-                create: () => <RefineMui.Create>Rest of the page here...</RefineMui.Create>,
+                create: () => (
+                    <RefineMui.Create>
+                        Rest of the page here...
+                    </RefineMui.Create>
+                ),
             },
         ]}
     />,

@@ -1,12 +1,8 @@
 ```tsx live url=http://localhost:3000 previewHeight=300px
 setInitialRoutes(["/posts/create"]);
 // visible-block-start
-import {
-    Autocomplete,
-    useAutocomplete,
-    TextField,
-    Button,
-} from "@pankod/refine-mui";
+import { useAutocomplete } from "@pankod/refine-mui";
+import { Autocomplete, Button, TextField } from "@mui/material";
 
 interface ICategory {
     id: number;
