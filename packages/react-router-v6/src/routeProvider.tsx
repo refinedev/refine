@@ -187,8 +187,9 @@ export const RouteProvider = ({
         );
     }
 
-    const hasAuthError = isError || authData?.error;
+    const hasAuthError = isError || authData?.error || !authData.authenticated;
     const isAuthenticated = hasAuthError ? false : true;
+
     const CustomPathAfterLogin: React.FC = (): JSX.Element | null => {
         const { pathname, search } = location;
         const toURL = `${pathname}${search}`;
