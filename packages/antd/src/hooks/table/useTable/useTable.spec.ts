@@ -44,8 +44,10 @@ describe("useTable Hook", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialCurrent: customPagination.current,
-                    initialPageSize: customPagination.pageSize,
+                    pagination: {
+                        current: customPagination.current,
+                        pageSize: customPagination.pageSize,
+                    },
                 }),
             {
                 wrapper: TestWrapper({}),
@@ -137,7 +139,9 @@ describe("useTable Hook", () => {
             () =>
                 useTable({
                     resource: "categories",
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                    },
                 }),
             {
                 wrapper: TestWrapper({}),
@@ -176,19 +180,21 @@ describe("useTable Hook", () => {
             () =>
                 useTable({
                     resource: "categories",
-                    defaultSetFilterBehavior: "replace",
-                    initialFilter: [
-                        {
-                            field: "name",
-                            operator: "eq",
-                            value: "test",
-                        },
-                        {
-                            field: "id",
-                            operator: "gte",
-                            value: 1,
-                        },
-                    ],
+                    filters: {
+                        initial: [
+                            {
+                                field: "name",
+                                operator: "eq",
+                                value: "test",
+                            },
+                            {
+                                field: "id",
+                                operator: "gte",
+                                value: 1,
+                            },
+                        ],
+                        defaultBehavior: "replace",
+                    },
                 }),
             {
                 wrapper: TestWrapper({}),

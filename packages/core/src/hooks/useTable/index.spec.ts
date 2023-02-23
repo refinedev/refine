@@ -48,8 +48,10 @@ describe("useTable Hook", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialCurrent: customPagination.defaultCurrent,
-                    initialPageSize: customPagination.defaultPageSize,
+                    pagination: {
+                        current: customPagination.defaultCurrent,
+                        pageSize: customPagination.defaultPageSize,
+                    },
                 }),
             {
                 wrapper: TestWrapper({
@@ -393,7 +395,9 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -428,8 +432,10 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
-                    permanentFilter,
+                    filters: {
+                        initial: initialFilter,
+                        permanent: permanentFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -473,8 +479,10 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    permanentFilter,
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                        permanent: permanentFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -510,7 +518,9 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -568,8 +578,10 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    permanentFilter,
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                        permanent: permanentFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -633,8 +645,10 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    permanentFilter,
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                        permanent: permanentFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -695,7 +709,9 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -750,7 +766,9 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -806,8 +824,10 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    permanentFilter,
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                        permanent: permanentFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -875,7 +895,9 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -935,7 +957,9 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -985,8 +1009,10 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
-                    defaultSetFilterBehavior: "replace",
+                    filters: {
+                        initial: initialFilter,
+                        defaultBehavior: "replace",
+                    },
                 }),
             {
                 wrapper,
@@ -1034,7 +1060,9 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -1082,7 +1110,9 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                    },
                 }),
             {
                 wrapper,
@@ -1147,8 +1177,10 @@ describe("useTable Filters", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialFilter,
-                    permanentFilter,
+                    filters: {
+                        initial: initialFilter,
+                        permanent: permanentFilter,
+                    },
                 }),
             {
                 wrapper,
