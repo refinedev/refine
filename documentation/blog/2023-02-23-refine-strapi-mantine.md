@@ -1,10 +1,10 @@
 ---
-title: How to Build a React Admin Panel with Mantine
-description: We will be building a Complete React CRUD application using refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
+title: How to Build a React Admin Panel with Mantine and Strapi
+description: We'll be building a simple React Admin Panel with refine and Mantine using Strapi as a backend service.
 slug: react-admin-panel
 authors: joseph_mawa
-tags: [refine, react, airtable, crud]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/social.png
+tags: [refine, strapi, mantine, crud]
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fsocial.png
 hide_table_of_contents: false
 ---
 
@@ -370,7 +370,12 @@ function App() {
 }
 ```
 
+---
 
+<PromotionBanner title="Building a side project?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" />
+
+---
+ 
 
 ### Setting AuthProvider
 
@@ -1078,3 +1083,10 @@ When looking to build a React admin panel, refine is one of the react frameworks
 Furthermore, refine has out-of-the-box support for authentication, i18n, routing, and state management. The refine command line tool can get you up and running instantly with all the necessary configurations for a basic refine project. You can modify the default settings to suit your needs.
 
 All the refine features I have highlighted above will significantly increase your development speed, improve your development experience and reduce time to production, especially when building complex front-end applications.
+
+
+## Live CodeSandbox Example
+
+<CodeSandboxExample path="blog-react-admin-mantine" />
+
+---
