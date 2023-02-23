@@ -39,11 +39,11 @@ export const getActionRoutesFromResource = (
 
         let route: string | undefined = undefined;
 
-        if (typeof item === "function") {
+        if (typeof item === "function" || legacy) {
             // means we're fallbacking to default path for the action
             route = getDefaultActionPath(
                 legacy
-                    ? resource.options?.route ?? resource.name
+                    ? resource.route ?? resource.options?.route ?? resource.name
                     : resource.name,
                 action,
                 parentPrefix,

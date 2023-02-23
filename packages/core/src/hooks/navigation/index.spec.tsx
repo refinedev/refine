@@ -39,9 +39,22 @@ describe("useNavigation Hook", () => {
                     edit: () => null,
                     show: () => null,
                 },
+                {
+                    name: "users",
+                    route: "users-custom-route",
+                    // options: {
+                    //     route: "users-custom-route",
+                    // },
+                },
             ],
             legacyRouterProvider,
         }),
+    });
+
+    fit("navigate to show with custom route", async () => {
+        result.current.show("users", "1", "push");
+
+        expect(legacyPushMock).toBeCalledWith("/users-custom-route/show/1");
     });
 
     it("navigation create with push", async () => {
