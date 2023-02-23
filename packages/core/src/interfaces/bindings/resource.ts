@@ -118,7 +118,7 @@ export interface ResourceProps extends IResourceComponents {
      * To configure the resource, you can set `meta` properties. You can use `meta` to store any data related to the resource.
      * There are some known `meta` properties that are used by the core and extension packages.
      */
-    meta?: ResourceMeta;
+    meta?: ResourceMeta & DeprecatedOptions;
     /**
      * @deprecated Please use the `meta.canDelete` property instead.
      */
