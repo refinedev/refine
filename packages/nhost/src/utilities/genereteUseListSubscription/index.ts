@@ -29,7 +29,11 @@ export const genereteUseListSubscription = ({
     sorters,
     filters,
 }: GenereteUseListSubscriptionParams): GenereteUseListSubscriptionReturnValues => {
-    const { current = 1, pageSize: limit = 10, mode } = pagination ?? {};
+    const {
+        current = 1,
+        pageSize: limit = 10,
+        mode = "server",
+    } = pagination ?? {};
 
     const hasuraSorting = generateSorting(sorters);
     const hasuraFilters = generateFilters(filters);
