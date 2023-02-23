@@ -101,7 +101,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
         offset: 4,
     };
 
-    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+    const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
         return tree.map((item) => {
             const { icon, label, route, name, children } = item;
 
