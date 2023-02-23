@@ -3,7 +3,7 @@ import { RefineLayoutHeaderProps } from "@pankod/refine-ui-types";
 
 import { render, TestWrapper } from "@test";
 
-const mockAuthProvider = {
+const mockLegacyAuthProvider = {
     login: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkError: () => Promise.resolve(),
@@ -20,7 +20,7 @@ export const layoutHeaderTests = function (
         it("should render successfull user name and avatar in header", async () => {
             const { findByText, getByRole } = render(<HeaderElement />, {
                 wrapper: TestWrapper({
-                    authProvider: mockAuthProvider,
+                    legacyAuthProvider: mockLegacyAuthProvider,
                 }),
             });
 
