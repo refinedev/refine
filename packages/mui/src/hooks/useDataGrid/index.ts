@@ -55,7 +55,7 @@ type DataGridPropsType = Required<
 
 export type UseDataGridProps<TData, TError, TSearchVariables = unknown> = Omit<
     useTablePropsCore<TData, TError>,
-    "pagination"
+    "pagination" | "filters"
 > & {
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
     pagination?: Prettify<
@@ -65,6 +65,18 @@ export type UseDataGridProps<TData, TError, TSearchVariables = unknown> = Omit<
              * @default 25
              */
             pageSize?: number;
+        }
+    >;
+    filters?: Prettify<
+        Omit<
+            NonNullable<useTablePropsCore<TData, TError>["filters"]>,
+            "defaultBehavior"
+        > & {
+            /**
+             * Default behavior of the `setFilters` function
+             * @default "replace"
+             */
+            defaultBehavior?: "replace" | "merge";
         }
     >;
 };
