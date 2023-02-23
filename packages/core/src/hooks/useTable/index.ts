@@ -213,6 +213,8 @@ export function useTable<
     defaultSetFilterBehavior = "merge",
     initialFilter,
     permanentFilter = defaultPermanentFilter,
+    filters: filtersFromProp,
+    sorters: sortersFromProp,
     syncWithLocation: syncWithLocationProp,
     resource: resourceFromProp,
     successNotification,
@@ -252,6 +254,22 @@ export function useTable<
     );
     const preferredMeta = pickNotDeprecated(meta, metaData);
 
+    const preferredInitialFilters = pickNotDeprecated(
+        filtersFromProp?.initial,
+        initialFilter,
+    );
+    const preferredPermanentFilters =
+        pickNotDeprecated(filtersFromProp?.permanent, permanentFilter) ??
+        defaultPermanentFilter;
+
+    const preferredInitialSorters = pickNotDeprecated(
+        sortersFromProp?.initial,
+        initialSorter,
+    );
+    const preferredPermanentSorters =
+        pickNotDeprecated(sortersFromProp?.permanent, permanentSorter) ??
+        defaultPermanentSorter;
+
     let defaultCurrent: number;
     let defaultPageSize: number;
     let defaultSorter: CrudSorting | undefined;
@@ -260,20 +278,24 @@ export function useTable<
     if (syncWithLocation) {
         defaultCurrent = parsedCurrent || prefferedCurrent || 1;
         defaultPageSize = parsedPageSize || prefferedPageSize || 10;
-        defaultSorter = parsedSorter.length ? parsedSorter : initialSorter;
-        defaultFilter = parsedFilters.length ? parsedFilters : initialFilter;
+        defaultSorter = parsedSorter.length
+            ? parsedSorter
+            : preferredInitialSorters;
+        defaultFilter = parsedFilters.length
+            ? parsedFilters
+            : preferredInitialFilters;
     } else {
         defaultCurrent = prefferedCurrent || 1;
         defaultPageSize = prefferedPageSize || 10;
-        defaultSorter = initialSorter;
-        defaultFilter = initialFilter;
+        defaultSorter = preferredInitialSorters;
+        defaultFilter = preferredInitialFilters;
     }
 
     const [sorters, setSorters] = useState<CrudSorting>(
-        setInitialSorters(permanentSorter, defaultSorter ?? []),
+        setInitialSorters(preferredPermanentSorters, defaultSorter ?? []),
     );
     const [filters, setFilters] = useState<CrudFilters>(
-        setInitialFilters(permanentFilter, defaultFilter ?? []),
+        setInitialFilters(preferredPermanentFilters, defaultFilter ?? []),
     );
     const [current, setCurrent] = useState<number>(defaultCurrent);
     const [pageSize, setPageSize] = useState<number>(defaultPageSize);
@@ -282,8 +304,18 @@ export function useTable<
         if (search === "") {
             setCurrent(defaultCurrent);
             setPageSize(defaultPageSize);
-            setSorters(setInitialSorters(permanentSorter, defaultSorter ?? []));
-            setFilters(setInitialFilters(permanentFilter, defaultFilter ?? []));
+            setSorters(
+                setInitialSorters(
+                    preferredPermanentSorters,
+                    defaultSorter ?? [],
+                ),
+            );
+            setFilters(
+                setInitialFilters(
+                    preferredPermanentFilters,
+                    defaultFilter ?? [],
+                ),
+            );
         }
     }, [search]);
 
@@ -299,8 +331,16 @@ export function useTable<
                           },
                       }
                     : {}),
-                sorters: differenceWith(sorters, permanentSorter, isEqual),
-                filters: differenceWith(filters, permanentFilter, isEqual),
+                sorters: differenceWith(
+                    sorters,
+                    preferredPermanentSorters,
+                    isEqual,
+                ),
+                filters: differenceWith(
+                    filters,
+                    preferredPermanentFilters,
+                    isEqual,
+                ),
                 ...queryParams,
             });
 
@@ -315,8 +355,8 @@ export function useTable<
         resource: resource.name,
         hasPagination,
         pagination: { current, pageSize, mode: pagination?.mode },
-        filters: unionFilters(permanentFilter, filters),
-        sorters: unionSorters(permanentSorter, sorters),
+        filters: unionFilters(preferredPermanentFilters, filters),
+        sorters: unionSorters(preferredPermanentSorters, sorters),
         queryOptions,
         successNotification,
         errorNotification,
@@ -363,18 +403,20 @@ export function useTable<
 
     const setFiltersAsMerge = (newFilters: CrudFilters) => {
         setFilters((prevFilters) =>
-            unionFilters(permanentFilter, newFilters, prevFilters),
+            unionFilters(preferredPermanentFilters, newFilters, prevFilters),
         );
     };
 
     const setFiltersAsReplace = (newFilters: CrudFilters) => {
-        setFilters(unionFilters(permanentFilter, newFilters));
+        setFilters(unionFilters(preferredPermanentFilters, newFilters));
     };
 
     const setFiltersWithSetter = (
         setter: (prevFilters: CrudFilters) => CrudFilters,
     ) => {
-        setFilters((prev) => unionFilters(permanentFilter, setter(prev)));
+        setFilters((prev) =>
+            unionFilters(preferredPermanentFilters, setter(prev)),
+        );
     };
 
     const setFiltersFn: useTableReturnType<TData>["setFilters"] = (
@@ -393,7 +435,7 @@ export function useTable<
     };
 
     const setSortWithUnion = (newSorter: CrudSorting) => {
-        setSorters(() => unionSorters(permanentSorter, newSorter));
+        setSorters(() => unionSorters(preferredPermanentSorters, newSorter));
     };
 
     return {
