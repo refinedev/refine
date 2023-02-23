@@ -5,12 +5,13 @@ import {
     LoginPage as DefaultLoginPage,
     ErrorComponent,
     LayoutWrapper,
-    useAuthenticated,
     useResource,
     useRefineContext,
     useRouterContext,
     CanAccess,
     ResourceRouterParams,
+    useProvidedAuthProvider,
+    useIsAuthenticated,
 } from "@pankod/refine-core";
 import { RefineRouteProps } from "./index";
 
@@ -169,8 +170,13 @@ export const RouteProvider = ({
 
     const { routes: customRoutes } = useRouterContext();
 
-    const { isFetching, isError } = useAuthenticated({
-        type: "routeProvider",
+    const authProvider = useProvidedAuthProvider();
+    const {
+        isFetching,
+        isError,
+        data: authData,
+    } = useIsAuthenticated({
+        legacy: Boolean(authProvider?.isLegacy),
     });
 
     if (isFetching) {
@@ -180,7 +186,9 @@ export const RouteProvider = ({
             </Routes>
         );
     }
-    const isAuthenticated = isError ? false : true;
+
+    const hasAuthError = isError || authData?.error;
+    const isAuthenticated = hasAuthError ? false : true;
     const CustomPathAfterLogin: React.FC = (): JSX.Element | null => {
         const { pathname, search } = location;
         const toURL = `${pathname}${search}`;
