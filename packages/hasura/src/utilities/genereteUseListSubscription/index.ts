@@ -11,7 +11,7 @@ import { generateFilters, generateSorting } from "../../dataProvider";
 type GenereteUseListSubscriptionParams = {
     resource: string;
     meta: MetaQuery;
-    pagination?: Required<Pagination>;
+    pagination?: Pagination;
     sorters?: CrudSorting;
     filters?: CrudFilters;
 };
@@ -29,7 +29,11 @@ export const genereteUseListSubscription = ({
     sorters,
     filters,
 }: GenereteUseListSubscriptionParams): GenereteUseListSubscriptionReturnValues => {
-    const { current = 1, pageSize: limit = 10, mode } = pagination ?? {};
+    const {
+        current = 1,
+        pageSize: limit = 10,
+        mode = "server",
+    } = pagination ?? {};
 
     const hasuraSorting = generateSorting(sorters);
     const hasuraFilters = generateFilters(filters);

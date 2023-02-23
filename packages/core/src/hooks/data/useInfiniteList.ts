@@ -28,7 +28,7 @@ import {
     getNextPageParam,
     getPreviousPageParam,
     pickNotDeprecated,
-    handlePagination,
+    handlePaginationParams,
 } from "@definitions/helpers";
 
 export interface UseInfiniteListConfig {
@@ -138,7 +138,7 @@ export const useInfiniteList = <
         hasPagination,
         config?.hasPagination,
     );
-    const prefferedPagination = handlePagination({
+    const prefferedPagination = handlePaginationParams({
         pagination,
         configPagination: config?.pagination,
         hasPagination: prefferedHasPagination,

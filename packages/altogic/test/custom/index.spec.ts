@@ -18,11 +18,6 @@ describe("custom", () => {
             axiosInstance,
         ).getList({
             resource: "post",
-            pagination: {
-                current: 1,
-                pageSize: 10,
-                mode: "server",
-            },
         });
 
         expect(response.data[0]["id"]).toBe("613a25eb65f2050012410a41");

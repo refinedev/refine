@@ -59,7 +59,11 @@ const generateFilter = (filters?: CrudFilters) => {
 const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
     return {
         getList: async ({ resource, pagination, sorters, filters, meta }) => {
-            const { current, pageSize, mode } = pagination;
+            const {
+                current = 1,
+                pageSize = 10,
+                mode = "server",
+            } = pagination ?? {};
 
             const sortBy = genereteSort(sorters);
             const filterBy = generateFilter(filters);

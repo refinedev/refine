@@ -1,17 +1,17 @@
 import { Pagination } from "../../../interfaces";
 import { pickNotDeprecated } from "../pickNotDeprecated";
 
-type HandlePaginationProps = {
+type HandlePaginationParamsProps = {
     hasPagination?: boolean;
     pagination?: Pagination;
     configPagination?: Pagination;
 };
 
-export const handlePagination = ({
+export const handlePaginationParams = ({
     hasPagination,
     pagination,
     configPagination,
-}: HandlePaginationProps = {}): Required<Pagination> => {
+}: HandlePaginationParamsProps = {}): Required<Pagination> => {
     const hasPaginationString = hasPagination === false ? "off" : "server";
     const mode = pagination?.mode ?? hasPaginationString;
 

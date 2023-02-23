@@ -13,7 +13,11 @@ export const dataProvider = (
     getList: async ({ resource, pagination, filters, sorters }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { current, pageSize, mode } = pagination;
+        const {
+            current = 1,
+            pageSize = 10,
+            mode = "server",
+        } = pagination ?? {};
 
         const queryFilters = generateFilter(filters);
 

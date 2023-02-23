@@ -1,16 +1,9 @@
-import { Pagination } from "@pankod/refine-core";
 import axios from "axios";
 
 import { DataProvider } from "../../src/dataProvider";
 import "./index.mock";
 
 axios.defaults.adapter = require("axios/lib/adapters/http");
-
-const defaultPagination: Required<Pagination> = {
-    current: 1,
-    pageSize: 10,
-    mode: "server",
-};
 
 describe("dataProvider", () => {
     const API_URL = "https://api.strapi.refine.dev";
@@ -67,7 +60,7 @@ describe("dataProvider", () => {
             const { data, total } = await DataProvider(
                 API_URL,
                 axiosInstance,
-            ).getList({ resource: "posts", pagination: defaultPagination });
+            ).getList({ resource: "posts" });
 
             expect(data[0]["id"]).toBe(49);
             expect(data[0]["title"]).toBe("0001");
@@ -80,7 +73,6 @@ describe("dataProvider", () => {
                 axiosInstance,
             ).getList({
                 resource: "posts",
-                pagination: defaultPagination,
                 sorters: [
                     {
                         field: "id",
@@ -98,7 +90,6 @@ describe("dataProvider", () => {
             const { data } = await DataProvider(API_URL, axiosInstance).getList(
                 {
                     resource: "posts",
-                    pagination: defaultPagination,
                     filters: [
                         {
                             field: "title",
@@ -117,7 +108,6 @@ describe("dataProvider", () => {
             const { data } = await DataProvider(API_URL, axiosInstance).getList(
                 {
                     resource: "posts",
-                    pagination: defaultPagination,
                     filters: [
                         {
                             field: "title",

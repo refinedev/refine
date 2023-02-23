@@ -85,7 +85,11 @@ export const DataProvider = (
     getList: async ({ resource, pagination, filters, sorters }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { current, pageSize: _limit, mode } = pagination;
+        const {
+            current = 1,
+            pageSize: _limit = 10,
+            mode = "server",
+        } = pagination ?? {};
 
         const _sort = generateSort(sorters);
         const queryFilters = generateFilter(filters);

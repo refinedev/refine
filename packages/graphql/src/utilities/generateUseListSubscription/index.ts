@@ -12,7 +12,7 @@ import { generateFilter, generateSort } from "../../dataProvider";
 type GenerateUseListSubscriptionParams = {
     resource: string;
     meta: MetaQuery;
-    pagination?: Required<Pagination>;
+    pagination?: Pagination;
     sorters?: CrudSorting;
     filters?: CrudFilters;
 };
@@ -30,7 +30,7 @@ export const generateUseListSubscription = ({
     sorters,
     filters,
 }: GenerateUseListSubscriptionParams): GenerateUseListSubscriptionReturnValues => {
-    const { current = 1, pageSize = 10, mode } = pagination ?? {};
+    const { current = 1, pageSize = 10, mode = "server" } = pagination ?? {};
 
     const sortBy = generateSort(sorters);
     const filterBy = generateFilter(filters);

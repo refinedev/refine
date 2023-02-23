@@ -1,16 +1,9 @@
-import { Pagination } from "@pankod/refine-core";
 import axios from "axios";
 
 import { DataProvider } from "../../src/dataProvider";
 import "./index.mock";
 
 axios.defaults.adapter = require("axios/lib/adapters/http");
-
-const defaultPagination: Required<Pagination> = {
-    current: 1,
-    pageSize: 10,
-    mode: "server",
-};
 
 describe("dataProvider", () => {
     const API_URL = "http://localhost:1337/api";
@@ -67,7 +60,7 @@ describe("dataProvider", () => {
             const { data, total } = await DataProvider(
                 API_URL,
                 axiosInstance,
-            ).getList({ resource: "posts", pagination: defaultPagination });
+            ).getList({ resource: "posts" });
 
             expect(data[2].id).toBe(17);
             expect(data[2].title).toBe("foo");
@@ -81,7 +74,6 @@ describe("dataProvider", () => {
                 axiosInstance,
             ).getList({
                 resource: "posts",
-                pagination: defaultPagination,
                 sorters: [
                     {
                         field: "id",
@@ -100,7 +92,6 @@ describe("dataProvider", () => {
             const { data } = await DataProvider(API_URL, axiosInstance).getList(
                 {
                     resource: "posts",
-                    pagination: defaultPagination,
                     filters: [
                         {
                             field: "title",
@@ -119,7 +110,6 @@ describe("dataProvider", () => {
             const { data } = await DataProvider(API_URL, axiosInstance).getList(
                 {
                     resource: "posts",
-                    pagination: defaultPagination,
                     filters: [
                         {
                             field: "title",
@@ -146,7 +136,6 @@ describe("dataProvider", () => {
                 axiosInstance,
             ).getList({
                 resource: "posts",
-                pagination: defaultPagination,
                 meta: {
                     locale: "de",
                 },
@@ -163,7 +152,6 @@ describe("dataProvider", () => {
                 axiosInstance,
             ).getList({
                 resource: "posts",
-                pagination: defaultPagination,
                 meta: {
                     fields: ["title", "content"],
                 },
@@ -184,7 +172,6 @@ describe("dataProvider", () => {
                 axiosInstance,
             ).getList({
                 resource: "posts",
-                pagination: defaultPagination,
                 meta: {
                     populate: ["category"],
                 },

@@ -169,7 +169,11 @@ export const DataProvider = (
     getList: async ({ resource, pagination, filters, sorters, meta }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { current, pageSize, mode } = pagination;
+        const {
+            current = 1,
+            pageSize = 10,
+            mode = "server",
+        } = pagination ?? {};
 
         const locale = meta?.locale;
         const fields = meta?.fields;

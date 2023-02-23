@@ -198,7 +198,11 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
         },
 
         getList: async ({ resource, sorters, filters, pagination, meta }) => {
-            const { current, pageSize: limit, mode } = pagination;
+            const {
+                current = 1,
+                pageSize: limit = 10,
+                mode = "server",
+            } = pagination ?? {};
 
             const hasuraSorting = generateSorting(sorters);
             const hasuraFilters = generateFilters(filters);
