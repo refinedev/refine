@@ -86,7 +86,7 @@ const App: React.FC = () => {
                         "https://api.fake-rest.refine.dev",
                     )}
                     authProvider={authProvider}
-                    routerProvider={{
+                    legacyRouterProvider={{
                         ...routerProvider,
                         routes: [
                             {

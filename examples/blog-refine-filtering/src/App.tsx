@@ -7,7 +7,7 @@ import { Posts } from "components/Posts";
 function App() {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[{ name: "posts", list: Posts }]}
             Layout={({ children }) => (

@@ -12,7 +12,7 @@ import "index.css";
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 { name: "posts", list: postList },

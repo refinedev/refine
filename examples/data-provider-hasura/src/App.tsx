@@ -36,7 +36,7 @@ const gqlDataProvider = dataProvider(client);
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={gqlDataProvider}
             // ## Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
             //liveProvider={liveProvider(gqlWebSocketClient)}

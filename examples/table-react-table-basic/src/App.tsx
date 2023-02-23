@@ -9,7 +9,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[{ name: "posts", list: PostList }]}
         />
     );

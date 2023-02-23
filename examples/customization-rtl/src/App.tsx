@@ -19,7 +19,7 @@ const App: React.FC = () => {
         <ConfigProvider direction={"rtl"}>
             <Refine
                 dataProvider={dataProvider(API_URL)}
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 resources={[
                     {
                         name: "posts",

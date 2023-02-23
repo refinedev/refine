@@ -56,7 +56,7 @@ const App: React.FC = () => {
                 />
                 <RefineSnackbarProvider>
                     <Refine
-                        routerProvider={{
+                        legacyRouterProvider={{
                             ...routerProvider,
                             routes: [
                                 {

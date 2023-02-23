@@ -22,7 +22,7 @@ const App: React.FC = () => {
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
                 <Refine
-                    routerProvider={routerProvider}
+                    legacyRouterProvider={routerProvider}
                     notificationProvider={notificationProvider}
                     dataProvider={dataProvider(API_URL)}
                     ReadyPage={ReadyPage}

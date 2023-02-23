@@ -67,7 +67,7 @@ const App: React.FC = () => {
 
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 routes: [
                     { path: "/example", element: <ExamplePage /> },

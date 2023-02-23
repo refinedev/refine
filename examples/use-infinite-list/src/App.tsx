@@ -36,7 +36,7 @@ const App: React.FC = () => {
                 default: dataProvider("https://api.fake-rest.refine.dev"),
                 github: githubDataProvider(),
             }}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             Layout={Layout}
             resources={[
                 {

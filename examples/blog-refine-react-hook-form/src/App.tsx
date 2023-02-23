@@ -30,7 +30,7 @@ function App() {
                             list: Create,
                         },
                     ]}
-                    routerProvider={routerProvider}
+                    legacyRouterProvider={routerProvider}
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}

@@ -33,7 +33,7 @@ function App() {
                     Layout={Layout}
                     ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}
-                    routerProvider={routerProvider}
+                    legacyRouterProvider={routerProvider}
                     resources={[
                         {
                             name: "products",

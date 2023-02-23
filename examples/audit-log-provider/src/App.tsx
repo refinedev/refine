@@ -44,7 +44,7 @@ const App: React.FC = () => {
                     return data;
                 },
             }}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {

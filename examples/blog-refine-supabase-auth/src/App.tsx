@@ -11,7 +11,7 @@ import { LoginPage } from "pages/Login";
 function App() {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
             }}
             dataProvider={dataProvider(supabaseClient)}

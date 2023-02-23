@@ -16,7 +16,7 @@ const App: React.FC = () => {
         <ChakraProvider theme={refineTheme}>
             <Refine
                 notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 Layout={Layout}
                 ReadyPage={ReadyPage}

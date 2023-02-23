@@ -9,7 +9,7 @@ import {
     AuthPage,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-nextjs-router";
+import routerProvider from "@pankod/refine-nextjs-router/legacy";
 import "@pankod/refine-antd/dist/reset.css";
 
 import "@styles/global.css";
@@ -22,7 +22,7 @@ import { PostList, PostCreate, PostEdit, PostShow } from "@components";
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
             resources={[

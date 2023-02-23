@@ -17,7 +17,7 @@ const App = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",

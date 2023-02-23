@@ -23,7 +23,7 @@ function App() {
     return (
         <StoreProvider>
             <Refine
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 liveProvider={liveProvider(appwriteClient)}
                 dataProvider={dataProvider(appwriteClient)}
                 authProvider={authProvider}

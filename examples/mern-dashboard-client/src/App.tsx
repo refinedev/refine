@@ -167,7 +167,7 @@ function App() {
                     Sider={Sider}
                     Layout={Layout}
                     Header={Header}
-                    routerProvider={routerProvider}
+                    legacyRouterProvider={routerProvider}
                     authProvider={authProvider}
                     LoginPage={Login}
                     DashboardPage={Home}

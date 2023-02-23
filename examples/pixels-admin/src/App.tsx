@@ -43,7 +43,7 @@ function App() {
                 liveProvider={liveProvider(supabaseClient)}
                 authProvider={authProvider}
                 accessControlProvider={accessControlProvider}
-                routerProvider={{
+                legacyRouterProvider={{
                     ...routerProvider,
                     routes: [
                         {

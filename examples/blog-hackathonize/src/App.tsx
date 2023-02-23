@@ -48,7 +48,7 @@ function App() {
             authProvider={authProvider}
             LoginPage={Login}
             DashboardPage={DashboardPage}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "hackathons",

@@ -16,7 +16,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             Layout={({ children, Header, Footer, OffLayoutArea }) => (
                 <AntdLayout
                     style={{ minHeight: "100vh", flexDirection: "row" }}

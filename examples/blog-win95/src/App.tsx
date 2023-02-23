@@ -18,7 +18,7 @@ function App() {
     return (
         <ThemeProvider theme={original}>
             <Refine
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 dataProvider={dataProvider(supabaseClient)}
                 authProvider={authProvider}
                 LoginPage={LoginPage}

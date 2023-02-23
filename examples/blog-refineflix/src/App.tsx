@@ -25,7 +25,7 @@ function App() {
             dataProvider={dataProvider(supabaseClient)}
             authProvider={authProvider}
             LoginPage={Login}
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
 
                 routes: [

@@ -31,7 +31,7 @@ export const RefineWithLayout = (Story) => (
             LoginPage={LoginPage}
             ReadyPage={ReadyPage}
             catchAll={ErrorComponent}
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 RouterComponent: MemoryRouterComponent,
             }}
@@ -58,7 +58,7 @@ export const RefineWithoutLayout = (Story) => (
             LoginPage={LoginPage}
             ReadyPage={ReadyPage}
             catchAll={ErrorComponent}
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 RouterComponent: MemoryRouterComponent,
             }}

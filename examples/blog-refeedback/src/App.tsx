@@ -29,7 +29,7 @@ function App() {
             Header={Header}
             Layout={Layout}
             OffLayoutArea={OffLayoutArea}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "feedbacks",

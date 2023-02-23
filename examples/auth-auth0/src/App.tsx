@@ -65,7 +65,7 @@ const App: React.FC = () => {
             LoginPage={Login}
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL, axios)}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",

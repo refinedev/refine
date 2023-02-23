@@ -28,7 +28,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             i18nProvider={i18nProvider}
             Header={Header}
             resources={[

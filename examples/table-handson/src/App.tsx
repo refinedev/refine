@@ -7,7 +7,7 @@ import { PostList } from "./pages/posts";
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {

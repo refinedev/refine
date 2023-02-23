@@ -18,7 +18,7 @@ function App() {
     const dataProvider = simpleRestDataProvider(API_URL);
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider}
             authProvider={authProvider}
             LoginPage={Login}

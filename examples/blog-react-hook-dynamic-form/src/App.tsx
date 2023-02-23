@@ -31,7 +31,7 @@ function App() {
                     Layout={Layout}
                     ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}
-                    routerProvider={routerProvider}
+                    legacyRouterProvider={routerProvider}
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}

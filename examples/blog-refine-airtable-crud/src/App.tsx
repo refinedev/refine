@@ -18,7 +18,7 @@ function App() {
     return (
         <Refine
             dataProvider={dataProvider(API_TOKEN, BASE_ID)}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",

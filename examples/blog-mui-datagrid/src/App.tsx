@@ -14,7 +14,7 @@ function App() {
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 Layout={Layout}
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 dataProvider={dataProvider(
                     "https://my-json-server.typicode.com/Mich45/employee-data",
                 )}

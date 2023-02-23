@@ -22,7 +22,7 @@ export const parameters = {
 export const RefineWithLayout = (Story) => (
   <Refine
     dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-    routerProvider={{
+    legacyRouterProvider={{
       ...routerProvider,
       RouterComponent: MemoryRouterComponent,
     }}
@@ -40,7 +40,7 @@ export const RefineWithLayout = (Story) => (
 export const RefineWithoutLayout = (Story) => (
   <Refine
     dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-    routerProvider={{
+    legacyRouterProvider={{
       ...routerProvider,
       RouterComponent: MemoryRouterComponent,
     }}

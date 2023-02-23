@@ -18,7 +18,7 @@ const App: React.FC = () => {
         <ThemeProvider theme={LightTheme}>
             <SnackbarProvider>
                 <Refine
-                    routerProvider={routerProvider}
+                    legacyRouterProvider={routerProvider}
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}

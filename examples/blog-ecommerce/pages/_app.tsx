@@ -3,7 +3,7 @@ import { AppProps } from "next/app";
 import Head from "next/head";
 
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-nextjs-router";
+import routerProvider from "@pankod/refine-nextjs-router/legacy";
 import { ChakraProvider } from "@chakra-ui/react";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 
@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                 />
             </Head>
             <Refine
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 dataProvider={dataProvider}
                 resources={[{ name: "products" }]}
                 Layout={Layout}

@@ -27,7 +27,7 @@ const App: React.FC = () => {
 
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             accessControlProvider={{
                 can: async ({ action, params, resource }) => {

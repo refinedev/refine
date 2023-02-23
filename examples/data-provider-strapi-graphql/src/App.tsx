@@ -111,7 +111,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={gqlDataProvider}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             authProvider={authProvider}
             LoginPage={Login}
             resources={[

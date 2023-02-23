@@ -42,7 +42,7 @@ const App: React.FC = () => {
         >
             <Refine
                 dataProvider={dataProvider(API_URL)}
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 Header={() => (
                     <Header theme={currentTheme} setTheme={setCurrentTheme} />
                 )}

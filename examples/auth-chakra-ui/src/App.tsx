@@ -81,7 +81,7 @@ const App: React.FC = () => {
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 authProvider={authProvider}
                 notificationProvider={notificationProvider()}
-                routerProvider={{
+                legacyRouterProvider={{
                     ...routerProvider,
                     routes: [
                         {

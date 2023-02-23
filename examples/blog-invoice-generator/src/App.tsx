@@ -25,7 +25,7 @@ function App() {
 
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             notificationProvider={notificationProvider}
             Layout={Layout}
             dataProvider={dataProvider}

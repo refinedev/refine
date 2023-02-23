@@ -27,7 +27,7 @@ function App() {
                 ReadyPage={ReadyPage}
                 catchAll={<ErrorComponent />}
                 Layout={Layout}
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 resources={[
                     {
                         name: "products",

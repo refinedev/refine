@@ -86,7 +86,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL, axiosInstance)}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             authProvider={authProvider}
             LoginPage={Login}
             resources={[

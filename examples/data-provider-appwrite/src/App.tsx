@@ -67,7 +67,7 @@ const App: React.FC = () => {
             })}
             options={{ liveMode: "auto" }}
             authProvider={authProvider}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             LoginPage={Login}
             resources={[
                 {

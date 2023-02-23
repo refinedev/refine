@@ -22,7 +22,7 @@ const App: React.FC = () => {
 
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 /**
                  * By default refine uses the first route with `list` property as the initial route.

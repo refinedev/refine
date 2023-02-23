@@ -25,7 +25,7 @@ const App: React.FC = () => {
     return (
         <RefineKbarProvider>
             <Refine
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
                 resources={[
                     {

@@ -44,7 +44,7 @@ const App: React.FC = () => {
                 />
                 <NotificationsProvider position="top-right">
                     <Refine
-                        routerProvider={routerProvider}
+                        legacyRouterProvider={routerProvider}
                         dataProvider={dataProvider(
                             "https://api.fake-rest.refine.dev",
                         )}

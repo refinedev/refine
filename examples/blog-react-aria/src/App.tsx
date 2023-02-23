@@ -9,7 +9,7 @@ import { CategoryList } from "pages/category/list";
 function App() {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {

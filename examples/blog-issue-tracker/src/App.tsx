@@ -24,7 +24,7 @@ function App() {
             authProvider={authProvider}
             DashboardPage={Dashboard}
             LoginPage={Login}
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 routes: [
                     {

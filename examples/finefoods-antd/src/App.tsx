@@ -53,7 +53,7 @@ const App: React.FC = () => {
     return (
         <RefineKbarProvider>
             <Refine
-                routerProvider={{
+                legacyRouterProvider={{
                     ...routerProvider,
                     routes: [
                         {

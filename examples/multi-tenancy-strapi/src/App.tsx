@@ -23,7 +23,7 @@ const App: React.FC = () => {
             <Refine
                 authProvider={authProvider}
                 dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 Sider={CustomSider}
                 resources={[
                     {
