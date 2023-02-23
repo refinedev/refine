@@ -41,8 +41,8 @@ function MyApp({
                         name: "dummy",
                     },
                 ]}
-                warnWhenUnsavedChanges={true}
                 options={{
+                    warnWhenUnsavedChanges: true,
                     reactQuery: {
                         clientConfig: {
                             defaultOptions: {
