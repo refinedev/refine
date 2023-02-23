@@ -10,14 +10,21 @@ export type UseIsAuthenticatedLegacyProps = {
 
 export type UseIsAuthenticatedProps = {
     legacy?: false;
-    params?: unknown;
+    params?: any;
 };
 
-export type UseIsAuthenticatedLegacyReturnType = UseQueryResult<any, unknown>;
+export type UseIsAuthenticatedCombinedProps = {
+    legacy: boolean;
+    params?: any;
+};
 
-export type UseIsAuthenticatedReturnType = UseQueryResult<
-    CheckResponse,
-    unknown
+export type UseIsAuthenticatedLegacyReturnType = UseQueryResult<any, any>;
+
+export type UseIsAuthenticatedReturnType = UseQueryResult<CheckResponse, any>;
+
+export type UseIsAuthenticatedCombinedReturnType = UseQueryResult<
+    CheckResponse | any,
+    any
 >;
 
 export function useIsAuthenticated(
@@ -27,6 +34,10 @@ export function useIsAuthenticated(
 export function useIsAuthenticated(
     props?: UseIsAuthenticatedProps,
 ): UseIsAuthenticatedReturnType;
+
+export function useIsAuthenticated(
+    props?: UseIsAuthenticatedCombinedProps,
+): UseIsAuthenticatedCombinedReturnType;
 
 /**
  *  `useIsAuthenticated` calls the `checkAuth` method from the {@link https://refine.dev/docs/core/providers/auth-provider `authProvider`} under the hood.
