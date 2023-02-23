@@ -47,7 +47,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
 
     const RenderToTitle = Title ?? DefaultTitle;
 
-    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+    const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
         return tree.map((item: ITreeMenu) => {
             const { icon, label, route, name, children, parentName } = item;
 
@@ -151,7 +151,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
             <>
                 <Menu
                     theme="dark"
-                    selectedKeys={[selectedKey]}
+                    selectedKeys={selectedKey ? [selectedKey] : []}
                     defaultOpenKeys={defaultOpenKeys}
                     mode="inline"
                     onClick={() => {
