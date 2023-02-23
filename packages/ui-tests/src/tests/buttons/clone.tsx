@@ -8,7 +8,7 @@ import {
 import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
 
 export const buttonCloneTests = function (
-    CloneButton: React.ComponentType<RefineCloneButtonProps<{}, {}>>,
+    CloneButton: React.ComponentType<RefineCloneButtonProps<any, any>>,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Clone Button", () => {
         beforeAll(() => {
