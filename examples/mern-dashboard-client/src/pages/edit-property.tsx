@@ -5,7 +5,7 @@ import Form from "components/common/Form";
 
 const CreateProperty = () => {
     const { data: user } = useGetIdentity({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
     const [propertyImage, setPropertyImage] = useState({ name: "", url: "" });
     const {

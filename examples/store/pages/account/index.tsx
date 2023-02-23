@@ -7,7 +7,7 @@ import { getSearchStaticProps } from "@lib/search-props";
 
 const ProfilePage: React.FC = () => {
     const { data } = useGetIdentity({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
 
     const ordersData = useOne<StoreCustomersListOrdersRes>({

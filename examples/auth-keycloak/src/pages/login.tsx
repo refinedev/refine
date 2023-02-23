@@ -3,7 +3,7 @@ import { useLogin } from "@pankod/refine-core";
 
 export const Login: React.FC = () => {
     const { mutate: login } = useLogin({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
 
     return (

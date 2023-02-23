@@ -7,7 +7,7 @@ const { Text } = Typography;
 
 export const Header: React.FC = () => {
     const { data: user } = useGetIdentity({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
 
     const shouldRenderHeader = user && (user.name || user.avatar);

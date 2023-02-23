@@ -33,7 +33,7 @@ const AgentCard = ({
     noOfProperties,
 }: AgentCardProp) => {
     const { data: currentUser } = useGetIdentity({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
 
     const generateLink = () => {

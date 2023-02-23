@@ -53,7 +53,7 @@ export const Sider: typeof DefaultSider = ({ render }) => {
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const isExistAuthentication = useIsExistAuthentication();
     const { mutate: mutateLogout } = useLogout({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
     const Title = useTitle();
 

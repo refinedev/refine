@@ -6,7 +6,7 @@ export const Footer: React.FC = () => {
     const [open, setOpen] = useState(false);
 
     const { mutate: logout } = useLogout({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
     const { list } = useNavigation();
 

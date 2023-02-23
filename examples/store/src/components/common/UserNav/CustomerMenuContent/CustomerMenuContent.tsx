@@ -35,7 +35,7 @@ export const CustomerMenuContent: React.FC = () => {
     const { pathname } = useRouter();
 
     const { mutate: logout } = useLogout<{ redirectPath: string }>({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
 
     function handleClick(_: React.MouseEvent<HTMLAnchorElement>, href: string) {

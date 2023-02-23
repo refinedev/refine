@@ -21,10 +21,10 @@ import { Canvas } from "types";
 export const Header: React.FC = () => {
     const { Link, useLocation } = useRouterContext();
     const { isError } = useGetIdentity({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
     const { mutate: mutateLogout } = useLogout({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
     const { push } = useNavigation();
     const { selectedKey } = useMenu();

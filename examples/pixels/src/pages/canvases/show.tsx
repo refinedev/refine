@@ -27,7 +27,7 @@ export const CanvasShow: React.FC = () => {
     const { modalProps, show, close } = useModal();
 
     const { data: identity } = useGetIdentity({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
     const {
         queryResult: { data: { data: canvas } = {} },

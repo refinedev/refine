@@ -12,7 +12,7 @@ export const LoginPage = () => {
     );
 
     const { mutate: login } = useLogin({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
 
     const onLogin = () => {

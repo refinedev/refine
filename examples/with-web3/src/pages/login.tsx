@@ -6,7 +6,7 @@ import { Layout as AntdLayout, Button, Row, Col } from "antd";
 
 export const Login: React.FC = () => {
     const { mutate: login, isLoading } = useLogin({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
 
     return (

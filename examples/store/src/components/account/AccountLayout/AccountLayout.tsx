@@ -7,7 +7,7 @@ import s from "./AccountLayout.module.css";
 
 export const AccountLayout: React.FC<PropsWithChildren> = ({ children }) => {
     const { data } = useGetIdentity({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
 
     if (!data) {

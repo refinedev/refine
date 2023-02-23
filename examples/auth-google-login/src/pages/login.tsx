@@ -7,7 +7,7 @@ const clientId =
 
 export const Login: React.FC = () => {
     const { mutate: login } = useLogin<CredentialResponse>({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     }); // TODO: tpype will be added
 
     const GoogleButton = (): JSX.Element => {

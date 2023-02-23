@@ -3,7 +3,7 @@ import { Button } from "react-daisyui";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const { mutate: logout } = useLogout({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
     return (
         <div className="flex min-h-screen flex-col">

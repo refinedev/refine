@@ -25,7 +25,7 @@ export const DashboardPage: React.FC = () => {
         address: string;
         balance: string;
     }>({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
     const { modalProps, show, close } = useModal();
     const [form] = Form.useForm();

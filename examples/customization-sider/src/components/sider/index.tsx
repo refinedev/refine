@@ -25,7 +25,7 @@ export const CustomSider: typeof Sider = ({ render }) => {
     const isExistAuthentication = useIsExistAuthentication();
     const { Link } = useRouterContext();
     const { mutate: mutateLogout } = useLogout({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
     const Title = useTitle();
     const translate = useTranslate();

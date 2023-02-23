@@ -6,7 +6,7 @@ export const Avatar: React.FC = () => {
     const ref = useRef() as React.MutableRefObject<HTMLInputElement>;
 
     const { data } = useGetIdentity<Customer>({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
 
     return (

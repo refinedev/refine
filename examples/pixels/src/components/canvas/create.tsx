@@ -14,7 +14,7 @@ export const CreateCanvas: React.FC<CreateCanvasProps> = ({
     formProps,
 }) => {
     const { data: user } = useGetIdentity({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
 
     const [values, setValues] = useState(() => {

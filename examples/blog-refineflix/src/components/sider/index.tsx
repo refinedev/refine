@@ -13,7 +13,7 @@ import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const { mutate: logout } = useLogout({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();

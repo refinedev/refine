@@ -23,10 +23,10 @@ const LoginView: React.FC = () => {
     // Form State
     const { setModalView, closeModal } = useUI();
     const { mutate: login, isLoading } = useLogin({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
     const { isSuccess } = useAuthenticated({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
 
     useEffect(() => {

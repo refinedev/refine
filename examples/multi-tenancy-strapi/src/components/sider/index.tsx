@@ -21,7 +21,7 @@ import { StoreSelect } from "components/select";
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const { mutate: logout } = useLogout({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
     const { Link } = useRouterContext();
     const Title = useTitle();

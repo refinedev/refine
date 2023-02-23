@@ -10,10 +10,10 @@ export const DashboardPage: React.FC = () => {
         name: string;
         avatar: string;
     }>({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
     const permissions = usePermissions({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
 
     return (

@@ -4,7 +4,7 @@ import { Profile } from "components";
 
 const MyProfile = () => {
     const { data: user } = useGetIdentity({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
     const { data, isLoading, isError } = useOne({
         resource: "users",

@@ -18,7 +18,7 @@ export const LoginPage = () => {
     const [password, setPassword] = useState("refine-supabase");
 
     const { mutate: login } = useLogin<ILoginForm>({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
 
     return (

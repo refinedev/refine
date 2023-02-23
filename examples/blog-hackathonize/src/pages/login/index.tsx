@@ -25,7 +25,7 @@ export const Login: React.FC = () => {
     const [form] = Form.useForm<ILoginForm>();
 
     const { mutate: login } = useLogin<ILoginForm>({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
 
     const CardTitle = (

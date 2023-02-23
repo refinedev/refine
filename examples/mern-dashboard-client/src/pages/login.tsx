@@ -8,7 +8,7 @@ import { CredentialResponse } from "../interfaces/google";
 
 export const Login: React.FC = () => {
     const { mutate: login } = useLogin<CredentialResponse>({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
 
     const GoogleButton = (): JSX.Element => {

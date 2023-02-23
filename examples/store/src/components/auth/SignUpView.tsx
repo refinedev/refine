@@ -19,7 +19,7 @@ const SignUpView: React.FC = () => {
     const [errorMsg, setErrorMsg] = useState("");
 
     const { mutate: login } = useLogin({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
     const {
         refineCore: { onFinish, formLoading },
