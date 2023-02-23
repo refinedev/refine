@@ -198,6 +198,140 @@ describe("useTable Hook", () => {
         expect(result.current.sorter).toStrictEqual(sorters);
         expect(result.current.sorters).toStrictEqual(sorters);
     });
+
+    it("`filters.initial` should be prioritized over initialFilter", async () => {
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialFilter: [{ field: "id", operator: "eq", value: 1 }],
+                    filters: {
+                        initial: [
+                            { field: "id", operator: "contains", value: "foo" },
+                        ],
+                    },
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        expect(result.current.filters).toStrictEqual([
+            { field: "id", operator: "contains", value: "foo" },
+        ]);
+    });
+
+    it("`filters.permanent` should be prioritized over permanentFilter", async () => {
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    permanentFilter: [
+                        { field: "id", operator: "eq", value: 1 },
+                    ],
+                    filters: {
+                        permanent: [
+                            { field: "id", operator: "contains", value: "foo" },
+                        ],
+                    },
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        expect(result.current.filters).toStrictEqual([
+            { field: "id", operator: "contains", value: "foo" },
+        ]);
+    });
+
+    it("`filters.defaultBehavior` should be prioritized over defaultSetFilterBehavior", async () => {
+        const initialFilters = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const newFilters = [
+            {
+                field: "id",
+                operator: "ne",
+                value: 5,
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    defaultSetFilterBehavior: "merge",
+                    filters: {
+                        initial: initialFilters,
+                        defaultBehavior: "replace",
+                    },
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(initialFilters);
+        expect(result.current.filters).toHaveLength(1);
+
+        act(() => {
+            result.current.setFilters(newFilters);
+        });
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(newFilters);
+        expect(result.current.filters).toHaveLength(1);
+    });
+
+    it("`sorters.initial` should be prioritized over initialSorter", async () => {
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialSorter: [{ field: "id", order: "asc" }],
+                    sorters: {
+                        initial: [{ field: "title", order: "desc" }],
+                    },
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        expect(result.current.sorters).toStrictEqual([
+            { field: "title", order: "desc" },
+        ]);
+    });
+
+    it("`sorters.permanent` should be prioritized over permanentSorter", async () => {
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    permanentSorter: [{ field: "id", order: "asc" }],
+                    sorters: {
+                        permanent: [{ field: "title", order: "desc" }],
+                    },
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        expect(result.current.sorters).toStrictEqual([
+            { field: "title", order: "desc" },
+        ]);
+    });
 });
 
 describe("useTable Filters", () => {
