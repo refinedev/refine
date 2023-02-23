@@ -4,7 +4,6 @@ title: Text
 swizzle: true
 ---
 
-
 This field lets you show basic text. It uses Material UI [`<Typography>`](https://mui.com/material-ui/react-typography/#main-content) component.
 
 :::info-tip Swizzle
@@ -19,12 +18,11 @@ Let's see how to use it in a basic list page:
 // visible-block-start
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     List,
     // highlight-next-line
-    TextField,
+    TextFieldComponent as TextField,
 } from "@pankod/refine-mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -33,9 +31,7 @@ const columns: GridColumns = [
         headerName: "Title",
         renderCell: function render({ row }) {
             // highlight-start
-            return (
-                <TextField value={row.title} />
-            );
+            return <TextField value={row.title} />;
             // highlight-end
         },
         minWidth: 100,

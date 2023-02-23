@@ -4,7 +4,6 @@ title: Url
 swizzle: true
 ---
 
-
 This field lets you embed a link. It uses Material UI [`<Typography>`](https://mui.com/material-ui/react-typography/#main-content) and [`Link`](https://mui.com/material-ui/react-link/#main-content) components. You can pass a URL in its `value` prop and you can show a text in its place by passing any `children`.
 
 :::info-tip Swizzle
@@ -19,12 +18,11 @@ Let's see how we can use `<UrlField>` with an example:
 // visible-block-start
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     List,
     // highlight-next-line
     UrlField,
 } from "@pankod/refine-mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -34,9 +32,7 @@ const columns: GridColumns = [
         headerName: "Image URL",
         renderCell: function render({ row }) {
             // highlight-start
-            return (
-                <UrlField value={row.image[0].url} />
-            );
+            return <UrlField value={row.image[0].url} />;
             // highlight-end
         },
         minWidth: 100,

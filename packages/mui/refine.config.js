@@ -616,12 +616,21 @@ module.exports = {
 
             imports.map((importItem) => {
                 // for mui imports
+                if (importItem.importPath === "@components") {
+                    const newStatement = `import ${importItem.namedImports} from "@pankod/refine-mui";`;
+
+                    newContent = newContent.replace(
+                        importItem.statement,
+                        newStatement,
+                    );
+                }
+
+                // mui/material and mui/lab imports
                 if (
                     importItem.importPath === "@mui/material" ||
-                    importItem.importPath === "@mui/lab" ||
-                    importItem.importPath === "@components"
+                    importItem.importPath === "@mui/lab"
                 ) {
-                    const newStatement = `import ${importItem.namedImports} from "@pankod/refine-mui";`;
+                    const newStatement = `import ${importItem.namedImports} from "${importItem.importPath}";`;
 
                     newContent = newContent.replace(
                         importItem.statement,

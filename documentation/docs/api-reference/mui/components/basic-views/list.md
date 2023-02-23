@@ -13,13 +13,8 @@ We will show what `<List>` does using properties with examples.
 // visible-block-start
 import React from "react";
 import { useMany } from "@pankod/refine-core";
-import {
-    List,
-    DataGrid,
-    DateField,
-    useDataGrid,
-    GridColumns,
-} from "@pankod/refine-mui";
+import { List, useDataGrid, DateField } from "@pankod/refine-mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const SampleList = () => {
     const { dataGridProps } = useDataGrid();
@@ -70,7 +65,7 @@ const SampleList = () => {
                 renderCell: function render({ value }) {
                     return <DateField value={value} />;
                 },
-            }
+            },
         ],
         [categoryData?.data],
     );
@@ -83,7 +78,12 @@ const SampleList = () => {
 };
 // visible-block-end
 
-render(<RefineMuiDemo initialRoutes={["/samples"]} resources={[ { name: "samples", list: SampleList } ]} />)
+render(
+    <RefineMuiDemo
+        initialRoutes={["/samples"]}
+        resources={[{ name: "samples", list: SampleList }]}
+    />,
+);
 ```
 
 :::info-tip Swizzle
@@ -98,7 +98,8 @@ It allows adding title inside the `<List>` component. if you don't pass title pr
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts/create
 // visible-block-start
-import { List, Typography } from "@pankod/refine-mui";
+import { List } from "@pankod/refine-mui";
+import { Typography } from "@mui/material";
 
 const ListPage: React.FC = () => {
     return (
@@ -121,7 +122,7 @@ render(
                 list: ListPage,
             },
         ]}
-    />
+    />,
 );
 ```
 
@@ -172,7 +173,11 @@ const App: React.FC = () => {
 };
 // visible-block-end
 
-render(<Wrapper><App /></Wrapper>);
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
 ```
 
 ### `canCreate` and `createButtonProps`
@@ -283,7 +288,7 @@ render(
                     <p>This page is empty.</p>
                     <RefineMui.ListButton resource="posts" />
                 </div>
-            )
+            );
         }}
     />,
 );
@@ -324,7 +329,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,
@@ -366,7 +371,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,
@@ -408,7 +413,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,
@@ -421,7 +426,8 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
-import { List, Button } from "@pankod/refine-mui";
+import { List } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 
 const PostList: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -449,7 +455,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,
@@ -464,7 +470,8 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
-import { List, Button } from "@pankod/refine-mui";
+import { List } from "@pankod/refine-mui";
+import { Button } from "@mui/material";
 
 const PostList: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -497,7 +504,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,
@@ -522,7 +529,8 @@ Use `headerProps` instead.
 
 ```tsx title="src/pages/posts/create.tsx"
 // highlight-next-line
-import { List, Typography } from "@pankod/refine-mui";
+import { List } from "@pankod/refine-mui";
+import { Typography } from "@mui/material";
 
 export const CreatePage: React.FC = () => {
     return (
@@ -562,15 +570,15 @@ createButtonProps-type="[`CreateButtonProps`](https://refine.dev/docs/api-refere
 />
 
 ```tsx live shared
-
-const Wrapper = ({children}) => {
+const Wrapper = ({ children }) => {
     return (
-        <RefineMui.ThemeProvider theme={RefineMui.LightTheme}>
-            <RefineMui.CssBaseline />
-            <RefineMui.GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+        <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
+            <MuiMaterial.CssBaseline />
+            <MuiMaterial.GlobalStyles
+                styles={{ html: { WebkitFontSmoothing: "auto" } }}
+            />
             {children}
-        </RefineMui.ThemeProvider>
-    )
-}
-
+        </MuiMaterial.ThemeProvider>
+    );
+};
 ```

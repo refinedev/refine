@@ -5,13 +5,12 @@ setInitialRoutes(["/posts"]);
 import React from "react";
 // highlight-next-line
 import { Option, useSelect } from "@pankod/refine-core";
+import { useDataGrid, List } from "@pankod/refine-mui";
 import {
-    useDataGrid,
     DataGrid,
     GridColumns,
-    List,
     GridValueFormatterParams,
-} from "@pankod/refine-mui";
+} from "@mui/x-data-grid";
 
 import { ICategory, IPost } from "interfaces";
 

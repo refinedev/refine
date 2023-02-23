@@ -103,14 +103,9 @@ export const PostsList: React.FC = () => {
 If you want to sort externally from the `<DataGrid>` component. You can use `setSorter` like this:
 
 ```tsx
-import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    List,
-    Button,
-    ButtonGroup,
-} from "@pankod/refine-mui";
+import { useDataGrid, List } from "@pankod/refine-mui";
+import { Button, ButtonGroup } from "@mui/material";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     {
@@ -199,15 +194,9 @@ export const PostsList: React.FC = () => {
 If you want to filter externally from the `<DataGrid>` component. You can use `setFilter` like this:
 
 ```tsx
-import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    List,
-    FormControlLabel,
-    Checkbox,
-} from "@pankod/refine-mui";
-
+import { useDataGrid, List } from "@pankod/refine-mui";
+import { FormControlLabel, Checkbox } from "@mui/material";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 const columns: GridColumns = [
     {
         field: "id",
@@ -686,7 +675,7 @@ Current page index state. If pagination is disabled, it will be `undefined`.
 ### `setCurrent`
 
 ```tsx
-React.Dispatch<React.SetStateAction<number>> | undefined
+React.Dispatch<React.SetStateAction<number>> | undefined;
 ```
 
 A function to set the current page index state. If pagination is disabled, it will be `undefined`.
@@ -698,7 +687,7 @@ Current page size state. If pagination is disabled, it will be `undefined`.
 ### `setPageSize`
 
 ```tsx
-React.Dispatch<React.SetStateAction<number>> | undefined
+React.Dispatch<React.SetStateAction<number>> | undefined;
 ```
 
 A function to set the current page size state. If pagination is disabled, it will be `undefined`.

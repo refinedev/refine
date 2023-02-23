@@ -4,11 +4,10 @@ import { Refine, AuthProvider } from "@pankod/refine-core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
-    CssBaseline,
-    GlobalStyles,
     ReadyPage,
     ErrorComponent,
 } from "@pankod/refine-mui";
+import { CssBaseline, GlobalStyles } from "@mui/material";
 import {
     AccountCircleOutlined,
     ChatBubbleOutline,

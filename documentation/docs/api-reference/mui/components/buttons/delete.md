@@ -4,7 +4,6 @@ title: Delete
 swizzle: true
 ---
 
-
 `<DeleteButton>` uses Material UI [`<LoadingButton>`](https://mui.com/material-ui/api/loading-button/#main-content) and [`<Dialog>`](https://mui.com/material-ui/react-dialog/) components.
 When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
@@ -20,12 +19,11 @@ import dataProvider from "@pankod/refine-simple-rest";
 // visible-block-start
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     List,
     // highlight-next-line
     DeleteButton,
 } from "@pankod/refine-mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -59,9 +57,7 @@ interface IPost {
 }
 // visible-block-end
 
-const simpleRestDataProvider = dataProvider(
-    "https://api.fake-rest.refine.dev",
-);
+const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
 
 const customDataProvider = {
     ...simpleRestDataProvider,
@@ -107,9 +103,7 @@ const MyDeleteComponent = () => {
 
 // visible-block-end
 
-const simpleRestDataProvider = dataProvider(
-    "https://api.fake-rest.refine.dev",
-);
+const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
 
 const customDataProvider = {
     ...simpleRestDataProvider,
@@ -159,9 +153,7 @@ const MyDeleteComponent = () => {
     );
 };
 // visible-block-end
-const simpleRestDataProvider = dataProvider(
-    "https://api.fake-rest.refine.dev",
-);
+const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
 
 const customDataProvider = {
     ...simpleRestDataProvider,
@@ -207,7 +199,7 @@ import { DeleteButton } from "@pankod/refine-mui";
 const MyDeleteComponent = () => {
     return (
         <DeleteButton
-            resourceNameOrRouteName="posts" 
+            resourceNameOrRouteName="posts"
             recordItemId="1"
             onSuccess={(value) => {
                 console.log(value);
@@ -216,9 +208,7 @@ const MyDeleteComponent = () => {
     );
 };
 // visible-block-end
-const simpleRestDataProvider = dataProvider(
-    "https://api.fake-rest.refine.dev",
-);
+const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
 
 const customDataProvider = {
     ...simpleRestDataProvider,
@@ -238,7 +228,7 @@ render(
         resources={[
             {
                 name: "posts",
-            }
+            },
         ]}
         DashboardPage={MyDeleteComponent}
     />,
@@ -256,14 +246,16 @@ import { useTable } from "@pankod/refine-core";
 
 import {
     List,
-    Table,
     // highlight-next-line
     DeleteButton,
+} from "@pankod/refine-mui";
+import {
+    Table,
     TableHead,
     TableRow,
     TableCell,
     TableBody,
-} from "@pankod/refine-mui";
+} from "@mui/x-data-grid";
 
 export const PostList: React.FC = () => {
     const { tableQueryResult } = useTable<IPost>();
@@ -328,9 +320,7 @@ const MyDeleteComponent = () => {
     );
 };
 // visible-block-end
-const simpleRestDataProvider = dataProvider(
-    "https://api.fake-rest.refine.dev",
-);
+const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
 
 const customDataProvider = {
     ...simpleRestDataProvider,
@@ -365,7 +355,11 @@ This prop can be used to skip access control check with its `enabled` property o
 import { DeleteButton } from "@pankod/refine-mui";
 
 export const MyListComponent = () => {
-    return <DeleteButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <DeleteButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
 };
 ```
 
@@ -393,9 +387,7 @@ const MyDeleteComponent = () => {
 };
 // visible-block-end
 
-const simpleRestDataProvider = dataProvider(
-    "https://api.fake-rest.refine.dev",
-);
+const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
 
 const customDataProvider = {
     ...simpleRestDataProvider,
