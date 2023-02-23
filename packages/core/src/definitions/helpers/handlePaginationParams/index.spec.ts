@@ -1,8 +1,8 @@
-import { handlePagination } from ".";
+import { handlePaginationParams } from ".";
 
-describe("handlePagination", () => {
+describe("handlePaginationParams", () => {
     it("should return default pagination", () => {
-        expect(handlePagination()).toEqual({
+        expect(handlePaginationParams()).toEqual({
             current: 1,
             pageSize: 10,
             mode: "server",
@@ -11,7 +11,7 @@ describe("handlePagination", () => {
 
     it("should return pagination from `pagination` prop", () => {
         expect(
-            handlePagination({
+            handlePaginationParams({
                 pagination: { current: 2, pageSize: 20, mode: "client" },
             }),
         ).toEqual({
@@ -23,7 +23,7 @@ describe("handlePagination", () => {
 
     it("should return pagination from `config` prop", () => {
         expect(
-            handlePagination({
+            handlePaginationParams({
                 configPagination: { current: 3, pageSize: 30 },
             }),
         ).toEqual({
@@ -35,7 +35,7 @@ describe("handlePagination", () => {
 
     it("should return pagination from `pagination` prop if config is defined", () => {
         expect(
-            handlePagination({
+            handlePaginationParams({
                 pagination: { current: 2, pageSize: 20, mode: "client" },
                 configPagination: { current: 3, pageSize: 30 },
             }),
@@ -48,7 +48,7 @@ describe("handlePagination", () => {
 
     it("if `mode` is not defined in `pagination` prop, should return according to `hasPagination` prop", () => {
         expect(
-            handlePagination({
+            handlePaginationParams({
                 hasPagination: false,
             }),
         ).toEqual({
@@ -60,7 +60,7 @@ describe("handlePagination", () => {
 
     it("if both `hasPagination` and `pagination.mode` are defined, should return according to `pagination` prop", () => {
         expect(
-            handlePagination({
+            handlePaginationParams({
                 hasPagination: true,
                 pagination: { mode: "client" },
             }),
