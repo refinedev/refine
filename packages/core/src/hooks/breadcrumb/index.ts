@@ -26,11 +26,11 @@ type UseBreadcrumbProps = {
     /**
      * Additional params to be used in the route generation process.
      */
-    params?: Record<string, string | number>;
+    meta?: Record<string, string | number>;
 };
 
 export const useBreadcrumb = ({
-    params: paramsFromProps = {},
+    meta: metaFromProps = {},
 }: UseBreadcrumbProps = {}): UseBreadcrumbReturnType => {
     const routerType = useRouterType();
     const { i18nProvider } = useContext(TranslationContext);
@@ -68,7 +68,7 @@ export const useBreadcrumb = ({
             const href = hrefRaw
                 ? routerType === "legacy"
                     ? hrefRaw
-                    : composeRoute(hrefRaw, parsed, paramsFromProps)
+                    : composeRoute(hrefRaw, parsed, metaFromProps)
                 : undefined;
 
             breadcrumbs.push({
