@@ -90,9 +90,12 @@ export const ListButton: React.FC<ListButtonProps> = ({
                 <IconButton
                     variant="outline"
                     aria-label={translate(
-                        `${resourceName}.titles.list`,
+                        `${resource?.name}.titles.list`,
                         userFriendlyResourceName(
-                            resource.label ?? resourceName,
+                            resource?.meta?.label ??
+                                resource?.label ??
+                                resource?.name ??
+                                resourceNameOrRouteName,
                             "plural",
                         ),
                     )}
