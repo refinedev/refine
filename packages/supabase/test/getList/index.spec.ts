@@ -1,20 +1,13 @@
-import { Pagination } from "@pankod/refine-core";
 import { SupabaseClient } from "@supabase/supabase-js";
+import nock from "nock";
 import { dataProvider } from "../../src/index";
 import supabaseClient from "../supabaseClient";
 import "./index.mock";
-
-const defaultPagination: Required<Pagination> = {
-    current: 1,
-    pageSize: 10,
-    mode: "server",
-};
 
 describe("getList", () => {
     it("correct response", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
-            pagination: defaultPagination,
         });
 
         expect(data[0]["id"]).toBe(2);
@@ -25,7 +18,6 @@ describe("getList", () => {
     it("correct response with metadata select", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
-            pagination: defaultPagination,
             meta: {
                 select: "title",
             },
@@ -39,8 +31,7 @@ describe("getList", () => {
     it("correct sorting response", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
-            pagination: defaultPagination,
-            sorters: [
+            sort: [
                 {
                     field: "title",
                     order: "asc",
@@ -65,8 +56,7 @@ describe("getList", () => {
         it("correct sorting object with foreignTable", async () => {
             await dataProvider(mockSupabaseClient).getList({
                 resource: "posts",
-                pagination: defaultPagination,
-                sorters: [
+                sort: [
                     {
                         field: "categories.title",
                         order: "asc",
@@ -81,8 +71,7 @@ describe("getList", () => {
         it("correct sorting object without foreignTable", async () => {
             await dataProvider(mockSupabaseClient).getList({
                 resource: "posts",
-                pagination: defaultPagination,
-                sorters: [
+                sort: [
                     {
                         field: "title",
                         order: "asc",
@@ -99,7 +88,6 @@ describe("filtering", () => {
     it("eq operator should work correctly", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
-            pagination: defaultPagination,
             filters: [
                 {
                     field: "title",
@@ -115,7 +103,6 @@ describe("filtering", () => {
     it("ne operator should work correctly", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
-            pagination: defaultPagination,
             filters: [
                 {
                     field: "title",
@@ -131,7 +118,6 @@ describe("filtering", () => {
     it("lt operator should work correctly", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
-            pagination: defaultPagination,
             filters: [
                 {
                     field: "id",
@@ -147,7 +133,6 @@ describe("filtering", () => {
     it("gt operator should work correctly", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
-            pagination: defaultPagination,
             filters: [
                 {
                     field: "id",
@@ -163,7 +148,6 @@ describe("filtering", () => {
     it("lte operator should work correctly", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
-            pagination: defaultPagination,
             filters: [
                 {
                     field: "id",
@@ -179,7 +163,6 @@ describe("filtering", () => {
     it("gte operator should work correctly", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
-            pagination: defaultPagination,
             filters: [
                 {
                     field: "id",
@@ -196,7 +179,6 @@ describe("filtering", () => {
     it("in operator should work correctly", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
-            pagination: defaultPagination,
             filters: [
                 {
                     field: "id",
@@ -214,7 +196,6 @@ describe("filtering", () => {
     it("contains operator should work correctly", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
-            pagination: defaultPagination,
             filters: [
                 {
                     field: "title",
@@ -231,7 +212,6 @@ describe("filtering", () => {
     it("containss operator should work correctly", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
-            pagination: defaultPagination,
             filters: [
                 {
                     field: "title",
@@ -248,7 +228,6 @@ describe("filtering", () => {
     it("null operator should work correctly", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
-            pagination: defaultPagination,
             filters: [
                 {
                     field: "content",
@@ -266,7 +245,6 @@ describe("filtering", () => {
     it("or operator should work correctly", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
-            pagination: defaultPagination,
             filters: [
                 {
                     operator: "or",

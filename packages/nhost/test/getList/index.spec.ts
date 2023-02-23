@@ -1,13 +1,6 @@
-import { Pagination } from "@pankod/refine-core";
 import dataProvider from "../../src/index";
 import nhost from "../nhost";
 import "./index.mock";
-
-const defaultPagination: Required<Pagination> = {
-    current: 1,
-    pageSize: 10,
-    mode: "server",
-};
 
 describe("getList", () => {
     beforeAll(async () => {
@@ -20,7 +13,6 @@ describe("getList", () => {
     it("correct response", async () => {
         const { data, total } = await dataProvider(nhost).getList({
             resource: "posts",
-            pagination: defaultPagination,
             meta: {
                 fields: ["id", "title"],
             },
@@ -34,8 +26,7 @@ describe("getList", () => {
     it("correct sorting response", async () => {
         const { data, total } = await dataProvider(nhost).getList({
             resource: "posts",
-            pagination: defaultPagination,
-            sorters: [
+            sort: [
                 {
                     field: "id",
                     order: "asc",
@@ -54,7 +45,6 @@ describe("getList", () => {
     it("correct filter response", async () => {
         const { data, total } = await dataProvider(nhost).getList({
             resource: "posts",
-            pagination: defaultPagination,
             filters: [
                 {
                     field: "category_id",
@@ -75,7 +65,6 @@ describe("getList", () => {
     it("correct filter and sort response", async () => {
         const { data, total } = await dataProvider(nhost).getList({
             resource: "posts",
-            pagination: defaultPagination,
             filters: [
                 {
                     field: "category_id",
@@ -83,7 +72,7 @@ describe("getList", () => {
                     value: "73c14cb4-a58c-471d-9410-fc97ea6dac66",
                 },
             ],
-            sorters: [
+            sort: [
                 {
                     field: "title",
                     order: "desc",

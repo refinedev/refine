@@ -1,19 +1,11 @@
-import { Pagination } from "@pankod/refine-core";
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
 import "./index.mock";
-
-const defaultPagination: Required<Pagination> = {
-    current: 1,
-    pageSize: 10,
-    mode: "server",
-};
 
 describe("getList", () => {
     it("correct response", async () => {
         const { data, total } = await dataProvider(client).getList({
             resource: "posts",
-            pagination: defaultPagination,
             meta: {
                 fields: ["id", "title"],
             },
@@ -26,8 +18,7 @@ describe("getList", () => {
     it("correct sorting response", async () => {
         const { data, total } = await dataProvider(client).getList({
             resource: "posts",
-            pagination: defaultPagination,
-            sorters: [
+            sort: [
                 {
                     field: "id",
                     order: "asc",
@@ -48,7 +39,6 @@ describe("getList", () => {
     it("correct filter response", async () => {
         const { data, total } = await dataProvider(client).getList({
             resource: "posts",
-            pagination: defaultPagination,
             filters: [
                 {
                     field: "title",
@@ -76,7 +66,6 @@ describe("getList", () => {
     it("correct filter and sort response", async () => {
         const { data, total } = await dataProvider(client).getList({
             resource: "posts",
-            pagination: defaultPagination,
             filters: [
                 {
                     field: "category",
@@ -84,7 +73,7 @@ describe("getList", () => {
                     value: "2",
                 },
             ],
-            sorters: [
+            sort: [
                 {
                     field: "title",
                     order: "asc",

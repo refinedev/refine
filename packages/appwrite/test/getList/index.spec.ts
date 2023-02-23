@@ -1,13 +1,6 @@
-import { Pagination } from "@pankod/refine-core";
 import { dataProvider } from "../../src/index";
 import { client } from "../appwriteClient";
 import "./index.mock";
-
-const defaultPagination: Required<Pagination> = {
-    current: 1,
-    pageSize: 10,
-    mode: "server",
-};
 
 describe("getList", () => {
     it("correct response", async () => {
@@ -15,7 +8,6 @@ describe("getList", () => {
             databaseId: "632455a0b8d017403ce9",
         }).getList({
             resource: "632455a55dc72e1aa016",
-            pagination: defaultPagination,
         });
 
         expect(data[0].id).toBe("632456bf1eeb69a71a78");
@@ -28,8 +20,7 @@ describe("getList", () => {
             databaseId: "632455a0b8d017403ce9",
         }).getList({
             resource: "632455a55dc72e1aa016",
-            pagination: defaultPagination,
-            sorters: [
+            sort: [
                 {
                     field: "title",
                     order: "asc",
@@ -51,8 +42,7 @@ describe("getList", () => {
             databaseId: "632455a0b8d017403ce9",
         }).getList({
             resource: "632455a55dc72e1aa016",
-            pagination: defaultPagination,
-            sorters: [
+            sort: [
                 {
                     field: "id",
                     order: "asc",
@@ -78,7 +68,6 @@ describe("getList", () => {
             databaseId: "632455a0b8d017403ce9",
         }).getList({
             resource: "632455a55dc72e1aa016",
-            pagination: defaultPagination,
             filters: [
                 {
                     field: "id",
@@ -101,7 +90,6 @@ describe("getList", () => {
                 databaseId: "632455a0b8d017403ce9",
             }).getList({
                 resource: "632455a55dc72e1aa016",
-                pagination: defaultPagination,
                 filters: [
                     {
                         field: "id",

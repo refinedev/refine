@@ -39,7 +39,7 @@ describe("custom", () => {
         const response = await JsonServer(API_URL, axios).custom!({
             url: `${API_URL}/users`,
             method: "get",
-            sorters: [
+            sort: [
                 {
                     field: "id",
                     order: "asc",
