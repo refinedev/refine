@@ -1,5 +1,9 @@
 import * as React from "react";
-import { LoginPageProps, LoginFormTypes } from "@pankod/refine-core";
+import {
+    LoginPageProps,
+    LoginFormTypes,
+    useProvidedAuthProvider,
+} from "@pankod/refine-core";
 import { FormProvider, useForm } from "@pankod/refine-react-hook-form";
 import {
     Button,
@@ -53,7 +57,10 @@ export const LoginPage: React.FC<LoginProps> = ({
         formState: { errors },
     } = methods;
 
-    const { mutate: login, isLoading } = useLogin<LoginFormTypes>();
+    const authProvider = useProvidedAuthProvider();
+    const { mutate: login, isLoading } = useLogin<LoginFormTypes>({
+        legacy: Boolean(authProvider?.isLegacy),
+    });
     const translate = useTranslate();
     const { Link } = useRouterContext();
 

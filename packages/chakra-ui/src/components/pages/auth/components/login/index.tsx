@@ -7,6 +7,7 @@ import {
     useTranslate,
     BaseRecord,
     HttpError,
+    useProvidedAuthProvider,
 } from "@pankod/refine-core";
 import {
     Box,
@@ -46,8 +47,11 @@ export const LoginPage: React.FC<LoginProps> = ({
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
 
+    const authProvider = useProvidedAuthProvider();
+    const { mutate: login } = useLogin<LoginFormTypes>({
+        legacy: Boolean(authProvider?.isLegacy),
+    });
     const translate = useTranslate();
-    const { mutate: login } = useLogin<LoginFormTypes>();
     const { Link } = useRouterContext();
     const methods = useForm<BaseRecord, HttpError, LoginFormTypes>({
         ...useFormProps,

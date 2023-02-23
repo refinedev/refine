@@ -31,6 +31,7 @@ import {
     useRouterContext,
     useMenu,
     useRefineContext,
+    useProvidedAuthProvider,
 } from "@pankod/refine-core";
 import { RefineLayoutSiderProps } from "../types";
 
@@ -52,8 +53,11 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
 
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const isExistAuthentication = useIsExistAuthentication();
-    const { mutate: mutateLogout } = useLogout();
     const Title = useTitle();
+    const authProvider = useProvidedAuthProvider();
+    const { mutate: mutateLogout } = useLogout({
+        legacy: Boolean(authProvider?.isLegacy),
+    });
 
     const [open, setOpen] = useState<{ [k: string]: any }>({});
 
@@ -285,7 +289,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
         >
             <ListItemButton
                 key="logout"
-                onClick={() => mutateLogout()}
+                onClick={() => mutateLogout({ redirectPath: "/login" })}
                 sx={{ justifyContent: "center" }}
             >
                 <ListItemIcon

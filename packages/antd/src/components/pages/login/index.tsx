@@ -1,5 +1,5 @@
 import React from "react";
-import { LoginPageProps } from "@pankod/refine-core";
+import { LoginPageProps, useProvidedAuthProvider } from "@pankod/refine-core";
 import {
     Row,
     Col,
@@ -37,7 +37,10 @@ export const LoginPage: React.FC<LoginPageProps> = () => {
     const [form] = Form.useForm<ILoginForm>();
     const translate = useTranslate();
 
-    const { mutate: login, isLoading } = useLogin<ILoginForm>();
+    const authProvider = useProvidedAuthProvider();
+    const { mutate: login, isLoading } = useLogin<ILoginForm>({
+        legacy: Boolean(authProvider?.isLegacy),
+    });
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>

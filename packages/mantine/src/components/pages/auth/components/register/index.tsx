@@ -1,5 +1,9 @@
 import React from "react";
-import { RegisterPageProps, RegisterFormTypes } from "@pankod/refine-core";
+import {
+    RegisterPageProps,
+    RegisterFormTypes,
+    useProvidedAuthProvider,
+} from "@pankod/refine-core";
 import {
     useTranslate,
     useRouterContext,
@@ -64,7 +68,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     });
     const { onSubmit, getInputProps } = form;
 
-    const { mutate: register, isLoading } = useRegister<RegisterFormTypes>();
+    const authProvider = useProvidedAuthProvider();
+    const { mutate: register, isLoading } = useRegister<RegisterFormTypes>({
+        legacy: Boolean(authProvider?.isLegacy),
+    });
 
     const renderProviders = () => {
         if (providers && providers.length > 0) {

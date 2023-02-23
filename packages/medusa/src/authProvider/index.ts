@@ -1,7 +1,7 @@
-import { AuthProvider, HttpError } from "@pankod/refine-core";
+import { LegacyAuthProvider, HttpError } from "@pankod/refine-core";
 import axios from "axios";
 
-export const authProvider = (API_URL: string): AuthProvider => {
+export const authProvider = (API_URL: string): LegacyAuthProvider => {
     const axiosInstance = axios.create();
 
     axiosInstance.interceptors.response.use(

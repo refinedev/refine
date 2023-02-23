@@ -1,11 +1,14 @@
 import React from "react";
-import { useGetIdentity } from "@pankod/refine-core";
+import { useGetIdentity, useProvidedAuthProvider } from "@pankod/refine-core";
 import { AppBar, Stack, Toolbar, Typography, Avatar } from "@mui/material";
 
 import { RefineLayoutHeaderProps } from "../types";
 
 export const Header: React.FC<RefineLayoutHeaderProps> = () => {
-    const { data: user } = useGetIdentity();
+    const authProvider = useProvidedAuthProvider();
+    const { data: user } = useGetIdentity({
+        legacy: Boolean(authProvider?.isLegacy),
+    });
 
     const shouldRenderHeader = user && (user.name || user.avatar);
 

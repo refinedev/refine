@@ -5,6 +5,7 @@ import {
     useIsExistAuthentication,
     useLogout,
     useMenu,
+    useProvidedAuthProvider,
     useRefineContext,
     useRouterContext,
     useTitle,
@@ -49,7 +50,10 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const isExistAuthentication = useIsExistAuthentication();
     const t = useTranslate();
     const { hasDashboard } = useRefineContext();
-    const { mutate: mutateLogout } = useLogout();
+    const authProvider = useProvidedAuthProvider();
+    const { mutate: mutateLogout } = useLogout({
+        legacy: Boolean(authProvider?.isLegacy),
+    });
 
     const RenderToTitle = Title ?? DefaultTitle;
 
@@ -169,7 +173,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     collapsed && !opened ? null : t("buttons.logout", "Logout")
                 }
                 icon={<IconLogout size={18} />}
-                onClick={() => mutateLogout()}
+                onClick={() => mutateLogout({ redirectPath: "/login" })}
                 styles={commonNavLinkStyles}
             />
         </Tooltip>

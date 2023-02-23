@@ -5,6 +5,7 @@ import {
     useIsExistAuthentication,
     useLogout,
     useMenu,
+    useProvidedAuthProvider,
     useRefineContext,
     useRouterContext,
     useTitle,
@@ -48,7 +49,10 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const isExistAuthentication = useIsExistAuthentication();
     const t = useTranslate();
     const { hasDashboard } = useRefineContext();
-    const { mutate: mutateLogout } = useLogout();
+    const authProvider = useProvidedAuthProvider();
+    const { mutate: mutateLogout } = useLogout({
+        legacy: Boolean(authProvider?.isLegacy),
+    });
 
     const RenderToTitle = Title ?? DefaultTitle;
 
@@ -206,7 +210,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 _active={{ color: "none" }}
                 _hover={{ textDecoration: "none" }}
                 color="white"
-                onClick={() => mutateLogout()}
+                onClick={() => mutateLogout({ redirectPath: "/login" })}
             >
                 {(!collapsed || opened) && t("buttons.logout", "Logout")}
             </Button>

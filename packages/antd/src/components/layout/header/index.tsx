@@ -1,11 +1,14 @@
 import React from "react";
 import { Layout as AntdLayout, Typography, Avatar, Space } from "antd";
-import { useGetIdentity } from "@pankod/refine-core";
+import { useGetIdentity, useProvidedAuthProvider } from "@pankod/refine-core";
 import { RefineLayoutHeaderProps } from "../types";
 const { Text } = Typography;
 
 export const Header: React.FC<RefineLayoutHeaderProps> = () => {
-    const { data: user } = useGetIdentity();
+    const authProvider = useProvidedAuthProvider();
+    const { data: user } = useGetIdentity({
+        legacy: Boolean(authProvider?.isLegacy),
+    });
 
     const shouldRenderHeader = user && (user.name || user.avatar);
 

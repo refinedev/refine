@@ -16,6 +16,7 @@ import {
     useRouterContext,
     useMenu,
     useRefineContext,
+    useProvidedAuthProvider,
 } from "@pankod/refine-core";
 
 import { Title as DefaultTitle } from "@components";
@@ -30,12 +31,15 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
     const { Link } = useRouterContext();
-    const { mutate: mutateLogout } = useLogout();
     const Title = useTitle();
     const translate = useTranslate();
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const breakpoint = Grid.useBreakpoint();
     const { hasDashboard } = useRefineContext();
+    const authProvider = useProvidedAuthProvider();
+    const { mutate: mutateLogout } = useLogout({
+        legacy: Boolean(authProvider?.isLegacy),
+    });
 
     const isMobile =
         typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
@@ -99,7 +103,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const logout = isExistAuthentication && (
         <Menu.Item
             key="logout"
-            onClick={() => mutateLogout()}
+            onClick={() => mutateLogout({ redirectPath: "/login" })}
             icon={<LogoutOutlined />}
         >
             {translate("buttons.logout", "Logout")}

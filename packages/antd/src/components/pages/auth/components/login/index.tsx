@@ -1,5 +1,9 @@
 import React from "react";
-import { LoginPageProps, LoginFormTypes } from "@pankod/refine-core";
+import {
+    LoginPageProps,
+    LoginFormTypes,
+    useProvidedAuthProvider,
+} from "@pankod/refine-core";
 import {
     Row,
     Col,
@@ -42,7 +46,10 @@ export const LoginPage: React.FC<LoginProps> = ({
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
-    const { mutate: login, isLoading } = useLogin<LoginFormTypes>();
+    const authProvider = useProvidedAuthProvider();
+    const { mutate: login, isLoading } = useLogin<LoginFormTypes>({
+        legacy: Boolean(authProvider?.isLegacy),
+    });
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>

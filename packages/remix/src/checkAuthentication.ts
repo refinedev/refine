@@ -1,8 +1,8 @@
-import { AuthProvider } from "@pankod/refine-core";
+import { LegacyAuthProvider } from "@pankod/refine-core";
 import { redirect } from "@remix-run/node";
 
 export const checkAuthentication = async (
-    authProvider: AuthProvider,
+    authProvider: LegacyAuthProvider,
     request: Request,
     redirectTo: string = new URL(request.url).pathname,
 ): Promise<any> => {

@@ -1,5 +1,9 @@
 import React from "react";
-import { LoginPageProps, LoginFormTypes } from "@pankod/refine-core";
+import {
+    LoginPageProps,
+    LoginFormTypes,
+    useProvidedAuthProvider,
+} from "@pankod/refine-core";
 import { useLogin, useTranslate, useRouterContext } from "@pankod/refine-core";
 import {
     Box,
@@ -63,7 +67,10 @@ export const LoginPage: React.FC<LoginProps> = ({
     });
     const { onSubmit, getInputProps } = form;
 
-    const { mutate: login, isLoading } = useLogin<LoginFormTypes>();
+    const authProvider = useProvidedAuthProvider();
+    const { mutate: login, isLoading } = useLogin<LoginFormTypes>({
+        legacy: Boolean(authProvider?.isLegacy),
+    });
 
     const renderProviders = () => {
         if (providers && providers.length > 0) {
