@@ -38,7 +38,7 @@ By default, the `current` is 1 and the `pageSize` is 10. You can change default 
 
 You can also change the `current` and `pageSize` values by using the `setCurrent` and `setPageSize` functions that are returned by the `useTable` hook. Every change will trigger a new fetch.
 
-If you want to handle the pagination on client-side, you can pass the `pagination.mode` prop to the `useTable` hook and set it to `"client"`.
+By default, pagination happens on the server side. If you want to do pagination handling on the client side, you can pass the pagination.mode property and set it to "client". Also, you can disable the pagination by setting the "off".
 
 <PaginationLivePreview/>
 
