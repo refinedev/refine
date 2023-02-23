@@ -72,79 +72,87 @@ If your app doesn't require `notification`, no further setup is necessary for th
 If you're looking for a complete notification infrastructure, **refine** has out-of-the-box support for the libraries below:
 
 <Tabs
-  defaultValue="antd"
-  values={[ 
-    {label: 'Ant Design', value: 'antd'}, 
-    {label: 'Material UI', value: 'mui'},
-    {label: 'Mantine', value: 'mantine'},
-    {label: 'Chakra UI', value: 'chakra'},
-    {label: 'Custom', value: 'custom'}, 
-  ]}>
+defaultValue="antd"
+values={[
+{label: 'Ant Design', value: 'antd'},
+{label: 'Material UI', value: 'mui'},
+{label: 'Mantine', value: 'mantine'},
+{label: 'Chakra UI', value: 'chakra'},
+{label: 'Custom', value: 'custom'},
+]}>
 
   <TabItem value="custom">
 
-  Create a custom notification provider by following the [guide](/docs/api-reference/core/providers/notification-provider/#creating-an-notificationprovider).
+Create a custom notification provider by following the [guide](/docs/api-reference/core/providers/notification-provider/#creating-an-notificationprovider).
 
   </TabItem>
 
   <TabItem value="antd">
 
-  ```tsx
-  import { notificationProvider} from "@pankod/refine-antd";
+```tsx
+import { notificationProvider } from "@pankod/refine-antd";
 
-  return (
+return (
     <Refine
-      //...
-      notificationProvider={notificationProvider}
+        //...
+        notificationProvider={notificationProvider}
     />
-  );
-  ```
+);
+```
+
   </TabItem>
 
   <TabItem value="mui">
 
-  ```tsx
-  import { notificationProvider, RefineSnackbarProvider } from "@pankod/refine-mui";
+```tsx
+import {
+    notificationProvider,
+    RefineSnackbarProvider,
+} from "@pankod/refine-mui";
 
-  return (
+return (
     <RefineSnackbarProvider>
-      <Refine
-        //...
-        notificationProvider={notificationProvider}
-      />
+        <Refine
+            //...
+            notificationProvider={notificationProvider}
+        />
     </RefineSnackbarProvider>
-  );
-  ```
+);
+```
+
   </TabItem>
 
   <TabItem value="mantine">
 
-  ```tsx
-  import { notificationProvider, NotificationsProvider } from "@pankod/refine-mantine";
+```tsx
+import { notificationProvider } from "@pankod/refine-mantine";
+import { NotificationsProvider } from "@mantine/notifications";
 
-  return (
+return (
     <NotificationsProvider position="top-right">
-      <Refine
-        //...
-        notificationProvider={notificationProvider}
-      />
+        <Refine
+            //...
+            notificationProvider={notificationProvider}
+        />
     </NotificationsProvider>
-  );
-  ```
+);
+```
+
   </TabItem>
 
   <TabItem value="chakra">
 
-  ```tsx
-  import { notificationProvider } from "@pankod/refine-chakra";
+```tsx
+import { notificationProvider } from "@pankod/refine-chakra";
 
-  return (
+return (
     <Refine
-      //...
-      notificationProvider={notificationProvider()}
+        //...
+        notificationProvider={notificationProvider()}
     />
-  );
-  ```
+);
+```
+
   </TabItem>
 </Tabs>
 

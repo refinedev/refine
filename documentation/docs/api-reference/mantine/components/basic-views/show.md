@@ -13,18 +13,18 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
+        <MantineCore.MantineProvider
+            theme={MantineCore.LightTheme}
             withNormalizeCSS
             withGlobalStyles
         >
-            <RefineMantine.Global
+            <MantineCore.Global
                 styles={{ body: { WebkitFontSmoothing: "auto" } }}
             />
-            <RefineMantine.NotificationsProvider position="top-right">
+            <MantineNotifications.NotificationsProvider position="top-right">
                 {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            </MantineNotifications.NotificationsProvider>
+        </MantineCore.MantineProvider>
     );
 };
 
@@ -55,7 +55,8 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
 import { useShow } from "@pankod/refine-core";
-import { Show, Title, Text, MarkdownField } from "@pankod/refine-mantine";
+import { Show, MarkdownField } from "@pankod/refine-mantine";
+import { Title, Text } from "@mantine/core";
 
 const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>();
@@ -128,7 +129,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show, Title } from "@pankod/refine-mantine";
+import { Show } from "@pankod/refine-mantine";
+import { Title } from "@mantine/core";
 
 const PostShow: React.FC = () => {
     return (
@@ -238,8 +240,9 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show, Title } from "@pankod/refine-mantine";
+import { Show } from "@pankod/refine-mantine";
 import { usePermissions } from "@pankod/refine-core";
+import { Title } from "@mantine/core";
 
 const PostShow: React.FC = () => {
     const { data: permissionsData } = usePermissions();
@@ -323,7 +326,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show, useModalForm, Modal, Button } from "@pankod/refine-mantine";
+import { Show, useModalForm } from "@pankod/refine-mantine";
+import { Modal, Button } from "@mantine/core";
 
 const PostShow: React.FC = () => {
     const {
@@ -802,7 +806,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show, Button } from "@pankod/refine-mantine";
+import { Show } from "@pankod/refine-mantine";
+import { Button } from "@mantine/core";
 
 const PostShow: React.FC = () => {
     return (
@@ -867,7 +872,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show, Button } from "@pankod/refine-mantine";
+import { Show } from "@pankod/refine-mantine";
+import { Button } from "@mantine/core";
 
 const PostShow: React.FC = () => {
     return (
@@ -933,7 +939,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show, Button } from "@pankod/refine-mantine";
+import { Show } from "@pankod/refine-mantine";
+import { Button } from "@mantine/core";
 
 const PostShow: React.FC = () => {
     return (
@@ -996,7 +1003,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show, Button } from "@pankod/refine-mantine";
+import { Show } from "@pankod/refine-mantine";
+import { Button } from "@mantine/core";
 
 const PostShow: React.FC = () => {
     return (

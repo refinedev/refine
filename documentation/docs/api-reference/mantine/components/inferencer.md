@@ -18,12 +18,8 @@ values={[
 <TabItem value="resources">
 
 ```tsx
-import {
-    Layout,
-    MantineProvider,
-    LightTheme,
-    Global,
-} from "@pankod/refine-mantine";
+import { Layout, Global } from "@pankod/refine-mantine";
+import { MantineProvider, LightTheme } from "@mantine/core";
 
 // highlight-next-line
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
@@ -104,12 +100,8 @@ setInitialRoutes(["/"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import {
-    Layout,
-    MantineProvider,
-    LightTheme,
-    Global,
-} from "@pankod/refine-mantine";
+import { Layout, LightTheme } from "@pankod/refine-mantine";
+import { MantineProvider, Global } from "@mantine/core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -168,12 +160,8 @@ setInitialRoutes(["/samples/show/123"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import {
-    Layout,
-    MantineProvider,
-    LightTheme,
-    Global,
-} from "@pankod/refine-mantine";
+import { Layout, LightTheme } from "@pankod/refine-mantine";
+import { MantineProvider, Global } from "@mantine/core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -232,12 +220,8 @@ setInitialRoutes(["/samples/create"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import {
-    Layout,
-    MantineProvider,
-    LightTheme,
-    Global,
-} from "@pankod/refine-mantine";
+import { Layout, LightTheme } from "@pankod/refine-mantine";
+import { MantineProvider, Global } from "@mantine/core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -294,12 +278,8 @@ setInitialRoutes(["/samples/edit/123"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import {
-    Layout,
-    MantineProvider,
-    LightTheme,
-    Global,
-} from "@pankod/refine-mantine";
+import { Layout, LightTheme } from "@pankod/refine-mantine";
+import { MantineProvider, Global } from "@mantine/core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 

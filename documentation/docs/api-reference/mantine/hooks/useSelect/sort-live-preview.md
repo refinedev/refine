@@ -1,7 +1,8 @@
 ```tsx live url=http://localhost:3000 previewHeight=300px
 setInitialRoutes(["/posts/create"]);
 // visible-block-start
-import { Select, useSelect, Button } from "@pankod/refine-mantine";
+import { useSelect } from "@pankod/refine-mantine";
+import { Select, Button } from "@mantine/core";
 
 interface ICategory {
     id: number;

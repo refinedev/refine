@@ -13,18 +13,18 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
+        <MantineCore.MantineProvider
             theme={RefineMantine.LightTheme}
             withNormalizeCSS
             withGlobalStyles
         >
-            <RefineMantine.Global
+            <MantineCore.Global
                 styles={{ body: { WebkitFontSmoothing: "auto" } }}
             />
-            <RefineMantine.NotificationsProvider position="top-right">
+            <MantineNotifications.NotificationsProvider position="top-right">
                 {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            </MantineNotifications.NotificationsProvider>
+        </MantineCore.MantineProvider>
     );
 };
 
@@ -54,13 +54,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import {
-    Edit,
-    Select,
-    TextInput,
-    useForm,
-    useSelect,
-} from "@pankod/refine-mantine";
+import { Edit, useForm, useSelect } from "@pankod/refine-mantine";
+import { Select, TextInput } from "@mantine/core";
 
 const PostEdit: React.FC = () => {
     const {
@@ -175,7 +170,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, Title } from "@pankod/refine-mantine";
+import { Edit } from "@pankod/refine-mantine";
+import { Title } from "@mantine/core";
 
 const PostEdit: React.FC = () => {
     return (
@@ -427,7 +423,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, useModalForm, Modal, Button } from "@pankod/refine-mantine";
+import { Edit, useModalForm } from "@pankod/refine-mantine";
+import { Modal, Button } from "@mantine/core";
 
 const PostEdit: React.FC = () => {
     const {
@@ -505,7 +502,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, TextInput, useForm } from "@pankod/refine-mantine";
+import { Edit, useForm } from "@pankod/refine-mantine";
+import { TextInput } from "@mantine/core";
 
 const PostEdit: React.FC = () => {
     const { saveButtonProps, getInputProps } = useForm<IPost>({
@@ -980,7 +978,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, Button } from "@pankod/refine-mantine";
+import { Edit } from "@pankod/refine-mantine";
+import { Button } from "@mantine/core";
 
 const PostEdit: React.FC = () => {
     return (
@@ -1045,7 +1044,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, Button } from "@pankod/refine-mantine";
+import { Edit } from "@pankod/refine-mantine";
+import { Modal, Button } from "@mantine/core";
 
 const PostEdit: React.FC = () => {
     return (
@@ -1111,7 +1111,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, Button } from "@pankod/refine-mantine";
+import { Edit } from "@pankod/refine-mantine";
+import { Button } from "@mantine/core";
 
 const PostEdit: React.FC = () => {
     return (
