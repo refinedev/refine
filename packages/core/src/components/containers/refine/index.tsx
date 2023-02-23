@@ -83,7 +83,7 @@ export interface RefineProps {
     /**
      * `legacyAuthProvider` handles authentication logic like login, logout flow and checking user credentials. It is an object with methods that refine uses when necessary.
      * @type [`AuthProvider`](/docs/api-reference/core/providers/auth-provider/)
-     * @deprecated `legacyAuthProvider` is deprecated with refine@4, use `authProvider` instead, however, we still support `legacyAuthProvider` for backward compatibility.
+     * @deprecated `legacyAuthProvider` is deprecated with refine@4, use `authProvider` instead.
      */
     legacyAuthProvider?: LegacyAuthProvider;
     /**
