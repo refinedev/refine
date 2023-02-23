@@ -12,7 +12,9 @@ export const DashboardPage: React.FC = () => {
     }>({
         legacy: true,
     });
-    const permissions = usePermissions();
+    const permissions = usePermissions({
+        legacy: true,
+    });
 
     return (
         <Row gutter={20}>
