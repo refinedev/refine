@@ -26,7 +26,7 @@ import {
     queryKeys,
     pickDataProvider,
     pickNotDeprecated,
-    handlePagination,
+    handlePaginationParams,
 } from "@definitions/helpers";
 
 export interface UseListConfig {
@@ -136,7 +136,7 @@ export const useList = <
         hasPagination,
         config?.hasPagination,
     );
-    const prefferedPagination = handlePagination({
+    const prefferedPagination = handlePaginationParams({
         pagination,
         configPagination: config?.pagination,
         hasPagination: prefferedHasPagination,
