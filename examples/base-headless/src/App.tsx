@@ -1,8 +1,6 @@
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerBindings, {
-    RefineRoutes,
-} from "@pankod/refine-react-router-v6/legacy";
+import routerBindings, { RefineRoutes } from "@pankod/refine-react-router-v6";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PostCreate, PostEdit } from "pages/posts";
@@ -14,7 +12,7 @@ const App: React.FC = () => {
         <BrowserRouter>
             <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                router={routerBindings}
+                routerProvider={routerBindings}
                 resources={[
                     {
                         name: "posts",
