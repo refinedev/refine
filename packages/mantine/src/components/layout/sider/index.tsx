@@ -173,7 +173,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     collapsed && !opened ? null : t("buttons.logout", "Logout")
                 }
                 icon={<IconLogout size={18} />}
-                onClick={() => mutateLogout({ redirectPath: "/login" })}
+                onClick={() => mutateLogout()}
                 styles={commonNavLinkStyles}
             />
         </Tooltip>

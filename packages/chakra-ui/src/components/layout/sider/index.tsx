@@ -210,7 +210,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 _active={{ color: "none" }}
                 _hover={{ textDecoration: "none" }}
                 color="white"
-                onClick={() => mutateLogout({ redirectPath: "/login" })}
+                onClick={() => mutateLogout()}
             >
                 {(!collapsed || opened) && t("buttons.logout", "Logout")}
             </Button>

@@ -289,7 +289,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
         >
             <ListItemButton
                 key="logout"
-                onClick={() => mutateLogout({ redirectPath: "/login" })}
+                onClick={() => mutateLogout()}
                 sx={{ justifyContent: "center" }}
             >
                 <ListItemIcon
