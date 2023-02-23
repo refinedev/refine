@@ -98,7 +98,7 @@ export type useTableProps<TData, TError> = {
          */
         permanent?: CrudFilters;
         /**
-         *Default behavior of the `setFilters` function
+         * Default behavior of the `setFilters` function
          * @default `"merge"`
          */
         defaultBehavior?: SetFilterBehavior;
@@ -115,7 +115,7 @@ export type useTableProps<TData, TError> = {
      */
     permanentFilter?: CrudFilters;
     /**
-     *Default behavior of the `setFilters` function
+     * Default behavior of the `setFilters` function
      * @default `"merge"`
      * @deprecated `defaultSetFilterBehavior` property is deprecated. Use `filters.defaultBehavior` instead.
      */
