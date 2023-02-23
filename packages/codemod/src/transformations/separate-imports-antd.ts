@@ -118,6 +118,26 @@ export default function transformer(file: FileInfo, api: API): string {
 
     if (addIcons) {
         addPackage(process.cwd(), { [ANTD_ICONS_PATH]: ANTD_ICONS_VERSION });
+        // add comment to antd-icons import
+        source
+
+            .find(j.ImportDeclaration, {
+                source: {
+                    value: ANTD_ICONS_PATH,
+                },
+            })
+            .forEach((path) => {
+                path.node.comments = [
+                    {
+                        type: "CommentLine",
+                        value: ` It is recommended to use explicit import as seen below to reduce bundle size.`,
+                    },
+                    {
+                        type: "CommentLine",
+                        value: ` import { IconName } from "@ant-design/icons";`,
+                    },
+                ];
+            });
     }
     if (addAntd) {
         addPackage(process.cwd(), { [ANTD_PATH]: ANTD_VERSION });
