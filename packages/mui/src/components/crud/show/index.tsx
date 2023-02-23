@@ -164,8 +164,8 @@ export const Show: React.FC<ShowProps> = ({
                     title ?? (
                         <Typography variant="h5">
                             {translate(
-                                `${resource?.name}.titles.edit`,
-                                `Edit ${userFriendlyResourceName(
+                                `${resource?.name}.titles.show`,
+                                `Show ${userFriendlyResourceName(
                                     resource?.meta?.label ??
                                         resource?.options?.label ??
                                         resource?.label ??
