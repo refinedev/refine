@@ -150,8 +150,8 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         value: "separate-imports-antd",
     },
     {
-        name: "add-legacy-true-to-auth-hooks: Add legacy: true to auth hooks",
-        value: "add-legacy-true-to-auth-hooks",
+        name: "add-v3LegacyAuthProviderCompatible-true-to-auth-hooks: Add v3LegacyAuthProviderCompatible:true to auth hooks",
+        value: "add-v3LegacyAuthProviderCompatible-true-to-auth-hooks",
     },
     {
         name: "authProvider-to-legacyAuthProvider: Transform authProvider to use legacyAuthProvider",

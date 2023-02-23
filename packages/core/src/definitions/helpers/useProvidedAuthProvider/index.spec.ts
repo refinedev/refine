@@ -18,7 +18,7 @@ describe("useProvidedAuthProvider", () => {
         expect(result.current?.isLegacy).toBeFalsy();
     });
 
-    it("returns legacy authProvider", async () => {
+    it("returns v3LegacyAuthProviderCompatible authProvider", async () => {
         const { result } = renderHook(() => useProvidedAuthProvider(), {
             wrapper: TestWrapper({
                 legacyAuthProvider: {

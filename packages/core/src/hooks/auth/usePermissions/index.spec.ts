@@ -5,21 +5,24 @@ import { MockJSONServer, TestWrapper } from "@test";
 import { usePermissions } from "./";
 
 // NOTE : Will be removed in v5
-describe("legacy usePermissions Hook", () => {
+describe("v3LegacyAuthProviderCompatible usePermissions Hook", () => {
     it("returns authenticated userPermissions", async () => {
-        const { result } = renderHook(() => usePermissions({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(["admin"]),
-                    logout: () => Promise.resolve(),
-                },
-                dataProvider: MockJSONServer,
-                resources: [{ name: "posts" }],
-            }),
-        });
+        const { result } = renderHook(
+            () => usePermissions({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(["admin"]),
+                        logout: () => Promise.resolve(),
+                    },
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
 
         await waitFor(() => {
             expect(result.current.isSuccess).toBeTruthy();
@@ -33,17 +36,21 @@ describe("legacy usePermissions Hook", () => {
             if (!message.includes("Not Authenticated")) console.warn(message);
         });
 
-        const { result } = renderHook(() => usePermissions({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.reject("Not Authenticated"),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.reject("Not Authenticated"),
-                    logout: () => Promise.resolve(),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => usePermissions({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.reject("Not Authenticated"),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () =>
+                            Promise.reject("Not Authenticated"),
+                        logout: () => Promise.resolve(),
+                    },
+                }),
+            },
+        );
 
         await waitFor(() => {
             expect(result.current.isError).toBeTruthy();
@@ -133,27 +140,30 @@ describe("usePermissions Hook authProvider selection", () => {
         expect(getPermissionMock).toHaveBeenCalled();
     });
 
-    it("selects legacy authProvider", async () => {
+    it("selects v3LegacyAuthProviderCompatible authProvider", async () => {
         const legacyGetPermissionMock = jest.fn(() => Promise.resolve());
         const getPermissionMock = jest.fn(() => Promise.resolve());
 
-        const { result } = renderHook(() => usePermissions({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => legacyGetPermissionMock(),
-                },
-                authProvider: {
-                    login: () => Promise.resolve({ success: true }),
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => Promise.resolve({}),
-                    logout: () => Promise.resolve({ success: true }),
-                    getPermissions: () => getPermissionMock(),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => usePermissions({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => legacyGetPermissionMock(),
+                    },
+                    authProvider: {
+                        login: () => Promise.resolve({ success: true }),
+                        check: () => Promise.resolve({ authenticated: true }),
+                        onError: () => Promise.resolve({}),
+                        logout: () => Promise.resolve({ success: true }),
+                        getPermissions: () => getPermissionMock(),
+                    },
+                }),
+            },
+        );
 
         await waitFor(() => {
             expect(result.current.isLoading).toBeFalsy();

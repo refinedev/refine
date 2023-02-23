@@ -10,7 +10,7 @@ import { useNavigation, useNotification } from "@hooks";
 import { AuthActionResponse, TForgotPasswordData } from "../../../interfaces";
 
 export type UseForgotPasswordLegacyProps<TVariables> = {
-    legacy: true;
+    v3LegacyAuthProviderCompatible: true;
     mutationOptions?: Omit<
         UseMutationOptions<TForgotPasswordData, Error, TVariables, unknown>,
         "mutationFn" | "onError" | "onSuccess"
@@ -18,7 +18,7 @@ export type UseForgotPasswordLegacyProps<TVariables> = {
 };
 
 export type UseForgotPasswordProps<TVariables> = {
-    legacy?: false;
+    v3LegacyAuthProviderCompatible?: false;
     mutationOptions?: Omit<
         UseMutationOptions<AuthActionResponse, Error, TVariables, unknown>,
         "mutationFn" | "onSuccess"
@@ -26,7 +26,7 @@ export type UseForgotPasswordProps<TVariables> = {
 };
 
 export type UseForgotPasswordCombinedProps<TVariables> = {
-    legacy: boolean;
+    v3LegacyAuthProviderCompatible: boolean;
     mutationOptions?: Omit<
         UseMutationOptions<
             AuthActionResponse | TForgotPasswordData,
@@ -81,7 +81,7 @@ export function useForgotPassword<TVariables = {}>(
  *
  */
 export function useForgotPassword<TVariables = {}>({
-    legacy,
+    v3LegacyAuthProviderCompatible,
     mutationOptions,
 }:
     | UseForgotPasswordProps<TVariables>
@@ -89,8 +89,9 @@ export function useForgotPassword<TVariables = {}>({
     | UseForgotPasswordReturnType<TVariables>
     | UseForgotPasswordLegacyReturnType<TVariables> {
     const { replace } = useNavigation();
-    const { forgotPassword: legacyForgotPasswordFromContext } =
-        useLegacyAuthContext();
+    const {
+        forgotPassword: v3LegacyAuthProviderCompatibleForgotPasswordFromContext,
+    } = useLegacyAuthContext();
     const { forgotPassword: forgotPasswordFromContext } =
         useAuthBindingsContext();
     const { close, open } = useNotification();
@@ -119,33 +120,40 @@ export function useForgotPassword<TVariables = {}>({
                 });
             }
         },
-        ...(legacy === true ? {} : mutationOptions),
+        ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
     });
 
-    const legacyQueryResponse = useMutation<
+    const v3LegacyAuthProviderCompatibleQueryResponse = useMutation<
         TForgotPasswordData,
         Error,
         TVariables,
         unknown
-    >(["useForgotPassword"], legacyForgotPasswordFromContext, {
-        onSuccess: (redirectPathFromAuth) => {
-            if (redirectPathFromAuth !== false) {
-                if (redirectPathFromAuth) {
-                    replace(redirectPathFromAuth);
+    >(
+        ["useForgotPassword"],
+        v3LegacyAuthProviderCompatibleForgotPasswordFromContext,
+        {
+            onSuccess: (redirectPathFromAuth) => {
+                if (redirectPathFromAuth !== false) {
+                    if (redirectPathFromAuth) {
+                        replace(redirectPathFromAuth);
+                    }
                 }
-            }
-            close?.("forgot-password-error");
+                close?.("forgot-password-error");
+            },
+            onError: (error: any) => {
+                open?.({
+                    message: error?.name || "Forgot Password Error",
+                    description:
+                        error?.message || "Error while resetting password",
+                    key: "forgot-password-error",
+                    type: "error",
+                });
+            },
+            ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
         },
-        onError: (error: any) => {
-            open?.({
-                message: error?.name || "Forgot Password Error",
-                description: error?.message || "Error while resetting password",
-                key: "forgot-password-error",
-                type: "error",
-            });
-        },
-        ...(legacy ? mutationOptions : {}),
-    });
+    );
 
-    return legacy ? legacyQueryResponse : queryResponse;
+    return v3LegacyAuthProviderCompatible
+        ? v3LegacyAuthProviderCompatibleQueryResponse
+        : queryResponse;
 }

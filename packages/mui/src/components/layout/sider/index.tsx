@@ -56,7 +56,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const Title = useTitle();
     const authProvider = useProvidedAuthProvider();
     const { mutate: mutateLogout } = useLogout({
-        legacy: Boolean(authProvider?.isLegacy),
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
     const [open, setOpen] = useState<{ [k: string]: any }>({});

@@ -14,7 +14,7 @@ type Variables = {
 };
 
 export type UseLogoutLegacyProps<TVariables> = {
-    legacy: true;
+    v3LegacyAuthProviderCompatible: true;
     mutationOptions?: Omit<
         UseMutationOptions<
             TLogoutData,
@@ -27,7 +27,7 @@ export type UseLogoutLegacyProps<TVariables> = {
 };
 
 export type UseLogoutProps<TVariables> = {
-    legacy?: false;
+    v3LegacyAuthProviderCompatible?: false;
     mutationOptions?: Omit<
         UseMutationOptions<
             AuthActionResponse,
@@ -40,7 +40,7 @@ export type UseLogoutProps<TVariables> = {
 };
 
 export type UseLogoutCombinedProps<TVariables> = {
-    legacy: boolean;
+    v3LegacyAuthProviderCompatible: boolean;
     mutationOptions?: Omit<
         UseMutationOptions<
             AuthActionResponse | TLogoutData,
@@ -92,7 +92,7 @@ export function useLogout<TVariables = {}>(
  *
  */
 export function useLogout<TVariables = {}>({
-    legacy,
+    v3LegacyAuthProviderCompatible,
     mutationOptions,
 }: UseLogoutProps<TVariables> | UseLogoutLegacyProps<TVariables> = {}):
     | UseLogoutLegacyReturnType<TVariables>
@@ -131,7 +131,7 @@ export function useLogout<TVariables = {}>({
                 });
             }
         },
-        ...(legacy === true ? {} : mutationOptions),
+        ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
     });
 
     const queryResponseLegacy = useMutation<
@@ -163,8 +163,8 @@ export function useLogout<TVariables = {}>({
                     error?.message || "Something went wrong during logout",
             });
         },
-        ...(legacy ? mutationOptions : {}),
+        ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
     });
 
-    return legacy ? queryResponseLegacy : queryResponse;
+    return v3LegacyAuthProviderCompatible ? queryResponseLegacy : queryResponse;
 }

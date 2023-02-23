@@ -101,7 +101,7 @@ export const useOne = <
     const translate = useTranslate();
     const authProvider = useProvidedAuthProvider();
     const { mutate: checkError } = useOnError({
-        legacy: Boolean(authProvider?.isLegacy),
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const handleNotification = useHandleNotification();
 

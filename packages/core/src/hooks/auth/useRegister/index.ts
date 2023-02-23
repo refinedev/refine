@@ -14,7 +14,7 @@ import {
 } from "../../../interfaces";
 
 export type UseRegisterLegacyProps<TVariables> = {
-    legacy: true;
+    v3LegacyAuthProviderCompatible: true;
     mutationOptions?: Omit<
         UseMutationOptions<TRegisterData, Error, TVariables, unknown>,
         "mutationFn" | "onError" | "onSuccess"
@@ -22,7 +22,7 @@ export type UseRegisterLegacyProps<TVariables> = {
 };
 
 export type UseRegisterProps<TVariables> = {
-    legacy?: false;
+    v3LegacyAuthProviderCompatible?: false;
     mutationOptions?: Omit<
         UseMutationOptions<AuthActionResponse, Error, TVariables, unknown>,
         "mutationFn" | "onSuccess"
@@ -30,7 +30,7 @@ export type UseRegisterProps<TVariables> = {
 };
 
 export type UseRegisterCombinedProps<TVariables> = {
-    legacy: boolean;
+    v3LegacyAuthProviderCompatible: boolean;
     mutationOptions?: Omit<
         UseMutationOptions<
             AuthActionResponse | TRegisterData,
@@ -85,7 +85,7 @@ export function useRegister<TVariables = {}>(
  *
  */
 export function useRegister<TVariables = {}>({
-    legacy,
+    v3LegacyAuthProviderCompatible,
     mutationOptions,
 }: UseRegisterProps<TVariables> | UseRegisterLegacyProps<TVariables> = {}):
     | UseRegisterReturnType<TVariables>
@@ -119,7 +119,7 @@ export function useRegister<TVariables = {}>({
                 });
             }
         },
-        ...(legacy === true ? {} : mutationOptions),
+        ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
     });
 
     const legacyQueryResponse = useMutation<
@@ -146,8 +146,8 @@ export function useRegister<TVariables = {}>({
                 type: "error",
             });
         },
-        ...(legacy ? mutationOptions : {}),
+        ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
     });
 
-    return legacy ? legacyQueryResponse : queryResponse;
+    return v3LegacyAuthProviderCompatible ? legacyQueryResponse : queryResponse;
 }

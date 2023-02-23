@@ -7,7 +7,7 @@ import { RefineLayoutHeaderProps } from "../types";
 export const Header: React.FC<RefineLayoutHeaderProps> = () => {
     const authProvider = useProvidedAuthProvider();
     const { data: user } = useGetIdentity({
-        legacy: Boolean(authProvider?.isLegacy),
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
     const shouldRenderHeader = user && (user.name || user.avatar);

@@ -62,7 +62,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
     const authProvider = useProvidedAuthProvider();
     const { mutate: updatePassword, isLoading } =
         useUpdatePassword<UpdatePasswordFormTypes>({
-            legacy: Boolean(authProvider?.isLegacy),
+            v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
         });
 
     const CardContent = (

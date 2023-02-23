@@ -13,7 +13,7 @@ export type LegacyAuthenticatedProps = {
      */
     loading?: React.ReactNode;
     children: React.ReactNode;
-    legacy: true;
+    v3LegacyAuthProviderCompatible: true;
 };
 
 export type AuthenticatedProps = {
@@ -26,7 +26,7 @@ export type AuthenticatedProps = {
      */
     loading?: React.ReactNode;
     children: React.ReactNode;
-    legacy?: false;
+    v3LegacyAuthProviderCompatible?: false;
 };
 
 export function Authenticated(
@@ -46,11 +46,11 @@ export function Authenticated({
     loading: loadingFromProps,
 }: AuthenticatedProps | LegacyAuthenticatedProps): JSX.Element | null {
     const legacyIsAuthenticatedProps = useIsAuthenticated({
-        legacy: true,
+        v3LegacyAuthProviderCompatible: true,
     });
 
     const isAuthenticatedProps = useIsAuthenticated({
-        legacy: false,
+        v3LegacyAuthProviderCompatible: false,
     });
 
     const { replace } = useNavigation();

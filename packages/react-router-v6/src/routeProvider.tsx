@@ -176,7 +176,7 @@ export const RouteProvider = ({
         isError,
         data: authData,
     } = useIsAuthenticated({
-        legacy: Boolean(authProvider?.isLegacy),
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
     if (isFetching) {

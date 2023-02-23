@@ -121,7 +121,7 @@ export const useUpdateMany = <
     } = useMutationMode();
     const authProvider = useProvidedAuthProvider();
     const { mutate: checkError } = useOnError({
-        legacy: Boolean(authProvider?.isLegacy),
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const { notificationDispatch } = useCancelNotification();
     const publish = usePublish();

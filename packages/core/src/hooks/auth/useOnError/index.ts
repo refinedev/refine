@@ -5,15 +5,15 @@ import { OnErrorResponse } from "../../../interfaces";
 import { useLogout, useNavigation } from "@hooks";
 
 export type UseOnErrorLegacyProps = {
-    legacy: true;
+    v3LegacyAuthProviderCompatible: true;
 };
 
 export type UseOnErrorProps = {
-    legacy?: false;
+    v3LegacyAuthProviderCompatible?: false;
 };
 
 export type UseOnErrorCombinedProps = {
-    legacy: boolean;
+    v3LegacyAuthProviderCompatible: boolean;
 };
 
 export type UseOnErrorLegacyReturnType = UseMutationResult<
@@ -53,7 +53,7 @@ export function useOnError(
  *
  */
 export function useOnError({
-    legacy = false,
+    v3LegacyAuthProviderCompatible = false,
 }: UseOnErrorProps | UseOnErrorLegacyProps = {}):
     | UseOnErrorReturnType
     | UseOnErrorLegacyReturnType {
@@ -61,8 +61,12 @@ export function useOnError({
     const { checkError: legacyCheckErrorFromContext } = useLegacyAuthContext();
     const { onError: onErrorFromContext } = useAuthBindingsContext();
 
-    const { mutate: legacyLogout } = useLogout({ legacy: Boolean(legacy) });
-    const { mutate: logout } = useLogout({ legacy: Boolean(legacy) });
+    const { mutate: legacyLogout } = useLogout({
+        v3LegacyAuthProviderCompatible: Boolean(v3LegacyAuthProviderCompatible),
+    });
+    const { mutate: logout } = useLogout({
+        v3LegacyAuthProviderCompatible: Boolean(v3LegacyAuthProviderCompatible),
+    });
 
     const queryResponse = useMutation(["useOnError"], onErrorFromContext, {
         onSuccess: ({ logout: shouldLogout, redirectTo }) => {
@@ -88,7 +92,7 @@ export function useOnError({
         },
     );
 
-    return legacy ? legacyQueryResponse : queryResponse;
+    return v3LegacyAuthProviderCompatible ? legacyQueryResponse : queryResponse;
 }
 
 /**

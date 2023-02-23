@@ -47,7 +47,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     const translate = useTranslate();
     const authProvider = useProvidedAuthProvider();
     const { mutate } = useRegister({
-        legacy: Boolean(authProvider?.isLegacy),
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const {
         register,

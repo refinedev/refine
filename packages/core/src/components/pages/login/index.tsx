@@ -21,7 +21,7 @@ export const LoginPage: React.FC = () => {
 
     const authProvider = useProvidedAuthProvider();
     const { mutate: login } = useLogin<ILoginForm>({
-        legacy: Boolean(authProvider?.isLegacy),
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
     return (

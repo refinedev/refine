@@ -13,7 +13,7 @@ jest.mock("react-router-dom", () => ({
 }));
 
 // NOTE : Will be removed in v5
-describe("legacy useLogin Hook", () => {
+describe("v3LegacyAuthProviderCompatible useLogin Hook", () => {
     beforeEach(() => {
         mHistory.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
@@ -24,24 +24,27 @@ describe("legacy useLogin Hook", () => {
     });
 
     it("succeed login", async () => {
-        const { result } = renderHook(() => useLogin({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: ({ email }) => {
-                        if (email === "test") {
-                            return Promise.resolve();
-                        }
+        const { result } = renderHook(
+            () => useLogin({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: ({ email }) => {
+                            if (email === "test") {
+                                return Promise.resolve();
+                            }
 
-                        return Promise.reject(new Error("Wrong email"));
+                            return Promise.reject(new Error("Wrong email"));
+                        },
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                        getUserIdentity: () => Promise.resolve({ id: 1 }),
                     },
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                    getUserIdentity: () => Promise.resolve({ id: 1 }),
-                },
-            }),
-        });
+                }),
+            },
+        );
 
         const { mutate: login } = result.current ?? { mutate: () => 0 };
 
@@ -57,24 +60,27 @@ describe("legacy useLogin Hook", () => {
     });
 
     it("should successfully login with no redirect", async () => {
-        const { result } = renderHook(() => useLogin({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: ({ email }) => {
-                        if (email === "test") {
-                            return Promise.resolve(false);
-                        }
+        const { result } = renderHook(
+            () => useLogin({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: ({ email }) => {
+                            if (email === "test") {
+                                return Promise.resolve(false);
+                            }
 
-                        return Promise.reject(new Error("Wrong email"));
+                            return Promise.reject(new Error("Wrong email"));
+                        },
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                        getUserIdentity: () => Promise.resolve({ id: 1 }),
                     },
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                    getUserIdentity: () => Promise.resolve({ id: 1 }),
-                },
-            }),
-        });
+                }),
+            },
+        );
 
         const { mutate: login } = result.current ?? { mutate: () => 0 };
 
@@ -90,24 +96,27 @@ describe("legacy useLogin Hook", () => {
     });
 
     it("login and redirect to custom path", async () => {
-        const { result } = renderHook(() => useLogin({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: ({ email, redirectPath }) => {
-                        if (email === "test") {
-                            return Promise.resolve(redirectPath);
-                        }
+        const { result } = renderHook(
+            () => useLogin({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: ({ email, redirectPath }) => {
+                            if (email === "test") {
+                                return Promise.resolve(redirectPath);
+                            }
 
-                        return Promise.reject(new Error("Wrong email"));
+                            return Promise.reject(new Error("Wrong email"));
+                        },
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                        getUserIdentity: () => Promise.resolve({ id: 1 }),
                     },
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                    getUserIdentity: () => Promise.resolve({ id: 1 }),
-                },
-            }),
-        });
+                }),
+            },
+        );
 
         const { mutate: login } = result.current ?? { mutate: () => 0 };
 
@@ -123,25 +132,28 @@ describe("legacy useLogin Hook", () => {
     });
 
     it("If URL has 'to' params the app will redirect to 'to' values", async () => {
-        const { result } = renderHook(() => useLogin({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: ({ email, redirectPath }) => {
-                        if (email === "test") {
-                            return Promise.resolve(redirectPath);
-                        }
+        const { result } = renderHook(
+            () => useLogin({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: ({ email, redirectPath }) => {
+                            if (email === "test") {
+                                return Promise.resolve(redirectPath);
+                            }
 
-                        return Promise.reject(new Error("Wrong email"));
+                            return Promise.reject(new Error("Wrong email"));
+                        },
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                        getUserIdentity: () => Promise.resolve({ id: 1 }),
                     },
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                    getUserIdentity: () => Promise.resolve({ id: 1 }),
-                },
-                routerInitialEntries: ["?to=/show/posts/5"],
-            }),
-        });
+                    routerInitialEntries: ["?to=/show/posts/5"],
+                }),
+            },
+        );
 
         const { mutate: login } = result.current ?? { mutate: () => 0 };
 
@@ -157,18 +169,21 @@ describe("legacy useLogin Hook", () => {
     });
 
     it("fail login", async () => {
-        const { result } = renderHook(() => useLogin({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: () => Promise.reject(new Error("Wrong email")),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                    getUserIdentity: () => Promise.resolve({ id: 1 }),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => useLogin({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.reject(new Error("Wrong email")),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                        getUserIdentity: () => Promise.resolve({ id: 1 }),
+                    },
+                }),
+            },
+        );
 
         const { mutate: login } = result.current ?? { mutate: () => 0 };
 
@@ -186,18 +201,21 @@ describe("legacy useLogin Hook", () => {
     });
 
     it("login rejected with undefined error", async () => {
-        const { result } = renderHook(() => useLogin({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: () => Promise.reject(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                    getUserIdentity: () => Promise.resolve({ id: 1 }),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => useLogin({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.reject(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                        getUserIdentity: () => Promise.resolve({ id: 1 }),
+                    },
+                }),
+            },
+        );
 
         const { mutate: login } = result.current ?? { mutate: () => 0 };
 
@@ -438,26 +456,29 @@ describe("useLogin Hook authProvider selection", () => {
         expect(loginMock).toHaveBeenCalled();
     });
 
-    it("selects legacy authProvider", async () => {
+    it("selects v3LegacyAuthProviderCompatible authProvider", async () => {
         const legacyLoginMock = jest.fn(() => Promise.resolve());
         const loginMock = jest.fn(() => Promise.resolve({ success: true }));
 
-        const { result } = renderHook(() => useLogin({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: () => legacyLoginMock(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                },
-                authProvider: {
-                    login: () => loginMock(),
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => Promise.resolve({}),
-                    logout: () => Promise.resolve({ success: true }),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => useLogin({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => legacyLoginMock(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                    },
+                    authProvider: {
+                        login: () => loginMock(),
+                        check: () => Promise.resolve({ authenticated: true }),
+                        onError: () => Promise.resolve({}),
+                        logout: () => Promise.resolve({ success: true }),
+                    },
+                }),
+            },
+        );
 
         const { mutate: login } = result.current ?? {
             mutate: () => 0,

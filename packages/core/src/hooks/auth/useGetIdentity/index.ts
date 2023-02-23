@@ -8,17 +8,17 @@ import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { IdentityResponse } from "../../../interfaces";
 
 export type UseGetIdentityLegacyProps<TData> = {
-    legacy: true;
+    v3LegacyAuthProviderCompatible: true;
     queryOptions?: UseQueryOptions<TData>;
 };
 
 export type UseGetIdentityProps<TData = IdentityResponse> = {
-    legacy?: false;
+    v3LegacyAuthProviderCompatible?: false;
     queryOptions?: UseQueryOptions<TData>;
 };
 
 export type UseGetIdentityCombinedProps<TData = any> = {
-    legacy: boolean;
+    v3LegacyAuthProviderCompatible: boolean;
     queryOptions?: UseQueryOptions<TData> | UseQueryOptions<IdentityResponse>;
 };
 
@@ -57,7 +57,7 @@ export function useGetIdentity<TData = any>(
  *
  */
 export function useGetIdentity<TData = any>({
-    legacy = false,
+    v3LegacyAuthProviderCompatible = false,
     queryOptions,
 }: UseGetIdentityProps<TData> | UseGetIdentityLegacyProps<TData> = {}):
     | UseGetIdentityReturnType<TData>
@@ -71,9 +71,9 @@ export function useGetIdentity<TData = any>({
         (getIdentity as (params?: unknown) => Promise<TData>) ??
             (() => Promise.resolve({})),
         {
-            enabled: !legacy && !!getIdentity,
+            enabled: !v3LegacyAuthProviderCompatible && !!getIdentity,
             retry: false,
-            ...(legacy === true ? {} : queryOptions),
+            ...(v3LegacyAuthProviderCompatible === true ? {} : queryOptions),
         },
     );
 
@@ -82,11 +82,11 @@ export function useGetIdentity<TData = any>({
         // Enabled check for `getUserIdentity` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
         legacyGetUserIdentity ?? (() => Promise.resolve({})),
         {
-            enabled: legacy && !!legacyGetUserIdentity,
+            enabled: v3LegacyAuthProviderCompatible && !!legacyGetUserIdentity,
             retry: false,
-            ...(legacy ? queryOptions : {}),
+            ...(v3LegacyAuthProviderCompatible ? queryOptions : {}),
         },
     );
 
-    return legacy ? legacyQueryResponse : queryResponse;
+    return v3LegacyAuthProviderCompatible ? legacyQueryResponse : queryResponse;
 }

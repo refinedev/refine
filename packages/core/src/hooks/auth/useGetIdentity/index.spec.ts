@@ -5,20 +5,23 @@ import { TestWrapper } from "@test";
 import { useGetIdentity } from "./";
 
 // NOTE : Will be removed in v5
-describe("legacy useGetIdentity Hook", () => {
+describe("v3LegacyAuthProviderCompatible useGetIdentity Hook", () => {
     it("returns object useGetIdentity", async () => {
-        const { result } = renderHook(() => useGetIdentity({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                    getUserIdentity: () => Promise.resolve({ id: 1 }),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => useGetIdentity({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                        getUserIdentity: () => Promise.resolve({ id: 1 }),
+                    },
+                }),
+            },
+        );
 
         await waitFor(() => {
             expect(result.current.isSuccess).toBeTruthy();
@@ -33,19 +36,22 @@ describe("legacy useGetIdentity Hook", () => {
             console.warn(message);
         });
 
-        const { result } = renderHook(() => useGetIdentity({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                    getUserIdentity: () =>
-                        Promise.reject(new Error("Not Authenticated")),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => useGetIdentity({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                        getUserIdentity: () =>
+                            Promise.reject(new Error("Not Authenticated")),
+                    },
+                }),
+            },
+        );
 
         await waitFor(() => {
             expect(result.current.isError).toBeTruthy();
@@ -55,17 +61,20 @@ describe("legacy useGetIdentity Hook", () => {
     });
 
     it("throw error useGetIdentity undefined", async () => {
-        const { result } = renderHook(() => useGetIdentity({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => useGetIdentity({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                    },
+                }),
+            },
+        );
 
         await waitFor(() => {
             expect(!result.current.isFetching).toBeTruthy();
@@ -78,17 +87,20 @@ describe("legacy useGetIdentity Hook", () => {
 
 describe("useGetIdentity Hook", () => {
     it("returns object useGetIdentity", async () => {
-        const { result } = renderHook(() => useGetIdentity({ legacy: false }), {
-            wrapper: TestWrapper({
-                authProvider: {
-                    login: () => Promise.resolve({ success: true }),
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => Promise.resolve({}),
-                    logout: () => Promise.resolve({ success: true }),
-                    getIdentity: () => Promise.resolve({ id: 1 }),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => useGetIdentity({ v3LegacyAuthProviderCompatible: false }),
+            {
+                wrapper: TestWrapper({
+                    authProvider: {
+                        login: () => Promise.resolve({ success: true }),
+                        check: () => Promise.resolve({ authenticated: true }),
+                        onError: () => Promise.resolve({}),
+                        logout: () => Promise.resolve({ success: true }),
+                        getIdentity: () => Promise.resolve({ id: 1 }),
+                    },
+                }),
+            },
+        );
 
         await waitFor(() => {
             expect(result.current.data).toBeTruthy();
@@ -176,27 +188,30 @@ describe("useGetIdentity Hook authProvider selection", () => {
         expect(getIdentitiyMock).toHaveBeenCalled();
     });
 
-    it("selects legacy authProvider", async () => {
+    it("selects v3LegacyAuthProviderCompatible authProvider", async () => {
         const legacyGetUserIdentityMock = jest.fn(() => Promise.resolve());
         const getIdentitiyMock = jest.fn(() => Promise.resolve());
 
-        const { result } = renderHook(() => useGetIdentity({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getUserIdentity: () => legacyGetUserIdentityMock(),
-                },
-                authProvider: {
-                    login: () => Promise.resolve({ success: true }),
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => Promise.resolve({}),
-                    logout: () => Promise.resolve({ success: true }),
-                    getIdentity: () => getIdentitiyMock(),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => useGetIdentity({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getUserIdentity: () => legacyGetUserIdentityMock(),
+                    },
+                    authProvider: {
+                        login: () => Promise.resolve({ success: true }),
+                        check: () => Promise.resolve({ authenticated: true }),
+                        onError: () => Promise.resolve({}),
+                        logout: () => Promise.resolve({ success: true }),
+                        getIdentity: () => getIdentitiyMock(),
+                    },
+                }),
+            },
+        );
 
         await waitFor(() => {
             expect(!result.current.isLoading).toBeFalsy();

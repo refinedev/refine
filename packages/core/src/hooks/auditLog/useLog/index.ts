@@ -80,7 +80,7 @@ export const useLog = <
         refetch,
         isLoading,
     } = useGetIdentity({
-        legacy: Boolean(authProvider?.isLegacy),
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
         queryOptions: {
             enabled: !!auditLogContext,
         },

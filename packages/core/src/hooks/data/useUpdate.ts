@@ -145,7 +145,7 @@ export const useUpdate = <
     const translate = useTranslate();
     const authProvider = useProvidedAuthProvider();
     const { mutate: checkError } = useOnError({
-        legacy: Boolean(authProvider?.isLegacy),
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const publish = usePublish();
     const { log } = useLog();

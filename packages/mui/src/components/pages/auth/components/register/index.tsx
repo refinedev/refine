@@ -61,7 +61,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     const authProvider = useProvidedAuthProvider();
     const { mutate: registerMutate, isLoading } =
         useRegister<RegisterFormTypes>({
-            legacy: Boolean(authProvider?.isLegacy),
+            v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
         });
     const translate = useTranslate();
     const { Link } = useRouterContext();

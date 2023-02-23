@@ -16,7 +16,7 @@ import {
 export type UseUpdatePasswordLegacyProps<
     TVariables extends UpdatePasswordFormTypes,
 > = {
-    legacy: true;
+    v3LegacyAuthProviderCompatible: true;
     mutationOptions?: Omit<
         UseMutationOptions<TUpdatePasswordData, Error, TVariables, unknown>,
         "mutationFn" | "onError" | "onSuccess"
@@ -25,7 +25,7 @@ export type UseUpdatePasswordLegacyProps<
 
 export type UseUpdatePasswordProps<TVariables extends UpdatePasswordFormTypes> =
     {
-        legacy?: false;
+        v3LegacyAuthProviderCompatible?: false;
         mutationOptions?: Omit<
             UseMutationOptions<AuthActionResponse, Error, TVariables, unknown>,
             "mutationFn" | "onSuccess"
@@ -35,7 +35,7 @@ export type UseUpdatePasswordProps<TVariables extends UpdatePasswordFormTypes> =
 export type UseUpdatePasswordCombinedProps<
     TVariables extends UpdatePasswordFormTypes,
 > = {
-    legacy: boolean;
+    v3LegacyAuthProviderCompatible: boolean;
     mutationOptions?: Omit<
         UseMutationOptions<
             AuthActionResponse | TUpdatePasswordData,
@@ -88,7 +88,7 @@ export function useUpdatePassword<TVariables extends UpdatePasswordFormTypes>(
 export function useUpdatePassword<
     TVariables extends UpdatePasswordFormTypes = {},
 >({
-    legacy,
+    v3LegacyAuthProviderCompatible,
     mutationOptions,
 }:
     | UseUpdatePasswordProps<TVariables>
@@ -141,7 +141,7 @@ export function useUpdatePassword<
                     });
                 }
             },
-            ...(legacy === true ? {} : mutationOptions),
+            ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
         },
     );
 
@@ -176,9 +176,9 @@ export function useUpdatePassword<
                     type: "error",
                 });
             },
-            ...(legacy ? mutationOptions : {}),
+            ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
         },
     );
 
-    return legacy ? legacyQueryResponse : queryResponse;
+    return v3LegacyAuthProviderCompatible ? legacyQueryResponse : queryResponse;
 }

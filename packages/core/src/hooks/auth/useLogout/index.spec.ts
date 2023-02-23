@@ -14,7 +14,7 @@ jest.mock("react-router-dom", () => ({
 }));
 
 // NOTE : Will be removed in v5
-describe("legacy useLogout Hook", () => {
+describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
     beforeEach(() => {
         mHistory.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
@@ -29,21 +29,24 @@ describe("legacy useLogout Hook", () => {
     });
 
     it("logout and redirect to login", async () => {
-        const { result } = renderHook(() => useLogout({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    isProvided: true,
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => {
-                        return Promise.resolve();
+        const { result } = renderHook(
+            () => useLogout({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        isProvided: true,
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => {
+                            return Promise.resolve();
+                        },
+                        getUserIdentity: () => Promise.resolve(),
                     },
-                    getUserIdentity: () => Promise.resolve(),
-                },
-            }),
-        });
+                }),
+            },
+        );
 
         const { mutateAsync: logout } = result.current!;
 
@@ -61,21 +64,24 @@ describe("legacy useLogout Hook", () => {
     });
 
     it("logout and not redirect", async () => {
-        const { result } = renderHook(() => useLogout({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    isProvided: true,
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => {
-                        return Promise.resolve(false);
+        const { result } = renderHook(
+            () => useLogout({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        isProvided: true,
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => {
+                            return Promise.resolve(false);
+                        },
+                        getUserIdentity: () => Promise.resolve(),
                     },
-                    getUserIdentity: () => Promise.resolve(),
-                },
-            }),
-        });
+                }),
+            },
+        );
 
         const { mutateAsync: logout } = result.current!;
 
@@ -94,7 +100,10 @@ describe("legacy useLogout Hook", () => {
 
     it("logout and redirect to custom path", async () => {
         const { result } = renderHook(
-            () => useLogout<{ redirectPath: string }>({ legacy: true }),
+            () =>
+                useLogout<{ redirectPath: string }>({
+                    v3LegacyAuthProviderCompatible: true,
+                }),
             {
                 wrapper: TestWrapper({
                     legacyAuthProvider: {
@@ -128,19 +137,23 @@ describe("legacy useLogout Hook", () => {
     });
 
     it("logout rejected", async () => {
-        const { result } = renderHook(() => useLogout({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    isProvided: true,
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.reject(new Error("Logout rejected")),
-                    getUserIdentity: () => Promise.resolve(),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => useLogout({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        isProvided: true,
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () =>
+                            Promise.reject(new Error("Logout rejected")),
+                        getUserIdentity: () => Promise.resolve(),
+                    },
+                }),
+            },
+        );
 
         const { mutateAsync: logout } = result.current!;
 
@@ -154,19 +167,22 @@ describe("legacy useLogout Hook", () => {
     });
 
     it("logout rejected with undefined error", async () => {
-        const { result } = renderHook(() => useLogout({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    isProvided: true,
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.reject(),
-                    getUserIdentity: () => Promise.resolve(),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => useLogout({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        isProvided: true,
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => Promise.reject(),
+                        getUserIdentity: () => Promise.resolve(),
+                    },
+                }),
+            },
+        );
 
         const { mutateAsync: logout } = result.current!;
 
@@ -242,19 +258,22 @@ describe("legacy useLogout Hook", () => {
     });
 
     it("logout and redirect to resolved custom path", async () => {
-        const { result } = renderHook(() => useLogout({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    isProvided: true,
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.reject(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve("/custom-path"),
-                    getUserIdentity: () => Promise.resolve(),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => useLogout({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        isProvided: true,
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.reject(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => Promise.resolve("/custom-path"),
+                        getUserIdentity: () => Promise.resolve(),
+                    },
+                }),
+            },
+        );
 
         const { mutate: logout } = result.current!;
 
@@ -553,26 +572,29 @@ describe("useLogout Hook authProvider selection", () => {
         expect(logoutMock).toHaveBeenCalled();
     });
 
-    it("selects legacy authProvider", async () => {
+    it("selects v3LegacyAuthProviderCompatible authProvider", async () => {
         const legacyLogoutMock = jest.fn(() => Promise.resolve());
         const logoutMock = jest.fn(() => Promise.resolve({ success: true }));
 
-        const { result } = renderHook(() => useLogout({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    logout: () => legacyLogoutMock(),
-                },
-                authProvider: {
-                    login: () => Promise.resolve({ success: true }),
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => Promise.resolve({}),
-                    logout: () => logoutMock(),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => useLogout({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        logout: () => legacyLogoutMock(),
+                    },
+                    authProvider: {
+                        login: () => Promise.resolve({ success: true }),
+                        check: () => Promise.resolve({ authenticated: true }),
+                        onError: () => Promise.resolve({}),
+                        logout: () => logoutMock(),
+                    },
+                }),
+            },
+        );
 
         const { mutate: login } = result.current ?? {
             mutate: () => 0,

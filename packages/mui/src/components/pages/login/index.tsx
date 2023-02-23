@@ -42,7 +42,7 @@ export const LoginPage: React.FC<LoginPageProps> = () => {
 
     const authProvider = useProvidedAuthProvider();
     const { mutate: login, isLoading } = useLogin<ILoginForm>({
-        legacy: Boolean(authProvider?.isLegacy),
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
     const translate = useTranslate();

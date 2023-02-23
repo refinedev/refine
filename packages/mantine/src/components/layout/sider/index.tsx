@@ -52,7 +52,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const { hasDashboard } = useRefineContext();
     const authProvider = useProvidedAuthProvider();
     const { mutate: mutateLogout } = useLogout({
-        legacy: Boolean(authProvider?.isLegacy),
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
     const RenderToTitle = Title ?? DefaultTitle;

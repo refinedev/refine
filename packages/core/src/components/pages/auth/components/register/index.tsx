@@ -29,7 +29,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 
     const authProvider = useProvidedAuthProvider();
     const { mutate: register, isLoading } = useRegister({
-        legacy: Boolean(authProvider?.isLegacy),
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
     const renderLink = (link: React.ReactNode, text?: string) => {

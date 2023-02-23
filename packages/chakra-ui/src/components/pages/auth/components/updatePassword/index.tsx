@@ -39,7 +39,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     const translate = useTranslate();
     const authProvider = useProvidedAuthProvider();
     const { mutate } = useUpdatePassword<UpdatePasswordFormTypes>({
-        legacy: Boolean(authProvider?.isLegacy),
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const {
         register,

@@ -4,17 +4,17 @@ import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { CheckResponse } from "../../../interfaces";
 
 export type UseIsAuthenticatedLegacyProps = {
-    legacy: true;
+    v3LegacyAuthProviderCompatible: true;
     params?: any;
 };
 
 export type UseIsAuthenticatedProps = {
-    legacy?: false;
+    v3LegacyAuthProviderCompatible?: false;
     params?: any;
 };
 
 export type UseIsAuthenticatedCombinedProps = {
-    legacy: boolean;
+    v3LegacyAuthProviderCompatible: boolean;
     params?: any;
 };
 
@@ -45,7 +45,7 @@ export function useIsAuthenticated(
  * @see {@link https://refine.dev/docs/core/hooks/auth/useAuthenticated} for more details.
  */
 export function useIsAuthenticated({
-    legacy = false,
+    v3LegacyAuthProviderCompatible = false,
     params,
 }: UseIsAuthenticatedProps | UseIsAuthenticatedLegacyProps = {}):
     | UseIsAuthenticatedReturnType
@@ -58,7 +58,7 @@ export function useIsAuthenticated({
         async () => await check?.(params),
         {
             retry: false,
-            enabled: !legacy,
+            enabled: !v3LegacyAuthProviderCompatible,
         },
     );
 
@@ -67,11 +67,11 @@ export function useIsAuthenticated({
         async () => (await checkAuth?.(params)) ?? {},
         {
             retry: false,
-            enabled: legacy,
+            enabled: v3LegacyAuthProviderCompatible,
         },
     );
 
-    return legacy ? legacyQueryResponse : queryRespose;
+    return v3LegacyAuthProviderCompatible ? legacyQueryResponse : queryRespose;
 }
 
 /**

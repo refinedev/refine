@@ -33,7 +33,7 @@ jest.mock("react-router-dom", () => ({
     useNavigate: () => mHistory,
 }));
 
-describe("legacy Authenticated", () => {
+describe("v3LegacyAuthProviderCompatible Authenticated", () => {
     beforeEach(() => {
         jest.spyOn(console, "error").mockImplementation((message) => {
             if (typeof message !== "undefined") console.warn(message);
@@ -42,7 +42,9 @@ describe("legacy Authenticated", () => {
 
     it("should render children successfully", async () => {
         const { getByText } = render(
-            <Authenticated legacy={true}>Custom Authenticated</Authenticated>,
+            <Authenticated v3LegacyAuthProviderCompatible={true}>
+                Custom Authenticated
+            </Authenticated>,
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
@@ -61,7 +63,9 @@ describe("legacy Authenticated", () => {
             .mockImplementation(() => Promise.reject());
 
         const { queryByText } = render(
-            <Authenticated legacy={true}>Custom Authenticated</Authenticated>,
+            <Authenticated v3LegacyAuthProviderCompatible={true}>
+                Custom Authenticated
+            </Authenticated>,
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
@@ -83,7 +87,10 @@ describe("legacy Authenticated", () => {
             .mockImplementation(() => Promise.reject());
 
         const { queryByText } = render(
-            <Authenticated fallback={<div>Error fallback</div>} legacy={true}>
+            <Authenticated
+                fallback={<div>Error fallback</div>}
+                v3LegacyAuthProviderCompatible={true}
+            >
                 Custom Authenticated
             </Authenticated>,
             {
@@ -106,7 +113,10 @@ describe("legacy Authenticated", () => {
             .mockImplementation(() => Promise.reject());
 
         const { queryByText } = render(
-            <Authenticated loading={<div>loading</div>} legacy={true}>
+            <Authenticated
+                loading={<div>loading</div>}
+                v3LegacyAuthProviderCompatible={true}
+            >
                 Custom Authenticated
             </Authenticated>,
             {

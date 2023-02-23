@@ -13,7 +13,7 @@ jest.mock("react-router-dom", () => ({
 }));
 
 // NOTE : Will be removed in v5
-describe("legacy useRegister Hook", () => {
+describe("v3LegacyAuthProviderCompatible useRegister Hook", () => {
     beforeEach(() => {
         mHistory.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
@@ -24,24 +24,27 @@ describe("legacy useRegister Hook", () => {
     });
 
     it("succeed register", async () => {
-        const { result } = renderHook(() => useRegister({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: () => Promise.resolve(),
-                    register: ({ email, password }) => {
-                        if (email && password) {
-                            return Promise.resolve();
-                        }
-                        return Promise.reject(new Error("Missing fields"));
+        const { result } = renderHook(
+            () => useRegister({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        register: ({ email, password }) => {
+                            if (email && password) {
+                                return Promise.resolve();
+                            }
+                            return Promise.reject(new Error("Missing fields"));
+                        },
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                        getUserIdentity: () => Promise.resolve({ id: 1 }),
                     },
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                    getUserIdentity: () => Promise.resolve({ id: 1 }),
-                },
-            }),
-        });
+                }),
+            },
+        );
 
         const { mutate: register } = result.current ?? { mutate: () => 0 };
 
@@ -57,24 +60,27 @@ describe("legacy useRegister Hook", () => {
     });
 
     it("should successfully register with no redirect", async () => {
-        const { result } = renderHook(() => useRegister({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: () => Promise.resolve(),
-                    register: ({ email, password }) => {
-                        if (email && password) {
-                            return Promise.resolve(false);
-                        }
-                        return Promise.reject(new Error("Missing fields"));
+        const { result } = renderHook(
+            () => useRegister({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        register: ({ email, password }) => {
+                            if (email && password) {
+                                return Promise.resolve(false);
+                            }
+                            return Promise.reject(new Error("Missing fields"));
+                        },
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                        getUserIdentity: () => Promise.resolve({ id: 1 }),
                     },
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                    getUserIdentity: () => Promise.resolve({ id: 1 }),
-                },
-            }),
-        });
+                }),
+            },
+        );
 
         const { mutate: register } = result.current ?? { mutate: () => 0 };
 
@@ -90,19 +96,23 @@ describe("legacy useRegister Hook", () => {
     });
 
     it("fail register", async () => {
-        const { result } = renderHook(() => useRegister({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: () => Promise.resolve(),
-                    register: () => Promise.reject(new Error("Missing fields")),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                    getUserIdentity: () => Promise.resolve({ id: 1 }),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => useRegister({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        register: () =>
+                            Promise.reject(new Error("Missing fields")),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                        getUserIdentity: () => Promise.resolve({ id: 1 }),
+                    },
+                }),
+            },
+        );
 
         const { mutate: register } = result.current ?? { mutate: () => 0 };
 
@@ -120,19 +130,22 @@ describe("legacy useRegister Hook", () => {
     });
 
     it("register rejected with undefined error", async () => {
-        const { result } = renderHook(() => useRegister({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: () => Promise.resolve(),
-                    register: () => Promise.reject(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                    getUserIdentity: () => Promise.resolve({ id: 1 }),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => useRegister({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        register: () => Promise.reject(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                        getUserIdentity: () => Promise.resolve({ id: 1 }),
+                    },
+                }),
+            },
+        );
 
         const { mutate: register } = result.current ?? { mutate: () => 0 };
 
@@ -355,28 +368,31 @@ describe("useRegister Hook authProvider selection", () => {
         expect(registerMock).toHaveBeenCalled();
     });
 
-    it("selects legacy authProvider", async () => {
+    it("selects v3LegacyAuthProviderCompatible authProvider", async () => {
         const legacyRegisterMock = jest.fn(() => Promise.resolve());
         const registerMock = jest.fn(() => Promise.resolve({ success: true }));
 
-        const { result } = renderHook(() => useRegister({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                    register: () => legacyRegisterMock(),
-                },
-                authProvider: {
-                    login: () => Promise.resolve({ success: true }),
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => Promise.resolve({}),
-                    logout: () => Promise.resolve({ success: true }),
-                    register: () => registerMock(),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => useRegister({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        logout: () => Promise.resolve(),
+                        register: () => legacyRegisterMock(),
+                    },
+                    authProvider: {
+                        login: () => Promise.resolve({ success: true }),
+                        check: () => Promise.resolve({ authenticated: true }),
+                        onError: () => Promise.resolve({}),
+                        logout: () => Promise.resolve({ success: true }),
+                        register: () => registerMock(),
+                    },
+                }),
+            },
+        );
 
         const { mutate: login } = result.current ?? {
             mutate: () => 0,

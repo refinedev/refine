@@ -105,7 +105,7 @@ export const useCustom = <
     const { custom } = dataProvider(dataProviderName);
     const authProvider = useProvidedAuthProvider();
     const { mutate: checkError } = useOnError({
-        legacy: Boolean(authProvider?.isLegacy),
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const translate = useTranslate();
     const handleNotification = useHandleNotification();

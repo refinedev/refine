@@ -12,7 +12,7 @@ import { TLoginData } from "../../../interfaces";
 import { AuthActionResponse } from "src/interfaces/bindings/auth";
 
 export type UseLoginLegacyProps<TVariables> = {
-    legacy: true;
+    v3LegacyAuthProviderCompatible: true;
     mutationOptions?: Omit<
         UseMutationOptions<TLoginData, Error, TVariables, unknown>,
         "mutationFn" | "onError" | "onSuccess"
@@ -20,7 +20,7 @@ export type UseLoginLegacyProps<TVariables> = {
 };
 
 export type UseLoginProps<TVariables> = {
-    legacy?: false;
+    v3LegacyAuthProviderCompatible?: false;
     mutationOptions?: Omit<
         UseMutationOptions<AuthActionResponse, Error, TVariables, unknown>,
         "mutationFn" | "onSuccess"
@@ -28,7 +28,7 @@ export type UseLoginProps<TVariables> = {
 };
 
 export type UseLoginCombinedProps<TVariables> = {
-    legacy: boolean;
+    v3LegacyAuthProviderCompatible: boolean;
     mutationOptions?: Omit<
         UseMutationOptions<
             AuthActionResponse | TLoginData,
@@ -83,7 +83,7 @@ export function useLogin<TVariables = {}>(
  *
  */
 export function useLogin<TVariables = {}>({
-    legacy,
+    v3LegacyAuthProviderCompatible,
     mutationOptions,
 }: UseLoginProps<TVariables> | UseLoginLegacyProps<TVariables> = {}):
     | UseLoginLegacyReturnType<TVariables>
@@ -123,7 +123,7 @@ export function useLogin<TVariables = {}>({
                 });
             }
         },
-        ...(legacy === true ? {} : mutationOptions),
+        ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
     });
 
     const queryResponseLegacy = useMutation<
@@ -154,8 +154,8 @@ export function useLogin<TVariables = {}>({
                 type: "error",
             });
         },
-        ...(legacy ? mutationOptions : {}),
+        ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
     });
 
-    return legacy ? queryResponseLegacy : queryResponse;
+    return v3LegacyAuthProviderCompatible ? queryResponseLegacy : queryResponse;
 }

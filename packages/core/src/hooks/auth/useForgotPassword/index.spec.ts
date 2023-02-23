@@ -13,7 +13,7 @@ jest.mock("react-router-dom", () => ({
 }));
 
 // NOTE : Will be removed in v5
-describe("legacy useForgotPassword Hook", () => {
+describe("v3LegacyAuthProviderCompatible useForgotPassword Hook", () => {
     beforeEach(() => {
         mHistory.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
@@ -25,7 +25,7 @@ describe("legacy useForgotPassword Hook", () => {
 
     it("succeed forgot password", async () => {
         const { result } = renderHook(
-            () => useForgotPassword({ legacy: true }),
+            () => useForgotPassword({ v3LegacyAuthProviderCompatible: true }),
             {
                 wrapper: TestWrapper({
                     legacyAuthProvider: {
@@ -63,7 +63,7 @@ describe("legacy useForgotPassword Hook", () => {
 
     it("fail forgot password", async () => {
         const { result } = renderHook(
-            () => useForgotPassword({ legacy: true }),
+            () => useForgotPassword({ v3LegacyAuthProviderCompatible: true }),
             {
                 wrapper: TestWrapper({
                     legacyAuthProvider: {
@@ -222,14 +222,14 @@ describe("useForgotPassword Hook authProvider selection", () => {
         expect(forgotPasswordMock).toHaveBeenCalled();
     });
 
-    it("selects legacy authProvider", async () => {
+    it("selects v3LegacyAuthProviderCompatible:authProvider", async () => {
         const legacyForgotPasswordMock = jest.fn(() => Promise.resolve());
         const forgotPasswordMock = jest.fn(() =>
             Promise.resolve({ success: true }),
         );
 
         const { result } = renderHook(
-            () => useForgotPassword({ legacy: true }),
+            () => useForgotPassword({ v3LegacyAuthProviderCompatible: true }),
             {
                 wrapper: TestWrapper({
                     legacyAuthProvider: {

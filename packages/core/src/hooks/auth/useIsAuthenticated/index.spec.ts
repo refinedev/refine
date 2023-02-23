@@ -14,10 +14,10 @@ jest.mock("react-router-dom", () => ({
 }));
 
 // NOTE : Will be removed in v5
-describe("legacy useIsAuthenticated Hook", () => {
+describe("v3LegacyAuthProviderCompatible useIsAuthenticated Hook", () => {
     it("returns authenticated true", async () => {
         const { result } = renderHook(
-            () => useIsAuthenticated({ legacy: true }),
+            () => useIsAuthenticated({ v3LegacyAuthProviderCompatible: true }),
             {
                 wrapper: TestWrapper({
                     legacyAuthProvider: {
@@ -45,7 +45,7 @@ describe("legacy useIsAuthenticated Hook", () => {
 
         const checkErrorMock = jest.fn();
         const { result } = renderHook(
-            () => useIsAuthenticated({ legacy: true }),
+            () => useIsAuthenticated({ v3LegacyAuthProviderCompatible: true }),
             {
                 wrapper: TestWrapper({
                     legacyAuthProvider: {
@@ -74,7 +74,7 @@ describe("legacy useIsAuthenticated Hook", () => {
 
         const checkErrorMock = jest.fn();
         const { result } = renderHook(
-            () => useIsAuthenticated({ legacy: true }),
+            () => useIsAuthenticated({ v3LegacyAuthProviderCompatible: true }),
             {
                 wrapper: TestWrapper({
                     legacyAuthProvider: {
@@ -219,14 +219,14 @@ describe("useIsAuthenticated Hook authProvider selection", () => {
         expect(checkMock).toHaveBeenCalled();
     });
 
-    it("selects legacy authProvider", async () => {
+    it("selects v3LegacyAuthProviderCompatible authProvider", async () => {
         const legacyCheckAuthMock = jest.fn(() => Promise.resolve());
         const checkMock = jest.fn(() =>
             Promise.resolve({ authenticated: true }),
         );
 
         const { result } = renderHook(
-            () => useIsAuthenticated({ legacy: true }),
+            () => useIsAuthenticated({ v3LegacyAuthProviderCompatible: true }),
             {
                 wrapper: TestWrapper({
                     legacyAuthProvider: {

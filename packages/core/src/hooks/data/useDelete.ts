@@ -107,7 +107,7 @@ export const useDelete = <
 > => {
     const authProvider = useProvidedAuthProvider();
     const { mutate: checkError } = useOnError({
-        legacy: Boolean(authProvider?.isLegacy),
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const dataProvider = useDataProvider();
 

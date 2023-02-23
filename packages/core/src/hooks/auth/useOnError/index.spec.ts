@@ -13,7 +13,7 @@ jest.mock("react-router-dom", () => ({
 }));
 
 // NOTE : Will be removed in v5
-describe("legacy useOnError Hook", () => {
+describe("v3LegacyAuthProviderCompatible useOnError Hook", () => {
     beforeEach(() => {
         mHistory.mockReset();
 
@@ -26,19 +26,22 @@ describe("legacy useOnError Hook", () => {
     it("logout and redirect to login if check error rejected", async () => {
         const onErrorMock = jest.fn();
 
-        const { result } = renderHook(() => useOnError({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    isProvided: true,
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.reject(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: onErrorMock,
-                    getUserIdentity: () => Promise.resolve(),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => useOnError({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        isProvided: true,
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.reject(),
+                        getPermissions: () => Promise.resolve(),
+                        logout: onErrorMock,
+                        getUserIdentity: () => Promise.resolve(),
+                    },
+                }),
+            },
+        );
 
         const { mutate: checkError } = result.current!;
 
@@ -55,21 +58,24 @@ describe("legacy useOnError Hook", () => {
     });
 
     it("logout and redirect to custom path if check error rejected", async () => {
-        const { result } = renderHook(() => useOnError({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    isProvided: true,
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.reject("/customPath"),
-                    getPermissions: () => Promise.resolve(),
-                    logout: ({ redirectPath }) => {
-                        return Promise.resolve(redirectPath);
+        const { result } = renderHook(
+            () => useOnError({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        isProvided: true,
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.reject("/customPath"),
+                        getPermissions: () => Promise.resolve(),
+                        logout: ({ redirectPath }) => {
+                            return Promise.resolve(redirectPath);
+                        },
+                        getUserIdentity: () => Promise.resolve(),
                     },
-                    getUserIdentity: () => Promise.resolve(),
-                },
-            }),
-        });
+                }),
+            },
+        );
 
         const { mutate: checkError } = result.current!;
 
@@ -170,26 +176,29 @@ describe("useOnError Hook authProvider selection", () => {
         expect(onErrorMock).toHaveBeenCalled();
     });
 
-    it("selects legacy authProvider", async () => {
+    it("selects v3LegacyAuthProviderCompatible authProvider", async () => {
         const legacyCheckErrorMock = jest.fn(() => Promise.resolve());
         const onErrorMock = jest.fn(() => Promise.resolve({}));
 
-        const { result } = renderHook(() => useOnError({ legacy: true }), {
-            wrapper: TestWrapper({
-                legacyAuthProvider: {
-                    login: () => Promise.resolve(),
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => legacyCheckErrorMock(),
-                    logout: () => Promise.resolve(),
-                },
-                authProvider: {
-                    login: () => Promise.resolve({ success: true }),
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => onErrorMock(),
-                    logout: () => Promise.resolve({ success: true }),
-                },
-            }),
-        });
+        const { result } = renderHook(
+            () => useOnError({ v3LegacyAuthProviderCompatible: true }),
+            {
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => legacyCheckErrorMock(),
+                        logout: () => Promise.resolve(),
+                    },
+                    authProvider: {
+                        login: () => Promise.resolve({ success: true }),
+                        check: () => Promise.resolve({ authenticated: true }),
+                        onError: () => onErrorMock(),
+                        logout: () => Promise.resolve({ success: true }),
+                    },
+                }),
+            },
+        );
 
         const { mutate: login } = result.current ?? {
             mutate: () => 0,

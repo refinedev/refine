@@ -7,17 +7,17 @@ import {
 } from "@tanstack/react-query";
 
 export type UsePermissionsLegacyProps<TData = any> = {
-    legacy: true;
+    v3LegacyAuthProviderCompatible: true;
     options?: UseQueryOptions<TData>;
 };
 
 export type UsePermissionsProps<TData = PermissionResponse> = {
-    legacy?: false;
+    v3LegacyAuthProviderCompatible?: false;
     options?: UseQueryOptions<TData>;
 };
 
 export type UsePermissionsCombinedProps<TData = any> = {
-    legacy: boolean;
+    v3LegacyAuthProviderCompatible: boolean;
     options?: UseQueryOptions<TData> | UseQueryOptions<PermissionResponse>;
 };
 
@@ -54,7 +54,7 @@ export function usePermissions<TData = any>(
  *
  */
 export function usePermissions<TData = any>({
-    legacy = false,
+    v3LegacyAuthProviderCompatible = false,
     options,
 }: UsePermissionsProps<TData> | UsePermissionsLegacyProps<TData> = {}):
     | UsePermissionsReturnType
@@ -68,8 +68,8 @@ export function usePermissions<TData = any>({
         (getPermissions as (params?: unknown) => Promise<TData>) ??
             (() => Promise.resolve(undefined)),
         {
-            enabled: !legacy && !!getPermissions,
-            ...(legacy ? {} : options),
+            enabled: !v3LegacyAuthProviderCompatible && !!getPermissions,
+            ...(v3LegacyAuthProviderCompatible ? {} : options),
         },
     );
 
@@ -78,10 +78,10 @@ export function usePermissions<TData = any>({
         // Enabled check for `getPermissions` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
         legacyGetPermission ?? (() => Promise.resolve(undefined)),
         {
-            enabled: legacy && !!legacyGetPermission,
-            ...(legacy ? options : {}),
+            enabled: v3LegacyAuthProviderCompatible && !!legacyGetPermission,
+            ...(v3LegacyAuthProviderCompatible ? options : {}),
         },
     );
 
-    return legacy ? legacyQueryResponse : queryResponse;
+    return v3LegacyAuthProviderCompatible ? legacyQueryResponse : queryResponse;
 }

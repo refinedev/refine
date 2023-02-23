@@ -13,7 +13,7 @@ jest.mock("react-router-dom", () => ({
 }));
 
 // NOTE : Will be removed in v5
-describe("legacy useUpdatePassword Hook", () => {
+describe("v3LegacyAuthProviderCompatible useUpdatePassword Hook", () => {
     beforeEach(() => {
         mHistory.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
@@ -25,7 +25,7 @@ describe("legacy useUpdatePassword Hook", () => {
 
     it("succeed update password", async () => {
         const { result } = renderHook(
-            () => useUpdatePassword({ legacy: true }),
+            () => useUpdatePassword({ v3LegacyAuthProviderCompatible: true }),
             {
                 wrapper: TestWrapper({
                     legacyAuthProvider: {
@@ -63,7 +63,7 @@ describe("legacy useUpdatePassword Hook", () => {
 
     it("fail update password", async () => {
         const { result } = renderHook(
-            () => useUpdatePassword({ legacy: true }),
+            () => useUpdatePassword({ v3LegacyAuthProviderCompatible: true }),
             {
                 wrapper: TestWrapper({
                     legacyAuthProvider: {
@@ -316,14 +316,14 @@ describe("useUpdatePassword Hook authProvider selection", () => {
         expect(updatePassword).toHaveBeenCalled();
     });
 
-    it("selects legacy authProvider", async () => {
+    it("selects v3LegacyAuthProviderCompatible authProvider", async () => {
         const legacyUpdatePassword = jest.fn(() => Promise.resolve());
         const updatePassword = jest.fn(() =>
             Promise.resolve({ success: true }),
         );
 
         const { result } = renderHook(
-            () => useUpdatePassword({ legacy: true }),
+            () => useUpdatePassword({ v3LegacyAuthProviderCompatible: true }),
             {
                 wrapper: TestWrapper({
                     legacyAuthProvider: {

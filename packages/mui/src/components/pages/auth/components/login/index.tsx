@@ -59,7 +59,7 @@ export const LoginPage: React.FC<LoginProps> = ({
 
     const authProvider = useProvidedAuthProvider();
     const { mutate: login, isLoading } = useLogin<LoginFormTypes>({
-        legacy: Boolean(authProvider?.isLegacy),
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const translate = useTranslate();
     const { Link } = useRouterContext();

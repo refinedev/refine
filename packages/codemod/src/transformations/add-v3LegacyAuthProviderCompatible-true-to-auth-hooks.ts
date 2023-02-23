@@ -31,7 +31,7 @@ const addLegacyTrueToAuthHooks = (j: JSCodeshift, root: Collection<any>) => {
             args.push(
                 j.objectExpression([
                     j.objectProperty(
-                        j.identifier("legacy"),
+                        j.identifier("v3LegacyAuthProviderCompatible"),
                         j.booleanLiteral(true),
                     ),
                 ]),
@@ -43,7 +43,9 @@ const addLegacyTrueToAuthHooks = (j: JSCodeshift, root: Collection<any>) => {
             const arg = args[0];
             if (arg.type === "ObjectExpression") {
                 const legacyProp = arg.properties.find(
-                    (property) => property["key"]?.name === "legacy",
+                    (property) =>
+                        property["key"]?.name ===
+                        "v3LegacyAuthProviderCompatible",
                 );
 
                 if (legacyProp) {
@@ -52,18 +54,18 @@ const addLegacyTrueToAuthHooks = (j: JSCodeshift, root: Collection<any>) => {
 
                 arg.properties.push(
                     j.objectProperty(
-                        j.identifier("legacy"),
+                        j.identifier("v3LegacyAuthProviderCompatible"),
                         j.booleanLiteral(true),
                     ),
                 );
             }
 
             if (arg.type === "Identifier") {
-                // turn to spread syntax and add legacy
+                // turn to spread syntax and add v3LegacyAuthProviderCompatible
                 const newArg = j.objectExpression([
                     j.spreadElement(arg),
                     j.objectProperty(
-                        j.identifier("legacy"),
+                        j.identifier("v3LegacyAuthProviderCompatible"),
                         j.booleanLiteral(true),
                     ),
                 ]);
