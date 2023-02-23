@@ -240,7 +240,7 @@ export const renderer = ({
                 return undefined;
             }
 
-            imports.push(["NumberInput", "@pankod/refine-mantine"]);
+            imports.push(["NumberInput", "@mantine/core"]);
 
             initialValues = {
                 ...initialValues,
