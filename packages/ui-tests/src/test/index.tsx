@@ -66,10 +66,12 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
         return (
             <BrowserRouter>
                 <Refine
-                    disableTelemetry
+                    options={{
+                        disableTelemetry: true,
+                    }}
                     dataProvider={dataProvider ?? MockJSONServer}
                     i18nProvider={i18nProvider}
-                    routerProvider={MockRouterProvider}
+                    legacyRouterProvider={MockRouterProvider}
                     authProvider={authProvider}
                     notificationProvider={notificationProvider}
                     resources={resources ?? [{ name: "posts", list: List }]}
