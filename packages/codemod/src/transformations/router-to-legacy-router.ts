@@ -37,6 +37,26 @@ const renameImport = (
         });
 };
 
+const renameExport = (
+    j: JSCodeshift,
+    source: Collection,
+    from: string,
+    to: string,
+) => {
+    source
+        .find(j.ExportNamedDeclaration)
+        .filter((path) => path.node.source && path.node.source.value === from)
+        .forEach((path) => {
+            j(path).replaceWith(
+                j.exportNamedDeclaration(
+                    path.node.declaration,
+                    path.node.specifiers,
+                    j.literal(to),
+                ),
+            );
+        });
+};
+
 const renameProp = (
     j: JSCodeshift,
     source: Collection,
@@ -70,6 +90,7 @@ export default function transformer(file: FileInfo, api: API): string {
 
     Object.entries(legacyMap).forEach(([from, to]) => {
         renameImport(j, source, from, to);
+        renameExport(j, source, from, to);
     });
 
     renameProp(j, source, oldRouterProp, newRouterProp);
