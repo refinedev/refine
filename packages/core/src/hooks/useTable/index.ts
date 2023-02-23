@@ -60,8 +60,19 @@ export type useTableProps<TData, TError> = {
      */
     initialPageSize?: number;
     /**
-     * Initial sorter state
+     * Sort configs
      */
+    sorters?: {
+        /**
+         * Initial sorter state
+         */
+        initial?: CrudSorting;
+        /**
+         * Default and unchangeable sorter state
+         *  @default `[]`
+         */
+        permanent?: CrudSorting;
+    };
     initialSorter?: CrudSorting;
     /**
      * Default and unchangeable sorter state
@@ -69,8 +80,24 @@ export type useTableProps<TData, TError> = {
      */
     permanentSorter?: CrudSorting;
     /**
-     * Initial filter state
+     * Filter configs
      */
+    filters?: {
+        /**
+         * Initial filter state
+         */
+        initial?: CrudFilters;
+        /**
+         * Default and unchangeable filter state
+         *  @default `[]`
+         */
+        permanent?: CrudFilters;
+        /**
+         *Default behavior of the `setFilters` function
+         * @default `"merge"`
+         */
+        defaultBehavior?: SetFilterBehavior;
+    };
     initialFilter?: CrudFilters;
     /**
      * Default and unchangeable filter state
