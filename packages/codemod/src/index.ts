@@ -33,6 +33,7 @@ const transformsWithPostTransform = [
     "refine1-to-refine2",
     "refine2-to-refine3",
     "separate-imports-antd",
+    "separate-imports-mantine",
 ];
 
 export function checkGitStatus(force) {
@@ -152,6 +153,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
     {
         name: "separate-imports-antd: Moves `antd` components exported by `refine` into `antd`",
         value: "separate-imports-antd",
+    },
+    {
+        name: "separate-imports-mantine: Moves `Mantine` components exported by `refine` into `Mantine`",
+        value: "separate-imports-mantine",
     },
     {
         name: "separate-imports-mui: Moves `MUI` components exported by `refine` into `MUI`",

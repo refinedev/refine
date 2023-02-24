@@ -45,16 +45,16 @@ setRefineProps({ Sider: () => null, dataProvider: dataProvider("api") });
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
+        <MantineCore.MantineProvider
             theme={RefineMantine.LightTheme}
             withNormalizeCSS
             withGlobalStyles
         >
-            <RefineMantine.Global
+            <MantineCore.Global
                 styles={{ body: { WebkitFontSmoothing: "auto" } }}
             />
             {children}
-        </RefineMantine.MantineProvider>
+        </MantineCore.MantineProvider>
     );
 };
 
@@ -488,14 +488,8 @@ setInitialRoutes(["/login"]);
 
 // visible-block-start
 import { Refine, useNavigation } from "@pankod/refine-core";
-import {
-    AuthPage,
-    Layout,
-    Form,
-    FormControlLabel,
-    Checkbox,
-    FormContext,
-} from "@pankod/refine-mantine";
+import { AuthPage, Layout, FormContext } from "@pankod/refine-mantine";
+import { Checkbox } from "@mantine/core";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";

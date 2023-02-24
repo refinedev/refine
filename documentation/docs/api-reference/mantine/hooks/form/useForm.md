@@ -12,11 +12,12 @@ import {
     Edit as MantineEdit,
     Create as MantineCreate,
     List as MantineList,
-    Form as MantineForm,
-    Input as MantineInput,
     useTable as useMantineTable,
     EditButton as MantineEditButton,
     CloneButton as MantineCloneButton,
+} from "@pankod/refine-mantine";
+import {
+    Input as MantineInput,
     Box as MantineBox,
     Group as MantineGroup,
     ScrollArea as MantineScrollArea,
@@ -25,7 +26,7 @@ import {
     TextInput as MantineTextInput,
     Text as MantineText,
     Textarea as MantineTextarea,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 
 interface IPost {
     id: number;
@@ -232,7 +233,8 @@ const PostCreate: React.FC = () => {
 We'll show the basic usage of `useForm` by adding an editing form.
 
 ```tsx
-import { Edit, Select, TextInput, useForm } from "@pankod/refine-mantine";
+import { Edit, useForm } from "@pankod/refine-mantine";
+import { Select, TextInput } from "@mantine/core";
 
 const PostEdit: React.FC = () => {
     const { saveButtonProps, getInputProps } = useForm({
@@ -322,13 +324,8 @@ setInitialRoutes(["/posts/create"]);
 // visible-block-start
 import React from "react";
 
-import {
-    Create,
-    Text,
-    TextInput,
-    Textarea,
-    useForm,
-} from "@pankod/refine-mantine";
+import { Create, useForm } from "@pankod/refine-mantine";
+import { Text, TextInput, Textarea } from "@mantine/core";
 
 const PostCreatePage: React.FC = () => {
     const { saveButtonProps, getInputProps, errors } = useForm({
@@ -398,13 +395,8 @@ setInitialRoutes(["/posts/edit/123"]);
 // visible-block-start
 import React from "react";
 
-import {
-    Edit,
-    Text,
-    TextInput,
-    Textarea,
-    useForm,
-} from "@pankod/refine-mantine";
+import { Edit, useForm } from "@pankod/refine-mantine";
+import { Text, TextInput, Textarea } from "@mantine/core";
 
 const PostEditPage: React.FC = () => {
     const { saveButtonProps, getInputProps, errors } = useForm({
@@ -476,13 +468,8 @@ setInitialRoutes(["/posts/clone/123"]);
 // visible-block-start
 import React from "react";
 
-import {
-    Create,
-    Text,
-    TextInput,
-    Textarea,
-    useForm,
-} from "@pankod/refine-mantine";
+import { Create, useForm } from "@pankod/refine-mantine";
+import { Text, TextInput, Textarea } from "@mantine/core";
 
 const PostCreatePage: React.FC = () => {
     const { saveButtonProps, getInputProps, errors } = useForm({
@@ -977,7 +964,8 @@ For example, Let's send the values we received from the user in two separate inp
 
 ```tsx title="pages/user/create.tsx"
 import React from "react";
-import { Create, TextInput, useForm } from "@pankod/refine-mantine";
+import { Create, useForm } from "@pankod/refine-mantine";
+import { TextInput } from "@mantine/core";
 
 const UserCreate: React.FC = () => {
     const { saveButtonProps, getInputProps } = useForm({

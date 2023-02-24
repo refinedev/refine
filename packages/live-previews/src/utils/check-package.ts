@@ -15,7 +15,11 @@ export const checkPackage = (code = "") => {
         code.includes("@mui/x-data-grid");
     const hasMantine =
         code.includes("@pankod/refine-mantine") ||
-        code.includes("RefineMantine");
+        code.includes("RefineMantine") ||
+        code.includes("@mantine/core") ||
+        code.includes("@mantine/hooks") ||
+        code.includes("@mantine/form") ||
+        code.includes("@mantine/notifications");
     const hasChakra =
         code.includes("@pankod/refine-chakra-ui") ||
         code.includes("RefineChakra");

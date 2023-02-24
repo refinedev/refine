@@ -16,7 +16,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000 previewHeight=420px
 setInitialRoutes(["/posts"]);
-import { Text, Code, Button, Box, Center } from "@pankod/refine-mantine";
+import { Text, Code, Button, Box, Center } from "@mantine/core";
 
 const DummyListPage = () => {
     const params = RefineCore.useRouterContext().useParams();
@@ -145,17 +145,19 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
     notificationProvider,
     LightTheme,
     Layout,
-    // highlight-start
+    // highlight-next-line
     Sider,
-    NavLink,
-    // highlight-end
 } from "@pankod/refine-mantine";
+import { NotificationsProvider } from "@mantine/notifications";
+import {
+    MantineProvider,
+    Global,
+    // highlight-next-line
+    NavLink,
+} from "@mantine/core";
 import {
     IconList,
     IconCategory,
@@ -576,6 +578,7 @@ import {
     useTitle,
     useTranslate,
 } from "@pankod/refine-core";
+import { RefineTitle as DefaultTitle } from "@pankod/refine-mantine";
 import {
     Code,
     Text,
@@ -592,8 +595,7 @@ import {
     Tooltip,
     TooltipProps,
     Styles,
-    RefineTitle as DefaultTitle,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 
 const DummyListPage = () => {
     const params = RefineCore.useRouterContext().useParams();
@@ -1037,13 +1039,12 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
     notificationProvider,
     LightTheme,
     Layout,
 } from "@pankod/refine-mantine";
+import { NotificationsProvider } from "@mantine/notifications";
+import { MantineProvider, Global } from "@mantine/core";
 import { IconCategory, IconUsers } from "@tabler/icons";
 
 //highlight-next-line

@@ -40,6 +40,7 @@ The easiest way to create a new project is to use the **refine CLI**. This tool 
     ```bash
     yarn create refine-app -- -o refine-mantine tutorial
     ```
+
     > Only support yarn@1 version.
 
     </TabItem>
@@ -123,15 +124,14 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
     notificationProvider,
     LightTheme,
     Layout,
     ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-mantine";
+} from ;
+import { NotificationsProvider } from "@mantine/notifications";
+import { MantineProvider, Global } from "@mantine/core";
 
 const App = () => {
     return (

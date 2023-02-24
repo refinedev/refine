@@ -24,7 +24,7 @@ To add a delete feature to the products table, you can follow the steps below:
 2. Import the `<DeleteButton/>` component from `@pankod/refine-mantine`:
 
     ```tsx
-    import { DeleteButton } from "@pankod/refine-mantine";
+    import { DeleteButton } from ;
     ```
 
 3. Add the `<DeleteButton/>` component to the `actions` column of the table as shown below:
@@ -68,15 +68,14 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
     notificationProvider,
     LightTheme,
     Layout,
     ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-mantine";
+} from ;
+import { NotificationsProvider } from "@mantine/notifications";
+import { MantineProvider, Global } from "@mantine/core";
 
 import { ProductList } from "pages/products/list";
 import { ProductEdit } from "pages/products/edit";
