@@ -5,7 +5,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "private": true,
+  "private": false,
   "files": [
     "dist",
     "src"
