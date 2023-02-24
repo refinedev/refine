@@ -9,7 +9,7 @@ import {
     ModalCloseButton,
     ModalContent,
     ModalOverlay,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
 import {
     IconCode,
     IconMessageCircle,
