@@ -2,15 +2,15 @@ import React from "react";
 
 import { Refine } from "@pankod/refine-core";
 import {
+    NotificationsProvider,
     notificationProvider,
+    MantineProvider,
+    Global,
     Layout,
     LightTheme,
     ReadyPage,
     ErrorComponent,
 } from "@pankod/refine-mantine";
-
-import { MantineProvider, Global } from "@mantine/styles";
-import { NotificationsProvider } from "@mantine/notifications";
 
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";

@@ -1,6 +1,12 @@
-import { Edit, useForm, useSelect } from "@pankod/refine-mantine";
-
-import { NumberInput, TextInput, Textarea, Select } from "@mantine/core";
+import {
+    Edit,
+    useForm,
+    useSelect,
+    NumberInput,
+    TextInput,
+    Textarea,
+    Select,
+} from "@pankod/refine-mantine";
 
 export const ProductEdit = () => {
     const {

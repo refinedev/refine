@@ -1,5 +1,11 @@
-import { Edit, useForm, useSelect } from "@pankod/refine-mantine";
-import { Select, TextInput, Text } from "@mantine/core";
+import {
+    Edit,
+    Select,
+    TextInput,
+    useForm,
+    useSelect,
+    Text,
+} from "@pankod/refine-mantine";
 import { RichTextEditor } from "@mantine/rte";
 
 import { ICategory } from "../../interfaces";

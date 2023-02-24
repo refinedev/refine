@@ -1,4 +1,4 @@
-import { ActionIcon } from "@mantine/core";
+import { ActionIcon } from "@pankod/refine-mantine";
 import { IconChevronDown, IconSelector } from "@tabler/icons";
 import type { Column } from "@pankod/refine-react-table";
 
