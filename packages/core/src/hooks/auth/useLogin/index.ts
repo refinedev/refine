@@ -99,7 +99,7 @@ export function useLogin<TVariables = {}>({
         ignoreQueryPrefix: true,
     });
 
-    const queryResponse = useMutation<
+    const mutation = useMutation<
         AuthActionResponse,
         Error,
         TVariables,
@@ -128,7 +128,7 @@ export function useLogin<TVariables = {}>({
         ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
     });
 
-    const queryResponseLegacy = useMutation<
+    const v3LegacyAuthProviderCompatibleMutation = useMutation<
         TLoginData,
         Error,
         TVariables,
@@ -154,7 +154,9 @@ export function useLogin<TVariables = {}>({
         ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
     });
 
-    return v3LegacyAuthProviderCompatible ? queryResponseLegacy : queryResponse;
+    return v3LegacyAuthProviderCompatible
+        ? v3LegacyAuthProviderCompatibleMutation
+        : mutation;
 }
 
 const buildNotification = (error?: Error): OpenNotificationParams => {

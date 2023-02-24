@@ -100,7 +100,7 @@ export function useForgotPassword<TVariables = {}>({
         useAuthBindingsContext();
     const { close, open } = useNotification();
 
-    const queryResponse = useMutation<
+    const mutation = useMutation<
         AuthActionResponse,
         Error,
         TVariables,
@@ -125,7 +125,7 @@ export function useForgotPassword<TVariables = {}>({
         ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
     });
 
-    const v3LegacyAuthProviderCompatibleQueryResponse = useMutation<
+    const v3LegacyAuthProviderCompatibleMutation = useMutation<
         TForgotPasswordData,
         Error,
         TVariables,
@@ -150,8 +150,8 @@ export function useForgotPassword<TVariables = {}>({
     );
 
     return v3LegacyAuthProviderCompatible
-        ? v3LegacyAuthProviderCompatibleQueryResponse
-        : queryResponse;
+        ? v3LegacyAuthProviderCompatibleMutation
+        : mutation;
 }
 
 const buildNotification = (error?: Error): OpenNotificationParams => {

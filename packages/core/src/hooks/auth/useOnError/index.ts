@@ -68,7 +68,7 @@ export function useOnError({
         v3LegacyAuthProviderCompatible: Boolean(v3LegacyAuthProviderCompatible),
     });
 
-    const queryResponse = useMutation(["useOnError"], onErrorFromContext, {
+    const mutation = useMutation(["useOnError"], onErrorFromContext, {
         onSuccess: ({ logout: shouldLogout, redirectTo }) => {
             if (shouldLogout) {
                 logout({ redirectPath: redirectTo });
@@ -82,7 +82,7 @@ export function useOnError({
         },
     });
 
-    const legacyQueryResponse = useMutation(
+    const v3LegacyAuthProviderCompatibleMutation = useMutation(
         ["useOnError"],
         legacyCheckErrorFromContext,
         {
@@ -92,7 +92,9 @@ export function useOnError({
         },
     );
 
-    return v3LegacyAuthProviderCompatible ? legacyQueryResponse : queryResponse;
+    return v3LegacyAuthProviderCompatible
+        ? v3LegacyAuthProviderCompatibleMutation
+        : mutation;
 }
 
 /**

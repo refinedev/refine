@@ -96,7 +96,7 @@ export function useRegister<TVariables = {}>({
     const { register: registerFromContext } = useAuthBindingsContext();
     const { close, open } = useNotification();
 
-    const queryResponse = useMutation<
+    const mutation = useMutation<
         AuthActionResponse,
         Error,
         TVariables,
@@ -121,7 +121,7 @@ export function useRegister<TVariables = {}>({
         ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
     });
 
-    const legacyQueryResponse = useMutation<
+    const v3LegacyAuthProviderCompatibleMutation = useMutation<
         TRegisterData,
         Error,
         TVariables,
@@ -143,7 +143,9 @@ export function useRegister<TVariables = {}>({
         ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
     });
 
-    return v3LegacyAuthProviderCompatible ? legacyQueryResponse : queryResponse;
+    return v3LegacyAuthProviderCompatible
+        ? v3LegacyAuthProviderCompatibleMutation
+        : mutation;
 }
 
 const buildNotification = (error?: Error): OpenNotificationParams => {

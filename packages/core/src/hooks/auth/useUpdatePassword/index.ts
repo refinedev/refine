@@ -110,7 +110,7 @@ export function useUpdatePassword<
         ignoreQueryPrefix: true,
     });
 
-    const queryResponse = useMutation<
+    const mutation = useMutation<
         AuthActionResponse,
         Error,
         TVariables,
@@ -144,7 +144,7 @@ export function useUpdatePassword<
         },
     );
 
-    const legacyQueryResponse = useMutation<
+    const v3LegacyAuthProviderCompatibleMutation = useMutation<
         TUpdatePasswordData,
         Error,
         TVariables,
@@ -173,7 +173,9 @@ export function useUpdatePassword<
         },
     );
 
-    return v3LegacyAuthProviderCompatible ? legacyQueryResponse : queryResponse;
+    return v3LegacyAuthProviderCompatible
+        ? v3LegacyAuthProviderCompatibleMutation
+        : mutation;
 }
 
 const buildNotification = (error?: Error): OpenNotificationParams => {
