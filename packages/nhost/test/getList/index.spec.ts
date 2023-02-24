@@ -26,7 +26,7 @@ describe("getList", () => {
     it("correct sorting response", async () => {
         const { data, total } = await dataProvider(nhost).getList({
             resource: "posts",
-            sort: [
+            sorters: [
                 {
                     field: "id",
                     order: "asc",
@@ -72,7 +72,7 @@ describe("getList", () => {
                     value: "73c14cb4-a58c-471d-9410-fc97ea6dac66",
                 },
             ],
-            sort: [
+            sorters: [
                 {
                     field: "title",
                     order: "desc",

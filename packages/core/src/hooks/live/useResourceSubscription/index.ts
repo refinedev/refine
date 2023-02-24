@@ -26,6 +26,9 @@ export type UseResourceSubscriptionProps = {
          */
         metaData?: MetaQuery;
         pagination?: Pagination;
+        /**
+         * @deprecated `hasPagination` is deprecated, use `pagination.mode` instead.
+         */
         hasPagination?: boolean;
         /**
          * @deprecated `sort` is deprecated. Use `sorters` instead.

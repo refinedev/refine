@@ -108,15 +108,12 @@ const AltogicDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): Required<DataProvider> => ({
-    getList: async ({
-        resource,
-        hasPagination = true,
-        pagination = { current: 1, pageSize: 10 },
-        filters,
-        sort,
-        sorters,
-    }) => {
-        const { current: page = 1, pageSize: size = 10 } = pagination ?? {};
+    getList: async ({ resource, pagination, filters, sorters }) => {
+        const {
+            current = 1,
+            pageSize = 10,
+            mode = "server",
+        } = pagination ?? {};
 
         const url = `${apiUrl}/${resource}`;
 
@@ -126,10 +123,15 @@ const AltogicDataProvider = (
             page?: number;
             size?: number;
             sort?: string;
-        } = hasPagination ? { page, size } : {};
+        } = {};
 
-        //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-        const generatedSort = generateSort(sorters ?? sort);
+        if (mode === "server") {
+            query.page = current;
+            query.size = pageSize;
+        }
+
+        const generatedSort = generateSort(sorters);
+
         if (generatedSort) {
             const { _sort } = generatedSort;
 
@@ -244,7 +246,6 @@ const AltogicDataProvider = (
         url,
         method,
         filters,
-        sort,
         sorters,
         payload,
         query,
@@ -252,9 +253,8 @@ const AltogicDataProvider = (
     }) => {
         let requestUrl = `${url}?`;
 
-        if (sorters || sort) {
-            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-            const generatedSort = generateSort(sorters ?? sort);
+        if (sorters) {
+            const generatedSort = generateSort(sorters);
             if (generatedSort) {
                 const { _sort } = generatedSort;
                 const sortQuery = {
