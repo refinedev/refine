@@ -16,16 +16,17 @@ import {
 } from "../../interfaces";
 import {
     useResource,
-    useCheckError,
     useHandleNotification,
     useResourceSubscription,
     useTranslate,
     useDataProvider,
+    useOnError,
 } from "@hooks";
 import {
     queryKeys,
     pickDataProvider,
     pickNotDeprecated,
+    useActiveAuthProvider,
     handlePaginationParams,
 } from "@definitions/helpers";
 
@@ -121,7 +122,10 @@ export const useList = <
     const { resources } = useResource();
     const dataProvider = useDataProvider();
     const translate = useTranslate();
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: checkError } = useOnError({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const handleNotification = useHandleNotification();
 
     const pickedDataProvider = pickDataProvider(

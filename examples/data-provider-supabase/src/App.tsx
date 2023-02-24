@@ -1,4 +1,8 @@
-import { Refine, AuthProvider, useGetIdentity } from "@pankod/refine-core";
+import {
+    Refine,
+    LegacyAuthProvider as AuthProvider,
+    useGetIdentity,
+} from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -158,7 +162,7 @@ const App: React.FC = () => {
                     },
                 ],
             }}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             LoginPage={() => (
                 <AuthPage
                     type="login"

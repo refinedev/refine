@@ -15,6 +15,7 @@ import {
     pickNotDeprecated,
     queryKeys,
 } from "@definitions/helpers";
+import { useActiveAuthProvider } from "@definitions/helpers";
 
 type LogRenameData =
     | {
@@ -71,12 +72,15 @@ export const useLog = <
     const queryClient = useQueryClient();
     const auditLogContext = useContext(AuditLogContext);
 
+    const authProvider = useActiveAuthProvider();
+
     const { resources } = useContext(ResourceContext);
     const {
         data: identityData,
         refetch,
         isLoading,
     } = useGetIdentity({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
         queryOptions: {
             enabled: !!auditLogContext,
         },

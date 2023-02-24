@@ -25,17 +25,18 @@ import {
     useMutationMode,
     useCancelNotification,
     useTranslate,
-    useCheckError,
     usePublish,
     useHandleNotification,
     useDataProvider,
     useLog,
     useInvalidate,
+    useOnError,
 } from "@hooks";
 import {
     queryKeys,
     pickDataProvider,
     pickNotDeprecated,
+    useActiveAuthProvider,
 } from "@definitions/helpers";
 
 export type UpdateParams<TVariables> = {
@@ -142,7 +143,10 @@ export const useUpdate = <
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
     const translate = useTranslate();
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: checkError } = useOnError({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const publish = usePublish();
     const { log } = useLog();
     const { notificationDispatch } = useCancelNotification();

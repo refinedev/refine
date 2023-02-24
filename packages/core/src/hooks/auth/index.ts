@@ -5,6 +5,6 @@ export { useLogin } from "./useLogin";
 export { useRegister } from "./useRegister";
 export { useForgotPassword } from "./useForgotPassword";
 export { useUpdatePassword } from "./useUpdatePassword";
-export { useAuthenticated } from "./useAuthenticated";
-export { useCheckError } from "./useCheckError";
+export { useAuthenticated, useIsAuthenticated } from "./useIsAuthenticated";
+export { useCheckError, useOnError } from "./useOnError";
 export { useIsExistAuthentication } from "./useIsExistAuthentication";

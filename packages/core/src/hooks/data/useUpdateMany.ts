@@ -9,7 +9,6 @@ import pluralize from "pluralize";
 import {
     useResource,
     useCancelNotification,
-    useCheckError,
     useMutationMode,
     useTranslate,
     usePublish,
@@ -17,6 +16,7 @@ import {
     useDataProvider,
     useInvalidate,
     useLog,
+    useOnError,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -37,6 +37,7 @@ import {
     pickDataProvider,
     handleMultiple,
     pickNotDeprecated,
+    useActiveAuthProvider,
 } from "@definitions/helpers";
 
 type UpdateManyParams<TVariables> = {
@@ -118,7 +119,10 @@ export const useUpdateMany = <
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: checkError } = useOnError({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const { notificationDispatch } = useCancelNotification();
     const publish = usePublish();
     const handleNotification = useHandleNotification();

@@ -37,7 +37,7 @@ function App() {
         >
             <Refine
                 auditLogProvider={auditLogProvider}
-                authProvider={authProvider}
+                legacyAuthProvider={authProvider}
                 dataProvider={dataProvider(supabaseClient)}
                 liveProvider={liveProvider(supabaseClient)}
                 routerProvider={{

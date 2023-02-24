@@ -1,5 +1,9 @@
 import React from "react";
-import { RegisterPageProps, RegisterFormTypes } from "@pankod/refine-core";
+import {
+    RegisterPageProps,
+    RegisterFormTypes,
+    useActiveAuthProvider,
+} from "@pankod/refine-core";
 import {
     Row,
     Col,
@@ -43,7 +47,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
-    const { mutate: register, isLoading } = useRegister<RegisterFormTypes>();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: register, isLoading } = useRegister<RegisterFormTypes>({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>

@@ -157,6 +157,14 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         name: "separate-imports-mui: Moves `MUI` components exported by `refine` into `MUI`",
         value: "separate-imports-mui",
     },
+    {
+        name: "add-v3LegacyAuthProviderCompatible-true-to-auth-hooks: Add v3LegacyAuthProviderCompatible:true to auth hooks",
+        value: "add-v3LegacyAuthProviderCompatible-true-to-auth-hooks",
+    },
+    {
+        name: "authProvider-to-legacyAuthProvider: Transform authProvider to use legacyAuthProvider",
+        value: "authProvider-to-legacyAuthProvider",
+    },
 ];
 
 function expandFilePathsIfNeeded(filesBeforeExpansion) {

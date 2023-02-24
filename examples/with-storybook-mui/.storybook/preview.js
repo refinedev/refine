@@ -29,7 +29,7 @@ export const RefineWithLayout = (Story) => (
     <ThemeProvider theme={useDarkMode() ? DarkTheme : LightTheme}>
         <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             LoginPage={LoginPage}
             ReadyPage={ReadyPage}
             catchAll={ErrorComponent}
@@ -56,7 +56,7 @@ export const RefineWithoutLayout = (Story) => (
     <ThemeProvider theme={useDarkMode() ? DarkTheme : LightTheme}>
         <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             LoginPage={LoginPage}
             ReadyPage={ReadyPage}
             catchAll={ErrorComponent}
