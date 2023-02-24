@@ -19,4 +19,5 @@ export const packageMap: Record<string, string> = {
     "@mui/lab": "MuiLab",
     "@mui/material": "MuiMaterial",
     "@mui/x-data-grid": "MuiXDataGrid",
+    "@chakra-ui/react": "ChakraUI",
 };
