@@ -18,12 +18,8 @@ values={[
 <TabItem value="resources">
 
 ```tsx
-import {
-    ThemeProvider,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
-} from "@pankod/refine-mui";
+import { LightTheme } from "@pankod/refine-mui";
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 
 // highlight-next-line
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
@@ -105,13 +101,8 @@ setInitialRoutes(["/"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import {
-    Layout,
-    ThemeProvider,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
-} from "@pankod/refine-mui";
+import { Layout, LightTheme } from "@pankod/refine-mui";
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -171,13 +162,9 @@ setInitialRoutes(["/samples/show/123"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import {
-    Layout,
-    ThemeProvider,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
-} from "@pankod/refine-mui";
+import { Layout, LightTheme } from "@pankod/refine-mui";
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
+
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -237,13 +224,9 @@ setInitialRoutes(["/samples/create"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import {
-    Layout,
-    ThemeProvider,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
-} from "@pankod/refine-mui";
+import { Layout, LightTheme } from "@pankod/refine-mui";
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
+
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -301,13 +284,9 @@ setInitialRoutes(["/samples/edit/123"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import {
-    Layout,
-    ThemeProvider,
-    LightTheme,
-    CssBaseline,
-    GlobalStyles,
-} from "@pankod/refine-mui";
+import { Layout, LightTheme } from "@pankod/refine-mui";
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
+
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 

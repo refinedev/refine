@@ -18,4 +18,9 @@ export const packageMap: Record<string, string> = {
     "@mantine/hooks": "MantineHooks",
     "@mantine/form": "MantineForm",
     "@mantine/notifications": "MantineNotifications",
+    "@emotion/react": "EmotionReact",
+    "@emotion/styled": "EmotionStyled",
+    "@mui/lab": "MuiLab",
+    "@mui/material": "MuiMaterial",
+    "@mui/x-data-grid": "MuiXDataGrid",
 };

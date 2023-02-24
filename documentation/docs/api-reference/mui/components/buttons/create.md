@@ -4,7 +4,6 @@ title: Create
 swizzle: true
 ---
 
-
 `<CreateButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses the `create` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
 
 :::info-tip Swizzle
@@ -18,12 +17,11 @@ const { Create } = RefineMui;
 // visible-block-start
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     List,
     // highlight-next-line
     CreateButton,
 } from "@pankod/refine-mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -76,7 +74,7 @@ const MyCreateComponent = () => {
     return (
         <CreateButton
             // highlight-next-line
-            resourceNameOrRouteName="categories" 
+            resourceNameOrRouteName="categories"
         />
     );
 };
@@ -155,7 +153,11 @@ This prop can be used to skip access control check with its `enabled` property o
 import { CreateButton } from "@pankod/refine-mui";
 
 export const MyListComponent = () => {
-    return <CreateButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <CreateButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
 };
 ```
 

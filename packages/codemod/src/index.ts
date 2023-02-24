@@ -154,6 +154,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         name: "separate-imports-mantine: Moves `Mantine` components exported by `refine` into `Mantine`",
         value: "separate-imports-mantine",
     },
+    {
+        name: "separate-imports-mui: Moves `MUI` components exported by `refine` into `MUI`",
+        value: "separate-imports-mui",
+    },
 ];
 
 function expandFilePathsIfNeeded(filesBeforeExpansion) {
