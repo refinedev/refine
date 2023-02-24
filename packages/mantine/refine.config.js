@@ -587,7 +587,7 @@ module.exports = {
             const imports = getImports(content);
 
             imports.map((importItem) => {
-                // for refine-mui imports
+                // for refine-mantine imports
                 if (importItem.importPath === "@components") {
                     const newStatement = `import ${importItem.namedImports} from "@pankod/refine-mantine";`;
 
