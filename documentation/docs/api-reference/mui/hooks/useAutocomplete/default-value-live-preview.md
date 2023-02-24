@@ -1,11 +1,8 @@
 ```tsx live url=http://localhost:3000 previewHeight=300px
 setInitialRoutes(["/posts/create"]);
 // visible-block-start
-import {
-    Autocomplete,
-    useAutocomplete,
-    TextField,
-} from "@pankod/refine-mui";
+import { useAutocomplete } from "@pankod/refine-mui";
+import { Autocomplete, TextField } from "@mui/material";
 
 interface ICategory {
     id: number;
@@ -13,7 +10,6 @@ interface ICategory {
 }
 
 const PostCreate: React.FC = () => {
-    
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
         // highlight-next-line

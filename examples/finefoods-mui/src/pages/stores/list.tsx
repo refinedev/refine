@@ -7,17 +7,14 @@ import {
     IResourceComponentsProps,
 } from "@pankod/refine-core";
 import {
-    Avatar,
-    DataGrid,
     List,
     useDataGrid,
-    GridColumns,
-    GridActionsCellItem,
     DateField,
     BooleanField,
     TextFieldComponent,
-    Paper,
 } from "@pankod/refine-mui";
+import { DataGrid, GridColumns, GridActionsCellItem } from "@mui/x-data-grid";
+import { Avatar, Paper } from "@mui/material";
 import { EditOutlined } from "@mui/icons-material";
 
 import { IStore } from "interfaces";

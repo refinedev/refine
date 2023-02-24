@@ -40,6 +40,7 @@ The easiest way to create a new project is to use the **refine CLI**. This tool 
     ```bash
     yarn create refine-app -- -o refine-mui tutorial
     ```
+
     > Only support yarn@1 version.
 
     </TabItem>
@@ -125,12 +126,10 @@ import {
     ReadyPage,
     ErrorComponent,
     LightTheme,
-    CssBaseline,
-    GlobalStyles,
-    ThemeProvider,
     RefineSnackbarProvider,
     notificationProvider,
 } from "@pankod/refine-mui";
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 

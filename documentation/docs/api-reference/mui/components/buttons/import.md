@@ -4,7 +4,6 @@ title: Import
 swizzle: true
 ---
 
-
 `<ImportButton>` is compatible with the `useImport` hook and is meant to be used as it's upload button. It uses Material UI [`<LoadingButton>`][button] component and native html [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element. It wraps a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) with a [`<LoadingButton>`][button] component and [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element and accepts it's own properties for separately.
 
 [Refer to the for more detailed information about `useImport`. &#8594][useimport]
@@ -22,12 +21,11 @@ Use it like any other Material UI [`<LoadingButton>`][button]. You can use it wi
 import { useImport } from "@pankod/refine-core";
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     List,
     // highlight-next-line
     ImportButton,
 } from "@pankod/refine-mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -42,12 +40,9 @@ const PostsList: React.FC = () => {
     return (
         <List
             // highlight-start
-            headerButtons={(
-                <ImportButton
-                    inputProps={inputProps}
-                    loading={isLoading}
-                />
-            )}
+            headerButtons={
+                <ImportButton inputProps={inputProps} loading={isLoading} />
+            }
             // highlight-end
         >
             <DataGrid {...dataGridProps} columns={columns} autoHeight />

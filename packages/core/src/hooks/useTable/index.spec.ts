@@ -334,6 +334,56 @@ describe("useTable Hook", () => {
             { field: "title", order: "desc" },
         ]);
     });
+
+    it("pagination should be prioritized over initialCurrent and initialPageSize", async () => {
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialCurrent: 10,
+                    initialPageSize: 20,
+                    pagination: {
+                        current: 1,
+                        pageSize: 10,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        expect(result.current.pageSize).toBe(10);
+        expect(result.current.current).toBe(1);
+    });
+
+    it("when deprecated setSorter is called, it should update sorter and sorters", async () => {
+        const { result } = renderHook(() => useTable({}), {
+            wrapper: TestWrapper({}),
+        });
+
+        const sorters: CrudSorting = [{ field: "id", order: "asc" }];
+
+        await act(async () => {
+            result.current.setSorter(sorters);
+        });
+
+        expect(result.current.sorter).toStrictEqual(sorters);
+        expect(result.current.sorters).toStrictEqual(sorters);
+    });
+
+    it("when setSorters is called, it should update deprecated sorter and sorters", async () => {
+        const { result } = renderHook(() => useTable({}), {
+            wrapper: TestWrapper({}),
+        });
+
+        const sorters: CrudSorting = [{ field: "id", order: "asc" }];
+
+        await act(async () => {
+            result.current.setSorters(sorters);
+        });
+
+        expect(result.current.sorter).toStrictEqual(sorters);
+        expect(result.current.sorters).toStrictEqual(sorters);
+    });
 });
 
 describe("useTable Filters", () => {

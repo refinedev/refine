@@ -22,7 +22,7 @@ const { useNavigation: useNavigationShared, useLogout: useLogoutShared } =
 const {
     Typography: { Title: SharedTitle },
     Button,
-} = RefineMui;
+} = MuiMaterial;
 
 window.__refineAuthStatus = false;
 
@@ -110,15 +110,15 @@ const GithubIcon = (
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMui.ThemeProvider theme={RefineMui.LightTheme}>
-            <RefineMui.CssBaseline />
-            <RefineMui.GlobalStyles
+        <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
+            <MuiMaterial.CssBaseline />
+            <MuiMaterial.GlobalStyles
                 styles={{ html: { WebkitFontSmoothing: "auto" } }}
             />
             <RefineMui.RefineSnackbarProvider>
                 {children}
             </RefineMui.RefineSnackbarProvider>
-        </RefineMui.ThemeProvider>
+        </MuiMaterial.ThemeProvider>
     );
 };
 ```
@@ -499,13 +499,8 @@ setInitialRoutes(["/login"]);
 
 // visible-block-start
 import { Refine, useNavigation } from "@pankod/refine-core";
-import {
-    AuthPage,
-    Layout,
-    Form,
-    FormControlLabel,
-    Checkbox,
-} from "@pankod/refine-mui";
+import { AuthPage, Layout } from "@pankod/refine-mui";
+import { Form, FormControlLabel, Checkbox } from "@mui/material";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { useFormContext } from "@pankod/refine-react-hook-form";
 

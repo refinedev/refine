@@ -6,7 +6,7 @@
 
 -   `sorter` and `setSorter` return values of `useTable` hook are deprecated. Use `sorters` and `setSorters` instead. However, for backward compatibility, `sorter` and `setSorter` are safe to use.
 
--   Added `pagination.mode` property to `useTable` and `useList` hooks.
+-   Added `pagination.mode` property to `useTable` and `useList` hooks. By default, it is "server".
 
     -   When `pagination.mode` is "off", all records will be fetched from the API.
     -   When `pagination.mode` is "client", all records will be fetched from the API and pagination will be handled by the `useTable` hook.
@@ -14,4 +14,5 @@
 
 - `sorter` property of `stringifyTableParams` method is deprecated. Use `sorters` instead.
 
-- Added default values for `pagination.current` and `pagination.pageSize` properties of `useList` hook.
+- The default value of `pagination.current` of `useList` is set to 1.
+- The default value of `pagination.pageSize` of `useList` is set to 10. 

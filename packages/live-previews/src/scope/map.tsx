@@ -14,4 +14,9 @@ export const packageMap: Record<string, string> = {
     "@pankod/refine-inferencer/chakra-ui": "RefineChakraInferencer",
     "@pankod/refine-inferencer/headless": "RefineHeadlessInferencer",
     antd: "AntdCore",
+    "@emotion/react": "EmotionReact",
+    "@emotion/styled": "EmotionStyled",
+    "@mui/lab": "MuiLab",
+    "@mui/material": "MuiMaterial",
+    "@mui/x-data-grid": "MuiXDataGrid",
 };

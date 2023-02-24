@@ -123,12 +123,12 @@ const AirtableDataProvider = (
                 mode = "server",
             } = pagination ?? {};
 
-            const generetedSort = generateSort(sorters) || [];
+            const generatedSort = generateSort(sorters) || [];
             const queryFilters = generateFilter(filters);
 
             const { all } = base(resource).select({
                 pageSize: 100,
-                sort: generetedSort,
+                sort: generatedSort,
                 ...(queryFilters ? { filterByFormula: queryFilters } : {}),
             });
 
