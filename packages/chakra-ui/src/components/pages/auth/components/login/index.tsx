@@ -7,7 +7,7 @@ import {
     useTranslate,
     BaseRecord,
     HttpError,
-    useProvidedAuthProvider,
+    useActiveAuthProvider,
 } from "@pankod/refine-core";
 import {
     Box,
@@ -47,7 +47,7 @@ export const LoginPage: React.FC<LoginProps> = ({
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
 
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { mutate: login } = useLogin<LoginFormTypes>({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });

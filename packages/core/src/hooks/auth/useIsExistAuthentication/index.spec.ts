@@ -2,7 +2,7 @@ import { TestWrapper } from "@test/index";
 import { renderHook } from "@testing-library/react";
 import { useIsExistAuthentication } from ".";
 
-describe("useProvidedAuthProvider", () => {
+describe("useActiveAuthProvider", () => {
     it("authProvider", async () => {
         const { result } = renderHook(() => useIsExistAuthentication(), {
             wrapper: TestWrapper({

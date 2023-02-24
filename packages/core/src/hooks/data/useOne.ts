@@ -25,7 +25,7 @@ import {
     queryKeys,
     pickDataProvider,
     pickNotDeprecated,
-    useProvidedAuthProvider,
+    useActiveAuthProvider,
 } from "@definitions";
 
 export type UseOneProps<TData, TError> = {
@@ -99,7 +99,7 @@ export const useOne = <
         pickDataProvider(resource, dataProviderName, resources),
     );
     const translate = useTranslate();
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { mutate: checkError } = useOnError({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });

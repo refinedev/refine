@@ -2,7 +2,7 @@ import * as React from "react";
 import {
     UpdatePasswordFormTypes,
     UpdatePasswordPageProps,
-    useProvidedAuthProvider,
+    useActiveAuthProvider,
 } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 import {
@@ -53,7 +53,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
         ...useFormProps,
     });
 
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { mutate: update, isLoading } =
         useUpdatePassword<UpdatePasswordFormTypes>({
             v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),

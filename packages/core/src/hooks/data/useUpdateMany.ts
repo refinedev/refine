@@ -37,7 +37,7 @@ import {
     pickDataProvider,
     handleMultiple,
     pickNotDeprecated,
-    useProvidedAuthProvider,
+    useActiveAuthProvider,
 } from "@definitions/helpers";
 
 type UpdateManyParams<TVariables> = {
@@ -119,7 +119,7 @@ export const useUpdateMany = <
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { mutate: checkError } = useOnError({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });

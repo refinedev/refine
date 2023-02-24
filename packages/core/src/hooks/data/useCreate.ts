@@ -7,7 +7,7 @@ import pluralize from "pluralize";
 import {
     pickDataProvider,
     pickNotDeprecated,
-    useProvidedAuthProvider,
+    useActiveAuthProvider,
 } from "@definitions/helpers";
 
 import {
@@ -108,7 +108,7 @@ export const useCreate = <
     TError,
     TVariables
 > => {
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { mutate: checkError } = useOnError({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });

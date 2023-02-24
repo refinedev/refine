@@ -111,6 +111,6 @@ export {
     getNextPageParam,
     getPreviousPageParam,
     pickNotDeprecated,
-    useProvidedAuthProvider,
+    useActiveAuthProvider,
 } from "./definitions/helpers";
 export { file2Base64 } from "./definitions/upload";

@@ -4,7 +4,7 @@ import { RegisterPageProps } from "../../../../../interfaces";
 import { useTranslate, useRouterContext, useRegister } from "@hooks";
 
 import { DivPropsType, FormPropsType } from "../..";
-import { useProvidedAuthProvider } from "@definitions/helpers";
+import { useActiveAuthProvider } from "@definitions/helpers";
 
 type RegisterProps = RegisterPageProps<
     DivPropsType,
@@ -27,7 +27,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 
     const translate = useTranslate();
 
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { mutate: register, isLoading } = useRegister({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });

@@ -31,7 +31,7 @@ import {
     useRouterContext,
     useMenu,
     useRefineContext,
-    useProvidedAuthProvider,
+    useActiveAuthProvider,
 } from "@pankod/refine-core";
 import { RefineLayoutSiderProps } from "../types";
 
@@ -54,7 +54,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const isExistAuthentication = useIsExistAuthentication();
     const Title = useTitle();
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { mutate: mutateLogout } = useLogout({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });

@@ -15,7 +15,7 @@ import {
     pickNotDeprecated,
     queryKeys,
 } from "@definitions/helpers";
-import { useProvidedAuthProvider } from "@definitions/helpers";
+import { useActiveAuthProvider } from "@definitions/helpers";
 
 type LogRenameData =
     | {
@@ -72,7 +72,7 @@ export const useLog = <
     const queryClient = useQueryClient();
     const auditLogContext = useContext(AuditLogContext);
 
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
 
     const { resources } = useContext(ResourceContext);
     const {

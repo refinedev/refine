@@ -2,7 +2,7 @@ import * as React from "react";
 import {
     LoginPageProps,
     LoginFormTypes,
-    useProvidedAuthProvider,
+    useActiveAuthProvider,
 } from "@pankod/refine-core";
 import { FormProvider, useForm } from "@pankod/refine-react-hook-form";
 import {
@@ -57,7 +57,7 @@ export const LoginPage: React.FC<LoginProps> = ({
         formState: { errors },
     } = methods;
 
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { mutate: login, isLoading } = useLogin<LoginFormTypes>({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });

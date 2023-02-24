@@ -26,7 +26,7 @@ import {
     pickDataProvider,
     handleMultiple,
     pickNotDeprecated,
-    useProvidedAuthProvider,
+    useActiveAuthProvider,
 } from "@definitions/helpers";
 
 export type UseManyProps<TData, TError> = {
@@ -103,7 +103,7 @@ export const useMany = <
     );
 
     const translate = useTranslate();
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { mutate: checkError } = useOnError({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });

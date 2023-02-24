@@ -17,10 +17,7 @@ import {
     SuccessErrorNotification,
     MetaQuery,
 } from "../../interfaces";
-import {
-    pickNotDeprecated,
-    useProvidedAuthProvider,
-} from "@definitions/helpers";
+import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
 
 interface UseCustomMutationConfig {
     headers?: {};
@@ -94,7 +91,7 @@ export const useCustomMutation = <
     TError,
     TVariables
 > = {}): UseCustomMutationReturnType<TData, TError, TVariables> => {
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { mutate: checkError } = useOnError({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });

@@ -1,5 +1,5 @@
 import React from "react";
-import { LoginPageProps, useProvidedAuthProvider } from "@pankod/refine-core";
+import { LoginPageProps, useActiveAuthProvider } from "@pankod/refine-core";
 import {
     Row,
     Col,
@@ -37,7 +37,7 @@ export const LoginPage: React.FC<LoginPageProps> = () => {
     const [form] = Form.useForm<ILoginForm>();
     const translate = useTranslate();
 
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { mutate: login, isLoading } = useLogin<ILoginForm>({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });

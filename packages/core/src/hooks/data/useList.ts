@@ -26,7 +26,7 @@ import {
     queryKeys,
     pickDataProvider,
     pickNotDeprecated,
-    useProvidedAuthProvider,
+    useActiveAuthProvider,
 } from "@definitions/helpers";
 
 export interface UseListConfig {
@@ -130,7 +130,7 @@ export const useList = <
     );
 
     const translate = useTranslate();
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { mutate: checkError } = useOnError({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });

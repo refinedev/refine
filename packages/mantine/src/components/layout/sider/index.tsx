@@ -5,7 +5,7 @@ import {
     useIsExistAuthentication,
     useLogout,
     useMenu,
-    useProvidedAuthProvider,
+    useActiveAuthProvider,
     useRefineContext,
     useRouterContext,
     useTitle,
@@ -50,7 +50,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const isExistAuthentication = useIsExistAuthentication();
     const t = useTranslate();
     const { hasDashboard } = useRefineContext();
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { mutate: mutateLogout } = useLogout({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });

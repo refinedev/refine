@@ -5,7 +5,7 @@ import { useRouterContext, useLogin } from "@hooks";
 import { useTranslate } from "@hooks/translate";
 
 import { DivPropsType, FormPropsType } from "../..";
-import { useProvidedAuthProvider } from "@definitions/helpers";
+import { useActiveAuthProvider } from "@definitions/helpers";
 
 type LoginProps = LoginPageProps<DivPropsType, DivPropsType, FormPropsType>;
 
@@ -26,7 +26,7 @@ export const LoginPage: React.FC<LoginProps> = ({
 
     const translate = useTranslate();
 
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { mutate: login } = useLogin<LoginFormTypes>({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });

@@ -5,7 +5,7 @@ import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
  * @internal
  * NOTE: Will be removed in v5
  */
-export const useProvidedAuthProvider = () => {
+export const useActiveAuthProvider = () => {
     const legacyAuthProvider = useLegacyAuthContext();
     const authProvider = useAuthBindingsContext();
 

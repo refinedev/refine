@@ -19,10 +19,7 @@ import {
     useDataProvider,
     useOnError,
 } from "@hooks";
-import {
-    pickNotDeprecated,
-    useProvidedAuthProvider,
-} from "@definitions/helpers";
+import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
 
 interface UseCustomConfig<TQuery, TPayload> {
     /**
@@ -103,7 +100,7 @@ export const useCustom = <
     const dataProvider = useDataProvider();
 
     const { custom } = dataProvider(dataProviderName);
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { mutate: checkError } = useOnError({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });

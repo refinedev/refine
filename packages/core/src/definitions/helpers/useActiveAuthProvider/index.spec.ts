@@ -1,10 +1,13 @@
 import { TestWrapper } from "@test/index";
 import { renderHook } from "@testing-library/react";
-import { useProvidedAuthProvider } from ".";
+import { useActiveAuthProvider } from ".";
 
-describe("useProvidedAuthProvider", () => {
+/**
+ * NOTE: Will be removed in v5
+ */
+describe("useActiveAuthProvider", () => {
     it("returns new authProvider", async () => {
-        const { result } = renderHook(() => useProvidedAuthProvider(), {
+        const { result } = renderHook(() => useActiveAuthProvider(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve({ success: true }),
@@ -19,7 +22,7 @@ describe("useProvidedAuthProvider", () => {
     });
 
     it("returns v3LegacyAuthProviderCompatible authProvider", async () => {
-        const { result } = renderHook(() => useProvidedAuthProvider(), {
+        const { result } = renderHook(() => useActiveAuthProvider(), {
             wrapper: TestWrapper({
                 legacyAuthProvider: {
                     login: () => Promise.resolve(),
@@ -34,7 +37,7 @@ describe("useProvidedAuthProvider", () => {
     });
 
     it("returns null", async () => {
-        const { result } = renderHook(() => useProvidedAuthProvider(), {
+        const { result } = renderHook(() => useActiveAuthProvider(), {
             wrapper: TestWrapper({}),
         });
 

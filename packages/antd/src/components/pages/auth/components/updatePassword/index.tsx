@@ -2,7 +2,7 @@ import React from "react";
 import {
     UpdatePasswordPageProps,
     UpdatePasswordFormTypes,
-    useProvidedAuthProvider,
+    useActiveAuthProvider,
 } from "@pankod/refine-core";
 import {
     Row,
@@ -42,7 +42,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
 }) => {
     const [form] = Form.useForm<UpdatePasswordFormTypes>();
     const translate = useTranslate();
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { mutate: updatePassword, isLoading } =
         useUpdatePassword<UpdatePasswordFormTypes>({
             v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),

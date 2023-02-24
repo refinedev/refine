@@ -10,7 +10,7 @@ import {
     useRouterContext,
     CanAccess,
     ResourceRouterParams,
-    useProvidedAuthProvider,
+    useActiveAuthProvider,
     useIsAuthenticated,
 } from "@pankod/refine-core";
 import { RefineRouteProps } from "./index";
@@ -170,7 +170,7 @@ export const RouteProvider = ({
 
     const { routes: customRoutes } = useRouterContext();
 
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const {
         isFetching,
         isError,

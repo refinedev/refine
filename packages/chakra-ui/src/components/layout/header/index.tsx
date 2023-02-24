@@ -1,11 +1,11 @@
 import React from "react";
-import { useGetIdentity, useProvidedAuthProvider } from "@pankod/refine-core";
+import { useGetIdentity, useActiveAuthProvider } from "@pankod/refine-core";
 import { Box, Avatar, Text, HStack } from "@chakra-ui/react";
 
 import { RefineLayoutHeaderProps } from "../types";
 
 export const Header: React.FC<RefineLayoutHeaderProps> = () => {
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { data: user } = useGetIdentity({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });

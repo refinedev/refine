@@ -28,7 +28,7 @@ import {
     getNextPageParam,
     getPreviousPageParam,
     pickNotDeprecated,
-    useProvidedAuthProvider,
+    useActiveAuthProvider,
 } from "@definitions/helpers";
 
 export interface UseInfiniteListConfig {
@@ -132,7 +132,7 @@ export const useInfiniteList = <
     );
 
     const translate = useTranslate();
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { mutate: checkError } = useOnError({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });

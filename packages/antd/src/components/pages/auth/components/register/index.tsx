@@ -2,7 +2,7 @@ import React from "react";
 import {
     RegisterPageProps,
     RegisterFormTypes,
-    useProvidedAuthProvider,
+    useActiveAuthProvider,
 } from "@pankod/refine-core";
 import {
     Row,
@@ -47,7 +47,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
-    const authProvider = useProvidedAuthProvider();
+    const authProvider = useActiveAuthProvider();
     const { mutate: register, isLoading } = useRegister<RegisterFormTypes>({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
