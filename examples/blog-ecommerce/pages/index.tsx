@@ -19,10 +19,8 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
             queryOptions: {
                 initialData: products,
             },
+            initialPageSize: 9,
             metaData: { populate: ["image"] },
-            pagination: {
-                pageSize: 9,
-            },
         });
 
     const totalPageCount = Math.ceil(

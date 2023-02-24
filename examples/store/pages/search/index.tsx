@@ -41,9 +41,7 @@ const SearchPage: React.FC<
                 value: q,
             },
         ],
-        pagination: {
-            mode: "off",
-        },
+        hasPagination: false,
     });
 
     return (

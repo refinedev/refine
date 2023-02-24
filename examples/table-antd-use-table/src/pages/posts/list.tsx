@@ -19,11 +19,7 @@ import { Table, Radio, Select, Input } from "antd";
 import { ICategory, IPost } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const {
-        tableProps,
-        sorters: sorter,
-        filters,
-    } = useTable<IPost>({
+    const { tableProps, sorter, filters } = useTable<IPost>({
         initialSorter: [
             {
                 field: "title",

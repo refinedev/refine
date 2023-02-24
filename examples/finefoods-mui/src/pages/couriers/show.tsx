@@ -76,13 +76,11 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                 value: courier?.id,
             },
         ],
+        initialPageSize: 4,
         queryOptions: {
             enabled: courier !== undefined,
         },
         syncWithLocation: false,
-        pagination: {
-            pageSize: 4,
-        },
     });
 
     const columns = React.useMemo<GridColumns<IReview>>(

@@ -35,9 +35,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
     const record = showQueryResult?.data;
 
     const { dataGridProps } = useDataGrid<IStore>({
-        pagination: {
-            pageSize: 10,
-        },
+        initialPageSize: 10,
     });
 
     const columns = React.useMemo<GridColumns<IStore>>(

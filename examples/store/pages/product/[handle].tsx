@@ -23,13 +23,15 @@ const ProductShow: React.FC<
         queryOptions: {
             initialData,
         },
-        filters: [
-            {
-                field: "handle",
-                operator: "eq",
-                value: handle,
-            },
-        ],
+        config: {
+            filters: [
+                {
+                    field: "handle",
+                    operator: "eq",
+                    value: handle,
+                },
+            ],
+        },
     });
 
     const record = data?.data?.[0];

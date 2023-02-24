@@ -37,9 +37,7 @@ export const PostsList: React.FC = () => {
     };
 
     const { dataGridProps } = useDataGrid<IPost>({
-        pagination: {
-            pageSize: 10,
-        },
+        initialPageSize: 10,
     });
 
     const {

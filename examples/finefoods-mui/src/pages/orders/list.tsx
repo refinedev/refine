@@ -42,12 +42,12 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const { mutate } = useUpdate();
 
-    const {
-        dataGridProps,
-        search,
-        filters,
-        sorters: sorter,
-    } = useDataGrid<IOrder, HttpError, IOrderFilterVariables>({
+    const { dataGridProps, search, filters, sorter } = useDataGrid<
+        IOrder,
+        HttpError,
+        IOrderFilterVariables
+    >({
+        initialPageSize: 10,
         onSearch: (params) => {
             const filters: CrudFilters = [];
             const { q, store, user, status } = params;
@@ -77,9 +77,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
             });
 
             return filters;
-        },
-        pagination: {
-            pageSize: 10,
         },
     });
 
@@ -243,6 +240,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const { show } = useNavigation();
 
     const { isLoading, triggerExport } = useExport<IOrder>({
+        sorter,
         filters,
         pageSize: 50,
         maxItemCount: 50,
@@ -256,7 +254,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 user: item.user.firstName,
             };
         },
-        sorters: sorter,
     });
 
     const { register, handleSubmit, control } = useForm<

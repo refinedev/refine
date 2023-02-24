@@ -20,7 +20,7 @@ import { Table, Space, Select } from "antd";
 import { ICategory, IPost } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorters: sorter } = useTable<IPost>({
+    const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
             {
                 field: "id",

@@ -318,6 +318,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
 
     const { dataGridProps } = useDataGrid<IProduct>({
         resource: "products",
+        initialPageSize: 5,
         permanentFilter: [
             {
                 field: "category.id",
@@ -326,9 +327,6 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
             },
         ],
         syncWithLocation: false,
-        pagination: {
-            pageSize: 5,
-        },
     });
 
     const columns = React.useMemo<GridColumns<IProduct>>(

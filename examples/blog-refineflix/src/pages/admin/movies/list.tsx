@@ -15,7 +15,7 @@ import { Table, Space } from "antd";
 import { IMovies } from "interfaces";
 
 export const AdminMovieList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorters: sorter } = useTable<IMovies>({
+    const { tableProps, sorter } = useTable<IMovies>({
         initialSorter: [
             {
                 field: "id",

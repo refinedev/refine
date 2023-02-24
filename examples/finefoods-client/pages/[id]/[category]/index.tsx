@@ -50,9 +50,18 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
     } = useTable<IProduct>({
         columns,
         refineCoreProps: {
-            pagination: {
-                pageSize: 6,
+            resource: "products",
+            queryOptions: {
+                initialData: products,
             },
+            initialPageSize: 6,
+            permanentFilter: [
+                {
+                    field: "category.id",
+                    operator: "eq",
+                    value: id,
+                },
+            ],
         },
     });
 

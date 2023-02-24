@@ -14,7 +14,7 @@ import { Table, Space } from "antd";
 import { ICategory } from "interfaces";
 
 export const CategoriesList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorters: sorter } = useTable<ICategory>({
+    const { tableProps, sorter } = useTable<ICategory>({
         initialSorter: [
             {
                 field: "id",

@@ -35,9 +35,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         tableQueryResult: { data: { data } = { data: [] } },
     } = useTable<IPost>({
         resource: "posts",
-        pagination: {
-            mode: "off",
-        },
+        hasPagination: false,
     });
 
     const categoryIds = new Set(data?.map((post) => post.category.id) ?? []);

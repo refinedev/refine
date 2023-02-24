@@ -22,8 +22,8 @@ const AllProperties = () => {
         setCurrent,
         setPageSize,
         pageCount,
-        sorters: sorter,
-        setSorters: setSorter,
+        sorter,
+        setSorter,
         filters,
         setFilters,
     } = useTable();

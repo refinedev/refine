@@ -49,12 +49,11 @@ import {
 import { useMemo } from "react";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
-    const {
-        tableProps,
-        sorters: sorter,
-        searchFormProps,
-        filters,
-    } = useTable<IOrder, HttpError, IOrderFilterVariables>({
+    const { tableProps, sorter, searchFormProps, filters } = useTable<
+        IOrder,
+        HttpError,
+        IOrderFilterVariables
+    >({
         onSearch: (params) => {
             const filters: CrudFilters = [];
             const { q, store, user, createdAt, status } = params;
@@ -108,6 +107,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const { show } = useNavigation();
 
     const { isLoading, triggerExport } = useExport<IOrder>({
+        sorter,
         filters,
         pageSize: 50,
         maxItemCount: 50,
@@ -121,7 +121,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 user: item.user.firstName,
             };
         },
-        sorters: sorter,
     });
 
     const Actions: React.FC = () => (

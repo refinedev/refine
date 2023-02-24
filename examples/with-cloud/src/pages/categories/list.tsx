@@ -19,11 +19,9 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
 
     const { tableProps } = useTable<ICategory>({
         syncWithLocation: true,
+        hasPagination: false,
         queryOptions: {
             enabled: false,
-        },
-        pagination: {
-            mode: "off",
         },
     });
 

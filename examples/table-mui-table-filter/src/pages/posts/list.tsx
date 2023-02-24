@@ -33,6 +33,7 @@ export const PostsList: React.FC = () => {
         HttpError,
         IPostFilterVariables
     >({
+        initialPageSize: 10,
         onSearch: (params) => {
             const filters: CrudFilters = [];
             const { q, category, status } = params;
@@ -56,9 +57,6 @@ export const PostsList: React.FC = () => {
             );
 
             return filters;
-        },
-        pagination: {
-            pageSize: 10,
         },
     });
 

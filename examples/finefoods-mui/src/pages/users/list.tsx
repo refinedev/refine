@@ -41,6 +41,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
         HttpError,
         IUserFilterVariables
     >({
+        initialPageSize: 10,
         onSearch: (params) => {
             const filters: CrudFilters = [];
             const { q, gender, isActive } = params;
@@ -64,9 +65,6 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
             });
 
             return filters;
-        },
-        pagination: {
-            pageSize: 10,
         },
     });
 

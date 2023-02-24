@@ -159,7 +159,7 @@ function App() {
                         },
                         {
                             name: "my-profile",
-                            meta: { label: "My Profile " },
+                            options: { label: "My Profile " },
                             list: MyProfile,
                             icon: <AccountCircleOutlined />,
                         },

@@ -75,13 +75,11 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                 value: user?.id,
             },
         ],
+        initialPageSize: 4,
         queryOptions: {
             enabled: user !== undefined,
         },
         syncWithLocation: false,
-        pagination: {
-            pageSize: 4,
-        },
     });
 
     const columns = React.useMemo<GridColumns<IOrder>>(

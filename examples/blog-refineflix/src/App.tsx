@@ -48,7 +48,8 @@ function App() {
                     create: AdminMovieCreate,
                     show: AdminMovieShow,
                     edit: AdminMovieEdit,
-                    meta: {
+
+                    options: {
                         route: "admin/movies",
                     },
                 },

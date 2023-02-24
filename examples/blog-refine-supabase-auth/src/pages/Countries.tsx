@@ -6,9 +6,7 @@ const columns = ["ID", "Name", "ISO Code", "Local Name", "Continent"];
 export const Countries = () => {
     const { data: countries } = useList({
         resource: "countries",
-        pagination: {
-            mode: "off",
-        },
+        config: { hasPagination: false },
     });
     return (
         <div className="overflow-x-auto">

@@ -38,7 +38,7 @@ const App: React.FC = () => {
                             name: "posts",
                             parentName: "Posts",
                             list: PostList,
-                            meta: {
+                            options: {
                                 route: "react-table",
                                 label: "React Table",
                             },
@@ -47,7 +47,7 @@ const App: React.FC = () => {
                             name: "posts",
                             parentName: "Posts",
                             list: BasicDataGrid,
-                            meta: { route: "data-grid", label: "Data Grid" },
+                            options: { route: "data-grid", label: "Data Grid" },
                         },
                     ]}
                 />

@@ -24,11 +24,9 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 
     const { tableProps } = useTable<IProduct>({
         syncWithLocation: true,
+        hasPagination: false,
         queryOptions: {
             enabled: false,
-        },
-        pagination: {
-            mode: "off",
         },
     });
 
