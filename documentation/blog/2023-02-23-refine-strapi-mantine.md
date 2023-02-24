@@ -23,7 +23,7 @@ All the above integrations are opt-in. In this article, we will build a simple R
 
 
 
-## What is Strapi
+## What is Strapi?
 
 [Strapi](https://strapi.io/) is a popular open-source headless CMS built using Node. It is flexible and has an intuitive UI. The refine ecosystem has data providers for the most popular content management systems, such as Strapi, and cloud databases like Firebase and Supabase.  
 
