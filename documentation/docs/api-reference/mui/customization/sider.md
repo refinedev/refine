@@ -5,15 +5,17 @@ swizzle: true
 ---
 
 ```tsx live shared
-const Wrapper = ({children}) => {
+const Wrapper = ({ children }) => {
     return (
         <RefineMui.ThemeProvider theme={RefineMui.LightTheme}>
             <RefineMui.CssBaseline />
-            <RefineMui.GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+            <RefineMui.GlobalStyles
+                styles={{ html: { WebkitFontSmoothing: "auto" } }}
+            />
             {children}
         </RefineMui.ThemeProvider>
-    )
-}
+    );
+};
 ```
 
 You can access the `logout`, `dashboard`, `items` elements and `collapsed` state that we use in our default `Sider` component by using `render` properties. Customize it to your needs or you can create a custom `<Sider />` component and use it either by passing it to [`<Refine />`][refine] or using a [Custom Layout][muicustomlayout].
@@ -29,7 +31,8 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
-import { Box, ListItemText, Sider } from "@pankod/refine-mui";
+import { Sider } from "@pankod/refine-mui";
+import { Box, ListItemText } from "@mui/material";
 
 const PostList: React.FC = () => {
     return <div>PostList Page</div>;
@@ -93,7 +96,11 @@ const App: React.FC = () => {
 };
 // visible-block-end
 
-render(<Wrapper><App/></Wrapper>);
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
 ```
 
 :::tip
@@ -123,11 +130,12 @@ import {
     useMenu,
     useRefineContext,
 } from "@pankod/refine-core";
+import { Layout, Title as DefaultTitle } from "@pankod/refine-mui";
+import type { RefineLayoutSiderProps } from "@pankod/refine-mui";
 import {
-    Layout,
     Box,
     Drawer,
-    MuiList,
+    List as MuiList,
     ListItemButton,
     ListItemIcon,
     ListItemText,
@@ -135,9 +143,7 @@ import {
     Tooltip,
     Button,
     IconButton,
-    Title as DefaultTitle,
-} from "@pankod/refine-mui";
-import type { RefineLayoutSiderProps } from "@pankod/refine-mui";
+} from "@mui/material";
 
 // We use @mui/icons-material for icons but you can use any icon library you want.
 import {
@@ -578,14 +584,9 @@ If you want to create a multi-level menu, you can take a look at this [`multi-le
 We can override the default sider and show the custom menu we implemented in its place by passing a custom component to `<Refine>`s `Sider` prop:
 
 ```tsx live previewHeight=420px
-import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    List,
-    Sider as CustomSider,
-    TextField,
-} from "@pankod/refine-mui";
+import { useDataGrid, List, Sider as CustomSider } from "@pankod/refine-mui";
+import { TextField } from "@mui/material";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -600,7 +601,7 @@ const columns: GridColumns = [
         headerName: "Slug",
         minWidth: 100,
         flex: 1,
-    }
+    },
 ];
 
 const PostsList: React.FC = () => {
@@ -645,7 +646,11 @@ const App: React.FC = () => {
 };
 
 // visible-block-end
-render(<Wrapper><App/></Wrapper>);
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
 ```
 
 [refine]: /api-reference/core/components/refine-config.md

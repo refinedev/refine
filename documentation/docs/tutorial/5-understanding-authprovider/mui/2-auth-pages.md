@@ -43,13 +43,11 @@ import {
     ReadyPage,
     ErrorComponent,
     LightTheme,
-    CssBaseline,
-    GlobalStyles,
-    ThemeProvider,
     RefineSnackbarProvider,
     notificationProvider,
     AuthPage,
 } from "@pankod/refine-mui";
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
@@ -132,14 +130,12 @@ Login page is used to authenticate users. It provides a basic form to enter emai
         ReadyPage,
         ErrorComponent,
         LightTheme,
-        CssBaseline,
-        GlobalStyles,
-        ThemeProvider,
         RefineSnackbarProvider,
         notificationProvider,
         //highlight-next-line
         AuthPage,
     } from "@pankod/refine-mui";
+    import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
     import routerProvider from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
 
@@ -248,14 +244,12 @@ Register page is used to register new users. It provides a basic form to enter e
         ReadyPage,
         ErrorComponent,
         LightTheme,
-        CssBaseline,
-        GlobalStyles,
-        ThemeProvider,
         RefineSnackbarProvider,
         notificationProvider,
         //highlight-next-line
         AuthPage,
     } from "@pankod/refine-mui";
+    import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
     import routerProvider from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
 
@@ -349,14 +343,12 @@ Forgot password page is used to send a reset password link to the user's email. 
         ReadyPage,
         ErrorComponent,
         LightTheme,
-        CssBaseline,
-        GlobalStyles,
-        ThemeProvider,
         RefineSnackbarProvider,
         notificationProvider,
         //highlight-next-line
         AuthPage,
     } from "@pankod/refine-mui";
+    import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
     import routerProvider from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
 
@@ -455,14 +447,12 @@ Update password page is used to update the user's password. It provides a basic 
         ReadyPage,
         ErrorComponent,
         LightTheme,
-        CssBaseline,
-        GlobalStyles,
-        ThemeProvider,
         RefineSnackbarProvider,
         notificationProvider,
         //highlight-next-line
         AuthPage,
     } from "@pankod/refine-mui";
+    import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
     import routerProvider from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useLogin } from "@pankod/refine-core";
-import { Container, Box } from "@pankod/refine-mui";
+import { Container, Box } from "@mui/material";
 
 import { yariga } from "../assets";
 

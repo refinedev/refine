@@ -7,11 +7,10 @@ import {
 import {
     notificationProvider,
     RefineSnackbarProvider,
-    CssBaseline,
-    GlobalStyles,
     ReadyPage,
     ErrorComponent,
 } from "@pankod/refine-mui";
+import { CssBaseline, GlobalStyles } from "@mui/material";
 import {
     AccountCircleOutlined,
     ChatBubbleOutline,
