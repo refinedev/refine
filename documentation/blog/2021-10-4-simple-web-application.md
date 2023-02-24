@@ -292,12 +292,14 @@ import { IMovies } from "interfaces";
 
 export const AdminMovieList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter } = useTable<IMovies>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "asc",
+                },
+            ],
+        },
     });
 
     return (

@@ -44,25 +44,23 @@ By default, pagination happens on the server side. If you want to do pagination 
 
 ## Sorting
 
-`useTable` has a sorter feature. The sorter is done by using the `sorters` state. The `sorters` state is a [`CrudSorting`][crudsorting] type that contains the field and the order of the sort. You can change the sorter state by using the `setSorters` function. Every change will trigger a new fetch.
+`useTable` has a sorter feature. The sorter is done by using the `initial` and `permanent` keys to `sorters` object. The `initial` is the initial sorter state and the `permanent` is the permanent sorter state. These states are a [`CrudSorter`][crudsorter] type that contains the field and the order of the sorter.
+
+You can change the sorters state by using the `setSorters` function. Every change will trigger a new fetch.
 
 It also syncs the sorting state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
-
-Also, you can add an initial sorter state by passing the `initialSorter` prop and a permanent sorters state by passing the `permanentSorter` prop to the `useTable` hook. Even if you change the sorter state, the `permanentSorter` will be used together with the sorter state.
 
 <SortingLivePreview/>
 
 ## Filtering
 
-`useTable` has a filter feature. The filter is done by using the `filters` state. The `filters` state is a [`CrudFilters`][crudfilters] type that contains the field, the operator, and the value of the filter. You can change the filter state by using the `setFilters` function. Every change will trigger a new fetch.
+`useTable` has a filter feature. The filter is done by using the `initial`, `permanent` and `defaultBehavior` keys to `filters` object. The `initial` is the initial filter state and the `permanent` is the permanent filter state. These states are a [`CrudFilter`][crudfilter] type that contains the field, the operator and the value of the filter.
+
+You can change the filters state by using the `setFilters` function. Every change will trigger a new fetch.
 
 It also syncs the filtering state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
-Also you can add an initial filter state by passing the `initialFilter` prop and a permanent filter state by passing the `permanentFilter` prop to the `useTable` hook. Even if you change the filter state, the `permanentFilter` will be used together with the filter state.
-
-`setFilters` function can work in two different behaviors; `merge` (default) and `replace`. You can set the behavior by passing it as the 2nd parameter. You can change the default behavior with [`defaultSetFilterBehavior`](#defaultsetfilterbehavior) prop.
-
-You can also call `setFilters` with a setter function.
+`setFilters` function can work in two different behaviors; `merge` (default) and `replace`. You can set the behavior by passing it as the 2nd parameter. You can change the default behavior with [`filters.defaultBehavior`](#filtersdefaultbehavior) prop.
 
 :::info
 If you are using `merge` behavior and want to remove one of the filters; you should set the `value` to `undefined` or `null`. For `or` filters, you should set the `value` to an empty array `[]` to remove the filter.
@@ -155,73 +153,85 @@ useTable({
 });
 ```
 
-### `initialSorter`
+### `sorters.initial`
 
-Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
+Sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
 
-```tsx
-useTable({
-    initialSorter: [
-        {
-            field: "title",
-            order: "asc",
-        },
-    ],
-});
-```
-
-### `permanentSorter`
-
-Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useTable({
-    permanentSorter: [
-        {
-            field: "title",
-            order: "asc",
-        },
-    ],
+    sorters: {
+        initial: [
+            {
+                field: "name",
+                order: "asc",
+            },
+        ],
+    },
 });
 ```
 
-### `initialFilter`
+### `sorters.permanent`
 
-> Type: [`CrudFilter[]`][crudfilters]
+Sets the permanent value of the sorter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `sorters.initial` prop.
 
-Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useTable({
-    initialFilter: [
-        {
-            field: "title",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+    sorters: {
+        permanent: [
+            {
+                field: "name",
+                order: "asc",
+            },
+        ],
+    },
 });
 ```
 
-### `permanentFilter`
+### `filters.initial`
 
-> Type: [`CrudFilter[]`][crudfilters]
+Sets the initial value of the filter. The `initial` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `filters.permanent` prop.
 
-Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useTable({
-    permanentFilter: [
-        {
-            field: "title",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+    filters: {
+        initial: [
+            {
+                field: "name",
+                operator: "contains",
+                value: "Foo",
+            },
+        ],
+    },
 });
 ```
 
-### `defaultSetFilterBehavior`
+### `filters.permanent`
+
+Sets the permanent value of the filter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `filters.initial` prop.
+
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
+```tsx
+useTable({
+    filters: {
+        permanent: [
+            {
+                field: "name",
+                operator: "contains",
+                value: "Foo",
+            },
+        ],
+    },
+});
+```
+
+### `filters.defaultBehavior`
 
 > Default: `merge`
 
@@ -235,7 +245,9 @@ You can also override the default value by using the second parameter of the [`s
 
 ```tsx
 useTable({
-    defaultSetFilterBehavior: "replace",
+    filters: {
+        defaultBehavior: "replace",
+    },
 });
 ```
 
@@ -426,6 +438,114 @@ Determines whether to use server-side pagination or not.
 ```tsx
 useTable({
     hasPagination: false,
+});
+```
+
+### ~~`initialSorter`~~
+
+:::caution Deprecated
+Use `sorters.initial` instead.
+:::
+
+Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
+
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+
+```tsx
+useTable({
+    initialSorter: [
+        {
+            field: "name",
+            order: "asc",
+        },
+    ],
+});
+```
+
+### ~~`permanentSorter`~~
+
+:::caution Deprecated
+Use `sorters.permanent` instead.
+:::
+
+Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
+
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+
+```tsx
+useTable({
+    permanentSorter: [
+        {
+            field: "name",
+            order: "asc",
+        },
+    ],
+});
+```
+
+### ~~`initialFilter`~~
+
+:::caution Deprecated
+Use `filters.initial` instead.
+:::
+
+Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
+
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
+```tsx
+useTable({
+    initialFilter: [
+        {
+            field: "name",
+            operator: "contains",
+            value: "Foo",
+        },
+    ],
+});
+```
+
+### ~~`permanentFilter`~~
+
+:::caution Deprecated
+Use `filters.permanent` instead.
+:::
+
+Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
+
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
+```tsx
+useTable({
+    permanentFilter: [
+        {
+            field: "name",
+            operator: "contains",
+            value: "Foo",
+        },
+    ],
+});
+```
+
+### ~~`defaultSetFilterBehavior`~~
+
+:::caution Deprecated
+Use `filters.defaultBehavior` instead.
+:::
+
+> Default: `merge`
+
+The filtering behavior can be set to either `"merge"` or `"replace"`.
+
+-   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+
+-   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+
+You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
+
+```tsx
+useTable({
+    defaultSetFilterBehavior: "replace",
 });
 ```
 
