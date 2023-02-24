@@ -67,6 +67,8 @@ export const useTable = <
     initialFilter,
     permanentFilter,
     defaultSetFilterBehavior,
+    filters: filtersFromProp,
+    sorters: sortersFromProp,
     syncWithLocation,
     resource,
     successNotification,
@@ -104,6 +106,8 @@ export const useTable = <
         initialPageSize,
         pagination,
         hasPagination,
+        filters: filtersFromProp,
+        sorters: sortersFromProp,
         initialSorter,
         initialFilter,
         syncWithLocation,
@@ -130,6 +134,11 @@ export const useTable = <
     const isPaginationEnabled =
         (pagination?.mode ?? hasPaginationString) !== "off";
 
+    const preferredInitialFilters = pickNotDeprecated(
+        filtersFromProp?.initial,
+        initialFilter,
+    );
+
     const { data, isFetched, isLoading } = tableQueryResult;
 
     const onChange = (
@@ -145,7 +154,7 @@ export const useTable = <
             const crudFilters = mapAntdFilterToCrudFilter(
                 tableFilters,
                 filters,
-                initialFilter,
+                preferredInitialFilters,
             );
             setFilters(crudFilters);
         }

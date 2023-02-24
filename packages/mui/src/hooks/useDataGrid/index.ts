@@ -55,7 +55,7 @@ type DataGridPropsType = Required<
 
 export type UseDataGridProps<TData, TError, TSearchVariables = unknown> = Omit<
     useTablePropsCore<TData, TError>,
-    "pagination"
+    "pagination" | "filters"
 > & {
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
     pagination?: Prettify<
@@ -65,6 +65,18 @@ export type UseDataGridProps<TData, TError, TSearchVariables = unknown> = Omit<
              * @default 25
              */
             pageSize?: number;
+        }
+    >;
+    filters?: Prettify<
+        Omit<
+            NonNullable<useTablePropsCore<TData, TError>["filters"]>,
+            "defaultBehavior"
+        > & {
+            /**
+             * Default behavior of the `setFilters` function
+             * @default "replace"
+             */
+            defaultBehavior?: "replace" | "merge";
         }
     >;
 };
@@ -93,6 +105,8 @@ export function useDataGrid<
     defaultSetFilterBehavior = "replace",
     initialFilter,
     permanentFilter,
+    filters: filtersFromProp,
+    sorters: sortersFromProp,
     syncWithLocation: syncWithLocationProp,
     resource: resourceFromProp,
     successNotification,
@@ -137,6 +151,8 @@ export function useDataGrid<
         hasPagination,
         initialSorter,
         initialFilter,
+        filters: filtersFromProp,
+        sorters: sortersFromProp,
         syncWithLocation: syncWithLocationProp,
         defaultSetFilterBehavior,
         resource: resourceFromProp,
@@ -158,6 +174,11 @@ export function useDataGrid<
     const hasPaginationString = hasPagination === false ? "off" : "server";
     const isPaginationEnabled =
         (pagination?.mode ?? hasPaginationString) !== "off";
+
+    const preferredPermanentSorters =
+        pickNotDeprecated(sortersFromProp?.permanent, permanentSorter) ?? [];
+    const preferredPermanentFilters =
+        pickNotDeprecated(filtersFromProp?.permanent, permanentFilter) ?? [];
 
     const handlePageChange = (page: number) => {
         if (isPaginationEnabled) {
@@ -221,12 +242,16 @@ export function useDataGrid<
             ...dataGridPaginationValues(),
             sortingMode: "server",
             sortModel: transformCrudSortingToSortModel(
-                differenceWith(sorters, permanentSorter ?? [], isEqual),
+                differenceWith(sorters, preferredPermanentSorters, isEqual),
             ),
             onSortModelChange: handleSortModelChange,
             filterMode: "server",
             filterModel: transformCrudFiltersToFilterModel(
-                differenceWith(muiCrudFilters, permanentFilter ?? [], isEqual),
+                differenceWith(
+                    muiCrudFilters,
+                    preferredPermanentFilters,
+                    isEqual,
+                ),
                 columnsTypes,
             ),
             onFilterModelChange: handleFilterModelChange,

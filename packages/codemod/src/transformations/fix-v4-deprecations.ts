@@ -198,11 +198,19 @@ const resourceNametoResource = (j: JSCodeshift, source: Collection) => {
     });
 };
 
-const deprecatedUseTableProps = [
+const deprecatedUseTablePaginationProps = [
     "initialCurrent",
     "initialPageSize",
     "hasPagination",
 ];
+
+const deprecatedUseTableFiltersProps = [
+    "initialFilter",
+    "permanentFilter",
+    "defaultSetFilterBehavior",
+];
+
+const deprecatedUseTableSortersProps = ["initialSorter", "permanentSorter"];
 
 const fixDeprecatedReactTableProps = (j: JSCodeshift, source: Collection) => {
     const refineReactTableImports = source.find(j.ImportDeclaration, {
@@ -249,100 +257,11 @@ const fixDeprecatedReactTableProps = (j: JSCodeshift, source: Collection) => {
             (p: Property) => (p.key as Identifier).name !== "refineCoreProps",
         );
 
-        const paginationProperties = deprecatedUseTableProps.map((prop) => {
-            const property = (
-                (hasRefineCoreProps as ObjectProperty).value as ObjectExpression
-            ).properties.find(
-                (p: Property) => (p.key as Identifier).name === prop,
-            );
-
-            if (!property) {
-                return;
-            }
-
-            if (prop === "hasPagination") {
-                return j.property(
-                    "init",
-                    j.identifier("mode"),
-                    j.literal(
-                        ((property as ObjectProperty).value as BooleanLiteral)
-                            .value
-                            ? "server"
-                            : "off",
-                    ),
-                );
-            }
-
-            if (prop === "initialCurrent") {
-                return j.property(
-                    "init",
-                    j.identifier("current"),
-                    (property as ObjectProperty).value,
-                );
-            }
-
-            if (prop === "initialPageSize") {
-                return j.property(
-                    "init",
-                    j.identifier("pageSize"),
-                    (property as ObjectProperty).value,
-                );
-            }
-
-            return;
-        });
-
-        if (paginationProperties.filter(Boolean).length === 0) {
-            return p.node;
-        }
-
-        const paginationProperty = j.property(
-            "init",
-            j.identifier("pagination"),
-            j.objectExpression(paginationProperties.filter(Boolean)),
-        );
-
-        const refineCorePropsProperty = j.property(
-            "init",
-            j.identifier("refineCoreProps"),
-            j.objectExpression([paginationProperty]),
-        );
-
-        p.node.arguments = [
-            j.objectExpression([...otherProperties, refineCorePropsProperty]),
-        ];
-
-        return p.node;
-    });
-};
-
-const fixDeprecatedUseTableProps = (j: JSCodeshift, source: Collection) => {
-    const willCheckImports = ["useTable", "useDataGrid"];
-
-    willCheckImports.forEach((hook) => {
-        const useTableHooks = source.find(j.CallExpression, {
-            callee: {
-                name: hook,
-            },
-        });
-
-        useTableHooks.replaceWith((p) => {
-            if (p.node.arguments.length === 0) {
-                return p.node;
-            }
-
-            const otherProperties = (
-                p.node.arguments[0] as ObjectExpression
-            ).properties.filter(
-                (p: Property) =>
-                    !deprecatedUseTableProps.includes(
-                        (p.key as Identifier).name,
-                    ),
-            );
-
-            const paginationProperties = deprecatedUseTableProps.map((prop) => {
+        const paginationProperties = deprecatedUseTablePaginationProps.map(
+            (prop) => {
                 const property = (
-                    p.node.arguments[0] as ObjectExpression
+                    (hasRefineCoreProps as ObjectProperty)
+                        .value as ObjectExpression
                 ).properties.find(
                     (p: Property) => (p.key as Identifier).name === prop,
                 );
@@ -383,11 +302,208 @@ const fixDeprecatedUseTableProps = (j: JSCodeshift, source: Collection) => {
                 }
 
                 return;
-            });
+            },
+        );
 
-            if (paginationProperties.filter(Boolean).length === 0) {
+        const paginationProperty = j.property(
+            "init",
+            j.identifier("pagination"),
+            j.objectExpression(paginationProperties.filter(Boolean)),
+        );
+
+        const filtersProperties = deprecatedUseTableFiltersProps.map((prop) => {
+            const property = (
+                (hasRefineCoreProps as ObjectProperty).value as ObjectExpression
+            ).properties.find(
+                (p: Property) => (p.key as Identifier).name === prop,
+            );
+
+            if (!property) {
+                return;
+            }
+
+            if (prop === "initialFilter") {
+                return j.property(
+                    "init",
+                    j.identifier("initial"),
+                    (property as ObjectProperty).value,
+                );
+            }
+
+            if (prop === "permanentFilter") {
+                return j.property(
+                    "init",
+                    j.identifier("permanent"),
+                    (property as ObjectProperty).value,
+                );
+            }
+
+            if (prop === "defaultSetFilterBehavior") {
+                return j.property(
+                    "init",
+                    j.identifier("defaultBehavior"),
+                    (property as ObjectProperty).value,
+                );
+            }
+
+            return;
+        });
+
+        const filtersProperty = j.property(
+            "init",
+            j.identifier("filters"),
+            j.objectExpression(filtersProperties.filter(Boolean)),
+        );
+
+        const sortersProperties = deprecatedUseTableSortersProps.map((prop) => {
+            const property = (
+                (hasRefineCoreProps as ObjectProperty).value as ObjectExpression
+            ).properties.find(
+                (p: Property) => (p.key as Identifier).name === prop,
+            );
+
+            if (!property) {
+                return;
+            }
+
+            if (prop === "initialSorter") {
+                return j.property(
+                    "init",
+                    j.identifier("initial"),
+                    (property as ObjectProperty).value,
+                );
+            }
+
+            if (prop === "permanentSorter") {
+                return j.property(
+                    "init",
+                    j.identifier("permanent"),
+                    (property as ObjectProperty).value,
+                );
+            }
+
+            return;
+        });
+
+        const sortersProperty = j.property(
+            "init",
+            j.identifier("sorters"),
+            j.objectExpression(sortersProperties.filter(Boolean)),
+        );
+
+        const otherRefineCoreProps = (
+            (hasRefineCoreProps as ObjectProperty).value as ObjectExpression
+        ).properties.filter(
+            (p: Property) =>
+                ![
+                    ...deprecatedUseTablePaginationProps,
+                    ...deprecatedUseTableSortersProps,
+                    ...deprecatedUseTableFiltersProps,
+                ].includes((p.key as Identifier).name),
+        );
+
+        const refineCorePropsProperty = j.property(
+            "init",
+            j.identifier("refineCoreProps"),
+            j.objectExpression(
+                [
+                    ...otherRefineCoreProps,
+                    (paginationProperty.value as ObjectExpression).properties
+                        .length > 0
+                        ? paginationProperty
+                        : null,
+                    (filtersProperty.value as ObjectExpression).properties
+                        .length > 0
+                        ? filtersProperty
+                        : null,
+                    (sortersProperty.value as ObjectExpression).properties
+                        .length > 0
+                        ? sortersProperty
+                        : null,
+                ].filter(Boolean),
+            ),
+        );
+
+        p.node.arguments = [
+            j.objectExpression([...otherProperties, refineCorePropsProperty]),
+        ];
+
+        return p.node;
+    });
+};
+
+const fixDeprecatedUseTableProps = (j: JSCodeshift, source: Collection) => {
+    const willCheckImports = ["useTable", "useDataGrid"];
+
+    willCheckImports.forEach((hook) => {
+        const useTableHooks = source.find(j.CallExpression, {
+            callee: {
+                name: hook,
+            },
+        });
+
+        useTableHooks.replaceWith((p) => {
+            if (p.node.arguments.length === 0) {
                 return p.node;
             }
+
+            const otherProperties = (
+                p.node.arguments[0] as ObjectExpression
+            ).properties.filter(
+                (p: Property) =>
+                    ![
+                        ...deprecatedUseTablePaginationProps,
+                        ...deprecatedUseTableSortersProps,
+                        ...deprecatedUseTableFiltersProps,
+                    ].includes((p.key as Identifier).name),
+            );
+
+            const paginationProperties = deprecatedUseTablePaginationProps.map(
+                (prop) => {
+                    const property = (
+                        p.node.arguments[0] as ObjectExpression
+                    ).properties.find(
+                        (p: Property) => (p.key as Identifier).name === prop,
+                    );
+
+                    if (!property) {
+                        return;
+                    }
+
+                    if (prop === "hasPagination") {
+                        return j.property(
+                            "init",
+                            j.identifier("mode"),
+                            j.literal(
+                                (
+                                    (property as ObjectProperty)
+                                        .value as BooleanLiteral
+                                ).value
+                                    ? "server"
+                                    : "off",
+                            ),
+                        );
+                    }
+
+                    if (prop === "initialCurrent") {
+                        return j.property(
+                            "init",
+                            j.identifier("current"),
+                            (property as ObjectProperty).value,
+                        );
+                    }
+
+                    if (prop === "initialPageSize") {
+                        return j.property(
+                            "init",
+                            j.identifier("pageSize"),
+                            (property as ObjectProperty).value,
+                        );
+                    }
+
+                    return;
+                },
+            );
 
             const paginationProperty = j.property(
                 "init",
@@ -395,8 +511,108 @@ const fixDeprecatedUseTableProps = (j: JSCodeshift, source: Collection) => {
                 j.objectExpression(paginationProperties.filter(Boolean)),
             );
 
+            const filtersProperties = deprecatedUseTableFiltersProps.map(
+                (prop) => {
+                    const property = (
+                        p.node.arguments[0] as ObjectExpression
+                    ).properties.find(
+                        (p: Property) => (p.key as Identifier).name === prop,
+                    );
+
+                    if (!property) {
+                        return;
+                    }
+
+                    if (prop === "initialFilter") {
+                        return j.property(
+                            "init",
+                            j.identifier("initial"),
+                            (property as ObjectProperty).value,
+                        );
+                    }
+
+                    if (prop === "permanentFilter") {
+                        return j.property(
+                            "init",
+                            j.identifier("permanent"),
+                            (property as ObjectProperty).value,
+                        );
+                    }
+
+                    if (prop === "defaultSetFilterBehavior") {
+                        return j.property(
+                            "init",
+                            j.identifier("defaultBehavior"),
+                            (property as ObjectProperty).value,
+                        );
+                    }
+
+                    return;
+                },
+            );
+
+            const filtersProperty = j.property(
+                "init",
+                j.identifier("filters"),
+                j.objectExpression(filtersProperties.filter(Boolean)),
+            );
+
+            const sortersProperties = deprecatedUseTableSortersProps.map(
+                (prop) => {
+                    const property = (
+                        p.node.arguments[0] as ObjectExpression
+                    ).properties.find(
+                        (p: Property) => (p.key as Identifier).name === prop,
+                    );
+
+                    if (!property) {
+                        return;
+                    }
+
+                    if (prop === "initialSorter") {
+                        return j.property(
+                            "init",
+                            j.identifier("initial"),
+                            (property as ObjectProperty).value,
+                        );
+                    }
+
+                    if (prop === "permanentSorter") {
+                        return j.property(
+                            "init",
+                            j.identifier("permanent"),
+                            (property as ObjectProperty).value,
+                        );
+                    }
+
+                    return;
+                },
+            );
+
+            const sortersProperty = j.property(
+                "init",
+                j.identifier("sorters"),
+                j.objectExpression(sortersProperties.filter(Boolean)),
+            );
+
             p.node.arguments = [
-                j.objectExpression([...otherProperties, paginationProperty]),
+                j.objectExpression(
+                    [
+                        ...otherProperties,
+                        (paginationProperty.value as ObjectExpression)
+                            .properties.length > 0
+                            ? paginationProperty
+                            : null,
+                        (filtersProperty.value as ObjectExpression).properties
+                            .length > 0
+                            ? filtersProperty
+                            : null,
+                        (sortersProperty.value as ObjectExpression).properties
+                            .length > 0
+                            ? sortersProperty
+                            : null,
+                    ].filter(Boolean),
+                ),
             ];
 
             return p.node;

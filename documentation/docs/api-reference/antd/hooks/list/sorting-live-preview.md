@@ -17,12 +17,14 @@ interface IProduct {
 const ProductList: React.FC = () => {
     const { listProps } = useSimpleList<IProduct>({
         // highlight-start
-        initialSorter: [
-            {
-                field: "name",
-                order: "desc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "name",
+                    order: "desc",
+                },
+            ],
+        },
         // highlight-end
     });
 

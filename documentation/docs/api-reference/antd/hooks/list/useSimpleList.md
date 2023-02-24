@@ -56,7 +56,7 @@ By default, pagination happens on the server side. If you want to do pagination 
 
 ## Sorting
 
-The `useSimpleList` hook supports the sorting feature. You can pass the `initialSorter` property to the hook to set the initial sorting state.
+The `useSimpleList` hook supports the sorting feature. You can pass the `sorters` property to the hook to set the initial and permanent sorting state.
 
 It also syncs the sorting state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
@@ -64,7 +64,7 @@ It also syncs the sorting state with the URL if you enable the [`syncWithLocatio
 
 ## Filtering
 
-The `useSimpleList` hook supports the filtering feature. You can pass the `initialFilter` property to the hook to set the initial filtering state and you change the filtering state by using the `setFilter` function.
+The `useSimpleList` hook supports the filtering feature. You can pass the `filters` property to the hook to set the initial and permanent filtering state and you change the filtering state by using the `setFilter` function.
 
 It also syncs the filtering state with the URL if you enable the [`syncWithLocation`](#syncWithLocation).
 
@@ -184,81 +184,89 @@ useSimpleList({
 });
 ```
 
-### `initialSorter`
+### `sorters.initial`
 
-Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
-
-[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
-
-```tsx
-useSimpleList({
-    initialSorter: [
-        {
-            field: "name",
-            order: "asc",
-        },
-    ],
-});
-```
-
-### `permanentSorter`
-
-Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
+Sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
 
 [Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useSimpleList({
-    permanentSorter: [
-        {
-            field: "name",
-            order: "asc",
-        },
-    ],
+    sorters: {
+        initial: [
+            {
+                field: "name",
+                order: "asc",
+            },
+        ],
+    },
 });
 ```
 
-### `initialFilter`
+### `sorters.permanent`
 
-Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
+Sets the permanent value of the sorter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `sorters.initial` prop.
+
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+
+```tsx
+useSimpleList({
+    sorters: {
+        permanent: [
+            {
+                field: "name",
+                order: "asc",
+            },
+        ],
+    },
+});
+```
+
+### `filters.initial`
+
+Sets the initial value of the filter. The `initial` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `filters.permanent` prop.
 
 [Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useSimpleList({
-    initialFilter: [
-        {
-            field: "name",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+    filters: {
+        initial: [
+            {
+                field: "name",
+                operator: "contains",
+                value: "Foo",
+            },
+        ],
+    },
 });
 ```
 
-### `permanentFilter`
+### `filters.permanent`
 
-Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
+Sets the permanent value of the filter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `filters.initial` prop.
 
 [Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useSimpleList({
-    permanentFilter: [
-        {
-            field: "name",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+    filters: {
+        permanent: [
+            {
+                field: "name",
+                operator: "contains",
+                value: "Foo",
+            },
+        ],
+    },
 });
 ```
 
-### `defaultSetFilterBehavior`
+### `filters.defaultBehavior`
 
 > Default: `merge`
 
-The filter behavior can be set to either `"merge"` or `"replace"`.
+The filtering behavior can be set to either `"merge"` or `"replace"`.
 
 -   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
@@ -268,7 +276,9 @@ You can also override the default value by using the second parameter of the [`s
 
 ```tsx
 useSimpleList({
-    defaultSetFilterBehavior: "replace",
+    filters: {
+        defaultBehavior: "replace",
+    },
 });
 ```
 
@@ -515,6 +525,114 @@ Determines whether to use server-side pagination or not.
 ```tsx
 useSimpleList({
     hasPagination: false,
+});
+```
+
+### ~~`initialSorter`~~
+
+:::caution Deprecated
+Use `sorters.initial` instead.
+:::
+
+Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
+
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+
+```tsx
+useSimpleList({
+    initialSorter: [
+        {
+            field: "name",
+            order: "asc",
+        },
+    ],
+});
+```
+
+### ~~`permanentSorter`~~
+
+:::caution Deprecated
+Use `sorters.permanent` instead.
+:::
+
+Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
+
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+
+```tsx
+useSimpleList({
+    permanentSorter: [
+        {
+            field: "name",
+            order: "asc",
+        },
+    ],
+});
+```
+
+### ~~`initialFilter`~~
+
+:::caution Deprecated
+Use `filters.initial` instead.
+:::
+
+Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
+
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
+```tsx
+useSimpleList({
+    initialFilter: [
+        {
+            field: "name",
+            operator: "contains",
+            value: "Foo",
+        },
+    ],
+});
+```
+
+### ~~`permanentFilter`~~
+
+:::caution Deprecated
+Use `filters.permanent` instead.
+:::
+
+Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
+
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
+```tsx
+useSimpleList({
+    permanentFilter: [
+        {
+            field: "name",
+            operator: "contains",
+            value: "Foo",
+        },
+    ],
+});
+```
+
+### ~~`defaultSetFilterBehavior`~~
+
+:::caution Deprecated
+Use `filters.defaultBehavior` instead.
+:::
+
+> Default: `merge`
+
+The filtering behavior can be set to either `"merge"` or `"replace"`.
+
+-   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+
+-   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+
+You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
+
+```tsx
+useSimpleList({
+    defaultSetFilterBehavior: "replace",
 });
 ```
 
