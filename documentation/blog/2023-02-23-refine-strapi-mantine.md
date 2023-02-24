@@ -47,7 +47,7 @@ function App() {
 }
 ```
 
-## What is Mantine
+## What is Mantine?
 
 [Mantine](https://mantine.dev/) is a free, open-source MIT-licensed React components library. Mantine can help you build fully functional and accessible web applications fast. You can use it with most modern React frameworks such as Next, Gatsby, and Remix.  
 
