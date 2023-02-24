@@ -16,9 +16,9 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
-        </RefineChakra.ChakraProvider>
+        </ChakraUI.ChakraProvider>
     );
 };
 ```
@@ -42,11 +42,10 @@ import { ShowButton } from "@pankod/refine-chakra-ui";
 import { useShow } from "@pankod/refine-core";
 import {
     Show,
-    Heading,
-    Text,
     // highlight-next-line
     MarkdownField,
 } from "@pankod/refine-chakra-ui";
+import { Heading, Text } from "@chakra-ui/react";
 
 const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
@@ -59,7 +58,6 @@ const PostShow: React.FC = () => {
                 Id
             </Heading>
             <Text mt={2}>{record?.id}</Text>
-
             <Heading as="h5" size="sm" mt={4}>
                 Content
             </Heading>
