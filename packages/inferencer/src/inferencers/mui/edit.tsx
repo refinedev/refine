@@ -1,5 +1,10 @@
 import * as RefineMui from "@pankod/refine-mui";
 import * as RefineReactHookForm from "@pankod/refine-react-hook-form";
+import * as EmotionReact from "@emotion/react";
+import * as EmotionStyled from "@emotion/styled";
+import * as MuiLab from "@mui/lab";
+import * as MuiMaterial from "@mui/material";
+import * as MuiXDataGrid from "@mui/x-data-grid";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -42,7 +47,7 @@ export const renderer = ({
     const recordName = getVariableName(resource.label ?? resource.name, "Data");
     const imports: Array<ImportElement> = [
         ["Edit", "@pankod/refine-mui"],
-        ["Box", "@pankod/refine-mui"],
+        ["Box", "@mui/material"],
         ["useForm", "@pankod/refine-react-hook-form"],
     ];
 
@@ -91,7 +96,7 @@ export const renderer = ({
     const renderRelationFields = (field: InferField) => {
         if (field.relation && field.resource) {
             imports.push(
-                ["Autocomplete", "@pankod/refine-mui"],
+                ["Autocomplete", "@mui/material"],
                 ["Controller", "@pankod/refine-react-hook-form"],
             );
             const variableName = getVariableName(
@@ -202,10 +207,10 @@ export const renderer = ({
             field.type === "date" ||
             field.type === "richtext"
         ) {
-            imports.push(["TextField", "@pankod/refine-mui"]);
+            imports.push(["TextField", "@mui/material"]);
 
             if (field.multiple) {
-                imports.push(["Box", "@pankod/refine-mui"]);
+                imports.push(["Box", "@mui/material"]);
 
                 const val = dotAccessor(field.key, "${index}", field.accessor);
 
@@ -297,13 +302,13 @@ export const renderer = ({
     const booleanFields = (field: InferField) => {
         if (field.type === "boolean") {
             imports.push(
-                ["Checkbox", "@pankod/refine-mui"],
-                ["FormControlLabel", "@pankod/refine-mui"],
+                ["Checkbox", "@mui/material"],
+                ["FormControlLabel", "@mui/material"],
                 ["Controller", "@pankod/refine-react-hook-form"],
             );
 
             if (field.multiple) {
-                imports.push(["Box", "@pankod/refine-mui"]);
+                imports.push(["Box", "@mui/material"]);
 
                 const val = dotAccessor(field.key, "${index}", field.accessor);
 
@@ -456,6 +461,11 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
             "RefineReactHookForm",
             RefineReactHookForm,
         ],
+        ["@emotion/react", "EmotionReact", EmotionReact],
+        ["@emotion/styled", "EmotionStyled", EmotionStyled],
+        ["@mui/lab", "MuiLab", MuiLab],
+        ["@mui/material", "MuiMaterial", MuiMaterial],
+        ["@mui/x-data-grid", "MuiXDataGrid", MuiXDataGrid],
     ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,

@@ -4,15 +4,17 @@ import {
     ErrorComponent,
     ReadyPage,
     LightTheme,
-    ThemeProvider,
     notificationProvider,
     RefineSnackbarProvider,
+    AuthPage,
+} from "@pankod/refine-mui";
+import {
     CssBaseline,
     GlobalStyles,
-    AuthPage,
     FormControlLabel,
     Checkbox,
-} from "@pankod/refine-mui";
+} from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { useFormContext } from "@pankod/refine-react-hook-form";

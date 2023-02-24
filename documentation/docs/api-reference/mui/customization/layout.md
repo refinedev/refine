@@ -27,7 +27,11 @@ Let's start with creating a `<CustomLayout/>` component using `LayoutProps` from
 import React from "react";
 import { LayoutProps } from "@pankod/refine-core";
 // highlight-next-line
-import { Sider as DefaultSider, Header as DefaultHeader, Box } from "@pankod/refine-mui";
+import {
+    Sider as DefaultSider,
+    Header as DefaultHeader,
+} from "@pankod/refine-mui";
+import { Box } from "@mui/material";
 
 export const CustomLayout: React.FC<LayoutProps> = ({
     Sider,
@@ -105,17 +109,17 @@ After this, `<Refine/>` will use the `CustomLayout` instead of it's default `Lay
 ```tsx live previewOnly disableScroll
 import React from "react";
 import { Refine, LayoutProps } from "@pankod/refine-core";
-import { ReadyPage, Sider as DefaultSider, Header as DefaultHeader, Box } from "@pankod/refine-mui";
+import {
+    ReadyPage,
+    Sider as DefaultSider,
+    Header as DefaultHeader,
+} from "@pankod/refine-mui";
+import { Box } from "@mui/material";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    List,
-    TextField,
-} from "@pankod/refine-mui";
+import { useDataGrid, List } from "@pankod/refine-mui";
+import { DataGrid, GridColumns, TextField } from "@mui-x-data-grid";
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -130,7 +134,7 @@ const columns: GridColumns = [
         headerName: "Slug",
         minWidth: 100,
         flex: 1,
-    }
+    },
 ];
 
 const PostsList: React.FC = () => {
@@ -148,16 +152,17 @@ interface IPost {
     title: string;
 }
 
-
-const Wrapper = ({children}) => {
+const Wrapper = ({ children }) => {
     return (
         <RefineMui.ThemeProvider theme={RefineMui.LightTheme}>
             <RefineMui.CssBaseline />
-            <RefineMui.GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+            <RefineMui.GlobalStyles
+                styles={{ html: { WebkitFontSmoothing: "auto" } }}
+            />
             {children}
         </RefineMui.ThemeProvider>
-    )
-}
+    );
+};
 
 const CustomLayout: React.FC<LayoutProps> = ({
     Sider,
@@ -211,13 +216,17 @@ const App: React.FC = () => {
                 {
                     name: "posts",
                     list: PostsList,
-                }
+                },
             ]}
         />
     );
 };
 
-render(<Wrapper><App /></Wrapper>);
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
 ```
 
 :::info

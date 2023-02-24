@@ -13,15 +13,10 @@ The [`ThemeProvider`](https://mui.com/material-ui/customization/theming/#theme-p
 
 ```tsx title="src/App.tsx
 import { Refine } from "@pankod/refine-core";
-import {
-    Layout,
-    ErrorComponent,
-    ReadyPage,
-    // highlight-next-line
-    ThemeProvider,
-    CssBaseline,
-    GlobalStyles,
-} from "@pankod/refine-mui";
+import { Layout, ErrorComponent, ReadyPage } from "@pankod/refine-mui";
+// highlight-next-line
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
+
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
@@ -68,14 +63,8 @@ If you don't wrap your app with [`ThemeProvider`](https://mui.com/material-ui/cu
 
 ```tsx live previewOnly disableScroll
 import { Refine } from "@pankod/refine-core";
-import {
-    Layout,
-    ErrorComponent,
-    ReadyPage,
-    ThemeProvider,
-    CssBaseline,
-    GlobalStyles,
-} from "@pankod/refine-mui";
+import { Layout, ErrorComponent, ReadyPage } from "@pankod/refine-mui";
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
@@ -104,16 +93,17 @@ const App: React.FC = () => {
     );
 };
 
-render(
-    <App />
-);
+render(<App />);
 ```
 
 In our example, we will be using LightTheme.
 
 The design will change to match the `LightTheme`, so you can enjoy these amazing interfaces without any hassle!
 
-```tsx live 
+````tsx live
+```tsx live
+
+```tsx live
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
@@ -121,12 +111,10 @@ import {
     Layout,
     ErrorComponent,
     ReadyPage,
-    ThemeProvider,
-    CssBaseline,
-    GlobalStyles,
     // highlight-next-line
     LightTheme,
 } from "@pankod/refine-mui";
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
@@ -157,10 +145,8 @@ const App: React.FC = () => {
 };
 // visible-block-end
 
-render(
-    <App />
-);
-```
+render(<App />);
+````
 
 ## Overriding Variables
 
@@ -197,12 +183,10 @@ import {
     Layout,
     ErrorComponent,
     ReadyPage,
-    ThemeProvider,
-    CssBaseline,
-    GlobalStyles,
     // highlight-next-line
     LightTheme,
 } from "@pankod/refine-mui";
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
@@ -244,19 +228,15 @@ const App: React.FC = () => {
     );
 };
 
-render(
-    <App />
-);
+render(<App />);
 ```
 
 You can also change the Default Font Family. Refine uses the [`Montserrat`](https://fonts.google.com/specimen/Montserrat) font family by default and you can change it like this:
 
 ```tsx title="src/App.tsx"
-import {
-    LightTheme,
-    // highlight-next-line
-    TypographyVariantsOptions,
-} from "@pankod/refine-mui";
+import { LightTheme } from "@pankod/refine-mui";
+// highlight-next-line
+import { TypographyVariantsOptions } from "@mui/material";
 
 // highlight-start
 const typography: TypographyVariantsOptions = {
@@ -322,18 +302,10 @@ For more information, you can review [`responsiveFontSizes()`](https://mui.com/m
 ```tsx live
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import {
-    Layout,
-    ErrorComponent,
-    ReadyPage,
-    ThemeProvider,
-    CssBaseline,
-    GlobalStyles,
-    // highlight-next-line
-    createTheme,
-    // highlight-next-line
-    responsiveFontSizes,
-} from "@pankod/refine-mui";
+import { Layout, ErrorComponent, ReadyPage } from "@pankod/refine-mui";
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
+// highlight-next-line
+import { createTheme, responsiveFontSizes } from "@mui/material";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
@@ -378,11 +350,8 @@ const App: React.FC = () => {
 };
 // visible-block-end
 
-render(
-    <App />
-);
+render(<App />);
 ```
-
 
 ### Create Theme with Custom Variables
 
@@ -407,10 +376,10 @@ export interface CustomTheme {
     };
 }
 
-declare module "@pankod/refine-mui" {
-    interface Theme extends import("@pankod/refine-mui").Theme, CustomTheme {}
+declare module "@mui/material/styles" {
+    interface Theme extends import("@mui/material/styles").Theme, CustomTheme {}
     interface ThemeOptions
-        extends import("@pankod/refine-mui").ThemeOptions,
+        extends import("@mui/material/styles").ThemeOptions,
             CustomTheme {}
 }
 ```
@@ -428,20 +397,19 @@ For example:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import {
-    Layout,
-    ErrorComponent,
-    ReadyPage,
-    ThemeProvider,
-    CssBaseline,
-    GlobalStyles,
-    // highlight-next-line
-    useMediaQuery,
-} from "@pankod/refine-mui";
+import { Layout, ErrorComponent, ReadyPage } from "@pankod/refine-mui";
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
+// highlight-next-line
+import { useMediaQuery } from "@mui/material";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import { SampleList, SampleCreate, SampleEdit, SampleShow } from "pages/samples";
+import {
+    SampleList,
+    SampleCreate,
+    SampleEdit,
+    SampleShow,
+} from "pages/samples";
 
 const App: React.FC = () => {
     // highlight-next-line
@@ -495,7 +463,7 @@ import React, {
     useEffect,
     useState,
 } from "react";
-import { ThemeProvider } from "@pankod/refine-mui";
+import { ThemeProvider } from "@mui/material";
 import { DarkTheme, LightTheme } from "@pankod/refine-mui";
 
 type ColorModeContextType = {
@@ -561,20 +529,21 @@ import {
     Layout,
     ErrorComponent,
     ReadyPage,
-    CssBaseline,
     RefineSnackbarProvider,
     notificationProvider,
-    AppBar,
-    IconButton,
-    Box,
-    Stack,
 } from "@pankod/refine-mui";
+import { CssBaseline, AppBar, IconButton, Box, Stack } from "@mui/material";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { LightModeOutlines, DarkModeOutlined } from "./icons";
 
-import { SampleList, SampleCreate, SampleEdit, SampleShow } from "pages/samples";
+import {
+    SampleList,
+    SampleCreate,
+    SampleEdit,
+    SampleShow,
+} from "pages/samples";
 import { ColorModeContextProvider, ColorModeContext } from "./contexts";
 
 const Header = () => {
@@ -647,20 +616,21 @@ import {
     Layout,
     ErrorComponent,
     ReadyPage,
-    CssBaseline,
     RefineSnackbarProvider,
     notificationProvider,
-    AppBar,
-    IconButton,
-    Box,
-    Stack,
 } from "@pankod/refine-mui";
+import { CssBaseline, AppBar, IconButton, Box, Stack } from "@mui/material";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { LightModeOutlines, DarkModeOutlined } from "./icons";
 
-import { SampleList, SampleCreate, SampleEdit, SampleShow } from "pages/samples";
+import {
+    SampleList,
+    SampleCreate,
+    SampleEdit,
+    SampleShow,
+} from "pages/samples";
 import { ColorModeContextProvider, ColorModeContext } from "./contexts";
 
 const Header = () => {
@@ -668,7 +638,10 @@ const Header = () => {
     return (
         <AppBar color="default" position="sticky">
             <Stack width="100%" direction="row" justifyContent="end">
-                <Box marginRight="20px" sx={{ display: "flex", alignItems: "center" }}>
+                <Box
+                    marginRight="20px"
+                    sx={{ display: "flex", alignItems: "center" }}
+                >
                     <div style={{ fontSize: "12px" }}>
                         click to toggle the theme →
                     </div>
@@ -736,15 +709,13 @@ import {
     Layout,
     ErrorComponent,
     ReadyPage,
-    ThemeProvider,
-    CssBaseline,
-    GlobalStyles,
     LightTheme,
     // highlight-start
     RefineSnackbarProvider,
-    notificationProvider
+    notificationProvider,
     // highlight-end
 } from "@pankod/refine-mui";
+import { ThemeProvider, CssBaseline, GlobalStyles } from "@mui/material";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
@@ -757,7 +728,9 @@ const App: React.FC = () => {
             <RefineSnackbarProvider>
                 <Refine
                     routerProvider={routerProvider}
-                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
                     notificationProvider={notificationProvider}
                     ReadyPage={ReadyPage}
                     Layout={Layout}
@@ -772,16 +745,14 @@ const App: React.FC = () => {
                         },
                     ]}
                 />
-            {/* highlight-next-line */}
+                {/* highlight-next-line */}
             </RefineSnackbarProvider>
         </ThemeProvider>
     );
 };
 // visible-block-end
 
-render(
-    <App />
-);
+render(<App />);
 ```
 
 :::tip
@@ -789,7 +760,6 @@ If you want to use notistack snackbars with the default style, simply wrap Refin
 :::
 
 [create-refine-app]: /docs/getting-started/quickstart.md
-
 
 ```tsx live shared
 import React, {
@@ -801,38 +771,39 @@ import React, {
 import {
     Create,
     useDataGrid,
-    DataGrid,
-    GridColumns,
     EditButton,
     ShowButton,
     DeleteButton,
     List,
     MarkdownField,
     Show,
-    Typography,
     DateField,
     NumberField,
     TextFieldComponent,
     Edit,
     useAutocomplete,
-    TextField,
-    Autocomplete,
 } from "@pankod/refine-mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { Typography, TextField, Autocomplete } from "@mui/material";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
 
 import { useMany, useShow, useOne } from "@pankod/refine-core";
 
 const LightModeOutlined = (props) => {
     return (
-        <svg width={24} height={24} viewBox="0 0 24 24" fill="white" {...props}><path d="M12 9c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3m0-2c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"></path></svg>
+        <svg width={24} height={24} viewBox="0 0 24 24" fill="white" {...props}>
+            <path d="M12 9c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3m0-2c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"></path>
+        </svg>
     );
-}
+};
 
 const DarkModeOutlined = (props) => {
     return (
-        <svg width={24} height={24} viewBox="0 0 24 24" {...props}><path d="M9.37 5.51c-.18.64-.27 1.31-.27 1.99 0 4.08 3.32 7.4 7.4 7.4.68 0 1.35-.09 1.99-.27C17.45 17.19 14.93 19 12 19c-3.86 0-7-3.14-7-7 0-2.93 1.81-5.45 4.37-6.49zM12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"></path></svg>
+        <svg width={24} height={24} viewBox="0 0 24 24" {...props}>
+            <path d="M9.37 5.51c-.18.64-.27 1.31-.27 1.99 0 4.08 3.32 7.4 7.4 7.4.68 0 1.35-.09 1.99-.27C17.45 17.19 14.93 19 12 19c-3.86 0-7-3.14-7-7 0-2.93 1.81-5.45 4.37-6.49zM12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"></path>
+        </svg>
     );
-}
+};
 
 type ColorModeContextType = {
     mode: string;
@@ -875,9 +846,15 @@ const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
                 mode,
             }}
         >
-            <RefineMui.ThemeProvider theme={mode === "light" ? RefineMui.LightTheme : RefineMui.DarkTheme}>
+            <MuiMaterial.ThemeProvider
+                theme={
+                    mode === "light"
+                        ? RefineMui.LightTheme
+                        : RefineMui.DarkTheme
+                }
+            >
                 {children}
-            </RefineMui.ThemeProvider>
+            </MuiMaterial.ThemeProvider>
         </ColorModeContext.Provider>
     );
 };

@@ -21,12 +21,11 @@ Use it like any other Ant Design [`<Button>`][button]. You can use it with [useE
 import { useExport } from "@pankod/refine-core";
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     List,
     // highlight-next-line
     ExportButton,
 } from "@pankod/refine-mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -41,12 +40,9 @@ const PostsList: React.FC = () => {
     return (
         <List
             // highlight-start
-            headerButtons={(
-                <ExportButton
-                    onClick={triggerExport}
-                    loading={exportLoading}
-                />
-            )}
+            headerButtons={
+                <ExportButton onClick={triggerExport} loading={exportLoading} />
+            }
             // highlight-end
         >
             <DataGrid {...dataGridProps} columns={columns} autoHeight />
@@ -116,7 +112,7 @@ render(
 
 :::tip External Props
 It also accepts all props of Material UI [LoadingButton](https://mui.com/material-ui/api/loading-button/#main-content).
-:::                             
+:::
 
 [button]: https://mui.com/material-ui/api/loading-button/#main-content
 [useexport]: /api-reference/core/hooks/import-export/useExport.md

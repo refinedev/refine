@@ -201,7 +201,7 @@ Sometimes, you may want to filter the options on the client-side. You can do thi
 
 ```tsx
 // highlight-next-line
-import { createFilterOptions } from "@pankod/refine-mui";
+import { createFilterOptions } from "@mui/material";
 
 const { autocompleteProps } = useAutocomplete({
     resource: "categories",
