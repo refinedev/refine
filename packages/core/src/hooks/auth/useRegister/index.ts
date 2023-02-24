@@ -26,7 +26,7 @@ export type UseRegisterProps<TVariables> = {
     v3LegacyAuthProviderCompatible?: false;
     mutationOptions?: Omit<
         UseMutationOptions<AuthActionResponse, Error, TVariables, unknown>,
-        "mutationFn" | "onSuccess"
+        "mutationFn"
     >;
 };
 
@@ -39,7 +39,7 @@ export type UseRegisterCombinedProps<TVariables> = {
             TVariables,
             unknown
         >,
-        "mutationFn" | "onSuccess"
+        "mutationFn"
     >;
 };
 

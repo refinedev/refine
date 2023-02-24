@@ -23,7 +23,7 @@ export type UseLoginProps<TVariables> = {
     v3LegacyAuthProviderCompatible?: false;
     mutationOptions?: Omit<
         UseMutationOptions<AuthActionResponse, Error, TVariables, unknown>,
-        "mutationFn" | "onSuccess"
+        "mutationFn"
     >;
 };
 
@@ -36,7 +36,7 @@ export type UseLoginCombinedProps<TVariables> = {
             TVariables,
             unknown
         >,
-        "mutationFn" | "onSuccess"
+        "mutationFn"
     >;
 };
 

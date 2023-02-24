@@ -29,7 +29,7 @@ export type UseUpdatePasswordProps<TVariables extends UpdatePasswordFormTypes> =
         v3LegacyAuthProviderCompatible?: false;
         mutationOptions?: Omit<
             UseMutationOptions<AuthActionResponse, Error, TVariables, unknown>,
-            "mutationFn" | "onSuccess"
+            "mutationFn"
         >;
     };
 
@@ -44,7 +44,7 @@ export type UseUpdatePasswordCombinedProps<
             TVariables,
             unknown
         >,
-        "mutationFn" | "onSuccess"
+        "mutationFn"
     >;
 };
 

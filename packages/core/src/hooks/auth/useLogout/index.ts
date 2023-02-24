@@ -35,7 +35,7 @@ export type UseLogoutProps<TVariables> = {
             (TVariables & Variables) | void,
             unknown
         >,
-        "mutationFn" | "onSuccess"
+        "mutationFn"
     >;
 };
 
@@ -48,7 +48,7 @@ export type UseLogoutCombinedProps<TVariables> = {
             (TVariables & Variables) | void,
             unknown
         >,
-        "mutationFn" | "onSuccess"
+        "mutationFn"
     >;
 };
 

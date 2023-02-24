@@ -25,7 +25,7 @@ export type UseForgotPasswordProps<TVariables> = {
     v3LegacyAuthProviderCompatible?: false;
     mutationOptions?: Omit<
         UseMutationOptions<AuthActionResponse, Error, TVariables, unknown>,
-        "mutationFn" | "onSuccess"
+        "mutationFn"
     >;
 };
 
@@ -38,7 +38,7 @@ export type UseForgotPasswordCombinedProps<TVariables> = {
             TVariables,
             unknown
         >,
-        "mutationFn" | "onSuccess"
+        "mutationFn"
     >;
 };
 
