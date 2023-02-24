@@ -8,24 +8,28 @@ import {
 } from "@pankod/refine-react-table";
 import {
     useForm,
+    SaveButton,
+    useSelect,
+    DeleteButton,
+    List,
+    DateField,
+    EditButton,
+} from "@pankod/refine-mantine";
+
+import {
     Button,
     Table,
-    SaveButton,
     Group,
-    useSelect,
     Select,
     TextInput,
     ActionIcon,
     Checkbox,
-    DeleteButton,
-    List,
     ScrollArea,
     Pagination,
     Space,
     Box,
-    DateField,
-    EditButton,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
+
 import { RichTextEditor } from "@mantine/rte";
 import { IconChevronDown, IconChevronRight } from "@tabler/icons";
 

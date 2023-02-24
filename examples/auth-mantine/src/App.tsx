@@ -1,15 +1,14 @@
 import { AuthProvider, Refine } from "@pankod/refine-core";
 import {
     AuthPage,
-    MantineProvider,
-    NotificationsProvider,
     Layout,
     ErrorComponent,
     ReadyPage,
     notificationProvider,
     LightTheme,
-    Global,
 } from "@pankod/refine-mantine";
+import { NotificationsProvider } from "@mantine/notifications";
+import { MantineProvider, Global } from "@mantine/core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons";
