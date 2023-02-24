@@ -107,6 +107,36 @@
         },
         "dayjs": {
             "optional": true
+        },
+        "antd": {
+            "optional": true
+        },
+        "@emotion/styled": {
+            "optional": true
+        },
+        "@mui/lab": {
+            "optional": true
+        },
+        "@mui/material": {
+            "optional": true
+        },
+        "@mui/x-data-grid": {
+            "optional": true
+        },
+        "@emotion/react": {
+            "optional": true
+        },
+        "@mantine/core": {
+            "optional": true
+        },
+        "@mantine/hooks": {
+            "optional": true
+        },
+        "@mantine/form": {
+            "optional": true
+        },
+        "@mantine/notifications": {
+            "optional": true
         }
     },
     "devDependencies": {
