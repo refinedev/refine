@@ -1,4 +1,4 @@
-import { LiveProvider, pickNotDeprecated } from "@pankod/refine-core";
+import { LiveProvider } from "@pankod/refine-core";
 import { Client } from "graphql-ws";
 
 import {
@@ -19,10 +19,7 @@ export const liveProvider = (client: Client): LiveProvider => {
             const {
                 resource,
                 meta,
-                metaData,
                 pagination,
-                hasPagination,
-                sort,
                 sorters,
                 filters,
                 subscriptionType,
@@ -30,7 +27,7 @@ export const liveProvider = (client: Client): LiveProvider => {
                 ids,
             } = params ?? {};
 
-            if (!pickNotDeprecated(meta, metaData)) {
+            if (!meta) {
                 throw new Error(
                     "[useSubscription]: `meta` is required in `params` for graphql subscriptions",
                 );
@@ -55,11 +52,8 @@ export const liveProvider = (client: Client): LiveProvider => {
                 id,
                 resource,
                 filters,
-                hasPagination,
-                meta: pickNotDeprecated(meta, metaData),
-                metaData: pickNotDeprecated(meta, metaData),
+                meta,
                 pagination,
-                sort,
                 sorters,
             });
 

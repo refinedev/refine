@@ -1,13 +1,19 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { useNavigation } from "@hooks";
-import { IAuthContext } from "../../interfaces";
+import { ILegacyAuthContext, IAuthBindingsContext } from "../../interfaces";
 
-export const AuthContext = React.createContext<IAuthContext>({});
+/**
+ * @deprecated `LegacyAuthContext` is deprecated with refine@4, use `AuthBindingsContext` instead, however, we still support `LegacyAuthContext` for backward compatibility.
+ */
+export const LegacyAuthContext = React.createContext<ILegacyAuthContext>({});
 
-export const AuthContextProvider: React.FC<
-    IAuthContext & {
+/**
+ * @deprecated `LegacyAuthContextProvider` is deprecated with refine@4, use `AuthBindingsContextProvider` instead, however, we still support `LegacyAuthContextProvider` for backward compatibility.
+ */
+export const LegacyAuthContextProvider: React.FC<
+    ILegacyAuthContext & {
         children?: React.ReactNode;
     }
 > = ({ children, isProvided, ...authOperations }) => {
@@ -15,8 +21,8 @@ export const AuthContextProvider: React.FC<
     const queryClient = useQueryClient();
 
     const invalidateAuthStore = () => {
-        queryClient.invalidateQueries(["useAuthenticated"]);
-        queryClient.invalidateQueries(["getUserIdentity"]);
+        queryClient.invalidateQueries(["useIsAuthenticated"]);
+        queryClient.invalidateQueries(["getIdentity"]);
         queryClient.invalidateQueries(["usePermissions"]);
     };
 
@@ -68,7 +74,7 @@ export const AuthContextProvider: React.FC<
     };
 
     return (
-        <AuthContext.Provider
+        <LegacyAuthContext.Provider
             value={{
                 ...authOperations,
                 login: loginFunc,
@@ -79,6 +85,98 @@ export const AuthContextProvider: React.FC<
             }}
         >
             {children}
-        </AuthContext.Provider>
+        </LegacyAuthContext.Provider>
     );
+};
+
+export const AuthBindingsContext = React.createContext<
+    Partial<IAuthBindingsContext>
+>({});
+
+export const AuthBindingsContextProvider: React.FC<
+    PropsWithChildren<IAuthBindingsContext>
+> = ({ children, isProvided, ...authBindings }) => {
+    const queryClient = useQueryClient();
+
+    const invalidateAuthStore = () => {
+        queryClient.invalidateQueries(["useIsAuthenticated"]);
+        queryClient.invalidateQueries(["getIdentity"]);
+        queryClient.invalidateQueries(["usePermissions"]);
+    };
+
+    const handleLogin = async (params: unknown) => {
+        try {
+            const result = await authBindings.login?.(params);
+
+            invalidateAuthStore();
+
+            return Promise.resolve(result);
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    };
+
+    const handleRegister = async (params: unknown) => {
+        try {
+            const result = await authBindings.register?.(params);
+
+            invalidateAuthStore();
+
+            return Promise.resolve(result);
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    };
+
+    const handleLogout = async (params: unknown) => {
+        try {
+            const result = await authBindings.logout?.(params);
+
+            invalidateAuthStore();
+
+            return Promise.resolve(result);
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    };
+
+    const handleCheck = async (params: unknown) => {
+        try {
+            const result = await authBindings.check?.(params);
+
+            return Promise.resolve(result);
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    };
+
+    return (
+        <AuthBindingsContext.Provider
+            value={{
+                ...authBindings,
+                login: handleLogin as IAuthBindingsContext["login"],
+                logout: handleLogout as IAuthBindingsContext["logout"],
+                check: handleCheck as IAuthBindingsContext["check"],
+                register: handleRegister as IAuthBindingsContext["register"],
+                isProvided,
+            }}
+        >
+            {children}
+        </AuthBindingsContext.Provider>
+    );
+};
+
+/**
+ * @deprecated `useLegacyAuthContext` is deprecated with refine@4, use `useAuthBindingsContext` instead, however, we still support `useLegacyAuthContext` for backward compatibility.
+ */
+export const useLegacyAuthContext = () => {
+    const context = React.useContext(LegacyAuthContext);
+
+    return context;
+};
+
+export const useAuthBindingsContext = () => {
+    const context = React.useContext(AuthBindingsContext);
+
+    return context;
 };

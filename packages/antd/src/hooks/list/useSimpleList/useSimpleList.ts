@@ -1,11 +1,9 @@
 import { Children, createElement, Fragment } from "react";
-import { QueryObserverResult } from "@tanstack/react-query";
 import { ListProps, FormProps, Form, Grid } from "antd";
 
 import {
     BaseRecord,
     CrudFilters,
-    GetListResponse,
     SuccessErrorNotification,
     HttpError,
     LiveModeProps,
@@ -19,23 +17,20 @@ import { PaginationLink } from "@hooks/table/useTable/paginationLink";
 import { PaginationConfig } from "antd/lib/pagination";
 
 export type useSimpleListProps<TData, TError, TSearchVariables> =
-    ListProps<TData> &
-        useTablePropsCore<TData, TError> & {
-            onSearch?: (
-                data: TSearchVariables,
-            ) => CrudFilters | Promise<CrudFilters>;
-        } & SuccessErrorNotification &
+    useTablePropsCore<TData, TError> & {
+        onSearch?: (
+            data: TSearchVariables,
+        ) => CrudFilters | Promise<CrudFilters>;
+    } & SuccessErrorNotification &
         LiveModeProps;
 
 export type useSimpleListReturnType<
     TData extends BaseRecord = BaseRecord,
     TSearchVariables = unknown,
-> = {
+> = Omit<useTableReturnType<TData>, "tableQueryResult"> & {
     listProps: ListProps<TData>;
-    queryResult: QueryObserverResult<GetListResponse<TData>>;
+    queryResult: useTableReturnType["tableQueryResult"];
     searchFormProps: FormProps<TSearchVariables>;
-    filters: CrudFilters;
-    setFilters: useTableReturnType<TData>["setFilters"];
 };
 
 /**
@@ -54,56 +49,60 @@ export const useSimpleList = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
->(
-    {
-        resource: resourceFromProp,
-        initialCurrent,
-        initialPageSize,
-        hasPagination = true,
-        initialSorter,
-        permanentSorter,
-        initialFilter,
-        permanentFilter,
-        defaultSetFilterBehavior,
-        onSearch,
-        queryOptions,
-        syncWithLocation: syncWithLocationProp,
-        successNotification,
-        errorNotification,
-        liveMode: liveModeFromProp,
-        onLiveEvent,
-        liveParams,
-        meta,
-        metaData,
-        dataProviderName,
-        ...listProps
-    }: useSimpleListProps<TData, TError, TSearchVariables> = {
-        hasPagination: true,
-    },
-): useSimpleListReturnType<TData, TSearchVariables> => {
+>({
+    resource,
+    initialCurrent,
+    initialPageSize,
+    pagination,
+    hasPagination = true,
+    initialSorter,
+    permanentSorter,
+    initialFilter,
+    permanentFilter,
+    defaultSetFilterBehavior,
+    filters: filtersFromProp,
+    sorters: sortersFromProp,
+    onSearch,
+    queryOptions,
+    syncWithLocation,
+    successNotification,
+    errorNotification,
+    liveMode: liveModeFromProp,
+    onLiveEvent,
+    liveParams,
+    meta,
+    metaData,
+    dataProviderName,
+}: useSimpleListProps<
+    TData,
+    TError,
+    TSearchVariables
+> = {}): useSimpleListReturnType<TData, TSearchVariables> => {
     const {
+        sorters,
         sorter,
         filters,
         current,
         pageSize,
+        pageCount,
         setFilters,
         setCurrent,
         setPageSize,
+        setSorter,
+        setSorters,
         createLinkForSyncWithLocation,
         tableQueryResult: queryResult,
     } = useTableCore({
-        resource: resourceFromProp,
+        resource,
         initialSorter,
         permanentSorter,
         initialFilter,
         permanentFilter,
+        filters: filtersFromProp,
+        sorters: sortersFromProp,
         defaultSetFilterBehavior,
-        initialCurrent: listProps.pagination
-            ? listProps.pagination.current
-            : initialCurrent,
-        initialPageSize: listProps.pagination
-            ? listProps.pagination.pageSize
-            : initialPageSize,
+        initialCurrent,
+        initialPageSize,
         queryOptions,
         successNotification,
         errorNotification,
@@ -112,11 +111,15 @@ export const useSimpleList = <
         liveParams,
         meta: pickNotDeprecated(meta, metaData),
         metaData: pickNotDeprecated(meta, metaData),
-        syncWithLocation: syncWithLocationProp,
+        syncWithLocation,
         dataProviderName,
-        // @ts-expect-error currently boolean casting is not supported in overloaded types.
-        hasPagination: hasPagination,
+        pagination,
+        hasPagination,
     });
+
+    const hasPaginationString = hasPagination === false ? "off" : "server";
+    const isPaginationEnabled =
+        (pagination?.mode ?? hasPaginationString) !== "off";
 
     const breakpoint = Grid.useBreakpoint();
 
@@ -127,7 +130,7 @@ export const useSimpleList = <
     const { data, isFetched, isLoading } = queryResult;
 
     const onChange = (page: number, pageSize?: number): void => {
-        if (hasPagination) {
+        if (isPaginationEnabled) {
             setCurrent(page);
             setPageSize(pageSize || 10);
         }
@@ -136,7 +139,7 @@ export const useSimpleList = <
     const onFinish = async (values: TSearchVariables) => {
         if (onSearch) {
             const searchFilters = await onSearch(values);
-            if (hasPagination) {
+            if (isPaginationEnabled) {
                 setCurrent?.(1);
             }
             return setFilters(searchFilters);
@@ -144,7 +147,7 @@ export const useSimpleList = <
     };
 
     const antdPagination = (): false | PaginationConfig => {
-        if (hasPagination) {
+        if (isPaginationEnabled) {
             return {
                 itemRender: (page, type, element) => {
                     const link = createLinkForSyncWithLocation({
@@ -152,7 +155,7 @@ export const useSimpleList = <
                             pageSize,
                             current: page,
                         },
-                        sorter,
+                        sorters,
                         filters,
                     });
 
@@ -193,7 +196,6 @@ export const useSimpleList = <
                 simple: !breakpoint.sm,
                 total: data?.total,
                 onChange,
-                ...listProps.pagination,
             };
         }
 
@@ -206,7 +208,6 @@ export const useSimpleList = <
             onFinish,
         },
         listProps: {
-            ...listProps,
             dataSource: data?.data,
             loading: liveMode === "auto" ? isLoading : !isFetched,
             pagination: antdPagination(),
@@ -214,5 +215,15 @@ export const useSimpleList = <
         queryResult,
         filters,
         setFilters,
+        sorter,
+        setSorter,
+        sorters,
+        setSorters,
+        current,
+        setCurrent,
+        pageSize,
+        setPageSize,
+        pageCount,
+        createLinkForSyncWithLocation,
     };
 };

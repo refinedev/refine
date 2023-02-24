@@ -317,9 +317,9 @@ export const CustomSider: React.FC = () => {
 
 ## Product List Page
 
-Now we can list the products of the selected store according to the `storeId` information by filtering it. We can do this filtering by using the `permanetFilter` property within the **refine**'s `useSimpleList` hook.
+Now we can list the products of the selected store according to the `storeId` information by filtering it. We can do this filtering by using the `filters.permanent` property within the **refine**'s `useSimpleList` hook.
 
-We separate the products of different stores by using the `permanentFilter` with the `storeId` we get from the Store Context. So we can control more than single content in one application.
+We separate the products of different stores by using the `filters.permanent` with the `storeId` we get from the Store Context. So we can control more than single content in one application.
 
 ```tsx
 //highlight-start
@@ -327,7 +327,9 @@ const [store] = useContext(StoreContext);
 //highlight-end
 const { listProps } = useSimpleList<IProduct>({
     //highlight-start
-    permanentFilter: [{ field: "storeId", operator: "eq", value: store }],
+    filters: {
+        permanent: [{ field: "storeId", operator: "eq", value: store }],
+    },
     //highlight-end
 });
 ```
@@ -356,7 +358,9 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
     //highlight-start
     const [store] = useContext(StoreContext);
     const { listProps } = useSimpleList<IProduct>({
-        permanentFilter: [{ field: "storeId", operator: "eq", value: store }],
+        filters: {
+            permanent: [{ field: "storeId", operator: "eq", value: store }],
+        },
     });
     //highlight-end
 

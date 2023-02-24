@@ -1,16 +1,17 @@
 /* eslint-disable react/display-name */
-import React from "react";
+import React, { useMemo } from "react";
 import { Route, Routes, Navigate, Outlet } from "react-router-dom";
 import {
     LoginPage as DefaultLoginPage,
     ErrorComponent,
     LayoutWrapper,
-    useAuthenticated,
     useResource,
     useRefineContext,
     useRouterContext,
     CanAccess,
     ResourceRouterParams,
+    useActiveAuthProvider,
+    useIsAuthenticated,
 } from "@pankod/refine-core";
 import { RefineRouteProps } from "./index";
 
@@ -169,9 +170,23 @@ export const RouteProvider = ({
 
     const { routes: customRoutes } = useRouterContext();
 
-    const { isFetching, isError } = useAuthenticated({
-        type: "routeProvider",
+    const authProvider = useActiveAuthProvider();
+    const {
+        isFetching,
+        isError,
+        data: authData,
+    } = useIsAuthenticated({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
+
+    const isAuthenticated = useMemo(() => {
+        if (authProvider?.isLegacy) {
+            const hasAuthError = isError || authData?.error;
+            return hasAuthError ? false : true;
+        }
+
+        return authData?.authenticated;
+    }, [authData, isError, authProvider?.isLegacy]);
 
     if (isFetching) {
         return (
@@ -180,7 +195,7 @@ export const RouteProvider = ({
             </Routes>
         );
     }
-    const isAuthenticated = isError ? false : true;
+
     const CustomPathAfterLogin: React.FC = (): JSX.Element | null => {
         const { pathname, search } = location;
         const toURL = `${pathname}${search}`;

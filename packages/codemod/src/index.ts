@@ -34,6 +34,7 @@ const transformsWithPostTransform = [
     "refine2-to-refine3",
     "separate-imports-antd",
     "separate-imports-chakra",
+    "separate-imports-mantine",
 ];
 
 export function checkGitStatus(force) {
@@ -123,6 +124,10 @@ export function runTransform({ files, flags, transformer }) {
 
 const TRANSFORMER_INQUIRER_CHOICES = [
     {
+        name: "fix-v4-deprecations: Fix deprecations with 4.x.x",
+        value: "fix-v4-deprecations",
+    },
+    {
         name: "antd4-to-antd5: Transform from antd 4.x.x to at least 5.x.x",
         value: "antd4-to-antd5",
     },
@@ -151,12 +156,24 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         value: "separate-imports-antd",
     },
     {
+        name: "separate-imports-mantine: Moves `Mantine` components exported by `refine` into `Mantine`",
+        value: "separate-imports-mantine",
+    },
+    {
         name: "separate-imports-mui: Moves `MUI` components exported by `refine` into `MUI`",
         value: "separate-imports-mui",
     },
     {
         name: "separate-imports-chakra: Moves `Chakra-UI` components exported by `refine` into `Chakra-UI`",
         value: "separate-imports-chakra",
+    },
+    {
+        name: "add-v3LegacyAuthProviderCompatible-true-to-auth-hooks: Add v3LegacyAuthProviderCompatible:true to auth hooks",
+        value: "add-v3LegacyAuthProviderCompatible-true-to-auth-hooks",
+    },
+    {
+        name: "authProvider-to-legacyAuthProvider: Transform authProvider to use legacyAuthProvider",
+        value: "authProvider-to-legacyAuthProvider",
     },
 ];
 

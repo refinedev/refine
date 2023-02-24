@@ -61,8 +61,10 @@ describe("useTable Hook", () => {
                 useTable({
                     columns,
                     refineCoreProps: {
-                        initialCurrent: 2,
-                        initialPageSize: 1,
+                        pagination: {
+                            current: 2,
+                            pageSize: 1,
+                        },
                     },
                 }),
             {
@@ -94,18 +96,20 @@ describe("useTable Hook", () => {
                 useTable({
                     columns,
                     refineCoreProps: {
-                        initialFilter: [
-                            {
-                                field: "title",
-                                operator: "contains",
-                                value: "Hello2",
-                            },
-                            {
-                                field: "active",
-                                operator: "eq",
-                                value: true,
-                            },
-                        ],
+                        filters: {
+                            initial: [
+                                {
+                                    field: "title",
+                                    operator: "contains",
+                                    value: "Hello2",
+                                },
+                                {
+                                    field: "active",
+                                    operator: "eq",
+                                    value: true,
+                                },
+                            ],
+                        },
                     },
                 }),
             {
@@ -179,10 +183,12 @@ describe("useTable Hook", () => {
                 useTable({
                     columns,
                     refineCoreProps: {
-                        initialSorter: [
-                            { field: "id", order: "asc" },
-                            { field: "title", order: "desc" },
-                        ],
+                        sorters: {
+                            initial: [
+                                { field: "id", order: "asc" },
+                                { field: "title", order: "desc" },
+                            ],
+                        },
                     },
                 }),
             {
@@ -240,20 +246,22 @@ describe("useTable Hook", () => {
                 useTable({
                     columns,
                     refineCoreProps: {
-                        initialFilter: [
-                            {
-                                field: "title",
-                                operator: "contains",
-                                value: "Hello",
-                            },
-                        ],
-                        permanentFilter: [
-                            {
-                                field: "category.id",
-                                operator: "eq",
-                                value: 1,
-                            },
-                        ],
+                        filters: {
+                            initial: [
+                                {
+                                    field: "title",
+                                    operator: "contains",
+                                    value: "Hello",
+                                },
+                            ],
+                            permanent: [
+                                {
+                                    field: "category.id",
+                                    operator: "eq",
+                                    value: 1,
+                                },
+                            ],
+                        },
                     },
                 }),
             {
@@ -327,18 +335,20 @@ describe("useTable Hook", () => {
                 useTable({
                     columns,
                     refineCoreProps: {
-                        initialSorter: [
-                            {
-                                field: "title",
-                                order: "asc",
-                            },
-                        ],
-                        permanentSorter: [
-                            {
-                                field: "category.id",
-                                order: "desc",
-                            },
-                        ],
+                        sorters: {
+                            initial: [
+                                {
+                                    field: "title",
+                                    order: "asc",
+                                },
+                            ],
+                            permanent: [
+                                {
+                                    field: "category.id",
+                                    order: "desc",
+                                },
+                            ],
+                        },
                     },
                 }),
             {

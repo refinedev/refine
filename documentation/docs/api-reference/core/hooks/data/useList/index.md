@@ -140,13 +140,15 @@ useList({
 });
 ```
 
-### `config.hasPagination`
+#### `mode`
 
-`hasPagination` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to determine whether to use server-side pagination or not.
+It can be `"off"`, `"client"` or `"server"`. It is used to determine whether to use server-side pagination or not.
 
 ```tsx
 useList({
-    hasPagination: false,
+    pagination: {
+        mode: "off",
+    },
 });
 ```
 
@@ -283,8 +285,22 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 ### ~~`config`~~
 
 :::caution Deprecated
-Use `pagination`, `hasPagination`, `sorters` and `filters` instead.
+Use `pagination`, `sorters`, and `filters` instead.
 :::
+
+### ~~`hasPagination`~~
+
+:::caution Deprecated
+Use `pagination.mode` instead.
+:::
+
+`hasPagination` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to determine whether to use server-side pagination or not.
+
+```tsx
+useList({
+    hasPagination: false,
+});
+```
 
 ## Return Values
 

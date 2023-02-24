@@ -28,12 +28,14 @@ interface IPost {
 const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableQueryResult, sorter, setSorter } = useTable<IPost, HttpError>({
         // highlight-start
-        initialSorter: [
-            {
-                field: "createdAt",
-                order: "desc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "createdAt",
+                    order: "desc",
+                },
+            ],
+        },
         // highlight-end
     });
 

@@ -5,10 +5,10 @@ import {
 } from "@tanstack/react-query";
 
 import {
-    useCheckError,
     useDataProvider,
     useHandleNotification,
     useTranslate,
+    useOnError,
 } from "@hooks";
 import {
     CreateResponse,
@@ -17,7 +17,7 @@ import {
     SuccessErrorNotification,
     MetaQuery,
 } from "../../interfaces";
-import { pickNotDeprecated } from "@definitions/helpers";
+import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
 
 interface UseCustomMutationConfig {
     headers?: {};
@@ -91,7 +91,10 @@ export const useCustomMutation = <
     TError,
     TVariables
 > = {}): UseCustomMutationReturnType<TData, TError, TVariables> => {
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: checkError } = useOnError({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const handleNotification = useHandleNotification();
     const dataProvider = useDataProvider();
     const translate = useTranslate();

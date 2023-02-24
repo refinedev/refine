@@ -5,7 +5,9 @@ import { AppBar, Toolbar, Button, List, ListItem } from "react95";
 export const Footer: React.FC = () => {
     const [open, setOpen] = useState(false);
 
-    const { mutate: logout } = useLogout();
+    const { mutate: logout } = useLogout({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const { list } = useNavigation();
 
     return (

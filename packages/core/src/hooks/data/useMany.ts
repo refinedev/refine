@@ -16,16 +16,17 @@ import {
 import {
     useResource,
     useTranslate,
-    useCheckError,
     useResourceSubscription,
     useHandleNotification,
     useDataProvider,
+    useOnError,
 } from "@hooks";
 import {
     queryKeys,
     pickDataProvider,
     handleMultiple,
     pickNotDeprecated,
+    useActiveAuthProvider,
 } from "@definitions/helpers";
 
 export type UseManyProps<TData, TError> = {
@@ -102,7 +103,10 @@ export const useMany = <
     );
 
     const translate = useTranslate();
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: checkError } = useOnError({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const handleNotification = useHandleNotification();
 
     const isEnabled =

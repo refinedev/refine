@@ -16,16 +16,18 @@ import {
 } from "../../interfaces";
 import {
     useResource,
-    useCheckError,
     useHandleNotification,
     useResourceSubscription,
     useTranslate,
     useDataProvider,
+    useOnError,
 } from "@hooks";
 import {
     queryKeys,
     pickDataProvider,
     pickNotDeprecated,
+    useActiveAuthProvider,
+    handlePaginationParams,
 } from "@definitions/helpers";
 
 export interface UseListConfig {
@@ -52,6 +54,7 @@ export type UseListProps<TData, TError> = {
     pagination?: Pagination;
     /**
      * Whether to use server-side pagination or not
+     * @deprecated `hasPagination` property is deprecated. Use `pagination.mode` instead.
      */
     hasPagination?: boolean;
     /**
@@ -118,37 +121,67 @@ export const useList = <
 > => {
     const { resources } = useResource();
     const dataProvider = useDataProvider();
-    const queryKey = queryKeys(
-        resource,
-        pickDataProvider(resource, dataProviderName, resources),
-        pickNotDeprecated(meta, metaData),
-        pickNotDeprecated(meta, metaData),
-    );
-    const { getList } = dataProvider(
-        pickDataProvider(resource, dataProviderName, resources),
-    );
-
     const translate = useTranslate();
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: checkError } = useOnError({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const handleNotification = useHandleNotification();
+
+    const pickedDataProvider = pickDataProvider(
+        resource,
+        dataProviderName,
+        resources,
+    );
+    const preferredMeta = pickNotDeprecated(meta, metaData);
+    const prefferedFilters = pickNotDeprecated(filters, config?.filters);
+    const prefferedSorters = pickNotDeprecated(sorters, config?.sort);
+    const prefferedHasPagination = pickNotDeprecated(
+        hasPagination,
+        config?.hasPagination,
+    );
+    const prefferedPagination = handlePaginationParams({
+        pagination,
+        configPagination: config?.pagination,
+        hasPagination: prefferedHasPagination,
+    });
+    const isServerPagination = prefferedPagination.mode === "server";
+    const notificationValues = {
+        meta: preferredMeta,
+        metaData: preferredMeta,
+        filters: prefferedFilters,
+        hasPagination: isServerPagination,
+        pagination: prefferedPagination,
+        sorters: prefferedSorters,
+        config: {
+            ...config,
+            sort: prefferedSorters,
+        },
+    };
 
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
+
+    const queryKey = queryKeys(
+        resource,
+        pickedDataProvider,
+        preferredMeta,
+        preferredMeta,
+    );
+
+    const { getList } = dataProvider(pickedDataProvider);
 
     useResourceSubscription({
         resource,
         types: ["*"],
         params: {
-            meta: pickNotDeprecated(meta, metaData),
-            metaData: pickNotDeprecated(meta, metaData),
-            pagination: pickNotDeprecated(pagination, config?.pagination),
-            hasPagination: pickNotDeprecated(
-                hasPagination,
-                config?.hasPagination,
-            ),
-            sort: pickNotDeprecated(sorters, config?.sort),
-            sorters: pickNotDeprecated(sorters, config?.sort),
-            filters: pickNotDeprecated(filters, config?.filters),
+            meta: preferredMeta,
+            metaData: preferredMeta,
+            pagination: prefferedPagination,
+            hasPagination: isServerPagination,
+            sort: prefferedSorters,
+            sorters: prefferedSorters,
+            filters: prefferedFilters,
             subscriptionType: "useList",
             ...liveParams,
         },
@@ -160,12 +193,11 @@ export const useList = <
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
         queryKey.list({
-            filters: pickNotDeprecated(filters, config?.filters),
-            hasPagination: pickNotDeprecated(
-                hasPagination,
-                config?.hasPagination,
-            ),
-            pagination: pickNotDeprecated(pagination, config?.pagination),
+            filters: prefferedFilters,
+            hasPagination: isServerPagination,
+            ...(isServerPagination && {
+                pagination: prefferedPagination,
+            }),
             ...(sorters && {
                 sorters,
             }),
@@ -176,16 +208,13 @@ export const useList = <
         ({ queryKey, pageParam, signal }) => {
             return getList<TData>({
                 resource,
-                pagination: pickNotDeprecated(pagination, config?.pagination),
-                hasPagination: pickNotDeprecated(
-                    hasPagination,
-                    config?.hasPagination,
-                ),
-                filters: pickNotDeprecated(filters, config?.filters),
-                sort: pickNotDeprecated(sorters, config?.sort),
-                sorters: pickNotDeprecated(sorters, config?.sort),
+                pagination: prefferedPagination,
+                hasPagination: isServerPagination,
+                filters: prefferedFilters,
+                sort: prefferedSorters,
+                sorters: prefferedSorters,
                 meta: {
-                    ...(pickNotDeprecated(meta, metaData) || {}),
+                    ...(preferredMeta || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -193,7 +222,7 @@ export const useList = <
                     },
                 },
                 metaData: {
-                    ...(pickNotDeprecated(meta, metaData) || {}),
+                    ...(preferredMeta || {}),
                     queryContext: {
                         queryKey,
                         pageParam,
@@ -204,6 +233,28 @@ export const useList = <
         },
         {
             ...queryOptions,
+            select: (rawData) => {
+                let data = rawData;
+
+                const { current, mode, pageSize } = prefferedPagination;
+
+                if (mode === "client") {
+                    data = {
+                        ...data,
+                        data: data.data.slice(
+                            (current - 1) * pageSize,
+                            current * pageSize,
+                        ),
+                        total: data.total,
+                    };
+                }
+
+                if (queryOptions?.select) {
+                    return queryOptions?.select?.(data);
+                }
+
+                return data;
+            },
             onSuccess: (data) => {
                 queryOptions?.onSuccess?.(data);
 
@@ -211,33 +262,7 @@ export const useList = <
                     typeof successNotification === "function"
                         ? successNotification(
                               data,
-                              {
-                                  meta: pickNotDeprecated(meta, metaData),
-                                  metaData: pickNotDeprecated(meta, metaData),
-                                  filters: pickNotDeprecated(
-                                      filters,
-                                      config?.filters,
-                                  ),
-                                  hasPagination: pickNotDeprecated(
-                                      hasPagination,
-                                      config?.hasPagination,
-                                  ),
-                                  pagination: pickNotDeprecated(
-                                      pagination,
-                                      config?.pagination,
-                                  ),
-                                  sorters: pickNotDeprecated(
-                                      sorters,
-                                      config?.sort,
-                                  ),
-                                  config: {
-                                      ...config,
-                                      sort: pickNotDeprecated(
-                                          sorters,
-                                          config?.sort,
-                                      ),
-                                  },
-                              },
+                              notificationValues,
                               resource,
                           )
                         : successNotification;
@@ -250,37 +275,7 @@ export const useList = <
 
                 const notificationConfig =
                     typeof errorNotification === "function"
-                        ? errorNotification(
-                              err,
-                              {
-                                  meta: pickNotDeprecated(meta, metaData),
-                                  metaData: pickNotDeprecated(meta, metaData),
-                                  filters: pickNotDeprecated(
-                                      filters,
-                                      config?.filters,
-                                  ),
-                                  hasPagination: pickNotDeprecated(
-                                      hasPagination,
-                                      config?.hasPagination,
-                                  ),
-                                  pagination: pickNotDeprecated(
-                                      pagination,
-                                      config?.pagination,
-                                  ),
-                                  sorters: pickNotDeprecated(
-                                      sorters,
-                                      config?.sort,
-                                  ),
-                                  config: {
-                                      ...config,
-                                      sort: pickNotDeprecated(
-                                          sorters,
-                                          config?.sort,
-                                      ),
-                                  },
-                              },
-                              resource,
-                          )
+                        ? errorNotification(err, notificationValues, resource)
                         : errorNotification;
 
                 handleNotification(notificationConfig, {

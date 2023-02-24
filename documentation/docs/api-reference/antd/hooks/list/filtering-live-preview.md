@@ -16,13 +16,15 @@ interface IProduct {
 
 const ProductList: React.FC = () => {
     const { listProps, setFilters } = useSimpleList<IProduct>({
-        initialFilter: [
-            {
-                field: "name",
-                operator: "contains",
-                value: "Awesome",
-            },
-        ],
+        filters: {
+            initial: [
+                {
+                    field: "name",
+                    operator: "contains",
+                    value: "Awesome",
+                },
+            ],
+        },
     });
 
     return (

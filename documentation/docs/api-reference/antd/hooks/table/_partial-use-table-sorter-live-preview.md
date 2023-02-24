@@ -30,11 +30,13 @@ interface IPost {
 const PostList: React.FC<IResourceComponentsProps> = () => {
     // highlight-start
     const { tableProps, sorter } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
         ],
     });
     // highlight-end

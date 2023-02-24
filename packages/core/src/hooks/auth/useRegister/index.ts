@@ -1,21 +1,80 @@
-import React from "react";
 import {
     useMutation,
     UseMutationOptions,
     UseMutationResult,
 } from "@tanstack/react-query";
 
-import { AuthContext } from "@contexts/auth";
+import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { useNavigation, useNotification } from "@hooks";
 
-import { IAuthContext, TRegisterData } from "../../../interfaces";
+import {
+    AuthActionResponse,
+    OpenNotificationParams,
+    TLoginData,
+    TRegisterData,
+} from "../../../interfaces";
 
-export type UseRegisterProps<TVariables> = {
+export type UseRegisterLegacyProps<TVariables> = {
+    v3LegacyAuthProviderCompatible: true;
     mutationOptions?: Omit<
         UseMutationOptions<TRegisterData, Error, TVariables, unknown>,
         "mutationFn" | "onError" | "onSuccess"
     >;
 };
+
+export type UseRegisterProps<TVariables> = {
+    v3LegacyAuthProviderCompatible?: false;
+    mutationOptions?: Omit<
+        UseMutationOptions<AuthActionResponse, Error, TVariables, unknown>,
+        "mutationFn"
+    >;
+};
+
+export type UseRegisterCombinedProps<TVariables> = {
+    v3LegacyAuthProviderCompatible: boolean;
+    mutationOptions?: Omit<
+        UseMutationOptions<
+            AuthActionResponse | TRegisterData,
+            Error,
+            TVariables,
+            unknown
+        >,
+        "mutationFn"
+    >;
+};
+
+export type UseRegisterLegacyReturnType<TVariables> = UseMutationResult<
+    TRegisterData,
+    Error,
+    TVariables,
+    unknown
+>;
+
+export type UseRegisterReturnType<TVariables> = UseMutationResult<
+    AuthActionResponse,
+    Error,
+    TVariables,
+    unknown
+>;
+
+export type UseRegisterCombinedReturnType<TVariables> = UseMutationResult<
+    AuthActionResponse | TLoginData,
+    Error,
+    TVariables,
+    unknown
+>;
+
+export function useRegister<TVariables = {}>(
+    props: UseRegisterLegacyProps<TVariables>,
+): UseRegisterLegacyReturnType<TVariables>;
+
+export function useRegister<TVariables = {}>(
+    props?: UseRegisterProps<TVariables>,
+): UseRegisterReturnType<TVariables>;
+
+export function useRegister<TVariables = {}>(
+    props?: UseRegisterCombinedProps<TVariables>,
+): UseRegisterCombinedReturnType<TVariables>;
 
 /**
  * `useRegister` calls `register` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
@@ -26,26 +85,48 @@ export type UseRegisterProps<TVariables> = {
  * @typeParam TVariables - Values for mutation function. default `{}`
  *
  */
-export const useRegister = <TVariables = {}>({
+export function useRegister<TVariables = {}>({
+    v3LegacyAuthProviderCompatible,
     mutationOptions,
-}: UseRegisterProps<TVariables> = {}): UseMutationResult<
-    TRegisterData,
-    Error,
-    TVariables,
-    unknown
-> => {
+}: UseRegisterProps<TVariables> | UseRegisterLegacyProps<TVariables> = {}):
+    | UseRegisterReturnType<TVariables>
+    | UseRegisterLegacyReturnType<TVariables> {
     const { replace } = useNavigation();
-    const { register: registerFromContext } =
-        React.useContext<IAuthContext>(AuthContext);
-
+    const { register: legacyRegisterFromContext } = useLegacyAuthContext();
+    const { register: registerFromContext } = useAuthBindingsContext();
     const { close, open } = useNotification();
 
-    const queryResponse = useMutation<
-        TRegisterData,
+    const mutation = useMutation<
+        AuthActionResponse,
         Error,
         TVariables,
         unknown
     >(["useRegister"], registerFromContext, {
+        onSuccess: ({ success, redirectTo, error }) => {
+            if (success) {
+                close?.("register-error");
+            }
+
+            if (error || !success) {
+                open?.(buildNotification(error));
+            }
+
+            if (redirectTo) {
+                replace(redirectTo);
+            }
+        },
+        onError: (error: any) => {
+            open?.(buildNotification(error));
+        },
+        ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
+    });
+
+    const v3LegacyAuthProviderCompatibleMutation = useMutation<
+        TRegisterData,
+        Error,
+        TVariables,
+        unknown
+    >(["useRegister"], legacyRegisterFromContext, {
         onSuccess: (redirectPathFromAuth) => {
             if (redirectPathFromAuth !== false) {
                 if (redirectPathFromAuth) {
@@ -57,15 +138,21 @@ export const useRegister = <TVariables = {}>({
             close?.("register-error");
         },
         onError: (error: any) => {
-            open?.({
-                message: error?.name || "Register Error",
-                description: error?.message || "Error while registering",
-                key: "register-error",
-                type: "error",
-            });
+            open?.(buildNotification(error));
         },
-        ...mutationOptions,
+        ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
     });
 
-    return queryResponse;
+    return v3LegacyAuthProviderCompatible
+        ? v3LegacyAuthProviderCompatibleMutation
+        : mutation;
+}
+
+const buildNotification = (error?: Error): OpenNotificationParams => {
+    return {
+        message: error?.name || "Register Error",
+        description: error?.message || "Error while registering",
+        key: "register-error",
+        type: "error",
+    };
 };

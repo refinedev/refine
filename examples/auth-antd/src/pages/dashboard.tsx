@@ -9,8 +9,12 @@ export const DashboardPage: React.FC = () => {
         id: string;
         name: string;
         avatar: string;
-    }>();
-    const permissions = usePermissions();
+    }>({
+        v3LegacyAuthProviderCompatible: true,
+    });
+    const permissions = usePermissions({
+        v3LegacyAuthProviderCompatible: true,
+    });
 
     return (
         <Row gutter={20}>

@@ -2,18 +2,21 @@ import React from "react";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 import { GetManyResponse, useMany } from "@pankod/refine-core";
 import {
-    Box,
-    Group,
     List,
-    ScrollArea,
-    Table,
-    Pagination,
     EditButton,
     DeleteButton,
     useModalForm as useDrawerForm,
-    Select,
     DateField,
 } from "@pankod/refine-mantine";
+
+import {
+    Box,
+    Group,
+    ScrollArea,
+    Table,
+    Pagination,
+    Select,
+} from "@mantine/core";
 
 import { CreatePostDrawer, EditPostDrawer } from "../../components";
 import { ColumnFilter, ColumnSorter } from "../../components/table";

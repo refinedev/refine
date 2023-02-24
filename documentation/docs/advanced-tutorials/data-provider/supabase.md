@@ -362,12 +362,14 @@ import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "asc",
+                },
+            ],
+        },
         meta: {
             select: "*, categories(title)",
         },
@@ -1210,9 +1212,11 @@ It gets the posts where the `title` of the `categories` is "Beginning". Also the
 const { tableProps, sorter } = useTable({
     resource: "posts",
     //highlight-start
-    initialFilter: [
-        { field: "categories.title", operator: "eq", value: "Beginning" },
-    ],
+    filters: {
+        initial: [
+            { field: "categories.title", operator: "eq", value: "Beginning" },
+        ],
+    },
     meta: {
         select: "*, categories!inner(title)",
     },

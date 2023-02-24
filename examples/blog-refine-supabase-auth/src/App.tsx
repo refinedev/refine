@@ -15,7 +15,7 @@ function App() {
                 ...routerProvider,
             }}
             dataProvider={dataProvider(supabaseClient)}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             resources={[{ name: "countries", list: Countries }]}
             LoginPage={LoginPage}
             Layout={Layout}

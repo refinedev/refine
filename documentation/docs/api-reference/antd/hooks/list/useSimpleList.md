@@ -51,12 +51,12 @@ return (
 ```
 
 :::info
-To disable pagination, you can set `hasPagination` property to `false` which is `true` by default. If `hasPagination` has been set to `false`, pagination elements will be hidden in the `<List>` and you can handle the pagination on the client-side by overriding the `pagination` property in `listProps`.
+By default, pagination happens on the server side. If you want to do pagination handling on the client side, you can pass the pagination.mode property and set it to "client". Also, you can disable the pagination by setting the "off".
 :::
 
 ## Sorting
 
-The `useSimpleList` hook supports the sorting feature. You can pass the `initialSorter` property to the hook to set the initial sorting state.
+The `useSimpleList` hook supports the sorting feature. You can pass the `sorters` property to the hook to set the initial and permanent sorting state.
 
 It also syncs the sorting state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
@@ -64,7 +64,7 @@ It also syncs the sorting state with the URL if you enable the [`syncWithLocatio
 
 ## Filtering
 
-The `useSimpleList` hook supports the filtering feature. You can pass the `initialFilter` property to the hook to set the initial filtering state and you change the filtering state by using the `setFilter` function.
+The `useSimpleList` hook supports the filtering feature. You can pass the `filters` property to the hook to set the initial and permanent filtering state and you change the filtering state by using the `setFilter` function.
 
 It also syncs the filtering state with the URL if you enable the [`syncWithLocation`](#syncWithLocation).
 
@@ -138,7 +138,7 @@ useSimpleList({
 });
 ```
 
-### `initialCurrent`
+### `pagination.current`
 
 > Default: `1`
 
@@ -146,97 +146,127 @@ Sets the initial value of the page index.
 
 ```tsx
 useSimpleList({
-    initialCurrent: 2, // This will cause the list to initially display the data for page 2, rather than the default of page 1
+    pagination: {
+        current: 2,
+    },
 });
 ```
 
-### `initialPageSize`
+### `pagination.pageSize`
 
 > Default: `10`
 
-Sets the initial value of the page size. By default, the page size is 10.
+Sets the initial value of the page size.
 
 ```tsx
 useSimpleList({
-    initialPageSize: 20, // This will cause the list to initially display 20 rows per page, rather than the default of 10
+    pagination: {
+        pageSize: 20,
+    },
 });
 ```
 
-### `initialSorter`
+### `pagination.mode`
 
-Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
+> Default: `"server"`
+
+It can be `"off"`, `"server"` or `"client"`.
+
+-   **"off":** Pagination is disabled. All records will be fetched.
+-   **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
+-   **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
+
+```tsx
+useSimpleList({
+    pagination: {
+        mode: "client",
+    },
+});
+```
+
+### `sorters.initial`
+
+Sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
 
 [Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useSimpleList({
-    initialSorter: [
-        {
-            field: "name",
-            order: "asc",
-        },
-    ],
+    sorters: {
+        initial: [
+            {
+                field: "name",
+                order: "asc",
+            },
+        ],
+    },
 });
 ```
 
-### `permanentSorter`
+### `sorters.permanent`
 
-Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
+Sets the permanent value of the sorter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `sorters.initial` prop.
 
 [Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useSimpleList({
-    permanentSorter: [
-        {
-            field: "name",
-            order: "asc",
-        },
-    ],
+    sorters: {
+        permanent: [
+            {
+                field: "name",
+                order: "asc",
+            },
+        ],
+    },
 });
 ```
 
-### `initialFilter`
+### `filters.initial`
 
-Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
+Sets the initial value of the filter. The `initial` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `filters.permanent` prop.
 
 [Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useSimpleList({
-    initialFilter: [
-        {
-            field: "name",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+    filters: {
+        initial: [
+            {
+                field: "name",
+                operator: "contains",
+                value: "Foo",
+            },
+        ],
+    },
 });
 ```
 
-### `permanentFilter`
+### `filters.permanent`
 
-Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
+Sets the permanent value of the filter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `filters.initial` prop.
 
 [Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useSimpleList({
-    permanentFilter: [
-        {
-            field: "name",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+    filters: {
+        permanent: [
+            {
+                field: "name",
+                operator: "contains",
+                value: "Foo",
+            },
+        ],
+    },
 });
 ```
 
-### `defaultSetFilterBehavior`
+### `filters.defaultBehavior`
 
 > Default: `merge`
 
-The filter behavior can be set to either `"merge"` or `"replace"`.
+The filtering behavior can be set to either `"merge"` or `"replace"`.
 
 -   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
 
@@ -246,19 +276,9 @@ You can also override the default value by using the second parameter of the [`s
 
 ```tsx
 useSimpleList({
-    defaultSetFilterBehavior: "replace",
-});
-```
-
-### `hasPagination`
-
-> Default: `false`
-
-Determines whether to use server-side pagination or not.
-
-```tsx
-useSimpleList({
-    hasPagination: false,
+    filters: {
+        defaultBehavior: "replace",
+    },
 });
 ```
 
@@ -460,6 +480,162 @@ return (
 );
 ```
 
+### ~~`initialCurrent`~~
+
+:::caution Deprecated
+Use `pagination.current` instead.
+:::
+
+> Default: `1`
+
+Sets the initial value of the page index.
+
+```tsx
+useSimpleList({
+    initialCurrent: 2,
+});
+```
+
+### ~~`initialPageSize`~~
+
+:::caution Deprecated
+Use `pagination.pageSize` instead.
+:::
+
+> Default: `10`
+
+Sets the initial value of the page size.
+
+```tsx
+useSimpleList({
+    initialPageSize: 20,
+});
+```
+
+### ~~`hasPagination`~~
+
+:::caution Deprecated
+Use `pagination.mode` instead.
+:::
+
+> Default: `true`
+
+Determines whether to use server-side pagination or not.
+
+```tsx
+useSimpleList({
+    hasPagination: false,
+});
+```
+
+### ~~`initialSorter`~~
+
+:::caution Deprecated
+Use `sorters.initial` instead.
+:::
+
+Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
+
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+
+```tsx
+useSimpleList({
+    initialSorter: [
+        {
+            field: "name",
+            order: "asc",
+        },
+    ],
+});
+```
+
+### ~~`permanentSorter`~~
+
+:::caution Deprecated
+Use `sorters.permanent` instead.
+:::
+
+Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
+
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+
+```tsx
+useSimpleList({
+    permanentSorter: [
+        {
+            field: "name",
+            order: "asc",
+        },
+    ],
+});
+```
+
+### ~~`initialFilter`~~
+
+:::caution Deprecated
+Use `filters.initial` instead.
+:::
+
+Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
+
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
+```tsx
+useSimpleList({
+    initialFilter: [
+        {
+            field: "name",
+            operator: "contains",
+            value: "Foo",
+        },
+    ],
+});
+```
+
+### ~~`permanentFilter`~~
+
+:::caution Deprecated
+Use `filters.permanent` instead.
+:::
+
+Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
+
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
+```tsx
+useSimpleList({
+    permanentFilter: [
+        {
+            field: "name",
+            operator: "contains",
+            value: "Foo",
+        },
+    ],
+});
+```
+
+### ~~`defaultSetFilterBehavior`~~
+
+:::caution Deprecated
+Use `filters.defaultBehavior` instead.
+:::
+
+> Default: `merge`
+
+The filtering behavior can be set to either `"merge"` or `"replace"`.
+
+-   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+
+-   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+
+You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
+
+```tsx
+useSimpleList({
+    defaultSetFilterBehavior: "replace",
+});
+```
+
 ## Return Values
 
 ### `queryResult`
@@ -529,6 +705,18 @@ Indicates whether the data is being fetched.
 
 Returns pagination configuration values(pageSize, current, position, etc.).
 
+### `sorters`
+
+Current [sorters state][crudsorting].
+
+### `setSorters`
+
+A function to set current [sorters state][crudsorting].
+
+```tsx
+ (sorters: CrudSorting) => void;
+```
+
 ### `filters`
 
 Current [filters state][crudfilters].
@@ -540,6 +728,62 @@ Current [filters state][crudfilters].
 ```
 
 A function to set current [filters state][crudfilters].
+
+### `current`
+
+Current page index state. If pagination is disabled, it will be `undefined`.
+
+### `setCurrent`
+
+```tsx
+React.Dispatch<React.SetStateAction<number>> | undefined
+```
+
+A function to set the current page index state. If pagination is disabled, it will be `undefined`.
+
+### `pageSize`
+
+Current page size state. If pagination is disabled, it will be `undefined`.
+
+### `setPageSize`
+
+```tsx
+React.Dispatch<React.SetStateAction<number>> | undefined
+```
+
+A function to set the current page size state. If pagination is disabled, it will be `undefined`.
+
+### `pageCount`
+
+Total page count state. If pagination is disabled, it will be `undefined`.
+
+### `createLinkForSyncWithLocation`
+
+```tsx
+(params: SyncWithLocationParams) => string;
+```
+
+A function creates accessible links for `syncWithLocation`. It takes an [SyncWithLocationParams][syncwithlocationparams] as parameters.
+
+### ~~`sorter`~~
+
+:::caution Deprecated
+Use `sorters` instead.
+:::
+
+Current [sorters state][crudsorting].
+
+### ~~`setSorter`~~
+
+:::caution Deprecated
+Use `setSorters` instead.
+:::
+
+A function to set current [sorters state][crudsorting].
+
+```tsx
+ (sorters: CrudSorting) => void;
+```
 
 ## API
 
@@ -557,13 +801,22 @@ A function to set current [filters state][crudfilters].
 
 ### Return values
 
-| Property        | Description                                | Type                                                                                                                                                    |
-| --------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| queryResult     | Result of the query of a record            | [`QueryObserverResult<{ data: TData }>`][usequery]                                                                                                      |
-| searchFormProps | Ant design Form props                      | [`Form`][form]                                                                                                                                          |
-| listProps       | Ant design List props                      | [`List`][list]                                                                                                                                          |
-| filters         | Current filters state                      | [`CrudFilters`][crudfilters]                                                                                                                            |
-| setFilters      | A function that accepts a new filter state | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` <br/> - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
+| Property        | Description                                                                           | Type                                                                                                                                                    |
+| --------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| queryResult     | Result of the query of a record                                                       | [`QueryObserverResult<{ data: TData }>`][usequery]                                                                                                      |
+| searchFormProps | Ant design Form props                                                                 | [`Form`][form]                                                                                                                                          |
+| listProps       | Ant design List props                                                                 | [`List`][list]                                                                                                                                          |
+| totalPage       | Total page count (returns `undefined` if pagination is disabled)                      | `number` \| `undefined`                                                                                                                                 |
+| current         | Current page index state (returns `undefined` if pagination is disabled)              | `number` \| `undefined`                                                                                                                                 |
+| setCurrent      | A function that changes the current (returns `undefined` if pagination is disabled)   | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                           |
+| pageSize        | Current pageSize state (returns `undefined` if pagination is disabled)                | `number` \| `undefined`                                                                                                                                 |
+| setPageSize     | A function that changes the pageSize. (returns `undefined` if pagination is disabled) | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                           |
+| sorters         | Current sorting state                                                                 | [`CrudSorting`][crudsorting]                                                                                                                            |
+| setSorters      | A function that accepts a new sorters state.                                           | `(sorters: CrudSorting) => void`                                                                                                                        |
+| ~~sorter~~      | Current sorting state                                                                 | [`CrudSorting`][crudsorting]                                                                                                                            |
+| ~~setSorter~~   | A function that accepts a new sorters state.                                           | `(sorters: CrudSorting) => void`                                                                                                                        |
+| filters         | Current filters state                                                                 | [`CrudFilters`][crudfilters]                                                                                                                            |
+| setFilters      | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` <br/> - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
 
 [crudfilters]: /api-reference/core/interfaces.md#crudfilters
 [crudsorting]: /api-reference/core/interfaces.md#crudsorting

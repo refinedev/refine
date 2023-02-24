@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <Refine
             routerProvider={routerProvider}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
             resources={[
                 { name: "users" },

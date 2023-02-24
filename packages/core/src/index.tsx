@@ -8,7 +8,8 @@ export {
     ActionWithPage,
     AccessControlProvider,
     AuditLogProvider,
-    AuthProvider,
+    LegacyAuthProvider,
+    AuthBindings,
     BaseKey,
     BaseRecord,
     CanParams,
@@ -57,7 +58,7 @@ export {
     UpdateResponse,
     I18nProvider,
     IAccessControlContext,
-    IAuthContext,
+    ILegacyAuthContext,
     IDataContextProvider as DataProvider,
     ILiveContext as LiveProvider,
     ILog,
@@ -72,7 +73,6 @@ export {
     IRouterProvider,
     ITreeMenu,
     IQueryKeys,
-    AuthBindings,
     AccessControlBindings,
     DataBindings,
     i18nBindings,
@@ -86,6 +86,7 @@ export {
     BackFunction,
     GoFunction,
     ParseFunction,
+    Prettify,
 } from "./interfaces";
 
 // all auth types
@@ -111,5 +112,6 @@ export {
     getNextPageParam,
     getPreviousPageParam,
     pickNotDeprecated,
+    useActiveAuthProvider,
 } from "./definitions/helpers";
 export { file2Base64 } from "./definitions/upload";

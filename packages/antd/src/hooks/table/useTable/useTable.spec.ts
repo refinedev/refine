@@ -44,8 +44,10 @@ describe("useTable Hook", () => {
         const { result } = renderHook(
             () =>
                 useTable({
-                    initialCurrent: customPagination.current,
-                    initialPageSize: customPagination.pageSize,
+                    pagination: {
+                        current: customPagination.current,
+                        pageSize: customPagination.pageSize,
+                    },
                 }),
             {
                 wrapper: TestWrapper({}),
@@ -61,28 +63,6 @@ describe("useTable Hook", () => {
         } = result.current;
 
         expect(pagination).toEqual(expect.objectContaining(customPagination));
-    });
-
-    it("with disabled pagination", async () => {
-        const { result } = renderHook(
-            () =>
-                useTable({
-                    hasPagination: false,
-                }),
-            {
-                wrapper: TestWrapper({}),
-            },
-        );
-
-        await waitFor(() => {
-            expect(!result.current.tableProps.loading).toBeTruthy();
-        });
-
-        const {
-            tableProps: { pagination },
-        } = result.current;
-
-        expect(pagination).toBe(false);
     });
 
     it("with custom resource", async () => {
@@ -159,7 +139,9 @@ describe("useTable Hook", () => {
             () =>
                 useTable({
                     resource: "categories",
-                    initialFilter,
+                    filters: {
+                        initial: initialFilter,
+                    },
                 }),
             {
                 wrapper: TestWrapper({}),
@@ -198,19 +180,21 @@ describe("useTable Hook", () => {
             () =>
                 useTable({
                     resource: "categories",
-                    defaultSetFilterBehavior: "replace",
-                    initialFilter: [
-                        {
-                            field: "name",
-                            operator: "eq",
-                            value: "test",
-                        },
-                        {
-                            field: "id",
-                            operator: "gte",
-                            value: 1,
-                        },
-                    ],
+                    filters: {
+                        initial: [
+                            {
+                                field: "name",
+                                operator: "eq",
+                                value: "test",
+                            },
+                            {
+                                field: "id",
+                                operator: "gte",
+                                value: 1,
+                            },
+                        ],
+                        defaultBehavior: "replace",
+                    },
                 }),
             {
                 wrapper: TestWrapper({}),
@@ -237,5 +221,45 @@ describe("useTable Hook", () => {
         await waitFor(() => {
             return isEqual(result.current.filters, newFilters);
         });
+    });
+
+    it.each(["client", "server"] as const)(
+        "when pagination mode is %s, should set pagination props",
+        async (mode) => {
+            const { result } = renderHook(
+                () =>
+                    useTable({
+                        pagination: {
+                            mode,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({}),
+                },
+            );
+
+            expect(result.current.tableProps.pagination).toEqual(
+                expect.objectContaining({
+                    pageSize: 10,
+                    current: 1,
+                }),
+            );
+        },
+    );
+
+    it("when pagination mode is off, pagination should be false", async () => {
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    pagination: {
+                        mode: "off",
+                    },
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        expect(result.current.tableProps.pagination).toBeFalsy();
     });
 });

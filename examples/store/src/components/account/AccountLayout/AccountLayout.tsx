@@ -6,7 +6,9 @@ import { AccountNav, LoadingDots, UnderlineLink } from "@components";
 import s from "./AccountLayout.module.css";
 
 export const AccountLayout: React.FC<PropsWithChildren> = ({ children }) => {
-    const { data } = useGetIdentity();
+    const { data } = useGetIdentity({
+        v3LegacyAuthProviderCompatible: true,
+    });
 
     if (!data) {
         return (

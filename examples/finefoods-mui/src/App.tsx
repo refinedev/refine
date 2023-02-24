@@ -95,7 +95,7 @@ const App: React.FC = () => {
                         dataProvider={dataProvider(
                             "https://api.finefoods.refine.dev",
                         )}
-                        authProvider={authProvider}
+                        legacyAuthProvider={authProvider}
                         i18nProvider={i18nProvider}
                         DashboardPage={DashboardPage}
                         Title={Title}

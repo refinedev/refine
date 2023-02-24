@@ -13,18 +13,18 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
+        <MantineCore.MantineProvider
             theme={RefineMantine.LightTheme}
             withNormalizeCSS
             withGlobalStyles
         >
-            <RefineMantine.Global
+            <MantineCore.Global
                 styles={{ body: { WebkitFontSmoothing: "auto" } }}
             />
-            <RefineMantine.NotificationsProvider position="top-right">
+            <MantineNotifications.NotificationsProvider position="top-right">
                 {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            </MantineNotifications.NotificationsProvider>
+        </MantineCore.MantineProvider>
     );
 };
 
@@ -53,7 +53,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List, DateField, Table, Pagination } from "@pankod/refine-mantine";
+import { List, DateField } from "@pankod/refine-mantine";
+import { Table, Pagination } from "@mantine/core";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 const PostList: React.FC = () => {
@@ -180,7 +181,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List, Title } from "@pankod/refine-mantine";
+import { List } from "@pankod/refine-mantine";
+import { Title } from "@mantine/core";
 
 const PostList: React.FC = () => {
     return (
@@ -579,7 +581,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List, Button } from "@pankod/refine-mantine";
+import { List } from "@pankod/refine-mantine";
+import { Button } from "@mantine/core";
 
 const PostList: React.FC = () => {
     return (
@@ -635,7 +638,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List, Button } from "@pankod/refine-mantine";
+import { List } from "@pankod/refine-mantine";
+import { Button } from "@mantine/core";
 
 const PostList: React.FC = () => {
     return (

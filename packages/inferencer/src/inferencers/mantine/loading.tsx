@@ -1,6 +1,6 @@
 import React from "react";
 
-import { LoadingOverlay } from "@pankod/refine-mantine";
+import { LoadingOverlay } from "@mantine/core";
 
 import { CreateInferencerConfig } from "@/types";
 

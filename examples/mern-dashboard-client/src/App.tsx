@@ -1,6 +1,9 @@
 import React from "react";
 
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import {
+    Refine,
+    LegacyAuthProvider as AuthProvider,
+} from "@pankod/refine-core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
@@ -168,7 +171,7 @@ function App() {
                     Layout={Layout}
                     Header={Header}
                     routerProvider={routerProvider}
-                    authProvider={authProvider}
+                    legacyAuthProvider={authProvider}
                     LoginPage={Login}
                     DashboardPage={Home}
                 />

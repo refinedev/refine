@@ -11,16 +11,17 @@ import {
     CrudOperators,
     SortOrder,
 } from "../../interfaces";
+import { pickNotDeprecated } from "@definitions/helpers";
 
 export const parseTableParams = (url: string) => {
-    const { current, pageSize, sorter, filters } = qs.parse(
+    const { current, pageSize, sorter, sorters, filters } = qs.parse(
         url.substring(1), // remove first ? character
     );
 
     return {
         parsedCurrent: current && Number(current),
         parsedPageSize: pageSize && Number(pageSize),
-        parsedSorter: (sorter as CrudSorting) ?? [],
+        parsedSorter: (pickNotDeprecated(sorters, sorter) as CrudSorting) ?? [],
         parsedFilters: (filters as CrudFilters) ?? [],
     };
 };
@@ -30,9 +31,12 @@ export const parseTableParamsFromQuery = (params: any) => {
     return parseTableParams(`/${url}`);
 };
 
+/**
+ * @internal This function is used to stringify table params from the useTable hook.
+ */
 export const stringifyTableParams = (params: {
     pagination?: { current?: number; pageSize?: number };
-    sorter: CrudSorting;
+    sorters: CrudSorting;
     filters: CrudFilters;
     [key: string]: any;
 }): string => {
@@ -41,10 +45,15 @@ export const stringifyTableParams = (params: {
         arrayFormat: "indices",
         encode: false,
     };
-    const { pagination, sorter, filters, ...rest } = params;
+    const { pagination, sorter, sorters, filters, ...rest } = params;
 
     const queryString = qs.stringify(
-        { ...rest, ...(pagination ? pagination : {}), sorter, filters },
+        {
+            ...rest,
+            ...(pagination ? pagination : {}),
+            sorters: pickNotDeprecated(sorters, sorter),
+            filters,
+        },
         options,
     );
 

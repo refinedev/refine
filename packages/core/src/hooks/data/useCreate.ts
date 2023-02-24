@@ -4,7 +4,11 @@ import {
     UseMutationResult,
 } from "@tanstack/react-query";
 import pluralize from "pluralize";
-import { pickDataProvider, pickNotDeprecated } from "@definitions/helpers";
+import {
+    pickDataProvider,
+    pickNotDeprecated,
+    useActiveAuthProvider,
+} from "@definitions/helpers";
 
 import {
     CreateResponse,
@@ -17,12 +21,12 @@ import {
 import {
     useResource,
     useTranslate,
-    useCheckError,
     usePublish,
     useHandleNotification,
     useDataProvider,
     useLog,
     useInvalidate,
+    useOnError,
 } from "@hooks";
 
 type useCreateParams<TVariables> = {
@@ -104,7 +108,10 @@ export const useCreate = <
     TError,
     TVariables
 > => {
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: checkError } = useOnError({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const dataProvider = useDataProvider();
     const invalidateStore = useInvalidate();
 

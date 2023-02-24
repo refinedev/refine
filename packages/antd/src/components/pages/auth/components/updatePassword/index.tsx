@@ -2,6 +2,7 @@ import React from "react";
 import {
     UpdatePasswordPageProps,
     UpdatePasswordFormTypes,
+    useActiveAuthProvider,
 } from "@pankod/refine-core";
 import {
     Row,
@@ -41,8 +42,11 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
 }) => {
     const [form] = Form.useForm<UpdatePasswordFormTypes>();
     const translate = useTranslate();
+    const authProvider = useActiveAuthProvider();
     const { mutate: updatePassword, isLoading } =
-        useUpdatePassword<UpdatePasswordFormTypes>();
+        useUpdatePassword<UpdatePasswordFormTypes>({
+            v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+        });
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
