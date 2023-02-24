@@ -12,7 +12,7 @@ import {
 
 type UseMenuReturnType = {
     defaultOpenKeys: string[];
-    selectedKey: string | undefined;
+    selectedKey: string;
     menuItems: TreeMenuItem[];
 };
 
