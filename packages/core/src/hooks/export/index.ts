@@ -143,6 +143,7 @@ export const useExport = <
                     pagination: {
                         current,
                         pageSize,
+                        mode: "server",
                     },
                     meta: pickNotDeprecated(meta, metaData),
                     metaData: pickNotDeprecated(meta, metaData),

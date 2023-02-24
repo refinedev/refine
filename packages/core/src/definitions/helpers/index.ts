@@ -21,3 +21,4 @@ export { legacyResourceTransform } from "./legacy-resource-transform";
 export { matchResourceFromRoute } from "./router/match-resource-from-route";
 export { getActionRoutesFromResource } from "./router";
 export { composeRoute } from "./router/compose-route";
+export { handlePaginationParams } from "./handlePaginationParams";

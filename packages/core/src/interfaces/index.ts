@@ -80,3 +80,5 @@ export type IMenuItem = IResourceItem & {
 export * from "./auth";
 
 export * from "./bindings";
+
+export * from "./prettify";

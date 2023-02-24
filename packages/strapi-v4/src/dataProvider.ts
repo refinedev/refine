@@ -6,7 +6,6 @@ import {
     CrudSorting,
     CrudOperators,
     LogicalFilter,
-    pickNotDeprecated,
 } from "@pankod/refine-core";
 import { stringify, parse } from "qs";
 
@@ -167,32 +166,25 @@ export const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): Required<IDataProvider> => ({
-    getList: async ({
-        resource,
-        hasPagination = true,
-        pagination = { current: 1, pageSize: 10 },
-        filters,
-        sort,
-        sorters,
-        meta: _meta,
-        metaData,
-    }) => {
+    getList: async ({ resource, pagination, filters, sorters, meta }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { current = 1, pageSize = 10 } = pagination ?? {};
+        const {
+            current = 1,
+            pageSize = 10,
+            mode = "server",
+        } = pagination ?? {};
 
-        const meta = pickNotDeprecated(_meta, metaData);
         const locale = meta?.locale;
         const fields = meta?.fields;
         const populate = meta?.populate;
         const publicationState = meta?.publicationState;
 
-        //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-        const quertSorters = generateSort(sorters ?? sort);
+        const quertSorters = generateSort(sorters);
         const queryFilters = generateFilter(filters);
 
         const query = {
-            ...(hasPagination
+            ...(mode === "server"
                 ? {
                       "pagination[page]": current,
                       "pagination[pageSize]": pageSize,
@@ -218,10 +210,9 @@ export const DataProvider = (
         };
     },
 
-    getMany: async ({ resource, ids, meta: _meta, metaData }) => {
+    getMany: async ({ resource, ids, meta }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const meta = pickNotDeprecated(_meta, metaData);
         const locale = meta?.locale;
         const fields = meta?.fields;
         const populate = meta?.populate;
@@ -318,8 +309,7 @@ export const DataProvider = (
         return { data: response };
     },
 
-    getOne: async ({ resource, id, meta: _meta, metaData }) => {
-        const meta = pickNotDeprecated(_meta, metaData);
+    getOne: async ({ resource, id, meta }) => {
         const locale = meta?.locale;
         const fields = meta?.fields;
         const populate = meta?.populate;
@@ -371,7 +361,6 @@ export const DataProvider = (
         url,
         method,
         filters,
-        sort,
         sorters,
         payload,
         query,
@@ -379,9 +368,8 @@ export const DataProvider = (
     }) => {
         let requestUrl = `${url}?`;
 
-        if (sorters || sort) {
-            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-            const sortQuery = generateSort(sorters ?? sort);
+        if (sorters) {
+            const sortQuery = generateSort(sorters);
             if (sortQuery.length > 0) {
                 requestUrl = `${requestUrl}&${stringify({
                     sort: sortQuery.join(","),

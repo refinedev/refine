@@ -82,27 +82,20 @@ export const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): Required<IDataProvider> => ({
-    getList: async ({
-        resource,
-        hasPagination = true,
-        pagination = {
-            current: 1,
-            pageSize: 10,
-        },
-        filters,
-        sort,
-        sorters,
-    }) => {
+    getList: async ({ resource, pagination, filters, sorters }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { current = 1, pageSize: _limit = 10 } = pagination ?? {};
+        const {
+            current = 1,
+            pageSize: _limit = 10,
+            mode = "server",
+        } = pagination ?? {};
 
-        //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-        const _sort = generateSort(sorters ?? sort);
+        const _sort = generateSort(sorters);
         const queryFilters = generateFilter(filters);
 
         const query = {
-            ...(hasPagination
+            ...(mode === "server"
                 ? {
                       _start: (current - 1) * _limit,
                       _limit,
@@ -212,7 +205,6 @@ export const DataProvider = (
         url,
         method,
         filters,
-        sort,
         sorters,
         payload,
         query,
@@ -220,9 +212,8 @@ export const DataProvider = (
     }) => {
         let requestUrl = `${url}?`;
 
-        if (sorters || sort) {
-            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-            const sortQuery = generateSort(sorters ?? sort);
+        if (sorters) {
+            const sortQuery = generateSort(sorters);
             if (sortQuery.length > 0) {
                 requestUrl = `${requestUrl}&${stringify({
                     _sort: sortQuery.join(","),

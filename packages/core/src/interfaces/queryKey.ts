@@ -10,7 +10,7 @@ export interface IQueryKeys {
         config?:
             | UseListConfig
             | {
-                  pagination?: Pagination;
+                  pagination?: Required<Pagination>;
                   hasPagination?: boolean;
                   sorters?: CrudSorting;
                   filters?: CrudFilters;

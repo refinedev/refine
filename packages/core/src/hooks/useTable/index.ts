@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 import qs from "qs";
 import differenceWith from "lodash/differenceWith";
@@ -11,6 +11,7 @@ import {
     useResourceWithRoute,
     useList,
     useLiveMode,
+    useRouterType,
 } from "@hooks";
 import {
     stringifyTableParams,
@@ -20,6 +21,7 @@ import {
     setInitialSorters,
     unionSorters,
 } from "@definitions/table";
+import { pickNotDeprecated } from "@definitions/helpers";
 
 import {
     ResourceRouterParams,
@@ -31,11 +33,11 @@ import {
     HttpError,
     MetaQuery,
     LiveModeProps,
+    Pagination,
 } from "../../interfaces";
 import { useParse } from "@hooks/router/use-parse";
 import { useGo } from "@hooks/router/use-go";
 import warnOnce from "warn-once";
-import { pickNotDeprecated } from "@definitions/helpers";
 
 type SetFilterBehavior = "merge" | "replace";
 
@@ -46,13 +48,19 @@ export type useTableProps<TData, TError> = {
      */
     resource?: string;
     /**
+     * Configuration for pagination
+     */
+    pagination?: Pagination;
+    /**
      * Initial page index
      * @default 1
+     * @deprecated `initialCurrent` property is deprecated. Use `pagination.current` instead.
      */
     initialCurrent?: number;
     /**
      * Initial number of items per page
      * @default 10
+     * @deprecated `initialPageSize` property is deprecated. Use `pagination.pageSize` instead.
      */
     initialPageSize?: number;
     /**
@@ -69,7 +77,7 @@ export type useTableProps<TData, TError> = {
      */
     initialFilter?: CrudFilters;
     /**
-     * WDefault and unchangeable filter state
+     * Default and unchangeable filter state
      * @default `[]`
      */
     permanentFilter?: CrudFilters;
@@ -81,6 +89,7 @@ export type useTableProps<TData, TError> = {
     /**
      * Whether to use server side pagination or not.
      * @default `true`
+     * @deprecated `hasPagination` property is deprecated. Use `pagination.mode` instead.
      */
     hasPagination?: boolean;
     /**
@@ -112,24 +121,29 @@ type ReactSetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
 type SyncWithLocationParams = {
     pagination: { current?: number; pageSize?: number };
-    sorter: CrudSorting;
+    /**
+     * @deprecated `sorter` is deprecated. Use `sorters` instead.
+     */
+    sorter?: CrudSorting;
+    sorters: CrudSorting;
     filters: CrudFilters;
 };
-
-export type useTablePaginationKeys =
-    | "current"
-    | "setCurrent"
-    | "pageSize"
-    | "setPageSize"
-    | "pageCount";
 
 export type useTableReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
 > = {
     tableQueryResult: QueryObserverResult<GetListResponse<TData>, TError>;
+    /**
+     * @deprecated `sorter` is deprecated. Use `sorters` instead.
+     */
     sorter: CrudSorting;
+    sorters: CrudSorting;
+    /**
+     * @deprecated `setSorter` is deprecated. Use `setSorters` instead.
+     */
     setSorter: (sorter: CrudSorting) => void;
+    setSorters: (sorter: CrudSorting) => void;
     filters: CrudFilters;
     setFilters: ((filters: CrudFilters, behavior?: SetFilterBehavior) => void) &
         ((setter: (prevFilters: CrudFilters) => CrudFilters) => void);
@@ -140,12 +154,6 @@ export type useTableReturnType<
     setPageSize: ReactSetState<useTableReturnType["pageSize"]>;
     pageCount: number;
 };
-
-export type useTableNoPaginationReturnType<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-> = Omit<useTableReturnType<TData, TError>, useTablePaginationKeys> &
-    Record<useTablePaginationKeys, undefined>;
 
 /**
  * By using useTable, you are able to get properties that are compatible with
@@ -158,32 +166,14 @@ export type useTableNoPaginationReturnType<
 const defaultPermanentFilter: CrudFilters = [];
 const defaultPermanentSorter: CrudSorting = [];
 
-// overload with pagination
-export function useTable<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
->(
-    props?: useTableProps<TData, TError> & {
-        hasPagination?: true;
-    },
-): useTableReturnType<TData, TError>;
-// overload without pagination
-export function useTable<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
->(
-    props?: useTableProps<TData, TError> & {
-        hasPagination: false;
-    },
-): useTableNoPaginationReturnType<TData, TError>;
-// implementation
 export function useTable<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
 >({
-    initialCurrent = 1,
-    initialPageSize = 10,
+    initialCurrent,
+    initialPageSize,
     hasPagination = true,
+    pagination,
     initialSorter,
     permanentSorter = defaultPermanentSorter,
     defaultSetFilterBehavior = "merge",
@@ -200,15 +190,14 @@ export function useTable<
     meta,
     metaData,
     dataProviderName,
-}: useTableProps<TData, TError> = {}):
-    | useTableReturnType<TData, TError>
-    | useTableNoPaginationReturnType<TData, TError> {
+}: useTableProps<TData, TError> = {}): useTableReturnType<TData, TError> {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
 
     const liveMode = useLiveMode(liveModeFromProp);
 
+    const routerType = useRouterType();
     const { useLocation, useParams } = useRouterContext();
     const { search, pathname } = useLocation();
 
@@ -219,25 +208,55 @@ export function useTable<
         [parse],
     );
 
+    const hasPaginationString = hasPagination === false ? "off" : "server";
+    const isPaginationEnabled =
+        (pagination?.mode ?? hasPaginationString) !== "off";
+    const prefferedCurrent = pickNotDeprecated(
+        pagination?.current,
+        initialCurrent,
+    );
+    const prefferedPageSize = pickNotDeprecated(
+        pagination?.pageSize,
+        initialPageSize,
+    );
+    const preferredMeta = pickNotDeprecated(meta, metaData);
+
     /** `parseTableParams` is redundant with the new routing */
     // We want to always parse the query string even when syncWithLocation is
     // deactivated, for hotlinking to work properly
     const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
         parseTableParams(search ?? "?");
 
-    const defaultCurrent =
-        parsedParams?.params?.current || parsedCurrent || initialCurrent;
-    const defaultPageSize =
-        parsedParams?.params?.pageSize || parsedPageSize || initialPageSize;
-    const defaultSorter =
-        parsedParams?.params?.sorters ||
-        (parsedSorter.length ? parsedSorter : initialSorter);
-    const defaultFilter =
-        parsedParams?.params?.filters ||
-        (parsedFilters.length ? parsedFilters : initialFilter);
+    let defaultCurrent: number;
+    let defaultPageSize: number;
+    let defaultSorter: CrudSorting | undefined;
+    let defaultFilter: CrudFilters | undefined;
+
+    if (syncWithLocation) {
+        defaultCurrent =
+            parsedParams?.params?.current ||
+            parsedCurrent ||
+            prefferedCurrent ||
+            1;
+        defaultPageSize =
+            parsedParams?.params?.pageSize ||
+            parsedPageSize ||
+            prefferedPageSize ||
+            10;
+        defaultSorter =
+            parsedParams?.params?.sorters ||
+            (parsedSorter.length ? parsedSorter : initialSorter);
+        defaultFilter =
+            parsedParams?.params?.filters ||
+            (parsedFilters.length ? parsedFilters : initialFilter);
+    } else {
+        defaultCurrent = prefferedCurrent || 1;
+        defaultPageSize = prefferedPageSize || 10;
+        defaultSorter = initialSorter;
+        defaultFilter = initialFilter;
+    }
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-
     const { replace } = useNavigation();
     /** New way of `replace` calls to the router is using `useGo` */
     const go = useGo();
@@ -258,7 +277,7 @@ export function useTable<
         );
     }, [resourceInUse]);
 
-    const [sorter, setSorter] = useState<CrudSorting>(
+    const [sorters, setSorters] = useState<CrudSorting>(
         setInitialSorters(permanentSorter, defaultSorter ?? []),
     );
     const [filters, setFilters] = useState<CrudFilters>(
@@ -272,10 +291,7 @@ export function useTable<
         sorter,
         filters,
     }: SyncWithLocationParams) => {
-        if (
-            (go as { __provided?: boolean })?.__provided &&
-            (parse as { __provided?: boolean })?.__provided
-        ) {
+        if (routerType === "new") {
             return (
                 go({
                     type: "path",
@@ -293,7 +309,7 @@ export function useTable<
                     pageSize,
                     current,
                 },
-                sorter,
+                sorters: sorters ?? sorter,
                 filters,
                 ...currentQueryParams,
             });
@@ -305,13 +321,15 @@ export function useTable<
         if (search === "") {
             setCurrent(defaultCurrent);
             setPageSize(defaultPageSize);
-            setSorter(setInitialSorters(permanentSorter, defaultSorter ?? []));
+            setSorters(setInitialSorters(permanentSorter, defaultSorter ?? []));
             setFilters(setInitialFilters(permanentFilter, defaultFilter ?? []));
         }
     }, [search]);
 
     const currentQueryParams = (): object => {
-        if ((parse as { __provided?: boolean })?.__provided) {
+        if (routerType === "new") {
+            // We get QueryString parameters that are uncontrolled by refine.
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const { sorters, filters, pageSize, current, ...rest } =
                 parsedParams?.params ?? {};
 
@@ -335,14 +353,13 @@ export function useTable<
             // Careful! This triggers render
             const queryParams = currentQueryParams();
 
-            if ((go as { __provided?: boolean })?.__provided) {
+            if (routerType === "new") {
                 go({
                     type: "replace",
                     query: {
-                        current,
-                        pageSize,
-                        sorter: differenceWith(
-                            sorter,
+                        ...(isPaginationEnabled ? { pageSize, current } : {}),
+                        sorters: differenceWith(
+                            sorters,
                             permanentSorter,
                             isEqual,
                         ),
@@ -351,12 +368,12 @@ export function useTable<
                             permanentFilter,
                             isEqual,
                         ),
-                        queryParams,
+                        ...queryParams,
                     },
                 });
             } else if (replace) {
                 const stringifyParams = stringifyTableParams({
-                    ...(hasPagination
+                    ...(isPaginationEnabled
                         ? {
                               pagination: {
                                   pageSize,
@@ -364,7 +381,7 @@ export function useTable<
                               },
                           }
                         : {}),
-                    sorter: differenceWith(sorter, permanentSorter, isEqual),
+                    sorters: differenceWith(sorters, permanentSorter, isEqual),
                     filters: differenceWith(filters, permanentFilter, isEqual),
                     ...queryParams,
                 });
@@ -373,24 +390,44 @@ export function useTable<
                 });
             }
         }
-    }, [syncWithLocation, current, pageSize, sorter, filters]);
+    }, [syncWithLocation, current, pageSize, sorters, filters]);
 
     const queryResult = useList<TData, TError>({
         resource: resourceInUse,
         hasPagination,
-        pagination: { current, pageSize },
+        pagination: { current, pageSize, mode: pagination?.mode },
         filters: unionFilters(permanentFilter, filters),
-        sorters: unionSorters(permanentSorter, sorter),
+        sorters: unionSorters(permanentSorter, sorters),
         queryOptions,
         successNotification,
         errorNotification,
-        meta: pickNotDeprecated(meta, metaData),
-        metaData: pickNotDeprecated(meta, metaData),
+        meta: preferredMeta,
+        metaData: preferredMeta,
         liveMode,
         liveParams,
         onLiveEvent,
         dataProviderName,
     });
+
+    // const createLinkForSyncWithLocation = ({
+    //     pagination: { current, pageSize },
+    //     sorter,
+    //     sorters,
+    //     filters,
+    // }: SyncWithLocationParams) => {
+    //     const currentQueryParams = qs.parse(search?.substring(1)); // remove first ? character
+
+    //     const stringifyParams = stringifyTableParams({
+    //         pagination: {
+    //             pageSize,
+    //             current,
+    //         },
+    //         sorters: sorters ?? sorter,
+    //         filters,
+    //         ...currentQueryParams,
+    //     });
+    //     return `${pathname}?${stringifyParams}`;
+    // };
 
     const setFiltersAsMerge = (newFilters: CrudFilters) => {
         setFilters((prevFilters) =>
@@ -424,38 +461,24 @@ export function useTable<
     };
 
     const setSortWithUnion = (newSorter: CrudSorting) => {
-        setSorter(() => unionSorters(permanentSorter, newSorter));
+        setSorters(() => unionSorters(permanentSorter, newSorter));
     };
-
-    const paginationValues = useMemo(() => {
-        if (hasPagination) {
-            return {
-                current,
-                setCurrent,
-                pageSize,
-                setPageSize,
-                pageCount: pageSize
-                    ? Math.ceil((queryResult.data?.total ?? 0) / pageSize)
-                    : 1,
-            };
-        }
-
-        return {
-            current: undefined,
-            setCurrent: undefined,
-            pageSize: undefined,
-            setPageSize: undefined,
-            pageCount: undefined,
-        };
-    }, [hasPagination, current, pageSize, queryResult.data?.total]);
 
     return {
         tableQueryResult: queryResult,
-        sorter,
+        sorters,
+        setSorters: setSortWithUnion,
+        sorter: sorters,
         setSorter: setSortWithUnion,
         filters,
         setFilters: setFiltersFn,
-        ...paginationValues,
+        current,
+        setCurrent,
+        pageSize,
+        setPageSize,
+        pageCount: pageSize
+            ? Math.ceil((queryResult.data?.total ?? 0) / pageSize)
+            : 1,
         createLinkForSyncWithLocation,
     };
 }

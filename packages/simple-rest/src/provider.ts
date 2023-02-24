@@ -10,17 +10,14 @@ export const dataProvider = (
     Required<DataProvider>,
     "createMany" | "updateMany" | "deleteMany"
 > => ({
-    getList: async ({
-        resource,
-        hasPagination = true,
-        pagination = { current: 1, pageSize: 10 },
-        filters,
-        sort,
-        sorters,
-    }) => {
+    getList: async ({ resource, pagination, filters, sorters }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { current = 1, pageSize = 10 } = pagination ?? {};
+        const {
+            current = 1,
+            pageSize = 10,
+            mode = "server",
+        } = pagination ?? {};
 
         const queryFilters = generateFilter(filters);
 
@@ -29,15 +26,14 @@ export const dataProvider = (
             _end?: number;
             _sort?: string;
             _order?: string;
-        } = hasPagination
-            ? {
-                  _start: (current - 1) * pageSize,
-                  _end: current * pageSize,
-              }
-            : {};
+        } = {};
 
-        //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-        const generatedSort = generateSort(sorters ?? sort);
+        if (mode === "server") {
+            query._start = (current - 1) * pageSize;
+            query._end = current * pageSize;
+        }
+
+        const generatedSort = generateSort(sorters);
         if (generatedSort) {
             const { _sort, _order } = generatedSort;
             query._sort = _sort.join(",");
@@ -52,7 +48,7 @@ export const dataProvider = (
 
         return {
             data,
-            total,
+            total: total || data.length,
         };
     },
 
@@ -116,7 +112,6 @@ export const dataProvider = (
         url,
         method,
         filters,
-        sort,
         sorters,
         payload,
         query,
@@ -124,9 +119,8 @@ export const dataProvider = (
     }) => {
         let requestUrl = `${url}?`;
 
-        if (sorters || sort) {
-            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-            const generatedSort = generateSort(sorters ?? sort);
+        if (sorters) {
+            const generatedSort = generateSort(sorters);
             if (generatedSort) {
                 const { _sort, _order } = generatedSort;
                 const sortQuery = {

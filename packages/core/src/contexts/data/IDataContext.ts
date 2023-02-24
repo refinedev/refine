@@ -1,8 +1,21 @@
 import { BaseRecord, BaseKey, MetaQuery } from "../../interfaces";
 
 export interface Pagination {
+    /**
+     * Initial page index
+     * @default 1
+     */
     current?: number;
+    /**
+     * Initial number of items per page
+     * @default 10
+     */
     pageSize?: number;
+    /**
+     * Whether to use server side pagination or not.
+     * @default "server"
+     */
+    mode?: "client" | "server" | "off";
 }
 
 // Filters are used as a suffix of a field name:
@@ -126,6 +139,9 @@ export interface IDataContextProvider {
     getList: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
         pagination?: Pagination;
+        /**
+         * @deprecated `hasPagination` is deprecated, use `pagination.mode` instead.
+         */
         hasPagination?: boolean;
         /**
          * @deprecated `sort` is deprecated, use `sorters` instead.
