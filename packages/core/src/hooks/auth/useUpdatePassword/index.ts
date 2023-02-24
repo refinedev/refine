@@ -9,6 +9,7 @@ import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { useNavigation, useNotification, useRouterContext } from "@hooks";
 import {
     AuthActionResponse,
+    OpenNotificationParams,
     TUpdatePasswordData,
     UpdatePasswordFormTypes,
 } from "../../../interfaces";
@@ -128,18 +129,16 @@ export function useUpdatePassword<
                     close?.("update-password-error");
                 }
 
+                if (error || !success) {
+                    open?.(buildNotification(error));
+                }
+
                 if (redirectTo) {
                     replace(redirectTo);
                 }
-
-                if (error) {
-                    open?.({
-                        message: error.name,
-                        description: error.message,
-                        key: "update-password-error",
-                        type: "error",
-                    });
-                }
+            },
+            onError: (error: any) => {
+                open?.(buildNotification(error));
             },
             ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
         },
@@ -168,13 +167,7 @@ export function useUpdatePassword<
                 close?.("update-password-error");
             },
             onError: (error: any) => {
-                open?.({
-                    message: error?.name || "Update Password Error",
-                    description:
-                        error?.message || "Error while updating password",
-                    key: "update-password-error",
-                    type: "error",
-                });
+                open?.(buildNotification(error));
             },
             ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
         },
@@ -182,3 +175,12 @@ export function useUpdatePassword<
 
     return v3LegacyAuthProviderCompatible ? legacyQueryResponse : queryResponse;
 }
+
+const buildNotification = (error?: Error): OpenNotificationParams => {
+    return {
+        message: error?.name || "Update Password Error",
+        description: error?.message || "Error while updating password",
+        key: "update-password-error",
+        type: "error",
+    };
+};

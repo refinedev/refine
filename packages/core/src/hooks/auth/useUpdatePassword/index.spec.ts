@@ -99,6 +99,13 @@ describe("v3LegacyAuthProviderCompatible useUpdatePassword Hook", () => {
 });
 
 describe("useUpdatePassword Hook", () => {
+    const mockAuthProvider = {
+        login: () => Promise.resolve({ success: true }),
+        check: () => Promise.resolve({ authenticated: true }),
+        onError: () => Promise.resolve({}),
+        logout: () => Promise.resolve({ success: true }),
+    };
+
     beforeEach(() => {
         mHistory.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
@@ -112,7 +119,7 @@ describe("useUpdatePassword Hook", () => {
         const { result } = renderHook(() => useUpdatePassword(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: () => Promise.resolve({ success: true }),
+                    ...mockAuthProvider,
                     updatePassword: ({ password, confirmPassword }: any) => {
                         if (password && confirmPassword) {
                             return Promise.resolve({ success: true });
@@ -122,9 +129,6 @@ describe("useUpdatePassword Hook", () => {
                             error: new Error("Missing fields"),
                         });
                     },
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => Promise.resolve({}),
-                    logout: () => Promise.resolve({ success: true }),
                 },
             }),
         });
@@ -149,7 +153,7 @@ describe("useUpdatePassword Hook", () => {
         const { result } = renderHook(() => useUpdatePassword(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: () => Promise.resolve({ success: true }),
+                    ...mockAuthProvider,
                     updatePassword: ({ password, confirmPassword }: any) => {
                         if (password && confirmPassword) {
                             return Promise.resolve({ success: true });
@@ -159,9 +163,6 @@ describe("useUpdatePassword Hook", () => {
                             error: new Error("Missing fields"),
                         });
                     },
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => Promise.resolve({}),
-                    logout: () => Promise.resolve({ success: true }),
                 },
             }),
         });
@@ -189,7 +190,8 @@ describe("useUpdatePassword Hook", () => {
         const { result } = renderHook(() => useUpdatePassword(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: () => Promise.resolve({ success: true }),
+                    ...mockAuthProvider,
+
                     updatePassword: ({ password, confirmPassword }: any) => {
                         if (password && confirmPassword) {
                             return Promise.resolve({
@@ -202,9 +204,6 @@ describe("useUpdatePassword Hook", () => {
                             error: new Error("Missing fields"),
                         });
                     },
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => Promise.resolve({}),
-                    logout: () => Promise.resolve({ success: true }),
                 },
             }),
         });
@@ -232,7 +231,8 @@ describe("useUpdatePassword Hook", () => {
         const { result } = renderHook(() => useUpdatePassword(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: () => Promise.resolve({ success: true }),
+                    ...mockAuthProvider,
+
                     updatePassword: ({ password, confirmPassword }: any) => {
                         if (password && confirmPassword) {
                             return Promise.resolve({
@@ -245,9 +245,6 @@ describe("useUpdatePassword Hook", () => {
                             redirectTo: "/register",
                         });
                     },
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => Promise.resolve({}),
-                    logout: () => Promise.resolve({ success: true }),
                 },
             }),
         });
@@ -270,6 +267,112 @@ describe("useUpdatePassword Hook", () => {
             redirectTo: "/register",
         });
         expect(mHistory).toBeCalledWith("/register", { replace: true });
+    });
+
+    it("should open notification when has error is true", async () => {
+        const openNotificationMock = jest.fn();
+
+        const { result } = renderHook(() => useUpdatePassword(), {
+            wrapper: TestWrapper({
+                notificationProvider: {
+                    open: openNotificationMock,
+                },
+                authProvider: {
+                    ...mockAuthProvider,
+                    updatePassword: () =>
+                        Promise.resolve({
+                            success: false,
+                            error: new Error("Error"),
+                        }),
+                },
+            }),
+        });
+
+        const { mutate: forgotPassword } = result.current ?? {
+            mutate: () => 0,
+        };
+
+        await act(async () => {
+            forgotPassword({});
+        });
+
+        await waitFor(() => {
+            expect(openNotificationMock).toBeCalledWith({
+                key: "update-password-error",
+                type: "error",
+                message: "Error",
+                description: "Error",
+            });
+        });
+    });
+
+    it("should open notification when has success is false, error is undefined", async () => {
+        const openNotificationMock = jest.fn();
+
+        const { result } = renderHook(() => useUpdatePassword(), {
+            wrapper: TestWrapper({
+                notificationProvider: {
+                    open: openNotificationMock,
+                },
+                authProvider: {
+                    ...mockAuthProvider,
+                    updatePassword: () => Promise.resolve({ success: false }),
+                },
+            }),
+        });
+
+        const { mutate: forgotPassword } = result.current ?? {
+            mutate: () => 0,
+        };
+
+        await act(async () => {
+            forgotPassword({});
+        });
+
+        await waitFor(() => {
+            expect(openNotificationMock).toBeCalledWith({
+                key: "update-password-error",
+                type: "error",
+                message: "Update Password Error",
+                description: "Error while updating password",
+            });
+        });
+    });
+
+    it("should open notification when throw error", async () => {
+        const openNotificationMock = jest.fn();
+
+        const { result } = renderHook(() => useUpdatePassword(), {
+            wrapper: TestWrapper({
+                notificationProvider: {
+                    open: openNotificationMock,
+                },
+                authProvider: {
+                    ...mockAuthProvider,
+                    updatePassword: () => {
+                        throw new Error("Unhandled error");
+                        return Promise.resolve({ success: true });
+                    },
+                },
+            }),
+        });
+
+        const { mutate: forgotPassword } = result.current ?? {
+            mutate: () => 0,
+        };
+
+        await act(async () => {
+            forgotPassword({});
+        });
+
+        await waitFor(() => {
+            expect(openNotificationMock).toBeCalledWith({
+                key: "update-password-error",
+                type: "error",
+                message: "Error",
+                description: "Unhandled error",
+            });
+        });
     });
 });
 

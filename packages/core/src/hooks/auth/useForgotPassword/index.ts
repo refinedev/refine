@@ -7,7 +7,11 @@ import {
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { useNavigation, useNotification } from "@hooks";
 
-import { AuthActionResponse, TForgotPasswordData } from "../../../interfaces";
+import {
+    AuthActionResponse,
+    OpenNotificationParams,
+    TForgotPasswordData,
+} from "../../../interfaces";
 
 export type UseForgotPasswordLegacyProps<TVariables> = {
     v3LegacyAuthProviderCompatible: true;
@@ -107,18 +111,16 @@ export function useForgotPassword<TVariables = {}>({
                 close?.("forgot-password-error");
             }
 
+            if (error || !success) {
+                open?.(buildNotification(error));
+            }
+
             if (redirectTo) {
                 replace(redirectTo);
             }
-
-            if (error) {
-                open?.({
-                    message: error.name,
-                    description: error.message,
-                    key: "forgot-password-error",
-                    type: "error",
-                });
-            }
+        },
+        onError: (error: any) => {
+            open?.(buildNotification(error));
         },
         ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
     });
@@ -141,13 +143,7 @@ export function useForgotPassword<TVariables = {}>({
                 close?.("forgot-password-error");
             },
             onError: (error: any) => {
-                open?.({
-                    message: error?.name || "Forgot Password Error",
-                    description:
-                        error?.message || "Error while resetting password",
-                    key: "forgot-password-error",
-                    type: "error",
-                });
+                open?.(buildNotification(error));
             },
             ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
         },
@@ -157,3 +153,12 @@ export function useForgotPassword<TVariables = {}>({
         ? v3LegacyAuthProviderCompatibleQueryResponse
         : queryResponse;
 }
+
+const buildNotification = (error?: Error): OpenNotificationParams => {
+    return {
+        message: error?.name || "Forgot Password Error",
+        description: error?.message || "Error while resetting password",
+        key: "forgot-password-error",
+        type: "error",
+    };
+};

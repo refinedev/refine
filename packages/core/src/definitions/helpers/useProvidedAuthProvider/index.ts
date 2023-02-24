@@ -9,6 +9,10 @@ export const useProvidedAuthProvider = () => {
     const legacyAuthProvider = useLegacyAuthContext();
     const authProvider = useAuthBindingsContext();
 
+    if (authProvider.isProvided) {
+        return { isLegacy: false, ...authProvider };
+    }
+
     if (legacyAuthProvider.isProvided) {
         // legacyAuthProvider interface is different from authProvider interface
         // we need to convert it to authProvider interface for simple usage
@@ -20,10 +24,6 @@ export const useProvidedAuthProvider = () => {
             onError: legacyAuthProvider.checkError,
             getIdentity: legacyAuthProvider.getUserIdentity,
         };
-    }
-
-    if (authProvider.isProvided) {
-        return { isLegacy: false, ...authProvider };
     }
 
     return null;

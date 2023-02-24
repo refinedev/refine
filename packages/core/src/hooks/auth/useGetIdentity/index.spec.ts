@@ -86,16 +86,20 @@ describe("v3LegacyAuthProviderCompatible useGetIdentity Hook", () => {
 });
 
 describe("useGetIdentity Hook", () => {
+    const mockAuthProvider = {
+        login: () => Promise.resolve({ success: true }),
+        check: () => Promise.resolve({ authenticated: true }),
+        onError: () => Promise.resolve({}),
+        logout: () => Promise.resolve({ success: true }),
+    };
+
     it("returns object useGetIdentity", async () => {
         const { result } = renderHook(
             () => useGetIdentity({ v3LegacyAuthProviderCompatible: false }),
             {
                 wrapper: TestWrapper({
                     authProvider: {
-                        login: () => Promise.resolve({ success: true }),
-                        check: () => Promise.resolve({ authenticated: true }),
-                        onError: () => Promise.resolve({}),
-                        logout: () => Promise.resolve({ success: true }),
+                        ...mockAuthProvider,
                         getIdentity: () => Promise.resolve({ id: 1 }),
                     },
                 }),
@@ -118,10 +122,7 @@ describe("useGetIdentity Hook", () => {
         const { result } = renderHook(() => useGetIdentity(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: () => Promise.resolve({ success: false }),
-                    check: () => Promise.resolve({ authenticated: false }),
-                    onError: () => Promise.resolve({}),
-                    logout: () => Promise.resolve({ success: false }),
+                    ...mockAuthProvider,
                     getIdentity: () =>
                         Promise.resolve(new Error("Not Authenticated")),
                 },
@@ -139,10 +140,7 @@ describe("useGetIdentity Hook", () => {
         const { result } = renderHook(() => useGetIdentity(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: () => Promise.resolve({ success: false }),
-                    check: () => Promise.resolve({ authenticated: false }),
-                    onError: () => Promise.resolve({}),
-                    logout: () => Promise.resolve({ success: false }),
+                    ...mockAuthProvider,
                 },
             }),
         });

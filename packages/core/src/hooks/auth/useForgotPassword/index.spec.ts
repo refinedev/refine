@@ -99,6 +99,16 @@ describe("v3LegacyAuthProviderCompatible useForgotPassword Hook", () => {
 });
 
 describe("useForgotPassword Hook", () => {
+    const mockAuthProvider = {
+        login: () =>
+            Promise.resolve({
+                success: true,
+            }),
+        check: () => Promise.resolve({ authenticated: true }),
+        onError: () => Promise.resolve({}),
+        logout: () => Promise.resolve({ success: true }),
+    };
+
     beforeEach(() => {
         mHistory.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
@@ -112,19 +122,13 @@ describe("useForgotPassword Hook", () => {
         const { result } = renderHook(() => useForgotPassword(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: () =>
-                        Promise.resolve({
-                            success: true,
-                        }),
+                    ...mockAuthProvider,
                     forgotPassword: (params: any) => {
                         if (!params?.["email"]) {
                             return Promise.resolve({ success: false });
                         }
                         return Promise.resolve({ success: true });
                     },
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => Promise.resolve({}),
-                    logout: () => Promise.resolve({ success: true }),
                 },
             }),
         });
@@ -148,15 +152,12 @@ describe("useForgotPassword Hook", () => {
         const { result } = renderHook(() => useForgotPassword(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: () => Promise.resolve({ success: true }),
+                    ...mockAuthProvider,
                     forgotPassword: () =>
                         Promise.resolve({
                             success: false,
                             error: new Error("Missing email"),
                         }),
-                    check: () => Promise.resolve({ authenticated: false }),
-                    onError: () => Promise.resolve({}),
-                    logout: () => Promise.resolve({ success: true }),
                 },
             }),
         });
@@ -173,6 +174,114 @@ describe("useForgotPassword Hook", () => {
             expect(result.current.data).toEqual({
                 success: false,
                 error: new Error("Missing email"),
+            });
+        });
+    });
+
+    it("should open notification when has error is true", async () => {
+        const openNotificationMock = jest.fn();
+
+        const { result } = renderHook(() => useForgotPassword(), {
+            wrapper: TestWrapper({
+                notificationProvider: {
+                    open: openNotificationMock,
+                },
+                authProvider: {
+                    ...mockAuthProvider,
+                    forgotPassword: () =>
+                        Promise.resolve({
+                            success: false,
+                            error: new Error("Missing email"),
+                        }),
+                },
+            }),
+        });
+
+        const { mutate: forgotPassword } = result.current ?? {
+            mutate: () => 0,
+        };
+
+        await act(async () => {
+            forgotPassword({});
+        });
+
+        await waitFor(() => {
+            expect(openNotificationMock).toBeCalledWith({
+                key: "forgot-password-error",
+                type: "error",
+                message: "Error",
+                description: "Missing email",
+            });
+        });
+    });
+
+    it("should open notification when has success is false, error is undefined", async () => {
+        const openNotificationMock = jest.fn();
+
+        const { result } = renderHook(() => useForgotPassword(), {
+            wrapper: TestWrapper({
+                notificationProvider: {
+                    open: openNotificationMock,
+                },
+                authProvider: {
+                    ...mockAuthProvider,
+                    forgotPassword: () =>
+                        Promise.resolve({
+                            success: false,
+                        }),
+                },
+            }),
+        });
+
+        const { mutate: forgotPassword } = result.current ?? {
+            mutate: () => 0,
+        };
+
+        await act(async () => {
+            forgotPassword({});
+        });
+
+        await waitFor(() => {
+            expect(openNotificationMock).toBeCalledWith({
+                key: "forgot-password-error",
+                type: "error",
+                message: "Forgot Password Error",
+                description: "Error while resetting password",
+            });
+        });
+    });
+
+    it("should open notification when throw error", async () => {
+        const openNotificationMock = jest.fn();
+
+        const { result } = renderHook(() => useForgotPassword(), {
+            wrapper: TestWrapper({
+                notificationProvider: {
+                    open: openNotificationMock,
+                },
+                authProvider: {
+                    ...mockAuthProvider,
+                    forgotPassword: () => {
+                        throw new Error("Unhandled error");
+                    },
+                },
+            }),
+        });
+
+        const { mutate: forgotPassword } = result.current ?? {
+            mutate: () => 0,
+        };
+
+        await act(async () => {
+            forgotPassword({});
+        });
+
+        await waitFor(() => {
+            expect(openNotificationMock).toBeCalledWith({
+                key: "forgot-password-error",
+                type: "error",
+                message: "Error",
+                description: "Unhandled error",
             });
         });
     });
@@ -222,7 +331,7 @@ describe("useForgotPassword Hook authProvider selection", () => {
         expect(forgotPasswordMock).toHaveBeenCalled();
     });
 
-    it("selects v3LegacyAuthProviderCompatible:authProvider", async () => {
+    it("selects v3LegacyAuthProviderCompatible authProvider", async () => {
         const legacyForgotPasswordMock = jest.fn(() => Promise.resolve());
         const forgotPasswordMock = jest.fn(() =>
             Promise.resolve({ success: true }),

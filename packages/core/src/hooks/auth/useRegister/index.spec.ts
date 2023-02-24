@@ -164,6 +164,13 @@ describe("v3LegacyAuthProviderCompatible useRegister Hook", () => {
 });
 
 describe("useRegister Hook", () => {
+    const mockAuthProvider = {
+        login: () => Promise.resolve({ success: true }),
+        check: () => Promise.resolve({ authenticated: true }),
+        logout: () => Promise.resolve({ success: true }),
+        onError: () => Promise.resolve({}),
+    };
+
     beforeEach(() => {
         mHistory.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
@@ -177,7 +184,7 @@ describe("useRegister Hook", () => {
         const { result } = renderHook(() => useRegister(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: () => Promise.resolve({ success: true }),
+                    ...mockAuthProvider,
                     register: ({ email, password }: any) => {
                         if (email && password) {
                             return Promise.resolve({
@@ -190,10 +197,6 @@ describe("useRegister Hook", () => {
                             error: new Error("Missing fields"),
                         });
                     },
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => Promise.resolve({}),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve({ success: true }),
                 },
             }),
         });
@@ -217,7 +220,7 @@ describe("useRegister Hook", () => {
         const { result } = renderHook(() => useRegister(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: () => Promise.resolve({ success: true }),
+                    ...mockAuthProvider,
                     register: ({ email, password }: any) => {
                         if (email && password) {
                             return Promise.resolve({
@@ -229,10 +232,6 @@ describe("useRegister Hook", () => {
                             error: new Error("Missing fields"),
                         });
                     },
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => Promise.resolve({}),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve({ success: true }),
                 },
             }),
         });
@@ -254,7 +253,7 @@ describe("useRegister Hook", () => {
         const { result } = renderHook(() => useRegister(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: () => Promise.resolve({ success: true }),
+                    ...mockAuthProvider,
                     register: ({ email, password }: any) => {
                         if (email && password) {
                             return Promise.resolve({
@@ -266,10 +265,6 @@ describe("useRegister Hook", () => {
                             error: new Error("Missing fields"),
                         });
                     },
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => Promise.resolve({}),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve({ success: true }),
                 },
             }),
         });
@@ -294,7 +289,7 @@ describe("useRegister Hook", () => {
         const { result } = renderHook(() => useRegister(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: () => Promise.resolve({ success: true }),
+                    ...mockAuthProvider,
                     register: ({ email, password }: any) => {
                         if (email && password) {
                             return Promise.resolve({
@@ -305,10 +300,6 @@ describe("useRegister Hook", () => {
                             success: false,
                         });
                     },
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => Promise.resolve({}),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve({ success: true }),
                 },
             }),
         });
@@ -324,6 +315,113 @@ describe("useRegister Hook", () => {
         });
 
         expect(result.current.data?.error).toBeUndefined();
+    });
+
+    it("should open notification when has error is true", async () => {
+        const openNotificationMock = jest.fn();
+
+        const { result } = renderHook(() => useRegister(), {
+            wrapper: TestWrapper({
+                notificationProvider: {
+                    open: openNotificationMock,
+                },
+                authProvider: {
+                    ...mockAuthProvider,
+                    register: () => {
+                        return Promise.resolve({
+                            success: false,
+                            error: new Error("Error"),
+                        });
+                    },
+                },
+            }),
+        });
+
+        const { mutate: forgotPassword } = result.current ?? {
+            mutate: () => 0,
+        };
+
+        await act(async () => {
+            forgotPassword({});
+        });
+
+        await waitFor(() => {
+            expect(openNotificationMock).toBeCalledWith({
+                key: "register-error",
+                type: "error",
+                message: "Error",
+                description: "Error",
+            });
+        });
+    });
+
+    it("should open notification when has success is false, error is undefined", async () => {
+        const openNotificationMock = jest.fn();
+
+        const { result } = renderHook(() => useRegister(), {
+            wrapper: TestWrapper({
+                notificationProvider: {
+                    open: openNotificationMock,
+                },
+                authProvider: {
+                    ...mockAuthProvider,
+                    register: () => Promise.resolve({ success: false }),
+                },
+            }),
+        });
+
+        const { mutate: forgotPassword } = result.current ?? {
+            mutate: () => 0,
+        };
+
+        await act(async () => {
+            forgotPassword({});
+        });
+
+        await waitFor(() => {
+            expect(openNotificationMock).toBeCalledWith({
+                key: "register-error",
+                type: "error",
+                message: "Register Error",
+                description: "Error while registering",
+            });
+        });
+    });
+
+    it("should open notification when throw error", async () => {
+        const openNotificationMock = jest.fn();
+
+        const { result } = renderHook(() => useRegister(), {
+            wrapper: TestWrapper({
+                notificationProvider: {
+                    open: openNotificationMock,
+                },
+                authProvider: {
+                    ...mockAuthProvider,
+                    register: () => {
+                        throw new Error("Unhandled error");
+                        return Promise.resolve({ success: true });
+                    },
+                },
+            }),
+        });
+
+        const { mutate: forgotPassword } = result.current ?? {
+            mutate: () => 0,
+        };
+
+        await act(async () => {
+            forgotPassword({});
+        });
+
+        await waitFor(() => {
+            expect(openNotificationMock).toBeCalledWith({
+                key: "register-error",
+                type: "error",
+                message: "Error",
+                description: "Unhandled error",
+            });
+        });
     });
 });
 

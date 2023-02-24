@@ -292,6 +292,12 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
 });
 
 describe("useLogout Hook", () => {
+    const mockAuthProvider = {
+        login: () => Promise.resolve({ success: false }),
+        check: () => Promise.resolve({ authenticated: false }),
+        onError: () => Promise.resolve({}),
+    };
+
     beforeEach(() => {
         mHistory.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
@@ -309,10 +315,7 @@ describe("useLogout Hook", () => {
         const { result } = renderHook(() => useLogout(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: () => Promise.resolve({ success: false }),
-                    check: () => Promise.resolve({ authenticated: false }),
-                    onError: () => Promise.resolve({}),
-                    getPermissions: () => Promise.resolve(),
+                    ...mockAuthProvider,
                     logout: () => {
                         return Promise.resolve({
                             success: true,
@@ -342,10 +345,7 @@ describe("useLogout Hook", () => {
         const { result } = renderHook(() => useLogout(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: () => Promise.resolve({ success: false }),
-                    check: () => Promise.resolve({ authenticated: false }),
-                    onError: () => Promise.resolve({}),
-                    getPermissions: () => Promise.resolve(),
+                    ...mockAuthProvider,
                     logout: () => {
                         return Promise.resolve({
                             success: true,
@@ -376,10 +376,7 @@ describe("useLogout Hook", () => {
             {
                 wrapper: TestWrapper({
                     authProvider: {
-                        login: () => Promise.resolve({ success: true }),
-                        check: () => Promise.resolve({ authenticated: true }),
-                        onError: () => Promise.resolve({}),
-                        getPermissions: () => Promise.resolve(),
+                        ...mockAuthProvider,
                         logout: () => {
                             return Promise.resolve({
                                 success: true,
@@ -407,10 +404,7 @@ describe("useLogout Hook", () => {
             {
                 wrapper: TestWrapper({
                     authProvider: {
-                        login: () => Promise.resolve({ success: true }),
-                        check: () => Promise.resolve({ authenticated: true }),
-                        onError: () => Promise.resolve({}),
-                        getPermissions: () => Promise.resolve(),
+                        ...mockAuthProvider,
                         logout: () => {
                             return Promise.resolve({
                                 success: true,
@@ -440,7 +434,6 @@ describe("useLogout Hook", () => {
                     login: () => Promise.resolve({ success: true }),
                     check: () => Promise.resolve({ authenticated: true }),
                     onError: () => Promise.resolve({}),
-                    getPermissions: () => Promise.resolve(),
                     logout: () => {
                         return Promise.resolve({
                             success: false,
@@ -469,10 +462,7 @@ describe("useLogout Hook", () => {
         const { result } = renderHook(() => useLogout(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: () => Promise.resolve({ success: true }),
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => Promise.resolve({}),
-                    getPermissions: () => Promise.resolve(),
+                    ...mockAuthProvider,
                     logout: () => {
                         return Promise.resolve({
                             success: false,
@@ -496,14 +486,11 @@ describe("useLogout Hook", () => {
         expect(result.current.data?.error).toBeUndefined();
     });
 
-    it("logout and not redirect if check error rejected with false", async () => {
+    it("logout and not redirect if success false", async () => {
         const { result } = renderHook(() => useOnError(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: () => Promise.resolve({ success: true }),
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => Promise.resolve({}),
-                    getPermissions: () => Promise.resolve(),
+                    ...mockAuthProvider,
                     logout: () => {
                         return Promise.resolve({
                             success: false,
@@ -525,6 +512,112 @@ describe("useLogout Hook", () => {
 
         await act(async () => {
             expect(mHistory).toBeCalledTimes(0);
+        });
+    });
+
+    it("should open notification when has error is true", async () => {
+        const openNotificationMock = jest.fn();
+
+        const { result } = renderHook(() => useLogout(), {
+            wrapper: TestWrapper({
+                notificationProvider: {
+                    open: openNotificationMock,
+                },
+                authProvider: {
+                    ...mockAuthProvider,
+                    logout: () =>
+                        Promise.resolve({
+                            success: false,
+                            error: new Error("Error"),
+                        }),
+                },
+            }),
+        });
+
+        const { mutate: forgotPassword } = result.current ?? {
+            mutate: () => 0,
+        };
+
+        await act(async () => {
+            forgotPassword({});
+        });
+
+        await waitFor(() => {
+            expect(openNotificationMock).toBeCalledWith({
+                key: "useLogout-error",
+                type: "error",
+                message: "Error",
+                description: "Error",
+            });
+        });
+    });
+
+    it("should open notification when has success is false, error is undefined", async () => {
+        const openNotificationMock = jest.fn();
+
+        const { result } = renderHook(() => useLogout(), {
+            wrapper: TestWrapper({
+                notificationProvider: {
+                    open: openNotificationMock,
+                },
+                authProvider: {
+                    ...mockAuthProvider,
+                    logout: () => Promise.resolve({ success: false }),
+                },
+            }),
+        });
+
+        const { mutate: forgotPassword } = result.current ?? {
+            mutate: () => 0,
+        };
+
+        await act(async () => {
+            forgotPassword({});
+        });
+
+        await waitFor(() => {
+            expect(openNotificationMock).toBeCalledWith({
+                key: "useLogout-error",
+                type: "error",
+                message: "Logout Error",
+                description: "Something went wrong during logout",
+            });
+        });
+    });
+
+    it("should open notification when throw error", async () => {
+        const openNotificationMock = jest.fn();
+
+        const { result } = renderHook(() => useLogout(), {
+            wrapper: TestWrapper({
+                notificationProvider: {
+                    open: openNotificationMock,
+                },
+                authProvider: {
+                    ...mockAuthProvider,
+                    logout: () => {
+                        throw new Error("Unhandled error");
+                        return Promise.resolve({ success: true });
+                    },
+                },
+            }),
+        });
+
+        const { mutate: forgotPassword } = result.current ?? {
+            mutate: () => 0,
+        };
+
+        await act(async () => {
+            forgotPassword({});
+        });
+
+        await waitFor(() => {
+            expect(openNotificationMock).toBeCalledWith({
+                key: "useLogout-error",
+                type: "error",
+                message: "Error",
+                description: "Unhandled error",
+            });
         });
     });
 });

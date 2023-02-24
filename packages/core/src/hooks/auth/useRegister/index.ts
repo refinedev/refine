@@ -9,6 +9,7 @@ import { useNavigation, useNotification } from "@hooks";
 
 import {
     AuthActionResponse,
+    OpenNotificationParams,
     TLoginData,
     TRegisterData,
 } from "../../../interfaces";
@@ -106,18 +107,16 @@ export function useRegister<TVariables = {}>({
                 close?.("register-error");
             }
 
+            if (error || !success) {
+                open?.(buildNotification(error));
+            }
+
             if (redirectTo) {
                 replace(redirectTo);
             }
-
-            if (error) {
-                open?.({
-                    message: error.name,
-                    description: error.message,
-                    key: "register-error",
-                    type: "error",
-                });
-            }
+        },
+        onError: (error: any) => {
+            open?.(buildNotification(error));
         },
         ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
     });
@@ -139,15 +138,19 @@ export function useRegister<TVariables = {}>({
             close?.("register-error");
         },
         onError: (error: any) => {
-            open?.({
-                message: error?.name || "Register Error",
-                description: error?.message || "Error while registering",
-                key: "register-error",
-                type: "error",
-            });
+            open?.(buildNotification(error));
         },
         ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
     });
 
     return v3LegacyAuthProviderCompatible ? legacyQueryResponse : queryResponse;
 }
+
+const buildNotification = (error?: Error): OpenNotificationParams => {
+    return {
+        message: error?.name || "Register Error",
+        description: error?.message || "Error while registering",
+        key: "register-error",
+        type: "error",
+    };
+};

@@ -8,7 +8,7 @@ import qs from "qs";
 import { useNavigation, useRouterContext, useNotification } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 
-import { TLoginData } from "../../../interfaces";
+import { OpenNotificationParams, TLoginData } from "../../../interfaces";
 import { AuthActionResponse } from "src/interfaces/bindings/auth";
 
 export type UseLoginLegacyProps<TVariables> = {
@@ -110,13 +110,8 @@ export function useLogin<TVariables = {}>({
                 close?.("login-error");
             }
 
-            if (error) {
-                open?.({
-                    message: error.name,
-                    description: error.message,
-                    key: "login-error",
-                    type: "error",
-                });
+            if (error || !success) {
+                open?.(buildNotification(error));
             }
 
             if (to) {
@@ -126,6 +121,9 @@ export function useLogin<TVariables = {}>({
             if (redirectTo) {
                 return replace(redirectTo);
             }
+        },
+        onError: (error: any) => {
+            open?.(buildNotification(error));
         },
         ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
     });
@@ -151,15 +149,19 @@ export function useLogin<TVariables = {}>({
             close?.("login-error");
         },
         onError: (error: any) => {
-            open?.({
-                message: error?.name || "Login Error",
-                description: error?.message || "Invalid credentials",
-                key: "login-error",
-                type: "error",
-            });
+            open?.(buildNotification(error));
         },
         ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
     });
 
     return v3LegacyAuthProviderCompatible ? queryResponseLegacy : queryResponse;
 }
+
+const buildNotification = (error?: Error): OpenNotificationParams => {
+    return {
+        message: error?.name || "Login Error",
+        description: error?.message || "Invalid credentials",
+        key: "login-error",
+        type: "error",
+    };
+};

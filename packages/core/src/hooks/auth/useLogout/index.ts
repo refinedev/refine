@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-query";
 
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { TLogoutData } from "../../../interfaces";
+import { OpenNotificationParams, TLogoutData } from "../../../interfaces";
 import { useNavigation, useNotification } from "@hooks";
 import { AuthActionResponse } from "src/interfaces/bindings/auth";
 
@@ -118,18 +118,16 @@ export function useLogout<TVariables = {}>({
                 close?.("useLogout-error");
             }
 
+            if (error || !success) {
+                open?.(buildNotification(error));
+            }
+
             if (redirect) {
                 push(redirect);
             }
-
-            if (error) {
-                open?.({
-                    key: "useLogout-error",
-                    type: "error",
-                    message: error?.name,
-                    description: error?.message,
-                });
-            }
+        },
+        onError: (error: any) => {
+            open?.(buildNotification(error));
         },
         ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
     });
@@ -154,17 +152,20 @@ export function useLogout<TVariables = {}>({
 
             push("/login");
         },
-        onError: (error: Error) => {
-            open?.({
-                key: "useLogout-error",
-                type: "error",
-                message: error?.name || "Logout Error",
-                description:
-                    error?.message || "Something went wrong during logout",
-            });
+        onError: (error: any) => {
+            open?.(buildNotification(error));
         },
         ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
     });
 
     return v3LegacyAuthProviderCompatible ? queryResponseLegacy : queryResponse;
 }
+
+const buildNotification = (error?: Error): OpenNotificationParams => {
+    return {
+        key: "useLogout-error",
+        type: "error",
+        message: error?.name || "Logout Error",
+        description: error?.message || "Something went wrong during logout",
+    };
+};
