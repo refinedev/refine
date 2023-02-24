@@ -6,7 +6,6 @@ import {
     HttpError,
     CrudOperators,
     CrudFilters,
-    pickNotDeprecated,
 } from "@pankod/refine-core";
 import {
     createClient,
@@ -131,18 +130,12 @@ const dataProvider = (
     supabaseClient: SupabaseClient,
 ): Required<DataProvider> => {
     return {
-        getList: async ({
-            resource,
-            hasPagination = true,
-            pagination = { current: 1, pageSize: 10 },
-            filters,
-            sort,
-            sorters,
-            meta: _meta,
-            metaData,
-        }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
-            const { current = 1, pageSize = 10 } = pagination ?? {};
+        getList: async ({ resource, pagination, filters, sorters, meta }) => {
+            const {
+                current = 1,
+                pageSize = 10,
+                mode = "server",
+            } = pagination ?? {};
 
             const query = supabaseClient
                 .from(resource)
@@ -150,12 +143,11 @@ const dataProvider = (
                     count: "exact",
                 });
 
-            if (hasPagination) {
+            if (mode === "server") {
                 query.range((current - 1) * pageSize, current * pageSize - 1);
             }
 
-            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-            (sorters ?? sort)?.map((item) => {
+            sorters?.map((item) => {
                 const [foreignTable, field] = item.field.split(/\.(.*)/);
 
                 if (foreignTable && field) {
@@ -188,8 +180,7 @@ const dataProvider = (
             } as any;
         },
 
-        getMany: async ({ resource, ids, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
+        getMany: async ({ resource, ids, meta }) => {
             const { data, error } = await supabaseClient
                 .from(resource)
                 .select(meta?.select ?? "*")
@@ -232,8 +223,7 @@ const dataProvider = (
             };
         },
 
-        update: async ({ resource, id, variables, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
+        update: async ({ resource, id, variables, meta }) => {
             const query = supabaseClient.from(resource).update(variables);
 
             if (meta?.id) {
@@ -252,15 +242,7 @@ const dataProvider = (
             };
         },
 
-        updateMany: async ({
-            resource,
-            ids,
-            variables,
-            meta: _meta,
-            metaData,
-        }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
-
+        updateMany: async ({ resource, ids, variables, meta }) => {
             const response = await Promise.all(
                 ids.map(async (id) => {
                     const query = supabaseClient
@@ -287,9 +269,7 @@ const dataProvider = (
             };
         },
 
-        getOne: async ({ resource, id, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
-
+        getOne: async ({ resource, id, meta }) => {
             const query = supabaseClient
                 .from(resource)
                 .select(meta?.select ?? "*");
@@ -310,8 +290,7 @@ const dataProvider = (
             };
         },
 
-        deleteOne: async ({ resource, id, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
+        deleteOne: async ({ resource, id, meta }) => {
             const query = supabaseClient.from(resource).delete();
 
             if (meta?.id) {
@@ -330,9 +309,7 @@ const dataProvider = (
             };
         },
 
-        deleteMany: async ({ resource, ids, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
-
+        deleteMany: async ({ resource, ids, meta }) => {
             const response = await Promise.all(
                 ids.map(async (id) => {
                     const query = supabaseClient.from(resource).delete();

@@ -505,46 +505,52 @@ describe("useSelect Hook", () => {
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         await act(() => {});
 
-        expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
-            filters: [],
-            hasPagination: true,
-            pagination: { pageSize: 20 },
-            resource: "posts",
-            meta: {
-                queryContext: {
-                    queryKey: [
-                        "default",
-                        "posts",
-                        "list",
-                        {
-                            filters: [],
-                            hasPagination: true,
-                            pagination: {
-                                pageSize: 20,
+        expect(mockDataProvider.default?.getList).toHaveBeenCalledWith(
+            expect.objectContaining({
+                filters: [],
+                hasPagination: true,
+                pagination: { pageSize: 20, current: 1, mode: "server" },
+                resource: "posts",
+                meta: {
+                    queryContext: {
+                        queryKey: [
+                            "default",
+                            "posts",
+                            "list",
+                            {
+                                filters: [],
+                                hasPagination: true,
+                                pagination: {
+                                    current: 1,
+                                    mode: "server",
+                                    pageSize: 20,
+                                },
                             },
-                        },
-                    ],
-                    signal: new AbortController().signal,
+                        ],
+                        signal: new AbortController().signal,
+                    },
                 },
-            },
-            metaData: {
-                queryContext: {
-                    queryKey: [
-                        "default",
-                        "posts",
-                        "list",
-                        {
-                            filters: [],
-                            hasPagination: true,
-                            pagination: {
-                                pageSize: 20,
+                metaData: {
+                    queryContext: {
+                        queryKey: [
+                            "default",
+                            "posts",
+                            "list",
+                            {
+                                filters: [],
+                                hasPagination: true,
+                                pagination: {
+                                    current: 1,
+                                    mode: "server",
+                                    pageSize: 20,
+                                },
                             },
-                        },
-                    ],
-                    signal: new AbortController().signal,
+                        ],
+                        signal: new AbortController().signal,
+                    },
                 },
-            },
-        });
+            }),
+        );
     });
 
     it("should use onSearch option to get filters", async () => {
@@ -601,7 +607,6 @@ describe("useSelect Hook", () => {
             resource: "posts",
             meta: {
                 queryContext: {
-                    pageParam: undefined,
                     queryKey: [
                         "default",
                         "posts",
@@ -609,8 +614,6 @@ describe("useSelect Hook", () => {
                         {
                             hasPagination: false,
                             filters: [],
-                            pagination: {},
-                            sort: undefined,
                         },
                     ],
                     signal: new AbortController().signal,
@@ -618,7 +621,6 @@ describe("useSelect Hook", () => {
             },
             metaData: {
                 queryContext: {
-                    pageParam: undefined,
                     queryKey: [
                         "default",
                         "posts",
@@ -626,15 +628,16 @@ describe("useSelect Hook", () => {
                         {
                             hasPagination: false,
                             filters: [],
-                            pagination: {},
-                            sort: undefined,
                         },
                     ],
                     signal: new AbortController().signal,
                 },
             },
-            pagination: {},
-            sorters: undefined,
+            pagination: {
+                current: 1,
+                mode: "off",
+                pageSize: 10,
+            },
         });
 
         await act(async () => {
@@ -648,7 +651,6 @@ describe("useSelect Hook", () => {
                 resource: "posts",
                 meta: {
                     queryContext: {
-                        pageParam: undefined,
                         queryKey: [
                             "default",
                             "posts",
@@ -656,8 +658,6 @@ describe("useSelect Hook", () => {
                             {
                                 hasPagination: false,
                                 filters,
-                                pagination: {},
-                                sort: undefined,
                             },
                         ],
                         signal: new AbortController().signal,
@@ -665,7 +665,6 @@ describe("useSelect Hook", () => {
                 },
                 metaData: {
                     queryContext: {
-                        pageParam: undefined,
                         queryKey: [
                             "default",
                             "posts",
@@ -673,15 +672,16 @@ describe("useSelect Hook", () => {
                             {
                                 hasPagination: false,
                                 filters,
-                                pagination: {},
-                                sort: undefined,
                             },
                         ],
                         signal: new AbortController().signal,
                     },
                 },
-                pagination: {},
-                sorters: undefined,
+                pagination: {
+                    current: 1,
+                    mode: "off",
+                    pageSize: 10,
+                },
             });
         });
     });
@@ -736,7 +736,7 @@ describe("useSelect Hook", () => {
 
         expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
             filters: [],
-            pagination: { current: 2, pageSize: 1 },
+            pagination: { current: 2, mode: "server", pageSize: 1 },
             hasPagination: true,
             resource: "posts",
             meta: {
@@ -750,6 +750,7 @@ describe("useSelect Hook", () => {
                             hasPagination: true,
                             pagination: {
                                 current: 2,
+                                mode: "server",
                                 pageSize: 1,
                             },
                         },
@@ -768,6 +769,7 @@ describe("useSelect Hook", () => {
                             hasPagination: true,
                             pagination: {
                                 current: 2,
+                                mode: "server",
                                 pageSize: 1,
                             },
                         },

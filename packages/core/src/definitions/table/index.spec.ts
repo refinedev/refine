@@ -67,7 +67,7 @@ describe("definitions/table", () => {
             pageSize: 10,
         };
 
-        const sorter: CrudSorting = [
+        const sorters: CrudSorting = [
             {
                 field: "id",
                 order: "desc",
@@ -92,7 +92,7 @@ describe("definitions/table", () => {
 
         const url = stringifyTableParams({
             pagination,
-            sorter,
+            sorters,
             filters,
             ...userDefinedQueryParam,
         });
@@ -105,7 +105,7 @@ describe("definitions/table", () => {
             pageSize: 10,
         };
 
-        const sorter: CrudSorting = [{ field: "id", order: "desc" }];
+        const sorters: CrudSorting = [{ field: "id", order: "desc" }];
         const filters: CrudFilters = [
             {
                 field: "categoryId",
@@ -114,7 +114,7 @@ describe("definitions/table", () => {
             },
         ];
 
-        const url = stringifyTableParams({ pagination, sorter, filters });
+        const url = stringifyTableParams({ pagination, sorters, filters });
         expect(url).toMatchSnapshot();
     });
 
@@ -131,6 +131,26 @@ describe("definitions/table", () => {
         expect(parsedFilters).toStrictEqual([
             { field: "categoryId", operator: "in", value: ["1", "2"] },
         ]);
+    });
+
+    it("sorters should be prioritized over sorter", async () => {
+        const pagination = {
+            current: 1,
+            pageSize: 10,
+        };
+
+        const sorters: CrudSorting = [{ field: "id", order: "desc" }];
+        const sorter: CrudSorting = [{ field: "id2", order: "asc" }];
+        const filters: CrudFilters = [];
+
+        const url = stringifyTableParams({
+            pagination,
+            sorters,
+            sorter,
+            filters,
+        });
+
+        expect(url).toMatchSnapshot();
     });
 
     it("parse table params with advanced query object", async () => {

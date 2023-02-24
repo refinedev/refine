@@ -190,8 +190,6 @@ export const Header: React.FC = () => {
         </Menu>
     );
 
-    console.log(screens, screens.sm ? "space-between" : "end");
-
     return (
         <AntdHeader
             style={{

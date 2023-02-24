@@ -73,7 +73,7 @@ describe("dataProvider", () => {
                 axiosInstance,
             ).getList({
                 resource: "posts",
-                sort: [
+                sorters: [
                     {
                         field: "id",
                         order: "desc",
@@ -115,7 +115,7 @@ describe("dataProvider", () => {
                             value: "foo",
                         },
                     ],
-                    sort: [
+                    sorters: [
                         {
                             field: "id",
                             order: "desc",
@@ -222,7 +222,7 @@ describe("dataProvider", () => {
             const response = await DataProvider(API_URL, axios).custom!({
                 url: `${API_URL}/posts`,
                 method: "get",
-                sort: [
+                sorters: [
                     {
                         field: "id",
                         order: "asc",

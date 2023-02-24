@@ -18,3 +18,4 @@ export {
 } from "./useInfinitePagination";
 export { pickNotDeprecated } from "./pickNotDeprecated";
 export { useActiveAuthProvider } from "./useActiveAuthProvider";
+export { handlePaginationParams } from "./handlePaginationParams";

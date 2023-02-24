@@ -6,7 +6,6 @@ import {
     CrudSorting,
     DataProvider,
     CrudFilter,
-    pickNotDeprecated,
 } from "@pankod/refine-core";
 import setWith from "lodash/setWith";
 import set from "lodash/set";
@@ -154,8 +153,7 @@ export const generateFilters: any = (filters?: CrudFilters) => {
 
 const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
     return {
-        getOne: async ({ resource, id, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
+        getOne: async ({ resource, id, meta }) => {
             const operation = `${meta?.operation ?? resource}_by_pk`;
 
             const { query, variables } = gql.query({
@@ -174,8 +172,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        getMany: async ({ resource, ids, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
+        getMany: async ({ resource, ids, meta }) => {
             const operation = meta?.operation ?? resource;
 
             const { query, variables } = gql.query({
@@ -200,22 +197,14 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        getList: async ({
-            resource,
-            sort,
-            sorters,
-            filters,
-            hasPagination = true,
-            pagination = { current: 1, pageSize: 10 },
-            meta: _meta,
-            metaData,
-        }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
+        getList: async ({ resource, sorters, filters, pagination, meta }) => {
+            const {
+                current = 1,
+                pageSize: limit = 10,
+                mode = "server",
+            } = pagination ?? {};
 
-            const { current = 1, pageSize: limit = 10 } = pagination ?? {};
-
-            //`sort` is deprecated with refine@4, refine will pass `sorters` instead, however, we still support `sort` for backward compatibility
-            const hasuraSorting = generateSorting(sorters ?? sort);
+            const hasuraSorting = generateSorting(sorters);
             const hasuraFilters = generateFilters(filters);
 
             const operation = meta?.operation ?? resource;
@@ -230,7 +219,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                     operation,
                     fields: meta?.fields,
                     variables: {
-                        ...(hasPagination
+                        ...(mode === "server"
                             ? {
                                   limit,
                                   offset: (current - 1) * limit,
@@ -270,8 +259,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        create: async ({ resource, variables, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
+        create: async ({ resource, variables, meta }) => {
             const operation = meta?.operation ?? resource;
 
             const insertOperation = `insert_${operation}_one`;
@@ -296,8 +284,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        createMany: async ({ resource, variables, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
+        createMany: async ({ resource, variables, meta }) => {
             const operation = meta?.operation ?? resource;
 
             const insertOperation = `insert_${operation}`;
@@ -326,9 +313,8 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        update: async ({ resource, id, variables, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
-            const operation = metaData?.operation ?? resource;
+        update: async ({ resource, id, variables, meta }) => {
+            const operation = meta?.operation ?? resource;
 
             const updateOperation = `update_${operation}_by_pk`;
 
@@ -360,15 +346,8 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 data: response[updateOperation],
             };
         },
-        updateMany: async ({
-            resource,
-            ids,
-            variables,
-            meta: _meta,
-            metaData,
-        }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
-            const operation = metaData?.operation ?? resource;
+        updateMany: async ({ resource, ids, variables, meta }) => {
+            const operation = meta?.operation ?? resource;
 
             const updateOperation = `update_${operation}`;
 
@@ -407,9 +386,8 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        deleteOne: async ({ resource, id, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
-            const operation = metaData?.operation ?? resource;
+        deleteOne: async ({ resource, id, meta }) => {
+            const operation = meta?.operation ?? resource;
 
             const deleteOperation = `delete_${operation}_by_pk`;
 
@@ -429,9 +407,8 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             };
         },
 
-        deleteMany: async ({ resource, ids, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
-            const operation = metaData?.operation ?? resource;
+        deleteMany: async ({ resource, ids, meta }) => {
+            const operation = meta?.operation ?? resource;
 
             const deleteOperation = `delete_${operation}`;
 
@@ -470,8 +447,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             );
         },
 
-        custom: async ({ url, method, headers, meta: _meta, metaData }) => {
-            const meta = pickNotDeprecated(_meta, metaData);
+        custom: async ({ url, method, headers, meta }) => {
             let gqlClient = client;
 
             if (url) {
@@ -516,7 +492,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 }
             } else {
                 throw Error(
-                    "GraphQL need to operation, fields and variables values in metaData object.",
+                    "GraphQL need to operation, fields and variables values in meta object.",
                 );
             }
         },

@@ -19,7 +19,7 @@ describe("getList", () => {
     it("correct sorting response", async () => {
         const { data, total } = await dataProvider(client).getList({
             resource: "posts",
-            sort: [
+            sorters: [
                 {
                     field: "id",
                     order: "asc",
@@ -83,7 +83,7 @@ describe("getList", () => {
                     value: "170b5abd-d8e6-476c-b3fd-bd2474b0f369",
                 },
             ],
-            sort: [
+            sorters: [
                 {
                     field: "title",
                     order: "asc",
