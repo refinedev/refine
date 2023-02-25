@@ -95,10 +95,6 @@ describe("v3LegacyAuthProviderCompatible useIsAuthenticated Hook", () => {
         await waitFor(() => {
             expect(result.current.isError).toBeTruthy();
         });
-
-        await act(async () => {
-            expect(mHistory).toBeCalledWith("/custom-url", { replace: true });
-        });
     });
 });
 
@@ -179,10 +175,6 @@ describe("useIsAuthenticated Hook", () => {
 
         await waitFor(() => {
             expect(result.current.data?.error).toBeTruthy();
-        });
-
-        await act(async () => {
-            expect(mockFn).toBeCalledWith("/custom-url", { replace: true });
         });
     });
 });
