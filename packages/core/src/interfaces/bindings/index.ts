@@ -1,5 +1,13 @@
 export { AccessControlBindings } from "./access-control";
-export { AuthBindings } from "./auth";
+export {
+    AuthBindings,
+    IAuthBindingsContext,
+    AuthActionResponse,
+    IdentityResponse,
+    CheckResponse,
+    OnErrorResponse,
+    PermissionResponse,
+} from "./auth";
 export { DataBindings } from "./data";
 export { i18nBindings } from "./i18n";
 export { LiveBindings } from "./live";

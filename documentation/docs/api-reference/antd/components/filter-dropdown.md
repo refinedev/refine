@@ -107,13 +107,15 @@ import { useTable, FilterDropdown, useSelect } from "@pankod/refine-antd";
 import { Table, Select } from "antd";
 
 const { tableProps, filters } = useTable<IPost>({
-    initialFilter: [
-        {
-            field: "category.id",
-            value: [1, 2],
-            operator: "in",
-        },
-    ],
+    filters: {
+        initial: [
+            {
+                field: "category.id",
+                value: [1, 2],
+                operator: "in",
+            },
+        ],
+    },
 });
 
 const { selectProps: categorySelectProps } = useSelect<ICategory>({

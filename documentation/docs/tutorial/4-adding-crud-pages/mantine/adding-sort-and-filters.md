@@ -28,7 +28,7 @@ Since `@pankod/refine-react-table` provides a headless solution, there are many 
 Let's create a `<ColumnSorter/>` component to use in our table header. This component will be responsible for changing the sorting state of the table.
 
 ```tsx title="src/components/table/ColumnSorter.tsx"
-import { ActionIcon } from "@pankod/refine-mantine";
+import { ActionIcon } from "@mantine/core";
 import { IconChevronDown, IconSelector } from "@tabler/icons";
 import type { Column } from "@pankod/refine-react-table";
 
@@ -138,7 +138,7 @@ import {
     ActionIcon,
     Stack,
     Group,
-} from "@pankod/refine-mantine";
+} from ;
 import { IconFilter, IconX, IconCheck } from "@tabler/icons";
 import type { Column } from "@pankod/refine-react-table";
 

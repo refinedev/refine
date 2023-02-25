@@ -123,12 +123,14 @@ import { Modal, PostsTable } from "@components";
 
 const PostList = () => {
     const { tableQueryResult } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
+        },
     });
 
     // highlight-start
@@ -236,12 +238,14 @@ import { Modal, PostsTable } from "@components";
 
 const PostList = () => {
     const { tableQueryResult } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
+        },
     });
 
     // highlight-start

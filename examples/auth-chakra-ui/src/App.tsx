@@ -1,4 +1,7 @@
-import { AuthProvider, Refine } from "@pankod/refine-core";
+import {
+    LegacyAuthProvider as AuthProvider,
+    Refine,
+} from "@pankod/refine-core";
 import {
     AuthPage,
     ChakraProvider,
@@ -79,7 +82,7 @@ const App: React.FC = () => {
         <ChakraProvider theme={refineTheme}>
             <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                authProvider={authProvider}
+                legacyAuthProvider={authProvider}
                 notificationProvider={notificationProvider()}
                 legacyRouterProvider={{
                     ...routerProvider,

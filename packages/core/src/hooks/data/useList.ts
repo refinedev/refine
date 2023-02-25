@@ -16,16 +16,17 @@ import {
 } from "../../interfaces";
 import {
     useResource,
-    useCheckError,
     useHandleNotification,
     useResourceSubscription,
     useTranslate,
     useDataProvider,
+    useOnError,
 } from "@hooks";
 import {
     queryKeys,
     pickDataProvider,
     pickNotDeprecated,
+    useActiveAuthProvider,
     handlePaginationParams,
 } from "@definitions/helpers";
 
@@ -40,7 +41,7 @@ export type UseListProps<TData, TError> = {
     /**
      * Resource name for API data interactions
      */
-    resource: string;
+    resource?: string;
     /**
      * Configuration for pagination, sorting and filtering
      * @type [`UseListConfig`](/docs/api-reference/core/hooks/data/useList/#config-parameters)
@@ -121,7 +122,10 @@ export const useList = <
     const { resources } = useResource();
     const dataProvider = useDataProvider();
     const translate = useTranslate();
-    const { mutate: checkError } = useCheckError();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: checkError } = useOnError({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const handleNotification = useHandleNotification();
 
     const pickedDataProvider = pickDataProvider(
@@ -203,7 +207,7 @@ export const useList = <
         }),
         ({ queryKey, pageParam, signal }) => {
             return getList<TData>({
-                resource,
+                resource: resource!,
                 pagination: prefferedPagination,
                 hasPagination: isServerPagination,
                 filters: prefferedFilters,
@@ -229,6 +233,10 @@ export const useList = <
         },
         {
             ...queryOptions,
+            enabled:
+                typeof queryOptions?.enabled !== "undefined"
+                    ? queryOptions?.enabled
+                    : !!resource,
             select: (rawData) => {
                 let data = rawData;
 

@@ -1,4 +1,7 @@
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import {
+    Refine,
+    LegacyAuthProvider as AuthProvider,
+} from "@pankod/refine-core";
 import {
     notificationProvider,
     LoginPage,
@@ -84,7 +87,7 @@ const App: React.FC = () => {
 
     return (
         <Refine
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
             legacyRouterProvider={routerProvider}
             resources={[

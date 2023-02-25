@@ -1,5 +1,5 @@
 import * as React from "react";
-import { LoginPageProps } from "@pankod/refine-core";
+import { LoginPageProps, useActiveAuthProvider } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 import {
     Button,
@@ -40,7 +40,11 @@ export const LoginPage: React.FC<LoginPageProps> = () => {
         formState: { errors },
     } = useForm<BaseRecord, HttpError, ILoginForm>();
 
-    const { mutate: login, isLoading } = useLogin<ILoginForm>();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: login, isLoading } = useLogin<ILoginForm>({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
+
     const translate = useTranslate();
 
     return (

@@ -34,7 +34,9 @@ export const CustomerMenuContent: React.FC = () => {
     router.beforePopState;
     const { pathname } = useRouter();
 
-    const { mutate: logout } = useLogout<{ redirectPath: string }>();
+    const { mutate: logout } = useLogout<{ redirectPath: string }>({
+        v3LegacyAuthProviderCompatible: true,
+    });
 
     function handleClick(_: React.MouseEvent<HTMLAnchorElement>, href: string) {
         _.preventDefault();

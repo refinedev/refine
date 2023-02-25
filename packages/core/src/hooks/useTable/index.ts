@@ -8,10 +8,11 @@ import {
     useRouterContext,
     useSyncWithLocation,
     useNavigation,
-    useResourceWithRoute,
     useList,
     useLiveMode,
     useRouterType,
+    useResource,
+    useParsed,
 } from "@hooks";
 import {
     stringifyTableParams,
@@ -64,26 +65,64 @@ export type useTableProps<TData, TError> = {
      */
     initialPageSize?: number;
     /**
+     * Sort configs
+     */
+    sorters?: {
+        /**
+         * Initial sorter state
+         */
+        initial?: CrudSorting;
+        /**
+         * Default and unchangeable sorter state
+         *  @default `[]`
+         */
+        permanent?: CrudSorting;
+    };
+    /**
      * Initial sorter state
+     * @deprecated `initialSorter` property is deprecated. Use `sorters.initial` instead.
      */
     initialSorter?: CrudSorting;
     /**
      * Default and unchangeable sorter state
      *  @default `[]`
+     *  @deprecated `permanentSorter` property is deprecated. Use `sorters.permanent` instead.
      */
     permanentSorter?: CrudSorting;
     /**
+     * Filter configs
+     */
+    filters?: {
+        /**
+         * Initial filter state
+         */
+        initial?: CrudFilters;
+        /**
+         * Default and unchangeable filter state
+         *  @default `[]`
+         */
+        permanent?: CrudFilters;
+        /**
+         * Default behavior of the `setFilters` function
+         * @default `"merge"`
+         */
+        defaultBehavior?: SetFilterBehavior;
+    };
+    /**
      * Initial filter state
+     * @deprecated `initialFilter` property is deprecated. Use `filters.initial` instead.
      */
     initialFilter?: CrudFilters;
     /**
      * Default and unchangeable filter state
      * @default `[]`
+     * @deprecated `permanentFilter` property is deprecated. Use `filters.permanent` instead.
      */
     permanentFilter?: CrudFilters;
     /**
-     *Default behavior of the `setFilters` function
+     * Default behavior of the `setFilters` function
      * @default `"merge"`
+     * @deprecated `defaultSetFilterBehavior` property is deprecated. Use `filters.defaultBehavior` instead.
      */
     defaultSetFilterBehavior?: SetFilterBehavior;
     /**
@@ -176,9 +215,11 @@ export function useTable<
     pagination,
     initialSorter,
     permanentSorter = defaultPermanentSorter,
-    defaultSetFilterBehavior = "merge",
+    defaultSetFilterBehavior,
     initialFilter,
     permanentFilter = defaultPermanentFilter,
+    filters: filtersFromProp,
+    sorters: sortersFromProp,
     syncWithLocation: syncWithLocationProp,
     resource: resourceFromProp,
     successNotification,
@@ -198,15 +239,10 @@ export function useTable<
     const liveMode = useLiveMode(liveModeFromProp);
 
     const routerType = useRouterType();
-    const { useLocation, useParams } = useRouterContext();
+    const { useLocation } = useRouterContext();
     const { search, pathname } = useLocation();
 
-    const parse = useParse();
-
-    const { resource: resourceFromBindings, ...parsedParams } = React.useMemo(
-        () => parse(),
-        [parse],
-    );
+    const parsedParams = useParsed();
 
     const hasPaginationString = hasPagination === false ? "off" : "server";
     const isPaginationEnabled =
@@ -227,6 +263,30 @@ export function useTable<
     const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
         parseTableParams(search ?? "?");
 
+    // ???? TODO : FIX
+
+    const preferredInitialFilters = pickNotDeprecated(
+        filtersFromProp?.initial,
+        initialFilter,
+    );
+    const preferredPermanentFilters =
+        pickNotDeprecated(filtersFromProp?.permanent, permanentFilter) ??
+        defaultPermanentFilter;
+
+    const preferredInitialSorters = pickNotDeprecated(
+        sortersFromProp?.initial,
+        initialSorter,
+    );
+    const preferredPermanentSorters =
+        pickNotDeprecated(sortersFromProp?.permanent, permanentSorter) ??
+        defaultPermanentSorter;
+
+    const prefferedFilterBehavior =
+        pickNotDeprecated(
+            filtersFromProp?.defaultBehavior,
+            defaultSetFilterBehavior,
+        ) ?? "merge";
+
     let defaultCurrent: number;
     let defaultPageSize: number;
     let defaultSorter: CrudSorting | undefined;
@@ -245,30 +305,24 @@ export function useTable<
             10;
         defaultSorter =
             parsedParams?.params?.sorters ||
-            (parsedSorter.length ? parsedSorter : initialSorter);
+            (parsedSorter.length ? parsedSorter : preferredInitialSorters);
         defaultFilter =
             parsedParams?.params?.filters ||
-            (parsedFilters.length ? parsedFilters : initialFilter);
+            (parsedFilters.length ? parsedFilters : preferredInitialFilters);
     } else {
         defaultCurrent = prefferedCurrent || 1;
         defaultPageSize = prefferedPageSize || 10;
-        defaultSorter = initialSorter;
-        defaultFilter = initialFilter;
+        defaultSorter = preferredInitialSorters;
+        defaultFilter = preferredInitialFilters;
     }
 
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
     const { replace } = useNavigation();
     /** New way of `replace` calls to the router is using `useGo` */
     const go = useGo();
 
-    const resourceWithRoute = useResourceWithRoute();
+    const { resource } = useResource(resourceFromProp);
 
-    const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
-
-    const resourceInUse =
-        typeof resourceFromBindings === "string"
-            ? resourceFromBindings
-            : resourceFromBindings?.name ?? resource?.name;
+    const resourceInUse = resource?.name;
 
     React.useEffect(() => {
         warnOnce(
@@ -278,10 +332,10 @@ export function useTable<
     }, [resourceInUse]);
 
     const [sorters, setSorters] = useState<CrudSorting>(
-        setInitialSorters(permanentSorter, defaultSorter ?? []),
+        setInitialSorters(preferredPermanentSorters, defaultSorter ?? []),
     );
     const [filters, setFilters] = useState<CrudFilters>(
-        setInitialFilters(permanentFilter, defaultFilter ?? []),
+        setInitialFilters(preferredPermanentFilters, defaultFilter ?? []),
     );
     const [current, setCurrent] = useState<number>(defaultCurrent);
     const [pageSize, setPageSize] = useState<number>(defaultPageSize);
@@ -321,8 +375,18 @@ export function useTable<
         if (search === "") {
             setCurrent(defaultCurrent);
             setPageSize(defaultPageSize);
-            setSorters(setInitialSorters(permanentSorter, defaultSorter ?? []));
-            setFilters(setInitialFilters(permanentFilter, defaultFilter ?? []));
+            setSorters(
+                setInitialSorters(
+                    preferredPermanentSorters,
+                    defaultSorter ?? [],
+                ),
+            );
+            setFilters(
+                setInitialFilters(
+                    preferredPermanentFilters,
+                    defaultFilter ?? [],
+                ),
+            );
         }
     }, [search]);
 
@@ -360,12 +424,12 @@ export function useTable<
                         ...(isPaginationEnabled ? { pageSize, current } : {}),
                         sorters: differenceWith(
                             sorters,
-                            permanentSorter,
+                            preferredPermanentSorters,
                             isEqual,
                         ),
                         filters: differenceWith(
                             filters,
-                            permanentFilter,
+                            preferredPermanentFilters,
                             isEqual,
                         ),
                         ...queryParams,
@@ -381,8 +445,16 @@ export function useTable<
                               },
                           }
                         : {}),
-                    sorters: differenceWith(sorters, permanentSorter, isEqual),
-                    filters: differenceWith(filters, permanentFilter, isEqual),
+                    sorters: differenceWith(
+                        sorters,
+                        preferredPermanentSorters,
+                        isEqual,
+                    ),
+                    filters: differenceWith(
+                        filters,
+                        preferredPermanentFilters,
+                        isEqual,
+                    ),
                     ...queryParams,
                 });
                 return replace(`${pathname}?${stringifyParams}`, undefined, {
@@ -396,8 +468,8 @@ export function useTable<
         resource: resourceInUse,
         hasPagination,
         pagination: { current, pageSize, mode: pagination?.mode },
-        filters: unionFilters(permanentFilter, filters),
-        sorters: unionSorters(permanentSorter, sorters),
+        filters: unionFilters(preferredPermanentFilters, filters),
+        sorters: unionSorters(preferredPermanentSorters, sorters),
         queryOptions,
         successNotification,
         errorNotification,
@@ -409,45 +481,27 @@ export function useTable<
         dataProviderName,
     });
 
-    // const createLinkForSyncWithLocation = ({
-    //     pagination: { current, pageSize },
-    //     sorter,
-    //     sorters,
-    //     filters,
-    // }: SyncWithLocationParams) => {
-    //     const currentQueryParams = qs.parse(search?.substring(1)); // remove first ? character
-
-    //     const stringifyParams = stringifyTableParams({
-    //         pagination: {
-    //             pageSize,
-    //             current,
-    //         },
-    //         sorters: sorters ?? sorter,
-    //         filters,
-    //         ...currentQueryParams,
-    //     });
-    //     return `${pathname}?${stringifyParams}`;
-    // };
-
     const setFiltersAsMerge = (newFilters: CrudFilters) => {
         setFilters((prevFilters) =>
-            unionFilters(permanentFilter, newFilters, prevFilters),
+            unionFilters(preferredPermanentFilters, newFilters, prevFilters),
         );
     };
 
     const setFiltersAsReplace = (newFilters: CrudFilters) => {
-        setFilters(unionFilters(permanentFilter, newFilters));
+        setFilters(unionFilters(preferredPermanentFilters, newFilters));
     };
 
     const setFiltersWithSetter = (
         setter: (prevFilters: CrudFilters) => CrudFilters,
     ) => {
-        setFilters((prev) => unionFilters(permanentFilter, setter(prev)));
+        setFilters((prev) =>
+            unionFilters(preferredPermanentFilters, setter(prev)),
+        );
     };
 
     const setFiltersFn: useTableReturnType<TData>["setFilters"] = (
         setterOrFilters,
-        behavior: SetFilterBehavior = defaultSetFilterBehavior,
+        behavior: SetFilterBehavior = prefferedFilterBehavior,
     ) => {
         if (typeof setterOrFilters === "function") {
             setFiltersWithSetter(setterOrFilters);
@@ -461,7 +515,7 @@ export function useTable<
     };
 
     const setSortWithUnion = (newSorter: CrudSorting) => {
-        setSorters(() => unionSorters(permanentSorter, newSorter));
+        setSorters(() => unionSorters(preferredPermanentSorters, newSorter));
     };
 
     return {

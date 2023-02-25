@@ -41,7 +41,7 @@ function App() {
                 auditLogProvider={auditLogProvider}
                 dataProvider={dataProvider(supabaseClient)}
                 liveProvider={liveProvider(supabaseClient)}
-                authProvider={authProvider}
+                legacyAuthProvider={authProvider}
                 accessControlProvider={accessControlProvider}
                 legacyRouterProvider={{
                     ...routerProvider,

@@ -4,6 +4,7 @@ import {
     LoginFormTypes,
     useLink,
     useRouterType,
+    useActiveAuthProvider,
 } from "@pankod/refine-core";
 import {
     Row,
@@ -51,7 +52,10 @@ export const LoginPage: React.FC<LoginProps> = ({
 
     const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
-    const { mutate: login, isLoading } = useLogin<LoginFormTypes>();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: login, isLoading } = useLogin<LoginFormTypes>({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>

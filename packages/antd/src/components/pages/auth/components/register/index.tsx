@@ -4,6 +4,7 @@ import {
     RegisterFormTypes,
     useRouterType,
     useLink,
+    useActiveAuthProvider,
 } from "@pankod/refine-core";
 import {
     Row,
@@ -52,7 +53,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 
     const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
-    const { mutate: register, isLoading } = useRegister<RegisterFormTypes>();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: register, isLoading } = useRegister<RegisterFormTypes>({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>

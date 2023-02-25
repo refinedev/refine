@@ -1,5 +1,9 @@
 import * as React from "react";
-import { RegisterFormTypes, RegisterPageProps } from "@pankod/refine-core";
+import {
+    RegisterFormTypes,
+    RegisterPageProps,
+    useActiveAuthProvider,
+} from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 
 import {
@@ -56,8 +60,11 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         ...useFormProps,
     });
 
+    const authProvider = useActiveAuthProvider();
     const { mutate: registerMutate, isLoading } =
-        useRegister<RegisterFormTypes>();
+        useRegister<RegisterFormTypes>({
+            v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+        });
     const translate = useTranslate();
     const routerType = useRouterType();
     const Link = useLink();

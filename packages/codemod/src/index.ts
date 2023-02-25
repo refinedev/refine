@@ -33,6 +33,7 @@ const transformsWithPostTransform = [
     "refine1-to-refine2",
     "refine2-to-refine3",
     "separate-imports-antd",
+    "separate-imports-mantine",
 ];
 
 export function checkGitStatus(force) {
@@ -162,8 +163,20 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         value: "separate-imports-antd",
     },
     {
+        name: "separate-imports-mantine: Moves `Mantine` components exported by `refine` into `Mantine`",
+        value: "separate-imports-mantine",
+    },
+    {
         name: "separate-imports-mui: Moves `MUI` components exported by `refine` into `MUI`",
         value: "separate-imports-mui",
+    },
+    {
+        name: "add-v3LegacyAuthProviderCompatible-true-to-auth-hooks: Add v3LegacyAuthProviderCompatible:true to auth hooks",
+        value: "add-v3LegacyAuthProviderCompatible-true-to-auth-hooks",
+    },
+    {
+        name: "authProvider-to-legacyAuthProvider: Transform authProvider to use legacyAuthProvider",
+        value: "authProvider-to-legacyAuthProvider",
     },
 ];
 

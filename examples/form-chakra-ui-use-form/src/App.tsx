@@ -31,7 +31,7 @@ const App: React.FC = () => {
                 Layout={Layout}
                 ReadyPage={ReadyPage}
                 catchAll={<ErrorComponent />}
-                authProvider={{
+                legacyAuthProvider={{
                     login: async ({ email, providerName }) => {
                         localStorage.setItem("email", email);
                         return Promise.resolve();

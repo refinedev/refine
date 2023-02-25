@@ -1,12 +1,15 @@
 import React, { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { AuthContextProvider } from "@contexts/auth";
+import {
+    AuthBindingsContextProvider,
+    LegacyAuthContextProvider,
+} from "@contexts/auth";
 import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import {
-    IAuthContext,
+    ILegacyAuthContext,
     I18nProvider,
     IAccessControlContext,
     ILiveContext,
@@ -16,6 +19,7 @@ import {
     IAuditLogContext,
     RouterBindings,
     IRouterContext,
+    AuthBindings,
 } from "../src/interfaces";
 import { TranslationContextProvider } from "@contexts/translation";
 import { RefineContextProvider } from "@contexts/refine";
@@ -51,7 +55,8 @@ beforeEach(() => {
 });
 
 export interface ITestWrapperProps {
-    authProvider?: IAuthContext;
+    legacyAuthProvider?: ILegacyAuthContext;
+    authProvider?: AuthBindings;
     dataProvider?: IDataContextProvider | IDataMultipleContextProvider;
     i18nProvider?: I18nProvider;
     notificationProvider?: INotificationContext;
@@ -68,6 +73,7 @@ export interface ITestWrapperProps {
 export const TestWrapper: (
     props: ITestWrapperProps,
 ) => React.FC<{ children: ReactNode }> = ({
+    legacyAuthProvider,
     authProvider,
     dataProvider,
     resources,
@@ -180,15 +186,26 @@ export const TestWrapper: (
             </UndoableQueueContextProvider>
         );
 
+        const withLegacyAuth = legacyAuthProvider ? (
+            <LegacyAuthContextProvider
+                {...legacyAuthProvider}
+                isProvided={Boolean(legacyAuthProvider)}
+            >
+                {withNotification}
+            </LegacyAuthContextProvider>
+        ) : (
+            withNotification
+        );
+
         const withAuth = authProvider ? (
-            <AuthContextProvider
+            <AuthBindingsContextProvider
                 {...authProvider}
                 isProvided={Boolean(authProvider)}
             >
-                {withNotification}
-            </AuthContextProvider>
+                {withLegacyAuth}
+            </AuthBindingsContextProvider>
         ) : (
-            withNotification
+            withLegacyAuth
         );
 
         const withRefine = refineProvider ? (

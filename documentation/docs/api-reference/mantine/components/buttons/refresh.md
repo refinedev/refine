@@ -18,18 +18,18 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
+        <MantineCore.MantineProvider
             theme={RefineMantine.LightTheme}
             withNormalizeCSS
             withGlobalStyles
         >
-            <RefineMantine.Global
+            <MantineCore.Global
                 styles={{ body: { WebkitFontSmoothing: "auto" } }}
             />
-            <RefineMantine.NotificationsProvider position="top-right">
+            <MantineNotifications.NotificationsProvider position="top-right">
                 {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            </MantineNotifications.NotificationsProvider>
+        </MantineCore.MantineProvider>
     );
 };
 ```
@@ -51,12 +51,11 @@ import { ShowButton } from "@pankod/refine-mantine";
 import { useShow } from "@pankod/refine-core";
 import {
     Show,
-    Title,
-    Text,
     MarkdownField,
     //highlight-next-line
     RefreshButton,
 } from "@pankod/refine-mantine";
+import { Title, Text } from "@mantine/core";
 
 const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>();

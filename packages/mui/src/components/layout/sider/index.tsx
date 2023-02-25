@@ -33,6 +33,7 @@ import {
     useLink,
     useMenu,
     useRefineContext,
+    useActiveAuthProvider,
 } from "@pankod/refine-core";
 import { RefineLayoutSiderProps } from "../types";
 
@@ -57,8 +58,11 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
 
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const isExistAuthentication = useIsExistAuthentication();
-    const { mutate: mutateLogout } = useLogout();
     const Title = useTitle();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: mutateLogout } = useLogout({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
 
     const [open, setOpen] = useState<{ [k: string]: any }>({});
 

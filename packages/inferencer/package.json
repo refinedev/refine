@@ -75,6 +75,11 @@
         "@mui/material": "^5.8.6",
         "@mui/x-data-grid": "^5.12.1",
         "@ant-design/icons": "^5.0.1",
+        "@emotion/react": "^11.8.2",
+        "@mantine/core": "^5.5.6",
+        "@mantine/hooks": "^5.5.6",
+        "@mantine/form": "^5.5.6",
+        "@mantine/notifications": "^5.5.6",
         "@types/react": "^17.0.0 || ^18.0.0",
         "@types/react-dom": "^17.0.0 || ^18.0.0",
         "dayjs": "^1.10.7",
@@ -101,6 +106,36 @@
             "optional": true
         },
         "dayjs": {
+            "optional": true
+        },
+        "antd": {
+            "optional": true
+        },
+        "@emotion/styled": {
+            "optional": true
+        },
+        "@mui/lab": {
+            "optional": true
+        },
+        "@mui/material": {
+            "optional": true
+        },
+        "@mui/x-data-grid": {
+            "optional": true
+        },
+        "@emotion/react": {
+            "optional": true
+        },
+        "@mantine/core": {
+            "optional": true
+        },
+        "@mantine/hooks": {
+            "optional": true
+        },
+        "@mantine/form": {
+            "optional": true
+        },
+        "@mantine/notifications": {
             "optional": true
         }
     },

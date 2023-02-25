@@ -148,12 +148,14 @@ import { ICompany } from "interfaces";
 
 export const CompanyList: React.FC<IResourceComponentsProps> = () => {
   const { tableProps, sorter } = useTable<ICompany>({
-    initialSorter: [
-      {
-        field: "id",
-        order: "desc",
-      },
-    ],
+    sorters: {
+      initial: [
+        {
+          field: "id",
+          order: "desc",
+        },
+      ],
+    }
   });
 
   return (

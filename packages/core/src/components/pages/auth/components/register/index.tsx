@@ -10,6 +10,7 @@ import {
 } from "@hooks";
 
 import { DivPropsType, FormPropsType } from "../..";
+import { useActiveAuthProvider } from "@definitions/helpers";
 
 type RegisterProps = RegisterPageProps<
     DivPropsType,
@@ -36,7 +37,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 
     const translate = useTranslate();
 
-    const { mutate: register, isLoading } = useRegister();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: register, isLoading } = useRegister({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
 
     const renderLink = (link: React.ReactNode, text?: string) => {
         if (link) {

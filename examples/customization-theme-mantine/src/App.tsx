@@ -1,18 +1,16 @@
 import { Refine } from "@pankod/refine-core";
 import {
-    MantineProvider,
-    NotificationsProvider,
     Layout,
     ErrorComponent,
     ReadyPage,
     notificationProvider,
     LightTheme,
     DarkTheme,
-    ColorScheme,
-    ColorSchemeProvider,
-    useLocalStorage,
-    Global,
 } from "@pankod/refine-mantine";
+import { useLocalStorage } from "@mantine/hooks";
+import { ColorSchemeProvider } from "@mantine/styles";
+import { NotificationsProvider } from "@mantine/notifications";
+import { MantineProvider, ColorScheme, Global } from "@mantine/core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6/legacy";
 

@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import { Refine } from "@pankod/refine-core";
+import { AuthBindings, Refine } from "@pankod/refine-core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";
 import {
     I18nProvider,
     AccessControlProvider,
-    AuthProvider,
+    LegacyAuthProvider,
     DataProvider,
     NotificationProvider,
     IResourceItem,
@@ -30,7 +30,8 @@ const List = () => {
 };
 export interface ITestWrapperProps {
     dataProvider?: DataProvider;
-    authProvider?: AuthProvider;
+    legacyAuthProvider?: LegacyAuthProvider;
+    authProvider?: AuthBindings;
     resources?: IResourceItem[];
     notificationProvider?: NotificationProvider;
     accessControlProvider?: AccessControlProvider;
@@ -41,6 +42,7 @@ export interface ITestWrapperProps {
 
 export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     dataProvider,
+    legacyAuthProvider,
     authProvider,
     resources,
     notificationProvider,
@@ -72,6 +74,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
                     dataProvider={dataProvider ?? MockJSONServer}
                     i18nProvider={i18nProvider}
                     legacyRouterProvider={MockRouterProvider}
+                    legacyAuthProvider={legacyAuthProvider}
                     authProvider={authProvider}
                     notificationProvider={notificationProvider}
                     resources={resources ?? [{ name: "posts", list: List }]}

@@ -18,18 +18,18 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
+        <MantineCore.MantineProvider
             theme={RefineMantine.LightTheme}
             withNormalizeCSS
             withGlobalStyles
         >
-            <RefineMantine.Global
+            <MantineCore.Global
                 styles={{ body: { WebkitFontSmoothing: "auto" } }}
             />
-            <RefineMantine.NotificationsProvider position="top-right">
+            <MantineNotifications.NotificationsProvider position="top-right">
                 {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            </MantineNotifications.NotificationsProvider>
+        </MantineCore.MantineProvider>
     );
 };
 
@@ -70,7 +70,9 @@ setInitialRoutes(["/posts"]);
 import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
-import { List, Table, Pagination, CloneButton } from "@pankod/refine-mantine";
+import { List, CloneButton } from "@pankod/refine-mantine";
+import { Table, Pagination } from "@mantine/core";
+
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 const PostList: React.FC = () => {
@@ -326,7 +328,11 @@ This prop can be used to skip access control check with its `enabled` property o
 import { CloneButton } from "@pankod/refine-mantine";
 
 export const MyListComponent = () => {
-    return <CloneButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <CloneButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
 };
 ```
 

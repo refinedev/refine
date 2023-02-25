@@ -4,6 +4,7 @@ import {
     LoginFormTypes,
     useRouterType,
     useLink,
+    useActiveAuthProvider,
 } from "@pankod/refine-core";
 import { useLogin, useTranslate, useRouterContext } from "@pankod/refine-core";
 import {
@@ -72,7 +73,10 @@ export const LoginPage: React.FC<LoginProps> = ({
     });
     const { onSubmit, getInputProps } = form;
 
-    const { mutate: login, isLoading } = useLogin<LoginFormTypes>();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: login, isLoading } = useLogin<LoginFormTypes>({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
 
     const renderProviders = () => {
         if (providers && providers.length > 0) {

@@ -6,6 +6,7 @@ import {
     UpdatePasswordPageProps,
     BaseRecord,
     HttpError,
+    useActiveAuthProvider,
 } from "@pankod/refine-core";
 import {
     Box,
@@ -36,7 +37,10 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
     const translate = useTranslate();
-    const { mutate } = useUpdatePassword<UpdatePasswordFormTypes>();
+    const authProvider = useActiveAuthProvider();
+    const { mutate } = useUpdatePassword<UpdatePasswordFormTypes>({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const {
         register,
         watch,

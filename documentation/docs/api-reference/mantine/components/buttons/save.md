@@ -18,18 +18,18 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
+        <MantineCore.MantineProvider
             theme={RefineMantine.LightTheme}
             withNormalizeCSS
             withGlobalStyles
         >
-            <RefineMantine.Global
+            <MantineCore.Global
                 styles={{ body: { WebkitFontSmoothing: "auto" } }}
             />
-            <RefineMantine.NotificationsProvider position="top-right">
+            <MantineNotifications.NotificationsProvider position="top-right">
                 {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            </MantineNotifications.NotificationsProvider>
+        </MantineCore.MantineProvider>
     );
 };
 ```
@@ -50,13 +50,8 @@ import { Refine } from "@pankod/refine-core";
 import { EditButton } from "@pankod/refine-mantine";
 
 // visible-block-start
-import {
-    Edit,
-    Select,
-    TextInput,
-    useForm,
-    useSelect,
-} from "@pankod/refine-mantine";
+import { Edit, useForm, useSelect } from "@pankod/refine-mantine";
+import { Select, TextInput } from "@mantine/core";
 
 const PostEdit: React.FC = () => {
     const {

@@ -13,7 +13,9 @@ export const CreateCanvas: React.FC<CreateCanvasProps> = ({
     modalProps,
     formProps,
 }) => {
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity({
+        v3LegacyAuthProviderCompatible: true,
+    });
 
     const [values, setValues] = useState(() => {
         const name = getRandomName();

@@ -85,19 +85,23 @@ interface IPost {
 export const PostList: React.FC = () => {
     const { tableProps } = useTable({
         resource: "posts",
-        initialSorter: [
-            {
-                field: "title",
-                order: "asc",
-            },
-        ],
-        initialFilter: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "draft",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "title",
+                    order: "asc",
+                },
+            ],
+        },
+        filters: {
+            initial: [
+                {
+                    field: "status",
+                    operator: "eq",
+                    value: "draft",
+                },
+            ],
+        },
     });
 
     return (

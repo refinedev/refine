@@ -7,7 +7,7 @@ import { MockRouterProvider, MockJSONServer } from "@test";
 import {
     I18nProvider,
     AccessControlProvider,
-    AuthProvider,
+    LegacyAuthProvider,
     DataProvider,
     NotificationProvider,
     IResourceItem,
@@ -32,7 +32,7 @@ const List = () => {
 };
 export interface ITestWrapperProps {
     dataProvider?: DataProvider;
-    authProvider?: AuthProvider;
+    authProvider?: LegacyAuthProvider;
     resources?: IResourceItem[];
     notificationProvider?: NotificationProvider;
     accessControlProvider?: AccessControlProvider;
@@ -75,6 +75,7 @@ export const TestWrapper: (
                         i18nProvider={i18nProvider}
                         legacyRouterProvider={MockRouterProvider}
                         authProvider={authProvider}
+                        legacyAuthProvider={authProvider}
                         notificationProvider={notificationProvider}
                         resources={resources ?? [{ name: "posts", list: List }]}
                         accessControlProvider={accessControlProvider}

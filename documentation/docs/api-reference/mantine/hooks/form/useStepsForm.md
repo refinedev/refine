@@ -14,18 +14,21 @@ import {
 import { GetManyResponse, useMany } from "@pankod/refine-core";
 import {
     Button as MantineButton,
-    Code as MantineCode,
     Edit as MantineEdit,
     Create as MantineCreate,
     List as MantineList,
-    Group as MantineGroup,
-    Select as MantineSelect,
-    Stepper as MantineStepper,
-    TextInput as MantineTextInput,
     useStepsForm as MantineUseStepsForm,
     useSelect as MantineUseSelect,
     DeleteButton as MantineDeleteButton,
     SaveButton as MantineSaveButton,
+    EditButton as MantineEditButton,
+} from "@pankod/refine-mantine";
+import {
+    Code as MantineCode,
+    Group as MantineGroup,
+    Select as MantineSelect,
+    Stepper as MantineStepper,
+    TextInput as MantineTextInput,
     Text as MantineText,
     Textarea as MantineTextarea,
     Space as MantineSpace,
@@ -33,8 +36,7 @@ import {
     ScrollArea as MantineScrollArea,
     Table as MantineTable,
     Box as MantineBox,
-    EditButton as MantineEditButton,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 
 interface ICategory {
     id: number;
@@ -495,20 +497,18 @@ setInitialRoutes(["/posts/create"]);
 // visible-block-start
 import React from "react";
 import { HttpError } from "@pankod/refine-core";
+import { Create, useStepsForm, SaveButton } from "@pankod/refine-mantine";
 import {
     Button,
     Code,
-    Create,
     Group,
     Select,
     Stepper,
     TextInput,
-    useStepsForm,
-    SaveButton,
     Text,
     Space,
     Textarea,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 
 type FormValues = Omit<IPost, "id">;
 
@@ -655,20 +655,18 @@ setInitialRoutes(["/posts/edit/123"]);
 // visible-block-start
 import React from "react";
 import { HttpError } from "@pankod/refine-core";
+import { Edit, useStepsForm, SaveButton } from "@pankod/refine-mantine";
 import {
-    Edit,
     Button,
     Code,
     Group,
     Select,
     Stepper,
     TextInput,
-    useStepsForm,
-    SaveButton,
     Text,
     Space,
     Textarea,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 
 type FormValues = Omit<IPost, "id">;
 

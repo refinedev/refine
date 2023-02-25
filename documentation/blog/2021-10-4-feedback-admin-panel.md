@@ -324,7 +324,9 @@ export const FeedbackList: React.FC = () => {
     HttpError,
     IFeedbackFilterVariables
   >({
-    initialSorter: [{ field: "created_at", order: "desc" }],
+    sorters: {
+      initial: [{ field: "created_at", order: "desc" }],
+    },
     onSearch: (params) => {
       const filters: CrudFilters = [];
       const { type } = params;

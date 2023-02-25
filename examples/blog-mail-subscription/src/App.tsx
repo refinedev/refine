@@ -23,7 +23,7 @@ function App() {
     return (
         <Refine
             dataProvider={dataProvider}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             Header={Header}
             Layout={Layout}
             OffLayoutArea={OffLayoutArea}

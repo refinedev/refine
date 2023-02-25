@@ -9,6 +9,7 @@ import {
     RegisterFormTypes,
     BaseRecord,
     HttpError,
+    useActiveAuthProvider,
 } from "@pankod/refine-core";
 import {
     Box,
@@ -49,7 +50,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     const { Link: LegacyLink } = useRouterContext();
     const Link = routerType === "legacy" ? LegacyLink : NewLink;
     const translate = useTranslate();
-    const { mutate } = useRegister();
+    const authProvider = useActiveAuthProvider();
+    const { mutate } = useRegister({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const {
         register,
         handleSubmit,

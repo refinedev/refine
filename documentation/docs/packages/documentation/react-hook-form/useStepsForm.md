@@ -36,12 +36,14 @@ const stepTitlesShared = ["Title", "Status", "Category and content"];
 
 const PostList: React.FC = () => {
     const { tableQueryResult } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
+        },
     });
     const { edit, create } = useNavigation();
 

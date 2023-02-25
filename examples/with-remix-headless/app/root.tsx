@@ -33,7 +33,7 @@ export default function App() {
                 <Refine
                     dataProvider={dataProvider(API_URL)}
                     legacyRouterProvider={routerProvider}
-                    authProvider={authProvider}
+                    legacyAuthProvider={authProvider}
                     resources={[
                         {
                             name: "posts",

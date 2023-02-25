@@ -23,10 +23,12 @@ const { Title } = Typography;
 export const CanvasShow: React.FC = () => {
     const { Link, useLocation } = useRouterContext();
     const { pathname } = useLocation();
-    const [color, setColor] = useState<(typeof colors)[number]>("black");
+    const [color, setColor] = useState<typeof colors[number]>("black");
     const { modalProps, show, close } = useModal();
 
-    const { data: identity } = useGetIdentity();
+    const { data: identity } = useGetIdentity({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const {
         queryResult: { data: { data: canvas } = {} },
     } = useShow<Canvas>();
