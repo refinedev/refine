@@ -99,7 +99,7 @@ describe("Refine Container", () => {
     it("should render the children", async () => {
         const { getByTestId } = render(
             <Refine
-                authProvider={mockAuthProvider}
+                legacyAuthProvider={mockAuthProvider}
                 dataProvider={MockJSONServer}
                 routerProvider={mockRouterBindings()}
             >

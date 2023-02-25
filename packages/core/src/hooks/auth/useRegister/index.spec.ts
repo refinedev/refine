@@ -42,6 +42,7 @@ describe("v3LegacyAuthProviderCompatible useRegister Hook", () => {
                         logout: () => Promise.resolve(),
                         getUserIdentity: () => Promise.resolve({ id: 1 }),
                     },
+                    routerProvider: mockRouterProvider,
                 }),
             },
         );
@@ -214,6 +215,7 @@ describe("useRegister Hook", () => {
         });
 
         expect(result.current.data?.success).toBeTruthy();
+
         expect(mockGo).toBeCalledWith({ to: "/", type: "replace" });
     });
 

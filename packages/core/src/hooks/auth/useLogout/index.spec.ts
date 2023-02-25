@@ -388,6 +388,7 @@ describe("useLogout Hook", () => {
                             });
                         },
                     },
+                    routerProvider: mockRouterProvider,
                 }),
             },
         );
@@ -399,7 +400,9 @@ describe("useLogout Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory).toBeCalledWith("/custom-path");
+            expect(mockGo).toBeCalledWith(
+                expect.objectContaining({ to: "/custom-path" }),
+            );
         });
     });
 

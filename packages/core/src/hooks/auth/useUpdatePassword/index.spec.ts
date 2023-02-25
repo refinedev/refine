@@ -12,6 +12,7 @@ const mockRouterProvider = {
         push: mockFn,
         replace: mockFn,
     }),
+    useLocation: () => ({}),
 };
 
 // NOTE : Will be removed in v5
@@ -111,6 +112,7 @@ describe("useUpdatePassword Hook", () => {
     };
 
     beforeEach(() => {
+        mockFn.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
             if (message?.message === "Missing fields") return;
             if (typeof message === "undefined") return;
@@ -230,10 +232,11 @@ describe("useUpdatePassword Hook", () => {
             success: true,
             redirectTo: "/login",
         });
-        expect(mockFn).toBeCalledWith("/login", { replace: true });
+        expect(mockFn).toBeCalledWith("/login");
     });
 
     it("fail and redirect", async () => {
+        mockFn;
         const { result } = renderHook(() => useUpdatePassword(), {
             wrapper: TestWrapper({
                 authProvider: {
@@ -273,7 +276,7 @@ describe("useUpdatePassword Hook", () => {
             error: new Error("Missing fields"),
             redirectTo: "/register",
         });
-        expect(mockFn).toBeCalledWith("/register", { replace: true });
+        expect(mockFn).toBeCalledWith("/register");
     });
 
     it("should open notification when has error is true", async () => {

@@ -115,6 +115,7 @@ describe("v3LegacyAuthProviderCompatible useLogin Hook", () => {
                         logout: () => Promise.resolve(),
                         getUserIdentity: () => Promise.resolve({ id: 1 }),
                     },
+                    routerProvider: mockRouterProvider,
                 }),
             },
         );
