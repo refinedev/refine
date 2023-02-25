@@ -6,13 +6,25 @@ import { posts } from "@test/dataMocks";
 import { useEditableTable } from "./useEditableTable";
 import { act } from "react-dom/test-utils";
 
+const routerProvider = {
+    parse: () => {
+        return () => ({
+            resource: {
+                name: "posts",
+            },
+        });
+    },
+};
+
 describe("useEditableTable Hook", () => {
     beforeAll(() => {
         jest.spyOn(console, "error").mockImplementation(jest.fn());
     });
     it("fetches table and form data", async () => {
         const { result } = renderHook(() => useEditableTable(), {
-            wrapper: TestWrapper({}),
+            wrapper: TestWrapper({
+                routerProvider,
+            }),
         });
 
         await waitFor(() => {
