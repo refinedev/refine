@@ -7,6 +7,7 @@ import {
     render,
     TestWrapper,
 } from "@test";
+
 import { Authenticated } from "./";
 import { AuthBindings } from "src/interfaces";
 
@@ -68,10 +69,6 @@ describe("v3LegacyAuthProviderCompatible Authenticated", () => {
     });
 
     it("not authenticated test", async () => {
-        legacyMockAuthProvider.checkAuth = jest
-            .fn()
-            .mockImplementation(() => Promise.reject());
-
         const { queryByText } = render(
             <Authenticated v3LegacyAuthProviderCompatible={true}>
                 Custom Authenticated
@@ -79,7 +76,11 @@ describe("v3LegacyAuthProviderCompatible Authenticated", () => {
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
-                    legacyAuthProvider: legacyMockAuthProvider,
+                    legacyAuthProvider: {
+                        ...legacyMockAuthProvider,
+                        checkAuth: () => Promise.reject(),
+                    },
+                    legacyRouterProvider: mockLegacyRouter,
                     resources: [{ name: "posts", route: "posts" }],
                 }),
             },
@@ -87,7 +88,7 @@ describe("v3LegacyAuthProviderCompatible Authenticated", () => {
 
         await waitFor(() => {
             expect(queryByText("Custom Authenticated")).toBeNull();
-            expect(mHistory).toBeCalledTimes(1);
+            expect(mockReplace).toBeCalledTimes(1);
         });
     });
 
@@ -167,18 +168,15 @@ describe("Authenticated", () => {
     });
 
     it("not authenticated test", async () => {
-        mockAuthProvider.check = jest
-            .fn()
-            .mockImplementation(() =>
-                Promise.resolve({ authenticated: false }),
-            );
-
         const { queryByText } = render(
             <Authenticated>Custom Authenticated</Authenticated>,
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
-                    authProvider: mockAuthProvider,
+                    authProvider: {
+                        ...mockAuthProvider,
+                        check: () => Promise.resolve({ authenticated: false }),
+                    },
                     resources: [{ name: "posts", route: "posts" }],
                     legacyRouterProvider: mockLegacyRouter,
                 }),
