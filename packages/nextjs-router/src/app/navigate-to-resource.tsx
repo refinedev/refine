@@ -11,6 +11,7 @@ export const NavigateToResource = ({
     resource: resourceProp,
     meta,
 }: NavigateToResourceProps) => {
+    const ran = React.useRef(false);
     const { replace } = useRouter();
     const getToPath = useGetToPath();
     const { resource, resources } = useResource(resourceProp);
@@ -22,17 +23,20 @@ export const NavigateToResource = ({
 
     React.useEffect(() => {
         if (toResource) {
-            const path = getToPath({
-                resource: toResource,
-                action: "list",
-                meta,
-            });
+            if (!ran.current) {
+                const path = getToPath({
+                    resource: toResource,
+                    action: "list",
+                    meta,
+                });
 
-            if (path) {
-                replace(path);
+                if (path) {
+                    replace(path);
+                }
+                ran.current = true;
             }
         }
-    }, [toResource, replace, getToPath]);
+    }, [toResource, replace, meta, getToPath]);
 
     return null;
 };
