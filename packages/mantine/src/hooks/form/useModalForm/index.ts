@@ -96,7 +96,7 @@ export const useModalForm = <
         typeof syncWithLocation === "object" && "key" in syncWithLocation
             ? syncWithLocation.key
             : resource && action && syncWithLocation
-            ? `modal-${resource?.name}-${action}`
+            ? `modal-${resource?.identifier ?? resource?.name}-${action}`
             : undefined;
 
     const useMantineFormResult = useForm<

@@ -99,7 +99,7 @@ export const useDrawerForm = <
         typeof syncWithLocation === "object" && "key" in syncWithLocation
             ? syncWithLocation.key
             : resource && action && syncWithLocation
-            ? `drawer-${resource?.name}-${action}`
+            ? `drawer-${resource?.identifier ?? resource?.name}-${action}`
             : undefined;
 
     const [open, setOpen] = useState(false);
