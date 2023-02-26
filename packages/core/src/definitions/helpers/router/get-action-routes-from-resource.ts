@@ -49,7 +49,7 @@ export const getActionRoutesFromResource = (
                           resource.name
                     : resource.name,
                 action,
-                parentPrefix,
+                legacy ? parentPrefix : undefined,
             );
         } else if (typeof item === "string") {
             // means we don't have the component, but we have the route
