@@ -87,6 +87,7 @@ export {
     GoFunction,
     ParseFunction,
     Prettify,
+    FormWithSyncWithLocationParams,
 } from "./interfaces";
 
 // all auth types
