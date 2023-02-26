@@ -263,8 +263,6 @@ export function useTable<
     const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
         parseTableParams(search ?? "?");
 
-    // ???? TODO : FIX
-
     const preferredInitialFilters = pickNotDeprecated(
         filtersFromProp?.initial,
         initialFilter,
@@ -444,7 +442,7 @@ export function useTable<
                         ...queryParams,
                     },
                 });
-            } else if (replace) {
+            } else {
                 const stringifyParams = stringifyTableParams({
                     ...(isPaginationEnabled
                         ? {
@@ -466,7 +464,7 @@ export function useTable<
                     ),
                     ...queryParams,
                 });
-                return replace(`${pathname}?${stringifyParams}`, undefined, {
+                return replace?.(`${pathname}?${stringifyParams}`, undefined, {
                     shallow: true,
                 });
             }
