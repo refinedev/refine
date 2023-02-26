@@ -13,12 +13,14 @@ import { useActiveAuthProvider } from "@definitions/index";
 export type AuthenticatedCommonProps = {
     /**
      * Whether to redirect user if not logged in or not.
-     * If not set, user will be redirected to `/login`.
+     * If not set, user will be redirected to `redirectTo` property of the `check` function's response.
+     * This behavior is only available for new auth providers.
+     * Legacy auth providers will redirect to `/login` by default if this property is not set.
      * If set to a string, user will be redirected to that string.
      *
      * This property only works if `fallback` is **not set**.
      */
-    redirectOnFail?: string;
+    redirectOnFail?: string | true;
     /**
      * Whether to append current path to search params of the redirect url at `to` property.
      *
@@ -37,7 +39,7 @@ export type AuthenticatedCommonProps = {
     /**
      * Content to show if user is logged in
      */
-    children: React.ReactNode;
+    children?: React.ReactNode;
 };
 
 export type LegacyAuthenticatedProps = {
@@ -60,7 +62,7 @@ export function Authenticated(props: AuthenticatedProps): JSX.Element | null;
  * @see {@link https://refine.dev/docs/core/components/auth/authenticated `<Authenticated>`} component for more details.
  */
 export function Authenticated({
-    redirectOnFail = "/login",
+    redirectOnFail = true,
     appendCurrentPathToQuery = true,
     children,
     fallback: fallbackContent,
@@ -83,16 +85,26 @@ export function Authenticated({
 
     const loading = isAuthenticatedProps.isLoading;
 
-    const isAuthenticated = isLegacy
-        ? isAuthenticatedProps.isSuccess
-        : isAuthenticatedProps.data?.authenticated;
+    const isAuthenticated = activeAuthProvider?.isProvided
+        ? isLegacy
+            ? isAuthenticatedProps.isSuccess
+            : isAuthenticatedProps.data?.authenticated
+        : true;
+
+    const appliedRedirect = isLegacy
+        ? typeof redirectOnFail === "string"
+            ? redirectOnFail
+            : "/login"
+        : typeof redirectOnFail === "string"
+        ? redirectOnFail
+        : (isAuthenticatedProps.data?.redirectTo as string | undefined);
 
     if (loading) {
         return loadingContent ? <>{loadingContent}</> : null;
     }
 
     if (isAuthenticated) {
-        return <>{children}</>;
+        return <>{children ?? null}</>;
     } else {
         if (typeof fallbackContent === "undefined") {
             if (routerType === "legacy") {
@@ -114,24 +126,39 @@ export function Authenticated({
                     !cleanPathname?.includes("/login") &&
                     cleanPathname !== redirectOnFail
                 ) {
-                    replace(`/${redirectOnFail.replace(/^\//, "")}${suffix}`);
+                    replace(
+                        `/${(appliedRedirect ?? "/login").replace(
+                            /^\//,
+                            "",
+                        )}${suffix}`,
+                    );
                 }
             } else {
-                const suffix = go({
-                    to: parsed.params?.pathname || "/",
-                    options: { keepQuery: true },
-                    type: "path",
-                });
+                const cleanPathname = parsed.pathname?.split(/[?#]/)[0];
 
-                go({
-                    // needs to be adjusted by the return value of `checkAuth`
-                    to: `/${redirectOnFail.replace(/^\//, "")}`,
-                    query: suffix
-                        ? {
-                              to: suffix,
-                          }
-                        : {},
-                });
+                /** If the route is same, do not redirect */
+                if (cleanPathname === appliedRedirect) return null;
+
+                /** If `to` is already present, do not append the new one. */
+                const suffix = parsed.params?.to
+                    ? parsed.params?.to
+                    : go({
+                          to: parsed.pathname || "/",
+                          options: { keepQuery: true },
+                          type: "path",
+                      });
+
+                if (appliedRedirect) {
+                    go({
+                        // needs to be adjusted by the return value of `checkAuth`
+                        to: `/${appliedRedirect.replace(/^\//, "")}`,
+                        query: suffix
+                            ? {
+                                  to: suffix,
+                              }
+                            : {},
+                    });
+                }
             }
 
             return null;
