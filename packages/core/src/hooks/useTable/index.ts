@@ -353,6 +353,12 @@ export function useTable<
                         keepHash: true,
                         keepQuery: true,
                     },
+                    query: {
+                        ...(isPaginationEnabled ? { current, pageSize } : {}),
+                        sorters: sorter,
+                        filters,
+                        ...currentQueryParams(),
+                    },
                 }) ?? ""
             );
         } else {
@@ -420,6 +426,9 @@ export function useTable<
             if (routerType === "new") {
                 go({
                     type: "replace",
+                    options: {
+                        keepQuery: true,
+                    },
                     query: {
                         ...(isPaginationEnabled ? { pageSize, current } : {}),
                         sorters: differenceWith(
