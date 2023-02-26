@@ -49,7 +49,11 @@ export const useBreadcrumb = ({
     const addBreadcrumb = (parentName: string | IResourceItem) => {
         const parentResource =
             typeof parentName === "string"
-                ? pickResource(parentName, resources)
+                ? pickResource(
+                      parentName,
+                      resources,
+                      routerType === "legacy",
+                  ) ?? { name: parentName }
                 : parentName;
 
         if (parentResource) {
@@ -65,6 +69,7 @@ export const useBreadcrumb = ({
                 resources,
                 routerType === "legacy",
             ).find((r) => r.action === "list")?.route;
+
             const href = hrefRaw
                 ? routerType === "legacy"
                     ? hrefRaw
