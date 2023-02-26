@@ -109,8 +109,8 @@ export const routerBindings: RouterBindings = {
                 ...(resource && { resource }),
                 ...(action && { action }),
                 ...(inferredId && { id: decodeURIComponent(inferredId) }),
+                pathname: pathname ? pathname : undefined,
                 params: {
-                    pathname: pathname ? pathname : undefined,
                     ...inferredParams,
                     ...parsedParams,
                 },

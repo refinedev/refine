@@ -99,8 +99,8 @@ export const mockRouterBindings = ({
                 return {
                     params: {
                         ...params,
-                        pathname,
                     },
+                    pathname,
                     resource: resource,
                     action: action,
                     id: id || undefined,

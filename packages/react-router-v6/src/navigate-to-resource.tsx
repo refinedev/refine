@@ -1,16 +1,16 @@
 import { useResource, useGetToPath } from "@pankod/refine-core";
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { Navigate } from "react-router-dom";
 
-type NavigateToResourceProps = {
+type NavigateToResourceProps = PropsWithChildren<{
     resource?: string;
     meta?: Record<string, unknown>;
-};
+}>;
 
-export const NavigateToResource = ({
+export const NavigateToResource: React.FC<NavigateToResourceProps> = ({
     resource: resourceProp,
     meta,
-}: NavigateToResourceProps) => {
+}) => {
     const getToPath = useGetToPath();
     const { resource, resources } = useResource(resourceProp);
 

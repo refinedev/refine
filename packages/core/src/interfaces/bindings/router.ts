@@ -42,7 +42,6 @@ export type GoConfig = {
 };
 
 export type ParsedParams = {
-    pathname?: string;
     filters?: CrudFilters;
     sorters?: CrudSorting;
     current?: number;
@@ -58,6 +57,7 @@ export type ParseResponse = {
     resource?: IResourceItem;
     id?: BaseKey;
     action?: Action;
+    pathname?: string;
 };
 
 export type GoFunction = (config: GoConfig) => void | string;

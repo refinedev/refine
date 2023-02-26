@@ -96,8 +96,8 @@ export const routerBindings: RouterBindings = {
                 ...(action && { action }),
                 ...(params?.id && { id: decodeURIComponent(params.id) }),
                 // ...(params?.action && { action: params.action }), // lets see if there is a need for this
+                pathname,
                 params: {
-                    pathname,
                     ...params,
                     ...parsedSearch,
                 },
