@@ -89,6 +89,9 @@ const App: React.FC = () => {
                  * You can either use the `Authenticated` component inside each route,
                  * or you can wrap the `Routes` component that you'll use inside `RefineRoutes` component with the `Authenticated` component.
                  * This is done to make it easier to use refine with any routing case.
+                 *
+                 * `routerProvider` prop and its properties are now **optional**.
+                 * Using it will enable refine's router related features but they are not required to use refine.
                  */
                 routerProvider={routerBindings}
                 dataProvider={dataProvider(API_URL)}
