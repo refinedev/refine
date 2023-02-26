@@ -41,7 +41,7 @@ import {
 import { Title as DefaultTitle } from "@components";
 import { RefineLayoutSiderProps } from "../types";
 
-export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
     const [collapsed, setCollapsed] = useState(false);
     const [opened, setOpened] = useState(false);
 
@@ -49,7 +49,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const NewLink = useLink();
     const { Link: LegacyLink } = useRouterContext();
     const Link = routerType === "legacy" ? LegacyLink : NewLink;
-    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
+    const { menuItems, selectedKey, defaultOpenKeys } = useMenu({ meta });
     const Title = useTitle();
     const isExistAuthentication = useIsExistAuthentication();
     const t = useTranslate();
@@ -88,7 +88,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
 
             return (
                 <CanAccess
-                    key={route}
+                    key={item.key}
                     resource={name.toLowerCase()}
                     action="list"
                     params={{
@@ -97,7 +97,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 >
                     <Accordion
                         defaultIndex={
-                            defaultOpenKeys.includes(route || "") ? 0 : -1
+                            defaultOpenKeys.includes(item.key || "") ? 0 : -1
                         }
                         width="full"
                         allowToggle

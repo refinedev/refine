@@ -42,7 +42,7 @@ import { RefineTitle as DefaultTitle } from "@components";
 
 const defaultNavIcon = <IconList size={18} />;
 
-export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
     const [collapsed, setCollapsed] = useState(false);
     const [opened, setOpened] = useState(false);
 
@@ -51,7 +51,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const { Link: LegacyLink } = useRouterContext();
     const Link = routerType === "legacy" ? LegacyLink : NewLink;
 
-    const { defaultOpenKeys, menuItems, selectedKey } = useMenu();
+    const { defaultOpenKeys, menuItems, selectedKey } = useMenu({ meta });
     const Title = useTitle();
     const isExistAuthentication = useIsExistAuthentication();
     const t = useTranslate();
@@ -118,7 +118,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
 
             return (
                 <CanAccess
-                    key={route}
+                    key={item.key}
                     resource={name.toLowerCase()}
                     action="list"
                     params={{
@@ -127,13 +127,13 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 >
                     <Tooltip label={label} {...commonTooltipProps}>
                         <NavLink
-                            key={route}
+                            key={item.key}
                             label={collapsed && !opened ? null : label}
                             icon={icon ?? defaultNavIcon}
                             active={isSelected}
                             childrenOffset={collapsed && !opened ? 0 : 12}
                             defaultOpened={defaultOpenKeys.includes(
-                                route || "",
+                                item.key || "",
                             )}
                             styles={commonNavLinkStyles}
                             {...additionalLinkProps}

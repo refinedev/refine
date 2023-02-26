@@ -28,7 +28,7 @@ import { RefineLayoutSiderProps } from "../types";
 
 const { SubMenu } = Menu;
 
-export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
@@ -38,7 +38,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const Link = routerType === "legacy" ? LegacyLink : NewLink;
     const Title = useTitle();
     const translate = useTranslate();
-    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
+    const { menuItems, selectedKey, defaultOpenKeys } = useMenu({ meta });
     const breakpoint = Grid.useBreakpoint();
     const { hasDashboard } = useRefineContext();
     const authProvider = useActiveAuthProvider();
@@ -58,7 +58,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
             if (children.length > 0) {
                 return (
                     <CanAccess
-                        key={route}
+                        key={item.key}
                         resource={name.toLowerCase()}
                         action="list"
                         params={{
@@ -66,7 +66,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                         }}
                     >
                         <SubMenu
-                            key={route}
+                            key={item.key}
                             icon={icon ?? <UnorderedListOutlined />}
                             title={label}
                         >
@@ -81,7 +81,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
             );
             return (
                 <CanAccess
-                    key={route}
+                    key={item.key}
                     resource={name.toLowerCase()}
                     action="list"
                     params={{
@@ -89,7 +89,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     }}
                 >
                     <Menu.Item
-                        key={route}
+                        key={item.key}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
