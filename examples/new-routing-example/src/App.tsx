@@ -95,12 +95,6 @@ const App: React.FC = () => {
                  */
                 routerProvider={routerBindings}
                 dataProvider={dataProvider(API_URL)}
-                // authProvider={{
-                //     check: () => Promise.resolve({ authenticated: false }),
-                //     login: () => Promise.resolve({ success: true }),
-                //     logout: () => Promise.resolve({ success: true }),
-                //     onError: () => Promise.resolve({}),
-                // }}
                 notificationProvider={notificationProvider}
                 /**
                  * We've also made some changes in the `resources` prop and in the definition of the resources.
