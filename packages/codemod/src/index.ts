@@ -175,6 +175,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         name: "authProvider-to-legacyAuthProvider: Transform authProvider to use legacyAuthProvider",
         value: "authProvider-to-legacyAuthProvider",
     },
+    {
+        name: "separate-imports-react-table: Moves `@tanstack/react-table` components exported by `refine` into `@tanstack/react-table`",
+        value: "separate-imports-react-table",
+    },
 ];
 
 function expandFilePathsIfNeeded(filesBeforeExpansion) {
