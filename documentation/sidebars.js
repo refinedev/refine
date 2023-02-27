@@ -824,6 +824,7 @@ module.exports = {
                     items: [
                         "examples/next-js/nextjs",
                         "examples/next-js/nextjs-appdir",
+                        "examples/next-js/auth",
                     ],
                 },
                 {
