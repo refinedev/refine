@@ -39,3 +39,7 @@ You can pass a boolean or an object with `key` and `syncId` properties.
 - `key` is used to define the query param key. Default value is inferred from the resource and the action. For example `posts-create` for `posts` resource and `create` action.
 
 - `syncId` is used to include the `id` property in the query param key. Default value is `false`. This is useful for `edit` and `clone` actions.
+
+## Removed props
+
+`ignoreAccessControlProvider` prop is removed from buttons.

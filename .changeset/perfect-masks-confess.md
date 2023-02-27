@@ -30,3 +30,7 @@ You can pass `authorId` to the `ShowButton` component like this:
 
 This will navigate to `/123/posts/1` path.
 
+## Removed props
+
+- `ignoreAccessControlProvider` prop is removed from buttons.
+- `cardProps`, `cardHeaderProps`, `cardContentProps`, `cardActionsProps` and `actionButtons` props are removed from CRUD component.
