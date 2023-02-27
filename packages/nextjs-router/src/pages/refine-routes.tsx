@@ -11,7 +11,11 @@ type RefineRoutesProps = {
 
 export const RefineRoutes = ({ children }: RefineRoutesProps) => {
     const { resource, action } = useResource();
-    const { asPath: pathname } = useRouter();
+    const { asPath: pathname, isReady } = useRouter();
+
+    if (!isReady) {
+        return <></>;
+    }
 
     const resourceAction = resource && action ? resource[action] : undefined;
 
