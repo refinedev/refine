@@ -75,6 +75,7 @@ This also comes with some additional changes;
 - `auditLog` is renamed to `audit`.
 - `route` in `options` is now deprecated for the new routing system. If you want to define a custom route for a resource, you can define such routes in action definitions.
 - Parents are not included in the routes by default. If you want to inclue parents in the routes, you need to define action paths explicitly.
+- `identifier` can be passed to the resource definition to distinguish between resources with the same name. This is useful when you have multiple resources with the same name.
 
 ### Nested routes
 
