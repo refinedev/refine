@@ -5,12 +5,8 @@ import {
     HttpError,
 } from "@pankod/refine-core";
 import { useForm, useModalForm } from "@pankod/refine-react-hook-form";
-import {
-    useTable,
-    ColumnDef,
-    flexRender,
-    Row,
-} from "@pankod/refine-react-table";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
 import {
     List,
     BooleanField,
