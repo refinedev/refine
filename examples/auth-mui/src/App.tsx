@@ -1,7 +1,4 @@
-import {
-    Refine,
-    LegacyAuthProvider as AuthProvider,
-} from "@pankod/refine-core";
+import { Refine, AuthBindings } from "@pankod/refine-core";
 import {
     Layout,
     ErrorComponent,
@@ -27,55 +24,95 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { PostsList, PostCreate, PostEdit } from "pages/posts";
 
 const App: React.FC = () => {
-    const authProvider: AuthProvider = {
+    const authProvider: AuthBindings = {
         login: async ({ providerName, email }) => {
             if (providerName === "google") {
                 window.location.href =
                     "https://accounts.google.com/o/oauth2/v2/auth";
-                return Promise.resolve(false);
+                return Promise.resolve({
+                    success: true,
+                });
             }
 
             if (providerName === "github") {
                 window.location.href =
                     "https://github.com/login/oauth/authorize";
-                return Promise.resolve(false);
+                return Promise.resolve({
+                    success: true,
+                });
             }
 
-            localStorage.setItem("email", email);
-            return Promise.resolve();
+            if (email) {
+                localStorage.setItem("email", email);
+                return Promise.resolve({
+                    success: true,
+                    redirectTo: "/",
+                });
+            }
+
+            return Promise.resolve({
+                success: false,
+                error: new Error("Invalid email or password"),
+            });
         },
         register: (params) => {
             if (params.email && params.password) {
                 localStorage.setItem("email", params.email);
-                return Promise.resolve();
+                return Promise.resolve({
+                    success: true,
+                    redirectTo: "/",
+                });
             }
-            return Promise.reject();
+            return Promise.resolve({
+                success: false,
+                error: new Error("Invalid email or password"),
+            });
         },
         updatePassword: (params) => {
             if (params.newPassword) {
                 //we can update password here
-                return Promise.resolve();
+                return Promise.resolve({
+                    success: true,
+                });
             }
-            return Promise.reject();
+            return Promise.resolve({
+                success: false,
+                error: new Error("Invalid password"),
+            });
         },
         forgotPassword: (params) => {
             if (params.email) {
-                //we can send email with forgot password link here
-                return Promise.resolve();
+                //we can send email with reset password link here
+                return Promise.resolve({
+                    success: true,
+                });
             }
-            return Promise.reject();
+            return Promise.resolve({
+                success: false,
+                error: new Error("Invalid email"),
+            });
         },
         logout: () => {
             localStorage.removeItem("email");
-            return Promise.resolve();
+            return Promise.resolve({
+                success: true,
+                redirectTo: "/login",
+            });
         },
-        checkError: () => Promise.resolve(),
-        checkAuth: () =>
+        onError: () => Promise.resolve({}),
+        check: () =>
             localStorage.getItem("email")
-                ? Promise.resolve()
-                : Promise.reject(),
+                ? Promise.resolve({
+                      authenticated: true,
+                  })
+                : Promise.resolve({
+                      authenticated: false,
+                      error: new Error("Not authenticated"),
+                      logout: true,
+                      redirectTo: "/login",
+                  }),
         getPermissions: () => Promise.resolve(["admin"]),
-        getUserIdentity: () =>
+        getIdentity: () =>
             Promise.resolve({
                 id: 1,
                 name: "Jane Doe",
@@ -113,7 +150,7 @@ const App: React.FC = () => {
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
                 <Refine
-                    legacyAuthProvider={authProvider}
+                    authProvider={authProvider}
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}

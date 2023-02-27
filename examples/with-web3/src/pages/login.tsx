@@ -5,9 +5,7 @@ import Icon from "@ant-design/icons";
 import { Layout as AntdLayout, Button, Row, Col } from "antd";
 
 export const Login: React.FC = () => {
-    const { mutate: login, isLoading } = useLogin({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { mutate: login, isLoading } = useLogin();
 
     return (
         <AntdLayout

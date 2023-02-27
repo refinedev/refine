@@ -30,7 +30,7 @@ function App() {
                     ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}
                     routerProvider={routerProvider}
-                    legacyAuthProvider={authProvider}
+                    authProvider={authProvider}
                     dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
                     resources={[
                         {

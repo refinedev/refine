@@ -1,7 +1,4 @@
-import {
-    Refine,
-    LegacyAuthProvider as AuthProvider,
-} from "@pankod/refine-core";
+import { Refine, AuthBindings } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -35,7 +32,7 @@ axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
 });
 
 const App: React.FC = () => {
-    const authProvider: AuthProvider = {
+    const authProvider: AuthBindings = {
         login: ({ credential }: CredentialResponse) => {
             const profileObj = credential ? parseJwt(credential) : null;
 
@@ -47,11 +44,18 @@ const App: React.FC = () => {
                         avatar: profileObj.picture,
                     }),
                 );
+
+                localStorage.setItem("token", `${credential}`);
+
+                return Promise.resolve({
+                    success: true,
+                    redirectTo: "/",
+                });
             }
 
-            localStorage.setItem("token", `${credential}`);
-
-            return Promise.resolve();
+            return Promise.resolve({
+                success: false,
+            });
         },
         logout: () => {
             const token = localStorage.getItem("token");
@@ -61,24 +65,35 @@ const App: React.FC = () => {
                 localStorage.removeItem("user");
                 axios.defaults.headers.common = {};
                 window.google?.accounts.id.revoke(token, () => {
-                    return Promise.resolve();
+                    return Promise.resolve({});
                 });
             }
 
-            return Promise.resolve();
+            return Promise.resolve({
+                success: true,
+                redirectTo: "/login",
+            });
         },
-        checkError: () => Promise.resolve(),
-        checkAuth: async () => {
+        onError: () => Promise.resolve({}),
+        check: async () => {
             const token = localStorage.getItem("token");
 
             if (token) {
-                return Promise.resolve();
+                return Promise.resolve({
+                    authenticated: true,
+                });
             }
-            return Promise.reject();
+
+            return Promise.resolve({
+                authenticated: false,
+                error: new Error("Not authenticated"),
+                logout: true,
+                redirectTo: "/login",
+            });
         },
 
         getPermissions: () => Promise.resolve(),
-        getUserIdentity: async () => {
+        getIdentity: async () => {
             const user = localStorage.getItem("user");
             if (user) {
                 return Promise.resolve(JSON.parse(user));
@@ -90,7 +105,7 @@ const App: React.FC = () => {
         <Refine
             dataProvider={dataProvider(API_URL, axiosInstance)}
             routerProvider={routerProvider}
-            legacyAuthProvider={authProvider}
+            authProvider={authProvider}
             LoginPage={Login}
             resources={[
                 {

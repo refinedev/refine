@@ -1,4 +1,4 @@
-import { LegacyAuthProvider as AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 
@@ -15,20 +15,24 @@ const web3Modal = new Web3Modal({
 // eslint-disable-next-line
 let provider: any | null = null;
 
-export const authProvider: AuthProvider = {
+export const authProvider: AuthBindings = {
     login: async () => {
         if (window.ethereum) {
             provider = await web3Modal.connect();
             const web3 = new Web3(provider);
             const accounts = await web3.eth.getAccounts();
             localStorage.setItem(TOKEN_KEY, accounts[0]);
-            return Promise.resolve();
+            return Promise.resolve({
+                success: true,
+                redirectTo: "/",
+            });
         } else {
-            return Promise.reject(
-                new Error(
+            return Promise.resolve({
+                success: false,
+                error: new Error(
                     "Not set ethereum wallet or invalid. You need to install Metamask",
                 ),
-            );
+            });
         }
     },
     logout: async () => {
@@ -39,19 +43,28 @@ export const authProvider: AuthProvider = {
             provider = null;
             await web3Modal.clearCachedProvider();
         }
-        return Promise.resolve();
+        return Promise.resolve({
+            success: true,
+            redirectTo: "/login",
+        });
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: () => {
+    onError: () => Promise.resolve({}),
+    check: () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
-            return Promise.resolve();
+            return Promise.resolve({
+                authenticated: true,
+            });
         }
 
-        return Promise.reject();
+        return Promise.resolve({
+            authenticated: false,
+            redirectTo: "/login",
+            logout: true,
+        });
     },
     getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
+    getIdentity: async () => {
         const address = localStorage.getItem(TOKEN_KEY);
         if (!address) {
             return Promise.reject();

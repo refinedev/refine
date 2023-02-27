@@ -1,4 +1,4 @@
-import { LegacyAuthProvider as AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 import Cookies from "js-cookie";
 import * as cookie from "cookie";
 
@@ -15,31 +15,42 @@ const mockUsers = [
 
 const COOKIE_NAME = "user";
 
-export const authProvider: AuthProvider = {
+export const authProvider: AuthBindings = {
     login: ({ email }) => {
         // Suppose we actually send a request to the back end here.
         const user = mockUsers.find((item) => item.email === email);
 
         if (user) {
             Cookies.set(COOKIE_NAME, JSON.stringify(user));
-            return Promise.resolve();
+            return Promise.resolve({
+                success: true,
+            });
         }
 
-        return Promise.reject();
+        return Promise.resolve({
+            success: false,
+        });
     },
     logout: () => {
         Cookies.remove(COOKIE_NAME);
 
-        return Promise.resolve();
+        return Promise.resolve({
+            success: true,
+            redirectTo: "/login",
+        });
     },
-    checkError: (error) => {
+    onError: (error) => {
         if (error && error.statusCode === 401) {
-            return Promise.reject();
+            return Promise.resolve({
+                error: "Unauthorized",
+                logout: true,
+                redirectTo: "/login",
+            });
         }
 
-        return Promise.resolve();
+        return Promise.resolve({});
     },
-    checkAuth: async (context) => {
+    check: async (context) => {
         let user = undefined;
         if (context) {
             const { request } = context;
@@ -51,14 +62,22 @@ export const authProvider: AuthProvider = {
         }
 
         if (!user) {
-            return Promise.reject();
+            return Promise.resolve({
+                authenticated: false,
+                error: new Error("Unauthorized"),
+                logout: true,
+                redirectTo: "/login",
+            });
         }
-        return Promise.resolve();
+
+        return Promise.resolve({
+            authenticated: true,
+        });
     },
     getPermissions: async () => {
         return Promise.resolve();
     },
-    getUserIdentity: async () => {
+    getIdentity: async () => {
         return Promise.resolve();
     },
 };

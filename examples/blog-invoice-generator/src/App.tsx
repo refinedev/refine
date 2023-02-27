@@ -29,7 +29,7 @@ function App() {
             notificationProvider={notificationProvider}
             Layout={Layout}
             dataProvider={dataProvider}
-            legacyAuthProvider={authProvider}
+            authProvider={authProvider}
             LoginPage={LoginPage}
             resources={[
                 {

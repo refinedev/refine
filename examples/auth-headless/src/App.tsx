@@ -13,7 +13,7 @@ const App: React.FC = () => {
                 window.location.href =
                     "https://accounts.google.com/o/oauth2/v2/auth";
                 return Promise.resolve({
-                    success: false,
+                    success: true,
                 });
             }
 
@@ -21,7 +21,7 @@ const App: React.FC = () => {
                 window.location.href =
                     "https://github.com/login/oauth/authorize";
                 return Promise.resolve({
-                    success: false,
+                    success: true,
                 });
             }
 

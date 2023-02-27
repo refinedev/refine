@@ -1,7 +1,4 @@
-import {
-    Refine,
-    LegacyAuthProvider as AuthProvider,
-} from "@pankod/refine-core";
+import { Refine, AuthBindings } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -18,24 +15,38 @@ import { Login } from "pages/login";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    const authProvider: AuthProvider = {
+    const authProvider: AuthBindings = {
         login: ({ username }) => {
             if (username === "admin") {
                 localStorage.setItem("username", username);
-                return Promise.resolve();
+                return Promise.resolve({
+                    success: true,
+                    redirectTo: "/",
+                });
             }
 
-            return Promise.reject();
+            return Promise.resolve({
+                success: false,
+                error: new Error("Invalid username"),
+            });
         },
         logout: () => {
             localStorage.removeItem("username");
-            return Promise.resolve();
+            return Promise.resolve({
+                success: true,
+                redirectTo: "/login",
+            });
         },
-        checkError: () => Promise.resolve(),
-        checkAuth: () =>
+        onError: () => Promise.resolve({}),
+        check: () =>
             localStorage.getItem("username")
-                ? Promise.resolve()
-                : Promise.reject(),
+                ? Promise.resolve({
+                      authenticated: true,
+                  })
+                : Promise.resolve({
+                      authenticated: false,
+                      redirectTo: "/login",
+                  }),
         getPermissions: () => Promise.resolve(["admin"]),
     };
 
@@ -43,7 +54,7 @@ const App: React.FC = () => {
         <Refine
             dataProvider={dataProvider(API_URL)}
             routerProvider={routerProvider}
-            legacyAuthProvider={authProvider}
+            authProvider={authProvider}
             LoginPage={Login}
             resources={[
                 {

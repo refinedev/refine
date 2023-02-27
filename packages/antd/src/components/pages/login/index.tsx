@@ -37,10 +37,7 @@ export const LoginPage: React.FC<LoginPageProps> = () => {
     const [form] = Form.useForm<ILoginForm>();
     const translate = useTranslate();
 
-    const authProvider = useActiveAuthProvider();
-    const { mutate: login, isLoading } = useLogin<ILoginForm>({
-        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-    });
+    const { mutate: login, isLoading } = useLogin<ILoginForm>();
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>

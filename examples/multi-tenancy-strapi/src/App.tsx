@@ -21,7 +21,7 @@ const App: React.FC = () => {
     return (
         <StoreProvider>
             <Refine
-                legacyAuthProvider={authProvider}
+                authProvider={authProvider}
                 dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
                 routerProvider={routerProvider}
                 Sider={CustomSider}

@@ -1,7 +1,4 @@
-import {
-    LegacyAuthProvider as AuthProvider,
-    Refine,
-} from "@pankod/refine-core";
+import { AuthBindings, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -20,7 +17,7 @@ const API_URL = "https://api.strapi.refine.dev/graphql";
 const client = new GraphQLClient(API_URL);
 const gqlDataProvider = dataProvider(client);
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
         try {
             // eslint-disable-next-line
@@ -43,27 +40,42 @@ const authProvider: AuthProvider = {
             localStorage.setItem("token", data.jwt);
             client.setHeader("Authorization", `Bearer ${data.jwt}`);
 
-            return Promise.resolve();
-        } catch (error) {
-            return Promise.reject(error);
+            return Promise.resolve({
+                success: true,
+                redirectTo: "/",
+            });
+        } catch (error: any) {
+            return Promise.resolve({
+                success: false,
+                error: new Error(error),
+            });
         }
     },
     logout: async () => {
         localStorage.removeItem("token");
         client.setHeader("Authorization", "");
-        return Promise.resolve("/");
+        return Promise.resolve({
+            success: true,
+            redirectTo: "/login",
+        });
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: () => {
+    onError: () => Promise.resolve({}),
+    check: () => {
         const jwt = localStorage.getItem("token");
 
         if (!jwt) {
-            return Promise.reject();
+            return Promise.resolve({
+                authenticated: false,
+                error: new Error("Not authenticated"),
+                redirectTo: "/login",
+            });
         }
 
         client.setHeader("Authorization", `Bearer ${jwt}`);
 
-        return Promise.resolve();
+        return Promise.resolve({
+            authenticated: true,
+        });
     },
     getPermissions: async () => {
         try {
@@ -84,10 +96,10 @@ const authProvider: AuthProvider = {
 
             return Promise.resolve(role);
         } catch (error) {
-            return Promise.reject(error);
+            return Promise.resolve(error);
         }
     },
-    getUserIdentity: async () => {
+    getIdentity: async () => {
         try {
             // eslint-disable-next-line
             const { data } = await gqlDataProvider.custom!({
@@ -105,7 +117,7 @@ const authProvider: AuthProvider = {
                 email,
             });
         } catch (error) {
-            return Promise.reject(error);
+            return Promise.resolve(error);
         }
     },
 };
@@ -115,7 +127,7 @@ const App: React.FC = () => {
         <Refine
             dataProvider={gqlDataProvider}
             routerProvider={routerProvider}
-            legacyAuthProvider={authProvider}
+            authProvider={authProvider}
             LoginPage={Login}
             resources={[
                 {

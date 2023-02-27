@@ -1,8 +1,8 @@
-import { LegacyAuthProvider as AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 
 import { supabaseClient } from "utility";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
         const { data, error } = await supabaseClient.auth.signInWithPassword({
             email,
@@ -10,35 +10,53 @@ const authProvider: AuthProvider = {
         });
 
         if (error) {
-            return Promise.reject(error);
+            return Promise.resolve({
+                success: false,
+                error: error || new Error("Session not found"),
+            });
         }
 
         if (data?.user) {
-            return Promise.resolve();
+            return Promise.resolve({
+                success: true,
+                redirectTo: "/",
+            });
         }
 
-        // for third-party login
-        return Promise.resolve(false);
+        return Promise.resolve({
+            success: false,
+            error: error || new Error("Session not found"),
+        });
     },
     logout: async () => {
         const { error } = await supabaseClient.auth.signOut();
 
         if (error) {
-            return Promise.reject(error);
+            return Promise.resolve({
+                success: false,
+                error,
+            });
         }
-
-        return Promise.resolve("/");
+        return Promise.resolve({
+            success: true,
+            redirectTo: "/",
+        });
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: async () => {
-        const { data } = await supabaseClient.auth.getSession();
+    onError: () => Promise.resolve({}),
+    check: async () => {
+        const { data, error } = await supabaseClient.auth.getSession();
         const { session } = data;
 
         if (!session) {
-            return Promise.reject();
+            return Promise.resolve({
+                authenticated: false,
+                error: error || new Error("Session not found"),
+            });
         }
 
-        return Promise.resolve();
+        return Promise.resolve({
+            authenticated: true,
+        });
     },
     getPermissions: async () => {
         const user = await supabaseClient.auth.getUser();
@@ -47,7 +65,7 @@ const authProvider: AuthProvider = {
             return Promise.resolve(user.data.user?.role);
         }
     },
-    getUserIdentity: async () => {
+    getIdentity: async () => {
         const { data } = await supabaseClient.auth.getUser();
 
         if (data?.user) {

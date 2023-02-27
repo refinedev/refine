@@ -1,7 +1,4 @@
-import {
-    Refine,
-    LegacyAuthProvider as AuthProvider,
-} from "@pankod/refine-core";
+import { Refine, AuthBindings } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -27,32 +24,48 @@ const App: React.FC = () => {
         return <span>loading...</span>;
     }
 
-    const authProvider: AuthProvider = {
+    const authProvider: AuthBindings = {
         login: () => {
-            return Promise.resolve(false);
+            return Promise.resolve({
+                success: true,
+            });
         },
         logout: () => {
             logout({ returnTo: window.location.origin });
-            return Promise.resolve("/");
+            return Promise.resolve({
+                success: true,
+            });
         },
-        checkError: () => Promise.resolve(),
-        checkAuth: async () => {
+        onError: () => Promise.resolve({}),
+        check: async () => {
             try {
                 const token = await getIdTokenClaims();
                 if (token) {
                     axios.defaults.headers.common = {
                         Authorization: `Bearer ${token.__raw}`,
                     };
-                    return Promise.resolve();
+                    return Promise.resolve({
+                        authenticated: true,
+                    });
                 } else {
-                    return Promise.reject();
+                    return Promise.resolve({
+                        authenticated: false,
+                        error: new Error("Token not found"),
+                        redirectTo: "/login",
+                        logout: true,
+                    });
                 }
-            } catch (error) {
-                return Promise.reject();
+            } catch (error: any) {
+                return Promise.resolve({
+                    authenticated: false,
+                    error: new Error(error),
+                    redirectTo: "/login",
+                    logout: true,
+                });
             }
         },
         getPermissions: () => Promise.resolve(),
-        getUserIdentity: async () => {
+        getIdentity: async () => {
             if (user) {
                 return Promise.resolve({
                     ...user,
@@ -66,7 +79,7 @@ const App: React.FC = () => {
     return (
         <Refine
             LoginPage={Login}
-            legacyAuthProvider={authProvider}
+            authProvider={authProvider}
             dataProvider={dataProvider(API_URL, axios)}
             routerProvider={routerProvider}
             resources={[

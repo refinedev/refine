@@ -1,7 +1,4 @@
-import {
-    Refine,
-    LegacyAuthProvider as AuthProvider,
-} from "@pankod/refine-core";
+import { Refine, AuthBindings } from "@pankod/refine-core";
 import {
     notificationProvider,
     LoginPage,
@@ -24,7 +21,7 @@ const App: React.FC = () => {
     const axiosInstance = axios.create();
     const strapiAuthHelper = AuthHelper(API_URL);
 
-    const authProvider: AuthProvider = {
+    const authProvider: AuthBindings = {
         login: async ({ username, password }) => {
             const { data, status } = await strapiAuthHelper.login(
                 username,
@@ -38,28 +35,44 @@ const App: React.FC = () => {
                     "Authorization"
                 ] = `Bearer ${data.jwt}`;
 
-                return Promise.resolve();
+                return Promise.resolve({
+                    success: true,
+                    redirectTo: "/",
+                });
             }
-            return Promise.reject();
+            return Promise.resolve({
+                success: false,
+                error: new Error("Invalid username or password"),
+            });
         },
         logout: () => {
             localStorage.removeItem(TOKEN_KEY);
-            return Promise.resolve();
+            return Promise.resolve({
+                success: true,
+                redirectTo: "/login",
+            });
         },
-        checkError: () => Promise.resolve(),
-        checkAuth: () => {
+        onError: () => Promise.resolve({}),
+        check: () => {
             const token = localStorage.getItem(TOKEN_KEY);
             if (token) {
                 axiosInstance.defaults.headers.common[
                     "Authorization"
                 ] = `Bearer ${token}`;
-                return Promise.resolve();
+                return Promise.resolve({
+                    authenticated: true,
+                });
             }
 
-            return Promise.reject();
+            return Promise.resolve({
+                authenticated: false,
+                error: new Error("Not authenticated"),
+                logout: true,
+                redirectTo: "/login",
+            });
         },
         getPermissions: () => Promise.resolve(),
-        getUserIdentity: async () => {
+        getIdentity: async () => {
             const token = localStorage.getItem(TOKEN_KEY);
             if (!token) {
                 return Promise.reject();
@@ -75,14 +88,14 @@ const App: React.FC = () => {
                 });
             }
 
-            return Promise.reject();
+            return Promise.resolve();
         },
     };
     const dataProvider = DataProvider(API_URL, axiosInstance);
 
     return (
         <Refine
-            legacyAuthProvider={authProvider}
+            authProvider={authProvider}
             dataProvider={dataProvider}
             routerProvider={routerProvider}
             resources={[

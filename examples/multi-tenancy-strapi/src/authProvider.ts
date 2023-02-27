@@ -1,4 +1,4 @@
-import { LegacyAuthProvider as AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 import { AuthHelper } from "@pankod/refine-strapi-v4";
 
 import { TOKEN_KEY, API_URL } from "./constants";
@@ -8,42 +8,69 @@ import axios from "axios";
 export const axiosInstance = axios.create();
 const strapiAuthHelper = AuthHelper(API_URL + "/api");
 
-export const authProvider: AuthProvider = {
+export const authProvider: AuthBindings = {
     login: async ({ username, password }) => {
-        const { data, status } = await strapiAuthHelper.login(
-            username,
-            password,
-        );
-        if (status === 200) {
-            localStorage.setItem(TOKEN_KEY, data.jwt);
+        try {
+            const { data, status } = await strapiAuthHelper.login(
+                username,
+                password,
+            );
+            if (status === 200) {
+                localStorage.setItem(TOKEN_KEY, data.jwt);
 
-            // set header axios instance
-            axiosInstance.defaults.headers.common[
-                "Authorization"
-            ] = `Bearer ${data.jwt}`;
+                // set header axios instance
+                axiosInstance.defaults.headers.common[
+                    "Authorization"
+                ] = `Bearer ${data.jwt}`;
 
-            return Promise.resolve();
+                return Promise.resolve({
+                    success: true,
+                });
+            }
+        } catch (error: any) {
+            console.log({ ...error });
+            return Promise.resolve({
+                success: false,
+                error: {
+                    name: error.response.data.error.name,
+                    message: error.response.data.error.message,
+                },
+            });
         }
-        return Promise.reject();
+
+        return Promise.resolve({
+            success: false,
+            error: new Error("Invalid username or password"),
+        });
     },
     logout: () => {
         localStorage.removeItem(TOKEN_KEY);
-        return Promise.resolve();
+        return Promise.resolve({
+            success: true,
+            redirectTo: "/",
+        });
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: () => {
+    onError: () => Promise.resolve({}),
+    check: () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
             axiosInstance.defaults.headers.common[
                 "Authorization"
             ] = `Bearer ${token}`;
-            return Promise.resolve();
+            return Promise.resolve({
+                authenticated: true,
+            });
         }
 
-        return Promise.reject();
+        return Promise.resolve({
+            authenticated: false,
+            error: new Error("Invalid token"),
+            logout: true,
+            redirectTo: "/login",
+        });
     },
     getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
+    getIdentity: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (!token) {
             return Promise.reject();
@@ -59,6 +86,6 @@ export const authProvider: AuthProvider = {
             });
         }
 
-        return Promise.reject();
+        return Promise.resolve();
     },
 };

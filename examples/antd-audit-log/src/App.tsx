@@ -1,7 +1,4 @@
-import {
-    LegacyAuthProvider as AuthProvider,
-    Refine,
-} from "@pankod/refine-core";
+import { AuthBindings, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -26,37 +23,59 @@ import refineSDK from "utils/refine-sdk";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     login: async (payload: ILoginDto) => {
         const { email, password, providerName } = payload;
 
-        await refineSDK.auth.login({
-            email,
-            password,
-            provider: providerName,
-        });
+        console.log("worked");
 
-        return Promise.resolve();
+        try {
+            await refineSDK.auth.login({
+                email,
+                password,
+                provider: providerName,
+            });
+
+            return Promise.resolve({
+                success: true,
+            });
+        } catch (error) {
+            return Promise.resolve({
+                success: false,
+                error: new Error("Invalid email or password"),
+            });
+        }
     },
-    logout: async () => refineSDK.auth.logout(),
-    checkError: () => Promise.resolve(),
-    checkAuth: async () => {
-        // for social login
-        refineSDK.auth.getSessionFromUrl();
+    logout: async () => {
+        await refineSDK.auth.logout();
 
-        return refineSDK.auth
-            .session()
-            .then(() => {
-                return Promise.resolve();
-            })
-            .catch(() => Promise.reject());
+        return Promise.resolve({
+            success: true,
+            redirectTo: "/login",
+        });
+    },
+    onError: () => Promise.resolve({}),
+    check: async () => {
+        try {
+            // for social login
+            await refineSDK.auth.getSessionFromUrl();
+            await refineSDK.auth.session();
+            return Promise.resolve({
+                authenticated: true,
+            });
+        } catch (error: any) {
+            return Promise.resolve({
+                authenticated: false,
+                error: new Error(error),
+            });
+        }
     },
     getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
+    getIdentity: async () => {
         return refineSDK.auth
             .session()
             .then((response) => Promise.resolve(response))
-            .catch(() => Promise.reject());
+            .catch(() => Promise.resolve());
     },
 };
 
@@ -65,7 +84,7 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
-            legacyAuthProvider={authProvider}
+            authProvider={authProvider}
             resources={[
                 {
                     name: "posts",

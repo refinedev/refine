@@ -6,9 +6,7 @@ const clientId =
     "1041339102270-jlljcjl19jo1hkgf695em3ibr7q2m734.apps.googleusercontent.com";
 
 export const Login: React.FC = () => {
-    const { mutate: login } = useLogin<CredentialResponse>({
-        v3LegacyAuthProviderCompatible: true,
-    }); // TODO: tpype will be added
+    const { mutate: login } = useLogin<CredentialResponse>();
 
     const GoogleButton = (): JSX.Element => {
         const divRef = useRef<HTMLDivElement>(null);

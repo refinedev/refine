@@ -1,7 +1,4 @@
-import {
-    Refine,
-    LegacyAuthProvider as AuthProvider,
-} from "@pankod/refine-core";
+import { Refine, AuthBindings } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -20,37 +17,52 @@ import { appwriteClient, account } from "utility";
 
 import { PostsCreate, PostsList, PostsEdit, PostsShow } from "pages/posts";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
         try {
             await account.createEmailSession(email, password);
-            return Promise.resolve();
+            return Promise.resolve({
+                success: true,
+                redirectTo: "/",
+            });
         } catch (e) {
             const { type, message, code } = e as AppwriteException;
-            return Promise.reject({
-                message,
-                name: `${code} - ${type}`,
+            return Promise.resolve({
+                success: false,
+                error: {
+                    message,
+                    name: `${code} - ${type}`,
+                },
             });
         }
     },
     logout: async () => {
         await account.deleteSession("current");
 
-        return "/";
+        return Promise.resolve({
+            success: true,
+            redirectTo: "/login",
+        });
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: async () => {
-        console.log("checkAuth");
+    onError: () => Promise.resolve({}),
+    check: async () => {
         const session = await account.get();
 
         if (session) {
-            return Promise.resolve();
+            return Promise.resolve({
+                authenticated: true,
+            });
         }
 
-        return Promise.reject();
+        return Promise.resolve({
+            authenticated: false,
+            error: new Error("Session not found"),
+            logout: true,
+            redirectTo: "/login",
+        });
     },
     getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
+    getIdentity: async () => {
         const user = await account.get();
 
         if (user) {
@@ -69,7 +81,7 @@ const App: React.FC = () => {
                 databaseId: "default",
             })}
             options={{ liveMode: "auto" }}
-            legacyAuthProvider={authProvider}
+            authProvider={authProvider}
             routerProvider={routerProvider}
             LoginPage={Login}
             resources={[
