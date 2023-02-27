@@ -15,9 +15,6 @@ export interface IRefineOptions {
     breadcrumb?: ReactNode;
     mutationMode?: MutationMode;
     syncWithLocation?: boolean;
-    /**
-     * @deprecated Please use `UnsavedChangesNotifier` components from router packages instead.
-     */
     warnWhenUnsavedChanges?: boolean;
     undoableTimeout?: number;
     liveMode?: LiveModeProps["liveMode"];
@@ -73,9 +70,6 @@ export interface IRefineContext {
 export interface IRefineContextProvider {
     hasDashboard: boolean;
     mutationMode: MutationMode;
-    /**
-     * @deprecated Please use `UnsavedChangesNotifier` components from router packages instead.
-     */
     warnWhenUnsavedChanges: boolean;
     syncWithLocation: boolean;
     undoableTimeout: number;
