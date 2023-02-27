@@ -23,10 +23,10 @@ import {
  * Check below for an example usage.
  *
  * - `UnsavedChangesNotifier`: A component that notifies the user if there are unsaved changes.
- * In the earlier versions of refine, we used to handle this inside the `Refine` component by the `syncWithLocation` prop.
- * This was not a flexible solution, as it was not possible to customize the behavior of the `syncWithLocation` prop and the text of the notification.
+ * In the earlier versions of refine, we used to handle this inside the `Refine` component by the `warnWhenUnsavedChanges` prop.
+ * This was not a flexible solution, as it was not possible to customize the behavior of the `warnWhenUnsavedChanges` prop and the text of the notification.
  * We've now moved this to a separate component, that communicates with the refine's context to show the prompt and is also customizable.
- * Instead of using the `syncWithLocation` prop, you can use the `UnsavedChangesNotifier` component to enable the same behavior.
+ * Instead of using the `warnWhenUnsavedChanges` prop, you can use the `UnsavedChangesNotifier` component to enable the same behavior.
  *
  * - `NavigateToResource`: A component that navigates to a resource page.
  * By default, it navigates to the list page of the first resource in the `resources` prop.
