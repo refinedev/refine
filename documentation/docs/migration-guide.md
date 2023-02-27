@@ -7,7 +7,831 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 
-## 2.0.XX to 3.0.XX
+## **3.0.XX to 4.0.XX**
+
+### Motivation behind breaking changes
+
+TODO
+
+## 🪄 Migrating your project automatically with refine-codemod ✨ (recommended)
+
+[`@pankod/refine-codemod`][refine-codemod] package handles the breaking changes for your project automatically, without any manual steps. It migrates your project from `3.x.x` to `4.x.x`.
+
+Just `cd` into root folder of your project (where `package.json` is contained) and run this command:
+
+```sh
+npx @pankod/refine-codemod refine3-to-refine4
+```
+
+And it's done. Now your project uses `refine@3.x.x`.
+
+## Migrating your project manually
+
+## Updating the packages
+
+Our npm organization has been changed from `@pankod` to `@refinedev`. So you must update your packages to `@refinedev` organization.
+
+```bash
+npm uninstall @pankod/refine-core @pankod/refine-antd @pankod/..
+
+npm i @refinedev/refine-core @refinedev/refine-antd @refinedev/..
+```
+
+:::caution
+You must make this change for all packages that start with `@pankod`.
+:::
+
+:::tip
+If the operation doesn't work, try removing your `yarn.lock` or `package-lock.json`. If that doesn't help, remove the `node_modules` folder as well and try again.
+:::
+
+## **`@pankod/refine-core` changes**
+
+### `routerProvider`
+
+### `authProvider`
+
+### Update `getList` parameters of `dataProvider`
+
+`getList` parameters of `dataProvider` have been updated.
+
+-   `hasPagination` is deprecated. Use `pagination.mode` instead.
+-   `sort` is deprecated. Use `sorters` instead.
+-   `metaData` is deprecated. Use `meta` instead.
+
+```diff
+ export const dataProvider = {
+     getList: ({
+         resource,
+         pagination: {
++            mode,
+         },
+-        hasPagination,
++        sorters,
+-        sort,
+         filters,
++        meta,
+-        metaData,
+     }) => {
+         ...
+     },
+ };
+```
+
+:::note
+`getList` parameters still have `hasPagination`, `sort`, and `metaData` props. But they are deprecated. You can use them for now. But we recommend you to use `pagination.mode`, `sorters`, and `meta` props instead.
+:::
+
+### Update `custom` parameters of `dataProvider`
+
+`custom` parameters of `dataProvider` has been updated. `sort` is deprecated. Use `sorters` instead.
+
+```diff
+ export const dataProvider = {
+     custom: ({
+         ...
++        sorters,
+-        sort,
+     }) => {
+         ...
+     },
+ };
+```
+
+:::note
+`custom` parameters still have `sort` prop. But it is deprecated. You can use it for now. But we recommend you to use `sorters` prop instead.
+:::
+
+### `useList` and `useInfiniteList` hooks
+
+`config` prop are deprecated. Use `sorters`, `filters`, and `pagination` props instead.
+
+```diff
+useList({
+-    config: {
+-        sort,
+-        filters,
+-        pagination,
+-        hasPagination,
+-    },
++    sorters,
++    filters,
++    pagination: {
++        mode: "off" | "server" | "client",
++    },
+})
+
+useInfiniteList({
+-    config: {
+-        sort,
+-        filters,
+-        pagination,
+-        hasPagination,
+-    },
++    sorters,
++    filters,
++    pagination: {
++        mode: "off" | "server" | "client",
++    },
+})
+```
+
+### `useTable` hook
+
+`useTable` return values and properties are updated.
+
+-   `initialCurrent` and `initialPageSize` props are deprecated. Use `pagination` prop instead.
+
+    ```diff
+    useTable({
+    -    initialCurrent,
+    -    initialPageSize,
+    +    pagination: {
+    +        current,
+    +        pageSize,
+    +    },
+    })
+    ```
+
+-   `hasPagination` prop is deprecated. Use `pagination.mode` instead.
+
+    ```diff
+    useTable({
+    -   hasPagination,
+        pagination: {
+    +        mode: "off" | "server" | "client",
+        },
+    })
+    ```
+
+-   `initialSorter` and `permanentSorter` props are deprecated. Use `sorters.initial` and `sorters.permanent` instead.
+
+    ```diff
+    useTable({
+    -    initialSorter,
+    -    permanentSorter,
+    +    sorters: {
+    +        initial,
+    +        permanent,
+    +    },
+    })
+    ```
+
+-   `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
+
+    ```diff
+    useTable({
+    -    initialFilter,
+    -    permanentFilter,
+    -    defaultSetFilterBehavior,
+    +    filters: {
+    +        initial,
+    +        permanent,
+    +        defaultBehavior,
+    +    },
+    })
+    ```
+
+-   `sorter` and `setSorter` return values are deprecated. Use `sorters` and `setSorters` instead.
+
+    ```diff
+    const {
+    -   sorter,
+    +   sorters,
+    -   setSorter,
+    +   setSorters,
+    } = useTable();
+    ```
+
+### `useImport` hook
+
+`resourceName` prop is deprecated. Use `resource` prop instead.
+
+```diff
+useImport({
+-    resourceName,
++    resource,
+})
+```
+
+### `useExport` hook
+
+`resourceName` and `sorter` props are deprecated. Use `resource` and `sorters` props instead.
+
+```diff
+useExport({
+-    resourceName,
++    resource,
+-    sorter,
++    sorters,
+})
+```
+
+### `useSelect` hook
+
+-   By default, pagination was disabled. If you want to enable pagination, you should set `pagination.mode` prop to `"server"`.
+
+    ```diff
+    useSelect({
+    -    hasPagination: false,
+    +    pagination: {
+    +        mode: "server",
+    +    },
+    })
+    ```
+
+-   `sort` prop is deprecated. Use `sorters` prop instead.
+
+    ```diff
+    useSelect({
+    -    sort,
+    +    sorters,
+    })
+    ```
+
+### `useCustom` hook
+
+`config.sort` prop is deprecated. Use `config.sorters` prop instead.
+
+```diff
+useCustom({
+    config: {
+-       sort,
++       sorters,
+    },
+})
+```
+
+### `metaData` to `meta`
+
+`metaData` is deprecated in all hooks and components. Use `meta` instead.
+
+```diff
+useList({
+-    metaData,
++    meta,
+})
+
+<RefreshButton
+-    metaData
++    meta
+/>
+```
+
+### Resource `options`'s to `meta`
+
+`options` prop of resource is deprecated. Use `meta` prop instead.
+
+```diff
+<Refine
+    resources={[
+        {
+            name: "posts",
+-           options: {},
++           meta: {},
+        },
+    ]}
+/>
+```
+
+### `<ReadyPage>` component is deprecated
+
+## **`@pankod/refine-antd` changes**
+
+### Import changes
+
+All **Ant Design** components re-exported from `@pankod/refine-antd` have been removed. You should import them from `antd` package directly.
+
+```diff
+-import { useTable, SaveButton, Button, Form, Input, Select } from "@pankod/refine-antd";
+
++import { useTable, SaveButton } from "@pankod/refine-antd";
++import { Button, Form, Input, Select } from "antd";
+```
+
+`Icons` are also removed from `@pankod/refine-antd`. You should import them from `@ant-design/icons` directly.
+
+```diff
+-import { Icons } from "@pankod/refine-antd";
+-const { EditOutlined } = Icons;
+
++ import { EditOutlined } from "@ant-design/icons";
+```
+
+So, you should install `antd` and `@ant-design/icons` packages to access all components and icons.
+
+```bash
+npm install antd @ant-design/icons
+```
+
+### `useTable` hook
+
+`useTable` return values and properties are updated.
+
+-   `initialCurrent` and `initialPageSize` props are deprecated. Use `pagination` prop instead.
+
+    ```diff
+    useTable({
+    -    initialCurrent,
+    -    initialPageSize,
+    +    pagination: {
+    +        current,
+    +        pageSize,
+    +    },
+    })
+    ```
+
+-   `hasPagination` prop is deprecated. Use `pagination.mode` instead.
+
+    ```diff
+    useTable({
+    -   hasPagination,
+        pagination: {
+    +        mode: "off" | "server" | "client",
+        },
+    })
+    ```
+
+-   `initialSorter` and `permanentSorter` props are deprecated. Use `sorters.initial` and `sorters.permanent` instead.
+
+    ```diff
+    useTable({
+    -    initialSorter,
+    -    permanentSorter,
+    +    sorters: {
+    +        initial,
+    +        permanent,
+    +    },
+    })
+    ```
+
+-   `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
+
+    ```diff
+    useTable({
+    -    initialFilter,
+    -    permanentFilter,
+    -    defaultSetFilterBehavior,
+    +    filters: {
+    +        initial,
+    +        permanent,
+    +        defaultBehavior,
+    +    },
+    })
+    ```
+
+-   `sorter` and `setSorter` return values are deprecated. Use `sorters` and `setSorters` instead.
+
+    ```diff
+    const {
+    -   sorter,
+    +   sorters,
+    -   setSorter,
+    +   setSorters,
+    } = useTable();
+    ```
+
+### `useSimpleList` hook
+
+-   Now `useSimpleList` hook will not accept all of `<List>` component properties So, you can give their props to `<List>` component directly.
+
+    ```diff
+    import { useSimpleList } from "@pankod/refine-antd";
+    import { List } from "antd";
+
+    const { listProps } = useSimpleList({
+        resource: "orders",
+        pagination: {
+            pageSize: 6,
+    -       simple: true,
+        },
+    });
+
+    <List
+        {...listProps}
+    +   pagination={{
+    +     ...listProps.pagination,
+    +     simple: true,
+    +   }}
+        ... // other props
+    />
+    ```
+
+-   `initialCurrent` and `initialPageSize` props are deprecated. Use `pagination` prop instead.
+
+    ```diff
+    useSimpleList({
+    -    initialCurrent,
+    -    initialPageSize,
+    +    pagination: {
+    +        current,
+    +        pageSize,
+    +    },
+    })
+    ```
+
+-   `hasPagination` prop is deprecated. Use `pagination.mode` instead.
+
+    ```diff
+    useSimpleList({
+    -   hasPagination,
+        pagination: {
+    +        mode: "off" | "server" | "client",
+        },
+    })
+    ```
+
+-   `initialSorter` and `permanentSorter` props are deprecated. Use `sorters.initial` and `sorters.permanent` instead.
+
+    ```diff
+    useSimpleList({
+    -    initialSorter,
+    -    permanentSorter,
+    +    sorters: {
+    +        initial,
+    +        permanent,
+    +    },
+    })
+    ```
+
+-   `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
+
+    ```diff
+    useSimpleList({
+    -    initialFilter,
+    -    permanentFilter,
+    -    defaultSetFilterBehavior,
+    +    filters: {
+    +        initial,
+    +        permanent,
+    +        defaultBehavior,
+    +    },
+    })
+    ```
+
+-   `sorter` and `setSorter` return values are deprecated. Use `sorters` and `setSorters` instead.
+
+    ```diff
+    const {
+    -   sorter,
+    +   sorters,
+    -   setSorter,
+    +   setSorters,
+    } = useSimpleList();
+    ```
+
+### `useSelect` hook
+
+-   By default, pagination was disabled. If you want to enable pagination, you should set `pagination.mode` prop to `"server"`.
+
+    ```diff
+    useSelect({
+    -    hasPagination: false,
+    +    pagination: {
+    +        mode: "server",
+    +    },
+    })
+    ```
+
+-   `sort` prop is deprecated. Use `sorters` prop instead.
+
+    ```diff
+    useSelect({
+    -    sort,
+    +    sorters,
+    })
+    ```
+
+### `useCheckboxGroup` and `useRadioGroup` hooks
+
+`sort` prop is deprecated. Use `sorters` prop instead.
+
+```diff
+useCheckboxGroup({
+-    sort,
++    sorters,
+})
+
+useRadioGroup({
+-    sort,
++    sorters,
+})
+```
+
+### `useImport` hook
+
+`resourceName` prop is deprecated. Use `resource` prop instead.
+
+```diff
+useImport({
+-    resourceName,
++    resource,
+})
+```
+
+### `useMenu` hook is deprecated
+
+`useMenu` hook is deprecated. It will be exported from `@pankod/refine-core` package.
+
+```diff
+-import { useMenu } from "@pankod/refine-antd";
++import { useMenu } from "@pankod/refine-core";
+```
+
+### `<ReadyPage>` component is deprecated
+
+## **`@pankod/refine-mui` changes**
+
+### Import changes
+
+All **Material UI** components re-exported from `@pankod/refine-mui` have been removed. You should import them from Material UI packages directly.
+
+```diff
+- import {
+-    Box,
+-    NumberField,
+-    Stack,
+-    Typography,
+-    ThemeProvider,
+-    DataGrid
+-    LoadingButton,
+- } from "@pankod/refine-mui";
+
++ import { NumberField } from "@pankod/refine-mui";
++ import { ThemeProvider } from "@mui/material/styles";
++ import { Box, Stack, Typography } from "@mui/material";
++ import { DataGrid } from "@mui/x-data-grid";
++ import { LoadingButton } from "@mui/lab";
+```
+
+So, you may need to install `@mui/material`, `@emotion/react`, `@emotion/styled`, `@mui/lab`, and `@mui/x-data-grid` packages.
+
+```bash
+npm install @mui/material @emotion/react @emotion/styled @mui/lab @mui/x-data-grid
+```
+
+### Theme
+
+TODO
+
+### `useDataGrid` hook
+
+`useDataGrid` return values and properties are updated.
+
+-   `initialCurrent` and `initialPageSize` props are deprecated. Use `pagination` prop instead.
+
+    ```diff
+    useDataGrid({
+    -    initialCurrent,
+    -    initialPageSize,
+    +    pagination: {
+    +        current,
+    +        pageSize,
+    +    },
+    })
+    ```
+
+-   `hasPagination` prop is deprecated. Use `pagination.mode` instead.
+
+    ```diff
+    useDataGrid({
+    -   hasPagination,
+        pagination: {
+    +        mode: "off" | "server" | "client",
+        },
+    })
+    ```
+
+-   `initialSorter` and `permanentSorter` props are deprecated. Use `sorters.initial` and `sorters.permanent` instead.
+
+    ```diff
+    useDataGrid({
+    -    initialSorter,
+    -    permanentSorter,
+    +    sorters: {
+    +        initial,
+    +        permanent,
+    +    },
+    })
+    ```
+
+-   `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
+
+    ```diff
+    useDataGrid({
+    -    initialFilter,
+    -    permanentFilter,
+    -    defaultSetFilterBehavior,
+    +    filters: {
+    +        initial,
+    +        permanent,
+    +        defaultBehavior,
+    +    },
+    })
+    ```
+
+-   `sorter` and `setSorter` return values are deprecated. Use `sorters` and `setSorters` instead.
+
+    ```diff
+    const {
+    -   sorter,
+    +   sorters,
+    -   setSorter,
+    +   setSorters,
+    } = useDataGrid();
+    ```
+
+### `useAutocomplete` hook
+
+-   By default, pagination was disabled. If you want to enable pagination, you should set `pagination.mode` prop to `"server"`.
+
+    ```diff
+    useAutocomplete({
+    -    hasPagination: false,
+    +    pagination: {
+    +        mode: "server",
+    +    },
+    })
+    ```
+
+-   `sort` prop is deprecated. Use `sorters` prop instead.
+
+    ```diff
+    useAutocomplete({
+    -    sort,
+    +    sorters,
+    })
+    ```
+
+### `useMenu` hook is deprecated
+
+`useMenu` hook is deprecated. It will be exported from `@pankod/refine-core` package.
+
+```diff
+-import { useMenu } from "@pankod/refine-mui";
++import { useMenu } from "@pankod/refine-core";
+```
+
+### `<ReadyPage>` component is deprecated
+
+## **`@pankod/refine-mantine` changes**
+
+### Import changes
+
+All **Mantine** components re-exported from `@pankod/refine-mantine` have been removed. You should import them from Mantine packages directly.
+
+```diff
+- import {
+-    MantineProvider,
+-    NotificationsProvider,
+-    TextInput,
+-    Select,
+-    List,
+-    useSelect,
+- } from "@pankod/refine-mui";
+
++ import { useSelect, List } from "@pankod/refine-mantine";
++ import { MantineProvider, TextInput, Select } from "@mantine/core";
++ import { NotificationsProvider } from "@mantine/notifications";
+```
+
+So, you may need to install `@mantine/core`, `@emotion/react`, `@mantine/hooks`, `@mantine/notifications`, and `@mantine/form` packages.
+
+```bash
+npm install @mantine/core @emotion/react @mantine/hooks @mantine/notifications @mantine/form
+```
+
+### `useSelect` hook
+
+-   By default, pagination was disabled. If you want to enable pagination, you should set `pagination.mode` prop to `"server"`.
+
+    ```diff
+    useSelect({
+    -    hasPagination: false,
+    +    pagination: {
+    +        mode: "server",
+    +    },
+    })
+    ```
+
+-   `sort` prop is deprecated. Use `sorters` prop instead.
+
+    ```diff
+    useSelect({
+    -    sort,
+    +    sorters,
+    })
+    ```
+
+### `<ReadyPage>` component is deprecated
+
+## **`@pankod/refine-chakra-ui` changes**
+
+### Import changes
+
+All **Mantine** components re-exported from `@pankod/refine-chakra-ui` have been removed. You should import them from `@chakra-ui/react` package directly.
+
+```diff
+- import {
+-    ChakraProvider,
+-    Input,
+-    Select,
+-    ShowButton,
+-    usePagination,
+- } from "@pankod/refine-mui";
+
++ import { usePagination, ShowButton } from "@pankod/refine-chakra-ui";
++ import { ChakraProvider, Input, Select } from "@chakra-ui/react";
+```
+
+So, you may need to install `@chakra-ui/react`, `@emotion/react`, `@emotion/styled`, and `framer-motion` packages.
+
+```bash
+npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
+```
+
+### `<ReadyPage>` component is deprecated
+
+## **`@pankod/refine-react-table` changes**
+
+### `useTable` hook
+
+`useTable` return values and properties are updated.
+
+-   `initialCurrent` and `initialPageSize` props are deprecated. Use `pagination` prop instead.
+
+    ```diff
+    useTable({
+        refineCoreProps: {
+    -      initialCurrent,
+    -      initialPageSize,
+    +      pagination: {
+    +          current,
+    +          pageSize,
+    +      },
+        },
+    })
+    ```
+
+-   `hasPagination` prop is deprecated. Use `pagination.mode` instead.
+
+    ```diff
+    useTable({
+        refineCoreProps: {
+    -      hasPagination,
+           pagination: {
+    +           mode: "off" | "server" | "client",
+           },
+        },
+    })
+    ```
+
+-   `initialSorter` and `permanentSorter` props are deprecated. Use `sorters.initial` and `sorters.permanent` instead.
+
+    ```diff
+    useTable({
+        refineCoreProps: {
+    -      initialSorter,
+    -      permanentSorter,
+    +      sorters: {
+    +          initial,
+    +          permanent,
+    +      },
+        },
+    })
+    ```
+
+-   `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
+
+    ```diff
+    useTable({
+        refineCoreProps: {
+    -      initialFilter,
+    -      permanentFilter,
+    -      defaultSetFilterBehavior,
+    +      filters: {
+    +          initial,
+    +          permanent,
+    +          defaultBehavior,
+    +      },
+        },
+    })
+    ```
+
+-   `sorter` and `setSorter` return values are deprecated. Use `sorters` and `setSorters` instead.
+
+    ```diff
+    const {
+        refineCore: {
+    -        sorter,
+    -        setSorter,
+    +        sorters,
+    +        setSorters,
+        },
+    } = useTable();
+    ```
+
+## **2.0.XX to 3.0.XX**
 
 ### Motivation behind breaking changes
 
