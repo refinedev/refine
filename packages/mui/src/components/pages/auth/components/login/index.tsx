@@ -4,7 +4,8 @@ import {
     LoginFormTypes,
     useActiveAuthProvider,
 } from "@pankod/refine-core";
-import { FormProvider, useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@pankod/refine-react-hook-form";
+import { FormProvider } from "react-hook-form";
 import {
     Button,
     BoxProps,
