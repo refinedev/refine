@@ -25,7 +25,6 @@ import {
 import { pickNotDeprecated } from "@definitions/helpers";
 
 import {
-    ResourceRouterParams,
     BaseRecord,
     CrudFilters,
     CrudSorting,
@@ -439,7 +438,7 @@ export function useTable<
                             preferredPermanentFilters,
                             isEqual,
                         ),
-                        ...queryParams,
+                        // ...queryParams,
                     },
                 });
             } else {
