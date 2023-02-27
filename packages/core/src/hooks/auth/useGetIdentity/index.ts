@@ -78,7 +78,7 @@ export function useGetIdentity<TData = any>({
     );
 
     const legacyQueryResponse = useQuery<TData>(
-        ["getIdentity"],
+        ["getIdentity", "v3LegacyAuthProviderCompatible"],
         // Enabled check for `getUserIdentity` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
         legacyGetUserIdentity ?? (() => Promise.resolve({})),
         {

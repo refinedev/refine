@@ -83,7 +83,7 @@ export function useOnError({
     });
 
     const v3LegacyAuthProviderCompatibleMutation = useMutation(
-        ["useOnError"],
+        ["useOnError", "v3LegacyAuthProviderCompatible"],
         legacyCheckErrorFromContext,
         {
             onError: (redirectPath?: string) => {

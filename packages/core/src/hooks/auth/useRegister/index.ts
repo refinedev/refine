@@ -126,22 +126,26 @@ export function useRegister<TVariables = {}>({
         Error,
         TVariables,
         unknown
-    >(["useRegister"], legacyRegisterFromContext, {
-        onSuccess: (redirectPathFromAuth) => {
-            if (redirectPathFromAuth !== false) {
-                if (redirectPathFromAuth) {
-                    replace(redirectPathFromAuth);
-                } else {
-                    replace("/");
+    >(
+        ["useRegister", "v3LegacyAuthProviderCompatible"],
+        legacyRegisterFromContext,
+        {
+            onSuccess: (redirectPathFromAuth) => {
+                if (redirectPathFromAuth !== false) {
+                    if (redirectPathFromAuth) {
+                        replace(redirectPathFromAuth);
+                    } else {
+                        replace("/");
+                    }
                 }
-            }
-            close?.("register-error");
+                close?.("register-error");
+            },
+            onError: (error: any) => {
+                open?.(buildNotification(error));
+            },
+            ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
         },
-        onError: (error: any) => {
-            open?.(buildNotification(error));
-        },
-        ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
-    });
+    );
 
     return v3LegacyAuthProviderCompatible
         ? v3LegacyAuthProviderCompatibleMutation

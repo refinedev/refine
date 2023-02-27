@@ -133,7 +133,7 @@ export function useLogin<TVariables = {}>({
         Error,
         TVariables,
         unknown
-    >(["useLogin"], legacyLoginFromContext, {
+    >(["useLogin", "v3LegacyAuthProviderCompatible"], legacyLoginFromContext, {
         onSuccess: (redirectPathFromAuth) => {
             if (to) {
                 return replace(to as string);

@@ -63,7 +63,7 @@ export function useIsAuthenticated({
     );
 
     const legacyQueryResponse = useQuery(
-        ["useIsAuthenticated", params],
+        ["useIsAuthenticated", "v3LegacyAuthProviderCompatible", params],
         async () => (await checkAuth?.(params)) ?? {},
         {
             retry: false,
