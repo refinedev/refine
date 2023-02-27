@@ -136,7 +136,7 @@ describe("useBreadcrumb Hook", () => {
 
         expect(result.current.breadcrumbs).toEqual([
             { label: "Cms", href: undefined, icon: undefined },
-            { icon: <div>icon</div>, label: "Posts", href: "/cms/posts" },
+            { icon: <div>icon</div>, label: "Posts", href: "/posts" },
             { label: "Create" },
         ]);
     });

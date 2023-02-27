@@ -53,7 +53,30 @@ describe("getActionRoutesFromResource", () => {
         );
     });
 
-    it("should return the default routes for a given resource with parent prefix", () => {
+    it("should return the default routes for a given resource with parent prefix [legacy]", () => {
+        const result = getActionRoutesFromResource(
+            {
+                name: "users",
+                meta: {
+                    parent: "orgs",
+                },
+                edit: () => null,
+            },
+            [],
+            true,
+        );
+
+        expect(result).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    action: "edit",
+                    route: "/orgs/users/edit/:id",
+                }),
+            ]),
+        );
+    });
+
+    it("should return the default routes for a given resource without parent prefix", () => {
         const result = getActionRoutesFromResource(
             {
                 name: "users",
@@ -69,7 +92,7 @@ describe("getActionRoutesFromResource", () => {
             expect.arrayContaining([
                 expect.objectContaining({
                     action: "edit",
-                    route: "/orgs/users/edit/:id",
+                    route: "/users/edit/:id",
                 }),
             ]),
         );
