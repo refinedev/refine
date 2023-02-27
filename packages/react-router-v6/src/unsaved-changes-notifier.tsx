@@ -1,7 +1,6 @@
 import React from "react";
 import { useTranslate, useWarnAboutChange } from "@pankod/refine-core";
-import { UNSAFE_NavigationContext as NavigationContext } from "react-router-dom";
-import type { History } from "history";
+import { usePrompt } from "./use-prompt-workaround";
 
 type UnsavedChangesNotifierProps = {
     translationKey?: string;
@@ -14,7 +13,6 @@ export const UnsavedChangesNotifier: React.FC<UnsavedChangesNotifierProps> = ({
 }) => {
     const translate = useTranslate();
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
-    const navigator = React.useContext(NavigationContext).navigator as History;
 
     const warnMessage = React.useMemo(() => {
         return translate(translationKey, message);
@@ -39,20 +37,9 @@ export const UnsavedChangesNotifier: React.FC<UnsavedChangesNotifierProps> = ({
         return window.removeEventListener("beforeunload", warnWhenListener);
     }, [warnWhen, warnWhenListener]);
 
-    React.useEffect(() => {
-        if (!warnWhen) return;
-
-        const unblock = navigator.block((transition: any) => {
-            if (window.confirm(warnMessage)) {
-                setWarnWhen?.(false);
-                unblock();
-                transition.retry();
-            } else {
-                navigator.location.pathname = window.location.pathname;
-            }
-        });
-        return unblock;
-    }, [warnWhen, location, warnMessage]);
+    usePrompt(warnMessage, warnWhen, () => {
+        setWarnWhen?.(false);
+    });
 
     return null;
 };
