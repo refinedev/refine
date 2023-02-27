@@ -17,9 +17,9 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
-        </RefineChakra.ChakraProvider>
+        </ChakraUI.ChakraProvider>
     );
 };
 
@@ -28,20 +28,20 @@ const ClonePage = () => {
     const params = RefineCore.useRouterContext().useParams();
 
     return (
-        <RefineChakra.VStack alignItems="flex-start">
-            <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
+        <ChakraUI.VStack alignItems="flex-start">
+            <ChakraUI.Text as="i" color="gray.700" fontSize="sm">
                 URL Parameters:
-            </RefineChakra.Text>
-            <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
+            </ChakraUI.Text>
+            <ChakraUI.Code>{JSON.stringify(params)}</ChakraUI.Code>
 
-            <RefineChakra.Button
+            <ChakraUI.Button
                 size="sm"
                 onClick={() => list("posts")}
                 colorScheme="green"
             >
                 Go back
-            </RefineChakra.Button>
-        </RefineChakra.VStack>
+            </ChakraUI.Button>
+        </ChakraUI.VStack>
     );
 };
 ```
@@ -62,6 +62,10 @@ import { Refine } from "@pankod/refine-core";
 // visible-block-start
 import {
     List,
+    // highlight-next-line
+    CloneButton,
+} from "@pankod/refine-chakra-ui";
+import {
     TableContainer,
     Table,
     Thead,
@@ -69,9 +73,7 @@ import {
     Th,
     Tbody,
     Td,
-    // highlight-next-line
-    CloneButton,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 const PostList: React.FC = () => {

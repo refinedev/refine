@@ -1,11 +1,7 @@
 import { useShow, useOne } from "@pankod/refine-core";
-import {
-    Show,
-    Heading,
-    Text,
-    MarkdownField,
-    Spacer,
-} from "@pankod/refine-chakra-ui";
+import { Show, MarkdownField } from "@pankod/refine-chakra-ui";
+
+import { Heading, Text, Spacer } from "@chakra-ui/react";
 
 import { ICategory, IPost } from "../../interfaces";
 

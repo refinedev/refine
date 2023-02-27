@@ -582,10 +582,16 @@ module.exports = {
 
             imports.map((importItem) => {
                 // for chakra-ui imports
-                if (
-                    importItem.importPath === "@chakra-ui/react" ||
-                    importItem.importPath === "@components"
-                ) {
+                if (importItem.importPath === "@chakra-ui/react") {
+                    const newStatement = `import ${importItem.namedImports} from "@chakra-ui/react";`;
+
+                    newContent = newContent.replace(
+                        importItem.statement,
+                        newStatement,
+                    );
+                }
+
+                if (importItem.importPath === "@components") {
                     const newStatement = `import ${importItem.namedImports} from "@pankod/refine-chakra-ui";`;
 
                     newContent = newContent.replace(

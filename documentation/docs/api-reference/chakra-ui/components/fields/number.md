@@ -16,9 +16,9 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
-        </RefineChakra.ChakraProvider>
+        </ChakraUI.ChakraProvider>
     );
 };
 ```
@@ -42,6 +42,10 @@ import { Refine } from "@pankod/refine-core";
 // visible-block-start
 import {
     List,
+    // highlight-next-line
+    NumberField,
+} from "@pankod/refine-chakra-ui";
+import {
     TableContainer,
     Table,
     Thead,
@@ -49,9 +53,7 @@ import {
     Th,
     Tbody,
     Td,
-    // highlight-next-line
-    NumberField,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 const PostList: React.FC = () => {
