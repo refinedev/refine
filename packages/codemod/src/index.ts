@@ -170,6 +170,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         name: "authProvider-to-legacyAuthProvider: Transform authProvider to use legacyAuthProvider",
         value: "authProvider-to-legacyAuthProvider",
     },
+    {
+        name: "move-to-new-org: Move refine packages to its new scope",
+        value: "move-to-new-org",
+    },
 ];
 
 function expandFilePathsIfNeeded(filesBeforeExpansion) {
