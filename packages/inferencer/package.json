@@ -75,7 +75,7 @@
         "@mui/material": "^5.8.6",
         "@mui/x-data-grid": "^5.12.1",
         "@ant-design/icons": "^5.0.1",
-        "@emotion/react": "^11.8.2",
+        "@chakra-ui/react": "^2.3.6",
         "@mantine/core": "^5.5.6",
         "@mantine/hooks": "^5.5.6",
         "@mantine/form": "^5.5.6",
@@ -106,6 +106,9 @@
             "optional": true
         },
         "dayjs": {
+            "optional": true
+        },
+        "@chakra-ui/react": {
             "optional": true
         },
         "antd": {

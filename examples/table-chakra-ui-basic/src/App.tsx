@@ -1,12 +1,12 @@
 import { Refine } from "@pankod/refine-core";
 import {
-    ChakraProvider,
     ErrorComponent,
     Layout,
     refineTheme,
     ReadyPage,
     notificationProvider,
 } from "@pankod/refine-chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6/legacy";
 

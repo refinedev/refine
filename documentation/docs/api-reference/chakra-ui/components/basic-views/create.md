@@ -14,17 +14,17 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
-        </RefineChakra.ChakraProvider>
+        </ChakraUI.ChakraProvider>
     );
 };
 
 const DummyListPage = () => (
-    <RefineChakra.VStack alignItems="flex-start">
-        <RefineChakra.Text>This page is empty.</RefineChakra.Text>
+    <ChakraUI.VStack alignItems="flex-start">
+        <ChakraUI.Text>This page is empty.</ChakraUI.Text>
         <CreateButton colorScheme="black" />
-    </RefineChakra.VStack>
+    </ChakraUI.VStack>
 );
 
 interface ICategory {
@@ -52,14 +52,14 @@ import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
+import { Create } from "@pankod/refine-chakra-ui";
 import {
-    Create,
     FormControl,
     FormErrorMessage,
     FormLabel,
     Input,
     Select,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
 import { useSelect } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 
@@ -167,7 +167,8 @@ import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
-import { Create, Heading } from "@pankod/refine-chakra-ui";
+import { Create } from "@pankod/refine-chakra-ui";
+import { Heading } from "@chakra-ui/react";
 
 const PostCreate: React.FC = () => {
     return (
@@ -427,7 +428,8 @@ import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
-import { Create, Breadcrumb, Box } from "@pankod/refine-chakra-ui";
+import { Create, Breadcrumb } from "@pankod/refine-chakra-ui";
+import { Box } from "@chakra-ui/react";
 
 const PostCreate: React.FC = () => {
     return (
@@ -637,7 +639,8 @@ import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
-import { Create, Button, Box } from "@pankod/refine-chakra-ui";
+import { Create } from "@pankod/refine-chakra-ui";
+import { Button, Box } from "@chakra-ui/react";
 
 const PostCreate: React.FC = () => {
     return (
@@ -698,7 +701,8 @@ import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
-import { Create, Button } from "@pankod/refine-chakra-ui";
+import { Create } from "@pankod/refine-chakra-ui";
+import { Button } from "@chakra-ui/react";
 
 const PostCreate: React.FC = () => {
     return (
@@ -750,7 +754,8 @@ import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
-import { Create, Button, HStack } from "@pankod/refine-chakra-ui";
+import { Create } from "@pankod/refine-chakra-ui";
+import { Button, HStack } from "@chakra-ui/react";
 
 const PostCreate: React.FC = () => {
     return (

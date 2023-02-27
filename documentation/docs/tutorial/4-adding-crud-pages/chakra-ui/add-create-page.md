@@ -34,13 +34,13 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    ChakraProvider,
     ErrorComponent,
     Layout,
     refineTheme,
     ReadyPage,
     notificationProvider,
 } from "@pankod/refine-chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
 const App = () => {
@@ -127,13 +127,13 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    ChakraProvider,
     ErrorComponent,
     Layout,
     refineTheme,
     ReadyPage,
     notificationProvider,
 } from "@pankod/refine-chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
 import { ProductList } from "pages/products/list";

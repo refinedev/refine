@@ -40,6 +40,7 @@ The easiest way to create a new project is to use the **refine CLI**. This tool 
     ```bash
     yarn create refine-app -- -o refine-chakra-ui tutorial
     ```
+
     > Only support yarn@1 version.
 
     </TabItem>
@@ -123,13 +124,13 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    ChakraProvider,
     ErrorComponent,
     Layout,
     refineTheme,
     ReadyPage,
     notificationProvider,
 } from "@pankod/refine-chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const App = () => {
     return (

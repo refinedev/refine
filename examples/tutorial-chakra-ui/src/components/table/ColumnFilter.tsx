@@ -7,7 +7,7 @@ import {
     MenuList,
     VStack,
     HStack,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
 import { IconFilter, IconX, IconCheck } from "@tabler/icons";
 import { Column } from "@pankod/refine-react-table";
 

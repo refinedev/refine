@@ -33,6 +33,7 @@ const transformsWithPostTransform = [
     "refine1-to-refine2",
     "refine2-to-refine3",
     "separate-imports-antd",
+    "separate-imports-chakra",
     "separate-imports-mantine",
 ];
 
@@ -169,6 +170,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
     {
         name: "separate-imports-mui: Moves `MUI` components exported by `refine` into `MUI`",
         value: "separate-imports-mui",
+    },
+    {
+        name: "separate-imports-chakra: Moves `Chakra-UI` components exported by `refine` into `Chakra-UI`",
+        value: "separate-imports-chakra",
     },
     {
         name: "add-v3LegacyAuthProviderCompatible-true-to-auth-hooks: Add v3LegacyAuthProviderCompatible:true to auth hooks",

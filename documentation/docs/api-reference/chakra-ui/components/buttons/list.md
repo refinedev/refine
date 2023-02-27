@@ -17,9 +17,9 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
-        </RefineChakra.ChakraProvider>
+        </ChakraUI.ChakraProvider>
     );
 };
 ```
@@ -41,13 +41,11 @@ import { ShowButton } from "@pankod/refine-chakra-ui";
 import { useShow } from "@pankod/refine-core";
 import {
     Show,
-    Heading,
-    Text,
-    Spacer,
     MarkdownField,
     //highlight-next-line
     ListButton,
 } from "@pankod/refine-chakra-ui";
+import { Heading, Text, Spacer } from "@chakra-ui/react";
 
 const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>();

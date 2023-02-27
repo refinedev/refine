@@ -1,11 +1,6 @@
 import React from "react";
 
-import {
-    Center,
-    Alert,
-    AlertIcon,
-    AlertDescription,
-} from "@pankod/refine-chakra-ui";
+import { Center, Alert, AlertIcon, AlertDescription } from "@chakra-ui/react";
 
 import { CreateInferencerConfig } from "@/types";
 

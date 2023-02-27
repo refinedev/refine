@@ -18,7 +18,8 @@ values={[
 <TabItem value="resources">
 
 ```tsx
-import { Layout, ChakraProvider, refineTheme } from "@pankod/refine-chakra-ui";
+import { Layout, refineTheme } from "@pankod/refine-chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
 
 // highlight-next-line
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
@@ -98,7 +99,8 @@ setInitialRoutes(["/"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import { Layout, ChakraProvider, refineTheme } from "@pankod/refine-chakra-ui";
+import { Layout, refineTheme } from "@pankod/refine-chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -156,7 +158,8 @@ setInitialRoutes(["/samples/show/123"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import { Layout, ChakraProvider, refineTheme } from "@pankod/refine-chakra-ui";
+import { Layout, refineTheme } from "@pankod/refine-chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -214,7 +217,8 @@ setInitialRoutes(["/samples/create"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import { Layout, ChakraProvider, refineTheme } from "@pankod/refine-chakra-ui";
+import { Layout, refineTheme } from "@pankod/refine-chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -270,7 +274,8 @@ setInitialRoutes(["/samples/edit/123"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import { Layout, ChakraProvider, refineTheme } from "@pankod/refine-chakra-ui";
+import { Layout, refineTheme } from "@pankod/refine-chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
