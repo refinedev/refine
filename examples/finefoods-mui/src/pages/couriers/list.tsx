@@ -95,7 +95,6 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                 type: "actions",
                 getActions: function render({ row }) {
                     return [
-                        // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                         <GridActionsCellItem
                             key={1}
                             label={t("buttons.edit")}
@@ -103,7 +102,6 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                             onClick={() => edit("couriers", row.id)}
                             showInMenu
                         />,
-                        // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                         <GridActionsCellItem
                             key={2}
                             label={t("buttons.delete")}

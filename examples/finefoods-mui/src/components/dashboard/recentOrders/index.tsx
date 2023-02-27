@@ -156,7 +156,6 @@ export const RecentOrders: React.FC = () => {
                 type: "actions",
                 width: 80,
                 getActions: ({ id }) => [
-                    // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                     <GridActionsCellItem
                         key={1}
                         icon={<CheckOutlined color="success" />}
@@ -176,7 +175,6 @@ export const RecentOrders: React.FC = () => {
                             });
                         }}
                     />,
-                    // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                     <GridActionsCellItem
                         key={2}
                         icon={<CloseOutlined color="error" />}

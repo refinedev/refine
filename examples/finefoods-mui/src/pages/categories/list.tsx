@@ -402,7 +402,6 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 type: "actions",
                 getActions: function render({ row }) {
                     return [
-                        // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                         <GridActionsCellItem
                             key={1}
                             label={t("buttons.edit")}
