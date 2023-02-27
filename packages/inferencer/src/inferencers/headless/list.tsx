@@ -1,4 +1,5 @@
 import * as RefineReactTable from "@pankod/refine-react-table";
+import * as TanstackReactTable from "@tanstack/react-table";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -49,9 +50,9 @@ export const renderer = ({
         ["React", "react", true],
         ["IResourceComponentsProps", "@pankod/refine-core"],
         ["useNavigation", "@pankod/refine-core"],
-        ["useTable", "@pankod/refine-react-table"],
-        ["ColumnDef", "@pankod/refine-react-table"],
-        ["flexRender", "@pankod/refine-react-table"],
+        ["useTable", "@tanstack/react-table"],
+        ["ColumnDef", "@tanstack/react-table"],
+        ["flexRender", "@tanstack/react-table"],
     ];
 
     const relationFields: (InferField | null)[] = fields.filter(
@@ -804,6 +805,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
     type: "list",
     additionalScope: [
         ["@pankod/refine-react-table", "RefineReactTable", RefineReactTable],
+        ["@tanstack/react-table", "TanstackReactTable", TanstackReactTable],
     ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
