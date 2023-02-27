@@ -54,7 +54,7 @@ export function useIsAuthenticated({
     const { check } = useAuthBindingsContext();
 
     const queryRespose = useQuery(
-        ["useIsAuthenticated", params],
+        ["useAuthenticated", params],
         async () => await check?.(params),
         {
             retry: false,
@@ -63,7 +63,7 @@ export function useIsAuthenticated({
     );
 
     const legacyQueryResponse = useQuery(
-        ["useIsAuthenticated", "v3LegacyAuthProviderCompatible", params],
+        ["useAuthenticated", "v3LegacyAuthProviderCompatible", params],
         async () => (await checkAuth?.(params)) ?? {},
         {
             retry: false,
