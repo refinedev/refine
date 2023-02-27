@@ -41,7 +41,7 @@ jobs:
       - name: Install Package Dependencies
         run: |
           npm ci
-          npm run bootstrap
+          npm run bootstrap:all
       - name: Install Doc Dependencies
         run: |
           cd documentation

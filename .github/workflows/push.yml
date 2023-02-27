@@ -37,13 +37,13 @@ jobs:
     - name: npm install & build
       run: |
         npm install
-        npm run bootstrap
+        npm run bootstrap:all
     - name: lint
       run: |
         npm run lint
     - name: test
       run: |
-        npm run test:coverage
+        npm run test:all:coverage
     - name: npm test & publish code coverage
       uses: paambaati/codeclimate-action@v2.7.5
       #if: github.ref == 'refs/heads/master'

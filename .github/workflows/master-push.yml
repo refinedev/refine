@@ -36,8 +36,8 @@ jobs:
       - name: Install Dependencies & Build
         run: |
           npm ci
-          npm run bootstrap
-          npm run lerna run build -- --scope @pankod/refine-codemod
+          npm run bootstrap:all
+          npm run lerna run build:all
       - name: Lint
         run: npm run lint
       - name: Test
@@ -106,7 +106,7 @@ jobs:
       - name: Build packages
         run: |
           npm ci
-          npm run bootstrap
+          npm run bootstrap:all
           cd documentation
           npm ci
       - name: Release to GitHub Pages

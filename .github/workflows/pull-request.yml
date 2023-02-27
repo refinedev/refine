@@ -34,10 +34,10 @@ jobs:
     - name: npm install & build
       run: |
         npm install
-        npm run bootstrap
+        npm run bootstrap:all
     - name:  lint
       run: |
         npm run lint
     - name: test
       run: |
-        npm run test --skip-nx-cache
+        npm run test:all --skip-nx-cache

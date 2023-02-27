@@ -39,8 +39,8 @@ jobs:
       - name: Install Dependencies & Build
         run: |
           npm ci
-          npm run bootstrap
-          npm run lerna run build -- --scope @pankod/refine-codemod
+          npm run bootstrap:all
+          npm run lerna run build:all
       - name: Lint
         run: npm run lint
       - name: Test
