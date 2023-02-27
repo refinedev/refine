@@ -180,12 +180,16 @@ export const RouteProvider = ({
     });
 
     const isAuthenticated = useMemo(() => {
-        if (authProvider?.isLegacy) {
-            const hasAuthError = isError || authData?.error;
-            return hasAuthError ? false : true;
-        }
+        if (authProvider?.isProvided) {
+            if (authProvider?.isLegacy) {
+                const hasAuthError = isError || authData?.error;
+                return hasAuthError ? false : true;
+            }
 
-        return authData?.authenticated;
+            return authData?.authenticated;
+        } else {
+            return true;
+        }
     }, [authData, isError, authProvider?.isLegacy]);
 
     if (isFetching) {
