@@ -44,6 +44,7 @@ import {
 import { RouterBindingsProvider } from "../../../contexts/router";
 import { ResourceProps } from "../../../interfaces/bindings/resource";
 import { RouterPickerProvider } from "@contexts/router-picker";
+import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-warning/index";
 
 export interface RefineProps {
     children?: React.ReactNode;
@@ -244,6 +245,12 @@ export const Refine: React.FC<RefineProps> = ({
     }, [notificationProvider]);
 
     const notificationProviderContextValues = useNotificationProviderValues();
+
+    /**
+     * Warn our users if they are using the old way of routing in the wrong prop.
+     */
+    useRouterMisuseWarning(routerProvider);
+    /** */
 
     /**
      * `<ReadyPage />` is only used in the legacy routing and is not used in the new routing.
