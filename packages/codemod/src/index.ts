@@ -175,6 +175,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         name: "authProvider-to-legacyAuthProvider: Transform authProvider to use legacyAuthProvider",
         value: "authProvider-to-legacyAuthProvider",
     },
+    {
+        name: "separate-imports-react-hook-form: Moves `React Hook Form` components exported by `refine` into `React Hook Form`",
+        value: "separate-imports-react-hook-form",
+    },
 ];
 
 function expandFilePathsIfNeeded(filesBeforeExpansion) {
