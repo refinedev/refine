@@ -1,6 +1,7 @@
 export const packageMap: Record<string, string> = {
     "@pankod/refine-core": "RefineCore",
-    "@pankod/refine-react-router-v6/legacy": "RefineReactRouterV6",
+    "@pankod/refine-react-router-v6/legacy": "LegacyRefineReactRouterV6",
+    "@pankod/refine-react-router-v6": "RefineReactRouterV6",
     "@pankod/refine-antd": "RefineAntd",
     "@pankod/refine-mui": "RefineMui",
     "@pankod/refine-mantine": "RefineMantine",
