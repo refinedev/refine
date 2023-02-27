@@ -50,7 +50,9 @@ export const routerBindings: RouterBindings = {
                     ...query,
                 };
 
-                const urlTo = to || "";
+                const cleanPathname = pathname.split("?")[0].split("#")[0];
+
+                const urlTo = to || cleanPathname;
 
                 const hasUrlHash = urlHash.length > 1;
                 const hasUrlQuery = Object.keys(urlQuery).length > 0;
@@ -85,13 +87,15 @@ export const routerBindings: RouterBindings = {
         const { query, asPath: pathname } = useRouter();
         const { resources } = useContext(ResourceContext);
 
+        const cleanPathname = pathname.split("?")[0].split("#")[0];
+
         const { resource, action, matchedRoute } = React.useMemo(() => {
-            return matchResourceFromRoute(pathname, resources);
-        }, [pathname, resources]);
+            return matchResourceFromRoute(cleanPathname, resources);
+        }, [cleanPathname, resources]);
 
         const inferredParams =
-            matchedRoute && pathname
-                ? paramsFromCurrentPath(pathname, matchedRoute)
+            matchedRoute && cleanPathname
+                ? paramsFromCurrentPath(cleanPathname, matchedRoute)
                 : {};
 
         const inferredId = inferredParams.id;
@@ -107,7 +111,7 @@ export const routerBindings: RouterBindings = {
                 ...(action && { action }),
                 ...(inferredId && { id: decodeURIComponent(inferredId) }),
                 ...(query?.id && { id: decodeURIComponent(`${query?.id}`) }),
-                pathname,
+                pathname: cleanPathname,
                 params: {
                     ...inferredParams,
                     ...query,
