@@ -538,50 +538,6 @@ render(
 );
 ```
 
-### ~~`cardProps`~~
-
-:::caution Deprecated
-Use `wrapperProps` instead.
-:::
-
-`<List>` uses the Material UI [`<Card>`](https://mui.com/material-ui/react-card/#main-content) components so you can customize with the props of `cardProps`.
-
-### ~~`cardHeaderProps`~~
-
-:::caution Deprecated
-Use `headerProps` instead.
-:::
-
-`<List>` uses the Material UI [`<CardHeader>`](https://mui.com/material-ui/api/card-header/) components so you can customize with the props of `cardHeaderProps`.
-
-```tsx title="src/pages/posts/create.tsx"
-// highlight-next-line
-import { List } from "@pankod/refine-mui";
-import { Typography } from "@mui/material";
-
-export const CreatePage: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            cardHeaderProps={{
-                title: <Typography variant="h5">Custom Title</Typography>,
-            }}
-            // highlight-end
-        >
-            ...
-        </List>
-    );
-};
-```
-
-### ~~`cardContentProps`~~
-
-:::caution Deprecated
-Use `contentProps` instead.
-:::
-
-`<List>` uses the Material UI [`<CardContent>`](https://mui.com/material-ui/api/card-content/) components so you can customize with the props of `cardContentProps`.
-
 ## API Reference
 
 ### Properties
