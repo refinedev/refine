@@ -15,12 +15,12 @@ TODO
 
 ## 🪄 Migrating your project automatically with refine-codemod ✨ (recommended)
 
-[`@pankod/refine-codemod`][refine-codemod] package handles the breaking changes for your project automatically, without any manual steps. It migrates your project from `3.x.x` to `4.x.x`.
+[`@refinedev/codemod`][refine-codemod] package handles the breaking changes for your project automatically, without any manual steps. It migrates your project from `3.x.x` to `4.x.x`.
 
 Just `cd` into root folder of your project (where `package.json` is contained) and run this command:
 
 ```sh
-npx @pankod/refine-codemod refine3-to-refine4
+npx @refinedev/codemod refine3-to-refine4
 ```
 
 And it's done. Now your project uses `refine@3.x.x`.
@@ -34,15 +34,11 @@ Our npm organization has been changed from `@pankod` to `@refinedev`. So you mus
 ```bash
 npm uninstall @pankod/refine-core @pankod/refine-antd @pankod/..
 
-npm i @refinedev/refine-core @refinedev/refine-antd @refinedev/..
+npm i @refinedev/core @refinedev/antd @refinedev/..
 ```
 
 :::caution
 You must make this change for all packages that start with `@pankod`.
-:::
-
-:::tip
-If the operation doesn't work, try removing your `yarn.lock` or `package-lock.json`. If that doesn't help, remove the `node_modules` folder as well and try again.
 :::
 
 ## **`@pankod/refine-core` changes**
@@ -64,7 +60,7 @@ If the operation doesn't work, try removing your `yarn.lock` or `package-lock.js
      getList: ({
          resource,
          pagination: {
-+            mode,
++            mode: "off" | "server" | "client",
          },
 -        hasPagination,
 +        sorters,
@@ -305,7 +301,7 @@ All **Ant Design** components re-exported from `@pankod/refine-antd` have been r
 ```diff
 -import { useTable, SaveButton, Button, Form, Input, Select } from "@pankod/refine-antd";
 
-+import { useTable, SaveButton } from "@pankod/refine-antd";
++import { useTable, SaveButton } from "@refinedev/antd";
 +import { Button, Form, Input, Select } from "antd";
 ```
 
@@ -396,7 +392,7 @@ npm install antd @ant-design/icons
 -   Now `useSimpleList` hook will not accept all of `<List>` component properties So, you can give their props to `<List>` component directly.
 
     ```diff
-    import { useSimpleList } from "@pankod/refine-antd";
+    import { useSimpleList } from "@refinedev/antd";
     import { List } from "antd";
 
     const { listProps } = useSimpleList({
@@ -529,13 +525,13 @@ useImport({
 })
 ```
 
-### `useMenu` hook is deprecated
+### `useMenu` hook is remove
 
-`useMenu` hook is deprecated. It will be exported from `@pankod/refine-core` package.
+`useMenu` hook is removed. It will be exported from `@refinedev/core` package.
 
 ```diff
 -import { useMenu } from "@pankod/refine-antd";
-+import { useMenu } from "@pankod/refine-core";
++import { useMenu } from "@refinedev/core";
 ```
 
 ### `<ReadyPage>` component is deprecated
@@ -557,7 +553,7 @@ All **Material UI** components re-exported from `@pankod/refine-mui` have been r
 -    LoadingButton,
 - } from "@pankod/refine-mui";
 
-+ import { NumberField } from "@pankod/refine-mui";
++ import { NumberField } from "@refinedev/mui";
 + import { ThemeProvider } from "@mui/material/styles";
 + import { Box, Stack, Typography } from "@mui/material";
 + import { DataGrid } from "@mui/x-data-grid";
@@ -663,13 +659,13 @@ TODO
     })
     ```
 
-### `useMenu` hook is deprecated
+### `useMenu` hook is removed
 
-`useMenu` hook is deprecated. It will be exported from `@pankod/refine-core` package.
+`useMenu` hook is removed. It will be exported from `@refinedev/core` package.
 
 ```diff
 -import { useMenu } from "@pankod/refine-mui";
-+import { useMenu } from "@pankod/refine-core";
++import { useMenu } from "@refinedev/core";
 ```
 
 ### `<ReadyPage>` component is deprecated
@@ -690,7 +686,7 @@ All **Mantine** components re-exported from `@pankod/refine-mantine` have been r
 -    useSelect,
 - } from "@pankod/refine-mui";
 
-+ import { useSelect, List } from "@pankod/refine-mantine";
++ import { useSelect, List } from "@refinedev/mantine";
 + import { MantineProvider, TextInput, Select } from "@mantine/core";
 + import { NotificationsProvider } from "@mantine/notifications";
 ```
@@ -729,7 +725,7 @@ npm install @mantine/core @emotion/react @mantine/hooks @mantine/notifications @
 
 ### Import changes
 
-All **Mantine** components re-exported from `@pankod/refine-chakra-ui` have been removed. You should import them from `@chakra-ui/react` package directly.
+All **Chakra UI** components re-exported from `@pankod/refine-chakra-ui` have been removed. You should import them from `@chakra-ui/react` package directly.
 
 ```diff
 - import {
@@ -740,7 +736,7 @@ All **Mantine** components re-exported from `@pankod/refine-chakra-ui` have been
 -    usePagination,
 - } from "@pankod/refine-mui";
 
-+ import { usePagination, ShowButton } from "@pankod/refine-chakra-ui";
++ import { usePagination, ShowButton } from "@refinedev/chakra-ui";
 + import { ChakraProvider, Input, Select } from "@chakra-ui/react";
 ```
 
