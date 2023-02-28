@@ -33,7 +33,7 @@ refine-XR is a CRUD-based management system that enables users to manage 3D asse
 
 The system comprises a 3D viewer within the admin dashboard, enabling users to configure WebXR experiences using various input options. Additionally, users can directly publish their experiences within the system.
 
-Author: [HiuKim Yuen](https://twitter.com/hiukim528)
+Author: [HiuKim Yuen](https://twitter.com/hiukim528)  
 GitHub: [refineXR](https://github.com/hiukim/refine-xr)  
 Prize: $1500 + refine, Strapi, Appwrite, MeiliSearch, and Medusa Swag kits!
 
