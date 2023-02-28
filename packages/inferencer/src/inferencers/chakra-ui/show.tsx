@@ -1,4 +1,5 @@
 import * as RefineChakraUI from "@pankod/refine-chakra-ui";
+import * as ChakraUI from "@chakra-ui/react";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -39,7 +40,7 @@ export const renderer = ({
     const imports: Array<[element: string, module: string]> = [
         ["useShow", "@pankod/refine-core"],
         ["Show", "@pankod/refine-chakra-ui"],
-        ["Heading", "@pankod/refine-chakra-ui"],
+        ["Heading", "@chakra-ui/react"],
     ];
 
     const relationFields: (InferField | null)[] = fields.filter(
@@ -111,7 +112,7 @@ export const renderer = ({
             if (field.multiple) {
                 imports.push(
                     ["TagField", "@pankod/refine-chakra-ui"],
-                    ["HStack", "@pankod/refine-chakra-ui"],
+                    ["HStack", "@chakra-ui/react"],
                 );
                 return jsx`
                 <Heading as="h5" size="sm" mt={4} >${prettyString(
@@ -205,7 +206,7 @@ export const renderer = ({
             imports.push(
                 ["TagField", "@pankod/refine-chakra-ui"],
                 ["TextField", "@pankod/refine-chakra-ui"],
-                ["HStack", "@pankod/refine-chakra-ui"],
+                ["HStack", "@chakra-ui/react"],
             );
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
@@ -236,7 +237,7 @@ export const renderer = ({
 
     const imageFields = (field: InferField) => {
         if (field.type === "image") {
-            imports.push(["Image", "@pankod/refine-chakra-ui"]);
+            imports.push(["Image", "@chakra-ui/react"]);
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
                 return jsx`
@@ -268,7 +269,7 @@ export const renderer = ({
             imports.push(
                 ["TagField", "@pankod/refine-chakra-ui"],
                 ["EmailField", "@pankod/refine-chakra-ui"],
-                ["HStack", "@pankod/refine-chakra-ui"],
+                ["HStack", "@chakra-ui/react"],
             );
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
@@ -303,7 +304,7 @@ export const renderer = ({
             imports.push(
                 ["TagField", "@pankod/refine-chakra-ui"],
                 ["UrlField", "@pankod/refine-chakra-ui"],
-                ["HStack", "@pankod/refine-chakra-ui"],
+                ["HStack", "@chakra-ui/react"],
             );
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
@@ -338,7 +339,7 @@ export const renderer = ({
             imports.push(
                 ["TagField", "@pankod/refine-chakra-ui"],
                 ["BooleanField", "@pankod/refine-chakra-ui"],
-                ["HStack", "@pankod/refine-chakra-ui"],
+                ["HStack", "@chakra-ui/react"],
             );
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
@@ -421,7 +422,7 @@ export const renderer = ({
             imports.push(
                 ["NumberField", "@pankod/refine-chakra-ui"],
                 ["TagField", "@pankod/refine-chakra-ui"],
-                ["HStack", "@pankod/refine-chakra-ui"],
+                ["HStack", "@chakra-ui/react"],
             );
             if (field.multiple) {
                 const val = accessor("item", undefined, field.accessor);
@@ -521,6 +522,7 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
     type: "show",
     additionalScope: [
         ["@pankod/refine-chakra-ui", "RefineChakraUI", RefineChakraUI],
+        ["@chakra-ui/react", "ChakraUI", ChakraUI],
     ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,

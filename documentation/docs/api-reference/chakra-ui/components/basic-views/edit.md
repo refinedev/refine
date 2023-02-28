@@ -14,19 +14,19 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
-        </RefineChakra.ChakraProvider>
+        </ChakraUI.ChakraProvider>
     );
 };
 
 const DummyListPage = () => (
-    <RefineChakra.VStack alignItems="flex-start">
-        <RefineChakra.Text>This page is empty.</RefineChakra.Text>
+    <ChakraUI.VStack alignItems="flex-start">
+        <ChakraUI.Text>This page is empty.</ChakraUI.Text>
         <EditButton colorScheme="black" recordItemId="123">
             Edit Item 123
         </EditButton>
-    </RefineChakra.VStack>
+    </ChakraUI.VStack>
 );
 
 interface ICategory {
@@ -55,14 +55,14 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
+import { Edit } from "@pankod/refine-chakra-ui";
 import {
-    Edit,
     FormControl,
     FormErrorMessage,
     FormLabel,
     Input,
     Select,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
 import { useSelect } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 
@@ -181,7 +181,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, Heading } from "@pankod/refine-chakra-ui";
+import { Edit } from "@pankod/refine-chakra-ui";
+import { Heading } from "@chakra-ui/react";
 
 const PostEdit: React.FC = () => {
     return (
@@ -412,8 +413,8 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
 import { useModalForm } from "@pankod/refine-react-hook-form";
+import { Edit } from "@pankod/refine-chakra-ui";
 import {
-    Edit,
     Modal,
     Button,
     ModalOverlay,
@@ -421,7 +422,7 @@ import {
     ModalCloseButton,
     ModalHeader,
     ModalBody,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
 
 const PostEdit: React.FC = () => {
     const {
@@ -500,13 +501,13 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
+import { Edit } from "@pankod/refine-chakra-ui";
 import {
-    Edit,
     Input,
     FormControl,
     FormLabel,
     FormErrorMessage,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
 import { useForm } from "@pankod/refine-react-hook-form";
 
 const PostEdit: React.FC = () => {
@@ -728,7 +729,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, Breadcrumb, Box } from "@pankod/refine-chakra-ui";
+import { Edit, Breadcrumb } from "@pankod/refine-chakra-ui";
+import { Box } from "@chakra-ui/react";
 
 const PostEdit: React.FC = () => {
     return (
@@ -948,7 +950,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, Button, HStack, Box } from "@pankod/refine-chakra-ui";
+import { Edit } from "@pankod/refine-chakra-ui";
+import { Button, HStack, Box } from "@chakra-ui/react";
 
 const PostEdit: React.FC = () => {
     return (
@@ -1004,7 +1007,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, Button } from "@pankod/refine-chakra-ui";
+import { Edit } from "@pankod/refine-chakra-ui";
+import { Button } from "@chakra-ui/react";
 
 const PostEdit: React.FC = () => {
     return (
@@ -1063,7 +1067,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, Button, HStack } from "@pankod/refine-chakra-ui";
+import { Edit } from "@pankod/refine-chakra-ui";
+import { Button, HStack } from "@chakra-ui/react";
 
 const PostEdit: React.FC = () => {
     return (
