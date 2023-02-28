@@ -412,7 +412,7 @@ type IdentityResponse = unknown;
 
 :::note
 
-> This changes can be done automatically with `codemod`
+> These changes can be done automatically with `codemod`
 
 **refine** still supports the `authProvider@v3` for backward compatibility. We changed name to `legacyAuthProvider` and it will be removed in the next major version. If you want to continue using the `authProvider@v3` you can use it as `legacyAuthProvider` in your project.
 
