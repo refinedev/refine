@@ -50,7 +50,7 @@ export const renderer = ({
         ["React", "react", true],
         ["IResourceComponentsProps", "@pankod/refine-core"],
         ["useNavigation", "@pankod/refine-core"],
-        ["useTable", "@tanstack/react-table"],
+        ["useTable", "@pankod/refine-react-table"],
         ["ColumnDef", "@tanstack/react-table"],
         ["flexRender", "@tanstack/react-table"],
     ];
