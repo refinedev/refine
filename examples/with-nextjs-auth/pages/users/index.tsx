@@ -4,12 +4,8 @@ import {
     LayoutWrapper,
     parseTableParamsFromQuery,
 } from "@pankod/refine-core";
-import {
-    useTable,
-    List,
-    Table,
-    getDefaultSortOrder,
-} from "@pankod/refine-antd";
+import { useTable, List, getDefaultSortOrder } from "@pankod/refine-antd";
+import { Table } from "antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import { checkAuthentication } from "@pankod/refine-nextjs-router";
 
