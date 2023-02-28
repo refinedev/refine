@@ -13,6 +13,13 @@ import {
 } from "@pankod/refine-core";
 import {
     List,
+    EditButton,
+    DeleteButton,
+    DateField,
+    SaveButton,
+} from "@pankod/refine-chakra-ui";
+
+import {
     Table,
     Thead,
     Tbody,
@@ -22,17 +29,14 @@ import {
     TableContainer,
     HStack,
     Text,
-    EditButton,
-    DeleteButton,
     Select,
-    DateField,
     Checkbox,
     Button,
     IconButton,
     Input,
-    SaveButton,
     Textarea,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
+
 import { useForm } from "@pankod/refine-react-hook-form";
 import { IconChevronDown, IconChevronRight } from "@tabler/icons";
 

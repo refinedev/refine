@@ -22,7 +22,8 @@ export const checkPackage = (code = "") => {
         code.includes("@mantine/notifications");
     const hasChakra =
         code.includes("@pankod/refine-chakra-ui") ||
-        code.includes("RefineChakra");
+        code.includes("RefineChakra") ||
+        code.includes("@chakra-ui/react");
     const hasAntdInferencer =
         code.includes("@pankod/refine-inferencer/antd") ||
         code.includes("RefineAntdInferencer");

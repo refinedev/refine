@@ -1,13 +1,13 @@
 import { useShow, useOne } from "@pankod/refine-core";
 import {
     Show,
-    Heading,
     NumberField,
     TagField,
-    HStack,
     TextField,
     MarkdownField,
 } from "@pankod/refine-chakra-ui";
+
+import { Heading, HStack } from "@chakra-ui/react";
 
 export const ProductShow = () => {
     const { queryResult } = useShow();

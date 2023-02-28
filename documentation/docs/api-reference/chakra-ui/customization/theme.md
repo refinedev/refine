@@ -5,10 +5,8 @@ title: Theme
 
 ```tsx live shared
 import { useNavigation, useRouterContext } from "@pankod/refine-core";
+import { List, Edit, Create, EditButton } from "@pankod/refine-chakra-ui";
 import {
-    List,
-    Edit,
-    Create,
     TableContainer,
     Table,
     Thead,
@@ -17,12 +15,11 @@ import {
     Th,
     Td,
     Text,
-    EditButton,
     FormControl,
     FormErrorMessage,
     FormLabel,
     Input,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 import { useForm } from "@pankod/refine-react-hook-form";
 
@@ -174,16 +171,18 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    ChakraProvider,
     ErrorComponent,
     Layout,
     ReadyPage,
     notificationProvider,
-    // highlight-start
+    // highlight-next-line
     refineTheme,
-    extendTheme,
-    // highlight-end
 } from "@pankod/refine-chakra-ui";
+import {
+    ChakraProvider,
+    // highlight-next-line
+    extendTheme,
+} from "@chakra-ui/react";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 
@@ -289,20 +288,23 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    ChakraProvider,
     ErrorComponent,
     Layout,
     ReadyPage,
     notificationProvider,
+    // highlight-next-line
+    refineTheme,
+} from "@pankod/refine-chakra-ui";
+import {
+    ChakraProvider,
     Box,
     IconButton,
     Icon,
     // highlight-start
     useColorMode,
-    refineTheme,
     extendTheme,
     // highlight-end
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
 import { IconSun, IconMoonStars } from "@tabler/icons";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
