@@ -1,5 +1,5 @@
 {
-    "name": "with-nextjs",
+    "name": "with-nextjs-auth",
     "version": "3.25.0",
     "private": true,
     "scripts": {
