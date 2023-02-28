@@ -9,14 +9,14 @@ import {
 import { ChakraProvider } from "@chakra-ui/react";
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 const App: React.FC = () => {
     return (
         <ChakraProvider theme={refineTheme}>
             <Refine
                 notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 Layout={Layout}
                 ReadyPage={ReadyPage}

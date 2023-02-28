@@ -1,22 +1,23 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import ReactRouterDom from "react-router-dom";
 
-import { act, TestWrapper } from "@test";
+import { act, mockRouterBindings, TestWrapper } from "@test";
 
 import { useLogout } from "./";
 import { useCheckError, useOnError } from "../useOnError";
 
-const mHistory = jest.fn();
+const mockGo = jest.fn();
 
-jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
-}));
+const mockRouterProvider = mockRouterBindings({
+    fns: {
+        go: () => mockGo,
+    },
+});
 
 // NOTE : Will be removed in v5
 describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
     beforeEach(() => {
-        mHistory.mockReset();
+        mockGo.mockReset();
+
         jest.spyOn(console, "error").mockImplementation((message) => {
             if (
                 message?.message === "Logout rejected" ||
@@ -44,6 +45,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
                         },
                         getUserIdentity: () => Promise.resolve(),
                     },
+                    routerProvider: mockRouterProvider,
                 }),
             },
         );
@@ -59,7 +61,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory).toBeCalledWith("/login");
+            expect(mockGo).toBeCalledWith({ to: "/login" });
         });
     });
 
@@ -79,6 +81,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
                         },
                         getUserIdentity: () => Promise.resolve(),
                     },
+                    routerProvider: mockRouterProvider,
                 }),
             },
         );
@@ -94,7 +97,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory).not.toBeCalled();
+            expect(mockGo).not.toBeCalled();
         });
     });
 
@@ -117,6 +120,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
                         },
                         getUserIdentity: () => Promise.resolve(),
                     },
+                    routerProvider: mockRouterProvider,
                 }),
             },
         );
@@ -132,7 +136,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory).toBeCalledWith("/custom-path");
+            expect(mockGo).toBeCalledWith({ to: "/custom-path" });
         });
     });
 
@@ -196,8 +200,6 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
     });
 
     it("logout and not redirect if check error rejected with false", async () => {
-        const logoutMock = jest.fn();
-
         const { result } = renderHook(() => useCheckError(), {
             wrapper: TestWrapper({
                 legacyAuthProvider: {
@@ -223,7 +225,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory).toBeCalledTimes(0);
+            expect(mockGo).toBeCalledTimes(0);
         });
     });
 
@@ -239,6 +241,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
                     logout: () => Promise.resolve(false),
                     getUserIdentity: () => Promise.resolve(),
                 },
+                routerProvider: mockRouterProvider,
             }),
         });
 
@@ -253,7 +256,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory).toBeCalledTimes(0);
+            expect(mockGo).toBeCalledTimes(0);
         });
     });
 
@@ -271,6 +274,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
                         logout: () => Promise.resolve("/custom-path"),
                         getUserIdentity: () => Promise.resolve(),
                     },
+                    routerProvider: mockRouterProvider,
                 }),
             },
         );
@@ -286,7 +290,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory).toBeCalledWith("/custom-path");
+            expect(mockGo).toBeCalledWith({ to: "/custom-path" });
         });
     });
 });
@@ -299,7 +303,7 @@ describe("useLogout Hook", () => {
     };
 
     beforeEach(() => {
-        mHistory.mockReset();
+        mockGo.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
             if (
                 message?.message === "Logout rejected" ||
@@ -323,6 +327,7 @@ describe("useLogout Hook", () => {
                         });
                     },
                 },
+                routerProvider: mockRouterProvider,
             }),
         });
 
@@ -337,7 +342,7 @@ describe("useLogout Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory).toBeCalledWith("/login");
+            expect(mockGo).toBeCalledWith({ to: "/login" });
         });
     });
 
@@ -366,7 +371,7 @@ describe("useLogout Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory).not.toBeCalled();
+            expect(mockGo).not.toBeCalled();
         });
     });
 
@@ -383,6 +388,7 @@ describe("useLogout Hook", () => {
                             });
                         },
                     },
+                    routerProvider: mockRouterProvider,
                 }),
             },
         );
@@ -394,7 +400,9 @@ describe("useLogout Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory).toBeCalledWith("/custom-path");
+            expect(mockGo).toBeCalledWith(
+                expect.objectContaining({ to: "/custom-path" }),
+            );
         });
     });
 
@@ -412,6 +420,7 @@ describe("useLogout Hook", () => {
                             });
                         },
                     },
+                    routerProvider: mockRouterProvider,
                 }),
             },
         );
@@ -423,7 +432,7 @@ describe("useLogout Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory).toBeCalledWith("/custom-path");
+            expect(mockGo).toBeCalledWith({ to: "/custom-path" });
         });
     });
 
@@ -511,7 +520,7 @@ describe("useLogout Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory).toBeCalledTimes(0);
+            expect(mockGo).toBeCalledTimes(0);
         });
     });
 

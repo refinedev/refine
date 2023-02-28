@@ -5,7 +5,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import axios, { AxiosRequestConfig } from "axios";
 
 import "@pankod/refine-antd/dist/reset.css";
@@ -106,6 +106,7 @@ const App: React.FC = () => {
             dataProvider={dataProvider(API_URL, axiosInstance)}
             routerProvider={routerProvider}
             authProvider={authProvider}
+            legacyRouterProvider={routerProvider}
             LoginPage={Login}
             resources={[
                 {

@@ -1,8 +1,13 @@
 import React from "react";
 import { act, waitFor } from "@testing-library/react";
-import ReactRouterDom from "react-router-dom";
 
-import { MockJSONServer, render, TestWrapper } from "@test";
+import {
+    MockJSONServer,
+    mockLegacyRouterProvider,
+    render,
+    TestWrapper,
+} from "@test";
+
 import { Authenticated } from "./";
 import { AuthBindings } from "src/interfaces";
 
@@ -15,6 +20,19 @@ const legacyMockAuthProvider = {
     getUserIdentity: () => Promise.resolve(),
 };
 
+const mockReplace = jest.fn();
+
+const mockLegacyRouter = {
+    ...mockLegacyRouterProvider(),
+    useHistory: () => ({
+        replace: mockReplace,
+    }),
+    useLocation: () => ({
+        pathname: "/posts",
+        search: "",
+    }),
+};
+
 const mockAuthProvider: AuthBindings = {
     login: () =>
         Promise.resolve({
@@ -25,13 +43,6 @@ const mockAuthProvider: AuthBindings = {
     check: () => Promise.resolve({ authenticated: true }),
     getPermissions: () => Promise.resolve(),
 };
-
-const mHistory = jest.fn();
-
-jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
-}));
 
 describe("v3LegacyAuthProviderCompatible Authenticated", () => {
     beforeEach(() => {
@@ -58,10 +69,6 @@ describe("v3LegacyAuthProviderCompatible Authenticated", () => {
     });
 
     it("not authenticated test", async () => {
-        legacyMockAuthProvider.checkAuth = jest
-            .fn()
-            .mockImplementation(() => Promise.reject());
-
         const { queryByText } = render(
             <Authenticated v3LegacyAuthProviderCompatible={true}>
                 Custom Authenticated
@@ -69,7 +76,11 @@ describe("v3LegacyAuthProviderCompatible Authenticated", () => {
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
-                    legacyAuthProvider: legacyMockAuthProvider,
+                    legacyAuthProvider: {
+                        ...legacyMockAuthProvider,
+                        checkAuth: () => Promise.reject(),
+                    },
+                    legacyRouterProvider: mockLegacyRouter,
                     resources: [{ name: "posts", route: "posts" }],
                 }),
             },
@@ -77,7 +88,7 @@ describe("v3LegacyAuthProviderCompatible Authenticated", () => {
 
         await waitFor(() => {
             expect(queryByText("Custom Authenticated")).toBeNull();
-            expect(mHistory).toBeCalledTimes(1);
+            expect(mockReplace).toBeCalledTimes(1);
         });
     });
 
@@ -157,26 +168,24 @@ describe("Authenticated", () => {
     });
 
     it("not authenticated test", async () => {
-        mockAuthProvider.check = jest
-            .fn()
-            .mockImplementation(() =>
-                Promise.resolve({ authenticated: false }),
-            );
-
         const { queryByText } = render(
             <Authenticated>Custom Authenticated</Authenticated>,
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
-                    authProvider: mockAuthProvider,
+                    authProvider: {
+                        ...mockAuthProvider,
+                        check: () => Promise.resolve({ authenticated: false }),
+                    },
                     resources: [{ name: "posts", route: "posts" }],
+                    legacyRouterProvider: mockLegacyRouter,
                 }),
             },
         );
 
         await waitFor(() => {
             expect(queryByText("Custom Authenticated")).toBeNull();
-            expect(mHistory).toBeCalledTimes(1);
+            expect(mockReplace).toBeCalledTimes(1);
         });
     });
 

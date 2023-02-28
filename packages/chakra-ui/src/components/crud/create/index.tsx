@@ -1,11 +1,12 @@
 import React from "react";
 import {
-    ResourceRouterParams,
     useNavigation,
-    useResourceWithRoute,
-    userFriendlyResourceName,
-    useRouterContext,
     useTranslate,
+    userFriendlyResourceName,
+    useRefineContext,
+    useRouterType,
+    useResource,
+    useBack,
 } from "@pankod/refine-core";
 import { Box, Heading, HStack, IconButton, Spinner } from "@chakra-ui/react";
 
@@ -29,21 +30,23 @@ export const Create: React.FC<CreateProps> = (props) => {
         contentProps,
         headerProps,
         goBack: goBackFromProps,
-        breadcrumb = <Breadcrumb />,
+        breadcrumb: breadcrumbFromProps,
         title,
     } = props;
     const translate = useTranslate();
+    const { options: { breadcrumb: globalBreadcrumb } = {} } =
+        useRefineContext();
 
+    const routerType = useRouterType();
+    const back = useBack();
     const { goBack } = useNavigation();
 
-    const { useParams } = useRouterContext();
+    const { resource, action } = useResource(resourceFromProps);
 
-    const { resource: routeResourceName, action: routeFromAction } =
-        useParams<ResourceRouterParams>();
-
-    const resourceWithRoute = useResourceWithRoute();
-
-    const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
+    const breadcrumb =
+        typeof breadcrumbFromProps === "undefined"
+            ? globalBreadcrumb
+            : breadcrumbFromProps;
 
     const defaultFooterButtons = (
         <SaveButton
@@ -58,7 +61,13 @@ export const Create: React.FC<CreateProps> = (props) => {
                 aria-label="back"
                 variant="ghost"
                 size="sm"
-                onClick={routeFromAction ? goBack : undefined}
+                onClick={
+                    action !== "list" || typeof action !== "undefined"
+                        ? routerType === "legacy"
+                            ? goBack
+                            : back
+                        : undefined
+                }
             >
                 {typeof goBackFromProps !== "undefined" ? (
                     goBackFromProps
@@ -98,9 +107,12 @@ export const Create: React.FC<CreateProps> = (props) => {
         return (
             <Heading as="h3" size="lg">
                 {translate(
-                    `${resource.name}.titles.create`,
+                    `${resource?.name}.titles.create`,
                     `Create ${userFriendlyResourceName(
-                        resource.label ?? resource.name,
+                        resource?.meta?.label ??
+                            resource?.options?.label ??
+                            resource?.label ??
+                            resource?.name,
                         "singular",
                     )}`,
                 )}
@@ -135,7 +147,11 @@ export const Create: React.FC<CreateProps> = (props) => {
                 {...headerProps}
             >
                 <Box minW={200}>
-                    {breadcrumb}
+                    {typeof breadcrumb !== "undefined" ? (
+                        <>{breadcrumb}</>
+                    ) : (
+                        <Breadcrumb />
+                    )}
                     <HStack>
                         {buttonBack}
                         {renderTitle()}

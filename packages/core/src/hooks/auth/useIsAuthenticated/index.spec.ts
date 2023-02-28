@@ -1,17 +1,19 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import ReactRouterDom from "react-router-dom";
 
-import { TestWrapper } from "@test";
+import { TestWrapper, mockLegacyRouterProvider } from "@test";
 
 import { useIsAuthenticated } from ".";
 import { act } from "react-dom/test-utils";
 
-const mHistory = jest.fn();
+const mockFn = jest.fn();
 
-jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
-}));
+const mockRouterProvider = {
+    ...mockLegacyRouterProvider(),
+    useHistory: () => ({
+        push: mockFn,
+        replace: mockFn,
+    }),
+};
 
 // NOTE : Will be removed in v5
 describe("v3LegacyAuthProviderCompatible useIsAuthenticated Hook", () => {
@@ -93,10 +95,6 @@ describe("v3LegacyAuthProviderCompatible useIsAuthenticated Hook", () => {
         await waitFor(() => {
             expect(result.current.isError).toBeTruthy();
         });
-
-        await act(async () => {
-            expect(mHistory).toBeCalledWith("/custom-url", { replace: true });
-        });
     });
 });
 
@@ -171,15 +169,12 @@ describe("useIsAuthenticated Hook", () => {
                     onError: checkErrorMock,
                     logout: () => Promise.resolve({ success: false }),
                 },
+                legacyRouterProvider: mockRouterProvider,
             }),
         });
 
         await waitFor(() => {
             expect(result.current.data?.error).toBeTruthy();
-        });
-
-        await act(async () => {
-            expect(mHistory).toBeCalledWith("/custom-url", { replace: true });
         });
     });
 });

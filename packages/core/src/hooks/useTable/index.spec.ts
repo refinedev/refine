@@ -1,7 +1,7 @@
 import { act } from "react-dom/test-utils";
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper } from "@test";
+import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useTable } from ".";
 import { CrudFilters, CrudSorting } from "src/interfaces";
@@ -18,12 +18,19 @@ const customPagination = {
     pageSize: 1,
 };
 
+const routerProvider = mockRouterBindings({
+    resource: {
+        name: "posts",
+    },
+});
+
 describe("useTable Hook", () => {
     it("default", async () => {
         const { result } = renderHook(() => useTable(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
                 resources: [{ name: "posts" }],
+                routerProvider,
             }),
         });
 
@@ -57,6 +64,7 @@ describe("useTable Hook", () => {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
                     resources: [{ name: "posts" }],
+                    routerProvider,
                 }),
             },
         );
@@ -85,6 +93,7 @@ describe("useTable Hook", () => {
                         { name: "posts", route: "posts" },
                         { name: "categories", route: "categories" },
                     ],
+                    routerProvider,
                 }),
             },
         );
@@ -114,6 +123,7 @@ describe("useTable Hook", () => {
                         { name: "posts", route: "posts" },
                         { name: "categories", route: "categories" },
                     ],
+                    routerProvider,
                 }),
             },
         );
@@ -142,6 +152,7 @@ describe("useTable Hook", () => {
                         { name: "posts", route: "posts" },
                         { name: "categories", route: "categories" },
                     ],
+                    routerProvider,
                 }),
             },
         );
@@ -163,7 +174,9 @@ describe("useTable Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
             },
         );
 
@@ -173,7 +186,9 @@ describe("useTable Hook", () => {
 
     it("when deprecated setSorter is called, it should update sorter and sorters", async () => {
         const { result } = renderHook(() => useTable({}), {
-            wrapper: TestWrapper({}),
+            wrapper: TestWrapper({
+                routerProvider,
+            }),
         });
 
         const sorters: CrudSorting = [{ field: "id", order: "asc" }];
@@ -188,7 +203,9 @@ describe("useTable Hook", () => {
 
     it("when setSorters is called, it should update deprecated sorter and sorters", async () => {
         const { result } = renderHook(() => useTable({}), {
-            wrapper: TestWrapper({}),
+            wrapper: TestWrapper({
+                routerProvider,
+            }),
         });
 
         const sorters: CrudSorting = [{ field: "id", order: "asc" }];
@@ -213,7 +230,9 @@ describe("useTable Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
             },
         );
 
@@ -236,7 +255,9 @@ describe("useTable Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
             },
         );
 
@@ -272,7 +293,9 @@ describe("useTable Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
             },
         );
 
@@ -307,7 +330,9 @@ describe("useTable Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
             },
         );
 
@@ -326,7 +351,9 @@ describe("useTable Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
             },
         );
 
@@ -347,7 +374,9 @@ describe("useTable Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
             },
         );
 
@@ -357,7 +386,9 @@ describe("useTable Hook", () => {
 
     it("when deprecated setSorter is called, it should update sorter and sorters", async () => {
         const { result } = renderHook(() => useTable({}), {
-            wrapper: TestWrapper({}),
+            wrapper: TestWrapper({
+                routerProvider,
+            }),
         });
 
         const sorters: CrudSorting = [{ field: "id", order: "asc" }];
@@ -372,7 +403,9 @@ describe("useTable Hook", () => {
 
     it("when setSorters is called, it should update deprecated sorter and sorters", async () => {
         const { result } = renderHook(() => useTable({}), {
-            wrapper: TestWrapper({}),
+            wrapper: TestWrapper({
+                routerProvider,
+            }),
         });
 
         const sorters: CrudSorting = [{ field: "id", order: "asc" }];
@@ -390,6 +423,7 @@ describe("useTable Filters", () => {
     const wrapper = TestWrapper({
         dataProvider: MockJSONServer,
         resources: [{ name: "posts" }],
+        routerProvider,
     });
 
     it("should be empty initially", async () => {

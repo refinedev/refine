@@ -4,7 +4,7 @@ import {
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import "@pankod/refine-antd/dist/reset.css";
 import { dataProvider } from "@pankod/refine-supabase";
 import authProvider from "./authProvider";
@@ -25,7 +25,7 @@ function App() {
             dataProvider={dataProvider(supabaseClient)}
             authProvider={authProvider}
             LoginPage={Login}
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
 
                 routes: [

@@ -9,7 +9,7 @@ import {
 } from "@pankod/refine-chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
@@ -117,7 +117,7 @@ const App: React.FC = () => {
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 authProvider={authProvider}
                 notificationProvider={notificationProvider()}
-                routerProvider={{
+                legacyRouterProvider={{
                     ...routerProvider,
                     routes: [
                         {

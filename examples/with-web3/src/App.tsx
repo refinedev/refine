@@ -4,7 +4,7 @@ import {
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import "@pankod/refine-antd/dist/reset.css";
 import simpleRestDataProvider from "@pankod/refine-simple-rest";
@@ -18,7 +18,7 @@ function App() {
     const dataProvider = simpleRestDataProvider(API_URL);
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider}
             authProvider={authProvider}
             LoginPage={Login}

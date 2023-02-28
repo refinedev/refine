@@ -2,7 +2,7 @@ import { Refine } from "@pankod/refine-core";
 import { notificationProvider, Layout, Title } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import { liveProvider } from "@pankod/refine-ably";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import "@pankod/refine-antd/dist/reset.css";
 
 import { ablyClient } from "utility";
@@ -20,7 +20,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             liveProvider={liveProvider(ablyClient)}
             resources={[

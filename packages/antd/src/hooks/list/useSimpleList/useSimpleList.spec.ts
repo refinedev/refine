@@ -10,12 +10,23 @@ const defaultPagination = {
     total: 2,
 };
 
+const routerProvider = {
+    parse: () => {
+        return () => ({
+            resource: {
+                name: "posts",
+            },
+        });
+    },
+};
+
 describe("useSimpleList Hook", () => {
     it("default", async () => {
         const { result } = renderHook(() => useSimpleList(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
                 resources: [{ name: "posts" }],
+                routerProvider,
             }),
         });
 
@@ -51,6 +62,7 @@ describe("useSimpleList Hook", () => {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
                     resources: [{ name: "posts" }],
+                    routerProvider,
                 }),
             },
         );
@@ -74,7 +86,9 @@ describe("useSimpleList Hook", () => {
                     hasPagination: false,
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
             },
         );
 
@@ -99,6 +113,7 @@ describe("useSimpleList Hook", () => {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
                     resources: [{ name: "posts" }, { name: "categories" }],
+                    routerProvider,
                 }),
             },
         );
@@ -125,7 +140,9 @@ describe("useSimpleList Hook", () => {
                         },
                     }),
                 {
-                    wrapper: TestWrapper({}),
+                    wrapper: TestWrapper({
+                        routerProvider,
+                    }),
                 },
             );
 
@@ -147,7 +164,9 @@ describe("useSimpleList Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
             },
         );
 
