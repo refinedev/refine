@@ -534,6 +534,19 @@ useImport({
 +import { useMenu } from "@refinedev/core";
 ```
 
+### Buttons
+
+Deprecated `ignoreAccessControlProvider` prop is removed from all buttons exported from `@refinedev/antd` package. Use `accessControl.enabled` prop instead.
+
+```diff
+<CreateButton
+-   ignoreAccessControlProvider
++   accessControl={{
++       enabled: false,
++   }}
+/>
+```
+
 ### `<ReadyPage>` component is deprecated
 
 ## **`@pankod/refine-mui` changes**
@@ -668,6 +681,23 @@ TODO
 +import { useMenu } from "@refinedev/core";
 ```
 
+### Buttons
+
+Deprecated `ignoreAccessControlProvider` prop is removed from all buttons exported from `@refinedev/mui` package. Use `accessControl.enabled` prop instead.
+
+```diff
+<CreateButton
+-   ignoreAccessControlProvider
++   accessControl={{
++       enabled: false,
++   }}
+/>
+```
+
+### Basic Views
+
+Deprecated `cardProps`, `cardHeaderProps`, `cardContentProps`, `actionButtons`, and `cardActionsProps` props are removed from all basic views components exported from `@refinedev/mui` package. Use `wrapperProps`, `headerProps`, `contentProps`, `footerButtons`, and `footerButtonProps` props instead.
+
 ### `<ReadyPage>` component is deprecated
 
 ## **`@pankod/refine-mantine` changes**
@@ -719,6 +749,19 @@ npm install @mantine/core @emotion/react @mantine/hooks @mantine/notifications @
     })
     ```
 
+### Buttons
+
+Deprecated `ignoreAccessControlProvider` prop is removed from all buttons exported from `@refinedev/mui` package. Use `accessControl.enabled` prop instead.
+
+```diff
+<CreateButton
+-   ignoreAccessControlProvider
++   accessControl={{
++       enabled: false,
++   }}
+/>
+```
+
 ### `<ReadyPage>` component is deprecated
 
 ## **`@pankod/refine-chakra-ui` changes**
@@ -744,6 +787,19 @@ So, you may need to install `@chakra-ui/react`, `@emotion/react`, `@emotion/styl
 
 ```bash
 npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
+```
+
+### Buttons
+
+Deprecated `ignoreAccessControlProvider` prop is removed from all buttons exported from `@refinedev/mui` package. Use `accessControl.enabled` prop instead.
+
+```diff
+<CreateButton
+-   ignoreAccessControlProvider
++   accessControl={{
++       enabled: false,
++   }}
+/>
 ```
 
 ### `<ReadyPage>` component is deprecated
