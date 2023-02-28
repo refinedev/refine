@@ -1,11 +1,7 @@
 import React, { useCallback } from "react";
 import { GetManyResponse, useDeleteMany, useMany } from "@pankod/refine-core";
-import {
-    useTable,
-    ColumnDef,
-    flexRender,
-    Row,
-} from "@pankod/refine-react-table";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
 import {
     useForm,
     SaveButton,
