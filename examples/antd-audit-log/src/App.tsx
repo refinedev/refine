@@ -27,7 +27,6 @@ const authProvider: AuthBindings = {
     login: async (payload: ILoginDto) => {
         const { email, password, providerName } = payload;
 
-
         try {
             await refineSDK.auth.login({
                 email,
