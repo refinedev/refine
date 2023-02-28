@@ -23,7 +23,7 @@ Just `cd` into root folder of your project (where `package.json` is contained) a
 npx @refinedev/codemod refine3-to-refine4
 ```
 
-And it's done. Now your project uses `refine@3.x.x`.
+And it's done. Now your project uses `refine@4.x.x`.
 
 ## Migrating your project manually
 
