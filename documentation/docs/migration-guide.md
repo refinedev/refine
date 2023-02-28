@@ -29,7 +29,7 @@ And it's done. Now your project uses `refine@4.x.x`.
 
 ## Updating the packages
 
-Our npm organization has been changed from `@pankod` to `@refinedev`. So you must update your packages to `@refinedev` organization.
+Our npm organization has been moved from `@pankod` to `@refinedev`. So you must install the packages with the new organization name.
 
 ```bash
 npm uninstall @pankod/refine-core @pankod/refine-antd @pankod/..
@@ -1226,7 +1226,52 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 
 ### Basic Views
 
-Deprecated `cardProps`, `cardHeaderProps`, `cardContentProps`, `actionButtons`, and `cardActionsProps` props are removed from all basic views components exported from `@refinedev/mui` package. Use `wrapperProps`, `headerProps`, `contentProps`, `footerButtons`, and `footerButtonProps` props instead.
+Following basic view component props are removed:
+
+-   `cardProps` prop is removed from all basic views components. Use `wrapperProps` prop instead.
+
+    ```diff
+      <List
+    -    cardProps={{}}
+    +    wrapperProps={{}}
+      />
+    ```
+
+-   `cardHeaderProps` prop is removed from all basic views components. Use `headerProps` prop instead.
+
+    ```diff
+      <Create
+    -    cardHeaderProps={{}}
+    +    headerProps={{}}
+      />
+    ```
+
+-   `cardContentProps` prop is removed from all basic views components. Use `contentProps` prop instead.
+
+    ```diff
+      <Edit
+    -    cardContentProps={{}}
+    +    contentProps={{}}
+      />
+    ```
+
+-   `actionButtons` prop is removed from `<Create>`, `<Edit>`, and `<Show` components. Use `footerButtons` prop instead.
+
+    ```diff
+      <Show
+    -    actionButtons={[]}
+    +    footerButtons={[]}
+      />
+    ```
+
+-   `cardActionsProps` prop is removed from `<Create>`, `<Edit>`, and `<Show` components. Use `footerButtonProps` prop instead.
+
+    ```diff
+      <List
+    -    cardActionsProps={{}}
+    +    footerButtonProps={{}}
+      />
+    ```
 
 ### `<ReadyPage>` component is deprecated
 
