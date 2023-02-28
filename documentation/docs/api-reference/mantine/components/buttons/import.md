@@ -51,7 +51,8 @@ import {
     ImportButton,
 } from "@pankod/refine-mantine";
 import { Table, Pagination } from "@mantine/core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(

@@ -8,6 +8,7 @@ import * as RefineSimpleRest from "@pankod/refine-simple-rest";
 import * as RefineReactHookForm from "@pankod/refine-react-hook-form";
 import * as RefineReactTable from "@pankod/refine-react-table";
 import * as ReactHookForm from "react-hook-form";
+import * as TanstackReactTable from "@tanstack/react-table";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
@@ -152,4 +153,5 @@ export const RefineCommonScope = {
     RefineReactHookForm,
     RefineReactTable,
     ReactHookForm,
+    TanstackReactTable,
 };

@@ -6,12 +6,8 @@ import {
     useSelect,
 } from "@pankod/refine-core";
 import { alpha } from "@mui/material/styles";
-import {
-    useTable,
-    ColumnDef,
-    flexRender,
-    Row,
-} from "@pankod/refine-react-table";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
 import { DeleteButton, EditButton, SaveButton, List } from "@pankod/refine-mui";
 
 import {
