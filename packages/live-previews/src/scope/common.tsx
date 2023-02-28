@@ -67,6 +67,17 @@ const DemoMemoryRouterComponent = (
     );
 };
 
+const DemoMemoryRouter = (
+    props: React.ComponentProps<typeof ReactRouterDom.MemoryRouter>,
+): JSX.Element => {
+    return (
+        <ReactRouterDom.MemoryRouter
+            {...props}
+            {...(typeof window !== "undefined" ? window.routerSettings : {})}
+        />
+    );
+};
+
 const LegacyRefineReactRouterV6 = {
     ...LegacyRefineReactRouterV6Base,
     MemoryRouterComponent: DemoMemoryRouterComponent,
@@ -122,7 +133,10 @@ export const RefineCommonScope = {
         ...RefineCore,
         Refine,
     },
-    ReactRouterDom,
+    ReactRouterDom: {
+        ...ReactRouterDom,
+        BrowserRouter: DemoMemoryRouter,
+    },
     // Data
     RefineSimpleRest,
     // Utilities
