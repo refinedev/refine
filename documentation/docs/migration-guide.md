@@ -51,13 +51,13 @@ You must make this change for all packages that start with `@pankod`.
 
 Our motivation behind the changes in `authProvider` prop in **refine**'s v4 is to make it flexible and customizable enough to cover much more cases than before without going down the rabbit hole.
 
-We wanted to create a common interface for the properties of `authProvider` to make them flexible for many cases and complement the features of refine without requiring our users to write complex code blocks and conditions.
+We wanted to create a common interface for the methods of `authProvider` to make it easier to debug and understand the authentication process more easily.
 
 Previously, the `authProvider` methods returned a resolved or rejected promise rather than a resolved promise with consistent return types. This behavior is not ideal since a rejected promise is typically associated with an error or exceptional case, which is not the case for an authentication failure. This caused confusion for developers and made it harder to debug unexpected behaviors.
 
-`authProvider` methods now returns a resolved promise in all cases, but with an object that contains a `success` property that indicates whether the operation was successful or not, and an optional `error` property that contains an `Error` object in case of failure. With consistent return types makes it easier to debug and understand the authentication process.
+`authProvider` methods now returns a resolved promise in all cases, with an object that contains a `success` key. The `success` key indicates whether the operation was successful or not, and an optional `error` key that contains an `Error` object in case of failure.
 
-Additionally, the auth hooks no longer have default redirection, which could be confusing for developers who were not aware of this behavior. By adding a `redirectTo` property to the `authProvider` method's return object, developers can have more control over where the user is redirected after a successful operation.
+Additionally, the auth hooks no longer have default redirection paths. This behavior could be confusing for developers who were not aware of it. By adding a `redirectTo` property to the `authProvider` method's return object, developers can have more control over where the user is redirected after a successful operation.
 
 <h3>Naming changes</h3>
 
@@ -145,8 +145,8 @@ const authProvider = {
         localStorage.removeItem("auth");
 -       return Promise.resolve();
 +       return Promise.resolve({
-+       success: true,
-+       redirectTo: "/login",
++          success: true,
++          redirectTo: "/login",
 +       });
     },
 }
@@ -202,7 +202,6 @@ const authProvider = {
 
 ```diff
 const authProvider = {
-    // ---
     forgotPassword: ({ password }) => {
         // send password reset link to the user's email address here
 
@@ -223,7 +222,6 @@ const authProvider = {
 +           },
 +       });
     },
-    // ---
 };
 ```
 
@@ -244,7 +242,6 @@ type AuthActionResponse = {
 
 ```diff
 const authProvider = {
-    // ---
     updatePassword: ({ password }) => {
         // update the user's password here
 
@@ -265,7 +262,6 @@ const authProvider = {
 +           },
 +       });
     },
-    // ---
 };
 ```
 
@@ -436,8 +432,6 @@ Also you need to add `v3LegacyAuthProviderCompatible: true` to your auth hooks t
 
 ```ts
 import { useLogin } from "@refinedev/core";
-
-// ---
 
 const login = useLogin({
     // highlight-next-line
@@ -1213,7 +1207,7 @@ All `@tanstack/react-table` imports re-exported from `@pankod/refine-react-table
 ```diff
 - import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
-+ import { useTable } from "@refinedev/";
++ import { useTable } from "@refinedev/react-table";
 + import { ColumnDef, flexRender } from "@tanstack/react-table";
 ```
 
