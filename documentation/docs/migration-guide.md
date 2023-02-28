@@ -750,6 +750,17 @@ npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
 
 ## **`@pankod/refine-react-table` changes**
 
+### Import changes
+
+All `@tanstack/react-table` imports re-exported from `@pankod/refine-react-table` have been removed. You should import them from the `@tanstack/react-table` package directly.
+
+```diff
+- import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+
++ import { useTable } from "@refinedev/";
++ import { ColumnDef, flexRender } from "@tanstack/react-table";
+```
+
 ### `useTable` hook
 
 `useTable` return values and properties are updated.
@@ -826,6 +837,19 @@ npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
         },
     } = useTable();
     ```
+
+## **`@pankod/refine-react-hook-form` changes**
+
+### Import changes
+
+All `react-hook-form` imports re-exported from `@pankod/refine-react-hook-form` have been removed. You should import them from the `react-hook-form` package directly.
+
+```diff
+- import { useForm, Controller } from "@pankod/refine-react-hook-form";
+
++ import { useForm } from "@refinedev/react-hook-form";
++ import { Controller } from "react-hook-form";
+```
 
 ## **2.0.XX to 3.0.XX**
 
