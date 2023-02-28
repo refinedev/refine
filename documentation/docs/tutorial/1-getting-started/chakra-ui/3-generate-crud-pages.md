@@ -41,41 +41,50 @@ In [Unit 4](/docs/tutorial/understanding-resources/index), the resources concept
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerBindings from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
     ErrorComponent,
     Layout,
     refineTheme,
-    ReadyPage,
     notificationProvider,
 } from "@pankod/refine-chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 //highlight-next-line
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
 const App = () => {
     return (
         <ChakraProvider theme={refineTheme}>
-            <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                //highlight-start
-                resources={[
-                    {
-                        name: "products",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                    },
-                ]}
-                //highlight-end
-            />
+            <BrowserRouter>
+                <Refine
+                    notificationProvider={notificationProvider()}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    resources={[
+                        {
+                            name: "products",
+                            list: "/products",
+                            show: "/products/show/:id",
+                            create: "/products/create",
+                            edit: "/products/edit/:id",
+                        },
+                    ]}
+                >
+                    <Layout>
+                        <Routes>
+                            {/* highlight-start */}
+                            <Route path="/products" element={<ChakraUIInferencer />} />
+                            <Route path="/products/show/:id" element={<ChakraUIInferencer />} />
+                            <Route path="/products/create" element={<ChakraUIInferencer />} />
+                            <Route path="/products/edit/:id" element={<ChakraUIInferencer />} />
+                            {/* highlight-end */}
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Routes>
+                    </Layout>
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };
@@ -113,38 +122,50 @@ When you navigate to the `localhost:3000`, **refine** will redirect you to the i
 setInitialRoutes(["/products"]);
 
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerBindings from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
     ErrorComponent,
     Layout,
     refineTheme,
-    ReadyPage,
     notificationProvider,
 } from "@pankod/refine-chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+//highlight-next-line
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
 const App = () => {
     return (
         <ChakraProvider theme={refineTheme}>
-            <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "products",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    notificationProvider={notificationProvider()}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    //highlight-start
+                    resources={[
+                        {
+                            name: "products",
+                            list: "/products",
+                            show: "/products/show/:id",
+                            create: "/products/create",
+                            edit: "/products/edit/:id",
+                        },
+                    ]}
+                    //highlight-end
+                >
+                    <Layout>
+                        <Routes>
+                            <Route path="/products" element={<ChakraUIInferencer />} />
+                            <Route path="/products/show/:id" element={<ChakraUIInferencer />} />
+                            <Route path="/products/create" element={<ChakraUIInferencer />} />
+                            <Route path="/products/edit/:id" element={<ChakraUIInferencer />} />
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Routes>
+                    </Layout>
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };
@@ -162,38 +183,50 @@ You should see the create page for the `products` resource that was generated by
 setInitialRoutes(["/products/create"]);
 
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerBindings from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
     ErrorComponent,
     Layout,
     refineTheme,
-    ReadyPage,
     notificationProvider,
 } from "@pankod/refine-chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+//highlight-next-line
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
 const App = () => {
     return (
         <ChakraProvider theme={refineTheme}>
-            <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "products",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    notificationProvider={notificationProvider()}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    //highlight-start
+                    resources={[
+                        {
+                            name: "products",
+                            list: "/products",
+                            show: "/products/show/:id",
+                            create: "/products/create",
+                            edit: "/products/edit/:id",
+                        },
+                    ]}
+                    //highlight-end
+                >
+                    <Layout>
+                        <Routes>
+                            <Route path="/products" element={<ChakraUIInferencer />} />
+                            <Route path="/products/show/:id" element={<ChakraUIInferencer />} />
+                            <Route path="/products/create" element={<ChakraUIInferencer />} />
+                            <Route path="/products/edit/:id" element={<ChakraUIInferencer />} />
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Routes>
+                    </Layout>
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };
@@ -211,38 +244,50 @@ You should see the edit page for the `products` resource with the id `123` that 
 setInitialRoutes(["/products/edit/123"]);
 
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerBindings from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
     ErrorComponent,
     Layout,
     refineTheme,
-    ReadyPage,
     notificationProvider,
 } from "@pankod/refine-chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+//highlight-next-line
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
 const App = () => {
     return (
         <ChakraProvider theme={refineTheme}>
-            <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "products",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    notificationProvider={notificationProvider()}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    resources={[
+                        {
+                            name: "products",
+                            list: "/products",
+                            show: "/products/show/:id",
+                            create: "/products/create",
+                            edit: "/products/edit/:id",
+                        },
+                    ]}
+                >
+                    <Layout>
+                        <Routes>
+                            {/* highlight-start */}
+                            <Route path="/products" element={<ChakraUIInferencer />} />
+                            <Route path="/products/show/:id" element={<ChakraUIInferencer />} />
+                            <Route path="/products/create" element={<ChakraUIInferencer />} />
+                            <Route path="/products/edit/:id" element={<ChakraUIInferencer />} />
+                            <Route path="*" element={<ErrorComponent />} />
+                            {/* highlight-end */}
+                        </Routes>
+                    </Layout>
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };
@@ -260,38 +305,50 @@ You should see the show page for the `products` resource with the id `123` that 
 setInitialRoutes(["/products/show/123"]);
 
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerBindings from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
     ErrorComponent,
     Layout,
     refineTheme,
-    ReadyPage,
     notificationProvider,
 } from "@pankod/refine-chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+//highlight-next-line
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
 const App = () => {
     return (
         <ChakraProvider theme={refineTheme}>
-            <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "products",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    notificationProvider={notificationProvider()}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    //highlight-start
+                    resources={[
+                        {
+                            name: "products",
+                            list: "/products",
+                            show: "/products/show/:id",
+                            create: "/products/create",
+                            edit: "/products/edit/:id",
+                        },
+                    ]}
+                    //highlight-end
+                >
+                    <Layout>
+                        <Routes>
+                            <Route path="/products" element={<ChakraUIInferencer />} />
+                            <Route path="/products/show/:id" element={<ChakraUIInferencer />} />
+                            <Route path="/products/create" element={<ChakraUIInferencer />} />
+                            <Route path="/products/edit/:id" element={<ChakraUIInferencer />} />
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Routes>
+                    </Layout>
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };

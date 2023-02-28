@@ -24,7 +24,7 @@ To add a delete feature to the products table, you can follow the steps below:
 2. Import the `<DeleteButton/>` component from `@pankod/refine-mantine`:
 
     ```tsx
-    import { DeleteButton } from ;
+    import { DeleteButton } from "@pankod/refine-mantine";
     ```
 
 3. Add the `<DeleteButton/>` component to the `actions` column of the table as shown below:
@@ -61,21 +61,22 @@ Now, you can try to delete a record from the list page. Just click on the delete
 
 ## Enabling Delete Feature on Show Page and Edit Page
 
-When we define a resource, we can enable the delete feature on the show page and edit page by setting the `canDelete` property to `true` as shown below:
+When we define a resource, we can enable the delete feature on the show page and edit page by setting the `canDelete` property in `meta` to `true` as shown below:
 
 ```tsx src="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerBindings from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
     notificationProvider,
     LightTheme,
     Layout,
-    ReadyPage,
     ErrorComponent,
-} from ;
+} from "@pankod/refine-mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { ProductList } from "pages/products/list";
 import { ProductEdit } from "pages/products/edit";
@@ -87,27 +88,39 @@ const App = () => {
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "products",
-                            list: ProductList,
-                            edit: ProductEdit,
-                            show: ProductShow,
-                            create: ProductCreate,
-                            /highlight-next-line
-                            canDelete: true,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                        resources={[
+                            {
+                                name: "products",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                create: "/products/create",
+                                edit: "/products/edit/:id",
+                                // highlight-start
+                                meta: {
+                                    canDelete: true,
+                                }
+                                // highlight-end
+                            },
+                        ]}
+                    >
+                        <Layout>
+                            <Routes>
+                                <Route path="/products" element={<ProductList />} />
+                                <Route path="/products/show/:id" element={<ProductShow />} />
+                                <Route path="/products/edit/:id" element={<ProductEdit />} />
+                                <Route path="/products/create" element={<ProductCreate />} />
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Routes>
+                        </Layout>
+                    </Refine>
+                </BrowserRouter>
             </NotificationsProvider>
         </MantineProvider>
     );
@@ -115,7 +128,7 @@ const App = () => {
 export default App;
 ```
 
-After setting the `canDelete` property to `true`, you will see a delete button on the show page and edit page. Because we used the `<Show/>` and `<Edit/>` components in the show page and edit page, the delete button will be added automatically in these components.
+After setting the `canDelete` property in `meta` to `true`, you will see a delete button on the show page and edit page. Because we used the `<Show/>` and `<Edit/>` components in the show page and edit page, the delete button will be added automatically in these components.
 
 [Refer to the `<Refine/>` documentation for more information about the `canDelete` property &#8594](/docs/api-reference/core/components/refine-config.md#candelete)
 

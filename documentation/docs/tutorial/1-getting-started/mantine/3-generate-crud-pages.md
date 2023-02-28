@@ -41,17 +41,17 @@ In [Unit 4](/docs/tutorial/understanding-resources/index), the resources concept
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerBindings from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
     notificationProvider,
     LightTheme,
     Layout,
-    ReadyPage,
     ErrorComponent,
-} from ;
+} from "@pankod/refine-mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 //highlight-next-line
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
@@ -60,27 +60,36 @@ const App = () => {
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    //highlight-start
-                    resources={[
-                        {
-                            name: "products",
-                            list: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                            edit: MantineInferencer,
-                        },
-                    ]}
-                    //highlight-end
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                        //highlight-start
+                        resources={[
+                            {
+                                name: "products",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                create: "/products/create",
+                                edit: "/products/edit/:id",
+                            },
+                        ]}
+                        //highlight-end
+                    >
+                        <Layout>
+                            <Routes>
+                                <Route path="/products" element={<MantineInferencer />} />
+                                <Route path="/products/show/:id" element={<MantineInferencer />} />
+                                <Route path="/products/create" element={<MantineInferencer />} />
+                                <Route path="/products/edit/:id" element={<MantineInferencer />} />
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Routes>
+                        </Layout>
+                    </Refine>
+                </BrowserRouter>
             </NotificationsProvider>
         </MantineProvider>
     );
@@ -119,17 +128,18 @@ When you navigate to the `localhost:3000`, **refine** will redirect you to the i
 setInitialRoutes(["/products"]);
 
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerBindings from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
     notificationProvider,
     LightTheme,
     Layout,
-    ReadyPage,
     ErrorComponent,
-} from ;
+} from "@pankod/refine-mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+//highlight-next-line
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
 const App = () => {
@@ -137,25 +147,36 @@ const App = () => {
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "products",
-                            list: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                            edit: MantineInferencer,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                        //highlight-start
+                        resources={[
+                            {
+                                name: "products",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                create: "/products/create",
+                                edit: "/products/edit/:id",
+                            },
+                        ]}
+                        //highlight-end
+                    >
+                        <Layout>
+                            <Routes>
+                                <Route path="/products" element={<MantineInferencer />} />
+                                <Route path="/products/show/:id" element={<MantineInferencer />} />
+                                <Route path="/products/create" element={<MantineInferencer />} />
+                                <Route path="/products/edit/:id" element={<MantineInferencer />} />
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Routes>
+                        </Layout>
+                    </Refine>
+                </BrowserRouter>
             </NotificationsProvider>
         </MantineProvider>
     );
@@ -174,17 +195,18 @@ You should see the create page for the `products` resource that was generated by
 setInitialRoutes(["/products/create"]);
 
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerBindings from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
     notificationProvider,
     LightTheme,
     Layout,
-    ReadyPage,
     ErrorComponent,
-} from ;
+} from "@pankod/refine-mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+//highlight-next-line
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
 const App = () => {
@@ -192,25 +214,36 @@ const App = () => {
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "products",
-                            list: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                            edit: MantineInferencer,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                        //highlight-start
+                        resources={[
+                            {
+                                name: "products",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                create: "/products/create",
+                                edit: "/products/edit/:id",
+                            },
+                        ]}
+                        //highlight-end
+                    >
+                        <Layout>
+                            <Routes>
+                                <Route path="/products" element={<MantineInferencer />} />
+                                <Route path="/products/show/:id" element={<MantineInferencer />} />
+                                <Route path="/products/create" element={<MantineInferencer />} />
+                                <Route path="/products/edit/:id" element={<MantineInferencer />} />
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Routes>
+                        </Layout>
+                    </Refine>
+                </BrowserRouter>
             </NotificationsProvider>
         </MantineProvider>
     );
@@ -229,17 +262,18 @@ You should see the edit page for the `products` resource with the id `123` that 
 setInitialRoutes(["/products/edit/123"]);
 
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerBindings from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
     notificationProvider,
     LightTheme,
     Layout,
-    ReadyPage,
     ErrorComponent,
-} from ;
+} from "@pankod/refine-mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+//highlight-next-line
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
 const App = () => {
@@ -247,25 +281,36 @@ const App = () => {
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "products",
-                            list: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                            edit: MantineInferencer,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                        //highlight-start
+                        resources={[
+                            {
+                                name: "products",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                create: "/products/create",
+                                edit: "/products/edit/:id",
+                            },
+                        ]}
+                        //highlight-end
+                    >
+                        <Layout>
+                            <Routes>
+                                <Route path="/products" element={<MantineInferencer />} />
+                                <Route path="/products/show/:id" element={<MantineInferencer />} />
+                                <Route path="/products/create" element={<MantineInferencer />} />
+                                <Route path="/products/edit/:id" element={<MantineInferencer />} />
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Routes>
+                        </Layout>
+                    </Refine>
+                </BrowserRouter>
             </NotificationsProvider>
         </MantineProvider>
     );
@@ -284,17 +329,18 @@ You should see the show page for the `products` resource with the id `123` that 
 setInitialRoutes(["/products/show/123"]);
 
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerBindings from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
     notificationProvider,
     LightTheme,
     Layout,
-    ReadyPage,
     ErrorComponent,
-} from ;
+} from "@pankod/refine-mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+//highlight-next-line
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
 const App = () => {
@@ -302,25 +348,36 @@ const App = () => {
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "products",
-                            list: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                            edit: MantineInferencer,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                        resources={[
+                            {
+                                name: "products",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                create: "/products/create",
+                                edit: "/products/edit/:id",
+                            },
+                        ]}
+                    >
+                        <Layout>
+                            <Routes>
+                                {/* highlight-start */}
+                                <Route path="/products" element={<MantineInferencer />} />
+                                <Route path="/products/show/:id" element={<MantineInferencer />} />
+                                <Route path="/products/create" element={<MantineInferencer />} />
+                                <Route path="/products/edit/:id" element={<MantineInferencer />} />
+                                {/* highlight-end */}
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Routes>
+                        </Layout>
+                    </Refine>
+                </BrowserRouter>
             </NotificationsProvider>
         </MantineProvider>
     );

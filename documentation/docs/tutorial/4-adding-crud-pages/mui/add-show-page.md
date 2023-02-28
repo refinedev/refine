@@ -33,16 +33,17 @@ setInitialRoutes(["/products/show/123"]);
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
-    ReadyPage,
     ErrorComponent,
     LightTheme,
     RefineSnackbarProvider,
     notificationProvider,
 } from "@pankod/refine-mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerBindings from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App: React.FC = () => {
     return (
@@ -50,25 +51,32 @@ const App: React.FC = () => {
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "products",
-                            list: MuiInferencer,
-                            show: MuiInferencer,
-                            create: MuiInferencer,
-                            edit: MuiInferencer,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                        resources={[
+                            {
+                                name: "products",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                create: "/products/create",
+                                edit: "/products/edit/:id",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            <Route path="/products" element={<MuiInferencer />} />
+                            <Route path="/products/show/:id" element={<MuiInferencer />} />
+                            <Route path="/products/edit/:id" element={<MuiInferencer />} />
+                            <Route path="/products/create" element={<MuiInferencer />} />
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Routes>
+                    </Refine>
+                </BrowserRouter>
             </RefineSnackbarProvider>
         </ThemeProvider>
     );
@@ -138,16 +146,17 @@ Now that we have created the show page, we need to add it to the `App.tsx` file.
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
-    ReadyPage,
     ErrorComponent,
     LightTheme,
     RefineSnackbarProvider,
     notificationProvider,
 } from "@pankod/refine-mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerBindings from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { ProductList } from "pages/products/list";
 import { ProductEdit } from "pages/products/edit";
@@ -160,26 +169,33 @@ const App: React.FC = () => {
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "products",
-                            list: ProductList,
-                            edit: ProductEdit,
-                            //highlight-next-line
-                            show: ProductShow,
-                            create: MuiInferencer,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                        resources={[
+                            {
+                                name: "products",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                create: "/products/create",
+                                edit: "/products/edit/:id",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            <Route path="/products" element={<ProductList />} />
+                            {/* highlight-next-line */}
+                            <Route path="/products/show/:id" element={<ProductShow />} />
+                            <Route path="/products/edit/:id" element={<ProductEdit />} />
+                            <Route path="/products/create" element={<MuiInferencer />} />
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Routes>
+                    </Refine>
+                </BrowserRouter>
             </RefineSnackbarProvider>
         </ThemeProvider>
     );

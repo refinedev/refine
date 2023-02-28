@@ -37,31 +37,42 @@ import {
     notificationProvider,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerBindings from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import { AntdInferencer } from "@pankod/refine-inferencer/antd";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "products",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerBindings}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider}
+                resources={[
+                    {
+                        name: "products",
+                        list: "/products",
+                        show: "/products/show/:id",
+                        create: "/products/create",
+                        edit: "/products/edit/:id",
+                    },
+                ]}
+            >
+                <Layout>
+                    <Routes>
+                        <Route path="/products" element={<AntdInferencer />} />
+                        <Route path="/products/show/:id" element={<AntdInferencer />} />
+                        <Route path="/products/create" element={<AntdInferencer />} />
+                        <Route path="/products/edit/:id" element={<AntdInferencer />} />
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Routes>
+                </Layout>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
@@ -122,8 +133,10 @@ import {
     notificationProvider,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerBindings from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { ProductList } from "pages/products/list";
 import { ProductEdit } from "pages/products/edit";
@@ -135,26 +148,37 @@ import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "products",
-                    list: ProductList,
-                    edit: ProductEdit,
-                    show: ProductShow,
-                    //highlight-next-line
-                    create: ProductCreate,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerBindings}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider}
+                resources={[
+                    {
+                        name: "products",
+                        list: "/products",
+                        show: "/products/show/:id",
+                        create: "/products/create",
+                        edit: "/products/edit/:id",
+                    },
+                ]}
+            >
+                <Layout>
+                    <Routes>
+                        <Route path="/products" element={<ProductList />} />
+                        <Route path="/products/show/:id" element={<ProductShow />} />
+                        {/* highlight-start */}
+                        <Route path="/products/create" element={<ProductCreate />} />
+                        {/* highlight-end */}
+                        <Route path="/products/edit/:id" element={<ProductEdit />} />
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Routes>
+                </Layout>
+            </Refine>
+        </BrowserRouter>
     );
 };
+
 export default App;
 ```
 

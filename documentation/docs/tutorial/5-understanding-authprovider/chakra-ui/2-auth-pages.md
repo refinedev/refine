@@ -50,58 +50,62 @@ const authProvider = {
     getIdentity: async () => null,
 };
 
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, Authenticated } from "@pankod/refine-core";
+import routerBindings from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
     ErrorComponent,
     Layout,
     refineTheme,
-    ReadyPage,
     notificationProvider,
     AuthPage,
 } from "@pankod/refine-chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 const App = () => {
     return (
         <ChakraProvider theme={refineTheme}>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                authProvider={authProvider}
-                routerProvider={{
-                    ...routerProvider,
-                    routes: [
-                        { path: "/login", element: <AuthPage /> },
+            <BrowserRouter>
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    notificationProvider={notificationProvider}
+                    resources={[
                         {
-                            path: "/register",
-                            element: <AuthPage type="register" />,
+                            name: "products",
+                            list: "/products",
+                            show: "/products/show/:id",
+                            edit: "/products/edit/:id",
+                            create: "/products/create",
                         },
-                        {
-                            path: "/forgot-password",
-                            element: <AuthPage type="forgotPassword" />,
-                        },
-                        {
-                            path: "/update-password",
-                            element: <AuthPage type="updatePassword" />,
-                        },
-                    ],
-                }}
-                notificationProvider={notificationProvider()}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "products",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                    },
-                ]}
-            />
+                    ]}
+                >
+                    <Authenticated
+                        fallback={(
+                            <Routes>
+                                <Route path="/login" element={<AuthPage type="login" />} />
+                                <Route path="/register" element={<AuthPage type="register" />} />
+                                <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                                <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+                            </Routes>
+                        )}
+                    >
+                        <Layout>
+                            <Routes>
+                                <Route path="/products" element={<ChakraUIInferencer />} />
+                                <Route path="/products/show/:id" element={<ChakraUIInferencer />} />
+                                <Route path="/products/edit/:id" element={<ChakraUIInferencer />} />
+                                <Route path="/products/create" element={<ChakraUIInferencer />} />
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Routes>
+                        </Layout>
+                    </Authenticated>
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };
@@ -127,23 +131,24 @@ Login page is used to authenticate users. It provides a basic form to enter emai
     import { AuthPage } from "@pankod/refine-chakra-ui";
     ```
 
-2. Add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
+2. Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine } from "@pankod/refine-core";
-    import routerProvider from "@pankod/refine-react-router-v6";
+    import { Refin, Authenticated } from "@pankod/refine-core";
+    import routerBindings from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
     import {
         ErrorComponent,
         Layout,
         refineTheme,
-        ReadyPage,
         notificationProvider,
         //highlight-next-line
         AuthPage,
     } from "@pankod/refine-chakra-ui";
     import { ChakraProvider } from "@chakra-ui/react";
     import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
+
+    import { BrowserRouter, Routes, Route } from "react-router-dom";
 
     import { ProductList } from "pages/products/list";
     import { ProductEdit } from "pages/products/edit";
@@ -155,30 +160,42 @@ Login page is used to authenticate users. It provides a basic form to enter emai
     const App = () => {
         return (
             <ChakraProvider theme={refineTheme}>
-                <Refine
-                    notificationProvider={notificationProvider()}
-                    //highlight-start
-                    routerProvider={{
-                        ...routerProvider,
-                        routes: [{ path: "/login", element: <AuthPage /> }],
-                    }}
-                    //highlight-end
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "products",
-                            list: ProductList,
-                            edit: ProductEdit,
-                            show: ProductShow,
-                            create: ProductCreate,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        authProvider={authProvider}
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                        notificationProvider={notificationProvider}
+                        resources={[
+                            {
+                                name: "products",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                edit: "/products/edit/:id",
+                                create: "/products/create",
+                            },
+                        ]}
+                    >
+                        <Authenticated
+                            fallback={(
+                                <Routes>
+                                    {/* highlight-next-line */}
+                                    <Route path="/login" element={<AuthPage type="login" />} />
+                                </Routes>
+                            )}
+                        >
+                            <Layout>
+                                <Routes>
+                                    <Route path="/products" element={<ProductList />} />
+                                    <Route path="/products/show/:id" element={<ProductShow />} />
+                                    <Route path="/products/edit/:id" element={<ProductEdit />} />
+                                    <Route path="/products/create" element={<ProductCreate />} />
+                                    <Route path="*" element={<ErrorComponent />} />
+                                </Routes>
+                            </Layout>
+                        </Authenticated>
+                    </Refine>
+                </BrowserRouter>
             </ChakraProvider>
         );
     };
@@ -209,48 +226,28 @@ setInitialRoutes(["/login"]);
 render(<App />);
 ```
 
-<br />
-
-:::tip
-
-You can also use the `LoginPage` prop of the `<Refine/>` component to render the login page.
-
-```tsx
-<Refine
-    authProvider={authProvider}
-    routerProvider={routerProvider}
-    ...
-    //highlight-start
-    LoginPage={AuthPage}
-    //highlight-end
-/>
-```
-
-[Refer to the `<Refine/>` documentation for more information &#8594](/docs/api-reference/core/components/refine-config.md#loginpage)
-
-:::
-
 ## Register Page
 
 Register page is used to register new users. It provides a basic form to enter email and password. After submitting the form, it sends the email and password to the auth provider's `register` method via `useRegister` hook.
 
-1. Open `src/App.tsx` file and add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
+1. Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine } from "@pankod/refine-core";
-    import routerProvider from "@pankod/refine-react-router-v6";
+    import { Refine, Authenticated } from "@pankod/refine-core";
+    import routerBindings from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
     import {
         ErrorComponent,
         Layout,
         refineTheme,
-        ReadyPage,
         notificationProvider,
         //highlight-next-line
         AuthPage,
     } from "@pankod/refine-chakra-ui";
     import { ChakraProvider } from "@chakra-ui/react";
     import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
+
+    import { BrowserRouter, Routes, Route } from "react-router-dom";
 
     import { ProductList } from "pages/products/list";
     import { ProductEdit } from "pages/products/edit";
@@ -262,36 +259,43 @@ Register page is used to register new users. It provides a basic form to enter e
     const App = () => {
         return (
             <ChakraProvider theme={refineTheme}>
-                <Refine
-                    notificationProvider={notificationProvider()}
-                    routerProvider={{
-                        ...routerProvider,
-                        routes: [
-                            { path: "/login", element: <AuthPage /> },
-                            //highlight-start
+                <BrowserRouter>
+                    <Refine
+                        authProvider={authProvider}
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                        notificationProvider={notificationProvider}
+                        resources={[
                             {
-                                path: "/register",
-                                element: <AuthPage type="register" />,
+                                name: "products",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                edit: "/products/edit/:id",
+                                create: "/products/create",
                             },
-                            //highlight-end
-                        ],
-                    }}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "products",
-                            list: ProductList,
-                            edit: ProductEdit,
-                            show: ProductShow,
-                            create: ProductCreate,
-                        },
-                    ]}
-                />
+                        ]}
+                    >
+                        <Authenticated
+                            fallback={(
+                                <Routes>
+                                    <Route path="/login" element={<AuthPage type="login" />} />
+                                    {/* highlight-next-line */}
+                                    <Route path="/register" element={<AuthPage type="register" />} />
+                                </Routes>
+                            )}
+                        >
+                            <Layout>
+                                <Routes>
+                                    <Route path="/products" element={<ProductList />} />
+                                    <Route path="/products/show/:id" element={<ProductShow />} />
+                                    <Route path="/products/edit/:id" element={<ProductEdit />} />
+                                    <Route path="/products/create" element={<ProductCreate />} />
+                                    <Route path="*" element={<ErrorComponent />} />
+                                </Routes>
+                            </Layout>
+                        </Authenticated>
+                    </Refine>
+                </BrowserRouter>
             </ChakraProvider>
         );
     };
@@ -326,17 +330,16 @@ render(<App />);
 
 Forgot password page is used to send a reset password link to the user's email. It provides a basic form to enter email. After submitting the form, it sends the email to the auth provider's `forgotPassword` method via `useForgotPassword` hook.
 
-1. Open `src/App.tsx` file and add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
+1. Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine } from "@pankod/refine-core";
-    import routerProvider from "@pankod/refine-react-router-v6";
+    import { Refine, Authenticated } from "@pankod/refine-core";
+    import routerBindings from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
     import {
         ErrorComponent,
         Layout,
         refineTheme,
-        ReadyPage,
         notificationProvider,
         //highlight-next-line
         AuthPage,
@@ -354,40 +357,44 @@ Forgot password page is used to send a reset password link to the user's email. 
     const App = () => {
         return (
             <ChakraProvider theme={refineTheme}>
-                <Refine
-                    notificationProvider={notificationProvider()}
-                    routerProvider={{
-                        ...routerProvider,
-                        routes: [
-                            { path: "/login", element: <AuthPage /> },
+                <BrowserRouter>
+                    <Refine
+                        authProvider={authProvider}
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                        notificationProvider={notificationProvider}
+                        resources={[
                             {
-                                path: "/register",
-                                element: <AuthPage type="register" />,
+                                name: "products",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                edit: "/products/edit/:id",
+                                create: "/products/create",
                             },
-                            //highlight-start
-                            {
-                                path: "/forgot-password",
-                                element: <AuthPage type="forgotPassword" />,
-                            },
-                            //highlight-end
-                        ],
-                    }}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "products",
-                            list: ProductList,
-                            edit: ProductEdit,
-                            show: ProductShow,
-                            create: ProductCreate,
-                        },
-                    ]}
-                />
+                        ]}
+                    >
+                        <Authenticated
+                            fallback={(
+                                <Routes>
+                                    <Route path="/login" element={<AuthPage type="login" />} />
+                                    <Route path="/register" element={<AuthPage type="register" />} />
+                                    {/* highlight-next-line */}
+                                    <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                                </Routes>
+                            )}
+                        >
+                            <Layout>
+                                <Routes>
+                                    <Route path="/products" element={<ProductList />} />
+                                    <Route path="/products/show/:id" element={<ProductShow />} />
+                                    <Route path="/products/edit/:id" element={<ProductEdit />} />
+                                    <Route path="/products/create" element={<ProductCreate />} />
+                                    <Route path="*" element={<ErrorComponent />} />
+                                </Routes>
+                            </Layout>
+                        </Authenticated>
+                    </Refine>
+                </BrowserRouter>
             </ChakraProvider>
         );
     };
@@ -423,23 +430,24 @@ render(<App />);
 
 Update password page is used to update the user's password. It provides a basic form to enter new password and confirm password. After submitting the form, it sends the new password and confirm password to the auth provider's `updatePassword` method via `useUpdatePassword` hook.
 
-1. Open `src/App.tsx` file and add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
+1. Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine } from "@pankod/refine-core";
-    import routerProvider from "@pankod/refine-react-router-v6";
+    import { Refine, Authenticated } from "@pankod/refine-core";
+    import routerBindings from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
     import {
         ErrorComponent,
         Layout,
         refineTheme,
-        ReadyPage,
         notificationProvider,
         //highlight-next-line
         AuthPage,
     } from "@pankod/refine-chakra-ui";
     import { ChakraProvider } from "@chakra-ui/react";
     import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
+
+    import { BrowserRouter, Routes, Route } from "react-router-dom";
 
     import { ProductList } from "pages/products/list";
     import { ProductEdit } from "pages/products/edit";
@@ -451,44 +459,45 @@ Update password page is used to update the user's password. It provides a basic 
     const App = () => {
         return (
             <ChakraProvider theme={refineTheme}>
-                <Refine
-                    notificationProvider={notificationProvider()}
-                    routerProvider={{
-                        ...routerProvider,
-                        routes: [
-                            { path: "/login", element: <AuthPage /> },
+                <BrowserRouter>
+                    <Refine
+                        authProvider={authProvider}
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                        notificationProvider={notificationProvider}
+                        resources={[
                             {
-                                path: "/register",
-                                element: <AuthPage type="register" />,
+                                name: "products",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                edit: "/products/edit/:id",
+                                create: "/products/create",
                             },
-                            {
-                                path: "/forgot-password",
-                                element: <AuthPage type="forgotPassword" />,
-                            },
-                            //highlight-start
-                            {
-                                path: "/update-password",
-                                element: <AuthPage type="updatePassword" />,
-                            },
-                            //highlight-end
-                        ],
-                    }}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "products",
-                            list: ProductList,
-                            edit: ProductEdit,
-                            show: ProductShow,
-                            create: ProductCreate,
-                        },
-                    ]}
-                />
+                        ]}
+                    >
+                        <Authenticated
+                            fallback={(
+                                <Routes>
+                                    <Route path="/login" element={<AuthPage type="login" />} />
+                                    <Route path="/register" element={<AuthPage type="register" />} />
+                                    <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                                    {/* highlight-next-line */}
+                                    <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+                                </Routes>
+                            )}
+                        >
+                            <Layout>
+                                <Routes>
+                                    <Route path="/products" element={<ProductList />} />
+                                    <Route path="/products/show/:id" element={<ProductShow />} />
+                                    <Route path="/products/edit/:id" element={<ProductEdit />} />
+                                    <Route path="/products/create" element={<ProductCreate />} />
+                                    <Route path="*" element={<ErrorComponent />} />
+                                </Routes>
+                            </Layout>
+                        </Authenticated>
+                    </Refine>
+                </BrowserRouter>
             </ChakraProvider>
         );
     };

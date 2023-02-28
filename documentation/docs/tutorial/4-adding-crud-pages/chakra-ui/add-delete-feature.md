@@ -63,20 +63,21 @@ Now, you can try to delete a record from the list page. Just click on the delete
 
 ## Enabling Delete Feature on Show Page and Edit Page
 
-When we define a resource, we can enable the delete feature on the show page and edit page by setting the `canDelete` property to `true` as shown below:
+When we define a resource, we can enable the delete feature on the show page and edit page by setting the `canDelete` property in `meta` to `true` as shown below:
 
 ```tsx src="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerBindings from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
     ErrorComponent,
     Layout,
     refineTheme,
-    ReadyPage,
     notificationProvider,
 } from "@pankod/refine-chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { ProductList } from "pages/products/list";
 import { ProductEdit } from "pages/products/edit";
@@ -86,32 +87,32 @@ import { ProductCreate } from "pages/products/create";
 const App = () => {
     return (
         <ChakraProvider theme={refineTheme}>
-            <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "products",
-                        list: ProductList,
-                        edit: ProductEdit,
-                        show: ProductShow,
-                        create: ProductCreate,
-                        //highlight-next-line
-                        canDelete: true,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    notificationProvider={notificationProvider}
+                    resources={[
+                        {
+                            name: "products",
+                            // highlight-start
+                            meta: {
+                                canDelete: true
+                            }
+                            // highlight-end
+                        },
+                    ]}
+                >
+                    {/* ... */}
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };
 export default App;
 ```
 
-After setting the `canDelete` property to `true`, you will see a delete button on the show page and edit page. Because we used the `<Show/>` and `<Edit/>` components in the show page and edit page, the delete button will be added automatically in these components.
+After setting the `canDelete` property in `meta` to `true`, you will see a delete button on the show page and edit page. Because we used the `<Show/>` and `<Edit/>` components in the show page and edit page, the delete button will be added automatically in these components.
 
 [Refer to the `<Refine/>` documentation for more information about the `canDelete` property &#8594](/docs/api-reference/core/components/refine-config.md#candelete)
 
