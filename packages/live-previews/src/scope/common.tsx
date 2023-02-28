@@ -1,4 +1,5 @@
 import React from "react";
+import * as ReactRouterDom from "react-router-dom";
 import * as RefineCore from "@pankod/refine-core";
 import { MemoryRouterComponent } from "@pankod/refine-react-router-v6/legacy";
 import * as LegacyRefineReactRouterV6Base from "@pankod/refine-react-router-v6/legacy";
@@ -121,6 +122,7 @@ export const RefineCommonScope = {
         ...RefineCore,
         Refine,
     },
+    ReactRouterDom,
     // Data
     RefineSimpleRest,
     // Utilities

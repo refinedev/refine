@@ -14,6 +14,7 @@ export const packageMap: Record<string, string> = {
     "@pankod/refine-inferencer/mantine": "RefineMantineInferencer",
     "@pankod/refine-inferencer/chakra-ui": "RefineChakraInferencer",
     "@pankod/refine-inferencer/headless": "RefineHeadlessInferencer",
+    "react-router-dom": "ReactRouterDom",
     antd: "AntdCore",
     "@mantine/core": "MantineCore",
     "@mantine/hooks": "MantineHooks",
