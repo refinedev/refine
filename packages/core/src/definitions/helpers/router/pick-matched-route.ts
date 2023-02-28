@@ -33,7 +33,7 @@ export const pickMatchedRoute = (
     // at this point, before calling this function, we already checked for segment lenghts and expect all of them to be the same
     const segmentsCount = sanitizedRoutes[0]?.splitted.length ?? 0;
 
-    let eligibleRoutes: Array<typeof sanitizedRoutes[number]> = [
+    let eligibleRoutes: Array<(typeof sanitizedRoutes)[number]> = [
         ...sanitizedRoutes,
     ];
 
