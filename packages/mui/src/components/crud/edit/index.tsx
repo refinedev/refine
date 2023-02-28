@@ -128,26 +128,25 @@ export const Edit: React.FC<EditProps> = ({
 
     const defaultFooterButtons = (
         <>
-            {isDeleteButtonVisible &&
-                (id || deleteButtonProps?.recordItemId) && (
-                    <DeleteButton
-                        {...(isLoading ? { disabled: true } : {})}
-                        mutationMode={mutationMode}
-                        variant="outlined"
-                        onSuccess={() => {
-                            if (routerType === "legacy") {
-                                legacyGoList(
-                                    resource?.route ?? resource?.name ?? "",
-                                );
-                            } else {
-                                go({ to: goListPath });
-                            }
-                        }}
-                        recordItemId={id}
-                        dataProviderName={dataProviderName}
-                        {...deleteButtonProps}
-                    />
-                )}
+            {isDeleteButtonVisible && (id || deleteButtonProps?.recordItemId) && (
+                <DeleteButton
+                    {...(isLoading ? { disabled: true } : {})}
+                    mutationMode={mutationMode}
+                    variant="outlined"
+                    onSuccess={() => {
+                        if (routerType === "legacy") {
+                            legacyGoList(
+                                resource?.route ?? resource?.name ?? "",
+                            );
+                        } else {
+                            go({ to: goListPath });
+                        }
+                    }}
+                    recordItemId={id}
+                    dataProviderName={dataProviderName}
+                    {...deleteButtonProps}
+                />
+            )}
             <SaveButton
                 {...(isLoading ? { disabled: true } : {})}
                 {...saveButtonProps}
