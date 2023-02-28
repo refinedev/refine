@@ -320,59 +320,20 @@ Array with the keys of default opened menus.
 
 | Property        | Description                                                                              | Type                         |
 | --------------- | ---------------------------------------------------------------------------------------- | ---------------------------- |
-| selectedKey     | Key of the resource the user is viewing at the moment.                                   | `string`                     |
-| menuItems       | List of keys and routes and some metadata of resources and also the dashboard if exists. | [`ITreeMenu[]`](#interfaces) |
+| selectedKey     | Key of the resource the user is viewing at the moment.                                   | `string` \| `undefined`                     |
+| menuItems       | List of keys and routes and some metadata of resources and also the dashboard if exists. | [`TreeMenuItem[]`](#interfaces) |
 | defaultOpenKeys | Array with the keys of default opened menus.                                             | `string[]`                   |
 
 #### Interfaces
 
 ```ts
-interface IResourceItem extends IResourceComponents {
-    name: string;
-    label?: string;
-    route?: string;
-    icon?: ReactNode;
-    canCreate?: boolean;
-    canEdit?: boolean;
-    canShow?: boolean;
-    canDelete?: boolean;
-    parentName?: string;
-    meta?: MetaProps;
-}
-
-interface IResourceComponents {
-    list?: React.FunctionComponent<IResourceComponentsProps>;
-    create?: React.FunctionComponent<IResourceComponentsProps>;
-    edit?: React.FunctionComponent<IResourceComponentsProps>;
-    show?: React.FunctionComponent<IResourceComponentsProps>;
-}
-
-interface IResourceComponentsProps<TCrudData = any> {
-    canCreate?: boolean;
-    canEdit?: boolean;
-    canDelete?: boolean;
-    canShow?: boolean;
-    name?: string;
-    initialData?: TCrudData;
-}
-
-type MetaProps<TExtends = { [key: string]: any }> = TExtends & {
-    label?: string;
-    route?: string;
-    auditLog?: {
-        permissions?: AuditLogPermissions[number][] | string[];
-    };
-    hide?: boolean;
-    [key: string]: any;
-};
-
 // highlight-start
-type IMenuItem = IResourceItem & {
+export type TreeMenuItem = IResourceItem & {
     key: string;
-};
-
-type ITreeMenu = IMenuItem & {
-    children: ITreeMenu[];
+    route?: string;
+    icon?: React.ReactNode;
+    label?: string;
+    children: TreeMenuItem[];
 };
 // highlight-end
 ```
