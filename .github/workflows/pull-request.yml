@@ -2,23 +2,18 @@ name: Pull Request Checks
 on: [pull_request]
 
 jobs:
-  commitlint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-        with:
-          fetch-depth: 0
-      - uses: wagoid/commitlint-github-action@v5
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
         with:
           fetch-depth: 0
+      - uses: wagoid/commitlint-github-action@v5
       - name: lint
         run: |
           npm ci
           npm run lint
+
   build:
     runs-on: ubuntu-latest
     needs:
