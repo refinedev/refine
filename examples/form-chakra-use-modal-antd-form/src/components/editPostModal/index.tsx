@@ -1,3 +1,5 @@
+import { Edit } from "@pankod/refine-chakra-ui";
+
 import {
     Modal,
     ModalBody,
@@ -10,8 +12,8 @@ import {
     FormLabel,
     FormErrorMessage,
     Select,
-    Edit,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
+
 import { useSelect } from "@pankod/refine-core";
 import { UseModalFormReturnType } from "@pankod/refine-react-hook-form";
 

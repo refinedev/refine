@@ -41,7 +41,6 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    ChakraProvider,
     ErrorComponent,
     Layout,
     refineTheme,
@@ -49,6 +48,7 @@ import {
     notificationProvider,
     AuthPage,
 } from "@pankod/refine-chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
 const App = () => {
@@ -121,7 +121,6 @@ Login page is used to authenticate users. It provides a basic form to enter emai
     import routerProvider from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
     import {
-        ChakraProvider,
         ErrorComponent,
         Layout,
         refineTheme,
@@ -130,6 +129,7 @@ Login page is used to authenticate users. It provides a basic form to enter emai
         //highlight-next-line
         AuthPage,
     } from "@pankod/refine-chakra-ui";
+    import { ChakraProvider } from "@chakra-ui/react";
     import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
     import { ProductList } from "pages/products/list";
@@ -228,7 +228,6 @@ Register page is used to register new users. It provides a basic form to enter e
     import routerProvider from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
     import {
-        ChakraProvider,
         ErrorComponent,
         Layout,
         refineTheme,
@@ -237,6 +236,7 @@ Register page is used to register new users. It provides a basic form to enter e
         //highlight-next-line
         AuthPage,
     } from "@pankod/refine-chakra-ui";
+    import { ChakraProvider } from "@chakra-ui/react";
     import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
     import { ProductList } from "pages/products/list";
@@ -320,7 +320,6 @@ Forgot password page is used to send a reset password link to the user's email. 
     import routerProvider from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
     import {
-        ChakraProvider,
         ErrorComponent,
         Layout,
         refineTheme,
@@ -329,6 +328,7 @@ Forgot password page is used to send a reset password link to the user's email. 
         //highlight-next-line
         AuthPage,
     } from "@pankod/refine-chakra-ui";
+    import { ChakraProvider } from "@chakra-ui/react";
     import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
     import { ProductList } from "pages/products/list";
@@ -417,7 +417,6 @@ Update password page is used to update the user's password. It provides a basic 
     import routerProvider from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
     import {
-        ChakraProvider,
         ErrorComponent,
         Layout,
         refineTheme,
@@ -426,6 +425,7 @@ Update password page is used to update the user's password. It provides a basic 
         //highlight-next-line
         AuthPage,
     } from "@pankod/refine-chakra-ui";
+    import { ChakraProvider } from "@chakra-ui/react";
     import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
     import { ProductList } from "pages/products/list";
