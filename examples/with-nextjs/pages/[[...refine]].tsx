@@ -2,7 +2,7 @@ import {
     NextRouteComponent,
     checkAuthentication,
     handleRefineParams,
-} from "@pankod/refine-nextjs-router";
+} from "@pankod/refine-nextjs-router/legacy";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import { GetServerSideProps } from "next";

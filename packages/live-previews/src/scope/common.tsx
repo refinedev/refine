@@ -1,6 +1,8 @@
 import React from "react";
+import * as ReactRouterDom from "react-router-dom";
 import * as RefineCore from "@pankod/refine-core";
-import { MemoryRouterComponent } from "@pankod/refine-react-router-v6";
+import { MemoryRouterComponent } from "@pankod/refine-react-router-v6/legacy";
+import * as LegacyRefineReactRouterV6Base from "@pankod/refine-react-router-v6/legacy";
 import * as RefineReactRouterV6Base from "@pankod/refine-react-router-v6";
 import * as RefineSimpleRest from "@pankod/refine-simple-rest";
 import * as RefineReactHookForm from "@pankod/refine-react-hook-form";
@@ -66,11 +68,22 @@ const DemoMemoryRouterComponent = (
     );
 };
 
-const RefineReactRouterV6 = {
-    ...RefineReactRouterV6Base,
+const DemoMemoryRouter = (
+    props: React.ComponentProps<typeof ReactRouterDom.MemoryRouter>,
+): JSX.Element => {
+    return (
+        <ReactRouterDom.MemoryRouter
+            {...props}
+            {...(typeof window !== "undefined" ? window.routerSettings : {})}
+        />
+    );
+};
+
+const LegacyRefineReactRouterV6 = {
+    ...LegacyRefineReactRouterV6Base,
     MemoryRouterComponent: DemoMemoryRouterComponent,
     default: {
-        ...RefineReactRouterV6Base.default,
+        ...LegacyRefineReactRouterV6Base.default,
         RouterComponent: DemoMemoryRouterComponent,
     },
 };
@@ -78,14 +91,14 @@ const RefineReactRouterV6 = {
 /**
  * @deprecated please use `setInitialRoutes` instead
  */
-const RefineDemoReactRouterV6 = (
+const LegacyRefineDemoReactRouterV6 = (
     initialRoutes?: string[],
 ): RefineCore.IRouterProvider => {
     if (initialRoutes) {
         setInitialRoutes(initialRoutes);
     }
 
-    return RefineReactRouterV6.default;
+    return LegacyRefineReactRouterV6.default;
 };
 
 const RefineHeadlessDemo: React.FC<
@@ -99,7 +112,7 @@ const RefineHeadlessDemo: React.FC<
 
     return (
         <Refine
-            routerProvider={RefineReactRouterV6.default}
+            legacyRouterProvider={LegacyRefineReactRouterV6.default}
             dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
             options={{
                 disableTelemetry: true,
@@ -121,13 +134,18 @@ export const RefineCommonScope = {
         ...RefineCore,
         Refine,
     },
+    ReactRouterDom: {
+        ...ReactRouterDom,
+        BrowserRouter: DemoMemoryRouter,
+    },
     // Data
     RefineSimpleRest,
     // Utilities
     setInitialRoutes,
     setRefineProps,
-    RefineReactRouterV6,
-    RefineDemoReactRouterV6,
+    RefineReactRouterV6: RefineReactRouterV6Base,
+    LegacyRefineReactRouterV6,
+    LegacyRefineDemoReactRouterV6,
     // UI
     RefineHeadlessDemo,
     // Other

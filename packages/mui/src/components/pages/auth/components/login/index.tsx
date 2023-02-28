@@ -28,6 +28,8 @@ import {
     useLogin,
     useTranslate,
     useRouterContext,
+    useRouterType,
+    useLink,
 } from "@pankod/refine-core";
 import { layoutStyles, titleStyles } from "../styles";
 
@@ -63,7 +65,11 @@ export const LoginPage: React.FC<LoginProps> = ({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const translate = useTranslate();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     const renderProviders = () => {
         if (providers && providers.length > 0) {
@@ -186,7 +192,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         {forgotPasswordLink ?? (
                             <MuiLink
                                 variant="body2"
-                                component={Link}
+                                component={ActiveLink}
                                 underline="none"
                                 to="/forgot-password"
                             >
@@ -219,7 +225,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             <MuiLink
                                 ml="8px"
                                 variant="body2"
-                                component={Link}
+                                component={ActiveLink}
                                 underline="none"
                                 to="/register"
                                 fontWeight="bold"

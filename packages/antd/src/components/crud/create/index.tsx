@@ -2,12 +2,12 @@ import React from "react";
 import { Card, Space, Spin } from "antd";
 import {
     useNavigation,
-    useResourceWithRoute,
-    useRouterContext,
     useTranslate,
     userFriendlyResourceName,
-    ResourceRouterParams,
     useRefineContext,
+    useRouterType,
+    useResource,
+    useBack,
 } from "@pankod/refine-core";
 
 import { Breadcrumb, SaveButton, PageHeader } from "@components";
@@ -35,21 +35,19 @@ export const Create: React.FC<CreateProps> = ({
     footerButtons,
     goBack: goBackFromProps,
 }) => {
-    const { goBack } = useNavigation();
     const translate = useTranslate();
+    const { options: { breadcrumb: globalBreadcrumb } = {} } =
+        useRefineContext();
 
-    const { useParams } = useRouterContext();
+    const routerType = useRouterType();
+    const back = useBack();
+    const { goBack } = useNavigation();
 
-    const { resource: routeResourceName, action: routeFromAction } =
-        useParams<ResourceRouterParams>();
-    const resourceWithRoute = useResourceWithRoute();
+    const { resource, action } = useResource(resourceFromProps);
 
-    const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
-
-    const { options } = useRefineContext();
     const breadcrumb =
         typeof breadcrumbFromProps === "undefined"
-            ? options?.breadcrumb
+            ? globalBreadcrumb
             : breadcrumbFromProps;
 
     const defaultFooterButtons = (
@@ -67,13 +65,22 @@ export const Create: React.FC<CreateProps> = ({
             <PageHeader
                 ghost={false}
                 backIcon={goBackFromProps}
-                onBack={routeFromAction ? goBack : undefined}
+                onBack={
+                    action !== "list" || typeof action !== "undefined"
+                        ? routerType === "legacy"
+                            ? goBack
+                            : back
+                        : undefined
+                }
                 title={
                     title ??
                     translate(
-                        `${resource.name}.titles.create`,
+                        `${resource?.name}.titles.create`,
                         `Create ${userFriendlyResourceName(
-                            resource.label ?? resource.name,
+                            resource?.meta?.label ??
+                                resource?.options?.label ??
+                                resource?.label ??
+                                resource?.name,
                             "singular",
                         )}`,
                     )

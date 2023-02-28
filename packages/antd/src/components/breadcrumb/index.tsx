@@ -1,8 +1,10 @@
 import React from "react";
 import {
     useBreadcrumb,
+    useLink,
     useRefineContext,
     useRouterContext,
+    useRouterType,
 } from "@pankod/refine-core";
 import { RefineBreadcrumbProps } from "@pankod/refine-ui-types";
 
@@ -18,30 +20,56 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     breadcrumbProps,
     showHome = true,
     hideIcons = false,
+    home,
+    meta,
 }) => {
-    const { breadcrumbs } = useBreadcrumb();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const { breadcrumbs } = useBreadcrumb({
+        meta,
+    });
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
     const { hasDashboard } = useRefineContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     if (breadcrumbs.length === 1) {
         return null;
     }
 
+    const renderHome = () => {
+        if (home) {
+            return (
+                <AntdBreadcrumb.Item>
+                    <ActiveLink to={home.path ?? "/"}>
+                        {typeof home.icon !== "undefined" ? (
+                            home.icon
+                        ) : (
+                            <HomeOutlined />
+                        )}
+                    </ActiveLink>
+                </AntdBreadcrumb.Item>
+            );
+        }
+        return null;
+    };
+
     return (
         <AntdBreadcrumb {...breadcrumbProps}>
             {showHome && hasDashboard && (
                 <AntdBreadcrumb.Item>
-                    <Link to="/">
+                    <ActiveLink to="/">
                         <HomeOutlined />
-                    </Link>
+                    </ActiveLink>
                 </AntdBreadcrumb.Item>
             )}
+            {renderHome()}
             {breadcrumbs.map(({ label, icon, href }) => {
                 return (
                     <AntdBreadcrumb.Item key={label}>
                         {!hideIcons && icon}
                         {href ? (
-                            <Link to={href}>{label}</Link>
+                            <ActiveLink to={href}>{label}</ActiveLink>
                         ) : (
                             <span>{label}</span>
                         )}

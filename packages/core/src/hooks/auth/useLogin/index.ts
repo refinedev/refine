@@ -5,11 +5,19 @@ import {
 } from "@tanstack/react-query";
 import qs from "qs";
 
-import { useNavigation, useRouterContext, useNotification } from "@hooks";
+import {
+    useNavigation,
+    useRouterContext,
+    useNotification,
+    useRouterType,
+    useParsed,
+    useGo,
+} from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 
 import { OpenNotificationParams, TLoginData } from "../../../interfaces";
 import { AuthActionResponse } from "src/interfaces/bindings/auth";
+import React from "react";
 
 export type UseLoginLegacyProps<TVariables> = {
     v3LegacyAuthProviderCompatible: true;
@@ -88,16 +96,30 @@ export function useLogin<TVariables = {}>({
 }: UseLoginProps<TVariables> | UseLoginLegacyProps<TVariables> = {}):
     | UseLoginLegacyReturnType<TVariables>
     | UseLoginReturnType<TVariables> {
+    const routerType = useRouterType();
+
+    const go = useGo();
     const { replace } = useNavigation();
+
+    const parsed = useParsed();
+
     const { useLocation } = useRouterContext();
     const { search } = useLocation();
+
     const { close, open } = useNotification();
     const { login: legacyLoginFromContext } = useLegacyAuthContext();
     const { login: loginFromContext } = useAuthBindingsContext();
 
-    const { to } = qs.parse(search, {
-        ignoreQueryPrefix: true,
-    });
+    const to = React.useMemo(() => {
+        if (routerType === "legacy") {
+            const legacySearch = qs.parse(search, {
+                ignoreQueryPrefix: true,
+            });
+            return legacySearch.to;
+        } else {
+            return parsed.params?.to;
+        }
+    }, [routerType, parsed.params, search]);
 
     const mutation = useMutation<
         AuthActionResponse,
@@ -115,11 +137,23 @@ export function useLogin<TVariables = {}>({
             }
 
             if (to) {
-                return replace(to as string);
+                if (routerType === "legacy") {
+                    return replace(to as string);
+                } else {
+                    return go({ to: to as string, type: "replace" });
+                }
             }
 
             if (redirectTo) {
-                return replace(redirectTo);
+                if (routerType === "legacy") {
+                    replace(redirectTo);
+                } else {
+                    go({ to: redirectTo, type: "replace" });
+                }
+            } else {
+                if (routerType === "legacy") {
+                    replace("/");
+                }
             }
         },
         onError: (error: any) => {
@@ -141,9 +175,17 @@ export function useLogin<TVariables = {}>({
 
             if (redirectPathFromAuth !== false) {
                 if (typeof redirectPathFromAuth === "string") {
-                    replace(redirectPathFromAuth);
+                    if (routerType === "legacy") {
+                        replace(redirectPathFromAuth);
+                    } else {
+                        go({ to: redirectPathFromAuth, type: "replace" });
+                    }
                 } else {
-                    replace("/");
+                    if (routerType === "legacy") {
+                        replace("/");
+                    } else {
+                        go({ to: "/", type: "replace" });
+                    }
                 }
             }
             close?.("login-error");

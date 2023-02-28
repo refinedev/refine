@@ -25,6 +25,8 @@ import {
     HttpError,
     useTranslate,
     useRouterContext,
+    useRouterType,
+    useLink,
     useRegister,
 } from "@pankod/refine-core";
 
@@ -64,7 +66,11 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
         });
     const translate = useTranslate();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     const renderProviders = () => {
         if (providers && providers.length > 0) {
@@ -181,7 +187,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                             <MuiLink
                                 ml="6px"
                                 variant="body2"
-                                component={Link}
+                                component={ActiveLink}
                                 underline="none"
                                 to="/login"
                                 fontWeight="bold"

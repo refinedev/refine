@@ -10,7 +10,7 @@ import {
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import { ImportList } from "pages/list";
 
@@ -22,7 +22,7 @@ const App: React.FC = () => {
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
                 <Refine
-                    routerProvider={routerProvider}
+                    legacyRouterProvider={routerProvider}
                     notificationProvider={notificationProvider}
                     dataProvider={dataProvider(API_URL)}
                     ReadyPage={ReadyPage}

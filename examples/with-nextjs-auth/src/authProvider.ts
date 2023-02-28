@@ -1,4 +1,4 @@
-import { LegacyAuthProvider as AuthProvider } from "@pankod/refine-core";
+import { LegacyAuthProvider } from "@pankod/refine-core";
 import nookies from "nookies";
 
 /**
@@ -8,7 +8,7 @@ import nookies from "nookies";
  * and let any email pass as a valid login.
  */
 
-export const authProvider: AuthProvider = {
+export const authProvider: LegacyAuthProvider = {
     login: ({ email }) => {
         if (email) {
             const dummyUser = {

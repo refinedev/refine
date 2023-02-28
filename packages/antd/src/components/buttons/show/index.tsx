@@ -7,6 +7,8 @@ import {
     useTranslate,
     useResource,
     useRouterContext,
+    useRouterType,
+    useLink,
 } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 
@@ -20,34 +22,32 @@ import { ShowButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/show-button} for more details.
  */
 export const ShowButton: React.FC<ShowButtonProps> = ({
-    resourceName: propResourceName,
     resourceNameOrRouteName: propResourceNameOrRouteName,
     recordItemId,
     hideText = false,
     accessControl,
-    ignoreAccessControlProvider = false,
+    meta,
     children,
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled =
-        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const accessControlEnabled = accessControl?.enabled ?? true;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { showUrl: generateShowUrl } = useNavigation();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     const translate = useTranslate();
 
-    const { resourceName, id, resource } = useResource({
-        resourceName: propResourceName,
-        resourceNameOrRouteName: propResourceNameOrRouteName,
-        recordItemId,
-    });
+    const { id, resource } = useResource(propResourceNameOrRouteName);
 
     const { data } = useCan({
-        resource: resourceName,
+        resource: resource?.name,
         action: "show",
-        params: { id, resource },
+        params: { id: recordItemId ?? id, resource },
         queryOptions: {
             enabled: accessControlEnabled,
         },
@@ -63,14 +63,21 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
             );
     };
 
-    const showUrl = generateShowUrl(propResourceName ?? resource.route!, id!);
+    const showUrl =
+        (resource || propResourceNameOrRouteName) && (recordItemId || id)
+            ? generateShowUrl(
+                  resource! || propResourceNameOrRouteName!,
+                  recordItemId! ?? id!,
+                  meta,
+              )
+            : "";
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;
     }
 
     return (
-        <Link
+        <ActiveLink
             to={showUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -93,6 +100,6 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
             >
                 {!hideText && (children ?? translate("buttons.show", "Show"))}
             </Button>
-        </Link>
+        </ActiveLink>
     );
 };

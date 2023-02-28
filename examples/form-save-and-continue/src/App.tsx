@@ -1,5 +1,5 @@
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import { PostCreate, PostEdit, PostList } from "pages/posts";
@@ -9,7 +9,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             options={{ mutationMode: "pessimistic" }}
             resources={[
                 {

@@ -5,6 +5,8 @@ import {
     useTranslate,
     useResource,
     useRouterContext,
+    useRouterType,
+    useLink,
 } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import { IconButton, Button } from "@chakra-ui/react";
@@ -25,26 +27,28 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     hideText = false,
     accessControl,
     svgIconProps,
+    meta,
     children,
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled;
+    const accessControlEnabled = accessControl?.enabled ?? true;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
-    const { resourceName, id, resource } = useResource({
-        resourceNameOrRouteName,
-        recordItemId,
-    });
-
     const { showUrl: generateShowUrl } = useNavigation();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     const translate = useTranslate();
 
+    const { id, resource } = useResource(resourceNameOrRouteName);
+
     const { data } = useCan({
-        resource: resourceName,
+        resource: resource?.name,
         action: "show",
-        params: { id, resource },
+        params: { id: recordItemId ?? id, resource },
         queryOptions: {
             enabled: accessControlEnabled,
         },
@@ -60,14 +64,21 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
             );
     };
 
-    const showUrl = generateShowUrl(resource.route!, id!);
+    const showUrl =
+        (resource || resourceNameOrRouteName) && (recordItemId || id)
+            ? generateShowUrl(
+                  resource! || resourceNameOrRouteName!,
+                  recordItemId! ?? id!,
+                  meta,
+              )
+            : "";
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;
     }
 
     return (
-        <Link
+        <ActiveLink
             to={showUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -100,6 +111,6 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
                     {children ?? translate("buttons.show", "Show")}
                 </Button>
             )}
-        </Link>
+        </ActiveLink>
     );
 };

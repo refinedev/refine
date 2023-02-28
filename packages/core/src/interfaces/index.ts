@@ -1,3 +1,5 @@
+import { IResourceItem } from "./bindings/resource";
+
 // contexts
 export * from "../contexts/data/IDataContext";
 export * from "../contexts/live/ILiveContext";
@@ -7,7 +9,7 @@ export * from "../contexts/translation/ITranslationContext";
 export * from "../contexts/undoableQueue/IUndoableQueueContext";
 export * from "../contexts/resource/IResourceContext";
 export * from "../contexts/unsavedWarn/IUnsavedWarnContext";
-export * from "../contexts/router/IRouterContext";
+export * from "../contexts/legacy-router/IRouterContext";
 export * from "../contexts/accessControl/IAccessControlContext";
 export * from "../contexts/notification/INotificationContext";
 export * from "../contexts/auditLog/IAuditLogContext";
@@ -47,9 +49,6 @@ export * from "./metaData";
 //queryKeys
 export * from "./queryKey";
 
-//menuItem
-export * from "./menuItem";
-
 //metaData
 export * from "./live";
 
@@ -66,6 +65,19 @@ export interface Option {
     label: string;
     value: string;
 }
+
+/* Backward compatible version of 'TreeMenuItem' */
+export type ITreeMenu = IResourceItem & {
+    key?: string;
+    children: ITreeMenu[];
+};
+
+export type IMenuItem = IResourceItem & {
+    key: string;
+    route: string;
+};
+
+export * from "./form-url-params";
 
 export * from "./auth";
 

@@ -1,8 +1,6 @@
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider, {
-    MemoryRouterComponent,
-} from "@pankod/refine-react-router-v6";
+import routerProvider, { MemoryRouterComponent } from "@pankod/refine-react-router-v6/legacy";
 import { useDarkMode } from "storybook-dark-mode";
 import { DarkTheme, LightTheme, LoginPage, ReadyPage, ErrorComponent } from "@pankod/refine-mui";
 import { ThemeProvider } from "@mui/material/styles";
@@ -33,7 +31,7 @@ export const RefineWithLayout = (Story) => (
             LoginPage={LoginPage}
             ReadyPage={ReadyPage}
             catchAll={ErrorComponent}
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 RouterComponent: MemoryRouterComponent,
             }}
@@ -60,7 +58,7 @@ export const RefineWithoutLayout = (Story) => (
             LoginPage={LoginPage}
             ReadyPage={ReadyPage}
             catchAll={ErrorComponent}
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 RouterComponent: MemoryRouterComponent,
             }}

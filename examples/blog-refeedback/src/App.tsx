@@ -6,7 +6,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import "@pankod/refine-antd/dist/reset.css";
 import { DataProvider } from "@pankod/refine-strapi";
@@ -29,7 +29,7 @@ function App() {
             Header={Header}
             Layout={Layout}
             OffLayoutArea={OffLayoutArea}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "feedbacks",

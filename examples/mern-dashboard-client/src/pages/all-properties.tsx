@@ -8,7 +8,7 @@ import {
     Select,
     MenuItem,
 } from "@mui/material";
-import { useNavigate } from "@pankod/refine-react-router-v6";
+import { useNavigate } from "react-router-dom";
 import { useMemo } from "react";
 
 import { PropertyCard, CustomButton } from "components";

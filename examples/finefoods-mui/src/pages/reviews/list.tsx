@@ -179,8 +179,8 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List
-            cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
-            cardHeaderProps={{
+            wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
+            headerProps={{
                 subheader: hasSelected && (
                     <Stack direction="row">
                         <Button
