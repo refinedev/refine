@@ -602,6 +602,20 @@ const drawerForm = useDrawerForm({
 });
 ```
 
+### `syncWithLocation`
+
+> Default: `false`
+
+When `true`, the drawers visibility state and the `id` of the record will be synced with the URL.
+
+This property can also be set as an object `{ key: string; syncId?: boolean }` to customize the key of the URL query parameter. `id` will be synced with the URL only if `syncId` is `true`.
+
+```tsx
+const drawerForm = useDrawerForm({
+    syncWithLocation: { key: "my-modal", syncId: true },
+});
+```
+
 ## Return Values
 
 :::tip
