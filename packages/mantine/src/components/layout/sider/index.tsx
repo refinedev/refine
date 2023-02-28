@@ -3,11 +3,13 @@ import {
     CanAccess,
     ITreeMenu,
     useIsExistAuthentication,
+    useLink,
     useLogout,
     useMenu,
     useActiveAuthProvider,
     useRefineContext,
     useRouterContext,
+    useRouterType,
     useTitle,
     useTranslate,
 } from "@pankod/refine-core";
@@ -40,12 +42,16 @@ import { RefineTitle as DefaultTitle } from "@components";
 
 const defaultNavIcon = <IconList size={18} />;
 
-export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
     const [collapsed, setCollapsed] = useState(false);
     const [opened, setOpened] = useState(false);
 
-    const { Link } = useRouterContext();
-    const { defaultOpenKeys, menuItems, selectedKey } = useMenu();
+    const routerType = useRouterType();
+    const NewLink = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+    const Link = routerType === "legacy" ? LegacyLink : NewLink;
+
+    const { defaultOpenKeys, menuItems, selectedKey } = useMenu({ meta });
     const Title = useTitle();
     const isExistAuthentication = useIsExistAuthentication();
     const t = useTranslate();
@@ -99,7 +105,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
         offset: 4,
     };
 
-    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+    const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
         return tree.map((item) => {
             const { icon, label, route, name, children } = item;
 
@@ -108,11 +114,11 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
 
             const additionalLinkProps = isParent
                 ? {}
-                : { component: Link, to: route };
+                : { component: Link as any, to: route };
 
             return (
                 <CanAccess
-                    key={route}
+                    key={item.key}
                     resource={name.toLowerCase()}
                     action="list"
                     params={{
@@ -121,13 +127,13 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 >
                     <Tooltip label={label} {...commonTooltipProps}>
                         <NavLink
-                            key={route}
+                            key={item.key}
                             label={collapsed && !opened ? null : label}
                             icon={icon ?? defaultNavIcon}
                             active={isSelected}
                             childrenOffset={collapsed && !opened ? 0 : 12}
                             defaultOpened={defaultOpenKeys.includes(
-                                route || "",
+                                item.key || "",
                             )}
                             styles={commonNavLinkStyles}
                             {...additionalLinkProps}
@@ -156,7 +162,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                             : t("dashboard.title", "Dashboard")
                     }
                     icon={<IconDashboard size={18} />}
-                    component={Link}
+                    component={Link as any}
                     to="/"
                     active={selectedKey === "/"}
                     styles={commonNavLinkStyles}

@@ -1085,7 +1085,7 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
           class="css-i08qke"
         >
           <a
-            href="/undefined"
+            href="/custom-page"
           >
             <button
               class="chakra-button css-4xx2wk"
@@ -1769,7 +1769,7 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
           class="css-i08qke"
         >
           <a
-            href="/undefined"
+            href="/custom-page"
           >
             <button
               class="chakra-button css-4xx2wk"

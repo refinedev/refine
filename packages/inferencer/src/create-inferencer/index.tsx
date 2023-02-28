@@ -62,9 +62,7 @@ export const createInferencer: CreateInferencer = ({
         fieldTransformer?: InferencerComponentProps["fieldTransformer"];
         id?: string | number;
     }) => {
-        const { resource, resources } = useResource({
-            resourceNameOrRouteName: resourceName,
-        });
+        const { resource, resources } = useResource(resourceName);
 
         const { resource: resourceFromURL } = useResource();
 
@@ -87,23 +85,27 @@ export const createInferencer: CreateInferencer = ({
                     })
                     .filter(Boolean);
 
-                const transformed = transform(
-                    inferred as InferField[],
-                    resources,
-                    resource,
-                    record,
-                    infer,
-                );
+                if (resource) {
+                    const transformed = transform(
+                        inferred as InferField[],
+                        resources,
+                        resource,
+                        record,
+                        infer,
+                    );
 
-                const customTransformedFields = fieldTransformer
-                    ? transformed.flatMap((field) => {
-                          const result = fieldTransformer(field);
+                    const customTransformedFields = fieldTransformer
+                        ? transformed.flatMap((field) => {
+                              const result = fieldTransformer(field);
 
-                          return result ? [result] : [];
-                      })
-                    : transformed;
+                              return result ? [result] : [];
+                          })
+                        : transformed;
 
-                return customTransformedFields;
+                    return customTransformedFields;
+                }
+
+                return [];
             }
 
             return [];
@@ -120,13 +122,18 @@ export const createInferencer: CreateInferencer = ({
         });
 
         const code = React.useMemo(() => {
-            if (!recordLoading && !relationLoading && !isInitialLoad) {
+            if (
+                !recordLoading &&
+                !relationLoading &&
+                !isInitialLoad &&
+                resource
+            ) {
                 return renderer({
                     resource,
                     resources,
                     fields: results,
                     infer,
-                    isCustomPage: resource.name !== resourceFromURL.name,
+                    isCustomPage: resource.name !== resourceFromURL?.name,
                     id,
                 });
             }
@@ -151,7 +158,11 @@ export const createInferencer: CreateInferencer = ({
                             code={prepareLiveCode(
                                 code,
                                 componentName(
-                                    resource.label ?? resource.name,
+                                    resource?.meta?.label ??
+                                        resource?.options?.label ??
+                                        resource?.label ??
+                                        resource?.name ??
+                                        "Resource",
                                     type,
                                 ),
                             )}

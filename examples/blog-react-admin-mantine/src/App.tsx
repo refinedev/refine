@@ -16,7 +16,7 @@ import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 
 import { DataProvider } from "@pankod/refine-strapi-v4";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import { authProvider, axiosInstance } from "./authProvider";
 import { API_URL } from "./constants";
@@ -36,7 +36,7 @@ function App() {
                     ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}
                     LoginPage={AuthPage}
-                    routerProvider={routerProvider}
+                    legacyRouterProvider={routerProvider}
                     resources={[
                         {
                             name: "posts",

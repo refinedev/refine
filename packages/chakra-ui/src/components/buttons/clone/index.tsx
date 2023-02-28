@@ -5,6 +5,8 @@ import {
     useTranslate,
     useResource,
     useRouterContext,
+    useRouterType,
+    useLink,
 } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import { Button, IconButton } from "@chakra-ui/react";
@@ -26,26 +28,28 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     hideText = false,
     accessControl,
     svgIconProps,
+    meta,
     children,
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled;
+    const accessControlEnabled = accessControl?.enabled ?? true;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
-    const { resourceName, resource, id } = useResource({
-        resourceNameOrRouteName,
-        recordItemId,
-    });
-
     const { cloneUrl: generateCloneUrl } = useNavigation();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
+
+    const { id, resource } = useResource(resourceNameOrRouteName);
 
     const translate = useTranslate();
 
     const { data } = useCan({
-        resource: resourceName,
+        resource: resource?.name,
         action: "create",
-        params: { id, resource },
+        params: { id: recordItemId ?? id, resource },
         queryOptions: {
             enabled: accessControlEnabled,
         },
@@ -61,14 +65,21 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
             );
     };
 
-    const cloneUrl = generateCloneUrl(resource.route!, id!);
+    const cloneUrl =
+        (resource || resourceNameOrRouteName) && (recordItemId || id)
+            ? generateCloneUrl(
+                  resource! ?? resourceNameOrRouteName!,
+                  recordItemId! ?? id!,
+                  meta,
+              )
+            : "";
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;
     }
 
     return (
-        <Link
+        <ActiveLink
             to={cloneUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -100,6 +111,6 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                     {children ?? translate("buttons.clone", "Clone")}
                 </Button>
             )}
-        </Link>
+        </ActiveLink>
     );
 };

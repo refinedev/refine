@@ -8,7 +8,7 @@ import {
 } from "@pankod/refine-mui";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import { dataProvider } from "rest-data-provider";
 import { PostsList } from "pages/posts";
@@ -20,7 +20,7 @@ const App: React.FC = () => {
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
                 <Refine
-                    routerProvider={routerProvider}
+                    legacyRouterProvider={routerProvider}
                     dataProvider={dataProvider("https://api.github.com")}
                     notificationProvider={notificationProvider}
                     Layout={Layout}

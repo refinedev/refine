@@ -30,7 +30,6 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     errorNotification,
     hideText = false,
     accessControl,
-    ignoreAccessControlProvider = false,
     meta,
     metaData,
     dataProviderName,
@@ -41,15 +40,11 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     invalidates,
     ...rest
 }) => {
-    const accessControlEnabled =
-        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const accessControlEnabled = accessControl?.enabled ?? true;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
-    const { resourceName, id, resource } = useResource({
-        resourceNameOrRouteName,
-        recordItemId,
-    });
-
     const translate = useTranslate();
+
+    const { id, resource } = useResource(resourceNameOrRouteName);
 
     const { mutationMode: mutationModeContext } = useMutationMode();
 
@@ -58,9 +53,9 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     const { mutate, isLoading, variables } = useDelete();
 
     const { data } = useCan({
-        resource: resourceName,
+        resource: resource?.name,
         action: "delete",
-        params: { id, resource },
+        params: { id: recordItemId ?? id, resource },
         queryOptions: {
             enabled: accessControlEnabled,
         },
@@ -77,25 +72,27 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     };
 
     const handleCloseOnConfirm = () => {
-        setOpen(false);
-        mutate(
-            {
-                id: id ?? "",
-                resource: resourceName,
-                mutationMode,
-                successNotification,
-                errorNotification,
-                meta: pickNotDeprecated(meta, metaData),
-                metaData: pickNotDeprecated(meta, metaData),
-                dataProviderName,
-                invalidates,
-            },
-            {
-                onSuccess: (value) => {
-                    onSuccess && onSuccess(value);
+        if ((recordItemId ?? id) && resource?.name) {
+            setOpen(false);
+            mutate(
+                {
+                    id: recordItemId ?? id ?? "",
+                    resource: resource?.name,
+                    mutationMode,
+                    successNotification,
+                    errorNotification,
+                    meta: pickNotDeprecated(meta, metaData),
+                    metaData: pickNotDeprecated(meta, metaData),
+                    dataProviderName,
+                    invalidates,
                 },
-            },
-        );
+                {
+                    onSuccess: (value) => {
+                        onSuccess && onSuccess(value);
+                    },
+                },
+            );
+        }
     };
 
     const { sx, ...restProps } = rest;
@@ -110,7 +107,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 color="error"
                 onClick={handleClickOpen}
                 disabled={data?.can === false}
-                loading={id === variables?.id && isLoading}
+                loading={(recordItemId ?? id) === variables?.id && isLoading}
                 startIcon={!hideText && <DeleteOutline {...svgIconProps} />}
                 sx={{ minWidth: 0, ...sx }}
                 loadingPosition={hideText ? "center" : "start"}

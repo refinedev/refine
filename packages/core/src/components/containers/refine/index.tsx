@@ -1,11 +1,5 @@
 import React from "react";
-import {
-    QueryClientProvider,
-    QueryClient,
-    QueryCache,
-    MutationCache,
-    DefaultOptions,
-} from "@tanstack/react-query";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import {
@@ -15,31 +9,26 @@ import {
 import { DataContextProvider } from "@contexts/data";
 import { LiveContextProvider } from "@contexts/live";
 import { TranslationContextProvider } from "@contexts/translation";
-import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
+import { ResourceContextProvider } from "@contexts/resource";
 import { RefineContextProvider } from "@contexts/refine";
 import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
-import { RouterContextProvider } from "@contexts/router";
+import { LegacyRouterContextProvider } from "@contexts/legacy-router";
 import { AccessControlContextProvider } from "@contexts/accessControl";
 import { NotificationContextProvider } from "@contexts/notification";
 import { AuditLogContextProvider } from "@contexts/auditLog";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
-import {
-    handleRefineOptions,
-    pickNotDeprecated,
-    routeGenerator,
-} from "@definitions";
+import { handleRefineOptions } from "@definitions";
 import { Telemetry } from "@components/telemetry";
 import { useDeepMemo } from "@hooks/deepMemo";
+import { RouterBindings } from "src/interfaces/bindings";
 
 import {
-    MutationMode,
     IDataContextProvider,
     I18nProvider,
     LayoutProps,
     TitleProps,
     IRouterProvider,
-    ResourceProps,
     ILiveContext,
     LiveModeProps,
     IDataMultipleContextProvider,
@@ -52,24 +41,30 @@ import {
     INotificationContext,
     AuthBindings,
 } from "../../../interfaces";
+import { RouterBindingsProvider } from "../../../contexts/router";
+import { ResourceProps } from "../../../interfaces/bindings/resource";
+import { RouterPickerProvider } from "@contexts/router-picker";
+import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-warning/index";
 
-interface QueryClientConfig {
-    queryCache?: QueryCache;
-    mutationCache?: MutationCache;
-    defaultOptions?: DefaultOptions;
-}
 export interface RefineProps {
     children?: React.ReactNode;
     /**
-     * `resources` is the main building block of a refine app. A resource represents an entity in an endpoint in the API.
+     * `resources` is the predefined interaction points for a refine app. A resource represents an entity in an endpoint in the API.
+     * While this is not a required property, it is used in resource detection and creation of routes for the app.
      * @type [`ResourceProps[]`](/docs/api-reference/core/components/refine-config/#resources)
      */
     resources?: ResourceProps[];
     /**
      * **refine** needs some router functions to create resource pages, handle navigation, etc. This provider allows you to use the router library you want
      * @type [`IRouterProvider`](/docs/api-reference/core/providers/router-provider/)
+     * @deprecated This property is deprecated and was the legacy way of routing. Please use `routerProvider` with new router bindings instead.
      */
-    routerProvider: IRouterProvider;
+    legacyRouterProvider?: IRouterProvider;
+    /**
+     * Router bindings for **refine**. A simple interface for **refine** to interact with your router in a flexible way.
+     * @type [`RouterBindings`](/docs/api-reference/core/bindings/router/)
+     */
+    routerProvider?: RouterBindings;
     /**
      * A `dataProvider` is the place where a refine app communicates with an API. Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.
      * @type [`IDataContextProvider` | `IDataMultipleContextProvider`](/docs/api-reference/core/providers/data-provider/)
@@ -114,51 +109,61 @@ export interface RefineProps {
     /**
      * A custom error component.
      * @type [`ReactNode`](/docs/api-reference/core/components/refine-config/#catchall)
+     * @deprecated Please use the `catchAll` element in your routes instead.
      */
     catchAll?: React.ReactNode;
     /**
      * Custom login component can be passed to the `LoginPage` property.
      * @type [`React.FC`](/docs/api-reference/core/components/refine-config/#loginpage)
+     * @deprecated Please use the `LoginPage` component in your routes instead.
      */
     LoginPage?: React.FC;
     /**
      * A custom dashboard page can be passed to the `DashboardPage` prop which is accessible on root route.
      * @type [`React.FC<DashboardPageProps>`](/docs/api-reference/core/components/refine-config/#dashboardpage)
+     * @deprecated Please use the `DashboardPage` component in your routes instead.
      */
     DashboardPage?: React.FC<DashboardPageProps>;
     /**
      * Custom ready page component can be set by passing to `ReadyPage` property.
      * @type [`React.FC`](/docs/api-reference/core/components/refine-config/#readypage)
+     * @deprecated This component is only used with the legacy router and will be removed in the future.
      */
     ReadyPage?: React.FC;
     /**
      * Default layout can be customized by passing the `Layout` property.
      * @type [`React.FC<LayoutProps>`](/docs/api-reference/core/components/refine-config/#layout)
+     * @deprecated Please use the `Layout` component as a children instead of a prop.
      */
     Layout?: React.FC<LayoutProps>;
     /**
      * The default sidebar can be customized by using refine hooks and passing custom components to `Sider` property.
      * @type [`React.FC`](/docs/api-reference/core/components/refine-config/#sider)
+     * @deprecated Please pass the `Sider` component to your `Layout` component.
      */
     Sider?: React.FC;
     /**
      * The default app header can be customized by passing the `Header` property.
      * @type [`React.FC`](/docs/api-reference/core/components/refine-config/#header)
+     * @deprecated Please pass the `Header` component to your `Layout` component.
      */
     Header?: React.FC;
     /**
      *The default app footer can be customized by passing the `Footer` property.
      * @type [`React.FC`](/docs/api-reference/core/components/refine-config/#footer)
+     * @deprecated Please pass the `Footer` component to your `Layout` component.
      */
     Footer?: React.FC;
     /**
      * The component wanted to be placed out of app layout structure can be set by passing to `OffLayoutArea` prop.
      * @type [`React.FC`](/docs/api-reference/core/components/refine-config/#offlayoutarea)
+     * @deprecated Please use your `OffLayoutArea` component as a children instead of a prop.
      */
     OffLayoutArea?: React.FC;
     /**
      * TThe app title can be set by passing the `Title` property.
      * @type [`React.FC<TitleProps>`](/docs/api-reference/core/components/refine-config/#title)
+     * @deprecated Please pass the `Title` component to your `Layout` component.
      */
     Title?: React.FC<TitleProps>;
     /**
@@ -171,74 +176,6 @@ export interface RefineProps {
      * @type [`IRefineOptions`](/docs/api-reference/core/components/refine-config/#options-1)
      * */
     options?: IRefineOptions;
-    /**
-     * **refine** implements a simple and transparent telemetry module for collecting usage statistics defined in a very limited scope. This telemetry module is used to improve the refine experience.
-     * @deprecated  `disableTelemetry`  property is deprecated. Use it from within [`options`](/docs/api-reference/core/components/refine-config/#options) instead.
-     * @type [`boolean`](/docs/api-reference/core/components/refine-config/#disabletelemetry)
-     */
-    disableTelemetry?: boolean;
-    /** 
-     *  Config for React Query client that refine uses.
-        @deprecated `reactQueryClientConfig` property is deprecated. Use `clientConfig` in `reactQuery` in [`options`](/docs/api-reference/core/components/refine-config/#options) instead.
-        @example  `options={{ reactQuery: { clientConfig: { queryCache: new QueryCache() } } }}`
-        @see https://refine.dev/docs/core/components/refine-config/#clientconfig
-          @type [`QueryClientConfig` | `false`](/docs/api-reference/core/components/refine-config/#reactquery)
-     */
-    reactQueryClientConfig?: QueryClientConfig;
-    /** 
-           *  Config for customize React Query Devtools.
-              @deprecated `reactQueryDevtoolConfig` property is deprecated. Use `devtoolConfig` in `reactQuery` in [`options`](/docs/api-reference/core/components/refine-config/#options) instead.
-              @example  `options={{ reactQuery: { devtoolConfig: false } }}`
-              @see https://refine.dev/docs/core/components/refine-config/#devtoolConfig
-              @type [`ReactQueryDevtools` | `false`](/docs/api-reference/core/components/refine-config/#devtoolconfig)
-           */
-    reactQueryDevtoolConfig?:
-        | React.ComponentProps<typeof ReactQueryDevtools>
-        | false;
-
-    /** 
-           *  Whether to update data automatically (auto) or not (manual) if a related live event is received. The off value is used to avoid creating a subscription.
-              @deprecated `liveMode` property is deprecated. Use it from within [`options`](/docs/api-reference/core/components/refine-config/#options) instead.
-              @example  `options={{ liveMode: "auto" }}`
-              @see https://refine.dev/docs/core/components/refine-config/#livemode
-              @type [`LiveModeProps["liveMode"]`](/docs/api-reference/core/components/refine-config/#livemode)
-           */
-    liveMode?: LiveModeProps["liveMode"];
-    /** 
-        @deprecated `disableTelemetry` property is deprecated. Use it from within [`options`](/docs/api-reference/core/components/refine-config/#options) instead.
-        @example  `options={{ disableTelemetry: true }}`
-     */
-    /**
-     * `mutationMode` determines which mode the mutations run with. (e.g. useUpdate, useDelete).
-     * @deprecated `mutationMode` property is deprecated at this level. Use it from within `options` instead.
-     * @type [`MutationMode`](/docs/api-reference/core/components/refine-config/#mutationmode)
-     * @default "pessimistic"
-     */
-    mutationMode?: MutationMode;
-    /** 
-       * List query parameter values can be edited manually by typing directly in the URL. To activate this feature syncWithLocation needs to be set to true.
-          @deprecated `syncWithLocation` property is deprecated at this level. Use it from within `options` instead.
-          @example  `options={{ syncWithLocation: true }}`
-          @see https://refine.dev/docs/core/components/refine-config/#syncwithlocation
-       *  @type [`boolean`](/docs/api-reference/core/components/refine-config/#syncwithlocation)
-       */
-    syncWithLocation?: boolean;
-    /** 
-       *  When you have unsaved changes and try to leave the current page, **refine** shows a confirmation modal box.
-          @deprecated `warnwhenunsavedchanges` property is deprecated at this level. Use it from within `options` instead.
-          @example  `options={{ warnwhenunsavedchanges: true }}`
-          @see https://refine.dev/docs/core/components/refine-config/#warnwhenunsavedchanges
-      *   @type [`boolean`](/docs/api-reference/core/components/refine-config/#warnwhenunsavedchanges)
-       */
-    warnWhenUnsavedChanges?: boolean;
-    /** 
-       *  The duration of the timeout period in undoable mode, shown in milliseconds. Mutations can be cancelled during this period.
-          @deprecated `undoableTimeout` property is deprecated at this level. Use it from within `options` instead.
-          @example  `options={{ undoableTimeout: 5000 }}`
-          @see https://refine.dev/docs/core/components/refine-config/#undoabletimeout
-      *   @type [`number`](/docs/api-reference/core/components/refine-config/#undoabletimeout)
-       */
-    undoableTimeout?: number;
 }
 
 /**
@@ -252,11 +189,12 @@ export const Refine: React.FC<RefineProps> = ({
     legacyAuthProvider,
     authProvider,
     dataProvider,
+    legacyRouterProvider,
     routerProvider,
     notificationProvider,
     accessControlProvider,
     auditLogProvider,
-    resources: resourcesFromProps,
+    resources,
     DashboardPage,
     ReadyPage,
     LoginPage,
@@ -264,21 +202,13 @@ export const Refine: React.FC<RefineProps> = ({
     children,
     liveProvider,
     i18nProvider,
-    mutationMode,
-    syncWithLocation,
-    warnWhenUnsavedChanges,
-    undoableTimeout,
     Title,
     Layout,
     Sider,
     Header,
     Footer,
     OffLayoutArea,
-    reactQueryClientConfig,
-    reactQueryDevtoolConfig,
-    liveMode,
     onLiveEvent,
-    disableTelemetry,
     options,
 }) => {
     const {
@@ -287,14 +217,6 @@ export const Refine: React.FC<RefineProps> = ({
         reactQueryWithDefaults,
     } = handleRefineOptions({
         options,
-        disableTelemetry,
-        liveMode,
-        mutationMode,
-        reactQueryClientConfig,
-        reactQueryDevtoolConfig,
-        syncWithLocation,
-        warnWhenUnsavedChanges,
-        undoableTimeout,
     });
 
     const queryClient = useDeepMemo(() => {
@@ -324,41 +246,40 @@ export const Refine: React.FC<RefineProps> = ({
 
     const notificationProviderContextValues = useNotificationProviderValues();
 
-    const resources: IResourceItem[] = useDeepMemo(() => {
-        const _resources: IResourceItem[] = [];
+    /**
+     * Warn our users if they are using the old way of routing in the wrong prop.
+     */
+    useRouterMisuseWarning(routerProvider);
+    /** */
 
-        resourcesFromProps?.forEach((resource) => {
-            const meta = pickNotDeprecated(resource?.meta, resource?.options);
-
-            _resources.push({
-                key: resource.key,
-                name: resource.name,
-                label: pickNotDeprecated(resource.meta, resource.options)
-                    ?.label,
-                icon: resource.icon,
-                route: routeGenerator(resource, resourcesFromProps),
-                canCreate: !!resource.create,
-                canEdit: !!resource.edit,
-                canShow: !!resource.show,
-                canDelete: resource.canDelete,
-                create: resource.create,
-                show: resource.show,
-                list: resource.list,
-                edit: resource.edit,
-                options: meta,
-                meta: meta,
-                parentName: resource.parentName,
-            });
-        });
-
-        return _resources;
-    }, [resourcesFromProps]);
-
-    if (resources.length === 0) {
+    /**
+     * `<ReadyPage />` is only used in the legacy routing and is not used in the new routing.
+     * If `legacyRouterProvider` is provided and `routerProvider` is not, we'll check for the `resources` prop to be empty.
+     * If `resources` is empty, then we'll render `<ReadyPage />` component.
+     */
+    if (
+        legacyRouterProvider &&
+        !routerProvider &&
+        (resources ?? []).length === 0
+    ) {
         return ReadyPage ? <ReadyPage /> : <DefaultReadyPage />;
     }
 
-    const { RouterComponent = React.Fragment } = routerProvider;
+    /** Router
+     *
+     * Handle routing from `RouterBindingsProvider` and `router` prop for the brand new way
+     * If `router` is not provided, then we'r checking for `routerProvider` prop
+     * If `routerProvider` is provided, then `RouterContextProvider` is used
+     * If none of them is provided, then `RouterBindingsProvider` is used because it supports undefined router
+     *
+     * `RouterContextProvider` is skipped whenever possible and by this way,
+     * we can achieve backward compability only when its provided by user
+     *
+     */
+    const { RouterComponent = React.Fragment } = !routerProvider
+        ? legacyRouterProvider ?? {}
+        : {};
+    /** */
 
     return (
         <QueryClientProvider client={queryClient}>
@@ -373,79 +294,107 @@ export const Refine: React.FC<RefineProps> = ({
                     >
                         <DataContextProvider {...dataProvider}>
                             <LiveContextProvider liveProvider={liveProvider}>
-                                <RouterContextProvider {...routerProvider}>
-                                    <ResourceContextProvider
-                                        resources={resources}
+                                <RouterPickerProvider
+                                    value={
+                                        legacyRouterProvider && !routerProvider
+                                            ? "legacy"
+                                            : "new"
+                                    }
+                                >
+                                    <RouterBindingsProvider
+                                        router={routerProvider}
                                     >
-                                        <TranslationContextProvider
-                                            i18nProvider={i18nProvider}
+                                        <LegacyRouterContextProvider
+                                            {...legacyRouterProvider}
                                         >
-                                            <AccessControlContextProvider
-                                                {...(accessControlProvider ??
-                                                    {})}
+                                            <ResourceContextProvider
+                                                resources={resources ?? []}
                                             >
-                                                <AuditLogContextProvider
-                                                    {...(auditLogProvider ??
-                                                        {})}
+                                                <TranslationContextProvider
+                                                    i18nProvider={i18nProvider}
                                                 >
-                                                    <UndoableQueueContextProvider>
-                                                        <RefineContextProvider
-                                                            mutationMode={
-                                                                optionsWithDefaults.mutationMode
-                                                            }
-                                                            warnWhenUnsavedChanges={
-                                                                optionsWithDefaults.warnWhenUnsavedChanges
-                                                            }
-                                                            syncWithLocation={
-                                                                optionsWithDefaults.syncWithLocation
-                                                            }
-                                                            Title={Title}
-                                                            undoableTimeout={
-                                                                optionsWithDefaults.undoableTimeout
-                                                            }
-                                                            catchAll={catchAll}
-                                                            DashboardPage={
-                                                                DashboardPage
-                                                            }
-                                                            LoginPage={
-                                                                LoginPage
-                                                            }
-                                                            Layout={Layout}
-                                                            Sider={Sider}
-                                                            Footer={Footer}
-                                                            Header={Header}
-                                                            OffLayoutArea={
-                                                                OffLayoutArea
-                                                            }
-                                                            hasDashboard={
-                                                                !!DashboardPage
-                                                            }
-                                                            liveMode={
-                                                                optionsWithDefaults.liveMode
-                                                            }
-                                                            onLiveEvent={
-                                                                onLiveEvent
-                                                            }
-                                                            options={
-                                                                optionsWithDefaults
-                                                            }
+                                                    <AccessControlContextProvider
+                                                        {...(accessControlProvider ??
+                                                            {})}
+                                                    >
+                                                        <AuditLogContextProvider
+                                                            {...(auditLogProvider ??
+                                                                {})}
                                                         >
-                                                            <UnsavedWarnContextProvider>
-                                                                <RouterComponent>
-                                                                    {children}
-                                                                    {!disableTelemetryWithDefault && (
-                                                                        <Telemetry />
-                                                                    )}
-                                                                    <RouteChangeHandler />
-                                                                </RouterComponent>
-                                                            </UnsavedWarnContextProvider>
-                                                        </RefineContextProvider>
-                                                    </UndoableQueueContextProvider>
-                                                </AuditLogContextProvider>
-                                            </AccessControlContextProvider>
-                                        </TranslationContextProvider>
-                                    </ResourceContextProvider>
-                                </RouterContextProvider>
+                                                            <UndoableQueueContextProvider>
+                                                                <RefineContextProvider
+                                                                    mutationMode={
+                                                                        optionsWithDefaults.mutationMode
+                                                                    }
+                                                                    warnWhenUnsavedChanges={
+                                                                        optionsWithDefaults.warnWhenUnsavedChanges
+                                                                    }
+                                                                    syncWithLocation={
+                                                                        optionsWithDefaults.syncWithLocation
+                                                                    }
+                                                                    Title={
+                                                                        Title
+                                                                    }
+                                                                    undoableTimeout={
+                                                                        optionsWithDefaults.undoableTimeout
+                                                                    }
+                                                                    catchAll={
+                                                                        catchAll
+                                                                    }
+                                                                    DashboardPage={
+                                                                        DashboardPage
+                                                                    }
+                                                                    LoginPage={
+                                                                        LoginPage
+                                                                    }
+                                                                    Layout={
+                                                                        Layout
+                                                                    }
+                                                                    Sider={
+                                                                        Sider
+                                                                    }
+                                                                    Footer={
+                                                                        Footer
+                                                                    }
+                                                                    Header={
+                                                                        Header
+                                                                    }
+                                                                    OffLayoutArea={
+                                                                        OffLayoutArea
+                                                                    }
+                                                                    hasDashboard={
+                                                                        !!DashboardPage
+                                                                    }
+                                                                    liveMode={
+                                                                        optionsWithDefaults.liveMode
+                                                                    }
+                                                                    onLiveEvent={
+                                                                        onLiveEvent
+                                                                    }
+                                                                    options={
+                                                                        optionsWithDefaults
+                                                                    }
+                                                                >
+                                                                    <UnsavedWarnContextProvider>
+                                                                        <RouterComponent>
+                                                                            {
+                                                                                children
+                                                                            }
+                                                                            {!disableTelemetryWithDefault && (
+                                                                                <Telemetry />
+                                                                            )}
+                                                                            <RouteChangeHandler />
+                                                                        </RouterComponent>
+                                                                    </UnsavedWarnContextProvider>
+                                                                </RefineContextProvider>
+                                                            </UndoableQueueContextProvider>
+                                                        </AuditLogContextProvider>
+                                                    </AccessControlContextProvider>
+                                                </TranslationContextProvider>
+                                            </ResourceContextProvider>
+                                        </LegacyRouterContextProvider>
+                                    </RouterBindingsProvider>
+                                </RouterPickerProvider>
                             </LiveContextProvider>
                         </DataContextProvider>
                     </AuthBindingsContextProvider>

@@ -14,7 +14,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import { ProductList } from "pages/products/list";
 import { ProductEdit } from "pages/products/edit";
@@ -35,7 +35,7 @@ function App() {
                     Layout={Layout}
                     ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}
-                    routerProvider={routerProvider}
+                    legacyRouterProvider={routerProvider}
                     resources={[
                         {
                             name: "products",

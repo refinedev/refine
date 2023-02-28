@@ -2,7 +2,10 @@ import { defineConfig } from "tsup";
 import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
 
 export default defineConfig({
-    entry: ["src/index.ts"],
+    entry: {
+        index: "src/index.ts",
+        legacy: "src/legacy/index.ts",
+    },
     splitting: false,
     sourcemap: true,
     clean: false,

@@ -13,6 +13,8 @@ export * from "./show";
 export * from "./import";
 export * from "./modal";
 export * from "./router";
+export { useRouterType } from "../contexts/router-picker";
+export * from "./legacy-router";
 export * from "./accessControl";
 export * from "./useSelect";
 export * from "./useTable";

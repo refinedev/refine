@@ -6,7 +6,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import "@pankod/refine-antd/dist/reset.css";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import dataProvider from "@pankod/refine-simple-rest";
 import PostCreate from "pages/PostCreate";
 import PostEdit from "pages/PostEdit";
@@ -19,7 +19,7 @@ function App() {
             Layout={Layout}
             ReadyPage={ReadyPage}
             catchAll={<ErrorComponent />}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
