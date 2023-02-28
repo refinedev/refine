@@ -9,6 +9,7 @@ export type SiderRenderProps = {
 
 export type RefineLayoutSiderProps = {
     render?: (props: SiderRenderProps) => React.ReactNode;
+    meta?: Record<string, unknown>;
 };
 
 export type RefineLayoutHeaderProps = {};

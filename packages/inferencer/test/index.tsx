@@ -61,9 +61,10 @@ export const TestWrapper: (
                 <Refine
                     dataProvider={dataProvider ?? MockJSONServer}
                     i18nProvider={i18nProvider}
-                    routerProvider={MockRouterProvider}
                     authProvider={authProvider}
                     legacyAuthProvider={legacyAuthProvider}
+                    routerProvider={MockRouterProvider}
+                    legacyRouterProvider={MockRouterProvider}
                     notificationProvider={notificationProvider}
                     resources={resources ?? [{ name: "posts", list: List }]}
                     accessControlProvider={accessControlProvider}

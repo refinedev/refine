@@ -1,12 +1,6 @@
 import { useState } from "react";
+import { useResource, useDataProvider } from "@hooks";
 import {
-    useResource,
-    useResourceWithRoute,
-    useRouterContext,
-    useDataProvider,
-} from "@hooks";
-import {
-    ResourceRouterParams,
     BaseRecord,
     MapDataFn,
     CrudSorting,
@@ -115,25 +109,21 @@ export const useExport = <
 }: UseExportOptionsType<TData, TVariables> = {}): UseExportReturnType => {
     const [isLoading, setIsLoading] = useState(false);
 
-    const { resources } = useResource();
-
-    const resourceWithRoute = useResourceWithRoute();
     const dataProvider = useDataProvider();
 
-    const { useParams } = useRouterContext();
-
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-    const { name: resource } = resourceWithRoute(
-        pickNotDeprecated(resourceFromProps, resourceName) ?? routeResourceName,
-    );
+    const { resource, resources } = useResource();
 
     const filename = `${userFriendlyResourceName(
-        resource,
+        resource?.name,
         "plural",
     )}-${new Date().toLocaleString()}`;
 
     const { getList } = dataProvider(
-        pickDataProvider(resource, dataProviderName, resources),
+        pickDataProvider(
+            resource?.identifier ?? resource?.name,
+            dataProviderName,
+            resources,
+        ),
     );
 
     const triggerExport = async () => {
@@ -146,7 +136,7 @@ export const useExport = <
         while (preparingData) {
             try {
                 const { data, total } = await getList<TData>({
-                    resource,
+                    resource: resource?.name ?? "",
                     filters,
                     sort: pickNotDeprecated(sorters, sorter),
                     sorters: pickNotDeprecated(sorters, sorter),

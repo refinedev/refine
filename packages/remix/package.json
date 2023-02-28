@@ -3,9 +3,32 @@
   "description": "refine Remix router provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "version": "1.7.0",
   "license": "MIT",
+  "private": false,
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "private": false,
+  "module": "dist/esm/index.js",
+  "exports": {
+    ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/esm/index.js",
+        "require": "./dist/index.js"
+    },
+    "./legacy": {
+        "types": "./dist/legacy/index.d.ts",
+        "import": "./dist/esm/legacy.js",
+        "require": "./dist/legacy.js"
+    }
+},
+"typesVersions": {
+    "*": {
+        ".": [
+            "dist/index.d.ts"
+        ],
+        "legacy": [
+            "dist/legacy/index.d.ts"
+        ]
+    }
+},
   "files": [
     "dist",
     "src"
@@ -20,7 +43,6 @@
     "prepare": "npm run build"
   },
   "author": "refine",
-  "module": "dist/esm/index.js",
   "devDependencies": {
     "@pankod/refine-core": "^3.74.0",
     "remix": "^1.6.7",
@@ -34,6 +56,9 @@
     "ts-jest": "^29.0.3",
     "tslib": "^2.3.1",
     "tsup": "^5.11.13"
+  },
+  "dependencies": {
+      "qs": "^6.10.1"
   },
   "peerDependencies": {
     "@pankod/refine-core": "^3.23.2",

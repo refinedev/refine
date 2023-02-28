@@ -1,27 +1,25 @@
 import React from "react";
 import { renderHook, waitFor } from "@testing-library/react";
-import { Route, Routes } from "react-router-dom";
 
 import { MockJSONServer, TestWrapper, act } from "@test";
-import { posts } from "@test/dataMocks";
+import { mockRouterBindings, posts } from "@test/dataMocks";
 
 import { useShow } from "./useShow";
 
 const Wrapper = TestWrapper({
     dataProvider: MockJSONServer,
-    resources: [{ name: "posts", route: "posts" }],
-    routerInitialEntries: ["/posts/show/1"],
+    resources: [{ name: "posts" }],
+    routerProvider: mockRouterBindings({
+        action: "show",
+        resource: { name: "posts" },
+        id: "1",
+        pathname: "/posts/show/1",
+    }),
 });
 
 const WrapperWithRoute: React.FC<{ children: React.ReactNode }> = ({
     children,
-}) => (
-    <Wrapper>
-        <Routes>
-            <Route path="/:resource/:action/:id" element={children} />
-        </Routes>
-    </Wrapper>
-);
+}) => <Wrapper>{children}</Wrapper>;
 describe("useShow Hook", () => {
     it("should fetch data with use-query params succesfully", async () => {
         const { result } = renderHook(() => useShow(), {

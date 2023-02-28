@@ -9,12 +9,12 @@ import {
     LoadingOverlay,
 } from "@mantine/core";
 import {
-    ResourceRouterParams,
+    useBack,
     useNavigation,
     useRefineContext,
-    useResourceWithRoute,
+    useResource,
     userFriendlyResourceName,
-    useRouterContext,
+    useRouterType,
     useTranslate,
 } from "@pankod/refine-core";
 import { IconArrowLeft } from "@tabler/icons";
@@ -39,23 +39,18 @@ export const Create: React.FC<CreateProps> = (props) => {
         title,
     } = props;
     const translate = useTranslate();
+    const { options: { breadcrumb: globalBreadcrumb } = {} } =
+        useRefineContext();
 
+    const routerType = useRouterType();
+    const back = useBack();
     const { goBack } = useNavigation();
 
-    const { useParams } = useRouterContext();
-
-    const { resource: routeResourceName, action: routeFromAction } =
-        useParams<ResourceRouterParams>();
-
-    const resourceWithRoute = useResourceWithRoute();
-
-    const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
-
-    const { options } = useRefineContext();
+    const { resource, action } = useResource(resourceFromProps);
 
     const breadcrumb =
         typeof breadcrumbFromProps === "undefined"
-            ? options?.breadcrumb
+            ? globalBreadcrumb
             : breadcrumbFromProps;
 
     const breadcrumbComponent =
@@ -77,7 +72,15 @@ export const Create: React.FC<CreateProps> = (props) => {
 
     const buttonBack =
         goBackFromProps === (false || null) ? null : (
-            <ActionIcon onClick={routeFromAction ? goBack : undefined}>
+            <ActionIcon
+                onClick={
+                    action !== "list" || typeof action !== "undefined"
+                        ? routerType === "legacy"
+                            ? goBack
+                            : back
+                        : undefined
+                }
+            >
                 {typeof goBackFromProps !== "undefined" ? (
                     goBackFromProps
                 ) : (
@@ -111,9 +114,12 @@ export const Create: React.FC<CreateProps> = (props) => {
                         {title ?? (
                             <Title order={3} transform="capitalize">
                                 {translate(
-                                    `${resource.name}.titles.create`,
+                                    `${resource?.name}.titles.create`,
                                     `Create ${userFriendlyResourceName(
-                                        resource.label ?? resource.name,
+                                        resource?.meta?.label ??
+                                            resource?.options?.label ??
+                                            resource?.label ??
+                                            resource?.name,
                                         "singular",
                                     )}`,
                                 )}

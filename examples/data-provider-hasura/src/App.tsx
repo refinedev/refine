@@ -4,7 +4,7 @@ import {
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import dataProvider, { GraphQLClient } from "@pankod/refine-hasura";
 import "@pankod/refine-antd/dist/reset.css";
 
@@ -36,7 +36,7 @@ const gqlDataProvider = dataProvider(client);
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={gqlDataProvider}
             // ## Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
             //liveProvider={liveProvider(gqlWebSocketClient)}

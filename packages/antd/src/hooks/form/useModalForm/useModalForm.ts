@@ -9,17 +9,19 @@ import {
     useMutationMode,
     useTranslate,
     useWarnAboutChange,
-    useResourceWithRoute,
-    useRouterContext,
     HttpError,
-    ResourceRouterParams,
     UseFormProps as UseFormPropsCore,
     BaseRecord,
     LiveModeProps,
     BaseKey,
     userFriendlyResourceName,
+    useResource,
+    FormWithSyncWithLocationParams,
+    useParsed,
+    useGo,
 } from "@pankod/refine-core";
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
+import React from "react";
 
 export type useModalFormFromSFReturnType<TData, TVariables> = {
     open: boolean;
@@ -60,7 +62,8 @@ export type UseModalFormProps<
     UseFormProps<TData, TError, TVariables> &
     UseModalFormConfigSF &
     useModalFormConfig &
-    LiveModeProps;
+    LiveModeProps &
+    FormWithSyncWithLocationParams;
 /**
  * `useModalForm` hook allows you to manage a form within a modal. It returns Ant Design {@link https://ant.design/components/form/ Form} and {@link https://ant.design/components/modal/ Modal} components props.
  *
@@ -78,19 +81,39 @@ export const useModalForm = <
     TVariables = {},
 >({
     mutationMode: mutationModeProp,
+    syncWithLocation,
     ...rest
 }: UseModalFormProps<TData, TError, TVariables>): UseModalFormReturnType<
     TData,
     TError,
     TVariables
 > => {
+    const initiallySynced = React.useRef(false);
+
     const useFormProps = useForm<TData, TError, TVariables>({
         ...rest,
         mutationMode: mutationModeProp,
     });
 
-    const { form, formProps, setId, formLoading, mutationResult } =
+    const { form, formProps, id, setId, formLoading, mutationResult } =
         useFormProps;
+
+    const { resource, action: actionFromParams } = useResource(rest.resource);
+
+    const parsed = useParsed();
+    const go = useGo();
+
+    const action = rest.action ?? actionFromParams ?? "";
+
+    const syncingId =
+        typeof syncWithLocation === "object" && syncWithLocation.syncId;
+
+    const syncWithLocationKey =
+        typeof syncWithLocation === "object" && "key" in syncWithLocation
+            ? syncWithLocation.key
+            : resource && action && syncWithLocation
+            ? `modal-${resource?.identifier ?? resource?.name}-${action}`
+            : undefined;
 
     const translate = useTranslate();
 
@@ -104,10 +127,61 @@ export const useModalForm = <
     const {
         visible,
         close,
+        show,
         form: modalForm,
         formProps: modalFormProps,
         modalProps,
     } = sunflowerUseModal;
+
+    React.useEffect(() => {
+        if (initiallySynced.current === false && syncWithLocationKey) {
+            const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
+            if (typeof openStatus === "boolean") {
+                if (openStatus) {
+                    show();
+                }
+            } else if (typeof openStatus === "string") {
+                if (openStatus === "true") {
+                    show();
+                }
+            }
+
+            if (syncingId) {
+                const idFromParams = parsed?.params?.[syncWithLocationKey]?.id;
+                if (idFromParams) {
+                    setId?.(idFromParams);
+                }
+            }
+
+            initiallySynced.current = true;
+        }
+    }, [syncWithLocationKey, parsed, syncingId, setId]);
+
+    React.useEffect(() => {
+        if (initiallySynced.current === true) {
+            if (visible && syncWithLocationKey) {
+                go({
+                    query: {
+                        [syncWithLocationKey]: {
+                            ...parsed?.params?.[syncWithLocationKey],
+                            open: true,
+                            ...(syncingId && id && { id }),
+                        },
+                    },
+                    options: { keepQuery: true },
+                    type: "replace",
+                });
+            } else if (syncWithLocationKey && !visible) {
+                go({
+                    query: {
+                        [syncWithLocationKey]: undefined,
+                    },
+                    options: { keepQuery: true },
+                    type: "replace",
+                });
+            }
+        }
+    }, [id, visible, show, syncWithLocationKey, syncingId]);
 
     const { mutationMode: mutationModeContext } = useMutationMode();
     const mutationMode = mutationModeProp ?? mutationModeContext;
@@ -146,13 +220,6 @@ export const useModalForm = <
         },
         loading: formLoading,
     };
-
-    const { useParams } = useRouterContext();
-
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-
-    const resourceWithRoute = useResourceWithRoute();
-    const resource = resourceWithRoute(rest.resource ?? routeResourceName);
 
     const handleClose = useCallback(() => {
         if (warnWhen) {
@@ -198,9 +265,14 @@ export const useModalForm = <
             width: "1000px",
             okButtonProps: saveButtonPropsSF,
             title: translate(
-                `${resource.name}.titles.${rest.action}`,
+                `${resource?.name}.titles.${rest.action}`,
                 `${userFriendlyResourceName(
-                    `${rest.action} ${resource.name}`,
+                    `${rest.action} ${
+                        resource?.meta?.label ??
+                        resource?.options?.label ??
+                        resource?.label ??
+                        resource?.name
+                    }`,
                     "singular",
                 )}`,
             ),

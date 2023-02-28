@@ -10,7 +10,7 @@ import {
 } from "@pankod/refine-mui";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 
 import { authProvider, axiosInstance } from "./authProvider";
@@ -29,7 +29,7 @@ function App() {
                     LoginPage={LoginPage}
                     ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}
-                    routerProvider={routerProvider}
+                    legacyRouterProvider={routerProvider}
                     legacyAuthProvider={authProvider}
                     dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
                     resources={[

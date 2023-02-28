@@ -22,10 +22,22 @@ const customPagination = {
     position: ["bottomCenter"],
 };
 
+const routerProvider = {
+    parse: () => {
+        return () => ({
+            resource: {
+                name: "posts",
+            },
+        });
+    },
+};
+
 describe("useTable Hook", () => {
     it("default", async () => {
         const { result } = renderHook(() => useTable(), {
-            wrapper: TestWrapper({}),
+            wrapper: TestWrapper({
+                routerProvider,
+            }),
         });
 
         await waitFor(() => {
@@ -50,7 +62,9 @@ describe("useTable Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
             },
         );
 
@@ -72,7 +86,9 @@ describe("useTable Hook", () => {
                     resource: "categories",
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
             },
         );
 
@@ -95,7 +111,9 @@ describe("useTable Hook", () => {
                     syncWithLocation: true,
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
             },
         );
 
@@ -117,7 +135,9 @@ describe("useTable Hook", () => {
                     resource: "categories",
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
             },
         );
 
@@ -144,7 +164,9 @@ describe("useTable Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
             },
         );
 
@@ -197,7 +219,9 @@ describe("useTable Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
             },
         );
 
@@ -234,7 +258,9 @@ describe("useTable Hook", () => {
                         },
                     }),
                 {
-                    wrapper: TestWrapper({}),
+                    wrapper: TestWrapper({
+                        routerProvider,
+                    }),
                 },
             );
 
@@ -256,7 +282,9 @@ describe("useTable Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerProvider,
+                }),
             },
         );
 

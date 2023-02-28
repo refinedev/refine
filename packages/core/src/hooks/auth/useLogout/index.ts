@@ -4,9 +4,9 @@ import {
     UseMutationResult,
 } from "@tanstack/react-query";
 
+import { useGo, useNavigation, useNotification, useRouterType } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { OpenNotificationParams, TLogoutData } from "../../../interfaces";
-import { useNavigation, useNotification } from "@hooks";
 import { AuthActionResponse } from "src/interfaces/bindings/auth";
 
 type Variables = {
@@ -97,6 +97,8 @@ export function useLogout<TVariables = {}>({
 }: UseLogoutProps<TVariables> | UseLogoutLegacyProps<TVariables> = {}):
     | UseLogoutLegacyReturnType<TVariables>
     | UseLogoutReturnType<TVariables> {
+    const routerType = useRouterType();
+    const go = useGo();
     const { push } = useNavigation();
     const { open, close } = useNotification();
     const { logout: legacyLogoutFromContext } = useLegacyAuthContext();
@@ -122,8 +124,14 @@ export function useLogout<TVariables = {}>({
                 open?.(buildNotification(error));
             }
 
-            if (redirect) {
-                push(redirect);
+            if (redirect !== false) {
+                if (routerType === "legacy") {
+                    push(redirect ?? "/login");
+                } else {
+                    if (redirect) {
+                        go({ to: redirect });
+                    }
+                }
             }
         },
         onError: (error: any) => {
@@ -146,11 +154,19 @@ export function useLogout<TVariables = {}>({
             }
 
             if (redirectPath) {
-                push(redirectPath);
+                if (routerType === "legacy") {
+                    push(redirectPath);
+                } else {
+                    go({ to: redirectPath });
+                }
                 return;
             }
 
-            push("/login");
+            if (routerType === "legacy") {
+                push("/login");
+            } else {
+                go({ to: "/login" });
+            }
         },
         onError: (error: any) => {
             open?.(buildNotification(error));
