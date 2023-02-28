@@ -20,7 +20,8 @@ import {
     FormLabel,
     Input,
 } from "@chakra-ui/react";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { useForm } from "@pankod/refine-react-hook-form";
 
 const PostList: React.FC = () => {

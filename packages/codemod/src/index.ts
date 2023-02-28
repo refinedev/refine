@@ -187,6 +187,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         name: "separate-imports-react-query: Moves `@tanstack/react-query` components exported by `refine` into `@tanstack/react-query`",
         value: "separate-imports-react-query",
     },
+    {
+        name: "separate-imports-react-table: Moves `@tanstack/react-table` components exported by `refine` into `@tanstack/react-table`",
+        value: "separate-imports-react-table",
+    },
 ];
 
 function expandFilePathsIfNeeded(filesBeforeExpansion) {
