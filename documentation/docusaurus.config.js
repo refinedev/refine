@@ -35,7 +35,7 @@ const siteConfig = {
                     showLastUpdateTime: true,
                     versions: {
                         current: {
-                            label: "3.xx.xx",
+                            label: "4.xx.xx",
                         },
                     },
                     lastVersion: "current",
