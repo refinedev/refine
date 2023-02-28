@@ -34,7 +34,9 @@ import {
     TablePagination,
 } from "@mui/material";
 
-import { useForm, Controller } from "@pankod/refine-react-hook-form";
+import { useForm } from "@pankod/refine-react-hook-form";
+
+import { Controller } from "react-hook-form";
 
 import MDEditor from "@uiw/react-md-editor";
 

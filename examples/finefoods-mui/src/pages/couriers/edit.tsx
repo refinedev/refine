@@ -28,7 +28,8 @@ import {
     TextFieldProps,
 } from "@mui/material";
 
-import { useStepsForm, Controller } from "@pankod/refine-react-hook-form";
+import { useStepsForm } from "@pankod/refine-react-hook-form";
+import { Controller } from "react-hook-form";
 import { ICourier, IStore } from "interfaces";
 
 export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
@@ -260,7 +261,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                                         ),
                                                     }}
                                                     // eslint-disable-next-line
-                                            defaultValue={null as any}
+                                        defaultValue={null as any}
                                                     render={({ field }) => (
                                                         <Autocomplete
                                                             size="small"
