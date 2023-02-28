@@ -39,6 +39,8 @@ npm i @refinedev/core @refinedev/antd @refinedev/..
 
 :::caution
 You must make this change for all packages that start with `@pankod`.
+
+**Bingo!**: You can use `npx @refinedev/codemod refine3-to-refine4` to do this automatically.
 :::
 
 ## **`@pankod/refine-core` changes**
@@ -630,6 +632,12 @@ useExport({
     })
     ```
 
+    :::tip
+
+    You can use `npx @refinedev/codemod refine3-to-refine4` to do this automatically.
+
+    :::
+
 -   `sort` prop is deprecated. Use `sorters` prop instead.
 
     ```diff
@@ -692,6 +700,40 @@ useList({
 
 All **Ant Design** components re-exported from `@pankod/refine-antd` have been removed. You should import them from `antd` package directly.
 
+If the package is not installed, you should install it with your package manager:
+
+<Tabs
+defaultValue="npm"
+values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
+
+<TabItem value="npm">
+
+```bash
+npm install antd
+```
+
+</TabItem>
+
+<TabItem value="pnpm">
+
+```bash
+pnpm install antd
+```
+
+</TabItem>
+
+<TabItem value="yarn">
+
+```bash
+yarn add antd
+```
+
+</TabItem>
+
+</Tabs>
+
+After that, you can import components from `antd` package directly like below:
+
 ```diff
 -import { useTable, SaveButton, Button, Form, Input, Select } from "@pankod/refine-antd";
 
@@ -699,7 +741,43 @@ All **Ant Design** components re-exported from `@pankod/refine-antd` have been r
 +import { Button, Form, Input, Select } from "antd";
 ```
 
-`Icons` are also removed from `@pankod/refine-antd`. You should import them from `@ant-design/icons` directly.
+<br />
+
+`Icons` are also removed from `@pankod/refine-antd`. So, you should import icons from `@ant-design/icons` package directly.
+
+If the package is not installed, you should install it with your package manager:
+
+<Tabs
+defaultValue="npm"
+values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
+
+<TabItem value="npm">
+
+```bash
+npm install @ant-design/icons
+```
+
+</TabItem>
+
+<TabItem value="pnpm">
+
+```bash
+pnpm install @ant-design/icons
+```
+
+</TabItem>
+
+<TabItem value="yarn">
+
+```bash
+yarn add @ant-design/icons
+```
+
+</TabItem>
+
+</Tabs>
+
+After that, you can import icons from `@ant-design/icons` package directly like below:
 
 ```diff
 -import { Icons } from "@pankod/refine-antd";
@@ -708,11 +786,11 @@ All **Ant Design** components re-exported from `@pankod/refine-antd` have been r
 + import { EditOutlined } from "@ant-design/icons";
 ```
 
-So, you should install `antd` and `@ant-design/icons` packages to access all components and icons.
+:::tip
 
-```bash
-npm install antd @ant-design/icons
-```
+We recommend you to use **codemod** to update your imports automatically. You can find more information about codemod [here][codemode-usage].
+
+:::
 
 ### `useTable` hook
 
@@ -949,6 +1027,42 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 
 All **Material UI** components re-exported from `@pankod/refine-mui` have been removed. You should import them from Material UI packages directly.
 
+If the packages are not installed, you can install them with your package manager:
+
+> You don't have to install all of packages. You can install only the packages that you use.
+
+<Tabs
+defaultValue="npm"
+values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
+
+<TabItem value="npm">
+
+```bash
+npm install @mui/material @emotion/react @emotion/styled @mui/lab @mui/x-data-grid
+```
+
+</TabItem>
+
+<TabItem value="pnpm">
+
+```bash
+pnpm install @mui/material @emotion/react @emotion/styled @mui/lab @mui/x-data-grid
+```
+
+</TabItem>
+
+<TabItem value="yarn">
+
+```bash
+yarn add @mui/material @emotion/react @emotion/styled @mui/lab @mui/x-data-grid
+```
+
+</TabItem>
+
+</Tabs>
+
+After that, you can import them from related packages directly.
+
 ```diff
 - import {
 -    Box,
@@ -967,11 +1081,11 @@ All **Material UI** components re-exported from `@pankod/refine-mui` have been r
 + import { LoadingButton } from "@mui/lab";
 ```
 
-So, you may need to install `@mui/material`, `@emotion/react`, `@emotion/styled`, `@mui/lab`, and `@mui/x-data-grid` packages.
+:::tip
 
-```bash
-npm install @mui/material @emotion/react @emotion/styled @mui/lab @mui/x-data-grid
-```
+We recommend you to use **codemod** to update your imports automatically. You can find more information about codemod [here][codemode-usage].
+
+:::
 
 ### Theme
 
@@ -1100,6 +1214,42 @@ Deprecated `cardProps`, `cardHeaderProps`, `cardContentProps`, `actionButtons`, 
 
 All **Mantine** components re-exported from `@pankod/refine-mantine` have been removed. You should import them from Mantine packages directly.
 
+If the packages are not installed, you can install them with your package manager:
+
+> You don't have to install all of packages. You can install only the packages that you use.
+
+<Tabs
+defaultValue="npm"
+values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
+
+<TabItem value="npm">
+
+```bash
+npm install @mantine/core @emotion/react @mantine/hooks @mantine/notifications @mantine/form
+```
+
+</TabItem>
+
+<TabItem value="pnpm">
+
+```bash
+pnpm install @mantine/core @emotion/react @mantine/hooks @mantine/notifications @mantine/form
+```
+
+</TabItem>
+
+<TabItem value="yarn">
+
+```bash
+yarn add @mantine/core @emotion/react @mantine/hooks @mantine/notifications @mantine/form
+```
+
+</TabItem>
+
+</Tabs>
+
+After that, you can import them from related packages directly.
+
 ```diff
 - import {
 -    MantineProvider,
@@ -1115,11 +1265,11 @@ All **Mantine** components re-exported from `@pankod/refine-mantine` have been r
 + import { NotificationsProvider } from "@mantine/notifications";
 ```
 
-So, you may need to install `@mantine/core`, `@emotion/react`, `@mantine/hooks`, `@mantine/notifications`, and `@mantine/form` packages.
+:::tip
 
-```bash
-npm install @mantine/core @emotion/react @mantine/hooks @mantine/notifications @mantine/form
-```
+We recommend you to use **codemod** to update your imports automatically. You can find more information about codemod [here][codemode-usage].
+
+:::
 
 ### `useSelect` hook
 
@@ -1164,6 +1314,42 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 
 All **Chakra UI** components re-exported from `@pankod/refine-chakra-ui` have been removed. You should import them from `@chakra-ui/react` package directly.
 
+If the packages are not installed, you can install them with your package manager:
+
+> You don't have to install all of packages. You can install only the packages that you use.
+
+<Tabs
+defaultValue="npm"
+values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
+
+<TabItem value="npm">
+
+```bash
+npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
+```
+
+</TabItem>
+
+<TabItem value="pnpm">
+
+```bash
+pnpm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
+```
+
+</TabItem>
+
+<TabItem value="yarn">
+
+```bash
+yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion
+```
+
+</TabItem>
+
+</Tabs>
+
+After that, you can import them from related packages directly.
+
 ```diff
 - import {
 -    ChakraProvider,
@@ -1177,11 +1363,11 @@ All **Chakra UI** components re-exported from `@pankod/refine-chakra-ui` have be
 + import { ChakraProvider, Input, Select } from "@chakra-ui/react";
 ```
 
-So, you may need to install `@chakra-ui/react`, `@emotion/react`, `@emotion/styled`, and `framer-motion` packages.
+:::tip
 
-```bash
-npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
-```
+We recommend you to use **codemod** to update your imports automatically. You can find more information about codemod [here][codemode-usage].
+
+:::
 
 ### Buttons
 
@@ -1204,12 +1390,52 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 
 All `@tanstack/react-table` imports re-exported from `@pankod/refine-react-table` have been removed. You should import them from the `@tanstack/react-table` package directly.
 
+If the package is not installed, you can install it with your package manager:
+
+<Tabs
+defaultValue="npm"
+values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
+
+<TabItem value="npm">
+
+```bash
+npm install @tanstack/react-table
+```
+
+</TabItem>
+
+<TabItem value="pnpm">
+
+```bash
+pnpm install @tanstack/react-table
+```
+
+</TabItem>
+
+<TabItem value="yarn">
+
+```bash
+yarn add @tanstack/react-table
+```
+
+</TabItem>
+
+</Tabs>
+
+After that, you can import them from `@tanstack/react-table` package directly.
+
 ```diff
 - import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 + import { useTable } from "@refinedev/react-table";
 + import { ColumnDef, flexRender } from "@tanstack/react-table";
 ```
+
+:::tip
+
+We recommend you to use **codemod** to update your imports automatically. You can find more information about codemod [here][codemode-usage].
+
+:::
 
 ### `useTable` hook
 
@@ -1294,12 +1520,52 @@ All `@tanstack/react-table` imports re-exported from `@pankod/refine-react-table
 
 All `react-hook-form` imports re-exported from `@pankod/refine-react-hook-form` have been removed. You should import them from the `react-hook-form` package directly.
 
+If the package is not installed, you can install it with your package manager:
+
+<Tabs
+defaultValue="npm"
+values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
+
+<TabItem value="npm">
+
+```bash
+npm install react-hook-form
+```
+
+</TabItem>
+
+<TabItem value="pnpm">
+
+```bash
+pnpm install react-hook-form
+```
+
+</TabItem>
+
+<TabItem value="yarn">
+
+```bash
+yarn add react-hook-form
+```
+
+</TabItem>
+
+</Tabs>
+
+After that, you can import them from `react-hook-form` package directly.
+
 ```diff
 - import { useForm, Controller } from "@pankod/refine-react-hook-form";
 
 + import { useForm } from "@refinedev/react-hook-form";
 + import { Controller } from "react-hook-form";
 ```
+
+:::tip
+
+We recommend you to use **codemod** to update your imports automatically. You can find more information about codemod [here][codemode-usage].
+
+:::
 
 ## **2.0.XX to 3.0.XX**
 
@@ -2011,3 +2277,4 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 [routerprovider]: /api-reference/core/providers/router-provider.md
 [custompages]: /advanced-tutorials/custom-pages.md
 [auth-provider]: /api-reference/core/providers/auth-provider/
+[codemode-usage]: /docs/migration-guide#-migrating-your-project-automatically-with-refine-codemod--recommended
