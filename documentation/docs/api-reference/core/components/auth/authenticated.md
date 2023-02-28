@@ -29,6 +29,20 @@ const MyPage = () => (
 
 ## Properties
 
+### `redirectOnFail`
+
+The path to redirect to if the user is not logged in. If left empty, the user will be redirected to the `redirectTo` property of the `check` function of the `AuthProvider`.
+
+:::info
+
+This property only works if the `fallback` prop is not provided.
+
+:::
+
+### `appendCurrentPathToQuery`
+
+If `true`, the current path will be appended to the `to` query parameter. This is useful when you want to redirect the user to the page they were trying to access after they log in.
+
 ### `fallback`
 
 Component to render if the user is not logged in. If `undefined`, the page will be redirected to `/login`.
