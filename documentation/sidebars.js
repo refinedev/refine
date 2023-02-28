@@ -154,6 +154,11 @@ module.exports = {
                                     type: "category",
                                     label: "Navigation",
                                     items: [
+                                        "api-reference/core/hooks/navigation/useGo",
+                                        "api-reference/core/hooks/navigation/useParsed",
+                                        "api-reference/core/hooks/navigation/useBack",
+                                        "api-reference/core/hooks/navigation/useLink",
+                                        "api-reference/core/hooks/navigation/useGetToPath",
                                         "api-reference/core/hooks/navigation/useNavigation",
                                     ],
                                 },
