@@ -2,8 +2,8 @@ import React from "react";
 import { colors } from "utility";
 
 export const ColorSelect: React.FC<{
-    selected: typeof colors[number];
-    onChange: (color: typeof colors[number]) => void;
+    selected: (typeof colors)[number];
+    onChange: (color: (typeof colors)[number]) => void;
 }> = ({ selected, onChange }) => {
     return (
         <div
