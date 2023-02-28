@@ -14,27 +14,39 @@ How does refine know what the resource value is?
 
 1- The resource value is determined from the active route where the component or the hook is used.
 
-Like below, if you are using the hook in the `<PostList>` component, the `resource` value defaults to `"posts"`.
+:::info
+To make the inference work, you need to pass the `routerProvider` prop to the `<Refine>` component from your router package choice.
+:::
+
+Like below, if you are using the hook in the `<PostList>` component, the `resource` value defaults to `"posts"`. Because the active route is `/posts` and its also defined in the `resources` prop.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerBindings from "@pankod/refine-react-router-v6";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { PostList } from "pages/posts/list.tsx";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route path="/posts" element={<PostList />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
@@ -57,6 +69,12 @@ const PostList: React.FC = () => {
     return <div>...</div>;
 };
 ```
+
+:::info
+
+The value you pass to the `resource` property is also used to determine the active `resource` from the `resources` array. Defining the resource in the `resources` array is **not** required for your API interactions to work but it will enable features of **refine** such as redirecting to the list page after a successful create or update operation.
+
+:::
 
 How can I request an API with nested route?
 
