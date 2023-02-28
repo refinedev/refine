@@ -212,20 +212,18 @@ For example to get the hackathons that are active now we can use the `useList` h
 export const DashboardPage: React.FC = () => {
   const currentHackathons = useList<HackathonType>({
     resource: "hackathons",
-    config: {
-      filters: [
-        {
-          field: "start",
-          operator: "lte",
-          value: now,
-        },
-        {
-          field: "end",
-          operator: "gte",
-          value: now,
-        },
-      ],
-    },
+    filters: [
+      {
+        field: "start",
+        operator: "lte",
+        value: now,
+      },
+      {
+        field: "end",
+        operator: "gte",
+        value: now,
+      },
+    ],
   });
 }
 ```

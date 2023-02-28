@@ -41,16 +41,15 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
     notificationProvider,
     LightTheme,
     Layout,
     ReadyPage,
     ErrorComponent,
     AuthPage,
-} from "@pankod/refine-mantine";
+} from ;
+import { NotificationsProvider } from "@mantine/notifications";
+import { MantineProvider, Global } from "@mantine/core";
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
 const App = () => {
@@ -118,7 +117,7 @@ Login page is used to authenticate users. It provides a basic form to enter emai
 1. Open `src/App.tsx` file and import the `<AuthPage/>` component.
 
     ```tsx
-    import { AuthPage } from "@pankod/refine-mantine";
+    import { AuthPage } from ;
     ```
 
 2. Add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
@@ -128,9 +127,6 @@ Login page is used to authenticate users. It provides a basic form to enter emai
     import routerProvider from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
     import {
-        MantineProvider,
-        Global,
-        NotificationsProvider,
         notificationProvider,
         LightTheme,
         Layout,
@@ -138,7 +134,9 @@ Login page is used to authenticate users. It provides a basic form to enter emai
         ErrorComponent,
         //highlight-next-line
         AuthPage,
-    } from "@pankod/refine-mantine";
+    } from ;
+    import { NotificationsProvider } from "@mantine/notifications";
+    import { MantineProvider, Global } from "@mantine/core";
 
     import { ProductList } from "pages/products/list";
     import { ProductEdit } from "pages/products/edit";
@@ -244,9 +242,6 @@ Register page is used to register new users. It provides a basic form to enter e
     import routerProvider from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
     import {
-        MantineProvider,
-        Global,
-        NotificationsProvider,
         notificationProvider,
         LightTheme,
         Layout,
@@ -254,7 +249,9 @@ Register page is used to register new users. It provides a basic form to enter e
         ErrorComponent,
         //highlight-next-line
         AuthPage,
-    } from "@pankod/refine-mantine";
+    } from ;
+    import { NotificationsProvider } from "@mantine/notifications";
+    import { MantineProvider, Global } from "@mantine/core";
 
     import { ProductList } from "pages/products/list";
     import { ProductEdit } from "pages/products/edit";
@@ -345,9 +342,6 @@ Forgot password page is used to send a reset password link to the user's email. 
     import routerProvider from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
     import {
-        MantineProvider,
-        Global,
-        NotificationsProvider,
         notificationProvider,
         LightTheme,
         Layout,
@@ -355,7 +349,9 @@ Forgot password page is used to send a reset password link to the user's email. 
         ErrorComponent,
         //highlight-next-line
         AuthPage,
-    } from "@pankod/refine-mantine";
+    } from ;
+    import { NotificationsProvider } from "@mantine/notifications";
+    import { MantineProvider, Global } from "@mantine/core";
 
     import { ProductList } from "pages/products/list";
     import { ProductEdit } from "pages/products/edit";
@@ -451,9 +447,6 @@ Update password page is used to update the user's password. It provides a basic 
     import routerProvider from "@pankod/refine-react-router-v6";
     import dataProvider from "@pankod/refine-simple-rest";
     import {
-        MantineProvider,
-        Global,
-        NotificationsProvider,
         notificationProvider,
         LightTheme,
         Layout,
@@ -461,7 +454,9 @@ Update password page is used to update the user's password. It provides a basic 
         ErrorComponent,
         //highlight-next-line
         AuthPage,
-    } from "@pankod/refine-mantine";
+    } from ;
+    import { NotificationsProvider } from "@mantine/notifications";
+    import { MantineProvider, Global } from "@mantine/core";
 
     import { ProductList } from "pages/products/list";
     import { ProductEdit } from "pages/products/edit";

@@ -32,22 +32,25 @@ setInitialRoutes(["/posts"]);
 // visible-block-start
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { GetManyResponse, useMany } from "@pankod/refine-core";
+import {
+    List,
+    // highlight-next-line
+    useModalForm as useDrawerForm,
+    SaveButton,
+} from "@pankod/refine-mantine";
 import {
     Box,
     Group,
-    List,
     ScrollArea,
     Table,
     Pagination,
-    // highlight-next-line
-    useModalForm as useDrawerForm,
     Drawer,
     Select,
     TextInput,
-    SaveButton,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 
 const PostList: React.FC<IResourceComponentsProps> = () => {
     // highlight-start
@@ -252,23 +255,26 @@ setInitialRoutes(["/posts"]);
 // visible-block-start
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { GetManyResponse, useMany } from "@pankod/refine-core";
 import {
-    Box,
-    Group,
     List,
-    ScrollArea,
-    Table,
-    Pagination,
     // highlight-next-line
     useModalForm as useDrawerForm,
-    Drawer,
-    Select,
-    TextInput,
     EditButton,
     SaveButton,
 } from "@pankod/refine-mantine";
+import {
+    Box,
+    Group,
+    ScrollArea,
+    Table,
+    Pagination,
+    Drawer,
+    Select,
+    TextInput,
+} from "@mantine/core";
 
 const PostList: React.FC<IResourceComponentsProps> = () => {
     // highlight-start

@@ -6,19 +6,14 @@ import {
     Create,
     Edit,
     Show,
-    Table,
-    Form,
-    Select,
-    Input,
-    Drawer,
-    Space,
-    Typography,
     EditButton,
     ShowButton,
     DeleteButton,
     useTable,
     useDrawerForm,
 } from "@pankod/refine-antd";
+
+import { Table, Form, Select, Input, Drawer, Space, Typography } from "antd";
 
 import { IPost } from "../../interfaces";
 

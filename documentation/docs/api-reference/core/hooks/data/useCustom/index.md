@@ -111,14 +111,14 @@ useCustom({
 });
 ```
 
-### `config.sort`
+### `config.sorters`
 
 It will be passed to the `custom` method from the `dataProvider` as a parameter. It can be used to send the sort query parameters of the request.
 
 ```tsx
 useCustom({
     config: {
-        sort: [
+        sorters: [
             {
                 field: "title",
                 order: "asc",
@@ -146,6 +146,12 @@ useCustom({
 });
 ```
 
+### ~~`config.sort`~~
+
+:::caution Deprecated
+Use `config.sorters` instead.
+:::
+
 ### `queryOptions`
 
 `queryOptions` is used to pass additional options to the `useQuery` hook. It is useful when you want to pass additional options to the `useQuery` hook.
@@ -161,18 +167,18 @@ useCustom({
 });
 ```
 
-### `metaData`
+### `meta`
 
-[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+[`meta`](/docs/api-reference/general-concepts/#meta) is used following two purposes:
 
 -   To pass additional information to data provider methods.
 -   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
 
-In the following example, `metaData` is passed to the `custom` method from the `dataProvider` as a parameter.
+In the following example, `meta` is passed to the `custom` method from the `dataProvider` as a parameter.
 
 ```tsx
 useCustom({
-    metaData: {
+    meta: {
         foo: "bar",
     },
 });
@@ -187,9 +193,9 @@ const myDataProvider = {
         payload,
         query,
         headers,
-        metaData,
+        meta,
     }) => {
-        const foo = metaData?.foo;
+        const foo = meta?.foo;
 
         console.log(foo); // "bar"
 

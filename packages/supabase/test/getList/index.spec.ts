@@ -1,5 +1,4 @@
 import { SupabaseClient } from "@supabase/supabase-js";
-import nock from "nock";
 import { dataProvider } from "../../src/index";
 import supabaseClient from "../supabaseClient";
 import "./index.mock";
@@ -18,7 +17,7 @@ describe("getList", () => {
     it("correct response with metadata select", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
-            metaData: {
+            meta: {
                 select: "title",
             },
         });
@@ -31,7 +30,7 @@ describe("getList", () => {
     it("correct sorting response", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
-            sort: [
+            sorters: [
                 {
                     field: "title",
                     order: "asc",
@@ -56,7 +55,7 @@ describe("getList", () => {
         it("correct sorting object with foreignTable", async () => {
             await dataProvider(mockSupabaseClient).getList({
                 resource: "posts",
-                sort: [
+                sorters: [
                     {
                         field: "categories.title",
                         order: "asc",
@@ -71,7 +70,7 @@ describe("getList", () => {
         it("correct sorting object without foreignTable", async () => {
             await dataProvider(mockSupabaseClient).getList({
                 resource: "posts",
-                sort: [
+                sorters: [
                     {
                         field: "title",
                         order: "asc",

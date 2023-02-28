@@ -3,7 +3,7 @@ import client from "../gqlClient";
 import "./index.mock";
 
 describe("update", () => {
-    it("correct response with metaData", async () => {
+    it("correct response with meta", async () => {
         const { data } = await dataProvider(client).update({
             resource: "posts",
             id: "eb824b2e-986d-4d19-b6a9-98ca620df046",
@@ -12,7 +12,7 @@ describe("update", () => {
                 content: "Updated Content",
                 category_id: "4653050e-f969-4d58-939b-ece4c17aa506",
             },
-            metaData: {
+            meta: {
                 fields: ["id", "title", "content", { category: ["id"] }],
             },
         });
@@ -25,7 +25,7 @@ describe("update", () => {
         );
     });
 
-    it("correct response without metaData", async () => {
+    it("correct response without meta", async () => {
         const { data } = await dataProvider(client).update({
             resource: "posts",
             id: "eb824b2e-986d-4d19-b6a9-98ca620df046",

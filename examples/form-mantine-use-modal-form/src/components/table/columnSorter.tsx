@@ -1,4 +1,4 @@
-import { ActionIcon } from "@pankod/refine-mantine";
+import { ActionIcon } from "@mantine/core";
 import { IconChevronDown, IconSelector } from "@tabler/icons";
 
 import { ColumnButtonProps } from "../../interfaces";

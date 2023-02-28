@@ -1,10 +1,8 @@
 import React from "react";
 
-import { Route, Routes } from "react-router-dom";
-
 import { renderHook } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper } from "@test";
+import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 
 import { useResource } from "./";
 
@@ -24,14 +22,14 @@ describe("useResource Hook", () => {
         );
     });
 
-    it("should successfully return options value", async () => {
+    it("should successfully return meta value", async () => {
         const { result } = renderHook(() => useResource(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
                 resources: [
                     {
                         name: "posts",
-                        options: {
+                        meta: {
                             isThatReallyWork: true,
                         },
                     },
@@ -43,7 +41,7 @@ describe("useResource Hook", () => {
             expect.arrayContaining([
                 expect.objectContaining({
                     name: "posts",
-                    options: {
+                    meta: {
                         isThatReallyWork: true,
                     },
                 }),
@@ -54,18 +52,19 @@ describe("useResource Hook", () => {
 
 describe("useResource Hook without prop", () => {
     const Wrapper = TestWrapper({
-        routerInitialEntries: ["/posts/edit/1"],
+        routerProvider: mockRouterBindings({
+            pathname: "/posts/edit/1",
+            resource: {
+                name: "posts",
+            },
+            action: "edit",
+            id: "1",
+        }),
     });
 
     const WrapperWith: React.FC<{ children: React.ReactNode }> = ({
         children,
-    }) => (
-        <Wrapper>
-            <Routes>
-                <Route path="/:resource/:action/:id" element={children} />
-            </Routes>
-        </Wrapper>
-    );
+    }) => <Wrapper>{children}</Wrapper>;
 
     it("should return posts as resourceName cause of inital resource", async () => {
         const { result } = renderHook(() => useResource(), {
@@ -81,48 +80,47 @@ describe("useResource Hook without prop", () => {
             resources: [
                 {
                     name: "posts",
-                    options: { route: "custom-route-posts" },
+                    meta: { route: "custom-route-posts" },
                 },
             ],
-            routerInitialEntries: ["/posts"],
+            routerProvider: mockRouterBindings({
+                pathname: "/custom-route-posts",
+                resource: {
+                    name: "posts",
+                    meta: { route: "custom-route-posts" },
+                },
+                action: "list",
+            }),
         });
 
         const WrapperWith: React.FC<{ children: React.ReactNode }> = ({
             children,
-        }) => (
-            <Wrapper>
-                <Routes>
-                    <Route path="/:resource" element={children} />
-                </Routes>
-            </Wrapper>
-        );
+        }) => <Wrapper>{children}</Wrapper>;
         const { result } = renderHook(() => useResource(), {
             wrapper: WrapperWith,
         });
 
-        expect(result.current.resource.options?.route).toBe(
-            "custom-route-posts",
-        );
+        expect(result.current.resource?.meta?.route).toBe("custom-route-posts");
 
-        expect(result.current.action).toBe(undefined);
+        expect(result.current.action).toBe("list");
     });
 });
 
 describe("useResource Hook with resourceName:propResourceName prop", () => {
     it("should return propResourceName as resourceName", async () => {
         const Wrapper = TestWrapper({
-            routerInitialEntries: ["/posts"],
+            routerProvider: mockRouterBindings({
+                pathname: "/posts",
+                resource: {
+                    name: "posts",
+                },
+                action: "list",
+            }),
         });
 
         const WrapperWith: React.FC<{ children: React.ReactNode }> = ({
             children,
-        }) => (
-            <Wrapper>
-                <Routes>
-                    <Route path="/:resource" element={children} />
-                </Routes>
-            </Wrapper>
-        );
+        }) => <Wrapper>{children}</Wrapper>;
         const { result } = renderHook(
             () => useResource({ resourceName: "categories" }),
             {
@@ -130,8 +128,7 @@ describe("useResource Hook with resourceName:propResourceName prop", () => {
             },
         );
 
-        expect(result.current.resourceName).toBe("categories");
-        expect(result.current.action).toBe(undefined);
+        expect(result.current.action).toBe("list");
     });
 });
 
@@ -139,18 +136,18 @@ describe("useResource Hook with resourceNameOrRouteName prop", () => {
     it("should return propResourceName as resourceName", async () => {
         const Wrapper = TestWrapper({
             resources: [{ name: "refine-makes" }],
-            routerInitialEntries: ["/posts"],
+            routerProvider: mockRouterBindings({
+                pathname: "/refine-makes",
+                resource: {
+                    name: "refine-makes",
+                },
+                action: "list",
+            }),
         });
 
         const WrapperWith: React.FC<{ children: React.ReactNode }> = ({
             children,
-        }) => (
-            <Wrapper>
-                <Routes>
-                    <Route path="/:resource" element={children} />
-                </Routes>
-            </Wrapper>
-        );
+        }) => <Wrapper>{children}</Wrapper>;
         const { result } = renderHook(
             () => useResource({ resourceNameOrRouteName: "refine-makes" }),
             {
@@ -158,34 +155,7 @@ describe("useResource Hook with resourceNameOrRouteName prop", () => {
             },
         );
 
-        expect(result.current.resourceName).toBe("refine-makes");
-        expect(result.current.action).toBe(undefined);
-    });
-});
-
-describe("useResource Hook with recordItemId prop", () => {
-    it("should return true id ", async () => {
-        const Wrapper = TestWrapper({
-            routerInitialEntries: ["/posts"],
-        });
-
-        const WrappeWith: React.FC<{ children: React.ReactNode }> = ({
-            children,
-        }) => (
-            <Wrapper>
-                <Routes>
-                    <Route path="/:resource" element={children} />
-                </Routes>
-            </Wrapper>
-        );
-        const { result } = renderHook(
-            () => useResource({ recordItemId: "1" }),
-            {
-                wrapper: WrappeWith,
-            },
-        );
-
-        expect(result.current.id).toBe("1");
-        expect(result.current.action).toBe(undefined);
+        expect(result.current.resource?.name).toBe("refine-makes");
+        expect(result.current.action).toBe("list");
     });
 });

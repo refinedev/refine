@@ -3,7 +3,6 @@ id: appwrite
 title: Appwrite
 ---
 
-
 ## Introduction
 
 **refine** and [Appwrite](https://appwrite.io/) work in harmony, offering you quick development options. You can use your data (API, Database) very simply by using **refine**'s Appwrite data provider.
@@ -233,14 +232,14 @@ import { useLogin } from "@pankod/refine-core";
 import {
     Row,
     Col,
-    AntdLayout,
+    Layout,
     Card,
     Typography,
     Form,
     Input,
     Button,
     Checkbox,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import "./styles.css";
 
@@ -264,7 +263,7 @@ export const Login: React.FC = () => {
     );
 
     return (
-        <AntdLayout className="layout">
+        <Layout className="layout">
             <Row
                 justify="center"
                 align="middle"
@@ -351,7 +350,7 @@ export const Login: React.FC = () => {
                     </div>
                 </Col>
             </Row>
-        </AntdLayout>
+        </Layout>
     );
 };
 ```
@@ -373,7 +372,7 @@ export const Login: React.FC = () => {
 Now we can login with the user we created by Appwrite. We can then list, create and edit posts.
 
 :::tip
-**refine** resource name must be the same as Appwrite Collection ID. You can change your label with resource options.
+**refine** resource name must be the same as Appwrite Collection ID. You can change your label with resource meta.
 
 ```tsx
 const App: React.FC = () => {
@@ -398,7 +397,7 @@ const App: React.FC = () => {
                     //highlight-start
                     name: "61bc3660648a6",
                     //highlight-end
-                    options: {
+                    meta: {
                         //highlight-start
                         label: "Post",
                         //highlight-end
@@ -426,25 +425,26 @@ Now that we've created our collections, we can create and list documents. Let's 
 import { useMany, IResourceComponentsProps } from "@pankod/refine-core";
 import {
     List,
-    Table,
     TextField,
     useTable,
-    Space,
     EditButton,
     ShowButton,
     getDefaultSortOrder,
 } from "@pankod/refine-antd";
+import { Table, Space } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 
 export const PostsList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "$id",
-                order: "asc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "$id",
+                    order: "asc",
+                },
+            ],
+        },
     });
 
     const categoryIds =
@@ -535,16 +535,9 @@ We can now create posts and set categories from our **refine** UI.
 import { useState } from "react";
 
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import {
-    Create,
-    Form,
-    Input,
-    Select,
-    Upload,
-    useForm,
-    useSelect,
-    RcFile,
-} from "@pankod/refine-antd";
+import { Create, useForm, useSelect } from "@pankod/refine-antd";
+import { Form, Input, Select, Upload } from "antd";
+import { RcFile } from "antd/lib/upload/interface";
 
 import MDEditor from "@uiw/react-md-editor";
 
@@ -661,12 +654,12 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
 :::tip
 As we mentioned above, we need permissions to list or create documents in Appwrite. By default, Read Access and Write Access are public when creating documents from **refine** UI.
 
-If you want to restrict [permissions](https://appwrite.io/docs/permissions#permission-types) and only allow specific users, you need to specify it in metaData.
+If you want to restrict [permissions](https://appwrite.io/docs/permissions#permission-types) and only allow specific users, you need to specify it in meta.
 
 ```tsx
 import { Permission, Role } from "@pankod/refine-appwrite";
 const { formProps, saveButtonProps } = useForm<IPost>({
-    metaData: {
+    meta: {
         writePermissions: [Permission.read(Role.any())],
         readPermissions: [Permission.read(Role.any())],
     },
@@ -687,16 +680,9 @@ You can edit the posts and categories we have created update your data.
 import React from "react";
 
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import {
-    Edit,
-    Form,
-    Input,
-    RcFile,
-    Select,
-    Upload,
-    useForm,
-    useSelect,
-} from "@pankod/refine-antd";
+import { Edit, useForm, useSelect } from "@pankod/refine-antd";
+import { Form, Input, Select, Upload } from "antd";
+import { RcFile } from "antd/lib/upload/interface";
 
 import MDEditor from "@uiw/react-md-editor";
 

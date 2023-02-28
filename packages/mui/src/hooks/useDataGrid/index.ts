@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState } from "react";
 import {
     BaseRecord,
     CrudFilters,
@@ -6,8 +6,10 @@ import {
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
     useTableReturnType as useTableReturnTypeCore,
-    useTableNoPaginationReturnType as useTableNoPaginationReturnTypeCore,
     useLiveMode,
+    pickNotDeprecated,
+    Pagination,
+    Prettify,
 } from "@pankod/refine-core";
 import {
     DataGridProps,
@@ -17,7 +19,6 @@ import {
 import { useTheme, darken } from "@mui/material";
 import differenceWith from "lodash/differenceWith";
 import isEqual from "lodash/isEqual";
-import warnOnce from "warn-once";
 
 import {
     transformCrudSortingToSortModel,
@@ -26,44 +27,58 @@ import {
     transformCrudFiltersToFilterModel,
 } from "@definitions";
 
-type DataGridPropsType = Pick<DataGridProps, "filterModel"> &
-    Required<
-        Pick<
-            DataGridProps,
-            | "rows"
-            | "loading"
-            | "rowCount"
-            | "sortingMode"
-            | "sortModel"
-            | "onSortModelChange"
-            | "filterMode"
-            | "onFilterModelChange"
-            | "sx"
-            | "disableSelectionOnClick"
-            | "onStateChange"
-        >
-    > &
+type DataGridPropsType = Required<
     Pick<
         DataGridProps,
-        | "hideFooterPagination"
+        | "rows"
+        | "loading"
+        | "rowCount"
+        | "sortingMode"
+        | "sortModel"
+        | "onSortModelChange"
+        | "filterMode"
+        | "onFilterModelChange"
+        | "sx"
+        | "disableSelectionOnClick"
+        | "onStateChange"
         | "paginationMode"
+    >
+> &
+    Pick<
+        DataGridProps,
         | "page"
         | "onPageChange"
         | "pageSize"
         | "onPageSizeChange"
+        | "filterModel"
     >;
 
-export type UseDataGridProps<
-    TData,
-    TError,
-    TSearchVariables = unknown,
-> = useTablePropsCore<TData, TError> & {
+export type UseDataGridProps<TData, TError, TSearchVariables = unknown> = Omit<
+    useTablePropsCore<TData, TError>,
+    "pagination" | "filters"
+> & {
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
-} & {
-    /**
-     * @deprecated columns is deprecated and will be removed in the next major version. # https://github.com/refinedev/refine/pull/2072
-     */
-    columns?: DataGridProps["columns"];
+    pagination?: Prettify<
+        Omit<Pagination, "pageSize"> & {
+            /**
+             * Initial number of items per page
+             * @default 25
+             */
+            pageSize?: number;
+        }
+    >;
+    filters?: Prettify<
+        Omit<
+            NonNullable<useTablePropsCore<TData, TError>["filters"]>,
+            "defaultBehavior"
+        > & {
+            /**
+             * Default behavior of the `setFilters` function
+             * @default "replace"
+             */
+            defaultBehavior?: "replace" | "merge";
+        }
+    >;
 };
 
 export type UseDataGridReturnType<
@@ -75,91 +90,23 @@ export type UseDataGridReturnType<
     search: (value: TSearchVariables) => Promise<void>;
 };
 
-export type UseDataGridNoPaginationReturnType<
-    TData extends BaseRecord = BaseRecord,
-    TSearchVariables = unknown,
-> = useTableNoPaginationReturnTypeCore<TData> & {
-    dataGridProps: DataGridPropsType;
-    search: (value: TSearchVariables) => Promise<void>;
-};
-
-export type UseDataGridWithColumnsReturnType<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TSearchVariables = unknown,
-> = useTableReturnTypeCore<TData, TError> & {
-    dataGridProps: DataGridPropsType & Pick<DataGridProps, "columns">;
-    search: (value: TSearchVariables) => Promise<void>;
-};
-
-export type UseDataGridWithColumnsNoPaginationReturnType<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TSearchVariables = unknown,
-> = useTableNoPaginationReturnTypeCore<TData, TError> & {
-    dataGridProps: DataGridPropsType & Pick<DataGridProps, "columns">;
-    search: (value: TSearchVariables) => Promise<void>;
-};
-
-export function useDataGrid<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TSearchVariables = unknown,
->(
-    props?: UseDataGridProps<TData, TError, TSearchVariables> & {
-        hasPagination?: true;
-        columns?: undefined;
-    },
-): UseDataGridReturnType<TData, TError, TSearchVariables>;
-export function useDataGrid<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TSearchVariables = unknown,
->(
-    props?: UseDataGridProps<TData, TError, TSearchVariables> & {
-        hasPagination: false;
-        columns?: undefined;
-    },
-): UseDataGridNoPaginationReturnType<TData, TSearchVariables>;
-export function useDataGrid<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TSearchVariables = unknown,
->(
-    props?: UseDataGridProps<TData, TError, TSearchVariables> & {
-        hasPagination?: true;
-        columns: DataGridProps<TData>["columns"];
-    },
-): UseDataGridWithColumnsReturnType<TData, TError, TSearchVariables>;
-export function useDataGrid<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TSearchVariables = unknown,
->(
-    props?: UseDataGridProps<TData, TError, TSearchVariables> & {
-        hasPagination: false;
-        columns: DataGridProps<TData>["columns"];
-    },
-): UseDataGridWithColumnsNoPaginationReturnType<
-    TData,
-    TError,
-    TSearchVariables
->;
 export function useDataGrid<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
 >({
-    columns,
     onSearch: onSearchProp,
     initialCurrent,
     initialPageSize = 25,
+    pagination,
     hasPagination = true,
     initialSorter,
     permanentSorter,
     defaultSetFilterBehavior = "replace",
     initialFilter,
     permanentFilter,
+    filters: filtersFromProp,
+    sorters: sortersFromProp,
     syncWithLocation: syncWithLocationProp,
     resource: resourceFromProp,
     successNotification,
@@ -168,17 +115,17 @@ export function useDataGrid<
     liveMode: liveModeFromProp,
     onLiveEvent,
     liveParams,
+    meta,
     metaData,
     dataProviderName,
-}: UseDataGridProps<TData, TError, TSearchVariables> = {}):
-    | UseDataGridReturnType<TData, TError, TSearchVariables>
-    | UseDataGridNoPaginationReturnType<TData, TSearchVariables>
-    | UseDataGridWithColumnsReturnType<TData, TError, TSearchVariables>
-    | UseDataGridWithColumnsNoPaginationReturnType<
-          TData,
-          TError,
-          TSearchVariables
-      > {
+}: UseDataGridProps<
+    TData,
+    TError,
+    TSearchVariables
+> = {}): UseDataGridReturnType<TData, TError, TSearchVariables> {
+    const theme = useTheme();
+    const liveMode = useLiveMode(liveModeFromProp);
+
     const [columnsTypes, setColumnsType] = useState<Record<string, string>>();
 
     const {
@@ -189,6 +136,8 @@ export function useDataGrid<
         setPageSize,
         filters,
         setFilters,
+        sorters,
+        setSorters,
         sorter,
         setSorter,
         pageCount,
@@ -198,10 +147,12 @@ export function useDataGrid<
         permanentFilter,
         initialCurrent,
         initialPageSize,
-        // @ts-expect-error currently boolean casting is not supported in overloaded types.
-        hasPagination: hasPagination,
+        pagination,
+        hasPagination,
         initialSorter,
         initialFilter,
+        filters: filtersFromProp,
+        sorters: sortersFromProp,
         syncWithLocation: syncWithLocationProp,
         defaultSetFilterBehavior,
         resource: resourceFromProp,
@@ -211,46 +162,45 @@ export function useDataGrid<
         liveMode: liveModeFromProp,
         onLiveEvent,
         liveParams,
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         dataProviderName,
     });
 
     const [muiCrudFilters, setMuiCrudFilters] = useState<CrudFilters>(filters);
 
-    useEffect(() => {
-        warnOnce(
-            !!columns,
-            "[useDataGrid]: `columns` is deprecated and will be removed in the next major version.\nFor more information, see https://github.com/refinedev/refine/pull/2072",
-        );
-    }, []);
-
-    const theme = useTheme();
-
     const { data, isFetched, isLoading } = tableQueryResult;
 
-    const liveMode = useLiveMode(liveModeFromProp);
+    const hasPaginationString = hasPagination === false ? "off" : "server";
+    const isPaginationEnabled =
+        (pagination?.mode ?? hasPaginationString) !== "off";
+
+    const preferredPermanentSorters =
+        pickNotDeprecated(sortersFromProp?.permanent, permanentSorter) ?? [];
+    const preferredPermanentFilters =
+        pickNotDeprecated(filtersFromProp?.permanent, permanentFilter) ?? [];
 
     const handlePageChange = (page: number) => {
-        if (hasPagination) {
+        if (isPaginationEnabled) {
             setCurrent(page + 1);
         }
     };
     const handlePageSizeChange = (pageSize: number) => {
-        if (hasPagination) {
+        if (isPaginationEnabled) {
             setPageSize(pageSize);
         }
     };
 
     const handleSortModelChange = (sortModel: GridSortModel) => {
         const crudSorting = transformSortModelToCrudSorting(sortModel);
-        setSorter(crudSorting);
+        setSorters(crudSorting);
     };
 
     const handleFilterModelChange = (filterModel: GridFilterModel) => {
         const crudFilters = transformFilterModelToCrudFilters(filterModel);
         setMuiCrudFilters(crudFilters);
         setFilters(crudFilters.filter((f) => f.value !== ""));
-        if (hasPagination) {
+        if (isPaginationEnabled) {
             setCurrent(1);
         }
     };
@@ -260,62 +210,31 @@ export function useDataGrid<
             const searchFilters = await onSearchProp(value);
             setMuiCrudFilters(searchFilters);
             setFilters(searchFilters.filter((f) => f.value !== ""));
-            if (hasPagination) {
+            if (isPaginationEnabled) {
                 setCurrent(1);
             }
         }
     };
 
-    const paginationValues = useMemo(() => {
-        if (hasPagination) {
-            return {
-                current,
-                setCurrent,
-                pageSize,
-                setPageSize,
-                pageCount,
-            };
-        }
-
-        return {
-            current: undefined,
-            setCurrent: undefined,
-            pageSize: undefined,
-            setPageSize: undefined,
-            pageCount: undefined,
-        };
-    }, [hasPagination, current, pageSize, pageCount]);
-
     const dataGridPaginationValues = () => {
-        if (hasPagination) {
+        if (isPaginationEnabled) {
             return {
                 paginationMode: "server" as const,
-                page: (current ?? 1) - 1,
+                page: current - 1,
                 onPageChange: handlePageChange,
-                pageSize: pageSize,
+                pageSize,
                 onPageSizeChange: handlePageSizeChange,
             };
         }
 
         return {
-            hideFooterPagination: true,
+            paginationMode: "client" as const,
         };
-    };
-
-    const isReturnColumn = () => {
-        if (columns) {
-            return {
-                columns,
-            };
-        }
-
-        return {};
     };
 
     return {
         tableQueryResult,
         dataGridProps: {
-            ...isReturnColumn(),
             disableSelectionOnClick: true,
             rows: data?.data || [],
             loading: liveMode === "auto" ? isLoading : !isFetched,
@@ -323,12 +242,16 @@ export function useDataGrid<
             ...dataGridPaginationValues(),
             sortingMode: "server",
             sortModel: transformCrudSortingToSortModel(
-                differenceWith(sorter, permanentSorter ?? [], isEqual),
+                differenceWith(sorters, preferredPermanentSorters, isEqual),
             ),
             onSortModelChange: handleSortModelChange,
             filterMode: "server",
             filterModel: transformCrudFiltersToFilterModel(
-                differenceWith(muiCrudFilters, permanentFilter ?? [], isEqual),
+                differenceWith(
+                    muiCrudFilters,
+                    preferredPermanentFilters,
+                    isEqual,
+                ),
                 columnsTypes,
             ),
             onFilterModelChange: handleFilterModelChange,
@@ -361,7 +284,13 @@ export function useDataGrid<
                 },
             },
         },
-        ...paginationValues,
+        current,
+        setCurrent,
+        pageSize,
+        setPageSize,
+        pageCount,
+        sorters,
+        setSorters,
         sorter,
         setSorter,
         filters,

@@ -58,4 +58,42 @@ describe("useCreate Hook", () => {
             });
         });
     });
+
+    describe("useLog", () => {
+        it("publish log on success", async () => {
+            const createMock = jest.fn();
+
+            const { result } = renderHook(() => useCreate(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                    auditLogProvider: {
+                        create: createMock,
+                        get: jest.fn(),
+                        update: jest.fn(),
+                    },
+                }),
+            });
+
+            result.current.mutate({ resource: "posts", values: { id: 1 } });
+
+            await waitFor(() => {
+                expect(result.current.isSuccess).toBeTruthy();
+            });
+
+            expect(createMock).toBeCalled();
+            expect(createMock).toHaveBeenCalledWith({
+                action: "create",
+                author: {},
+                data: {
+                    id: 1,
+                },
+                meta: {
+                    dataProviderName: "default",
+                    id: "1",
+                },
+                resource: "posts",
+            });
+        });
+    });
 });

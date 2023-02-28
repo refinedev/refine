@@ -5,6 +5,8 @@ import {
     useCan,
     useResource,
     useRouterContext,
+    useRouterType,
+    useLink,
 } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import { ActionIcon, Anchor, Button } from "@mantine/core";
@@ -17,26 +19,27 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
     resourceNameOrRouteName,
     hideText = false,
     accessControl,
-    ignoreAccessControlProvider = false,
     svgIconProps,
+    meta,
     children,
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled =
-        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const accessControlEnabled = accessControl?.enabled ?? true;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
-    const { resource, resourceName } = useResource({
-        resourceNameOrRouteName,
-    });
+    const translate = useTranslate();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
 
-    const { Link } = useRouterContext();
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
+
     const { createUrl: generateCreateUrl } = useNavigation();
 
-    const translate = useTranslate();
+    const { resource } = useResource(resourceNameOrRouteName);
 
     const { data } = useCan({
-        resource: resourceName,
+        resource: resource?.name,
         action: "create",
         queryOptions: {
             enabled: accessControlEnabled,
@@ -56,7 +59,10 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
             );
     };
 
-    const createUrl = generateCreateUrl(resource.route!);
+    const createUrl =
+        resource || resourceNameOrRouteName
+            ? generateCreateUrl(resource! || resourceNameOrRouteName!, meta)
+            : "";
 
     const { variant, styles, ...commonProps } = rest;
 
@@ -66,7 +72,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
     return (
         <Anchor
-            component={Link}
+            component={ActiveLink as any}
             to={createUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {

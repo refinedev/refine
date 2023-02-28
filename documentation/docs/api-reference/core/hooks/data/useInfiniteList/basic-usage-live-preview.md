@@ -17,11 +17,9 @@ const PostList = () => {
         isFetchingNextPage,
     } = useInfiniteList({
         resource: "categories",
-        config: {
-            pagination: {
-                pageSize: 4
-            }
-        }
+        pagination: {
+            pageSize: 4,
+        },
     });
 
     if (isLoading) {
@@ -42,19 +40,17 @@ const PostList = () => {
                     </li>
                 ))}
             </ul>
-            {
-                hasNextPage && (
-                    <button
-                        onClick={() => fetchNextPage()}
-                        disabled={isFetchingNextPage}
-                    >
-                        {isFetchingNextPage ? "Loading more..." : "Load More" }
-                    </button>
-                )
-            }
+            {hasNextPage && (
+                <button
+                    onClick={() => fetchNextPage()}
+                    disabled={isFetchingNextPage}
+                >
+                    {isFetchingNextPage ? "Loading more..." : "Load More"}
+                </button>
+            )}
         </div>
     );
-}
+};
 // visible-block-end
 
 setRefineProps({

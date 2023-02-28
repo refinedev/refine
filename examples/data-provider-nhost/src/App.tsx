@@ -1,11 +1,14 @@
-import { AuthProvider, Refine } from "@pankod/refine-core";
+import {
+    LegacyAuthProvider as AuthProvider,
+    Refine,
+} from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
     AuthPage,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import dataProvider from "@pankod/refine-nhost";
 import { NhostAuthProvider } from "@nhost/react-auth";
 
@@ -80,12 +83,12 @@ const App: React.FC = () => {
     return (
         <NhostAuthProvider nhost={nhost}>
             <Refine
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 dataProvider={dataProvider(nhost)}
                 // Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
                 // liveProvider={liveProvider(gqlWebSocketClient)}
                 // options={{ liveMode: "auto" }}
-                authProvider={authProvider}
+                legacyAuthProvider={authProvider}
                 resources={[
                     {
                         name: "posts",

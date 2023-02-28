@@ -5,7 +5,7 @@ import {
     Refine,
     I18nProvider,
     AccessControlProvider,
-    AuthProvider,
+    LegacyAuthProvider,
     DataProvider,
     NotificationProvider,
     IResourceItem,
@@ -18,7 +18,7 @@ const List = () => {
 };
 export interface ITestWrapperProps {
     dataProvider?: DataProvider;
-    authProvider?: AuthProvider;
+    authProvider?: LegacyAuthProvider;
     resources?: IResourceItem[];
     notificationProvider?: NotificationProvider;
     accessControlProvider?: AccessControlProvider;
@@ -58,8 +58,8 @@ export const TestWrapper: (
                 <Refine
                     dataProvider={dataProvider ?? MockJSONServer}
                     i18nProvider={i18nProvider}
-                    routerProvider={MockRouterProvider}
-                    authProvider={authProvider}
+                    legacyRouterProvider={MockRouterProvider}
+                    legacyAuthProvider={authProvider}
                     notificationProvider={notificationProvider}
                     resources={resources ?? [{ name: "posts", list: List }]}
                     accessControlProvider={accessControlProvider}

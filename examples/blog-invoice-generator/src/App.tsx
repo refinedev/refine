@@ -1,11 +1,13 @@
 import { Refine } from "@pankod/refine-core";
+import { notificationProvider, Layout, LoginPage } from "@pankod/refine-antd";
 import {
-    notificationProvider,
-    Layout,
-    LoginPage,
-    Icons,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+    FileAddOutlined,
+    UserAddOutlined,
+    TeamOutlined,
+    InfoCircleOutlined,
+    SlidersOutlined,
+} from "@ant-design/icons";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import "@pankod/refine-antd/dist/reset.css";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 import { authProvider, axiosInstance } from "./authProvider";
@@ -18,24 +20,16 @@ import { MissionList } from "pages/mission";
 
 import { API_URL } from "../src/constants";
 
-const {
-    FileAddOutlined,
-    UserAddOutlined,
-    TeamOutlined,
-    InfoCircleOutlined,
-    SlidersOutlined,
-} = Icons;
-
 function App() {
     const dataProvider = DataProvider(API_URL + "/api", axiosInstance);
 
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             notificationProvider={notificationProvider}
             Layout={Layout}
             dataProvider={dataProvider}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             LoginPage={LoginPage}
             resources={[
                 {

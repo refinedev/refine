@@ -1,11 +1,12 @@
 import React from "react";
 import {
-    ResourceRouterParams,
-    useResourceWithRoute,
-    userFriendlyResourceName,
-    useRouterContext,
     useTranslate,
+    userFriendlyResourceName,
+    useRefineContext,
+    useRouterType,
+    useResource,
 } from "@pankod/refine-core";
+
 import { Box, Heading } from "@chakra-ui/react";
 
 import { CreateButton, Breadcrumb } from "@components";
@@ -22,25 +23,33 @@ export const List: React.FC<ListProps> = (props) => {
         headerProps,
         headerButtonProps,
         headerButtons: headerButtonsFromProps,
-        breadcrumb = <Breadcrumb />,
+        breadcrumb: breadcrumbFromProps,
         title,
     } = props;
     const translate = useTranslate();
+    const { options: { breadcrumb: globalBreadcrumb } = {} } =
+        useRefineContext();
 
-    const { useParams } = useRouterContext();
+    const routerType = useRouterType();
 
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-
-    const resourceWithRoute = useResourceWithRoute();
-
-    const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
+    const { resource } = useResource(resourceFromProps);
 
     const isCreateButtonVisible =
-        canCreate ?? (resource.canCreate || createButtonProps);
+        canCreate ??
+        ((resource?.canCreate ?? !!resource?.create) || createButtonProps);
+
+    const breadcrumb =
+        typeof breadcrumbFromProps === "undefined"
+            ? globalBreadcrumb
+            : breadcrumbFromProps;
 
     const defaultHeaderButtons = isCreateButtonVisible ? (
         <CreateButton
-            resourceNameOrRouteName={resource.route}
+            resourceNameOrRouteName={
+                routerType === "legacy"
+                    ? resource?.route
+                    : resource?.identifier ?? resource?.name
+            }
             {...createButtonProps}
         />
     ) : null;
@@ -69,9 +78,12 @@ export const List: React.FC<ListProps> = (props) => {
         return (
             <Heading as="h3" size="lg">
                 {translate(
-                    `${resource.name}.titles.list`,
+                    `${resource?.name}.titles.list`,
                     userFriendlyResourceName(
-                        resource.label ?? resource.name,
+                        resource?.meta?.label ??
+                            resource?.options?.label ??
+                            resource?.label ??
+                            resource?.name,
                         "plural",
                     ),
                 )}
@@ -97,7 +109,11 @@ export const List: React.FC<ListProps> = (props) => {
                 {...headerProps}
             >
                 <Box minW={200}>
-                    {breadcrumb}
+                    {typeof breadcrumb !== "undefined" ? (
+                        <>{breadcrumb}</> ?? undefined
+                    ) : (
+                        <Breadcrumb />
+                    )}
                     {renderTitle()}
                 </Box>
                 <Box

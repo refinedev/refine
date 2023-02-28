@@ -5,6 +5,7 @@ import {
     useMutationMode,
     useCan,
     useResource,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 
@@ -39,6 +40,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     errorNotification,
     hideText = false,
     accessControl,
+    meta,
     metaData,
     dataProviderName,
     confirmTitle,
@@ -47,14 +49,11 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     svgIconProps,
     ...rest
 }) => {
-    const accessControlEnabled = accessControl?.enabled;
+    const accessControlEnabled = accessControl?.enabled ?? true;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
-    const { resourceName, id, resource } = useResource({
-        resourceNameOrRouteName,
-        recordItemId,
-    });
-
     const translate = useTranslate();
+
+    const { id, resource } = useResource(resourceNameOrRouteName);
 
     const { mutationMode: mutationModeContext } = useMutationMode();
 
@@ -63,9 +62,9 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     const { mutate, isLoading, variables } = useDelete();
 
     const { data } = useCan({
-        resource: resourceName,
+        resource: resource?.name,
         action: "delete",
-        params: { id, resource },
+        params: { id: recordItemId ?? id, resource },
         queryOptions: {
             enabled: accessControlEnabled,
         },
@@ -75,22 +74,25 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
 
     const onConfirm = () => {
         setOpened(false);
-        mutate(
-            {
-                id: id ?? "",
-                resource: resourceName,
-                mutationMode,
-                successNotification,
-                errorNotification,
-                metaData,
-                dataProviderName,
-            },
-            {
-                onSuccess: (value) => {
-                    onSuccess && onSuccess(value);
+        if (resource?.name && (recordItemId ?? id)) {
+            mutate(
+                {
+                    id: recordItemId ?? id ?? "",
+                    resource: resource?.name,
+                    mutationMode,
+                    successNotification,
+                    errorNotification,
+                    meta: pickNotDeprecated(meta, metaData),
+                    metaData: pickNotDeprecated(meta, metaData),
+                    dataProviderName,
                 },
-            },
-        );
+                {
+                    onSuccess: (value) => {
+                        onSuccess && onSuccess(value);
+                    },
+                },
+            );
+        }
     };
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
@@ -107,7 +109,9 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                         aria-label={translate("buttons.edit", "Edit")}
                         onClick={() => setOpened((o) => !o)}
                         isDisabled={isLoading || data?.can === false}
-                        isLoading={id === variables?.id && isLoading}
+                        isLoading={
+                            (recordItemId ?? id) === variables?.id && isLoading
+                        }
                         data-testid={RefineButtonTestIds.DeleteButton}
                         {...rest}
                     >

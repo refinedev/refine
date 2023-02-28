@@ -1,7 +1,7 @@
 import React from "react";
 import { AppProps } from "next/app";
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-nextjs-router";
+import routerProvider from "@pankod/refine-nextjs-router/legacy";
 import dataProvider from "@pankod/refine-simple-rest";
 import { Layout } from "@components/Layout";
 
@@ -12,7 +12,7 @@ const API_URL = "https://fakestoreapi.com";
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             Layout={Layout}
             resources={[{ name: "products" }]}

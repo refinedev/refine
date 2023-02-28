@@ -36,18 +36,18 @@ The typical data provider has following methods:
 import { DataProvider } from "@pankod/refine-core";
 
 const dataProvider: DataProvider = {
-    create: ({ resource, variables, metaData }) => Promise,
-    deleteOne: ({ resource, id, variables, metaData }) => Promise,
+    create: ({ resource, variables, meta }) => Promise,
+    deleteOne: ({ resource, id, variables, meta }) => Promise,
     getList: ({
         resource,
         pagination,
         hasPagination,
-        sort,
+        sorters,
         filters,
-        metaData,
+        meta,
     }) => Promise,
-    getOne: ({ resource, id, metaData }) => Promise,
-    update: ({ resource, id, variables, metaData }) => Promise,
+    getOne: ({ resource, id, meta }) => Promise,
+    update: ({ resource, id, variables, meta }) => Promise,
     getApiUrl: () => "",
     ...
 }
@@ -86,21 +86,19 @@ import { useList } from "@pankod/refine-core";
 
 const postUseListResult = useList({
     resource: "posts",
-    config: {
-        sort: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
-        filters: [
-            {
-                field: "title",
-                operator: "contains",
-                value: "hello",
-            },
-        ],
-    },
+    sorters: [
+        {
+            field: "id",
+            order: "desc",
+        },
+    ],
+    filters: [
+        {
+            field: "title",
+            operator: "contains",
+            value: "hello",
+        },
+    ],
 });
 ```
 
@@ -113,7 +111,7 @@ const dataProvider = {
         /*
         {
           "resource": "posts",
-          "sort": [
+          "sorters": [
             {
               "field": "id",
               "order": "desc"

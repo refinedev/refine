@@ -2,6 +2,7 @@ import React from "react";
 import {
     UpdatePasswordPageProps,
     UpdatePasswordFormTypes,
+    useActiveAuthProvider,
 } from "@pankod/refine-core";
 import { useUpdatePassword, useTranslate } from "@pankod/refine-core";
 import {
@@ -58,8 +59,11 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
     });
     const { getInputProps, onSubmit } = form;
 
+    const authProvider = useActiveAuthProvider();
     const { mutate: updatePassword, isLoading } =
-        useUpdatePassword<UpdatePasswordFormTypes>();
+        useUpdatePassword<UpdatePasswordFormTypes>({
+            v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+        });
 
     const CardContent = (
         <Card style={cardStyles} {...(contentProps ?? {})}>

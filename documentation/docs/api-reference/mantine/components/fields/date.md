@@ -17,18 +17,18 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
+        <MantineCore.MantineProvider
             theme={RefineMantine.LightTheme}
             withNormalizeCSS
             withGlobalStyles
         >
-            <RefineMantine.Global
+            <MantineCore.Global
                 styles={{ body: { WebkitFontSmoothing: "auto" } }}
             />
-            <RefineMantine.NotificationsProvider position="top-right">
+            <MantineNotifications.NotificationsProvider position="top-right">
                 {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            </MantineNotifications.NotificationsProvider>
+        </MantineCore.MantineProvider>
     );
 };
 ```
@@ -48,8 +48,10 @@ setInitialRoutes(["/posts"]);
 import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
-import { List, Table, Pagination, DateField } from "@pankod/refine-mantine";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { List, DateField } from "@pankod/refine-mantine";
+import { Table, Pagination } from "@mantine/core";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(

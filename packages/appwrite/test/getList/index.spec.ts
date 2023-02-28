@@ -20,7 +20,7 @@ describe("getList", () => {
             databaseId: "632455a0b8d017403ce9",
         }).getList({
             resource: "632455a55dc72e1aa016",
-            sort: [
+            sorters: [
                 {
                     field: "title",
                     order: "asc",
@@ -42,7 +42,7 @@ describe("getList", () => {
             databaseId: "632455a0b8d017403ce9",
         }).getList({
             resource: "632455a55dc72e1aa016",
-            sort: [
+            sorters: [
                 {
                     field: "id",
                     order: "asc",

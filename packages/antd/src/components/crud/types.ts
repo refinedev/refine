@@ -1,4 +1,4 @@
-import { CardProps, SpaceProps } from "@components/antd";
+import { CardProps, SpaceProps } from "antd";
 import {
     CreateButtonProps,
     DeleteButtonProps,

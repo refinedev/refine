@@ -45,7 +45,7 @@ jobs:
       - name: Install Doc Dependencies
         run: |
           cd documentation
-          npm install
+          npm ci
       - name: Wait for Netlify Deploy
         uses: probablyup/wait-for-netlify-action@3.2.0
         id: waitForDeployment

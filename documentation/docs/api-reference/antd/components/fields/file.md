@@ -4,7 +4,6 @@ title: File
 swizzle: true
 ---
 
-
 This field is used to display files and uses [`<Typography.Link>`](https://ant.design/components/typography) from Ant Design.
 
 :::info-tip Swizzle
@@ -13,17 +12,17 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Usage
 
-Let's see how we can use `<FileField>` with the example in the edit page. 
+Let's see how we can use `<FileField>` with the example in the edit page.
 
 ```tsx live
 // visible-block-start
-import { 
+import {
     List,
-    Table,
     useTable,
     // highlight-next-line
-    FileField 
+    FileField,
 } from "@pankod/refine-antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -32,11 +31,7 @@ const PostList: React.FC = () => {
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
-                <Table.Column
-                    dataIndex="title"
-                    title="Title"
-                    width="50%"
-                />
+                <Table.Column dataIndex="title" title="Title" width="50%" />
                 <Table.Column<IPost>
                     title="Image"
                     dataIndex="image"
@@ -67,7 +62,7 @@ render(
         resources={[
             {
                 name: "posts",
-                list: PostList
+                list: PostList,
             },
         ]}
     />,

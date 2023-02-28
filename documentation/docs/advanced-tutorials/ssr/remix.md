@@ -848,7 +848,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
                 current: parsedCurrent || 1,
                 pageSize: parsedPageSize || 10,
             },
-            sort: parsedSorter,
+            sorters: parsedSorter,
         });
 
         return json({ initialData: data });

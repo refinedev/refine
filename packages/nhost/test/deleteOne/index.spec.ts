@@ -10,11 +10,11 @@ describe("deleteOne", () => {
         });
     });
 
-    it("correct response with metaData", async () => {
+    it("correct response with meta", async () => {
         const { data } = await dataProvider(nhost).deleteOne({
             resource: "posts",
             id: "92bbb942-a5a7-4cd9-8232-d7aa544a0c40",
-            metaData: {
+            meta: {
                 fields: ["id", "title"],
             },
         });
@@ -23,7 +23,7 @@ describe("deleteOne", () => {
         expect(data.title).toEqual("Etiam tincidunt ex ut auctor faucibus");
     });
 
-    it("correct response without metaData", async () => {
+    it("correct response without meta", async () => {
         const { data } = await dataProvider(nhost).deleteOne({
             resource: "posts",
             id: "2d0c792c-4d28-4dff-a5b8-37858d0faa54",

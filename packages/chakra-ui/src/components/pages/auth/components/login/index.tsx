@@ -2,11 +2,14 @@ import React from "react";
 import {
     LoginPageProps,
     LoginFormTypes,
+    useRouterType,
+    useLink,
     useRouterContext,
     useLogin,
     useTranslate,
     BaseRecord,
     HttpError,
+    useActiveAuthProvider,
 } from "@pankod/refine-core";
 import {
     Box,
@@ -46,9 +49,15 @@ export const LoginPage: React.FC<LoginProps> = ({
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
 
+    const authProvider = useActiveAuthProvider();
+    const { mutate: login } = useLogin<LoginFormTypes>({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
     const translate = useTranslate();
-    const { mutate: login } = useLogin<LoginFormTypes>();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const NewLink = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+    const Link = routerType === "legacy" ? LegacyLink : NewLink;
     const methods = useForm<BaseRecord, HttpError, LoginFormTypes>({
         ...useFormProps,
     });

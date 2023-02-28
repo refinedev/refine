@@ -8,7 +8,8 @@ export {
     ActionWithPage,
     AccessControlProvider,
     AuditLogProvider,
-    AuthProvider,
+    LegacyAuthProvider,
+    AuthBindings,
     BaseKey,
     BaseRecord,
     CanParams,
@@ -35,6 +36,7 @@ export {
     LogicalFilter,
     LogParams,
     MapDataFn,
+    MetaQuery,
     MetaDataQuery,
     MutationMode,
     NotificationProvider,
@@ -56,7 +58,7 @@ export {
     UpdateResponse,
     I18nProvider,
     IAccessControlContext,
-    IAuthContext,
+    ILegacyAuthContext,
     IDataContextProvider as DataProvider,
     ILiveContext as LiveProvider,
     ILog,
@@ -71,6 +73,21 @@ export {
     IRouterProvider,
     ITreeMenu,
     IQueryKeys,
+    AccessControlBindings,
+    DataBindings,
+    i18nBindings,
+    LiveBindings,
+    NotificationsBindings,
+    ResourceBindings,
+    RouterBindings,
+    ParseResponse,
+    ParsedParams,
+    GoConfig,
+    BackFunction,
+    GoFunction,
+    ParseFunction,
+    Prettify,
+    FormWithSyncWithLocationParams,
 } from "./interfaces";
 
 // all auth types
@@ -95,5 +112,11 @@ export {
     userFriendlyResourceName,
     getNextPageParam,
     getPreviousPageParam,
+    pickNotDeprecated,
+    legacyResourceTransform,
+    matchResourceFromRoute,
+    useActiveAuthProvider,
 } from "./definitions/helpers";
 export { file2Base64 } from "./definitions/upload";
+
+export { ResourceContext } from "./contexts/resource/index";

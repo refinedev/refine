@@ -16,3 +16,10 @@ export {
     getNextPageParam,
     getPreviousPageParam,
 } from "./useInfinitePagination";
+export { pickNotDeprecated } from "./pickNotDeprecated";
+export { legacyResourceTransform } from "./legacy-resource-transform";
+export { matchResourceFromRoute } from "./router/match-resource-from-route";
+export { getActionRoutesFromResource } from "./router";
+export { composeRoute } from "./router/compose-route";
+export { useActiveAuthProvider } from "./useActiveAuthProvider";
+export { handlePaginationParams } from "./handlePaginationParams";

@@ -31,21 +31,20 @@ setInitialRoutes(["/posts"]);
 // visible-block-start
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { GetManyResponse, useMany } from "@pankod/refine-core";
+import { List, useModalForm, SaveButton } from "@pankod/refine-mantine";
 import {
     Box,
     Group,
-    List,
     ScrollArea,
     Table,
     Pagination,
-    useModalForm,
     Modal,
     Select,
     TextInput,
-    SaveButton,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 
 const PostList: React.FC<IResourceComponentsProps> = () => {
     // highlight-start
@@ -243,22 +242,25 @@ setInitialRoutes(["/posts"]);
 // visible-block-start
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { GetManyResponse, useMany } from "@pankod/refine-core";
 import {
-    Box,
-    Group,
     List,
-    ScrollArea,
-    Table,
-    Pagination,
     useModalForm,
-    Modal,
-    Select,
-    TextInput,
     EditButton,
     SaveButton,
 } from "@pankod/refine-mantine";
+import {
+    Box,
+    Group,
+    ScrollArea,
+    Table,
+    Pagination,
+    Modal,
+    Select,
+    TextInput,
+} from "@mantine/core";
 
 const PostList: React.FC<IResourceComponentsProps> = () => {
     // highlight-start
@@ -515,22 +517,25 @@ setInitialRoutes(["/posts"]);
 // visible-block-start
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { GetManyResponse, useMany } from "@pankod/refine-core";
 import {
-    Box,
-    Group,
     List,
-    ScrollArea,
-    Table,
-    Pagination,
     useModalForm,
-    Modal,
-    Select,
-    TextInput,
     CloneButton,
     SaveButton,
 } from "@pankod/refine-mantine";
+import {
+    Box,
+    Group,
+    ScrollArea,
+    Table,
+    Pagination,
+    Modal,
+    Select,
+    TextInput,
+} from "@mantine/core";
 
 const PostList: React.FC<IResourceComponentsProps> = () => {
     // highlight-start

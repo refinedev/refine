@@ -32,15 +32,14 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
     notificationProvider,
     LightTheme,
     Layout,
     ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-mantine";
+} from ;
+import { NotificationsProvider } from "@mantine/notifications";
+import { MantineProvider, Global } from "@mantine/core";
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
 const App = () => {
@@ -177,15 +176,14 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
     notificationProvider,
     LightTheme,
     Layout,
     ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-mantine";
+} from ;
+import { NotificationsProvider } from "@mantine/notifications";
+import { MantineProvider, Global } from "@mantine/core";
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
 //highlight-next-line

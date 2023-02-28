@@ -1,13 +1,12 @@
 import { HttpError } from "@pankod/refine-core";
+import { Edit, useAutocomplete } from "@pankod/refine-mui";
 import {
     Autocomplete,
     Box,
     Drawer,
-    Edit,
     IconButton,
     TextField,
-    useAutocomplete,
-} from "@pankod/refine-mui";
+} from "@mui/material";
 import {
     Controller,
     UseModalFormReturnType,
@@ -40,7 +39,7 @@ export const EditPostDrawer: React.FC<
         >
             <Edit
                 saveButtonProps={saveButtonProps}
-                cardHeaderProps={{
+                headerProps={{
                     action: (
                         <IconButton
                             onClick={() => close()}

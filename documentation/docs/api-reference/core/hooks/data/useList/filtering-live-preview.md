@@ -25,15 +25,13 @@ const ProductList: React.FC = () => {
     const { data, isLoading, isError } = useList<IProduct, HttpError>({
         resource: "products",
         //highlight-start
-        config: {
-            filters: [
-                {
-                    field: "material",
-                    operator: "eq",
-                    value,
-                },
-            ],
-        },
+        filters: [
+            {
+                field: "material",
+                operator: "eq",
+                value,
+            },
+        ],
         //highlight-end
     });
 

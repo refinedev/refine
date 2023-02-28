@@ -1,32 +1,29 @@
-import { ResourceProps } from "src/interfaces";
+import { ResourceProps } from "src/interfaces/bindings/resource";
+import { getParentPrefixForResource } from "../router";
+import { pickNotDeprecated } from "../pickNotDeprecated";
 
-const getParentOf = (item: ResourceProps) => {
-    return (resourceItem: ResourceProps) =>
-        item.parentName ? resourceItem.name === item.parentName : false;
-};
-
+/**
+ * generates route for the resource based on parents and custom routes
+ * @deprecated this is a **legacy** function and works only with the old resource definition
+ */
 export const routeGenerator = (
     item: ResourceProps,
     resourcesFromProps: ResourceProps[],
 ): string | undefined => {
     let route;
 
-    const resourceRoute = item.options?.route ?? item.name;
+    const parentPrefix = getParentPrefixForResource(
+        item,
+        resourcesFromProps,
+        true,
+    );
 
-    if (item.parentName) {
-        const parent = resourcesFromProps.find(getParentOf(item));
-
-        if (parent?.parentName) {
-            const routePrefix = routeGenerator(parent, resourcesFromProps);
-
-            route = `${routePrefix}/${resourceRoute}`;
-        } else if (item.parentName) {
-            const parentPrefix =
-                parent?.options?.route ?? parent?.name ?? item.parentName;
-            route = `${parentPrefix}/${resourceRoute}`;
-        }
+    if (parentPrefix) {
+        const meta = pickNotDeprecated(item.meta, item.options);
+        route = `${parentPrefix}/${meta?.route ?? item.name}`;
     } else {
-        route = resourceRoute;
+        route = item.options?.route ?? item.name;
     }
-    return route;
+
+    return `/${route.replace(/^\//, "")}`;
 };

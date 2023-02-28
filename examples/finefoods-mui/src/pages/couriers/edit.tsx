@@ -7,27 +7,27 @@ import {
     useApiUrl,
     HttpError,
 } from "@pankod/refine-core";
+import { Edit, SaveButton, useAutocomplete } from "@pankod/refine-mui";
+
 import {
     Avatar,
     Button,
-    Edit,
     Box,
     FormControl,
     FormHelperText,
     FormLabel,
     Grid,
-    SaveButton,
     Stack,
     Step,
     Stepper,
     StepButton,
     TextField,
     Typography,
-    useAutocomplete,
     Autocomplete,
     Input,
     TextFieldProps,
-} from "@pankod/refine-mui";
+} from "@mui/material";
+
 import { useStepsForm, Controller } from "@pankod/refine-react-hook-form";
 import { ICourier, IStore } from "interfaces";
 
@@ -336,7 +336,6 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                                     {(
                                                         props: TextFieldProps,
                                                     ) => (
-                                                        // @ts-expect-error Incompatible types
                                                         <TextField
                                                             {...props}
                                                             size="small"

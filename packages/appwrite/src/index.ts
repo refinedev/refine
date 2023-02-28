@@ -5,7 +5,6 @@ import {
     CrudFilters,
     CrudSorting,
     CrudFilter,
-    Pagination,
 } from "@pankod/refine-core";
 import {
     Client as Appwrite,
@@ -20,7 +19,6 @@ const getRefineEvent = (event: string): LiveEvent["type"] | undefined => {
     if (event.includes(".create")) {
         return "created";
     } else if (event.includes(".update")) {
-        return "updated";
     } else if (event.includes(".delete")) {
         return "deleted";
     }
@@ -80,11 +78,11 @@ export const getAppwriteFilters: GetAppwriteFiltersType = (filters) => {
     return appwriteFilters;
 };
 
-export const getAppwriteSorting: GetAppwriteSortingType = (sort) => {
+export const getAppwriteSorting: GetAppwriteSortingType = (sorters) => {
     const sorts: string[] = [];
 
-    if (sort) {
-        sort.map((item) => {
+    if (sorters) {
+        sorters.map((item) => {
             const field = item.field === "id" ? "$id" : item.field;
             if (item.order === "asc") {
                 sorts.push(Query.orderAsc(field));
@@ -97,9 +95,7 @@ export const getAppwriteSorting: GetAppwriteSortingType = (sort) => {
     return sorts;
 };
 
-export const getAppwritePagination = (pagination: Pagination) => {
-    const { current = 1, pageSize = 10 } = pagination ?? {};
-
+export const getAppwritePagination = (current: number, pageSize: number) => {
     return [Query.offset((current - 1) * pageSize), Query.limit(pageSize)];
 };
 
@@ -112,19 +108,21 @@ export const dataProvider = (
     const database = new Databases(appwriteClient);
 
     return {
-        getList: async ({
-            resource,
-            hasPagination = true,
-            pagination = { current: 1, pageSize: 10 },
-            filters,
-            sort,
-        }) => {
-            const appwriteFilters = getAppwriteFilters(filters);
-            const appwritePagination = hasPagination
-                ? getAppwritePagination(pagination)
-                : [];
+        getList: async ({ resource, pagination, filters, sorters }) => {
+            const {
+                current = 1,
+                pageSize = 10,
+                mode = "server",
+            } = pagination ?? {};
 
-            const appwriteSorts = getAppwriteSorting(sort);
+            const appwriteFilters = getAppwriteFilters(filters);
+
+            const appwritePagination =
+                mode === "server"
+                    ? getAppwritePagination(current, pageSize)
+                    : [];
+
+            const appwriteSorts = getAppwriteSorting(sorters);
 
             const { total: total, documents: data } =
                 await database.listDocuments<any>(databaseId, resource, [
@@ -155,12 +153,12 @@ export const dataProvider = (
                 },
             } as any;
         },
-        update: async ({ resource, id, variables, metaData }) => {
+        update: async ({ resource, id, variables, meta }) => {
             const permissions = [
                 Permission.read(Role.any()),
                 Permission.write(Role.any()),
-                ...(metaData?.readPermissions ?? ""),
-                ...(metaData?.writePermissions ?? ""),
+                ...(meta?.readPermissions ?? ""),
+                ...(meta?.writePermissions ?? ""),
             ];
             const { $id, ...restData } = await database.updateDocument(
                 databaseId,
@@ -177,18 +175,18 @@ export const dataProvider = (
                 },
             } as any;
         },
-        create: async ({ resource, variables, metaData }) => {
+        create: async ({ resource, variables, meta }) => {
             const permissions = [
                 Permission.read(Role.any()),
                 Permission.write(Role.any()),
-                ...(metaData?.readPermissions ?? ""),
-                ...(metaData?.writePermissions ?? ""),
+                ...(meta?.readPermissions ?? ""),
+                ...(meta?.writePermissions ?? ""),
             ];
 
             const { $id, ...restData } = await database.createDocument(
                 databaseId,
                 resource,
-                metaData?.documentId ?? ID.unique(),
+                meta?.documentId ?? ID.unique(),
                 variables as unknown as object,
                 permissions,
             );
@@ -200,19 +198,19 @@ export const dataProvider = (
                 },
             } as any;
         },
-        createMany: async ({ resource, variables, metaData }) => {
+        createMany: async ({ resource, variables, meta }) => {
             const permissions = [
                 Permission.read(Role.any()),
                 Permission.write(Role.any()),
-                ...(metaData?.readPermissions ?? ""),
-                ...(metaData?.writePermissions ?? ""),
+                ...(meta?.readPermissions ?? ""),
+                ...(meta?.writePermissions ?? ""),
             ];
             const data = await Promise.all(
                 variables.map((document) =>
                     database.createDocument<any>(
                         databaseId,
                         resource,
-                        metaData?.documentId ?? ID.unique(),
+                        meta?.documentId ?? ID.unique(),
                         document as unknown as any,
                         permissions,
                     ),
@@ -268,12 +266,12 @@ export const dataProvider = (
                 })),
             } as any;
         },
-        updateMany: async ({ resource, ids, variables, metaData }) => {
+        updateMany: async ({ resource, ids, variables, meta }) => {
             const permissions = [
                 Permission.read(Role.any()),
                 Permission.write(Role.any()),
-                ...(metaData?.readPermissions ?? ""),
-                ...(metaData?.writePermissions ?? ""),
+                ...(meta?.readPermissions ?? ""),
+                ...(meta?.writePermissions ?? ""),
             ];
             const data = await Promise.all(
                 ids.map((id) =>

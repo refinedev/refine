@@ -32,7 +32,8 @@ export const PostList: React.FC = () => {
 Also, you can use the `inputProps` and `uploadProps` properties without the `<ImportButton>` component for more customization:
 
 ```tsx
-import { useImport, Upload, Button } from "@pankod/refine-antd";
+import { useImport } from "@pankod/refine-antd";
+import { Upload, Button } from "antd";
 
 export const PostList: React.FC = () => {
     const { buttonProps, uploadProps } = useImport();
@@ -47,7 +48,7 @@ export const PostList: React.FC = () => {
 
 ## Properties
 
-### `resourceName`
+### `resource`
 
 > Default: It reads the `resource` value from the current URL.
 
@@ -55,7 +56,7 @@ Determines which resource is passed to the `create` or `createMany` method of yo
 
 ```ts
 useImport({
-    resourceName: "posts",
+    resource: "posts",
 });
 ```
 
@@ -118,13 +119,13 @@ useImport({
 });
 ```
 
-### `metaData`
+### `meta`
 
-If you want to send additional data to the `create` or `createMany` method of your data provider, you can use the `metaData` property.
+If you want to send additional data to the `create` or `createMany` method of your data provider, you can use the `meta` property.
 
 ```ts
 useImport({
-    metaData: {
+    meta: {
         foo: "bar",
     },
 });
@@ -155,6 +156,12 @@ useImport({
 });
 ```
 
+### ~~`resourceName`~~
+
+:::caution Deprecated
+Use `resource` instead.
+:::
+
 ## Return Values
 
 ### `buttonProps`
@@ -162,7 +169,8 @@ useImport({
 Button properties that are compatible with Ant Design [`<Button>`](https://ant.design/components/button/) component.
 
 ```tsx
-import { useImport, Button } from "@pankod/refine-antd";
+import { useImport } from "@pankod/refine-antd";
+import { Button } from "antd";
 
 export const PostList: React.FC = () => {
     const { buttonProps } = useImport();
@@ -184,7 +192,8 @@ If the import is in progress, it sets the loading state of the button.
 Upload properties that are compatible with Ant Design [`<Upload>`](https://ant.design/components/upload/) component.
 
 ```tsx
-import { useImport, Upload } from "@pankod/refine-antd";
+import { useImport } from "@pankod/refine-antd";
+import { Upload } from "antd";
 
 export const PostList: React.FC = () => {
     const { uploadProps } = useImport();

@@ -1,11 +1,5 @@
 import React from "react";
-import {
-    Affix,
-    Button,
-    Modal,
-    Group,
-    ActionIcon,
-} from "@pankod/refine-mantine";
+import { Affix, Button, Modal, Group, ActionIcon } from "@mantine/core";
 import {
     IconCode,
     IconMessageCircle,

@@ -587,12 +587,19 @@ module.exports = {
             const imports = getImports(content);
 
             imports.map((importItem) => {
-                // for mantine imports
-                if (
-                    importItem.importPath === "@mantine/core" ||
-                    importItem.importPath === "@components"
-                ) {
+                // for refine-mantine imports
+                if (importItem.importPath === "@components") {
                     const newStatement = `import ${importItem.namedImports} from "@pankod/refine-mantine";`;
+
+                    newContent = newContent.replace(
+                        importItem.statement,
+                        newStatement,
+                    );
+                }
+
+                // for mantine imports
+                if (importItem.importPath === "@mantine/core") {
+                    const newStatement = `import ${importItem.namedImports} from "@mantine/core";`;
 
                     newContent = newContent.replace(
                         importItem.statement,

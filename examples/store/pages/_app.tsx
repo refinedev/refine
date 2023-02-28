@@ -3,7 +3,7 @@ import { AppProps } from "next/app";
 import Script from "next/script";
 
 import { GetListResponse, Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-nextjs-router";
+import routerProvider from "@pankod/refine-nextjs-router/legacy";
 import dataProvider, { authProvider } from "@pankod/refine-medusa";
 import NextNProgress from "nextjs-progressbar";
 import { ProductCollection } from "@medusajs/medusa";
@@ -33,16 +33,16 @@ function MyApp({
                     <Layout {...rest} categories={categories} />
                 )}
                 DashboardPage={Dashboard}
-                authProvider={authProvider(PROXY_URL)}
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
+                legacyAuthProvider={authProvider(PROXY_URL)}
                 dataProvider={dataProvider(PROXY_URL)}
                 resources={[
                     {
                         name: "dummy",
                     },
                 ]}
-                warnWhenUnsavedChanges={true}
                 options={{
+                    warnWhenUnsavedChanges: true,
                     reactQuery: {
                         clientConfig: {
                             defaultOptions: {

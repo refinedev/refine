@@ -1,11 +1,11 @@
 import { CrudSorting } from "@pankod/refine-core";
 
-export const generateSort = (sort?: CrudSorting) => {
-    if (sort && sort.length > 0) {
+export const generateSort = (sorters?: CrudSorting) => {
+    if (sorters && sorters.length > 0) {
         const _sort: string[] = [];
         const _order: string[] = [];
 
-        sort.map((item) => {
+        sorters.map((item) => {
             _sort.push(item.field);
             _order.push(item.order);
         });

@@ -5,17 +5,9 @@ import {
     useDelete,
     useNavigation,
 } from "@pankod/refine-core";
-import {
-    DataGrid,
-    useDataGrid,
-    GridColumns,
-    GridActionsCellItem,
-    List,
-    Stack,
-    Avatar,
-    Typography,
-    Tooltip,
-} from "@pankod/refine-mui";
+import { useDataGrid, List } from "@pankod/refine-mui";
+import { Stack, Avatar, Typography, Tooltip } from "@mui/material";
+import { DataGrid, GridColumns, GridActionsCellItem } from "@mui/x-data-grid";
 import { Edit, Close } from "@mui/icons-material";
 
 import { ICourier } from "interfaces";
@@ -125,7 +117,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
     );
 
     return (
-        <List cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
+        <List wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
             <DataGrid
                 {...dataGridProps}
                 columns={columns}

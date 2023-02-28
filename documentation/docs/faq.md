@@ -56,7 +56,8 @@ export const UserCreate: React.FC = () => {
 
 ```tsx
 import React from "react";
-import { useForm, Form, Input } from "@pankod/refine-antd";
+import { useForm } from "@pankod/refine-antd";
+import { Form, Input } from "antd";
 
 export const UserCreate: React.FC = () => {
     const { formProps } = useForm();
@@ -253,7 +254,7 @@ const myDataProvider = {
 
 What if we want to select `PUT` or `PATCH` on a request basis?
 
-💥 We can use `metaData` for this. Remember, `metaData` can be used in all `data`, `form` and `table` hooks
+💥 We can use `meta` for this. Remember, `meta` can be used in all `data`, `form` and `table` hooks
 
 ```tsx
 // PATCH Request
@@ -263,7 +264,7 @@ useUpdate({
     variables: {
         foo: "bar",
     },
-    metaData: {
+    meta: {
         httpMethod: "patch",
     },
 });
@@ -275,7 +276,7 @@ useUpdate({
     variables: {
         foo: "bar",
     },
-    metaData: {
+    meta: {
         httpMethod: "put",
     },
 });
@@ -283,8 +284,8 @@ useUpdate({
 const simpleRestProvider = dataProvider("API_URL");
 const myDataProvider = {
     ...simpleRestProvider,
-    update: async ({ resource, id, variables, metaData }) => {
-        const method = metaData.httpMethod ?? "patch";
+    update: async ({ resource, id, variables, meta }) => {
+        const method = meta.httpMethod ?? "patch";
 
         const url = `${apiUrl}/${resource}/${id}`;
 

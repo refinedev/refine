@@ -101,7 +101,13 @@ export const buttonShowTests = function (
 
         it("should skip access control", async () => {
             const { container, getByText } = render(
-                <ShowButton ignoreAccessControlProvider>Show</ShowButton>,
+                <ShowButton
+                    accessControl={{
+                        enabled: false,
+                    }}
+                >
+                    Show
+                </ShowButton>,
                 {
                     wrapper: TestWrapper({
                         accessControlProvider: {
@@ -251,7 +257,7 @@ export const buttonShowTests = function (
                         resources: [
                             {
                                 name: "posts",
-                                options: { route: "custom-route-posts" },
+                                meta: { route: "custom-route-posts" },
                             },
                             { name: "posts" },
                         ],

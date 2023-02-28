@@ -3,11 +3,11 @@ import {
     notificationProvider,
     ReadyPage,
     ErrorComponent,
-    Icons,
-    ConfigProvider,
 } from "@pankod/refine-antd";
+import { GithubOutlined } from "@ant-design/icons";
+import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@pankod/refine-supabase";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import { Layout } from "components/layout";
 import { CanvasFeaturedList, CanvasList, CanvasShow } from "pages/canvases";
@@ -19,8 +19,6 @@ import { authProvider, auditLogProvider } from "./providers";
 import "@pankod/refine-antd/dist/reset.css";
 
 import "styles/style.css";
-
-const { GithubOutlined } = Icons;
 
 function App() {
     return (
@@ -39,10 +37,10 @@ function App() {
         >
             <Refine
                 auditLogProvider={auditLogProvider}
-                authProvider={authProvider}
+                legacyAuthProvider={authProvider}
                 dataProvider={dataProvider(supabaseClient)}
                 liveProvider={liveProvider(supabaseClient)}
-                routerProvider={{
+                legacyRouterProvider={{
                     ...routerProvider,
                     routes: [
                         {

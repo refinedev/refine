@@ -4,7 +4,6 @@ title: Date
 swizzle: true
 ---
 
-
 This field is used to display dates. It uses [`Day.js`](https://day.js.org/docs/en/display/format) to display date format.
 
 :::info-tip Swizzle
@@ -19,12 +18,11 @@ Let's see how we can use `<DateField>` with the example in the post list.
 // visible-block-start
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     List,
     // highlight-next-line
     DateField,
 } from "@pankod/refine-mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     { field: "id", headerName: "ID", type: "number" },
@@ -34,9 +32,7 @@ const columns: GridColumns = [
         headerName: "Created At",
         renderCell: function render({ row }) {
             // highlight-start
-            return (
-                <DateField format="LLL" value={row.createdAt} />
-            );
+            return <DateField format="LLL" value={row.createdAt} />;
             // highlight-end
         },
         minWidth: 100,

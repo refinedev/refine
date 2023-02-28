@@ -1,13 +1,18 @@
 import React from "react";
 import { Refine } from "@pankod/refine-core";
 import { RefineKbarProvider } from "@pankod/refine-kbar";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import {
-    Icons,
     notificationProvider,
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
+import {
+    ShoppingOutlined,
+    UsergroupAddOutlined,
+    ShopOutlined,
+    StarOutlined,
+} from "@ant-design/icons";
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
 import { authProvider } from "authProvider";
 
@@ -48,7 +53,7 @@ const App: React.FC = () => {
     return (
         <RefineKbarProvider>
             <Refine
-                routerProvider={{
+                legacyRouterProvider={{
                     ...routerProvider,
                     routes: [
                         {
@@ -76,7 +81,7 @@ const App: React.FC = () => {
                     ],
                 }}
                 dataProvider={dataProvider}
-                authProvider={authProvider}
+                legacyAuthProvider={authProvider}
                 i18nProvider={i18nProvider}
                 OffLayoutArea={OffLayoutArea}
                 DashboardPage={DashboardPage}
@@ -103,13 +108,13 @@ const App: React.FC = () => {
                         name: "orders",
                         list: OrderList,
                         show: OrderShow,
-                        icon: <Icons.ShoppingOutlined />,
+                        icon: <ShoppingOutlined />,
                     },
                     {
                         name: "users",
                         list: UserList,
                         show: UserShow,
-                        icon: <Icons.UsergroupAddOutlined />,
+                        icon: <UsergroupAddOutlined />,
                     },
                     {
                         name: "products",
@@ -122,7 +127,7 @@ const App: React.FC = () => {
                         list: StoreList,
                         edit: StoreEdit,
                         create: StoreCreate,
-                        icon: <Icons.ShopOutlined />,
+                        icon: <ShopOutlined />,
                     },
                     {
                         name: "categories",
@@ -139,7 +144,7 @@ const App: React.FC = () => {
                     {
                         name: "reviews",
                         list: ReviewsList,
-                        icon: <Icons.StarOutlined />,
+                        icon: <StarOutlined />,
                     },
                 ]}
                 notificationProvider={notificationProvider}

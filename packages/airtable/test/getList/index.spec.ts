@@ -22,7 +22,7 @@ describe("getList", () => {
             "appKYl1H4k9g73sBT",
         ).getList({
             resource: "posts",
-            sort: [
+            sorters: [
                 {
                     field: "title",
                     order: "desc",

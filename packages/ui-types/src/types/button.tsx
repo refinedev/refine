@@ -3,7 +3,7 @@ import {
     BaseKey,
     DeleteOneResponse,
     IQueryKeys,
-    MetaDataQuery,
+    MetaQuery,
     MutationMode,
     SuccessErrorNotification,
 } from "@pankod/refine-core";
@@ -21,11 +21,6 @@ export type RefineButtonResourceProps = {
      * @default Reads `:resource` from the URL
      */
     resourceNameOrRouteName?: string;
-    /**
-     * Whether to skip access control for the resource and the delete action or not
-     * @deprecated `ignoreAccessControlProvider` deprecated. Use `accessControl.enabled` instead.
-     */
-    ignoreAccessControlProvider?: boolean;
     /**
      * Access Control configuration for the button
      * @default `{ enabled: true }`
@@ -51,6 +46,13 @@ export type RefineButtonSingleProps = {
     recordItemId?: BaseKey;
 };
 
+export type RefineButtonURLProps = {
+    /**
+     * `meta` property is used when creating the URL for the related action and path.
+     */
+    meta?: Record<string, unknown>;
+};
+
 export type RefineButtonDataProps = {
     dataProviderName?: string;
 };
@@ -62,6 +64,7 @@ export type RefineCloneButtonProps<
     RefineButtonResourceProps &
     RefineButtonLinkingProps &
     RefineButtonSingleProps &
+    RefineButtonURLProps &
     TComponentProps &
     TExtraProps & {};
 
@@ -71,6 +74,7 @@ export type RefineCreateButtonProps<
 > = RefineButtonCommonProps &
     RefineButtonResourceProps &
     RefineButtonLinkingProps &
+    RefineButtonURLProps &
     TComponentProps &
     TExtraProps & {};
 
@@ -95,7 +99,12 @@ export type RefineDeleteButtonProps<
         /**
          * Additional meta data to pass to the delete mutation from the data provider
          */
-        metaData?: MetaDataQuery;
+        meta?: MetaQuery;
+        /**
+         * Additional meta data to pass to the delete mutation from the data provider
+         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+         */
+        metaData?: MetaQuery;
         /**
          * Target data provider name for API call to be made
          * @default `"default"`
@@ -130,6 +139,7 @@ export type RefineEditButtonProps<
     RefineButtonResourceProps &
     RefineButtonLinkingProps &
     RefineButtonSingleProps &
+    RefineButtonURLProps &
     TComponentProps &
     TExtraProps & {};
 
@@ -164,6 +174,7 @@ export type RefineListButtonProps<
 > = RefineButtonCommonProps &
     RefineButtonResourceProps &
     RefineButtonLinkingProps &
+    RefineButtonURLProps &
     TComponentProps &
     TExtraProps & {};
 
@@ -177,7 +188,15 @@ export type RefineRefreshButtonProps<
     RefineButtonLinkingProps &
     TComponentProps &
     TExtraProps & {
-        metaData?: MetaDataQuery;
+        /**
+         * Additional meta data to pass to the `useOne` from the data provider
+         */
+        meta?: MetaQuery;
+        /**
+         * Additional meta data to pass to the `useOne` from the data provider
+         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+         */
+        metaData?: MetaQuery;
     };
 
 export type RefineSaveButtonProps<
@@ -195,5 +214,6 @@ export type RefineShowButtonProps<
     RefineButtonResourceProps &
     RefineButtonSingleProps &
     RefineButtonLinkingProps &
+    RefineButtonURLProps &
     TComponentProps &
     TExtraProps & {};

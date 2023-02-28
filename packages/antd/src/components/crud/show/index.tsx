@@ -2,12 +2,14 @@ import React from "react";
 import { Card, Space, Spin } from "antd";
 import {
     useNavigation,
-    useResourceWithRoute,
-    useRouterContext,
     useTranslate,
-    ResourceRouterParams,
     userFriendlyResourceName,
     useRefineContext,
+    useResource,
+    useToPath,
+    useRouterType,
+    useBack,
+    useGo,
 } from "@pankod/refine-core";
 
 import {
@@ -46,56 +48,87 @@ export const Show: React.FC<ShowProps> = ({
     goBack: goBackFromProps,
 }) => {
     const translate = useTranslate();
+    const { options: { breadcrumb: globalBreadcrumb } = {} } =
+        useRefineContext();
 
-    const { goBack, list } = useNavigation();
-
-    const resourceWithRoute = useResourceWithRoute();
-
-    const { useParams } = useRouterContext();
+    const routerType = useRouterType();
+    const back = useBack();
+    const go = useGo();
+    const { goBack, list: legacyGoList } = useNavigation();
 
     const {
-        resource: routeResourceName,
-        action: routeFromAction,
-        id: idFromRoute,
-    } = useParams<ResourceRouterParams>();
+        resource,
+        action,
+        id: idFromParams,
+    } = useResource(resourceFromProps);
 
-    const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
+    const goListPath = useToPath({
+        resource,
+        action: "list",
+    });
 
-    const isDeleteButtonVisible = canDelete ?? resource.canDelete;
-    const isEditButtonVisible = canEdit ?? resource.canEdit;
+    const id = recordItemId ?? idFromParams;
 
-    const { options } = useRefineContext();
     const breadcrumb =
         typeof breadcrumbFromProps === "undefined"
-            ? options?.breadcrumb
+            ? globalBreadcrumb
             : breadcrumbFromProps;
 
-    const id = recordItemId ?? idFromRoute;
+    const isDeleteButtonVisible =
+        canDelete ?? resource?.meta?.canDelete ?? resource?.canDelete;
+    const isEditButtonVisible =
+        canEdit ?? resource?.canEdit ?? !!resource?.edit;
 
     const defaultHeaderButtons = (
         <>
             {!recordItemId && (
-                <ListButton resourceNameOrRouteName={resource.route} />
+                <ListButton
+                    resourceNameOrRouteName={
+                        routerType === "legacy"
+                            ? resource?.route
+                            : resource?.identifier ?? resource?.name
+                    }
+                />
             )}
             {isEditButtonVisible && (
                 <EditButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={resource.route}
+                    resourceNameOrRouteName={
+                        routerType === "legacy"
+                            ? resource?.route
+                            : resource?.identifier ?? resource?.name
+                    }
                     recordItemId={id}
                 />
             )}
             {isDeleteButtonVisible && (
                 <DeleteButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={resource.route}
+                    resourceNameOrRouteName={
+                        routerType === "legacy"
+                            ? resource?.route
+                            : resource?.identifier ?? resource?.name
+                    }
                     recordItemId={id}
-                    onSuccess={() => list(resource.route ?? resource.name)}
+                    onSuccess={() => {
+                        if (routerType === "legacy") {
+                            legacyGoList(
+                                resource?.route ?? resource?.name ?? "",
+                            );
+                        } else {
+                            go({ to: goListPath });
+                        }
+                    }}
                     dataProviderName={dataProviderName}
                 />
             )}
             <RefreshButton
                 {...(isLoading ? { disabled: true } : {})}
-                resourceNameOrRouteName={resource.route}
+                resourceNameOrRouteName={
+                    routerType === "legacy"
+                        ? resource?.route
+                        : resource?.identifier ?? resource?.name
+                }
                 recordItemId={id}
                 dataProviderName={dataProviderName}
             />
@@ -107,13 +140,22 @@ export const Show: React.FC<ShowProps> = ({
             <PageHeader
                 ghost={false}
                 backIcon={goBackFromProps}
-                onBack={routeFromAction ? goBack : undefined}
+                onBack={
+                    action !== "list" && typeof action !== "undefined"
+                        ? routerType === "legacy"
+                            ? goBack
+                            : back
+                        : undefined
+                }
                 title={
                     title ??
                     translate(
-                        `${resource.name}.titles.show`,
+                        `${resource?.name}.titles.show`,
                         `Show ${userFriendlyResourceName(
-                            resource.label ?? resource.name,
+                            resource?.meta?.label ??
+                                resource?.options?.label ??
+                                resource?.label ??
+                                resource?.name,
                             "singular",
                         )}`,
                     )

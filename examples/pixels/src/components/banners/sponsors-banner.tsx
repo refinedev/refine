@@ -1,4 +1,4 @@
-import { Image } from "@pankod/refine-antd";
+import { Image } from "antd";
 
 export function SponsorsBanner() {
     return (

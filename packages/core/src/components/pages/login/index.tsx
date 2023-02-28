@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { useLogin, useTranslate } from "@hooks";
+import { useActiveAuthProvider } from "@definitions/helpers";
 export interface ILoginForm {
     username: string;
     password: string;
@@ -18,7 +19,10 @@ export const LoginPage: React.FC = () => {
 
     const translate = useTranslate();
 
-    const { mutate: login } = useLogin<ILoginForm>();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: login } = useLogin<ILoginForm>({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
 
     return (
         <>

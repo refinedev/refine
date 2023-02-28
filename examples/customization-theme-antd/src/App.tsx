@@ -3,11 +3,10 @@ import {
     notificationProvider,
     Layout,
     ErrorComponent,
-    ConfigProvider,
-    theme,
 } from "@pankod/refine-antd";
+import { ConfigProvider, theme } from "antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -43,7 +42,7 @@ const App: React.FC = () => {
         >
             <Refine
                 dataProvider={dataProvider(API_URL)}
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 Header={() => (
                     <Header theme={currentTheme} setTheme={setCurrentTheme} />
                 )}

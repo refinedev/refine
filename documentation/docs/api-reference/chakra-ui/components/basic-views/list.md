@@ -14,9 +14,9 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
-        </RefineChakra.ChakraProvider>
+        </ChakraUI.ChakraProvider>
     );
 };
 
@@ -45,9 +45,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
+import { List, DateField } from "@pankod/refine-chakra-ui";
 import {
-    List,
-    DateField,
     TableContainer,
     Table,
     Thead,
@@ -55,8 +54,9 @@ import {
     Th,
     Tbody,
     Td,
-} from "@pankod/refine-chakra-ui";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+} from "@chakra-ui/react";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -184,7 +184,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List, Heading } from "@pankod/refine-chakra-ui";
+import { List } from "@pankod/refine-chakra-ui";
+import { Heading } from "@chakra-ui/react";
 
 const PostList: React.FC = () => {
     return (
@@ -361,7 +362,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List, Box } from "@pankod/refine-chakra-ui";
+import { List } from "@pankod/refine-chakra-ui";
+import { Box } from "@chakra-ui/react";
 
 const CustomBreadcrumb: React.FC = () => {
     return (
@@ -578,7 +580,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List, Button } from "@pankod/refine-chakra-ui";
+import { List } from "@pankod/refine-chakra-ui";
+import { Button } from "@chakra-ui/react";
 
 const PostList: React.FC = () => {
     return (
@@ -634,7 +637,8 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List, Button } from "@pankod/refine-chakra-ui";
+import { List } from "@pankod/refine-chakra-ui";
+import { Button } from "@chakra-ui/react";
 
 const PostList: React.FC = () => {
     return (

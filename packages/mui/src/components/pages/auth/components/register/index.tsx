@@ -1,5 +1,9 @@
 import * as React from "react";
-import { RegisterFormTypes, RegisterPageProps } from "@pankod/refine-core";
+import {
+    RegisterFormTypes,
+    RegisterPageProps,
+    useActiveAuthProvider,
+} from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 
 import {
@@ -21,6 +25,8 @@ import {
     HttpError,
     useTranslate,
     useRouterContext,
+    useRouterType,
+    useLink,
     useRegister,
 } from "@pankod/refine-core";
 
@@ -54,10 +60,17 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         ...useFormProps,
     });
 
+    const authProvider = useActiveAuthProvider();
     const { mutate: registerMutate, isLoading } =
-        useRegister<RegisterFormTypes>();
+        useRegister<RegisterFormTypes>({
+            v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+        });
     const translate = useTranslate();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     const renderProviders = () => {
         if (providers && providers.length > 0) {
@@ -174,7 +187,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                             <MuiLink
                                 ml="6px"
                                 variant="body2"
-                                component={Link}
+                                component={ActiveLink}
                                 underline="none"
                                 to="/login"
                                 fontWeight="bold"

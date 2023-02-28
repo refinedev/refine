@@ -101,7 +101,13 @@ export const buttonEditTests = function (
 
         it("should skip access control", async () => {
             const { container, getByText } = render(
-                <EditButton ignoreAccessControlProvider>Edit</EditButton>,
+                <EditButton
+                    accessControl={{
+                        enabled: false,
+                    }}
+                >
+                    Edit
+                </EditButton>,
                 {
                     wrapper: TestWrapper({
                         accessControlProvider: {
@@ -207,7 +213,7 @@ export const buttonEditTests = function (
                         resources: [
                             {
                                 name: "posts",
-                                options: { route: "custom-route-posts" },
+                                meta: { route: "custom-route-posts" },
                             },
                             { name: "posts" },
                         ],

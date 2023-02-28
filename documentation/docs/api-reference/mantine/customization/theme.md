@@ -9,13 +9,12 @@ import {
     List,
     Create,
     Edit,
-    Table,
-    Pagination,
     EditButton,
     useForm,
-    TextInput,
 } from "@pankod/refine-mantine";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { Table, Pagination, TextInput } from "@mantine/core";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -174,13 +173,12 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
     Layout,
-    MantineProvider,
-    Global,
-    NotificationsProvider,
     notificationProvider,
     // highlight-next-line
     DarkTheme,
 } from "@pankod/refine-mantine";
+import { MantineProvider, Global } from "@mantine/core";
+import { NotificationsProvider } from "@mantine/notifications";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 
@@ -229,13 +227,12 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
     Layout,
-    MantineProvider,
-    Global,
-    NotificationsProvider,
     notificationProvider,
     // highlight-next-line
     LightTheme,
 } from "@pankod/refine-mantine";
+import { MantineProvider, Global } from "@mantine/core";
+import { NotificationsProvider } from "@mantine/notifications";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 
@@ -344,22 +341,27 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
     Layout,
-    MantineProvider,
-    Global,
-    NotificationsProvider,
+    ErrorComponent,
+    ReadyPage,
     notificationProvider,
-    MantineHeader,
-    Group,
-    ActionIcon,
-    // highlight-start
-    ColorSchemeProvider,
-    ColorScheme,
     LightTheme,
     DarkTheme,
-    useLocalStorage,
-    useMantineColorScheme,
-    // highlight-end
 } from "@pankod/refine-mantine";
+// highlight-start
+import { NotificationsProvider } from "@mantine/notifications";
+import {
+    MantineProvider,
+    Global,
+    useMantineColorScheme,
+    Header as MantineHeader,
+    Group,
+    ActionIcon,
+    ColorScheme,
+    ColorSchemeProvider,
+} from "@mantine/core";
+import { useLocalStorage } from "@mantine/hooks";
+// highlight-end
+
 import { IconSun, IconMoonStars } from "@tabler/icons";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
@@ -443,4 +445,3 @@ render(<App />);
 ```
 
 [Refer to the Mantine dark theme documentation for more information. &#8594](https://mantine.dev/guides/dark-theme)
-

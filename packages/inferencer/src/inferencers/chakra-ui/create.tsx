@@ -1,5 +1,6 @@
 import * as RefineCore from "@pankod/refine-core";
 import * as RefineChakraUI from "@pankod/refine-chakra-ui";
+import * as ChakraUI from "@chakra-ui/react";
 import * as RefineReactHookForm from "@pankod/refine-react-hook-form";
 
 import { createInferencer } from "@/create-inferencer";
@@ -43,9 +44,9 @@ export const renderer = ({
     );
     const imports: Array<ImportElement> = [
         ["Create", "@pankod/refine-chakra-ui"],
-        ["FormControl", "@pankod/refine-chakra-ui"],
-        ["FormLabel", "@pankod/refine-chakra-ui"],
-        ["FormErrorMessage", "@pankod/refine-chakra-ui"],
+        ["FormControl", "@chakra-ui/react"],
+        ["FormLabel", "@chakra-ui/react"],
+        ["FormErrorMessage", "@chakra-ui/react"],
         ["useForm", "@pankod/refine-react-hook-form"],
     ];
 
@@ -74,7 +75,7 @@ export const renderer = ({
     const renderRelationFields = (field: InferField) => {
         if (field.relation && field.resource) {
             imports.push(["useSelect", "@pankod/refine-core"]);
-            imports.push(["Select", "@pankod/refine-chakra-ui"]);
+            imports.push(["Select", "@chakra-ui/react"]);
 
             const variableName = getVariableName(field.key, "Options");
 
@@ -127,7 +128,7 @@ export const renderer = ({
                 return undefined;
             }
 
-            imports.push(["Input", "@pankod/refine-chakra-ui"]);
+            imports.push(["Input", "@chakra-ui/react"]);
 
             if (field.multiple) {
                 return undefined;
@@ -176,7 +177,7 @@ export const renderer = ({
 
     const booleanFields = (field: InferField) => {
         if (field.type === "boolean") {
-            imports.push(["Checkbox", "@pankod/refine-chakra-ui"]);
+            imports.push(["Checkbox", "@chakra-ui/react"]);
 
             if (field.multiple) {
                 return undefined;
@@ -300,6 +301,7 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
             "RefineReactHookForm",
             RefineReactHookForm,
         ],
+        ["@chakra-ui/react", "ChakraUI", ChakraUI],
     ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,

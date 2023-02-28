@@ -31,6 +31,212 @@ describe("useList Hook", () => {
         expect(data?.total).toEqual(2);
     });
 
+    it.each(["server", undefined] as const)(
+        "should include pagination in queryKey when mode is %s",
+        async (mode) => {
+            const getListMock = jest.fn();
+
+            renderHook(
+                () =>
+                    useList({
+                        resource: "posts",
+                        pagination: {
+                            current: 1,
+                            pageSize: 10,
+                            mode,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                getList: getListMock,
+                            },
+                        },
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+            expect(getListMock).toBeCalledWith(
+                expect.objectContaining({
+                    meta: {
+                        queryContext: {
+                            queryKey: [
+                                "default",
+                                "posts",
+                                "list",
+                                {
+                                    hasPagination: true,
+                                    pagination: {
+                                        current: 1,
+                                        mode: "server",
+                                        pageSize: 10,
+                                    },
+                                },
+                            ],
+                            signal: new AbortController().signal,
+                        },
+                    },
+                }),
+            );
+        },
+    );
+
+    it.each(["client", "off"] as const)(
+        "should not include pagination in queryKey",
+        async (mode) => {
+            const getListMock = jest.fn();
+
+            renderHook(
+                () =>
+                    useList({
+                        resource: "posts",
+                        pagination: {
+                            current: 1,
+                            pageSize: 10,
+                            mode,
+                        },
+                    }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            default: {
+                                ...MockJSONServer.default,
+                                getList: getListMock,
+                            },
+                        },
+                        resources: [{ name: "posts" }],
+                    }),
+                },
+            );
+
+            expect(getListMock).toBeCalledWith(
+                expect.objectContaining({
+                    resource: "posts",
+                    pagination: {
+                        current: 1,
+                        pageSize: 10,
+                        mode,
+                    },
+                    meta: {
+                        queryContext: {
+                            queryKey: [
+                                "default",
+                                "posts",
+                                "list",
+                                { hasPagination: false },
+                            ],
+                            signal: new AbortController().signal,
+                        },
+                    },
+                }),
+            );
+        },
+    );
+
+    it("data should be sliced when pagination mode is client", async () => {
+        const { result } = renderHook(
+            () =>
+                useList({
+                    resource: "posts",
+                    pagination: {
+                        mode: "client",
+                        pageSize: 1,
+                        current: 1,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(result.current.data?.data).toHaveLength(1);
+    });
+
+    it("user should be able to use queryOptions's select to transform data when pagination mode is client", async () => {
+        const { result } = renderHook(
+            () =>
+                useList<{ id: number }>({
+                    resource: "posts",
+                    pagination: {
+                        mode: "client",
+                    },
+                    queryOptions: {
+                        select: (data) => {
+                            return {
+                                data: data.data.map((item) => ({
+                                    id: item.id,
+                                })),
+                                total: data.total,
+                            };
+                        },
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(result.current.data?.data).toStrictEqual([
+            { id: "1" },
+            { id: "2" },
+        ]);
+    });
+
+    it("when pagination mode is client and the user use queryOptions's select, useList should return the data from dataProvider", async () => {
+        const { result } = renderHook(
+            () =>
+                useList({
+                    resource: "posts",
+                    pagination: {
+                        mode: "client",
+                    },
+                    queryOptions: {
+                        select: (data) => {
+                            return data;
+                        },
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            getList: () =>
+                                Promise.resolve({
+                                    data: [],
+                                    total: 0,
+                                    foo: "bar",
+                                }),
+                        },
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(result.current.data?.foo).toBe("bar");
+    });
+
     describe("useResourceSubscription", () => {
         it("useSubscription", async () => {
             const onSubscribeMock = jest.fn();
@@ -61,20 +267,23 @@ describe("useList Hook", () => {
             });
 
             expect(onSubscribeMock).toBeCalled();
-            expect(onSubscribeMock).toHaveBeenCalledWith({
-                channel: "resources/posts",
-                callback: expect.any(Function),
-                params: {
-                    filters: undefined,
-                    hasPagination: undefined,
-                    metaData: undefined,
-                    pagination: undefined,
-                    resource: "posts",
-                    sort: undefined,
-                    subscriptionType: "useList",
-                },
-                types: ["*"],
-            });
+            expect(onSubscribeMock).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    channel: "resources/posts",
+                    callback: expect.any(Function),
+                    params: {
+                        hasPagination: true,
+                        pagination: {
+                            current: 1,
+                            mode: "server",
+                            pageSize: 10,
+                        },
+                        resource: "posts",
+                        subscriptionType: "useList",
+                    },
+                    types: ["*"],
+                }),
+            );
         });
 
         it("liveMode = Off useSubscription", async () => {

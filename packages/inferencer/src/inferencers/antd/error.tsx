@@ -1,6 +1,5 @@
 import React from "react";
-
-import { Alert, Row, Col } from "@pankod/refine-antd";
+import { Alert, Row, Col } from "antd";
 
 import { CreateInferencerConfig } from "@/types";
 

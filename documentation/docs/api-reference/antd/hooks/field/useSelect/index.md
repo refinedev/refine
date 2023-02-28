@@ -77,15 +77,15 @@ const { options } = useSelect({
 
 :::
 
-### `sort`
+### `sorters`
 
-It allows to show the options in the desired order. `sort` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send sort query parameters to the API.
+It allows to show the options in the desired order. `sorters` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to send sort query parameters to the API.
 
 [Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useSelect({
-    sort: [
+    sorters: [
         {
             field: "title",
             order: "asc",
@@ -181,11 +181,13 @@ useSelect({
 
 ### `hasPagination`
 
+> Default: `false`
+
 `hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to determine whether to use server-side pagination or not.
 
 ```tsx
 useSelect({
-    hasPagination: false,
+    hasPagination: true,
 });
 ```
 
@@ -218,6 +220,12 @@ If `onSearch` is used, it will override the existing `filters`.
 
 :::
 
+### ~~`sort`~~
+
+:::caution Deprecated
+Use `sorters` instead.
+:::
+
 #### Client-side filtering
 
 Sometimes, you may want to filter the options on the client-side. You can do this by passing `onSearch` function as `undefined` and setting `filterOption` to `true`. You can also set `optionFilterProp` to `label` or `value` to filter the options by label or value respectively.
@@ -235,19 +243,19 @@ const { selectProps } = useSelect({
 />;
 ```
 
-### `metaData`
+### `meta`
 
-[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+[`meta`](/docs/api-reference/general-concepts/#meta) is used following two purposes:
 
 -   To pass additional information to data provider methods.
 -   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
 
-In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
+In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useSelect({
     // highlight-start
-    metaData: {
+    meta: {
         headers: { "x-meta-data": "true" },
     },
     // highlight-end
@@ -259,13 +267,13 @@ const myDataProvider = {
         resource,
         pagination,
         hasPagination,
-        sort,
+        sorters,
         filters,
         // highlight-next-line
-        metaData,
+        meta,
     }) => {
         // highlight-next-line
-        const headers = metaData?.headers ?? {};
+        const headers = meta?.headers ?? {};
         const url = `${apiUrl}/${resource}`;
         //...
         //...

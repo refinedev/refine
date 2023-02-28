@@ -452,7 +452,9 @@ To sort the rows, click or hover on any column header, this displays an arrow in
 We can initialize a sorting order for each or all fields in the grid using the `intialSorter` property of the `useDataGrid` component. This lets us sort the rows on the initial page render.
 
 ```tsx title="src/pages/employees/employees.tsx"
-const { dataGridProps } = useDataGrid({initialSorter: [{ field: 'level', order: 'desc' }]});
+const { dataGridProps } = useDataGrid({
+    sorters: { initial: [{ field: "level", order: "desc" }] },
+});
 ```
 The above example will sort the rows using the *level* column on the initial render in descending order like so: 
 

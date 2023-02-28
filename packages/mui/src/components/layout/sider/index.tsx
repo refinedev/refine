@@ -29,14 +29,17 @@ import {
     useTitle,
     useTranslate,
     useRouterContext,
+    useRouterType,
+    useLink,
     useMenu,
     useRefineContext,
+    useActiveAuthProvider,
 } from "@pankod/refine-core";
 import { RefineLayoutSiderProps } from "../types";
 
 import { Title as DefaultTitle } from "@components";
 
-export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
     const [collapsed, setCollapsed] = useState(false);
     const [opened, setOpened] = useState(false);
 
@@ -46,14 +49,20 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     };
 
     const t = useTranslate();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
     const { hasDashboard } = useRefineContext();
     const translate = useTranslate();
 
-    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
+    const { menuItems, selectedKey, defaultOpenKeys } = useMenu({ meta });
     const isExistAuthentication = useIsExistAuthentication();
-    const { mutate: mutateLogout } = useLogout();
     const Title = useTitle();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: mutateLogout } = useLogout({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
 
     const [open, setOpen] = useState<{ [k: string]: any }>({});
 
@@ -81,25 +90,25 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
         setOpen({ ...open, [key]: !open[key] });
     };
 
-    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+    const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
         return tree.map((item: ITreeMenu) => {
             const { icon, label, route, name, children, parentName } = item;
-            const isOpen = open[route || ""] || false;
+            const isOpen = open[item.key || ""] || false;
 
-            const isSelected = route === selectedKey;
+            const isSelected = item.key === selectedKey;
             const isNested = !(parentName === undefined);
 
             if (children.length > 0) {
                 return (
                     <CanAccess
-                        key={route}
+                        key={item.key}
                         resource={name.toLowerCase()}
                         action="list"
                         params={{
                             resource: item,
                         }}
                     >
-                        <div key={route}>
+                        <div key={item.key}>
                             <Tooltip
                                 title={label ?? name}
                                 placement="right"
@@ -111,10 +120,10 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                                         if (collapsed) {
                                             setCollapsed(false);
                                             if (!isOpen) {
-                                                handleClick(route || "");
+                                                handleClick(item.key || "");
                                             }
                                         } else {
-                                            handleClick(route || "");
+                                            handleClick(item.key || "");
                                         }
                                     }}
                                     sx={{
@@ -157,7 +166,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                             </Tooltip>
                             {!collapsed && (
                                 <Collapse
-                                    in={open[route || ""]}
+                                    in={open[item.key || ""]}
                                     timeout="auto"
                                     unmountOnExit
                                 >
@@ -173,7 +182,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
 
             return (
                 <CanAccess
-                    key={route}
+                    key={item.key}
                     resource={name.toLowerCase()}
                     action="list"
                     params={{ resource: item }}
@@ -185,7 +194,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                         arrow
                     >
                         <ListItemButton
-                            component={Link}
+                            component={ActiveLink}
                             to={route}
                             selected={isSelected}
                             onClick={() => {
@@ -236,7 +245,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 arrow
             >
                 <ListItemButton
-                    component={Link}
+                    component={ActiveLink}
                     to="/"
                     selected={selectedKey === "/"}
                     onClick={() => {

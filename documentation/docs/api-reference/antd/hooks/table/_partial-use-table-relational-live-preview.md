@@ -18,15 +18,18 @@ import {
 
 import {
     List,
-    Table,
     TagField,
     useTable,
     // highlight-start
     useSelect,
     FilterDropdown,
-    Select,
     // highlight-end
 } from "@pankod/refine-antd";
+import {
+    Table,
+    // highlight-next-line
+    Select,
+} from "antd";
 
 // highlight-start
 interface ICategory {

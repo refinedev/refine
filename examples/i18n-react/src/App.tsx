@@ -5,7 +5,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import { useTranslation } from "react-i18next";
 
@@ -28,7 +28,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             i18nProvider={i18nProvider}
             Header={Header}
             resources={[

@@ -26,8 +26,10 @@ Let's start with creating a `<CustomLayout/>` component using `LayoutProps` from
 ```tsx live url=http://localhost:3000 previewHeight=420px
 setInitialRoutes(["/posts"]);
 import { useNavigation } from "@pankod/refine-core";
-import { List, Text, Code, Table, Pagination } from "@pankod/refine-mantine";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { List } from "@pankod/refine-mantine";
+import { Text, Code, Table, Pagination } from "@mantine/core";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef[]>(
@@ -192,19 +194,18 @@ import {
 // highlight-end
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
+import { notificationProvider, LightTheme } from "@pankod/refine-mantine";
 import {
     MantineProvider,
     Global,
-    NotificationsProvider,
-    notificationProvider,
-    LightTheme,
     // highlight-start
     Box,
-    MantineHeader,
+    Header as MantineHeader,
     Group,
     NavLink,
     // highlight-end
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
+import { NotificationsProvider } from "@mantine/notifications";
 import { IconList, IconCategory, IconUsers } from "@tabler/icons";
 
 import { PostList } from "./pages/posts";

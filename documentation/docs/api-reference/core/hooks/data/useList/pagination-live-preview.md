@@ -27,11 +27,9 @@ const ProductList: React.FC = () => {
     const { data, isLoading, isError } = useList<IProduct, HttpError>({
         resource: "products",
         //highlight-start
-        config: {
-            pagination: {
-                current,
-                pageSize,
-            },
+        pagination: {
+            current,
+            pageSize,
         },
         //highlight-end
     });

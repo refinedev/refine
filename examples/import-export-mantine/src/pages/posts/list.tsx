@@ -6,20 +6,24 @@ import {
     useMany,
     useNotification,
 } from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 import {
-    Box,
-    Group,
     List,
-    ScrollArea,
-    Table,
-    Pagination,
     DeleteButton,
     ImportButton,
     ExportButton,
-    Select,
     DateField,
 } from "@pankod/refine-mantine";
+
+import {
+    Box,
+    Group,
+    ScrollArea,
+    Table,
+    Pagination,
+    Select,
+} from "@mantine/core";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
 import { FilterElementProps, ICategory, IPost } from "../../interfaces";

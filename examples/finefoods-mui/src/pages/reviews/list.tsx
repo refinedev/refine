@@ -7,19 +7,16 @@ import {
     BaseKey,
 } from "@pankod/refine-core";
 
+import { useDataGrid, List } from "@pankod/refine-mui";
+import { DataGrid, GridColumns, GridActionsCellItem } from "@mui/x-data-grid";
 import {
     Typography,
-    DataGrid,
-    useDataGrid,
-    GridColumns,
-    GridActionsCellItem,
     Tooltip,
     Avatar,
     Rating,
     Stack,
     Button,
-    List,
-} from "@pankod/refine-mui";
+} from "@mui/material";
 import { Check, Clear } from "@mui/icons-material";
 
 import { IReview } from "interfaces";
@@ -182,8 +179,8 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List
-            cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
-            cardHeaderProps={{
+            wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
+            headerProps={{
                 subheader: hasSelected && (
                     <Stack direction="row">
                         <Button

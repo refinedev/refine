@@ -17,14 +17,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeho
 hide_table_of_contents: false
 ---
 
-
-
-
-
-
-
-
-
 Looking for an invoice generator that is easy to use and lets you customize your invoices? With **refine** simple and intuitive interface, you can create your own invoices in few hours. Plus, we offer a wide range of templates and customization options so you can get the exact look you want. Learn more about our invoice generator here!
 
 <!--truncate-->
@@ -322,9 +314,9 @@ Let's put the `Invoice Collections` fields that we created with Strapi into our 
 
 Thanks to the [refine-strapi-v4 dataProvider](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/#relations-population), we can use the data of collections that are related to each other.
 
-In order to use the fields of the collections that are related to each other, we must populate the collections in `metaData`.
+In order to use the fields of the collections that are related to each other, we must populate the collections in `meta`.
 
-Populate the contacts, companies and missions related with our Invoice collection in metaData.
+Populate the contacts, companies and missions related with our Invoice collection in meta.
 
 <details>
 <summary>Show Code</summary>
@@ -355,7 +347,7 @@ const { FilePdfOutlined } = Icons;
 export const InvoiceList: React.FC = () => {
     //highlight-start
     const { tableProps } = useTable<IInvoice>({
-        metaData: {
+        meta: {
             populate: {
                 contact: { populate: ["client"] },
                 company: { populate: ["logo"] },
@@ -653,7 +645,7 @@ export const InvoiceList: React.FC = () => {
     const [record, setRecord] = useState<IInvoice>();
 
     const { tableProps } = useTable<IInvoice>({
-        metaData: {
+        meta: {
             populate: {
                 contact: { populate: ["client"] },
                 company: { populate: ["logo"] },
@@ -1063,9 +1055,10 @@ const styles = StyleSheet.create({
 ## Example
 
 :::note Demo Credentials
+
 -   `Username`: demo
 -   `Password`: demodemo
-:::
+    :::
 
 :::note
 PDF download may not work in codeSandbox mode. With [**this**](https://n59710.csb.app/invoices) link, you can open the example in the browser and try it.

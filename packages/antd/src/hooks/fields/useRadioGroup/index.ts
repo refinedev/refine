@@ -6,6 +6,7 @@ import {
     BaseRecord,
     GetListResponse,
     HttpError,
+    pickNotDeprecated,
     useSelect,
     UseSelectProps,
 } from "@pankod/refine-core";
@@ -40,6 +41,7 @@ export const useRadioGroup = <
 >({
     resource,
     sort,
+    sorters,
     filters,
     optionLabel,
     optionValue,
@@ -50,12 +52,14 @@ export const useRadioGroup = <
     defaultValue,
     onLiveEvent,
     liveParams,
+    meta,
     metaData,
     dataProviderName,
 }: UseRadioGroupProps<TData, TError>): UseRadioGroupReturnType<TData> => {
     const { queryResult, options } = useSelect({
         resource,
         sort,
+        sorters,
         filters,
         optionLabel,
         optionValue,
@@ -66,7 +70,8 @@ export const useRadioGroup = <
         defaultValue,
         onLiveEvent,
         liveParams,
-        metaData,
+        meta: pickNotDeprecated(meta, metaData),
+        metaData: pickNotDeprecated(meta, metaData),
         dataProviderName,
     });
 

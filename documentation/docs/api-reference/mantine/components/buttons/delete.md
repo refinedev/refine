@@ -16,18 +16,18 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
+        <MantineCore.MantineProvider
             theme={RefineMantine.LightTheme}
             withNormalizeCSS
             withGlobalStyles
         >
-            <RefineMantine.Global
+            <MantineCore.Global
                 styles={{ body: { WebkitFontSmoothing: "auto" } }}
             />
-            <RefineMantine.NotificationsProvider position="top-right">
+            <MantineNotifications.NotificationsProvider position="top-right">
                 {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            </MantineNotifications.NotificationsProvider>
+        </MantineCore.MantineProvider>
     );
 };
 ```
@@ -47,8 +47,10 @@ import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List, Table, Pagination, DeleteButton } from "@pankod/refine-mantine";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { List, DeleteButton } from "@pankod/refine-mantine";
+import { Table, Pagination } from "@mantine/core";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -466,7 +468,11 @@ This prop can be used to skip access control check with its `enabled` property o
 import { DeleteButton } from "@pankod/refine-mantine";
 
 export const MyListComponent = () => {
-    return <DeleteButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <DeleteButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
 };
 ```
 

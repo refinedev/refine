@@ -1,4 +1,7 @@
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import {
+    Refine,
+    LegacyAuthProvider as AuthProvider,
+} from "@pankod/refine-core";
 import {
     notificationProvider,
     LoginPage,
@@ -6,7 +9,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import { DataProvider, AuthHelper } from "@pankod/refine-strapi-v4";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import axios from "axios";
 
@@ -84,9 +87,9 @@ const App: React.FC = () => {
 
     return (
         <Refine
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",

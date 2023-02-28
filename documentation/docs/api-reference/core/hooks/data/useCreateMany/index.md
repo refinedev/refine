@@ -185,21 +185,21 @@ mutate({
 });
 ```
 
-### `metaData`
+### `meta`
 
-[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+[`meta`](/docs/api-reference/general-concepts/#meta) is used following two purposes:
 
 -   To pass additional information to data provider methods.
 -   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
 
-In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
+In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 const { mutate } = useCreateMany();
 
 mutate({
     // highlight-start
-    metaData: {
+    meta: {
         headers: { "x-meta-data": "true" },
     },
     // highlight-end
@@ -211,10 +211,10 @@ const myDataProvider = {
         resource,
         variables,
         // highlight-next-line
-        metaData,
+        meta,
     }) => {
         // highlight-next-line
-        const headers = metaData?.headers ?? {};
+        const headers = meta?.headers ?? {};
         const url = `${apiUrl}/${resource}`;
 
         //...
@@ -273,7 +273,7 @@ Returns an object with TanStack Query's `useMutation` return values.
 | values <div className=" required">Required</div>                                                    | Values for mutation function                                                                       | `TVariables[]`                                                                           | [{}]                                                                 |
 | successNotification                                                                                 | Successful Mutation notification                                                                   | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification) | "Successfully created `resource`s"                                   |
 | errorNotification                                                                                   | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" |
-| metaData                                                                                            | Metadata query for `dataProvider`                                                                  | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                       | {}                                                                   |
+| meta                                                                                                | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                       | {}                                                                   |
 | dataProviderName                                                                                    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                                 | `default`                                                            |
 | invalidates                                                                                         | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                  | `["list", "many"]`                                                   |
 

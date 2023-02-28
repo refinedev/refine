@@ -1,5 +1,7 @@
 import * as RefineMantine from "@pankod/refine-mantine";
 import * as RefineReactTable from "@pankod/refine-react-table";
+import * as MantineCore from "@mantine/core";
+import * as TanstackReactTable from "@tanstack/react-table";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -48,13 +50,13 @@ export const renderer = ({
     const imports: Array<[element: string, module: string]> = [
         ["IResourceComponentsProps", "@pankod/refine-core"],
         ["useTable", "@pankod/refine-react-table"],
-        ["ColumnDef", "@pankod/refine-react-table"],
-        ["flexRender", "@pankod/refine-react-table"],
-        ["ScrollArea", "@pankod/refine-mantine"],
+        ["ColumnDef", "@tanstack/react-table"],
+        ["flexRender", "@tanstack/react-table"],
+        ["ScrollArea", "@mantine/core"],
         ["List", "@pankod/refine-mantine"],
-        ["Table", "@pankod/refine-mantine"],
-        ["Pagination", "@pankod/refine-mantine"],
-        ["Group", "@pankod/refine-mantine"],
+        ["Table", "@mantine/core"],
+        ["Pagination", "@mantine/core"],
+        ["Group", "@mantine/core"],
         ["EditButton", "@pankod/refine-mantine"],
         ["ShowButton", "@pankod/refine-mantine"],
         ["DeleteButton", "@pankod/refine-mantine"],
@@ -216,7 +218,7 @@ export const renderer = ({
 
     const imageFields = (field: InferField) => {
         if (field.type === "image") {
-            imports.push(["Image", "@pankod/refine-mantine"]);
+            imports.push(["Image", "@mantine/core"]);
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
@@ -773,6 +775,8 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
     additionalScope: [
         ["@pankod/refine-mantine", "RefineMantine", RefineMantine],
         ["@pankod/refine-react-table", "RefineReactTable", RefineReactTable],
+        ["@mantine/core", "MantineCore", MantineCore],
+        ["@tanstack/react-table", "TanstackReactTable", TanstackReactTable],
     ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,

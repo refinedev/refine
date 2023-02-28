@@ -469,12 +469,14 @@ export const CanvasList: React.FC = () => {
         pagination: {
             pageSize: 12,
         },
-        initialSorter: [
-            {
-                field: "created_at",
-                order: "desc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "created_at",
+                    order: "desc",
+                },
+            ],
+        }
     });
 
     const { isLoading } = queryResult;
@@ -524,7 +526,7 @@ In our `<CanvasList />` component, we are passing the `listProps` props to `<Ant
 Please feel free to go through the [`useSimpleList` documentation here](https://refine.dev/docs/api-reference/antd/hooks/list/useSimpleList/) for as much as information as you need. It makes life a lot easier while creating a dashboard or list of items.
 
 **3. Sorting**
-If you are already looking at the [`useSimpleList()` argument object's properties](https://refine.dev/docs/api-reference/antd/hooks/list/useSimpleList/#properties), notice that we are able to pass options for `pagination` and `initialSorter` for the API call and get the response accordingly.
+If you are already looking at the [`useSimpleList()` argument object's properties](https://refine.dev/docs/api-reference/antd/hooks/list/useSimpleList/#properties), notice that we are able to pass options for `pagination` and `sorters.initial` for the API call and get the response accordingly.
 
 With this set up - and connected to the Internet - if we run the dev server with `yarn dev` and navigate to `http://localhost:3000`, we are faced with a login screen:
 

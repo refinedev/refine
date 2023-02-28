@@ -32,12 +32,14 @@ const Layout: React.FC = ({ children }) => {
 const PostList: React.FC = () => {
     const { tableQueryResult, current, setCurrent, pageSize, pageCount } =
         useTable<IPost>({
-            initialSorter: [
-                {
-                    field: "id",
-                    order: "desc",
-                },
-            ],
+            sorters: {
+                initial: [
+                    {
+                        field: "id",
+                        order: "desc",
+                    },
+                ],
+            },
         });
     const { edit, create, clone } = useNavigation();
 

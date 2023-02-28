@@ -5,15 +5,24 @@ import {
     ITreeMenu,
     CanAccess,
     useRouterContext,
+    useMenu,
 } from "@pankod/refine-core";
-import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
+
+import {
+    UnorderedListOutlined,
+    AppstoreAddOutlined,
+    LogoutOutlined,
+} from "@ant-design/icons";
+import { Layout as AntdLayout, Menu, Grid } from "antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 import { StoreSelect } from "components/select";
 
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
-    const { mutate: logout } = useLogout();
+    const { mutate: logout } = useLogout({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const { Link } = useRouterContext();
     const Title = useTitle();
     const { SubMenu } = Menu;
@@ -31,7 +40,7 @@ export const CustomSider: React.FC = () => {
                 return (
                     <SubMenu
                         key={route}
-                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
                         {renderTreeView(children, selectedKey)}
@@ -54,9 +63,7 @@ export const CustomSider: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={
-                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
-                        }
+                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
                         <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
@@ -79,7 +86,7 @@ export const CustomSider: React.FC = () => {
         >
             {Title && <Title collapsed={collapsed} />}
             <Menu selectedKeys={[selectedKey]} mode="inline">
-                <Menu.Item key="store" icon={<Icons.AppstoreAddOutlined />}>
+                <Menu.Item key="store" icon={<AppstoreAddOutlined />}>
                     <StoreSelect
                         onSelect={() => {
                             setCollapsed(true);
@@ -90,7 +97,7 @@ export const CustomSider: React.FC = () => {
                 <Menu.Item
                     key="logout"
                     onClick={() => logout()}
-                    icon={<Icons.LogoutOutlined />}
+                    icon={<LogoutOutlined />}
                 >
                     Logout
                 </Menu.Item>

@@ -69,7 +69,7 @@ In basic usage, `useTable` returns the data as it comes from the endpoint. By de
 It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
 :::info
-`useTable` hook from `@pankod/refine-react-table` sets `manualPagination` to `true` by default to handle the pagination. If you set `hasPagination` to `false` in `refineCoreProps` property in the `useTable` config, it will disable the server-side pagination and it will let you handle the pagination on the client side.
+By default, pagination happens on the server side. If you want to do pagination handling on the client side, you can pass the pagination.mode property and set it to "client". Also, you can disable the pagination by setting the "off".
 :::
 
 <PaginationLivePreview/>
@@ -121,7 +121,9 @@ method={{
 
 ```tsx
 useTable({
-    resource: "categories",
+    refineCoreProps: {
+        resource: "categories",
+    },
 });
 ```
 
@@ -137,7 +139,7 @@ useTable({
 });
 ```
 
-### `initialCurrent`
+### `pagination.current`
 
 > Default: `1`
 
@@ -146,12 +148,14 @@ Sets the initial value of the page index.
 ```tsx
 useTable({
     refineCoreProps: {
-        initialCurrent: 2, // This will cause the table to initially display the second page, rather than the default of the first page
+        pagination: {
+            current: 2,
+        },
     },
 });
 ```
 
-### `initialPageSize`
+### `pagination.pageSize`
 
 > Default: `10`
 
@@ -160,84 +164,122 @@ Sets the initial value of the page size.
 ```tsx
 useTable({
     refineCoreProps: {
-        initialPageSize: 20, // This will cause the table to initially display 20 rows per page, rather than the default of 10
+        pagination: {
+            pageSize: 10,
+        },
     },
 });
 ```
 
-### `initialSorter`
+### `pagination.mode`
 
-Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
+> Default: `"server"`
+
+It can be `"off"`, `"server"` or `"client"`.
+
+-   **"off":** Pagination is disabled. All records will be fetched.
+-   **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
+-   **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
 
 ```tsx
 useTable({
     refineCoreProps: {
-        initialSorter: [
-            {
-                field: "title",
-                order: "asc",
-            },
-        ],
+        pagination: {
+            mode: "client",
+        },
     },
 });
 ```
 
-### `permanentSorter`
+### `sorters.initial`
 
-Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
+Sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
+
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useTable({
     refineCoreProps: {
-        permanentSorter: [
-            {
-                field: "title",
-                order: "asc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "name",
+                    order: "asc",
+                },
+            ],
+        },
     },
 });
 ```
 
-### `initialFilter`
+### `sorters.permanent`
 
-Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
+Sets the permanent value of the sorter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `sorters.initial` prop.
+
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useTable({
     refineCoreProps: {
-        initialFilter: [
-            {
-                field: "title",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
+        sorters: {
+            permanent: [
+                {
+                    field: "name",
+                    order: "asc",
+                },
+            ],
+        },
     },
 });
 ```
 
-### `permanentFilter`
+### `filters.initial`
 
-Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
+Sets the initial value of the filter. The `initial` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `filters.permanent` prop.
+
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useTable({
     refineCoreProps: {
-        permanentFilter: [
-            {
-                field: "title",
-                operator: "contains",
-                value: "Foo",
-            },
-        ],
+        filters: {
+            initial: [
+                {
+                    field: "name",
+                    operator: "contains",
+                    value: "Foo",
+                },
+            ],
+        },
     },
 });
 ```
 
-### `defaultSetFilterBehavior`
+### `filters.permanent`
 
-> Default: `merge`
+Sets the permanent value of the filter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `filters.initial` prop.
+
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
+```tsx
+useTable({
+    refineCoreProps: {
+        filters: {
+            permanent: [
+                {
+                    field: "name",
+                    operator: "contains",
+                    value: "Foo",
+                },
+            ],
+        },
+    },
+});
+```
+
+### `filters.defaultBehavior`
+
+> Default: `replace`
 
 The filtering behavior can be set to either `"merge"` or `"replace"`.
 
@@ -250,21 +292,9 @@ You can also override the default value by using the second parameter of the [`s
 ```tsx
 useTable({
     refineCoreProps: {
-        defaultSetFilterBehavior: "replace",
-    },
-});
-```
-
-### `hasPagination`
-
-> Default: `true`
-
-Determines whether to use server-side pagination or not.
-
-```tsx
-useTable({
-    refineCoreProps: {
-        hasPagination: false,
+        filters: {
+            defaultBehavior: "merge",
+        },
     },
 });
 ```
@@ -323,7 +353,7 @@ const myDataProvider = {
         resource,
         pagination,
         hasPagination,
-        sort,
+        sorters,
         filters,
         // highlight-next-line
         metaData,
@@ -423,6 +453,178 @@ useTable({
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
 
+### ~~`initialCurrent`~~
+
+:::caution Deprecated
+Use `pagination.current` instead.
+:::
+
+> Default: `1`
+
+Sets the initial value of the page index.
+
+```tsx
+useTable({
+    refineCoreProps: {
+        initialCurrent: 2,
+    },
+});
+```
+
+### ~~`initialPageSize`~~
+
+:::caution Deprecated
+Use `pagination.pageSize` instead.
+:::
+
+> Default: `10`
+
+Sets the initial value of the page size.
+
+```tsx
+useTable({
+    refineCoreProps: {
+        initialPageSize: 20,
+    },
+});
+```
+
+### ~~`hasPagination`~~
+
+:::caution Deprecated
+Use `pagination.mode` instead.
+:::
+
+> Default: `true`
+
+Determines whether to use server-side pagination or not.
+
+```tsx
+useTable({
+    refineCoreProps: {
+        hasPagination: false,
+    },
+});
+```
+
+### ~~`initialSorter`~~
+
+:::caution Deprecated
+Use `sorters.initial` instead.
+:::
+
+Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
+
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+
+```tsx
+useTable({
+    refineCoreProps: {
+        initialSorter: [
+            {
+                field: "name",
+                order: "asc",
+            },
+        ],
+    },
+});
+```
+
+### ~~`permanentSorter`~~
+
+:::caution Deprecated
+Use `sorters.permanent` instead.
+:::
+
+Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
+
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+
+```tsx
+useTable({
+    refineCoreProps: {
+        permanentSorter: [
+            {
+                field: "name",
+                order: "asc",
+            },
+        ],
+    },
+});
+```
+
+### ~~`initialFilter`~~
+
+:::caution Deprecated
+Use `filters.initial` instead.
+:::
+
+Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
+
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
+```tsx
+useTable({
+    refineCoreProps: {
+        initialFilter: [
+            {
+                field: "name",
+                operator: "contains",
+                value: "Foo",
+            },
+        ],
+    },
+});
+```
+
+### ~~`permanentFilter`~~
+
+:::caution Deprecated
+Use `filters.permanent` instead.
+:::
+
+Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
+
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
+```tsx
+useTable({
+    refineCoreProps: {
+        permanentFilter: [
+            {
+                field: "name",
+                operator: "contains",
+                value: "Foo",
+            },
+        ],
+    },
+});
+```
+
+### ~~`defaultSetFilterBehavior`~~
+
+:::caution Deprecated
+Use `filters.defaultBehavior` instead.
+:::
+
+> Default: `replace`
+
+The filtering behavior can be set to either `"merge"` or `"replace"`.
+
+-   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+
+-   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+
+You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
+
+```tsx
+useTable({
+    refineCoreProps: {
+        defaultSetFilterBehavior: "merge",
+    },
+});
+```
+
 ## Return Values
 
 :::tip
@@ -435,17 +637,19 @@ It also have all return values of [TanStack Table](https://tanstack.com/table/v8
 
 Returned values from [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
 
-#### `sorter`
+### `sorters`
 
-Current [sorter state][crudsorting].
+Current [sorters state][crudsorting].
 
-#### `setSorter`
+### `setSorters`
+
+A function to set current [sorters state][crudsorting].
 
 ```tsx
- (sorter: CrudSorting) => void;
+ (sorters: CrudSorting) => void;
 ```
 
-A function to set current [sorter state][crudsorting].
+A function to set current [sorters state][crudsorting].
 
 #### `filters`
 
@@ -494,6 +698,26 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 ```
 
 A function creates accessible links for `syncWithLocation`. It takes [SyncWithLocationParams][syncwithlocationparams] as parameters.
+
+### ~~`sorter`~~
+
+:::caution Deprecated
+Use `sorters` instead.
+:::
+
+Current [sorters state][crudsorting].
+
+### ~~`setSorter`~~
+
+:::caution Deprecated
+Use `setSorters` instead.
+:::
+
+A function to set current [sorters state][crudsorting].
+
+```tsx
+ (sorters: CrudSorting) => void;
+```
 
 ## FAQ
 

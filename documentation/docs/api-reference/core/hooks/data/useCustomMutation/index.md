@@ -184,20 +184,20 @@ mutate({
 });
 ```
 
-### `metaData`
+### `meta`
 
-[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+[`meta`](/docs/api-reference/general-concepts/#meta) is used following two purposes:
 
 -   To pass additional information to data provider methods.
 -   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
 
-In the following example, `metaData` is passed to the `custom` method from the `dataProvider` as a parameter.
+In the following example, `meta` is passed to the `custom` method from the `dataProvider` as a parameter.
 
 ```tsx
 const { mutate } = useCustomMutation();
 
 mutate({
-    metaData: {
+    meta: {
         foo: "bar",
     },
 });
@@ -212,9 +212,9 @@ const myDataProvider = {
         payload,
         query,
         headers,
-        metaData,
+        meta,
     }) => {
-        const foo = metaData?.foo;
+        const foo = meta?.foo;
 
         console.log(foo); // "bar"
 
@@ -254,7 +254,7 @@ Returns an object with TanStack Query's `useMutation` return values.
 | config                                           | The config of your request. You can send `headers` using this field.                               | { headers?: {}; }                                                                        |
 | successNotification                              | Successful mutation notification                                                                   | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification) |
 | errorNotification                                | Unsuccessful mutation notification                                                                 | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification) |
-| metaData                                         | Metadata query for `dataProvider`                                                                  | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                       |
+| meta                                             | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                       |
 | dataProviderName                                 | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                                 |
 
 ### Type Parameters
@@ -268,6 +268,6 @@ Returns an object with TanStack Query's `useMutation` return values.
 
 ### Return value
 
-| Description                               | Type                                                                                                                                                                                          |
-| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Description                                | Type                                                                                                                                                                                          |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Result of the TanStack Query's useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`](https://tanstack.com/query/v4/docs/react/reference/useMutation) |

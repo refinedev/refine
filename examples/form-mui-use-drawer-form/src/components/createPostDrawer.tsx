@@ -1,12 +1,11 @@
+import { Create, useAutocomplete } from "@pankod/refine-mui";
 import {
     Autocomplete,
     Box,
-    Create,
     Drawer,
     IconButton,
     TextField,
-    useAutocomplete,
-} from "@pankod/refine-mui";
+} from "@mui/material";
 import {
     Controller,
     UseModalFormReturnType,
@@ -38,7 +37,7 @@ export const CreatePostDrawer: React.FC<
         >
             <Create
                 saveButtonProps={saveButtonProps}
-                cardHeaderProps={{
+                headerProps={{
                     action: (
                         <IconButton
                             onClick={() => close()}

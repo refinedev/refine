@@ -10,14 +10,14 @@ describe("deleteMany", () => {
         });
     });
 
-    it("correct response with metaData", async () => {
+    it("correct response with meta", async () => {
         const { data } = await dataProvider(nhost).deleteMany!({
             resource: "posts",
             ids: [
                 "b16d671e-1172-4622-8c2f-b4b88fd60bfc",
                 "56c313f2-8709-4e75-9d01-6d89583e4939",
             ],
-            metaData: {
+            meta: {
                 fields: ["id", "title"],
             },
         });
@@ -30,7 +30,7 @@ describe("deleteMany", () => {
         expect(data[1].title).toEqual("Etiam tincidunt ex ut auctor faucibus");
     });
 
-    it("correct response without metaData", async () => {
+    it("correct response without meta", async () => {
         const { data } = await dataProvider(nhost).deleteMany!({
             resource: "posts",
             ids: [

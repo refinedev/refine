@@ -16,6 +16,9 @@ import {
     useRouterContext,
     useMenu,
     useRefineContext,
+    useLink,
+    useRouterType,
+    useActiveAuthProvider,
 } from "@pankod/refine-core";
 
 import { Title as DefaultTitle } from "@components";
@@ -25,31 +28,37 @@ import { RefineLayoutSiderProps } from "../types";
 
 const { SubMenu } = Menu;
 
-export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
-    const { Link } = useRouterContext();
-    const { mutate: mutateLogout } = useLogout();
+    const routerType = useRouterType();
+    const NewLink = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+    const Link = routerType === "legacy" ? LegacyLink : NewLink;
     const Title = useTitle();
     const translate = useTranslate();
-    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
+    const { menuItems, selectedKey, defaultOpenKeys } = useMenu({ meta });
     const breakpoint = Grid.useBreakpoint();
     const { hasDashboard } = useRefineContext();
+    const authProvider = useActiveAuthProvider();
+    const { mutate: mutateLogout } = useLogout({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+    });
 
     const isMobile =
         typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
     const RenderToTitle = Title ?? DefaultTitle;
 
-    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+    const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
         return tree.map((item: ITreeMenu) => {
             const { icon, label, route, name, children, parentName } = item;
 
             if (children.length > 0) {
                 return (
                     <CanAccess
-                        key={route}
+                        key={item.key}
                         resource={name.toLowerCase()}
                         action="list"
                         params={{
@@ -57,7 +66,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                         }}
                     >
                         <SubMenu
-                            key={route}
+                            key={item.key}
                             icon={icon ?? <UnorderedListOutlined />}
                             title={label}
                         >
@@ -72,7 +81,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
             );
             return (
                 <CanAccess
-                    key={route}
+                    key={item.key}
                     resource={name.toLowerCase()}
                     action="list"
                     params={{
@@ -80,13 +89,13 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     }}
                 >
                     <Menu.Item
-                        key={route}
+                        key={item.key}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
                         icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
-                        <Link to={route}>{label}</Link>
+                        <Link to={route ?? ""}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -146,7 +155,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
             <>
                 <Menu
                     theme="dark"
-                    selectedKeys={[selectedKey]}
+                    selectedKeys={selectedKey ? [selectedKey] : []}
                     defaultOpenKeys={defaultOpenKeys}
                     mode="inline"
                     onClick={() => {

@@ -644,18 +644,9 @@ Next, we will create a `<Header>` component. This component will allow us to cha
 
 ```tsx title="src/components/header.tsx"
 import { useGetLocale, useSetLocale } from "@pankod/refine-core";
-import {
-    AntdLayout,
-    Space,
-    Menu,
-    Button,
-    Icons,
-    Dropdown,
-    Avatar,
-} from "@pankod/refine-antd";
+import { Layout, Space, Menu, Button, Dropdown, Avatar } from "antd";
+import { DownOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
-
-const { DownOutlined } = Icons;
 
 export const Header: React.FC = () => {
     const { i18n } = useTranslation();
@@ -686,7 +677,7 @@ export const Header: React.FC = () => {
     );
 
     return (
-        <AntdLayout.Header
+        <Layout.Header
             style={{
                 display: "flex",
                 justifyContent: "flex-end",
@@ -708,7 +699,7 @@ export const Header: React.FC = () => {
                     </Space>
                 </Button>
             </Dropdown>
-        </AntdLayout.Header>
+        </Layout.Header>
     );
 };
 ```

@@ -1,5 +1,5 @@
 import {
-    MetaDataQuery,
+    MetaQuery,
     Pagination,
     CrudSorting,
     CrudFilters,
@@ -11,10 +11,9 @@ import { generateFilter, generateSort } from "../../dataProvider";
 
 type GenerateUseListSubscriptionParams = {
     resource: string;
-    metaData: MetaDataQuery;
+    meta: MetaQuery;
     pagination?: Pagination;
-    hasPagination?: boolean;
-    sort?: CrudSorting;
+    sorters?: CrudSorting;
     filters?: CrudFilters;
 };
 
@@ -26,35 +25,34 @@ type GenerateUseListSubscriptionReturnValues = {
 
 export const generateUseListSubscription = ({
     resource,
-    metaData,
+    meta,
     pagination,
-    hasPagination,
-    sort,
+    sorters,
     filters,
 }: GenerateUseListSubscriptionParams): GenerateUseListSubscriptionReturnValues => {
-    const { current = 1, pageSize = 10 } = pagination ?? {};
+    const { current = 1, pageSize = 10, mode = "server" } = pagination ?? {};
 
-    const sortBy = generateSort(sort);
+    const sortBy = generateSort(sorters);
     const filterBy = generateFilter(filters);
 
     const camelResource = camelCase(resource);
 
-    const operation = metaData.operation ?? camelResource;
+    const operation = meta.operation ?? camelResource;
 
     const { query, variables } = gql.query({
         operation,
         variables: {
-            ...metaData.variables,
+            ...meta.variables,
             sort: sortBy,
             where: { value: filterBy, type: "JSON" },
-            ...(hasPagination
+            ...(mode === "server"
                 ? {
                       start: (current - 1) * pageSize,
                       limit: pageSize,
                   }
                 : {}),
         },
-        fields: metaData.fields,
+        fields: meta.fields,
     });
 
     return { query, variables, operation };

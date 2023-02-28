@@ -31,7 +31,7 @@ The hook handles pagination by setting the `paginationMode`, `page`, `onPageChan
 It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
 :::info
-To disable pagination, you can set `hasPagination` property to `false` which is `true` by default. If pagination is disabled, `hideFooterPagination` property will be sent as `true` with `paginationMode`, `page,` `onPageChange`, `pageSize` and `onPageSizeChange` set to undefined.
+If you want to handle the pagination on client-side, you can pass the `pagination.mode` prop to the `useDataGrid` hook and set it to `"client"`.
 :::
 
 ```tsx
@@ -103,14 +103,9 @@ export const PostsList: React.FC = () => {
 If you want to sort externally from the `<DataGrid>` component. You can use `setSorter` like this:
 
 ```tsx
-import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    List,
-    Button,
-    ButtonGroup,
-} from "@pankod/refine-mui";
+import { useDataGrid, List } from "@pankod/refine-mui";
+import { Button, ButtonGroup } from "@mui/material";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
     {
@@ -199,15 +194,9 @@ export const PostsList: React.FC = () => {
 If you want to filter externally from the `<DataGrid>` component. You can use `setFilter` like this:
 
 ```tsx
-import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    List,
-    FormControlLabel,
-    Checkbox,
-} from "@pankod/refine-mui";
-
+import { useDataGrid, List } from "@pankod/refine-mui";
+import { FormControlLabel, Checkbox } from "@mui/material";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 const columns: GridColumns = [
     {
         field: "id",
@@ -284,7 +273,7 @@ method={{
 />
 
 ```tsx
-useTable({
+useDataGrid({
     resource: "categories",
 });
 ```
@@ -299,7 +288,7 @@ useDataGrid({
 });
 ```
 
-### `initialCurrent`
+### `pagination.current`
 
 > Default: `1`
 
@@ -307,85 +296,123 @@ Sets the initial value of the page index.
 
 ```tsx
 useDataGrid({
-    initialCurrent: 2, // This will cause the table to initially display the data for page 2, rather than the default of page 1
+    pagination: {
+        current: 2,
+    },
 });
 ```
 
-### `initialPageSize`
+### `pagination.pageSize`
 
-> Default: `10`
+> Default: `25`
 
 Sets the initial value of the page size.
 
 ```tsx
 useDataGrid({
-    initialPageSize: 20, // This will cause the table to initially display 20 rows per page, rather than the default of 10
+    pagination: {
+        pageSize: 10,
+    },
 });
 ```
 
-### `initialSorter`
+### `pagination.mode`
 
-Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
+> Default: `"server"`
+
+It can be `"off"`, `"server"` or `"client"`.
+
+-   **"off":** Pagination is disabled. All records will be fetched.
+-   **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
+-   **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
 
 ```tsx
 useDataGrid({
-    initialSorter: [
-        {
-            field: "title",
-            order: "asc",
-        },
-    ],
+    pagination: {
+        mode: "client",
+    },
 });
 ```
 
-### `permanentSorter`
+### `sorters.initial`
 
-Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
+Sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
+
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useDataGrid({
-    permanentSorter: [
-        {
-            field: "title",
-            order: "asc",
-        },
-    ],
+    sorters: {
+        initial: [
+            {
+                field: "name",
+                order: "asc",
+            },
+        ],
+    },
 });
 ```
 
-### `initialFilter`
+### `sorters.permanent`
 
-Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
+Sets the permanent value of the sorter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `sorters.initial` prop.
+
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
 
 ```tsx
 useDataGrid({
-    initialFilter: [
-        {
-            field: "title",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+    sorters: {
+        permanent: [
+            {
+                field: "name",
+                order: "asc",
+            },
+        ],
+    },
 });
 ```
 
-### `permanentFilter`
+### `filters.initial`
 
-Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
+Sets the initial value of the filter. The `initial` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `filters.permanent` prop.
+
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
 
 ```tsx
 useDataGrid({
-    permanentFilter: [
-        {
-            field: "title",
-            operator: "contains",
-            value: "Foo",
-        },
-    ],
+    filters: {
+        initial: [
+            {
+                field: "name",
+                operator: "contains",
+                value: "Foo",
+            },
+        ],
+    },
 });
 ```
 
-### `defaultSetFilterBehavior`
+### `filters.permanent`
+
+Sets the permanent value of the filter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `filters.initial` prop.
+
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
+```tsx
+useDataGrid({
+    filters: {
+        permanent: [
+            {
+                field: "name",
+                operator: "contains",
+                value: "Foo",
+            },
+        ],
+    },
+});
+```
+
+### `filters.defaultBehavior`
 
 > Default: `merge`
 
@@ -399,19 +426,9 @@ You can also override the default value by using the second parameter of the [`s
 
 ```tsx
 useDataGrid({
-    defaultSetFilterBehavior: "replace",
-});
-```
-
-### `hasPagination`
-
-> Default: `true`
-
-Determines whether to use server-side pagination or not.
-
-```tsx
-useDataGrid({
-    hasPagination: false,
+    filters: {
+        defaultBehavior: "replace",
+    },
 });
 ```
 
@@ -441,18 +458,18 @@ useDataGrid({
 });
 ```
 
-### `metaData`
+### `meta`
 
-[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+[`meta`](/docs/api-reference/general-concepts/#meta) is used following two purposes:
 
 -   To pass additional information to data provider methods.
 -   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
 
-In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
+In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useDataGrid({
-    metaData: {
+    meta: {
         headers: { "x-meta-data": "true" },
     },
 });
@@ -463,13 +480,13 @@ const myDataProvider = {
         resource,
         pagination,
         hasPagination,
-        sort,
+        sorters,
         filters,
         // highlight-next-line
-        metaData,
+        meta,
     }) => {
         // highlight-next-line
-        const headers = metaData?.headers ?? {};
+        const headers = meta?.headers ?? {};
         const url = `${apiUrl}/${resource}`;
 
         //...
@@ -554,6 +571,162 @@ useDataGrid({
 > [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
+
+### ~~`initialCurrent`~~
+
+:::caution Deprecated
+Use `pagination.current` instead.
+:::
+
+> Default: `1`
+
+Sets the initial value of the page index.
+
+```tsx
+useDataGrid({
+    initialCurrent: 2,
+});
+```
+
+### ~~`initialPageSize`~~
+
+:::caution Deprecated
+Use `pagination.pageSize` instead.
+:::
+
+> Default: `25`
+
+Sets the initial value of the page size.
+
+```tsx
+useDataGrid({
+    initialPageSize: 20,
+});
+```
+
+### ~~`hasPagination`~~
+
+:::caution Deprecated
+Use `pagination.mode` instead.
+:::
+
+> Default: `true`
+
+Determines whether to use server-side pagination or not.
+
+```tsx
+useDataGrid({
+    hasPagination: false,
+});
+```
+
+### ~~`initialSorter`~~
+
+:::caution Deprecated
+Use `sorters.initial` instead.
+:::
+
+Sets the initial value of the sorter. The `initialSorter` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `permanentSorter` prop.
+
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+
+```tsx
+useDataGrid({
+    initialSorter: [
+        {
+            field: "name",
+            order: "asc",
+        },
+    ],
+});
+```
+
+### ~~`permanentSorter`~~
+
+:::caution Deprecated
+Use `sorters.permanent` instead.
+:::
+
+Sets the permanent value of the sorter. The `permanentSorter` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `initialSorter` prop.
+
+[Refer to the `CrudSorting` interface for more information &#8594](docs/api-reference/core/interfaceReferences#crudsorting)
+
+```tsx
+useDataGrid({
+    permanentSorter: [
+        {
+            field: "name",
+            order: "asc",
+        },
+    ],
+});
+```
+
+### ~~`initialFilter`~~
+
+:::caution Deprecated
+Use `filters.initial` instead.
+:::
+
+Sets the initial value of the filter. The `initialFilter` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `permanentFilter` prop.
+
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
+```tsx
+useDataGrid({
+    initialFilter: [
+        {
+            field: "name",
+            operator: "contains",
+            value: "Foo",
+        },
+    ],
+});
+```
+
+### ~~`permanentFilter`~~
+
+:::caution Deprecated
+Use `filters.permanent` instead.
+:::
+
+Sets the permanent value of the filter. The `permanentFilter` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `initialFilter` prop.
+
+[Refer to the `CrudFilters` interface for more information &#8594](/docs/api-reference/core/interfaceReferences#crudfilters)
+
+```tsx
+useDataGrid({
+    permanentFilter: [
+        {
+            field: "name",
+            operator: "contains",
+            value: "Foo",
+        },
+    ],
+});
+```
+
+### ~~`defaultSetFilterBehavior`~~
+
+:::caution Deprecated
+Use `filters.defaultBehavior` instead.
+:::
+
+> Default: `merge`
+
+The filtering behavior can be set to either `"merge"` or `"replace"`.
+
+-   When the filter behavior is set to `"merge"`, it will merge the new filter with the existing filters. This means that if the new filter has the same column as an existing filter, the new filter will replace the existing filter for that column. If the new filter has a different column than the existing filters, it will be added to the existing filters.
+
+-   When the filter behavior is set to `"replace"`, it will replace all existing filters with the new filter. This means that any existing filters will be removed and only the new filter will be applied to the table.
+
+You can also override the default value by using the second parameter of the [`setFilters`](#setfilters) function.
+
+```tsx
+useDataGrid({
+    defaultSetFilterBehavior: "replace",
+});
+```
 
 ## Return Values
 
@@ -655,17 +828,17 @@ Returns pagination configuration values(pageSize, current, setCurrent, etc.).
 
 Returned values from [`useList`](/docs/api-reference/core/hooks/data/useList/) hook.
 
-### `sorter`
+### `sorters`
 
-Current [sorter state][crudsorting].
+Current [sorters state][crudsorting].
 
-### `setSorter`
+### `setSorters`
+
+A function to set current [sorters state][crudsorting].
 
 ```tsx
- (sorter: CrudSorting) => void;
+ (sorters: CrudSorting) => void;
 ```
-
-A function to set current [sorter state][crudsorting].
 
 ### `filters`
 
@@ -686,7 +859,7 @@ Current page index state. If pagination is disabled, it will be `undefined`.
 ### `setCurrent`
 
 ```tsx
-React.Dispatch<React.SetStateAction<number>> | undefined
+React.Dispatch<React.SetStateAction<number>> | undefined;
 ```
 
 A function to set the current page index state. If pagination is disabled, it will be `undefined`.
@@ -698,7 +871,7 @@ Current page size state. If pagination is disabled, it will be `undefined`.
 ### `setPageSize`
 
 ```tsx
-React.Dispatch<React.SetStateAction<number>> | undefined
+React.Dispatch<React.SetStateAction<number>> | undefined;
 ```
 
 A function to set the current page size state. If pagination is disabled, it will be `undefined`.
@@ -714,6 +887,26 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 ```
 
 A function creates accessible links for `syncWithLocation`. It takes [SyncWithLocationParams][syncwithlocationparams] as parameters.
+
+### ~~`sorter`~~
+
+:::caution Deprecated
+Use `sorters` instead.
+:::
+
+Current [sorters state][crudsorting].
+
+### ~~`setSorter`~~
+
+:::caution Deprecated
+Use `setSorters` instead.
+:::
+
+A function to set current [sorters state][crudsorting].
+
+```tsx
+ (sorters: CrudSorting) => void;
+```
 
 ## FAQ
 
@@ -739,22 +932,24 @@ You can use [`useSelect`](http://localhost:3000/docs/api-reference/core/hooks/us
 
 ### Return values
 
-| Property                      | Description                                                                                                    | Type                                                                                 |
-| ----------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| dataGridProps                 | MUI X [`<DataGrid>`][data-grid] props                                                                          | `DataGridPropsType`\*                                                                |
-| tableQueryResult              | Result of the `react-query`'s `useQuery`                                                                       | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery] |
-| search                        | It sends the parameters it receives to its `onSearch` function                                                 | `(value: TSearchVariables) => Promise<void>`                                         |
-| current                       | Current page index state (returns `undefined` if pagination is disabled)                                       | `number` \| `undefined`                                                              |
-| totalPage                     | Total page count (returns `undefined` if pagination is disabled)                                               | `number` \| `undefined`                                                              |
-| setCurrent                    | A function that changes the current (returns `undefined` if pagination is disabled)                            | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                        |
-| pageSize                      | Current pageSize state (returns `undefined` if pagination is disabled)                                         | `number` \| `undefined`                                                              |
-| setPageSize                   | A function that changes the pageSize (returns `undefined` if pagination is disabled)                           | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                        |
-| hideFooterPagination          | Whether to hide the footer pagination or not. This value is only returned if `hasPagination` is set to `false` | `boolean`                                                                            |
-| sorter                        | Current sorting state                                                                                          | [`CrudSorting`][crudsorting]                                                         |
-| setSorter                     | A function that accepts a new sorter state                                                                     | `(sorter: CrudSorting) => void`                                                      |
-| filters                       | Current filters state                                                                                          | [`CrudFilters`][crudfilters]                                                         |
-| setFilters                    | A function that accepts a new filter state                                                                     | `(filters: CrudFilters) => void`                                                     |
-| createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                                                        | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`            |
+| Property                      | Description                                                                                        | Type                                                                                 |
+| ----------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| dataGridProps                 | MUI X [`<DataGrid>`][data-grid] props                                                              | `DataGridPropsType`\*                                                                |
+| tableQueryResult              | Result of the `react-query`'s `useQuery`                                                           | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery] |
+| search                        | It sends the parameters it receives to its `onSearch` function                                     | `(value: TSearchVariables) => Promise<void>`                                         |
+| current                       | Current page index state (returns `undefined` if pagination is disabled)                           | `number` \| `undefined`                                                              |
+| totalPage                     | Total page count (returns `undefined` if pagination is disabled)                                   | `number` \| `undefined`                                                              |
+| setCurrent                    | A function that changes the current (returns `undefined` if pagination is disabled)                | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                        |
+| pageSize                      | Current pageSize state (returns `undefined` if pagination is disabled)                             | `number` \| `undefined`                                                              |
+| setPageSize                   | A function that changes the pageSize (returns `undefined` if pagination is disabled)               | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                        |
+| hideFooterPagination          | Whether to hide the footer pagination accordingly your `pagination.mode` and `hasPagination` props | `boolean`                                                                            |
+| sorters                       | Current sorting state                                                                              | [`CrudSorting`][crudsorting]                                                         |
+| setSorters                    | A function that accepts a new sorters state                                                        | `(sorters: CrudSorting) => void`                                                     |
+| ~~sorter~~                    | Current sorting state                                                                              | [`CrudSorting`][crudsorting]                                                         |
+| ~~setSorter~~                 | A function that accepts a new sorters state                                                        | `(sorters: CrudSorting) => void`                                                     |
+| filters                       | Current filters state                                                                              | [`CrudFilters`][crudfilters]                                                         |
+| setFilters                    | A function that accepts a new filter state                                                         | `(filters: CrudFilters) => void`                                                     |
+| createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                                            | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`            |
 
 > **DataGridProps**
 >

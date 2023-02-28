@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { DataGrid, GridColumns, useDataGrid } from "@pankod/refine-mui";
+import { useDataGrid } from "@pankod/refine-mui";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 import { useUpdate } from "@pankod/refine-core";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";

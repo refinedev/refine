@@ -6,18 +6,20 @@ source: packages/antd/src/hooks/form/useForm.ts
 
 ```tsx live shared
 import {
-    Table as AntdTable,
-    Edit as AntdEdit,
     Create as AntdCreate,
     List as AntdList,
-    Form as AntdForm,
-    Input as AntdInput,
     useForm as useAntdForm,
     useTable as useAntdTable,
-    Space as AntdSpace,
     EditButton as AntdEditButton,
     CloneButton as AntdCloneButton,
 } from "@pankod/refine-antd";
+import {
+    Table as AntdTable,
+    Edit as AntdEdit,
+    Form as AntdForm,
+    Input as AntdInput,
+    Space as AntdSpace,
+} from "antd";
 
 interface IPost {
     id: number;
@@ -135,7 +137,8 @@ We'll show the basic usage of `useForm` by adding an editing form.
 
 ```tsx title="pages/posts/edit.tsx"
 // highlight-next-line
-import { Edit, Form, Input, useForm, Select } from "@pankod/refine-antd";
+import { Edit, useForm } from "@pankod/refine-antd";
+import { Form, Input, Select } from "antd";
 
 export const PostEdit: React.FC = () => {
     // highlight-next-line
@@ -231,7 +234,8 @@ setInitialRoutes(["/posts/create"]);
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import { Create, Form, Input, useForm } from "@pankod/refine-antd";
+import { Create, useForm } from "@pankod/refine-antd";
+import { Form, Input } from "antd";
 
 interface IPost {
     id: number;
@@ -304,7 +308,8 @@ setInitialRoutes(["/posts/edit/123"]);
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import { Edit, Form, Input, useForm } from "@pankod/refine-antd";
+import { Edit, useForm } from "@pankod/refine-antd";
+import { Form, Input } from "antd";
 
 interface IPost {
     id: number;
@@ -377,14 +382,8 @@ setInitialRoutes(["/posts/clone/123"]);
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import {
-    Create,
-    Form,
-    Input,
-    useForm,
-    Space,
-    Switch,
-} from "@pankod/refine-antd";
+import { Create, useForm } from "@pankod/refine-antd";
+import { Form, Input, Space, Switch } from "antd";
 
 interface IPost {
     id: number;
@@ -613,18 +612,18 @@ useForm({
 }
 ```
 
-### `metaData`
+### `meta`
 
-[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+[`meta`](/docs/api-reference/general-concepts/#meta) is used following two purposes:
 
 -   To pass additional information to data provider methods.
 -   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
 
-In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
+In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useForm({
-    metaData: {
+    meta: {
         headers: { "x-meta-data": "true" },
     },
 });
@@ -632,8 +631,8 @@ useForm({
 const myDataProvider = {
     //...
     // highlight-start
-    create: async ({ resource, variables, metaData }) => {
-        const headers = metaData?.headers ?? {};
+    create: async ({ resource, variables, meta }) => {
+        const headers = meta?.headers ?? {};
         // highlight-end
         const url = `${apiUrl}/${resource}`;
 
@@ -858,7 +857,8 @@ It is useful when you want to `invalidate` other resources don't have relation w
 
 ```tsx
 import React from "react";
-import { Create, Form, Input, useForm } from "@pankod/refine-antd";
+import { Create, useForm } from "@pankod/refine-antd";
+import { Form, Input } from "antd";
 
 const PostEdit = () => {
     const invalidate = useInvalidate();
@@ -886,7 +886,8 @@ For example, Let's send the values we received from the user in two separate inp
 
 ```tsx title="pages/user/create.tsx"
 import React from "react";
-import { Create, Form, Input, useForm } from "@pankod/refine-antd";
+import { Create, useForm } from "@pankod/refine-antd";
+import { Form, Input } from "antd";
 
 export const UserCreate: React.FC = () => {
     // highlight-next-line

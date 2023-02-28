@@ -106,7 +106,7 @@ If you need the population for the `/me` request, you can use it like this in yo
 const strapiAuthHelper = AuthHelper(API_URL + "/api");
 
 strapiAuthHelper.me("token", {
-    metaData: {
+    meta: {
         populate: ["role"],
     },
 });
@@ -276,7 +276,8 @@ We will create a select component in the Sider Menu where the user will select t
 
 ```tsx title="scr/components/select/StoreSelect.tsx"
 import { useContext } from "react";
-import { Select, useSelect } from "@pankod/refine-antd";
+import { useSelect } from "@pankod/refine-antd";
+import { Select } from "antd";
 
 import { StoreContext } from "context/store";
 import { IStore } from "interfaces";
@@ -335,7 +336,12 @@ import {
     ITreeMenu,
     useRouterContext,
 } from "@pankod/refine-core";
-import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
+import { Layout, Menu, Grid } from "antd";
+import {
+    UnorderedListOutlined,
+    AppstoreAddOutlined,
+    LoginOutlined,
+} from "@ant-design/icons";
 
 import { StoreSelect } from "components/select";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
@@ -359,7 +365,7 @@ export const CustomSider: React.FC = () => {
                 return (
                     <SubMenu
                         key={route}
-                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
                         {renderTreeView(children, selectedKey)}
@@ -381,9 +387,7 @@ export const CustomSider: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={
-                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
-                        }
+                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
                         <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
@@ -396,7 +400,7 @@ export const CustomSider: React.FC = () => {
     };
 
     return (
-        <AntdLayout.Sider
+        <Layout.Sider
             collapsible
             collapsedWidth={isMobile ? 0 : 80}
             collapsed={collapsed}
@@ -414,7 +418,7 @@ export const CustomSider: React.FC = () => {
                     }
                 }}
             >
-                <Menu.Item key={route} icon={<Icons.AppstoreAddOutlined />}>
+                <Menu.Item key={route} icon={<AppstoreAddOutlined />}>
                     <StoreSelect
                         onSelect={() => {
                             setCollapsed(true);
@@ -425,12 +429,12 @@ export const CustomSider: React.FC = () => {
                 <Menu.Item
                     key="logout"
                     onClick={() => logout()}
-                    icon={<Icons.LoginOutlined />}
+                    icon={<LoginOutlined />}
                 >
                     Logout
                 </Menu.Item>
             </Menu>
-        </AntdLayout.Sider>
+        </Layout.Sider>
     );
 };
 ```
@@ -444,9 +448,9 @@ export const CustomSider: React.FC = () => {
 
 ## Product List Page
 
-Now we can list the products of the selected store according to the `storeId` information by filtering it. We can do this filtering by using the `permanetFilter` property within the **refine**'s `useSimpleList` hook.
+Now we can list the products of the selected store according to the `storeId` information by filtering it. We can do this filtering by using the `filters.permanent` property within the **refine**'s `useSimpleList` hook.
 
-We separate the products of different stores by using the `permanentFilter` with the `storeId` we get from the Store Context. So we can control more than single content in one application.
+We separate the products of different stores by using the `filters.permanent` with the `storeId` we get from the Store Context. So we can control more than single content in one application.
 
 ```tsx
 //highlight-start
@@ -454,7 +458,9 @@ const [store] = useContext(StoreContext);
 //highlight-end
 const { listProps } = useSimpleList<IProduct>({
     //highlight-start
-    permanentFilter: [{ field: "stores][id]", operator: "eq", value: store }],
+    filters: {
+        permanent: [{ field: "stores][id]", operator: "eq", value: store }],
+    },
     //highlight-end
 });
 ```
@@ -468,12 +474,12 @@ import { useContext } from "react";
 import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
 import {
     useSimpleList,
-    AntdList,
     useModalForm,
     useDrawerForm,
     CreateButton,
     List,
 } from "@pankod/refine-antd";
+import { List as AntdList } from "antd";
 
 import { IProduct } from "interfaces";
 
@@ -484,10 +490,10 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
     //highlight-start
     const [store] = useContext(StoreContext);
     const { listProps } = useSimpleList<IProduct>({
-        permanentFilter: [
-            { field: "stores][id]", operator: "eq", value: store },
-        ],
-        metaData: { populate: ["image"] },
+        filters: {
+            permanent: [{ field: "stores][id]", operator: "eq", value: store }],
+        },
+        meta: { populate: ["image"] },
     });
     //highlight-end
 
@@ -561,8 +567,8 @@ const [store, setStore] = useContext(StoreContext);
 ```tsx title="CreateProduct"
 import { useContext } from "react";
 import { useApiUrl } from "@pankod/refine-core";
+import { Create } from "@pankod/refine-antd";
 import {
-    Create,
     Drawer,
     DrawerProps,
     Form,
@@ -571,7 +577,7 @@ import {
     ButtonProps,
     Upload,
     Grid,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { StoreContext } from "context/store";
 

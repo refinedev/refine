@@ -1,4 +1,7 @@
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import {
+    Refine,
+    LegacyAuthProvider as AuthProvider,
+} from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -8,7 +11,7 @@ import {
 import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
 
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import "@pankod/refine-antd/dist/reset.css";
 
@@ -80,9 +83,9 @@ const App: React.FC = () => {
 
     return (
         <Refine
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 routes: [
                     {

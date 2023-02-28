@@ -43,10 +43,8 @@ describe("useInfiniteList Hook", () => {
             () =>
                 useInfiniteList({
                     resource: "posts",
-                    config: {
-                        pagination: {
-                            pageSize: 1,
-                        },
+                    pagination: {
+                        pageSize: 1,
                     },
                 }),
             {
@@ -89,10 +87,8 @@ describe("useInfiniteList Hook", () => {
             () =>
                 useInfiniteList({
                     resource: "posts",
-                    config: {
-                        pagination: {
-                            pageSize: 1,
-                        },
+                    pagination: {
+                        pageSize: 1,
                     },
                 }),
             {
@@ -145,12 +141,13 @@ describe("useInfiniteList Hook", () => {
                 channel: "resources/posts",
                 callback: expect.any(Function),
                 params: {
-                    filters: undefined,
-                    hasPagination: undefined,
-                    metaData: undefined,
-                    pagination: undefined,
+                    hasPagination: true,
+                    pagination: {
+                        current: 1,
+                        pageSize: 10,
+                        mode: "server",
+                    },
                     resource: "posts",
-                    sort: undefined,
                     subscriptionType: "useList",
                 },
                 types: ["*"],

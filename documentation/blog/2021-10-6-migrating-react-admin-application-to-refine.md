@@ -133,12 +133,14 @@ import { ICampaign } from "interfaces";
 
 export const CampaignsList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter } = useTable<ICampaign>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "asc",
+                },
+            ],
+        }
     });
 
     const { isLoading: isExportLoading, triggerExport } = useExport();

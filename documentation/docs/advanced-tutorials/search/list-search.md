@@ -13,11 +13,9 @@ import {
     List,
     // highlight-next-line
     useSimpleList,
-    AntdList,
-    Typography,
-    Space,
     NumberField,
 } from "@pankod/refine-antd";
+import { List as AntdList, Typography, Space } from "antd";
 
 const { Text } = Typography;
 

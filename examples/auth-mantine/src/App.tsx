@@ -1,17 +1,19 @@
-import { AuthProvider, Refine } from "@pankod/refine-core";
+import {
+    LegacyAuthProvider as AuthProvider,
+    Refine,
+} from "@pankod/refine-core";
 import {
     AuthPage,
-    MantineProvider,
-    NotificationsProvider,
     Layout,
     ErrorComponent,
     ReadyPage,
     notificationProvider,
     LightTheme,
-    Global,
 } from "@pankod/refine-mantine";
+import { NotificationsProvider } from "@mantine/notifications";
+import { MantineProvider, Global } from "@mantine/core";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
@@ -85,8 +87,8 @@ const App: React.FC = () => {
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}
-                    authProvider={authProvider}
-                    routerProvider={{
+                    legacyAuthProvider={authProvider}
+                    legacyRouterProvider={{
                         ...routerProvider,
                         routes: [
                             {

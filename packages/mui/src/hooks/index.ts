@@ -4,4 +4,3 @@ export {
     UseDataGridReturnType,
     useDataGrid,
 } from "./useDataGrid";
-export * from "./useMenu";

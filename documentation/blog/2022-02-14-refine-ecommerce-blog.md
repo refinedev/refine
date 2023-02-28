@@ -8,13 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeho
 hide_table_of_contents: false
 ---
 
-
-
-
-
-
-
-
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -291,7 +284,7 @@ const API_URL = "https://api.strapi-multi-tenant.refine.dev/api";
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const data = await DataProvider(API_URL).getList<IProduct>({
         resource: "products",
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
     });
 
     return {
@@ -330,7 +323,7 @@ export const ProductList: React.FC<ItemProps> = ({ products }) => {
         queryOptions: {
             initialData: products,
         },
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
     });
     //highlight-end
 
@@ -361,7 +354,7 @@ export default ProductList;
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const data = await DataProvider(API_URL).getList<IProduct>({
         resource: "products",
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
     });
 
     return {
@@ -390,7 +383,7 @@ First, let's fetch our stores by using the **refine** `useMany` hook within the 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const data = await DataProvider(API_URL).getList<IProduct>({
         resource: "products",
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
         pagination: { current: 1, pageSize: 9 },
     });
 
@@ -434,7 +427,7 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
         queryOptions: {
             initialData: products,
         },
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
     });
 
     return (
@@ -506,7 +499,7 @@ export default ProductList;
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const data = await DataProvider(API_URL).getList<IProduct>({
         resource: "products",
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
         pagination: { current: 1, pageSize: 9 },
     });
 
@@ -565,7 +558,7 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
                 initialData: products,
             },
             initialPageSize: 9,
-            metaData: { populate: ["image"] },
+            meta: { populate: ["image"] },
         });
     //highlight-end
 
@@ -656,7 +649,7 @@ export default ProductList;
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const data = await DataProvider(API_URL).getList<IProduct>({
         resource: "products",
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
         pagination: { current: 1, pageSize: 9 },
     });
 

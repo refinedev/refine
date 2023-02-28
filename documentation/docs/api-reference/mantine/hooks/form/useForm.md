@@ -6,17 +6,19 @@ source: packages/mantine/src/hooks/form/useForm/index.ts
 
 ```tsx live shared
 import React from "react";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 import {
     Edit as MantineEdit,
     Create as MantineCreate,
     List as MantineList,
-    Form as MantineForm,
-    Input as MantineInput,
     useTable as useMantineTable,
     EditButton as MantineEditButton,
     CloneButton as MantineCloneButton,
+} from "@pankod/refine-mantine";
+import {
+    Input as MantineInput,
     Box as MantineBox,
     Group as MantineGroup,
     ScrollArea as MantineScrollArea,
@@ -25,7 +27,7 @@ import {
     TextInput as MantineTextInput,
     Text as MantineText,
     Textarea as MantineTextarea,
-} from "@pankod/refine-mantine";
+} from "@mantine/core";
 
 interface IPost {
     id: number;
@@ -232,7 +234,8 @@ const PostCreate: React.FC = () => {
 We'll show the basic usage of `useForm` by adding an editing form.
 
 ```tsx
-import { Edit, Select, TextInput, useForm } from "@pankod/refine-mantine";
+import { Edit, useForm } from "@pankod/refine-mantine";
+import { Select, TextInput } from "@mantine/core";
 
 const PostEdit: React.FC = () => {
     const { saveButtonProps, getInputProps } = useForm({
@@ -322,13 +325,8 @@ setInitialRoutes(["/posts/create"]);
 // visible-block-start
 import React from "react";
 
-import {
-    Create,
-    Text,
-    TextInput,
-    Textarea,
-    useForm,
-} from "@pankod/refine-mantine";
+import { Create, useForm } from "@pankod/refine-mantine";
+import { Text, TextInput, Textarea } from "@mantine/core";
 
 const PostCreatePage: React.FC = () => {
     const { saveButtonProps, getInputProps, errors } = useForm({
@@ -398,13 +396,8 @@ setInitialRoutes(["/posts/edit/123"]);
 // visible-block-start
 import React from "react";
 
-import {
-    Edit,
-    Text,
-    TextInput,
-    Textarea,
-    useForm,
-} from "@pankod/refine-mantine";
+import { Edit, useForm } from "@pankod/refine-mantine";
+import { Text, TextInput, Textarea } from "@mantine/core";
 
 const PostEditPage: React.FC = () => {
     const { saveButtonProps, getInputProps, errors } = useForm({
@@ -476,13 +469,8 @@ setInitialRoutes(["/posts/clone/123"]);
 // visible-block-start
 import React from "react";
 
-import {
-    Create,
-    Text,
-    TextInput,
-    Textarea,
-    useForm,
-} from "@pankod/refine-mantine";
+import { Create, useForm } from "@pankod/refine-mantine";
+import { Text, TextInput, Textarea } from "@mantine/core";
 
 const PostCreatePage: React.FC = () => {
     const { saveButtonProps, getInputProps, errors } = useForm({
@@ -727,19 +715,19 @@ useForm({
 }
 ```
 
-### `metaData`
+### `meta`
 
-[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+[`meta`](/docs/api-reference/general-concepts/#meta) is used following two purposes:
 
 -   To pass additional information to data provider methods.
 -   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
 
-In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
+In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useForm({
     refineCoreProps: {
-        metaData: {
+        meta: {
             headers: { "x-meta-data": "true" },
         },
     },
@@ -748,8 +736,8 @@ useForm({
 const myDataProvider = {
     //...
     // highlight-start
-    create: async ({ resource, variables, metaData }) => {
-        const headers = metaData?.headers ?? {};
+    create: async ({ resource, variables, meta }) => {
+        const headers = meta?.headers ?? {};
         // highlight-end
         const url = `${apiUrl}/${resource}`;
 
@@ -949,7 +937,7 @@ It is useful when you want to `invalidate` other resources don't have relation w
 ```tsx
 import React from "react";
 import { useInvalidate } from "@pankod/refine-core";
-import { Create, Form, Input, useForm } from "@pankod/refine-antd";
+import { useForm } from "@pankod/refine-mantine";
 
 const PostEdit = () => {
     const invalidate = useInvalidate();
@@ -977,7 +965,8 @@ For example, Let's send the values we received from the user in two separate inp
 
 ```tsx title="pages/user/create.tsx"
 import React from "react";
-import { Create, TextInput, useForm } from "@pankod/refine-mantine";
+import { Create, useForm } from "@pankod/refine-mantine";
+import { TextInput } from "@mantine/core";
 
 const UserCreate: React.FC = () => {
     const { saveButtonProps, getInputProps } = useForm({

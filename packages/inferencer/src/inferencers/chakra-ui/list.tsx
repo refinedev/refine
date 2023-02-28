@@ -1,5 +1,7 @@
 import * as RefineChakraUI from "@pankod/refine-chakra-ui";
+import * as ChakraUI from "@chakra-ui/react";
 import * as RefineReactTable from "@pankod/refine-react-table";
+import * as TanstackReactTable from "@tanstack/react-table";
 import * as TablerIcons from "@tabler/icons";
 
 import { createInferencer } from "@/create-inferencer";
@@ -49,22 +51,22 @@ export const renderer = ({
     const imports: Array<[element: string, module: string]> = [
         ["IResourceComponentsProps", "@pankod/refine-core"],
         ["useTable", "@pankod/refine-react-table"],
-        ["ColumnDef", "@pankod/refine-react-table"],
-        ["flexRender", "@pankod/refine-react-table"],
+        ["ColumnDef", "@tanstack/react-table"],
+        ["flexRender", "@tanstack/react-table"],
         ["List", "@pankod/refine-chakra-ui"],
-        ["TableContainer", "@pankod/refine-chakra-ui"],
-        ["Table", "@pankod/refine-chakra-ui"],
-        ["Thead", "@pankod/refine-chakra-ui"],
-        ["Tr", "@pankod/refine-chakra-ui"],
-        ["Th", "@pankod/refine-chakra-ui"],
-        ["Tbody", "@pankod/refine-chakra-ui"],
-        ["Tr", "@pankod/refine-chakra-ui"],
-        ["Td", "@pankod/refine-chakra-ui"],
-        ["HStack", "@pankod/refine-chakra-ui"],
-        ["Button", "@pankod/refine-chakra-ui"],
-        ["IconButton", "@pankod/refine-chakra-ui"],
+        ["TableContainer", "@chakra-ui/react"],
+        ["Table", "@chakra-ui/react"],
+        ["Thead", "@chakra-ui/react"],
+        ["Tr", "@chakra-ui/react"],
+        ["Th", "@chakra-ui/react"],
+        ["Tbody", "@chakra-ui/react"],
+        ["Tr", "@chakra-ui/react"],
+        ["Td", "@chakra-ui/react"],
+        ["HStack", "@chakra-ui/react"],
+        ["Button", "@chakra-ui/react"],
+        ["IconButton", "@chakra-ui/react"],
         ["usePagination", "@pankod/refine-chakra-ui"],
-        ["Box", "@pankod/refine-chakra-ui"],
+        ["Box", "@chakra-ui/react"],
         ["IconChevronRight", "@tabler/icons"],
         ["IconChevronLeft", "@tabler/icons"],
     ];
@@ -229,7 +231,7 @@ export const renderer = ({
 
     const imageFields = (field: InferField) => {
         if (field.type === "image") {
-            imports.push(["Image", "@pankod/refine-chakra-ui"]);
+            imports.push(["Image", "@chakra-ui/react"]);
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
@@ -838,6 +840,8 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
         ["@pankod/refine-chakra-ui", "RefineChakraUI", RefineChakraUI],
         ["@pankod/refine-react-table", "RefineReactTable", RefineReactTable],
         ["@tabler/icons", "TablerIcons", TablerIcons],
+        ["@chakra-ui/react", "ChakraUI", ChakraUI],
+        ["@tanstack/react-table", "TanstackReactTable", TanstackReactTable],
     ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,

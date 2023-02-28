@@ -1,6 +1,8 @@
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import { Checkbox, Edit, Form, Input, useForm } from "@pankod/refine-antd";
+import { Edit, useForm } from "@pankod/refine-antd";
+
+import { Checkbox, Form, Input } from "antd";
 
 import { ICategory } from "interfaces";
 
