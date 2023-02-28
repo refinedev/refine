@@ -439,6 +439,50 @@ const login = useLogin({
 
 :::
 
+### Import changes
+
+All `@tanstack/react-query` imports re-exported from `@refinedev/core` have been removed. You should import them from `@tanstack/react-query` package directly.
+
+If the package is not installed, you can install it with your package manager:
+
+<Tabs
+defaultValue="npm"
+values={[ {label: 'npm', value: 'npm'}, {label: 'pnpm', value: 'pnpm'}, {label: 'yarn', value: 'yarn'} ]}>
+
+<TabItem value="npm">
+
+```bash
+npm install @tanstack/react-query
+```
+
+</TabItem>
+
+<TabItem value="pnpm">
+
+```bash
+pnpm add @tanstack/react-query
+```
+
+</TabItem>
+
+<TabItem value="yarn">
+
+```bash
+yarn add @tanstack/react-query
+```
+
+</TabItem>
+
+</Tabs>
+
+After that, you can import them from `@tanstack/react-query` package directly instead of `@refinedev/core` package.
+
+```diff
+- import { QueryClient } from "@refinedev/core";
+
++ import { QueryClient } from "@tanstack/react-query";
+```
+
 ### Update `getList` parameters of `dataProvider`
 
 `getList` parameters of `dataProvider` have been updated.
