@@ -274,7 +274,7 @@ type AuthActionResponse = {
 };
 ```
 
-### `check`
+#### `check`
 
 -   `checkAuth` method of the authProvider changed to `check`.
 -   `check` method now requires that a promise be resolved instead of rejected, with a return type of `CheckResponse`
@@ -315,7 +315,7 @@ type CheckResponse = {
 };
 ```
 
-### `onError`
+#### `onError`
 
 -   `checkError` method of the authProvider changed to `onError`.
 -   `onError` method now requires that a promise be resolved instead of rejected, with a return type of `OnErrorResponse`
@@ -350,7 +350,7 @@ type OnErrorResponse = {
 };
 ```
 
-## `getPermissions`
+#### `getPermissions`
 
 -   `getPermissions` method now requires that a promise be resolved instead of rejected, with a return type of `PermissionResponse`
 
@@ -375,7 +375,7 @@ const authProvider = {
 type PermissionResponse = unknown;
 ```
 
-## `getIdentity`
+#### `getIdentity`
 
 -   `getUserIdentity` method of the authProvider changed to `getIdentity`.
 -   `getIdentity` method now requires that a promise be resolved instead of rejected, with a return type of `IdentityResponse`
@@ -753,7 +753,7 @@ npm install antd
 <TabItem value="pnpm">
 
 ```bash
-pnpm install antd
+pnpm add antd
 ```
 
 </TabItem>
@@ -798,7 +798,7 @@ npm install @ant-design/icons
 <TabItem value="pnpm">
 
 ```bash
-pnpm install @ant-design/icons
+pnpm add @ant-design/icons
 ```
 
 </TabItem>
@@ -1078,7 +1078,7 @@ npm install @mui/material @emotion/react @emotion/styled @mui/lab @mui/x-data-gr
 <TabItem value="pnpm">
 
 ```bash
-pnpm install @mui/material @emotion/react @emotion/styled @mui/lab @mui/x-data-grid
+pnpm add @mui/material @emotion/react @emotion/styled @mui/lab @mui/x-data-grid
 ```
 
 </TabItem>
@@ -1257,7 +1257,7 @@ npm install @mantine/core @emotion/react @mantine/hooks @mantine/notifications @
 <TabItem value="pnpm">
 
 ```bash
-pnpm install @mantine/core @emotion/react @mantine/hooks @mantine/notifications @mantine/form
+pnpm add @mantine/core @emotion/react @mantine/hooks @mantine/notifications @mantine/form
 ```
 
 </TabItem>
@@ -1353,7 +1353,7 @@ npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
 <TabItem value="pnpm">
 
 ```bash
-pnpm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
+pnpm add @chakra-ui/react @emotion/react @emotion/styled framer-motion
 ```
 
 </TabItem>
@@ -1423,7 +1423,7 @@ npm install @tanstack/react-table
 <TabItem value="pnpm">
 
 ```bash
-pnpm install @tanstack/react-table
+pnpm add @tanstack/react-table
 ```
 
 </TabItem>
@@ -1547,7 +1547,7 @@ npm install react-hook-form
 <TabItem value="pnpm">
 
 ```bash
-pnpm install react-hook-form
+pnpm add react-hook-form
 ```
 
 </TabItem>
