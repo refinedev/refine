@@ -51,6 +51,7 @@ jobs:
         id: waitForDeployment
         with:
           site_id: ${{ secrets.NETLIFY_PREVIEW_SITE_ID }}
+          max_timeout: 1200
         env:
           NETLIFY_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
       - name: output test
