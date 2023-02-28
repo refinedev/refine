@@ -30,7 +30,7 @@ Let's create a `<ColumnSorter/>` component to use in our table header. This comp
 ```tsx title="src/components/table/ColumnSorter.tsx"
 import { ActionIcon } from "@mantine/core";
 import { IconChevronDown, IconSelector } from "@tabler/icons";
-import type { Column } from "@pankod/refine-react-table";
+import type { Column } from "@tanstack/react-table";
 
 export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
     column,
@@ -140,7 +140,7 @@ import {
     Group,
 } from ;
 import { IconFilter, IconX, IconCheck } from "@tabler/icons";
-import type { Column } from "@pankod/refine-react-table";
+import type { Column } from "@tanstack/react-table";
 
 export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({
     column,

@@ -2,42 +2,46 @@ name: Pull Request Checks
 on: [pull_request]
 
 jobs:
-  commitlint:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
         with:
           fetch-depth: 0
       - uses: wagoid/commitlint-github-action@v5
+      - name: lint
+        run: |
+          npm ci
+          npm run lint
+
   build:
     runs-on: ubuntu-latest
+    needs:
+      - lint
     strategy:
       matrix:
         node-version: [16.x]
     steps:
-    - uses: actions/checkout@v1
-    - name: Cache node modules
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: npm install & build
-      run: |
-        npm install
-        npm run bootstrap
-    - name:  lint
-      run: |
-        npm run lint
-    - name: test
-      run: |
-        npm run test --skip-nx-cache
+      - uses: actions/checkout@v1
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install & build
+        run: |
+          npm ci
+          npm run bootstrap
+      - name: test
+        run: |
+          npm run test --skip-nx-cache
