@@ -80,6 +80,7 @@
         "@mantine/hooks": "^5.5.6",
         "@mantine/form": "^5.5.6",
         "@mantine/notifications": "^5.5.6",
+        "@tanstack/react-table": "^8.2.6",
         "@types/react": "^17.0.0 || ^18.0.0",
         "@types/react-dom": "^17.0.0 || ^18.0.0",
         "dayjs": "^1.10.7",
@@ -140,6 +141,9 @@
         },
         "@mantine/notifications": {
             "optional": true
+        },
+        "@tanstack/react-table": {
+            "optional": true
         }
     },
     "devDependencies": {
@@ -168,7 +172,7 @@
         "identity-obj-proxy": "^3.0.0",
         "jest": "^29.3.1",
         "jest-environment-jsdom": "^29.3.1",
-        "react-router-dom": "6.3.0",
+        "react-router-dom": "^6.8.1",
         "react-test-renderer": "^18.2.0",
         "ts-jest": "^29.0.3",
         "tsup": "^5.11.13",

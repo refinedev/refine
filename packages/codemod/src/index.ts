@@ -152,6 +152,14 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         value: "refine1-to-refine2",
     },
     {
+        name: "router-to-legacy-router: Transform existing router definitions to legacy router",
+        value: "router-to-legacy-router",
+    },
+    {
+        name: "move-deprecated-access-control: Move deprecated deprecated `ignoreAccessControlProvider` prop to new `accessControl`",
+        value: "move-deprecated-access-control",
+    },
+    {
         name: "separate-imports-antd: Moves `antd` components exported by `refine` into `antd`",
         value: "separate-imports-antd",
     },
@@ -174,6 +182,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
     {
         name: "authProvider-to-legacyAuthProvider: Transform authProvider to use legacyAuthProvider",
         value: "authProvider-to-legacyAuthProvider",
+    },
+    {
+        name: "separate-imports-react-table: Moves `@tanstack/react-table` components exported by `refine` into `@tanstack/react-table`",
+        value: "separate-imports-react-table",
     },
 ];
 

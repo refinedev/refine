@@ -1,21 +1,24 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import ReactRouterDom from "react-router-dom";
 
-import { TestWrapper, act } from "@test";
+import { TestWrapper, act, mockLegacyRouterProvider } from "@test";
 
 import { useUpdatePassword } from "./";
 
-const mHistory = jest.fn();
+const mockFn = jest.fn();
 
-jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
-}));
+const mockRouterProvider = {
+    ...mockLegacyRouterProvider(),
+    useHistory: () => ({
+        push: mockFn,
+        replace: mockFn,
+    }),
+    useLocation: () => ({}),
+};
 
 // NOTE : Will be removed in v5
 describe("v3LegacyAuthProviderCompatible useUpdatePassword Hook", () => {
     beforeEach(() => {
-        mHistory.mockReset();
+        mockFn.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
             if (message?.message === "Missing fields") return;
             if (typeof message === "undefined") return;
@@ -42,6 +45,7 @@ describe("v3LegacyAuthProviderCompatible useUpdatePassword Hook", () => {
                         logout: () => Promise.resolve(),
                         getUserIdentity: () => Promise.resolve({ id: 1 }),
                     },
+                    legacyRouterProvider: mockRouterProvider,
                 }),
             },
         );
@@ -58,7 +62,7 @@ describe("v3LegacyAuthProviderCompatible useUpdatePassword Hook", () => {
             expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(mHistory).not.toBeCalledWith();
+        expect(mockFn).not.toBeCalledWith();
     });
 
     it("fail update password", async () => {
@@ -76,6 +80,7 @@ describe("v3LegacyAuthProviderCompatible useUpdatePassword Hook", () => {
                         logout: () => Promise.resolve(),
                         getUserIdentity: () => Promise.resolve({ id: 1 }),
                     },
+                    legacyRouterProvider: mockRouterProvider,
                 }),
             },
         );
@@ -107,7 +112,7 @@ describe("useUpdatePassword Hook", () => {
     };
 
     beforeEach(() => {
-        mHistory.mockReset();
+        mockFn.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
             if (message?.message === "Missing fields") return;
             if (typeof message === "undefined") return;
@@ -130,6 +135,7 @@ describe("useUpdatePassword Hook", () => {
                         });
                     },
                 },
+                legacyRouterProvider: mockRouterProvider,
             }),
         });
 
@@ -146,7 +152,7 @@ describe("useUpdatePassword Hook", () => {
         });
 
         expect(result.current.data).toEqual({ success: true });
-        expect(mHistory).not.toBeCalledWith();
+        expect(mockFn).not.toBeCalledWith();
     });
 
     it("fail update password", async () => {
@@ -164,6 +170,7 @@ describe("useUpdatePassword Hook", () => {
                         });
                     },
                 },
+                legacyRouterProvider: mockRouterProvider,
             }),
         });
 
@@ -183,7 +190,7 @@ describe("useUpdatePassword Hook", () => {
             success: false,
             error: new Error("Missing fields"),
         });
-        expect(mHistory).not.toBeCalledWith();
+        expect(mockFn).not.toBeCalledWith();
     });
 
     it("success and redirect", async () => {
@@ -205,6 +212,7 @@ describe("useUpdatePassword Hook", () => {
                         });
                     },
                 },
+                legacyRouterProvider: mockRouterProvider,
             }),
         });
 
@@ -224,10 +232,11 @@ describe("useUpdatePassword Hook", () => {
             success: true,
             redirectTo: "/login",
         });
-        expect(mHistory).toBeCalledWith("/login", { replace: true });
+        expect(mockFn).toBeCalledWith("/login");
     });
 
     it("fail and redirect", async () => {
+        mockFn;
         const { result } = renderHook(() => useUpdatePassword(), {
             wrapper: TestWrapper({
                 authProvider: {
@@ -246,6 +255,7 @@ describe("useUpdatePassword Hook", () => {
                         });
                     },
                 },
+                legacyRouterProvider: mockRouterProvider,
             }),
         });
 
@@ -266,7 +276,7 @@ describe("useUpdatePassword Hook", () => {
             error: new Error("Missing fields"),
             redirectTo: "/register",
         });
-        expect(mHistory).toBeCalledWith("/register", { replace: true });
+        expect(mockFn).toBeCalledWith("/register");
     });
 
     it("should open notification when has error is true", async () => {
@@ -285,6 +295,7 @@ describe("useUpdatePassword Hook", () => {
                             error: new Error("Error"),
                         }),
                 },
+                legacyRouterProvider: mockRouterProvider,
             }),
         });
 
@@ -318,6 +329,7 @@ describe("useUpdatePassword Hook", () => {
                     ...mockAuthProvider,
                     updatePassword: () => Promise.resolve({ success: false }),
                 },
+                legacyRouterProvider: mockRouterProvider,
             }),
         });
 
@@ -347,6 +359,7 @@ describe("useUpdatePassword Hook", () => {
                 notificationProvider: {
                     open: openNotificationMock,
                 },
+                legacyRouterProvider: mockRouterProvider,
                 authProvider: {
                     ...mockAuthProvider,
                     updatePassword: () => {
@@ -400,6 +413,7 @@ describe("useUpdatePassword Hook authProvider selection", () => {
                     logout: () => Promise.resolve({ success: true }),
                     updatePassword: () => updatePassword(),
                 },
+                legacyRouterProvider: mockRouterProvider,
             }),
         });
 
@@ -443,6 +457,7 @@ describe("useUpdatePassword Hook authProvider selection", () => {
                         logout: () => Promise.resolve({ success: true }),
                         updatePassword: () => updatePassword(),
                     },
+                    legacyRouterProvider: mockRouterProvider,
                 }),
             },
         );

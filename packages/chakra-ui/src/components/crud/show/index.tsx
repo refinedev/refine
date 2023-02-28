@@ -1,11 +1,14 @@
 import React from "react";
 import {
-    ResourceRouterParams,
     useNavigation,
-    useResourceWithRoute,
-    userFriendlyResourceName,
-    useRouterContext,
     useTranslate,
+    userFriendlyResourceName,
+    useRefineContext,
+    useResource,
+    useToPath,
+    useRouterType,
+    useBack,
+    useGo,
 } from "@pankod/refine-core";
 import { Box, IconButton, HStack, Heading, Spinner } from "@chakra-ui/react";
 
@@ -38,58 +41,92 @@ export const Show: React.FC<ShowProps> = (props) => {
         contentProps,
         headerProps,
         goBack: goBackFromProps,
-        breadcrumb = <Breadcrumb />,
+        breadcrumb: breadcrumbFromProps,
         title,
     } = props;
     const translate = useTranslate();
+    const { options: { breadcrumb: globalBreadcrumb } = {} } =
+        useRefineContext();
 
-    const { goBack, list } = useNavigation();
-
-    const resourceWithRoute = useResourceWithRoute();
-
-    const { useParams } = useRouterContext();
+    const routerType = useRouterType();
+    const back = useBack();
+    const go = useGo();
+    const { goBack, list: legacyGoList } = useNavigation();
 
     const {
-        resource: routeResourceName,
-        action: routeFromAction,
-        id: idFromRoute,
-    } = useParams<ResourceRouterParams>();
+        resource,
+        action,
+        id: idFromParams,
+    } = useResource(resourceFromProps);
 
-    const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
+    const goListPath = useToPath({
+        resource,
+        action: "list",
+    });
 
-    const isDeleteButtonVisible = canDelete ?? resource.canDelete;
+    const id = recordItemId ?? idFromParams;
 
-    const isEditButtonVisible = canEdit ?? resource.canEdit;
+    const breadcrumb =
+        typeof breadcrumbFromProps === "undefined"
+            ? globalBreadcrumb
+            : breadcrumbFromProps;
 
-    const id = recordItemId ?? idFromRoute;
+    const isDeleteButtonVisible =
+        canDelete ?? resource?.meta?.canDelete ?? resource?.canDelete;
+    const isEditButtonVisible =
+        canEdit ?? resource?.canEdit ?? !!resource?.edit;
 
     const defaultHeaderButtons = (
         <>
             {!recordItemId && (
                 <ListButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={resource.route}
+                    resourceNameOrRouteName={
+                        routerType === "legacy"
+                            ? resource?.route
+                            : resource?.identifier ?? resource?.name
+                    }
                 />
             )}
             {isEditButtonVisible && (
                 <EditButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={resource.route}
+                    resourceNameOrRouteName={
+                        routerType === "legacy"
+                            ? resource?.route
+                            : resource?.identifier ?? resource?.name
+                    }
                     recordItemId={id}
                 />
             )}
             {isDeleteButtonVisible && (
                 <DeleteButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={resource.route}
+                    resourceNameOrRouteName={
+                        routerType === "legacy"
+                            ? resource?.route
+                            : resource?.identifier ?? resource?.name
+                    }
                     recordItemId={id}
-                    onSuccess={() => list(resource.route ?? resource.name)}
+                    onSuccess={() => {
+                        if (routerType === "legacy") {
+                            legacyGoList(
+                                resource?.route ?? resource?.name ?? "",
+                            );
+                        } else {
+                            go({ to: goListPath });
+                        }
+                    }}
                     dataProviderName={dataProviderName}
                 />
             )}
             <RefreshButton
                 {...(isLoading ? { disabled: true } : {})}
-                resourceNameOrRouteName={resource.route}
+                resourceNameOrRouteName={
+                    routerType === "legacy"
+                        ? resource?.route
+                        : resource?.identifier ?? resource?.name
+                }
                 recordItemId={id}
                 dataProviderName={dataProviderName}
             />
@@ -102,7 +139,13 @@ export const Show: React.FC<ShowProps> = (props) => {
                 aria-label="back"
                 variant="ghost"
                 size="sm"
-                onClick={routeFromAction ? goBack : undefined}
+                onClick={
+                    action !== "list" && typeof action !== "undefined"
+                        ? routerType === "legacy"
+                            ? goBack
+                            : back
+                        : undefined
+                }
             >
                 {typeof goBackFromProps !== "undefined" ? (
                     goBackFromProps
@@ -142,9 +185,12 @@ export const Show: React.FC<ShowProps> = (props) => {
         return (
             <Heading as="h3" size="lg">
                 {translate(
-                    `${resource.name}.titles.show`,
+                    `${resource?.name}.titles.show`,
                     `Show ${userFriendlyResourceName(
-                        resource.label ?? resource.name,
+                        resource?.meta?.label ??
+                            resource?.options?.label ??
+                            resource?.label ??
+                            resource?.name,
                         "singular",
                     )}`,
                 )}
@@ -179,7 +225,11 @@ export const Show: React.FC<ShowProps> = (props) => {
                 {...headerProps}
             >
                 <Box minW={200}>
-                    {breadcrumb}
+                    {typeof breadcrumb !== "undefined" ? (
+                        <>{breadcrumb}</> ?? undefined
+                    ) : (
+                        <Breadcrumb />
+                    )}
                     <HStack>
                         {buttonBack}
                         {renderTitle()}

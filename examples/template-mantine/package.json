@@ -16,6 +16,7 @@
         "@pankod/refine-simple-rest": "^3.18.0",
         "@pankod/refine-mantine": "^1.15.10",
         "@pankod/refine-react-table": "^4.9.1",
+        "@tanstack/react-table": "^8.2.6",
         "@tabler/icons": "^1.1.0",
         "@pankod/refine-react-router-v6": "^3.18.0",
         "@emotion/react": "^11.8.2",

@@ -1,6 +1,8 @@
 import React from "react";
 import {
     useTranslate,
+    useRouterType,
+    useLink,
     useRouterContext,
     useRegister,
     RegisterPageProps,
@@ -43,7 +45,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
 
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const NewLink = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+    const Link = routerType === "legacy" ? LegacyLink : NewLink;
     const translate = useTranslate();
     const authProvider = useActiveAuthProvider();
     const { mutate } = useRegister({

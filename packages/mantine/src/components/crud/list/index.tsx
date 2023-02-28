@@ -1,11 +1,10 @@
 import React from "react";
 import { Box, Card, Group, Stack, Title } from "@mantine/core";
 import {
-    ResourceRouterParams,
     useRefineContext,
-    useResourceWithRoute,
+    useResource,
     userFriendlyResourceName,
-    useRouterContext,
+    useRouterType,
     useTranslate,
 } from "@pankod/refine-core";
 
@@ -27,31 +26,33 @@ export const List: React.FC<ListProps> = (props) => {
         title,
     } = props;
     const translate = useTranslate();
+    const { options: { breadcrumb: globalBreadcrumb } = {} } =
+        useRefineContext();
 
-    const { useParams } = useRouterContext();
+    const routerType = useRouterType();
 
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-
-    const resourceWithRoute = useResourceWithRoute();
-
-    const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
+    const { resource } = useResource(resourceFromProps);
 
     const isCreateButtonVisible =
-        canCreate ?? (resource.canCreate || createButtonProps);
+        canCreate ??
+        ((resource?.canCreate ?? !!resource?.create) || createButtonProps);
+
+    const breadcrumb =
+        typeof breadcrumbFromProps === "undefined"
+            ? globalBreadcrumb
+            : breadcrumbFromProps;
 
     const defaultHeaderButtons = isCreateButtonVisible ? (
         <CreateButton
             size="sm"
-            resourceNameOrRouteName={resource.route}
+            resourceNameOrRouteName={
+                routerType === "legacy"
+                    ? resource?.route
+                    : resource?.identifier ?? resource?.name
+            }
             {...createButtonProps}
         />
     ) : null;
-
-    const { options } = useRefineContext();
-    const breadcrumb =
-        typeof breadcrumbFromProps === "undefined"
-            ? options?.breadcrumb
-            : breadcrumbFromProps;
 
     const breadcrumbComponent =
         typeof breadcrumb !== "undefined" ? (
@@ -76,9 +77,12 @@ export const List: React.FC<ListProps> = (props) => {
                     {title ?? (
                         <Title order={3} transform="capitalize">
                             {translate(
-                                `${resource.name}.titles.list`,
+                                `${resource?.name}.titles.list`,
                                 userFriendlyResourceName(
-                                    resource.label ?? resource.name,
+                                    resource?.meta?.label ??
+                                        resource?.options?.label ??
+                                        resource?.label ??
+                                        resource?.name,
                                     "plural",
                                 ),
                             )}

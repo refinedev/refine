@@ -8,7 +8,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import dataProvider, { GraphQLClient } from "@pankod/refine-strapi-graphql";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import "@pankod/refine-antd/dist/reset.css";
 
@@ -114,7 +114,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={gqlDataProvider}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             legacyAuthProvider={authProvider}
             LoginPage={Login}
             resources={[

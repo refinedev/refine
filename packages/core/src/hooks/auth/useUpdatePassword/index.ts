@@ -1,3 +1,4 @@
+import React from "react";
 import {
     useMutation,
     UseMutationOptions,
@@ -5,8 +6,15 @@ import {
 } from "@tanstack/react-query";
 import qs from "qs";
 
+import {
+    useNavigation,
+    useRouterType,
+    useGo,
+    useParsed,
+    useNotification,
+    useRouterContext,
+} from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { useNavigation, useNotification, useRouterContext } from "@hooks";
 import {
     AuthActionResponse,
     OpenNotificationParams,
@@ -96,19 +104,30 @@ export function useUpdatePassword<
     | UseUpdatePasswordLegacyProps<TVariables> = {}):
     | UseUpdatePasswordReturnType<TVariables>
     | UseUpdatePasswordLegacyReturnType<TVariables> {
+    const routerType = useRouterType();
+
+    const go = useGo();
     const { replace } = useNavigation();
     const { updatePassword: legacyUpdatePasswordFromContext } =
         useLegacyAuthContext();
     const { updatePassword: updatePasswordFromContext } =
         useAuthBindingsContext();
     const { close, open } = useNotification();
-    const { useLocation } = useRouterContext();
 
+    const parsed = useParsed();
+    const { useLocation } = useRouterContext();
     const { search } = useLocation();
 
-    const queryStrings = qs.parse(search, {
-        ignoreQueryPrefix: true,
-    });
+    const params = React.useMemo(() => {
+        if (routerType === "legacy") {
+            const queryStrings = qs.parse(search, {
+                ignoreQueryPrefix: true,
+            });
+            return queryStrings ?? {};
+        } else {
+            return parsed.params ?? {};
+        }
+    }, [search, parsed, routerType]);
 
     const mutation = useMutation<
         AuthActionResponse,
@@ -119,7 +138,7 @@ export function useUpdatePassword<
         ["useUpdatePassword"],
         async (variables) => {
             return updatePasswordFromContext?.({
-                ...queryStrings,
+                ...params,
                 ...variables,
             }) as Promise<AuthActionResponse>;
         },
@@ -134,7 +153,11 @@ export function useUpdatePassword<
                 }
 
                 if (redirectTo) {
-                    replace(redirectTo);
+                    if (routerType === "legacy") {
+                        replace(redirectTo);
+                    } else {
+                        go({ to: redirectTo, type: "replace" });
+                    }
                 }
             },
             onError: (error: any) => {
@@ -153,7 +176,7 @@ export function useUpdatePassword<
         ["useUpdatePassword"],
         async (variables) => {
             return legacyUpdatePasswordFromContext?.({
-                ...queryStrings,
+                ...params,
                 ...variables,
             });
         },
@@ -161,7 +184,11 @@ export function useUpdatePassword<
             onSuccess: (redirectPathFromAuth) => {
                 if (redirectPathFromAuth !== false) {
                     if (redirectPathFromAuth) {
-                        replace(redirectPathFromAuth);
+                        if (routerType === "legacy") {
+                            replace(redirectPathFromAuth);
+                        } else {
+                            go({ to: redirectPathFromAuth, type: "replace" });
+                        }
                     }
                 }
                 close?.("update-password-error");
