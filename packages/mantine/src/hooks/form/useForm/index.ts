@@ -127,7 +127,7 @@ export const useForm = <
         }
     }, [isValuesChanged]);
 
-    const onSubmit: typeof useMantineFormResult["onSubmit"] =
+    const onSubmit: (typeof useMantineFormResult)["onSubmit"] =
         (handleSubmit, handleValidationFailure) => async (e) => {
             setWarnWhen(false);
             return await onMantineSubmit(
