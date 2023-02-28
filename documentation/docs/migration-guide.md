@@ -694,6 +694,8 @@ useList({
 
 ### `<ReadyPage>` component is deprecated
 
+`<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
+
 ## **`@pankod/refine-antd` changes**
 
 ### Import changes
@@ -1021,6 +1023,8 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 
 ### `<ReadyPage>` component is deprecated
 
+`<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
+
 ## **`@pankod/refine-mui` changes**
 
 ### Import changes
@@ -1086,10 +1090,6 @@ After that, you can import them from related packages directly.
 We recommend you to use **codemod** to update your imports automatically. You can find more information about codemod [here][codemode-usage].
 
 :::
-
-### Theme
-
-TODO
 
 ### `useDataGrid` hook
 
@@ -1208,6 +1208,8 @@ Deprecated `cardProps`, `cardHeaderProps`, `cardContentProps`, `actionButtons`, 
 
 ### `<ReadyPage>` component is deprecated
 
+`<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
+
 ## **`@pankod/refine-mantine` changes**
 
 ### Import changes
@@ -1308,6 +1310,8 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 
 ### `<ReadyPage>` component is deprecated
 
+`<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
+
 ## **`@pankod/refine-chakra-ui` changes**
 
 ### Import changes
@@ -1383,6 +1387,8 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 ```
 
 ### `<ReadyPage>` component is deprecated
+
+`<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
 
 ## **`@pankod/refine-react-table` changes**
 
