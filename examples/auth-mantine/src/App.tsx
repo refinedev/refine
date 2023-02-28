@@ -13,7 +13,7 @@ import {
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
@@ -88,7 +88,7 @@ const App: React.FC = () => {
                         "https://api.fake-rest.refine.dev",
                     )}
                     legacyAuthProvider={authProvider}
-                    routerProvider={{
+                    legacyRouterProvider={{
                         ...routerProvider,
                         routes: [
                             {

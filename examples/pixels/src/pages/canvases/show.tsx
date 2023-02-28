@@ -20,10 +20,12 @@ import { LogList } from "components/logs";
 
 const { Title } = Typography;
 
+type Colors = typeof colors;
+
 export const CanvasShow: React.FC = () => {
-    const { Link, useLocation } = useRouterContext();
+    const { useLocation } = useRouterContext();
     const { pathname } = useLocation();
-    const [color, setColor] = useState<(typeof colors)[number]>("black");
+    const [color, setColor] = useState<Colors[number]>("black");
     const { modalProps, show, close } = useModal();
 
     const { data: identity } = useGetIdentity({

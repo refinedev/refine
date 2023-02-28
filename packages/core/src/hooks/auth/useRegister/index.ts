@@ -4,8 +4,8 @@ import {
     UseMutationResult,
 } from "@tanstack/react-query";
 
+import { useNavigation, useRouterType, useGo, useNotification } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { useNavigation, useNotification } from "@hooks";
 
 import {
     AuthActionResponse,
@@ -91,6 +91,8 @@ export function useRegister<TVariables = {}>({
 }: UseRegisterProps<TVariables> | UseRegisterLegacyProps<TVariables> = {}):
     | UseRegisterReturnType<TVariables>
     | UseRegisterLegacyReturnType<TVariables> {
+    const routerType = useRouterType();
+    const go = useGo();
     const { replace } = useNavigation();
     const { register: legacyRegisterFromContext } = useLegacyAuthContext();
     const { register: registerFromContext } = useAuthBindingsContext();
@@ -112,7 +114,15 @@ export function useRegister<TVariables = {}>({
             }
 
             if (redirectTo) {
-                replace(redirectTo);
+                if (routerType === "legacy") {
+                    replace(redirectTo);
+                } else {
+                    go({ to: redirectTo, type: "replace" });
+                }
+            } else {
+                if (routerType === "legacy") {
+                    replace("/");
+                }
             }
         },
         onError: (error: any) => {
@@ -133,12 +143,20 @@ export function useRegister<TVariables = {}>({
             onSuccess: (redirectPathFromAuth) => {
                 if (redirectPathFromAuth !== false) {
                     if (redirectPathFromAuth) {
-                        replace(redirectPathFromAuth);
+                        if (routerType === "legacy") {
+                            replace(redirectPathFromAuth);
+                        } else {
+                            go({ to: redirectPathFromAuth, type: "replace" });
+                        }
                     } else {
-                        replace("/");
+                        if (routerType === "legacy") {
+                            replace("/");
+                        } else {
+                            go({ to: "/", type: "replace" });
+                        }
                     }
+                    close?.("register-error");
                 }
-                close?.("register-error");
             },
             onError: (error: any) => {
                 open?.(buildNotification(error));

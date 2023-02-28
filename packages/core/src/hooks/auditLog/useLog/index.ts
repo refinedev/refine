@@ -15,6 +15,7 @@ import {
     pickNotDeprecated,
     queryKeys,
 } from "@definitions/helpers";
+import { pickResource } from "@definitions/helpers/pick-resource";
 import { useActiveAuthProvider } from "@definitions/helpers";
 
 type LogRenameData =
@@ -88,11 +89,12 @@ export const useLog = <
 
     const log = useMutation<TLogData, Error, LogParams, unknown>(
         async (params) => {
-            const resource = resources.find((p) => p.name === params.resource);
+            const resource = pickResource(params.resource, resources);
             const logPermissions = pickNotDeprecated(
-                resource?.meta,
-                resource?.options,
-            )?.auditLog?.permissions;
+                resource?.meta?.audit,
+                resource?.options?.audit,
+                resource?.options?.auditLog?.permissions,
+            );
 
             if (logPermissions) {
                 if (!hasPermission(logPermissions, params.action)) {

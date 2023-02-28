@@ -28,9 +28,14 @@ const columns: ColumnDef<Post>[] = [
 
 describe("useTable Hook", () => {
     it("It should work successfully with no properties", async () => {
-        const { result } = renderHook(() => useTable({ columns }), {
-            wrapper: TestWrapper({}),
-        });
+        const { result } = renderHook(
+            () => useTable({ columns, refineCoreProps: { resource: "posts" } }),
+            {
+                wrapper: TestWrapper({
+                    routerInitialEntries: ["/posts"],
+                }),
+            },
+        );
 
         await waitFor(
             () => {
@@ -61,6 +66,7 @@ describe("useTable Hook", () => {
                 useTable({
                     columns,
                     refineCoreProps: {
+                        resource: "posts",
                         pagination: {
                             current: 2,
                             pageSize: 1,
@@ -68,7 +74,9 @@ describe("useTable Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerInitialEntries: ["/posts"],
+                }),
             },
         );
 
@@ -96,6 +104,7 @@ describe("useTable Hook", () => {
                 useTable({
                     columns,
                     refineCoreProps: {
+                        resource: "posts",
                         filters: {
                             initial: [
                                 {
@@ -113,7 +122,9 @@ describe("useTable Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerInitialEntries: ["/posts"],
+                }),
             },
         );
 
@@ -192,7 +203,9 @@ describe("useTable Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerInitialEntries: ["/posts"],
+                }),
             },
         );
 
@@ -265,7 +278,9 @@ describe("useTable Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerInitialEntries: ["/posts"],
+                }),
             },
         );
 
@@ -352,7 +367,9 @@ describe("useTable Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({}),
+                wrapper: TestWrapper({
+                    routerInitialEntries: ["/posts"],
+                }),
             },
         );
 

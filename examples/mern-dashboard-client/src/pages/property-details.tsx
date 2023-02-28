@@ -1,6 +1,6 @@
 import { Typography, Box, Stack } from "@mui/material";
 import { useDelete, useGetIdentity, useShow } from "@pankod/refine-core";
-import { useParams, useNavigate } from "@pankod/refine-react-router-v6";
+import { useParams, useNavigate } from "react-router-dom";
 import {
     ChatBubble,
     Delete,

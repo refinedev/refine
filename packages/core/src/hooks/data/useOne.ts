@@ -32,12 +32,12 @@ export type UseOneProps<TData, TError> = {
     /**
      * Resource name for API data interactions
      */
-    resource: string;
+    resource?: string;
     /**
      * id of the item in the resource
      * @type [`BaseKey`](/docs/api-reference/core/interfaceReferences/#basekey)
      */
-    id: BaseKey;
+    id?: BaseKey;
     /**
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
@@ -117,7 +117,10 @@ export const useOne = <
             subscriptionType: "useOne",
             ...liveParams,
         },
-        enabled: queryOptions?.enabled,
+        enabled:
+            typeof queryOptions?.enabled !== "undefined"
+                ? queryOptions?.enabled
+                : typeof resource !== "undefined" && typeof id !== "undefined",
         liveMode,
         onLiveEvent,
     });
@@ -126,8 +129,8 @@ export const useOne = <
         queryKey.detail(id),
         ({ queryKey, pageParam, signal }) =>
             getOne<TData>({
-                resource,
-                id,
+                resource: resource!,
+                id: id!,
                 meta: {
                     ...(pickNotDeprecated(meta, metaData) || {}),
                     queryContext: {
@@ -147,6 +150,10 @@ export const useOne = <
             }),
         {
             ...queryOptions,
+            enabled:
+                typeof queryOptions?.enabled !== "undefined"
+                    ? queryOptions?.enabled
+                    : typeof id !== "undefined",
             onSuccess: (data) => {
                 queryOptions?.onSuccess?.(data);
 

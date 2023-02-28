@@ -87,6 +87,7 @@ export {
     GoFunction,
     ParseFunction,
     Prettify,
+    FormWithSyncWithLocationParams,
 } from "./interfaces";
 
 // all auth types
@@ -112,6 +113,10 @@ export {
     getNextPageParam,
     getPreviousPageParam,
     pickNotDeprecated,
+    legacyResourceTransform,
+    matchResourceFromRoute,
     useActiveAuthProvider,
 } from "./definitions/helpers";
 export { file2Base64 } from "./definitions/upload";
+
+export { ResourceContext } from "./contexts/resource/index";

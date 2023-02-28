@@ -1,10 +1,13 @@
-import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
+import { Action } from "../src/interfaces/actions";
 
 import {
     IRouterContext,
     IAccessControlContext,
     ILiveContext,
     IDataMultipleContextProvider,
+    RouterBindings,
+    ParsedParams,
+    IResourceItem,
 } from "../src/interfaces";
 
 export const posts = [
@@ -59,30 +62,6 @@ const MockDataProvider = () => {
 export const MockJSONServer =
     MockDataProvider() as IDataMultipleContextProvider;
 
-export const MockRouterProvider: IRouterContext = {
-    useHistory: () => {
-        const navigate = useNavigate();
-
-        return {
-            push: navigate,
-            replace: (path: string) => {
-                navigate(path, { replace: true });
-            },
-            goBack: () => {
-                navigate(-1);
-            },
-        };
-    },
-    useLocation,
-    useParams: () => {
-        const params = useParams();
-
-        return params as any;
-    },
-    Link,
-    Prompt: () => null,
-};
-
 export const MockAccessControlProvider: IAccessControlContext = {
     can: () => Promise.resolve({ can: true }),
 };
@@ -91,4 +70,67 @@ export const MockLiveProvider: ILiveContext = {
     subscribe: () => ({}),
     unsubscribe: () => ({}),
     publish: () => ({}),
+};
+
+export const mockRouterBindings = ({
+    pathname,
+    params,
+    resource,
+    action,
+    id,
+    fns,
+}: {
+    pathname?: string;
+    params?: ParsedParams;
+    resource?: IResourceItem;
+    action?: Action;
+    id?: string;
+    fns?: Partial<RouterBindings>;
+} = {}): RouterBindings => {
+    const bindings: RouterBindings = {
+        go: () => {
+            return ({ type }) => {
+                if (type === "path") return "";
+                return undefined;
+            };
+        },
+        parse: () => {
+            return () => {
+                return {
+                    params: {
+                        ...params,
+                    },
+                    pathname,
+                    resource: resource,
+                    action: action,
+                    id: id || undefined,
+                };
+            };
+        },
+        back: () => {
+            return () => undefined;
+        },
+        Link: () => null,
+        ...fns,
+    };
+
+    return bindings;
+};
+
+export const mockLegacyRouterProvider = () => {
+    const provider: IRouterContext = {
+        useHistory: () => {
+            return {
+                push: () => undefined,
+                replace: () => undefined,
+                goBack: () => undefined,
+            };
+        },
+        useLocation: () => undefined,
+        useParams: () => ({} as any),
+        Link: () => null,
+        Prompt: () => null,
+    };
+
+    return provider;
 };

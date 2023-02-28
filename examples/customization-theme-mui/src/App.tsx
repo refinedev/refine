@@ -8,7 +8,7 @@ import {
 } from "@pankod/refine-mui";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import { PostsList, PostCreate, PostEdit } from "pages/posts";
 import { Header } from "./components/header";
@@ -22,7 +22,7 @@ const App: React.FC = () => {
             <RefineSnackbarProvider>
                 <Refine
                     notificationProvider={notificationProvider}
-                    routerProvider={routerProvider}
+                    legacyRouterProvider={routerProvider}
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}

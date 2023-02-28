@@ -2,6 +2,8 @@ import React from "react";
 import {
     LoginPageProps,
     LoginFormTypes,
+    useRouterType,
+    useLink,
     useRouterContext,
     useLogin,
     useTranslate,
@@ -52,7 +54,10 @@ export const LoginPage: React.FC<LoginProps> = ({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
     const translate = useTranslate();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const NewLink = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+    const Link = routerType === "legacy" ? LegacyLink : NewLink;
     const methods = useForm<BaseRecord, HttpError, LoginFormTypes>({
         ...useFormProps,
     });

@@ -2,6 +2,8 @@ import React from "react";
 import {
     RegisterPageProps,
     RegisterFormTypes,
+    useRouterType,
+    useLink,
     useActiveAuthProvider,
 } from "@pankod/refine-core";
 import {
@@ -45,7 +47,11 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 }) => {
     const [form] = Form.useForm<RegisterFormTypes>();
     const translate = useTranslate();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     const authProvider = useActiveAuthProvider();
     const { mutate: register, isLoading } = useRegister<RegisterFormTypes>({
@@ -163,14 +169,14 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                                 "pages.login.buttons.haveAccount",
                                 "Have an account?",
                             )}{" "}
-                            <Link
+                            <ActiveLink
                                 style={{
                                     fontWeight: "bold",
                                 }}
                                 to="/login"
                             >
                                 {translate("pages.login.signin", "Sign in")}
-                            </Link>
+                            </ActiveLink>
                         </Text>
                     )}
                 </div>

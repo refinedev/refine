@@ -9,17 +9,14 @@ import { pickDataProvider, dataProviderFromResource } from "@/utilities";
  */
 export const useInferFetch = (
     type: "list" | "show" | "edit" | "create",
-    resourceNameOrRouteName: string,
+    resourceNameOrRouteName?: string,
     idFromProps?: string | number,
 ) => {
     const {
         resource,
-        resourceName,
         id: idFromURL,
         resources,
-    } = useResource({
-        resourceNameOrRouteName,
-    });
+    } = useResource(resourceNameOrRouteName);
 
     const id = idFromProps ?? idFromURL;
 
@@ -37,7 +34,7 @@ export const useInferFetch = (
         async (recordItemId: BaseKey | undefined) => {
             const dataProviderName =
                 dataProviderFromResource(resource) ??
-                pickDataProvider(resourceName, undefined, resources);
+                pickDataProvider(resource?.name, undefined, resources);
             const dp = dataProvider(dataProviderName);
 
             setLoading(true);
@@ -45,40 +42,44 @@ export const useInferFetch = (
 
             try {
                 if (type === "list" || type === "create") {
-                    const response = await dp.getList({
-                        resource: resourceName,
-                    });
-                    const r = response.data?.[0];
+                    if (resource) {
+                        const response = await dp.getList({
+                            resource: resource?.name,
+                        });
+                        const r = response.data?.[0];
 
-                    if (!r) {
-                        setError(
-                            `<p>No records/data found for resource "${resourceName}".</p>
+                        if (!r) {
+                            setError(
+                                `<p>No records/data found for resource "${resource?.name}".</p>
                             <p>Please check your data provider and resource.</p>
                             <p>For more info, please check the <a href="https://refine.dev/docs/packages/documentation/inferencer/" target="_blank">documentation</a>.</p>`,
-                        );
+                            );
+                        }
+                        setData(r);
+                        setTimeout(() => {
+                            setLoading(false);
+                        }, 500);
                     }
-                    setData(r);
-                    setTimeout(() => {
-                        setLoading(false);
-                    }, 500);
                 }
                 if ((type === "edit" || type === "show") && recordItemId) {
-                    const response = await dp.getOne({
-                        resource: resourceName,
-                        id: recordItemId,
-                    });
-                    const r = response.data;
-                    if (!r) {
-                        setError(
-                            `<p>No records/data found for resource "${resourceName}".</p>
+                    if (resource) {
+                        const response = await dp.getOne({
+                            resource: resource?.name,
+                            id: recordItemId,
+                        });
+                        const r = response.data;
+                        if (!r) {
+                            setError(
+                                `<p>No records/data found for resource "${resource?.name}".</p>
                             <p>Please check your data provider and resource.</p>
                             <p>For more info, please check the <a href="https://refine.dev/docs/packages/documentation/inferencer/" target="_blank">documentation</a>.</p>`,
-                        );
+                            );
+                        }
+                        setData(r);
+                        setTimeout(() => {
+                            setLoading(false);
+                        }, 500);
                     }
-                    setData(r);
-                    setTimeout(() => {
-                        setLoading(false);
-                    }, 500);
                 }
             } catch (error) {
                 console.warn(
@@ -87,7 +88,7 @@ export const useInferFetch = (
                 );
                 setError(
                     `<p>Something went wrong while fetching the resource data.</p>
-                    <p>Please check your data provider and API for resource "${resourceName}".</p>
+                    <p>Please check your data provider and API for resource "${resource?.name}".</p>
                     <p>For more info, please check the <a href="https://refine.dev/docs/packages/documentation/inferencer/" target="_blank">documentation</a>.</p>`,
                 );
                 setTimeout(() => {
@@ -95,7 +96,7 @@ export const useInferFetch = (
                 }, 500);
             }
         },
-        [type, dataProvider, resource, resourceName, resources],
+        [type, dataProvider, resource, resources],
     );
 
     React.useEffect(() => {

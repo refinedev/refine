@@ -2,7 +2,7 @@ import { Refine } from "@pankod/refine-core";
 import { notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { Layout as AntdLayout } from "antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import "@pankod/refine-antd/dist/reset.css";
 
@@ -17,7 +17,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             Layout={({ children, Footer, OffLayoutArea }) => (
                 <AntdLayout>
                     <AntdLayout.Header>

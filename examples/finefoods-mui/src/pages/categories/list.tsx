@@ -217,7 +217,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     }, []);
 
     return (
-        <List cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
+        <List wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
             <form onSubmit={handleSubmit(onFinish)}>
                 <TableContainer>
                     <Table size="small">
@@ -435,7 +435,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
 
     return (
         <List
-            cardHeaderProps={{
+            headerProps={{
                 title: t("products.products"),
             }}
         >

@@ -35,10 +35,10 @@ export const ResourceComponentWrapper: React.FC<{ route: string }> = ({
             options,
         } = resource;
 
-        const List = list ?? (() => null);
-        const Create = create ?? (() => null);
-        const Edit = edit ?? (() => null);
-        const Show = show ?? (() => null);
+        const List = typeof list === "function" ? list : () => null;
+        const Create = typeof create === "function" ? create : () => null;
+        const Edit = typeof edit === "function" ? edit : () => null;
+        const Show = typeof show === "function" ? show : () => null;
 
         const renderCrud = () => {
             switch (action) {

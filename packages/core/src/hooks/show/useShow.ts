@@ -12,7 +12,12 @@ import {
     LiveModeProps,
     BaseKey,
     HttpError,
+    IResourceItem,
 } from "../../interfaces";
+import { useRouterType } from "@contexts/router-picker";
+import { useParsed } from "@hooks/router/use-parsed";
+import { pickResource } from "@definitions/helpers/pick-resource";
+import { useResource } from "../resource/useResource";
 import { pickNotDeprecated } from "@definitions/helpers";
 
 export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
@@ -78,14 +83,26 @@ export const useShow = <
     dataProviderName,
     queryOptions,
 }: useShowProps<TData, TError> = {}): useShowReturnType<TData> => {
+    const routerType = useRouterType();
+    const { resources } = useResource();
     const { useParams } = useRouterContext();
+    const { resource: resourceFromRouter, id: idFromRouter } = useParsed();
 
-    const { resource: routeResourceName, id: idFromRoute } =
+    const { resource: legacyResourceFromRoute, id: legacyIdFromParams } =
         useParams<ResourceRouterParams>();
 
+    const newResourceNameFromRouter = resourceFromRouter?.name;
+
+    /** We only accept `id` from URL params if `resource` is not explicitly passed. */
+    /** This is done to avoid sending wrong requests for custom `resource` and an async `id` */
     const defaultId =
-        !resourceFromProp || resourceFromProp === routeResourceName
-            ? id ?? idFromRoute
+        !resourceFromProp ||
+        resourceFromProp ===
+            (routerType === "legacy"
+                ? legacyResourceFromRoute
+                : newResourceNameFromRouter)
+            ? id ??
+              (routerType === "legacy" ? legacyIdFromParams : idFromRouter)
             : id;
 
     const [showId, setShowId] = useState<BaseKey | undefined>(defaultId);
@@ -96,12 +113,54 @@ export const useShow = <
         }
     }, [defaultId]);
 
+    /** `resourceName` fallback value depends on the router type */
+    const resourceName =
+        resourceFromProp ??
+        (routerType === "legacy"
+            ? legacyResourceFromRoute
+            : newResourceNameFromRouter);
+
+    let resource: IResourceItem | undefined;
+
     const resourceWithRoute = useResourceWithRoute();
 
-    const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
+    if (routerType === "legacy") {
+        if (resourceName) {
+            resource = resourceWithRoute(resourceName);
+        }
+    } else {
+        /** If `resource` is provided by the user, then try to pick the resource of create a dummy one */
+        if (resourceFromProp) {
+            const picked = pickResource(resourceFromProp, resources);
+            if (picked) {
+                resource = picked;
+            } else {
+                resource = {
+                    name: resourceFromProp,
+                    route: resourceFromProp,
+                };
+            }
+        } else {
+            /** If `resource` is not provided, check the resource from the router params */
+            if (typeof resourceFromRouter === "string") {
+                const picked = pickResource(resourceFromRouter, resources);
+                if (picked) {
+                    resource = picked;
+                } else {
+                    resource = {
+                        name: resourceFromRouter,
+                        route: resourceFromRouter,
+                    };
+                }
+            } else {
+                /** If `resource` is passed as an IResourceItem, use it or `resource` is undefined and cannot be inferred. */
+                resource = resourceFromRouter;
+            }
+        }
+    }
 
     const queryResult = useOne<TData>({
-        resource: resource.name,
+        resource: resource?.name,
         id: showId ?? "",
         queryOptions: {
             enabled: showId !== undefined,

@@ -102,7 +102,13 @@ export const buttonCloneTests = function (
 
         it("should skip access control", async () => {
             const { container, getByText } = render(
-                <CloneButton ignoreAccessControlProvider>Clone</CloneButton>,
+                <CloneButton
+                    accessControl={{
+                        enabled: false,
+                    }}
+                >
+                    Clone
+                </CloneButton>,
                 {
                     wrapper: TestWrapper({
                         accessControlProvider: {
