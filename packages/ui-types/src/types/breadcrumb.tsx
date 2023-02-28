@@ -13,4 +13,15 @@ export type RefineBreadcrumbProps<
      * Allows to hide resource icons
      */
     hideIcons?: boolean;
+    /**
+     * To Show an item for home page
+     */
+    home?: {
+        icon?: React.ReactNode;
+        path?: string;
+    };
+    /**
+     * Additional params to be used in the route generation process.
+     */
+    meta?: Record<string, string | number>;
 };

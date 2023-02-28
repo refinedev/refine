@@ -22,11 +22,6 @@ export type RefineButtonResourceProps = {
      */
     resourceNameOrRouteName?: string;
     /**
-     * Whether to skip access control for the resource and the delete action or not
-     * @deprecated `ignoreAccessControlProvider` deprecated. Use `accessControl.enabled` instead.
-     */
-    ignoreAccessControlProvider?: boolean;
-    /**
      * Access Control configuration for the button
      * @default `{ enabled: true }`
      */
@@ -51,6 +46,13 @@ export type RefineButtonSingleProps = {
     recordItemId?: BaseKey;
 };
 
+export type RefineButtonURLProps = {
+    /**
+     * `meta` property is used when creating the URL for the related action and path.
+     */
+    meta?: Record<string, unknown>;
+};
+
 export type RefineButtonDataProps = {
     dataProviderName?: string;
 };
@@ -62,6 +64,7 @@ export type RefineCloneButtonProps<
     RefineButtonResourceProps &
     RefineButtonLinkingProps &
     RefineButtonSingleProps &
+    RefineButtonURLProps &
     TComponentProps &
     TExtraProps & {};
 
@@ -71,6 +74,7 @@ export type RefineCreateButtonProps<
 > = RefineButtonCommonProps &
     RefineButtonResourceProps &
     RefineButtonLinkingProps &
+    RefineButtonURLProps &
     TComponentProps &
     TExtraProps & {};
 
@@ -135,6 +139,7 @@ export type RefineEditButtonProps<
     RefineButtonResourceProps &
     RefineButtonLinkingProps &
     RefineButtonSingleProps &
+    RefineButtonURLProps &
     TComponentProps &
     TExtraProps & {};
 
@@ -169,6 +174,7 @@ export type RefineListButtonProps<
 > = RefineButtonCommonProps &
     RefineButtonResourceProps &
     RefineButtonLinkingProps &
+    RefineButtonURLProps &
     TComponentProps &
     TExtraProps & {};
 
@@ -208,5 +214,6 @@ export type RefineShowButtonProps<
     RefineButtonResourceProps &
     RefineButtonSingleProps &
     RefineButtonLinkingProps &
+    RefineButtonURLProps &
     TComponentProps &
     TExtraProps & {};

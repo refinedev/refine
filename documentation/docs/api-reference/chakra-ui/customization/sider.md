@@ -16,7 +16,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000 previewHeight=420px
 setInitialRoutes(["/posts"]);
-import { Text, Code, Center, VStack } from "@pankod/refine-chakra-ui";
+import { Text, Code, Center, VStack } from "@chakra-ui/react";
 
 const DummyListPage = () => {
     const params = RefineCore.useRouterContext().useParams();
@@ -145,17 +145,20 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    ChakraProvider,
     ErrorComponent,
     Layout,
     ReadyPage,
     notificationProvider,
     refineTheme,
-    // highlight-start
+    // highlight-next-line
     Sider,
+} from "@pankod/refine-chakra-ui";
+import {
+    ChakraProvider,
+    // highlight-start
     Button,
     // highlight-end
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
 import {
     IconList,
     IconCategory,
@@ -279,7 +282,8 @@ import {
     TooltipProps,
     VStack,
     Sider as DefaultSider,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
+
 import {
     IconList,
     IconChevronRight,
@@ -571,7 +575,8 @@ We will override the default sider and show the custom menu we implemented in it
 ```tsx live url=http://localhost:3000 previewHeight=420px
 setInitialRoutes(["/posts"]);
 
-import { Code, Text, Sider as CustomSider } from "@pankod/refine-chakra-ui";
+import { Sider as CustomSider } from "@pankod/refine-chakra-ui";
+import { Code, Text } from "@chakra-ui/react";
 
 const DummyListPage = () => {
     const params = RefineCore.useRouterContext().useParams();
@@ -634,12 +639,12 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    ChakraProvider,
     Layout,
     ReadyPage,
     notificationProvider,
     refineTheme,
 } from "@pankod/refine-chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
 import { IconCategory, IconUsers } from "@tabler/icons";
 
 //highlight-next-line

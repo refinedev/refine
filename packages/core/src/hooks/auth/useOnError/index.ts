@@ -2,7 +2,7 @@ import { useMutation, UseMutationResult } from "@tanstack/react-query";
 
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { OnErrorResponse } from "../../../interfaces";
-import { useLogout, useNavigation } from "@hooks";
+import { useGo, useLogout, useNavigation, useRouterType } from "@hooks";
 
 export type UseOnErrorLegacyProps = {
     v3LegacyAuthProviderCompatible: true;
@@ -57,7 +57,10 @@ export function useOnError({
 }: UseOnErrorProps | UseOnErrorLegacyProps = {}):
     | UseOnErrorReturnType
     | UseOnErrorLegacyReturnType {
+    const routerType = useRouterType();
+    const go = useGo();
     const { replace } = useNavigation();
+
     const { checkError: legacyCheckErrorFromContext } = useLegacyAuthContext();
     const { onError: onErrorFromContext } = useAuthBindingsContext();
 
@@ -76,7 +79,11 @@ export function useOnError({
             }
 
             if (redirectTo) {
-                replace(redirectTo);
+                if (routerType === "legacy") {
+                    replace(redirectTo);
+                } else {
+                    go({ to: redirectTo, type: "replace" });
+                }
                 return;
             }
         },

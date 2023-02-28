@@ -27,7 +27,8 @@
  */
 
 import { CrudFilters, CrudSorting } from "@contexts/data/IDataContext";
-import { BaseKey, RouteAction } from "src";
+import { IResourceItem } from "./resource";
+import { Action, BaseKey } from "..";
 
 export type GoConfig = {
     to?: string;
@@ -37,7 +38,7 @@ export type GoConfig = {
         keepQuery?: boolean;
         keepHash?: boolean;
     };
-    type?: "push" | "replace";
+    type?: "push" | "replace" | "path";
 };
 
 export type ParsedParams = {
@@ -45,19 +46,18 @@ export type ParsedParams = {
     sorters?: CrudSorting;
     current?: number;
     pageSize?: number;
-    step?: number | string;
-    modal?: string | boolean;
-    [key: string]: unknown;
+    [key: string & { _ignore?: boolean }]: any;
 };
 
 export type ParseResponse = {
     params?: ParsedParams;
-    resource?: string;
+    resource?: IResourceItem;
     id?: BaseKey;
-    action?: RouteAction;
+    action?: Action;
+    pathname?: string;
 };
 
-export type GoFunction = (config: GoConfig) => void;
+export type GoFunction = (config: GoConfig) => void | string;
 
 export type BackFunction = () => void;
 
@@ -67,4 +67,7 @@ export type RouterBindings = {
     go?: () => GoFunction;
     back?: () => BackFunction;
     parse?: () => ParseFunction;
+    Link?: React.ComponentType<
+        React.PropsWithChildren<{ to: string; [prop: string]: any }>
+    >;
 };

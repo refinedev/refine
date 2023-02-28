@@ -10,7 +10,7 @@ import {
 import { ConfigProvider } from "antd";
 import { Title } from "./components/layout";
 import { dataProvider, liveProvider } from "@pankod/refine-supabase";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import { supabaseClient } from "utility";
 import "@pankod/refine-antd/dist/reset.css";
 
@@ -43,7 +43,7 @@ function App() {
                 liveProvider={liveProvider(supabaseClient)}
                 legacyAuthProvider={authProvider}
                 accessControlProvider={accessControlProvider}
-                routerProvider={{
+                legacyRouterProvider={{
                     ...routerProvider,
                     routes: [
                         {

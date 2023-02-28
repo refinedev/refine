@@ -41,7 +41,7 @@ export type UseListProps<TData, TError> = {
     /**
      * Resource name for API data interactions
      */
-    resource: string;
+    resource?: string;
     /**
      * Configuration for pagination, sorting and filtering
      * @type [`UseListConfig`](/docs/api-reference/core/hooks/data/useList/#config-parameters)
@@ -207,7 +207,7 @@ export const useList = <
         }),
         ({ queryKey, pageParam, signal }) => {
             return getList<TData>({
-                resource,
+                resource: resource!,
                 pagination: prefferedPagination,
                 hasPagination: isServerPagination,
                 filters: prefferedFilters,
@@ -233,6 +233,10 @@ export const useList = <
         },
         {
             ...queryOptions,
+            enabled:
+                typeof queryOptions?.enabled !== "undefined"
+                    ? queryOptions?.enabled
+                    : !!resource,
             select: (rawData) => {
                 let data = rawData;
 

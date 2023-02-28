@@ -1,14 +1,16 @@
 import React from "react";
 
 import {
-    useResourceWithRoute,
     useMutationMode,
     useNavigation,
     useTranslate,
-    useRouterContext,
     userFriendlyResourceName,
-    ResourceRouterParams,
     useRefineContext,
+    useToPath,
+    useResource,
+    useRouterType,
+    useBack,
+    useGo,
 } from "@pankod/refine-core";
 
 import {
@@ -39,7 +41,6 @@ import { EditProps } from "../types";
  */
 export const Edit: React.FC<EditProps> = ({
     title,
-    actionButtons,
     saveButtonProps,
     mutationMode: mutationModeProp,
     recordItemId,
@@ -48,10 +49,6 @@ export const Edit: React.FC<EditProps> = ({
     canDelete,
     resource: resourceFromProps,
     isLoading = false,
-    cardProps,
-    cardHeaderProps,
-    cardContentProps,
-    cardActionsProps,
     breadcrumb: breadcrumbFromProps,
     dataProviderName,
     wrapperProps,
@@ -64,33 +61,38 @@ export const Edit: React.FC<EditProps> = ({
     goBack: goBackFromProps,
 }) => {
     const translate = useTranslate();
-
-    const { goBack, list } = useNavigation();
-
-    const resourceWithRoute = useResourceWithRoute();
-
+    const { options: { breadcrumb: globalBreadcrumb } = {} } =
+        useRefineContext();
     const { mutationMode: mutationModeContext } = useMutationMode();
-
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
-    const { useParams } = useRouterContext();
+    const routerType = useRouterType();
+    const back = useBack();
+    const go = useGo();
+    const { goBack, list: legacyGoList } = useNavigation();
 
     const {
-        resource: routeResourceName,
-        action: routeFromAction,
-        id: idFromRoute,
-    } = useParams<ResourceRouterParams>();
+        resource,
+        action,
+        id: idFromParams,
+    } = useResource(resourceFromProps);
 
-    const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
+    const goListPath = useToPath({
+        resource,
+        action: "list",
+    });
 
-    const isDeleteButtonVisible =
-        canDelete ?? (resource.canDelete || deleteButtonProps);
+    const id = recordItemId ?? idFromParams;
 
-    const { options } = useRefineContext();
     const breadcrumb =
         typeof breadcrumbFromProps === "undefined"
-            ? options?.breadcrumb
+            ? globalBreadcrumb
             : breadcrumbFromProps;
+
+    const isDeleteButtonVisible =
+        canDelete ??
+        ((resource?.meta?.canDelete ?? resource?.canDelete) ||
+            deleteButtonProps);
 
     const breadcrumbComponent =
         typeof breadcrumb !== "undefined" ? (
@@ -99,19 +101,25 @@ export const Edit: React.FC<EditProps> = ({
             <Breadcrumb />
         );
 
-    const id = recordItemId ?? idFromRoute;
-
     const defaultHeaderButtons = (
         <>
             {!recordItemId && (
                 <ListButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={resource.route}
+                    resourceNameOrRouteName={
+                        routerType === "legacy"
+                            ? resource?.route
+                            : resource?.identifier ?? resource?.name
+                    }
                 />
             )}
             <RefreshButton
                 {...(isLoading ? { disabled: true } : {})}
-                resourceNameOrRouteName={resource.route}
+                resourceNameOrRouteName={
+                    routerType === "legacy"
+                        ? resource?.route
+                        : resource?.identifier ?? resource?.name
+                }
                 recordItemId={id}
                 dataProviderName={dataProviderName}
             />
@@ -120,18 +128,26 @@ export const Edit: React.FC<EditProps> = ({
 
     const defaultFooterButtons = (
         <>
-            {isDeleteButtonVisible && (
-                <DeleteButton
-                    {...(isLoading ? { disabled: true } : {})}
-                    mutationMode={mutationMode}
-                    variant="outlined"
-                    onSuccess={() => {
-                        list(resource.route ?? resource.name);
-                    }}
-                    dataProviderName={dataProviderName}
-                    {...deleteButtonProps}
-                />
-            )}
+            {isDeleteButtonVisible &&
+                (id || deleteButtonProps?.recordItemId) && (
+                    <DeleteButton
+                        {...(isLoading ? { disabled: true } : {})}
+                        mutationMode={mutationMode}
+                        variant="outlined"
+                        onSuccess={() => {
+                            if (routerType === "legacy") {
+                                legacyGoList(
+                                    resource?.route ?? resource?.name ?? "",
+                                );
+                            } else {
+                                go({ to: goListPath });
+                            }
+                        }}
+                        recordItemId={id}
+                        dataProviderName={dataProviderName}
+                        {...deleteButtonProps}
+                    />
+                )}
             <SaveButton
                 {...(isLoading ? { disabled: true } : {})}
                 {...saveButtonProps}
@@ -140,7 +156,7 @@ export const Edit: React.FC<EditProps> = ({
     );
 
     return (
-        <Card {...(cardProps ?? {})} {...(wrapperProps ?? {})}>
+        <Card {...(wrapperProps ?? {})}>
             {breadcrumbComponent}
             <CardHeader
                 sx={{ display: "flex", flexWrap: "wrap" }}
@@ -148,9 +164,12 @@ export const Edit: React.FC<EditProps> = ({
                     title ?? (
                         <Typography variant="h5">
                             {translate(
-                                `${resource.name}.titles.edit`,
+                                `${resource?.name}.titles.edit`,
                                 `Edit ${userFriendlyResourceName(
-                                    resource.label ?? resource.name,
+                                    resource?.meta?.label ??
+                                        resource?.options?.label ??
+                                        resource?.label ??
+                                        resource?.name,
                                     "singular",
                                 )}`,
                             )}
@@ -162,7 +181,14 @@ export const Edit: React.FC<EditProps> = ({
                         goBackFromProps
                     ) : (
                         <IconButton
-                            onClick={routeFromAction ? goBack : undefined}
+                            onClick={
+                                action !== "list" &&
+                                typeof action !== "undefined"
+                                    ? routerType === "legacy"
+                                        ? goBack
+                                        : back
+                                    : undefined
+                            }
                         >
                             <ArrowBackIcon />
                         </IconButton>
@@ -183,15 +209,9 @@ export const Edit: React.FC<EditProps> = ({
                             : defaultHeaderButtons}
                     </Box>
                 }
-                {...(cardHeaderProps ?? {})}
                 {...(headerProps ?? {})}
             />
-            <CardContent
-                {...(cardContentProps ?? {})}
-                {...(contentProps ?? {})}
-            >
-                {children}
-            </CardContent>
+            <CardContent {...(contentProps ?? {})}>{children}</CardContent>
             <CardActions
                 sx={{
                     display: "flex",
@@ -199,7 +219,6 @@ export const Edit: React.FC<EditProps> = ({
                     gap: "16px",
                     padding: "16px",
                 }}
-                {...(cardActionsProps ?? {})}
                 {...(footerButtonProps ?? {})}
             >
                 {footerButtons
@@ -208,8 +227,6 @@ export const Edit: React.FC<EditProps> = ({
                               defaultButtons: defaultFooterButtons,
                           })
                         : footerButtons
-                    : actionButtons
-                    ? actionButtons
                     : defaultFooterButtons}
             </CardActions>
         </Card>

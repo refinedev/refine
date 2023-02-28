@@ -6,7 +6,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import "@pankod/refine-antd/dist/reset.css";
 import { dataProvider } from "@pankod/refine-supabase";
@@ -48,7 +48,7 @@ function App() {
             legacyAuthProvider={authProvider}
             LoginPage={Login}
             DashboardPage={DashboardPage}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "hackathons",

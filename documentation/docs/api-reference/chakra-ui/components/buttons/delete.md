@@ -15,9 +15,9 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+        <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
-        </RefineChakra.ChakraProvider>
+        </ChakraUI.ChakraProvider>
     );
 };
 ```
@@ -39,6 +39,10 @@ import dataProvider from "@pankod/refine-simple-rest";
 // visible-block-start
 import {
     List,
+    // highlight-next-line
+    DeleteButton,
+} from "@pankod/refine-chakra-ui";
+import {
     TableContainer,
     Table,
     Thead,
@@ -46,10 +50,9 @@ import {
     Th,
     Tbody,
     Td,
-    // highlight-next-line
-    DeleteButton,
-} from "@pankod/refine-chakra-ui";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+} from "@chakra-ui/react";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(

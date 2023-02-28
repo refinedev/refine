@@ -33,6 +33,7 @@ const transformsWithPostTransform = [
     "refine1-to-refine2",
     "refine2-to-refine3",
     "separate-imports-antd",
+    "separate-imports-chakra",
     "separate-imports-mantine",
 ];
 
@@ -151,6 +152,14 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         value: "refine1-to-refine2",
     },
     {
+        name: "router-to-legacy-router: Transform existing router definitions to legacy router",
+        value: "router-to-legacy-router",
+    },
+    {
+        name: "move-deprecated-access-control: Move deprecated deprecated `ignoreAccessControlProvider` prop to new `accessControl`",
+        value: "move-deprecated-access-control",
+    },
+    {
         name: "separate-imports-antd: Moves `antd` components exported by `refine` into `antd`",
         value: "separate-imports-antd",
     },
@@ -163,6 +172,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         value: "separate-imports-mui",
     },
     {
+        name: "separate-imports-chakra: Moves `Chakra-UI` components exported by `refine` into `Chakra-UI`",
+        value: "separate-imports-chakra",
+    },
+    {
         name: "add-v3LegacyAuthProviderCompatible-true-to-auth-hooks: Add v3LegacyAuthProviderCompatible:true to auth hooks",
         value: "add-v3LegacyAuthProviderCompatible-true-to-auth-hooks",
     },
@@ -173,6 +186,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
     {
         name: "move-to-new-org: Move refine packages to its new scope",
         value: "move-to-new-org",
+    },
+    {
+        name: "separate-imports-react-table: Moves `@tanstack/react-table` components exported by `refine` into `@tanstack/react-table`",
+        value: "separate-imports-react-table",
     },
 ];
 

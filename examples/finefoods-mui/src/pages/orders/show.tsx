@@ -302,7 +302,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
             </Paper>
 
             <List
-                cardHeaderProps={{
+                headerProps={{
                     title: t("orders.deliverables.deliverables"),
                 }}
             >

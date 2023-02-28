@@ -1,8 +1,9 @@
 import React from "react";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { GetManyResponse, useMany } from "@pankod/refine-core";
+import { List, EditButton, DateField } from "@pankod/refine-chakra-ui";
 import {
-    List,
     Table,
     Thead,
     Tbody,
@@ -12,10 +13,8 @@ import {
     TableContainer,
     HStack,
     Box,
-    EditButton,
     Select,
-    DateField,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
 import { useModalForm } from "@pankod/refine-react-hook-form";
 
 import {

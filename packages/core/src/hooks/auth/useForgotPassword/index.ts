@@ -4,8 +4,8 @@ import {
     UseMutationResult,
 } from "@tanstack/react-query";
 
+import { useGo, useNavigation, useNotification, useRouterType } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { useNavigation, useNotification } from "@hooks";
 
 import {
     AuthActionResponse,
@@ -92,6 +92,8 @@ export function useForgotPassword<TVariables = {}>({
     | UseForgotPasswordLegacyProps<TVariables> = {}):
     | UseForgotPasswordReturnType<TVariables>
     | UseForgotPasswordLegacyReturnType<TVariables> {
+    const routerType = useRouterType();
+    const go = useGo();
     const { replace } = useNavigation();
     const {
         forgotPassword: v3LegacyAuthProviderCompatibleForgotPasswordFromContext,
@@ -116,7 +118,11 @@ export function useForgotPassword<TVariables = {}>({
             }
 
             if (redirectTo) {
-                replace(redirectTo);
+                if (routerType === "legacy") {
+                    replace(redirectTo);
+                } else {
+                    go({ to: redirectTo, type: "replace" });
+                }
             }
         },
         onError: (error: any) => {
@@ -137,7 +143,11 @@ export function useForgotPassword<TVariables = {}>({
             onSuccess: (redirectPathFromAuth) => {
                 if (redirectPathFromAuth !== false) {
                     if (redirectPathFromAuth) {
-                        replace(redirectPathFromAuth);
+                        if (routerType === "legacy") {
+                            replace(redirectPathFromAuth);
+                        } else {
+                            go({ to: redirectPathFromAuth, type: "replace" });
+                        }
                     }
                 }
                 close?.("forgot-password-error");

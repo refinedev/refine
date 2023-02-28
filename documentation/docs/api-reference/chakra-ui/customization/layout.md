@@ -26,8 +26,8 @@ Let's start with creating a `<CustomLayout/>` component using `LayoutProps` from
 ```tsx live url=http://localhost:3000 previewHeight=420px
 setInitialRoutes(["/posts"]);
 import { useNavigation } from "@pankod/refine-core";
+import { List } from "@pankod/refine-chakra-ui";
 import {
-    List,
     Text,
     Code,
     TableContainer,
@@ -37,8 +37,9 @@ import {
     Tr,
     Th,
     Td,
-} from "@pankod/refine-chakra-ui";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+} from "@chakra-ui/react";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -198,17 +199,19 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    ChakraProvider,
     ErrorComponent,
     ReadyPage,
     notificationProvider,
     refineTheme,
+} from "@pankod/refine-chakra-ui";
+import {
+    ChakraProvider,
     // highlight-start
     Box,
     HStack,
     Button,
     // highlight-end
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 
