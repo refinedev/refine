@@ -39,8 +39,6 @@ npm i @refinedev/core @refinedev/antd @refinedev/..
 
 :::caution
 You must make this change for all packages that start with `@pankod`.
-
-**Bingo!**: You can use `npx @refinedev/codemod refine3-to-refine4` to do this automatically.
 :::
 
 ## **`@pankod/refine-core` changes**
@@ -406,8 +404,6 @@ type IdentityResponse = unknown;
 
 :::note
 
-> These changes can be done automatically with `codemod`
-
 **refine** still supports the `authProvider@v3` for backward compatibility. We changed name to `legacyAuthProvider` and it will be removed in the next major version. If you want to continue using the `authProvider@v3` you can use it as `legacyAuthProvider` in your project.
 
 ```diff
@@ -632,12 +628,6 @@ useExport({
     })
     ```
 
-    :::tip
-
-    You can use `npx @refinedev/codemod refine3-to-refine4` to do this automatically.
-
-    :::
-
 -   `sort` prop is deprecated. Use `sorters` prop instead.
 
     ```diff
@@ -787,12 +777,6 @@ After that, you can import icons from `@ant-design/icons` package directly like 
 
 + import { EditOutlined } from "@ant-design/icons";
 ```
-
-:::tip
-
-We recommend you to use **codemod** to update your imports automatically. You can find more information about codemod [here][codemode-usage].
-
-:::
 
 ### `useTable` hook
 
@@ -1085,12 +1069,6 @@ After that, you can import them from related packages directly.
 + import { LoadingButton } from "@mui/lab";
 ```
 
-:::tip
-
-We recommend you to use **codemod** to update your imports automatically. You can find more information about codemod [here][codemode-usage].
-
-:::
-
 ### `useDataGrid` hook
 
 `useDataGrid` return values and properties are updated.
@@ -1267,12 +1245,6 @@ After that, you can import them from related packages directly.
 + import { NotificationsProvider } from "@mantine/notifications";
 ```
 
-:::tip
-
-We recommend you to use **codemod** to update your imports automatically. You can find more information about codemod [here][codemode-usage].
-
-:::
-
 ### `useSelect` hook
 
 -   By default, pagination was disabled. If you want to enable pagination, you should set `pagination.mode` prop to `"server"`.
@@ -1367,12 +1339,6 @@ After that, you can import them from related packages directly.
 + import { ChakraProvider, Input, Select } from "@chakra-ui/react";
 ```
 
-:::tip
-
-We recommend you to use **codemod** to update your imports automatically. You can find more information about codemod [here][codemode-usage].
-
-:::
-
 ### Buttons
 
 Deprecated `ignoreAccessControlProvider` prop is removed from all buttons exported from `@refinedev/mui` package. Use `accessControl.enabled` prop instead.
@@ -1436,12 +1402,6 @@ After that, you can import them from `@tanstack/react-table` package directly.
 + import { useTable } from "@refinedev/react-table";
 + import { ColumnDef, flexRender } from "@tanstack/react-table";
 ```
-
-:::tip
-
-We recommend you to use **codemod** to update your imports automatically. You can find more information about codemod [here][codemode-usage].
-
-:::
 
 ### `useTable` hook
 
@@ -1566,12 +1526,6 @@ After that, you can import them from `react-hook-form` package directly.
 + import { useForm } from "@refinedev/react-hook-form";
 + import { Controller } from "react-hook-form";
 ```
-
-:::tip
-
-We recommend you to use **codemod** to update your imports automatically. You can find more information about codemod [here][codemode-usage].
-
-:::
 
 ## **2.0.XX to 3.0.XX**
 
@@ -2283,4 +2237,3 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 [routerprovider]: /api-reference/core/providers/router-provider.md
 [custompages]: /advanced-tutorials/custom-pages.md
 [auth-provider]: /api-reference/core/providers/auth-provider/
-[codemode-usage]: /docs/migration-guide#-migrating-your-project-automatically-with-refine-codemod--recommended
