@@ -1,11 +1,5 @@
-import {
-    useForm,
-    useSelect,
-    Create,
-    Form,
-    Select,
-    Input,
-} from "@pankod/refine-antd";
+import { useForm, useSelect, Create } from "@pankod/refine-antd";
+import { Form, Select, Input } from "antd";
 import { IPost } from "src/interfaces";
 
 export const PostCreate: React.FC = () => {
