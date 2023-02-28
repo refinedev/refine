@@ -1,4 +1,4 @@
-import type { Column } from "@pankod/refine-react-table";
+import { Column } from "@tanstack/react-table";
 
 export interface ICategory {
     id: number;

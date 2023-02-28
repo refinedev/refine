@@ -3,7 +3,7 @@ import { LoaderFunction } from "@remix-run/node";
 import {
     RemixRouteComponent,
     checkAuthentication,
-} from "@pankod/refine-remix-router";
+} from "@pankod/refine-remix-router/legacy";
 
 import { authProvider } from "~/authProvider";
 

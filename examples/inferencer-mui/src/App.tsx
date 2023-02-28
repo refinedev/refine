@@ -12,7 +12,7 @@ import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 const App: React.FC = () => {
     return (
@@ -21,7 +21,7 @@ const App: React.FC = () => {
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
                 <Refine
-                    routerProvider={routerProvider}
+                    legacyRouterProvider={routerProvider}
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}

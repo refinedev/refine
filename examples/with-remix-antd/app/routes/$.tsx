@@ -6,7 +6,7 @@ import {
     RemixRouteComponent,
     checkAuthentication,
     handleRefineParams,
-} from "@pankod/refine-remix-router";
+} from "@pankod/refine-remix-router/legacy";
 
 export const loader: LoaderFunction = async ({
     params,

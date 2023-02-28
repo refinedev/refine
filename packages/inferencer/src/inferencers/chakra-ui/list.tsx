@@ -1,6 +1,7 @@
 import * as RefineChakraUI from "@pankod/refine-chakra-ui";
 import * as ChakraUI from "@chakra-ui/react";
 import * as RefineReactTable from "@pankod/refine-react-table";
+import * as TanstackReactTable from "@tanstack/react-table";
 import * as TablerIcons from "@tabler/icons";
 
 import { createInferencer } from "@/create-inferencer";
@@ -50,8 +51,8 @@ export const renderer = ({
     const imports: Array<[element: string, module: string]> = [
         ["IResourceComponentsProps", "@pankod/refine-core"],
         ["useTable", "@pankod/refine-react-table"],
-        ["ColumnDef", "@pankod/refine-react-table"],
-        ["flexRender", "@pankod/refine-react-table"],
+        ["ColumnDef", "@tanstack/react-table"],
+        ["flexRender", "@tanstack/react-table"],
         ["List", "@pankod/refine-chakra-ui"],
         ["TableContainer", "@chakra-ui/react"],
         ["Table", "@chakra-ui/react"],
@@ -840,6 +841,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
         ["@pankod/refine-react-table", "RefineReactTable", RefineReactTable],
         ["@tabler/icons", "TablerIcons", TablerIcons],
         ["@chakra-ui/react", "ChakraUI", ChakraUI],
+        ["@tanstack/react-table", "TanstackReactTable", TanstackReactTable],
     ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,

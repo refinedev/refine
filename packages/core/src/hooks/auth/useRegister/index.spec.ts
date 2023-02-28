@@ -1,21 +1,21 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import ReactRouterDom from "react-router-dom";
 
-import { TestWrapper, act } from "@test";
+import { TestWrapper, act, mockRouterBindings } from "@test";
 
 import { useRegister } from ".";
 
-const mHistory = jest.fn();
+const mockGo = jest.fn();
 
-jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
-}));
+const mockRouterProvider = mockRouterBindings({
+    fns: {
+        go: () => mockGo,
+    },
+});
 
 // NOTE : Will be removed in v5
 describe("v3LegacyAuthProviderCompatible useRegister Hook", () => {
     beforeEach(() => {
-        mHistory.mockReset();
+        mockGo.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
             if (message?.message === "Missing fields") return;
             if (typeof message === "undefined") return;
@@ -42,6 +42,7 @@ describe("v3LegacyAuthProviderCompatible useRegister Hook", () => {
                         logout: () => Promise.resolve(),
                         getUserIdentity: () => Promise.resolve({ id: 1 }),
                     },
+                    routerProvider: mockRouterProvider,
                 }),
             },
         );
@@ -56,7 +57,7 @@ describe("v3LegacyAuthProviderCompatible useRegister Hook", () => {
             expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(mHistory).toBeCalledWith("/", { replace: true });
+        expect(mockGo).toBeCalledWith({ to: "/", type: "replace" });
     });
 
     it("should successfully register with no redirect", async () => {
@@ -92,7 +93,7 @@ describe("v3LegacyAuthProviderCompatible useRegister Hook", () => {
             expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(mHistory).not.toBeCalled();
+        expect(mockGo).not.toBeCalled();
     });
 
     it("fail register", async () => {
@@ -172,7 +173,8 @@ describe("useRegister Hook", () => {
     };
 
     beforeEach(() => {
-        mHistory.mockReset();
+        mockGo.mockReset();
+
         jest.spyOn(console, "error").mockImplementation((message) => {
             if (message?.message === "Missing fields") return;
             if (typeof message === "undefined") return;
@@ -198,6 +200,7 @@ describe("useRegister Hook", () => {
                         });
                     },
                 },
+                routerProvider: mockRouterProvider,
             }),
         });
 
@@ -213,7 +216,7 @@ describe("useRegister Hook", () => {
 
         expect(result.current.data?.success).toBeTruthy();
 
-        expect(mHistory).toBeCalledWith("/", { replace: true });
+        expect(mockGo).toBeCalledWith({ to: "/", type: "replace" });
     });
 
     it("should successfully register with no redirect", async () => {
@@ -233,6 +236,7 @@ describe("useRegister Hook", () => {
                         });
                     },
                 },
+                routerProvider: mockRouterProvider,
             }),
         });
 
@@ -246,7 +250,7 @@ describe("useRegister Hook", () => {
             expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(mHistory).not.toBeCalled();
+        expect(mockGo).not.toBeCalled();
     });
 
     it("fail register", async () => {

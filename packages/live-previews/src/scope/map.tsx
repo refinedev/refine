@@ -1,5 +1,6 @@
 export const packageMap: Record<string, string> = {
     "@pankod/refine-core": "RefineCore",
+    "@pankod/refine-react-router-v6/legacy": "LegacyRefineReactRouterV6",
     "@pankod/refine-react-router-v6": "RefineReactRouterV6",
     "@pankod/refine-antd": "RefineAntd",
     "@pankod/refine-mui": "RefineMui",
@@ -13,6 +14,7 @@ export const packageMap: Record<string, string> = {
     "@pankod/refine-inferencer/mantine": "RefineMantineInferencer",
     "@pankod/refine-inferencer/chakra-ui": "RefineChakraInferencer",
     "@pankod/refine-inferencer/headless": "RefineHeadlessInferencer",
+    "react-router-dom": "ReactRouterDom",
     antd: "AntdCore",
     "@mantine/core": "MantineCore",
     "@mantine/hooks": "MantineHooks",
@@ -24,4 +26,5 @@ export const packageMap: Record<string, string> = {
     "@mui/material": "MuiMaterial",
     "@mui/x-data-grid": "MuiXDataGrid",
     "@chakra-ui/react": "ChakraUI",
+    "@tanstack/react-table": "TanstackReactTable",
 };

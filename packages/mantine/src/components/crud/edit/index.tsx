@@ -9,13 +9,15 @@ import {
     LoadingOverlay,
 } from "@mantine/core";
 import {
-    ResourceRouterParams,
+    useBack,
+    useGo,
     useMutationMode,
     useNavigation,
     useRefineContext,
-    useResourceWithRoute,
+    useResource,
     userFriendlyResourceName,
-    useRouterContext,
+    useRouterType,
+    useToPath,
     useTranslate,
 } from "@pankod/refine-core";
 import { IconArrowLeft } from "@tabler/icons";
@@ -51,33 +53,38 @@ export const Edit: React.FC<EditProps> = (props) => {
         title,
     } = props;
     const translate = useTranslate();
-
-    const { goBack, list } = useNavigation();
-
-    const resourceWithRoute = useResourceWithRoute();
-
-    const { useParams } = useRouterContext();
-
+    const { options: { breadcrumb: globalBreadcrumb } = {} } =
+        useRefineContext();
     const { mutationMode: mutationModeContext } = useMutationMode();
-
     const mutationMode = mutationModeFromProps ?? mutationModeContext;
 
+    const routerType = useRouterType();
+    const back = useBack();
+    const go = useGo();
+    const { goBack, list: legacyGoList } = useNavigation();
+
     const {
-        resource: routeResourceName,
-        action: routeFromAction,
-        id: idFromRoute,
-    } = useParams<ResourceRouterParams>();
+        resource,
+        action,
+        id: idFromParams,
+    } = useResource(resourceFromProps);
 
-    const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
+    const goListPath = useToPath({
+        resource,
+        action: "list",
+    });
 
-    const isDeleteButtonVisible =
-        canDelete ?? (resource.canDelete || deleteButtonProps);
+    const id = recordItemId ?? idFromParams;
 
-    const { options } = useRefineContext();
     const breadcrumb =
         typeof breadcrumbFromProps === "undefined"
-            ? options?.breadcrumb
+            ? globalBreadcrumb
             : breadcrumbFromProps;
+
+    const isDeleteButtonVisible =
+        canDelete ??
+        ((resource?.meta?.canDelete ?? resource?.canDelete) ||
+            deleteButtonProps);
 
     const breadcrumbComponent =
         typeof breadcrumb !== "undefined" ? (
@@ -85,8 +92,6 @@ export const Edit: React.FC<EditProps> = (props) => {
         ) : (
             <Breadcrumb />
         );
-
-    const id = recordItemId ?? idFromRoute;
 
     const loadingOverlayVisible =
         isLoading ?? saveButtonProps?.disabled ?? false;
@@ -96,12 +101,20 @@ export const Edit: React.FC<EditProps> = (props) => {
             {!recordItemId && (
                 <ListButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={resource.route}
+                    resourceNameOrRouteName={
+                        routerType === "legacy"
+                            ? resource?.route
+                            : resource?.identifier ?? resource?.name
+                    }
                 />
             )}
             <RefreshButton
                 {...(isLoading ? { disabled: true } : {})}
-                resourceNameOrRouteName={resource.route}
+                resourceNameOrRouteName={
+                    routerType === "legacy"
+                        ? resource?.route
+                        : resource?.identifier ?? resource?.name
+                }
                 recordItemId={id}
                 dataProviderName={dataProviderName}
             />
@@ -110,17 +123,25 @@ export const Edit: React.FC<EditProps> = (props) => {
 
     const defaultFooterButtons = (
         <>
-            {isDeleteButtonVisible && (
-                <DeleteButton
-                    {...(isLoading ? { disabled: true } : {})}
-                    mutationMode={mutationMode}
-                    onSuccess={() => {
-                        list(resource.route ?? resource.name);
-                    }}
-                    dataProviderName={dataProviderName}
-                    {...deleteButtonProps}
-                />
-            )}
+            {isDeleteButtonVisible &&
+                (id || deleteButtonProps?.recordItemId) && (
+                    <DeleteButton
+                        {...(isLoading ? { disabled: true } : {})}
+                        mutationMode={mutationMode}
+                        onSuccess={() => {
+                            if (routerType === "legacy") {
+                                legacyGoList(
+                                    resource?.route ?? resource?.name ?? "",
+                                );
+                            } else {
+                                go({ to: goListPath });
+                            }
+                        }}
+                        recordItemId={id}
+                        dataProviderName={dataProviderName}
+                        {...deleteButtonProps}
+                    />
+                )}
             <SaveButton
                 {...(isLoading ? { disabled: true } : {})}
                 {...saveButtonProps}
@@ -130,7 +151,15 @@ export const Edit: React.FC<EditProps> = (props) => {
 
     const buttonBack =
         goBackFromProps === (false || null) ? null : (
-            <ActionIcon onClick={routeFromAction ? goBack : undefined}>
+            <ActionIcon
+                onClick={
+                    action !== "list" && typeof action !== "undefined"
+                        ? routerType === "legacy"
+                            ? goBack
+                            : back
+                        : undefined
+                }
+            >
                 {typeof goBackFromProps !== "undefined" ? (
                     goBackFromProps
                 ) : (
@@ -164,9 +193,12 @@ export const Edit: React.FC<EditProps> = (props) => {
                         {title ?? (
                             <Title order={3} transform="capitalize">
                                 {translate(
-                                    `${resource.name}.titles.edit`,
+                                    `${resource?.name}.titles.edit`,
                                     `Edit ${userFriendlyResourceName(
-                                        resource.label ?? resource.name,
+                                        resource?.meta?.label ??
+                                            resource?.options?.label ??
+                                            resource?.label ??
+                                            resource?.name,
                                         "singular",
                                     )}`,
                                 )}

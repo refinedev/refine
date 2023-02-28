@@ -1059,7 +1059,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
         >
           <a
             class="mantine-Text-root mantine-Anchor-root mantine-1ut1du9"
-            href="/undefined"
+            href="/custom-page"
           >
             <button
               class="mantine-UnstyledButton-root mantine-Button-root mantine-1gzbrws"
@@ -1869,7 +1869,7 @@ exports[`MantineInferencer should match the snapshot 4`] = `
         >
           <a
             class="mantine-Text-root mantine-Anchor-root mantine-1ut1du9"
-            href="/undefined"
+            href="/custom-page"
           >
             <button
               class="mantine-UnstyledButton-root mantine-Button-root mantine-1gzbrws"

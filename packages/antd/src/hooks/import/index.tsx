@@ -2,11 +2,9 @@ import React from "react";
 import { ButtonProps, notification, UploadProps, Progress } from "antd";
 import {
     useTranslate,
-    useResourceWithRoute,
-    useRouterContext,
+    useResource,
     BaseRecord,
     HttpError,
-    ResourceRouterParams,
     useImport as useImportCore,
     UseImportReturnType,
     ImportOptions,
@@ -49,12 +47,7 @@ export const useImport = <
 } => {
     const t = useTranslate();
 
-    const resourceWithRoute = useResourceWithRoute();
-    const { useParams } = useRouterContext();
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-    const { name: resource } = resourceWithRoute(
-        pickNotDeprecated(resourceFromProp, resourceName) ?? routeResourceName,
-    );
+    const { resource } = useResource(resourceFromProp ?? resourceName);
 
     const { mutationResult, isLoading, handleChange } = useImportCore<
         TItem,
@@ -62,7 +55,7 @@ export const useImport = <
         TError,
         TVariables
     >({
-        resource,
+        resource: resource?.identifier ?? resource?.name,
         mapData,
         paparseOptions,
         batchSize,
