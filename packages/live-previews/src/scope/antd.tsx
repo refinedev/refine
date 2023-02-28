@@ -17,7 +17,9 @@ const RefineAntdDemo: React.FC<
 
     return (
         <RefineCommonScope.RefineCore.Refine
-            routerProvider={RefineCommonScope.RefineReactRouterV6.default}
+            legacyRouterProvider={
+                RefineCommonScope.LegacyRefineReactRouterV6.default
+            }
             dataProvider={RefineCommonScope.RefineSimpleRest.default(
                 SIMPLE_REST_API_URL,
             )}

@@ -10,7 +10,7 @@ import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/styles";
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 const App: React.FC = () => {
     return (
@@ -18,7 +18,7 @@ const App: React.FC = () => {
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <Refine
-                    routerProvider={routerProvider}
+                    legacyRouterProvider={routerProvider}
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}

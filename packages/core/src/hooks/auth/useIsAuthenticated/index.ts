@@ -53,9 +53,9 @@ export function useIsAuthenticated({
     const { checkAuth } = useLegacyAuthContext();
     const { check } = useAuthBindingsContext();
 
-    const queryRespose = useQuery(
+    const queryResponse = useQuery(
         ["useIsAuthenticated", params],
-        async () => await check?.(params),
+        async () => (await check?.(params)) ?? {},
         {
             retry: false,
             enabled: !v3LegacyAuthProviderCompatible,
@@ -63,7 +63,7 @@ export function useIsAuthenticated({
     );
 
     const legacyQueryResponse = useQuery(
-        ["useIsAuthenticated", params],
+        ["useIsAuthenticated", "v3LegacyAuthProviderCompatible", params],
         async () => (await checkAuth?.(params)) ?? {},
         {
             retry: false,
@@ -71,7 +71,7 @@ export function useIsAuthenticated({
         },
     );
 
-    return v3LegacyAuthProviderCompatible ? legacyQueryResponse : queryRespose;
+    return v3LegacyAuthProviderCompatible ? legacyQueryResponse : queryResponse;
 }
 
 /**

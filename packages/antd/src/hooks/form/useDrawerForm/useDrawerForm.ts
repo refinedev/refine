@@ -9,11 +9,16 @@ import {
     HttpError,
     LiveModeProps,
     BaseRecord,
+    FormWithSyncWithLocationParams,
     BaseKey,
+    useResource,
+    useParsed,
+    useGo,
 } from "@pankod/refine-core";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 import { DeleteButtonProps } from "../../../components";
+import React from "react";
 
 export interface UseDrawerFormConfig extends UseFormConfig {
     action: "show" | "edit" | "create" | "clone";
@@ -26,7 +31,8 @@ export type UseDrawerFormProps<
 > = UseFormPropsCore<TData, TError, TVariables> &
     UseFormProps<TData, TError, TVariables> &
     UseDrawerFormConfig &
-    LiveModeProps;
+    LiveModeProps &
+    FormWithSyncWithLocationParams;
 
 export type UseDrawerFormReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -62,12 +68,15 @@ export const useDrawerForm = <
     TVariables = {},
 >({
     mutationMode: mutationModeProp,
+    syncWithLocation,
     ...rest
 }: UseDrawerFormProps<TData, TError, TVariables>): UseDrawerFormReturnType<
     TData,
     TError,
     TVariables
 > => {
+    const initiallySynced = React.useRef(false);
+
     const useFormProps = useForm<TData, TError, TVariables>({
         ...rest,
         mutationMode: mutationModeProp,
@@ -76,11 +85,74 @@ export const useDrawerForm = <
     const { form, formProps, formLoading, mutationResult, id, setId } =
         useFormProps;
 
+    const { resource, action: actionFromParams } = useResource(rest.resource);
+
+    const parsed = useParsed();
+    const go = useGo();
+
+    const action = rest.action ?? actionFromParams ?? "";
+
+    const syncingId =
+        typeof syncWithLocation === "object" && syncWithLocation.syncId;
+
+    const syncWithLocationKey =
+        typeof syncWithLocation === "object" && "key" in syncWithLocation
+            ? syncWithLocation.key
+            : resource && action && syncWithLocation
+            ? `drawer-${resource?.identifier ?? resource?.name}-${action}`
+            : undefined;
+
+    const [open, setOpen] = useState(false);
+
+    React.useEffect(() => {
+        if (initiallySynced.current === false && syncWithLocationKey) {
+            const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
+            if (typeof openStatus === "boolean") {
+                setOpen(openStatus);
+            } else if (typeof openStatus === "string") {
+                setOpen(openStatus === "true");
+            }
+
+            if (syncingId) {
+                const idFromParams = parsed?.params?.[syncWithLocationKey]?.id;
+                if (idFromParams) {
+                    setId?.(idFromParams);
+                }
+            }
+
+            initiallySynced.current = true;
+        }
+    }, [syncWithLocationKey, parsed, syncingId, setId]);
+
+    React.useEffect(() => {
+        if (initiallySynced.current === true) {
+            if (open && syncWithLocationKey) {
+                go({
+                    query: {
+                        [syncWithLocationKey]: {
+                            ...parsed?.params?.[syncWithLocationKey],
+                            open: true,
+                            ...(syncingId && id && { id }),
+                        },
+                    },
+                    options: { keepQuery: true },
+                    type: "replace",
+                });
+            } else if (syncWithLocationKey && !open) {
+                go({
+                    query: {
+                        [syncWithLocationKey]: undefined,
+                    },
+                    options: { keepQuery: true },
+                    type: "replace",
+                });
+            }
+        }
+    }, [id, open, syncWithLocationKey, syncingId]);
+
     const translate = useTranslate();
 
     const { warnWhen, setWarnWhen } = useWarnAboutChange();
-
-    const [open, setOpen] = useState(false);
 
     const { mutationMode: mutationModeContext } = useMutationMode();
     const mutationMode = mutationModeProp ?? mutationModeContext;
@@ -160,7 +232,6 @@ export const useDrawerForm = <
             width: "500px",
             onClose: handleClose,
             open,
-            visible: open,
             forceRender: true,
         },
         saveButtonProps,

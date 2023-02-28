@@ -1,28 +1,15 @@
 import React from "react";
 import { renderHook } from "@testing-library/react";
-import { Route, Routes } from "react-router-dom";
 
-import { TestWrapper, ITestWrapperProps } from "@test";
+import { TestWrapper, ITestWrapperProps, mockRouterBindings } from "@test";
 import { useBreadcrumb } from ".";
 
-const renderWrapper = (
-    wrapperProps: ITestWrapperProps = {},
-    hasAction?: boolean,
-) => {
+const renderWrapper = (wrapperProps: ITestWrapperProps = {}) => {
     const Wrapper = TestWrapper(wrapperProps);
 
     const WrapperWith: React.FC<{ children: React.ReactNode }> = ({
         children,
-    }) => (
-        <Wrapper>
-            <Routes>
-                <Route
-                    path={hasAction ? "/:resource/:action" : "/:resource"}
-                    element={children}
-                />
-            </Routes>
-        </Wrapper>
-    );
+    }) => <Wrapper>{children}</Wrapper>;
 
     return WrapperWith;
 };
@@ -35,7 +22,9 @@ describe("useBreadcrumb Hook", () => {
         const { result } = renderHook(() => useBreadcrumb(), {
             wrapper: renderWrapper({
                 resources: [{ name: "posts" }],
-                routerInitialEntries: ["/posts"],
+                routerProvider: mockRouterBindings({
+                    resource: { name: "posts" },
+                }),
             }),
         });
 
@@ -51,7 +40,12 @@ describe("useBreadcrumb Hook", () => {
                         icon: DummyIcon,
                     },
                 ],
-                routerInitialEntries: ["/posts"],
+                routerProvider: mockRouterBindings({
+                    resource: {
+                        name: "posts",
+                        icon: DummyIcon,
+                    },
+                }),
             }),
         });
 
@@ -70,49 +64,42 @@ describe("useBreadcrumb Hook", () => {
                         list: DummyResourcePage,
                     },
                 ],
-                routerInitialEntries: ["/posts"],
+                routerProvider: mockRouterBindings({
+                    resource: {
+                        name: "posts",
+                        route: "posts",
+                        list: DummyResourcePage,
+                    },
+                }),
             }),
         });
 
         expect(result.current.breadcrumbs).toEqual([
-            { label: "Posts", href: "/posts" },
+            { label: "Posts", href: "/posts", icon: undefined },
         ]);
     });
 
-    it("if resource has custom `route` should shown with resource `label`", async () => {
+    it("if the user is on the resource action page, the action name should be last in the breadcrumbs", async () => {
         const { result } = renderHook(() => useBreadcrumb(), {
             wrapper: renderWrapper({
                 resources: [
                     {
                         name: "posts",
-                        label: "Hello",
-                        route: "custom-route",
+                        icon: DummyIcon,
+                        list: DummyResourcePage,
+                        create: DummyResourcePage,
                     },
                 ],
-                routerInitialEntries: ["/custom-route"],
+                routerProvider: mockRouterBindings({
+                    action: "create",
+                    resource: {
+                        name: "posts",
+                        meta: { icon: DummyIcon },
+                        list: DummyResourcePage,
+                        create: DummyResourcePage,
+                    },
+                }),
             }),
-        });
-
-        expect(result.current.breadcrumbs).toEqual([{ label: "Hello" }]);
-    });
-
-    it("if the user is on the resource action page, the action name should be last in the breadcrumbs", async () => {
-        const { result } = renderHook(() => useBreadcrumb(), {
-            wrapper: renderWrapper(
-                {
-                    resources: [
-                        {
-                            name: "posts",
-                            route: "posts",
-                            icon: DummyIcon,
-                            list: DummyResourcePage,
-                            create: DummyResourcePage,
-                        },
-                    ],
-                    routerInitialEntries: ["/posts/create"],
-                },
-                true,
-            ),
         });
 
         expect(result.current.breadcrumbs).toEqual([
@@ -123,60 +110,33 @@ describe("useBreadcrumb Hook", () => {
 
     it("if resources has nested resources, `parentName` should come in breadcrumbs", async () => {
         const { result } = renderHook(() => useBreadcrumb(), {
-            wrapper: renderWrapper(
-                {
-                    resources: [
-                        {
-                            name: "cms",
-                        },
-                        {
-                            parentName: "cms",
-                            name: "posts",
-                            route: "cms/posts",
-                            icon: DummyIcon,
-                            list: DummyResourcePage,
-                            create: DummyResourcePage,
-                        },
-                    ],
-                    routerInitialEntries: ["/posts/create"],
-                },
-                true,
-            ),
+            wrapper: renderWrapper({
+                resources: [
+                    {
+                        name: "cms",
+                    },
+                    {
+                        meta: { parent: "cms", icon: DummyIcon },
+                        name: "posts",
+                        list: DummyResourcePage,
+                        create: DummyResourcePage,
+                    },
+                ],
+                routerProvider: mockRouterBindings({
+                    action: "create",
+                    resource: {
+                        name: "posts",
+                        meta: { parent: "cms", icon: DummyIcon },
+                        list: DummyResourcePage,
+                        create: DummyResourcePage,
+                    },
+                }),
+            }),
         });
 
         expect(result.current.breadcrumbs).toEqual([
-            { label: "Cms" },
-            { icon: <div>icon</div>, label: "Posts", href: "/cms/posts" },
-            { label: "Create" },
-        ]);
-    });
-
-    it("if resources has nested resources with custom `route`, `parentName` should come in breadcrumbs", async () => {
-        const { result } = renderHook(() => useBreadcrumb(), {
-            wrapper: renderWrapper(
-                {
-                    resources: [
-                        {
-                            name: "cms",
-                        },
-                        {
-                            parentName: "cms",
-                            name: "posts",
-                            route: "custom-route",
-                            icon: DummyIcon,
-                            list: DummyResourcePage,
-                            create: DummyResourcePage,
-                        },
-                    ],
-                    routerInitialEntries: ["/posts/create"],
-                },
-                true,
-            ),
-        });
-
-        expect(result.current.breadcrumbs).toEqual([
-            { label: "Cms" },
-            { icon: <div>icon</div>, label: "Posts", href: "/custom-route" },
+            { label: "Cms", href: undefined, icon: undefined },
+            { icon: <div>icon</div>, label: "Posts", href: "/posts" },
             { label: "Create" },
         ]);
     });

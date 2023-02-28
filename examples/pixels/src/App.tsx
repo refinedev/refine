@@ -7,7 +7,7 @@ import {
 import { GithubOutlined } from "@ant-design/icons";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@pankod/refine-supabase";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import { Layout } from "components/layout";
 import { CanvasFeaturedList, CanvasList, CanvasShow } from "pages/canvases";
@@ -40,7 +40,7 @@ function App() {
                 legacyAuthProvider={authProvider}
                 dataProvider={dataProvider(supabaseClient)}
                 liveProvider={liveProvider(supabaseClient)}
-                routerProvider={{
+                legacyRouterProvider={{
                     ...routerProvider,
                     routes: [
                         {

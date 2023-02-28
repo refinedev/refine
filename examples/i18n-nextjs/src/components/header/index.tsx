@@ -8,7 +8,7 @@ import {
     Dropdown,
     Avatar,
 } from "antd";
-import NextRouter from "@pankod/refine-nextjs-router";
+import NextRouter from "@pankod/refine-nextjs-router/legacy";
 import { useRouter } from "next/router";
 
 const { Link } = NextRouter;

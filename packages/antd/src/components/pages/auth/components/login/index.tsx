@@ -2,6 +2,8 @@ import React from "react";
 import {
     LoginPageProps,
     LoginFormTypes,
+    useLink,
+    useRouterType,
     useActiveAuthProvider,
 } from "@pankod/refine-core";
 import {
@@ -44,7 +46,11 @@ export const LoginPage: React.FC<LoginProps> = ({
 }) => {
     const [form] = Form.useForm<LoginFormTypes>();
     const translate = useTranslate();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     const authProvider = useActiveAuthProvider();
     const { mutate: login, isLoading } = useLogin<LoginFormTypes>({
@@ -170,7 +176,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         </Form.Item>
                     )}
                     {forgotPasswordLink ?? (
-                        <Link
+                        <ActiveLink
                             style={{
                                 fontSize: "12px",
                                 marginLeft: "auto",
@@ -181,7 +187,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                                 "pages.login.buttons.forgotPassword",
                                 "Forgot password?",
                             )}
-                        </Link>
+                        </ActiveLink>
                     )}
                 </div>
                 <Form.Item>
@@ -203,9 +209,12 @@ export const LoginPage: React.FC<LoginProps> = ({
                             "pages.login.buttons.noAccount",
                             "Don’t have an account?",
                         )}{" "}
-                        <Link to="/register" style={{ fontWeight: "bold" }}>
+                        <ActiveLink
+                            to="/register"
+                            style={{ fontWeight: "bold" }}
+                        >
                             {translate("pages.login.signup", "Sign up")}
-                        </Link>
+                        </ActiveLink>
                     </Text>
                 )}
             </div>

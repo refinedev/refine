@@ -2,6 +2,8 @@ import React from "react";
 import {
     LoginPageProps,
     LoginFormTypes,
+    useRouterType,
+    useLink,
     useActiveAuthProvider,
 } from "@pankod/refine-core";
 import { useLogin, useTranslate, useRouterContext } from "@pankod/refine-core";
@@ -45,7 +47,11 @@ export const LoginPage: React.FC<LoginProps> = ({
     const { useForm, FormProvider } = FormContext;
     const { onSubmit: onSubmitProp, ...useFormProps } = formProps || {};
     const translate = useTranslate();
-    const { Link } = useRouterContext();
+    const routerType = useRouterType();
+    const Link = useLink();
+    const { Link: LegacyLink } = useRouterContext();
+
+    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     const form = useForm({
         initialValues: {
@@ -162,7 +168,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         )}
                         {forgotPasswordLink ?? (
                             <Anchor
-                                component={Link}
+                                component={ActiveLink as any}
                                 to="/forgot-password"
                                 size="xs"
                             >
@@ -191,7 +197,11 @@ export const LoginPage: React.FC<LoginProps> = ({
                         "pages.login.buttons.noAccount",
                         "Don’t have an account?",
                     )}{" "}
-                    <Anchor component={Link} to="/register" weight={700}>
+                    <Anchor
+                        component={ActiveLink as any}
+                        to="/register"
+                        weight={700}
+                    >
                         {translate("pages.login.signup", "Sign up")}
                     </Anchor>
                 </Text>

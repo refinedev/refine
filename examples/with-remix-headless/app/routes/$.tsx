@@ -6,7 +6,7 @@ import {
     RemixRouteComponent,
     handleRefineParams,
     checkAuthentication,
-} from "@pankod/refine-remix-router";
+} from "@pankod/refine-remix-router/legacy";
 
 import { authProvider } from "~/authProvider";
 

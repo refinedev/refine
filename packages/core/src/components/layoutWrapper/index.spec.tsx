@@ -1,9 +1,13 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
 
 import { LayoutWrapper } from "@components/layoutWrapper";
-import { render, TestWrapper, MockJSONServer } from "@test";
+import {
+    render,
+    TestWrapper,
+    MockJSONServer,
+    mockLegacyRouterProvider,
+} from "@test";
 import { defaultRefineOptions } from "@contexts/refine";
 import { IRefineContextProvider } from "../../contexts/refine/IRefineContext";
 import { LayoutProps } from "../../interfaces";
@@ -12,19 +16,14 @@ const renderWithRefineContext = (
     children: React.ReactNode,
     refineProvider: IRefineContextProvider,
 ) => {
-    return render(
-        <Routes>
-            <Route path="/" element={children} />
-        </Routes>,
-        {
-            wrapper: TestWrapper({
-                dataProvider: MockJSONServer,
-                resources: [{ name: "posts", route: "posts" }],
-                routerInitialEntries: ["/"],
-                refineProvider,
-            }),
-        },
-    );
+    return render(<>{children}</>, {
+        wrapper: TestWrapper({
+            dataProvider: MockJSONServer,
+            resources: [{ name: "posts", route: "posts" }],
+            legacyRouterProvider: mockLegacyRouterProvider(),
+            refineProvider,
+        }),
+    });
 };
 
 describe("LayoutWrapper", () => {
