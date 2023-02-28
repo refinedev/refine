@@ -5,12 +5,9 @@ title: useStepsForm
 
 ```tsx live shared
 import React from "react";
-import {
-    useTable,
-    ColumnDef,
-    flexRender,
-    Column,
-} from "@pankod/refine-react-table";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender, Column } from "@tanstack/react-table";
+
 import { GetManyResponse, useMany } from "@pankod/refine-core";
 import {
     Button as MantineButton,

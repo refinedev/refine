@@ -1,10 +1,6 @@
 import React, { useCallback } from "react";
-import {
-    useTable,
-    ColumnDef,
-    flexRender,
-    Row,
-} from "@pankod/refine-react-table";
+import { useTable } from "@pankod/refine-react-table";
+import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
 import {
     GetManyResponse,
     useDeleteMany,
