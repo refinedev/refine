@@ -47,6 +47,406 @@ You must make this change for all packages that start with `@pankod`.
 
 ### `authProvider`
 
+<h3>Motivation behind the changes</h3>
+
+Our motivation behind the changes in `authProvider` prop in **refine**'s v4 is to make it flexible and customizable enough to cover much more cases than before without going down the rabbit hole.
+
+We wanted to create a common interface for the properties of `authProvider` to make them flexible for many cases and complement the features of refine without requiring our users to write complex code blocks and conditions.
+
+Previously, the `authProvider` methods returned a resolved or rejected promise rather than a resolved promise with consistent return types. This behavior is not ideal since a rejected promise is typically associated with an error or exceptional case, which is not the case for an authentication failure. This caused confusion for developers and made it harder to debug unexpected behaviors.
+
+`authProvider` methods now returns a resolved promise in all cases, but with an object that contains a `success` property that indicates whether the operation was successful or not, and an optional `error` property that contains an `Error` object in case of failure. With consistent return types makes it easier to debug and understand the authentication process.
+
+Additionally, the auth hooks no longer have default redirection, which could be confusing for developers who were not aware of this behavior. By adding a `redirectTo` property to the `authProvider` method's return object, developers can have more control over where the user is redirected after a successful operation.
+
+<h3>Naming changes</h3>
+
+-   `AuthPovider` interface changed to `AuthBindings`.
+
+    ```diff
+    - import { AuthProvider } from "@refinedev/core";
+    + import { AuthBindings } from "@refinedev/core";
+
+    - const authProvider: AuthProvider = {/* ... */}
+    + const authProvider: AuthBindings = {/* ... */}
+    ```
+
+-   `getUserIdentity` method of the `authProvider` changed to `getIdentity`.
+-   `checkError` method of the `authProvider` changed to `onError`.
+-   `checkAuth` method of the `authProvider` changed to `check`.
+
+    ```diff
+    const authProvider = {
+    -     getUserIdentity,
+    +     getIdentity,
+    -     useCheckError,
+    +     useOnError,
+    -     checkAuth,
+    +     check,
+    }
+    ```
+
+-   `useAuthenticated` hook changed to `useIsAuthenticated`.
+
+    ```diff
+    - import { useAuthenticated } from "@refinedev/core";
+    + import { useIsAuthenticated } from "@refinedev/core";
+    ```
+
+<h3>Methods</h3>
+
+#### `login`
+
+-   `login` method now requires that a promise be resolved instead of rejected, with a return type of `AuthActionResponse`
+-   `login` method no longer rejects promises, you should resolve the promise with a `success` and an `error` value in case of login failure or success.
+-   `useLogin` no longer has default redirection. You will need to add `redirectTo` property to the `login` method's return object.
+
+```diff
+const authProvider = {
+    login: ({ email, password }) => {
+        const user = mockUsers.find((item) => item.email === email);
+
+        if (user) {
+            localStorage.setItem("auth", JSON.stringify(user));
+-           return Promise.resolve();
++           return Promise.resolve({
++               success: true,
++               redirectTo: "/",
++           });
+        }
+
+-       return Promise.reject();
++       return Promise.resolve({
++           success: false,
++           error: new Error("Invalid email or password"),
++       });
+    },
+}
+```
+
+```ts
+type AuthActionResponse = {
+    success: boolean;
+    redirectTo?: string;
+    error?: Error;
+    [key: string]: unknown;
+};
+```
+
+#### `logout`
+
+-   `logout` method now requires that a promise be resolved instead of rejected, with a return type of `AuthActionResponse`
+-   `logout` method no longer rejects promises, you should resolve the promise with a `success` and an `error` value in case of logout failure or success.
+-   `useLogout` no longer has default redirection. You will need to add `redirectTo` property to the `logout` method's return object.
+
+```diff
+const authProvider = {
+    logout: ({ email, password }) => {
+        localStorage.removeItem("auth");
+-       return Promise.resolve();
++       return Promise.resolve({
++       success: true,
++       redirectTo: "/login",
++       });
+    },
+}
+```
+
+```ts
+type AuthActionResponse = {
+    success: boolean;
+    redirectTo?: string;
+    error?: Error;
+    [key: string]: unknown;
+};
+```
+
+#### `register`
+
+-   `register` method now requires that a promise be resolved instead of rejected, with a return type of `AuthActionResponse`
+-   `register` method no longer rejects promises, you should resolve the promise with a `success` and an `error` value in case of register failure or success.
+-   `useRegister` no longer has default redirection. You will need to add `redirectTo` property to the `register` method's return object.
+
+```diff
+const authProvider = {
+    register: ({ email, password }) => {
+        const user = mockUsers.find((item) => item.email === email);
+
+        if (user) {
+-           return Promise.reject();
++           return Promise.resolve({
++               success: false,
++               error: {
++                   name: "Register Error"",
++                   message: "User already exists",
++               },
++           });
+        }
+
+        mockUsers.push({ email });
+
+-       return Promise.resolve();
++       return Promise.resolve({
++           success: true,
++           redirectTo: "/",
++       });
+    },
+}
+```
+
+#### `forgotPassword`
+
+-   `forgotPassword` method now requires that a promise be resolved instead of rejected, with a return type of `AuthActionResponse`
+-   `forgotPassword` method no longer rejects promises, you should resolve the promise with a `success` and an `error` value in case of register failure or success.
+-   `useForgotPassword` no longer has default redirection. You will need to add `redirectTo` property to the `forgotPassword` method's return object.
+
+```diff
+const authProvider = {
+    // ---
+    forgotPassword: ({ password }) => {
+        // send password reset link to the user's email address here
+
+        // if request is successful
+-       return Promise.resolve();
++       return Promise.resolve({
++           success: true,
++           redirectTo: "/login",
++       });
+
+        // if request is not successful
+-       return Promise.reject();
++       return Promise.resolve({
++           success: false,
++           error: {
++               name: "Forgot Password Error",
++               message: "Email address does not exist",
++           },
++       });
+    },
+    // ---
+};
+```
+
+```ts
+type AuthActionResponse = {
+    success: boolean;
+    redirectTo?: string;
+    error?: Error;
+    [key: string]: unknown;
+};
+```
+
+#### `updatePassword`
+
+-   `updatePassword` method now requires that a promise be resolved instead of rejected, with a return type of `AuthActionResponse`
+-   `updatePassword` method no longer rejects promises, you should resolve the promise with a `success` and an `error` value in case of register failure or success.
+-   `useUpdatePassword` no longer has default redirection. You will need to add `redirectTo` property to the `updatePassword` method's return object.
+
+```diff
+const authProvider = {
+    // ---
+    updatePassword: ({ password }) => {
+        // update the user's password here
+
+        // if request is successful
+-       return Promise.resolve();
++       return Promise.resolve({
++           success: true,
++           redirectTo: "/login",
++       });
+
+        // if request is not successful
+-       return Promise.reject();
++       return Promise.resolve({
++           success: false,
++           error: {
++               name: "Forgot Password Error",
++               message: "Email address does not exist",
++           },
++       });
+    },
+    // ---
+};
+```
+
+```ts
+type AuthActionResponse = {
+    success: boolean;
+    redirectTo?: string;
+    error?: Error;
+    [key: string]: unknown;
+};
+```
+
+### `check`
+
+-   `checkAuth` method of the authProvider changed to `check`.
+-   `check` method now requires that a promise be resolved instead of rejected, with a return type of `CheckResponse`
+-   `check` method no longer rejects promises, you should resolve the promise with a `success` and an `error` value in case of register failure or success.
+-   `<Authenticated/>` component no longer has default redirection. You will need to add `redirectTo` property to the `check` method's return object.
+-   `<Authenticated/>` component no longer call `logout` method by default. You will need to add `logout` property to `true` to the `check` method's return object.
+
+```diff
+const authProvider = {
+-   checkAuth: () => {
++   check: () => {
+        const user = localStorage.getItem("auth");
+
+        if (user) {
+-           return Promise.resolve();
++           return Promise.resolve({
++               authenticated: true,
++           });
+        }
+
+-       return Promise.reject();
++       return Promise.resolve({
++           authenticated: false,
++           redirectTo: "/login",
++           logout: true,
++           error: new Error("User not found"),
++       });
+    },
+};
+```
+
+```ts
+type CheckResponse = {
+    authenticated: boolean;
+    redirectTo?: string;
+    logout?: boolean;
+    error?: Error;
+};
+```
+
+### `onError`
+
+-   `checkError` method of the authProvider changed to `onError`.
+-   `onError` method now requires that a promise be resolved instead of rejected, with a return type of `OnErrorResponse`
+-   `onError` method no longer rejects promises, you should resolve the promise with a `success` and an `onError` value in case of register failure or success.
+-   `useOnError` no longer has default redirection. You will need to add `redirectTo` property to the `onError` method's return object.
+-   `useOnError` component no longer call `logout` method by default. You will need to add `logout` property to `true` to the `check` method's return object.
+
+```diff
+const authProvider = {
+-   checkError: (error) => {
++   onError: (error) => {
+        if (error.status === 401 || error.status === 403) {
+-           return Promise.reject();
++           return Promise.resolve({
++               redirectTo: "/login",
++               logout: true,
++               error: error,
++           });
+        }
+
+-       return Promise.reject();
++       return Promise.resolve({});
+    },
+};
+```
+
+```ts
+type OnErrorResponse = {
+    redirectTo?: string;
+    logout?: boolean;
+    error?: Error;
+};
+```
+
+## `getPermissions`
+
+-   `getPermissions` method now requires that a promise be resolved instead of rejected, with a return type of `PermissionResponse`
+
+```diff
+const authProvider = {
+    getPermissions: () => {
+        const user = localStorage.getItem("auth");
+
+        if (user) {
+            const { roles } = JSON.parse(user);
+
+            return Promise.resolve(roles);
+        }
+
+-        return Promise.reject();
++        return Promise.resolve();
+    },
+};
+```
+
+```ts
+type PermissionResponse = unknown;
+```
+
+## `getIdentity`
+
+-   `getUserIdentity` method of the authProvider changed to `getIdentity`.
+-   `getIdentity` method now requires that a promise be resolved instead of rejected, with a return type of `IdentityResponse`
+
+```diff
+const authProvider: AuthProvider = {
+-   getUserIdentity: () => {
++   getIdentity: () => {
+        const user = localStorage.getItem("auth");
+
+        if (user) {
+            const { email, roles } = JSON.parse(user);
+
+            return Promise.resolve({ email, roles });
+        }
+
+-        return Promise.reject();
++        return Promise.resolve();
+    },
+};
+```
+
+```ts
+type IdentityResponse = unknown;
+```
+
+:::note
+
+> These changes can be done automatically with `codemod`
+
+**refine** still supports the `authProvider@v3` for backward compatibility. We changed name to `legacyAuthProvider` and it will be removed in the next major version. If you want to continue using the `authProvider@v3` you can use it as `legacyAuthProvider` in your project.
+
+```diff
+- import { AuthProvider } from "@refinedev/core";
++ import { LegacyAuthProvider } from "@refinedev/core";
+
+- const authProvider: AuthProvider = {/* ... */}
++ const authProvider: LegacyAuthProvider = {/* ... */}
+
+const App = () => {
+    return (
+        <Refine
+-           authProvider={authProvider}
++           legacyAuthProvider={authProvider}
+        >
+            <AppLayout />
+        </Refine>
+    );
+};
+
+```
+
+Also you need to add `v3LegacyAuthProviderCompatible: true` to your auth hooks to continue using the `authProvider@v3` in your project.
+
+```ts
+import { useLogin } from "@refinedev/core";
+
+// ---
+
+const login = useLogin({
+    // highlight-next-line
+    v3LegacyAuthProviderCompatible: true,
+});
+```
+
+:::
+
 ### Update `getList` parameters of `dataProvider`
 
 `getList` parameters of `dataProvider` have been updated.
@@ -1616,3 +2016,4 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 [resources]: /api-reference/core/components/refine-config.md#resources
 [routerprovider]: /api-reference/core/providers/router-provider.md
 [custompages]: /advanced-tutorials/custom-pages.md
+[auth-provider]: /api-reference/core/providers/auth-provider/
