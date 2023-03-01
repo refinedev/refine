@@ -13,7 +13,8 @@ We will show what `<Edit>` does using properties with examples.
 import React from "react";
 import { Edit, useAutocomplete } from "@pankod/refine-mui";
 import { TextField, Autocomplete, Box } from "@mui/material";
-import { useForm, Controller } from "@pankod/refine-react-hook-form";
+import { useForm } from "@pankod/refine-react-hook-form";
+import { Controller } from "react-hook-form";
 
 const SampleEdit = () => {
     const {
@@ -405,7 +406,8 @@ import React from "react";
 import { Edit, useAutocomplete } from "@pankod/refine-mui";
 import { TextField, Autocomplete, Box } from "@mui/material";
 
-import { useForm, Controller } from "@pankod/refine-react-hook-form";
+import { useForm } from "@pankod/refine-react-hook-form";
+import { Controller } from "react-hook-form";
 
 const SampleEdit = () => {
     const {

@@ -970,7 +970,8 @@ For example, Let's send the values we received from the user in two separate inp
 
 ```tsx title="pages/user/create.tsx"
 import React from "react";
-import { FieldValues, useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@pankod/refine-react-hook-form";
+import { FieldValues } from "react-hook-form";
 
 export const UserCreate: React.FC = () => {
     const {

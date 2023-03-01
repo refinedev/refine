@@ -12,7 +12,8 @@ export const checkPackage = (code = "") => {
         code.includes("@emotion/styled") ||
         code.includes("@mui/lab") ||
         code.includes("@mui/material") ||
-        code.includes("@mui/x-data-grid");
+        code.includes("@mui/x-data-grid") ||
+        code.includes(`from "react-hook-form"`);
     const hasMantine =
         code.includes("@pankod/refine-mantine") ||
         code.includes("RefineMantine") ||
@@ -23,7 +24,8 @@ export const checkPackage = (code = "") => {
     const hasChakra =
         code.includes("@pankod/refine-chakra-ui") ||
         code.includes("RefineChakra") ||
-        code.includes("@chakra-ui/react");
+        code.includes("@chakra-ui/react") ||
+        code.includes(`from "react-hook-form"`);
     const hasAntdInferencer =
         code.includes("@pankod/refine-inferencer/antd") ||
         code.includes("RefineAntdInferencer");

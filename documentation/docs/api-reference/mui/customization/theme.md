@@ -785,7 +785,8 @@ import {
 } from "@pankod/refine-mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 import { Typography, TextField, Autocomplete } from "@mui/material";
-import { useForm, Controller } from "@pankod/refine-react-hook-form";
+import { useForm } from "@pankod/refine-react-hook-form";
+import { Controller } from "react-hook-form";
 
 import { useMany, useShow, useOne } from "@pankod/refine-core";
 

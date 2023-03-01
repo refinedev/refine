@@ -502,7 +502,7 @@ import { Refine, useNavigation } from "@pankod/refine-core";
 import { AuthPage, Layout } from "@pankod/refine-mui";
 import { Form, FormControlLabel, Checkbox } from "@mui/material";
 import routerProvider from "@pankod/refine-react-router-v6";
-import { useFormContext } from "@pankod/refine-react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
