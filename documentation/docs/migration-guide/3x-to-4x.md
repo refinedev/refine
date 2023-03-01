@@ -24,7 +24,22 @@ npx @refinedev/codemod refine3-to-refine4
 
 And it's done. Now your project uses `refine@4.x.x`.
 
-# Major Changes
+## Major Changes
+
+### New Organization :tada:
+
+refine v4 will be released under `@refinedev` npm organization.
+So you must install the packages with the new organization name.
+
+```bash
+npm uninstall @pankod/refine-core @pankod/refine-antd @pankod/..
+
+npm i @refinedev/core @refinedev/antd @refinedev/..
+```
+
+:::caution
+You must make this change for all packages that start with `@pankod`.
+:::
 
 ### Removed re-exports
 
@@ -82,20 +97,6 @@ export interface Sorters {
 ```
 
 ## Migrating your project manually
-
-## Updating the packages
-
-Our npm organization has been moved from `@pankod` to `@refinedev`. So you must install the packages with the new organization name.
-
-```bash
-npm uninstall @pankod/refine-core @pankod/refine-antd @pankod/..
-
-npm i @refinedev/core @refinedev/antd @refinedev/..
-```
-
-:::caution
-You must make this change for all packages that start with `@pankod`.
-:::
 
 ## **`@pankod/refine-core` changes**
 
