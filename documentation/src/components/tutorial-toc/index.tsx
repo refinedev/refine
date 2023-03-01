@@ -64,7 +64,7 @@ const TutorialUIStatus = () => {
                     <div className="flex items-center gap-2">
                         <img
                             src={`${baseIconUrl}${preferredUIPackage}.svg`}
-                            className="w-5 h-auto"
+                            className="h-auto w-5"
                         />
                         <span className="font-semibold">
                             {uiNames[preferredUIPackage]}
@@ -124,7 +124,7 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
     const renderTOC = () => {
         if (toc.length === 0) return null;
         return (
-            <ul className="list-none pl-0 mt-1">{toc.map(renderTocItem)}</ul>
+            <ul className="mt-1 list-none pl-0">{toc.map(renderTocItem)}</ul>
         );
     };
 
@@ -134,8 +134,8 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
         >["units"][number]["docs"][number],
     ) => {
         return (
-            <li key={doc.id} className="pb-2 flex flex-row gap-2 items-start">
-                <div className="w-5 h-5 mt-0.5 flex-shrink-0">
+            <li key={doc.id} className="flex flex-row items-start gap-2 pb-2">
+                <div className="mt-0.5 h-5 w-5 flex-shrink-0">
                     <TutorialCircle id={doc.id} width="100%" height="100%" />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -194,7 +194,7 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
                     unit.unit === selectedUnit
                         ? "tutorial__item--unit-item"
                         : ""
-                } w-[28px] h-[30px] pt-0 px-[3.5px] rounded-tl-[24px] rounded-tr-[24px] cursor-pointer border-none font-semibold flex justify-center items-start -mb-1`}
+                } -mb-1 flex h-[30px] w-[28px] cursor-pointer items-start justify-center rounded-tl-[24px] rounded-tr-[24px] border-none px-[3.5px] pt-0 font-semibold`}
             >
                 <UnitCircle unit={unit.unit} width="100%" height="28px" />
             </button>
@@ -213,16 +213,16 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
 
     return (
         <div
-            className="sticky top-[5rem] max-h-[calc(100vh-6rem]"
+            className="max-h-[calc(100vh-6rem] sticky top-[5rem]"
             style={{
                 color: "var(--tutorial-toc-text-color)",
             }}
         >
-            <div className="unit-tabs flex gap-0.5 mb-1">
+            <div className="unit-tabs mb-1 flex gap-0.5">
                 {currentTutorial?.units.map(renderUnitTab)}
             </div>
             <div
-                className={`unit-list-container py-3 px-3 rounded-md ${
+                className={`unit-list-container rounded-md py-3 px-3 ${
                     currentUnit?.no === 1 ? "rounded-tl-none" : ""
                 }`}
                 style={{
@@ -230,7 +230,7 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
                 }}
             >
                 <div
-                    className="font-bold text-sm mb-2"
+                    className="mb-2 text-sm font-bold"
                     style={{
                         color: "var(--tutorial-toc-text-color)",
                     }}
