@@ -15,6 +15,7 @@
         "@pankod/refine-cli": "^1.17.0",
         "@pankod/refine-mui": "^3.61.5",
         "@pankod/refine-react-hook-form": "^3.37.2",
+        "react-hook-form": "^7.30.0",
         "@mui/icons-material": "^5.8.3",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-strapi-v4": "^3.39.6",
