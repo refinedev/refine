@@ -326,11 +326,11 @@
     },
     {
       "from": "/docs/guides-and-concepts/ssr/nextjs/",
-      "to": "/docs/advanced-tutorials/ssr/nextjs/"
+      "to": "/docs/packages/documentation/routers/nextjs"
     },
     {
       "from": "/docs/guides-and-concepts/ssr/remix/",
-      "to": "/docs/advanced-tutorials/ssr/remix/"
+      "to": "/docs/packages/documentation/routers/nextjs"
     },
     {
       "from": "/docs/guides-and-concepts/upload/base64-upload/",
@@ -711,6 +711,14 @@
     {
       "from": "/docs/getting-started/overview/",
       "to": "/docs/"
+    },
+    {
+      "from": "/docs/advanced-tutorials/ssr/nextjs",
+      "to": "/docs/packages/documentation/routers/nextjs"
+    },
+    {
+      "from": "/docs/advanced-tutorials/ssr/remix",
+      "to": "/docs/packages/documentation/routers/remix"
     }
   ]
 }
