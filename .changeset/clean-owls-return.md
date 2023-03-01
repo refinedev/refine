@@ -2,17 +2,23 @@
 "@pankod/refine-react-hook-form": major
 ---
 
-All `react-hook-form` components re-exported by `refine` are removed. You should import them from `react-hook-form` directly.
+All `react-hook-form` imports re-exported from `@pankod/refine-react-hook-form` have been removed. You should import them from the `react-hook-form` package directly.
 
-Before:
+If the package is not installed, you can install it with your package manager:
 
-```tsx
-import { useForm, Controller } from "@pankod/refine-react-hook-form";
+```bash
+npm install react-hook-form
+# or
+pnpm add react-hook-form
+# or
+yarn add react-hook-form
 ```
 
-After:
+After that, you can import them from `react-hook-form` package directly.
 
-```tsx
-import { useForm } from "@pankod/refine-react-hook-form";
-import { Controller } from "react-hook-form";
+```diff
+- import { useForm, Controller } from "@pankod/refine-react-hook-form";
+
++ import { useForm } from "@refinedev/react-hook-form";
++ import { Controller } from "react-hook-form";
 ```
