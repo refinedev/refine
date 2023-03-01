@@ -1,4 +1,4 @@
-name: Build all examples
+name: Build All Examples
 
 on:
     pull_request:

@@ -1,4 +1,4 @@
-name: Pull Request Previews
+name: PR Previews
 
 on:
   pull_request:

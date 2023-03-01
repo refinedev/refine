@@ -1,4 +1,4 @@
-name: Pull Request Documentation [synchronize]
+name: PR Documentation [synchronize]
 
 on:
   pull_request:
