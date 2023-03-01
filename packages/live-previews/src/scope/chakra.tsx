@@ -3,6 +3,7 @@ import type { RefineProps } from "@pankod/refine-core";
 import { RefineCommonScope } from "./common";
 import * as RefineChakra from "@pankod/refine-chakra-ui";
 import * as ChakraUI from "@chakra-ui/react";
+import * as ReactHookForm from "react-hook-form";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
@@ -51,6 +52,7 @@ const AntdScope = {
     RefineChakra,
     RefineChakraDemo,
     ChakraUI,
+    ReactHookForm,
     // // Other Packages
     // RefineReactHookForm,
     // RefineReactTable,

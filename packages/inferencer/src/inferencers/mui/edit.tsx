@@ -5,6 +5,7 @@ import * as EmotionStyled from "@emotion/styled";
 import * as MuiLab from "@mui/lab";
 import * as MuiMaterial from "@mui/material";
 import * as MuiXDataGrid from "@mui/x-data-grid";
+import * as ReactHookForm from "react-hook-form";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -97,7 +98,7 @@ export const renderer = ({
         if (field.relation && field.resource) {
             imports.push(
                 ["Autocomplete", "@mui/material"],
-                ["Controller", "@pankod/refine-react-hook-form"],
+                ["Controller", "react-hook-form"],
             );
             const variableName = getVariableName(
                 field.key,
@@ -466,6 +467,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
         ["@mui/lab", "MuiLab", MuiLab],
         ["@mui/material", "MuiMaterial", MuiMaterial],
         ["@mui/x-data-grid", "MuiXDataGrid", MuiXDataGrid],
+        ["react-hook-form", "ReactHookForm", ReactHookForm],
     ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,

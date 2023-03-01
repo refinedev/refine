@@ -8,6 +8,7 @@ import * as EmotionStyled from "@emotion/styled";
 import * as MuiLab from "@mui/lab";
 import * as MuiMaterial from "@mui/material";
 import * as MuiXDataGrid from "@mui/x-data-grid";
+import * as ReactHookForm from "react-hook-form";
 
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
@@ -61,6 +62,7 @@ const MuiScope = {
     MuiLab,
     MuiMaterial,
     MuiXDataGrid,
+    ReactHookForm,
     // RefineMantine,
     // RefineMantineDemo,
     // RefineChakra,
