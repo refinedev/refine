@@ -1,7 +1,7 @@
 import { API, FileInfo } from "jscodeshift";
 import fs from "fs";
 import path from "path";
-import { install } from "../helpers";
+import { addPackage, install, isPackageJsonUpdated } from "../helpers";
 import checkPackageLock from "../helpers/checkPackageLock";
 import separateImports from "../helpers/separateImports";
 import { exported } from "../definitions/separated-imports/react-hook-form";
@@ -23,12 +23,18 @@ export async function postTransform(files: any, flags: any) {
     }
 
     if (!flags.dry) {
-        await install(rootDir, ["react-hook-form@^7.22.1"], {
-            useYarn,
-            isOnline: true,
-        });
+        if (isPackageJsonUpdated(rootDir)) {
+            await install(rootDir, null, {
+                useYarn,
+                isOnline: true,
+            });
+        }
     }
 }
+
+const REFINE_LIB_PATH = "@pankod/refine-react-hook-form";
+const REACT_HOOK_FORM_PATH = "react-hook-form";
+const REACT_HOOK_FORM_VERSION = "^7.22.1";
 
 export default function transformer(file: FileInfo, api: API): string {
     const j = api.jscodeshift;
@@ -40,9 +46,22 @@ export default function transformer(file: FileInfo, api: API): string {
         imports: exported,
         renameImports: {},
         otherImports: {},
-        currentLibName: "@pankod/refine-react-hook-form",
-        nextLibName: "react-hook-form",
+        currentLibName: REFINE_LIB_PATH,
+        nextLibName: REACT_HOOK_FORM_PATH,
     });
+
+    // if use `react-hook-form` add package.json
+    const reactQuery = source.find(j.ImportDeclaration, {
+        source: {
+            value: REACT_HOOK_FORM_PATH,
+        },
+    });
+
+    if (reactQuery.length) {
+        addPackage(process.cwd(), {
+            [REACT_HOOK_FORM_PATH]: REACT_HOOK_FORM_VERSION,
+        });
+    }
 
     return source.toSource();
 }
