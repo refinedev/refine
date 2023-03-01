@@ -1,7 +1,7 @@
 import { API, FileInfo } from "jscodeshift";
 import fs from "fs";
 import path from "path";
-import { install } from "../helpers";
+import { install, addPackage, isPackageJsonUpdated } from "../helpers";
 import checkPackageLock from "../helpers/checkPackageLock";
 import separateImports from "../helpers/separateImports";
 import { exported } from "../definitions/separated-imports/react-query";
@@ -23,12 +23,18 @@ export async function postTransform(files: any, flags: any) {
     }
 
     if (!flags.dry) {
-        await install(rootDir, ["@tanstack/react-query@^4.10.1"], {
-            useYarn,
-            isOnline: true,
-        });
+        if (isPackageJsonUpdated(rootDir)) {
+            await install(rootDir, null, {
+                useYarn,
+                isOnline: true,
+            });
+        }
     }
 }
+
+const REFINE_LIB_PATH = "@pankod/refine-core";
+const REACT_QUERY_PATH = "@tanstack/react-query";
+const REACT_QUERY_VERSION = "^4.10.1";
 
 export default function transformer(file: FileInfo, api: API): string {
     const j = api.jscodeshift;
@@ -40,9 +46,20 @@ export default function transformer(file: FileInfo, api: API): string {
         imports: exported,
         renameImports: {},
         otherImports: {},
-        currentLibName: "@pankod/refine-core",
-        nextLibName: "@tanstack/react-query",
+        currentLibName: REFINE_LIB_PATH,
+        nextLibName: REACT_QUERY_PATH,
     });
+
+    // if use `@tanstack/react-query` add package.json
+    const reactQuery = source.find(j.ImportDeclaration, {
+        source: {
+            value: REACT_QUERY_PATH,
+        },
+    });
+
+    if (reactQuery.length) {
+        addPackage(process.cwd(), { [REACT_QUERY_PATH]: REACT_QUERY_VERSION });
+    }
 
     return source.toSource();
 }
