@@ -112,6 +112,10 @@ export const AuthBindingsContextProvider: React.FC<
 
             return Promise.resolve(result);
         } catch (error) {
+            console.warn(
+                "Unhandled Error in login: refine always expects a resolved promise.",
+                error,
+            );
             return Promise.reject(error);
         }
     };
@@ -124,6 +128,10 @@ export const AuthBindingsContextProvider: React.FC<
 
             return Promise.resolve(result);
         } catch (error) {
+            console.warn(
+                "Unhandled Error in register: refine always expects a resolved promise.",
+                error,
+            );
             return Promise.reject(error);
         }
     };
@@ -136,6 +144,10 @@ export const AuthBindingsContextProvider: React.FC<
 
             return Promise.resolve(result);
         } catch (error) {
+            console.warn(
+                "Unhandled Error in logout: refine always expects a resolved promise.",
+                error,
+            );
             return Promise.reject(error);
         }
     };
@@ -146,6 +158,37 @@ export const AuthBindingsContextProvider: React.FC<
 
             return Promise.resolve(result);
         } catch (error) {
+            console.warn(
+                "Unhandled Error in check: refine always expects a resolved promise.",
+                error,
+            );
+            return Promise.reject(error);
+        }
+    };
+
+    const handleForgotPassword = async (params: unknown) => {
+        try {
+            const result = await authBindings.forgotPassword?.(params);
+
+            return Promise.resolve(result);
+        } catch (error) {
+            console.warn(
+                "Unhandled Error in forgotPassword: refine always expects a resolved promise.",
+                error,
+            );
+            return Promise.reject(error);
+        }
+    };
+
+    const handleUpdatePassword = async (params: unknown) => {
+        try {
+            const result = await authBindings.updatePassword?.(params);
+            return Promise.resolve(result);
+        } catch (error) {
+            console.warn(
+                "Unhandled Error in updatePassword: refine always expects a resolved promise.",
+                error,
+            );
             return Promise.reject(error);
         }
     };
@@ -158,6 +201,10 @@ export const AuthBindingsContextProvider: React.FC<
                 logout: handleLogout as IAuthBindingsContext["logout"],
                 check: handleCheck as IAuthBindingsContext["check"],
                 register: handleRegister as IAuthBindingsContext["register"],
+                forgotPassword:
+                    handleForgotPassword as IAuthBindingsContext["forgotPassword"],
+                updatePassword:
+                    handleUpdatePassword as IAuthBindingsContext["updatePassword"],
                 isProvided,
             }}
         >
