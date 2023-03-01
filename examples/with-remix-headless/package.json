@@ -17,7 +17,6 @@
         "@pankod/refine-simple-rest": "^3.37.4",
         "@pankod/refine-remix-router": "^1.7.0",
         "@pankod/refine-react-hook-form": "^3.37.2",
-        "react-hook-form": "^7.30.0",
         "@pankod/refine-react-table": "^4.9.1",
         "@tanstack/react-table": "^8.2.6",
         "js-cookie": "^3.0.1",
