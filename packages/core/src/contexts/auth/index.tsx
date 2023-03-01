@@ -21,8 +21,8 @@ export const LegacyAuthContextProvider: React.FC<
     const queryClient = useQueryClient();
 
     const invalidateAuthStore = () => {
-        queryClient.invalidateQueries(["useIsAuthenticated"]);
-        queryClient.invalidateQueries(["getIdentity"]);
+        queryClient.invalidateQueries(["useAuthenticated"]);
+        queryClient.invalidateQueries(["getUserIdentity"]);
         queryClient.invalidateQueries(["usePermissions"]);
     };
 
@@ -99,8 +99,8 @@ export const AuthBindingsContextProvider: React.FC<
     const queryClient = useQueryClient();
 
     const invalidateAuthStore = () => {
-        queryClient.invalidateQueries(["useIsAuthenticated"]);
-        queryClient.invalidateQueries(["getIdentity"]);
+        queryClient.invalidateQueries(["useAuthenticated"]);
+        queryClient.invalidateQueries(["getUserIdentity"]);
         queryClient.invalidateQueries(["usePermissions"]);
     };
 

@@ -137,7 +137,7 @@ export function useForgotPassword<TVariables = {}>({
         TVariables,
         unknown
     >(
-        ["useForgotPassword"],
+        ["useForgotPassword", "v3LegacyAuthProviderCompatible"],
         v3LegacyAuthProviderCompatibleForgotPasswordFromContext,
         {
             onSuccess: (redirectPathFromAuth) => {

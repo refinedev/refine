@@ -2,6 +2,7 @@ import * as RefineCore from "@pankod/refine-core";
 import * as RefineChakraUI from "@pankod/refine-chakra-ui";
 import * as ChakraUI from "@chakra-ui/react";
 import * as RefineReactHookForm from "@pankod/refine-react-hook-form";
+import * as ReactHookForm from "react-hook-form";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -392,6 +393,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
             RefineReactHookForm,
         ],
         ["@chakra-ui/react", "ChakraUI", ChakraUI],
+        ["react-hook-form", "ReactHookForm", ReactHookForm],
     ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,

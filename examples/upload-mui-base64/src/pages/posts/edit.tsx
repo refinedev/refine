@@ -9,7 +9,8 @@ import {
     Typography,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@pankod/refine-react-hook-form";
+import { Controller } from "react-hook-form";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
 import { ICategory, IPost } from "interfaces";

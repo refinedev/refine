@@ -20,13 +20,13 @@
     "nuke:builds": "lerna exec -- rm -rf dist && lerna exec -- rm -rf .next && lerna exec -- rm -rf build",
     "nuke:lockfiles": "lerna exec --ignore @pankod/refine-codemod -- rm -rf package-lock.json && lerna exec --ignore @pankod/refine-codemod -- rm -rf yarn.lock && lerna exec --ignore @pankod/refine-codemod -- rm -rf pnpm-lock.yaml",
     "nuke:node_modules": "lerna clean --yes",
-    "lint:fix": "eslint -c ./.eslintrc --quiet --fix packages examples",
+    "lint:fix": "eslint -c ./.eslintrc --quiet --fix --cache packages examples",
     "lint:staged": "lint-staged",
     "test:coverage": "npm run test --stream -- -- -- --coverage"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint -c ./.eslintrc --quiet --fix packages examples"
+      "eslint -c ./.eslintrc --quiet --fix --cache packages examples"
     ]
   },
   "devDependencies": {
