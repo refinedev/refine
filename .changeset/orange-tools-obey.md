@@ -13,6 +13,32 @@
 "@pankod/refine-supabase": minor
 ---
 
--   Now, `pagination` property of `getList` method has new `mode` property. It can be "off", "client", and "server". If it is "off" or "client", data provider will not send any pagination related query params to the API. If it is "server", data provider will send pagination related query params to the API.
+-   `metaData` props is deprecated for all data provider methods. Use `meta` prop instead.
 
--   `hasPagination` property of `getList` method is deprecated. Use `pagination.mode` instead. However, for backward compatibility, `hasPagination` property will be used if `pagination.mode` is not provided.
+    If you provide `metaData` with **refine** hooks or components, the `meta` value will be same as your provided `metaData` value.
+
+    ```diff
+    create: async ({
+    -    metaData
+    +    meta
+    }) => {
+        ...
+    },
+    ```
+
+-   `sort`, `hasPagination`, and `metaData` paramaters of `getList` method is deprecated. Use `sorters`, `pagination`, and `meta` parameters instead.
+
+    If you provide `sort`, `hasPagination` or `metaData` with **refine** hooks or components, the `sorters`, `pagination.mode` or `meta` value will be same as your provided prop value.
+
+    ```diff
+    getList: async ({
+    -    sort
+    +    sorters
+    -    hasPagination
+    +    pagination: { mode: "off" | "server | "client" }
+    -    metaData
+    +    meta
+    }) => {
+        ...
+    },
+    ```

@@ -2,37 +2,36 @@
 "@pankod/refine-mui": major
 ---
 
-All `MUI` components re-exported by `refine` are removed. You should import them from `MUI` directly.
+All **Material UI** components re-exported from `@pankod/refine-mui` have been removed. You should import them from Material UI packages directly.
 
-Before:
+If the packages are not installed, you can install them with your package manager:
 
-```tsx
-import { Box, NumberField, Stack, Typography } from "@pankod/refine-mui";
+> You don't have to install all of packages. You can install only the packages that you use.
+
+```bash
+npm install @mui/material @emotion/react @emotion/styled @mui/lab @mui/x-data-grid
+# or
+pnpm add @mui/material @emotion/react @emotion/styled @mui/lab @mui/x-data-grid
+# or
+yarn add @mui/material @emotion/react @emotion/styled @mui/lab @mui/x-data-grid
 ```
 
-After:
+After that, you can import them from related packages directly.
 
-```tsx
-import { NumberField } from "@pankod/refine-mui";
-import { Box, Stack, Typography } from "@mui/material";
-```
+```diff
+- import {
+-    Box,
+-    NumberField,
+-    Stack,
+-    Typography,
+-    ThemeProvider,
+-    DataGrid
+-    LoadingButton,
+- } from "@pankod/refine-mui";
 
-## Breaking Changes
-
-### Theme
-
-```ts
-declare module "@pankod/refine-mui" {
-    interface Theme extends import("@pankod/refine-mui").Theme, CustomTheme {}
-    interface ThemeOptions extends import("@pankod/refine-mui").ThemeOptions, CustomTheme {}
-}
-```
-
-to
-
-```ts
-declare module "@mui/material/styles" {
-    interface Theme extends import("@mui/material/styles").Theme, CustomTheme {}
-    interface ThemeOptions extends import("@mui/material/styles").ThemeOptions, CustomTheme {}
-}
++ import { NumberField } from "@refinedev/mui";
++ import { ThemeProvider } from "@mui/material/styles";
++ import { Box, Stack, Typography } from "@mui/material";
++ import { DataGrid } from "@mui/x-data-grid";
++ import { LoadingButton } from "@mui/lab";
 ```

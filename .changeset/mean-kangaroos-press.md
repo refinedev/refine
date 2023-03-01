@@ -2,6 +2,6 @@
 "@pankod/refine-ui-tests": minor
 ---
 
-`options` property of `<Refine>`'s `resources` property is deprecated.
+New props are used instead of deprecated ones in the tests.
 
-`button` and `crud` tests are updated to use `meta` property instead of `options` property.
+-   Buttons and CRUD tests are updated to use `meta` property instead of `options` property.

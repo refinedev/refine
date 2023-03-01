@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-ui-types": major
+"@pankod/refine-ui-types": minor
 ---
 
-`metaData` is deprecated from `dataProvider` with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+`meta` prop is added to common button prop types.

@@ -2,7 +2,9 @@
 "@pankod/refine-core": minor
 ---
 
-added: `optionLabel` and `optionValue` type changed for better type inference
+Updated `useSelect` hook to support `optionLabel` and `optionValue` type as `keyof TData` instead of `string`.
+
+So `optionLabel` and `optionValue` have an interface based on the given `TData` type.
 
 ```diff
 - optionLabel?: string;

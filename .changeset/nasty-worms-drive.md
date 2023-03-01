@@ -2,17 +2,45 @@
 "@pankod/refine-chakra-ui": major
 ---
 
-All `Chakra-UI` components re-exported by `refine` are removed. You should import them from `Chakra-UI` directly.
+## 🪄 Migrating your project automatically with refine-codemod ✨
 
-Before:
+[`@refinedev/codemod`](https://github.com/refinedev/refine/tree/master/packages/codemod) package handles the breaking changes for your project automatically, without any manual steps. It migrates your project from `3.x.x` to `4.x.x`.
 
-```tsx
-import { Box, NumberField, Stack, Typography } from "@pankod/refine-chakra-ui";
+Just `cd` into root folder of your project (where `package.json` is contained) and run this command:
+
+```sh
+npx @refinedev/codemod refine3-to-refine4
 ```
 
-After:
+And it's done. Now your project uses `refine@4.x.x`.
 
-```tsx
-import { NumberField } from "@pankod/refine-chakra-ui";
-import { Box, Stack, Typography } from "@chakra-ui/react";
+## 📝 Changelog
+
+All **Chakra UI** components re-exported from `@pankod/refine-chakra-ui` have been removed. You should import them from `@chakra-ui/react` package directly.
+
+If the packages are not installed, you can install them with your package manager:
+
+> You don't have to install all of packages. You can install only the packages that you use.
+
+```bash
+npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
+# or
+pnpm add @chakra-ui/react @emotion/react @emotion/styled framer-motion
+# or
+yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion
+```
+
+After that, you can import them from related packages directly.
+
+```diff
+- import {
+-    ChakraProvider,
+-    Input,
+-    Select,
+-    ShowButton,
+-    usePagination,
+- } from "@pankod/refine-chakra-ui";
+
++ import { usePagination, ShowButton } from "@refinedev/chakra-ui";
++ import { ChakraProvider, Input, Select } from "@chakra-ui/react";
 ```

@@ -2,19 +2,81 @@
 "@pankod/refine-antd": minor
 ---
 
--   `initialCurrent` and `initialPagesize` properties of `useTable` and `useSimpleList` hooks are deprecated. Use `pagination.current` and `pagination.pageSize` instead. However, for backward compatibility, `initialCurrent` and `initialPagesize` properties will be used if `pagination.current` and `pagination.pageSize` are not provided.
+## `useTable` hook
 
--   `sorter` and `setSorter` return values of `useTable` and `useSimpleList` hooks are deprecated. Use `sorters` and `setSorters` instead. However, for backward compatibility, `sorter` and `setSorter` are safe to use.
+`useTable` return values and properties are updated.
 
--   Added `pagination.mode` property to `useTable` and `useSimpleList` hooks.
-
-    -   When `pagination.mode` is "off", all records will be fetched from the API and pagination will be hidden.
-    -   When `pagination.mode` is "client", all records will be fetched from the API and pagination will be handled by client.
-    -   When `pagination.mode` is "server", pagination will be handled by the API using `current` and `pageSize` properties of `pagination` object.
-
--   Now, `useSimpleList` hook will not accept all of `<AntdList/>` properties. So, you can give their props to `<AntdList/>` component directly.
+-   `initialCurrent` and `initialPageSize` props are deprecated. Use `pagination` prop instead. To ensure backward compatibility, `initialCurrent` and `initialPageSize` props work as before.
 
     ```diff
+    useTable({
+    -    initialCurrent,
+    -    initialPageSize,
+    +    pagination: {
+    +        current,
+    +        pageSize,
+    +    },
+    })
+    ```
+
+-   `hasPagination` prop is deprecated. Use `pagination.mode` instead. To ensure backward compatibility, `hasPagination` prop works as before.
+
+    ```diff
+    useTable({
+    -    hasPagination,
+    +    pagination: {
+    +        mode: "off" | "server" | "client",
+    +    },
+    })
+    ```
+
+-   `initialSorter` and `permanentSorter` props are deprecated. Use `sorters.initial` and `sorters.permanent` instead. To ensure backward compatibility, `initialSorter` and `permanentSorter` props work as before.
+
+    ```diff
+    useTable({
+    -    initialSorter,
+    -    permanentSorter,
+    +    sorters: {
+    +        initial,
+    +        permanent,
+    +    },
+    })
+    ```
+
+-   `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead. To ensure backward compatibility, `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props work as before.
+
+    ```diff
+    useTable({
+    -    initialFilter,
+    -    permanentFilter,
+    -    defaultSetFilterBehavior,
+    +    filters: {
+    +        initial,
+    +        permanent,
+    +        defaultBehavior,
+    +    },
+    })
+    ```
+
+-   `sorter` and `setSorter` return values are deprecated. Use `sorters` and `setSorters` instead. To ensure backward compatibility, `sorter` and `setSorter` return values work as before.
+
+    ```diff
+    const {
+    -   sorter,
+    +   sorters,
+    -   setSorter,
+    +   setSorters,
+    } = useTable();
+    ```
+
+## `useSimpleList` hook
+
+-   Now `useSimpleList` hook will not accept all of `<List>` component properties So, you can give their props to `<List>` component directly.
+
+    ```diff
+    import { useSimpleList } from "@refinedev/antd";
+    import { List } from "antd";
+
     const { listProps } = useSimpleList({
         resource: "orders",
         pagination: {
@@ -23,7 +85,7 @@
         },
     });
 
-    <AntdList
+    <List
         {...listProps}
     +   pagination={{
     +     ...listProps.pagination,
@@ -31,4 +93,17 @@
     +   }}
         ... // other props
     />
+    ```
+
+-   `initialCurrent` and `initialPageSize` props are deprecated. Use `pagination` prop instead.
+
+    ```diff
+    useSimpleList({
+    -    initialCurrent,
+    -    initialPageSize,
+    +    pagination: {
+    +        current,
+    +        pageSize,
+    +    },
+    })
     ```
