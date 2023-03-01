@@ -1,9 +1,10 @@
-name: Pull Request Checks
+name: PR Checks
 on: [pull_request]
 
 jobs:
   lint:
     runs-on: ubuntu-latest
+    name: Lint and Commitlint
     steps:
       - uses: actions/checkout@v1
         with:
@@ -16,14 +17,13 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    needs:
-      - lint
     strategy:
       matrix:
         node-version: [16.x]
+    name: Bootstrap and Test
     steps:
       - uses: actions/checkout@v1
-      - name: Cache node modules
+      - name: Cache node_modules
         uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
@@ -38,10 +38,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install & build
+      - name: Install & Bootstrap
         run: |
           npm ci
           npm run bootstrap
-      - name: test
+      - name: Test
         run: |
-          npm run test --skip-nx-cache
+          npm run test:all --skip-nx-cache

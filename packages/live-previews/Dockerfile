@@ -9,8 +9,8 @@ ENV NODE_ENV development
 
 RUN npm ci
 
-RUN npm run bootstrap
-RUN npm run build
+RUN npm run bootstrap -- --scope @pankod/refine-live-previews
+RUN npm run build -- --scope @pankod/refine-live-previews
 
 #Example client
 WORKDIR /opt/app/packages/live-previews
