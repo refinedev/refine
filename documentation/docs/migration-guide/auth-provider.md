@@ -10,11 +10,11 @@ Our motivation behind the changes in `authProvider` prop in **refine**'s v4 is t
 
 We wanted to create a common interface for the methods of `authProvider` to make it easier to debug and understand the authentication process more easily.
 
-Previously, the `authProvider` methods returned a resolved or rejected promise rather than a resolved promise with consistent return types. This behavior is not ideal since a rejected promise is typically associated with an error or exceptional case, which is not the case for an authentication failure. This caused confusion for developers and made it harder to debug unexpected behaviors.
+Previously, the `authProvider` methods were expected to be resolved on success and rejected on any failure. This behavior wasn't ideal since rejected promise is typically associated with an error or an exceptional case. Considering some expected errors like wrong email/password combination isn't a failure and needs to be propagated to the user, rejected promises caused confusion for developers and made it harder to debug real unexpected behaviors.
 
-`authProvider` methods now returns a resolved promise in all cases, with an object that contains a `success` key. The `success` key indicates whether the operation was successful or not, and an optional `error` key that contains an `Error` object in case of failure.
+`authProvider` methods now returns a resolved promise in all cases, with an object containing `success` key. The `success` key indicates whether the operation was successful or not, and an optional `error` key with `Error` object in case of a failure.
 
-Additionally, the auth hooks no longer have default redirection paths. This behavior could be confusing for developers who were not aware of it. By adding a `redirectTo` property to the `authProvider` method's return object, developers can have more control over where the user is redirected after a successful operation.
+Additionally, the auth hooks no longer have default redirection paths. This behavior could be confusing for developers who were not aware of it. By adding a `redirectTo` property to the `authProvider` methods' return object explicitly, developers can have more control over where the user is redirected after a successful operation.
 
 ## Naming changes
 
@@ -54,8 +54,8 @@ Additionally, the auth hooks no longer have default redirection paths. This beha
 
 ### `login`
 
--   `login` method now requires that a promise be resolved instead of rejected, with a return type of `AuthActionResponse`
--   `login` method no longer rejects promises, you should resolve the promise with a `success` and an `error` value in case of login failure or success.
+-   `login` method now requires promises to be resolved in all cases, with a return type of `AuthActionResponse`
+-   `login` method expects promises to be resolved in all cases. You should always resolve the promise with a `success` key and an additional `error` key in case of a failure.
 -   `useLogin` no longer has default redirection. You will need to add `redirectTo` property to the `login` method's return object.
 
 ```diff
@@ -274,7 +274,7 @@ type CheckResponse = {
 
 ### `onError`
 
--   `checkError` method of the authProvider changed to `onError`.
+-   `authProvider`'s `checkError` method renamed to `onError`.
 -   `onError` method now requires that a promise be resolved instead of rejected, with a return type of `OnErrorResponse`
 -   `onError` method no longer rejects promises, you should resolve the promise with a `success` and an `onError` value in case of register failure or success.
 -   `useOnError` no longer has default redirection. You will need to add `redirectTo` property to the `onError` method's return object.
@@ -334,7 +334,7 @@ type PermissionResponse = unknown;
 
 ### `getIdentity`
 
--   `getUserIdentity` method of the authProvider changed to `getIdentity`.
+-   `authProvider`'s `getUserIdentity` method renamed to `getIdentity`.
 -   `getIdentity` method now requires that a promise be resolved instead of rejected, with a return type of `IdentityResponse`
 
 ```diff
