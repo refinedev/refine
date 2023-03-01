@@ -13,7 +13,8 @@ We'll show what `<Create>` does using properties with examples.
 import React from "react";
 import { Create, useAutocomplete } from "@pankod/refine-mui";
 import { Autocomplete, Box, TextField } from "@mui/material";
-import { useForm, Controller } from "@pankod/refine-react-hook-form";
+import { useForm } from "@pankod/refine-react-hook-form";
+import { Controller } from "react-hook-form";
 
 const SampleCreate = () => {
     const {

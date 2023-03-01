@@ -26,5 +26,6 @@ export const packageMap: Record<string, string> = {
     "@mui/material": "MuiMaterial",
     "@mui/x-data-grid": "MuiXDataGrid",
     "@chakra-ui/react": "ChakraUI",
+    "react-hook-form": "ReactHookForm",
     "@tanstack/react-table": "TanstackReactTable",
 };

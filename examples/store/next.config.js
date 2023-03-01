@@ -1,6 +1,4 @@
-const withPlugins = require("next-compose-plugins");
-
-module.exports = withPlugins([], {
+module.exports = {
     experimental: {
         newNextLinkBehavior: true,
     },
@@ -8,4 +6,4 @@ module.exports = withPlugins([], {
         loader: "imgix",
         path: "https://refine-store.imgix.net/",
     },
-});
+};
