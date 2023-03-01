@@ -969,7 +969,7 @@ After that, you can import them from related packages directly.
 -    Select,
 -    List,
 -    useSelect,
-- } from "@pankod/refine-mui";
+- } from "@pankod/refine-mantine";
 
 + import { useSelect, List } from "@refinedev/mantine";
 + import { MantineProvider, TextInput, Select } from "@mantine/core";
@@ -1064,7 +1064,7 @@ After that, you can import them from related packages directly.
 -    Select,
 -    ShowButton,
 -    usePagination,
-- } from "@pankod/refine-mui";
+- } from "@pankod/refine-chakra-ui";
 
 + import { usePagination, ShowButton } from "@refinedev/chakra-ui";
 + import { ChakraProvider, Input, Select } from "@chakra-ui/react";
