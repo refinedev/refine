@@ -1,5 +1,5 @@
 /// <reference types="next" />
-/// <reference types="next/navigation-types/navigation" />
+/// <reference types="next/app" />
 
 export { routerBindings as default, stringifyConfig } from "./bindings";
 export { RefineRoutes } from "../pages/refine-routes";
