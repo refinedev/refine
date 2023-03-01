@@ -20,7 +20,7 @@ import {
 import { ThemeProvider } from "@mui/material/styles";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6/legacy";
-import { useFormContext } from "react-hook-form";
+import { useFormContext } from "@pankod/refine-react-hook-form";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 
