@@ -1037,14 +1037,6 @@ module.exports = {
                 },
                 {
                     type: "category",
-                    label: "SSR",
-                    items: [
-                        "advanced-tutorials/ssr/remix",
-                        "advanced-tutorials/ssr/nextjs",
-                    ],
-                },
-                {
-                    type: "category",
                     label: "Upload",
                     items: [
                         "advanced-tutorials/upload/base64-upload",
