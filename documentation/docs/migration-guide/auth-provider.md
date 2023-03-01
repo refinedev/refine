@@ -92,8 +92,8 @@ type AuthActionResponse = {
 
 ### `logout`
 
--   `logout` method now requires that a promise be resolved instead of rejected, with a return type of `AuthActionResponse`
--   `logout` method no longer rejects promises, you should resolve the promise with a `success` and an `error` value in case of logout failure or success.
+-   `logout` method now requires promises to be resolved in all cases, with a return type of `AuthActionResponse`
+-   `logout` method expects promises to be resolved in all cases. You should always resolve the promise with a `success` key and an additional `error` key in case of a failure.
 -   `useLogout` no longer has default redirection. You will need to add `redirectTo` property to the `logout` method's return object.
 
 ```diff
@@ -120,8 +120,8 @@ type AuthActionResponse = {
 
 ### `register`
 
--   `register` method now requires that a promise be resolved instead of rejected, with a return type of `AuthActionResponse`
--   `register` method no longer rejects promises, you should resolve the promise with a `success` and an `error` value in case of register failure or success.
+-   `register` method now requires promises to be resolved in all cases, with a return type of `AuthActionResponse`
+-   `register` method expects promises to be resolved in all cases. You should always resolve the promise with a `success` key and an additional `error` key in case of a failure.
 -   `useRegister` no longer has default redirection. You will need to add `redirectTo` property to the `register` method's return object.
 
 ```diff
@@ -153,8 +153,8 @@ const authProvider = {
 
 ### `forgotPassword`
 
--   `forgotPassword` method now requires that a promise be resolved instead of rejected, with a return type of `AuthActionResponse`
--   `forgotPassword` method no longer rejects promises, you should resolve the promise with a `success` and an `error` value in case of register failure or success.
+-   `forgotPassword` method now requires promises to be resolved in all cases, with a return type of `AuthActionResponse`
+-   `forgotPassword` method expects promises to be resolved in all cases. You should always resolve the promise with a `success` key and an additional `error` key in case of a failure.
 -   `useForgotPassword` no longer has default redirection. You will need to add `redirectTo` property to the `forgotPassword` method's return object.
 
 ```diff
@@ -193,8 +193,8 @@ type AuthActionResponse = {
 
 ### `updatePassword`
 
--   `updatePassword` method now requires that a promise be resolved instead of rejected, with a return type of `AuthActionResponse`
--   `updatePassword` method no longer rejects promises, you should resolve the promise with a `success` and an `error` value in case of register failure or success.
+-   `updatePassword` method now requires promises to be resolved in all cases, with a return type of `AuthActionResponse`
+-   `updatePassword` method expects promises to be resolved in all cases. You should always resolve the promise with a `success` key and an additional `error` key in case of a failure.
 -   `useUpdatePassword` no longer has default redirection. You will need to add `redirectTo` property to the `updatePassword` method's return object.
 
 ```diff
@@ -234,8 +234,8 @@ type AuthActionResponse = {
 ### `check`
 
 -   `checkAuth` method of the authProvider changed to `check`.
--   `check` method now requires that a promise be resolved instead of rejected, with a return type of `CheckResponse`
--   `check` method no longer rejects promises, you should resolve the promise with a `success` and an `error` value in case of register failure or success.
+-   `check` method now requires promises to be resolved in all cases, with a return type of `CheckResponse`
+-   `check` method expects promises to be resolved in all cases. You should always resolve the promise with a `success` key and an additional `error` key in case of a failure.
 -   `<Authenticated/>` component no longer has default redirection. You will need to add `redirectTo` property to the `check` method's return object.
 -   `<Authenticated/>` component no longer call `logout` method by default. You will need to add `logout` property to `true` to the `check` method's return object.
 
@@ -275,8 +275,8 @@ type CheckResponse = {
 ### `onError`
 
 -   `authProvider`'s `checkError` method renamed to `onError`.
--   `onError` method now requires that a promise be resolved instead of rejected, with a return type of `OnErrorResponse`
--   `onError` method no longer rejects promises, you should resolve the promise with a `success` and an `onError` value in case of register failure or success.
+-   `onError` method now requires promises to be resolved in all cases, with a return type of `OnErrorResponse`
+-   `onError` method expects promises to be resolved in all cases. You should always resolve the promise with a `success` key and an additional `error` key in case of a failure.
 -   `useOnError` no longer has default redirection. You will need to add `redirectTo` property to the `onError` method's return object.
 -   `useOnError` component no longer call `logout` method by default. You will need to add `logout` property to `true` to the `check` method's return object.
 
@@ -309,7 +309,7 @@ type OnErrorResponse = {
 
 ### `getPermissions`
 
--   `getPermissions` method now requires that a promise be resolved instead of rejected, with a return type of `PermissionResponse`
+-   `getPermissions` method now requires promises to be resolved in all cases, with a return type of `PermissionResponse`
 
 ```diff
 const authProvider = {
@@ -335,7 +335,7 @@ type PermissionResponse = unknown;
 ### `getIdentity`
 
 -   `authProvider`'s `getUserIdentity` method renamed to `getIdentity`.
--   `getIdentity` method now requires that a promise be resolved instead of rejected, with a return type of `IdentityResponse`
+-   `getIdentity` method now requires promises to be resolved in all cases, with a return type of `IdentityResponse`
 
 ```diff
 const authProvider: AuthProvider = {

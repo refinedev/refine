@@ -231,7 +231,7 @@ After that, you can import them from `@tanstack/react-query` package directly in
 ```
 
 :::note
-`custom` parameters still have `sort` prop. But it is deprecated. You can use it for now. But we recommend you to use `sorters` prop instead.
+`custom` parameters will still have `sort` prop. But it is deprecated. You can use it with v4. But we recommend you to use `sorters` prop instead.
 :::
 
 ### `useList` and `useInfiniteList` hooks
