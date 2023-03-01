@@ -46,7 +46,7 @@ jobs:
         run: |
           cd documentation
           npm ci
-      - name: Wait for Netlify Deploy
+      - name: Wait for Netlify Deploy (Live Previews)
         uses: probablyup/wait-for-netlify-action@3.2.0
         id: waitForDeployment
         with:
@@ -57,7 +57,7 @@ jobs:
       - name: output test
         run: |
           echo ${{ steps.waitForDeployment.outputs.url }}
-      - name: Install Dependencies
+      - name: Build Documentation
         run: |
           cd documentation
           LIVE_PREVIEW_URL=${{ steps.waitForDeployment.outputs.url }}/preview npm run build
