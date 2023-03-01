@@ -511,7 +511,7 @@ After that, you can import them from `@tanstack/react-query` package directly in
 ```
 
 :::note
-`getList` parameters still have `hasPagination`, `sort`, and `metaData` props. But they are deprecated. You can use them for now. But we recommend you to use `pagination.mode`, `sorters`, and `meta` props instead.
+`getList` parameters will still have `hasPagination`, `sort`, and `metaData` props. But they are deprecated. You can use them with v4. But we recommend you to use `pagination.mode`, `sorters`, and `meta` props instead.
 :::
 
 ### Update `custom` parameters of `dataProvider`
