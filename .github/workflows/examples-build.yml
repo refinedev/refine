@@ -20,6 +20,8 @@ jobs:
             matrix:
                 node-version: [16.x]
 
+        name: Build All Examples
+
         steps:
             - name: Get PR labels
               id: pr-labels

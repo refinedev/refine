@@ -19,6 +19,8 @@ jobs:
       matrix:
         node-version: [16.x]
 
+    name: Fine Foods Antd
+
     steps:
       - name: Workflow run cleanup action
         uses: rokroskar/workflow-run-cleanup-action@v0.2.2
@@ -53,6 +55,8 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
+
+    name: Fine Foods MUI
 
     steps:
       - name: Workflow run cleanup action
