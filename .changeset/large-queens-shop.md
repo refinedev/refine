@@ -2,19 +2,21 @@
 "@pankod/refine-core": major
 ---
 
-exports items for `@pankod/refine-core`
+All `@tanstack/react-query` imports re-exported from `@refinedev/core` have been removed. You should import them from `@tanstack/react-query` package directly.
 
-All `@tanstack/react-query` components re-exported by `refine` are removed. You should import them from `@tanstack/react-query` directly.
+If the package is not installed, you can install it with your package manager:
 
-Before:
-
-```tsx
-import { QueryClient, Refine } from "@pankod/refine-core";
+```bash
+npm install @tanstack/react-query
+# or
+pnpm add @tanstack/react-query
+# or
+yarn add @tanstack/react-query
 ```
+After that, you can import them from `@tanstack/react-query` package directly instead of `@refinedev/core` package.
 
-After:
+```diff
+- import { QueryClient } from "@refinedev/core";
 
-```tsx
-import { Refine } from "@pankod/refine-core";
-import { QueryClient } from "@tanstack/react-query";
++ import { QueryClient } from "@tanstack/react-query";
 ```
