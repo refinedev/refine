@@ -691,4 +691,12 @@ export default function Posts({ posts }: { posts: GetListResponse<IPost> }) {
 }
 ```
 
+## Example (`/pages`)
+
+<CodeSandboxExample path="with-nextjs" />
+
+## Example (`/app`)
+
+<CodeSandboxExample path="with-nextjs-appdir" />
+
 [routerprovider]: /api-reference/core/providers/router-provider.md

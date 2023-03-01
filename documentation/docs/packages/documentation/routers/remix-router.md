@@ -450,4 +450,8 @@ export default function Posts() {
 }
 ```
 
+## Example
+
+<CodeSandboxExample path="with-remix-antd" />
+
 [routerprovider]: /api-reference/core/providers/router-provider.md
