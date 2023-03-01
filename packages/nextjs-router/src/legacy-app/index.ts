@@ -1,5 +1,5 @@
 /// <reference types="next" />
-/// <reference types="next/navigation-types/navigation" />
+/// <reference types="next/app" />
 
 export { routerProvider as default } from "./router-provider";
 export { NextRouteComponent } from "./route-component";
