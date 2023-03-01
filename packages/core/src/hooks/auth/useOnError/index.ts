@@ -71,7 +71,7 @@ export function useOnError({
         v3LegacyAuthProviderCompatible: Boolean(v3LegacyAuthProviderCompatible),
     });
 
-    const mutation = useMutation(["useOnError"], onErrorFromContext, {
+    const mutation = useMutation(["useCheckError"], onErrorFromContext, {
         onSuccess: ({ logout: shouldLogout, redirectTo }) => {
             if (shouldLogout) {
                 logout({ redirectPath: redirectTo });
@@ -90,7 +90,7 @@ export function useOnError({
     });
 
     const v3LegacyAuthProviderCompatibleMutation = useMutation(
-        ["useOnError"],
+        ["useCheckError", "v3LegacyAuthProviderCompatible"],
         legacyCheckErrorFromContext,
         {
             onError: (redirectPath?: string) => {
