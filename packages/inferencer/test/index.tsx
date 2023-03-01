@@ -63,7 +63,7 @@ export const TestWrapper: (
                     i18nProvider={i18nProvider}
                     authProvider={authProvider}
                     legacyAuthProvider={legacyAuthProvider}
-                    routerProvider={MockRouterProvider}
+                    // routerProvider={MockRouterProvider}
                     legacyRouterProvider={MockRouterProvider}
                     notificationProvider={notificationProvider}
                     resources={resources ?? [{ name: "posts", list: List }]}
