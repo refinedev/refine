@@ -24,9 +24,7 @@ npx @refinedev/codemod refine3-to-refine4
 
 And it's done. Now your project uses `refine@4.x.x`.
 
-## Major Changes
-
-### New Organization :tada:
+## Migrating your project manually
 
 refine v4 will be released under `@refinedev` npm organization.
 So you must install the packages with the new organization name.
@@ -40,63 +38,6 @@ npm i @refinedev/core @refinedev/antd @refinedev/..
 :::caution
 You must make this change for all packages that start with `@pankod`.
 :::
-
-### Removed re-exports
-
-Previously, we were re-exporting the following packages from respective refine libraries. With refine v4, we are removing these re-exports to reduce the bundle size. Now you need to import them directly from the source package. Codemod already does these changes for you. However, please review the related `Import changes` section of the libraries. To see the changes.
-
-### Revising props
-
-We've made some changes to our props interfaces to make it easier for developers to find what they are looking for. Currently we have a lot of root level props like, initialFilter, permanentFilter, initialPagination etc. This makes it harder to go through a list of props when you are looking for something.
-
-For backwards compatibility, these props will still be supported with refine v4 and will be removed in the next version.
-
--   initialFilter, permanentFilter -> filters: { initial: [{...}], permanent: [{...}] }
--   initialCurrent, initialPagesize, hasPagination -> pagination: { current, pageSize, mode: ... }
--   initialSorter, permanentSorter -> sorters: { initial: [{...}], permanent: [{...}] }
-
-#### Pagination
-
-Now we have the following interface for pagination needs.
-
-```
-export interface Pagination {
-  /**
-  * Initial page index
-  * @default 1
-  */
-  current?: number;
-  /**
-  * Initial number of items per page
-  * @default 10
-  */
-  pageSize?: number;
-  /**
-  * Whether to use server side pagination or not.
-  * @default "server"
-  */
-  mode?: "client" | "server" | "off";
-}
-```
-
-#### Filters and sorters
-
-With the same motivation, we also revised these interfaces. Instead of accepting certain props separately, now we are wrapping all filters/sorters in a single interface.
-
-```
-export interface Filters {
-  initial?: CrudFilters;
-  permanent?: CrudFilters;
-  defaultBehavior?: SetFilterBehavior;
-}
-
-export interface Sorters {
-  initial?: CrudSorting;
-  permanent?: CrudSorting;
-}
-```
-
-## Migrating your project manually
 
 ## **`@pankod/refine-core` changes**
 
