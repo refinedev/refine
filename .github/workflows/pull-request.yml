@@ -3,7 +3,6 @@ on: [pull_request]
 
 jobs:
   lint:
-    name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -16,7 +15,6 @@ jobs:
           npm run lint
 
   build:
-    name: Build and Test
     runs-on: ubuntu-latest
     needs:
       - lint
