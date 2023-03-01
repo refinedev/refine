@@ -7,9 +7,9 @@
   "scripts": {
     "lerna": "lerna",
     "start": "lerna run start --stream --parallel --scope @pankod/refine-core",
+    "lint": "eslint -c ./.eslintrc packages examples",
     "build": "lerna run build --include-dependencies --scope @pankod/refine-core",
     "build:all": "lerna run build --ignore @pankod/refine-react-router --scope @pankod/refine* --scope create-refine-app",
-    "lint": "eslint -c ./.eslintrc packages examples",
     "test": "lerna run test --stream --scope @pankod/refine-core",
     "test:all": "lerna run test --stream --scope @pankod/refine* --scope create-refine-app",
     "bootstrap": "lerna bootstrap --hoist --strict --include-dependencies --scope @pankod/refine-core",
