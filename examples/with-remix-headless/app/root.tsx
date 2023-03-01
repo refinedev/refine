@@ -32,7 +32,6 @@ export default function App() {
             <body>
                 <Refine
                     dataProvider={dataProvider(API_URL)}
-                    routerProvider={routerProvider}
                     authProvider={authProvider}
                     legacyRouterProvider={routerProvider}
                     resources={[

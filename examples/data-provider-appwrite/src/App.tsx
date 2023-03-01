@@ -37,7 +37,9 @@ const authProvider: AuthBindings = {
         }
     },
     logout: async () => {
-        await account.deleteSession("current");
+        try {
+            await account.deleteSession("current");
+        } catch (error) {}
 
         return Promise.resolve({
             success: true,
@@ -46,13 +48,15 @@ const authProvider: AuthBindings = {
     },
     onError: () => Promise.resolve({}),
     check: async () => {
-        const session = await account.get();
+        try {
+            const session = await account.get();
 
-        if (session) {
-            return Promise.resolve({
-                authenticated: true,
-            });
-        }
+            if (session) {
+                return Promise.resolve({
+                    authenticated: true,
+                });
+            }
+        } catch (error) {}
 
         return Promise.resolve({
             authenticated: false,
@@ -82,7 +86,6 @@ const App: React.FC = () => {
             })}
             options={{ liveMode: "auto" }}
             authProvider={authProvider}
-            routerProvider={routerProvider}
             legacyRouterProvider={routerProvider}
             LoginPage={Login}
             resources={[

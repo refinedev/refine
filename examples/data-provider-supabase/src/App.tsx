@@ -18,10 +18,33 @@ import { supabaseClient } from "utility";
 const authProvider: AuthBindings = {
     login: async ({ email, password, providerName }) => {
         // sign in with oauth
-        if (providerName) {
-            const { data, error } = await supabaseClient.auth.signInWithOAuth({
-                provider: providerName,
-            });
+        try {
+            if (providerName) {
+                const { data, error } =
+                    await supabaseClient.auth.signInWithOAuth({
+                        provider: providerName,
+                    });
+
+                if (error) {
+                    return Promise.resolve({
+                        success: false,
+                        error,
+                    });
+                }
+
+                if (data?.url) {
+                    return Promise.resolve({
+                        success: true,
+                    });
+                }
+            }
+
+            // sign in with email and password
+            const { data, error } =
+                await supabaseClient.auth.signInWithPassword({
+                    email,
+                    password,
+                });
 
             if (error) {
                 return Promise.resolve({
@@ -30,29 +53,15 @@ const authProvider: AuthBindings = {
                 });
             }
 
-            if (data?.url) {
+            if (data?.user) {
                 return Promise.resolve({
                     success: true,
                 });
             }
-        }
-
-        // sign in with email and password
-        const { data, error } = await supabaseClient.auth.signInWithPassword({
-            email,
-            password,
-        });
-
-        if (error) {
+        } catch (error: any) {
             return Promise.resolve({
                 success: false,
                 error,
-            });
-        }
-
-        if (data?.user) {
-            return Promise.resolve({
-                success: true,
             });
         }
 
@@ -62,21 +71,28 @@ const authProvider: AuthBindings = {
         });
     },
     register: async ({ email, password }) => {
-        const { data, error } = await supabaseClient.auth.signUp({
-            email,
-            password,
-        });
+        try {
+            const { data, error } = await supabaseClient.auth.signUp({
+                email,
+                password,
+            });
 
-        if (error) {
+            if (error) {
+                return Promise.resolve({
+                    success: false,
+                    error,
+                });
+            }
+
+            if (data) {
+                return Promise.resolve({
+                    success: true,
+                });
+            }
+        } catch (error: any) {
             return Promise.resolve({
                 success: false,
                 error,
-            });
-        }
-
-        if (data) {
-            return Promise.resolve({
-                success: true,
             });
         }
 
@@ -86,29 +102,34 @@ const authProvider: AuthBindings = {
         });
     },
     forgotPassword: async ({ email }) => {
-        const { data, error } = await supabaseClient.auth.resetPasswordForEmail(
-            email,
-            {
-                redirectTo: `${window.location.origin}/update-password`,
-            },
-        );
+        try {
+            const { data, error } =
+                await supabaseClient.auth.resetPasswordForEmail(email, {
+                    redirectTo: `${window.location.origin}/update-password`,
+                });
 
-        if (error) {
+            if (error) {
+                return Promise.resolve({
+                    success: false,
+                    error,
+                });
+            }
+
+            if (data) {
+                notification.open({
+                    type: "success",
+                    message: "Success",
+                    description:
+                        "Please check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.",
+                });
+                return Promise.resolve({
+                    success: true,
+                });
+            }
+        } catch (error: any) {
             return Promise.resolve({
                 success: false,
                 error,
-            });
-        }
-
-        if (data) {
-            notification.open({
-                type: "success",
-                message: "Success",
-                description:
-                    "Please check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.",
-            });
-            return Promise.resolve({
-                success: true,
             });
         }
 
@@ -118,24 +139,30 @@ const authProvider: AuthBindings = {
         });
     },
     updatePassword: async ({ password }) => {
-        const { data, error } = await supabaseClient.auth.updateUser({
-            password,
-        });
+        try {
+            const { data, error } = await supabaseClient.auth.updateUser({
+                password,
+            });
 
-        if (error) {
+            if (error) {
+                return Promise.resolve({
+                    success: false,
+                    error,
+                });
+            }
+
+            if (data) {
+                return Promise.resolve({
+                    success: true,
+                    redirectTo: "/",
+                });
+            }
+        } catch (error: any) {
             return Promise.resolve({
                 success: false,
                 error,
             });
         }
-
-        if (data) {
-            return Promise.resolve({
-                success: true,
-                redirectTo: "/",
-            });
-        }
-
         return Promise.resolve({
             success: false,
             error: new Error("Update Password password failed"),
@@ -158,13 +185,22 @@ const authProvider: AuthBindings = {
     },
     onError: () => Promise.resolve({}),
     check: async () => {
-        const { data } = await supabaseClient.auth.getSession();
-        const { session } = data;
+        try {
+            const { data } = await supabaseClient.auth.getSession();
+            const { session } = data;
 
-        if (!session) {
+            if (!session) {
+                return Promise.resolve({
+                    authenticated: false,
+                    error: new Error("Not authenticated"),
+                    logout: true,
+                    redirectTo: "/login",
+                });
+            }
+        } catch (error: any) {
             return Promise.resolve({
                 authenticated: false,
-                error: new Error("Not authenticated"),
+                error: error || new Error("Not authenticated"),
                 logout: true,
                 redirectTo: "/login",
             });

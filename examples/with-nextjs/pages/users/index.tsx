@@ -7,7 +7,6 @@ import {
 import { useTable, List, getDefaultSortOrder } from "@pankod/refine-antd";
 import { Table } from "antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import { checkAuthentication } from "@pankod/refine-nextjs-router/legacy";
 
 import { IPost } from "src/interfaces";
 
@@ -53,13 +52,10 @@ export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
 
 export default UserList;
 
-import { authProvider } from "../../src/authProvider";
+import { checkAuthentication } from "src/utils/checkAuthenticated";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { isAuthenticated, ...props } = await checkAuthentication(
-        authProvider,
-        context,
-    );
+    const { isAuthenticated, ...props } = await checkAuthentication(context);
 
     if (!isAuthenticated) {
         return props;

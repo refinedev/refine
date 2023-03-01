@@ -53,7 +53,6 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            routerProvider={routerProvider}
             authProvider={authProvider}
             legacyRouterProvider={routerProvider}
             LoginPage={Login}

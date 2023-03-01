@@ -22,7 +22,6 @@ import { PostList, PostCreate, PostEdit, PostShow } from "@components";
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <Refine
-            routerProvider={routerProvider}
             authProvider={authProvider}
             legacyRouterProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}

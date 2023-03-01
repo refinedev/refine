@@ -68,7 +68,7 @@ export const authProvider: AuthBindings = {
             const parsedUser = JSON.parse(auth);
             return Promise.resolve(parsedUser.roles);
         }
-        return Promise.resolve();
+        return Promise.resolve(null);
     },
     getIdentity: () => {
         const auth = nookies.get()["auth"];
@@ -76,6 +76,6 @@ export const authProvider: AuthBindings = {
             const parsedUser = JSON.parse(auth);
             return Promise.resolve(parsedUser.username);
         }
-        return Promise.resolve();
+        return Promise.resolve(null);
     },
 };
