@@ -41,7 +41,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 ## Error Handling
 
-When an error is returned from the API, **refine** must be extended from [HttpError](.https://github.com/refinedev/refine/blob/next/packages/core/src/interfaces/HttpError.ts) to handle it.
+When an error is returned from the API, **refine** must be extended from [HttpError](https://github.com/refinedev/refine/blob/next/packages/core/src/interfaces/HttpError.ts) to handle it.
 Axios interceptor can be used to transform the error from response before Axios returns the response to your code.
 Interceptors are methods which are triggered before the main method.
 
