@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { useForm } from "@pankod/refine-react-hook-form";
-import { Controller } from "react-hook-form";
+import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import { useSelect, useNavigation } from "@pankod/refine-core";
 import {
     Select,

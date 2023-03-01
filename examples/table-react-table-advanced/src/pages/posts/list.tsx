@@ -5,8 +5,7 @@ import {
     useMany,
     useSelect,
 } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
-import { Controller } from "react-hook-form";
+import { useForm, Controller } from "@pankod/refine-react-hook-form";
 import {
     useTable,
     ColumnDef,

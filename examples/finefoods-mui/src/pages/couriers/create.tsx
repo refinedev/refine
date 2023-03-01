@@ -29,8 +29,7 @@ import {
     TextFieldProps,
 } from "@mui/material";
 
-import { useStepsForm } from "@pankod/refine-react-hook-form";
-import { Controller } from "react-hook-form";
+import { useStepsForm, Controller } from "@pankod/refine-react-hook-form";
 import { ICourier, IStore } from "interfaces";
 
 export const CourierCreate: React.FC<IResourceComponentsProps> = () => {

@@ -1,8 +1,10 @@
 import React from "react";
 import axios from "axios";
 import { useTranslate, useApiUrl, HttpError } from "@pankod/refine-core";
-import { UseModalFormReturnType } from "@pankod/refine-react-hook-form";
-import { Controller } from "react-hook-form";
+import {
+    Controller,
+    UseModalFormReturnType,
+} from "@pankod/refine-react-hook-form";
 import { Create, useAutocomplete } from "@pankod/refine-mui";
 
 import {

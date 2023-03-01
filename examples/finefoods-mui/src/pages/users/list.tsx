@@ -31,8 +31,7 @@ import {
 } from "@mui/material";
 
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
-import { useForm } from "@pankod/refine-react-hook-form";
-import { Controller } from "react-hook-form";
+import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 import { IUser, IUserFilterVariables } from "interfaces";

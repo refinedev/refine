@@ -1,6 +1,5 @@
 import { HttpError } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
-import { Controller } from "react-hook-form";
+import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import { Edit, useAutocomplete } from "@pankod/refine-mui";
 
 import { Box, TextField, Autocomplete } from "@mui/material";

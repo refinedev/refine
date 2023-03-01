@@ -3,8 +3,7 @@ import {
     IResourceComponentsProps,
     useTranslate,
 } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
-import { Controller } from "react-hook-form";
+import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import { Edit } from "@pankod/refine-mui";
 
 import {

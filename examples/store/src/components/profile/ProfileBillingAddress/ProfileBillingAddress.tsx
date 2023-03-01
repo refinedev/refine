@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import { useList } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
-import { useWatch } from "react-hook-form";
+import { useForm, useWatch } from "@pankod/refine-react-hook-form";
 import {
     Country,
     Customer,
