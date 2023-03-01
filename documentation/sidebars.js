@@ -14,7 +14,7 @@ module.exports = {
         },
         {
             type: "category",
-            label: "Migration Guide",
+            label: "Migration Guide 🚀",
             items: [
                 "migration-guide/3x-to-4x",
                 "migration-guide/auth-provider",
