@@ -14,6 +14,14 @@ module.exports = {
         },
         {
             type: "category",
+            label: "Migration Guide",
+            items: [
+                "migration-guide/3x-to-4x",
+                "migration-guide/auth-provider",
+            ],
+        },
+        {
+            type: "category",
             label: "API Reference",
             link: {
                 type: "generated-index",
@@ -1051,10 +1059,6 @@ module.exports = {
         {
             type: "doc",
             id: "testing",
-        },
-        {
-            type: "doc",
-            id: "migration-guide",
         },
         {
             type: "doc",
