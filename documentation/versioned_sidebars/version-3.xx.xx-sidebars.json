@@ -10,11 +10,6 @@
       "collapsed": false
     },
     {
-      "type": "doc",
-      "id": "tutorial/introduction/index",
-      "label": "Tutorial"
-    },
-    {
       "type": "category",
       "label": "API Reference",
       "link": {

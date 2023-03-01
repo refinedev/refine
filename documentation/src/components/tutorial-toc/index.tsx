@@ -100,7 +100,7 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
 
     // const test = useGlobalData();
 
-    const renderTocItem = (item: typeof toc[number]) => {
+    const renderTocItem = (item: (typeof toc)[number]) => {
         return (
             <li
                 key={item.id}
@@ -159,12 +159,12 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
     };
 
     const renderUnitDocs = (
-        unit: NonNullable<typeof currentTutorial>["units"][number],
+        unit?: NonNullable<typeof currentTutorial>["units"][number],
     ) => {
         return (
             <div>
                 <ul className="list-none pl-0">
-                    {unit.docs
+                    {unit?.docs
                         .sort((a, b) =>
                             `${a.title}`?.localeCompare(`${b.title}`),
                         )
@@ -174,7 +174,7 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
         );
     };
 
-    const renderUnitTab = (unit: typeof currentTutorial["units"][number]) => {
+    const renderUnitTab = (unit: (typeof currentTutorial)["units"][number]) => {
         return (
             <button
                 key={unit.no}
@@ -201,12 +201,14 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
         );
     };
 
-    const currentUnit = currentTutorial?.units.find(
+    const currentUnit:
+        | NonNullable<typeof currentTutorial>["units"][number]
+        | undefined = currentTutorial?.units.find(
         (unit) => unit.unit === selectedUnit,
     );
 
     const isFirstUnit =
-        currentTutorial?.units.find((el) => el.unit === currentTutorial.unit)
+        currentTutorial?.units?.find((el) => el?.unit === currentTutorial?.unit)
             ?.no === 1;
 
     return (
@@ -221,7 +223,7 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
             </div>
             <div
                 className={`unit-list-container py-3 px-3 rounded-md ${
-                    currentUnit.no === 1 ? "rounded-tl-none" : ""
+                    currentUnit?.no === 1 ? "rounded-tl-none" : ""
                 }`}
                 style={{
                     backgroundColor: "var(--tutorial-toc-bg-color)",
@@ -233,7 +235,7 @@ export const TutorialTOC = ({ isMobile }: { isMobile?: boolean }) => {
                         color: "var(--tutorial-toc-text-color)",
                     }}
                 >
-                    {currentUnit.title ?? currentUnit.unit}
+                    {currentUnit?.title ?? currentUnit?.unit ?? "-"}
                 </div>
                 <div className="text-sm">{renderUnitDocs(currentUnit)}</div>
             </div>
