@@ -112,7 +112,7 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
         class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
       >
         <div
-          class="css-hwnj0i-MuiStack-root"
+          class="MuiStack-root css-hwnj0i-MuiStack-root"
         >
           <p
             class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
@@ -220,7 +220,7 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
             Image
           </p>
           <div
-            class="css-w4z10b-MuiStack-root"
+            class="MuiStack-root css-w4z10b-MuiStack-root"
           >
             <img
               src="http://loremflickr.com/640/480/abstract"
@@ -233,7 +233,7 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
             Tags
           </p>
           <div
-            class="css-w4z10b-MuiStack-root"
+            class="MuiStack-root css-w4z10b-MuiStack-root"
           >
             <div
               class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
