@@ -1,6 +1,4 @@
-import { API, Collection, FileInfo, JSCodeshift } from "jscodeshift";
-
-export const parser = "tsx";
+import { Collection, JSCodeshift } from "jscodeshift";
 
 const authHookNames = [
     "useForgotPassword",
@@ -17,7 +15,10 @@ const authHookNames = [
     "usePermissions",
 ];
 
-const addLegacyTrueToAuthHooks = (j: JSCodeshift, root: Collection<any>) => {
+export const addV3LegacyAuthProviderCompatibleTrueToAuthHooks = (
+    j: JSCodeshift,
+    root: Collection<any>,
+) => {
     const authHooks = root.find(j.CallExpression, {
         callee: {
             name: (name: string) => authHookNames.includes(name),
@@ -76,12 +77,3 @@ const addLegacyTrueToAuthHooks = (j: JSCodeshift, root: Collection<any>) => {
         }
     });
 };
-
-export default function transformer(file: FileInfo, api: API): string {
-    const j = api.jscodeshift;
-    const source = j(file.source);
-
-    addLegacyTrueToAuthHooks(j, source);
-
-    return source.toSource();
-}

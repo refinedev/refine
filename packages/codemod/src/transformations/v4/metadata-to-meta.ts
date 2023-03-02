@@ -1,8 +1,6 @@
-import { API, JSCodeshift, Collection, FileInfo } from "jscodeshift";
+import { JSCodeshift, Collection } from "jscodeshift";
 
-export const parser = "tsx";
-
-const metaDataToMeta = (j: JSCodeshift, source: Collection) => {
+export const metaDataToMeta = (j: JSCodeshift, source: Collection) => {
     // find all JSX elements
     source.find(j.JSXElement).forEach((path) => {
         const attributes = path.node.openingElement.attributes;
@@ -53,12 +51,3 @@ const metaDataToMeta = (j: JSCodeshift, source: Collection) => {
         });
     });
 };
-
-export default function transformer(file: FileInfo, api: API): string {
-    const j = api.jscodeshift;
-    const source = j(file.source);
-
-    metaDataToMeta(j, source);
-
-    return source.toSource();
-}

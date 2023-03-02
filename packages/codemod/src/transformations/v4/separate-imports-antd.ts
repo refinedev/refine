@@ -1,4 +1,4 @@
-import { API, FileInfo } from "jscodeshift";
+import { Collection, JSCodeshift } from "jscodeshift";
 import fs from "fs";
 import path from "path";
 import { addPackage, install, isPackageJsonUpdated } from "../../helpers";
@@ -11,15 +11,16 @@ import {
     other,
 } from "../../definitions/separated-imports/antd";
 
-export const parser = "tsx";
-
 const REFINE_ANTD_PATH = "@pankod/refine-antd";
 const ANTD_PATH = "antd";
 const ANTD_VERSION = "^5.0.5";
 const ANTD_ICONS_PATH = "@ant-design/icons";
 const ANTD_ICONS_VERSION = "^5.0.1";
 
-export async function postTransform(files: any, flags: any) {
+export const separateImportsAntDPostTransform = async (
+    files: any,
+    flags: any,
+) => {
     const rootDir = path.join(process.cwd(), files[0]);
     const packageJsonPath = path.join(rootDir, "package.json");
     const useYarn = checkPackageLock(rootDir) === "yarn.lock";
@@ -46,12 +47,9 @@ export async function postTransform(files: any, flags: any) {
             });
         }
     }
-}
+};
 
-export default function transformer(file: FileInfo, api: API): string {
-    const j = api.jscodeshift;
-    const source = j(file.source);
-
+export const separateImportsAntD = (j: JSCodeshift, source: Collection) => {
     separateImports({
         j,
         source,
@@ -152,6 +150,4 @@ export default function transformer(file: FileInfo, api: API): string {
         })
         .filter((path) => path.node.specifiers.length === 0)
         .remove();
-
-    return source.toSource();
-}
+};

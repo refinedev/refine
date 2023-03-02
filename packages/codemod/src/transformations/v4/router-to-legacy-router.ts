@@ -1,12 +1,4 @@
-import {
-    API,
-    JSCodeshift,
-    Collection,
-    FileInfo,
-    JSXAttribute,
-} from "jscodeshift";
-
-export const parser = "tsx";
+import { JSCodeshift, Collection, JSXAttribute } from "jscodeshift";
 
 const legacyMap = {
     "@pankod/refine-react-router-v6": "@pankod/refine-react-router-v6/legacy",
@@ -84,16 +76,11 @@ const renameProp = (
         });
 };
 
-export default function transformer(file: FileInfo, api: API): string {
-    const j = api.jscodeshift;
-    const source = j(file.source);
-
+export const routerToLegacyRouter = (j: JSCodeshift, source: Collection) => {
     Object.entries(legacyMap).forEach(([from, to]) => {
         renameImport(j, source, from, to);
         renameExport(j, source, from, to);
     });
 
     renameProp(j, source, oldRouterProp, newRouterProp);
-
-    return source.toSource();
-}
+};

@@ -1,12 +1,10 @@
-import { API, JSCodeshift, Collection, FileInfo } from "jscodeshift";
-
-export const parser = "tsx";
+import { JSCodeshift, Collection } from "jscodeshift";
 
 const deprecatedPropName = "ignoreAccessControlProvider";
 const newName = "accessControl";
 const newProperty = "enabled";
 
-const moveDeprecatedAccessControlProps = (
+export const moveDeprecatedAccessControlProps = (
     j: JSCodeshift,
     source: Collection,
 ) => {
@@ -41,12 +39,3 @@ const moveDeprecatedAccessControlProps = (
         }
     });
 };
-
-export default function transformer(file: FileInfo, api: API): string {
-    const j = api.jscodeshift;
-    const source = j(file.source);
-
-    moveDeprecatedAccessControlProps(j, source);
-
-    return source.toSource();
-}
