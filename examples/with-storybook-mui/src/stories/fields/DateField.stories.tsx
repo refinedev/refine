@@ -1,8 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { DateField } from "@pankod/refine-mui";
-
-import { useTheme } from "@mui/material/styles";
+import { DateField, useTheme } from "@pankod/refine-mui";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";
 

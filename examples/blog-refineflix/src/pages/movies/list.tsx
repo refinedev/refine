@@ -3,7 +3,7 @@ import {
     useList,
     useNavigation,
 } from "@pankod/refine-core";
-import { Card, Space } from "antd";
+import { Card, Space } from "@pankod/refine-antd";
 import { Layout } from "components";
 
 import { IMovies } from "interfaces";

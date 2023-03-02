@@ -1,4 +1,4 @@
-import { Layout as AntdLayout, Button } from "antd";
+import { AntdLayout, Button } from "@pankod/refine-antd";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export const Login: React.FC = () => {

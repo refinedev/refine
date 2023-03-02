@@ -5,36 +5,38 @@ import {
     HttpError,
 } from "@pankod/refine-core";
 import { useForm, useModalForm } from "@pankod/refine-react-hook-form";
-import { useTable } from "@pankod/refine-react-table";
-import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
+import {
+    useTable,
+    ColumnDef,
+    flexRender,
+    Row,
+} from "@pankod/refine-react-table";
 import {
     List,
     BooleanField,
-    EditButton,
-    SaveButton,
-    useDataGrid,
-    DateField,
-    NumberField,
-} from "@pankod/refine-mui";
-
-import { GridColumns, DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
-
-import {
     Checkbox,
     TableContainer,
     Table,
     Stack,
+    EditButton,
     TableBody,
     TableRow,
     Button,
+    SaveButton,
     TableCell,
     TextField,
     TableHead,
     IconButton,
     Typography,
     TablePagination,
+    useDataGrid,
     Avatar,
-} from "@mui/material";
+    GridColumns,
+    DataGrid,
+    DateField,
+    NumberField,
+    GridActionsCellItem,
+} from "@pankod/refine-mui";
 
 import {
     Edit,
@@ -213,7 +215,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     }, []);
 
     return (
-        <List wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
+        <List cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
             <form onSubmit={handleSubmit(onFinish)}>
                 <TableContainer>
                     <Table size="small">
@@ -431,7 +433,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
 
     return (
         <List
-            headerProps={{
+            cardHeaderProps={{
                 title: t("products.products"),
             }}
         >

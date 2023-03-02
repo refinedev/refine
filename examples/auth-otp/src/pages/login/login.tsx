@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { useLogin } from "@pankod/refine-core";
 
-import { PhoneOutlined, NumberOutlined } from "@ant-design/icons";
 import {
     Row,
     Col,
-    Layout as AntdLayout,
+    AntdLayout,
     Card,
     Form,
     Input,
     Button,
-} from "antd";
+    Icons,
+} from "@pankod/refine-antd";
+
+const { PhoneOutlined, NumberOutlined } = Icons;
 export interface ILoginForm {
     gsmNumber: string;
     code: string;
@@ -21,9 +23,7 @@ export const Login: React.FC = () => {
     const [gsmNumber, setGsmNumber] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
 
-    const { mutate: login, isLoading } = useLogin<ILoginForm>({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { mutate: login, isLoading } = useLogin<ILoginForm>();
 
     const onGsmFormSubmit = (values: Pick<ILoginForm, "gsmNumber">) => {
         setLoading(true);

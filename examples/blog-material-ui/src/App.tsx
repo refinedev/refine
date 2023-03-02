@@ -2,15 +2,16 @@ import { Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
+    CssBaseline,
+    GlobalStyles,
     Layout,
+    ThemeProvider,
     LightTheme,
     ReadyPage,
     LoginPage,
     ErrorComponent,
 } from "@pankod/refine-mui";
-import { ThemeProvider } from "@mui/material/styles";
-import { CssBaseline, GlobalStyles } from "@mui/material";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 
 import { authProvider, axiosInstance } from "./authProvider";
@@ -29,8 +30,8 @@ function App() {
                     LoginPage={LoginPage}
                     ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}
-                    legacyRouterProvider={routerProvider}
-                    legacyAuthProvider={authProvider}
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
                     dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
                     resources={[
                         {

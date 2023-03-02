@@ -6,10 +6,14 @@ import {
     useRouterContext,
     useShow,
 } from "@pankod/refine-core";
-import { useModal } from "@pankod/refine-antd";
-
-import { LeftOutlined } from "@ant-design/icons";
-import { Button, Typography, Spin, Modal } from "antd";
+import {
+    Button,
+    Typography,
+    Icons,
+    Spin,
+    Modal,
+    useModal,
+} from "@pankod/refine-antd";
 
 import { CanvasItem, DisplayCanvas } from "components/canvas";
 import { ColorSelect } from "components/color-select";
@@ -18,19 +22,16 @@ import { colors } from "utility";
 import { Canvas } from "types";
 import { LogList } from "components/logs";
 
+const { LeftOutlined } = Icons;
 const { Title } = Typography;
 
-type Colors = typeof colors;
-
 export const CanvasShow: React.FC = () => {
-    const { useLocation } = useRouterContext();
+    const { Link, useLocation } = useRouterContext();
     const { pathname } = useLocation();
-    const [color, setColor] = useState<Colors[number]>("black");
+    const [color, setColor] = useState<(typeof colors)[number]>("black");
     const { modalProps, show, close } = useModal();
 
-    const { data: identity } = useGetIdentity({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { data: identity } = useGetIdentity();
     const {
         queryResult: { data: { data: canvas } = {} },
     } = useShow<Canvas>();

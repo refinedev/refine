@@ -3,12 +3,13 @@ import {
     Layout,
     ErrorComponent,
     ReadyPage,
+    CssBaseline,
+    GlobalStyles,
     RefineSnackbarProvider,
     notificationProvider,
 } from "@pankod/refine-mui";
-import { CssBaseline, GlobalStyles } from "@mui/material";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import { PostsList, PostCreate, PostEdit } from "pages/posts";
 import { Header } from "./components/header";
@@ -22,7 +23,7 @@ const App: React.FC = () => {
             <RefineSnackbarProvider>
                 <Refine
                     notificationProvider={notificationProvider}
-                    legacyRouterProvider={routerProvider}
+                    routerProvider={routerProvider}
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}

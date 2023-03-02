@@ -5,7 +5,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/reset.css";
 
 import { PostList } from "pages/posts";
@@ -17,7 +17,7 @@ const FINE_FOODS_API_URL = "https://api.finefoods.refine.dev";
 const App: React.FC = () => {
     return (
         <Refine
-            legacyRouterProvider={routerProvider}
+            routerProvider={routerProvider}
             dataProvider={{
                 default: dataProvider(API_URL),
                 categories: dataProvider(CATEGORIES_API_URL),

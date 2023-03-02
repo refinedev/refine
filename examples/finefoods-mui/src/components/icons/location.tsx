@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps } from "@mui/material";
+import { SvgIcon, SvgIconProps } from "@pankod/refine-mui";
 
 export const LocationIcon = (props: SvgIconProps) => {
     return (

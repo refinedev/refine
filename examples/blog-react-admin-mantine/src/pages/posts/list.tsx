@@ -1,16 +1,16 @@
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable } from "@pankod/refine-react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 import {
     List,
+    Table,
+    Pagination,
     DateField,
     CreateButton,
     EditButton,
+    Group,
     DeleteButton,
 } from "@pankod/refine-mantine";
-
-import { Table, Pagination, Group } from "@mantine/core";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const columns = React.useMemo<ColumnDef<any>[]>(
@@ -83,7 +83,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         },
     } = useTable({
         columns,
-
         refineCoreProps: {
             metaData: {
                 populate: ["category"],

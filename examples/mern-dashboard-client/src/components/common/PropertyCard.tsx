@@ -1,5 +1,5 @@
 import { Place } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link } from "@pankod/refine-react-router-v6";
 import {
     Typography,
     Box,
@@ -7,7 +7,7 @@ import {
     CardMedia,
     CardContent,
     Stack,
-} from "@mui/material";
+} from "@pankod/refine-mui";
 
 import { PropertyCardProps } from "interfaces/property";
 

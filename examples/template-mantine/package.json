@@ -3,8 +3,8 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "@pankod/refine-cli": "^1.2.0",
-        "@pankod/refine-core": "^3.99.4",
+        "@pankod/refine-cli": "^1.17.2",
+        "@pankod/refine-core": "^3.99.6",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",
@@ -16,14 +16,8 @@
         "@pankod/refine-simple-rest": "^3.18.0",
         "@pankod/refine-mantine": "^1.15.10",
         "@pankod/refine-react-table": "^4.9.1",
-        "@tanstack/react-table": "^8.2.6",
         "@tabler/icons": "^1.1.0",
-        "@pankod/refine-react-router-v6": "^3.18.0",
-        "@emotion/react": "^11.8.2",
-        "@mantine/core": "^5.5.6",
-        "@mantine/hooks": "^5.5.6",
-        "@mantine/form": "^5.5.6",
-        "@mantine/notifications": "^5.5.6"
+        "@pankod/refine-react-router-v6": "^3.18.0"
     },
     "devDependencies": {
         "@types/react": "^18.0.0",

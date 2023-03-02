@@ -1,17 +1,17 @@
 import React from "react";
-import { useTable } from "@pankod/refine-react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 import { GetManyResponse, useMany } from "@pankod/refine-core";
-import { List, DeleteButton, DateField } from "@pankod/refine-mantine";
-
 import {
     Box,
     Group,
+    List,
     ScrollArea,
     Table,
     Pagination,
+    DeleteButton,
     Select,
-} from "@mantine/core";
+    DateField,
+} from "@pankod/refine-mantine";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
 import { FilterElementProps, ICategory, IPost } from "../../interfaces";

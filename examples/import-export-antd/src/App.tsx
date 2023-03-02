@@ -1,6 +1,6 @@
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 import { Layout } from "@pankod/refine-antd";
 
 import "@pankod/refine-antd/dist/reset.css";
@@ -13,7 +13,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            legacyRouterProvider={routerProvider}
+            routerProvider={routerProvider}
             Layout={Layout}
             resources={[
                 {

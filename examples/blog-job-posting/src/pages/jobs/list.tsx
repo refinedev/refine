@@ -2,9 +2,11 @@ import Select from "rc-select";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
     List,
+    Table,
     TextField,
     useTable,
     getDefaultSortOrder,
+    Space,
     EditButton,
     DeleteButton,
     TagField,
@@ -12,8 +14,6 @@ import {
     useSelect,
     FilterDropdown,
 } from "@pankod/refine-antd";
-
-import { Table, Space } from "antd";
 
 import { ICompany, IJob } from "interfaces";
 

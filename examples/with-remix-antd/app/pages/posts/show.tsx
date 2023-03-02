@@ -1,7 +1,5 @@
 import { useOne, useShow } from "@pankod/refine-core";
-import { Show } from "@pankod/refine-antd";
-
-import { Typography, Tag } from "antd";
+import { Show, Typography, Tag } from "@pankod/refine-antd";
 
 import { ICategory } from "../../interfaces";
 

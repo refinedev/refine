@@ -1,7 +1,11 @@
 import { useList } from "@pankod/refine-core";
-import { NumberField } from "@pankod/refine-mui";
-
-import { Avatar, Typography, Box, Stack } from "@mui/material";
+import {
+    Avatar,
+    Typography,
+    Box,
+    Stack,
+    NumberField,
+} from "@pankod/refine-mui";
 
 import { IOrder } from "interfaces";
 

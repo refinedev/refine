@@ -1,10 +1,5 @@
 import { useTranslate, useUpdate } from "@pankod/refine-core";
-import {
-    CheckCircleOutlined,
-    CloseCircleOutlined,
-    MoreOutlined,
-} from "@ant-design/icons";
-import { Dropdown, Menu } from "antd";
+import { Dropdown, Icons, Menu } from "@pankod/refine-antd";
 import { IOrder } from "interfaces";
 
 type OrderActionProps = {
@@ -30,7 +25,7 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
                 }}
                 disabled={record.status.text !== "Pending"}
                 icon={
-                    <CheckCircleOutlined
+                    <Icons.CheckCircleOutlined
                         style={{
                             color: "#52c41a",
                             fontSize: 17,
@@ -62,7 +57,7 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <CloseCircleOutlined
+                    <Icons.CloseCircleOutlined
                         style={{
                             color: "#EE2A1E",
                             fontSize: 17,
@@ -92,7 +87,7 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
     );
     return (
         <Dropdown overlay={moreMenu(record)} trigger={["click"]}>
-            <MoreOutlined
+            <Icons.MoreOutlined
                 onClick={(e) => e.stopPropagation()}
                 style={{
                     fontSize: 24,

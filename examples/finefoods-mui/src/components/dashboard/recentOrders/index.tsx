@@ -1,8 +1,16 @@
 import React from "react";
 import { useNavigation, useTranslate, useUpdate } from "@pankod/refine-core";
-import { NumberField, useDataGrid } from "@pankod/refine-mui";
-import { DataGrid, GridActionsCellItem, GridColumns } from "@mui/x-data-grid";
-import { Avatar, Button, Stack, Typography } from "@mui/material";
+import {
+    Avatar,
+    Button,
+    DataGrid,
+    GridActionsCellItem,
+    GridColumns,
+    NumberField,
+    Stack,
+    Typography,
+    useDataGrid,
+} from "@pankod/refine-mui";
 import { CheckOutlined, CloseOutlined } from "@mui/icons-material";
 
 import { OrderStatus } from "components/orderStatus";

@@ -1,5 +1,3 @@
-import { Edit } from "@pankod/refine-chakra-ui";
-
 import {
     Drawer,
     DrawerBody,
@@ -12,8 +10,8 @@ import {
     FormLabel,
     FormErrorMessage,
     Select,
-} from "@chakra-ui/react";
-
+    Edit,
+} from "@pankod/refine-chakra-ui";
 import { useSelect } from "@pankod/refine-core";
 import { UseModalFormReturnType } from "@pankod/refine-react-hook-form";
 

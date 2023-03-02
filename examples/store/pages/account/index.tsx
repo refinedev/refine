@@ -6,9 +6,7 @@ import { AccountLayout, Overview } from "@components/account";
 import { getSearchStaticProps } from "@lib/search-props";
 
 const ProfilePage: React.FC = () => {
-    const { data } = useGetIdentity({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { data } = useGetIdentity();
 
     const ordersData = useOne<StoreCustomersListOrdersRes>({
         resource: "customers",

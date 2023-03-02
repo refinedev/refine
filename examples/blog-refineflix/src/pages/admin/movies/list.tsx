@@ -2,15 +2,15 @@ import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
     List,
+    Table,
     useTable,
+    Space,
     EditButton,
     ShowButton,
     getDefaultSortOrder,
     CreateButton,
     DeleteButton,
 } from "@pankod/refine-antd";
-
-import { Table, Space } from "antd";
 
 import { IMovies } from "interfaces";
 

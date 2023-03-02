@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-nextjs-router/legacy";
+import routerProvider from "@pankod/refine-nextjs-router";
 
 import { Layout } from "@components";
 import { BasketContextProvider } from "@context";
@@ -13,7 +13,7 @@ import "src/styles/globals.css";
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <Refine
-            legacyRouterProvider={routerProvider}
+            routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             Layout={Layout}
             resources={[{ name: "users" }]}

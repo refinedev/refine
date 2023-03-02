@@ -1,8 +1,4 @@
-import {
-    Refine,
-    LegacyAuthProvider as AuthProvider,
-    Authenticated,
-} from "@pankod/refine-core";
+import { Refine, AuthProvider, Authenticated } from "@pankod/refine-core";
 import {
     notificationProvider,
     AuthPage,
@@ -10,7 +6,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import "@pankod/refine-antd/dist/reset.css";
 
@@ -52,7 +48,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            legacyRouterProvider={{
+            routerProvider={{
                 ...routerProvider,
                 routes: [
                     {
@@ -66,7 +62,7 @@ const App: React.FC = () => {
                     },
                 ] as typeof routerProvider.routes,
             }}
-            legacyAuthProvider={authProvider}
+            authProvider={authProvider}
             resources={[
                 {
                     name: "posts",

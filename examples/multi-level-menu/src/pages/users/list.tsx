@@ -2,14 +2,14 @@ import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
     List,
+    Table,
     useTable,
+    Space,
     EditButton,
     DeleteButton,
     ShowButton,
     EmailField,
 } from "@pankod/refine-antd";
-
-import { Table, Space } from "antd";
 
 import { IUser } from "interfaces";
 

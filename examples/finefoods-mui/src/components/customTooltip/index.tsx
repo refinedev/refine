@@ -1,5 +1,5 @@
 import { styled } from "@mui/material/styles";
-import { Tooltip, TooltipProps, tooltipClasses } from "@mui/material";
+import { Tooltip, TooltipProps, tooltipClasses } from "@pankod/refine-mui";
 
 export const CustomTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} classes={{ popper: className }} />

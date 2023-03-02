@@ -7,15 +7,19 @@ import {
 
 import {
     List,
+    Table,
     TextField,
+    Form,
     EditButton,
+    Input,
+    Select,
+    Space,
+    Button,
     MarkdownField,
     SaveButton,
     useEditableTable,
     useSelect,
 } from "@pankod/refine-antd";
-
-import { Table, Form, Input, Select, Space, Button } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 

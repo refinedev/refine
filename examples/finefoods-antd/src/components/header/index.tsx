@@ -7,10 +7,9 @@ import {
     useList,
 } from "@pankod/refine-core";
 
-import { SearchOutlined, DownOutlined } from "@ant-design/icons";
-
 import {
     Menu,
+    Icons,
     Dropdown,
     Input,
     Avatar,
@@ -20,16 +19,17 @@ import {
     Row,
     Col,
     AutoComplete,
-    Layout as AntdLayout,
-} from "antd";
+    AntdLayout,
+} from "@pankod/refine-antd";
 
-import RefineReactRouter from "@pankod/refine-react-router-v6/legacy";
+import RefineReactRouter from "@pankod/refine-react-router-v6";
 
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";
 
 const { Header: AntdHeader } = AntdLayout;
 const { Link } = RefineReactRouter;
+const { SearchOutlined, DownOutlined } = Icons;
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
 
@@ -50,9 +50,7 @@ export const Header: React.FC = () => {
     const { i18n } = useTranslation();
     const locale = useGetLocale();
     const changeLanguage = useSetLocale();
-    const { data: user } = useGetIdentity({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { data: user } = useGetIdentity();
     const screens = useBreakpoint();
     const t = useTranslate();
 
@@ -189,6 +187,8 @@ export const Header: React.FC = () => {
             ))}
         </Menu>
     );
+
+    console.log(screens, screens.sm ? "space-between" : "end");
 
     return (
         <AntdHeader

@@ -9,8 +9,14 @@ import {
     TimelineSeparator,
 } from "@mui/lab";
 import { useTranslate, useNavigation, useTable } from "@pankod/refine-core";
-import { useTheme } from "@mui/material/styles";
-import { Box, Button, Tooltip, Typography, Pagination } from "@mui/material";
+import {
+    Box,
+    Button,
+    Tooltip,
+    Typography,
+    Pagination,
+    useTheme,
+} from "@pankod/refine-mui";
 import dayjs from "dayjs";
 
 import { IOrder } from "interfaces";

@@ -1,5 +1,5 @@
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 import nestjsxCrudDataProvider from "@pankod/refine-nestjsx-crud";
 import {
     notificationProvider,
@@ -22,7 +22,7 @@ const App: React.FC = () => {
 
     return (
         <Refine
-            legacyRouterProvider={{
+            routerProvider={{
                 ...routerProvider,
                 /**
                  * By default refine uses the first route with `list` property as the initial route.

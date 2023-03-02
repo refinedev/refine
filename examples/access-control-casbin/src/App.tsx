@@ -5,7 +5,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 import { newEnforcer } from "casbin";
 import "@pankod/refine-antd/dist/reset.css";
 
@@ -27,7 +27,7 @@ const App: React.FC = () => {
 
     return (
         <Refine
-            legacyRouterProvider={routerProvider}
+            routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             accessControlProvider={{
                 can: async ({ action, params, resource }) => {

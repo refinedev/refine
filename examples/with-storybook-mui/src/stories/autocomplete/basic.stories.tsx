@@ -1,12 +1,11 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { useAutocomplete } from "@pankod/refine-mui";
-
 import {
     Autocomplete,
     TextField,
+    useAutocomplete,
     AutocompleteProps,
     Checkbox,
-} from "@mui/material";
+} from "@pankod/refine-mui";
 
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";

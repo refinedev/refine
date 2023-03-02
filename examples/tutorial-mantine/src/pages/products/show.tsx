@@ -1,12 +1,11 @@
 import { useShow, useOne } from "@pankod/refine-core";
 import {
     Show,
+    Title,
     NumberField,
     TextField,
     MarkdownField,
 } from "@pankod/refine-mantine";
-
-import { Title } from "@mantine/core";
 
 export const ProductShow = () => {
     const { queryResult } = useShow();

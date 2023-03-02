@@ -1,8 +1,6 @@
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import { Create, useForm } from "@pankod/refine-antd";
-
-import { Form, Input, Radio } from "antd";
+import { Create, Form, Input, Radio, useForm } from "@pankod/refine-antd";
 
 import { ICategory } from "interfaces";
 

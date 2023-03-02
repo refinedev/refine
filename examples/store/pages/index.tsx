@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-export { NextRouteComponent as default } from "@pankod/refine-nextjs-router/legacy";
+export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
 import { dataProvider } from "@pankod/refine-medusa";
 import { Product, StoreCartsRes } from "@medusajs/medusa";
 import nookies from "nookies";

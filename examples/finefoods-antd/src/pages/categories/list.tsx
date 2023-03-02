@@ -2,28 +2,25 @@ import { useTranslate, IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
     List,
+    Table,
     useTable,
+    Space,
     BooleanField,
     useEditableTable,
-    SaveButton,
-    NumberField,
-    DateField,
-    useDrawerForm,
-} from "@pankod/refine-antd";
-
-import { FormOutlined, MoreOutlined } from "@ant-design/icons";
-import {
-    Table,
-    Space,
     Form,
+    SaveButton,
     Button,
     Input,
     Checkbox,
     Dropdown,
+    Icons,
     Menu,
     Avatar,
+    NumberField,
+    DateField,
     Grid,
-} from "antd";
+    useDrawerForm,
+} from "@pankod/refine-antd";
 
 import { ICategory, IProduct } from "interfaces";
 import { EditProduct } from "components/product";
@@ -61,7 +58,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <FormOutlined
+                    <Icons.FormOutlined
                         style={{
                             color: "#52c41a",
                             fontSize: 17,
@@ -165,7 +162,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                                     overlay={moreMenu(record)}
                                     trigger={["click"]}
                                 >
-                                    <MoreOutlined
+                                    <Icons.MoreOutlined
                                         onClick={(e) => e.stopPropagation()}
                                         style={{
                                             fontSize: 24,
@@ -221,7 +218,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <FormOutlined
+                    <Icons.FormOutlined
                         style={{
                             color: "#52c41a",
                             fontSize: 17,
@@ -289,7 +286,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                             overlay={moreMenu(record)}
                             trigger={["click"]}
                         >
-                            <MoreOutlined
+                            <Icons.MoreOutlined
                                 onClick={(e) => e.stopPropagation()}
                                 style={{
                                     fontSize: 24,

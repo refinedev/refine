@@ -5,27 +5,24 @@ import {
 } from "@pankod/refine-core";
 
 import {
-    Create,
-    SaveButton,
-    getValueFromEvent,
-    useStepsForm,
-    useSelect,
-} from "@pankod/refine-antd";
-
-import {
     Form,
+    Create,
     Select,
     Upload,
     Input,
     Button,
+    SaveButton,
     Steps,
+    getValueFromEvent,
+    useStepsForm,
+    useSelect,
     Typography,
     Space,
     Avatar,
     Row,
     Col,
     InputProps,
-} from "antd";
+} from "@pankod/refine-antd";
 
 import InputMask from "react-input-mask";
 

@@ -4,13 +4,14 @@ import {
     ErrorComponent,
     ReadyPage,
     LightTheme,
+    ThemeProvider,
     notificationProvider,
     RefineSnackbarProvider,
+    CssBaseline,
+    GlobalStyles,
 } from "@pankod/refine-mui";
-import { CssBaseline, GlobalStyles } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import { BasicDataGrid } from "pages/dataGrid";
 import { PostList } from "pages/table";
@@ -23,7 +24,7 @@ const App: React.FC = () => {
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
                 <Refine
-                    legacyRouterProvider={routerProvider}
+                    routerProvider={routerProvider}
                     dataProvider={dataProvider(API_URL)}
                     notificationProvider={notificationProvider}
                     ReadyPage={ReadyPage}

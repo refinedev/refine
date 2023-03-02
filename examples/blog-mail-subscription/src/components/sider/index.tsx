@@ -2,19 +2,13 @@ import React, { useState } from "react";
 import { Layout, Menu, Grid } from "antd";
 import { RightOutlined } from "@ant-design/icons";
 
-import {
-    useLogout,
-    useTitle,
-    useNavigation,
-    useMenu,
-} from "@pankod/refine-core";
+import { useLogout, useTitle, useNavigation } from "@pankod/refine-core";
+import { useMenu } from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
-    const { mutate: logout } = useLogout({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { mutate: logout } = useLogout();
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
     const { push } = useNavigation();

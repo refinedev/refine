@@ -1,5 +1,5 @@
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 import { dataProvider } from "@pankod/refine-supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
@@ -18,9 +18,9 @@ function App() {
     return (
         <ThemeProvider theme={original}>
             <Refine
-                legacyRouterProvider={routerProvider}
+                routerProvider={routerProvider}
                 dataProvider={dataProvider(supabaseClient)}
-                legacyAuthProvider={authProvider}
+                authProvider={authProvider}
                 LoginPage={LoginPage}
                 Layout={({ children }) => {
                     return (

@@ -1,6 +1,6 @@
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import { PostList, PostCreate, PostEdit } from "./pages/posts";
 
@@ -44,7 +44,7 @@ const App: React.FC = () => {
                     return data;
                 },
             }}
-            legacyRouterProvider={routerProvider}
+            routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {

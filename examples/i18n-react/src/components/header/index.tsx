@@ -1,14 +1,16 @@
 import { useGetLocale, useSetLocale } from "@pankod/refine-core";
-import { DownOutlined } from "@ant-design/icons";
 import {
-    Layout as AntdLayout,
+    AntdLayout,
     Space,
     Menu,
     Button,
+    Icons,
     Dropdown,
     Avatar,
-} from "antd";
+} from "@pankod/refine-antd";
 import { useTranslation } from "react-i18next";
+
+const { DownOutlined } = Icons;
 
 export const Header: React.FC = () => {
     const { i18n } = useTranslation();

@@ -1,9 +1,8 @@
-import { ShowButton } from "@pankod/refine-antd";
-
-import { EditOutlined } from "@ant-design/icons";
-import { Card } from "antd";
+import { Card, Icons, ShowButton } from "@pankod/refine-antd";
 
 import { IProduct } from "interfaces";
+
+const { EditOutlined } = Icons;
 
 type ProductItemProps = {
     item: IProduct;

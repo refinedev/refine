@@ -1,13 +1,16 @@
-import { Create, useAutocomplete } from "@pankod/refine-mui";
 import {
     Autocomplete,
     Box,
+    Create,
     Drawer,
     IconButton,
     TextField,
-} from "@mui/material";
-import { UseModalFormReturnType } from "@pankod/refine-react-hook-form";
-import { Controller } from "react-hook-form";
+    useAutocomplete,
+} from "@pankod/refine-mui";
+import {
+    Controller,
+    UseModalFormReturnType,
+} from "@pankod/refine-react-hook-form";
 import { CloseOutlined } from "@mui/icons-material";
 import { HttpError } from "@pankod/refine-core";
 
@@ -35,7 +38,7 @@ export const CreatePostDrawer: React.FC<
         >
             <Create
                 saveButtonProps={saveButtonProps}
-                headerProps={{
+                cardHeaderProps={{
                     action: (
                         <IconButton
                             onClick={() => close()}

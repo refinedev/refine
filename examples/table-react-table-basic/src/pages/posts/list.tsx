@@ -1,7 +1,5 @@
 import React from "react";
-import { useTable } from "@pankod/refine-react-table";
-
-import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 import { IPost } from "interfaces";
 

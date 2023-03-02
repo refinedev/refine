@@ -6,24 +6,22 @@ import {
 } from "@pankod/refine-core";
 
 import {
-    useSimpleList,
-    CreateButton,
-    useDrawerForm,
-} from "@pankod/refine-antd";
-
-import { SearchOutlined } from "@ant-design/icons";
-import {
     Typography,
     Row,
     Col,
-    List as AntdList,
+    AntdList,
+    useSimpleList,
     Input,
+    CreateButton,
     Form,
+    Icons,
+    useDrawerForm,
     Modal,
     ModalProps,
-} from "antd";
+} from "@pankod/refine-antd";
 
 const { Text } = Typography;
+const { SearchOutlined } = Icons;
 
 import { IStore, IProduct } from "interfaces";
 import {
@@ -52,7 +50,6 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
     >({
         resource: "products",
         pagination: { pageSize: 9 },
-        syncWithLocation: false,
         onSearch: ({ name, categories }) => {
             const productFilters: CrudFilters = [];
 
@@ -77,13 +74,12 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
     });
     const { data: productData } = queryResult;
 
-    const mergedData =
-        productData?.data.map((product) => ({
-            ...record?.products.find(
-                (storeProduct) => storeProduct.id === product.id,
-            ),
-            ...product,
-        })) ?? [];
+    const mergedData = productData?.data.map((product) => ({
+        ...record?.products.find(
+            (storeProduct) => storeProduct.id === product.id,
+        ),
+        ...product,
+    }));
 
     const { mutate } = useUpdate<IStore>();
 
@@ -175,7 +171,7 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
                                     paddingRight: "4px",
                                 }}
                                 {...listProps}
-                                dataSource={mergedData as IProduct[]}
+                                dataSource={mergedData}
                                 renderItem={(item) => (
                                     <ProductItem
                                         item={item}

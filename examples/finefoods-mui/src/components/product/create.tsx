@@ -1,10 +1,10 @@
 import React from "react";
 import axios from "axios";
 import { useTranslate, useApiUrl, HttpError } from "@pankod/refine-core";
-import { UseModalFormReturnType } from "@pankod/refine-react-hook-form";
-import { Controller } from "react-hook-form";
-import { Create, useAutocomplete } from "@pankod/refine-mui";
-
+import {
+    Controller,
+    UseModalFormReturnType,
+} from "@pankod/refine-react-hook-form";
 import {
     Drawer,
     FormControlLabel,
@@ -22,9 +22,10 @@ import {
     OutlinedInput,
     InputAdornment,
     FormHelperText,
+    Create,
+    useAutocomplete,
     TextField,
-} from "@mui/material";
-
+} from "@pankod/refine-mui";
 import { CloseOutlined } from "@mui/icons-material";
 
 import { ICategory, IProduct } from "interfaces";
@@ -99,7 +100,7 @@ export const CreateProduct: React.FC<
         >
             <Create
                 saveButtonProps={saveButtonProps}
-                headerProps={{
+                cardHeaderProps={{
                     avatar: (
                         <IconButton
                             onClick={() => close()}
@@ -114,7 +115,7 @@ export const CreateProduct: React.FC<
                     ),
                     action: null,
                 }}
-                wrapperProps={{ sx: { overflowY: "scroll", height: "100vh" } }}
+                cardProps={{ sx: { overflowY: "scroll", height: "100vh" } }}
             >
                 <Stack>
                     <Box

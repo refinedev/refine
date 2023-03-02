@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button } from "@pankod/refine-mui";
 
 import { CustomButtonProps } from "interfaces/common";
 

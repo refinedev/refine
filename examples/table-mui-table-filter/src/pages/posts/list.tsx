@@ -7,12 +7,10 @@ import {
 } from "@pankod/refine-core";
 import {
     useDataGrid,
+    DataGrid,
+    GridColumns,
     TagField,
     List,
-    useAutocomplete,
-} from "@pankod/refine-mui";
-
-import {
     Grid,
     Box,
     Button,
@@ -21,14 +19,11 @@ import {
     CardHeader,
     InputAdornment,
     TextField,
+    useAutocomplete,
     Autocomplete,
-} from "@mui/material";
-
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
+} from "@pankod/refine-mui";
 import { SearchOutlined } from "@mui/icons-material";
-import { useForm } from "@pankod/refine-react-hook-form";
-
-import { Controller } from "react-hook-form";
+import { Controller, useForm } from "@pankod/refine-react-hook-form";
 
 import { ICategory, IPost, IPostFilterVariables } from "interfaces";
 

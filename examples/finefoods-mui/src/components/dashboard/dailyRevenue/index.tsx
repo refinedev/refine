@@ -1,6 +1,5 @@
 import { useApiUrl, useCustom, useTranslate } from "@pankod/refine-core";
-import { NumberField } from "@pankod/refine-mui";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, NumberField, Stack, Typography } from "@pankod/refine-mui";
 import dayjs from "dayjs";
 import { LineChart, Line, Tooltip, ResponsiveContainer } from "recharts";
 import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";

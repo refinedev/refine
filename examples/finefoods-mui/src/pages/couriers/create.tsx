@@ -8,29 +8,28 @@ import {
     useApiUrl,
     HttpError,
 } from "@pankod/refine-core";
-import { Create, SaveButton, useAutocomplete } from "@pankod/refine-mui";
-
 import {
     Avatar,
     Button,
+    Create,
     Box,
     FormControl,
     FormHelperText,
     FormLabel,
     Grid,
+    SaveButton,
     Stack,
     Step,
     Stepper,
     StepButton,
     TextField,
     Typography,
+    useAutocomplete,
     Autocomplete,
     Input,
     TextFieldProps,
-} from "@mui/material";
-
-import { useStepsForm } from "@pankod/refine-react-hook-form";
-import { Controller } from "react-hook-form";
+} from "@pankod/refine-mui";
+import { useStepsForm, Controller } from "@pankod/refine-react-hook-form";
 import { ICourier, IStore } from "interfaces";
 
 export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
@@ -325,6 +324,7 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                     {(
                                                         props: TextFieldProps,
                                                     ) => (
+                                                        // @ts-expect-error Incompatible types
                                                         <TextField
                                                             {...props}
                                                             size="small"

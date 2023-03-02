@@ -2,9 +2,9 @@ import React from "react";
 import "./index.css";
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-airtable";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 
-import { Layout } from "components/Layout";
+import { Layout } from " components/Layout";
 
 import { PostList } from "pages/post/list";
 import { PostShow } from "pages/post/show";
@@ -18,7 +18,7 @@ function App() {
     return (
         <Refine
             dataProvider={dataProvider(API_TOKEN, BASE_ID)}
-            legacyRouterProvider={routerProvider}
+            routerProvider={routerProvider}
             resources={[
                 {
                     name: "posts",

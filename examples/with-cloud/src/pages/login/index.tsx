@@ -1,11 +1,9 @@
 import React from "react";
 import { useLogin } from "@pankod/refine-core";
-import { GoogleOutlined } from "@ant-design/icons";
-
 import {
     Row,
     Col,
-    Layout as AntdLayout,
+    AntdLayout,
     Card,
     Typography,
     Form,
@@ -14,11 +12,12 @@ import {
     Checkbox,
     Space,
     Divider,
-} from "antd";
-
+    Icons,
+} from "@pankod/refine-antd";
 import { useAuthConfig } from "@pankod/refine-cloud";
 
 const { Text, Title } = Typography;
+const { GoogleOutlined } = Icons;
 
 export interface ILoginForm {
     username: string;
@@ -30,9 +29,7 @@ export const Login: React.FC = () => {
     const [form] = Form.useForm<ILoginForm>();
     const authConfig = useAuthConfig();
 
-    const { mutate: login } = useLogin<ILoginForm>({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { mutate: login } = useLogin<ILoginForm>();
 
     const CardTitle = (
         <Title level={3} className="title">

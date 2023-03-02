@@ -1,6 +1,10 @@
-import { Create, useForm, useSelect } from "@pankod/refine-mantine";
-
-import { TextInput, Select } from "@mantine/core";
+import {
+    Create,
+    useForm,
+    TextInput,
+    useSelect,
+    Select,
+} from "@pankod/refine-mantine";
 
 import { ICategory } from "interfaces";
 

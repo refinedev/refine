@@ -1,9 +1,17 @@
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider, { MemoryRouterComponent } from "@pankod/refine-react-router-v6/legacy";
+import routerProvider, {
+    MemoryRouterComponent,
+} from "@pankod/refine-react-router-v6";
 import { useDarkMode } from "storybook-dark-mode";
-import { DarkTheme, LightTheme, LoginPage, ReadyPage, ErrorComponent } from "@pankod/refine-mui";
-import { ThemeProvider } from "@mui/material/styles";
+import {
+    DarkTheme,
+    LightTheme,
+    ThemeProvider,
+    LoginPage,
+    ReadyPage,
+    ErrorComponent,
+} from "@pankod/refine-mui";
 import { authProvider } from "../src/authProvider";
 
 export const parameters = {
@@ -27,11 +35,11 @@ export const RefineWithLayout = (Story) => (
     <ThemeProvider theme={useDarkMode() ? DarkTheme : LightTheme}>
         <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            legacyAuthProvider={authProvider}
+            authProvider={authProvider}
             LoginPage={LoginPage}
             ReadyPage={ReadyPage}
             catchAll={ErrorComponent}
-            legacyRouterProvider={{
+            routerProvider={{
                 ...routerProvider,
                 RouterComponent: MemoryRouterComponent,
             }}
@@ -54,11 +62,11 @@ export const RefineWithoutLayout = (Story) => (
     <ThemeProvider theme={useDarkMode() ? DarkTheme : LightTheme}>
         <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            legacyAuthProvider={authProvider}
+            authProvider={authProvider}
             LoginPage={LoginPage}
             ReadyPage={ReadyPage}
             catchAll={ErrorComponent}
-            legacyRouterProvider={{
+            routerProvider={{
                 ...routerProvider,
                 RouterComponent: MemoryRouterComponent,
             }}

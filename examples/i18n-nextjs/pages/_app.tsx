@@ -10,7 +10,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-nextjs-router/legacy";
+import routerProvider from "@pankod/refine-nextjs-router";
 
 import { PostList, PostCreate, PostEdit, PostShow, Header } from "@components";
 
@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 
     return (
         <Refine
-            legacyRouterProvider={routerProvider}
+            routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             i18nProvider={i18nProvider}
             Header={Header}

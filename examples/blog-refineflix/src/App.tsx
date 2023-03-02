@@ -4,7 +4,7 @@ import {
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/reset.css";
 import { dataProvider } from "@pankod/refine-supabase";
 import authProvider from "./authProvider";
@@ -23,9 +23,9 @@ function App() {
     return (
         <Refine
             dataProvider={dataProvider(supabaseClient)}
-            legacyAuthProvider={authProvider}
+            authProvider={authProvider}
             LoginPage={Login}
-            legacyRouterProvider={{
+            routerProvider={{
                 ...routerProvider,
 
                 routes: [

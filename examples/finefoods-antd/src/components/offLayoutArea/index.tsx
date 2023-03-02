@@ -1,7 +1,9 @@
-import { LeftOutlined } from "@ant-design/icons";
+import { Icons } from "@pankod/refine-antd";
 import { RefineKbar } from "@pankod/refine-kbar";
 
 import { ToggleContainer } from "./styled";
+
+const { LeftOutlined } = Icons;
 
 export const OffLayoutArea = () => {
     return (

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import { Edit } from "@pankod/refine-chakra-ui";
 import {
+    Edit,
     FormControl,
     FormErrorMessage,
     FormLabel,
     Input,
     Select,
-} from "@chakra-ui/react";
+} from "@pankod/refine-chakra-ui";
 import { useSelect } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 

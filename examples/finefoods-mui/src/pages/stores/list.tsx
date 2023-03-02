@@ -7,14 +7,17 @@ import {
     IResourceComponentsProps,
 } from "@pankod/refine-core";
 import {
+    Avatar,
+    DataGrid,
     List,
     useDataGrid,
+    GridColumns,
+    GridActionsCellItem,
     DateField,
     BooleanField,
     TextFieldComponent,
+    Paper,
 } from "@pankod/refine-mui";
-import { DataGrid, GridColumns, GridActionsCellItem } from "@mui/x-data-grid";
-import { Avatar, Paper } from "@mui/material";
 import { EditOutlined } from "@mui/icons-material";
 
 import { IStore } from "interfaces";
@@ -141,10 +144,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Paper>
-            <List
-                canCreate
-                wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
-            >
+            <List canCreate cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
                 <DataGrid
                     {...dataGridProps}
                     columns={columns}

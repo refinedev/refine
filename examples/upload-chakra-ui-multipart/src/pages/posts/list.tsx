@@ -1,16 +1,8 @@
 import React from "react";
-import { useTable } from "@pankod/refine-react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 import { GetManyResponse, useMany } from "@pankod/refine-core";
 import {
     List,
-    ShowButton,
-    EditButton,
-    DeleteButton,
-    DateField,
-} from "@pankod/refine-chakra-ui";
-
-import {
     Table,
     Thead,
     Tbody,
@@ -20,8 +12,12 @@ import {
     TableContainer,
     HStack,
     Text,
+    ShowButton,
+    EditButton,
+    DeleteButton,
     Select,
-} from "@chakra-ui/react";
+    DateField,
+} from "@pankod/refine-chakra-ui";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
 import { Pagination } from "../../components/pagination";

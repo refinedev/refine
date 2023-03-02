@@ -1,6 +1,5 @@
 import React from "react";
-import { UserOutlined } from "@ant-design/icons";
-import { Avatar } from "antd";
+import { Icons, Avatar } from "@pankod/refine-antd";
 
 import { getUniqueContributorsAvatarURL } from "utility";
 import { Pixel } from "types";
@@ -8,6 +7,8 @@ import { Pixel } from "types";
 type ContributorsProps = {
     pixels: Pixel[];
 };
+
+const { UserOutlined } = Icons;
 
 export const Contributors: React.FC<ContributorsProps> = ({ pixels }) => {
     const avatarURls = getUniqueContributorsAvatarURL(pixels);

@@ -4,11 +4,9 @@ import {
     ITreeMenu,
     CanAccess,
     useRouterContext,
-    useMenu,
 } from "@pankod/refine-core";
 
-import { UnorderedListOutlined } from "@ant-design/icons";
-import { Layout as AntdLayout, Menu } from "antd";
+import { AntdLayout, Menu, Icons, useMenu } from "@pankod/refine-antd";
 
 export const FixedSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
@@ -25,7 +23,7 @@ export const FixedSider: React.FC = () => {
                 return (
                     <SubMenu
                         key={route}
-                        icon={icon ?? <UnorderedListOutlined />}
+                        icon={icon ?? <Icons.UnorderedListOutlined />}
                         title={label}
                     >
                         {renderTreeView(children, selectedKey)}
@@ -48,7 +46,9 @@ export const FixedSider: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
+                        icon={
+                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
+                        }
                     >
                         <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (

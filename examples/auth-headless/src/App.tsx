@@ -1,100 +1,63 @@
-import { AuthPage, AuthBindings, Refine } from "@pankod/refine-core";
+import { AuthPage, AuthProvider, Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import { PostList, PostCreate, PostEdit } from "./pages/posts";
 import { ExamplePage } from "./pages/example";
-import Layout from "./pages/layout";
 
 const App: React.FC = () => {
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async ({ providerName, email }) => {
             if (providerName === "google") {
                 window.location.href =
                     "https://accounts.google.com/o/oauth2/v2/auth";
-                return Promise.resolve({
-                    success: false,
-                });
+                return Promise.resolve(false);
             }
 
             if (providerName === "github") {
                 window.location.href =
                     "https://github.com/login/oauth/authorize";
-                return Promise.resolve({
-                    success: false,
-                });
+                return Promise.resolve(false);
             }
 
             if (email) {
                 localStorage.setItem("email", email);
-                return Promise.resolve({
-                    success: true,
-                    redirectTo: "/",
-                });
+                return Promise.resolve();
             }
 
-            return Promise.resolve({
-                success: false,
-                error: new Error("Email is wrong"),
-            });
+            return Promise.reject();
         },
         register: ({ email, password }) => {
             if (email && password) {
-                return Promise.resolve({
-                    success: true,
-                    redirectTo: "/",
-                });
+                return Promise.resolve();
             }
-            return Promise.resolve({
-                success: false,
-                error: new Error("Email or password is wrong"),
-            });
+            return Promise.reject();
         },
         updatePassword: ({ password }) => {
             if (password) {
                 //we can update password here
-                return Promise.resolve({
-                    success: true,
-                    redirectTo: "/login",
-                });
+                return Promise.resolve();
             }
-            return Promise.resolve({
-                success: false,
-                error: new Error("password is wrong"),
-            });
+            return Promise.reject();
         },
         forgotPassword: ({ email }) => {
             if (email) {
                 //we can send email with forgot password link here
-                return Promise.resolve({
-                    success: true,
-                    redirectTo: "/login",
-                });
+                return Promise.resolve();
             }
-            return Promise.resolve({
-                success: false,
-                error: new Error("Email is wrong"),
-            });
+            return Promise.reject();
         },
         logout: () => {
             localStorage.removeItem("email");
-            return Promise.resolve({
-                success: true,
-                redirectTo: "/",
-            });
+            return Promise.resolve();
         },
-        onError: () => Promise.resolve({}),
-        check: () => {
-            return localStorage.getItem("email")
-                ? Promise.resolve({ authenticated: true })
-                : Promise.resolve({
-                      authenticated: false,
-                      redirectTo: "/login",
-                      error: new Error("Not authenticated"),
-                  });
-        },
+        checkError: () => Promise.resolve(),
+        checkAuth: () =>
+            localStorage.getItem("email")
+                ? Promise.resolve()
+                : Promise.reject(),
         getPermissions: () => Promise.resolve(["admin"]),
-        getIdentity: () =>
+        getUserIdentity: () =>
             Promise.resolve({
                 id: 1,
                 name: "Jane Doe",
@@ -104,7 +67,7 @@ const App: React.FC = () => {
 
     return (
         <Refine
-            legacyRouterProvider={{
+            routerProvider={{
                 ...routerProvider,
                 routes: [
                     { path: "/example", element: <ExamplePage /> },
@@ -125,7 +88,6 @@ const App: React.FC = () => {
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             authProvider={authProvider}
             LoginPage={() => <AuthPage />}
-            Layout={({ children }) => <Layout>{children}</Layout>}
             resources={[
                 {
                     name: "posts",

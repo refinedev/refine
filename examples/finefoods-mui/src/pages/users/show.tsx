@@ -1,10 +1,12 @@
 import React from "react";
-import { DateField, List, NumberField, useDataGrid } from "@pankod/refine-mui";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
-
 import {
     Avatar,
+    DataGrid,
+    DateField,
     Grid,
+    GridColumns,
+    List,
+    NumberField,
     Paper,
     Stack,
     Table,
@@ -14,8 +16,8 @@ import {
     TableHead,
     TableRow,
     Typography,
-} from "@mui/material";
-
+    useDataGrid,
+} from "@pankod/refine-mui";
 import {
     HttpError,
     IResourceComponentsProps,
@@ -219,8 +221,8 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
             <Grid item xs={12} lg={9}>
                 <Stack direction="column" spacing={2}>
                     <List
-                        headerProps={{ title: t("orders.orders") }}
-                        wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
+                        cardHeaderProps={{ title: t("orders.orders") }}
+                        cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
                     >
                         <DataGrid
                             {...dataGridProps}

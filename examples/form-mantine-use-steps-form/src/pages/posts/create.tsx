@@ -1,14 +1,16 @@
-import { Create, useStepsForm, SaveButton } from "@pankod/refine-mantine";
 import {
     Button,
     Code,
+    Create,
     Group,
     Select,
     Stepper,
     TextInput,
+    useStepsForm,
+    SaveButton,
     Text,
     Space,
-} from "@mantine/core";
+} from "@pankod/refine-mantine";
 import { RichTextEditor } from "@mantine/rte";
 import { DatePicker } from "@mantine/dates";
 

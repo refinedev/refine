@@ -1,17 +1,13 @@
-import {
-    Refine,
-    LegacyAuthProvider as AuthProvider,
-    useGetIdentity,
-} from "@pankod/refine-core";
+import { Refine, AuthProvider, useGetIdentity } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
     ErrorComponent,
     AuthPage,
+    notification,
 } from "@pankod/refine-antd";
-import { notification } from "antd";
 import { dataProvider, liveProvider } from "@pankod/refine-supabase";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 import { GoogleOutlined } from "@ant-design/icons";
 
 import "@pankod/refine-antd/dist/reset.css";
@@ -145,7 +141,7 @@ const App: React.FC = () => {
         <Refine
             dataProvider={dataProvider(supabaseClient)}
             liveProvider={liveProvider(supabaseClient)}
-            legacyRouterProvider={{
+            routerProvider={{
                 ...routerProvider,
                 routes: [
                     {
@@ -162,7 +158,7 @@ const App: React.FC = () => {
                     },
                 ],
             }}
-            legacyAuthProvider={authProvider}
+            authProvider={authProvider}
             LoginPage={() => (
                 <AuthPage
                     type="login"

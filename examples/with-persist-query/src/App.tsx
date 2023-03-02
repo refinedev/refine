@@ -1,6 +1,5 @@
-import { Refine } from "@pankod/refine-core";
-import { QueryClient } from "@tanstack/react-query";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import { QueryClient, Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import "./App.css";
 
@@ -31,7 +30,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            legacyRouterProvider={routerProvider}
+            routerProvider={routerProvider}
             options={{
                 reactQuery: {
                     clientConfig: queryClient,

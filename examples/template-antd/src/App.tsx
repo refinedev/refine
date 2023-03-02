@@ -10,7 +10,7 @@ import {
 import "@pankod/refine-antd/dist/reset.css";
 
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 function App() {
     return (
@@ -20,7 +20,7 @@ function App() {
             Layout={Layout}
             ReadyPage={ReadyPage}
             catchAll={<ErrorComponent />}
-            legacyRouterProvider={routerProvider}
+            routerProvider={routerProvider}
         />
     );
 }

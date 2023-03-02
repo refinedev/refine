@@ -7,18 +7,20 @@ import {
     useTranslate,
 } from "@pankod/refine-core";
 
-import { List, useDataGrid } from "@pankod/refine-mui";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
 import {
     Avatar,
+    DataGrid,
     Grid,
+    GridColumns,
+    List,
     Paper,
     Stack,
     Typography,
+    useDataGrid,
     Button,
     Tooltip,
     Rating,
-} from "@mui/material";
+} from "@pankod/refine-mui";
 import {
     LocalPhoneOutlined,
     MapOutlined,
@@ -189,7 +191,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
             <Grid item xs={12} lg={9}>
                 <Stack direction="column" spacing={2}>
                     <List
-                        headerProps={{ title: t("orders.orders") }}
+                        cardHeaderProps={{ title: t("orders.orders") }}
                         canCreate={false}
                     >
                         <DataGrid

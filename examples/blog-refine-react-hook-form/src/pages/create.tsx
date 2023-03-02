@@ -6,9 +6,8 @@ import {
     MenuItem,
     Select,
     Button,
-} from "@mui/material";
-import { useForm } from "@pankod/refine-react-hook-form";
-import { Controller } from "react-hook-form";
+} from "@pankod/refine-mui";
+import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 

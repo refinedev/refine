@@ -1,4 +1,4 @@
-import { Box, IconButton, Icon, useColorMode } from "@chakra-ui/react";
+import { Box, IconButton, Icon, useColorMode } from "@pankod/refine-chakra-ui";
 import { IconMoon, IconSun } from "@tabler/icons";
 
 export const Header = () => {

@@ -1,6 +1,6 @@
 import { useGetIdentity, usePermissions } from "@pankod/refine-core";
 
-import { Row, Col, Card, Avatar, Typography, Space } from "antd";
+import { Row, Col, Card, Avatar, Typography, Space } from "@pankod/refine-antd";
 
 const { Text } = Typography;
 
@@ -9,12 +9,8 @@ export const DashboardPage: React.FC = () => {
         id: string;
         name: string;
         avatar: string;
-    }>({
-        v3LegacyAuthProviderCompatible: true,
-    });
-    const permissions = usePermissions({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    }>();
+    const permissions = usePermissions();
 
     return (
         <Row gutter={20}>

@@ -1,10 +1,11 @@
 import React from "react";
-import { Create } from "@pankod/refine-mui";
-import { Box, TextField, Button } from "@mui/material";
+import { Create, Box, TextField, Button } from "@pankod/refine-mui";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useForm } from "@pankod/refine-react-hook-form";
-
-import { Controller, useFieldArray } from "react-hook-form";
+import {
+    useForm,
+    Controller,
+    useFieldArray,
+} from "@pankod/refine-react-hook-form";
 
 interface IPost {
     firstName: string;

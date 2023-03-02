@@ -5,7 +5,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import { dataProvider, liveProvider } from "@pankod/refine-appwrite";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import "@pankod/refine-antd/dist/reset.css";
 
@@ -23,10 +23,10 @@ function App() {
     return (
         <StoreProvider>
             <Refine
-                legacyRouterProvider={routerProvider}
+                routerProvider={routerProvider}
                 liveProvider={liveProvider(appwriteClient)}
                 dataProvider={dataProvider(appwriteClient)}
-                legacyAuthProvider={authProvider}
+                authProvider={authProvider}
                 LoginPage={Login}
                 options={{ liveMode: "auto" }}
                 Sider={CustomSider}

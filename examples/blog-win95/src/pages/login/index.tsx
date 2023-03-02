@@ -17,9 +17,7 @@ export const LoginPage = () => {
     const [username, setUsername] = useState("info@refine.dev");
     const [password, setPassword] = useState("refine-supabase");
 
-    const { mutate: login } = useLogin<ILoginForm>({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { mutate: login } = useLogin<ILoginForm>();
 
     return (
         <div

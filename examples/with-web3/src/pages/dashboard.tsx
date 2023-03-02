@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useGetIdentity } from "@pankod/refine-core";
 
-import { useModal } from "@pankod/refine-antd";
-
 import {
     Row,
     Col,
@@ -11,10 +9,11 @@ import {
     Space,
     Button,
     Modal,
+    useModal,
     Form,
     Input,
     notification,
-} from "antd";
+} from "@pankod/refine-antd";
 
 import { sendEthereum } from "../utility";
 
@@ -24,9 +23,7 @@ export const DashboardPage: React.FC = () => {
     const { data, isLoading } = useGetIdentity<{
         address: string;
         balance: string;
-    }>({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    }>();
     const { modalProps, show, close } = useModal();
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);

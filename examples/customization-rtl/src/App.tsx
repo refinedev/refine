@@ -1,12 +1,12 @@
 import { Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
+    ConfigProvider,
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import { ConfigProvider } from "antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import "@pankod/refine-antd/dist/reset.css";
 
@@ -19,7 +19,7 @@ const App: React.FC = () => {
         <ConfigProvider direction={"rtl"}>
             <Refine
                 dataProvider={dataProvider(API_URL)}
-                legacyRouterProvider={routerProvider}
+                routerProvider={routerProvider}
                 resources={[
                     {
                         name: "posts",

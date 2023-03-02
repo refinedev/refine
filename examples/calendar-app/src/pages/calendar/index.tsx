@@ -1,7 +1,6 @@
 import { IResourceComponentsProps, useList } from "@pankod/refine-core";
 
-import { Show } from "@pankod/refine-antd";
-import { Badge, BadgeProps, Calendar } from "antd";
+import { Badge, BadgeProps, Calendar, Show } from "@pankod/refine-antd";
 import { CalendarMode } from "antd/lib/calendar/generateCalendar";
 import dayjs from "dayjs";
 

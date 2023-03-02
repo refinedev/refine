@@ -1,6 +1,7 @@
+const withPlugins = require("next-compose-plugins");
 const { i18n } = require("./next-i18next.config");
 
-module.exports = {
+module.exports = withPlugins([], {
     i18n,
     experimental: {
         newNextLinkBehavior: true,
@@ -16,4 +17,4 @@ module.exports = {
         "rc-pagination",
         "rc-picker",
     ],
-};
+});

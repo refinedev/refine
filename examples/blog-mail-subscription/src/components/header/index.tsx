@@ -6,9 +6,7 @@ import { useGetIdentity } from "@pankod/refine-core";
 const { Text } = Typography;
 
 export const Header: React.FC = () => {
-    const { data: user } = useGetIdentity({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { data: user } = useGetIdentity();
 
     const shouldRenderHeader = user && (user.name || user.avatar);
 

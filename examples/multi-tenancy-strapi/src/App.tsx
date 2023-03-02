@@ -6,7 +6,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import { DataProvider } from "@pankod/refine-strapi-v4";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import "@pankod/refine-antd/dist/reset.css";
 
@@ -21,9 +21,9 @@ const App: React.FC = () => {
     return (
         <StoreProvider>
             <Refine
-                legacyAuthProvider={authProvider}
+                authProvider={authProvider}
                 dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
-                legacyRouterProvider={routerProvider}
+                routerProvider={routerProvider}
                 Sider={CustomSider}
                 resources={[
                     {

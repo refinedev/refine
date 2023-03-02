@@ -27,9 +27,7 @@ export const UserNav: React.FC<{
     const countItem = (count: number, item: LineItem) => count + item.quantity;
 
     const itemsCount = cart?.items.reduce(countItem, 0) ?? 0;
-    const { isSuccess } = useAuthenticated({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { isSuccess } = useAuthenticated();
 
     const { closeSidebarIfPresent, openModal, setSidebarView, openSidebar } =
         useUI();

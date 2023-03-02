@@ -1,6 +1,10 @@
 import React, { useCallback } from "react";
-import { useTable } from "@pankod/refine-react-table";
-import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
+import {
+    useTable,
+    ColumnDef,
+    flexRender,
+    Row,
+} from "@pankod/refine-react-table";
 import {
     GetManyResponse,
     useDeleteMany,
@@ -9,13 +13,6 @@ import {
 } from "@pankod/refine-core";
 import {
     List,
-    EditButton,
-    DeleteButton,
-    DateField,
-    SaveButton,
-} from "@pankod/refine-chakra-ui";
-
-import {
     Table,
     Thead,
     Tbody,
@@ -25,14 +22,17 @@ import {
     TableContainer,
     HStack,
     Text,
+    EditButton,
+    DeleteButton,
     Select,
+    DateField,
     Checkbox,
     Button,
     IconButton,
     Input,
+    SaveButton,
     Textarea,
-} from "@chakra-ui/react";
-
+} from "@pankod/refine-chakra-ui";
 import { useForm } from "@pankod/refine-react-hook-form";
 import { IconChevronDown, IconChevronRight } from "@tabler/icons";
 

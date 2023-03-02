@@ -4,7 +4,10 @@ import { Refine } from "@pankod/refine-core";
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 
 import {
+    NotificationsProvider,
     notificationProvider,
+    MantineProvider,
+    Global,
     Layout,
     LightTheme,
     ReadyPage,
@@ -12,11 +15,8 @@ import {
     AuthPage,
 } from "@pankod/refine-mantine";
 
-import { NotificationsProvider } from "@mantine/notifications";
-import { MantineProvider, Global } from "@mantine/core";
-
 import { DataProvider } from "@pankod/refine-strapi-v4";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider, axiosInstance } from "./authProvider";
 import { API_URL } from "./constants";
@@ -29,14 +29,14 @@ function App() {
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <Refine
-                    legacyAuthProvider={authProvider}
+                    authProvider={authProvider}
                     dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
                     notificationProvider={notificationProvider}
                     Layout={Layout}
                     ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}
                     LoginPage={AuthPage}
-                    legacyRouterProvider={routerProvider}
+                    routerProvider={routerProvider}
                     resources={[
                         {
                             name: "posts",

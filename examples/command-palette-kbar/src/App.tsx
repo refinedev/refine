@@ -4,10 +4,10 @@ import {
     notificationProvider,
     Layout,
     ErrorComponent,
+    Icons,
 } from "@pankod/refine-antd";
-import { StarOutlined } from "@ant-design/icons";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -25,7 +25,7 @@ const App: React.FC = () => {
     return (
         <RefineKbarProvider>
             <Refine
-                legacyRouterProvider={routerProvider}
+                routerProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
                 resources={[
                     {
@@ -34,7 +34,7 @@ const App: React.FC = () => {
                         create: PostCreate,
                         edit: PostEdit,
                         show: PostShow,
-                        icon: <StarOutlined />,
+                        icon: <Icons.StarOutlined />,
                         canDelete: true,
                     },
                     {

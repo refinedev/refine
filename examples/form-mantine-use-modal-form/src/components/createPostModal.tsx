@@ -1,10 +1,14 @@
 import { BaseRecord, HttpError } from "@pankod/refine-core";
 import {
     UseModalFormReturnType,
+    Modal,
+    TextInput,
+    Select,
     useSelect,
+    Box,
     SaveButton,
+    Text,
 } from "@pankod/refine-mantine";
-import { Modal, TextInput, Select, Box, Text } from "@mantine/core";
 import { RichTextEditor } from "@mantine/rte";
 
 interface FormValues {

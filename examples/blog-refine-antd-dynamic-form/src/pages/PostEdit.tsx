@@ -1,8 +1,13 @@
 import React from "react";
-import { useForm, Edit } from "@pankod/refine-antd";
-
-import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import { Form, Input, Button, Space } from "antd";
+import {
+    useForm,
+    Form,
+    Input,
+    Edit,
+    Icons,
+    Button,
+    Space,
+} from "@pankod/refine-antd";
 
 interface IFormValue {
     name: string;
@@ -104,14 +109,14 @@ export default function PostEdit(Props: any) {
                                                     position: "absolute",
                                                     top: "47px",
                                                 }}
-                                                icon={<DeleteOutlined />}
+                                                icon={<Icons.DeleteOutlined />}
                                             ></Button>
                                         </Space>
                                     );
                                 })}
                                 <Form.Item>
                                     <Button
-                                        icon={<PlusOutlined />}
+                                        icon={<Icons.PlusOutlined />}
                                         type="dashed"
                                         block
                                         style={{ maxWidth: "600px" }}

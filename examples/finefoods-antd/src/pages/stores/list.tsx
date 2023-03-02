@@ -7,14 +7,18 @@ import {
 
 import {
     List,
+    Table,
     useTable,
     DateField,
+    Dropdown,
     BooleanField,
+    Menu,
+    Icons,
+    Avatar,
     useModal,
 } from "@pankod/refine-antd";
 
-import { FormOutlined, MoreOutlined } from "@ant-design/icons";
-import { Table, Dropdown, Menu, Avatar } from "antd";
+const { FormOutlined } = Icons;
 
 import { IStore } from "interfaces";
 import { StoreProducts } from "components/store";
@@ -130,7 +134,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                                 overlay={moreMenu(record.id)}
                                 trigger={["click"]}
                             >
-                                <MoreOutlined
+                                <Icons.MoreOutlined
                                     style={{
                                         fontSize: 24,
                                     }}

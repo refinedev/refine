@@ -1,5 +1,5 @@
-import { LayoutProps, Refine, useRouterContext } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import { LayoutProps, Refine } from "@pankod/refine-core";
+import routerProvider, { Link } from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import { githubDataProvider } from "github-data-provider";
@@ -8,7 +8,6 @@ import { CommitList } from "pages/commits/list";
 import "./App.css";
 
 const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
-    const { Link } = useRouterContext();
     return (
         <div>
             <ul>
@@ -37,7 +36,7 @@ const App: React.FC = () => {
                 default: dataProvider("https://api.fake-rest.refine.dev"),
                 github: githubDataProvider(),
             }}
-            legacyRouterProvider={routerProvider}
+            routerProvider={routerProvider}
             Layout={Layout}
             resources={[
                 {

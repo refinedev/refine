@@ -4,9 +4,7 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { GetListResponse, LayoutWrapper } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-import { useTable } from "@pankod/refine-react-table";
-
-import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 import {
     ProductListItem,
