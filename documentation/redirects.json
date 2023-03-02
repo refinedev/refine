@@ -1,6 +1,10 @@
 {
   "redirects": [
     {
+      "from": "/docs/migration-guide/",
+      "to": "/docs/migration-guide/3x-to-4x/"
+    },
+    {
       "from": "/docs/core/components/accessControl/can-access/",
       "to": "/docs/api-reference/core/components/accessControl/can-access/"
     },
