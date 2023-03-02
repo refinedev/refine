@@ -161,7 +161,7 @@ values={[
 <TabItem value="react-router-v6">
 
 ```tsx title="src/App.tsx"
-import { Refine, Authenticated, AuthProvider } from "@pankod/refine-core";
+import { Refine, Authenticated, AuthBindings } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { CustomPage } from "pages/custom-page";
@@ -236,7 +236,7 @@ export default App;
 
 ```tsx title="src/App.tsx"
 // highlight-start
-import { Refine, Authenticated, AuthProvider } from "@pankod/refine-core";
+import { Refine, Authenticated, AuthBindings } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-location";
 // highlight-end
 
@@ -315,7 +315,7 @@ export default App;
 
 ```tsx title="src/App.tsx"
 // highlight-start
-import { Refine, Authenticated, AuthProvider } from "@pankod/refine-core";
+import { Refine, Authenticated, AuthBindings } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 // highlight-end
 

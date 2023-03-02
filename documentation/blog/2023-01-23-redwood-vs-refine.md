@@ -843,7 +843,7 @@ export const Login: React.FC = () => {
 Finally, open the `Apx.tsx` file and paste the following code:
 
 ```typescript
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import { Refine, AuthBindings } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -869,7 +869,7 @@ const App: React.FC = () => {
         return <span>loading...</span>;
     }
 
-    const authProvider: AuthProvider = {
+    const authProvider: AuthBindings = {
         login: async () => {
             return {
                 success: true,

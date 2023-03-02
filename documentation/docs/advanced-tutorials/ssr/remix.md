@@ -444,7 +444,7 @@ There are two ways to do Server Side Authentication with Remix. You can choose o
 First, let's create our `AuthProvider`. For more information on `AuthProvider`, visit our [AuthProvider documentation][authprovider].
 
 ```tsx title="app/authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 
 const mockUsers = [
     {
@@ -457,7 +457,7 @@ const mockUsers = [
     },
 ];
 
-export const authProvider: AuthProvider = {
+export const authProvider: AuthBindings = {
     login: async ({ username, password, remember }) => {
         // Suppose we actually send a request to the back end here.
         const user = mockUsers.find((item) => item.username === username);
@@ -737,7 +737,7 @@ npm i -D @types/js-cookie
 We will set/destroy cookies in the `login`, `logout` and `checkAuth` functions of our `AuthProvider`.
 
 ```tsx title="app/authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 // highlight-start
 import Cookies from "js-cookie";
 import * as cookie from "cookie";
@@ -757,7 +757,7 @@ const mockUsers = [
 // highlight-next-line
 const COOKIE_NAME = "user";
 
-export const authProvider: AuthProvider = {
+export const authProvider: AuthBindings = {
     login: ({ username, password, remember }) => {
         // Suppose we actually send a request to the back end here.
         const user = mockUsers.find((item) => item.username === username);

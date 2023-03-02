@@ -3,6 +3,7 @@ id: useForgotPassword
 title: useForgotPassword
 siderbar_label: useForgotPassword
 description: useForgotPassword data hook from refine is a modified version of react-query's useMutation for registration.
+source: /packages/core/src/hooks/auth/useForgotPassword/index.ts
 ---
 
 `useForgotPassword` calls `forgotPassword` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.

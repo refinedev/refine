@@ -33,7 +33,7 @@ In this example, we will show the login with Metamask Wallet. If you want, you c
 :::
 
 ```tsx title="/src/authprovider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 
@@ -49,7 +49,7 @@ const web3Modal = new Web3Modal({
 
 let provider: any | null = null;
 
-export const authProvider: AuthProvider = {
+export const authProvider: AuthBindings = {
     login: async () => {
         if (window.ethereum) {
             provider = await web3Modal.connect();

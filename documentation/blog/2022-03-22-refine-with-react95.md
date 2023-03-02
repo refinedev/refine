@@ -91,11 +91,11 @@ export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
 <p>
 
 ```tsx title="src/authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 
 import { supabaseClient } from "utility";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     login: async ({ username, password }) => {
         const { user, error } = await supabaseClient.auth.signIn({
             email: username,

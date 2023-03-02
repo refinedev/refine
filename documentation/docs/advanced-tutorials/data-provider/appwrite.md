@@ -56,7 +56,7 @@ export { appwriteClient, account, storage };
 ### Creating Auth Provider
 
 ```tsx title="authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 
 import { account } from "./appwriteClient";
 
@@ -136,7 +136,7 @@ const authProvider: AuthBindings = {
 ### Configure Refine Component
 
 ```tsx title="App.tsx"
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import { Refine, AuthBindings } from "@pankod/refine-core";
 import {
     Layout,
     ReadyPage,
