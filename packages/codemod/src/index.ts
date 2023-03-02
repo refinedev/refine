@@ -32,9 +32,7 @@ export const transformerDirectory = path.join(
 const transformsWithPostTransform = [
     "refine1-to-refine2",
     "refine2-to-refine3",
-    "separate-imports-antd",
-    "separate-imports-chakra",
-    "separate-imports-mantine",
+    "refine3-to-refine4",
 ];
 
 export function checkGitStatus(force) {
@@ -124,24 +122,12 @@ export function runTransform({ files, flags, transformer }) {
 
 const TRANSFORMER_INQUIRER_CHOICES = [
     {
-        name: "fix-v4-deprecations: Fix deprecations with 4.x.x",
-        value: "fix-v4-deprecations",
+        name: "refine3-to-refine4: Transform from refine 2.x.x to at least 3.0.0",
+        value: "refine3-to-refine4",
     },
     {
         name: "antd4-to-antd5: Transform from antd 4.x.x to at least 5.x.x",
         value: "antd4-to-antd5",
-    },
-    {
-        name: "use-data-grid-columns: Transform `useDataGrid` `columns` usage",
-        value: "use-data-grid-columns",
-    },
-    {
-        name: "metadata-to-meta: Transform metaData to meta",
-        value: "metadata-to-meta",
-    },
-    {
-        name: "use-menu-to-core: Transform useMenu imports to core",
-        value: "use-menu-to-core",
     },
     {
         name: "refine2-to-refine3: Transform from refine 2.x.x to at least 3.0.0",
@@ -150,50 +136,6 @@ const TRANSFORMER_INQUIRER_CHOICES = [
     {
         name: "refine1-to-refine2: Transform from refine 1.x.x to at least 2.0.0",
         value: "refine1-to-refine2",
-    },
-    {
-        name: "router-to-legacy-router: Transform existing router definitions to legacy router",
-        value: "router-to-legacy-router",
-    },
-    {
-        name: "move-deprecated-access-control: Move deprecated deprecated `ignoreAccessControlProvider` prop to new `accessControl`",
-        value: "move-deprecated-access-control",
-    },
-    {
-        name: "separate-imports-antd: Moves `antd` components exported by `refine` into `antd`",
-        value: "separate-imports-antd",
-    },
-    {
-        name: "separate-imports-mantine: Moves `Mantine` components exported by `refine` into `Mantine`",
-        value: "separate-imports-mantine",
-    },
-    {
-        name: "separate-imports-mui: Moves `MUI` components exported by `refine` into `MUI`",
-        value: "separate-imports-mui",
-    },
-    {
-        name: "separate-imports-chakra: Moves `Chakra-UI` components exported by `refine` into `Chakra-UI`",
-        value: "separate-imports-chakra",
-    },
-    {
-        name: "add-v3LegacyAuthProviderCompatible-true-to-auth-hooks: Add v3LegacyAuthProviderCompatible:true to auth hooks",
-        value: "add-v3LegacyAuthProviderCompatible-true-to-auth-hooks",
-    },
-    {
-        name: "authProvider-to-legacyAuthProvider: Transform authProvider to use legacyAuthProvider",
-        value: "authProvider-to-legacyAuthProvider",
-    },
-    {
-        name: "separate-imports-react-query: Moves `@tanstack/react-query` components exported by `refine` into `@tanstack/react-query`",
-        value: "separate-imports-react-query",
-    },
-    {
-        name: "separate-imports-react-hook-form: Moves `React Hook Form` components exported by `refine` into `React Hook Form`",
-        value: "separate-imports-react-hook-form",
-    },
-    {
-        name: "separate-imports-react-table: Moves `@tanstack/react-table` components exported by `refine` into `@tanstack/react-table`",
-        value: "separate-imports-react-table",
     },
 ];
 
