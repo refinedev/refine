@@ -27,19 +27,19 @@ We've created documents for each router we provide bindings for. You can check t
 
 When using `react-router-dom` and `@pankod/refine-react-router-v6`, you'll need to create your routes using `Routes`, `Route`, etc. and wrap the `<Refine>` component with the router you pick (e.g. `<BrowserRouter>`). Then, you can pass the `routerProvider` to the `<Refine>` component from `@pankod/refine-react-router-v4` and you can define your resource action path in the `resources` array. Our documentation will guide you through the process of creating routes and binding them to your resources with examples.
 
-[Check out the documentation for `@pankod/refine-react-router-v6`](docs/packages/documentation/routers/react-router-v6/)
+[Check out the documentation for `@pankod/refine-react-router-v6`](#)
 [Check out the documentation for `react-router-dom`](https://reactrouter.com)
 
 ### Next.js
 
 When using Next.js, you'll need to create your routes the same way you used to in Next.js, by the file system based routing. Then, you can pass the `routerProvider` to the `<Refine>` component from `@pankod/refine-nextjs-router` and you can define your resource action path in the `resources` array. Our documentation will guide you through the process of creating routes and binding them to your resources with examples.
 
-[Check out the documentation for `@pankod/refine-nextjs-router`](docs/packages/documentation/routers/nextjs/)
+[Check out the documentation for `@pankod/refine-nextjs-router`](#)
 [Check out the documentation for `Next.js`](https://nextjs.org/docs/getting-started)
 
 ### Remix
 
 When using Remix, you'll need to create your routes the same way you used to in Remix, by the file system based routing. Then, you can pass the `routerProvider` to the `<Refine>` component from `@pankod/refine-remix-router` and you can define your resource action path in the `resources` array. Our documentation will guide you through the process of creating routes and binding them to your resources with examples.
 
-[Check out the documentation for `@pankod/refine-remix-router`](docs/packages/documentation/routers/remix/)
+[Check out the documentation for `@pankod/refine-remix-router`](#)
 [Check out the documentation for `Remix`](https://remix.run/docs/en/main)
