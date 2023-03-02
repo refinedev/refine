@@ -1,5 +1,6 @@
 import * as RefineCore from "@pankod/refine-core";
 import * as RefineReactHookForm from "@pankod/refine-react-hook-form";
+import * as ReactHookForm from "react-hook-form";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -408,6 +409,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
             "RefineReactHookForm",
             RefineReactHookForm,
         ],
+        ["react-hook-form", "ReactHookForm", ReactHookForm],
     ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,

@@ -1,4 +1,5 @@
-import { QueryClient, Refine } from "@pankod/refine-core";
+import { Refine } from "@pankod/refine-core";
+import { QueryClient } from "@tanstack/react-query";
 import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import dataProvider from "@pankod/refine-simple-rest";
 import "./App.css";

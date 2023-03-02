@@ -74,7 +74,7 @@ export function usePermissions<TData = any>({
     );
 
     const legacyQueryResponse = useQuery<TData>(
-        ["usePermissions"],
+        ["usePermissions", "v3LegacyAuthProviderCompatible"],
         // Enabled check for `getPermissions` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
         legacyGetPermission ?? (() => Promise.resolve(undefined)),
         {

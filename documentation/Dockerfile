@@ -13,8 +13,8 @@ RUN npm ci
 
 COPY . /opt/app
 
-RUN npm run bootstrap
-RUN npm run build
+RUN npm run bootstrap:all
+RUN npm run build:all
 
 WORKDIR /opt/app/documentation
 
