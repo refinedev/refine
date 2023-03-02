@@ -44,8 +44,8 @@ function App() {
                     resources={[
                         {
                             name: "canvases",
-                            list: CanvasList,
-                            show: CanvasShow,
+                            list: "/canvases",
+                            show: "/canvases/show/:id",
                         },
                     ]}
                     notificationProvider={notificationProvider}

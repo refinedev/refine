@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useUpdate } from "@pankod/refine-core";
 import {
     List,
@@ -7,6 +7,7 @@ import {
     DeleteButton,
 } from "@pankod/refine-antd";
 import { Table, Form, Button, Space, Tag, Modal, Avatar } from "antd";
+
 import { TCanvas } from "types/canvas";
 import { LogList } from "components/logs";
 import { CanvasItem } from "components/canvas";
@@ -21,13 +22,15 @@ export const CanvasList = () => {
     const { modalProps, show, close } = useModal();
     const { tableProps, formProps } = useEditableTable<TCanvas>({
         liveMode: "auto",
-        initialSorter: [
-            {
-                field: "created_at",
-                order: "desc",
-            },
-        ],
-        metaData: {
+        sorters: {
+            initial: [
+                {
+                    field: "created_at",
+                    order: "desc",
+                },
+            ],
+        },
+        meta: {
             select: "*, pixels(id, canvas_id, user_id, x, y, color)",
         },
     });
@@ -157,7 +160,7 @@ export const CanvasList = () => {
                                                 is_featured:
                                                     !record.is_featured,
                                             },
-                                            metaData: {
+                                            meta: {
                                                 canvas: record,
                                             },
                                         })

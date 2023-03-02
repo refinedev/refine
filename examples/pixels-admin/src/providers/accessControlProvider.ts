@@ -1,5 +1,6 @@
 import { newEnforcer } from "casbin";
 import { CanParams, CanReturnType } from "@pankod/refine-core";
+
 import { adapter, model } from "../casbin/accessControl";
 import { authProvider } from "./authProvider";
 
