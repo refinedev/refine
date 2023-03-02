@@ -10,31 +10,44 @@ tutorial:
 window.__refineAuthStatus = false;
 
 const authProvider = {
-    login: (params) => {
+    login: async () => {
         window.__refineAuthStatus = true;
-        console.log("login: ", params);
-        return Promise.resolve();
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    register: (params) => {
-        console.log("register: ", params);
-        return Promise.resolve();
+    register: async () => {
+        return {
+            success: true,
+        };
     },
-    forgotPassword: () => {
-        console.log("forgotPassword: ", params);
-        return Promise.resolve();
+    forgotPassword: async () => {
+        return {
+            success: true,
+        };
     },
-    updatePassword: () => {
-        console.log("updatePassword: ", params);
-        return Promise.resolve();
+    updatePassword: async () => {
+        return {
+            success: true,
+        };
     },
-    logout: () => {
+    logout: async () => {
         window.__refineAuthStatus = false;
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    checkAuth: () =>
-        window.__refineAuthStatus ? Promise.resolve() : Promise.reject(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
+    check: async () => {
+        return {
+            authenticated: window.__refineAuthStatus,
+            redirectTo: window.__refineAuthStatus ? false : "/login",
+        };
+    },
+    onError: async () => ({}),
+    getPermissions: async () => null,
+    getIdentity: async () => null,
 };
 
 import { Refine } from "@pankod/refine-core";

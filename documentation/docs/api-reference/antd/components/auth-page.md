@@ -28,18 +28,42 @@ window.__refineAuthStatus = false;
 const authProvider = {
     login: () => {
         window.__refineAuthStatus = true;
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => {
+    register: async () => {
+        return {
+            success: true,
+        };
+    },
+    forgotPassword: async () => {
+        return {
+            success: true,
+        };
+    },
+    updatePassword: async () => {
+        return {
+            success: true,
+        };
+    },
+    logout: async () => {
         window.__refineAuthStatus = false;
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    checkAuth: () =>
-        window.__refineAuthStatus ? Promise.resolve() : Promise.reject(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
+    check: async () => {
+        return {
+            authenticated: window.__refineAuthStatus,
+            redirectTo: window.__refineAuthStatus ? false : "/login",
+        };
+    },
+    onError: async () => ({}),
+    getPermissions: async () => null,
+    getIdentity: async () => null,
 };
 
 const DashboardPage = () => {
@@ -195,9 +219,13 @@ const authProvider: AuthProvider = {
         // You can handle the login process according to your needs.
 
         // If the process is successful.
-        return Promise.resolve();
+        return {
+            status: true,
+        };
 
-        return Promise.reject();
+        return {
+            status: false,
+        };
     },
     // --
 };
@@ -256,9 +284,13 @@ const authProvider: AuthProvider = {
         // You can handle the register process according to your needs.
 
         // If the process is successful.
-        return Promise.resolve();
+        return {
+            status: true,
+        };
 
-        return Promise.reject();
+        return {
+            status: false,
+        };
     },
     // --
 };
@@ -317,9 +349,13 @@ const authProvider: AuthProvider = {
         // You can handle the reset password process according to your needs.
 
         // If process is successful.
-        return Promise.resolve();
+        return {
+            status: true,
+        };
 
-        return Promise.reject();
+        return {
+            status: false,
+        };
     },
     // --
 };
@@ -378,9 +414,13 @@ const authProvider: AuthProvider = {
         // You can handle the update password process according to your needs.
 
         // If the process is successful.
-        return Promise.resolve();
+        return {
+            status: true,
+        };
 
-        return Promise.reject();
+        return {
+            status: false,
+        };
     },
     // --
 };

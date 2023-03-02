@@ -28,60 +28,33 @@ export const LogoutButton = () => {
 
 ## Redirection after logout
 
-We have 3 options to manage the redirection after logout process.
-
--   If promise returned from `logout` is resolved with nothing, app will be redirected to the `/login` route by default.
-
--   A custom url can be resolved from the promise returned from the `logout` method of the [authProvider](/api-reference/core/providers/auth-provider.md).
-
-```tsx
-const authProvider: AuthProvider = {
-    ...
-    logout: () => {
-        ...
-        return Promise.resolve("/custom-url");
-    }
-}
-```
-
-A custom url can be given to mutate function from the `useLogout` hook if you want to redirect yourself to a certain url.
+A custom URL can be given to mutate the function from the `useLogin` hook if you want to redirect yourself to a certain URL.
 
 ```tsx
 import { useLogout } from "@pankod/refine-core";
 
-const { mutate: logout } = useLogout<{ redirectPath: string }>();
+const { mutate: logout } = useLogout();
 
 logout({ redirectPath: "/custom-url" });
 ```
 
-Then, you can handle this url in your `logout` method of the `authProvider`.
+Then, you can handle this URL in your `logout` method of the `authProvider`.
 
 ```tsx
-
-const authProvider: AuthProvider = {
-    ...
-    logout: ({ redirectPath }) => {
-        ...
-        return Promise.resolve(redirectPath);
-    }
-}
-
-```
-
--   If promise returned from the `logout` method of the [authProvider](/api-reference/core/providers/auth-provider.md) gets resolved with `false` no redirection will occur.
-
-```tsx
-const authProvider: AuthProvider = {
-    ...
-    logout: () => {
-        ...
-        return Promise.resolve(false);
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    logout: async ({ redirectPath }) => {
+        // ---
+        return {
+            success: true,
+            redirectTo: redirectPath,
+        };
+    },
+};
 ```
 
 :::caution
-Custom url given to mutate function from `useLogout` overrides the one on the `authProvider`.
+This hook can only be used if `authProvider` is provided.
 :::
 
 :::tip

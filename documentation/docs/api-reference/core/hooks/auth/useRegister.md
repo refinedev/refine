@@ -13,7 +13,7 @@ Data that is resolved from `register` will be returned as the `data` in the quer
 
 ## Usage
 
-Normally refine provides a default register page. If you prefer to use this default register page, there is no need to handle register flow manually.  
+Normally refine provides a default register page. If you prefer to use this default register page, there is no need to handle the register flow manually.  
 If we want to build a custom register page instead of the default one that comes with **refine**, `useRegister` can be used like this:
 
 ```tsx title="pages/customRegisterPage"
@@ -49,6 +49,33 @@ A type parameter for the values can be provided to `useRegister`.
 
 ```tsx
 const { mutate: register } = useRegister<{ email: string; password: string }>();
+```
+
+### Redirection after register
+
+A custom URL can be given to mutate the function from the `useRegister` hook if you want to redirect yourself to a certain URL.
+
+```tsx
+import { useRegister } from "@pankod/refine-core";
+
+const { mutate: register } = useRegister();
+
+register({ redirectPath: "/custom-url" });
+```
+
+Then, you can handle this URL in your `register` method of the `authProvider`.
+
+```tsx
+const authProvider: AuthBindings = {
+    // ---
+    register: async ({ redirectPath }) => {
+        // ---
+        return {
+            success: true,
+            redirectTo: redirectPath,
+        };
+    },
+};
 ```
 
 :::

@@ -316,12 +316,39 @@ const App = () => {
     };
 
     const authProvider = {
-        login: () => Promise.resolve(),
-        logout: () => Promise.resolve(),
-        checkAuth: () => Promise.resolve(),
-        checkError: () => Promise.resolve(),
-        getPermissions: () => Promise.resolve("admin"),
-        getUserIdentity: () => Promise.resolve(),
+        login: async () => {
+            return {
+                success: true,
+                redirectTo: "/",
+            };
+        },
+        register: async () => {
+            return {
+                success: true,
+            };
+        },
+        forgotPassword: async () => {
+            return {
+                success: true,
+            };
+        },
+        updatePassword: async () => {
+            return {
+                success: true,
+            };
+        },
+        logout: async () => {
+            return {
+                success: true,
+                redirectTo: "/",
+            };
+        },
+        check: async () => ({
+            authenticated: true,
+        }),
+        onError: async () => ({}),
+        getPermissions: async () => ["admin"],
+        getIdentity: async () => null,
     };
 
     return (

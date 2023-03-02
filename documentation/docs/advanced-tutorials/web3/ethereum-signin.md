@@ -56,13 +56,17 @@ export const authProvider: AuthProvider = {
             const web3 = new Web3(provider);
             const accounts = await web3.eth.getAccounts();
             localStorage.setItem(TOKEN_KEY, accounts[0]);
-            return Promise.resolve();
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         } else {
-            return Promise.reject(
-                new Error(
+            return {
+                success: false,
+                error: new Error(
                     "Not set ethereum wallet or invalid. You need to install Metamask",
                 ),
-            );
+            };
         }
     },
     logout: async () => {
@@ -73,30 +77,39 @@ export const authProvider: AuthProvider = {
             provider = null;
             await web3Modal.clearCachedProvider();
         }
-        return Promise.resolve();
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: () => {
+    onError: async () => ({}),
+    check: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
-            return Promise.resolve();
+            return {
+                authenticated: true,
+            };
         }
 
-        return Promise.reject();
+        return {
+            authenticated: false,
+            redirectTo: "/login",
+            logout: true,
+        };
     },
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
+    getPermissions: async () => null,
+    getIdentity: async () => {
         const address = localStorage.getItem(TOKEN_KEY);
         if (!address) {
-            return Promise.reject();
+            return null;
         }
 
         const balance = await getBalance(address);
 
-        return Promise.resolve({
+        return {
             address,
             balance,
-        });
+        };
     },
 };
 ```

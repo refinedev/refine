@@ -7,7 +7,7 @@ description: useGetIdentity data hook from refine is a modified version of react
 
 `useGetIdentity` calls the `getUserIdentity` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
 
-It returns the result of `react-query`'s `useQuery`  which includes many properties, some of which being `isSuccess` and `isError`. Data that is resolved from the `getUserIdentity` will be returned as the `data` in the query result.
+It returns the result of `react-query`'s `useQuery` which includes many properties, some of which being `isSuccess` and `isError`. Data that is resolved from the `getUserIdentity` will be returned as the `data` in the query result.
 
 ## Usage
 
@@ -21,17 +21,16 @@ We have a logic in [`authProvider`](/api-reference/core/providers/auth-provider.
 const authProvider: AuthProvider = {
   ...
     // highlight-start
-    getUserIdentity: () =>
-            Promise.resolve({
-                id: 1,
-                fullName: "Jane Doe",
-            }),
-  // highlight-end
-  ...
+    getIdentity: async () => ({
+        id: 1,
+        fullName: "Jane Doe",
+    }),
+    // highlight-end
+    // ---
 };
 ```
-<br/>
 
+<br/>
 
 You can access identity data like below.
 
@@ -41,10 +40,13 @@ import { useGetIdentity } from "@pankod/refine-core";
 
 export const User: React.FC = () => {
     // highlight-next-line
-    const { data: identity } = useGetIdentity<{ id: number; fullName: string}>();
+    const { data: identity } = useGetIdentity<{
+        id: number;
+        fullName: string;
+    }>();
 
-    return <span>{identity?.fullName}</span>
-}
+    return <span>{identity?.fullName}</span>;
+};
 ```
 
 :::caution

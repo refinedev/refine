@@ -3,7 +3,7 @@ title: refine vs RedwoodJS
 description: We will compare two open source React frameworks, that can be used to build CRUD applications
 slug: refine-vs-redwood-js
 authors: madars_biss
-tags: [refine,redwoodjs]
+tags: [refine, redwoodjs]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/social.png
 hide_table_of_contents: false
 ---
@@ -32,7 +32,6 @@ The project has experienced rapid growth since its release in 2021. On GitHub 10
 
 <br/>
 
-
 ### Redwood
 
 Redwood is a React framework designed to keep you moving fast as your app grows from side project to startup.
@@ -40,7 +39,6 @@ Redwood is a React framework designed to keep you moving fast as your app grows 
 It it based on several core technologies - [GraphQL](https://graphql.org/) for making API calls, [Prisma](https://www.prisma.io/) as an ORM, [TypeScript](https://www.typescriptlang.org/) for type safety (optional), [Jest](https://jestjs.io/) for testing, [Pino](https://getpino.io/#/) for logging and [Storybook](https://storybook.js.org/) to assist with creating UI.
 
 Since its release in 2020, the project has received over 7500 contributions on GitHub by 340 developers. As of the start of 2023, the project has already been starred more than 15000 times.
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_stars.png"  alt="redwoodjs vs refine" />
@@ -56,7 +54,6 @@ The recommended way to set up a new refine project is to use their built-in CLI 
 
 You will be asked to pick your preferred router solution, UI framework, auth provider, i18n approach, and other settings. For testing purposes, choose the settings provided below:
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_setup.png"  alt="redwoodjs vs refine" />
 </div>
@@ -66,7 +63,6 @@ You will be asked to pick your preferred router solution, UI framework, auth pro
 Once the installation setup is completed, change the working direction to the newly created project folder by running `cd crud-refine` and start the development server via `npm run dev`.
 
 It should automatically open up a new tab on your default browser with the application preview. If it does not, open [http://localhost:3000](http://localhost:3000/) manually. You should be presented with the welcome screen of refine:
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_welcome.png"  alt="redwoodjs vs refine" />
@@ -82,25 +78,21 @@ If you prefer to set up the project on Vanilla JS, remove `--typescript` tag fro
 
 During the terminal wizard, you will be asked whether or not to initialize the git repository. The rest of the wizard is fully automatic and should not take more than a couple of minutes to finish.
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_setup.png"  alt="redwoodjs vs refine" />
 </div>
 
 <br/>
 
-
 Next, change your working directory to the newly created project folder via `cd crud-redwood` and start the developer server by running `yarn rw dev`.
 
 It should open a new tab on your default browser with the working project demo. If it's not, run [http://localhost:8910](http://localhost:8910/) to see the Redwood welcome page.
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_welcome.png"  alt="redwoodjs vs refine" />
 </div>
 
 <br/>
-
 
 ## Internal build
 
@@ -117,10 +109,10 @@ Here is what the `App.tsx` file should look like:
 ```typescript
 import { Refine } from "@pankod/refine-core";
 import {
-  notificationProvider,
-  Layout,
-  ReadyPage,
-  ErrorComponent,
+    notificationProvider,
+    Layout,
+    ReadyPage,
+    ErrorComponent,
 } from "@pankod/refine-antd";
 import "@pankod/refine-antd/dist/reset.css";
 
@@ -128,17 +120,17 @@ import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 function App() {
-  return (
-    <Refine
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      notificationProvider={notificationProvider}
-      Layout={Layout}
-      ReadyPage={ReadyPage}
-      catchAll={<ErrorComponent />}
-      routerProvider={routerProvider}
-      resources={}
-    />
-  );
+    return (
+        <Refine
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            catchAll={<ErrorComponent />}
+            routerProvider={routerProvider}
+            resources={}
+        />
+    );
 }
 
 export default App;
@@ -156,9 +148,9 @@ const container = document.getElementById("root") as HTMLElement;
 const root = createRoot(container);
 
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
 );
 ```
 
@@ -219,10 +211,10 @@ Check your `App.tsx` file and it should now look like this:
 ```typescript
 import { Refine } from "@pankod/refine-core";
 import {
-  notificationProvider,
-  Layout,
-  ReadyPage,
-  ErrorComponent,
+    notificationProvider,
+    Layout,
+    ReadyPage,
+    ErrorComponent,
 } from "@pankod/refine-antd";
 import "@pankod/refine-antd/dist/reset.css";
 
@@ -232,22 +224,22 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { TestList } from "pages/tests";
 
 function App() {
-  return (
-    <Refine
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      notificationProvider={notificationProvider}
-      Layout={Layout}
-      ReadyPage={ReadyPage}
-      catchAll={<ErrorComponent />}
-      routerProvider={routerProvider}
-      resources={[
-        {
-          name: "test",
-          list: TestList,
-        },
-      ]}
-    />
-  );
+    return (
+        <Refine
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            catchAll={<ErrorComponent />}
+            routerProvider={routerProvider}
+            resources={[
+                {
+                    name: "test",
+                    list: TestList,
+                },
+            ]}
+        />
+    );
 }
 
 export default App;
@@ -257,26 +249,24 @@ Now, let's create a page to display some sample data. Open the newly created `li
 
 ```typescript
 export const TestList = () => {
-  return (
-    <>
-      <h1>TestPage</h1>
-      <p>
-        Find me in <code>./src/pages/tests/list.tsx</code>
-      </p>
-    </>
-  );
+    return (
+        <>
+            <h1>TestPage</h1>
+            <p>
+                Find me in <code>./src/pages/tests/list.tsx</code>
+            </p>
+        </>
+    );
 };
 ```
 
 To test the route, open your browser and navigate to [http://localhost:3000/test](http://localhost:3000/test). You should be presented with the following view:
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_page.png"  alt="redwoodjs vs refine" />
 </div>
 
 <br/>
-
 
 ### Redwood
 
@@ -289,20 +279,20 @@ import { Link, routes } from "@redwoodjs/router";
 import { MetaTags } from "@redwoodjs/web";
 
 const TestPage = () => {
-  return (
-    <>
-      <MetaTags title="Test" description="Test page" />
+    return (
+        <>
+            <MetaTags title="Test" description="Test page" />
 
-      <h1>TestPage</h1>
-      <p>
-        Find me in <code>./web/src/pages/TestPage/TestPage.tsx</code>
-      </p>
-      <p>
-        My default route is named <code>test</code>, link to me with `
-        <Link to={routes.test()}>Test</Link>`
-      </p>
-    </>
-  );
+            <h1>TestPage</h1>
+            <p>
+                Find me in <code>./web/src/pages/TestPage/TestPage.tsx</code>
+            </p>
+            <p>
+                My default route is named <code>test</code>, link to me with `
+                <Link to={routes.test()}>Test</Link>`
+            </p>
+        </>
+    );
 };
 
 export default TestPage;
@@ -310,20 +300,17 @@ export default TestPage;
 
 To test it out, run [http://localhost:8910/test](http://localhost:8910/test) in your browser and you should be presented with something like this:
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_page.png"  alt="redwoodjs vs refine" />
 </div>
 
 <br/>
 
-
 ---
 
 <PromotionBanner title="Small dev teams love this React framework!" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" />
 
 ---
-
 
 ## Data sources
 
@@ -352,7 +339,6 @@ We can also check the data coming from the data provider. Open your browser and 
 
 <br/>
 
-
 For this application we will use the `posts` route, so click on it and you will see sample data that is provided to the user:
 
 <div className="centered-image"  >
@@ -360,7 +346,6 @@ For this application we will use the `posts` route, so click on it and you will 
 </div>
 
 <br/>
-
 
 Make sure to install [JSON formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en) so the returned data is formatted and easy to read.
 
@@ -391,7 +376,6 @@ Migrate the new changes with the command `yarn rw prisma migrate dev` for the ne
 
 Redwood also comes with Prisma studio, so we get a graphical user interface (GUI) to work with database records. To access it, run `yarn rw prisma studio`. It will open it up on [http://localhost:5555](http://localhost:5555).
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/prisma_studio.png"  alt="redwoodjs vs refine" />
 </div>
@@ -399,7 +383,6 @@ Redwood also comes with Prisma studio, so we get a graphical user interface (GUI
 <br/>
 
 Click on the Post model and add some records into the database so we have data to work with.
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/prisma_data.png"  alt="redwoodjs vs refine" />
@@ -420,10 +403,10 @@ Check your `App.tsx` file and change it to the following:
 ```typescript
 import { Refine } from "@pankod/refine-core";
 import {
-  notificationProvider,
-  Layout,
-  ReadyPage,
-  ErrorComponent,
+    notificationProvider,
+    Layout,
+    ReadyPage,
+    ErrorComponent,
 } from "@pankod/refine-antd";
 import "@pankod/refine-antd/dist/reset.css";
 
@@ -433,25 +416,25 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 function App() {
-  return (
-    <Refine
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      notificationProvider={notificationProvider}
-      Layout={Layout}
-      ReadyPage={ReadyPage}
-      catchAll={<ErrorComponent />}
-      routerProvider={routerProvider}
-      resources={[
-        {
-          name: "posts",
-          list: PostList,
-          create: PostCreate,
-          edit: PostEdit,
-          show: PostShow,
-        },
-      ]}
-    />
-  );
+    return (
+        <Refine
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            catchAll={<ErrorComponent />}
+            routerProvider={routerProvider}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+        />
+    );
 }
 
 export default App;
@@ -461,56 +444,68 @@ Next, open the `list.tsx` file and replace the current content with the followin
 
 ```typescript
 import {
-  List,
-  Table,
-  TextField,
-  useTable,
-  DateField,
-  Space,
-  EditButton,
-  DeleteButton,
-  ShowButton,
+    List,
+    Table,
+    TextField,
+    useTable,
+    DateField,
+    Space,
+    EditButton,
+    DeleteButton,
+    ShowButton,
 } from "@pankod/refine-antd";
 import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
-  const { tableProps } = useTable<IPost>();
+    const { tableProps } = useTable<IPost>();
 
-  return (
-    <List>
-      <Table {...tableProps} rowKey="id">
-        <Table.Column
-          dataIndex="id"
-          key="id"
-          title="ID"
-          render={(value) => <TextField value={value} />}
-        />
-        <Table.Column
-          dataIndex="title"
-          key="title"
-          title="Title"
-          render={(value) => <TextField value={value} />}
-        />
-        <Table.Column
-          dataIndex="createdAt"
-          key="createdAt"
-          title="Created At"
-          render={(value) => <DateField value={value} format="LLL" />}
-        />
-        <Table.Column<IPost>
-          title="Actions"
-          dataIndex="actions"
-          render={(_, record) => (
-            <Space>
-              <EditButton hideText size="small" recordItemId={record.id} />
-              <ShowButton hideText size="small" recordItemId={record.id} />
-              <DeleteButton hideText size="small" recordItemId={record.id} />
-            </Space>
-          )}
-        />
-      </Table>
-    </List>
-  );
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column
+                    dataIndex="id"
+                    key="id"
+                    title="ID"
+                    render={(value) => <TextField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="title"
+                    key="title"
+                    title="Title"
+                    render={(value) => <TextField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="createdAt"
+                    key="createdAt"
+                    title="Created At"
+                    render={(value) => <DateField value={value} format="LLL" />}
+                />
+                <Table.Column<IPost>
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_, record) => (
+                        <Space>
+                            <EditButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <ShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <DeleteButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </Space>
+                    )}
+                />
+            </Table>
+        </List>
+    );
 };
 ```
 
@@ -518,21 +513,19 @@ Notice we already imported an interface to work with TypeScript. Create a new fo
 
 ```typescript
 export interface IPost {
-  id: number;
-  title: string;
-  createdAt: string;
+    id: number;
+    title: string;
+    createdAt: string;
 }
 ```
 
 Now test the `/posts` route on [http://localhost:3000/posts](http://localhost:3000/posts). This route will allow us to display all the data from the data provider and display the action buttons.
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_list.png"  alt="redwoodjs vs refine" />
 </div>
 
 <br/>
-
 
 Let's also create a feature to create new records. Open the `create.tsx` file in the `pages` folder and paste the following code into the file:
 
@@ -542,30 +535,29 @@ import { Create, Form, Input, useForm } from "@pankod/refine-antd";
 import { IPost } from "interfaces";
 
 export const PostCreate: React.FC = () => {
-  const { formProps, saveButtonProps } = useForm<IPost>();
+    const { formProps, saveButtonProps } = useForm<IPost>();
 
-  return (
-    <Create saveButtonProps={saveButtonProps}>
-      <Form {...formProps} layout="vertical">
-        <Form.Item
-          label="Title"
-          name="title"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-      </Form>
-    </Create>
-  );
+    return (
+        <Create saveButtonProps={saveButtonProps}>
+            <Form {...formProps} layout="vertical">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+            </Form>
+        </Create>
+    );
 };
 ```
 
 Now every time we want to create a new record, we have a dedicated route ([http://localhost:3000/posts/create](http://localhost:3000/posts/create)) for it:
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_create.png"  alt="redwoodjs vs refine" />
@@ -581,25 +573,25 @@ import { Edit, Form, Input, useForm } from "@pankod/refine-antd";
 import { IPost } from "interfaces";
 
 export const PostEdit: React.FC = () => {
-  const { formProps, saveButtonProps } = useForm<IPost>();
+    const { formProps, saveButtonProps } = useForm<IPost>();
 
-  return (
-    <Edit saveButtonProps={saveButtonProps}>
-      <Form {...formProps} layout="vertical">
-        <Form.Item
-          label="Title"
-          name="title"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-      </Form>
-    </Edit>
-  );
+    return (
+        <Edit saveButtonProps={saveButtonProps}>
+            <Form {...formProps} layout="vertical">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+            </Form>
+        </Edit>
+    );
 };
 ```
 
@@ -607,14 +599,11 @@ Each time there is the need to update some record, users will be presented with 
 
 The posts can be edited via [http://localhost:3000/posts/edit/5](http://localhost:3000/posts/edit/5), where the number behind the last forward slash is the ID of the post:
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_edit.png"  alt="redwoodjs vs refine" />
 </div>
 
 <br/>
-
-
 
 Finally, users should be able to see individual posts by opening them separately. For that, open `show.tsx` file and include the following code:
 
@@ -627,16 +616,16 @@ import { IPost } from "interfaces";
 const { Title, Text } = Typography;
 
 export const PostShow: React.FC = () => {
-  const { queryResult } = useShow<IPost>();
-  const { data, isLoading } = queryResult;
-  const record = data?.data;
+    const { queryResult } = useShow<IPost>();
+    const { data, isLoading } = queryResult;
+    const record = data?.data;
 
-  return (
-    <Show isLoading={isLoading}>
-      <Title level={5}>Title</Title>
-      <Text>{record?.title}</Text>
-    </Show>
-  );
+    return (
+        <Show isLoading={isLoading}>
+            <Title level={5}>Title</Title>
+            <Text>{record?.title}</Text>
+        </Show>
+    );
 };
 ```
 
@@ -644,24 +633,19 @@ To read the data, users will be able to click on individual records and they wil
 
 Each post will be accessible on the [http://localhost:3000/posts/show/11](http://localhost:3000/posts/show/11), where the number behind the last forward slash is the ID of the post:
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_show.png"  alt="redwoodjs vs refine" />
 </div>
 
 <br/>
 
-
-
 Users are also able to delete any record from the app by clicking on the bin icon. The UI is handled via a modal, where they are first asked to confirm the decision:
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_delete.png"  alt="redwoodjs vs refine" />
 </div>
 
 <br/>
-
 
 ### Redwood
 
@@ -677,12 +661,12 @@ import type { CellSuccessProps, CellFailureProps } from "@redwoodjs/web";
 import Post from "src/components/Post/Post";
 
 export const QUERY = gql`
-  query FindPostById($id: Int!) {
-    post: post(id: $id) {
-      id
-      title
+    query FindPostById($id: Int!) {
+        post: post(id: $id) {
+            id
+            title
+        }
     }
-  }
 `;
 
 export const Loading = () => <div>Loading...</div>;
@@ -690,11 +674,11 @@ export const Loading = () => <div>Loading...</div>;
 export const Empty = () => <div>Post not found</div>;
 
 export const Failure = ({ error }: CellFailureProps) => (
-  <div className="rw-cell-error">{error?.message}</div>
+    <div className="rw-cell-error">{error?.message}</div>
 );
 
 export const Success = ({ post }: CellSuccessProps<FindPostById>) => {
-  return <Post post={post} />;
+    return <Post post={post} />;
 };
 ```
 
@@ -704,11 +688,11 @@ After that Redwood created a separate page for each CRUD action in the `pages` f
 import PostCell from "src/components/Post/PostCell";
 
 type PostPageProps = {
-  id: number;
+    id: number;
 };
 
 const PostPage = ({ id }: PostPageProps) => {
-  return <PostCell id={id} />;
+    return <PostCell id={id} />;
 };
 
 export default PostPage;
@@ -716,17 +700,13 @@ export default PostPage;
 
 To see it working, access the route on [http://localhost:8910/posts](http://localhost:8910/posts), which would display all of the posts available in the database:
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_list.png"  alt="redwoodjs vs refine" />
 </div>
 
 <br/>
 
-
 In order to create a new post navigate to [http://localhost:8910/posts/new](http://localhost:8910/posts/new):
-
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_create.png"  alt="redwoodjs vs refine" />
@@ -780,22 +760,21 @@ import App from "./App";
 const container = document.getElementById("root");
 const root = createRoot(container!);
 root.render(
-  <React.StrictMode>
-    <Auth0Provider
-      domain={process.env.REACT_APP_AUTH0_DOMAIN as string}
-      clientId={process.env.REACT_APP_AUTH0_CLIENT_ID as string}
-      redirectUri={window.location.origin}
-    >
-      <App />
-    </Auth0Provider>
-  </React.StrictMode>
+    <React.StrictMode>
+        <Auth0Provider
+            domain={process.env.REACT_APP_AUTH0_DOMAIN as string}
+            clientId={process.env.REACT_APP_AUTH0_CLIENT_ID as string}
+            redirectUri={window.location.origin}
+        >
+            <App />
+        </Auth0Provider>
+    </React.StrictMode>,
 );
 ```
 
 Now [create a new account on Auth0](https://auth0.com/signup).
 
 Once logged in create a new application, by selecting Single page web application.
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_auth0.png"  alt="redwoodjs vs refine" />
@@ -805,7 +784,6 @@ Once logged in create a new application, by selecting Single page web applicatio
 
 After that navigate to the Settings panel and you will get the keys for domain, client_id, and client secret.
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_keys.png"  alt="redwoodjs vs refine" />
 </div>
@@ -814,23 +792,19 @@ After that navigate to the Settings panel and you will get the keys for domain, 
 
 Now scroll down the settings and configure the callback, logout, and web origins URLs like shown below:
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_callbacks.png"  alt="redwoodjs vs refine" />
 </div>
 
 <br/>
 
-
 Go back to the refine app, create a file `.env` in the app root and paste the following environment values:
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_env.png"  alt="redwoodjs vs refine" />
 </div>
 
 <br/>
-
 
 Now restart the developer server for the changes to take effect. Press Ctrl+C on your keyboard to close the server and run `npm run dev` to start it again.
 
@@ -841,28 +815,28 @@ import { AntdLayout, Button } from "@pankod/refine-antd";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export const Login: React.FC = () => {
-  const { loginWithRedirect } = useAuth0();
+    const { loginWithRedirect } = useAuth0();
 
-  return (
-    <AntdLayout
-      style={{
-        backgroundSize: "cover",
-      }}
-    >
-      <div style={{ height: "100vh", display: "flex" }}>
-        <div style={{ maxWidth: "200px", margin: "auto" }}>
-          <Button
-            type="primary"
-            size="large"
-            block
-            onClick={() => loginWithRedirect()}
-          >
-            Sign in to refine app
-          </Button>
-        </div>
-      </div>
-    </AntdLayout>
-  );
+    return (
+        <AntdLayout
+            style={{
+                backgroundSize: "cover",
+            }}
+        >
+            <div style={{ height: "100vh", display: "flex" }}>
+                <div style={{ maxWidth: "200px", margin: "auto" }}>
+                    <Button
+                        type="primary"
+                        size="large"
+                        block
+                        onClick={() => loginWithRedirect()}
+                    >
+                        Sign in to refine app
+                    </Button>
+                </div>
+            </div>
+        </AntdLayout>
+    );
 };
 ```
 
@@ -871,9 +845,9 @@ Finally, open the `Apx.tsx` file and paste the following code:
 ```typescript
 import { Refine, AuthProvider } from "@pankod/refine-core";
 import {
-  notificationProvider,
-  Layout,
-  ErrorComponent,
+    notificationProvider,
+    Layout,
+    ErrorComponent,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -889,75 +863,91 @@ import { Login } from "pages/login";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-  const { isLoading, user, logout, getIdTokenClaims } = useAuth0();
+    const { isLoading, user, logout, getIdTokenClaims } = useAuth0();
 
-  if (isLoading) {
-    return <span>loading...</span>;
-  }
+    if (isLoading) {
+        return <span>loading...</span>;
+    }
 
-  const authProvider: AuthProvider = {
-    login: () => {
-      return Promise.resolve(false);
-    },
-    logout: () => {
-      logout({ returnTo: window.location.origin });
-      return Promise.resolve("/");
-    },
-    checkError: () => Promise.resolve(),
-    checkAuth: async () => {
-      try {
-        const token = await getIdTokenClaims();
-        if (token) {
-          axios.defaults.headers.common = {
-            Authorization: `Bearer ${token.__raw}`,
-          };
-          return Promise.resolve();
-        } else {
-          return Promise.reject();
-        }
-      } catch (error) {
-        return Promise.reject();
-      }
-    },
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
-      if (user) {
-        return Promise.resolve({
-          ...user,
-          avatar: user.picture,
-        });
-      }
-      return Promise.reject();
-    },
-  };
-
-  return (
-    <Refine
-      LoginPage={Login}
-      authProvider={authProvider}
-      dataProvider={dataProvider(API_URL, axios)}
-      routerProvider={routerProvider}
-      notificationProvider={notificationProvider}
-      Layout={Layout}
-      catchAll={<ErrorComponent />}
-      resources={[
-        {
-          name: "posts",
-          list: PostList,
-          create: PostCreate,
-          edit: PostEdit,
-          show: PostShow,
+    const authProvider: AuthProvider = {
+        login: async () => {
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         },
-      ]}
-    />
-  );
+        logout: async () => {
+            logout({ returnTo: window.location.origin });
+            return {
+                success: true,
+                redirectTo: "/",
+            };
+        },
+        onError: async () => ({}),
+        check: async () => {
+            try {
+                const token = await getIdTokenClaims();
+                if (token) {
+                    axios.defaults.headers.common = {
+                        Authorization: `Bearer ${token.__raw}`,
+                    };
+                    return {
+                        authenticated: true,
+                        redirectTo: "/",
+                    };
+                } else {
+                    return {
+                        authenticated: false,
+                        redirectTo: "/login",
+                        error: new Error("Token not found"),
+                    };
+                }
+            } catch (error) {
+                return {
+                    authenticated: false,
+                    redirectTo: "/login",
+                    error: error,
+                };
+            }
+        },
+        getPermissions: async () => null,
+        getIdentity: async () => {
+            if (user) {
+                return {
+                    ...user,
+                    avatar: user.picture,
+                };
+            }
+            return null;
+        },
+    };
+
+    return (
+        <Refine
+            LoginPage={Login}
+            authProvider={authProvider}
+            dataProvider={dataProvider(API_URL, axios)}
+            routerProvider={routerProvider}
+            notificationProvider={notificationProvider}
+            Layout={Layout}
+            catchAll={<ErrorComponent />}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+        />
+    );
 };
 
 export default App;
 ```
 
 Now every time user wants to access the app, he/she will be asked to authenticate via the login screen.
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_login.png"  alt="redwoodjs vs refine" />
@@ -966,7 +956,6 @@ Now every time user wants to access the app, he/she will be asked to authenticat
 <br/>
 
 And once the user is done, there will be an option to log out.
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_logout.png"  alt="redwoodjs vs refine" />
@@ -1002,23 +991,23 @@ import "./scaffold.css";
 import "./index.css";
 
 const auth0 = new Auth0Client({
-  domain: process.env.AUTH0_DOMAIN,
-  client_id: process.env.AUTH0_CLIENT_ID,
-  redirect_uri: process.env.AUTH0_REDIRECT_URI,
-  cacheLocation: "localstorage",
-  audience: process.env.AUTH0_AUDIENCE,
+    domain: process.env.AUTH0_DOMAIN,
+    client_id: process.env.AUTH0_CLIENT_ID,
+    redirect_uri: process.env.AUTH0_REDIRECT_URI,
+    cacheLocation: "localstorage",
+    audience: process.env.AUTH0_AUDIENCE,
 });
 
 const App = () => (
-  <FatalErrorBoundary page={FatalErrorPage}>
-    <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
-      <AuthProvider client={auth0} type="auth0">
-        <RedwoodApolloProvider>
-          <Routes />
-        </RedwoodApolloProvider>
-      </AuthProvider>
-    </RedwoodProvider>
-  </FatalErrorBoundary>
+    <FatalErrorBoundary page={FatalErrorPage}>
+        <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
+            <AuthProvider client={auth0} type="auth0">
+                <RedwoodApolloProvider>
+                    <Routes />
+                </RedwoodApolloProvider>
+            </AuthProvider>
+        </RedwoodProvider>
+    </FatalErrorBoundary>
 );
 
 export default App;
@@ -1033,58 +1022,61 @@ import { Toaster } from "@redwoodjs/web/toast";
 import { useAuth } from "@redwoodjs/auth";
 
 type LayoutProps = {
-  title: string;
-  titleTo: string;
-  buttonLabel: string;
-  buttonTo: string;
-  children: React.ReactNode;
+    title: string;
+    titleTo: string;
+    buttonLabel: string;
+    buttonTo: string;
+    children: React.ReactNode;
 };
 
 const ScaffoldLayout = ({
-  title,
-  titleTo,
-  buttonLabel,
-  buttonTo,
-  children,
+    title,
+    titleTo,
+    buttonLabel,
+    buttonTo,
+    children,
 }: LayoutProps) => {
-  const { logIn, logOut, isAuthenticated } = useAuth();
+    const { logIn, logOut, isAuthenticated } = useAuth();
 
-  return !isAuthenticated ? (
-    <div style={{ height: "100vh", display: "grid", placeItems: "center" }}>
-      <button
-        style={{
-          padding: "10px 15px",
-          backgroundColor: "#0063D1",
-          border: "none",
-          borderRadius: "5px",
-          color: "white",
-          cursor: "pointer",
-        }}
-        onClick={logIn}
-      >
-        Sign In to Redwood app
-      </button>
-    </div>
-  ) : (
-    <div className="rw-scaffold">
-      <Toaster toastOptions={{ className: "rw-toast", duration: 6000 }} />
-      <header className="rw-header">
-        <h1 className="rw-heading rw-heading-primary">
-          <Link to={routes[titleTo]()} className="rw-link">
-            {title}
-          </Link>
-        </h1>
+    return !isAuthenticated ? (
+        <div style={{ height: "100vh", display: "grid", placeItems: "center" }}>
+            <button
+                style={{
+                    padding: "10px 15px",
+                    backgroundColor: "#0063D1",
+                    border: "none",
+                    borderRadius: "5px",
+                    color: "white",
+                    cursor: "pointer",
+                }}
+                onClick={logIn}
+            >
+                Sign In to Redwood app
+            </button>
+        </div>
+    ) : (
+        <div className="rw-scaffold">
+            <Toaster toastOptions={{ className: "rw-toast", duration: 6000 }} />
+            <header className="rw-header">
+                <h1 className="rw-heading rw-heading-primary">
+                    <Link to={routes[titleTo]()} className="rw-link">
+                        {title}
+                    </Link>
+                </h1>
 
-        <Link to={routes[buttonTo]()} className="rw-button rw-button-green">
-          <div className="rw-button-icon">+</div> {buttonLabel}
-        </Link>
-        <button className="link-button" onClick={logOut}>
-          Log Out
-        </button>
-      </header>
-      <main className="rw-main">{children}</main>
-    </div>
-  );
+                <Link
+                    to={routes[buttonTo]()}
+                    className="rw-button rw-button-green"
+                >
+                    <div className="rw-button-icon">+</div> {buttonLabel}
+                </Link>
+                <button className="link-button" onClick={logOut}>
+                    Log Out
+                </button>
+            </header>
+            <main className="rw-main">{children}</main>
+        </div>
+    );
 };
 
 export default ScaffoldLayout;
@@ -1098,27 +1090,31 @@ import { Set, Router, Route } from "@redwoodjs/router";
 import ScaffoldLayout from "src/layouts/ScaffoldLayout";
 
 const Routes = () => {
-  return (
-    <Router>
-      <Set
-        wrap={ScaffoldLayout}
-        title="Posts"
-        titleTo="posts"
-        buttonLabel="New Post"
-        buttonTo="newPost"
-      >
-        <Route path="/posts/new" page={PostNewPostPage} name="newPost" />
-        <Route
-          path="/posts/{id:Int}/edit"
-          page={PostEditPostPage}
-          name="editPost"
-        />
-        <Route path="/posts/{id:Int}" page={PostPostPage} name="post" />
-        <Route path="/posts" page={PostPostsPage} name="posts" />
-        <Route path="/" page={PostPostsPage} name="posts" />
-      </Set>
-    </Router>
-  );
+    return (
+        <Router>
+            <Set
+                wrap={ScaffoldLayout}
+                title="Posts"
+                titleTo="posts"
+                buttonLabel="New Post"
+                buttonTo="newPost"
+            >
+                <Route
+                    path="/posts/new"
+                    page={PostNewPostPage}
+                    name="newPost"
+                />
+                <Route
+                    path="/posts/{id:Int}/edit"
+                    page={PostEditPostPage}
+                    name="editPost"
+                />
+                <Route path="/posts/{id:Int}" page={PostPostPage} name="post" />
+                <Route path="/posts" page={PostPostsPage} name="posts" />
+                <Route path="/" page={PostPostsPage} name="posts" />
+            </Set>
+        </Router>
+    );
 };
 
 export default Routes;
@@ -1127,7 +1123,6 @@ export default Routes;
 Next, [create a new Auth0 account](https://auth0.com/signup) if you already do not have one.
 
 Once logged in, create a new application by selecting Single page web application.
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_auth0.png"  alt="redwoodjs vs refine" />
@@ -1145,16 +1140,13 @@ After that navigate to the Settings panel and you will get the keys for domain, 
 
 Scroll down the Settings and set the callback, logout, and web origins URLs as shown below:
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_callbacks.png"  alt="redwoodjs vs refine" />
 </div>
 
 <br/>
 
-
 Go back to the refine app, and paste those environmental variables into the `.env` file in the project root as shown below:
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_env.png"  alt="redwoodjs vs refine" />
@@ -1166,7 +1158,6 @@ Now, restart the developer server for the changes to take effect. Press Ctrl+C o
 
 Now try to access the app via [http://localhost:8910](http://localhost:8910) and you will be asked to log in to view the content:
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_login.png"  alt="redwoodjs vs refine" />
 </div>
@@ -1174,8 +1165,6 @@ Now try to access the app via [http://localhost:8910](http://localhost:8910) and
 <br/>
 
 After successful login, you will be taken to the app, allowing access to all the content. There will also be an option to log out:
-
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_logout.png"  alt="redwoodjs vs refine" />
@@ -1193,7 +1182,6 @@ First, make sure to push your code to GitHub.
 
 [Create a new account](https://github.com/signup) if you do not have one already, log in and [create a new repository](https://github.com/new) to host the code.
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_repo.png"  alt="redwoodjs vs refine" />
 </div>
@@ -1210,7 +1198,6 @@ git push -u origin main
 
 Once the code is successfully pushed, refresh your GitHub repository and you should see all of your project files.
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_github.png"  alt="redwoodjs vs refine" />
 </div>
@@ -1221,8 +1208,6 @@ Next, [create a Vercel account](https://vercel.com/signup) if you do not have on
 
 Select Import from Git, which will let you set up the project from the GitHub that we just pushed.
 
-
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_vercel.png"  alt="redwoodjs vs refine" />
 </div>
@@ -1230,7 +1215,6 @@ Select Import from Git, which will let you set up the project from the GitHub th
 <br/>
 
 The only thing required for you to do is to provide the environmental keys, the same way you did in the local instance of the application. Once that's done, click on Deploy.
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_prod.png"  alt="redwoodjs vs refine" />
@@ -1241,7 +1225,6 @@ The only thing required for you to do is to provide the environmental keys, the 
 The deployment process is fully automatic and once everything is completed, you will receive a live link to your deployed project.
 
 Congratulations, your site is now live, the live link will be provided by Vercel.
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/refine_deployed.png"  alt="redwoodjs vs refine" />
@@ -1259,7 +1242,6 @@ Since we designed a separate database for our Redwood project we will first need
 
 Then [create a new project](https://railway.app/new) and pick a new Postgres instance.
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_postgres.png"  alt="redwoodjs vs refine" />
 </div>
@@ -1267,7 +1249,6 @@ Then [create a new project](https://railway.app/new) and pick a new Postgres ins
 <br/>
 
 Open the newly created Postgres instance and select the Connect tab. Here you will access the database connection keys that we will need later.
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_connect.png"  alt="redwoodjs vs refine" />
@@ -1295,7 +1276,6 @@ model Post {
 ```
 
 Now add the database connection string from Railway in the `.env` file, like this:
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_dbenv.png"  alt="redwoodjs vs refine" />
@@ -1325,7 +1305,6 @@ Now it is time to push the code to GitHub.
 
 [Create a new account](https://github.com/signup) if you do not have one already and [create a new repository](https://github.com/new).
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_repo.png"  alt="redwoodjs vs refine" />
 </div>
@@ -1342,14 +1321,11 @@ git push -u origin main
 
 Once successfully pushed, you will have the project available on the repository.
 
-
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-23-redwood-vs-refine/redwood_github.png"  alt="redwoodjs vs refine" />
 </div>
 
 <br/>
-
 
 We will use Vercel to deploy the front end.
 

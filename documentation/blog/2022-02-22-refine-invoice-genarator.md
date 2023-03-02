@@ -89,44 +89,61 @@ export const authProvider: AuthProvider = {
                 "Authorization"
             ] = `Bearer ${data.jwt}`;
 
-            return Promise.resolve();
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         }
-        return Promise.reject();
+
+        return {
+            success: false,
+            error: new Error(statusText),
+        };
     },
-    logout: () => {
+    logout: async () => {
         localStorage.removeItem(TOKEN_KEY);
-        return Promise.resolve();
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: () => {
+    onError: async () => ({}),
+    check: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
             axiosInstance.defaults.headers.common[
                 "Authorization"
             ] = `Bearer ${token}`;
-            return Promise.resolve();
+            return {
+                authenticated: true,
+            };
         }
 
-        return Promise.reject();
+        return {
+            authenticated: false,
+            logout: true,
+            error: new Error("Token not found"),
+            redirectTo: "/",
+        };
     },
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
+    getPermissions: async () => ({}),
+    getIdentity: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (!token) {
-            return Promise.reject();
+            return null;
         }
 
         const { data, status } = await strapiAuthHelper.me(token);
         if (status === 200) {
             const { id, username, email } = data;
-            return Promise.resolve({
+            return {
                 id,
                 username,
                 email,
-            });
+            };
         }
 
-        return Promise.reject();
+        return null;
     },
 };
 ```

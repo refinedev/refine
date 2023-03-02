@@ -15,7 +15,7 @@ Data that is resolved from `login` will be returned as the `data` in the query r
 ## Usage
 
 Normally refine provides a default login page. If you prefer to use this default login page, there is no need to handle login flow manually.  
-If we want to build a custom login page instead of default one that comes with refine, `useLogin` can be used like this:
+If we want to build a custom login page instead of the default one that comes with **refine**, `useLogin` can be used like this:
 
 ```tsx title="pages/customLoginPage"
 import { useLogin } from "@pankod/refine-core";
@@ -49,23 +49,7 @@ const { mutate: login } = useLogin<{ username: string; password: string }>();
 
 ## Redirection after login
 
-We have 3 options for redirecting the app after login successfully .
-
--   If promise returned from `login` is resolved with nothing, app will be redirected to the `/` route by default.
-
--   A custom url can be resolved from the promise returned from the `login` method of the [authProvider](/api-reference/core/providers/auth-provider.md).
-
-```tsx
-const authProvider: AuthProvider = {
-    ...
-    login: () => {
-        ...
-        return Promise.resolve("/custom-url");
-    }
-}
-```
-
-A custom url can be given to mutate function from the `useLogin` hook if you want to redirect yourself to a certain url.
+A custom URL can be given to mutate the function from the `useLogin` hook if you want to redirect yourself to a certain URL.
 
 ```tsx
 import { useLogin } from "@pankod/refine-core";
@@ -75,30 +59,19 @@ const { mutate: login } = useLogin();
 login({ redirectPath: "/custom-url" });
 ```
 
-Then, you can handle this url in your `login` method of the `authProvider`.
+Then, you can handle this URL in your `login` method of the `authProvider`.
 
 ```tsx
-
-const authProvider: AuthProvider = {
-    ...
-    login: ({ redirectPath }) => {
-        ...
-        return Promise.resolve(redirectPath);
-    }
-}
-
-```
-
--   If promise returned from the `login` method of the `authProvider` gets resolved with `false` no redirection will occur.
-
-```tsx
-const authProvider: AuthProvider = {
-    ...
-    login: () => {
-        ...
-        return Promise.resolve(false);
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    login: async ({ redirectPath }) => {
+        // ---
+        return {
+            success: true,
+            redirectTo: redirectPath,
+        };
+    },
+};
 ```
 
 :::caution

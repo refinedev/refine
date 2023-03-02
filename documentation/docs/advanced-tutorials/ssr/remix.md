@@ -458,25 +458,37 @@ const mockUsers = [
 ];
 
 export const authProvider: AuthProvider = {
-    login: ({ username, password, remember }) => {
+    login: async ({ username, password, remember }) => {
         // Suppose we actually send a request to the back end here.
         const user = mockUsers.find((item) => item.username === username);
 
         if (user) {
-            return Promise.resolve(user);
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         }
 
-        return Promise.reject();
+        return {
+            success: false,
+            error: new Error("Invalid username or password"),
+        };
     },
-    logout: () => {
-        return Promise.resolve("/logout");
+    logout: async () => {
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    checkError: (error) => {
+    onError: async (error) => {
         if (error && error.statusCode === 401) {
-            return Promise.reject();
+            return {
+                logout: true,
+                redirectTo: "/login",
+            };
         }
 
-        return Promise.resolve();
+        return {};
     },
     checkAuth: async ({ request, storage }) => {
         const session = await storage.getSession(request.headers.get("Cookie"));
@@ -484,15 +496,21 @@ export const authProvider: AuthProvider = {
         const user = session.get("user");
 
         if (!user) {
-            return Promise.reject();
+            return {
+                authenticated: false,
+                logout: true,
+                redirectTo: "/login",
+            };
         }
-        return Promise.resolve();
+        return {
+            authenticated: true,
+        };
     },
     getPermissions: async () => {
-        return Promise.resolve();
+        return null;
     },
-    getUserIdentity: async () => {
-        return Promise.resolve();
+    getIdentity: async () => {
+        return null;
     },
 };
 ```
@@ -747,23 +765,34 @@ export const authProvider: AuthProvider = {
         if (user) {
             // highlight-next-line
             Cookies.set(COOKIE_NAME, JSON.stringify(user));
-            return Promise.resolve();
+            return {
+                success: true,
+            };
         }
 
-        return Promise.reject();
+        return {
+            success: false,
+        };
     },
     logout: () => {
         // highlight-next-line
         Cookies.remove(COOKIE_NAME);
 
-        return Promise.resolve();
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
     },
     checkError: (error) => {
         if (error && error.statusCode === 401) {
-            return Promise.reject();
+            return {
+                error: new Error("Unauthorized"),
+                logout: true,
+                redirectTo: "/login",
+            };
         }
 
-        return Promise.resolve();
+        return {};
     },
     checkAuth: async (context) => {
         // highlight-start
@@ -781,15 +810,23 @@ export const authProvider: AuthProvider = {
         // highlight-end
 
         if (!user) {
-            return Promise.reject();
+            return {
+                authenticated: false,
+                error: new Error("Unauthorized"),
+                logout: true,
+                redirectTo: "/login",
+            };
         }
-        return Promise.resolve();
+
+        return {
+            authenticated: true,
+        };
     },
     getPermissions: async () => {
-        return Promise.resolve();
+        return null;
     },
-    getUserIdentity: async () => {
-        return Promise.resolve();
+    getIdentity: async () => {
+        return null;
     },
 };
 ```

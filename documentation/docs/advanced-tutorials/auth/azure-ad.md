@@ -227,32 +227,50 @@ const App: React.FC = () => {
     const authProvider: AuthProvider = {
         login: async () => {
             instance.loginRedirect(); // Pick the strategy you prefer i.e. redirect or popup
-            return Promise.resolve(false);
+            return {
+                success: true,
+            };
         },
-        register: async () => Promise.resolve(),
-        resetPassword: async () => Promise.resolve(),
-        updatePassword: async () => Promise.resolve(),
-        logout: async () => Promise.resolve(),
-        checkAuth: async () => {
+        register: async () => ({
+            success: true,
+        }),
+        resetPassword: async () => ({
+            success: true,
+        }),
+        updatePassword: async () => ({
+            success: true,
+        }),
+        logout: async () => ({
+            success: true,
+        }),
+        check: async () => {
             try {
                 if (account) {
                     const token = await instance.acquireTokenSilent(request);
                     localStorage.setItem(TOKEN_KEY, token.accessToken);
-                    return Promise.resolve();
+                    return {
+                        authenticated: true,
+                    };
                 } else {
-                    return Promise.reject();
+                    return {
+                        authenticated: false,
+                        redirectTo: "/login",
+                    };
                 }
             } catch (e) {
-                return Promise.reject();
+                return {
+                    authenticated: false,
+                    redirectTo: "/login",
+                };
             }
         },
-        checkError: async () => Promise.resolve(),
-        getPermissions: async () => Promise.resolve(),
-        getUserIdentity: async (): Promise<AccountInfo> => {
+        onError: async () => ({}),
+        getPermissions: async () => null,
+        getIdentity: async (): Promise<AccountInfo> => {
             if (account === null || account === undefined) {
-                return Promise.reject();
+                return null;
             }
-            return Promise.resolve(account);
+            return account;
         },
     };
 

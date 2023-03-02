@@ -62,17 +62,23 @@ import { AuthProvider } from "@pankod/refine-core";
 
 const mockUsers = [{ email: "john@mail.com" }, { email: "jane@mail.com" }];
 
-const authProvider: AuthProvider = {
-    login: ({ email, password }) => {
+const authProvider: AuthBindings = {
+    login: async ({ email, password }) => {
         // Suppose we actually send a request to the back end here.
         const user = mockUsers.find((item) => item.email === email);
 
         if (user) {
             localStorage.setItem("auth", JSON.stringify(user));
-            return Promise.resolve();
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         }
 
-        return Promise.reject();
+        return {
+            success: false,
+            error: new Error("Invalid email or password"),
+        };
     },
     ...
 };
@@ -123,13 +129,23 @@ const { mutate } = useLogin<{
 By default, the user will be redirected to the `/` route after login. If you want to redirect the user to a specific page, you can resolve the `login` method's Promise with the path of the page.
 
 ```ts
-const authProvider: AuthProvider = {
-    ...
-    login: () => {
-        ...
-        return Promise.resolve("/custom-page");
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    login: async () => {
+        // ---
+        if (user) {
+            return {
+                success: true,
+                redirectTo: "/custom-page",
+            };
+        } else {
+            return {
+                success: false,
+                redirectTo: "/register",
+            };
+        }
+    },
+};
 ```
 
 Also, you can use the `useLogin` hook's for this purpose.
@@ -143,25 +159,31 @@ mutate({ redirectPath: "/custom-page" });
 Then, you can use the `redirectPath` parameter in the `login` method to redirect the user to the specific page.
 
 ```ts
-const authProvider: AuthProvider = {
-    ...
-    login: ({ redirectPath }) => {
-        ...
-        return Promise.resolve(redirectPath);
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    login: async ({ redirectPath }) => {
+        //---
+        return {
+            success: false,
+            redirectTo: redirectPath,
+        };
+    },
+};
 ```
 
 If you don't want to redirect the user to anywhere, you can resolve the `login` method's Promise with `false`.
 
 ```ts
-const authProvider: AuthProvider = {
-    ...
-    login: () => {
-        ...
-        return Promise.resolve(false);
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    login: async () => {
+        // ---
+        return {
+            success: false,
+            redirectTo: false,
+        };
+    },
+};
 ```
 
 </details>
@@ -174,13 +196,17 @@ const authProvider: AuthProvider = {
 ```tsx title="src/authProvider.ts"
 import { AuthProvider } from "@pankod/refine-core";
 
-const authProvider: AuthProvider = {
-    login: ({ email, password }) => {
-        ...
-        return Promise.reject({
-            name: "Login Failed!",
-            message: "The email or password that you've entered doesn't match any account.",
-        });
+const authProvider: AuthBindings = {
+    login: async ({ email, password }) => {
+        // ---
+        return {
+            success: false,
+            error: {
+                name: "Login Failed!",
+                message:
+                    "The email or password that you've entered doesn't match any account.",
+            },
+        };
     },
     ...
 };
@@ -203,16 +229,23 @@ In the `login` method, we've saved the user data to the local storage when the u
 ```tsx title="src/authProvider.ts"
 import { AuthProvider } from "@pankod/refine-core";
 
-const authProvider: AuthProvider = {
-    ...
-    checkAuth: () => {
+const authProvider: AuthBindings = {
+    // ---
+    check: async () => {
         const user = localStorage.getItem("auth");
 
         if (user) {
-            return Promise.resolve();
+            return {
+                authenticated: true,
+            };
         }
 
-        return Promise.reject();
+        return {
+            authenticated: false,
+            logout: true,
+            redirectTo: "/login",
+            error: new Error("User is not authenticated"),
+        };
     },
     ...
 };
@@ -246,15 +279,16 @@ The `<Authenticated>` component makes use of the `useAuthenticated` hook. It all
 By default, the user will be redirected to `/login` if the `checkAuth` method rejects the Promise. If you want to redirect the user to a specific page, you can reject the Promise with an object that has `redirectPath` property.
 
 ```ts
-const authProvider: AuthProvider = {
-    ...
-    checkAuth: () => {
-        ...
-         return Promise.reject({
-            redirectPath: "/custom-page",
-        });
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    check: async () => {
+        // ---
+        return {
+            authenticated: false,
+            redirectTo: "/custom-page",
+        };
+    },
+};
 ```
 
 </details>
@@ -272,11 +306,14 @@ In the `login` method, we've saved the user data to the local storage when the u
 ```tsx title="src/authProvider.ts"
 import { AuthProvider } from "@pankod/refine-core";
 
-const authProvider: AuthProvider = {
-    ...
-    logout: () => {
+const authProvider: AuthBindings = {
+    // ---
+    logout: async () => {
         localStorage.removeItem("auth");
-        return Promise.resolve();
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
     },
     ...
 };
@@ -322,13 +359,16 @@ const { mutate } = useLogin<{
 By default, the user will be redirected to the `/login` route after logout. If you want to redirect the user to a specific page, you can resolve the `logout` method's Promise with the path of the page.
 
 ```ts
-const authProvider: AuthProvider = {
-    ...
-    logout: () => {
-        ...
-        return Promise.resolve("/custom-page");
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    logout: async () => {
+        // ---
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
+    },
+};
 ```
 
 Also, you can use the `useLogout` hook's for this purpose.
@@ -342,26 +382,31 @@ mutate({ redirectPath: "/custom-page" });
 Then, you can use the `redirectPath` parameter in the `logout` method to redirect the user to the specific page.
 
 ```ts
-const authProvider: AuthProvider = {
-    ...
-    logout: ({ redirectPath }) => {
-        ...
-        return Promise.resolve(redirectPath);
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    logout: async ({ redirectPath }) => {
+        // ---
+        return {
+            success: true,
+            redirectTo: redirectPath,
+        };
+    },
+};
 ```
 
 If you don't want to redirect the user to anywhere, you can resolve the `logout` method's Promise with `false`.
 
 ```ts
-
-const authProvider: AuthProvider = {
-    ...
-    logout: () => {
-        ...
-        return Promise.resolve(false);
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    logout: async () => {
+        // ---
+        return {
+            success: true,
+            redirectTo: "/false",
+        };
+    },
+};
 ```
 
 </details>
@@ -374,13 +419,16 @@ const authProvider: AuthProvider = {
 ```tsx title="src/authProvider.ts"
 import { AuthProvider } from "@pankod/refine-core";
 
-const authProvider: AuthProvider = {
-    logout: () => {
-        ...
-        return Promise.reject({
-            name: "Logout Failed!",
-            message: "Something went wrong.",
-        });
+const authProvider: AuthBindings = {
+    logout: async () => {
+        // ---
+        return {
+            success: false,
+            error: {
+                name: "Logout Failed!",
+                message: "Something went wrong.",
+            },
+        };
     },
     ...
 };
@@ -403,14 +451,18 @@ We'll use the `checkError` method to log out the user if the API returns a `401`
 ```tsx title="src/authProvider.ts"
 import { AuthProvider } from "@pankod/refine-core";
 
-const authProvider: AuthProvider = {
-    ...
-    checkError: (error) => {
+const authProvider: AuthBindings = {
+    // ---
+    onError: async (error) => {
         if (error.status === 401 || error.status === 403) {
-            return Promise.reject();
+            return {
+                logout: true,
+                redirectTo: "/login",
+                error,
+            };
         }
 
-        return Promise.resolve();
+        return null;
     },
     ...
 };
@@ -442,16 +494,16 @@ fetch("http://example.com/payment")
 By default, the user will be redirected to the `/login` route after rejecting the `checkError` method's Promise. If you want to redirect the user to a specific page, you can reject the Promise with an object that has `redirectPath` property.
 
 ```ts
-const authProvider: AuthProvider = {
-    ...
-    checkError: (error) => {
+const authProvider: AuthBindings = {
+    // ---
+    onError: async (error) => {
         if (error.status === 401 || error.status === 403) {
-            return Promise.reject({
-                redirectPath: "/custom-page",
-            });
+            return {
+                redirectTo: "/custom-page",
+            };
         }
 
-        return Promise.resolve();
+        return null;
     },
     ...
 }
@@ -479,18 +531,18 @@ const mockUsers = [
     { email: "jane@mail.com", roles: ["editor"] },
 ];
 
-const authProvider: AuthProvider = {
-    ...
-    getPermissions: () => {
+const authProvider: AuthBindings = {
+    // ---
+    getPermissions: async () => {
         const user = localStorage.getItem("auth");
 
         if (user) {
             const { roles } = JSON.parse(user);
 
-            return Promise.resolve(roles);
+            return roles;
         }
 
-        return Promise.reject();
+        return null;
     },
     ...
 };
@@ -540,18 +592,18 @@ const mockUsers = [
     { email: "jane@mail.com", roles: ["editor"] },
 ]
 
-const authProvider: AuthProvider = {
-    ...
-    getUserIdentity: () => {
+const authProvider: AuthBindings = {
+    // ---
+    getIdentity: async () => {
         const user = localStorage.getItem("auth");
 
         if (user) {
             const { email, roles } = JSON.parse(user);
 
-            return Promise.resolve({ email, roles });
+            return { email, roles };
         }
 
-        return Promise.reject();
+        return null;
     },
     ...
 };
@@ -580,25 +632,25 @@ if (data) {
 Depending on the UI framework you use, if you resolve `name` and `avatar` properties in the `getUserIdentity` method, the user's name and avatar will be shown in the header in the default layout.
 
 ```ts
-const authProvider: AuthProvider = {
-    ...
-    getUserIdentity: () => {
+const authProvider: AuthBindings = {
+    // ---
+    getIdentity: async () => {
         const user = localStorage.getItem("auth");
 
         if (user) {
             const { email, roles } = JSON.parse(user);
 
-            return Promise.resolve({
+            return {
                 email,
                 roles,
                 // highlight-start
                 name: "John Doe",
                 avatar: "https://i.pravatar.cc/300",
                 // highlight-end
-            });
+            };
         }
 
-        return Promise.reject();
+        return null;
     },
     ...
 };
@@ -621,18 +673,27 @@ import { AuthProvider } from "@pankod/refine-core";
 
 const mockUsers = [{ email: "john@mail.com" }, { email: "jane@mail.com" }];
 
-const authProvider: AuthProvider = {
-    ...
-    register: ({ email }) => {
+const authProvider: AuthBindings = {
+    // ---
+    register: async ({ email }) => {
         const user = mockUsers.find((user) => user.email === email);
 
         if (user) {
-            return Promise.reject();
+            return {
+                success: false,
+                error: {
+                    name: "Register Error",
+                    message: "User already exists",
+                },
+            };
         }
 
         mockUsers.push({ email });
 
-        return Promise.resolve();
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
     },
     ...
 };
@@ -683,13 +744,16 @@ const { mutate } = useRegister<{
 By default, the user will be redirected to the `/` route after registration. If you want to redirect the user to a specific page, you can resolve the `register` method's Promise with the path of the page.
 
 ```ts
-const authProvider: AuthProvider = {
-    ...
-    register: () => {
-        ...
-        return Promise.resolve("/custom-page");
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    register: async () => {
+        // ---
+        return {
+            success: true, // or false
+            redirectTo: "/custom-page",
+        };
+    },
+};
 ```
 
 Also, you can use the `useRegister` hook's for this purpose.
@@ -703,25 +767,31 @@ mutate({ redirectPath: "/custom-page" });
 Then, you can use the `redirectPath` parameter in the `register` method to redirect the user to the specific page.
 
 ```ts
-const authProvider: AuthProvider = {
-    ...
-    register: ({ redirectPath }) => {
-        ...
-        return Promise.resolve(redirectPath);
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    register: async ({ redirectPath }) => {
+        // ---
+        return {
+            success: true, // or false
+            redirectTo: redirectPath,
+        };
+    },
+};
 ```
 
 If you don't want to redirect the user to anywhere, you can resolve the `register` method's Promise with `false`.
 
 ```ts
-const authProvider: AuthProvider = {
-    ...
-    register: () => {
-        ...
-        return Promise.resolve(false);
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    register: async () => {
+        // ---
+        return {
+            success: true, // or false
+            redirectTo: false,
+        };
+    },
+};
 ```
 
 </details>
@@ -732,17 +802,19 @@ const authProvider: AuthProvider = {
 **refine** automatically displays an error notification when the `register` method rejects the Promise. If you want to customize the error message, you can reject the Promise with an object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
-
-const authProvider: AuthProvider = {
-    ...
-    register: () => {
-        ...
-        return Promise.reject({
-            name: "Error",
-            message: "Something went wrong!",
-        });
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    register: async () => {
+        // ---
+        return {
+            success: false,
+            error: {
+                name: "Error",
+                message: "Something went wrong!",
+            },
+        };
+    },
+};
 ```
 
 </details>
@@ -756,12 +828,25 @@ We'll show how to send a password reset link to the user's email address and res
 ```tsx title="src/authProvider.ts"
 import { AuthProvider } from "@pankod/refine-core";
 
-const authProvider: AuthProvider = {
-    ...
-    forgotPassword: ({ email }) => {
+const authProvider: AuthBindings = {
+    // ---
+    forgotPassword: async ({ email }) => {
         // send password reset link to the user's email address here
-        // if request is successful, resolve the Promise, otherwise reject it
-        return Promise.resolve();
+
+        // if request is successful
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
+
+        // if request is not successful
+        return {
+            success: false,
+            error: {
+                name: "Forgot Password Error",
+                message: "Email address does not exist",
+            },
+        };
     },
     ...
 };
@@ -808,13 +893,16 @@ const { mutate } = useForgotPassword<{
 By default, the user won't be redirected to anywhere after sending the password reset link. If you want to redirect the user to a specific page, you can resolve the `forgotPassword` method's Promise with the path of the page.
 
 ```ts
-const authProvider: AuthProvider = {
-    ...
-    forgotPassword: () => {
-        ...
-        return Promise.resolve("/custom-page");
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    forgotPassword: async () => {
+        // ---
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
+    },
+};
 ```
 
 Also, you can use the `useForgotPassword` hook's for this purpose.
@@ -828,13 +916,16 @@ useForgotPassword({ redirectPath: "/custom-page" });
 Then, you can use the `redirectPath` parameter in the `forgotPassword` method to redirect the user to the specific page.
 
 ```ts
-const authProvider: AuthProvider = {
-    ...
-    forgotPassword: ({ redirectPath }) => {
-        ...
-        return Promise.resolve(redirectPath);
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    forgotPassword: async ({ redirectPath }) => {
+        // ---
+        return {
+            success: true,
+            redirectTo: redirectPath,
+        };
+    },
+};
 ```
 
 </details>
@@ -845,16 +936,19 @@ const authProvider: AuthProvider = {
 **refine** automatically displays an error notification when the `forgotPassword` method rejects the Promise. If you want to customize the error message, you can reject the Promise with an object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
-const authProvider: AuthProvider = {
-    ...
-    forgotPassword: () => {
-        ...
-        return Promise.reject({
-            name: "Error",
-            message: "Something went wrong!",
-        });
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    forgotPassword: async () => {
+        // ---
+        return {
+            success: false,
+            error: {
+                name: "Error",
+                message: "Something went wrong!",
+            },
+        };
+    },
+};
 ```
 
 </details>
@@ -868,12 +962,25 @@ We'll show how to update the user's password and resolve the Promise.
 ```tsx title="src/authProvider.ts"
 import { AuthProvider } from "@pankod/refine-core";
 
-const authProvider: AuthProvider = {
-    ...
-    updatePassword: ({ password }) => {
+const authProvider: AuthBindings = {
+    // ---
+    updatePassword: async ({ password }) => {
         // update the user's password here
-        // if request is successful, resolve the Promise, otherwise reject it
-        return Promise.resolve();
+
+        // if request is successful
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
+
+        // if request is not successful
+        return {
+            success: false,
+            error: {
+                name: "Forgot Password Error",
+                message: "Email address does not exist",
+            },
+        };
     },
     ...
 };
@@ -900,13 +1007,18 @@ const handleUpdatePassword = ({ password, confirmPassword }) => {
 If we assume that the URL is `http://localhost:3000/reset-password?token=123`, the `updatePassword` method will get the mutation's parameters as arguments and `token` query parameter as well.
 
 ```ts
-const authProvider: AuthProvider = {
-    ...
-    updatePassword: ({ password, confirmPassword, token }) => {
+const authProvider: AuthBindings = {
+    // ---
+    updatePassword: async ({ password, confirmPassword, token }) => {
         console.log(token); // 123
-        return Promise.resolve();
-    }
-}
+
+        // if request is successful
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
+    },
+};
 ```
 
 <br />
@@ -931,13 +1043,16 @@ const { mutate } = useUpdatePassword<{
 By default, the user won't be redirected to anywhere after updating the password. If you want to redirect the user to a specific page, you can resolve the `updatePassword` method's Promise with the path of the page.
 
 ```ts
-const authProvider: AuthProvider = {
-    ...
-    updatePassword: () => {
-        ...
-        return Promise.resolve("/custom-page");
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    updatePassword: async () => {
+        // ---
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
+    },
+};
 ```
 
 Also, you can use the `useUpdatePassword` hook's for this purpose.
@@ -951,13 +1066,16 @@ useUpdatePassword({ redirectPath: "/custom-page" });
 Then, you can use the `redirectPath` parameter in the `updatePassword` method to redirect the user to the specific page.
 
 ```ts
-const authProvider: AuthProvider = {
-    ...
-    updatePassword: ({ redirectPath }) => {
-        ...
-        return Promise.resolve(redirectPath);
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    updatePassword: async ({ redirectPath }) => {
+        // ---
+        return {
+            success: true,
+            redirectTo: redirectPath,
+        };
+    },
+};
 ```
 
 </details>
@@ -968,16 +1086,19 @@ const authProvider: AuthProvider = {
 **refine** automatically displays an error notification when the `updatePassword` method rejects the Promise. If you want to customize the error message, you can reject the Promise with an object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
-const authProvider: AuthProvider = {
-    ...
-    updatePassword: () => {
-        ...
-        return Promise.reject({
-            name: "Error",
-            message: "Something went wrong!",
-        });
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    updatePassword: async () => {
+        // ---
+        return {
+            success: false,
+            error: {
+                name: "Error",
+                message: "Something went wrong!",
+            },
+        };
+    },
+};
 ```
 
 </details>
@@ -1002,10 +1123,10 @@ const mockUsers = [
 ];
 
 const App = () => {
-    const authProvider: AuthProvider = {
-        login: ({ username, password }) => {
-                // Suppose we actually send a request to the back end here.
-                const user = mockUsers.find((item) => item.username === username);
+    const authProvider: AuthBindings = {
+        login: async ({ username, password }) => {
+            // Suppose we actually send a request to the back end here.
+            const user = mockUsers.find((item) => item.username === username);
 
                 if (user) {
                     localStorage.setItem("auth", JSON.stringify(user));
@@ -1016,12 +1137,21 @@ const App = () => {
                     };
                     // highlight-end
 
-                    return Promise.resolve();
-                }
-                return Promise.reject();
-            },
-            ...
-        };
+                return {
+                    redirectTo: "/",
+                    success: true,
+                };
+            }
+            return {
+                success: false,
+                error: {
+                    name: "Login Error",
+                    message: "Username or password is incorrect",
+                },
+            };
+        },
+        // ---
+    };
 
     return (
         <Refine
@@ -1085,15 +1215,24 @@ const mockUsers = [
 const App = () => {
     const authProvider: AuthProvider = {
         //highlight-start
-        login: ({ username, password }) => {
+        login: async ({ username, password }) => {
             // Suppose we actually send a request to the back end here.
             const user = mockUsers.find((item) => item.username === username);
 
             if (user) {
                 localStorage.setItem("auth", JSON.stringify(user));
-                return Promise.resolve();
+                return {
+                    redirectTo: "/",
+                    success: true,
+                };
             }
-            return Promise.reject();
+            return {
+                success: false,
+                error: {
+                    name: "Login Error",
+                    message: "Username or password is incorrect",
+                },
+            };
         },
         //highlight-end
             ...

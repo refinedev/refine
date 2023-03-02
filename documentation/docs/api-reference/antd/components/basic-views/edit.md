@@ -242,12 +242,39 @@ const customDataProvider = {
 };
 
 const authProvider = {
-    login: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve("admin"),
-    getUserIdentity: () => Promise.resolve(),
+    login: () => {
+        return {
+            success: true,
+            redirectTo: "/",
+        };
+    },
+    register: () => {
+        return {
+            success: true,
+        };
+    },
+    forgotPassword: () => {
+        return {
+            success: true,
+        };
+    },
+    updatePassword: () => {
+        return {
+            success: true,
+        };
+    },
+    logout: () => {
+        return {
+            success: true,
+            redirectTo: "/",
+        };
+    },
+    check: () => ({
+        authenticated: true,
+    }),
+    onError: () => ({}),
+    getPermissions: () => null,
+    getIdentity: () => null,
 };
 
 // visible-block-start

@@ -166,23 +166,36 @@ import routerProvider from "@pankod/refine-react-router-v6";
 
 import { CustomPage } from "pages/custom-page";
 
-const authProvider: AuthProvider = {
-    login: (params: any) => {
-        if (params.username === "admin") {
-            localStorage.setItem("username", params.username);
-            return Promise.resolve();
+const authProvider: AuthBindings = {
+    login: async ({ email }) => {
+        if (email) {
+            localStorage.setItem("email", email);
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         }
 
-        return Promise.reject();
+        return {
+            success: false,
+            message: "Invalid email or password",
+        };
     },
-    logout: () => {
-        localStorage.removeItem("username");
-        return Promise.resolve();
+    logout: async () => {
+        localStorage.removeItem("email");
+        return { redirectTo: "/login", success: true };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: () =>
-        localStorage.getItem("username") ? Promise.resolve() : Promise.reject(),
-    getPermissions: () => Promise.resolve(["admin"]),
+    onError: async () => ({}),
+    check: async () =>
+        localStorage.getItem("email")
+            ? {
+                  authenticated: true,
+              }
+            : {
+                  authenticated: false,
+                  redirectTo: "/login",
+              },
+    getPermissions: async () => ["admin"],
 };
 
 // highlight-start
@@ -231,23 +244,36 @@ import routerProvider from "@pankod/refine-react-location";
 import { CustomPage } from "pages/custom-page";
 
 // highlight-start
-const authProvider: AuthProvider = {
-    login: (params: any) => {
-        if (params.username === "admin") {
-            localStorage.setItem("username", params.username);
-            return Promise.resolve();
+const authProvider: AuthBindings = {
+    login: async ({ email }) => {
+        if (email) {
+            localStorage.setItem("email", email);
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         }
 
-        return Promise.reject();
+        return {
+            success: false,
+            message: "Invalid email or password",
+        };
     },
-    logout: () => {
-        localStorage.removeItem("username");
-        return Promise.resolve();
+    logout: async () => {
+        localStorage.removeItem("email");
+        return { redirectTo: "/login", success: true };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: () =>
-        localStorage.getItem("username") ? Promise.resolve() : Promise.reject(),
-    getPermissions: () => Promise.resolve(["admin"]),
+    onError: async () => ({}),
+    check: async () =>
+        localStorage.getItem("email")
+            ? {
+                  authenticated: true,
+              }
+            : {
+                  authenticated: false,
+                  redirectTo: "/login",
+              },
+    getPermissions: async () => ["admin"],
 };
 // highlight-end
 
@@ -296,24 +322,36 @@ import routerProvider from "@pankod/refine-react-router-v6";
 // highlight-next-line
 import { CustomPage } from "pages/custom-page";
 
-// highlight-start
-const authProvider: AuthProvider = {
-    login: (params: any) => {
-        if (params.username === "admin") {
-            localStorage.setItem("username", params.username);
-            return Promise.resolve();
+const authProvider: AuthBindings = {
+    login: async ({ email }) => {
+        if (email) {
+            localStorage.setItem("email", email);
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         }
 
-        return Promise.reject();
+        return {
+            success: false,
+            message: "Invalid email or password",
+        };
     },
-    logout: () => {
-        localStorage.removeItem("username");
-        return Promise.resolve();
+    logout: async () => {
+        localStorage.removeItem("email");
+        return { redirectTo: "/login", success: true };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: () =>
-        localStorage.getItem("username") ? Promise.resolve() : Promise.reject(),
-    getPermissions: () => Promise.resolve(["admin"]),
+    onError: async () => ({}),
+    check: async () =>
+        localStorage.getItem("email")
+            ? {
+                  authenticated: true,
+              }
+            : {
+                  authenticated: false,
+                  redirectTo: "/login",
+              },
+    getPermissions: async () => ["admin"],
 };
 // highlight-end
 

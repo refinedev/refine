@@ -23,8 +23,8 @@ import { AuthProvider } from "@pankod/refine-core";
 const authProvider: AuthProvider = {
   ...
     // highlight-start
-    getPermissions: () => {
-        return Promise.resolve(["admin"]);
+    getPermissions: async () => {
+        return ["admin"];
     },
     // highlight-end
   ...

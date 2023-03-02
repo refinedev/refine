@@ -8,7 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-s
 hide_table_of_contents: false
 ---
 
-
 ## Introduction
 
 Building complex, data-intensive front-end user interfaces(UIs) such as admin panels, dashboards, and other internal tools from scratch can be a daunting and laborious process. React frameworks such as refine make the process easier because that is a problem they are attempting to solve.
@@ -21,11 +20,9 @@ Every data-intensive front-end application must source data from somewhere. refi
 
 All the above integrations are opt-in. In this article, we will build a simple React Admin Panel using refine. We will use Mantine as the UI component library and Strapi as our back-end service.
 
-
-
 ## What is Strapi?
 
-[Strapi](https://strapi.io/) is a popular open-source headless CMS built using Node. It is flexible and has an intuitive UI. The refine ecosystem has data providers for the most popular content management systems, such as Strapi, and cloud databases like Firebase and Supabase.  
+[Strapi](https://strapi.io/) is a popular open-source headless CMS built using Node. It is flexible and has an intuitive UI. The refine ecosystem has data providers for the most popular content management systems, such as Strapi, and cloud databases like Firebase and Supabase.
 
 While creating a project using the refine command line tool, select Strapi as your back-end service. The refine command line tool will bootstrap a refine application with all the requisite packages and functionalities.
 
@@ -49,7 +46,7 @@ function App() {
 
 ## What is Mantine?
 
-[Mantine](https://mantine.dev/) is a free, open-source MIT-licensed React components library. Mantine can help you build fully functional and accessible web applications fast. You can use it with most modern React frameworks such as Next, Gatsby, and Remix.  
+[Mantine](https://mantine.dev/) is a free, open-source MIT-licensed React components library. Mantine can help you build fully functional and accessible web applications fast. You can use it with most modern React frameworks such as Next, Gatsby, and Remix.
 
 As highlighted above, one of the benefits of using refine is the built-in support for most of the popular design systems, UI frameworks, and component libraries. Mantine is one of the component libraries for which refine has built-in support.
 
@@ -58,11 +55,7 @@ When creating a refine application using `create-refine-app`, select Mantine as 
 You can then import the refine Mantine components and hooks you want to use from the `@pankod/refine-mantine` package like so:
 
 ```ts
-import {
-  Edit,
-  useForm,
-  useSelect
-} from "@pankod/refine-mantine";
+import { Edit, useForm, useSelect } from "@pankod/refine-mantine";
 ```
 
 The refine ecosystem comprises several hooks and components for Mantine. You can read the refine [Mantine API documentation](https://refine.dev/docs/api-reference/mantine/) for more on the different Mantine hooks and Components and how to use them.
@@ -83,7 +76,6 @@ npm create refine-app@latest
 pnpm create refine-app@latest
 ```
 
-
 Be sure to respond to the command line prompts during the installation. Select `refine-react` as the project template and Strapi version 4 as the back-end service. You can choose the default for the other options. Check the guide below if you don't know how to respond to a question.
 
 ```txt
@@ -99,8 +91,7 @@ Be sure to respond to the command line prompts during the installation. Select `
 ✔ Do you want to add kbar command interface support?: · no
 ✔ Choose a package manager: · npm
 ✔ Would you mind sending us your choices so that we can improve superplate? · yes
-``` 
-
+```
 
 ### Step 2 — Launch the development server
 
@@ -119,7 +110,6 @@ pnpm run dev
 
 The command above launches the development server on local host on port 3000 in your default web browser. The landing page should look like the image below.
 
-
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -134,7 +124,6 @@ The command above launches the development server on local host on port 3000 in 
 
 If your landing page is similar to the screenshot above, you have successfully created a refine project. We will build a React admin panel by modifying the project you have just created.
 
-
 ## Built-in refine hooks and components for Mantine
 
 refine has several built-in hooks and components for Mantine. Most built-in refine Mantine hooks and components directly export or use their corresponding core Mantine hooks and components internally.
@@ -146,24 +135,22 @@ One of the hooks we will use a lot in this article is the [`useForm`](https://re
 The refine documentation does a great job of explaining the `useForm` hook. Check it out to understand the `useForm` hook in-depth and how to use it.
 
 ```tsx
-import { useForm } from "@pankod/refine-mantine"
+import { useForm } from "@pankod/refine-mantine";
 
-const {
-  saveButtonProps,
-  getInputProps
-} = useForm({
-  initialValues: {
-    title: "",
-    status: "",
-  },
-  validate: {
-    title: (value) => (value.length < 2 ? "Post title should be atleast 2 characters long" : null),
-    status: (value) =>
-      value.length <= 0 ? "Status is required" : null,
-  },
-})
+const { saveButtonProps, getInputProps } = useForm({
+    initialValues: {
+        title: "",
+        status: "",
+    },
+    validate: {
+        title: (value) =>
+            value.length < 2
+                ? "Post title should be atleast 2 characters long"
+                : null,
+        status: (value) => (value.length <= 0 ? "Status is required" : null),
+    },
+});
 ```
-
 
 ## `useTable` - For table management
 
@@ -171,10 +158,9 @@ Another hook that we will use in this article is the `useTable` hook. It is part
 
 Similarly, we will use basic layout and UI components such as `List`, `Create`, `Edit`, and `Show`. As I pointed out above, the refine documentation explains them well. Refer to the appropriate sections of the refine documentation to understand a component that might be unfamiliar to you.
 
-
 ## How to build a React admin panel with refine, Mantine and Strapi
 
-In this section, we will build a React admin panel with CRUD functionality using refine, Mantine and Strapi. We will utilize a fake [Strapi version 4 API](https://api.strapi-v4.refine.dev/api).  Follow the steps below if you have created a refine project by following the steps under the "Creating a refine application" section above.
+In this section, we will build a React admin panel with CRUD functionality using refine, Mantine and Strapi. We will utilize a fake [Strapi version 4 API](https://api.strapi-v4.refine.dev/api). Follow the steps below if you have created a refine project by following the steps under the "Creating a refine application" section above.
 
 ### How to list records
 
@@ -184,17 +170,17 @@ We need to fetch the list of posts from our Strapi API and display it when you l
 
 ```ts title="src/interfaces/index.d.ts"
 export interface ICategory {
-  id: number;
-  title: string;
+    id: number;
+    title: string;
 }
 
 export interface IPost {
-  id: number;
-  title: string;
-  content: string;
-  status: "published" | "draft" | "rejected";
-  category: ICategory;
-  createdAt: string;
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: ICategory;
+    createdAt: string;
 }
 ```
 
@@ -211,111 +197,111 @@ import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 import {
-  List,
-  Table,
-  Pagination,
-  DateField,
-  CreateButton,
+    List,
+    Table,
+    Pagination,
+    DateField,
+    CreateButton,
 } from "@pankod/refine-mantine";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-  const columns = React.useMemo<ColumnDef<any>[]>(
-    () => [
-      {
-        id: "id",
-        accessorKey: "id",
-        header: "Id",
-      },
-      {
-        id: "title",
-        accessorKey: "title",
-        header: "Title",
-        cell: function ({ getValue }) {
-          return getValue();
+    const columns = React.useMemo<ColumnDef<any>[]>(
+        () => [
+            {
+                id: "id",
+                accessorKey: "id",
+                header: "Id",
+            },
+            {
+                id: "title",
+                accessorKey: "title",
+                header: "Title",
+                cell: function ({ getValue }) {
+                    return getValue();
+                },
+            },
+
+            {
+                id: "createdAt",
+                accessorKey: "createdAt",
+                header: "Created At",
+                cell: function render({ getValue }) {
+                    return <DateField format="LL" value={getValue<any>()} />;
+                },
+            },
+        ],
+        [],
+    );
+
+    const {
+        getHeaderGroups,
+        getRowModel,
+        setOptions,
+        refineCore: {
+            setCurrent,
+            pageCount,
+            current,
+            tableQueryResult: { data: tableData },
         },
-      },
+    } = useTable({
+        columns,
+    });
 
-      {
-        id: "createdAt",
-        accessorKey: "createdAt",
-        header: "Created At",
-        cell: function render({ getValue }) {
-          return <DateField format="LL" value={getValue<any>()} />;
+    setOptions((prev) => ({
+        ...prev,
+        meta: {
+            ...prev.meta,
         },
-      },
-    ],
-    []
-  );
+    }));
 
-  const {
-    getHeaderGroups,
-    getRowModel,
-    setOptions,
-    refineCore: {
-      setCurrent,
-      pageCount,
-      current,
-      tableQueryResult: { data: tableData },
-    },
-  } = useTable({
-    columns,
-  });
-
-  setOptions((prev) => ({
-    ...prev,
-    meta: {
-      ...prev.meta,
-    },
-  }));
-
-  return (
-    <List createButtonProps={CreateButton}>
-      <Table highlightOnHover striped withBorder withColumnBorders>
-        <thead>
-          {getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => {
-                return (
-                  <th key={header.id}>
-                    {!header.isPlaceholder &&
-                      flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                  </th>
-                );
-              })}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {getRowModel().rows.map((row) => {
-            return (
-              <tr key={row.id}>
-                {row.getVisibleCells().map((cell) => {
-                  return (
-                    <td key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
-      <br />
-      <Pagination
-        position="right"
-        total={pageCount}
-        page={current}
-        onChange={setCurrent}
-      />
-    </List>
-  );
+    return (
+        <List createButtonProps={CreateButton}>
+            <Table highlightOnHover striped withBorder withColumnBorders>
+                <thead>
+                    {getHeaderGroups().map((headerGroup) => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => {
+                                return (
+                                    <th key={header.id}>
+                                        {!header.isPlaceholder &&
+                                            flexRender(
+                                                header.column.columnDef.header,
+                                                header.getContext(),
+                                            )}
+                                    </th>
+                                );
+                            })}
+                        </tr>
+                    ))}
+                </thead>
+                <tbody>
+                    {getRowModel().rows.map((row) => {
+                        return (
+                            <tr key={row.id}>
+                                {row.getVisibleCells().map((cell) => {
+                                    return (
+                                        <td key={cell.id}>
+                                            {flexRender(
+                                                cell.column.columnDef.cell,
+                                                cell.getContext(),
+                                            )}
+                                        </td>
+                                    );
+                                })}
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </Table>
+            <br />
+            <Pagination
+                position="right"
+                total={pageCount}
+                page={current}
+                onChange={setCurrent}
+            />
+        </List>
+    );
 };
 ```
 
@@ -340,7 +326,6 @@ Now we are ready to start connecting to our API by adding a resource to our appl
 
 Finally, import the `PostList` component you created above into the `App.tsx` component and add it to the `resources` prop of the `Refine` component like so:
 
-
 ```tsx title="src/App.tsx"
 ...
 //highlight-next-line
@@ -356,7 +341,7 @@ function App() {
           //highlight-start
           LoginPage={AuthPage}
           resources={[
-        
+
             {
               name: "posts",
               list: PostList,
@@ -375,7 +360,6 @@ function App() {
 <PromotionBanner title="Building a side project?" image="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" />
 
 ---
- 
 
 ### Setting AuthProvider
 
@@ -384,10 +368,10 @@ Similarly, `create-refine-app` bootstraps a refine application with default `Aut
 Of particular interest is the login method of the `authProvider`. We will use email and password to log into our application. Be sure the login method has the code below.
 
 ```ts title="src/authProvider.ts"
-export const authProvider: AuthProvider = {
+export const authProvider: AuthBindings = {
   //highlight-start
   login: async ({ email, password }) => {
-  
+
     const { data, status } = await strapiAuthHelper.login(email, password);
     //highlight-end
     if (status === 200) {
@@ -398,19 +382,24 @@ export const authProvider: AuthProvider = {
         Authorization: `Bearer ${data.jwt}`,
       };
 
-      return Promise.resolve();
+      return {
+        success: true,
+        redirectTo: "/",
+      }
     }
-    return Promise.reject();
+    return {
+      success: false,
+      message: "Invalid email or password",
+    }
   },
   ...
 };
 ```
 
-
-
 After setting up your resources and providers as described above, the landing page should redirect you to the login page. The login page looks like the image below.
 
 For this demonstration, use the credentials below to log into an existing account. It is a fake Strapi instance set up for development. Be sure to use it responsibly.
+
 > Email: demo@refine.dev
 > Password: demodemo
 
@@ -426,9 +415,7 @@ For this demonstration, use the credentials below to log into an existing accoun
 
 <br />
 
-
 When you log into your refine application, you should have a table similar to the image below. Though still incomplete, it is a simple React admin panel.
-
 
 <div class="img-container">
     <div class="window">
@@ -442,12 +429,11 @@ When you log into your refine application, you should have a table similar to th
 
 <br />
 
-
 ### How to handle relational data
 
 As highlighted in the previous section, our Strapi API has `posts` and `categories` collections with relational fields. However, Strapi version 4 doesn't populate relational data out of the box when fetching entries in a collection.
 
-[Refer to documentation for more info about relation populate.](https://refine.dev/docs/advanced-tutorials/data-provider/strapi-v4/#relations-population) 
+[Refer to documentation for more info about relation populate.](https://refine.dev/docs/advanced-tutorials/data-provider/strapi-v4/#relations-population)
 
 [Refer to tutorial section for more info about handling relationships.](https://refine.dev/docs/tutorial/adding-crud-pages/mantine/index/#handling-relationships)
 
@@ -495,7 +481,7 @@ Since each post object now has a category field, we need to add a category colum
       header: "Category",
       accessorFn: ({ category }) => {
         return category?.title;
-      },   
+      },
     },
     //highlight-end
     ...
@@ -506,7 +492,6 @@ Since each post object now has a category field, we need to add a category colum
 ```
 
 The code above should modify your table to include a Category column like the image below.
-
 
 <div class="img-container">
     <div class="window">
@@ -534,72 +519,75 @@ We need to create a component that will render when a user clicks the create but
 
 ```tsx title="src/pages/posts/create.tsx"
 import {
-  Create,
-  useForm,
-  TextInput,
-  useSelect,
-  Select,
+    Create,
+    useForm,
+    TextInput,
+    useSelect,
+    Select,
 } from "@pankod/refine-mantine";
 
 import { ICategory } from "interfaces";
 
 export const PostCreate = () => {
-  const {
-    getInputProps,
-    saveButtonProps,
-    refineCore: { formLoading },
-  } = useForm({
-    initialValues: {
-      title: "",
-      category: {
-        id: "",
-      },
-      status: "",
-    },
-    validate: {
-      title: (value) =>
-        value.length < 5 ? "Title should be atleast 5 characters long" : null,
-      category: {
-        id: (value) => (value.length <= 0 ? "Title is required" : null),
-      },
-      status: (value) => (value.length <= 0 ? "Status is required" : null),
-    },
-  });
+    const {
+        getInputProps,
+        saveButtonProps,
+        refineCore: { formLoading },
+    } = useForm({
+        initialValues: {
+            title: "",
+            category: {
+                id: "",
+            },
+            status: "",
+        },
+        validate: {
+            title: (value) =>
+                value.length < 5
+                    ? "Title should be atleast 5 characters long"
+                    : null,
+            category: {
+                id: (value) => (value.length <= 0 ? "Title is required" : null),
+            },
+            status: (value) =>
+                value.length <= 0 ? "Status is required" : null,
+        },
+    });
 
-  const { selectProps } = useSelect<ICategory>({
-    resource: "categories",
-  });
+    const { selectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
 
-  return (
-    <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-      <TextInput
-        mt="sm"
-        required={true}
-        label="Title"
-        {...getInputProps("title")}
-      />
-      <Select
-        mt={8}
-        label="Status"
-        required={true}
-        placeholder="Pick one"
-        {...getInputProps("status")}
-        data={[
-          { label: "Published", value: "published" },
-          { label: "Draft", value: "draft" },
-          { label: "Rejected", value: "rejected" },
-        ]}
-      />
-      <Select
-        mt={8}
-        label="Category"
-        required={true}
-        placeholder="Select category"
-        {...getInputProps("category.id")}
-        {...selectProps}
-      />
-    </Create>
-  );
+    return (
+        <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
+            <TextInput
+                mt="sm"
+                required={true}
+                label="Title"
+                {...getInputProps("title")}
+            />
+            <Select
+                mt={8}
+                label="Status"
+                required={true}
+                placeholder="Pick one"
+                {...getInputProps("status")}
+                data={[
+                    { label: "Published", value: "published" },
+                    { label: "Draft", value: "draft" },
+                    { label: "Rejected", value: "rejected" },
+                ]}
+            />
+            <Select
+                mt={8}
+                label="Category"
+                required={true}
+                placeholder="Select category"
+                {...getInputProps("category.id")}
+                {...selectProps}
+            />
+        </Create>
+    );
 };
 ```
 
@@ -610,12 +598,12 @@ In the above example, we used the `useForm` hook to manage the form. We passed t
 
 Open the `src/pages/posts/index.tsx` file you created in one of the previous sub-sections and add the export statement below.
 
-
 ```tsx title="src/pages/posts/index.tsx"
 ...
 //highlight-next-line
 export * from "./create";
 ```
+
 You can now import the `PostCreate` component into the `App.tsx` file and add it to the list of resources like so:
 
 ```tsx title="src/App.tsx"
@@ -623,7 +611,7 @@ You can now import the `PostCreate` component into the `App.tsx` file and add it
 import {
   ...
   //highlight-next-line
-  PostCreate, 
+  PostCreate,
 } from "./pages/posts";
 
 function App() {
@@ -660,13 +648,11 @@ Clicking the create button will now navigate you to the `/posts/create` page. Th
    
 </div>
 
-
 ### How to edit a record
 
 In the previous section, we looked at creating a new post. It is also possible to edit an existing record. To edit records in our table, let us add an `Actions` column. The column will have a button to edit the contents of each row in the table.
 
 To add a new column to our table, add a column object to the `columns` array we created in the `PostList` component. We will render an `EditButton` in our new column.
-
 
 ```tsx title="src/pages/posts/list.tsx"
 import {
@@ -706,7 +692,6 @@ const columns = React.useMemo<ColumnDef<any>[]>(
 
 After adding the code above, your table should include the `Actions` column. Clicking the edit button at the moment will again redirect you to a non-existent page.
 
-
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -723,70 +708,75 @@ Let us create the component that will render when a user clicks the edit button.
 
 Create the `src/pages/posts/edit.tsx` file into which copy and paste the code below.
 
-
 <details>
 <summary>Show code</summary>
 <p>
 
-
 ```tsx title="src/pages/posts/edit.tsx"
 import {
-  Edit,
-  useForm,
-  TextInput,
-  Select,
-  useSelect,
+    Edit,
+    useForm,
+    TextInput,
+    Select,
+    useSelect,
 } from "@pankod/refine-mantine";
 
 import { ICategory } from "interfaces";
 
 export const PostEdit = () => {
-  const {
-    getInputProps,
-    saveButtonProps,
-    refineCore: { queryResult },
-  } = useForm({
-    initialValues: {
-      id: "",
-      title: "",
-      category: {
-        id: "",
-      },
-    },
-    refineCoreProps: {
-      metaData: {
-        populate: ["category"],
-      },
-    },
-    validate: {
-      title: (value) =>
-        value.length < 5 ? "Title should be atleast 5 characters long" : null,
-      category: {
-        id: (value) => (value.length <= 0 ? "Title is required" : null),
-      },
-    },
-  });
+    const {
+        getInputProps,
+        saveButtonProps,
+        refineCore: { queryResult },
+    } = useForm({
+        initialValues: {
+            id: "",
+            title: "",
+            category: {
+                id: "",
+            },
+        },
+        refineCoreProps: {
+            metaData: {
+                populate: ["category"],
+            },
+        },
+        validate: {
+            title: (value) =>
+                value.length < 5
+                    ? "Title should be atleast 5 characters long"
+                    : null,
+            category: {
+                id: (value) => (value.length <= 0 ? "Title is required" : null),
+            },
+        },
+    });
 
-  const postData = queryResult?.data?.data;
-  const { selectProps } = useSelect<ICategory>({
-    resource: "categories",
-    defaultValue: postData?.category?.id,
-  });
+    const postData = queryResult?.data?.data;
+    const { selectProps } = useSelect<ICategory>({
+        resource: "categories",
+        defaultValue: postData?.category?.id,
+    });
 
-  return (
-    <Edit saveButtonProps={saveButtonProps}>
-      <TextInput mt="sm" disabled label="Id" {...getInputProps("id")} />
-      <TextInput mt="sm" required label="Title" {...getInputProps("title")} />
-      <Select
-        mt={8}
-        label="Category"
-        required
-        placeholder="Select category"
-        {...selectProps}
-        {...getInputProps("category.id")}
-      />
-    </Edit>
-  );
+    return (
+        <Edit saveButtonProps={saveButtonProps}>
+            <TextInput mt="sm" disabled label="Id" {...getInputProps("id")} />
+            <TextInput
+                mt="sm"
+                required
+                label="Title"
+                {...getInputProps("title")}
+            />
+            <Select
+                mt={8}
+                label="Category"
+                required
+                placeholder="Select category"
+                {...selectProps}
+                {...getInputProps("category.id")}
+            />
+        </Edit>
+    );
 };
 ```
 
@@ -804,10 +794,10 @@ Finally, add the `PostEdit` component to the `resources` prop of your `Refine` c
 
 ```tsx title="src/App.tsx"
 ...
-import { 
+import {
   ...
   //highlight-next-line
-  PostEdit 
+  PostEdit
 } from "./pages/posts";
 
 function App() {
@@ -844,12 +834,12 @@ Clicking the edit button should now redirect you to a page for editing the conte
    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Frefine-project-edit-page.png"  alt="react admin panel" />
 </div>
 
-### How to delete  a record
+### How to delete a record
 
 You can use two methods to delete records in a collection. These methods are:
 
-- Using the delete action button on each table row
-- Using the delete button on the edit page
+-   Using the delete action button on each table row
+-   Using the delete button on the edit page
 
 #### How to add delete action button on each table row
 
@@ -866,7 +856,6 @@ import {
 We will add the `DeleteButton` we imported above to every row in our table under the `Actions` column. The columns array we declared while creating the table in one of the sections above contains an object with the id `actions`. That object defines our `Actions` column. We will add the `DeleteButton` to it.
 
 The cell method of the `Actions` column object returns the `Group` Mantine UI component. Add the `DeleteButton` so that it is a child of the `Group` component like so:
-
 
 ```tsx title="src/pages/posts/list.tsx"
 ...
@@ -919,7 +908,6 @@ After making the above changes, your table will have the delete action button li
 
 Instead of adding a delete button to each row in a table, you can also add it to the edit page. This time, we will modify the `resources` prop of the `Refine` component. Add the `canDelete` prop to the `posts` resource like so:
 
-
 ```tsx title="src/App.tsx"
 ...
 
@@ -947,7 +935,6 @@ function App() {
 }
 ```
 
-
 Your edit page should now include a delete button on the bottom right.
 
 <div class="img-container">
@@ -961,12 +948,11 @@ Your edit page should now include a delete button on the bottom right.
 
 ## How to implement mutation mode
 
-Mutation mode is a handy feature in refine when performing side effects.  It can help you provide a better user experience to your clients.  You can configure your refine app to use any of the three mutation modes below.
+Mutation mode is a handy feature in refine when performing side effects. It can help you provide a better user experience to your clients. You can configure your refine app to use any of the three mutation modes below.
 
-- Pessimistic
-- Optimistic
-- Undoable
-
+-   Pessimistic
+-   Optimistic
+-   Undoable
 
 ### Pessimistic mutation mode
 
@@ -993,7 +979,7 @@ function App() {
           ...
           //highlight-next-line
           options = {{ mutationMode: "optimistic"}}
-          
+
         />
       </NotificationsProvider>
     </MantineProvider>
@@ -1018,14 +1004,13 @@ function App() {
           ...
           //highlight-next-line
           options = {{ syncWithLocation: true}}
-          
+
         />
       </NotificationsProvider>
     </MantineProvider>
   );
 }
 ```
-
 
 ## Using the refine Mantine inferencer
 
@@ -1083,7 +1068,6 @@ When looking to build a React admin panel, refine is one of the react frameworks
 Furthermore, refine has out-of-the-box support for authentication, i18n, routing, and state management. The refine command line tool can get you up and running instantly with all the necessary configurations for a basic refine project. You can modify the default settings to suit your needs.
 
 All the refine features I have highlighted above will significantly increase your development speed, improve your development experience and reduce time to production, especially when building complex front-end applications.
-
 
 ## Live CodeSandbox Example
 

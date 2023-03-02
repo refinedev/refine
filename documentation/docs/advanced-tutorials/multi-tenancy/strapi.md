@@ -48,51 +48,82 @@ const strapiAuthHelper = AuthHelper(API_URL + "/api");
 
 export const authProvider: AuthProvider = {
     login: async ({ username, password }) => {
-        const { data, status } = await strapiAuthHelper.login(
-            username,
-            password,
-        );
-        if (status === 200) {
-            localStorage.setItem(TOKEN_KEY, data.jwt);
+        try {
+            const { data, status } = await strapiAuthHelper.login(
+                username,
+                password,
+            );
+            if (status === 200) {
+                localStorage.setItem(TOKEN_KEY, data.jwt);
 
-            // set header axios instance
-            axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${data.jwt}`;
-            return Promise.resolve();
+                // set header axios instance
+                axiosInstance.defaults.headers.common[
+                    "Authorization"
+                ] = `Bearer ${data.jwt}`;
+
+                return {
+                    success: true,
+                };
+            }
+        } catch (error: any) {
+            return {
+                success: false,
+                error: {
+                    name: error.response.data.error.name,
+                    message: error.response.data.error.message,
+                },
+            };
         }
-        return Promise.reject();
+
+        return {
+            success: false,
+            error: new Error("Invalid username or password"),
+        };
     },
-    logout: () => {
+    logout: async () => {
         localStorage.removeItem(TOKEN_KEY);
-        return Promise.resolve();
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: () => {
+    onError: async () => ({}),
+    check: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
-            axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`,
-            return Promise.resolve();
+            axiosInstance.defaults.headers.common[
+                "Authorization"
+            ] = `Bearer ${token}`;
+            return {
+                authenticated: true,
+            };
         }
 
-        return Promise.reject();
+        return {
+            authenticated: false,
+            error: new Error("Invalid token"),
+            logout: true,
+            redirectTo: "/login",
+        };
     },
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
+    getPermissions: async () => null,
+    getIdentity: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (!token) {
-            return Promise.reject();
+            return null;
         }
 
         const { data, status } = await strapiAuthHelper.me(token);
         if (status === 200) {
             const { id, username, email } = data;
-            return Promise.resolve({
+            return {
                 id,
                 username,
                 email,
-            });
+            };
         }
 
-        return Promise.reject();
+        return null;
     },
 };
 ```

@@ -133,30 +133,59 @@ const App = () => {
         return <span>loading...</span>;
     }
 
-    const authProvider: AuthProvider = {
-        login: () => {
-            return Promise.resolve();
+    const authProvider: AuthBindings = {
+        login: async () => {
+            return {
+                success: true,
+            };
         },
-        logout: () => {
+        logout: async () => {
             logout({ returnTo: window.location.origin });
-            return Promise.resolve("/");
+            return {
+                success: true,
+            };
         },
-        checkError: () => Promise.resolve(),
-        checkAuth: () => {
-            if (isAuthenticated) {
-                return Promise.resolve();
+        onError: async () => {
+            return {};
+        },
+        check: async () => {
+            try {
+                const token = await getIdTokenClaims();
+                if (token) {
+                    axios.defaults.headers.common = {
+                        Authorization: `Bearer ${token.__raw}`,
+                    };
+                    return {
+                        authenticated: true,
+                    };
+                } else {
+                    return {
+                        authenticated: false,
+                        error: new Error("Token not found"),
+                        redirectTo: "/login",
+                        logout: true,
+                    };
+                }
+            } catch (error: any) {
+                return {
+                    authenticated: false,
+                    error: new Error(error),
+                    redirectTo: "/login",
+                    logout: true,
+                };
             }
 
             return Promise.reject();
         },
-        getPermissions: () => Promise.resolve(),
-        getUserIdentity: () => {
+        getPermissions: async () => null,
+        getIdentity: async () => {
             if (user) {
-                return Promise.resolve({
+                return {
                     ...user,
                     avatar: user.picture,
-                });
+                };
             }
+            return null;
         },
     };
 
