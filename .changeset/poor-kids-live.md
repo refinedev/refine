@@ -6,7 +6,7 @@ All **Material UI** components re-exported from `@pankod/refine-mui` have been r
 
 If the packages are not installed, you can install them with your package manager:
 
-> You don't have to install all of packages. You can install only the packages that you use.
+> You don't have to install all of these packages below. Only install the packages you use.
 
 ```bash
 npm install @mui/material @emotion/react @emotion/styled @mui/lab @mui/x-data-grid

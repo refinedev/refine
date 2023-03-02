@@ -14,9 +14,9 @@
 "@pankod/refine-medusa": minor
 ---
 
--   `metaData` props is deprecated for all data provider methods. Use `meta` prop instead.
+-   `metaData` prop is now deprecated for all data provider methods. Use `meta` prop instead.
 
-    If you provide `metaData` with **refine** hooks or components, the `meta` value will be same as your provided `metaData` value.
+    > For backward compatibility, we still support `metaData` prop with refine v4.
 
     ```diff
     create: async ({
@@ -27,9 +27,9 @@
     },
     ```
 
--   `sort`, `hasPagination`, and `metaData` paramaters of `getList` method is deprecated. Use `sorters`, `pagination`, and `meta` parameters instead.
+-   `sort`, `hasPagination`, and `metaData` parameters of `getList` method are deprecated. Use `sorters`, `pagination`, and `meta` parameters instead.
 
-    If you provide `sort`, `hasPagination` or `metaData` with **refine** hooks or components, the `sorters`, `pagination.mode` or `meta` value will be same as your provided prop value.
+    > For backward compatibility, we still support `sort`, `hasPagination` and `metaData` props with refine v4.
 
     ```diff
     getList: async ({

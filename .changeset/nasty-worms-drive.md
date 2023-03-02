@@ -20,7 +20,7 @@ All **Chakra UI** components re-exported from `@pankod/refine-chakra-ui` have be
 
 If the packages are not installed, you can install them with your package manager:
 
-> You don't have to install all of packages. You can install only the packages that you use.
+> You don't have to install all of these packages below. Only install the packages you use.
 
 ```bash
 npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion

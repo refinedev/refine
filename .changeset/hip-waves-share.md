@@ -2,7 +2,7 @@
 "@pankod/refine-antd": minor
 ---
 
--   `sort` props of `useCheckboxGroup` hook is deprecated. Use `sorters` prop instead.
+-   `useCheckboxGroup`'s `sort` prop is deprecated. Use `sorters` prop instead.
 
 ```diff
 useCheckboxGroup({
@@ -11,7 +11,7 @@ useCheckboxGroup({
 })
 ```
 
--   `sort` props of `useSelect` hook is deprecated. Use `sorters` prop instead.
+-   `useSelect`'s `sort` prop is deprecated. Use `sorters` prop instead.
 
 ```diff
 useSelect({
@@ -20,7 +20,7 @@ useSelect({
 })
 ```
 
--   `sort` props of `useRadioGroup` hook is deprecated. Use `sorters` prop instead.
+-   `useRadioGroup`'s `sort` prop is deprecated. Use `sorters` prop instead.
 
 ```diff
 useRadioGroup({
@@ -29,7 +29,7 @@ useRadioGroup({
 })
 ```
 
--   `resourceName` props of `useImport` hook is deprecated. Use `resource` prop instead.
+-   `useImport`'s `resourceName` prop is deprecated. Use `resource` prop instead.
 
 ```diff
 useImport({

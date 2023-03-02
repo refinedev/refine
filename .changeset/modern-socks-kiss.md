@@ -2,7 +2,7 @@
 "@pankod/refine-mantine": minor
 ---
 
--   `sort` props of `useSelect` hook is deprecated. Use `sorters` prop instead.
+-   `useSelect`'s `sort` prop is now deprecated. Use `sorters` prop instead.
 
 ```diff
 useSelect({

@@ -2,4 +2,4 @@
 "@pankod/refine-antd-audit-log": minor
 ---
 
-Used new props with deprecated props to ensure backward compatibility.
+-   `resource.meta` prop is added to `useLogList`. To ensure backward compatibility, `resource.options` prop will be used if `resource.meta` prop is not provided.
