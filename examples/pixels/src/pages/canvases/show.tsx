@@ -3,8 +3,9 @@ import {
     useCreate,
     useGetIdentity,
     useNavigation,
-    useRouterContext,
     useShow,
+    useParsed,
+    useIsAuthenticated,
 } from "@pankod/refine-core";
 import { useModal } from "@pankod/refine-antd";
 
@@ -23,14 +24,12 @@ const { Title } = Typography;
 type Colors = typeof colors;
 
 export const CanvasShow: React.FC = () => {
-    const { useLocation } = useRouterContext();
-    const { pathname } = useLocation();
+    const { pathname } = useParsed();
     const [color, setColor] = useState<Colors[number]>("black");
     const { modalProps, show, close } = useModal();
+    const { data: identity } = useGetIdentity<any>();
+    const { data: { authenticated } = {} } = useIsAuthenticated();
 
-    const { data: identity } = useGetIdentity({
-        v3LegacyAuthProviderCompatible: true,
-    });
     const {
         queryResult: { data: { data: canvas } = {} },
     } = useShow<Canvas>();
@@ -38,8 +37,12 @@ export const CanvasShow: React.FC = () => {
     const { list, push } = useNavigation();
 
     const onSubmit = (x: number, y: number) => {
-        if (!identity) {
-            return push(`/login?to=${encodeURIComponent(pathname)}`);
+        if (!authenticated) {
+            if (pathname) {
+                return push(`/login?to=${encodeURIComponent(pathname)}`);
+            }
+
+            return push(`/login`);
         }
 
         if (typeof x === "number" && typeof y === "number" && canvas?.id) {
@@ -52,7 +55,7 @@ export const CanvasShow: React.FC = () => {
                     canvas_id: canvas?.id,
                     user_id: identity.id,
                 },
-                metaData: {
+                meta: {
                     canvas,
                 },
                 successNotification: false,
