@@ -60,23 +60,23 @@ Additionally, the auth hooks no longer have default redirection paths. This beha
 
 ```diff
 const authProvider = {
-    login: ({ email, password }) => {
+    login: async ({ email, password }) => {
         const user = mockUsers.find((item) => item.email === email);
 
         if (user) {
             localStorage.setItem("auth", JSON.stringify(user));
 -           return Promise.resolve();
-+           return Promise.resolve({
++           return {
 +               success: true,
 +               redirectTo: "/",
-+           });
++           };
         }
 
 -       return Promise.reject();
-+       return Promise.resolve({
++       return {
 +           success: false,
 +           error: new Error("Invalid email or password"),
-+       });
++       };
     },
 }
 ```
@@ -98,13 +98,13 @@ type AuthActionResponse = {
 
 ```diff
 const authProvider = {
-    logout: ({ email, password }) => {
+    logout: async ({ email, password }) => {
         localStorage.removeItem("auth");
 -       return Promise.resolve();
-+       return Promise.resolve({
++       return {
 +          success: true,
 +          redirectTo: "/login",
-+       });
++       };
     },
 }
 ```
@@ -126,27 +126,27 @@ type AuthActionResponse = {
 
 ```diff
 const authProvider = {
-    register: ({ email, password }) => {
+    register: async ({ email, password }) => {
         const user = mockUsers.find((item) => item.email === email);
 
         if (user) {
 -           return Promise.reject();
-+           return Promise.resolve({
++           return {
 +               success: false,
 +               error: {
 +                   name: "Register Error"",
 +                   message: "User already exists",
 +               },
-+           });
++           };
         }
 
         mockUsers.push({ email });
 
 -       return Promise.resolve();
-+       return Promise.resolve({
++       return {
 +           success: true,
 +           redirectTo: "/",
-+       });
++       };
     },
 }
 ```
@@ -159,25 +159,25 @@ const authProvider = {
 
 ```diff
 const authProvider = {
-    forgotPassword: ({ password }) => {
+    forgotPassword: async ({ password }) => {
         // send password reset link to the user's email address here
 
         // if request is successful
 -       return Promise.resolve();
-+       return Promise.resolve({
++       return {
 +           success: true,
 +           redirectTo: "/login",
-+       });
++       };
 
         // if request is not successful
 -       return Promise.reject();
-+       return Promise.resolve({
++       return {
 +           success: false,
 +           error: {
 +               name: "Forgot Password Error",
 +               message: "Email address does not exist",
 +           },
-+       });
++       };
     },
 };
 ```
@@ -199,25 +199,25 @@ type AuthActionResponse = {
 
 ```diff
 const authProvider = {
-    updatePassword: ({ password }) => {
+    updatePassword: async ({ password }) => {
         // update the user's password here
 
         // if request is successful
 -       return Promise.resolve();
-+       return Promise.resolve({
++       return {
 +           success: true,
 +           redirectTo: "/login",
 +       });
 
         // if request is not successful
 -       return Promise.reject();
-+       return Promise.resolve({
++       return {
 +           success: false,
 +           error: {
 +               name: "Forgot Password Error",
 +               message: "Email address does not exist",
 +           },
-+       });
++       };
     },
 };
 ```
@@ -241,24 +241,24 @@ type AuthActionResponse = {
 
 ```diff
 const authProvider = {
--   checkAuth: () => {
-+   check: () => {
+-   checkAuth: async () => {
++   check: async () => {
         const user = localStorage.getItem("auth");
 
         if (user) {
 -           return Promise.resolve();
-+           return Promise.resolve({
++           return {
 +               authenticated: true,
-+           });
++           };
         }
 
 -       return Promise.reject();
-+       return Promise.resolve({
++       return {
 +           authenticated: false,
 +           redirectTo: "/login",
 +           logout: true,
 +           error: new Error("User not found"),
-+       });
++       };
     },
 };
 ```
@@ -282,19 +282,19 @@ type CheckResponse = {
 
 ```diff
 const authProvider = {
--   checkError: (error) => {
-+   onError: (error) => {
+-   checkError: async (error) => {
++   onError: async (error) => {
         if (error.status === 401 || error.status === 403) {
 -           return Promise.reject();
-+           return Promise.resolve({
++           return {
 +               redirectTo: "/login",
 +               logout: true,
 +               error: error,
-+           });
++           };
         }
 
 -       return Promise.reject();
-+       return Promise.resolve({});
++       return {};
     },
 };
 ```
@@ -313,17 +313,17 @@ type OnErrorResponse = {
 
 ```diff
 const authProvider = {
-    getPermissions: () => {
+    getPermissions: async () => {
         const user = localStorage.getItem("auth");
 
         if (user) {
             const { roles } = JSON.parse(user);
 
-            return Promise.resolve(roles);
+            return roles;
         }
 
 -        return Promise.reject();
-+        return Promise.resolve();
++        return null;
     },
 };
 ```
@@ -339,8 +339,8 @@ type PermissionResponse = unknown;
 
 ```diff
 const authProvider: AuthProvider = {
--   getUserIdentity: () => {
-+   getIdentity: () => {
+-   getUserIdentity: async () => {
++   getIdentity: async () => {
         const user = localStorage.getItem("auth");
 
         if (user) {
@@ -350,7 +350,7 @@ const authProvider: AuthProvider = {
         }
 
 -        return Promise.reject();
-+        return Promise.resolve();
++        return null;
     },
 };
 ```
