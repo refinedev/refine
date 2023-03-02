@@ -19,7 +19,7 @@ Let's say that you want to show the user's name.
 We have a logic in [`authProvider`](/api-reference/core/providers/auth-provider.md)'s `getIdentity` method like below.
 
 ```tsx
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     // ---
     // highlight-start
     getIdentity: () =>

@@ -71,17 +71,17 @@ const { mutate: updatePassword } = useUpdatePassword<{ newPassword: string }>();
 `useUpdatePassword` gives you query strings for the `updatePassword` method from `authProvider`. If you have a logic that sends a password regeneration email to the email address while resetting the password and proceeds through the access token. You can use `queryStrings` variable `updatePassword` method from `authProvider`. For example, your regeneration link is `YOUR_DOMAIN/update-password?token=123`. You can access the token from the parameters of the URL.
 
 ```tsx
-const authProvider: AuthProvider = {
-    ...
+const authProvider: AuthBindings = {
+    // ---
     updatePassword: (params) => {
         // you can access query strings from params.queryStrings
         console.log(params.token);
-        if(param.token === "123") {
+        if (param.token === "123") {
             // your logic to update the password
         }
-        ...
-    }
-}
+        // ---
+    },
+};
 ```
 
 :::
