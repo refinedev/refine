@@ -1057,5 +1057,5 @@ interface FormPropsType extends UseFormProps {
 [forgot-password]: /docs/api-reference/core/providers/auth-provider/#forgotpassword
 [update-password]: /docs/api-reference/core/providers/auth-provider/#updatepassword
 [get-permissions]: /docs/api-reference/core/providers/auth-provider/#getpermissions-
-[check-auth]: /docs/api-reference/core/providers/auth-provider/#checkauth-
+[check-auth]: /docs/api-reference/core/providers/auth-provider/#check-
 [logout]: /docs/api-reference/core/providers/auth-provider/#logout-
