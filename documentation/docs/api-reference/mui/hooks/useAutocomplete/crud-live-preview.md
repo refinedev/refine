@@ -3,7 +3,8 @@ setInitialRoutes(["/posts/create"]);
 // visible-block-start
 import { Create, useAutocomplete } from "@pankod/refine-mui";
 import { Box, Autocomplete, TextField } from "@mui/material";
-import { useForm, Controller } from "@pankod/refine-react-hook-form";
+import { useForm } from "@pankod/refine-react-hook-form";
+import { Controller } from "react-hook-form";
 
 interface ICategory {
     id: number;

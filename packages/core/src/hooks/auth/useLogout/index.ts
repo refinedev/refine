@@ -145,34 +145,38 @@ export function useLogout<TVariables = {}>({
         Error,
         (TVariables & Variables) | void,
         unknown
-    >(["useLogout"], legacyLogoutFromContext, {
-        onSuccess: (data, variables) => {
-            const redirectPath = variables?.redirectPath ?? data;
+    >(
+        ["useLogout", "v3LegacyAuthProviderCompatible"],
+        legacyLogoutFromContext,
+        {
+            onSuccess: (data, variables) => {
+                const redirectPath = variables?.redirectPath ?? data;
 
-            if (redirectPath === false) {
-                return;
-            }
-
-            if (redirectPath) {
-                if (routerType === "legacy") {
-                    push(redirectPath);
-                } else {
-                    go({ to: redirectPath });
+                if (redirectPath === false) {
+                    return;
                 }
-                return;
-            }
 
-            if (routerType === "legacy") {
-                push("/login");
-            } else {
-                go({ to: "/login" });
-            }
+                if (redirectPath) {
+                    if (routerType === "legacy") {
+                        push(redirectPath);
+                    } else {
+                        go({ to: redirectPath });
+                    }
+                    return;
+                }
+
+                if (routerType === "legacy") {
+                    push("/login");
+                } else {
+                    go({ to: "/login" });
+                }
+            },
+            onError: (error: any) => {
+                open?.(buildNotification(error));
+            },
+            ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
         },
-        onError: (error: any) => {
-            open?.(buildNotification(error));
-        },
-        ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
-    });
+    );
 
     return v3LegacyAuthProviderCompatible
         ? v3LegacyAuthProviderCompatibleMutation

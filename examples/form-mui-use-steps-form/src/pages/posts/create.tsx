@@ -13,7 +13,9 @@ import {
     useMediaQuery,
 } from "@mui/material";
 
-import { Controller, useStepsForm } from "@pankod/refine-react-hook-form";
+import { useStepsForm } from "@pankod/refine-react-hook-form";
+
+import { Controller } from "react-hook-form";
 
 import { ICategory, IPost } from "interfaces";
 

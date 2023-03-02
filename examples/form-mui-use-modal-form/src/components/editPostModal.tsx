@@ -12,10 +12,9 @@ import {
     TextField,
 } from "@mui/material";
 
-import {
-    Controller,
-    UseModalFormReturnType,
-} from "@pankod/refine-react-hook-form";
+import { UseModalFormReturnType } from "@pankod/refine-react-hook-form";
+
+import { Controller } from "react-hook-form";
 
 import { ICategory, IPost } from "interfaces";
 

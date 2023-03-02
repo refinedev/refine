@@ -173,7 +173,7 @@ export function useUpdatePassword<
         TVariables,
         unknown
     >(
-        ["useUpdatePassword"],
+        ["useUpdatePassword", "v3LegacyAuthProviderCompatible"],
         async (variables) => {
             return legacyUpdatePasswordFromContext?.({
                 ...params,

@@ -136,30 +136,34 @@ export function useRegister<TVariables = {}>({
         Error,
         TVariables,
         unknown
-    >(["useRegister"], legacyRegisterFromContext, {
-        onSuccess: (redirectPathFromAuth) => {
-            if (redirectPathFromAuth !== false) {
-                if (redirectPathFromAuth) {
-                    if (routerType === "legacy") {
-                        replace(redirectPathFromAuth);
+    >(
+        ["useRegister", "v3LegacyAuthProviderCompatible"],
+        legacyRegisterFromContext,
+        {
+            onSuccess: (redirectPathFromAuth) => {
+                if (redirectPathFromAuth !== false) {
+                    if (redirectPathFromAuth) {
+                        if (routerType === "legacy") {
+                            replace(redirectPathFromAuth);
+                        } else {
+                            go({ to: redirectPathFromAuth, type: "replace" });
+                        }
                     } else {
-                        go({ to: redirectPathFromAuth, type: "replace" });
+                        if (routerType === "legacy") {
+                            replace("/");
+                        } else {
+                            go({ to: "/", type: "replace" });
+                        }
                     }
-                } else {
-                    if (routerType === "legacy") {
-                        replace("/");
-                    } else {
-                        go({ to: "/", type: "replace" });
-                    }
+                    close?.("register-error");
                 }
-            }
-            close?.("register-error");
+            },
+            onError: (error: any) => {
+                open?.(buildNotification(error));
+            },
+            ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
         },
-        onError: (error: any) => {
-            open?.(buildNotification(error));
-        },
-        ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
-    });
+    );
 
     return v3LegacyAuthProviderCompatible
         ? v3LegacyAuthProviderCompatibleMutation
