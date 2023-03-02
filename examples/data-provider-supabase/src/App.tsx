@@ -98,7 +98,7 @@ const authProvider: AuthBindings = {
 
         return {
             success: false,
-            error: new Error("Login failed"),
+            error: new Error("Register failed"),
         };
     },
     forgotPassword: async ({ email }) => {

@@ -69,17 +69,18 @@ const authProvider: AuthBindings = {
                 return {
                     authenticated: false,
                     redirectTo: "/login",
+                    logout: true,
                 };
             }
 
             return {
                 authenticated: true,
-                redirectTo: "/login",
             };
         } catch (error: any) {
             return {
                 authenticated: false,
                 redirectTo: "/login",
+                logout: true,
                 error,
             };
         }
