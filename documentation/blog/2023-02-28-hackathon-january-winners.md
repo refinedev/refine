@@ -19,8 +19,6 @@ We would like to thank all the participants who took part in this hackathon. Aft
 
 ## Best Overall Project
 
-
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-28-hackathon-january-winners%2FGroup%20767.png"  alt="react hackathon" />
 </div>
@@ -34,13 +32,10 @@ refine-XR is a CRUD-based management system that enables users to manage 3D asse
 The system comprises a 3D viewer within the admin dashboard, enabling users to configure WebXR experiences using various input options. Additionally, users can directly publish their experiences within the system.
 
 Author: [HiuKim Yuen](https://twitter.com/hiukim528)
-GitHub: [refineXR](https://github.com/hiukim/refine-xr)  
+GitHub: [refineXR](https://github.com/hiukim/refine-xr)
 Prize: $1500 + refine, Strapi, Appwrite, MeiliSearch, and Medusa Swag kits!
 
-
-## Most Technically Impressive 
-
-
+## Most Technically Impressive
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-28-hackathon-january-winners%2FGroup%20769.png"  alt="react hackathon" />
@@ -50,16 +45,15 @@ Prize: $1500 + refine, Strapi, Appwrite, MeiliSearch, and Medusa Swag kits!
 
 ### JourneyLog
 
-This refine  CRUD application is designed to be simple with the key objective being speedily planning a trip. Users can input the name of their journey, general information such as dates, and preferred mode of transportation.
+This refine CRUD application is designed to be simple with the key objective being speedily planning a trip. Users can input the name of their journey, general information such as dates, and preferred mode of transportation.
 
 The second step is to select the stops on the trip, with the aid of Google Maps API. The system automatically generates a list of routes with corresponding distances and durations for quick review.
 
-Author: [Federico Bassini](https://twitter.com/hiukim528)  
-GitHub: [JourneyLog](https://github.com/ffex/JourneyLog)    
+Author: [Federico Bassini](https://twitter.com/hiukim528)
+GitHub: [JourneyLog](https://github.com/ffex/JourneyLog)
 Prize: $300 + refine, Strapi, Appwrite, MeiliSearch, and Medusa Swag kits!
 
-## Most Visually Pleasing 
-
+## Most Visually Pleasing
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-28-hackathon-january-winners%2FGroup%20768.png"  alt="react hackathon" />
@@ -67,16 +61,13 @@ Prize: $300 + refine, Strapi, Appwrite, MeiliSearch, and Medusa Swag kits!
 
 <br/>
 
-
-
 ### MealMind
 
 Revolutionize your meal planning and enjoy eating again with MealMind, the open-source app for people with picky eating habits and ADHD.
 
-Author: [Katya Sarmiento](https://www.linkedin.com/in/katyasarmiento/)   
-GitHub: [Meal Mind](https://github.com/Kitkatnik/ks-MealMind)  
+Author: [Katya Sarmiento](https://www.linkedin.com/in/katyasarmiento/)
+GitHub: [Meal Mind](https://github.com/Kitkatnik/ks-MealMind)
 Prize: $300 + refine, Strapi, Appwrite, MeiliSearch, and Medusa Swag kits!
-
 
 ## Special thanks
 
@@ -84,6 +75,6 @@ We will be giving away the refine swag kit to projects that we did not award, bu
 
 Here are the refine swag kit winners:
 
-- [SnipSnap](https://github.com/drishtipeshwani/SnipSnap) - A one-stop platform for users to save all their important coding snippets at one place so that they can refer to them later. It is integrated with overall CRUD functionality.
-- [Dashed Streaks](https://github.com/triplelog/dashed-streaks) - Dashed Streaks tracks your progress as you try to spell out the desired phrase and keeps you informed of the upcoming schedule.
-- [refine-sunday](https://github.com/ZhuXinAI/RefineSunday) - A tool that allows users to place built-in or custom components within a grid design meant for websites they want to create
+-   [SnipSnap](https://github.com/drishtipeshwani/SnipSnap) - A one-stop platform for users to save all their important coding snippets at one place so that they can refer to them later. It is integrated with overall CRUD functionality.
+-   [Dashed Streaks](https://github.com/triplelog/dashed-streaks) - Dashed Streaks tracks your progress as you try to spell out the desired phrase and keeps you informed of the upcoming schedule.
+-   [refine-sunday](https://github.com/ZhuXinAI/RefineSunday) - A tool that allows users to place built-in or custom components within a grid design meant for websites they want to create
