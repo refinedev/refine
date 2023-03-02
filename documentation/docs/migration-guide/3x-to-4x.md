@@ -8,9 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 
-### Motivation behind breaking changes
+### Motivation behind the release
 
-TODO
+In refine v4, we had a target of making **refine** available in every platform you can use React and make it easy to use in both existing projects and new ones. This also comes with making **refine** flexible and a better fit for a wider use cases. This is only available if we present a more robust, easy to integrate and consistent API throughout the project and boosting the DX without limiting our users to ways to do things. Our aim is to make **refine** a friend for a developer by providing abstractions and ways to separate concerns and manage the data, routing, authorization, layouts, etc. without limiting the power of other tools and libraries they want to use. Changes are done in our API in a manner to allow you to use **refine** in every use case and incrementally adopt for your existing projects. 
 
 ## 🪄 Migrating your project automatically with refine-codemod ✨ (recommended)
 
