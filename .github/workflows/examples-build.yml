@@ -13,20 +13,56 @@ on:
                 required: false
 
 jobs:
-    build-all-examples:
+    chunks:
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
                 node-version: [16.x]
 
-        name: Build All Examples
+        name: Create Example Chunks
+
+        outputs:
+            CHUNK_1: ${{ steps.chunkstep.outputs.CHUNK_1 }}
+            CHUNK_2: ${{ steps.chunkstep.outputs.CHUNK_2 }}
+            CHUNK_3: ${{ steps.chunkstep.outputs.CHUNK_3 }}
+            CHUNK_4: ${{ steps.chunkstep.outputs.CHUNK_4 }}
+            CHUNK_5: ${{ steps.chunkstep.outputs.CHUNK_5 }}
 
         steps:
             - name: Get PR labels
               id: pr-labels
               uses: joerick/pr-labels-action@v1.0.6
             - uses: actions/checkout@v2
+
+            # run npm ci
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  registry-url: https://registry.npmjs.org/
+
+            - name: Split Into Chunks
+              id: chunkstep
+              run: CHUNKS=5 node ./.github/workflows/build-examples-chunks.js
+
+    build-chunk-1:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [16.x]
+
+        name: Build All Examples (Chunk 1)
+
+        needs: chunks
+
+        steps:
+            - name: Get PR labels
+              id: pr-labels
+              uses: joerick/pr-labels-action@v1.0.6
+            - uses: actions/checkout@v2
+
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
@@ -34,6 +70,118 @@ jobs:
                   registry-url: https://registry.npmjs.org/
             - run: |
                   npm ci
-                  npm run bootstrap:all -- --scope "*" --ignore blog-sveltekit-crud --ignore blog-react-aria
-                  npm run build:all -- --scope "*" --ignore blog-sveltekit-crud --ignore blog-react-aria
+                  npm run bootstrap:all -- --scope={${{ steps.chunks.outputs.CHUNK_1 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+                  npm run build:all -- --scope={${{ steps.chunks.outputs.CHUNK_1 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+              if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))
+
+    build-chunk-2:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [16.x]
+
+        name: Build All Examples (Chunk 2)
+
+        needs: chunks
+
+        steps:
+            - name: Get PR labels
+              id: pr-labels
+              uses: joerick/pr-labels-action@v1.0.6
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  registry-url: https://registry.npmjs.org/
+            - run: |
+                  npm ci
+                  npm run bootstrap:all -- --scope={${{ steps.chunks.outputs.CHUNK_2 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+                  npm run build:all -- --scope={${{ steps.chunks.outputs.CHUNK_2 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+              if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))
+
+    build-chunk-3:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [16.x]
+
+        name: Build All Examples (Chunk 3)
+
+        needs: chunks
+
+        steps:
+            - name: Get PR labels
+              id: pr-labels
+              uses: joerick/pr-labels-action@v1.0.6
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  registry-url: https://registry.npmjs.org/
+            - run: |
+                  npm ci
+                  npm run bootstrap:all -- --scope={${{ steps.chunks.outputs.CHUNK_3 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+                  npm run build:all -- --scope={${{ steps.chunks.outputs.CHUNK_3 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+              if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))
+
+    build-chunk-4:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [16.x]
+
+        name: Build All Examples (Chunk 4)
+
+        needs: chunks
+
+        steps:
+            - name: Get PR labels
+              id: pr-labels
+              uses: joerick/pr-labels-action@v1.0.6
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  registry-url: https://registry.npmjs.org/
+            - run: |
+                  npm ci
+                  npm run bootstrap:all -- --scope={${{ steps.chunks.outputs.CHUNK_4 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+                  npm run build:all -- --scope={${{ steps.chunks.outputs.CHUNK_4 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+              if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))
+
+    build-chunk-5:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [16.x]
+
+        name: Build All Examples (Chunk 5)
+
+        needs: chunks
+
+        steps:
+            - name: Get PR labels
+              id: pr-labels
+              uses: joerick/pr-labels-action@v1.0.6
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  registry-url: https://registry.npmjs.org/
+            - run: |
+                  npm ci
+                  npm run bootstrap:all -- --scope={${{ steps.chunks.outputs.CHUNK_5 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+                  npm run build:all -- --scope={${{ steps.chunks.outputs.CHUNK_5 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
               if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))
