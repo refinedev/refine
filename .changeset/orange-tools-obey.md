@@ -11,6 +11,7 @@
 "@pankod/refine-strapi-graphql": minor
 "@pankod/refine-strapi-v4": minor
 "@pankod/refine-supabase": minor
+"@pankod/refine-medusa": minor
 ---
 
 -   `metaData` props is deprecated for all data provider methods. Use `meta` prop instead.
