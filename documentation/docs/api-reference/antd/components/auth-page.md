@@ -289,11 +289,15 @@ const authProvider: AuthBindings = {
 
         // If the process is successful.
         return {
-            status: true,
+            success: true,
         };
 
         return {
-            status: false,
+            success: false,
+            error: {
+                name: "Register Error",
+                message: "Invalid email or password",
+            },
         };
     },
     // --
@@ -352,13 +356,17 @@ const authProvider: AuthBindings = {
     forgotPassword: async ({ email }) => {
         // You can handle the reset password process according to your needs.
 
-        // If process is successful.
+        // If the process is successful.
         return {
-            status: true,
+            success: true,
         };
 
         return {
-            status: false,
+            success: false,
+            error: {
+                name: "Register Error",
+                message: "Invalid email",
+            },
         };
     },
     // --
@@ -419,11 +427,15 @@ const authProvider: AuthBindings = {
 
         // If the process is successful.
         return {
-            status: true,
+            success: true,
         };
 
         return {
-            status: false,
+            success: false,
+            error: {
+                name: "Login Error",
+                message: "Invalid email or password",
+            },
         };
     },
     // --
