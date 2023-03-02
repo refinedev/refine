@@ -16,28 +16,28 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     const authProvider: AuthBindings = {
-        login: ({ username }) => {
+        login: async ({ username }) => {
             if (username === "admin") {
                 localStorage.setItem("username", username);
-                return Promise.resolve({
+                return {
                     success: true,
                     redirectTo: "/",
-                });
+                };
             }
 
-            return Promise.resolve({
+            return {
                 success: false,
                 error: new Error("Invalid username"),
-            });
+            };
         },
-        logout: () => {
+        logout: async () => {
             localStorage.removeItem("username");
-            return Promise.resolve({
+            return {
                 success: true,
                 redirectTo: "/login",
-            });
+            };
         },
-        onError: () => Promise.resolve({}),
+        onError: async () => ({}),
         check: () =>
             localStorage.getItem("username")
                 ? Promise.resolve({
@@ -47,7 +47,7 @@ const App: React.FC = () => {
                       authenticated: false,
                       redirectTo: "/login",
                   }),
-        getPermissions: () => Promise.resolve(["admin"]),
+        getPermissions: async () => ["admin"],
     };
 
     return (

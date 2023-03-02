@@ -29,95 +29,94 @@ const App: React.FC = () => {
             if (providerName === "google") {
                 window.location.href =
                     "https://accounts.google.com/o/oauth2/v2/auth";
-                return Promise.resolve({
+                return {
                     success: true,
-                });
+                };
             }
 
             if (providerName === "github") {
                 window.location.href =
                     "https://github.com/login/oauth/authorize";
-                return Promise.resolve({
+                return {
                     success: true,
-                });
+                };
             }
 
             if (email) {
                 localStorage.setItem("email", email);
-                return Promise.resolve({
+                return {
                     success: true,
                     redirectTo: "/",
-                });
+                };
             }
 
-            return Promise.resolve({
+            return {
                 success: false,
                 error: new Error("Invalid email or password"),
-            });
+            };
         },
-        register: (params) => {
+        register: async (params) => {
             if (params.email && params.password) {
                 localStorage.setItem("email", params.email);
-                return Promise.resolve({
+                return {
                     success: true,
                     redirectTo: "/",
-                });
+                };
             }
-            return Promise.resolve({
+            return {
                 success: false,
                 error: new Error("Invalid email or password"),
-            });
+            };
         },
-        updatePassword: (params) => {
+        updatePassword: async (params) => {
             if (params.newPassword) {
                 //we can update password here
-                return Promise.resolve({
+                return {
                     success: true,
-                });
+                };
             }
-            return Promise.resolve({
+            return {
                 success: false,
                 error: new Error("Invalid password"),
-            });
+            };
         },
-        forgotPassword: (params) => {
+        forgotPassword: async (params) => {
             if (params.email) {
                 //we can send email with reset password link here
-                return Promise.resolve({
+                return {
                     success: true,
-                });
+                };
             }
-            return Promise.resolve({
+            return {
                 success: false,
                 error: new Error("Invalid email"),
-            });
+            };
         },
-        logout: () => {
+        logout: async () => {
             localStorage.removeItem("email");
-            return Promise.resolve({
+            return {
                 success: true,
                 redirectTo: "/login",
-            });
+            };
         },
-        onError: () => Promise.resolve({}),
-        check: () =>
+        onError: async () => ({}),
+        check: async () =>
             localStorage.getItem("email")
-                ? Promise.resolve({
+                ? {
                       authenticated: true,
-                  })
-                : Promise.resolve({
+                  }
+                : {
                       authenticated: false,
                       error: new Error("Not authenticated"),
                       logout: true,
                       redirectTo: "/login",
-                  }),
-        getPermissions: () => Promise.resolve(["admin"]),
-        getIdentity: () =>
-            Promise.resolve({
-                id: 1,
-                name: "Jane Doe",
-                avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-            }),
+                  },
+        getPermissions: async () => ["admin"],
+        getIdentity: async () => ({
+            id: 1,
+            name: "Jane Doe",
+            avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
+        }),
     };
 
     const RememeberMe = () => {

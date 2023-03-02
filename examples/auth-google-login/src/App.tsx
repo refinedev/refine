@@ -33,7 +33,7 @@ axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
 
 const App: React.FC = () => {
     const authProvider: AuthBindings = {
-        login: ({ credential }: CredentialResponse) => {
+        login: async ({ credential }: CredentialResponse) => {
             const profileObj = credential ? parseJwt(credential) : null;
 
             if (profileObj) {
@@ -47,17 +47,17 @@ const App: React.FC = () => {
 
                 localStorage.setItem("token", `${credential}`);
 
-                return Promise.resolve({
+                return {
                     success: true,
                     redirectTo: "/",
-                });
+                };
             }
 
-            return Promise.resolve({
+            return {
                 success: false,
-            });
+            };
         },
-        logout: () => {
+        logout: async () => {
             const token = localStorage.getItem("token");
 
             if (token && typeof window !== "undefined") {
@@ -65,39 +65,40 @@ const App: React.FC = () => {
                 localStorage.removeItem("user");
                 axios.defaults.headers.common = {};
                 window.google?.accounts.id.revoke(token, () => {
-                    return Promise.resolve({});
+                    return {};
                 });
             }
 
-            return Promise.resolve({
+            return {
                 success: true,
                 redirectTo: "/login",
-            });
+            };
         },
-        onError: () => Promise.resolve({}),
+        onError: async () => ({}),
         check: async () => {
             const token = localStorage.getItem("token");
 
             if (token) {
-                return Promise.resolve({
+                return {
                     authenticated: true,
-                });
+                };
             }
 
-            return Promise.resolve({
+            return {
                 authenticated: false,
                 error: new Error("Not authenticated"),
                 logout: true,
                 redirectTo: "/login",
-            });
+            };
         },
-
-        getPermissions: () => Promise.resolve(),
+        getPermissions: async () => null,
         getIdentity: async () => {
             const user = localStorage.getItem("user");
             if (user) {
-                return Promise.resolve(JSON.parse(user));
+                return JSON.parse(user);
             }
+
+            return null;
         },
     };
 

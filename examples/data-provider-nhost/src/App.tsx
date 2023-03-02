@@ -27,78 +27,78 @@ const authProvider: AuthBindings = {
         });
 
         if (error) {
-            return Promise.resolve({
+            return {
                 success: false,
                 error: {
                     message: error.message,
                     name: "Login Error",
                 },
-            });
+            };
         }
 
-        return Promise.resolve({
+        return {
             success: true,
             redirectTo: "/",
-        });
+        };
     },
     logout: async () => {
         const { error } = await nhost.auth.signOut();
         if (error) {
-            return Promise.resolve({
+            return {
                 success: false,
                 error: {
                     message: error.message,
                     name: "Login Error",
                 },
-            });
+            };
         }
 
-        return Promise.resolve({
+        return {
             success: true,
             redirectTo: "/login",
-        });
+        };
     },
-    onError: (error) => {
+    onError: async (error) => {
         if (error.status === 401) {
             nhost.auth.refreshSession();
         }
 
-        return Promise.resolve({});
+        return {};
     },
     check: async () => {
         const isAuthenticated = await nhost.auth.isAuthenticatedAsync();
         if (isAuthenticated) {
-            return Promise.resolve({
+            return {
                 authenticated: true,
-            });
+            };
         }
 
-        return Promise.resolve({
+        return {
             authenticated: false,
             error: new Error("Not authenticated"),
             logout: true,
             redirectTo: "/login",
-        });
+        };
     },
-    getPermissions: () => {
+    getPermissions: async () => {
         const user = nhost.auth.getUser();
         if (user) {
-            return Promise.resolve(user.roles);
+            return user.roles;
         }
 
-        return Promise.resolve([]);
+        return [];
     },
-    getIdentity: () => {
+    getIdentity: async () => {
         const user = nhost.auth.getUser();
         if (user) {
-            return Promise.resolve({
+            return {
                 ...user,
                 name: user.displayName,
                 avatar: user.avatarUrl,
-            });
+            };
         }
 
-        return Promise.resolve({});
+        return null;
     },
 };
 

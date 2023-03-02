@@ -21,57 +21,71 @@ const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
         try {
             await account.createEmailSession(email, password);
-            return Promise.resolve({
+            return {
                 success: true,
                 redirectTo: "/",
-            });
+            };
         } catch (e) {
             const { type, message, code } = e as AppwriteException;
-            return Promise.resolve({
+            return {
                 success: false,
                 error: {
                     message,
                     name: `${code} - ${type}`,
                 },
-            });
+            };
         }
     },
     logout: async () => {
         try {
             await account.deleteSession("current");
-        } catch (error) {}
+        } catch (error: any) {
+            return {
+                success: false,
+                error,
+            };
+        }
 
-        return Promise.resolve({
+        return {
             success: true,
             redirectTo: "/login",
-        });
+        };
     },
-    onError: () => Promise.resolve({}),
+    onError: async () => ({}),
     check: async () => {
         try {
             const session = await account.get();
 
             if (session) {
-                return Promise.resolve({
+                return {
                     authenticated: true,
-                });
+                };
             }
-        } catch (error) {}
+        } catch (error: any) {
+            return {
+                authenticated: false,
+                error: error,
+                logout: true,
+                redirectTo: "/login",
+            };
+        }
 
-        return Promise.resolve({
+        return {
             authenticated: false,
             error: new Error("Session not found"),
             logout: true,
             redirectTo: "/login",
-        });
+        };
     },
-    getPermissions: () => Promise.resolve(),
+    getPermissions: async () => null,
     getIdentity: async () => {
         const user = await account.get();
 
         if (user) {
             return user;
         }
+
+        return null;
     },
 };
 

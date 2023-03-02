@@ -16,39 +16,39 @@ const mockUsers = [
 const COOKIE_NAME = "user";
 
 export const authProvider: AuthBindings = {
-    login: ({ email }) => {
+    login: async ({ email }) => {
         // Suppose we actually send a request to the back end here.
         const user = mockUsers.find((item) => item.email === email);
 
         if (user) {
             Cookies.set(COOKIE_NAME, JSON.stringify(user));
-            return Promise.resolve({
+            return {
                 success: true,
-            });
+            };
         }
 
-        return Promise.resolve({
+        return {
             success: false,
-        });
+        };
     },
-    logout: () => {
+    logout: async () => {
         Cookies.remove(COOKIE_NAME);
 
-        return Promise.resolve({
+        return {
             success: true,
             redirectTo: "/login",
-        });
+        };
     },
-    onError: (error) => {
+    onError: async (error) => {
         if (error && error.statusCode === 401) {
-            return Promise.resolve({
-                error: "Unauthorized",
+            return {
+                error: new Error("Unauthorized"),
                 logout: true,
                 redirectTo: "/login",
-            });
+            };
         }
 
-        return Promise.resolve({});
+        return {};
     },
     check: async (context) => {
         let user = undefined;
@@ -62,22 +62,22 @@ export const authProvider: AuthBindings = {
         }
 
         if (!user) {
-            return Promise.resolve({
+            return {
                 authenticated: false,
                 error: new Error("Unauthorized"),
                 logout: true,
                 redirectTo: "/login",
-            });
+            };
         }
 
-        return Promise.resolve({
+        return {
             authenticated: true,
-        });
+        };
     },
     getPermissions: async () => {
-        return Promise.resolve();
+        return null;
     },
     getIdentity: async () => {
-        return Promise.resolve();
+        return null;
     },
 };

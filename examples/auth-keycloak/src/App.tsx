@@ -31,20 +31,28 @@ const App: React.FC = () => {
             await keycloak.login({
                 redirectUri: to ? `${window.location.origin}${to}` : undefined,
             });
-            return Promise.resolve({
+            return {
                 success: false,
                 error: new Error("Login failed"),
-            });
+            };
         },
         logout: async () => {
-            await keycloak.logout({
-                redirectUri: window.location.origin,
-            });
-            return Promise.resolve({
-                success: true,
-            });
+            try {
+                await keycloak.logout({
+                    redirectUri: window.location.origin,
+                });
+                return {
+                    success: true,
+                    redirectTo: "/login",
+                };
+            } catch (error) {
+                return {
+                    success: false,
+                    error: new Error("Logout failed"),
+                };
+            }
         },
-        onError: () => Promise.resolve({}),
+        onError: async () => ({}),
         check: async () => {
             try {
                 const { token } = keycloak;
@@ -52,34 +60,34 @@ const App: React.FC = () => {
                     axios.defaults.headers.common = {
                         Authorization: `Bearer ${token}`,
                     };
-                    return Promise.resolve({
+                    return {
                         authenticated: true,
-                    });
+                    };
                 } else {
-                    return Promise.resolve({
+                    return {
                         authenticated: false,
                         logout: true,
                         redirectTo: "/login",
                         error: new Error("Token not found"),
-                    });
+                    };
                 }
             } catch (error) {
-                return Promise.resolve({
+                return {
                     authenticated: false,
                     logout: true,
                     redirectTo: "/login",
                     error: new Error("Token not found"),
-                });
+                };
             }
         },
-        getPermissions: () => Promise.resolve(),
+        getPermissions: async () => null,
         getIdentity: async () => {
             if (keycloak?.tokenParsed) {
-                return Promise.resolve({
+                return {
                     name: keycloak.tokenParsed.family_name,
-                });
+                };
             }
-            return Promise.resolve({});
+            return null;
         },
     };
 

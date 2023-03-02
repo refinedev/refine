@@ -13,7 +13,7 @@ const mockUsers = [
 ];
 
 export const authProvider: AuthBindings = {
-    login: ({ email }) => {
+    login: async ({ email }) => {
         // Suppose we actually send a request to the back end here.
         const user = mockUsers.find((item) => item.email === email);
 
@@ -22,60 +22,60 @@ export const authProvider: AuthBindings = {
                 maxAge: 30 * 24 * 60 * 60,
                 path: "/",
             });
-            return Promise.resolve({
+            return {
                 success: true,
-            });
+            };
         }
 
-        return Promise.resolve({
+        return {
             success: false,
-        });
+        };
     },
-    logout: () => {
+    logout: async () => {
         nookies.destroy(null, "auth");
-        return Promise.resolve({
+        return {
             success: true,
             redirectTo: "/login",
-        });
+        };
     },
-    onError: (error) => {
+    onError: async (error) => {
         if (error && error.statusCode === 401) {
-            return Promise.resolve({
-                error: "Unauthorized",
+            return {
+                error: new Error("Unauthorized"),
                 logout: true,
                 redirectTo: "/login",
-            });
+            };
         }
 
-        return Promise.resolve({});
+        return {};
     },
-    check: (ctx) => {
+    check: async (ctx) => {
         const cookies = nookies.get(ctx);
         return cookies["auth"]
-            ? Promise.resolve({
+            ? {
                   authenticated: true,
-              })
-            : Promise.resolve({
+              }
+            : {
                   authenticated: false,
                   error: new Error("Unauthorized"),
                   logout: true,
                   redirectTo: "/login",
-              });
+              };
     },
     getPermissions: () => {
         const auth = nookies.get()["auth"];
         if (auth) {
             const parsedUser = JSON.parse(auth);
-            return Promise.resolve(parsedUser.roles);
+            return parsedUser.roles;
         }
-        return Promise.resolve(null);
+        return null;
     },
     getIdentity: () => {
         const auth = nookies.get()["auth"];
         if (auth) {
             const parsedUser = JSON.parse(auth);
-            return Promise.resolve(parsedUser.username);
+            return parsedUser.username;
         }
-        return Promise.resolve(null);
+        return null;
     },
 };

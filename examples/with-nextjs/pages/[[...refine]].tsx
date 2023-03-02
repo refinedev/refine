@@ -5,7 +5,7 @@ import {
 import dataProvider from "@pankod/refine-simple-rest";
 
 import { GetServerSideProps } from "next";
-import { checkAuthentication } from "src/utils/checkAuthenticated";
+import { checkAuthentication } from "src/utils/checkAuthentication";
 
 import { API_URL } from "../src/constants";
 

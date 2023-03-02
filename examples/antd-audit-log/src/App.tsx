@@ -34,46 +34,64 @@ const authProvider: AuthBindings = {
                 provider: providerName,
             });
 
-            return Promise.resolve({
+            return {
                 success: true,
-            });
+            };
         } catch (error) {
-            return Promise.resolve({
+            return {
                 success: false,
                 error: new Error("Invalid email or password"),
-            });
+            };
         }
     },
     logout: async () => {
-        await refineSDK.auth.logout();
-
-        return Promise.resolve({
-            success: true,
-            redirectTo: "/login",
-        });
-    },
-    onError: () => Promise.resolve({}),
-    check: async () => {
         try {
-            // for social login
-            await refineSDK.auth.getSessionFromUrl();
-            await refineSDK.auth.session();
-            return Promise.resolve({
-                authenticated: true,
-            });
+            await refineSDK.auth.logout();
+
+            return {
+                success: true,
+                redirectTo: "/login",
+            };
         } catch (error: any) {
-            return Promise.resolve({
-                authenticated: false,
+            return {
+                success: false,
                 error: new Error(error),
-            });
+            };
         }
     },
-    getPermissions: () => Promise.resolve(),
+    onError: async () => ({}),
+    check: async () => {
+        try {
+            await refineSDK.auth.getSessionFromUrl();
+            const user = await refineSDK.auth.session();
+
+            if (!user) {
+                return {
+                    authenticated: false,
+                    redirectTo: "/login",
+                };
+            }
+
+            return {
+                authenticated: true,
+                redirectTo: "/login",
+            };
+        } catch (error: any) {
+            return {
+                authenticated: false,
+                redirectTo: "/login",
+                error,
+            };
+        }
+    },
+    getPermissions: async () => null,
     getIdentity: async () => {
-        return refineSDK.auth
-            .session()
-            .then((response) => Promise.resolve(response))
-            .catch(() => Promise.resolve());
+        try {
+            const response = await refineSDK.auth.session();
+            return response;
+        } catch (error) {
+            return null;
+        }
     },
 };
 

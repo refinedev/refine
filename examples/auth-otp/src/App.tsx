@@ -16,38 +16,38 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     const authProvider: AuthBindings = {
-        login: ({ gsmNumber, code }) => {
+        login: async ({ gsmNumber, code }) => {
             if (code === "1234") {
                 localStorage.setItem("gsmNumber", gsmNumber);
-                return Promise.resolve({
+                return {
                     success: true,
                     redirectTo: "/",
-                });
+                };
             }
 
-            return Promise.resolve({
+            return {
                 success: false,
                 error: new Error("Login code: 1234"),
-            });
+            };
         },
-        logout: () => {
+        logout: async () => {
             localStorage.removeItem("gsmNumber");
-            return Promise.resolve({
+            return {
                 success: true,
                 redirectTo: "/login",
-            });
+            };
         },
-        onError: () => Promise.resolve({}),
-        check: () =>
+        onError: async () => ({}),
+        check: async () =>
             localStorage.getItem("gsmNumber")
-                ? Promise.resolve({
+                ? {
                       authenticated: true,
-                  })
-                : Promise.resolve({
+                  }
+                : {
                       authenticated: false,
                       redirectTo: "/login",
-                  }),
-        getPermissions: () => Promise.resolve(["admin"]),
+                  },
+        getPermissions: async () => Promise.resolve(["admin"]),
     };
 
     return (

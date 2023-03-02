@@ -52,7 +52,7 @@ export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
 
 export default UserList;
 
-import { checkAuthentication } from "src/utils/checkAuthenticated";
+import { checkAuthentication } from "src/utils/checkAuthentication";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const { isAuthenticated, ...props } = await checkAuthentication(context);

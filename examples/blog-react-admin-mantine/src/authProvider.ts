@@ -39,7 +39,7 @@ export const authProvider: AuthProvider = {
 
         return Promise.reject();
     },
-    getPermissions: () => Promise.resolve(),
+    getPermissions: async () => null,
     getUserIdentity: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (!token) {

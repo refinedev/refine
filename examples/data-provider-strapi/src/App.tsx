@@ -35,60 +35,60 @@ const App: React.FC = () => {
                     "Authorization"
                 ] = `Bearer ${data.jwt}`;
 
-                return Promise.resolve({
+                return {
                     success: true,
                     redirectTo: "/",
-                });
+                };
             }
-            return Promise.resolve({
+            return {
                 success: false,
                 error: new Error("Invalid username or password"),
-            });
+            };
         },
-        logout: () => {
+        logout: async () => {
             localStorage.removeItem(TOKEN_KEY);
-            return Promise.resolve({
+            return {
                 success: true,
                 redirectTo: "/login",
-            });
+            };
         },
-        onError: () => Promise.resolve({}),
-        check: () => {
+        onError: async () => ({}),
+        check: async () => {
             const token = localStorage.getItem(TOKEN_KEY);
             if (token) {
                 axiosInstance.defaults.headers.common[
                     "Authorization"
                 ] = `Bearer ${token}`;
-                return Promise.resolve({
+                return {
                     authenticated: true,
-                });
+                };
             }
 
-            return Promise.resolve({
+            return {
                 authenticated: false,
                 error: new Error("Not authenticated"),
                 logout: true,
                 redirectTo: "/login",
-            });
+            };
         },
-        getPermissions: () => Promise.resolve(),
+        getPermissions: async () => null,
         getIdentity: async () => {
             const token = localStorage.getItem(TOKEN_KEY);
             if (!token) {
-                return Promise.reject();
+                return null;
             }
 
             const { data, status } = await strapiAuthHelper.me(token);
             if (status === 200) {
                 const { id, username, email } = data;
-                return Promise.resolve({
+                return {
                     id,
                     username,
                     email,
-                });
+                };
             }
 
-            return Promise.resolve();
+            return null;
         },
     };
     const dataProvider = DataProvider(API_URL, axiosInstance);

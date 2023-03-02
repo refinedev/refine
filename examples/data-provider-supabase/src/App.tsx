@@ -26,16 +26,16 @@ const authProvider: AuthBindings = {
                     });
 
                 if (error) {
-                    return Promise.resolve({
+                    return {
                         success: false,
                         error,
-                    });
+                    };
                 }
 
                 if (data?.url) {
-                    return Promise.resolve({
+                    return {
                         success: true,
-                    });
+                    };
                 }
             }
 
@@ -47,28 +47,28 @@ const authProvider: AuthBindings = {
                 });
 
             if (error) {
-                return Promise.resolve({
+                return {
                     success: false,
                     error,
-                });
+                };
             }
 
             if (data?.user) {
-                return Promise.resolve({
+                return {
                     success: true,
-                });
+                };
             }
         } catch (error: any) {
-            return Promise.resolve({
+            return {
                 success: false,
                 error,
-            });
+            };
         }
 
-        return Promise.resolve({
+        return {
             success: false,
             error: new Error("Login failed"),
-        });
+        };
     },
     register: async ({ email, password }) => {
         try {
@@ -78,28 +78,28 @@ const authProvider: AuthBindings = {
             });
 
             if (error) {
-                return Promise.resolve({
+                return {
                     success: false,
                     error,
-                });
+                };
             }
 
             if (data) {
-                return Promise.resolve({
+                return {
                     success: true,
-                });
+                };
             }
         } catch (error: any) {
-            return Promise.resolve({
+            return {
                 success: false,
                 error,
-            });
+            };
         }
 
-        return Promise.resolve({
+        return {
             success: false,
             error: new Error("Login failed"),
-        });
+        };
     },
     forgotPassword: async ({ email }) => {
         try {
@@ -109,10 +109,10 @@ const authProvider: AuthBindings = {
                 });
 
             if (error) {
-                return Promise.resolve({
+                return {
                     success: false,
                     error,
-                });
+                };
             }
 
             if (data) {
@@ -122,21 +122,21 @@ const authProvider: AuthBindings = {
                     description:
                         "Please check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.",
                 });
-                return Promise.resolve({
+                return {
                     success: true,
-                });
+                };
             }
         } catch (error: any) {
-            return Promise.resolve({
+            return {
                 success: false,
                 error,
-            });
+            };
         }
 
-        return Promise.resolve({
+        return {
             success: false,
             error: new Error("Forgot Password password failed"),
-        });
+        };
     },
     updatePassword: async ({ password }) => {
         try {
@@ -145,87 +145,91 @@ const authProvider: AuthBindings = {
             });
 
             if (error) {
-                return Promise.resolve({
+                return {
                     success: false,
                     error,
-                });
+                };
             }
 
             if (data) {
-                return Promise.resolve({
+                return {
                     success: true,
                     redirectTo: "/",
-                });
+                };
             }
         } catch (error: any) {
-            return Promise.resolve({
+            return {
                 success: false,
                 error,
-            });
+            };
         }
-        return Promise.resolve({
+        return {
             success: false,
             error: new Error("Update Password password failed"),
-        });
+        };
     },
     logout: async () => {
         const { error } = await supabaseClient.auth.signOut();
 
         if (error) {
-            return Promise.resolve({
+            return {
                 success: false,
                 error,
-            });
+            };
         }
 
-        return Promise.resolve({
+        return {
             success: true,
             redirectTo: "/",
-        });
+        };
     },
-    onError: () => Promise.resolve({}),
+    onError: async () => ({}),
     check: async () => {
         try {
             const { data } = await supabaseClient.auth.getSession();
             const { session } = data;
 
             if (!session) {
-                return Promise.resolve({
+                return {
                     authenticated: false,
                     error: new Error("Not authenticated"),
                     logout: true,
                     redirectTo: "/login",
-                });
+                };
             }
         } catch (error: any) {
-            return Promise.resolve({
+            return {
                 authenticated: false,
                 error: error || new Error("Not authenticated"),
                 logout: true,
                 redirectTo: "/login",
-            });
+            };
         }
 
-        return Promise.resolve({
+        return {
             authenticated: true,
-        });
+        };
     },
     getPermissions: async () => {
         const user = await supabaseClient.auth.getUser();
 
         if (user) {
-            return Promise.resolve(user.data.user?.role);
+            return user.data.user?.role;
         }
+
+        return null;
     },
     getIdentity: async () => {
         const { data } = await supabaseClient.auth.getUser();
 
         if (data?.user) {
-            return Promise.resolve({
+            return {
                 ...data.user,
                 name: data.user.email,
-            });
+            };
         }
+
+        return null;
     },
 };
 

@@ -5,66 +5,66 @@ export const TOKEN_KEY = "refine-auth";
 export const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
         localStorage.setItem(TOKEN_KEY, `${email}-${password}`);
-        return Promise.resolve({
+        return {
             success: true,
-        });
+        };
     },
     register: async ({ email, password }) => {
         try {
             await authProvider.login({ email, password });
-            return Promise.resolve({
+            return {
                 success: true,
-            });
+            };
         } catch (error) {
-            return Promise.resolve({
+            return {
                 success: false,
                 error: new Error("Invalid email or password"),
-            });
+            };
         }
     },
     updatePassword: async () => {
-        return Promise.resolve({
+        return {
             success: true,
-        });
+        };
     },
     forgotPassword: async () => {
-        return Promise.resolve({
+        return {
             success: true,
-        });
+        };
     },
-    logout: () => {
+    logout: async () => {
         localStorage.removeItem(TOKEN_KEY);
-        return Promise.resolve({
+        return {
             success: true,
-        });
+        };
     },
-    onError: () => Promise.resolve({}),
-    check: () => {
+    onError: async () => ({}),
+    check: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
-            return Promise.resolve({
+            return {
                 authenticated: true,
-            });
+            };
         }
 
-        return Promise.resolve({
+        return {
             authenticated: false,
             error: new Error("Invalid token"),
             logout: true,
             redirectTo: "/login",
-        });
+        };
     },
-    getPermissions: () => Promise.resolve(),
+    getPermissions: async () => null,
     getIdentity: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (!token) {
-            return Promise.reject();
+            return null;
         }
 
-        return Promise.resolve({
+        return {
             id: 1,
             name: "James Sullivan",
             avatar: "https://i.pravatar.cc/150",
-        });
+        };
     },
 };

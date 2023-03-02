@@ -12,91 +12,98 @@ const authProvider: AuthBindings = {
                 });
 
             if (error) {
-                return Promise.resolve({
+                return {
                     success: false,
                     error: error || new Error("Invalid email or password"),
-                });
+                };
             }
 
             if (data?.user) {
-                return Promise.resolve({
+                return {
                     success: true,
                     redirectTo: "/",
-                });
+                };
             }
         } catch (error: any) {
-            return Promise.resolve({
+            return {
                 success: false,
                 error: error || new Error("Invalid email or password"),
-            });
+            };
         }
-        return Promise.resolve({
+
+        return {
             success: false,
-        });
+        };
     },
     logout: async () => {
         try {
             const { error } = await supabaseClient.auth.signOut();
 
             if (error) {
-                return Promise.resolve({
+                return {
                     success: false,
                     error: error || new Error("Invalid email or password"),
-                });
+                };
             }
         } catch (error: any) {
-            return Promise.resolve({
+            return {
                 success: false,
                 error: error || new Error("Invalid email or password"),
-            });
+            };
         }
 
-        return Promise.resolve({
+        return {
             success: true,
             redirectTo: "/",
-        });
+        };
     },
-    onError: () => Promise.resolve({}),
+    onError: async () => ({}),
     check: async () => {
         try {
             const { data, error } = await supabaseClient.auth.getSession();
             const { session } = data;
 
             if (!session) {
-                return Promise.resolve({
+                return {
                     authenticated: false,
+                    redirectTo: "/login",
                     error: error || new Error("Session not found"),
-                });
+                };
             }
         } catch (error: any) {
-            return Promise.resolve({
+            return {
                 authenticated: false,
+                redirectTo: "/login",
                 error: error || new Error("Session not found"),
-            });
+            };
         }
 
-        return Promise.resolve({
+        return {
             authenticated: true,
-        });
+        };
     },
     getPermissions: async () => {
         const { data } = await supabaseClient.auth.getUser();
         const { user } = data;
 
         if (user) {
-            return Promise.resolve(user.role);
+            return user.role;
         }
+
+        return null;
     },
     getIdentity: async () => {
         const { data } = await supabaseClient.auth.getUser();
         const { user } = data;
 
         if (user) {
-            return Promise.resolve({
+            return {
                 ...user,
                 name: user.email,
-            });
+            };
         }
+
+        return null;
     },
 };
 

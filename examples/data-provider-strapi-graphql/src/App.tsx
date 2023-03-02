@@ -40,42 +40,42 @@ const authProvider: AuthBindings = {
             localStorage.setItem("token", data.jwt);
             client.setHeader("Authorization", `Bearer ${data.jwt}`);
 
-            return Promise.resolve({
+            return {
                 success: true,
                 redirectTo: "/",
-            });
+            };
         } catch (error: any) {
-            return Promise.resolve({
+            return {
                 success: false,
                 error: new Error(error),
-            });
+            };
         }
     },
     logout: async () => {
         localStorage.removeItem("token");
         client.setHeader("Authorization", "");
-        return Promise.resolve({
+        return {
             success: true,
             redirectTo: "/login",
-        });
+        };
     },
-    onError: () => Promise.resolve({}),
-    check: () => {
+    onError: async () => ({}),
+    check: async () => {
         const jwt = localStorage.getItem("token");
 
         if (!jwt) {
-            return Promise.resolve({
+            return {
                 authenticated: false,
                 error: new Error("Not authenticated"),
                 redirectTo: "/login",
-            });
+            };
         }
 
         client.setHeader("Authorization", `Bearer ${jwt}`);
 
-        return Promise.resolve({
+        return {
             authenticated: true,
-        });
+        };
     },
     getPermissions: async () => {
         try {
@@ -94,9 +94,9 @@ const authProvider: AuthBindings = {
             });
             const { role } = data;
 
-            return Promise.resolve(role);
+            return role;
         } catch (error) {
-            return Promise.resolve(error);
+            return null;
         }
     },
     getIdentity: async () => {
@@ -111,13 +111,13 @@ const authProvider: AuthBindings = {
                 },
             });
             const { id, username, email } = data;
-            return Promise.resolve({
+            return {
                 id,
                 name: username,
                 email,
-            });
+            };
         } catch (error) {
-            return Promise.resolve(error);
+            return error;
         }
     },
 };

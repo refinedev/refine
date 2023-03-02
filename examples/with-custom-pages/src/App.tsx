@@ -30,26 +30,26 @@ const AuthenticatedPostReview = () => {
 
 const App: React.FC = () => {
     const authProvider: AuthBindings = {
-        login: ({ email }) => {
+        login: async ({ email }) => {
             if (email) {
                 localStorage.setItem("email", email);
-                return Promise.resolve({
+                return {
                     success: true,
                     redirectTo: "/",
-                });
+                };
             }
 
-            return Promise.resolve({
+            return {
                 success: false,
                 message: "Invalid email or password",
-            });
+            };
         },
-        logout: () => {
+        logout: async () => {
             localStorage.removeItem("email");
-            return Promise.resolve({ redirectTo: "/login", success: true });
+            return { redirectTo: "/login", success: true };
         },
-        onError: () => Promise.resolve({}),
-        check: () =>
+        onError: async () => ({}),
+        check: async () =>
             localStorage.getItem("email")
                 ? Promise.resolve({
                       authenticated: true,
@@ -58,7 +58,7 @@ const App: React.FC = () => {
                       authenticated: false,
                       redirectTo: "/login",
                   }),
-        getPermissions: () => Promise.resolve(["admin"]),
+        getPermissions: async () => ["admin"],
     };
 
     return (

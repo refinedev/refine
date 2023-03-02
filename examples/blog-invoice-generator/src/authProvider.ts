@@ -22,60 +22,60 @@ export const authProvider: AuthBindings = {
                 "Authorization"
             ] = `Bearer ${data.jwt}`;
 
-            return Promise.resolve({
+            return {
                 success: true,
                 redirectTo: "/",
-            });
+            };
         }
 
-        return Promise.resolve({
+        return {
             success: false,
             error: new Error(statusText),
-        });
+        };
     },
-    logout: () => {
+    logout: async () => {
         localStorage.removeItem(TOKEN_KEY);
-        return Promise.resolve({
+        return {
             success: true,
             redirectTo: "/",
-        });
+        };
     },
-    onError: () => Promise.resolve({}),
-    check: () => {
+    onError: async () => Promise.resolve({}),
+    check: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
             axiosInstance.defaults.headers.common[
                 "Authorization"
             ] = `Bearer ${token}`;
-            return Promise.resolve({
+            return {
                 authenticated: true,
-            });
+            };
         }
 
-        return Promise.resolve({
+        return {
             authenticated: false,
             logout: true,
             error: new Error("Token not found"),
             redirectTo: "/",
-        });
+        };
     },
-    getPermissions: () => Promise.resolve(),
+    getPermissions: async () => null,
     getIdentity: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (!token) {
-            return Promise.resolve();
+            return null;
         }
 
         const { data, status } = await strapiAuthHelper.me(token);
         if (status === 200) {
             const { id, username, email } = data;
-            return Promise.resolve({
+            return {
                 id,
                 username,
                 email,
-            });
+            };
         }
 
-        return Promise.resolve();
+        return null;
     },
 };

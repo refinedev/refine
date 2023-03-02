@@ -25,18 +25,20 @@ const App: React.FC = () => {
     }
 
     const authProvider: AuthBindings = {
-        login: () => {
-            return Promise.resolve({
+        login: async () => {
+            return {
                 success: true,
-            });
+            };
         },
-        logout: () => {
+        logout: async () => {
             logout({ returnTo: window.location.origin });
-            return Promise.resolve({
+            return {
                 success: true,
-            });
+            };
         },
-        onError: () => Promise.resolve({}),
+        onError: async () => {
+            return {};
+        },
         check: async () => {
             try {
                 const token = await getIdTokenClaims();
@@ -44,35 +46,35 @@ const App: React.FC = () => {
                     axios.defaults.headers.common = {
                         Authorization: `Bearer ${token.__raw}`,
                     };
-                    return Promise.resolve({
+                    return {
                         authenticated: true,
-                    });
+                    };
                 } else {
-                    return Promise.resolve({
+                    return {
                         authenticated: false,
                         error: new Error("Token not found"),
                         redirectTo: "/login",
                         logout: true,
-                    });
+                    };
                 }
             } catch (error: any) {
-                return Promise.resolve({
+                return {
                     authenticated: false,
                     error: new Error(error),
                     redirectTo: "/login",
                     logout: true,
-                });
+                };
             }
         },
-        getPermissions: () => Promise.resolve(),
+        getPermissions: async () => null,
         getIdentity: async () => {
             if (user) {
-                return Promise.resolve({
+                return {
                     ...user,
                     avatar: user.picture,
-                });
+                };
             }
-            return Promise.reject();
+            return null;
         },
     };
 

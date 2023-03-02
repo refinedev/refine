@@ -23,69 +23,68 @@ export const authProvider: AuthBindings = {
                     "Authorization"
                 ] = `Bearer ${data.jwt}`;
 
-                return Promise.resolve({
+                return {
                     success: true,
-                });
+                };
             }
         } catch (error: any) {
-            console.log({ ...error });
-            return Promise.resolve({
+            return {
                 success: false,
                 error: {
                     name: error.response.data.error.name,
                     message: error.response.data.error.message,
                 },
-            });
+            };
         }
 
-        return Promise.resolve({
+        return {
             success: false,
             error: new Error("Invalid username or password"),
-        });
+        };
     },
-    logout: () => {
+    logout: async () => {
         localStorage.removeItem(TOKEN_KEY);
-        return Promise.resolve({
+        return {
             success: true,
             redirectTo: "/",
-        });
+        };
     },
-    onError: () => Promise.resolve({}),
-    check: () => {
+    onError: async () => ({}),
+    check: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
             axiosInstance.defaults.headers.common[
                 "Authorization"
             ] = `Bearer ${token}`;
-            return Promise.resolve({
+            return {
                 authenticated: true,
-            });
+            };
         }
 
-        return Promise.resolve({
+        return {
             authenticated: false,
             error: new Error("Invalid token"),
             logout: true,
             redirectTo: "/login",
-        });
+        };
     },
-    getPermissions: () => Promise.resolve(),
+    getPermissions: async () => null,
     getIdentity: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (!token) {
-            return Promise.reject();
+            return null;
         }
 
         const { data, status } = await strapiAuthHelper.me(token);
         if (status === 200) {
             const { id, username, email } = data;
-            return Promise.resolve({
+            return {
                 id,
                 username,
                 email,
-            });
+            };
         }
 
-        return Promise.resolve();
+        return null;
     },
 };
