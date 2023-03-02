@@ -40,7 +40,7 @@ export const authProvider: AuthBindings = {
             redirectTo: "/",
         };
     },
-    onError: async () => Promise.resolve({}),
+    onError: async () => ({}),
     check: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {

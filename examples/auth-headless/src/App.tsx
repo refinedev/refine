@@ -86,12 +86,12 @@ const App: React.FC = () => {
         onError: async () => ({}),
         check: async () => {
             return localStorage.getItem("email")
-                ? Promise.resolve({ authenticated: true })
-                : Promise.resolve({
+                ? { authenticated: true }
+                : {
                       authenticated: false,
                       redirectTo: "/login",
                       error: new Error("Not authenticated"),
-                  });
+                  };
         },
         getPermissions: async () => ["admin"],
         getIdentity: async () => ({
