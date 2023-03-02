@@ -35,7 +35,7 @@ export const separateImportsReactHookFormPostTransform = async (
 
 const REFINE_LIB_PATH = "@pankod/refine-react-hook-form";
 const REACT_HOOK_FORM_PATH = "react-hook-form";
-const REACT_HOOK_FORM_VERSION = "^7.22.1";
+const REACT_HOOK_FORM_VERSION = "^7.30.0";
 
 export const separateImportsReactHookForm = (
     j: JSCodeshift,
