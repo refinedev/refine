@@ -270,6 +270,7 @@ export const useUpdate = <
                                 if (record.id?.toString() === id?.toString()) {
                                     return {
                                         id,
+                                        ...record,
                                         ...values,
                                     } as unknown as TData;
                                 }
@@ -294,6 +295,7 @@ export const useUpdate = <
                                 if (record.id?.toString() === id?.toString()) {
                                     record = {
                                         id,
+                                        ...record,
                                         ...values,
                                     } as unknown as TData;
                                 }

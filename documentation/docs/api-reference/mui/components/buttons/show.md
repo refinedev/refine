@@ -219,8 +219,6 @@ export const MyListComponent = () => {
 };
 ```
 
-```
-
 ## API Reference
 
 ### Properties
@@ -230,4 +228,3 @@ export const MyListComponent = () => {
 :::tip External Props
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).
 :::
-```
