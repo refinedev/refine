@@ -181,7 +181,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-If you don't want to redirect the user anywhere, you can resolve the `login` method's Promise with `redirectTo: false`.
+If you don't want to redirect the user anywhere, you can resolve the `login` method's Promise with `redirectTo: undefined`.
 
 ```ts
 const authProvider: AuthBindings = {
@@ -190,7 +190,7 @@ const authProvider: AuthBindings = {
         // ---
         return {
             success: false,
-            redirectTo: false,
+            redirectTo: undefined,
         };
     },
 };
@@ -424,7 +424,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-If you don't want to redirect the user to anywhere, you can resolve the `logout` method's Promise with `redirectTo: false`.
+If you don't want to redirect the user to anywhere, you can resolve the `logout` method's Promise with `redirectTo: undefined`.
 
 ```ts
 const authProvider: AuthBindings = {
@@ -433,7 +433,7 @@ const authProvider: AuthBindings = {
         // ---
         return {
             success: true,
-            redirectTo: "/false",
+            redirectTo: undefined,
         };
     },
 };
@@ -823,7 +823,7 @@ const authProvider: AuthBindings = {
 };
 ```
 
-If you don't want to redirect the user to anywhere, you can resolve the `register` method's Promise with `redirectTo: false`.
+If you don't want to redirect the user to anywhere, you can resolve the `register` method's Promise with `redirectTo: undefined`.
 
 ```ts
 const authProvider: AuthBindings = {
@@ -832,7 +832,7 @@ const authProvider: AuthBindings = {
         // ---
         return {
             success: true, // or false
-            redirectTo: false,
+            redirectTo: undefined,
         };
     },
 };
