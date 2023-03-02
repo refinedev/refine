@@ -44,7 +44,7 @@ jobs:
 
             - name: Split Into Chunks
               id: chunkstep
-              run: CHUNKS=5 node ./.github/workflows/build-examples-chunks.js
+              run: CHUNKS=5 node ./.github/workflows/build-example-chunks.js
 
     build-chunk-1:
         runs-on: ubuntu-latest
