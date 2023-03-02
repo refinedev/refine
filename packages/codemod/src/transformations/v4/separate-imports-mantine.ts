@@ -1,10 +1,14 @@
 import { API, FileInfo } from "jscodeshift";
 import fs from "fs";
 import path from "path";
-import { install } from "../helpers";
-import checkPackageLock from "../helpers/checkPackageLock";
-import separateImports from "../helpers/separateImports";
-import { exported, rename } from "../definitions/separated-imports/chakra";
+import { install } from "../../helpers";
+import checkPackageLock from "../../helpers/checkPackageLock";
+import separateImports from "../../helpers/separateImports";
+import {
+    exported,
+    rename,
+    other,
+} from "../../definitions/separated-imports/mantine";
 
 export const parser = "tsx";
 
@@ -23,10 +27,20 @@ export async function postTransform(files: any, flags: any) {
     }
 
     if (!flags.dry) {
-        await install(rootDir, ["@chakra-ui/react@^2.3.6"], {
-            useYarn,
-            isOnline: true,
-        });
+        await install(
+            rootDir,
+            [
+                "@emotion/react@^11.8.2",
+                "@mantine/core@^5.5.6",
+                "@mantine/hooks@^5.5.6",
+                "@mantine/form@^5.5.6",
+                "@mantine/notifications@^5.5.6",
+            ],
+            {
+                useYarn,
+                isOnline: true,
+            },
+        );
     }
 }
 
@@ -39,9 +53,9 @@ export default function transformer(file: FileInfo, api: API): string {
         source,
         imports: exported,
         renameImports: rename,
-        otherImports: {},
-        currentLibName: "@pankod/refine-chakra-ui",
-        nextLibName: "@chakra-ui/react",
+        otherImports: other,
+        currentLibName: "@pankod/refine-mantine",
+        nextLibName: "@mantine/core",
     });
 
     return source.toSource();

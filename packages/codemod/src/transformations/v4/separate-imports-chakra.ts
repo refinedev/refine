@@ -1,10 +1,10 @@
 import { API, FileInfo } from "jscodeshift";
 import fs from "fs";
 import path from "path";
-import { install } from "../helpers";
-import checkPackageLock from "../helpers/checkPackageLock";
-import separateImports from "../helpers/separateImports";
-import { exported } from "../definitions/separated-imports/mui";
+import { install } from "../../helpers";
+import checkPackageLock from "../../helpers/checkPackageLock";
+import separateImports from "../../helpers/separateImports";
+import { exported, rename } from "../../definitions/separated-imports/chakra";
 
 export const parser = "tsx";
 
@@ -23,20 +23,10 @@ export async function postTransform(files: any, flags: any) {
     }
 
     if (!flags.dry) {
-        await install(
-            rootDir,
-            [
-                "@emotion/react@^11.8.2",
-                "@emotion/styled@^11.8.1",
-                "@mui/lab@^5.0.0-alpha.85",
-                "@mui/material@^5.8.6",
-                "@mui/x-data-grid@^5.12.1",
-            ],
-            {
-                useYarn,
-                isOnline: true,
-            },
-        );
+        await install(rootDir, ["@chakra-ui/react@^2.3.6"], {
+            useYarn,
+            isOnline: true,
+        });
     }
 }
 
@@ -47,13 +37,11 @@ export default function transformer(file: FileInfo, api: API): string {
     separateImports({
         j,
         source,
-        imports: ["MuiList"],
-        renameImports: {
-            MuiList: "List",
-        },
-        otherImports: exported,
-        currentLibName: "@pankod/refine-mui",
-        nextLibName: "@mui/material",
+        imports: exported,
+        renameImports: rename,
+        otherImports: {},
+        currentLibName: "@pankod/refine-chakra-ui",
+        nextLibName: "@chakra-ui/react",
     });
 
     return source.toSource();

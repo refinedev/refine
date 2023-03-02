@@ -1,10 +1,10 @@
 import { API, FileInfo } from "jscodeshift";
 import fs from "fs";
 import path from "path";
-import { install, addPackage, isPackageJsonUpdated } from "../helpers";
-import checkPackageLock from "../helpers/checkPackageLock";
-import separateImports from "../helpers/separateImports";
-import { exported } from "../definitions/separated-imports/react-query";
+import { install } from "../../helpers";
+import checkPackageLock from "../../helpers/checkPackageLock";
+import separateImports from "../../helpers/separateImports";
+import { exported } from "../../definitions/separated-imports/mui";
 
 export const parser = "tsx";
 
@@ -23,18 +23,22 @@ export async function postTransform(files: any, flags: any) {
     }
 
     if (!flags.dry) {
-        if (isPackageJsonUpdated(rootDir)) {
-            await install(rootDir, null, {
+        await install(
+            rootDir,
+            [
+                "@emotion/react@^11.8.2",
+                "@emotion/styled@^11.8.1",
+                "@mui/lab@^5.0.0-alpha.85",
+                "@mui/material@^5.8.6",
+                "@mui/x-data-grid@^5.12.1",
+            ],
+            {
                 useYarn,
                 isOnline: true,
-            });
-        }
+            },
+        );
     }
 }
-
-const REFINE_LIB_PATH = "@pankod/refine-core";
-const REACT_QUERY_PATH = "@tanstack/react-query";
-const REACT_QUERY_VERSION = "^4.10.1";
 
 export default function transformer(file: FileInfo, api: API): string {
     const j = api.jscodeshift;
@@ -43,23 +47,14 @@ export default function transformer(file: FileInfo, api: API): string {
     separateImports({
         j,
         source,
-        imports: exported,
-        renameImports: {},
-        otherImports: {},
-        currentLibName: REFINE_LIB_PATH,
-        nextLibName: REACT_QUERY_PATH,
-    });
-
-    // if use `@tanstack/react-query` add package.json
-    const reactQuery = source.find(j.ImportDeclaration, {
-        source: {
-            value: REACT_QUERY_PATH,
+        imports: ["MuiList"],
+        renameImports: {
+            MuiList: "List",
         },
+        otherImports: exported,
+        currentLibName: "@pankod/refine-mui",
+        nextLibName: "@mui/material",
     });
-
-    if (reactQuery.length) {
-        addPackage(process.cwd(), { [REACT_QUERY_PATH]: REACT_QUERY_VERSION });
-    }
 
     return source.toSource();
 }

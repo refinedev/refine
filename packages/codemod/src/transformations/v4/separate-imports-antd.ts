@@ -1,15 +1,15 @@
 import { API, FileInfo } from "jscodeshift";
 import fs from "fs";
 import path from "path";
-import { addPackage, install, isPackageJsonUpdated } from "../helpers";
-import checkPackageLock from "../helpers/checkPackageLock";
-import separateImports from "../helpers/separateImports";
+import { addPackage, install, isPackageJsonUpdated } from "../../helpers";
+import checkPackageLock from "../../helpers/checkPackageLock";
+import separateImports from "../../helpers/separateImports";
 import {
     exported,
     rename,
     renameToDefault,
     other,
-} from "../definitions/separated-imports/antd";
+} from "../../definitions/separated-imports/antd";
 
 export const parser = "tsx";
 

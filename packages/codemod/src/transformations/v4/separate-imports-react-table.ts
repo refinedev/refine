@@ -1,10 +1,10 @@
 import { API, FileInfo } from "jscodeshift";
 import fs from "fs";
 import path from "path";
-import { install } from "../helpers";
-import checkPackageLock from "../helpers/checkPackageLock";
-import separateImports from "../helpers/separateImports";
-import { exported } from "../definitions/separated-imports/react-table";
+import { install } from "../../helpers";
+import checkPackageLock from "../../helpers/checkPackageLock";
+import separateImports from "../../helpers/separateImports";
+import { exported } from "../../definitions/separated-imports/react-table";
 
 export const parser = "tsx";
 

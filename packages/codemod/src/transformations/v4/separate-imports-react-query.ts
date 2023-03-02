@@ -1,14 +1,10 @@
 import { API, FileInfo } from "jscodeshift";
 import fs from "fs";
 import path from "path";
-import { install } from "../helpers";
-import checkPackageLock from "../helpers/checkPackageLock";
-import separateImports from "../helpers/separateImports";
-import {
-    exported,
-    rename,
-    other,
-} from "../definitions/separated-imports/mantine";
+import { install, addPackage, isPackageJsonUpdated } from "../../helpers";
+import checkPackageLock from "../../helpers/checkPackageLock";
+import separateImports from "../../helpers/separateImports";
+import { exported } from "../../definitions/separated-imports/react-query";
 
 export const parser = "tsx";
 
@@ -27,22 +23,18 @@ export async function postTransform(files: any, flags: any) {
     }
 
     if (!flags.dry) {
-        await install(
-            rootDir,
-            [
-                "@emotion/react@^11.8.2",
-                "@mantine/core@^5.5.6",
-                "@mantine/hooks@^5.5.6",
-                "@mantine/form@^5.5.6",
-                "@mantine/notifications@^5.5.6",
-            ],
-            {
+        if (isPackageJsonUpdated(rootDir)) {
+            await install(rootDir, null, {
                 useYarn,
                 isOnline: true,
-            },
-        );
+            });
+        }
     }
 }
+
+const REFINE_LIB_PATH = "@pankod/refine-core";
+const REACT_QUERY_PATH = "@tanstack/react-query";
+const REACT_QUERY_VERSION = "^4.10.1";
 
 export default function transformer(file: FileInfo, api: API): string {
     const j = api.jscodeshift;
@@ -52,11 +44,22 @@ export default function transformer(file: FileInfo, api: API): string {
         j,
         source,
         imports: exported,
-        renameImports: rename,
-        otherImports: other,
-        currentLibName: "@pankod/refine-mantine",
-        nextLibName: "@mantine/core",
+        renameImports: {},
+        otherImports: {},
+        currentLibName: REFINE_LIB_PATH,
+        nextLibName: REACT_QUERY_PATH,
     });
+
+    // if use `@tanstack/react-query` add package.json
+    const reactQuery = source.find(j.ImportDeclaration, {
+        source: {
+            value: REACT_QUERY_PATH,
+        },
+    });
+
+    if (reactQuery.length) {
+        addPackage(process.cwd(), { [REACT_QUERY_PATH]: REACT_QUERY_VERSION });
+    }
 
     return source.toSource();
 }
