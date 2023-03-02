@@ -3,14 +3,12 @@ import { IResourceComponentsProps, useApiUrl } from "@pankod/refine-core";
 
 import {
     Edit,
-    Form,
-    Input,
     getValueFromEvent,
-    Select,
-    Upload,
     useForm,
     useSelect,
 } from "@pankod/refine-antd";
+
+import { Form, Input, Select, Upload } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 

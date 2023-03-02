@@ -5,12 +5,11 @@ import {
     ReadyPage,
     notificationProvider,
     Layout,
-    GlobalStyles,
-    CssBaseline,
     RefineSnackbarProvider,
 } from "@pankod/refine-mui";
+import { GlobalStyles, CssBaseline } from "@mui/material";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import { useTranslation } from "react-i18next";
 import {
     AddShoppingCartOutlined,
@@ -57,7 +56,7 @@ const App: React.FC = () => {
                 />
                 <RefineSnackbarProvider>
                     <Refine
-                        routerProvider={{
+                        legacyRouterProvider={{
                             ...routerProvider,
                             routes: [
                                 {
@@ -96,7 +95,7 @@ const App: React.FC = () => {
                         dataProvider={dataProvider(
                             "https://api.finefoods.refine.dev",
                         )}
-                        authProvider={authProvider}
+                        legacyAuthProvider={authProvider}
                         i18nProvider={i18nProvider}
                         DashboardPage={DashboardPage}
                         Title={Title}

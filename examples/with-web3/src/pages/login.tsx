@@ -1,9 +1,12 @@
 import { useLogin } from "@pankod/refine-core";
 
-import { AntdLayout, Button, Icon, Row, Col } from "@pankod/refine-antd";
+import { Layout as AntdLayout, Button, Row, Col } from "antd";
+import Icon from "@ant-design/icons";
 
 export const Login: React.FC = () => {
-    const { mutate: login, isLoading } = useLogin();
+    const { mutate: login, isLoading } = useLogin({
+        v3LegacyAuthProviderCompatible: true,
+    });
 
     return (
         <AntdLayout

@@ -1,12 +1,11 @@
 import { useDelete } from "@pankod/refine-core";
-import {
-    Card,
-    TagField,
-    Typography,
-    Dropdown,
-    Menu,
-    Icons,
-} from "@pankod/refine-antd";
+import { TagField } from "@pankod/refine-antd";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import { Card, Typography, Dropdown, Menu } from "antd";
 
 import { IClient } from "interfaces";
 

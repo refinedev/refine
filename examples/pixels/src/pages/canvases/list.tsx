@@ -1,4 +1,6 @@
-import { AntdList, Skeleton, useSimpleList } from "@pankod/refine-antd";
+import { useSimpleList } from "@pankod/refine-antd";
+
+import { List as AntdList, Skeleton } from "antd";
 
 import { CanvasTile } from "components/canvas";
 import { SponsorsBanner } from "components/banners";

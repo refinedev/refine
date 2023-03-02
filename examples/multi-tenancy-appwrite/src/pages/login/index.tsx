@@ -3,14 +3,14 @@ import { useLogin } from "@pankod/refine-core";
 import {
     Row,
     Col,
-    AntdLayout,
+    Layout as AntdLayout,
     Card,
     Typography,
     Form,
     Input,
     Button,
     Checkbox,
-} from "@pankod/refine-antd";
+} from "antd";
 import "./styles.css";
 
 const { Text, Title } = Typography;
@@ -23,7 +23,9 @@ export interface ILoginForm {
 export const Login: React.FC = () => {
     const [form] = Form.useForm<ILoginForm>();
 
-    const { mutate: login } = useLogin<ILoginForm>();
+    const { mutate: login } = useLogin<ILoginForm>({
+        v3LegacyAuthProviderCompatible: true,
+    });
 
     const CardTitle = (
         <Title level={3} className="title">

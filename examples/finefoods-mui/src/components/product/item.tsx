@@ -13,7 +13,7 @@ import {
     Button,
     Divider,
     TextField,
-} from "@pankod/refine-mui";
+} from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditIcon from "@mui/icons-material/Edit";
 

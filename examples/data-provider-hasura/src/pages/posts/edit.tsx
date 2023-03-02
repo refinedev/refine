@@ -3,14 +3,13 @@ import { HttpError, IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
     Edit,
-    Form,
-    Input,
     ListButton,
     RefreshButton,
-    Select,
     useForm,
     useSelect,
 } from "@pankod/refine-antd";
+
+import { Form, Input, Select } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
@@ -22,7 +21,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         HttpError,
         IPost
     >({
-        metaData: {
+        meta: {
             fields: [
                 "id",
                 "title",
@@ -39,7 +38,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
         defaultValue: postData?.category_id,
-        metaData: {
+        meta: {
             fields: ["id", "title"],
         },
     });

@@ -1,4 +1,10 @@
-import { Card, Icons, ShowButton } from "@pankod/refine-antd";
+import { ShowButton } from "@pankod/refine-antd";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import { Card } from "antd";
 
 import { IProduct } from "interfaces";
 

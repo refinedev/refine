@@ -3,12 +3,13 @@ import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
 
 import {
     useSimpleList,
-    AntdList,
     useModalForm,
     useDrawerForm,
     CreateButton,
     List,
 } from "@pankod/refine-antd";
+
+import { List as AntdList } from "antd";
 
 import { IProduct } from "interfaces";
 
@@ -21,7 +22,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         permanentFilter: [
             { field: "stores][id]", operator: "eq", value: store },
         ],
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
     });
 
     const {
@@ -41,7 +42,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         show: editShow,
     } = useModalForm<IProduct, HttpError, IProduct>({
         action: "edit",
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
     });
 
     return (

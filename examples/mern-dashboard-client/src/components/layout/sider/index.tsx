@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { Sider as DefaultSider } from "@pankod/refine-mui";
+
 import {
     Box,
     Drawer,
-    Sider as DefaultSider,
     ListItemButton,
     ListItemIcon,
     ListItemText,
@@ -10,8 +11,9 @@ import {
     Tooltip,
     Button,
     IconButton,
-    MuiList,
-} from "@pankod/refine-mui";
+} from "@mui/material";
+
+import { List as MuiList } from "@mui/material";
 import {
     ListOutlined,
     Logout,
@@ -52,7 +54,9 @@ export const Sider: typeof DefaultSider = ({ render }) => {
 
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const isExistAuthentication = useIsExistAuthentication();
-    const { mutate: mutateLogout } = useLogout();
+    const { mutate: mutateLogout } = useLogout({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const Title = useTitle();
 
     const [open, setOpen] = useState<{ [k: string]: any }>({});

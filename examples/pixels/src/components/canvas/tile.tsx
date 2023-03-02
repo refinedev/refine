@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouterContext } from "@pankod/refine-core";
-import { Skeleton } from "@pankod/refine-antd";
+import { Skeleton } from "antd";
 
 import { CanvasItem, DisplayCanvas } from "./index";
 import { Contributors } from "components/avatar";

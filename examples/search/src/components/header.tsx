@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { useList } from "@pankod/refine-core";
-import {
-    AntdLayout,
-    AutoComplete,
-    Input,
-    Icons,
-    Typography,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import { Layout as AntdLayout, AutoComplete, Input, Typography } from "antd";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import debounce from "lodash/debounce";
 
 const { Link } = routerProvider;

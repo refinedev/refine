@@ -10,26 +10,32 @@ import {
 
 import {
     List,
-    Table,
     TextField,
     useTable,
     getDefaultSortOrder,
     DateField,
+    NumberField,
+    useSelect,
+    ExportButton,
+} from "@pankod/refine-antd";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import {
+    Table,
     Popover,
     Card,
     Input,
-    Icons,
     Form,
     DatePicker,
     Select,
-    NumberField,
-    useSelect,
     Button,
     FormProps,
     Row,
     Col,
-    ExportButton,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import dayjs from "dayjs";
 

@@ -1,13 +1,17 @@
 import React from "react";
 import { Refine } from "@pankod/refine-core";
 import { RefineKbarProvider } from "@pankod/refine-kbar";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import {
-    Icons,
     notificationProvider,
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
 import { authProvider } from "authProvider";
 
@@ -48,7 +52,7 @@ const App: React.FC = () => {
     return (
         <RefineKbarProvider>
             <Refine
-                routerProvider={{
+                legacyRouterProvider={{
                     ...routerProvider,
                     routes: [
                         {
@@ -76,7 +80,7 @@ const App: React.FC = () => {
                     ],
                 }}
                 dataProvider={dataProvider}
-                authProvider={authProvider}
+                legacyAuthProvider={authProvider}
                 i18nProvider={i18nProvider}
                 OffLayoutArea={OffLayoutArea}
                 DashboardPage={DashboardPage}

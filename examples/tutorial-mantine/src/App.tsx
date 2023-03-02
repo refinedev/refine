@@ -2,18 +2,18 @@ import React from "react";
 
 import { Refine } from "@pankod/refine-core";
 import {
-    NotificationsProvider,
     notificationProvider,
-    MantineProvider,
-    Global,
     Layout,
     LightTheme,
     ReadyPage,
     ErrorComponent,
 } from "@pankod/refine-mantine";
 
+import { NotificationsProvider } from "@mantine/notifications";
+import { MantineProvider, Global } from "@mantine/core";
+
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import { ProductList } from "pages/products/list";
 import { ProductCreate } from "pages/products/create";
@@ -33,7 +33,7 @@ function App() {
                     Layout={Layout}
                     ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}
-                    routerProvider={routerProvider}
+                    legacyRouterProvider={routerProvider}
                     resources={[
                         {
                             name: "products",

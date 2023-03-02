@@ -1,19 +1,14 @@
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import {
-    Form,
-    Input,
-    Select,
-    useForm,
-    useSelect,
-    Edit,
-} from "@pankod/refine-antd";
+import { useForm, useSelect, Edit } from "@pankod/refine-antd";
+
+import { Form, Input, Select } from "antd";
 
 import { IInvoice } from "interfaces";
 
 export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IInvoice>({
-        metaData: { populate: ["company", "contact", "missions"] },
+        meta: { populate: ["company", "contact", "missions"] },
     });
 
     const defaultValue = queryResult?.data?.data;

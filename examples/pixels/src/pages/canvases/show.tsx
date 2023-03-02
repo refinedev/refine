@@ -6,14 +6,13 @@ import {
     useRouterContext,
     useShow,
 } from "@pankod/refine-core";
-import {
-    Button,
-    Typography,
-    Icons,
-    Spin,
-    Modal,
-    useModal,
-} from "@pankod/refine-antd";
+import { useModal } from "@pankod/refine-antd";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import { Button, Typography, Spin, Modal } from "antd";
 
 import { CanvasItem, DisplayCanvas } from "components/canvas";
 import { ColorSelect } from "components/color-select";
@@ -31,7 +30,9 @@ export const CanvasShow: React.FC = () => {
     const [color, setColor] = useState<(typeof colors)[number]>("black");
     const { modalProps, show, close } = useModal();
 
-    const { data: identity } = useGetIdentity();
+    const { data: identity } = useGetIdentity({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const {
         queryResult: { data: { data: canvas } = {} },
     } = useShow<Canvas>();
@@ -53,7 +54,7 @@ export const CanvasShow: React.FC = () => {
                     canvas_id: canvas?.id,
                     user_id: identity.id,
                 },
-                metaData: {
+                meta: {
                     canvas,
                 },
                 successNotification: false,

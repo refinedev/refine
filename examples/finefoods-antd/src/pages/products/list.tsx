@@ -8,16 +8,15 @@ import {
 
 import {
     useSimpleList,
-    Row,
-    AntdList,
-    Col,
     CreateButton,
-    Form,
-    Input,
-    Icons,
-    Typography,
     useDrawerForm,
 } from "@pankod/refine-antd";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import { Row, List as AntdList, Col, Form, Input, Typography } from "antd";
 
 const { Text } = Typography;
 const { SearchOutlined } = Icons;

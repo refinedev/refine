@@ -2,18 +2,19 @@ import { useState } from "react";
 import { useModal } from "@pankod/refine-core";
 import {
     List,
-    Table,
     useTable,
     DateField,
     TagField,
     EmailField,
-    Space,
     DeleteButton,
     EditButton,
-    Icons,
-    Button,
-    Modal,
 } from "@pankod/refine-antd";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import { Table, Space, Button, Modal } from "antd";
 
 import { IInvoice, IMission } from "interfaces";
 import { PdfLayout } from "components/pdf";
@@ -24,7 +25,7 @@ export const InvoiceList: React.FC = () => {
     const [record, setRecord] = useState<IInvoice>();
 
     const { tableProps } = useTable<IInvoice>({
-        metaData: {
+        meta: {
             populate: {
                 contact: { populate: ["client"] },
                 company: { populate: ["logo"] },

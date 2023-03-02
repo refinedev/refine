@@ -1,20 +1,20 @@
 import React from "react";
 import {
     useDataGrid,
-    DataGrid,
-    GridColumns,
     EditButton,
     DeleteButton,
     DateField,
     List,
-    Stack,
 } from "@pankod/refine-mui";
+
+import { Stack } from "@mui/material";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>({
-        metaData: {
+        meta: {
             populate: ["category"],
         },
     });

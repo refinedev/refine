@@ -1,5 +1,5 @@
 import { LayoutProps, Refine } from "@pankod/refine-core";
-import routerProvider, { Link } from "@pankod/refine-react-router-v6";
+import routerProvider, { Link } from "@pankod/refine-react-router-v6/legacy";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import { githubDataProvider } from "github-data-provider";
@@ -36,7 +36,7 @@ const App: React.FC = () => {
                 default: dataProvider("https://api.fake-rest.refine.dev"),
                 github: githubDataProvider(),
             }}
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             Layout={Layout}
             resources={[
                 {

@@ -1,13 +1,17 @@
 import { useGetLocale, useSetLocale } from "@pankod/refine-core";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import {
-    AntdLayout,
+    Layout as AntdLayout,
     Space,
     Menu,
     Button,
-    Icons,
     Dropdown,
     Avatar,
-} from "@pankod/refine-antd";
+} from "antd";
 import { useTranslation } from "react-i18next";
 
 const { DownOutlined } = Icons;

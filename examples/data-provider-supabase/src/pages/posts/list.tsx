@@ -2,16 +2,15 @@ import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
     List,
-    Table,
     useTable,
-    Space,
     EditButton,
     ShowButton,
     getDefaultSortOrder,
     FilterDropdown,
-    Select,
     useSelect,
 } from "@pankod/refine-antd";
+
+import { Table, Space, Select } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -23,7 +22,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 order: "asc",
             },
         ],
-        metaData: {
+        meta: {
             select: "*, categories(title)",
         },
     });

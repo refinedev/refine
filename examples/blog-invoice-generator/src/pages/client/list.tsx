@@ -2,18 +2,19 @@ import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
 
 import {
     useSimpleList,
-    AntdList,
     List,
     useDrawerForm,
     CreateButton,
 } from "@pankod/refine-antd";
+
+import { List as AntdList } from "antd";
 
 import { IClient } from "interfaces";
 import { ClientItem, CreateClient, EditClient } from "components/client";
 
 export const ClientList: React.FC<IResourceComponentsProps> = () => {
     const { listProps } = useSimpleList<IClient>({
-        metaData: { populate: ["contacts"] },
+        meta: { populate: ["contacts"] },
     });
 
     const {

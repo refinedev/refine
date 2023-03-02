@@ -1,5 +1,10 @@
 import { useTranslate, useUpdate } from "@pankod/refine-core";
-import { Dropdown, Icons, Menu } from "@pankod/refine-antd";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import { Dropdown, Menu } from "antd";
 import { IOrder } from "interfaces";
 
 type OrderActionProps = {

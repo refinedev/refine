@@ -1,13 +1,11 @@
 import React from "react";
-import {
-    useForm,
-    Form,
-    Input,
-    Edit,
-    Icons,
-    Button,
-    Space,
-} from "@pankod/refine-antd";
+import { useForm, Edit } from "@pankod/refine-antd";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import { Form, Input, Button, Space } from "antd";
 
 interface IFormValue {
     name: string;

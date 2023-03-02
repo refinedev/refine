@@ -7,9 +7,12 @@ import {
     useList,
 } from "@pankod/refine-core";
 
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import {
     Menu,
-    Icons,
     Dropdown,
     Input,
     Avatar,
@@ -19,10 +22,10 @@ import {
     Row,
     Col,
     AutoComplete,
-    AntdLayout,
-} from "@pankod/refine-antd";
+    Layout as AntdLayout,
+} from "antd";
 
-import RefineReactRouter from "@pankod/refine-react-router-v6";
+import RefineReactRouter from "@pankod/refine-react-router-v6/legacy";
 
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";
@@ -50,7 +53,9 @@ export const Header: React.FC = () => {
     const { i18n } = useTranslation();
     const locale = useGetLocale();
     const changeLanguage = useSetLocale();
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const screens = useBreakpoint();
     const t = useTranslate();
 

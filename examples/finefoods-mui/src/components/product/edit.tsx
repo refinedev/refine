@@ -3,10 +3,11 @@ import axios from "axios";
 
 import { useTranslate, useApiUrl, HttpError } from "@pankod/refine-core";
 
-import {
-    Controller,
-    UseModalFormReturnType,
-} from "@pankod/refine-react-hook-form";
+import { UseModalFormReturnType } from "@pankod/refine-react-hook-form";
+
+import { Controller } from "react-hook-form";
+
+import { useAutocomplete, Edit } from "@pankod/refine-mui";
 
 import {
     Drawer,
@@ -22,13 +23,12 @@ import {
     Box,
     IconButton,
     FormControl,
-    useAutocomplete,
     OutlinedInput,
     InputAdornment,
     FormHelperText,
     Autocomplete,
-    Edit,
-} from "@pankod/refine-mui";
+} from "@mui/material";
+
 import CloseIcon from "@mui/icons-material/Close";
 
 import { ICategory, IProduct } from "interfaces";

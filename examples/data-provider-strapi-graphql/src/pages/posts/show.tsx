@@ -1,11 +1,8 @@
 import { useShow, IResourceComponentsProps } from "@pankod/refine-core";
 
-import {
-    Show,
-    Typography,
-    MarkdownField,
-    RefreshButton,
-} from "@pankod/refine-antd";
+import { Show, MarkdownField, RefreshButton } from "@pankod/refine-antd";
+
+import { Typography } from "antd";
 
 import { IPost } from "interfaces";
 
@@ -13,7 +10,7 @@ const { Title, Text } = Typography;
 
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>({
-        metaData: {
+        meta: {
             fields: [
                 "id",
                 "title",

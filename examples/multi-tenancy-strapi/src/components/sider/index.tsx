@@ -5,15 +5,23 @@ import {
     ITreeMenu,
     CanAccess,
     useRouterContext,
+    useMenu,
 } from "@pankod/refine-core";
-import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import { Layout as AntdLayout, Menu, Grid } from "antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 import { StoreSelect } from "components/select";
 
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
-    const { mutate: logout } = useLogout();
+    const { mutate: logout } = useLogout({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const { Link } = useRouterContext();
     const Title = useTitle();
     const { SubMenu } = Menu;

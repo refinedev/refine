@@ -8,7 +8,12 @@ import {
     useIsExistAuthentication,
     useMenu,
 } from "@pankod/refine-core";
-import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import { Layout as AntdLayout, Menu, Grid } from "antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 import { StoreSelect } from "components/select";
@@ -20,7 +25,9 @@ export const CustomSider: React.FC = () => {
     const { SubMenu } = Menu;
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
-    const { mutate: mutateLogout } = useLogout();
+    const { mutate: mutateLogout } = useLogout({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const isExistAuthentication = useIsExistAuthentication();
 
     const isMobile =

@@ -6,7 +6,7 @@ import {
     Priority,
     useRegisterActions,
 } from "@pankod/refine-kbar";
-import { Icons } from "@pankod/refine-antd";
+import * as Icons from "@ant-design/icons";
 
 import { IOrder } from "interfaces";
 

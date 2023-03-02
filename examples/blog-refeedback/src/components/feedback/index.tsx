@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-import { Card, Button, Icons, Typography } from "@pankod/refine-antd";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import { Card, Button, Typography } from "antd";
 
 import { TypePage } from "./typePage";
 import { InputPage } from "./inputPage";

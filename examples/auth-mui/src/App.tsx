@@ -1,21 +1,26 @@
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import {
+    Refine,
+    LegacyAuthProvider as AuthProvider,
+} from "@pankod/refine-core";
 import {
     Layout,
     ErrorComponent,
     ReadyPage,
     LightTheme,
-    ThemeProvider,
     notificationProvider,
     RefineSnackbarProvider,
+    AuthPage,
+} from "@pankod/refine-mui";
+import {
     CssBaseline,
     GlobalStyles,
-    AuthPage,
     FormControlLabel,
     Checkbox,
-} from "@pankod/refine-mui";
+} from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
-import { useFormContext } from "@pankod/refine-react-hook-form";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import { useFormContext } from "react-hook-form";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 
@@ -108,11 +113,11 @@ const App: React.FC = () => {
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
                 <Refine
-                    authProvider={authProvider}
+                    legacyAuthProvider={authProvider}
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}
-                    routerProvider={{
+                    legacyRouterProvider={{
                         ...routerProvider,
                         routes: [
                             {

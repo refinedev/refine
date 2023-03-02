@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { useLogin } from "@pankod/refine-core";
 
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import {
     Row,
     Col,
-    AntdLayout,
+    Layout as AntdLayout,
     Card,
     Form,
     Input,
     Button,
-    Icons,
-} from "@pankod/refine-antd";
+} from "antd";
 
 const { PhoneOutlined, NumberOutlined } = Icons;
 export interface ILoginForm {
@@ -23,7 +26,9 @@ export const Login: React.FC = () => {
     const [gsmNumber, setGsmNumber] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
 
-    const { mutate: login, isLoading } = useLogin<ILoginForm>();
+    const { mutate: login, isLoading } = useLogin<ILoginForm>({
+        v3LegacyAuthProviderCompatible: true,
+    });
 
     const onGsmFormSubmit = (values: Pick<ILoginForm, "gsmNumber">) => {
         setLoading(true);

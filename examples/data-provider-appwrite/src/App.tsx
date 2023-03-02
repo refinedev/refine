@@ -1,4 +1,7 @@
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import {
+    Refine,
+    LegacyAuthProvider as AuthProvider,
+} from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -9,7 +12,7 @@ import {
     dataProvider,
     liveProvider,
 } from "@pankod/refine-appwrite";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import "@pankod/refine-antd/dist/reset.css";
 
 import { Login } from "pages/login";
@@ -66,8 +69,8 @@ const App: React.FC = () => {
                 databaseId: "default",
             })}
             options={{ liveMode: "auto" }}
-            authProvider={authProvider}
-            routerProvider={routerProvider}
+            legacyAuthProvider={authProvider}
+            legacyRouterProvider={routerProvider}
             LoginPage={Login}
             resources={[
                 {

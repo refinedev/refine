@@ -10,7 +10,7 @@ import {
     AuthPage,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-nextjs-router/app";
+import routerProvider from "@pankod/refine-nextjs-router/legacy-app";
 import "@pankod/refine-antd/dist/reset.css";
 
 import "@styles/global.css";
@@ -29,8 +29,8 @@ export default function RefineLayout({
 }) {
     return (
         <Refine
-            routerProvider={routerProvider.call({ params })}
-            authProvider={authProvider}
+            legacyRouterProvider={routerProvider.call({ params })}
+            legacyAuthProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {

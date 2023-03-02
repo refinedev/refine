@@ -1,7 +1,8 @@
 import { useTranslate, useApiUrl } from "@pankod/refine-core";
 
+import { Edit, getValueFromEvent, useSelect } from "@pankod/refine-antd";
+
 import {
-    Edit,
     Drawer,
     DrawerProps,
     Form,
@@ -16,9 +17,7 @@ import {
     Typography,
     Upload,
     Grid,
-    getValueFromEvent,
-    useSelect,
-} from "@pankod/refine-antd";
+} from "antd";
 
 const { Text } = Typography;
 

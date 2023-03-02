@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
     useTitle,
     ITreeMenu,
@@ -8,8 +9,11 @@ import {
     useIsExistAuthentication,
     useTranslate,
     useLogout,
+    useMenu,
 } from "@pankod/refine-core";
-import { AntdLayout, Menu, useMenu, Grid, Sider } from "@pankod/refine-antd";
+
+import { Sider } from "@pankod/refine-antd";
+import { Layout as AntdLayout, Menu, Grid } from "antd";
 import {
     DashboardOutlined,
     LogoutOutlined,
@@ -21,7 +25,9 @@ export const CustomSider: typeof Sider = ({ render }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
     const { Link } = useRouterContext();
-    const { mutate: mutateLogout } = useLogout();
+    const { mutate: mutateLogout } = useLogout({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const Title = useTitle();
     const translate = useTranslate();
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();

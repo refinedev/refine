@@ -1,6 +1,10 @@
-import { AuthPage, AuthProvider, Refine } from "@pankod/refine-core";
+import {
+    AuthPage,
+    LegacyAuthProvider as AuthProvider,
+    Refine,
+} from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import { PostList, PostCreate, PostEdit } from "./pages/posts";
 import { ExamplePage } from "./pages/example";
@@ -67,7 +71,7 @@ const App: React.FC = () => {
 
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 routes: [
                     { path: "/example", element: <ExamplePage /> },
@@ -86,7 +90,7 @@ const App: React.FC = () => {
                 ],
             }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             LoginPage={() => <AuthPage />}
             resources={[
                 {

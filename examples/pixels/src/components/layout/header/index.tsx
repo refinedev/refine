@@ -6,7 +6,13 @@ import {
     useNavigation,
     useRouterContext,
 } from "@pankod/refine-core";
-import { Button, Image, Space, Icons, useModalForm } from "@pankod/refine-antd";
+import { useModalForm } from "@pankod/refine-antd";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import { Button, Image, Space } from "antd";
 
 import { CreateCanvas } from "components/canvas";
 import { Canvas } from "types";
@@ -15,8 +21,12 @@ const { PlusSquareOutlined, LogoutOutlined, LoginOutlined } = Icons;
 
 export const Header: React.FC = () => {
     const { Link, useLocation } = useRouterContext();
-    const { isError } = useGetIdentity();
-    const { mutate: mutateLogout } = useLogout();
+    const { isError } = useGetIdentity({
+        v3LegacyAuthProviderCompatible: true,
+    });
+    const { mutate: mutateLogout } = useLogout({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const { push } = useNavigation();
     const { selectedKey } = useMenu();
     const { pathname } = useLocation();

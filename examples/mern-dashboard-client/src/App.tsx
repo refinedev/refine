@@ -1,14 +1,16 @@
 import React from "react";
 
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import {
+    Refine,
+    LegacyAuthProvider as AuthProvider,
+} from "@pankod/refine-core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
-    CssBaseline,
-    GlobalStyles,
     ReadyPage,
     ErrorComponent,
 } from "@pankod/refine-mui";
+import { CssBaseline, GlobalStyles } from "@mui/material";
 import {
     AccountCircleOutlined,
     ChatBubbleOutline,
@@ -18,7 +20,7 @@ import {
 } from "@mui/icons-material";
 
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import axios, { AxiosRequestConfig } from "axios";
 import { Title, Sider, Layout, Header } from "components/layout";
 import { ColorModeContextProvider } from "contexts";
@@ -168,8 +170,8 @@ function App() {
                     Sider={Sider}
                     Layout={Layout}
                     Header={Header}
-                    routerProvider={routerProvider}
-                    authProvider={authProvider}
+                    legacyRouterProvider={routerProvider}
+                    legacyAuthProvider={authProvider}
                     LoginPage={Login}
                     DashboardPage={Home}
                 />

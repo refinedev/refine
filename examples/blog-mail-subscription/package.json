@@ -21,7 +21,8 @@
         "@uiw/react-md-editor": "^3.19.5",
         "react-scripts": "^5.0.0",
         "cross-env": "^7.0.3",
-        "typescript": "^4.7.4"
+        "typescript": "^4.7.4",
+        "antd": "^5.0.5"
     },
     "scripts": {
         "dev": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",

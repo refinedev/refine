@@ -5,7 +5,9 @@ import {
     useTranslate,
 } from "@pankod/refine-core";
 
-import { Show, Typography, MarkdownField } from "@pankod/refine-antd";
+import { Show, MarkdownField } from "@pankod/refine-antd";
+
+import { Typography } from "antd";
 
 import { IPost, ICategory } from "../../interfaces";
 

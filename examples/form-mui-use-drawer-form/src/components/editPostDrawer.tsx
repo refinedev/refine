@@ -1,17 +1,14 @@
 import { HttpError } from "@pankod/refine-core";
+import { Edit, useAutocomplete } from "@pankod/refine-mui";
 import {
     Autocomplete,
     Box,
     Drawer,
-    Edit,
     IconButton,
     TextField,
-    useAutocomplete,
-} from "@pankod/refine-mui";
-import {
-    Controller,
-    UseModalFormReturnType,
-} from "@pankod/refine-react-hook-form";
+} from "@mui/material";
+import { UseModalFormReturnType } from "@pankod/refine-react-hook-form";
+import { Controller } from "react-hook-form";
 import { CloseOutlined } from "@mui/icons-material";
 
 import { IPost } from "interfaces";

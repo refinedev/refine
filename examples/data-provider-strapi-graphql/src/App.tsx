@@ -1,11 +1,14 @@
-import { AuthProvider, Refine } from "@pankod/refine-core";
+import {
+    LegacyAuthProvider as AuthProvider,
+    Refine,
+} from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
 import dataProvider, { GraphQLClient } from "@pankod/refine-strapi-graphql";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import "@pankod/refine-antd/dist/reset.css";
 
@@ -24,7 +27,7 @@ const authProvider: AuthProvider = {
             const { data } = await gqlDataProvider.custom!({
                 url: "",
                 method: "post",
-                metaData: {
+                meta: {
                     operation: "login",
                     variables: {
                         input: {
@@ -68,7 +71,7 @@ const authProvider: AuthProvider = {
             const { data } = await gqlDataProvider.custom!({
                 url: "",
                 method: "get",
-                metaData: {
+                meta: {
                     operation: "me",
                     fields: [
                         {
@@ -90,7 +93,7 @@ const authProvider: AuthProvider = {
             const { data } = await gqlDataProvider.custom!({
                 url: "",
                 method: "get",
-                metaData: {
+                meta: {
                     operation: "me",
                     fields: ["id", "username", "email"],
                 },
@@ -111,8 +114,8 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={gqlDataProvider}
-            routerProvider={routerProvider}
-            authProvider={authProvider}
+            legacyRouterProvider={routerProvider}
+            legacyAuthProvider={authProvider}
             LoginPage={Login}
             resources={[
                 {

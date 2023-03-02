@@ -1,15 +1,7 @@
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import {
-    Edit,
-    Form,
-    Input,
-    Select,
-    useForm,
-    useSelect,
-    Upload,
-    Radio,
-} from "@pankod/refine-antd";
+import { Edit, useForm, useSelect } from "@pankod/refine-antd";
+import { Form, Input, Select, Upload, Radio } from "antd";
 import {
     useStrapiUpload,
     getValueProps,
@@ -23,13 +15,13 @@ import { ICategory, IPost } from "interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-        metaData: { populate: ["category", "cover"] },
+        meta: { populate: ["category", "cover"] },
     });
 
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
         defaultValue: queryResult?.data?.data?.category?.id,
-        metaData: { locale: queryResult?.data?.data.locale },
+        meta: { locale: queryResult?.data?.data.locale },
     });
 
     const { ...uploadProps } = useStrapiUpload({

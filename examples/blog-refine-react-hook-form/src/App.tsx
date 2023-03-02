@@ -2,15 +2,14 @@ import { Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
-    CssBaseline,
-    GlobalStyles,
     Layout,
-    ThemeProvider,
     LightTheme,
     ReadyPage,
     ErrorComponent,
 } from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { ThemeProvider } from "@mui/material/styles";
+import { CssBaseline, GlobalStyles } from "@mui/material";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import dataProvider from "@pankod/refine-simple-rest";
 import Create from "pages/create";
 
@@ -31,7 +30,7 @@ function App() {
                             list: Create,
                         },
                     ]}
-                    routerProvider={routerProvider}
+                    legacyRouterProvider={routerProvider}
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}

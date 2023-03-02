@@ -5,15 +5,14 @@ import {
     CanAccess,
     ITreeMenu,
     useRouterContext,
-} from "@pankod/refine-core";
-import {
-    AntdLayout,
-    Menu,
     useMenu,
-    Grid,
-    Icons,
-    Badge,
-} from "@pankod/refine-antd";
+} from "@pankod/refine-core";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import { Layout as AntdLayout, Menu, Grid, Badge } from "antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const CustomSider: React.FC = () => {

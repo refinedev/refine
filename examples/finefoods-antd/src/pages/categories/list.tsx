@@ -2,25 +2,31 @@ import { useTranslate, IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
     List,
-    Table,
     useTable,
-    Space,
     BooleanField,
     useEditableTable,
-    Form,
     SaveButton,
+    NumberField,
+    DateField,
+    useDrawerForm,
+} from "@pankod/refine-antd";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import {
+    Table,
+    Space,
+    Form,
     Button,
     Input,
     Checkbox,
     Dropdown,
-    Icons,
     Menu,
     Avatar,
-    NumberField,
-    DateField,
     Grid,
-    useDrawerForm,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { ICategory, IProduct } from "interfaces";
 import { EditProduct } from "components/product";

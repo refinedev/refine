@@ -6,7 +6,7 @@ import {
     useRefineContext,
     ITreeMenu,
 } from "@pankod/refine-core";
-import { NavLink } from "@pankod/refine-react-router-v6";
+import { NavLink } from "@pankod/refine-react-router-v6/legacy";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const { menuItems, selectedKey } = useMenu();

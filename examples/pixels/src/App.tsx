@@ -3,11 +3,15 @@ import {
     notificationProvider,
     ReadyPage,
     ErrorComponent,
-    Icons,
-    ConfigProvider,
 } from "@pankod/refine-antd";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@pankod/refine-supabase";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import { Layout } from "components/layout";
 import { CanvasFeaturedList, CanvasList, CanvasShow } from "pages/canvases";
@@ -39,10 +43,10 @@ function App() {
         >
             <Refine
                 auditLogProvider={auditLogProvider}
-                authProvider={authProvider}
+                legacyAuthProvider={authProvider}
                 dataProvider={dataProvider(supabaseClient)}
                 liveProvider={liveProvider(supabaseClient)}
-                routerProvider={{
+                legacyRouterProvider={{
                     ...routerProvider,
                     routes: [
                         {

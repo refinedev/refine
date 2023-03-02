@@ -1,11 +1,8 @@
 import { Refine } from "@pankod/refine-core";
-import {
-    CssBaseline,
-    GlobalStyles,
-    ThemeProvider,
-    LightTheme,
-} from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { LightTheme } from "@pankod/refine-mui";
+import { ThemeProvider } from "@mui/material/styles";
+import { CssBaseline, GlobalStyles } from "@mui/material";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import dataProvider from "@pankod/refine-simple-rest";
 import Layout from "./components/Layout";
 import EmployeeList from "./pages/employees";
@@ -17,7 +14,7 @@ function App() {
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 Layout={Layout}
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 dataProvider={dataProvider(
                     "https://my-json-server.typicode.com/Mich45/employee-data",
                 )}

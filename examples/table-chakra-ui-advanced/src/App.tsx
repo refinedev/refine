@@ -1,14 +1,14 @@
 import { Refine } from "@pankod/refine-core";
 import {
-    ChakraProvider,
     ErrorComponent,
     Layout,
     refineTheme,
     ReadyPage,
     notificationProvider,
 } from "@pankod/refine-chakra-ui";
+import { ChakraProvider } from "@chakra-ui/react";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6/legacy";
 
 import { PostList } from "./pages";
 
@@ -17,7 +17,7 @@ const App: React.FC = () => {
         <ChakraProvider theme={refineTheme}>
             <Refine
                 notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 Layout={Layout}
                 ReadyPage={ReadyPage}

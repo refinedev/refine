@@ -7,8 +7,8 @@ import {
     TextField,
     Select,
     MenuItem,
-} from "@pankod/refine-mui";
-import { useNavigate } from "@pankod/refine-react-router-v6";
+} from "@mui/material";
+import { useNavigate } from "@pankod/refine-react-router-v6/legacy";
 import { useMemo } from "react";
 
 import { PropertyCard, CustomButton } from "components";

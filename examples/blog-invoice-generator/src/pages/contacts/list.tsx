@@ -1,21 +1,21 @@
 import {
     List,
-    Table,
     TagField,
     useTable,
-    Space,
     EditButton,
     DeleteButton,
     useModalForm,
     EmailField,
 } from "@pankod/refine-antd";
 
+import { Table, Space } from "antd";
+
 import { IContact } from "interfaces";
 import { CreateContact } from "components/contacts";
 
 export const ContactsList: React.FC = () => {
     const { tableProps } = useTable<IContact>({
-        metaData: { populate: ["client"] },
+        meta: { populate: ["client"] },
     });
 
     const {

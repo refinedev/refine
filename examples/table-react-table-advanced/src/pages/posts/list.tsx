@@ -5,13 +5,11 @@ import {
     useMany,
     useSelect,
 } from "@pankod/refine-core";
-import { useForm, Controller } from "@pankod/refine-react-hook-form";
-import {
-    useTable,
-    ColumnDef,
-    flexRender,
-    Row,
-} from "@pankod/refine-react-table";
+import { useForm } from "@pankod/refine-react-hook-form";
+import { Controller } from "react-hook-form";
+import { useTable } from "@pankod/refine-react-table";
+
+import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
 
 import MDEditor from "@uiw/react-md-editor";
 

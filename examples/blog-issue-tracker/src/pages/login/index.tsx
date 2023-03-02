@@ -4,13 +4,13 @@ import { useLogin, useNavigation } from "@pankod/refine-core";
 import {
     Row,
     Col,
-    AntdLayout,
+    Layout as AntdLayout,
     Card,
     Typography,
     Form,
     Input,
     Button,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import "./styles.css";
 
@@ -24,7 +24,9 @@ export interface ILoginForm {
 export const Login: React.FC = () => {
     const [form] = Form.useForm<ILoginForm>();
 
-    const { mutate: login } = useLogin<ILoginForm>();
+    const { mutate: login } = useLogin<ILoginForm>({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const { push } = useNavigation();
 
     const CardTitle = (

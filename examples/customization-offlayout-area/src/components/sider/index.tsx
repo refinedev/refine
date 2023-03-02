@@ -4,9 +4,14 @@ import {
     ITreeMenu,
     CanAccess,
     useRouterContext,
+    useMenu,
 } from "@pankod/refine-core";
 
-import { AntdLayout, Menu, Icons, useMenu } from "@pankod/refine-antd";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import { Layout as AntdLayout, Menu } from "antd";
 
 export const FixedSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);

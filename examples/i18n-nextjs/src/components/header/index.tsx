@@ -1,14 +1,18 @@
 import { useGetLocale } from "@pankod/refine-core";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import {
-    AntdLayout,
+    Layout as AntdLayout,
     Space,
     Menu,
     Button,
-    Icons,
     Dropdown,
     Avatar,
-} from "@pankod/refine-antd";
-import NextRouter from "@pankod/refine-nextjs-router";
+} from "antd";
+import NextRouter from "@pankod/refine-nextjs-router/legacy";
 import { useRouter } from "next/router";
 
 const { Link } = NextRouter;

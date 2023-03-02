@@ -2,21 +2,20 @@ import { IResourceComponentsProps, useExport } from "@pankod/refine-core";
 
 import {
     List,
-    Table,
     useTable,
-    Space,
     EditButton,
     ShowButton,
     DeleteButton,
     getDefaultSortOrder,
     FilterDropdown,
-    Select,
     useSelect,
     ExportButton,
     ImportButton,
     CreateButton,
     useImport,
 } from "@pankod/refine-antd";
+
+import { Table, Space, Select } from "antd";
 
 import { ICategory, IPost } from "interfaces";
 
@@ -28,7 +27,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 order: "asc",
             },
         ],
-        metaData: {
+        meta: {
             fields: [
                 "id",
                 "title",
@@ -41,7 +40,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
-        metaData: {
+        meta: {
             fields: ["id", "title"],
         },
     });
@@ -55,7 +54,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 category: item.category?.id,
             };
         },
-        metaData: {
+        meta: {
             fields: ["id", "title", "content", { category: ["id"] }],
         },
     });
