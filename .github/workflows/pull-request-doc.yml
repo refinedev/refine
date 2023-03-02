@@ -1,4 +1,4 @@
-name: Pull Request Documentation [synchronize]
+name: PR Documentation [synchronize]
 
 on:
   pull_request:
@@ -14,6 +14,8 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
+
+    name: Deploy Documentation Preview
 
     steps:
       - name: Workflow run cleanup action
@@ -41,12 +43,12 @@ jobs:
       - name: Install Package Dependencies
         run: |
           npm ci
-          npm run bootstrap
+          npm run bootstrap:all
       - name: Install Doc Dependencies
         run: |
           cd documentation
           npm ci
-      - name: Wait for Netlify Deploy
+      - name: Wait for Netlify Deploy (Live Previews)
         uses: probablyup/wait-for-netlify-action@3.2.0
         id: waitForDeployment
         with:
@@ -57,7 +59,7 @@ jobs:
       - name: output test
         run: |
           echo ${{ steps.waitForDeployment.outputs.url }}
-      - name: Install Dependencies
+      - name: Build Documentation
         run: |
           cd documentation
           LIVE_PREVIEW_URL=${{ steps.waitForDeployment.outputs.url }}/preview npm run build
