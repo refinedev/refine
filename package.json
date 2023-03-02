@@ -12,7 +12,7 @@
     "start": "lerna run start --stream --parallel --scope @pankod/refine-core",
     "start:docs": "concurrently \"cd documentation && npm run start\" \"npm run start -- --scope @pankod/refine-live-previews\" --names docs,live --prefix-colors blue,red",
     "build": "lerna run build --include-dependencies --scope @pankod/refine-core",
-    "build:all": "lerna run build --ignore @pankod/refine-react-router --scope @pankod/refine* --scope create-refine-app",
+    "build:all": "lerna run --no-bail build --ignore @pankod/refine-react-router --scope @pankod/refine* --scope create-refine-app",
     "bootstrap": "lerna bootstrap --hoist --strict --include-dependencies --scope @pankod/refine-core",
     "bootstrap:all": "lerna bootstrap --hoist --strict --ignore @pankod/refine-react-router --scope @pankod/refine* --scope create-refine-app",
     "nuke": "echo 'Removing all node_modules, builds and lockfiles'; npm run nuke:node_modules; npm run nuke:builds; npm run nuke:lockfiles;",
