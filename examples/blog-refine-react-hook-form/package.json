@@ -3,8 +3,8 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "@pankod/refine-core": "^3.99.4",
-        "@pankod/refine-cli": "^1.17.0",
+        "@pankod/refine-core": "^3.99.6",
+        "@pankod/refine-cli": "^1.17.1",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",
@@ -25,7 +25,8 @@
         "@mui/lab": "^5.0.0-alpha.85",
         "@mui/material": "^5.8.6",
         "@mui/x-data-grid": "^5.12.1",
-        "yup": "^0.32.11"
+        "yup": "^0.32.11",
+        "react-hook-form": "^7.30.0"
     },
     "devDependencies": {
         "@types/react": "^18.0.0",

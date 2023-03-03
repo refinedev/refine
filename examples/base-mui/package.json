@@ -3,8 +3,8 @@
     "version": "3.25.0",
     "private": true,
     "dependencies": {
-        "@pankod/refine-core": "^3.99.4",
-        "@pankod/refine-cli": "^1.17.0",
+        "@pankod/refine-core": "^3.99.6",
+        "@pankod/refine-cli": "^1.17.1",
         "@pankod/refine-mui": "^3.61.5",
         "@pankod/refine-react-hook-form": "^3.37.2",
         "@pankod/refine-react-router-v6": "^3.38.0",
@@ -22,7 +22,8 @@
         "@uiw/react-md-editor": "^3.19.5",
         "react-scripts": "^5.0.0",
         "cross-env": "^7.0.3",
-        "typescript": "^4.7.4"
+        "typescript": "^4.7.4",
+        "react-hook-form": "^7.30.0"
     },
     "scripts": {
         "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",

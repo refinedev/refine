@@ -8,7 +8,7 @@ import {
     useRef,
     useState,
 } from "react";
-import { get } from "@pankod/refine-react-hook-form";
+import { get } from "react-hook-form";
 
 import s from "./NativeSelect.module.css";
 

@@ -1,4 +1,4 @@
-name: Build all examples
+name: Build All Examples
 
 on:
     pull_request:
@@ -20,6 +20,8 @@ jobs:
             matrix:
                 node-version: [16.x]
 
+        name: Build All Examples
+
         steps:
             - name: Get PR labels
               id: pr-labels
@@ -32,6 +34,6 @@ jobs:
                   registry-url: https://registry.npmjs.org/
             - run: |
                   npm ci
-                  npm run bootstrap -- --scope "*" --ignore blog-sveltekit-crud --ignore blog-react-aria
-                  npm run build -- --scope "*" --ignore blog-sveltekit-crud --ignore blog-react-aria
+                  npm run bootstrap:all -- --scope "*" --ignore blog-sveltekit-crud --ignore blog-react-aria
+                  npm run build:all -- --scope "*" --ignore blog-sveltekit-crud --ignore blog-react-aria
               if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))

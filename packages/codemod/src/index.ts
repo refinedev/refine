@@ -187,6 +187,13 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         name: "move-to-new-org: Move refine packages to its new scope",
         value: "move-to-new-org",
     },
+        name: "separate-imports-react-query: Moves `@tanstack/react-query` components exported by `refine` into `@tanstack/react-query`",
+        value: "separate-imports-react-query",
+    },
+    {
+        name: "separate-imports-react-hook-form: Moves `React Hook Form` components exported by `refine` into `React Hook Form`",
+        value: "separate-imports-react-hook-form",
+    },
     {
         name: "separate-imports-react-table: Moves `@tanstack/react-table` components exported by `refine` into `@tanstack/react-table`",
         value: "separate-imports-react-table",

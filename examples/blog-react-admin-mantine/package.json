@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@pankod/refine-cli": "^1.2.0",
-    "@pankod/refine-core": "^3.18.0",
+    "@pankod/refine-cli": "^1.17.1",
+    "@pankod/refine-core": "^3.99.6",
     "@pankod/refine-inferencer": "^2.0.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
@@ -34,7 +34,6 @@
     "eject": "react-scripts eject",
     "refine": "refine"
   },
-
   "browserslist": {
     "production": [
       ">0.2%",

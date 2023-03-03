@@ -6,10 +6,8 @@ import {
     IconButton,
     TextField,
 } from "@mui/material";
-import {
-    Controller,
-    UseModalFormReturnType,
-} from "@pankod/refine-react-hook-form";
+import { UseModalFormReturnType } from "@pankod/refine-react-hook-form";
+import { Controller } from "react-hook-form";
 import { CloseOutlined } from "@mui/icons-material";
 import { HttpError } from "@pankod/refine-core";
 

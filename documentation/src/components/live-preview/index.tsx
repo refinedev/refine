@@ -4,6 +4,8 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import base64url from "base64url";
 // @ts-expect-error Docusaurus components has an issue with TypeScript
 import CodeBlock from "@theme/CodeBlock";
+// @ts-expect-error Docusaurus components has an issue with TypeScript
+import { useDocsVersion } from "@docusaurus/theme-common/internal";
 import styles from "./styles.module.css";
 import BrowserWindow from "../../components/browser-window";
 import { useInView } from "../../hooks/use-in-view";
@@ -174,6 +176,8 @@ const LivePreviewBase = ({
         siteConfig: { customFields },
     } = useDocusaurusContext();
 
+    const { isLast } = useDocsVersion();
+
     return (
         <div className={styles.playgroundContainer}>
             <>
@@ -191,24 +195,44 @@ const LivePreviewBase = ({
                         }}
                         ref={ref}
                     >
-                        <Conditional if={inView} maxWait={3000}>
-                            {() => {
-                                return (
-                                    <LivePreviewFrame
-                                        code={`
+                        {isLast ? (
+                            <Conditional if={inView} maxWait={3000}>
+                                {() => {
+                                    return (
+                                        <LivePreviewFrame
+                                            code={`
 ${shared ?? ""}
 ${code}
                                         `}
-                                        css={sharedCss}
-                                        query={`${
-                                            disableScroll
-                                                ? "&disableScroll=true"
-                                                : ""
-                                        }${tailwind ? "&tailwind=true" : ""}`}
-                                    />
-                                );
-                            }}
-                        </Conditional>
+                                            css={sharedCss}
+                                            query={`${
+                                                disableScroll
+                                                    ? "&disableScroll=true"
+                                                    : ""
+                                            }${
+                                                tailwind ? "&tailwind=true" : ""
+                                            }`}
+                                        />
+                                    );
+                                }}
+                            </Conditional>
+                        ) : (
+                            <div
+                                style={{
+                                    height: "100%",
+                                    minHeight: "inherit",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    fontSize: "1.25rem",
+                                }}
+                            >
+                                <span>
+                                    Live previews only work with the latest
+                                    documentation.
+                                </span>
+                            </div>
+                        )}
                     </div>
                 </BrowserWindow>
                 {!previewOnly && <Editor hidden={hideCode} code={visible} />}

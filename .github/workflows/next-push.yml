@@ -39,12 +39,12 @@ jobs:
       - name: Install Dependencies & Build
         run: |
           npm ci
-          npm run bootstrap
-          npm run lerna run build -- --scope @pankod/refine-codemod
+          npm run bootstrap:all
+          npm run lerna run build:all -- --scope @pankod/refine-codemod
       - name: Lint
         run: npm run lint
       - name: Test
-        run: npm test
+        run: npm run test:all
       - name: Copy changesets for Stable version
         run: mkdir -p ./_changeset/ && cp -r ./.changeset/* ./_changeset/
       - name: Create Release Pull Request or Publish to npm
