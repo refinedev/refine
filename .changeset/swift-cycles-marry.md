@@ -2,4 +2,4 @@
 "@pankod/refine-core": minor
 ---
 
-added: `hasPagination` default value set to `false` on `useSelect`.
+`hasPagination` default value set to `false` on `useSelect`. So all of the records will be fetched by default.

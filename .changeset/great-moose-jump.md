@@ -2,6 +2,4 @@
 "@pankod/refine-antd-audit-log": minor
 ---
 
-`options` property of `<Refine>`'s `resources` property is deprecated. Added `meta` property instead.
-
-`useLogList` updated to use `meta` property instead of `options` property.
+-   `resource.meta` prop is added to `useLogList`. To ensure backward compatibility, `resource.options` prop will be used if `resource.meta` prop is not provided.

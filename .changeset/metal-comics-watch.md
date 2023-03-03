@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-codemod": major
+"@pankod/refine-codemod": minor
 ---
 
-Added transform `useMenu` imports to `"@pankod/refine-core"`
+Added transform function to change `useMenu` imports to `"@pankod/refine-core"`.

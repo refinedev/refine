@@ -2,6 +2,6 @@
 "@pankod/refine-ui-tests": minor
 ---
 
-`options` property of `<Refine>`'s `resources` property is deprecated.
-
-`button` and `crud` tests are updated to use `meta` property instead of `options` property.
+-   Buttons and CRUD tests are updated to use `resource.meta` property instead of `resource.options` property.
+-   `<TestWrapper>` updated to use `authProvider@v3` and `authProvider@v4`.
+-   Header tests are updated to use `authProvider@v4`.

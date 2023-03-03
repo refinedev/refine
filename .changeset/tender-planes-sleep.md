@@ -1,7 +1,7 @@
 ---
-"@pankod/refine-codemod": major
+"@pankod/refine-codemod": minor
 ---
 
--   `AuthProvider` deprecated and renamed to `LegacyAuthProvider` with refine@4. `AuthProvider` to `LegacyAuthProvider` Transformation added.
+-   Added transformation function to renamed `AuthProvider` to `LegacyAuthProvider`.
 
--   With refine@4, Auth hooks are takes `legacy` prop to support `AuthProvider` and `LegacyAuthProvider`. Added the transform that adds the `legacy:true` prop.
+-   Added transformation function to add `v3LegacyAuthProviderCompatible: true` to all auth hooks.
