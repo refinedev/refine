@@ -18,6 +18,7 @@ module.exports = {
             items: [
                 "migration-guide/3x-to-4x",
                 "migration-guide/auth-provider",
+                "migration-guide/router-provider",
             ],
         },
         {
