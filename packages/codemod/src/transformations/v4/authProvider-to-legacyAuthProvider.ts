@@ -1,10 +1,8 @@
-import { API, Collection, FileInfo, JSCodeshift } from "jscodeshift";
-
-export const parser = "tsx";
+import { Collection, JSCodeshift } from "jscodeshift";
 
 const REFINE_CORE_PATH = "@pankod/refine-core";
 
-const authProviderToLegacyAuthProvider = (
+export const authProviderToLegacyAuthProvider = (
     j: JSCodeshift,
     root: Collection<any>,
 ) => {
@@ -43,12 +41,3 @@ const authProviderToLegacyAuthProvider = (
         authProviderAttribute["name"]["name"] = "legacyAuthProvider";
     });
 };
-
-export default function transformer(file: FileInfo, api: API): string {
-    const j = api.jscodeshift;
-    const source = j(file.source);
-
-    authProviderToLegacyAuthProvider(j, source);
-
-    return source.toSource();
-}

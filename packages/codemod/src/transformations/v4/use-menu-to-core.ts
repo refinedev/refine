@@ -1,6 +1,4 @@
-import { API, JSCodeshift, Collection, FileInfo } from "jscodeshift";
-
-export const parser = "tsx";
+import { JSCodeshift, Collection } from "jscodeshift";
 
 const REFINE_ANTD_PATH = "@pankod/refine-antd";
 const REFINE_MUI_PATH = "@pankod/refine-mui";
@@ -77,10 +75,7 @@ const moveImports = (
         .forEach((path) => j(path).remove());
 };
 
-export default function transformer(file: FileInfo, api: API): string {
-    const j = api.jscodeshift;
-    const source = j(file.source);
-
+export const useMenuToCore = (j: JSCodeshift, source: Collection) => {
     moveImports(
         j,
         source,
@@ -96,6 +91,4 @@ export default function transformer(file: FileInfo, api: API): string {
         REFINE_MUI_PATH,
         REFINE_CORE_PATH,
     );
-
-    return source.toSource();
-}
+};
