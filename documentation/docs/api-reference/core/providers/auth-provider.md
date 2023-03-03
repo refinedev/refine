@@ -241,7 +241,7 @@ const App = () => {
 
 ### Properties
 
-| Property                                          | Description                               | Resolve condition                     |
+| Property                                          | Description                               | Success condition                     |
 | ------------------------------------------------- | ----------------------------------------- | ------------------------------------- |
 | login <div className=" required">Required</div>   | Logs user in                              | Auth confirms login                   |
 | logout <div className=" required">Required</div>  | Logs user out                             | Auth confirms logout                  |
@@ -270,7 +270,3 @@ const App = () => {
 [use-forgot-password]: /docs/api-reference/core/hooks/auth/useForgotPassword/
 [use-update-password]: /docs/api-reference/core/hooks/auth/useUpdatePassword/
 [create-auth-provider-tutorial]: /docs/tutorial/understanding-authprovider/create-authprovider
-
-```
-
-```

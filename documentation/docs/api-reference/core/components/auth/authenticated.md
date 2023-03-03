@@ -10,8 +10,8 @@ It internally uses [`useIsAuthenticated`][use-is-authenticated]'s return values 
 When:
 
 -   `data.authenticated` is `true`, it renders to children.
+-   `data.authenticated` is `false`, it renders [`fallback`](#fallback) prop if provided. Otherwise, it redirects to `data.redirectTo` page.
 -   `isLoading` is `true`, it renders [`loading`](#loading) prop.
--   `data.error` is `true`, it renders [`fallback`](#fallback) prop if provided. Otherwise, it redirects to `data.redirectTo` page.
 
 ## Basic Usage
 
@@ -54,11 +54,6 @@ Component to render while checking whether the user is logged in.
 ### Properties
 
 <PropsTable module="@pankod/refine-core/Authenticated"/>
-
-| Property | Description                                                                                               | Type        | Default |
-| -------- | --------------------------------------------------------------------------------------------------------- | ----------- | ------- |
-| fallback | Component to render if the user is not logged in. If `undefined`, the page will be redirected to `/login` | `ReactNode` |         |
-| loading  | Component to render while checking whether user is logged in                                              | `ReactNode` |         |
 
 [use-is-authenticated]: docs/api-reference/core/hooks/auth/useIsAuthenticated
 [custom pages explanation]: /advanced-tutorials/custom-pages.md#authenticated-custom-pages
