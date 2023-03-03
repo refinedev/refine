@@ -204,7 +204,7 @@ These hooks can be used with the `authProvider` authentication and authorization
 
 **refine**'s v4 release is backward compatible and supports the legacy auth provider implementations until v5.
 
-If you want to use a legacy auth provider, you can pass them to the `<Refine />` component using the legacyAuthProvider prop.
+If you want to use a legacy auth provider, you can pass them to the `<Refine />` component using the `legacyAuthProvider` prop.
 
 [Refer to the Migration Guide for more information. &#8594](/docs/migration-guide/auth-provider/)
 
