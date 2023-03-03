@@ -175,7 +175,12 @@ const App = () => {
                 };
             }
 
-            return Promise.reject();
+            return {
+                authenticated: false,
+                error: new Error("Token not found"),
+                redirectTo: "/login",
+                logout: true,
+            };
         },
         getPermissions: async () => null,
         getIdentity: async () => {
