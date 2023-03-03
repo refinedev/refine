@@ -41,6 +41,12 @@ const App: React.FC = () => {
             dataProvider={dataProvider(API_URL)}
             accessControlProvider={{
                 can: async ({ action, params, resource }) => {
+                    if (!resource) {
+                        return Promise.resolve({
+                            can: false,
+                        });
+                    }
+
                     const result = await cerbos.checkResource({
                         principal: {
                             id: "demoUser", // Fake a user ID

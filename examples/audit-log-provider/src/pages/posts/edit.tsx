@@ -81,7 +81,7 @@ export const PostEdit: React.FC = () => {
             </form>
 
             <Modal isOpen={visible} onClose={close}>
-                <History resource={resourceName} id={id} />
+                <History resource={resourceName || "posts"} id={id} />
             </Modal>
         </>
     );
