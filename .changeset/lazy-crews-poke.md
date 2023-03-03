@@ -48,7 +48,7 @@
     })
     ```
 
--   `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
+-   `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are now deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
 -   To ensure backward compatibility, `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props work as before.
 
     ```diff
@@ -66,7 +66,7 @@
     })
     ```
 
--   `sorter` and `setSorter` return values are deprecated. Use `sorters` and `setSorters` instead.
+-   `sorter` and `setSorter` return values are now deprecated. Use `sorters` and `setSorters` instead.
 -   To ensure backward compatibility, `sorter` and `setSorter` return values work as before.
 
     ```diff

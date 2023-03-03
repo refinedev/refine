@@ -6,5 +6,5 @@
 "@pankod/refine-mui": minor
 ---
 
--   `<ReadyPage>` is deprecated.
+-   `<ReadyPage>` isnow deprecated.
 -   Created a `<WelcomePage>` component to welcome users.

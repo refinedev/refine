@@ -27,7 +27,7 @@
     },
     ```
 
--   `sort`, `hasPagination`, and `metaData` parameters of `getList` method are deprecated. Use `sorters`, `pagination`, and `meta` parameters instead.
+-   `sort`, `hasPagination`, and `metaData` parameters of `getList` method are now deprecated. Use `sorters`, `pagination`, and `meta` parameters instead.
 
     > For backward compatibility, we still support `sort`, `hasPagination` and `metaData` props with refine v4.
 
