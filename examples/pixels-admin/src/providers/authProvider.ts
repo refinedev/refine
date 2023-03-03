@@ -201,10 +201,8 @@ export const authProvider: AuthBindings = {
             const { error } = await supabaseClient.auth.getUser();
 
             if (error) {
-                return {
-                    success: false,
-                    error,
-                };
+                console.error(error);
+                return;
             }
 
             const { data } = await supabaseClient.rpc("get_my_claim", {
@@ -213,10 +211,8 @@ export const authProvider: AuthBindings = {
 
             return data;
         } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
+            console.error(error);
+            return;
         }
     },
     getIdentity: async () => {
@@ -232,6 +228,7 @@ export const authProvider: AuthBindings = {
 
             return null;
         } catch (error: any) {
+            console.error(error);
             return null;
         }
     },
