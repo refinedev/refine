@@ -73,16 +73,16 @@ const CategoryPostsTable: React.FC<{ record: ICategory }> = ({ record }) => {
             <Table.Column<IPost>
                 title="Actions"
                 dataIndex="actions"
-                render={(_, record) => (
+                render={(_: any, record: any) => (
                     <Space>
                         <EditButton
                             size="small"
-                            resourceName="posts"
+                            resourceNameOrRouteName="posts"
                             recordItemId={record.id}
                         />
                         <ShowButton
                             size="small"
-                            resourceName="posts"
+                            resourceNameOrRouteName="posts"
                             recordItemId={record.id}
                         />
                     </Space>
