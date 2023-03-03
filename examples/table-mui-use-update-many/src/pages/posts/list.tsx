@@ -96,7 +96,7 @@ export const PostsList: React.FC = () => {
 
     return (
         <List
-            cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
+            wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
             headerButtons={
                 <Button
                     onClick={() => updateSelectedItems()}
