@@ -122,7 +122,7 @@ export function runTransform({ files, flags, transformer }) {
 
 const TRANSFORMER_INQUIRER_CHOICES = [
     {
-        name: "refine3-to-refine4: Transform from refine 2.x.x to at least 3.0.0",
+        name: "refine3-to-refine4: Transform from refine 3.x.x to at least 4.0.0",
         value: "refine3-to-refine4",
     },
     {
