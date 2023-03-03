@@ -6,7 +6,7 @@ export const GitHubBanner = () => {
         const styleTag = document.createElement("style");
         document.head.appendChild(styleTag);
         CSSRules.forEach((rule) => styleTag.sheet?.insertRule(rule, 0));
-    });
+    }, []);
 
     return (
         <div className="banner">
