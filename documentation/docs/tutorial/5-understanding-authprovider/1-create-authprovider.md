@@ -16,10 +16,10 @@ This section will show you how to create an auth provider from scratch. We'll us
     import type { AuthBindings } from "@pankod/refine-core";
 
     const authProvider: AuthBindings = {
-        login: async () => Promise.resolve(),
-        check: async () => Promise.resolve(),
-        logout: async () => Promise.resolve(),
-        onError: async () => Promise.resolve(),
+        login: async (params: any) => ({}),
+        check: async (params: any) => ({}),
+        logout: async (params: any) => ({}),
+        onError: async (params: any) => ({}),
     };
 
     export default authProvider;
