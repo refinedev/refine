@@ -29,7 +29,7 @@ function App() {
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <Refine
-                    authProvider={authProvider}
+                    legacyAuthProvider={authProvider}
                     dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
                     notificationProvider={notificationProvider}
                     Layout={Layout}

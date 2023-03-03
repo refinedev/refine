@@ -23,12 +23,11 @@
         "react-scripts": "^5.0.0",
         "cross-env": "^7.0.3",
         "typescript": "^4.7.4",
-        "@ant-design/icons": "^5.0.1",
-        "antd": "^5.0.5"
+        "antd": "^5.0.5",
+        "@ant-design/icons": "^5.0.1"
     },
     "scripts": {
         "dev": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
-        "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
         "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",

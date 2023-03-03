@@ -1,4 +1,7 @@
-import { AuthBindings, Refine } from "@pankod/refine-core";
+import {
+    LegacyAuthProvider as AuthProvider,
+    Refine,
+} from "@pankod/refine-core";
 import {
     AuthPage,
     Layout,
@@ -15,106 +18,71 @@ import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons";
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
 
 const App: React.FC = () => {
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async ({ providerName, email }) => {
             if (providerName === "google") {
                 window.location.href =
                     "https://accounts.google.com/o/oauth2/v2/auth";
-                return {
-                    success: true,
-                };
+                return Promise.resolve(false);
             }
 
             if (providerName === "github") {
                 window.location.href =
                     "https://github.com/login/oauth/authorize";
-                return {
-                    success: true,
-                };
+                return Promise.resolve(false);
             }
 
             if (email) {
                 localStorage.setItem("email", email);
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
+                return Promise.resolve();
             }
 
-            return {
-                success: false,
-                error: new Error("Invalid email or password"),
-            };
+            return Promise.reject();
         },
-        register: async (params) => {
+        register: (params) => {
             if (params.email && params.password) {
                 localStorage.setItem("email", params.email);
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
+                return Promise.resolve();
             }
-            return {
-                success: false,
-                error: new Error("Invalid email or password"),
-            };
+            return Promise.reject();
         },
-        updatePassword: async (params) => {
+        updatePassword: (params) => {
             if (params.newPassword) {
                 //we can update password here
-                return {
-                    success: true,
-                };
+                return Promise.resolve();
             }
-            return {
-                success: false,
-                error: new Error("Invalid password"),
-            };
+            return Promise.reject();
         },
-        forgotPassword: async (params) => {
+        forgotPassword: (params) => {
             if (params.email) {
                 //we can send email with reset password link here
-                return {
-                    success: true,
-                };
+                return Promise.resolve();
             }
-            return {
-                success: false,
-                error: new Error("Invalid email"),
-            };
+            return Promise.reject();
         },
-        logout: async () => {
+        logout: () => {
             localStorage.removeItem("email");
-            return {
-                success: true,
-                redirectTo: "/login",
-            };
+            return Promise.resolve();
         },
-        onError: async () => ({}),
-        check: async () =>
+        checkError: () => Promise.resolve(),
+        checkAuth: () =>
             localStorage.getItem("email")
-                ? {
-                      authenticated: true,
-                  }
-                : {
-                      authenticated: false,
-                      error: new Error("Not authenticated"),
-                      logout: true,
-                      redirectTo: "/login",
-                  },
-        getPermissions: async () => ["admin"],
-        getIdentity: async () => ({
-            id: 1,
-            name: "Jane Doe",
-            avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-        }),
+                ? Promise.resolve()
+                : Promise.reject(),
+        getPermissions: () => Promise.resolve(["admin"]),
+        getUserIdentity: () =>
+            Promise.resolve({
+                id: 1,
+                name: "Jane Doe",
+                avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
+            }),
     };
 
     return (
         <ChakraProvider theme={refineTheme}>
             <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                authProvider={authProvider}
+                legacyAuthProvider={authProvider}
                 notificationProvider={notificationProvider()}
                 legacyRouterProvider={{
                     ...routerProvider,

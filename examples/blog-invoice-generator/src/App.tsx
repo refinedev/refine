@@ -35,7 +35,7 @@ function App() {
             notificationProvider={notificationProvider}
             Layout={Layout}
             dataProvider={dataProvider}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             LoginPage={LoginPage}
             resources={[
                 {

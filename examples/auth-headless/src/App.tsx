@@ -31,27 +31,27 @@ const App: React.FC = () => {
 
             return Promise.reject();
         },
-        register: async ({ email, password }) => {
+        register: ({ email, password }) => {
             if (email && password) {
                 return Promise.resolve();
             }
             return Promise.reject();
         },
-        updatePassword: async ({ password }) => {
+        updatePassword: ({ password }) => {
             if (password) {
                 //we can update password here
                 return Promise.resolve();
             }
             return Promise.reject();
         },
-        forgotPassword: async ({ email }) => {
+        forgotPassword: ({ email }) => {
             if (email) {
                 //we can send email with forgot password link here
                 return Promise.resolve();
             }
             return Promise.reject();
         },
-        logout: async () => {
+        logout: () => {
             localStorage.removeItem("email");
             return Promise.resolve();
         },

@@ -1,4 +1,7 @@
-import { Refine, AuthBindings } from "@pankod/refine-core";
+import {
+    Refine,
+    LegacyAuthProvider as AuthProvider,
+} from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -17,75 +20,42 @@ import { appwriteClient, account } from "utility";
 
 import { PostsCreate, PostsList, PostsEdit, PostsShow } from "pages/posts";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
         try {
             await account.createEmailSession(email, password);
-            return {
-                success: true,
-                redirectTo: "/",
-            };
+            return Promise.resolve();
         } catch (e) {
             const { type, message, code } = e as AppwriteException;
-            return {
-                success: false,
-                error: {
-                    message,
-                    name: `${code} - ${type}`,
-                },
-            };
+            return Promise.reject({
+                message,
+                name: `${code} - ${type}`,
+            });
         }
     },
     logout: async () => {
-        try {
-            await account.deleteSession("current");
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
+        await account.deleteSession("current");
+
+        return "/";
+    },
+    checkError: () => Promise.resolve(),
+    checkAuth: async () => {
+        console.log("checkAuth");
+        const session = await account.get();
+
+        if (session) {
+            return Promise.resolve();
         }
 
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
+        return Promise.reject();
     },
-    onError: async () => ({}),
-    check: async () => {
-        try {
-            const session = await account.get();
-
-            if (session) {
-                return {
-                    authenticated: true,
-                };
-            }
-        } catch (error: any) {
-            return {
-                authenticated: false,
-                error: error,
-                logout: true,
-                redirectTo: "/login",
-            };
-        }
-
-        return {
-            authenticated: false,
-            error: new Error("Session not found"),
-            logout: true,
-            redirectTo: "/login",
-        };
-    },
-    getPermissions: async () => null,
-    getIdentity: async () => {
+    getPermissions: () => Promise.resolve(),
+    getUserIdentity: async () => {
         const user = await account.get();
 
         if (user) {
             return user;
         }
-
-        return null;
     },
 };
 
@@ -99,7 +69,7 @@ const App: React.FC = () => {
                 databaseId: "default",
             })}
             options={{ liveMode: "auto" }}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             legacyRouterProvider={routerProvider}
             LoginPage={Login}
             resources={[

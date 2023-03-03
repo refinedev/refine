@@ -1,4 +1,7 @@
-import { Refine, AuthBindings } from "@pankod/refine-core";
+import {
+    Refine,
+    LegacyAuthProvider as AuthProvider,
+} from "@pankod/refine-core";
 import {
     notificationProvider,
     LoginPage,
@@ -22,7 +25,7 @@ const App: React.FC = () => {
     const axiosInstance = axios.create();
     const strapiAuthHelper = AuthHelper(API_URL + "/api");
 
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async ({ username, password }) => {
             const { data, status } = await strapiAuthHelper.login(
                 username,
@@ -36,66 +39,55 @@ const App: React.FC = () => {
                     "Authorization"
                 ] = `Bearer ${data.jwt}`;
 
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
+                return Promise.resolve();
             }
-            return {
-                success: false,
-                error: new Error("Invalid username or password"),
-            };
+            return Promise.reject();
         },
-        logout: async () => {
+        logout: () => {
             localStorage.removeItem(TOKEN_KEY);
-            return {
-                success: true,
-                redirectTo: "/login",
-            };
+            return Promise.resolve();
         },
-        onError: async () => ({}),
-        check: async () => {
+        checkError: () => Promise.resolve(),
+        checkAuth: () => {
             const token = localStorage.getItem(TOKEN_KEY);
             if (token) {
                 axiosInstance.defaults.headers.common[
                     "Authorization"
                 ] = `Bearer ${token}`;
-                return {
-                    authenticated: true,
-                };
+                return Promise.resolve();
             }
 
-            return {
-                authenticated: false,
-                error: new Error("Not authenticated"),
-                logout: true,
-                redirectTo: "/login",
-            };
+            return Promise.reject();
         },
-        getPermissions: async () => null,
-        getIdentity: async () => {
+        getPermissions: () => Promise.resolve(),
+        getUserIdentity: async () => {
             const token = localStorage.getItem(TOKEN_KEY);
             if (!token) {
-                return null;
+                return Promise.reject();
             }
 
-            const { data, status } = await strapiAuthHelper.me(token);
+            const { data, status } = await strapiAuthHelper.me(token, {
+                meta: {
+                    populate: ["role"],
+                },
+            });
+
             if (status === 200) {
                 const { id, username, email } = data;
-                return {
+                return Promise.resolve({
                     id,
                     username,
                     email,
-                };
+                });
             }
 
-            return null;
+            return Promise.reject();
         },
     };
 
     return (
         <Refine
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
             legacyRouterProvider={routerProvider}
             resources={[

@@ -24,7 +24,6 @@
     },
     "scripts": {
         "dev": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
-        "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
         "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",

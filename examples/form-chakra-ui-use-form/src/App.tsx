@@ -31,78 +31,48 @@ const App: React.FC = () => {
                 Layout={Layout}
                 ReadyPage={ReadyPage}
                 catchAll={<ErrorComponent />}
-                authProvider={{
-                    login: async ({ email }) => {
+                legacyAuthProvider={{
+                    login: async ({ email, providerName }) => {
                         localStorage.setItem("email", email);
-                        return {
-                            redirectTo: "/",
-                            success: true,
-                        };
+                        return Promise.resolve();
                     },
-                    register: async (params) => {
+                    register: (params) => {
                         if (params.email && params.password) {
                             localStorage.setItem("email", params.email);
-                            return {
-                                redirectTo: "/",
-                                success: true,
-                            };
+                            return Promise.resolve();
                         }
-
-                        return {
-                            success: false,
-                        };
+                        return Promise.reject();
                     },
-                    updatePassword: async (params) => {
+                    updatePassword: (params) => {
                         if (params.newPassword) {
                             //we can update password here
-                            return {
-                                success: true,
-                                redirectTo: "/login",
-                            };
+                            return Promise.resolve();
                         }
-
-                        return {
-                            success: false,
-                            error: new Error("New password is not valid"),
-                        };
+                        return Promise.reject();
                     },
-                    forgotPassword: async (params) => {
+                    forgotPassword: (params) => {
                         if (params.email) {
                             //we can send email with forgot password link here
-                            return {
-                                success: true,
-                                redirectTo: "/login",
-                            };
+                            return Promise.resolve();
                         }
-
-                        return {
-                            success: false,
-                            error: new Error("Email is not valid"),
-                        };
+                        return Promise.reject();
                     },
-                    logout: async () => {
+                    logout: () => {
                         localStorage.removeItem("email");
-                        return {
-                            success: true,
-                            redirectTo: "/login",
-                        };
+                        return Promise.resolve();
                     },
-                    onError: async () => ({}),
-                    check: async () =>
+                    checkError: () => Promise.resolve(),
+                    checkAuth: () =>
                         localStorage.getItem("email")
-                            ? {
-                                  authenticated: true,
-                              }
-                            : {
-                                  authenticated: false,
-                                  redirectTo: "/login",
-                              },
-                    getPermissions: async () => ["admin"],
-                    getIdentity: async () => ({
-                        id: 1,
-                        name: "Jane Doe",
-                        avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-                    }),
+                            ? Promise.resolve()
+                            : Promise.reject(),
+                    getPermissions: () => Promise.resolve(["admin"]),
+                    getUserIdentity: () =>
+                        Promise.resolve({
+                            id: 1,
+                            name: "Jane Doe",
+                            avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
+                        }),
                 }}
                 resources={[
                     {

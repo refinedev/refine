@@ -80,7 +80,7 @@ const App: React.FC = () => {
                     ],
                 }}
                 dataProvider={dataProvider}
-                authProvider={authProvider}
+                legacyAuthProvider={authProvider}
                 i18nProvider={i18nProvider}
                 OffLayoutArea={OffLayoutArea}
                 DashboardPage={DashboardPage}

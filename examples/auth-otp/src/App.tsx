@@ -1,4 +1,7 @@
-import { AuthBindings, Refine } from "@pankod/refine-core";
+import {
+    Refine,
+    LegacyAuthProvider as AuthProvider,
+} from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -15,46 +18,32 @@ import { Login } from "pages/login";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    const authProvider: AuthBindings = {
-        login: async ({ gsmNumber, code }) => {
+    const authProvider: AuthProvider = {
+        login: ({ gsmNumber, code }) => {
             if (code === "1234") {
                 localStorage.setItem("gsmNumber", gsmNumber);
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
+                return Promise.resolve();
             }
 
-            return {
-                success: false,
-                error: new Error("Login code: 1234"),
-            };
+            return Promise.reject({ message: "Login code: 1234" });
         },
-        logout: async () => {
+        logout: () => {
             localStorage.removeItem("gsmNumber");
-            return {
-                success: true,
-                redirectTo: "/login",
-            };
+            return Promise.resolve();
         },
-        onError: async () => ({}),
-        check: async () =>
+        checkError: () => Promise.resolve(),
+        checkAuth: () =>
             localStorage.getItem("gsmNumber")
-                ? {
-                      authenticated: true,
-                  }
-                : {
-                      authenticated: false,
-                      redirectTo: "/login",
-                  },
-        getPermissions: async () => ["admin"],
+                ? Promise.resolve()
+                : Promise.reject(),
+        getPermissions: () => Promise.resolve(["admin"]),
     };
 
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            authProvider={authProvider}
             legacyRouterProvider={routerProvider}
+            legacyAuthProvider={authProvider}
             LoginPage={Login}
             resources={[
                 {

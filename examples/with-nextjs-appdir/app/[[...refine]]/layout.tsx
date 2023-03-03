@@ -29,8 +29,8 @@ export default function RefineLayout({
 }) {
     return (
         <Refine
-            authProvider={authProvider}
             legacyRouterProvider={routerProvider.call({ params })}
+            legacyAuthProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {

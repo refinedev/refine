@@ -115,7 +115,7 @@ function App() {
             return Promise.reject();
         },
 
-        getPermissions: async () => null,
+        getPermissions: () => Promise.resolve(),
         getUserIdentity: async () => {
             const user = localStorage.getItem("user");
             if (user) {
