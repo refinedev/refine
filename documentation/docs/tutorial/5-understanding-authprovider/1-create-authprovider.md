@@ -13,7 +13,7 @@ This section will show you how to create an auth provider from scratch. We'll us
 1. Create a new file named `authProvider.ts` in `src` folder and add the following code:
 
     ```tsx title="src/authProvider.ts"
-    import { AuthBindings } from "@pankod/refine-core";
+    import type { AuthBindings } from "@pankod/refine-core";
 
     const authProvider: AuthBindings = {
         login: async () => Promise.resolve(),

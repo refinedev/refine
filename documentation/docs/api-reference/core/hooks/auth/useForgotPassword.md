@@ -62,6 +62,8 @@ export const forgotPasswordPage = () => {
 A type parameter for the values can be provided to `useForgotPassword`.
 
 ```tsx
+import { useForgotPassword } from "@pankod/refine-core";
+
 const { mutate: forgotPassword } = useForgotPassword<{ email: string }>();
 ```
 
@@ -73,6 +75,7 @@ A custom URL can be given to mutate the function from the `useForgotPassword` ho
 
 ```tsx
 import { useForgotPassword } from "@pankod/refine-core";
+import type { AuthBindings } from "@pankod/refine-core";
 
 const { mutate: forgotPassword } = useForgotPassword();
 

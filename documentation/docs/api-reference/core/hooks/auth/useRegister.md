@@ -82,6 +82,8 @@ register({ redirectPath: "/custom-url" });
 Then, you can handle this URL in your `register` method of the `authProvider`.
 
 ```tsx
+import type { AuthBindings } from "@pankod/refine-core";
+
 const authProvider: AuthBindings = {
     // ---
     register: async ({ redirectPath }) => {

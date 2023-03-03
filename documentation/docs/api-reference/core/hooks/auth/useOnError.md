@@ -47,6 +47,8 @@ fetch("http://example.com/payment")
 We have a logic in [`authProvider`](/api-reference/core/providers/auth-provider.md)'s `onError` method like below.
 
 ```tsx
+import type { AuthBindings } from "@pankod/refine-core";
+
 const authProvider: AuthBindings = {
     // ---
     logout: () => {

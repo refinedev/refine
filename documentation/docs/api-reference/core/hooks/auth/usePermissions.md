@@ -19,7 +19,7 @@ Imagine that you want to allow only users with the admin role to see the create 
 -   We have a logic in [`authProvider`](/api-reference/core/providers/auth-provider.md)'s `getPermissions` method like below.
 
 ```tsx
-import { AuthBindings } from "@pankod/refine-core";
+import type { AuthBindings } from "@pankod/refine-core";
 
 const authProvider: AuthBindings = {
   ...

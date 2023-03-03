@@ -51,7 +51,7 @@ Auth provider's methods are expected to return a resolved Promise. So, you can u
 An `authProvider` includes the following methods:
 
 ```tsx
-import { AuthBindings } from "@pankod/refine-core";
+import type { AuthBindings } from "@pankod/refine-core";
 
 const authProvider: AuthBindings = {
     // required methods

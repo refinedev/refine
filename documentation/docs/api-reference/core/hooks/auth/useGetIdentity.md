@@ -19,6 +19,8 @@ Let's say that you want to show the user's name.
 We have a logic in [`authProvider`](/api-reference/core/providers/auth-provider.md)'s `getIdentity` method like below.
 
 ```tsx
+import type { AuthBindings } from "@pankod/refine-core";
+
 const authProvider: AuthBindings = {
     // ---
     // highlight-start

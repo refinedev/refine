@@ -368,6 +368,8 @@ Similarly, `create-refine-app` bootstraps a refine application with default `Aut
 Of particular interest is the login method of the `authProvider`. We will use email and password to log into our application. Be sure the login method has the code below.
 
 ```ts title="src/authProvider.ts"
+import type { AuthBindings } from "@pankod/refine-core";
+
 export const authProvider: AuthBindings = {
   //highlight-start
   login: async ({ email, password }) => {

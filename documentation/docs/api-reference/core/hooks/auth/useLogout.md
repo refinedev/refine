@@ -56,6 +56,8 @@ logout({ redirectPath: "/custom-url" });
 Then, you can handle this URL in your `logout` method of the `authProvider`.
 
 ```tsx
+import type { AuthBindings } from "@pankod/refine-core";
+
 const authProvider: AuthBindings = {
     // ---
     logout: async ({ redirectPath }) => {
