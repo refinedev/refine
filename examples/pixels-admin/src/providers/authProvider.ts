@@ -53,10 +53,10 @@ export const authProvider: AuthBindings = {
                 success: false,
                 error: new Error("User not authorized."),
             };
-        } catch (error) {
+        } catch (error: any) {
             return {
                 success: false,
-                error: new Error("Login failed"),
+                error,
             };
         }
     },
@@ -75,6 +75,7 @@ export const authProvider: AuthBindings = {
             }
 
             const { user } = data;
+
             if (user) {
                 return {
                     success: true,
@@ -85,10 +86,10 @@ export const authProvider: AuthBindings = {
                 success: false,
                 error: new Error("Register failed"),
             };
-        } catch (error) {
+        } catch (error: any) {
             return {
                 success: false,
-                error: new Error("Register failed"),
+                error,
             };
         }
     },
@@ -117,10 +118,10 @@ export const authProvider: AuthBindings = {
                 error: new Error("Forgot Password password failed"),
             };
         } catch (error: any) {
-            return Promise.resolve({
+            return {
                 success: false,
                 error,
-            });
+            };
         }
     },
     updatePassword: async ({ password }) => {
@@ -148,10 +149,10 @@ export const authProvider: AuthBindings = {
                 error: new Error("Update Password password failed"),
             };
         } catch (error: any) {
-            return Promise.resolve({
+            return {
                 success: false,
                 error,
-            });
+            };
         }
     },
     logout: async () => {
@@ -196,30 +197,42 @@ export const authProvider: AuthBindings = {
         };
     },
     getPermissions: async () => {
-        const { error } = await supabaseClient.auth.getUser();
+        try {
+            const { error } = await supabaseClient.auth.getUser();
 
-        if (error) {
+            if (error) {
+                return {
+                    success: false,
+                    error,
+                };
+            }
+
+            const { data } = await supabaseClient.rpc("get_my_claim", {
+                claim: "role",
+            });
+
+            return data;
+        } catch (error: any) {
             return {
                 success: false,
                 error,
             };
         }
-
-        const { data } = await supabaseClient.rpc("get_my_claim", {
-            claim: "role",
-        });
-        return data;
     },
     getIdentity: async () => {
-        const { data } = await supabaseClient.auth.getUser();
+        try {
+            const { data } = await supabaseClient.auth.getUser();
 
-        if (data?.user) {
-            return {
-                ...data.user,
-                name: data.user.email,
-            };
+            if (data?.user) {
+                return {
+                    ...data.user,
+                    name: data.user.email,
+                };
+            }
+
+            return null;
+        } catch (error: any) {
+            return null;
         }
-
-        return null;
     },
 };
