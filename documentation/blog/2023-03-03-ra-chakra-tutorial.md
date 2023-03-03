@@ -399,7 +399,7 @@ import { DataProvider } from "@pankod/refine-strapi-v4";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { authProvider, axiosInstance } from "./authProvider";
 import { API_URL } from "./constants";
-import { PostList } from "pages/posts/list";
+import { PostList} from './pages/posts';
 
 
 function App() {
@@ -661,14 +661,14 @@ In the code above, we create a `<Pagination/>` components which accepts properti
 To view a record, we will use the [`useShow()`](https://refine.dev/docs/api-reference/core/hooks/show/useShow/) hook, which is included in the `@pankod/refine-core` package.
 The hook `useShow()` allows you to retrieve the desired record. It uses the `getOne` method from the dataProvider passed to `<Refine/>` as the query function.
 
-We'll add a `view.tsx` file in the `posts` folder under the `pages` folder next, with the following code:
+We'll add a `show.tsx` file in the `posts` folder under the `pages` folder next, with the following code:
 
 <details>
 <summary>Show code </summary>
 <p>
 
 
-```tsx title="src/pages/posts/view.tsx"
+```tsx title="src/pages/posts/show.tsx"
 import { useOne, useShow } from "@pankod/refine-core";
 import {
     Show,
@@ -747,12 +747,15 @@ export const PostShow = () => {
 
 
 
-After this, we can now add the component `<PostShow/>` in the `view.tsx` file to our resource present in the `app.tsx` file
+After this, we can now add the component `<PostShow/>` in the `show.tsx` file to our resource present in the `App.tsx` file
 
 ```tsx title="src/App.tsx"
 ...
-  //highlight-next-line
-import { PostShow } from "pages/posts/view";
+import {
+    PostList,
+    //highlight-next-line
+    PostShow 
+} from './pages/posts';
 
 function App() {
   return (
@@ -913,8 +916,10 @@ After this, we can now add the component `<PostCreate/>` in the `create.tsx` fil
 
 ```tsx title="src/App.tsx"
 ...
-  //highlight-next-line
-import { PostCreate } from "pages/posts/create";
+import {
+     //highlight-next-line
+     PostCreate
+} from './pages/posts';
 
 function App() {
   return (
@@ -1125,8 +1130,12 @@ The hooks also provide an object like `saveButtonProps` which handles the submis
 After this, we can now add the component `<PostEdit/>` in the `edit.tsx` file to our resource present in the `App.tsx` file
 
 ```tsx title="src/App.tsx"
-  // highlight-next-line
-import { PostEdit } from "pages/posts/edit";
+import {
+     ...
+     // highlight-next-line
+     PostEdit 
+} from "./pages/posts";
+
 
 function App() {
   return (
