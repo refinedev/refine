@@ -75,7 +75,6 @@ A custom URL can be given to mutate the function from the `useForgotPassword` ho
 
 ```tsx
 import { useForgotPassword } from "@pankod/refine-core";
-import type { AuthBindings } from "@pankod/refine-core";
 
 const { mutate: forgotPassword } = useForgotPassword();
 
@@ -85,6 +84,8 @@ forgotPassword({ redirectPath: "/custom-url" });
 Then, you can handle this URL in your `forgotPassword` method of the `authProvider`.
 
 ```tsx
+import type { AuthBindings } from "@pankod/refine-core";
+
 const authProvider: AuthBindings = {
     // ---
     forgotPassword: async ({ redirectPath }) => {
