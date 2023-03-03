@@ -96,7 +96,7 @@ Superplate is a CLI tool for quickly bootstrapping a refine project. The tool pr
 As a first step, run the following command on your command line tool:
 
 ```
-npx superplate-cli -p refine-react -b v3 dynamic-form
+npm create refine-app@latest dynamic-form -- -p refine-react -b v3
 ```
 
 The command will prompt you to choose your preferences for the project.

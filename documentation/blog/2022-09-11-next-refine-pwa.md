@@ -93,7 +93,7 @@ Although it is possible to integrate refine into an existing Next.js project, it
 Open up your command line tool, cd to your folder of choice, and run the following command to bootstrap a Next.js refine template:
 
 ```
-npx superplate-cli -p refine-nextjs -b v3 refine-storefront
+npm create refine-app@latest refine-storefront -- -p refine-nextjs -b v3
 ```
 
 After running the command, you’ll be prompted to choose your preferences for the project. Select the following options to proceed:

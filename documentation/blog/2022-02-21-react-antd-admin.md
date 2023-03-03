@@ -56,7 +56,7 @@ In this tutorial, we will learn how to include the features(i18n, Realtime, Acce
 Let's start by creating our refine project. You can use the [superplate](https://github.com/pankod/superplate) to create a refine project.
 
 ```bash
-npx superplate-cli -p refine-react -b v3 refine-advanced-tutorial
+npm create refine-app@latest refine-advanced-tutorial -- -p refine-react -b v3
 ```
 
 ```bash

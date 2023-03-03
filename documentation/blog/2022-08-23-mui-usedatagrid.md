@@ -70,7 +70,7 @@ There are two possible ways to set up a refine application: using [superplate](h
 Run the following command in your terminal to create a refine app with superplate:
 
 ```bash
-npx superplate-cli -p refine-react -b v3 datagrid
+npm create refine-app@latest datagrid -- -p refine-react -b v3
 ```  
 In the command above, the `-p` flag specifies the project type which in our case, a refine-react project. `datagrid` is the name I chose as the app name for brevity. You can always choose any name you're comfortable with.  
 

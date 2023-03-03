@@ -75,7 +75,7 @@ We'll use [superplate](https://github.com/pankod/superplate) CLI wizard to creat
 
 Run the following command
 ```
-npx superplate-cli -p refine-react -b v3 material-ui-example
+npm create refine-app@latest material-ui-example -- -p refine-react -b v3
 ```
 
 Select the following options to complete CLI wizard:

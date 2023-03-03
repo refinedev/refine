@@ -77,7 +77,7 @@ Start by creating the refine app using the [superplate](https://github.com/panko
 
 
 ```
-npx superplate-cli -p refine-react -b v3 refine-supabase-auth
+npm create refine-app@latest refine-supabase-auth -- -p refine-react -b v3
 ```
 
 <div class="img-container" align-items="center" >

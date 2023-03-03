@@ -27,7 +27,7 @@ The solution was presented in this [blog](https://jfelix.info/blog/dynamic-theme
 ## Initial setup
 For this article, we started from a basic Refine app with Ant Design:
 ```tsx
-npx superplate-cli -p refine-react tutorial -b v3
+npm create refine-app@latest tutorial -- -p refine-react -b v3
 ```
 Select the following options to complete the CLI wizard:
 ```tsx

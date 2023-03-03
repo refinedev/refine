@@ -86,7 +86,7 @@ With these collections and features we have created, we can now create subscribe
 Now let's refine the subscription panel. With [superplate](https://github.com/pankod/superplate), we can quickly create a refine project
 
 ```bash
-npx superplate-cli email-subscription-panel -b v3
+npm create refine-app@latest email-subscription-panel -- -b v3
 ```
 
 Select the following options to complete the CLI wizard:

@@ -94,7 +94,7 @@ When putting everything into the wireframe, we get the following schema:
 The recommended way to set up the refine project is to use [superplate](https://github.com/pankod/superplate), which will let us configure the refine boilerplate.
 
 
-Run `npx superplate-cli -p refine-react -b v3 tutorial` and select your package manager, project name, user interface framework, router, data, auth provider, and internationalization library.
+Run `npm create refine-app@latest tutorial -- -p refine-react -b v3` and select your package manager, project name, user interface framework, router, data, auth provider, and internationalization library.
 
 
 <div class="img-container">

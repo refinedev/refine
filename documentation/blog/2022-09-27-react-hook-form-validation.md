@@ -86,7 +86,7 @@ Before we get into the nitty-gritty of how React Hook Form works and how to use 
 First things first, open your command line tool, cd to your folder of choice, and run the following command to bootstrap a refine React template using the [superplate CLI](https://github.com/pankod/superplate) tool:
 
 ```
-npx superplate-cli -p refine-react -b v3 tutorial
+npm create refine-app@latest tutorial -- -p refine-react -b v3
 ```
 
 After running the command, you’ll be prompted to choose your preferences for the project.  

@@ -41,7 +41,7 @@ We will use [Strapi](https://strapi.io/) and [Chakra-UI](https://chakra-ui.com/)
 Let's start by creating our **refine** project. You can use the [superplate](https://github.com/pankod/superplate) to create a refine project.
 
 ```bash
-npx superplate-cli -p refine-nextjs -b v3 refine-ecommerce-example 
+npm create refine-app@latest refine-ecommerce-example -- -p refine-nextjs -b v3
 ```
 
 ```bash

@@ -116,7 +116,7 @@ Let's see how to use it!
 Let's start by creating our **refine** project. You can use the superplate to create a refine project. superplate will quickly create our refine project according to the features we choose.
 
 ```bash
-npx superplate-cli -p refine-react -b v3 my-first-refine-project
+npm create refine-app@latest my-first-refine-project -- -p refine-react -b v3
 ```
 
 <div class="img-container">

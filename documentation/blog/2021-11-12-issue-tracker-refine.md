@@ -210,7 +210,7 @@ Let's look at how we can use this data we created on the Supabase side with refi
 Now let's refine the task-manager panel. With superplate, we can quickly create a refine project
 
 ```bash
-  npx superplate-cli refine-task-manager -b v3
+  npm create refine-app@latest refine-task-manager -- -b v3
 ```
 
 ```bash

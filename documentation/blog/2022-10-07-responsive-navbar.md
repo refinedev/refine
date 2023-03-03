@@ -48,7 +48,7 @@ Steps we'll cover:
 We'll use [superplate](https://github.com/pankod/superplate) tool to create an empty React-based **refine** application.
 
 ```
-npx superplate-cli -o refine-headless -b v3 refine-navbar
+npm create refine-app@latest refine-navbar -- -o refine-headless -b v3
 ```
 
 

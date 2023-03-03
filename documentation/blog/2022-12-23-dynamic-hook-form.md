@@ -64,7 +64,7 @@ We'll use `create refine-app` to set up a refine project with Material UI. It’
 As a first step, navigate to a preferred folder on your computer and run the command below to initialise CLI installer:
 
 ```shell
-npm create refine-app@latest dynamic-form-example -- --branch v3 --download=git
+npm create refine-app@latest dynamic-form-example -- -b v3
 ```
 
 The installer will prompt you to select your preference for the project. Select the following options to proceed:

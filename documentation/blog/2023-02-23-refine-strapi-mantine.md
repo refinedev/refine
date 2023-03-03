@@ -86,10 +86,10 @@ Navigate to the directory you want to create the refine app and run the command 
 
 ```sh
 # Using npm
-npm create refine-app@latest -- --branch v3 --download=git
+npm create refine-app@latest -- -b v3
 
 # Using pnpm
-pnpm create refine-app@latest -- --branch v3 --download=git
+pnpm create refine-app@latest -- -b v3
 ```
 
 

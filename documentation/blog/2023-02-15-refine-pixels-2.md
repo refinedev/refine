@@ -46,7 +46,7 @@ Let's go ahead and use the `create refine-app` CLI tool to interactively initial
 
 
 ```bash
-npm create refine-app@latest pixels -- --branch v3 --download=git
+npm create refine-app@latest pixels -- -b v3
 ```
 
 `create refine-app` presents us with a set of questions for choosing the libraries and frameworks we want to work with. We'll initialize a **refine** project with `craco` to manage our configurations. Other important things are to be able to customize our **Ant Design** theme and layout.  

@@ -66,7 +66,7 @@ Let's create our frontend project with refine's [setting up guide](https://refin
 There are two alternative methods to set up a refine application. We will quickly create our application with [superplate](https://pankod.github.io/superplate).
 
 ```bash
-npx superplate-cli refine-feedback-client -b v3
+npm create refine-app@latest refine-feedback-client -- -b v3
 ```
 
 Select the following options to complete the CLI wizard:

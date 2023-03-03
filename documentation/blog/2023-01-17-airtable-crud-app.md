@@ -135,7 +135,7 @@ Create or customize a refine application, there are various ways to do so:
 For this article, we will be using the `refine CLI` to create our refine application. In other to use this, Run the following command below:
 
 ```
-npm create refine-app@latest  <name of your application> -- --branch v3 --download=git
+npm create refine-app@latest <name of your application> -- -b v3
 ```
 
 After running the command, you will be directed to the CLI wizard. Select the following options to complete CLI wizard:

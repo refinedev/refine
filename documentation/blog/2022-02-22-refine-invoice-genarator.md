@@ -44,7 +44,8 @@ In this part, we will create a panel where our own company information is includ
 Let's start by creating our refine project. You can use the [superplate](https://github.com/pankod/superplate) to create a refine project.
 
 ```bash
-npx superplate-cli -p refine-react -b v3 refine-invoice-genarator
+
+npm create refine-app@latest refine-invoice-genarator -- -p refine-react -b v3
 ```
 
 ```bash

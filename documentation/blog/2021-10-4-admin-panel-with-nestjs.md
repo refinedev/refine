@@ -92,7 +92,7 @@ It created these end-points automatically with nestjsx/crud.
 **Now let's refine the admin panel.** With [Superplate](https://pankod.github.io/superplate/docs), we can quickly create a `refine` project.
 
 ```bash
-npx superplate-cli admin -b v3
+npm create refine-app@latest admin -- -b v3
 ```
 
 Answer as below:

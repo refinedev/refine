@@ -51,7 +51,7 @@ As done previously in the client app, let's initialize our admin app with `creat
 
 
 ```bash
-npm create refine-app@latest pixels-admin -- -branch v3 --download=git
+npm create refine-app@latest pixels-admin -- -b v3
 ```
 
 We will use **Supabase** for our backend, and **Ant Design** for our UI. We want to be able to customize the **Ant Design** theme and layout. So, we have the below answers related to **Supabase** and **Ant Design**:
