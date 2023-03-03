@@ -65,7 +65,7 @@ const App = () => {
 
 🚨 While this is still working, if you want to move to the new `routerProvider` and enable features like nested routes with parameters, custom action routes and more control over your routes, you can use the new `routerProvider` interface.
 
-[Please refer to the Router Provider Migration Guide for more information and guidance. →](/docs/migration-guide/3x-to-4x/router-provider/)
+[Please refer to the Router Provider Migration Guide for more information and guidance. →](/docs/migration-guide/router-provider/)
 
 ### `resources`
 
@@ -89,7 +89,7 @@ resources={[
 
 In the above example, you can see that the detail page of a product can have a nested structure and also supports additional parameters. These parameters can be passed along with the `meta` properties in such hooks and components. Existing parameters in the URL will also be used when constructing the navigation path. 
 
-The existing method for passing components to the actions are still supported and uses the default paths when an action has a component value but the new `routerProvider` doesn't create routes for it automatically. To achieve this, you can use the `RefineRoutes` components from the router packages. To learn more about changes about routing in resources, please check [Router Provider Migration Guide](/docs/migration-guide/3x-to-4x/router-provider/).
+The existing method for passing components to the actions are still supported and uses the default paths when an action has a component value but the new `routerProvider` doesn't create routes for it automatically. To achieve this, you can use the `RefineRoutes` components from the router packages. To learn more about changes about routing in resources, please check [Router Provider Migration Guide](/docs/migration-guide/router-provider/).
 
 We've also made changes in the structure of the resource definition such as the `identifier` property, which lets you define a custom identifier to a resource which can be used to select it in the hooks and components. This is useful when using multiple definitions with different paths and the same name. 
 
