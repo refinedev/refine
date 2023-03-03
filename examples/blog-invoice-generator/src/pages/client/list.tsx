@@ -14,7 +14,7 @@ import { ClientItem, CreateClient, EditClient } from "components/client";
 
 export const ClientList: React.FC<IResourceComponentsProps> = () => {
     const { listProps } = useSimpleList<IClient>({
-        meta: { populate: ["contacts"] },
+        metaData: { populate: ["contacts"] },
     });
 
     const {

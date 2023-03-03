@@ -83,6 +83,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         },
     } = useTable({
         columns,
+
         refineCoreProps: {
             metaData: {
                 populate: ["category"],

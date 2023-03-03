@@ -7,9 +7,7 @@ import {
     useList,
 } from "@pankod/refine-core";
 
-// It is recommended to use explicit import as seen below to reduce bundle size.
-// import { IconName } from "@ant-design/icons";
-import * as Icons from "@ant-design/icons";
+import { SearchOutlined, DownOutlined } from "@ant-design/icons";
 
 import {
     Menu,
@@ -32,7 +30,6 @@ import debounce from "lodash/debounce";
 
 const { Header: AntdHeader } = AntdLayout;
 const { Link } = RefineReactRouter;
-const { SearchOutlined, DownOutlined } = Icons;
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
 
@@ -192,8 +189,6 @@ export const Header: React.FC = () => {
             ))}
         </Menu>
     );
-
-    console.log(screens, screens.sm ? "space-between" : "end");
 
     return (
         <AntdHeader

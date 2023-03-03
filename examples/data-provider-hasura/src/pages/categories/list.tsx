@@ -21,7 +21,7 @@ export const CategoriesList: React.FC<IResourceComponentsProps> = () => {
                 order: "asc",
             },
         ],
-        meta: {
+        metaData: {
             fields: ["id", "title", "created_at"],
         },
     });

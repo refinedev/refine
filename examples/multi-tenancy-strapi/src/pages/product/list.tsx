@@ -22,7 +22,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         permanentFilter: [
             { field: "stores][id]", operator: "eq", value: store },
         ],
-        meta: { populate: ["image"] },
+        metaData: { populate: ["image"] },
     });
 
     const {
@@ -42,7 +42,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         show: editShow,
     } = useModalForm<IProduct, HttpError, IProduct>({
         action: "edit",
-        meta: { populate: ["image"] },
+        metaData: { populate: ["image"] },
     });
 
     return (

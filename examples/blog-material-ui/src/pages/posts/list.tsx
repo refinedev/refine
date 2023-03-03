@@ -14,7 +14,7 @@ import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>({
-        meta: {
+        metaData: {
             populate: ["category"],
         },
     });

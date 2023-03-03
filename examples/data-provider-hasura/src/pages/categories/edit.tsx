@@ -8,7 +8,7 @@ import { ICategory } from "interfaces";
 
 export const CategoriesEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<ICategory>({
-        meta: {
+        metaData: {
             fields: ["id", "title"],
         },
     });

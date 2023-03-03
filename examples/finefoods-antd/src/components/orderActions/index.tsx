@@ -1,9 +1,9 @@
 import { useTranslate, useUpdate } from "@pankod/refine-core";
-
-// It is recommended to use explicit import as seen below to reduce bundle size.
-// import { IconName } from "@ant-design/icons";
-import * as Icons from "@ant-design/icons";
-
+import {
+    CheckCircleOutlined,
+    CloseCircleOutlined,
+    MoreOutlined,
+} from "@ant-design/icons";
 import { Dropdown, Menu } from "antd";
 import { IOrder } from "interfaces";
 
@@ -30,7 +30,7 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
                 }}
                 disabled={record.status.text !== "Pending"}
                 icon={
-                    <Icons.CheckCircleOutlined
+                    <CheckCircleOutlined
                         style={{
                             color: "#52c41a",
                             fontSize: 17,
@@ -62,7 +62,7 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <Icons.CloseCircleOutlined
+                    <CloseCircleOutlined
                         style={{
                             color: "#EE2A1E",
                             fontSize: 17,
@@ -92,7 +92,7 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
     );
     return (
         <Dropdown overlay={moreMenu(record)} trigger={["click"]}>
-            <Icons.MoreOutlined
+            <MoreOutlined
                 onClick={(e) => e.stopPropagation()}
                 style={{
                     fontSize: 24,

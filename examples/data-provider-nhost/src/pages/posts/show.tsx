@@ -21,7 +21,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
     };
 
     const { queryResult } = useShow<IPost>({
-        meta: metaData,
+        metaData,
     });
 
     const { data, isLoading } = queryResult;

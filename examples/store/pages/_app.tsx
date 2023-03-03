@@ -33,16 +33,16 @@ function MyApp({
                     <Layout {...rest} categories={categories} />
                 )}
                 DashboardPage={Dashboard}
-                legacyAuthProvider={authProvider(PROXY_URL)}
                 legacyRouterProvider={routerProvider}
+                legacyAuthProvider={authProvider(PROXY_URL)}
                 dataProvider={dataProvider(PROXY_URL)}
                 resources={[
                     {
                         name: "dummy",
                     },
                 ]}
-                warnWhenUnsavedChanges={true}
                 options={{
+                    warnWhenUnsavedChanges: true,
                     reactQuery: {
                         clientConfig: {
                             defaultOptions: {

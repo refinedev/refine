@@ -7,7 +7,7 @@ import {
     LightTheme,
 } from "@pankod/refine-mantine";
 import { NotificationsProvider } from "@mantine/notifications";
-import { MantineProvider, Global } from "@mantine/core";
+import { MantineProvider, Global } from "@mantine/styles";
 import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6/legacy";

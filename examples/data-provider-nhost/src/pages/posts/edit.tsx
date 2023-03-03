@@ -23,7 +23,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         HttpError,
         IPost
     >({
-        meta: {
+        metaData: {
             fields: [
                 "id",
                 "title",
@@ -41,7 +41,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
         defaultValue: postData?.category_id,
-        meta: {
+        metaData: {
             fields: ["id", "title"],
         },
     });

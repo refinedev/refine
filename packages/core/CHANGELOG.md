@@ -1,5 +1,17 @@
 # @pankod/refine-core
 
+## 3.99.6
+
+### Patch Changes
+
+-   [#3657](https://github.com/refinedev/refine/pull/3657) [`5868456194f`](https://github.com/refinedev/refine/commit/5868456194f8e4a75dd29bb93aad27d57dc8df32) Thanks [@fuunnx](https://github.com/fuunnx)! - Fix optimistic updates of list's query data following a mutation using `useUpdate`
+
+## 3.99.5
+
+### Patch Changes
+
+-   [#3657](https://github.com/refinedev/refine/pull/3657) [`5868456194f`](https://github.com/refinedev/refine/commit/5868456194f8e4a75dd29bb93aad27d57dc8df32) Thanks [@fuunnx](https://github.com/fuunnx)! - Fix optimistic updates of list's query data following a mutation using `useUpdate`
+
 ## 3.99.4
 
 ### Patch Changes

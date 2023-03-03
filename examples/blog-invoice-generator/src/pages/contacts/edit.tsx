@@ -7,7 +7,7 @@ import { IContact } from "interfaces";
 
 export const EditContact: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IContact>({
-        meta: { populate: ["client"] },
+        metaData: { populate: ["client"] },
     });
 
     const defaultClientCompany = queryResult?.data?.data;

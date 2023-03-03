@@ -10,22 +10,17 @@ import {
     EditButton,
 } from "@pankod/refine-antd";
 
-// It is recommended to use explicit import as seen below to reduce bundle size.
-// import { IconName } from "@ant-design/icons";
-import * as Icons from "@ant-design/icons";
-
+import { FilePdfOutlined } from "@ant-design/icons";
 import { Table, Space, Button, Modal } from "antd";
 
 import { IInvoice, IMission } from "interfaces";
 import { PdfLayout } from "components/pdf";
 
-const { FilePdfOutlined } = Icons;
-
 export const InvoiceList: React.FC = () => {
     const [record, setRecord] = useState<IInvoice>();
 
     const { tableProps } = useTable<IInvoice>({
-        meta: {
+        metaData: {
             populate: {
                 contact: { populate: ["client"] },
                 company: { populate: ["logo"] },

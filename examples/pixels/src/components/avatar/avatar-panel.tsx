@@ -1,9 +1,5 @@
 import React from "react";
-
-// It is recommended to use explicit import as seen below to reduce bundle size.
-// import { IconName } from "@ant-design/icons";
-import * as Icons from "@ant-design/icons";
-
+import { UserOutlined } from "@ant-design/icons";
 import { Typography, Space, Avatar } from "antd";
 
 import { getUniqueContributorsAvatarURL } from "utility";
@@ -29,7 +25,7 @@ export const AvatarPanel: React.FC<AvatarPanelProps> = ({ pixels }) => {
                 {contributors.map((avatar_url) => (
                     <Avatar
                         key={avatar_url}
-                        icon={<Icons.UserOutlined />}
+                        icon={<UserOutlined />}
                         src={avatar_url}
                     />
                 ))}
