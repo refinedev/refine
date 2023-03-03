@@ -24,7 +24,7 @@ export const separateImportsChakraPostTransform = async (
     }
 
     if (!flags.dry) {
-        await install(rootDir, ["@chakra-ui/react@^2.3.6"], {
+        await install(rootDir, ["@chakra-ui/react@^2.5.1"], {
             useYarn,
             isOnline: true,
         });
