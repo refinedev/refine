@@ -13,9 +13,9 @@
         "clear": "docusaurus clear"
     },
     "dependencies": {
-        "@docusaurus/core": "^2.1.0",
-        "@docusaurus/plugin-client-redirects": "^2.1.0",
-        "@docusaurus/preset-classic": "^2.1.0",
+        "@docusaurus/core": "^2.3.1",
+        "@docusaurus/plugin-client-redirects": "^2.3.1",
+        "@docusaurus/preset-classic": "^2.3.1",
         "@headlessui/react": "^1.7.5",
         "@mdx-js/react": "^1.6.21",
         "@tailwindcss/line-clamp": "^0.4.2",
