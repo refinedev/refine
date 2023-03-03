@@ -8,8 +8,15 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook
 hide_table_of_contents: false
 ---
 
+:::caution
 
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
 
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code example in this post have been updated to version 4.x.x.
+
+:::
 
 
 
@@ -79,7 +86,7 @@ Before we get into the nitty-gritty of how React Hook Form works and how to use 
 First things first, open your command line tool, cd to your folder of choice, and run the following command to bootstrap a refine React template using the [superplate CLI](https://github.com/pankod/superplate) tool:
 
 ```
-npx superplate-cli -p refine-react tutorial
+npm create refine-app@latest tutorial -- -p refine-react -b v3
 ```
 
 After running the command, you’ll be prompted to choose your preferences for the project.  

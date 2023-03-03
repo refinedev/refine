@@ -2,7 +2,7 @@
 "@pankod/refine-core": minor
 ---
 
-added: A helper function for picking a not undefined first value from an array.
+Added a helper function to pick not deprecated value. Gives priority according to the order of the arguments.
 
 ```ts
 const sorter = undefined;

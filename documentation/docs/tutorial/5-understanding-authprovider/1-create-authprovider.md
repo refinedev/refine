@@ -372,10 +372,10 @@ The `logout` method will get the mutation's parameters as an argument.
 <details>
   <summary><strong>Can I pass any parameters to the <code>logout</code> method?</strong></summary>
 
-Yes, you can pass any parameters to the `logout` method. `useLogout` hook's mutation will pass the mutation's parameters to the `login` method without any type constraints.
+Yes, you can pass any parameters to the `logout` method. `useLogout` hook's mutation will pass the mutation's parameters to the `logout` method without any type constraints.
 
 ```ts
-const { mutate } = useLogin<{
+const { mutate } = useLogout<{
     id: string;
     name: string;
 }>();

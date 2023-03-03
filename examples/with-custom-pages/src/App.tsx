@@ -2,6 +2,7 @@ import {
     Refine,
     LegacyAuthProvider as AuthProvider,
     Authenticated,
+    AuthBindings,
 } from "@pankod/refine-core";
 import {
     notificationProvider,
@@ -28,25 +29,36 @@ const AuthenticatedPostReview = () => {
 };
 
 const App: React.FC = () => {
-    const authProvider: AuthProvider = {
-        login: ({ email }) => {
+    const authProvider: AuthBindings = {
+        login: async ({ email }) => {
             if (email) {
                 localStorage.setItem("email", email);
-                return Promise.resolve();
+                return {
+                    success: true,
+                    redirectTo: "/",
+                };
             }
 
-            return Promise.reject();
+            return {
+                success: false,
+                message: "Invalid email or password",
+            };
         },
-        logout: () => {
+        logout: async () => {
             localStorage.removeItem("email");
-            return Promise.resolve();
+            return { redirectTo: "/login", success: true };
         },
-        checkError: () => Promise.resolve(),
-        checkAuth: () =>
+        onError: async () => ({}),
+        check: async () =>
             localStorage.getItem("email")
-                ? Promise.resolve()
-                : Promise.reject(),
-        getPermissions: () => Promise.resolve(["admin"]),
+                ? {
+                      authenticated: true,
+                  }
+                : {
+                      authenticated: false,
+                      redirectTo: "/login",
+                  },
+        getPermissions: async () => ["admin"],
     };
 
     return (
@@ -66,7 +78,7 @@ const App: React.FC = () => {
                     },
                 ] as typeof routerProvider.routes,
             }}
-            legacyAuthProvider={authProvider}
+            authProvider={authProvider}
             resources={[
                 {
                     name: "posts",

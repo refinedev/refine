@@ -8,6 +8,16 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-sup
 hide_table_of_contents: false
 ---
 
+:::caution
+
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code example in this post have been updated to version 4.x.x.
+
+:::
+
 ## Introduction
 
 Passwords are one of the most popular ways to authenticate a user. However, passwords have disadvantages, such as being subject to brute force attacks and data breaches.
@@ -20,18 +30,18 @@ You can see the example app we'll build in the article from [here](https://githu
 
 Steps we'll cover:
 
-- [Introduction](#introduction)
-- [What is Supabase?](#what-is-supabase)
-- [What is refine?](#what-is-refine)
-- [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-- [Installing Tailwind CSS for refine project](#installing-tailwind-css-for-refine-project)
-- [Set up the Supabase Project](#set-up-the-supabase-project)
-- [Create the Login Page](#create-the-login-page)
-- [Data Provider](#data-provider)
-- [Auth Provider](#auth-provider)
-- [Conclusion](#conclusion)
-- [Build your React-based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
+-   [Introduction](#introduction)
+-   [What is Supabase?](#what-is-supabase)
+-   [What is refine?](#what-is-refine)
+-   [Prerequisites](#prerequisites)
+-   [Getting Started](#getting-started)
+-   [Installing Tailwind CSS for refine project](#installing-tailwind-css-for-refine-project)
+-   [Set up the Supabase Project](#set-up-the-supabase-project)
+-   [Create the Login Page](#create-the-login-page)
+-   [Data Provider](#data-provider)
+-   [Auth Provider](#auth-provider)
+-   [Conclusion](#conclusion)
+-   [Build your React-based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
 
 ## What is Supabase?
 
@@ -56,7 +66,7 @@ To follow this guide, you must install the latest Node.js version on your system
 Start by creating the refine app using the [superplate](https://github.com/pankod/superplate) CLI.
 
 ```
-npx superplate-cli -p refine-react refine-supabase-auth
+npm create refine-app@latest refine-supabase-auth -- -p refine-react -b v3
 ```
 
 <div class="img-container" align-items="center" >
@@ -220,7 +230,7 @@ The backend setup is now complete. In the next section, you will start building 
 
 In this guide, you are allowing users to access their account without requiring a password. Once the users log into their account, they will see a list of countries on the dashboard screen.
 
-On the login page, you need to create a two-step form.  
+On the login page, you need to create a two-step form.
 In the first step, the user will enter the mobile number to receive the OTP message, and in the second step, the user will enter the OTP token to log in. Display an error if the OTP token is invalid or expired.
 
 ```tsx title="src/pages/Login.tsx"

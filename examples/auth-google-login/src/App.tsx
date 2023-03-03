@@ -1,7 +1,4 @@
-import {
-    Refine,
-    LegacyAuthProvider as AuthProvider,
-} from "@pankod/refine-core";
+import { Refine, AuthBindings } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -35,8 +32,8 @@ axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
 });
 
 const App: React.FC = () => {
-    const authProvider: AuthProvider = {
-        login: ({ credential }: CredentialResponse) => {
+    const authProvider: AuthBindings = {
+        login: async ({ credential }: CredentialResponse) => {
             const profileObj = credential ? parseJwt(credential) : null;
 
             if (profileObj) {
@@ -47,13 +44,20 @@ const App: React.FC = () => {
                         avatar: profileObj.picture,
                     }),
                 );
+
+                localStorage.setItem("token", `${credential}`);
+
+                return {
+                    success: true,
+                    redirectTo: "/",
+                };
             }
 
-            localStorage.setItem("token", `${credential}`);
-
-            return Promise.resolve();
+            return {
+                success: false,
+            };
         },
-        logout: () => {
+        logout: async () => {
             const token = localStorage.getItem("token");
 
             if (token && typeof window !== "undefined") {
@@ -61,36 +65,48 @@ const App: React.FC = () => {
                 localStorage.removeItem("user");
                 axios.defaults.headers.common = {};
                 window.google?.accounts.id.revoke(token, () => {
-                    return Promise.resolve();
+                    return {};
                 });
             }
 
-            return Promise.resolve();
+            return {
+                success: true,
+                redirectTo: "/login",
+            };
         },
-        checkError: () => Promise.resolve(),
-        checkAuth: async () => {
+        onError: async () => ({}),
+        check: async () => {
             const token = localStorage.getItem("token");
 
             if (token) {
-                return Promise.resolve();
+                return {
+                    authenticated: true,
+                };
             }
-            return Promise.reject();
-        },
 
-        getPermissions: () => Promise.resolve(),
-        getUserIdentity: async () => {
+            return {
+                authenticated: false,
+                error: new Error("Not authenticated"),
+                logout: true,
+                redirectTo: "/login",
+            };
+        },
+        getPermissions: async () => null,
+        getIdentity: async () => {
             const user = localStorage.getItem("user");
             if (user) {
-                return Promise.resolve(JSON.parse(user));
+                return JSON.parse(user);
             }
+
+            return null;
         },
     };
 
     return (
         <Refine
             dataProvider={dataProvider(API_URL, axiosInstance)}
+            authProvider={authProvider}
             legacyRouterProvider={routerProvider}
-            legacyAuthProvider={authProvider}
             LoginPage={Login}
             resources={[
                 {

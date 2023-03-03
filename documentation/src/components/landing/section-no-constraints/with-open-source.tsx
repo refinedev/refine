@@ -101,7 +101,7 @@ const WithOpenSource: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                             <SmallSocialIcons.GithubIcon className="group-hover:text-[#2A2A42] text-[#ACACB6]" />
                         </Badge>
                         <div className="transition-[colors,transform] font-montserrat text-4xl font-black text-center group-hover:text-[#1890FF] text-[#6B6B7C] group-hover:scale-110">
-                            <CountingNumber to={100} />+
+                            <CountingNumber to={130} />+
                         </div>
                         <div className="transition-[colors,transform] font-montserrat text-xs font-medium text-center mt-2 group-hover:text-[#1890FF] text-[#6B6B7C] group-hover:scale-110">
                             Contributors
@@ -112,7 +112,7 @@ const WithOpenSource: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                             <SmallSocialIcons.GithubIcon className="group-hover:text-[#2A2A42] text-[#ACACB6]" />
                         </Badge>
                         <div className="transition-[colors,transform] font-montserrat text-4xl font-black text-center group-hover:text-[#1890FF] text-[#6B6B7C] group-hover:scale-110">
-                            <CountingNumber to={3500} />+
+                            <CountingNumber to={4300} />+
                         </div>
                         <div className="transition-[colors,transform] font-montserrat text-xs font-medium text-center mt-2 group-hover:text-[#1890FF] text-[#6B6B7C] group-hover:scale-110">
                             Commits
@@ -141,7 +141,7 @@ const WithOpenSource: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                             <SmallSocialIcons.DiscordIcon className="group-hover:text-discord text-[#9797A2]" />
                         </Badge>
                         <div className="font-montserrat text-4xl font-black text-center group-hover:text-[#1890FF] text-[#6B6B7C]">
-                            <CountingNumber to={600} />+
+                            <CountingNumber to={1500} />+
                         </div>
                         <div className="ttransition-[colors,transform] ease-in-out font-montserrat text-xs font-medium text-center mt-2 group-hover:text-[#1890FF] text-[#6B6B7C] group-hover:scale-110">
                             Discord Members
@@ -152,7 +152,7 @@ const WithOpenSource: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                             <SmallSocialIcons.TwitterIcon className="group-hover:text-twitter text-[#9797A2]" />
                         </Badge>
                         <div className="transition-[colors,transform] ease-in-out font-montserrat text-4xl font-black text-center group-hover:text-[#1890FF] text-[#6B6B7C] group-hover:scale-110">
-                            <CountingNumber to={1000} />+
+                            <CountingNumber to={1600} />+
                         </div>
                         <div className="transition-[colors,transform] ease-in-out font-montserrat text-xs font-medium text-center mt-2 group-hover:text-[#1890FF] text-[#6B6B7C] group-hover:scale-110">
                             Twitter Followers

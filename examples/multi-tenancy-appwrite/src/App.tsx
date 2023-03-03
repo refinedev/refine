@@ -26,7 +26,7 @@ function App() {
                 legacyRouterProvider={routerProvider}
                 liveProvider={liveProvider(appwriteClient)}
                 dataProvider={dataProvider(appwriteClient)}
-                legacyAuthProvider={authProvider}
+                authProvider={authProvider}
                 LoginPage={Login}
                 options={{ liveMode: "auto" }}
                 Sider={CustomSider}

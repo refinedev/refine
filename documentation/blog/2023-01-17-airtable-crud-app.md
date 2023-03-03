@@ -8,6 +8,15 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-c
 hide_table_of_contents: false
 ---
 
+:::caution
+
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code example in this post have been updated to version 4.x.x.
+
+:::
 
 ## Introduction
 Before the existence of refine, building CRUD applications and data-intensive apps in React had always involved a painstaking repetitive process. [refine](https://github.com/refinedev/refine) eliminates this by providing a set of helper hooks, components, and service providers that are decoupled and independent of the UI components and business logic used in your application. This provides room for customizability and speed in building your application. 
@@ -126,7 +135,7 @@ Create or customize a refine application, there are various ways to do so:
 For this article, we will be using the `refine CLI` to create our refine application. In other to use this, Run the following command below:
 
 ```
-npm create refine-app@latest  <name of your application>
+npm create refine-app@latest <name of your application> -- -b v3
 ```
 
 After running the command, you will be directed to the CLI wizard. Select the following options to complete CLI wizard:

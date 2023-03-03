@@ -21,6 +21,7 @@
     "nuke:lockfiles": "lerna exec --ignore @pankod/refine-codemod -- rm -rf package-lock.json && lerna exec --ignore @pankod/refine-codemod -- rm -rf yarn.lock && lerna exec --ignore @pankod/refine-codemod -- rm -rf pnpm-lock.yaml",
     "nuke:node_modules": "lerna clean --yes",
     "lint": "eslint -c ./.eslintrc packages examples",
+    "bootstrap:codemod": "cd packages/codemod && npm ci && cd ../..",
     "lint:fix": "eslint -c ./.eslintrc --quiet --fix --cache packages examples",
     "lint:staged": "lint-staged",
     "test": "lerna run test --stream --scope @pankod/refine-core",

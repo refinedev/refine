@@ -8,6 +8,16 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-s
 hide_table_of_contents: false
 ---
 
+:::caution
+
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code example in this post have been updated to version 4.x.x.
+
+:::
+
 ## Introduction
 
 Building complex, data-intensive front-end user interfaces(UIs) such as admin panels, dashboards, and other internal tools from scratch can be a daunting and laborious process. React frameworks such as refine make the process easier because that is a problem they are attempting to solve.
@@ -70,10 +80,10 @@ Navigate to the directory you want to create the refine app and run the command 
 
 ```sh
 # Using npm
-npm create refine-app@latest
+npm create refine-app@latest -- -b v3
 
 # Using pnpm
-pnpm create refine-app@latest
+pnpm create refine-app@latest -- -b v3
 ```
 
 Be sure to respond to the command line prompts during the installation. Select `refine-react` as the project template and Strapi version 4 as the back-end service. You can choose the default for the other options. Check the guide below if you don't know how to respond to a question.
@@ -647,7 +657,7 @@ Clicking the create button will now navigate you to the `/posts/create` page. Th
         <div class="control green"></div>
     </div>
    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Frefine-project-create-page.png"  alt="react admin panel" />
-   
+
 </div>
 
 ### How to edit a record
@@ -701,7 +711,7 @@ After adding the code above, your table should include the `Actions` column. Cli
         <div class="control green"></div>
     </div>
    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Factions_edit.png"  alt="react admin panel" />
-   
+
 </div>
 
 <br/>

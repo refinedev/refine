@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-codemod": major
+"@pankod/refine-codemod": minor
 ---
 
-Added `metaData` to `meta` migration.
+Added transform function to change `metaData` to `meta`.

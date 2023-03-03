@@ -2,4 +2,4 @@
 "@pankod/refine-mantine": major
 ---
 
-`metaData` is deprecated from `dataProvider` with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+`meta` prop is added. To ensure backward compatibility, `metaData` prop will be used if `meta` prop is not provided.

@@ -11,6 +11,14 @@ hide_table_of_contents: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::caution
+
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+:::
+
 If you are reading this, chances are you are a developer researching options for delivering an admin panel or another internal tool. Together with you, we will take a look at the best admin panel frameworks in response to this need.
 
 <!--truncate-->
@@ -259,7 +267,7 @@ Although **refine** is a newer framework, it is successful in identifying defici
 -   Installation is very simple and customizable options can be added.
 
 ```bash
-npx superplate-cli demo-refine-project
+npm create refine-app@latest demo-refine-project -- -b v3
 ```
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-26-refine-vs-react-admin/project_setup.gif" alt="setup" />

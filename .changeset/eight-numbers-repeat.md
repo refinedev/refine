@@ -2,17 +2,23 @@
 "@pankod/refine-react-table": major
 ---
 
-All `@tanstack/react-table` components re-exported by `refine` are removed. You should import them from `@tanstack/react-table` directly.
+All `@tanstack/react-table` imports re-exported from `@pankod/refine-react-table` have been removed. You should import them from the `@tanstack/react-table` package directly.
 
-Before:
+If the package is not installed, you can install it with your package manager:
 
-```tsx
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+```bash
+npm install @tanstack/react-table
+# or
+pnpm add @tanstack/react-table
+# or
+yarn add @tanstack/react-table
 ```
 
-After:
+After that, you can import them from `@tanstack/react-table` package directly.
 
-```tsx
-import { useTable } from "@pankod/refine-react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
+```diff
+- import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+
++ import { useTable } from "@refinedev/react-table";
++ import { ColumnDef, flexRender } from "@tanstack/react-table";
 ```

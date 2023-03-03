@@ -11,6 +11,14 @@ hide_table_of_contents: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::caution
+
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+:::
+
 Looking for open source **admin panel framework**? Here we are going to review two of the best **Open Source admin panel frameworks of 2021**.
 
 <!--truncate-->
@@ -38,7 +46,7 @@ Although **refine** is a newer framework, it is successful in identifying defici
 -   Installation is very simple and customizable options can be added.
 
 ```bash
-npx superplate-cli demo-refine-project
+npm create refine-app@latest demo-refine-project -- -b v3
 ```
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-29-refine-vs-adminbro/project_setup.gif" alt="setup" />
