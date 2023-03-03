@@ -38,11 +38,19 @@
     },
     {
       "from": "/docs/core/hooks/auth/useAuthenticated/",
-      "to": "/docs/api-reference/core/hooks/auth/useAuthenticated/"
+      "to": "/docs/api-reference/core/hooks/auth/useIsAuthenticated/"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/auth/useAuthenticated/",
+      "to": "/docs/api-reference/core/hooks/auth/useIsAuthenticated/"
     },
     {
       "from": "/docs/core/hooks/auth/useCheckError/",
-      "to": "/docs/api-reference/core/hooks/auth/useCheckError/"
+      "to": "/docs/api-reference/core/hooks/auth/useOnError/"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/auth/useCheckError/",
+      "to": "/docs/api-reference/core/hooks/auth/useOnError/"
     },
     {
       "from": "/docs/core/hooks/auth/useGetIdentity/",

@@ -24,21 +24,43 @@ const { Button } = RefineMantine;
 window.__refineAuthStatus = false;
 
 const authProvider = {
-    login: () => {
-        window.__refineAuthStatus = true;
-        return Promise.resolve();
+    window.__refineAuthStatus = true;
+
+    login: async () => {
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => {
+    register: async () => {
+        return {
+            success: true,
+        };
+    },
+    forgotPassword: async () => {
+        return {
+            success: true,
+        };
+    },
+    updatePassword: async () => {
+        return {
+            success: true,
+        };
+    },
+    logout: async () => {
         window.__refineAuthStatus = false;
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    checkAuth: () =>
-        window.__refineAuthStatus ? Promise.resolve() : Promise.reject(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
+    check: async () => ({
+        authenticated: window.__refineAuthStatus ? true : false,
+        redirectTo: window.__refineAuthStatus ? undefined : "/login",
+    }),
+    onError: async () => ({}),
+    getPermissions: async () => ["admin"],
+    getIdentity: async () => null,
 };
 
 setRefineProps({ Sider: () => null, dataProvider: dataProvider("api") });
@@ -209,17 +231,25 @@ render(
 After form submission, the [`login`][login] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     // --
     login: async ({ email, password, remember, providerName }) => {
         // You can handle the login process according to your needs.
 
         // If the process is successful.
-        return Promise.resolve();
+        return {
+            success: true,
+        };
 
-        return Promise.reject();
+        return {
+            success: false,
+            error: {
+                name: "Login Error",
+                message: "Invalid email or password",
+            },
+        };
     },
     // --
 };
@@ -273,17 +303,25 @@ render(
 After form submission, the [`register`][register] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     // --
     register: async ({ email, password, providerName }) => {
         // You can handle the register process according to your needs.
 
         // If the process is successful.
-        return Promise.resolve();
+        return {
+            success: true,
+        };
 
-        return Promise.reject();
+        return {
+            success: false,
+            error: {
+                name: "Register Error",
+                message: "Invalid email or password",
+            },
+        };
     },
     // --
 };
@@ -337,17 +375,25 @@ render(
 After form submission, the [`forgotPassword`][forgot-password] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     // --
     forgotPassword: async ({ email }) => {
         // You can handle the reset password process according to your needs.
 
         // If process is successful.
-        return Promise.resolve();
+        return {
+            success: true,
+        };
 
-        return Promise.reject();
+        return {
+            success: false,
+            error: {
+                name: "Forgot Password Error",
+                message: "Invalid email or password",
+            },
+        };
     },
     // --
 };
@@ -401,17 +447,25 @@ render(
 After form submission, the [`updatePassword`][update-password] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     // --
     updatePassword: async ({ password, confirmPassword }) => {
         // You can handle the update password process according to your needs.
 
         // If the process is successful.
-        return Promise.resolve();
+        return {
+            success: true,
+        };
 
-        return Promise.reject();
+        return {
+            success: false,
+            error: {
+                name: "Update Password Error",
+                message: "Invalid email or password",
+            },
+        };
     },
     // --
 };
@@ -987,5 +1041,5 @@ interface FormPropsType extends UseFormProps {
 [forgot-password]: /docs/api-reference/core/providers/auth-provider/#forgotpassword
 [update-password]: /docs/api-reference/core/providers/auth-provider/#updatepassword
 [get-permissions]: /docs/api-reference/core/providers/auth-provider/#getpermissions-
-[check-auth]: /docs/api-reference/core/providers/auth-provider/#checkauth-
+[check-auth]: /docs/api-reference/core/providers/auth-provider/#check-
 [logout]: /docs/api-reference/core/providers/auth-provider/#logout-

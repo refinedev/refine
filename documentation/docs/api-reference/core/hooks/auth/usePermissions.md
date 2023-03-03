@@ -3,6 +3,7 @@ id: usePermissions
 title: usePermissions
 siderbar_label: usePermissions
 description: usePermissions data hook from refine is a modified version of react-query's useQuery for retrieving user data
+source: /packages/core/src/hooks/auth/usePermission/index.ts
 ---
 
 `usePermissions` calls the `getPermissions` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
@@ -15,26 +16,27 @@ It returns the result of `react-query`'s `useQuery` which includes many properti
 
 Imagine that you want to allow only users with the admin role to see the create button in a list page.
 
-- We have a logic in [`authProvider`](/api-reference/core/providers/auth-provider.md)'s `getPermissions` method like below.
+-   We have a logic in [`authProvider`](/api-reference/core/providers/auth-provider.md)'s `getPermissions` method like below.
 
 ```tsx
-import { AuthProvider } from "@pankod/refine-core";
+import type { AuthBindings } from "@pankod/refine-core";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
   ...
     // highlight-start
-    getPermissions: () => {
-        return Promise.resolve(["admin"]);
+    getPermissions: async () => {
+        return ["admin"];
     },
     // highlight-end
   ...
 };
 ```
+
 <br/>
 
-- Get permissions data in the list page with `usePermissions` and check if the user has `"admin`" role.
+-   Get permissions data in the list page with `usePermissions` and check if the user has `"admin`" role.
 
-```tsx  title="pages/post/list"
+```tsx title="pages/post/list"
 // highlight-next-line
 import { usePermissions } from "@pankod/refine-core";
 import { List } from "@pankod/refine-antd";
@@ -47,9 +49,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-
 > [Refer to the `<List>` documentation for detailed usage. &#8594](/api-reference/antd/components/basic-views/list.md)
-
 
 :::caution
 This hook can only be used if the `authProvider` is provided.

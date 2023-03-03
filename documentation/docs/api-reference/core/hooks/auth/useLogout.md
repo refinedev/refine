@@ -3,13 +3,28 @@ id: useLogout
 title: useLogout
 siderbar_label: useLogout
 description: useLogout data hook from refine is a modified version of react-query's useMutation for unauthentication.
+source: /packages/core/src/hooks/auth/useLogout/index.ts
 ---
 
-`useLogout` calls the `logout` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.  
-It unauthenticates the app if the `logout` method from the `authProvider` resolves and if it rejects, it keeps authentication state the same.
+`useLogout` calls the `logout` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
 
-It returns the result of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation).
-Data that is resolved from the `logout` will be returned as the `data` in the query result.
+It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation) which includes many properties, some of which being isSuccess and isError.
+Data that is resolved from `logout` will be returned as the `data` in the query result with the following type:
+
+```ts
+type AuthActionResponse = {
+    success: boolean;
+    redirectTo?: string;
+    error?: Error;
+    [key: string]: unknown;
+};
+```
+
+-   `success`: A boolean indicating whether the operation was successful. If `success` is false, a notification will be shown.
+    -   When `error` is provided, the notification will contain the error message and name. Otherwise, a generic error message will be shown with the following values `{ name: "useLogout Error", message: "Something went wrong during logout" }`.
+-   `redirectTo`: If has a value, the app will be redirected to the given URL.
+-   `error`: If has a value, a notification will be shown with the error message and name.
+-   `[key: string]`: Any additional data you wish to include in the response, keyed by a string identifier.
 
 ## Usage
 
@@ -28,60 +43,35 @@ export const LogoutButton = () => {
 
 ## Redirection after logout
 
-We have 3 options to manage the redirection after logout process.
-
--   If promise returned from `logout` is resolved with nothing, app will be redirected to the `/login` route by default.
-
--   A custom url can be resolved from the promise returned from the `logout` method of the [authProvider](/api-reference/core/providers/auth-provider.md).
-
-```tsx
-const authProvider: AuthProvider = {
-    ...
-    logout: () => {
-        ...
-        return Promise.resolve("/custom-url");
-    }
-}
-```
-
-A custom url can be given to mutate function from the `useLogout` hook if you want to redirect yourself to a certain url.
+A custom URL can be given to mutate the function from the `useLogin` hook if you want to redirect yourself to a certain URL.
 
 ```tsx
 import { useLogout } from "@pankod/refine-core";
 
-const { mutate: logout } = useLogout<{ redirectPath: string }>();
+const { mutate: logout } = useLogout();
 
 logout({ redirectPath: "/custom-url" });
 ```
 
-Then, you can handle this url in your `logout` method of the `authProvider`.
+Then, you can handle this URL in your `logout` method of the `authProvider`.
 
 ```tsx
+import type { AuthBindings } from "@pankod/refine-core";
 
-const authProvider: AuthProvider = {
-    ...
-    logout: ({ redirectPath }) => {
-        ...
-        return Promise.resolve(redirectPath);
-    }
-}
-
-```
-
--   If promise returned from the `logout` method of the [authProvider](/api-reference/core/providers/auth-provider.md) gets resolved with `false` no redirection will occur.
-
-```tsx
-const authProvider: AuthProvider = {
-    ...
-    logout: () => {
-        ...
-        return Promise.resolve(false);
-    }
-}
+const authProvider: AuthBindings = {
+    // ---
+    logout: async ({ redirectPath }) => {
+        // ---
+        return {
+            success: true,
+            redirectTo: redirectPath,
+        };
+    },
+};
 ```
 
 :::caution
-Custom url given to mutate function from `useLogout` overrides the one on the `authProvider`.
+This hook can only be used if `authProvider` is provided.
 :::
 
 :::tip

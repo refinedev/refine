@@ -5,6 +5,8 @@ swizzle: true
 ---
 
 ```tsx live shared
+window.__refineAuthStatus = false;
+
 setRefineProps({
     notificationProvider: RefineMantine.notificationProvider,
     Layout: RefineMantine.Layout,
@@ -318,14 +320,45 @@ const App = () => {
         },
     };
 
-    const authProvider = {
-        login: () => Promise.resolve(),
-        logout: () => Promise.resolve(),
-        checkAuth: () => Promise.resolve(),
-        checkError: () => Promise.resolve(),
-        getPermissions: () => Promise.resolve("admin"),
-        getUserIdentity: () => Promise.resolve(),
-    };
+const authProvider = {
+      window.__refineAuthStatus = true;
+
+    login: async () => {
+        return {
+            success: true,
+            redirectTo: "/",
+        };
+    },
+    register: async () => {
+        return {
+            success: true,
+        };
+    },
+    forgotPassword: async () => {
+        return {
+            success: true,
+        };
+    },
+    updatePassword: async () => {
+        return {
+            success: true,
+        };
+    },
+    logout: async () => {
+        window.__refineAuthStatus = false;
+        return {
+            success: true,
+            redirectTo: "/",
+        };
+    },
+    check: async () => ({
+        authenticated: window.__refineAuthStatus ? true : false,
+        redirectTo: window.__refineAuthStatus ? undefined : "/login",
+    }),
+    onError: async () => ({}),
+    getPermissions: async () => ["admin"],
+    getIdentity: async () => null,
+};
 
     return (
         <Refine

@@ -444,7 +444,7 @@ There are two ways to do Server Side Authentication with Remix. You can choose o
 First, let's create our `AuthProvider`. For more information on `AuthProvider`, visit our [AuthProvider documentation][authprovider].
 
 ```tsx title="app/authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 
 const mockUsers = [
     {
@@ -457,26 +457,38 @@ const mockUsers = [
     },
 ];
 
-export const authProvider: AuthProvider = {
-    login: ({ username, password, remember }) => {
+export const authProvider: AuthBindings = {
+    login: async ({ username, password, remember }) => {
         // Suppose we actually send a request to the back end here.
         const user = mockUsers.find((item) => item.username === username);
 
         if (user) {
-            return Promise.resolve(user);
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         }
 
-        return Promise.reject();
+        return {
+            success: false,
+            error: new Error("Invalid username or password"),
+        };
     },
-    logout: () => {
-        return Promise.resolve("/logout");
+    logout: async () => {
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    checkError: (error) => {
+    onError: async (error) => {
         if (error && error.statusCode === 401) {
-            return Promise.reject();
+            return {
+                logout: true,
+                redirectTo: "/login",
+            };
         }
 
-        return Promise.resolve();
+        return {};
     },
     checkAuth: async ({ request, storage }) => {
         const session = await storage.getSession(request.headers.get("Cookie"));
@@ -484,15 +496,21 @@ export const authProvider: AuthProvider = {
         const user = session.get("user");
 
         if (!user) {
-            return Promise.reject();
+            return {
+                authenticated: false,
+                logout: true,
+                redirectTo: "/login",
+            };
         }
-        return Promise.resolve();
+        return {
+            authenticated: true,
+        };
     },
     getPermissions: async () => {
-        return Promise.resolve();
+        return null;
     },
-    getUserIdentity: async () => {
-        return Promise.resolve();
+    getIdentity: async () => {
+        return null;
     },
 };
 ```
@@ -719,7 +737,7 @@ npm i -D @types/js-cookie
 We will set/destroy cookies in the `login`, `logout` and `checkAuth` functions of our `AuthProvider`.
 
 ```tsx title="app/authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 // highlight-start
 import Cookies from "js-cookie";
 import * as cookie from "cookie";
@@ -739,7 +757,7 @@ const mockUsers = [
 // highlight-next-line
 const COOKIE_NAME = "user";
 
-export const authProvider: AuthProvider = {
+export const authProvider: AuthBindings = {
     login: ({ username, password, remember }) => {
         // Suppose we actually send a request to the back end here.
         const user = mockUsers.find((item) => item.username === username);
@@ -747,23 +765,34 @@ export const authProvider: AuthProvider = {
         if (user) {
             // highlight-next-line
             Cookies.set(COOKIE_NAME, JSON.stringify(user));
-            return Promise.resolve();
+            return {
+                success: true,
+            };
         }
 
-        return Promise.reject();
+        return {
+            success: false,
+        };
     },
     logout: () => {
         // highlight-next-line
         Cookies.remove(COOKIE_NAME);
 
-        return Promise.resolve();
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
     },
     checkError: (error) => {
         if (error && error.statusCode === 401) {
-            return Promise.reject();
+            return {
+                error: new Error("Unauthorized"),
+                logout: true,
+                redirectTo: "/login",
+            };
         }
 
-        return Promise.resolve();
+        return {};
     },
     checkAuth: async (context) => {
         // highlight-start
@@ -781,15 +810,23 @@ export const authProvider: AuthProvider = {
         // highlight-end
 
         if (!user) {
-            return Promise.reject();
+            return {
+                authenticated: false,
+                error: new Error("Unauthorized"),
+                logout: true,
+                redirectTo: "/login",
+            };
         }
-        return Promise.resolve();
+
+        return {
+            authenticated: true,
+        };
     },
     getPermissions: async () => {
-        return Promise.resolve();
+        return null;
     },
-    getUserIdentity: async () => {
-        return Promise.resolve();
+    getIdentity: async () => {
+        return null;
     },
 };
 ```

@@ -56,41 +56,79 @@ export { appwriteClient, account, storage };
 ### Creating Auth Provider
 
 ```tsx title="authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 
 import { account } from "./appwriteClient";
 
-export const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
         try {
             await account.createEmailSession(email, password);
-            return Promise.resolve();
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         } catch (e) {
-            return Promise.reject();
+            const { type, message, code } = e as AppwriteException;
+            return {
+                success: false,
+                error: {
+                    message,
+                    name: `${code} - ${type}`,
+                },
+            };
         }
     },
     logout: async () => {
-        await account.deleteSession("current");
-
-        return "/";
-    },
-    checkError: () => Promise.resolve(),
-    checkAuth: async () => {
-        const session = await account.get();
-
-        if (session) {
-            return Promise.resolve();
+        try {
+            await account.deleteSession("current");
+        } catch (error: any) {
+            return {
+                success: false,
+                error,
+            };
         }
 
-        return Promise.reject();
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
     },
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
+    onError: async () => ({}),
+    check: async () => {
+        try {
+            const session = await account.get();
+
+            if (session) {
+                return {
+                    authenticated: true,
+                };
+            }
+        } catch (error: any) {
+            return {
+                authenticated: false,
+                error: error,
+                logout: true,
+                redirectTo: "/login",
+            };
+        }
+
+        return {
+            authenticated: false,
+            error: new Error("Session not found"),
+            logout: true,
+            redirectTo: "/login",
+        };
+    },
+    getPermissions: async () => null,
+    getIdentity: async () => {
         const user = await account.get();
 
         if (user) {
             return user;
         }
+
+        return null;
     },
 };
 ```
@@ -98,7 +136,7 @@ export const authProvider: AuthProvider = {
 ### Configure Refine Component
 
 ```tsx title="App.tsx"
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import { Refine, AuthBindings } from "@pankod/refine-core";
 import {
     Layout,
     ReadyPage,

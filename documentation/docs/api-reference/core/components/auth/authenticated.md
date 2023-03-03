@@ -3,15 +3,15 @@ id: authenticated
 title: <Authenticated>
 ---
 
-`<Authenticated>` is the component form of [`useAuthenticated`][useauthenticated].
+`<Authenticated>` is the component form of [`useIsAuthenticated`][use-is-authenticated].
 
-It internally uses [`useAuthenticated`][useauthenticated]'s return values (`isSuccess`, `isLoading`, and, `isError`) to provide its functionality.
+It internally uses [`useIsAuthenticated`][use-is-authenticated]'s return values (`data.authenticated`, `data.error`, and, `isLoading`) to provide its functionality.
 
 When:
 
--   `isSuccess` is `true`, it renders to children.
+-   `data.authenticated` is `true`, it renders to children.
+-   `data.authenticated` is `false`, it renders [`fallback`](#fallback) prop if provided. Otherwise, it redirects to `data.redirectTo` page.
 -   `isLoading` is `true`, it renders [`loading`](#loading) prop.
--   `isError` is `true`, it renders [`fallback`](#fallback) prop if provided. Otherwise, it redirects to `/login` page.
 
 ## Basic Usage
 
@@ -55,11 +55,6 @@ Component to render while checking whether the user is logged in.
 
 <PropsTable module="@pankod/refine-core/Authenticated"/>
 
-| Property | Description                                                                                               | Type        | Default |
-| -------- | --------------------------------------------------------------------------------------------------------- | ----------- | ------- |
-| fallback | Component to render if the user is not logged in. If `undefined`, the page will be redirected to `/login` | `ReactNode` |         |
-| loading  | Component to render while checking whether user is logged in                                              | `ReactNode` |         |
-
-[useauthenticated]: /api-reference/core/hooks/auth/useAuthenticated.md
+[use-is-authenticated]: docs/api-reference/core/hooks/auth/useIsAuthenticated
 [custom pages explanation]: /advanced-tutorials/custom-pages.md#authenticated-custom-pages
 [custom pages example]: /examples/custom-pages.md

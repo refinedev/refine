@@ -161,28 +161,41 @@ values={[
 <TabItem value="react-router-v6">
 
 ```tsx title="src/App.tsx"
-import { Refine, Authenticated, AuthProvider } from "@pankod/refine-core";
+import { Refine, Authenticated, AuthBindings } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { CustomPage } from "pages/custom-page";
 
-const authProvider: AuthProvider = {
-    login: (params: any) => {
-        if (params.username === "admin") {
-            localStorage.setItem("username", params.username);
-            return Promise.resolve();
+const authProvider: AuthBindings = {
+    login: async ({ email }) => {
+        if (email) {
+            localStorage.setItem("email", email);
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         }
 
-        return Promise.reject();
+        return {
+            success: false,
+            message: "Invalid email or password",
+        };
     },
-    logout: () => {
-        localStorage.removeItem("username");
-        return Promise.resolve();
+    logout: async () => {
+        localStorage.removeItem("email");
+        return { redirectTo: "/login", success: true };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: () =>
-        localStorage.getItem("username") ? Promise.resolve() : Promise.reject(),
-    getPermissions: () => Promise.resolve(["admin"]),
+    onError: async () => ({}),
+    check: async () =>
+        localStorage.getItem("email")
+            ? {
+                  authenticated: true,
+              }
+            : {
+                  authenticated: false,
+                  redirectTo: "/login",
+              },
+    getPermissions: async () => ["admin"],
 };
 
 // highlight-start
@@ -223,7 +236,7 @@ export default App;
 
 ```tsx title="src/App.tsx"
 // highlight-start
-import { Refine, Authenticated, AuthProvider } from "@pankod/refine-core";
+import { Refine, Authenticated, AuthBindings } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-location";
 // highlight-end
 
@@ -231,23 +244,36 @@ import routerProvider from "@pankod/refine-react-location";
 import { CustomPage } from "pages/custom-page";
 
 // highlight-start
-const authProvider: AuthProvider = {
-    login: (params: any) => {
-        if (params.username === "admin") {
-            localStorage.setItem("username", params.username);
-            return Promise.resolve();
+const authProvider: AuthBindings = {
+    login: async ({ email }) => {
+        if (email) {
+            localStorage.setItem("email", email);
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         }
 
-        return Promise.reject();
+        return {
+            success: false,
+            message: "Invalid email or password",
+        };
     },
-    logout: () => {
-        localStorage.removeItem("username");
-        return Promise.resolve();
+    logout: async () => {
+        localStorage.removeItem("email");
+        return { redirectTo: "/login", success: true };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: () =>
-        localStorage.getItem("username") ? Promise.resolve() : Promise.reject(),
-    getPermissions: () => Promise.resolve(["admin"]),
+    onError: async () => ({}),
+    check: async () =>
+        localStorage.getItem("email")
+            ? {
+                  authenticated: true,
+              }
+            : {
+                  authenticated: false,
+                  redirectTo: "/login",
+              },
+    getPermissions: async () => ["admin"],
 };
 // highlight-end
 
@@ -289,31 +315,43 @@ export default App;
 
 ```tsx title="src/App.tsx"
 // highlight-start
-import { Refine, Authenticated, AuthProvider } from "@pankod/refine-core";
+import { Refine, Authenticated, AuthBindings } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 // highlight-end
 
 // highlight-next-line
 import { CustomPage } from "pages/custom-page";
 
-// highlight-start
-const authProvider: AuthProvider = {
-    login: (params: any) => {
-        if (params.username === "admin") {
-            localStorage.setItem("username", params.username);
-            return Promise.resolve();
+const authProvider: AuthBindings = {
+    login: async ({ email }) => {
+        if (email) {
+            localStorage.setItem("email", email);
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         }
 
-        return Promise.reject();
+        return {
+            success: false,
+            message: "Invalid email or password",
+        };
     },
-    logout: () => {
-        localStorage.removeItem("username");
-        return Promise.resolve();
+    logout: async () => {
+        localStorage.removeItem("email");
+        return { redirectTo: "/login", success: true };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: () =>
-        localStorage.getItem("username") ? Promise.resolve() : Promise.reject(),
-    getPermissions: () => Promise.resolve(["admin"]),
+    onError: async () => ({}),
+    check: async () =>
+        localStorage.getItem("email")
+            ? {
+                  authenticated: true,
+              }
+            : {
+                  authenticated: false,
+                  redirectTo: "/login",
+              },
+    getPermissions: async () => ["admin"],
 };
 // highlight-end
 

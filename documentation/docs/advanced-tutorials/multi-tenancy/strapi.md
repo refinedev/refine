@@ -36,7 +36,7 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 <p>
 
 ```tsx title="src/authProvider.ts"
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 import { AuthHelper } from "@pankod/refine-strapi-v4";
 import axios from "axios";
 
@@ -46,53 +46,84 @@ const API_URL = "YOUR_API_URL";
 const TOKEN_KEY = "strapi-jwt-token";
 const strapiAuthHelper = AuthHelper(API_URL + "/api");
 
-export const authProvider: AuthProvider = {
+export const authProvider: AuthBindings = {
     login: async ({ username, password }) => {
-        const { data, status } = await strapiAuthHelper.login(
-            username,
-            password,
-        );
-        if (status === 200) {
-            localStorage.setItem(TOKEN_KEY, data.jwt);
+        try {
+            const { data, status } = await strapiAuthHelper.login(
+                username,
+                password,
+            );
+            if (status === 200) {
+                localStorage.setItem(TOKEN_KEY, data.jwt);
 
-            // set header axios instance
-            axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${data.jwt}`;
-            return Promise.resolve();
+                // set header axios instance
+                axiosInstance.defaults.headers.common[
+                    "Authorization"
+                ] = `Bearer ${data.jwt}`;
+
+                return {
+                    success: true,
+                };
+            }
+        } catch (error: any) {
+            return {
+                success: false,
+                error: {
+                    name: error.response.data.error.name,
+                    message: error.response.data.error.message,
+                },
+            };
         }
-        return Promise.reject();
+
+        return {
+            success: false,
+            error: new Error("Invalid username or password"),
+        };
     },
-    logout: () => {
+    logout: async () => {
         localStorage.removeItem(TOKEN_KEY);
-        return Promise.resolve();
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: () => {
+    onError: async () => ({}),
+    check: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
-            axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`,
-            return Promise.resolve();
+            axiosInstance.defaults.headers.common[
+                "Authorization"
+            ] = `Bearer ${token}`;
+            return {
+                authenticated: true,
+            };
         }
 
-        return Promise.reject();
+        return {
+            authenticated: false,
+            error: new Error("Invalid token"),
+            logout: true,
+            redirectTo: "/login",
+        };
     },
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
+    getPermissions: async () => null,
+    getIdentity: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (!token) {
-            return Promise.reject();
+            return null;
         }
 
         const { data, status } = await strapiAuthHelper.me(token);
         if (status === 200) {
             const { id, username, email } = data;
-            return Promise.resolve({
+            return {
                 id,
                 username,
                 email,
-            });
+            };
         }
 
-        return Promise.reject();
+        return null;
     },
 };
 ```
