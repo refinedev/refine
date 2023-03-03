@@ -200,6 +200,33 @@ These hooks can be used with the `authProvider` authentication and authorization
 -   [useForgotPassword][use-forgot-password]
 -   [useUpdatePassword][use-update-password]
 
+## Legacy Auth Provider
+
+**refine**'s v4 release is backward compatible and supports the legacy auth provider implementations until v5.
+
+If you want to use a legacy auth provider, you can pass them to the `<Refine />` component using the legacyAuthProvider prop.
+
+[Refer to the Migration Guide for more information. &#8594](/docs/migration-guide/auth-provider/)
+
+```tsx
+import { LegacyAuthProvider, Refine } from "@pankod/refine-core";
+
+const legacyAuthProvider: LegacyAuthProvider = {
+    /* --- */
+};
+
+const App = () => {
+    return (
+        <Refine
+            // ---
+            legacyAuthProvider={legacyAuthProvider}
+        >
+            {/* --- */}
+        </Refine>
+    );
+};
+```
+
 ## FAQ
 
 ### How can I create authProvider?
@@ -243,3 +270,7 @@ These hooks can be used with the `authProvider` authentication and authorization
 [use-forgot-password]: /docs/api-reference/core/hooks/auth/useForgotPassword/
 [use-update-password]: /docs/api-reference/core/hooks/auth/useUpdatePassword/
 [create-auth-provider-tutorial]: /docs/tutorial/understanding-authprovider/create-authprovider
+
+```
+
+```
