@@ -9,7 +9,15 @@ hide_table_of_contents: false
 ---
 
 
+:::caution
 
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code example in this post have been updated to version 4.x.x.
+
+:::
 
 
 
@@ -62,7 +70,7 @@ There are two possible ways to set up a refine application: using [superplate](h
 Run the following command in your terminal to create a refine app with superplate:
 
 ```bash
-npx superplate-cli -p refine-react datagrid
+npm create refine-app@latest datagrid -- -p refine-react -b v3
 ```  
 In the command above, the `-p` flag specifies the project type which in our case, a refine-react project. `datagrid` is the name I chose as the app name for brevity. You can always choose any name you're comfortable with.  
 
