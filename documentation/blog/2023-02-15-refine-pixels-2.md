@@ -8,7 +8,15 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-05-refine-pix
 hide_table_of_contents: false
 ---
 
+:::caution
 
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code examples in this post have been updated to version 4.x.x.
+
+:::
 
 In this episode, we initialize our **Pixels** app using [**refine**](https://github.com/refinedev/refine) and get familiar with the boilerplate code to be created with the `create refine-app` CLI tool.
 
@@ -38,7 +46,7 @@ Let's go ahead and use the `create refine-app` CLI tool to interactively initial
 
 
 ```bash
-npm create refine-app@latest pixels
+npm create refine-app@latest pixels -- --branch v3 --download=git
 ```
 
 `create refine-app` presents us with a set of questions for choosing the libraries and frameworks we want to work with. We'll initialize a **refine** project with `craco` to manage our configurations. Other important things are to be able to customize our **Ant Design** theme and layout.  

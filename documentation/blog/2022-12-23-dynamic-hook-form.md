@@ -8,6 +8,15 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-ho
 hide_table_of_contents: false
 ---
 
+:::caution
+
+This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+
+You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+
+Just be aware that the source code example in this post have been updated to version 4.x.x.
+
+:::
 
 ## Introduction
 
@@ -55,7 +64,7 @@ We'll use `create refine-app` to set up a refine project with Material UI. It’
 As a first step, navigate to a preferred folder on your computer and run the command below to initialise CLI installer:
 
 ```shell
-npm create refine-app@latest dynamic-form-example
+npm create refine-app@latest dynamic-form-example -- --branch v3 --download=git
 ```
 
 The installer will prompt you to select your preference for the project. Select the following options to proceed:
