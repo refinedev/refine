@@ -23,17 +23,18 @@ The typical auth provider has the following methods:
 import { AuthBindings } from "@pankod/refine-core";
 
 const authProvider: AuthBindings = {
-    login: (params: any) => Promise.resolve(),
-    check: (params: any) => Promise.resolve(),
-    logout: (params: any) => Promise.resolve(),
-    onError: (params: any) => Promise.resolve(),
+    // required methods
+    login: async (params: any) => ({}),
+    check: async (params: any) => ({}),
+    logout: async (params: any) => ({}),
+    onError: async (params: any) => ({}),
     // optional methods
-    register: (params: any) => Promise.resolve(),
-    forgotPassword: (params: any) => Promise.resolve(),
-    updatePassword: (params: any) => Promise.resolve(),
-    getPermissions: (params=: any) => Promise.resolve(),
-    getIdentity: (params?: any) => Promise.resolve(),
-}
+    register: async (params: any) => ({}),
+    forgotPassword: async (params: any) => ({}),
+    updatePassword: async (params: any) => ({}),
+    getPermissions: async (params: any) => ({}),
+    getIdentity: async (params?: any) => ({}),
+};
 ```
 
 These methods are used to perform auth operations by **refine** hooks. You can check [Auth Provider](/docs/api-reference/core/providers/auth-provider/) documentation to see the details of each method.
@@ -44,19 +45,19 @@ When you create a new auth provider, you need to pass it to the `<Refine/>` comp
 
 ```tsx
 // ---
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings, Refine } from "@pankod/refine-core";
 
 // It is a mock auth provider.
 const authProvider: AuthBindings = {
-    login: (params: any) => Promise.resolve(),
-    check: (params: any) => Promise.resolve(),
-    logout: (params: any) => Promise.resolve(),
-    onError: (params: any) => Promise.resolve(),
-    // ---
-}
+    // required methods
+    login: async (params: any) => ({}),
+    check: async (params: any) => ({}),
+    logout: async (params: any) => ({}),
+    onError: async (params: any) => ({}),
+};
 
 <Refine
-     // ---
+    // ---
     authProvider={authProvider}
 />;
 ```
