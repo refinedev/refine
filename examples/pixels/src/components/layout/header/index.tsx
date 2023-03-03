@@ -1,11 +1,12 @@
 import React from "react";
 import {
-    useGetIdentity,
+    useIsAuthenticated,
     useLogout,
     useMenu,
     useNavigation,
-    useRouterContext,
+    useParsed,
 } from "@pankod/refine-core";
+import { Link } from "react-router-dom";
 import { useModalForm } from "@pankod/refine-antd";
 
 import {
@@ -19,16 +20,11 @@ import { CreateCanvas } from "components/canvas";
 import { Canvas } from "types";
 
 export const Header: React.FC = () => {
-    const { Link, useLocation } = useRouterContext();
-    const { isError } = useGetIdentity({
-        v3LegacyAuthProviderCompatible: true,
-    });
-    const { mutate: mutateLogout } = useLogout({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { data } = useIsAuthenticated();
+    const { mutate: mutateLogout } = useLogout();
     const { push } = useNavigation();
     const { selectedKey } = useMenu();
-    const { pathname } = useLocation();
+    const { pathname } = useParsed();
 
     const { modalProps, formProps, show } = useModalForm<Canvas>({
         resource: "canvases",
@@ -36,13 +32,15 @@ export const Header: React.FC = () => {
         redirect: "show",
     });
 
-    const isLogin = !isError;
+    const isAuthenticated = data?.authenticated;
 
     const handleRedirect = () => {
-        console.log({ pathname });
+        if (!pathname) {
+            return push("/login");
+        }
+
         if (pathname === "/") {
-            push("/login");
-            return;
+            return push("/login");
         }
 
         push(`/login?to=${encodeURIComponent(pathname)}`);
@@ -83,7 +81,7 @@ export const Header: React.FC = () => {
                     <Button
                         icon={<PlusSquareOutlined />}
                         onClick={() => {
-                            if (isLogin) {
+                            if (isAuthenticated) {
                                 show();
                             } else {
                                 handleRedirect();
@@ -93,7 +91,7 @@ export const Header: React.FC = () => {
                     >
                         Create
                     </Button>
-                    {isLogin ? (
+                    {isAuthenticated ? (
                         <Button
                             type="primary"
                             danger

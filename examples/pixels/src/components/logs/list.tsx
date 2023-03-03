@@ -1,4 +1,3 @@
-import React from "react";
 import { useLogList } from "@pankod/refine-core";
 import { Avatar, List as AntdList, Typography } from "antd";
 import { formattedDate, timeFromNow } from "utility/time";

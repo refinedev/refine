@@ -1,5 +1,5 @@
 import React from "react";
-import { useRouterContext } from "@pankod/refine-core";
+import { Link } from "react-router-dom";
 import { Skeleton } from "antd";
 
 import { CanvasItem, DisplayCanvas } from "./index";
@@ -11,8 +11,6 @@ type CanvasTileProps = {
 };
 
 export const CanvasTile: React.FC<CanvasTileProps> = ({ canvas }) => {
-    const { Link } = useRouterContext();
-
     return (
         <DisplayCanvas canvas={canvas}>
             {(pixels) =>
