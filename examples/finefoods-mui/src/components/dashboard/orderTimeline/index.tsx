@@ -42,33 +42,33 @@ export const OrderTimeline: React.FC = () => {
         switch (id) {
             case "1":
                 return {
-                    color: theme.palette.timeLine.color.pending,
+                    color: theme.timeLine.color.pending,
                     text: "pending",
-                    dotColor: theme.palette.timeLine.dotColor.pending,
+                    dotColor: theme.timeLine.dotColor.pending,
                 };
             case "2":
                 return {
-                    color: theme.palette.timeLine.color.ready,
+                    color: theme.timeLine.color.ready,
                     text: "ready",
-                    dotColor: theme.palette.timeLine.dotColor.ready,
+                    dotColor: theme.timeLine.dotColor.ready,
                 };
             case "3":
                 return {
-                    color: theme.palette.timeLine.color.onTheWay,
+                    color: theme.timeLine.color.onTheWay,
                     text: "on the way",
-                    dotColor: theme.palette.timeLine.dotColor.onTheWay,
+                    dotColor: theme.timeLine.dotColor.onTheWay,
                 };
             case "4":
                 return {
-                    color: theme.palette.timeLine.color.delivered,
+                    color: theme.timeLine.color.delivered,
                     text: "delivered",
-                    dotColor: theme.palette.timeLine.dotColor.delivered,
+                    dotColor: theme.timeLine.dotColor.delivered,
                 };
             default:
                 return {
-                    color: theme.palette.timeLine.color.cancelled,
+                    color: theme.timeLine.color.cancelled,
                     text: "cancelled",
-                    dotColor: theme.palette.timeLine.dotColor.cancelled,
+                    dotColor: theme.timeLine.dotColor.cancelled,
                 };
         }
     };
