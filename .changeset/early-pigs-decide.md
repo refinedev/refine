@@ -2,6 +2,4 @@
 "@pankod/refine-inferencer": minor
 ---
 
-`options` property of `<Refine>`'s `resources` property is deprecated.
-
-internal functions are updated to use `meta` property instead of `options` property.
+Inferecer uses the resource `meta` instead of `options` to pick which data provider to use. If `meta` is not defined, it will use `options` as fallback.

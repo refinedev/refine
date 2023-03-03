@@ -2,7 +2,7 @@
 "@pankod/refine-core": minor
 ---
 
--   Deprecated `congig` props of `useList` and `useInfiniteList` hooks. Use `sorters`, `filters`, `pagination`, and `hasPagination` props instead.
+-   `useList` and `useInfiniteList`'s `config` prop is now deprecated. Use `sorters`, `filters`, `pagination` and `hasPagination` props instead.
 
 ```diff
 useList({
@@ -32,7 +32,7 @@ useInfiniteList({
 })
 ```
 
--   Deprecated `resourceName` props of `useImport` and `useExport` hooks. Use `resource` prop instead.
+-   `useImport` and `useExport`'s `resourceName` prop is now deprecated. Use `resource` prop instead.
 
 ```diff
 useImport({
@@ -46,7 +46,7 @@ useExport({
 })
 ```
 
--   Deprecated `sorter` props of `useExport` hook. Use `sorters` prop instead.
+-   `useExport`'s `sorter` prop is now deprecated. Use `sorters` prop instead.
 
 ```diff
 useExport({
@@ -55,7 +55,7 @@ useExport({
 })
 ```
 
--   Deprecated `sort` props of `useSelect` hook. Use `sorters` prop instead.
+-   `useSelect`'s `sort` prop is now deprecated. Use `sorters` prop instead.
 
 ```diff
 useSelect({
@@ -64,7 +64,7 @@ useSelect({
 })
 ```
 
-- Deprecated `config.sort` props of `useCustom` hook. Use `config.sorters` prop instead.
+-   `useSelect`'s `config.sort` prop is now deprecated. Use `config.sorters` prop instead.
 
 ```diff
 useCustom({

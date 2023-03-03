@@ -8,9 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 
-### Motivation behind breaking changes
+### Motivation behind the release
 
-TODO
+In refine v4, we had a target of making **refine** available in every platform you can use React and make it easy to use in both existing projects and new ones. This also comes with making **refine** flexible and a better fit for a wider use cases. This is only available if we present a more robust, easy to integrate and consistent API throughout the project and boosting the DX without limiting our users to ways to do things. Our aim is to make **refine** a friend for a developer by providing abstractions and ways to separate concerns and manage the data, routing, authorization, layouts, etc. without limiting the power of other tools and libraries they want to use. Changes are done in our API in a manner to allow you to use **refine** in every use case and incrementally adopt for your existing projects. 
 
 ## 🪄 Migrating your project automatically with refine-codemod ✨ (recommended)
 
@@ -42,6 +42,89 @@ You must make this change for all packages that start with `@pankod`.
 ## **`@pankod/refine-core` changes**
 
 ### `routerProvider`
+
+refine v4 includes a new interface for the `routerProvider` prop. It is now smaller and more flexible by leaving the control of the routes to the user and only constructing the communication and the bindings the router and **refine**. 
+
+`routerProvider` is now optional and you can use **refine** without a router. Passing one enables such features as, inferring the current resource from the URL, redirection and navigation helpers, menus, breadcrumbs, etc.
+
+We still support the `routerProvider@v3` for backward compatibility. We changed name to `legacyRouterProvider` and it will be removed in the next major version. If you want to continue using the `routerProvider@v3` you can use it as `legacyRouterProvider` in your project.
+
+```diff
+- import routerProvider from "@pankod/refine-react-router-v6";
++ import routerProvider from "@refinedev/react-router-v6/legacy";
+
+const App = () => {
+    return (
+        <Refine
+-           routerProvider={routerProvider}
++           legacyRouterProvider={routerProvider}
+        />
+    );
+};
+```
+
+🚨 While this is still working, if you want to move to the new `routerProvider` and enable features like nested routes with parameters, custom action routes and more control over your routes, you can use the new `routerProvider` interface.
+
+[Please refer to the Router Provider Migration Guide for more information and guidance. →](/docs/migration-guide/router-provider/)
+
+### `resources`
+
+With the new `routerProvider` interface, we also made changes to the `resources` prop, which is now working more like the interaction and connection point between your API and the app rather than a necessity for the router to work. Your router can work without resources, in the same way your resources can work without a router. 
+
+Now, you can define your actions (`list`, `create`, `edit`, `show`, `clone`) as paths rather than components. This will allow you to define custom routes for actions and also use the full potential of your router without being restricted to the routes created automatically. 
+
+Defining custom routes enables nested routes and parameters for your resources, such as;
+
+```tsx
+resources={[
+    {
+        name: "products",
+        // highlight-start
+        list: "/products",
+        show: "/categories/:categoryId/products/:id"
+        // highlight-end
+    }
+]}
+```
+
+In the above example, you can see that the detail page of a product can have a nested structure and also supports additional parameters. These parameters can be passed along with the `meta` properties in such hooks and components. Existing parameters in the URL will also be used when constructing the navigation path. 
+
+The existing method for passing components to the actions are still supported and uses the default paths when an action has a component value but the new `routerProvider` doesn't create routes for it automatically. To achieve this, you can use the `RefineRoutes` components from the router packages. To learn more about changes about routing in resources, please check [Router Provider Migration Guide](/docs/migration-guide/router-provider/).
+
+We've also made changes in the structure of the resource definition such as the `identifier` property, which lets you define a custom identifier to a resource which can be used to select it in the hooks and components. This is useful when using multiple definitions with different paths and the same name. 
+
+The `route` property is now deprecated with the new routing system which lets users define custom routes per action.
+
+```diff
+resources={[
+    {
+        name: "products",
+-       list: ProductList,
++       list: "/my-products",
+-       icon: <ProductsIcon />,
+-       parentName: "categories",
+-       options: {
+-           route: "my-products",
+-           label: "My Products",
+-           auditLog: {
+-               permissions: ["list", "create"],
+-           },
+-           hide: false,
+-           dataProviderName: "default",
+-       },
+-       canDelete: true,
++       meta: {
++           icon: <ProductsIcon />,
++           parent: "categories",
++           label: "My Products",
++           canDelete: true,
++           audit: ["list", "create"],
++           hide: false,
++           dataProviderName: "default",
++       }
+    }
+]}
+```
 
 ### `authProvider`
 
@@ -334,6 +417,38 @@ useCustom({
     },
 })
 ```
+
+### `useResource` hook
+
+`useResource` hook now accepts a single string parameter as the resource name or the identifier (Also checked for `route` when `legacyRouterProvider` is in use). Instead of having an object with single property as a parameter, this leads users for a simpler usage.
+
+```diff
+-   useResource({
+-       resourceNameOrRouteName: "products"
+-   });
++   useResource("products");
+```
+### `useResourceWithRoute` hook
+
+This hook is now deprecated and obsolete when using the new `routerProvider` property. Please use `useResource` instead.
+
+### `useMenu` hook
+
+Instead of returning an empty `selectedKey` value, now `useMenu` will return `undefined` if there's no matching key with the current route as the `selectedKey`.
+
+Also this hook now accepts `meta` property, an object of parameters to use when additional parameters are present in the resource `list` paths. Such as, if you have a resource with list path defined as `/:authorId/posts` and want to show this resource in your menu, you can do;
+
+```tsx
+const { menuItems } = useMenu({ meta: { authorId: 123 }});
+```
+
+This won't be necessary if there's already a `authorId` parameter present in the current URL. **refine** will use this parameter by default if there's no override in the `meta` property. If you only want to show the items with defined parameters or no parameters, then you can pass `hideOnMissingParameter: true` to the `useMenu` and these items will not be returned.
+
+### `useNavigation` hook
+
+This hook is designed to work with the legacy router provider but updated and kept working with both router provider versions. Although, its recommended to use the new routing hooks when necessary or use the ones available from your router library. **refine** now exports `useGo`, `useParsed`, `useBack`, `useLink` and `useGetToPath` hooks for the new routing system.
+
+Still, if you want to use the `useNavigation` hook and its returned functions, they now accept `meta` property for parametrized paths in new routing system.
 
 ### `metaData` to `meta`
 
@@ -668,7 +783,7 @@ useImport({
 })
 ```
 
-### `useMenu` hook is remove
+### `useMenu` hook is removed
 
 `useMenu` hook is removed. It will be exported from `@refinedev/core` package.
 
@@ -676,6 +791,20 @@ useImport({
 -import { useMenu } from "@pankod/refine-antd";
 +import { useMenu } from "@refinedev/core";
 ```
+### `useDrawerForm` and `useModalForm`  hooks
+
+These hooks now support syncing their visibility state with the location with their `syncWithLocation` prop. You can either pass `true` or an object with `key` and `syncId` properties. If you pass the `key` property, it will be used in the query params for the visibility state. If you pass `syncId: true` it will also add the `id` of the form to the query params, this is useful when working on `clone` and `edit` modes.
+
+```tsx
+useDrawerForm({
+    syncWithLocation: {
+        key: "my-drawer",
+        syncId: true,
+    }
+})
+```
+
+If `key` is not provided, `${resource.name}-${action}` will be used by default.
 
 ### Buttons
 

@@ -2,12 +2,80 @@
 "@pankod/refine-react-table": minor
 ---
 
--   `initialCurrent` and `initialPagesize` properties of `useTable` hook are deprecated. Use `pagination.current` and `pagination.pageSize` instead. However, for backward compatibility, `initialCurrent` and `initialPagesize` properties will be used if `pagination.current` and `pagination.pageSize` are not provided.
+`useTable` return values and properties are updated.
 
--   `sorter` and `setSorter` return values of `useTable` hook are deprecated. Use `sorters` and `setSorters` instead. However, for backward compatibility, `sorter` and `setSorter` are safe to use.
+-   `initialCurrent` and `initialPageSize` props are now deprecated. Use `pagination` prop instead.
+-   To ensure backward compatibility, `initialCurrent` and `initialPageSize` props will work as before.
 
--   Added `pagination.mode` property to `useTable` hook.
+    ```diff
+    useTable({
+    -    initialCurrent,
+    -    initialPageSize,
+    +    pagination: {
+    +        current,
+    +        pageSize,
+    +    },
+    })
+    ```
 
-    -   When `pagination.mode` is "off", all records will be fetched from the API and pagination will be hidden.
-    -   When `pagination.mode` is "client", all records will be fetched from the API and pagination will be handled by client.
-    -   When `pagination.mode` is "server", pagination will be handled by the API using `current` and `pageSize` properties of `pagination` object.
+-   `hasPagination` prop is now deprecated. Use `pagination.mode` instead.
+-   To ensure backward compatibility, `hasPagination` prop will work as before.
+
+    ```diff
+    useTable({
+        refineCoreProps: {
+    -      hasPagination,
+    +       pagination: {
+    +           mode: "off" | "server" | "client",
+    +       },
+        },
+    })
+    ```
+
+-   `initialSorter` and `permanentSorter` props are now deprecated. Use `sorters.initial` and `sorters.permanent` instead.
+-   To ensure backward compatibility, `initialSorter` and `permanentSorter` props will work as before.
+
+    ```diff
+    useTable({
+        refineCoreProps: {
+    -      initialSorter,
+    -      permanentSorter,
+    +      sorters: {
+    +          initial,
+    +          permanent,
+    +      },
+        },
+    })
+    ```
+
+-   `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props are now deprecated. Use `filters.initial`, `filters.permanent`, and `filters.defaultBehavior` instead.
+-   To ensure backward compatibility, `initialFilter`, `permanentFilter`, and `defaultSetFilterBehavior` props will work as before.
+
+    ```diff
+    useTable({
+        refineCoreProps: {
+    -      initialFilter,
+    -      permanentFilter,
+    -      defaultSetFilterBehavior,
+    +      filters: {
+    +          initial,
+    +          permanent,
+    +          defaultBehavior,
+    +      },
+        },
+    })
+    ```
+
+-   `sorter` and `setSorter` return values are now deprecated. Use `sorters` and `setSorters` instead.
+-   To ensure backward compatibility, `sorter` and `setSorter` return values will work as before.
+
+    ```diff
+    const {
+        refineCore: {
+    -        sorter,
+    -        setSorter,
+    +        sorters,
+    +        setSorters,
+        },
+    } = useTable();
+    ```

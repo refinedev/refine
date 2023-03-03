@@ -1,8 +1,8 @@
 ---
-"@pankod/refine-antd": major
-"@pankod/refine-chakra-ui": major
-"@pankod/refine-mantine": major
-"@pankod/refine-mui": major
+"@pankod/refine-antd": minor
+"@pankod/refine-chakra-ui": minor
+"@pankod/refine-mantine": minor
+"@pankod/refine-mui": minor
 ---
 
--   `AuthProvider` deprecated and renamed to `LegacyAuthProvider` with refine@4. Components and functions are updated to support both auth providers.
+Added legacy auth provider and new auth provider support to all components and hooks.
