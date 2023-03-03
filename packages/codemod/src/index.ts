@@ -187,6 +187,7 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         name: "move-to-new-org: Move refine packages to its new scope",
         value: "move-to-new-org",
     },
+    {
         name: "separate-imports-react-query: Moves `@tanstack/react-query` components exported by `refine` into `@tanstack/react-query`",
         value: "separate-imports-react-query",
     },
