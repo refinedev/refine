@@ -1,14 +1,11 @@
-import React, { useLayoutEffect } from "react";
+import React, { useEffect } from "react";
 import { CSSRules } from "./styles";
 
 export const GitHubBanner = () => {
-    useLayoutEffect(() => {
-        CSSRules.forEach((rule) =>
-            document.styleSheets[0].insertRule(
-                rule,
-                document.styleSheets.length,
-            ),
-        );
+    useEffect(() => {
+        const styleTag = document.createElement("style");
+        document.head.appendChild(styleTag);
+        CSSRules.forEach((rule) => styleTag.sheet?.insertRule(rule, 0));
     });
 
     return (
