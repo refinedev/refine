@@ -38,15 +38,15 @@ const App: React.FC = () => {
             };
         },
         onError: async () => ({}),
-        check: () =>
+        check: async () =>
             localStorage.getItem("username")
-                ? Promise.resolve({
+                ? {
                       authenticated: true,
-                  })
-                : Promise.resolve({
+                  }
+                : {
                       authenticated: false,
                       redirectTo: "/login",
-                  }),
+                  },
         getPermissions: async () => ["admin"],
     };
 

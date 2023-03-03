@@ -1,4 +1,4 @@
-import { LegacyAuthProvider as AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 
 export const TOKEN_KEY = "refine-auth";
 
@@ -7,29 +7,39 @@ const password = "1234";
 
 localStorage.setItem(TOKEN_KEY, `${username}-${password}`);
 
-export const authProvider: AuthProvider = {
+export const authProvider: AuthBindings = {
     login: async ({ username, password }) => {
         localStorage.setItem(TOKEN_KEY, `${username}-${password}`);
-        return Promise.resolve();
+        return {
+            success: true,
+        };
     },
-    logout: () => {
+    logout: async () => {
         localStorage.removeItem(TOKEN_KEY);
-        return Promise.resolve();
+        return {
+            success: true,
+        };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: () => {
+    onError: async () => ({}),
+    check: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
-            return Promise.resolve();
+            return {
+                authenticated: true,
+            };
         }
 
-        return Promise.reject();
+        return {
+            authenticated: false,
+            logout: true,
+            redirectTo: "/login",
+        };
     },
     getPermissions: async () => null,
-    getUserIdentity: async () => {
+    getIdentity: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (!token) {
-            return Promise.reject();
+            return null;
         }
 
         return Promise.resolve({

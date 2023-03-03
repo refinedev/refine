@@ -51,13 +51,13 @@ const App: React.FC = () => {
         onError: async () => ({}),
         check: async () =>
             localStorage.getItem("email")
-                ? Promise.resolve({
+                ? {
                       authenticated: true,
-                  })
-                : Promise.resolve({
+                  }
+                : {
                       authenticated: false,
                       redirectTo: "/login",
-                  }),
+                  },
         getPermissions: async () => ["admin"],
     };
 

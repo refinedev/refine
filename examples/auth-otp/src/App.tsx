@@ -47,7 +47,7 @@ const App: React.FC = () => {
                       authenticated: false,
                       redirectTo: "/login",
                   },
-        getPermissions: async () => Promise.resolve(["admin"]),
+        getPermissions: async () => ["admin"],
     };
 
     return (
