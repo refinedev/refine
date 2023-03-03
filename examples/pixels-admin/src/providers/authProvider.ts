@@ -26,6 +26,7 @@ export const authProvider: AuthBindings = {
                 }
             }
 
+            // sign in with email and password
             const { data, error } =
                 await supabaseClient.auth.signInWithPassword({
                     email,
@@ -169,7 +170,7 @@ export const authProvider: AuthBindings = {
             success: true,
         };
     },
-    onError: async () => ({}),
+    onError: async (_error: any) => ({}),
     check: async () => {
         try {
             const { data } = await supabaseClient.auth.getSession();
@@ -229,6 +230,7 @@ export const authProvider: AuthBindings = {
             return null;
         } catch (error: any) {
             console.error(error);
+
             return null;
         }
     },

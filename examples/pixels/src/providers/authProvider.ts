@@ -45,10 +45,10 @@ export const authProvider: AuthBindings = {
                     success: true,
                 };
             }
-        } catch (error) {
+        } catch (error: any) {
             return {
                 success: false,
-                error: new Error("Login failed"),
+                error,
             };
         }
 
@@ -76,10 +76,10 @@ export const authProvider: AuthBindings = {
                     success: true,
                 };
             }
-        } catch (error) {
+        } catch (error: any) {
             return {
                 success: false,
-                error: new Error("Login failed"),
+                error,
             };
         }
 
@@ -165,7 +165,7 @@ export const authProvider: AuthBindings = {
             redirectTo: "/",
         };
     },
-    onError: async () => ({}),
+    onError: async (_error: any) => ({}),
     check: async () => {
         try {
             const { data } = await supabaseClient.auth.getSession();
@@ -181,7 +181,7 @@ export const authProvider: AuthBindings = {
         } catch (error: any) {
             return {
                 authenticated: false,
-                error: error || new Error("Not authenticated"),
+                error: error,
                 logout: true,
             };
         }
@@ -191,24 +191,33 @@ export const authProvider: AuthBindings = {
         };
     },
     getPermissions: async () => {
-        const user = await supabaseClient.auth.getUser();
+        try {
+            const user = await supabaseClient.auth.getUser();
 
-        if (user) {
-            return user.data.user?.role;
+            if (user) {
+                return user.data.user?.role;
+            }
+        } catch (error) {
+            console.error(error);
+            return;
         }
-
-        return null;
     },
     getIdentity: async () => {
-        const { data } = await supabaseClient.auth.getUser();
+        try {
+            const { data } = await supabaseClient.auth.getUser();
 
-        if (data?.user) {
-            return {
-                ...data.user,
-                name: data.user.email,
-            };
+            if (data?.user) {
+                return {
+                    ...data.user,
+                    name: data.user.email,
+                };
+            }
+
+            return null;
+        } catch (error: any) {
+            console.error(error);
+
+            return null;
         }
-
-        return null;
     },
 };
