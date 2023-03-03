@@ -1,7 +1,4 @@
-import {
-    LegacyAuthProvider as AuthProvider,
-    Refine,
-} from "@pankod/refine-core";
+import { AuthBindings, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -22,7 +19,7 @@ import {
     CategoriesEdit,
 } from "pages/categories";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
         const { error } = await nhost.auth.signIn({
             email,
@@ -30,52 +27,78 @@ const authProvider: AuthProvider = {
         });
 
         if (error) {
-            return Promise.reject(error);
+            return {
+                success: false,
+                error: {
+                    message: error.message,
+                    name: "Login Error",
+                },
+            };
         }
 
-        return Promise.resolve();
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
     logout: async () => {
         const { error } = await nhost.auth.signOut();
         if (error) {
-            return Promise.reject(error);
+            return {
+                success: false,
+                error: {
+                    message: error.message,
+                    name: "Login Error",
+                },
+            };
         }
 
-        return Promise.resolve("/");
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
     },
-    checkError: (error) => {
+    onError: async (error) => {
         if (error.status === 401) {
-            return nhost.auth.refreshSession();
+            nhost.auth.refreshSession();
         }
-        return Promise.resolve();
+
+        return {};
     },
-    checkAuth: async () => {
+    check: async () => {
         const isAuthenticated = await nhost.auth.isAuthenticatedAsync();
         if (isAuthenticated) {
-            return Promise.resolve();
+            return {
+                authenticated: true,
+            };
         }
 
-        return Promise.reject();
+        return {
+            authenticated: false,
+            error: new Error("Not authenticated"),
+            logout: true,
+            redirectTo: "/login",
+        };
     },
-    getPermissions: () => {
+    getPermissions: async () => {
         const user = nhost.auth.getUser();
         if (user) {
-            return Promise.resolve(user.roles);
+            return user.roles;
         }
 
-        return Promise.resolve([]);
+        return [];
     },
-    getUserIdentity: () => {
+    getIdentity: async () => {
         const user = nhost.auth.getUser();
         if (user) {
-            return Promise.resolve({
+            return {
                 ...user,
                 name: user.displayName,
                 avatar: user.avatarUrl,
-            });
+            };
         }
 
-        return Promise.resolve({});
+        return null;
     },
 };
 
@@ -88,7 +111,7 @@ const App: React.FC = () => {
                 // Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
                 // liveProvider={liveProvider(gqlWebSocketClient)}
                 // options={{ liveMode: "auto" }}
-                legacyAuthProvider={authProvider}
+                authProvider={authProvider}
                 resources={[
                     {
                         name: "posts",

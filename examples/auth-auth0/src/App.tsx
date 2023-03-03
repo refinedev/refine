@@ -1,7 +1,4 @@
-import {
-    Refine,
-    LegacyAuthProvider as AuthProvider,
-} from "@pankod/refine-core";
+import { Refine, AuthBindings } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -27,46 +24,64 @@ const App: React.FC = () => {
         return <span>loading...</span>;
     }
 
-    const authProvider: AuthProvider = {
-        login: () => {
-            return Promise.resolve(false);
+    const authProvider: AuthBindings = {
+        login: async () => {
+            return {
+                success: true,
+            };
         },
-        logout: () => {
+        logout: async () => {
             logout({ returnTo: window.location.origin });
-            return Promise.resolve("/");
+            return {
+                success: true,
+            };
         },
-        checkError: () => Promise.resolve(),
-        checkAuth: async () => {
+        onError: async () => {
+            return {};
+        },
+        check: async () => {
             try {
                 const token = await getIdTokenClaims();
                 if (token) {
                     axios.defaults.headers.common = {
                         Authorization: `Bearer ${token.__raw}`,
                     };
-                    return Promise.resolve();
+                    return {
+                        authenticated: true,
+                    };
                 } else {
-                    return Promise.reject();
+                    return {
+                        authenticated: false,
+                        error: new Error("Token not found"),
+                        redirectTo: "/login",
+                        logout: true,
+                    };
                 }
-            } catch (error) {
-                return Promise.reject();
+            } catch (error: any) {
+                return {
+                    authenticated: false,
+                    error: new Error(error),
+                    redirectTo: "/login",
+                    logout: true,
+                };
             }
         },
-        getPermissions: () => Promise.resolve(),
-        getUserIdentity: async () => {
+        getPermissions: async () => null,
+        getIdentity: async () => {
             if (user) {
-                return Promise.resolve({
+                return {
                     ...user,
                     avatar: user.picture,
-                });
+                };
             }
-            return Promise.reject();
+            return null;
         },
     };
 
     return (
         <Refine
             LoginPage={Login}
-            legacyAuthProvider={authProvider}
+            authProvider={authProvider}
             dataProvider={dataProvider(API_URL, axios)}
             legacyRouterProvider={routerProvider}
             resources={[

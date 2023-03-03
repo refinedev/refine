@@ -1,7 +1,4 @@
-import {
-    LegacyAuthProvider as AuthProvider,
-    Refine,
-} from "@pankod/refine-core";
+import { AuthBindings, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -26,37 +23,76 @@ import refineSDK from "utils/refine-sdk";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
-const authProvider: AuthProvider = {
+const authProvider: AuthBindings = {
     login: async (payload: ILoginDto) => {
         const { email, password, providerName } = payload;
 
-        await refineSDK.auth.login({
-            email,
-            password,
-            provider: providerName,
-        });
+        try {
+            await refineSDK.auth.login({
+                email,
+                password,
+                provider: providerName,
+            });
 
-        return Promise.resolve();
+            return {
+                success: true,
+            };
+        } catch (error) {
+            return {
+                success: false,
+                error: new Error("Invalid email or password"),
+            };
+        }
     },
-    logout: async () => refineSDK.auth.logout(),
-    checkError: () => Promise.resolve(),
-    checkAuth: async () => {
-        // for social login
-        refineSDK.auth.getSessionFromUrl();
+    logout: async () => {
+        try {
+            await refineSDK.auth.logout();
 
-        return refineSDK.auth
-            .session()
-            .then(() => {
-                return Promise.resolve();
-            })
-            .catch(() => Promise.reject());
+            return {
+                success: true,
+                redirectTo: "/login",
+            };
+        } catch (error: any) {
+            return {
+                success: false,
+                error: new Error(error),
+            };
+        }
     },
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
-        return refineSDK.auth
-            .session()
-            .then((response) => Promise.resolve(response))
-            .catch(() => Promise.reject());
+    onError: async () => ({}),
+    check: async () => {
+        try {
+            await refineSDK.auth.getSessionFromUrl();
+            const user = await refineSDK.auth.session();
+
+            if (!user) {
+                return {
+                    authenticated: false,
+                    redirectTo: "/login",
+                    logout: true,
+                };
+            }
+
+            return {
+                authenticated: true,
+            };
+        } catch (error: any) {
+            return {
+                authenticated: false,
+                redirectTo: "/login",
+                logout: true,
+                error,
+            };
+        }
+    },
+    getPermissions: async () => null,
+    getIdentity: async () => {
+        try {
+            const response = await refineSDK.auth.session();
+            return response;
+        } catch (error) {
+            return null;
+        }
     },
 };
 
@@ -65,7 +101,7 @@ const App: React.FC = () => {
         <Refine
             legacyRouterProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
-            legacyAuthProvider={authProvider}
+            authProvider={authProvider}
             resources={[
                 {
                     name: "posts",
