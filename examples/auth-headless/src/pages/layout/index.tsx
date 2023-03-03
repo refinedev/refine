@@ -2,9 +2,7 @@ import { useLogout } from "@pankod/refine-core";
 import React, { FC, PropsWithChildren } from "react";
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
-    const { mutate: logout } = useLogout({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { mutate: logout } = useLogout();
 
     return (
         <div>

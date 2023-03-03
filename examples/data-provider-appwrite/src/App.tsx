@@ -69,8 +69,8 @@ const App: React.FC = () => {
                 databaseId: "default",
             })}
             options={{ liveMode: "auto" }}
-            legacyAuthProvider={authProvider}
             legacyRouterProvider={routerProvider}
+            legacyAuthProvider={authProvider}
             LoginPage={Login}
             resources={[
                 {

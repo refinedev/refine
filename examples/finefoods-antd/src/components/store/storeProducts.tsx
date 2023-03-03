@@ -11,10 +11,7 @@ import {
     useDrawerForm,
 } from "@pankod/refine-antd";
 
-// It is recommended to use explicit import as seen below to reduce bundle size.
-// import { IconName } from "@ant-design/icons";
-import * as Icons from "@ant-design/icons";
-
+import { SearchOutlined } from "@ant-design/icons";
 import {
     Typography,
     Row,
@@ -27,7 +24,6 @@ import {
 } from "antd";
 
 const { Text } = Typography;
-const { SearchOutlined } = Icons;
 
 import { IStore, IProduct } from "interfaces";
 import {
@@ -56,6 +52,7 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
     >({
         resource: "products",
         pagination: { pageSize: 9 },
+        syncWithLocation: false,
         onSearch: ({ name, categories }) => {
             const productFilters: CrudFilters = [];
 
@@ -80,12 +77,13 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
     });
     const { data: productData } = queryResult;
 
-    const mergedData = productData?.data.map((product) => ({
-        ...record?.products.find(
-            (storeProduct) => storeProduct.id === product.id,
-        ),
-        ...product,
-    }));
+    const mergedData =
+        productData?.data.map((product) => ({
+            ...record?.products.find(
+                (storeProduct) => storeProduct.id === product.id,
+            ),
+            ...product,
+        })) ?? [];
 
     const { mutate } = useUpdate<IStore>();
 
@@ -177,7 +175,7 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
                                     paddingRight: "4px",
                                 }}
                                 {...listProps}
-                                dataSource={mergedData}
+                                dataSource={mergedData as IProduct[]}
                                 renderItem={(item) => (
                                     <ProductItem
                                         item={item}

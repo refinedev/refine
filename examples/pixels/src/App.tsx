@@ -4,11 +4,7 @@ import {
     ReadyPage,
     ErrorComponent,
 } from "@pankod/refine-antd";
-
-// It is recommended to use explicit import as seen below to reduce bundle size.
-// import { IconName } from "@ant-design/icons";
-import * as Icons from "@ant-design/icons";
-
+import { GithubOutlined } from "@ant-design/icons";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@pankod/refine-supabase";
 import routerProvider from "@pankod/refine-react-router-v6/legacy";
@@ -23,8 +19,6 @@ import { authProvider, auditLogProvider } from "./providers";
 import "@pankod/refine-antd/dist/reset.css";
 
 import "styles/style.css";
-
-const { GithubOutlined } = Icons;
 
 function App() {
     return (

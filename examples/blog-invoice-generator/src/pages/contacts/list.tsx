@@ -15,7 +15,7 @@ import { CreateContact } from "components/contacts";
 
 export const ContactsList: React.FC = () => {
     const { tableProps } = useTable<IContact>({
-        meta: { populate: ["client"] },
+        metaData: { populate: ["client"] },
     });
 
     const {

@@ -17,7 +17,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const [locale, setLocale] = useState("en");
 
     const { tableProps } = useTable<ICategory>({
-        meta: {
+        metaData: {
             locale,
         },
     });

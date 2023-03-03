@@ -15,13 +15,13 @@ import { ICategory, IPost } from "interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-        meta: { populate: ["category", "cover"] },
+        metaData: { populate: ["category", "cover"] },
     });
 
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
         defaultValue: queryResult?.data?.data?.category?.id,
-        meta: { locale: queryResult?.data?.data.locale },
+        metaData: { locale: queryResult?.data?.data.locale },
     });
 
     const { ...uploadProps } = useStrapiUpload({

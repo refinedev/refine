@@ -155,7 +155,6 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                                         >
                                             {/* @ts-expect-error False alarm */}
                                             {(props: TextFieldProps) => (
-                                                // @ts-expect-error Incompatible types
                                                 <TextField
                                                     {...props}
                                                     size="small"

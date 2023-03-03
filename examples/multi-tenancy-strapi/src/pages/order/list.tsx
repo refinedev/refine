@@ -23,7 +23,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         permanentFilter: [
             { field: "stores][id]", operator: "eq", value: store },
         ],
-        meta: {
+        metaData: {
             populate: { product: { populate: ["image"] } },
         },
     });

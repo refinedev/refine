@@ -9,11 +9,38 @@ import {
     Sider,
 } from "@pankod/refine-antd";
 
+/**
+ * New bindings for react-router-v6 are available as default export.
+ * You can access the old router provider exports at `@pankod/refine-react-router-v6/legacy`.
+ *
+ * We've also added some new components to make it easier to use refine and its features with react-router-v6.
+ *
+ * - `RefineRoutes`: A component that renders the routes for the resources.
+ * It accepts a render function as a child. This way you can render additional routes inside a single `Routes` component.
+ * This component is **optional** to use in your app. You can render your routes manually
+ * and if you want, you can assign resources to your routes without making them rendered by the `RefineRoutes` component.
+ * This makes it possible for our users to create the routes as they want and still use the full potential of refine resources.
+ * Check below for an example usage.
+ *
+ * - `UnsavedChangesNotifier`: A component that notifies the user if there are unsaved changes.
+ * In the earlier versions of refine, we used to handle this inside the `Refine` component by the `warnWhenUnsavedChanges` prop.
+ * This was not a flexible solution, as it was not possible to customize the behavior of the `warnWhenUnsavedChanges` prop and the text of the notification.
+ * We've now moved this to a separate component, that communicates with the refine's context to show the prompt and is also customizable.
+ * Instead of using the `warnWhenUnsavedChanges` prop, you can use the `UnsavedChangesNotifier` component to enable the same behavior.
+ *
+ * - `NavigateToResource`: A component that navigates to a resource page.
+ * By default, it navigates to the list page of the first resource in the `resources` prop.
+ * In the earlier versions of refine, we used to handle this inside the `Refine` component with no easy way to customize the behavior.
+ * Now, you can use the `NavigateToResource` component at your index page to achieve the same behavior.
+ * Also you can pass a `resource` prop to navigate to a specific resource.
+ * This is an **optional** component to use in your app.
+ *
+ */
 import routerBindings, {
     RefineRoutes,
     NavigateToResource,
     UnsavedChangesNotifier,
-} from "@pankod/refine-react-router-v6/legacy";
+} from "@pankod/refine-react-router-v6";
 
 import "@pankod/refine-antd/dist/reset.css";
 
@@ -66,7 +93,7 @@ const App: React.FC = () => {
                  * `routerProvider` prop and its properties are now **optional**.
                  * Using it will enable refine's router related features but they are not required to use refine.
                  */
-                legacyRouterProvider={routerBindings}
+                routerProvider={routerBindings}
                 dataProvider={dataProvider(API_URL)}
                 notificationProvider={notificationProvider}
                 /**

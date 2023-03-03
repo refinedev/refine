@@ -2,10 +2,11 @@ import { useTranslate, BaseKey } from "@pankod/refine-core";
 
 import { NumberField } from "@pankod/refine-antd";
 
-// It is recommended to use explicit import as seen below to reduce bundle size.
-// import { IconName } from "@ant-design/icons";
-import * as Icons from "@ant-design/icons";
-
+import {
+    CloseCircleOutlined,
+    FormOutlined,
+    MoreOutlined,
+} from "@ant-design/icons";
 import {
     Avatar,
     Card,
@@ -17,7 +18,6 @@ import {
 } from "antd";
 
 const { Text, Paragraph } = Typography;
-const { CloseCircleOutlined, FormOutlined } = Icons;
 
 import { IProduct } from "interfaces";
 
@@ -85,7 +85,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({
                     }
                     trigger={["click"]}
                 >
-                    <Icons.MoreOutlined
+                    <MoreOutlined
                         style={{
                             fontSize: 24,
                         }}

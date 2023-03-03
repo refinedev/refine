@@ -45,7 +45,6 @@ export const PostsList: React.FC = () => {
         queryResult: { isLoading },
     } = useSelect<ICategory>({
         resource: "categories",
-        hasPagination: false,
     });
 
     const columns = React.useMemo<GridColumns<IPost>>(
@@ -96,7 +95,7 @@ export const PostsList: React.FC = () => {
 
     return (
         <List
-            cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
+            wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
             headerButtons={
                 <Button
                     onClick={() => updateSelectedItems()}

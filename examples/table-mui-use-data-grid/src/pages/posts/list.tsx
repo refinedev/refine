@@ -35,7 +35,6 @@ export const PostsList: React.FC = () => {
         queryResult: { isLoading },
     } = useSelect<ICategory>({
         resource: "categories",
-        hasPagination: false,
     });
 
     const columns = React.useMemo<GridColumns<IPost>>(

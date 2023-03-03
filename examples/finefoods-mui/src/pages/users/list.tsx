@@ -270,7 +270,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                 </Card>
             </Grid>
             <Grid item xs={12} lg={9}>
-                <List cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
+                <List wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
                     <DataGrid
                         {...dataGridProps}
                         columns={columns}

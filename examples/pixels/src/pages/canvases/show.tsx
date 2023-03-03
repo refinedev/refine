@@ -8,10 +8,7 @@ import {
 } from "@pankod/refine-core";
 import { useModal } from "@pankod/refine-antd";
 
-// It is recommended to use explicit import as seen below to reduce bundle size.
-// import { IconName } from "@ant-design/icons";
-import * as Icons from "@ant-design/icons";
-
+import { LeftOutlined } from "@ant-design/icons";
 import { Button, Typography, Spin, Modal } from "antd";
 
 import { CanvasItem, DisplayCanvas } from "components/canvas";
@@ -21,13 +18,14 @@ import { colors } from "utility";
 import { Canvas } from "types";
 import { LogList } from "components/logs";
 
-const { LeftOutlined } = Icons;
 const { Title } = Typography;
 
+type Colors = typeof colors;
+
 export const CanvasShow: React.FC = () => {
-    const { Link, useLocation } = useRouterContext();
+    const { useLocation } = useRouterContext();
     const { pathname } = useLocation();
-    const [color, setColor] = useState<(typeof colors)[number]>("black");
+    const [color, setColor] = useState<Colors[number]>("black");
     const { modalProps, show, close } = useModal();
 
     const { data: identity } = useGetIdentity({
@@ -54,7 +52,7 @@ export const CanvasShow: React.FC = () => {
                     canvas_id: canvas?.id,
                     user_id: identity.id,
                 },
-                meta: {
+                metaData: {
                     canvas,
                 },
                 successNotification: false,

@@ -1,15 +1,11 @@
 import { useDelete } from "@pankod/refine-core";
 import { TagField } from "@pankod/refine-antd";
 
-// It is recommended to use explicit import as seen below to reduce bundle size.
-// import { IconName } from "@ant-design/icons";
-import * as Icons from "@ant-design/icons";
-
+import { FormOutlined, DeleteOutlined, MoreOutlined } from "@ant-design/icons";
 import { Card, Typography, Dropdown, Menu } from "antd";
 
 import { IClient } from "interfaces";
 
-const { FormOutlined, DeleteOutlined } = Icons;
 const { Title, Text } = Typography;
 
 type ClientItemProps = {
@@ -69,7 +65,7 @@ export const ClientItem: React.FC<ClientItemProps> = ({ item, editShow }) => {
                     }
                     trigger={["click"]}
                 >
-                    <Icons.MoreOutlined
+                    <MoreOutlined
                         style={{
                             fontSize: 24,
                         }}
