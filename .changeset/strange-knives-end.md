@@ -2,7 +2,7 @@
 "@pankod/refine-mui": minor
 ---
 
--   `sort` prop of `useAutocomplete` hook is deprecated. Use `sorters` prop instead.
+-   `useAutocomplete`'s sort prop is now deprecated. Use `sorters` prop instead.
 
 ```diff
 useAutocomplete({

@@ -20,7 +20,7 @@ All **Mantine** components re-exported from `@pankod/refine-mantine` have been r
 
 If the packages are not installed, you can install them with your package manager:
 
-> You don't have to install all of packages. You can install only the packages that you use.
+> You don't have to install all of these packages below. Only install the packages you use.
 
 ```bash
 npm install @mantine/core @emotion/react @mantine/hooks @mantine/notifications @mantine/form
