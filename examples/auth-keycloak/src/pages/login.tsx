@@ -2,9 +2,7 @@ import { Layout as AntdLayout, Button } from "antd";
 import { useLogin } from "@pankod/refine-core";
 
 export const Login: React.FC = () => {
-    const { mutate: login } = useLogin({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { mutate: login } = useLogin();
 
     return (
         <AntdLayout

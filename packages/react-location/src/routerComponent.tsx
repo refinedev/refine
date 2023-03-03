@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
-    useAuthenticated,
     useRefineContext,
     useResource,
     useRouterContext,
@@ -8,6 +7,8 @@ import {
     LayoutWrapper,
     CanAccess,
     ErrorComponent,
+    useActiveAuthProvider,
+    useIsAuthenticated,
 } from "@pankod/refine-core";
 import { rankRoutes } from "@tanstack/react-location-rank-routes";
 
@@ -35,15 +36,31 @@ export function RouterComponent(
 
     const { routes: customRoutes }: { routes: Route[] } = useRouterContext();
 
-    const { isFetching, isError } = useAuthenticated({
-        type: "routeProvider",
+    const authProvider = useActiveAuthProvider();
+    const {
+        isFetching,
+        isError,
+        data: authData,
+    } = useIsAuthenticated({
+        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
+
+    const isAuthenticated = useMemo(() => {
+        if (authProvider?.isProvided) {
+            if (authProvider?.isLegacy) {
+                const hasAuthError = isError || authData?.error;
+                return hasAuthError ? false : true;
+            }
+
+            return authData?.authenticated;
+        } else {
+            return true;
+        }
+    }, [authData, isError, authProvider?.isLegacy]);
 
     if (isFetching) {
         return null;
     }
-
-    const isAuthenticated = isError ? false : true;
 
     const renderLoginRouteElement = (): JSX.Element => {
         if (LoginPage) return <LoginPage />;

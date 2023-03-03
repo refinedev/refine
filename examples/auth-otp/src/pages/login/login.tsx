@@ -26,9 +26,7 @@ export const Login: React.FC = () => {
     const [gsmNumber, setGsmNumber] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
 
-    const { mutate: login, isLoading } = useLogin<ILoginForm>({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { mutate: login, isLoading } = useLogin<ILoginForm>();
 
     const onGsmFormSubmit = (values: Pick<ILoginForm, "gsmNumber">) => {
         setLoading(true);

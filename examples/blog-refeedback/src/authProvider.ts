@@ -1,4 +1,4 @@
-import { LegacyAuthProvider as AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 import { AuthHelper } from "@pankod/refine-strapi";
 import axios from "axios";
 
@@ -8,9 +8,9 @@ const strapiAuthProvider = (apiUrl: string) => {
     const TOKEN_KEY = "refine-auth";
     const strapiAuthHelper = AuthHelper(apiUrl);
 
-    const authProvider: AuthProvider = {
+    const authProvider: AuthBindings = {
         login: async ({ username, password }) => {
-            const { data, status } = await strapiAuthHelper.login(
+            const { data, status, statusText } = await strapiAuthHelper.login(
                 username,
                 password,
             );
@@ -22,44 +22,58 @@ const strapiAuthProvider = (apiUrl: string) => {
                     "Authorization"
                 ] = `Bearer ${data.jwt}`;
 
-                return Promise.resolve();
+                return {
+                    success: true,
+                    redirectTo: "/",
+                };
             }
-            return Promise.reject();
+            return {
+                success: false,
+                error: new Error(statusText),
+            };
         },
-        logout: () => {
+        logout: async () => {
             localStorage.removeItem(TOKEN_KEY);
-            return Promise.resolve();
+            return {
+                success: true,
+            };
         },
-        checkError: () => Promise.resolve(),
-        checkAuth: () => {
+        onError: async () => ({}),
+        check: async () => {
             const token = localStorage.getItem(TOKEN_KEY);
             if (token) {
                 axiosInstance.defaults.headers.common = {
                     Authorization: `Bearer ${token}`,
                 };
-                return Promise.resolve();
+                return {
+                    authenticated: true,
+                };
             }
 
-            return Promise.reject();
+            return {
+                authenticated: false,
+                error: new Error("Token not found"),
+                logout: true,
+            };
         },
-        getPermissions: () => Promise.resolve(),
-        getUserIdentity: async () => {
+        getPermissions: async () => null,
+        getIdentity: async () => {
             const token = localStorage.getItem(TOKEN_KEY);
             if (!token) {
-                return Promise.reject();
+                return null;
             }
 
             const { data, status } = await strapiAuthHelper.me(token);
             if (status === 200) {
                 const { id, username, email } = data;
-                return Promise.resolve({
+                return {
                     id,
                     username,
                     email,
-                });
+                };
             }
 
-            return Promise.reject();
+            return null;
         },
     };
 

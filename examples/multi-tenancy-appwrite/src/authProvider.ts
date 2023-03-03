@@ -1,42 +1,58 @@
 import { AppwriteException } from "@pankod/refine-appwrite";
-import { LegacyAuthProvider as AuthProvider } from "@pankod/refine-core";
+import { AuthBindings } from "@pankod/refine-core";
 
 import { account } from "utility";
 
-export const authProvider: AuthProvider = {
+export const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
         try {
             await account.createEmailSession(email, password);
-            return Promise.resolve();
+            return {
+                success: true,
+                redirectTo: "/",
+            };
         } catch (e) {
             const { type, message, code } = e as AppwriteException;
-            return Promise.reject({
-                message,
-                name: `${code} - ${type}`,
-            });
+            return {
+                success: false,
+                error: {
+                    message,
+                    name: `${code} - ${type}`,
+                },
+            };
         }
     },
     logout: async () => {
         await account.deleteSession("current");
 
-        return "/";
+        return {
+            success: true,
+            redirectTo: "/",
+        };
     },
-    checkError: () => Promise.resolve(),
-    checkAuth: async () => {
+    onError: async () => ({}),
+    check: async () => {
         const session = await account.getSession("current");
 
         if (session) {
-            return Promise.resolve();
+            return {
+                authenticated: true,
+            };
         }
 
-        return Promise.reject();
+        return {
+            authenticated: false,
+            redirectTo: "/login",
+        };
     },
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: async () => {
+    getPermissions: async () => null,
+    getIdentity: async () => {
         const user = await account.get();
 
         if (user) {
             return user;
         }
+
+        return null;
     },
 };
