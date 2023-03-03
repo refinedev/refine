@@ -33,6 +33,7 @@
         "typescript": "^4.7.4"
     },
     "scripts": {
+        "start": "react-scripts start",
         "dev": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",

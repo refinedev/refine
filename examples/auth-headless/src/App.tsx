@@ -12,94 +12,93 @@ const App: React.FC = () => {
             if (providerName === "google") {
                 window.location.href =
                     "https://accounts.google.com/o/oauth2/v2/auth";
-                return Promise.resolve({
-                    success: false,
-                });
+                return {
+                    success: true,
+                };
             }
 
             if (providerName === "github") {
                 window.location.href =
                     "https://github.com/login/oauth/authorize";
-                return Promise.resolve({
-                    success: false,
-                });
+                return {
+                    success: true,
+                };
             }
 
             if (email) {
                 localStorage.setItem("email", email);
-                return Promise.resolve({
+                return {
                     success: true,
                     redirectTo: "/",
-                });
+                };
             }
 
-            return Promise.resolve({
+            return {
                 success: false,
                 error: new Error("Email is wrong"),
-            });
+            };
         },
-        register: ({ email, password }) => {
+        register: async ({ email, password }) => {
             if (email && password) {
-                return Promise.resolve({
+                return {
                     success: true,
                     redirectTo: "/",
-                });
+                };
             }
-            return Promise.resolve({
+            return {
                 success: false,
                 error: new Error("Email or password is wrong"),
-            });
+            };
         },
-        updatePassword: ({ password }) => {
+        updatePassword: async ({ password }) => {
             if (password) {
                 //we can update password here
-                return Promise.resolve({
+                return {
                     success: true,
                     redirectTo: "/login",
-                });
+                };
             }
-            return Promise.resolve({
+            return {
                 success: false,
                 error: new Error("password is wrong"),
-            });
+            };
         },
-        forgotPassword: ({ email }) => {
+        forgotPassword: async ({ email }) => {
             if (email) {
                 //we can send email with forgot password link here
-                return Promise.resolve({
+                return {
                     success: true,
                     redirectTo: "/login",
-                });
+                };
             }
-            return Promise.resolve({
+            return {
                 success: false,
                 error: new Error("Email is wrong"),
-            });
+            };
         },
-        logout: () => {
+        logout: async () => {
             localStorage.removeItem("email");
-            return Promise.resolve({
+            return {
                 success: true,
                 redirectTo: "/",
-            });
+            };
         },
-        onError: () => Promise.resolve({}),
-        check: () => {
+        onError: async () => ({}),
+        check: async () => {
             return localStorage.getItem("email")
-                ? Promise.resolve({ authenticated: true })
-                : Promise.resolve({
+                ? { authenticated: true }
+                : {
                       authenticated: false,
                       redirectTo: "/login",
                       error: new Error("Not authenticated"),
-                  });
+                  };
         },
-        getPermissions: () => Promise.resolve(["admin"]),
-        getIdentity: () =>
-            Promise.resolve({
-                id: 1,
-                name: "Jane Doe",
-                avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-            }),
+        getPermissions: async () => ["admin"],
+        getIdentity: async () => ({
+            id: 1,
+            name: "Jane Doe",
+            avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
+        }),
     };
 
     return (

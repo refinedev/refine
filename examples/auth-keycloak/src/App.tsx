@@ -1,7 +1,4 @@
-import {
-    Refine,
-    LegacyAuthProvider as AuthProvider,
-} from "@pankod/refine-core";
+import { Refine, AuthBindings } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -27,52 +24,77 @@ const App: React.FC = () => {
         return <div>Loading...</div>;
     }
 
-    const authProvider: AuthProvider = {
+    const authProvider: AuthBindings = {
         login: async () => {
             const urlSearchParams = new URLSearchParams(window.location.search);
             const { to } = Object.fromEntries(urlSearchParams.entries());
             await keycloak.login({
                 redirectUri: to ? `${window.location.origin}${to}` : undefined,
             });
-            return Promise.resolve(false);
+            return {
+                success: false,
+                error: new Error("Login failed"),
+            };
         },
         logout: async () => {
-            await keycloak.logout({
-                redirectUri: window.location.origin,
-            });
-            return Promise.resolve();
+            try {
+                await keycloak.logout({
+                    redirectUri: window.location.origin,
+                });
+                return {
+                    success: true,
+                    redirectTo: "/login",
+                };
+            } catch (error) {
+                return {
+                    success: false,
+                    error: new Error("Logout failed"),
+                };
+            }
         },
-        checkError: () => Promise.resolve(),
-        checkAuth: async () => {
+        onError: async () => ({}),
+        check: async () => {
             try {
                 const { token } = keycloak;
                 if (token) {
                     axios.defaults.headers.common = {
                         Authorization: `Bearer ${token}`,
                     };
-                    return Promise.resolve();
+                    return {
+                        authenticated: true,
+                    };
                 } else {
-                    return Promise.reject();
+                    return {
+                        authenticated: false,
+                        logout: true,
+                        redirectTo: "/login",
+                        error: new Error("Token not found"),
+                    };
                 }
             } catch (error) {
-                return Promise.reject();
+                return {
+                    authenticated: false,
+                    logout: true,
+                    redirectTo: "/login",
+                    error: new Error("Token not found"),
+                };
             }
         },
-        getPermissions: () => Promise.resolve(),
-        getUserIdentity: async () => {
+        getPermissions: async () => null,
+        getIdentity: async () => {
             if (keycloak?.tokenParsed) {
-                return Promise.resolve({
+                return {
                     name: keycloak.tokenParsed.family_name,
-                });
+                };
             }
-            return Promise.reject();
+            return null;
         },
     };
 
     return (
         <Refine
             LoginPage={Login}
-            legacyAuthProvider={authProvider}
+            authProvider={authProvider}
             dataProvider={dataProvider(API_URL, axios)}
             legacyRouterProvider={routerProvider}
             resources={[

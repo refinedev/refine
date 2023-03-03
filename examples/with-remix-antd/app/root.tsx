@@ -41,8 +41,9 @@ export default function App(): JSX.Element {
             <body>
                 <Refine
                     dataProvider={dataProvider(API_URL)}
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
                     legacyRouterProvider={routerProvider}
-                    legacyAuthProvider={authProvider}
                     notificationProvider={notificationProvider}
                     Layout={Layout}
                     LoginPage={() => (
