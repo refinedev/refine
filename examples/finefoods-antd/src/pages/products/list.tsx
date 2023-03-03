@@ -12,10 +12,14 @@ import {
     useDrawerForm,
 } from "@pankod/refine-antd";
 
-import { SearchOutlined } from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import { Row, List as AntdList, Col, Form, Input, Typography } from "antd";
 
 const { Text } = Typography;
+const { SearchOutlined } = Icons;
 
 import {
     ProductItem,
@@ -34,7 +38,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         HttpError,
         { name: string; categories: string[] }
     >({
-        pagination: { pageSize: 12, current: 2 },
+        pagination: { pageSize: 12, defaultCurrent: 2 },
         onSearch: ({ name, categories }) => {
             const productFilters: CrudFilters = [];
 

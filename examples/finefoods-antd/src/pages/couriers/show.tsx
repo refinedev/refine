@@ -8,15 +8,10 @@ import {
 
 import { List, useTable } from "@pankod/refine-antd";
 
-import {
-    EnvironmentOutlined,
-    PhoneOutlined,
-    MailOutlined,
-    BankOutlined,
-    HomeOutlined,
-    CarOutlined,
-    StarOutlined,
-} from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import {
     Table,
     Card,
@@ -92,22 +87,23 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                             }}
                         >
                             <Typography.Text>
-                                <EnvironmentOutlined /> {courier?.store.title}
+                                <Icons.EnvironmentOutlined />{" "}
+                                {courier?.store.title}
                             </Typography.Text>
                             <Typography.Text>
-                                <PhoneOutlined /> {courier?.gsm}
+                                <Icons.PhoneOutlined /> {courier?.gsm}
                             </Typography.Text>
                             <Typography.Text>
-                                <MailOutlined /> {courier?.email}
+                                <Icons.MailOutlined /> {courier?.email}
                             </Typography.Text>
                             <Typography.Text>
-                                <BankOutlined /> {courier?.accountNumber}
+                                <Icons.BankOutlined /> {courier?.accountNumber}
                             </Typography.Text>
                             <Typography.Text>
-                                <HomeOutlined /> {courier?.address}
+                                <Icons.HomeOutlined /> {courier?.address}
                             </Typography.Text>
                             <Typography.Text>
-                                <CarOutlined /> {courier?.licensePlate}
+                                <Icons.CarOutlined /> {courier?.licensePlate}
                             </Typography.Text>
                         </Space>
                     </Space>
@@ -160,7 +156,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                                         {value}
                                     </Typography.Text>
                                     <Rate
-                                        character={<StarOutlined />}
+                                        character={<Icons.StarOutlined />}
                                         disabled
                                         value={value}
                                         style={{

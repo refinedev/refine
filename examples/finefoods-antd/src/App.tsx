@@ -7,12 +7,11 @@ import {
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import {
-    ShoppingOutlined,
-    UsergroupAddOutlined,
-    ShopOutlined,
-    StarOutlined,
-} from "@ant-design/icons";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
 import { authProvider } from "authProvider";
 
@@ -108,13 +107,13 @@ const App: React.FC = () => {
                         name: "orders",
                         list: OrderList,
                         show: OrderShow,
-                        icon: <ShoppingOutlined />,
+                        icon: <Icons.ShoppingOutlined />,
                     },
                     {
                         name: "users",
                         list: UserList,
                         show: UserShow,
-                        icon: <UsergroupAddOutlined />,
+                        icon: <Icons.UsergroupAddOutlined />,
                     },
                     {
                         name: "products",
@@ -127,7 +126,7 @@ const App: React.FC = () => {
                         list: StoreList,
                         edit: StoreEdit,
                         create: StoreCreate,
-                        icon: <ShopOutlined />,
+                        icon: <Icons.ShopOutlined />,
                     },
                     {
                         name: "categories",
@@ -144,7 +143,7 @@ const App: React.FC = () => {
                     {
                         name: "reviews",
                         list: ReviewsList,
-                        icon: <StarOutlined />,
+                        icon: <Icons.StarOutlined />,
                     },
                 ]}
                 notificationProvider={notificationProvider}

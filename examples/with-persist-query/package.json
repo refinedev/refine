@@ -8,7 +8,6 @@
         "@pankod/refine-react-hook-form": "^3.37.2",
         "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-react-table": "^4.9.1",
-        "@tanstack/react-table": "^8.2.6",
         "@pankod/refine-simple-rest": "^3.37.4",
         "@tanstack/react-query-persist-client": "^4.22.0",
         "@tanstack/query-sync-storage-persister": "^4.22.0",

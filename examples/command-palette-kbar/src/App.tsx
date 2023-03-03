@@ -5,7 +5,11 @@ import {
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import { StarOutlined } from "@ant-design/icons";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6/legacy";
 import "@pankod/refine-antd/dist/reset.css";
@@ -34,7 +38,7 @@ const App: React.FC = () => {
                         create: PostCreate,
                         edit: PostEdit,
                         show: PostShow,
-                        icon: <StarOutlined />,
+                        icon: <Icons.StarOutlined />,
                         canDelete: true,
                     },
                     {

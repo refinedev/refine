@@ -7,12 +7,9 @@ import {
 } from "@pankod/refine-core";
 import { List } from "@pankod/refine-antd";
 
-import {
-    CheckCircleOutlined,
-    CloseCircleOutlined,
-    LoadingOutlined,
-    MobileOutlined,
-} from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
 
 import {
     Row,
@@ -107,7 +104,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                     <Button
                         disabled={!canAcceptOrder}
                         key="accept"
-                        icon={<CheckCircleOutlined />}
+                        icon={<Icons.CheckCircleOutlined />}
                         type="primary"
                         onClick={() =>
                             handleMutate({
@@ -122,7 +119,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         disabled={!canRejectOrder}
                         key="reject"
                         danger
-                        icon={<CloseCircleOutlined />}
+                        icon={<Icons.CloseCircleOutlined />}
                         onClick={() =>
                             handleMutate({
                                 id: 5,
@@ -151,7 +148,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                             title={t(`enum.orderStatuses.${event.status}`)}
                             icon={
                                 notFinishedCurrentStep(event, index) && (
-                                    <LoadingOutlined />
+                                    <Icons.LoadingOutlined />
                                 )
                             }
                             description={
@@ -202,7 +199,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 <CourierBoxContainer xl={12} lg={14} md={24}>
                     {courierInfoBox(
                         t("orders.courier.phone"),
-                        <MobileOutlined
+                        <Icons.MobileOutlined
                             style={{ color: "#ffff", fontSize: 32 }}
                         />,
                         record?.courier.gsm,

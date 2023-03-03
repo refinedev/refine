@@ -77,12 +77,12 @@ const CategoryPostsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                     <Space>
                         <EditButton
                             size="small"
-                            resourceNameOrRouteName="posts"
+                            resourceName="posts"
                             recordItemId={record.id}
                         />
                         <ShowButton
                             size="small"
-                            resourceNameOrRouteName="posts"
+                            resourceName="posts"
                             recordItemId={record.id}
                         />
                     </Space>

@@ -141,10 +141,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Paper>
-            <List
-                canCreate
-                wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
-            >
+            <List canCreate cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
                 <DataGrid
                     {...dataGridProps}
                     columns={columns}

@@ -189,7 +189,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
             <Grid item xs={12} lg={9}>
                 <Stack direction="column" spacing={2}>
                     <List
-                        headerProps={{ title: t("orders.orders") }}
+                        cardHeaderProps={{ title: t("orders.orders") }}
                         canCreate={false}
                     >
                         <DataGrid

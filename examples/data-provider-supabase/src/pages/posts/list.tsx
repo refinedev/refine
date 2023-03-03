@@ -22,7 +22,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 order: "asc",
             },
         ],
-        metaData: {
+        meta: {
             select: "*, categories(title)",
         },
     });

@@ -14,12 +14,10 @@ import {
     DateField,
 } from "@pankod/refine-antd";
 
-import {
-    UserOutlined,
-    PhoneOutlined,
-    CalendarOutlined,
-    CheckOutlined,
-} from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import {
     Typography,
     Avatar,
@@ -112,17 +110,17 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                                 }}
                             >
                                 <Typography.Text>
-                                    <UserOutlined />{" "}
+                                    <Icons.UserOutlined />{" "}
                                     {t(`users.fields.gender.${user?.gender}`)}
                                 </Typography.Text>
                                 <Typography.Text>
-                                    <PhoneOutlined /> {user?.gsm}
+                                    <Icons.PhoneOutlined /> {user?.gsm}
                                 </Typography.Text>
                                 <Typography.Text>
-                                    <CalendarOutlined /> {user?.createdAt}
+                                    <Icons.CalendarOutlined /> {user?.createdAt}
                                 </Typography.Text>
                                 <Typography.Text>
-                                    <CheckOutlined />{" "}
+                                    <Icons.CheckOutlined />{" "}
                                     {user?.isActive
                                         ? t("users.fields.isActive.true")
                                         : t("users.fields.isActive.false")}

@@ -35,6 +35,7 @@ export const OrderTimeline: React.FC = () => {
         ],
         pagination: {
             pageSize: 6,
+            simple: true,
         },
         syncWithLocation: false,
     });
@@ -85,13 +86,7 @@ export const OrderTimeline: React.FC = () => {
     };
 
     return (
-        <AntdList
-            {...listProps}
-            pagination={{
-                ...listProps.pagination,
-                simple: true,
-            }}
-        >
+        <AntdList {...listProps}>
             <ConfigProvider theme={{ algorithm: theme.defaultAlgorithm }}>
                 <Timeline>
                     {dataSource?.map(

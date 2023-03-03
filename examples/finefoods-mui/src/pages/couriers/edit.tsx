@@ -337,6 +337,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                                     {(
                                                         props: TextFieldProps,
                                                     ) => (
+                                                        // @ts-expect-error Incompatible types
                                                         <TextField
                                                             {...props}
                                                             size="small"

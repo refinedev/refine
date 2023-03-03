@@ -19,7 +19,9 @@ import {
     ExportButton,
 } from "@pankod/refine-antd";
 
-import { SearchOutlined } from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
 
 import {
     Table,
@@ -39,13 +41,7 @@ import dayjs from "dayjs";
 
 import { OrderStatus, OrderActions } from "components";
 
-import {
-    IOrder,
-    IStore,
-    IOrderFilterVariables,
-    IOrderStatus,
-    IUser,
-} from "interfaces";
+import { IOrder, IStore, IOrderFilterVariables } from "interfaces";
 import { useMemo } from "react";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
@@ -273,14 +269,14 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
         defaultValue: getDefaultFilter("store.id", filters),
     });
 
-    const { selectProps: orderSelectProps } = useSelect<IOrderStatus>({
+    const { selectProps: orderSelectProps } = useSelect<IStore>({
         resource: "orderStatuses",
         optionLabel: "text",
         optionValue: "text",
         defaultValue: getDefaultFilter("status.text", filters),
     });
 
-    const { selectProps: userSelectProps } = useSelect<IUser>({
+    const { selectProps: userSelectProps } = useSelect<IStore>({
         resource: "users",
         optionLabel: "fullName",
         defaultValue: getDefaultFilter("user.id", filters),
@@ -318,7 +314,7 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
                     <Form.Item label={t("orders.filter.search.label")} name="q">
                         <Input
                             placeholder={t("orders.filter.search.placeholder")}
-                            prefix={<SearchOutlined />}
+                            prefix={<Icons.SearchOutlined />}
                         />
                     </Form.Item>
                 </Col>

@@ -219,8 +219,8 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
             <Grid item xs={12} lg={9}>
                 <Stack direction="column" spacing={2}>
                     <List
-                        headerProps={{ title: t("orders.orders") }}
-                        wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
+                        cardHeaderProps={{ title: t("orders.orders") }}
+                        cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
                     >
                         <DataGrid
                             {...dataGridProps}

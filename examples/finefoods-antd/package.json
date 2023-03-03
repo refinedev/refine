@@ -37,8 +37,8 @@
         "cross-env": "^7.0.3",
         "tslib": "^2.3.1",
         "typescript": "^4.7.4",
-        "@ant-design/icons": "^5.0.1",
-        "antd": "^5.0.5"
+        "antd": "^5.0.5",
+        "@ant-design/icons": "^5.0.1"
     },
     "scripts": {
         "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",

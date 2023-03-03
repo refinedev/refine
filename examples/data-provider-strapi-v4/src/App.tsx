@@ -67,7 +67,7 @@ const App: React.FC = () => {
             }
 
             const { data, status } = await strapiAuthHelper.me(token, {
-                metaData: {
+                meta: {
                     populate: ["role"],
                 },
             });

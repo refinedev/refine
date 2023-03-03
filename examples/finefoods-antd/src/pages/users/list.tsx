@@ -13,7 +13,9 @@ import {
     ShowButton,
 } from "@pankod/refine-antd";
 
-import { SearchOutlined } from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
 
 import {
     Table,
@@ -184,7 +186,7 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
                     <Form.Item label={t("users.filter.search.label")} name="q">
                         <Input
                             placeholder={t("users.filter.search.placeholder")}
-                            prefix={<SearchOutlined />}
+                            prefix={<Icons.SearchOutlined />}
                         />
                     </Form.Item>
                 </Col>

@@ -7,11 +7,10 @@ import {
 
 import { List, useTable } from "@pankod/refine-antd";
 
-import {
-    EditOutlined,
-    CloseCircleOutlined,
-    MoreOutlined,
-} from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import { Table, Avatar, Dropdown, Menu, Space, Typography } from "antd";
 
 import { ICourier } from "interfaces";
@@ -45,7 +44,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <EditOutlined
+                    <Icons.EditOutlined
                         style={{
                             color: "#52c41a",
                             fontSize: 17,
@@ -68,7 +67,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                     fontWeight: 500,
                 }}
                 icon={
-                    <CloseCircleOutlined
+                    <Icons.CloseCircleOutlined
                         style={{
                             color: "#EE2A1E",
                             fontSize: 17,
@@ -135,7 +134,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                             overlay={moreMenu(record.id)}
                             trigger={["click"]}
                         >
-                            <MoreOutlined
+                            <Icons.MoreOutlined
                                 onClick={(e) => e.stopPropagation()}
                                 style={{
                                     fontSize: 24,

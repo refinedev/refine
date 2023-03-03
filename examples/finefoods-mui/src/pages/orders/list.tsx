@@ -457,8 +457,8 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
             </Grid>
             <Grid item xs={12} lg={9}>
                 <List
-                    wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
-                    headerProps={{
+                    cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
+                    cardHeaderProps={{
                         action: (
                             <ExportButton
                                 onClick={triggerExport}

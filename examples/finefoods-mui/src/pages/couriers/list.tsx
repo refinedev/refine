@@ -117,7 +117,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
     );
 
     return (
-        <List wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
+        <List cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
             <DataGrid
                 {...dataGridProps}
                 columns={columns}

@@ -27,7 +27,7 @@ export const CanvasList = () => {
                 order: "desc",
             },
         ],
-        metaData: {
+        meta: {
             select: "*, pixels(id, canvas_id, user_id, x, y, color)",
         },
     });
@@ -157,7 +157,7 @@ export const CanvasList = () => {
                                                 is_featured:
                                                     !record.is_featured,
                                             },
-                                            metaData: {
+                                            meta: {
                                                 canvas: record,
                                             },
                                         })

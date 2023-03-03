@@ -8,11 +8,11 @@ import {
     useIsExistAuthentication,
     useMenu,
 } from "@pankod/refine-core";
-import {
-    UnorderedListOutlined,
-    LogoutOutlined,
-    AppstoreAddOutlined,
-} from "@ant-design/icons";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import { Layout as AntdLayout, Menu, Grid } from "antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
@@ -41,7 +41,7 @@ export const CustomSider: React.FC = () => {
                 return (
                     <SubMenu
                         key={route}
-                        icon={icon ?? <UnorderedListOutlined />}
+                        icon={icon ?? <Icons.UnorderedListOutlined />}
                         title={label}
                     >
                         {renderTreeView(children, selectedKey)}
@@ -64,7 +64,9 @@ export const CustomSider: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
+                        icon={
+                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
+                        }
                     >
                         <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
@@ -80,7 +82,7 @@ export const CustomSider: React.FC = () => {
         <Menu.Item
             key="logout"
             onClick={() => mutateLogout()}
-            icon={<LogoutOutlined />}
+            icon={<Icons.LogoutOutlined />}
         >
             Logout
         </Menu.Item>
@@ -105,7 +107,7 @@ export const CustomSider: React.FC = () => {
                     }
                 }}
             >
-                <Menu.Item key={"/"} icon={<AppstoreAddOutlined />}>
+                <Menu.Item key={"/"} icon={<Icons.AppstoreAddOutlined />}>
                     <StoreSelect />
                 </Menu.Item>
                 {renderTreeView(menuItems, selectedKey)}

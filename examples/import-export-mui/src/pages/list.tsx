@@ -67,7 +67,7 @@ export const ImportList: React.FC = () => {
 
     return (
         <List
-            headerProps={{
+            cardHeaderProps={{
                 action: (
                     <Stack direction="row">
                         <ImportButton

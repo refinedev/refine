@@ -35,7 +35,7 @@ export const CreatePostDrawer: React.FC<
         >
             <Create
                 saveButtonProps={saveButtonProps}
-                headerProps={{
+                cardHeaderProps={{
                     action: (
                         <IconButton
                             onClick={() => close()}

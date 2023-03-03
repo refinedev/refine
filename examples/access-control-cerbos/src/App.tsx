@@ -50,7 +50,7 @@ const App: React.FC = () => {
                             attributes: {},
                         },
                         resource: {
-                            kind: resource ?? "",
+                            kind: resource,
                             policyVersion: "default",
                             id: params?.id + "" || "new",
                             attributes: params,
