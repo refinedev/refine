@@ -6,15 +6,15 @@ sidebar_label: Migrating Auth Provider
 
 ## Motivation behind the changes
 
-Our motivation behind the changes to the `authProvider` prop in **refine**'s v4 is to make it flexible and customizable enough to cover much more cases than before without going down the rabbit hole.
+Our motivation for modifying the authProvider prop in **refine** v4 is to enhance its flexibility and customization options to handle a wider range of use cases without over complicating the process.
 
-We wanted to create a common interface for the `authProvider` methods to simplify the debugging and understanding of the authentication process.
+We wanted to create a common interface for the `authProvider` methods to improve its transparency for developers for better understanding and debugging.
 
-Previously, the `authProvider` methods were expected to be resolved on success and rejected on failure. This behavior was not ideal since a rejected promise is typically associated with an error or an exceptional case. Considering that some errors, like the wrong email and password combination, aren’t failures and need to be propagated to the user, rejected promises caused confusion for developers and made it harder to debug real unexpected behaviors.
+Previously, developers were expected to resolve the authProvider methods on success and reject them on failure. However, this approach had limitations, as rejected promises are generally associated with errors or unusual scenarios. Since some errors, such as incorrect login credentials, aren't necessarily failures and must be communicated to the user, rejected promises often led to confusion for developers and hindered the debugging process.
 
-The `authProvider` methods now return a resolved promise with an object containing a `success` key in all cases. This `success` key indicates whether the operation was *successful or not* and contains an optional `error` key with an `Error` object in case of a failure.
+Now, the authProvider methods always return a resolved promise that includes an object with a success key. This key indicates whether the operation was successful or not, and in case of failure, an optional error key containing an `Error` object can be used to notify users.
 
-Additionally, the auth hooks no longer have default redirection paths. This behavior was confusing for developers who were not aware of it. By explicitly adding a `redirectTo` property to the `authProvider` methods' return object, developers can now have more control over where the user is redirected after a successful operation.
+Furthermore, the auth hooks no longer have default redirection paths, which had previously been a source of confusion for some developers. Instead, by adding a `redirectTo` property to the `authProvider` methods' return object, developers can have more control over the redirection after a successful operation.
 
 ## Naming changes
 
