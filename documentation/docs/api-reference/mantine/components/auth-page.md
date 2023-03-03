@@ -24,7 +24,7 @@ const { Button } = RefineMantine;
 window.__refineAuthStatus = false;
 
 const authProvider = {
-      window.__refineAuthStatus = true;
+    window.__refineAuthStatus = true;
 
     login: async () => {
         return {
@@ -56,6 +56,7 @@ const authProvider = {
     },
     check: async () => ({
         authenticated: window.__refineAuthStatus ? true : false,
+        redirectTo: window.__refineAuthStatus ? undefined : "/login",
     }),
     onError: async () => ({}),
     getPermissions: async () => ["admin"],

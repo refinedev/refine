@@ -41,8 +41,8 @@ const authProvider = {
     },
     check: async () => {
         return {
-            authenticated: window.__refineAuthStatus,
-            redirectTo: window.__refineAuthStatus ? undefined : "/login",
+        authenticated: window.__refineAuthStatus ? true : false,
+        redirectTo: window.__refineAuthStatus ? undefined : "/login",
         };
     },
     onError: async () => ({}),

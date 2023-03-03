@@ -353,6 +353,7 @@ const authProvider = {
     },
     check: async () => ({
         authenticated: window.__refineAuthStatus ? true : false,
+        redirectTo: window.__refineAuthStatus ? undefined : "/login",
     }),
     onError: async () => ({}),
     getPermissions: async () => ["admin"],
