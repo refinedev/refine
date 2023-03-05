@@ -15,6 +15,7 @@ import { IconSquarePlus } from "@tabler/icons";
 import { CreateButtonProps } from "../types";
 
 export const CreateButton: React.FC<CreateButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName,
     hideText = false,
     accessControl,
@@ -35,7 +36,9 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
     const { createUrl: generateCreateUrl } = useNavigation();
 
-    const { resource } = useResource(resourceNameOrRouteName);
+    const { resource } = useResource(
+        resourceNameFromProps ?? resourceNameOrRouteName,
+    );
 
     const { data } = useCan({
         resource: resource?.name,
@@ -59,8 +62,13 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
     };
 
     const createUrl =
-        resource || resourceNameOrRouteName
-            ? generateCreateUrl(resource! || resourceNameOrRouteName!, meta)
+        resource || resourceNameFromProps || resourceNameOrRouteName
+            ? generateCreateUrl(
+                  resource! ||
+                      resourceNameFromProps ||
+                      resourceNameOrRouteName!,
+                  meta,
+              )
             : "";
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
