@@ -22,5 +22,5 @@ For more detailed information and usage, refer to the [refine React Hook Form do
 ## Install
 
 ```
-npm install @pankod/refine-react-hook-form
+npm install @refinedev/react-hook-form
 ```

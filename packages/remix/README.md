@@ -22,5 +22,5 @@ For more detailed information and usage, refer to the [refine router provider do
 ## Install
 
 ```
-npm install @pankod/refine-remix-router
+npm install @refinedev/remix-router
 ```
