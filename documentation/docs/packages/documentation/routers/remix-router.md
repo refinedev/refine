@@ -9,6 +9,16 @@ title: Remix
 npm i @pankod/refine-remix-router
 ```
 
+:::tip
+
+We recommend using `create refine-app` to initialize your refine projects. It configures the project according to your needs including SSR with Remix!
+
+```sh
+npm create refine-app@latest -- -o refine-remix my-refine-remix-app
+```
+
+:::
+
 [Refer to the Router Provider documentation for detailed information. &#8594][routerprovider]
 
 :::note Legacy Router
@@ -385,6 +395,10 @@ export default function App(): JSX.Element {
 
 `message` (optional) - The warning message. Default value is `Are you sure you want to leave? You have unsaved changes.` Useful when you don't use an i18n provider.
 
+### `parseTableParams`
+
+This function can be used to parse the query parameters of a table page. It can be useful when you want to use the query parameters in your server side functions (`loader`) to fetch the data such as [persisting the table state](#how-to-persist-syncwithlocation-in-ssr)
+
 ## FAQ
 
 ### How to handle Authentication?
@@ -395,7 +409,12 @@ You can wrap your pages with [`Authenticated`](/docs/api-reference/core/componen
 
 Since this is a client side approach, you can also use your `authProvider`'s `check` function inside server side functions (`loader`) to redirect unauthorized users to other pages using `redirect` from `@remix-run/node`.
 
-Using a server side approach is recommended but you can use any approach you want.
+Using a server side approach is recommended but you can use any approach you want. 
+
+There are two ways to do Server Side Authentication with Remix. You can choose one of the two methods according to your use case.
+
+1. You can store the user session as encrypted using `createCookieSessionStorage`. When you choose this method, all authentication information will remain on the server side. Check out the [Server Side Authentication with `createCookieSessionStorage`](#server-side-authentication-with-createcookiesessionstorage) section for more information.
+2. Self service cookies! You manage authentication cookies yourself. The plus of this method is that the Authentication information can also be used on the Client Side (recommended). Check out the [Server Side Authentication with Self service Cookie](#server-side-authentication-with-self-service-cookie) section for more information.
 
 ### Can I use nested routes?
 
@@ -450,8 +469,480 @@ export default function Posts() {
 }
 ```
 
+### How to persist `syncWithLocation` in SSR?
+
+If `syncWithLocation` is enabled, query parameters must be handled while doing SSR.
+
+```tsx
+import { json, LoaderFunction } from "@remix-run/node";
+// highligt-next-line
+import { parseTableParams } from "@pankod/refine-remix-router";
+import dataProvider from "@pankod/refine-simple-rest";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+export const loader: LoaderFunction = async ({ params, request }) => {
+    const { resource } = params;
+    const url = new URL(request.url);
+
+    // highligt-next-line
+    const tableParams = parseTableParams(url.search);
+
+    try {
+        const data = await dataProvider(API_URL).getList({
+            resource: resource as string,
+            ...tableParams, // this includes `filters`, `sorters` and `pagination`
+        });
+
+        return json({ initialData: data });
+    } catch (error) {
+        return json({});
+    }
+};
+
+export default function MyListRoute() {
+    return (
+        <>
+            {/* ... */}
+        </>
+    );
+}
+```
+
+`parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accept them.
+
+### Server Side Authentication with `createCookieSessionStorage`
+
+First, let's create our `AuthProvider`. For more information on `AuthProvider`, visit our [AuthProvider documentation][authprovider].
+
+```tsx title="app/authProvider.ts"
+import { AuthBindings } from "@pankod/refine-core";
+
+const mockUsers = [
+    {
+        username: "admin",
+        roles: ["admin"],
+    },
+    {
+        username: "editor",
+        roles: ["editor"],
+    },
+];
+
+export const authProvider: AuthBindings = {
+    login: async ({ username, password, remember }) => {
+        // Suppose we actually send a request to the back end here.
+        const user = mockUsers.find((item) => item.username === username);
+
+        if (user) {
+            return {
+                success: true,
+                redirectTo: "/",
+            };
+        }
+
+        return {
+            success: false,
+            error: new Error("Invalid username or password"),
+        };
+    },
+    logout: async () => {
+        return {
+            success: true,
+            redirectTo: "/",
+        };
+    },
+    onError: async (error) => {
+        if (error && error.statusCode === 401) {
+            return {
+                logout: true,
+                redirectTo: "/login",
+            };
+        }
+
+        return {};
+    },
+    check: async ({ request, storage }) => {
+        const session = await storage.getSession(request.headers.get("Cookie"));
+
+        const user = session.get("user");
+
+        if (!user) {
+            return {
+                authenticated: false,
+                logout: true,
+                redirectTo: "/login",
+            };
+        }
+        return {
+            authenticated: true,
+        };
+    },
+    getPermissions: async () => {
+        return null;
+    },
+    getIdentity: async () => {
+        return null;
+    },
+};
+```
+
+Next, let's create the `app/session.server.ts` file as mentioned in the [`Jokes App`][jokesapp] tutorial
+
+```tsx title="app/session.server.ts"
+import { createCookieSessionStorage, redirect } from "@remix-run/node";
+import { authProvider } from "./authProvider";
+
+type LoginForm = {
+    username: string;
+    password: string;
+};
+
+// normally you want this to be env variable
+const sessionSecret = "SUPER_SECRET_SESSION"; //process.env.SESSION_SECRET;
+if (!sessionSecret) {
+    throw new Error("SESSION_SECRET must be set");
+}
+
+const storage = createCookieSessionStorage({
+    cookie: {
+        name: "RJ_session",
+        // normally you want this to be `secure: true`
+        // but that doesn't work on localhost for Safari
+        // https://web.dev/when-to-use-local-https/
+        secure: process.env.NODE_ENV === "production",
+        secrets: [sessionSecret],
+        sameSite: "lax",
+        path: "/",
+        maxAge: 60 * 60 * 24 * 30,
+        httpOnly: true,
+    },
+});
+
+export async function login({ username, password }: LoginForm) {
+    try {
+        const user = await authProvider.login({ username, password });
+        if (user) {
+            return { user };
+        }
+    } catch (error) {
+        return error;
+    }
+}
+
+export async function requireUserId(
+    request: Request,
+    redirectTo: string = new URL(request.url).pathname,
+) {
+    try {
+        const user = await authProvider.check?.({ request, storage });
+        return user;
+    } catch (error) {
+        const searchParams = new URLSearchParams([["to", redirectTo]]);
+        throw redirect(`/login?${searchParams}`);
+    }
+}
+
+export async function createUserSession(user: object, redirectTo: string) {
+    const session = await storage.getSession();
+    session.set("user", { ...user });
+    return redirect(redirectTo, {
+        headers: {
+            "Set-Cookie": await storage.commitSession(session),
+        },
+    });
+}
+
+export async function logout(request: Request) {
+    const session = await storage.getSession(request.headers.get("Cookie"));
+    return redirect("/login", {
+        headers: {
+            "Set-Cookie": await storage.destroySession(session),
+        },
+    });
+}
+```
+
+In the `login` and `requireUserId` functions, we call the corresponding functions of our `AuthProvider`.
+
+Now let's create our login page
+
+```tsx title="app/routes/login.tsx"
+import React from "react";
+import { useTranslate } from "@pankod/refine-core";
+
+import { login, createUserSession } from "~/session.server";
+import { ActionFunction } from "@remix-run/node";
+import { useSearchParams } from "@remix-run/react";
+
+export interface ILoginForm {
+    username: string;
+    password: string;
+}
+
+const LoginPage: React.FC = () => {
+    const translate = useTranslate();
+    const [searchParams] = useSearchParams();
+
+    return (
+        <>
+            <h1>{translate("pages.login.title", "Sign in your account")}</h1>
+            <form method="post">
+                <input
+                    type="hidden"
+                    name="redirectTo"
+                    value={searchParams.get("to") ?? undefined}
+                />
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                {translate(
+                                    "pages.login.username",
+                                    undefined,
+                                    "username",
+                                )}
+                                :
+                            </td>
+                            <td>
+                                <input
+                                    name="username"
+                                    type="text"
+                                    size={20}
+                                    autoCorrect="off"
+                                    spellCheck={false}
+                                    autoCapitalize="off"
+                                    autoFocus
+                                    required
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {translate(
+                                    "pages.login.password",
+                                    undefined,
+                                    "password",
+                                )}
+                                :
+                            </td>
+                            <td>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    required
+                                    size={20}
+                                />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <input type="submit" value="login" />
+            </form>
+        </>
+    );
+};
+
+export const action: ActionFunction = async ({ request }) => {
+    const form = await request.formData();
+    const username = form.get("username") as string;
+    const password = form.get("password") as string;
+    const redirectTo = form.get("redirectTo") || "/";
+    // highlight-start
+    const user = await login({ username, password });
+    if (!user) {
+        return null;
+    }
+
+    return createUserSession(user as any, redirectTo as string);
+    // highlight-end
+};
+
+export default LoginPage;
+```
+
+Yeeyy! Now our users can login! 🎉
+
+:::tip
+Remember, actions and loaders run on the server, so console.log calls you put in those you can't see in the browser console. Those will show up in the terminal window you're running your server in.
+:::
+
+We can call the `requireUserId` function on our routes where we want the authentication check done.
+
+```tsx
+import { json, LoaderFunction } from "@remix-run/node";
+//highlight-next-line
+import { requireUserId } from "~/session.server";
+
+export const loader: LoaderFunction = async ({ params, request, context }) => {
+    //highlight-next-line
+    await requireUserId(request);
+
+    return json({});
+};
+```
+
+Finally, let's make sure our users can log out. For this, we create a routes for `/logout`.
+
+```tsx title="/app/routes/logout.tsx"
+import type { LoaderFunction } from "@remix-run/node";
+
+import { logout } from "~/session.server";
+
+export const loader: LoaderFunction = async ({ request }) => {
+    return await logout(request);
+};
+```
+
+### Server Side Authentication with Self service Cookie
+
+First, let's install the `js-cookie` and `cookie` packages in our project.
+
+```sh
+npm i js-cookie cookie
+
+# typescript types
+npm i -D @types/js-cookie
+```
+
+We will set/destroy cookies in the `login`, `logout` and `check` functions of our `AuthProvider`.
+
+```tsx title="app/authProvider.ts"
+import { AuthBindings } from "@pankod/refine-core";
+// highlight-start
+import Cookies from "js-cookie";
+import * as cookie from "cookie";
+// highlight-end
+
+const mockUsers = [
+    {
+        username: "admin",
+        roles: ["admin"],
+    },
+    {
+        username: "editor",
+        roles: ["editor"],
+    },
+];
+
+// highlight-next-line
+const COOKIE_NAME = "user";
+
+export const authProvider: AuthBindings = {
+    login: ({ username, password, remember }) => {
+        // Suppose we actually send a request to the back end here.
+        const user = mockUsers.find((item) => item.username === username);
+
+        if (user) {
+            // highlight-next-line
+            Cookies.set(COOKIE_NAME, JSON.stringify(user));
+            return {
+                success: true,
+            };
+        }
+
+        return {
+            success: false,
+        };
+    },
+    logout: () => {
+        // highlight-next-line
+        Cookies.remove(COOKIE_NAME);
+
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
+    },
+    onError: (error) => {
+        if (error && error.statusCode === 401) {
+            return {
+                error: new Error("Unauthorized"),
+                logout: true,
+                redirectTo: "/login",
+            };
+        }
+
+        return {};
+    },
+    check: async (context) => {
+        // highlight-start
+        let user = undefined;
+        if (context) {
+            // for SSR
+            const { request } = context;
+            const parsedCookie = cookie.parse(request.headers.get("Cookie"));
+            user = parsedCookie[COOKIE_NAME];
+        } else {
+            // for CSR
+            const parsedCookie = Cookies.get(COOKIE_NAME);
+            user = parsedCookie ? JSON.parse(parsedCookie) : undefined;
+        }
+        // highlight-end
+
+        if (!user) {
+            return {
+                authenticated: false,
+                error: new Error("Unauthorized"),
+                logout: true,
+                redirectTo: "/login",
+            };
+        }
+
+        return {
+            authenticated: true,
+        };
+    },
+    getPermissions: async () => {
+        return null;
+    },
+    getIdentity: async () => {
+        return null;
+    },
+};
+```
+
+Tadaa! that's all! 🎉
+
+Now, we can check the authentication in loaders of our routes.
+
+```tsx title="app/routes/index.tsx"
+import { json, LoaderFunction } from "@remix-run/node";
+import { authProvider } from "~/authProvider";
+
+export const loader: LoaderFunction = async ({ params, request, context }) => {
+    // We've handled the SSR case in our `check` function by sending the `request` as parameter.
+    const { authenticated } = await authProvider.check(request);
+
+    if (!authenticated) {
+        return json({}, { status: 401 });
+    }
+
+    return null;
+};
+```
+
+This needs to be done for all the routes that we want to protect.
+
 ## Example
 
 <CodeSandboxExample path="with-remix-antd" />
 
+<CodeSandboxExample path="with-remix-headless" hideSandbox />
+
 [routerprovider]: /api-reference/core/providers/router-provider.md
+[remix]: https://remix.run/
+[remixrouter]: https://www.npmjs.com/package/@pankod/remix-router
+[refine]: /api-reference/core/components/refine-config.md
+[remixroutes]: https://remix.run/docs/en/v1/api/conventions#routes
+[usetable]: /docs/api-reference/core/hooks/useTable
+[reactqueryssr]: https://react-query.tanstack.com/guides/ssr#using-initialdata
+[reactquery]: https://react-query.tanstack.com/
+[getlist]: /docs/api-reference/core/providers/data-provider/#getlist-
+[dataprovider]: /api-reference/core/providers/data-provider.md
+[usetable]: /docs/api-reference/core/hooks/useTable
+[interfaces]: /api-reference/core/interfaces.md/#crudfilters
+[loaderfunction]: https://remix.run/docs/en/v1/api/conventions#loader
+[jokesapp]: https://remix.run/docs/en/v1/tutorials/jokes#authentication
+[authprovider]: /api-reference/core/providers/auth-provider.md

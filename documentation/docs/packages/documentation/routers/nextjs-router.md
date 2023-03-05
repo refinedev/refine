@@ -625,6 +625,10 @@ This feature is not working in experimental `appDir` mode in Next.js due to limi
 
 `message` (optional) - The warning message. Default value is `Are you sure you want to leave? You have unsaved changes.` Useful when you don't use an i18n provider.
 
+### `parseTableParams`
+
+This function can be used to parse the query parameters of a table page. It can be useful when you want to use the query parameters in your server side functions (`loader`) to fetch the data such as [persisting the table state](#how-to-persist-syncwithlocation-in-ssr)
+
 ## FAQ
 
 ### How to handle Authentication?
@@ -635,7 +639,7 @@ You can wrap your pages with [`Authenticated`](/docs/api-reference/core/componen
 
 Since this is a client side approach, you can also use your `authProvider`'s `check` function inside server side functions (`getServerSideProps`) to redirect unauthorized users to other pages.
 
-Using a server side approach is recommended but you can use any approach you want.
+Using a server side approach is recommended but you can use any approach you want. Check out the [Server Side Authentication with Cookies](#server-side-authentication-with-cookies) section for an example.
 
 ### Can I use nested routes?
 
@@ -687,6 +691,246 @@ export default function Posts({ posts }: { posts: GetListResponse<IPost> }) {
         <>
             {/* ... */}
         </>
+    );
+}
+```
+
+### How to persist `syncWithLocation` in SSR?
+
+If `syncWithLocation` is enabled, query parameters must be handled while doing SSR.
+
+```tsx
+// highligt-next-line
+import { parseTableParams } from "@pankod/refine-nextjs-router";
+import dataProvider from "@pankod/refine-simple-rest";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+export const getServerSideProps = ({ params, resolvedUrl }) => {
+    const { resource } = params;
+
+    // highligt-next-line
+    const tableParams = parseTableParams(resolvedUrl?.split("?")[1] ?? "");
+
+    try {
+        const data = await dataProvider(API_URL).getList({
+            resource: resource as string,
+            ...tableParams, // this includes `filters`, `sorters` and `pagination`
+        });
+
+        return {
+            props: {
+                initialData: data,
+            },
+        };
+    } catch (error) {
+        return {
+            props: {},
+        };
+    }
+}
+export default function MyListPage({ initialData }) {
+    return (
+        <>
+            {/* ... */}
+        </>
+    );
+}
+```
+
+`parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accept them.
+
+### Server Side Authentication with Cookies
+
+First, let's install the `nookies` packages in our project.
+
+```sh
+npm i nookies
+```
+
+We will set/destroy cookies in the `login`, `logout` and `check` functions of our `AuthProvider`.
+
+```tsx title="app/authProvider.ts"
+import { AuthBindings } from "@pankod/refine-core";
+// highlight-start
+import nookies from "nookies";
+// highlight-end
+
+const mockUsers = [
+    {
+        username: "admin",
+        roles: ["admin"],
+    },
+    {
+        username: "editor",
+        roles: ["editor"],
+    },
+];
+
+// highlight-next-line
+const COOKIE_NAME = "user";
+
+export const authProvider: AuthBindings = {
+    login: ({ username, password, remember }) => {
+        // Suppose we actually send a request to the back end here.
+        const user = mockUsers.find((item) => item.username === username);
+
+        if (user) {
+            // highlight-start
+            nookies.set(null, COOKIE_NAME, JSON.stringify(user), {
+                maxAge: remember ? 30 * 24 * 60 * 60 : undefined,
+            });
+            // highlight-end
+
+            return {
+                success: true,
+            };
+        }
+
+        return {
+            success: false,
+        };
+    },
+    logout: () => {
+        // highlight-next-line
+        nookies.destroy(null, COOKIE_NAME);
+
+        return {
+            success: true,
+            redirectTo: "/login",
+        };
+    },
+    onError: (error) => {
+        if (error && error.statusCode === 401) {
+            return {
+                error: new Error("Unauthorized"),
+                logout: true,
+                redirectTo: "/login",
+            };
+        }
+
+        return {};
+    },
+    check: async (context) => {
+        // highlight-start
+        let user = undefined;
+        if (context) {
+            // for SSR
+            const cookies = nookies.get(context);
+            user = cookies[COOKIE_NAME];
+        } else {
+            // for CSR
+            const cookies = nookies.get(null);
+            user = cookies[COOKIE_NAME];
+        }
+        // highlight-end
+
+        if (!user) {
+            return {
+                authenticated: false,
+                error: new Error("Unauthorized"),
+                logout: true,
+                redirectTo: "/login",
+            };
+        }
+
+        return {
+            authenticated: true,
+        };
+    },
+    getPermissions: async () => {
+        return null;
+    },
+    getIdentity: async () => {
+        return null;
+    },
+};
+```
+
+Tadaa! that's all! 🎉
+
+Now, we can check the authentication in loaders of our routes.
+
+```tsx title="pages/posts/index.tsx"
+import { authProvider } from "src/authProvider";
+
+export const getServerSideProps = async (context) => {
+    // We've handled the SSR case in our `check` function by sending the `context` as parameter.
+    const { authenticated, redirectTo } = await authProvider.check(context);
+
+    if (!authenticated) {
+        context.res.statusCode = 401;
+        context.res.end();
+    }
+
+    if (!authenticated && redirectTo) {
+        return {
+            redirect: {
+                destination: redirectTo,
+                permanent: false,
+            },
+        };
+    }
+
+    return {
+        props: {
+            authenticated,
+        },
+    };
+};
+```
+
+This needs to be done for all the routes that we want to protect.
+
+### How to use multiple layouts?
+
+When using `/pages` directory for your routes, you'll probably have a point where you need to use multiple layouts. For example, you may want to use a different layout for the login page. To achieve this, you can either use your `Layout` wrappers in your pages or you can add extra properties to your page components to render the page with the specified layout.
+
+Here's an example of how you can use additional properties to render different layouts.
+
+```tsx title="pages/login.tsx"
+export default function Login() {
+    return (
+        <div>
+            <h1>Login</h1>
+        </div>
+    );
+}
+
+Login.layout = "auth";
+```
+
+```tsx title="pages/posts/index.tsx"
+export default function Posts() {
+    return (
+        <div>
+            {/* ... */}
+        </div>
+    );
+}
+
+Posts.layout = "default";
+```
+
+```tsx title="pages/_app.tsx"
+import { AuthLayout, DefaultLayout } from "src/layouts";
+
+const Layouts = {
+    auth: AuthLayout,
+    default: DefaultLayout,
+};
+
+export default function MyApp({ Component, pageProps }) {
+    const Layout = Layouts[Component.layout ?? "default"];
+
+    return (
+        <Refine
+            {/* ... */}
+        >
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
+        </Refine>
     );
 }
 ```

@@ -83,78 +83,6 @@ Your action definitions in the resources can contain additional parameters and n
 
 :::
 
-### With Authentication
-
-**refine** provides an [`Authenticated`](/docs/api-reference/core/components/auth/authenticated/) component to wrap your components with authentication. You can use this component to wrap your routes and protect them from unauthorized access.
-
-While the [`Authenticated`](/docs/api-reference/core/components/auth/authenticated/) can be used in many ways to protect your routes, we'll use it to wrap the whole routes in this example. You're free to use it in any way that suits your needs.
-
-We'll use [`NavigateAndKeepCurrent`](#navigateandkeepcurrent) component to navigate to the login page when the user is not authenticated. This component will also pass the current route to the query parameters of the login page. This way, we can redirect the user back to the page they were trying to access after they login.
-
-```tsx title=App.tsx
-// highlight-next-line
-import { Refine, Authenticated } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-// highlight-start
-import routerProvider, { NavigateToResource, NavigateAndKeepCurrent } from "@pankod/refine-react-router-v6";
-// highlight-end
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import { PostList, PostCreate } from "pages/posts";
-import { CategoryList, CategoryShow } from "pages/categories";
-
-import { Layout } from "components/Layout";
-import { ErrorComponent } from "components/Error";
-
-import { AuthPage } from "pages/auth";
-
-const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider}
-                // highlight-next-line
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                    },
-                    {
-                        name: "categories",
-                        list: "/categories",
-                        show: "/categories/show/:id",
-                    }
-                ]}
-            >
-                <Authenticated
-                    // highlight-start
-                    fallback={(
-                        <Routes>
-                            <Route path="/login" element={<AuthPage type="login" />} />
-                            <Route path="*" element={<NavigateAndKeepCurrent to="/login" />} />
-                        </Routes>
-                    )}
-                    // highlight-end
-                >
-                    <Layout>
-                        <Routes>
-                            <Route index element={<NavigateToResource resource="posts" />} />
-                            <Route path="/posts" element={<PostList />} />
-                            <Route path="/posts/create" element={<PostCreate />} />
-                            <Route path="/categories" element={<CategoryList />} />
-                            <Route path="/categories/show/:id" element={<CategoryShow />} />
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Routes>
-                    </Layout>
-                </Authenticated>
-        </BrowserRouter>
-    )
-}
-
-```
-
 ## Additional Components
 
 `@pankod/refine-react-router-v6` package also includes some additional components that can be useful in some cases.
@@ -335,6 +263,209 @@ const App = () => {
 
 `to` (required) - The path to redirect to.
 
+## FAQ
 
+### How to use `Authenticated` for authentication?
+
+**refine** provides an [`Authenticated`](/docs/api-reference/core/components/auth/authenticated/) component to wrap your components with authentication. You can use this component to wrap your routes and protect them from unauthorized access. You can use it to render your pages with wrapping them or partially apply `Authenticated` for sections in your page or wrap your whole `Routes` component with it, this completely depends on your use case and you can use it in any way you want to fit your needs.
+
+Check out the [How to use `Authenticated` component with `RefineRoutes`?](#how-to-use-authenticated-component-with-refineroutes) and [How to handle optional authentication, redirects and layouts with authentication?](#how-to-handle-optional-authentication-redirects-and-layouts-with-authentication) sections for example usages.
+
+### How to use `Authenticated` component with `RefineRoutes`?
+
+You can pass your **refine** routes to the `children` of `Authenticated` component by wrapping them with `Routes` component. Then, you can use `fallback` property to render authentication routes. We'll only apply the `Layout` to the authenticated routes and leave the authentication routes as they are.
+
+```tsx title=App.tsx
+// highlight-next-line
+import { Refine, Authenticated } from "@pankod/refine-core";
+import dataProvider from "@pankod/refine-simple-rest";
+// highlight-start
+import routerProvider, { RefineRoutes, NavigateToResource, NavigateAndKeepCurrent } from "@pankod/refine-react-router-v6";
+// highlight-end
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { PostList, PostCreate } from "pages/posts";
+import { CategoryList, CategoryShow } from "pages/categories";
+
+import { Layout } from "components/Layout";
+import { ErrorComponent } from "components/Error";
+
+import { AuthPage } from "pages/auth";
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider}
+                // highlight-next-line
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                    },
+                    {
+                        name: "categories",
+                        list: CategoryList,
+                        show: CategoryShow,
+                    }
+                ]}
+            >
+                <RefineRoutes>
+                    {(routes) => (
+                        <Authenticated
+                            fallback={(
+                                <Routes>
+                                    <Route path="/login" element={<AuthPage type="login" />} />
+                                    <Route path="*" element={<NavigateAndKeepCurrent to="/login" />} />
+                                </Routes>
+                            )}
+                        >
+                            <Layout>
+                                <Routes>
+                                    <Route index element={<NavigateToResource resource="posts" />} />
+                                    {/* highlight-next-line */}
+                                    {routes}
+                                    <Route path="*" element={<ErrorComponent />} />
+                                </Routes>
+                            </Layout>
+                        </Authenticated>
+                    )}
+                </RefineRoutes>
+        </BrowserRouter>
+    )
+}
+
+```
+
+### How to handle optional authentication, redirects and layouts with authentication?
+
+In the below example, you'll find different cases for route definitions, we've used `Authenticated` component to handle authentication and redirects. You can always choose to use a different approach, **refine** will allow you to handle the routes however you like.
+
+For optional authentication, in our `authProvider` implementation's `check` method, we can pass `authentication: false` and `redirectTo: undefined` to indicate that the current user is not authenticated but we don't want to redirect them to the login page. This is useful, when some pages in our app are public and don't require authentication and some pages are private and require authentication.
+
+```tsx title=authProvider.ts
+import { AuthBindings } from "@pankod/refine-core";
+
+export const authProvider: AuthBindings = {
+    check: async () => {
+        const isAuthenticated = await yourMethodToCheckIfUserIsAuthenticated();
+
+        return {
+            // highlight-next-line
+            authentication: isAuthenticated,
+            // notice that we omit the `redirectTo` property
+        }
+    },
+    // ...
+};
+```
+
+In our `App.tsx`, while defining the routes, we'll leverage the `Outlet` component from `react-router-dom` and `Authenticated` component from `@pankod/refine-core`.
+
+```tsx title=App.tsx
+import { Refine, Authenticated } from "@pankod/refine-core";
+import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider, { NavigateToResource, NavigateAndKeepCurrent } from "@pankod/refine-react-router-v6";
+
+// highlight-next-line
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import { PostList, PostCreate } from "pages/posts";
+import { LandingPage } from "pages/landing";
+
+import { Layout } from "components/Layout";
+import { ErrorComponent } from "components/Error";
+
+import { AuthPage } from "pages/auth";
+
+export const App = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                    },
+                ]}
+            >
+                <Routes>
+                    {/* In this `Route`, we'll define our public route. */}
+                    {/* Both authenticated and not authenticated users can view this page. */}
+                    <Route
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route index element={<LandingPage />} />
+                    </Route>
+                    {/* In this `Route`, we'll define our authentication routes. */}
+                    {/* These will only be visible to not authenticated users. */}
+                    {/* Authenticated users will be redirected to our `/posts` page. */}
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            path="/login"
+                            element={ <AuthPage type="login" />}
+                        />
+                        <Route
+                            path="/register"
+                            element={<AuthPage type="register" />}
+                        />
+                        <Route
+                            path="/forgot-password"
+                            element={<AuthPage type="forgotPassword" />}
+                        />
+                    </Route>
+                    {/* In this `Route`, we'll render the protected routes.  */}
+                    {/* While the authenticated users will be seeing the content, */}
+                    {/* not authenticated users will be redirected to `/login` path. */}
+                    {/* `NavigateAndKeepCurrent` will pass the current route in the query parameters, */}
+                    {/* Providing us the opportunity to redirect the user back to the page after a successful login. */}
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<NavigateAndKeepCurrent to="/login" />}
+                            >
+                                <Outlet />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/posts" element={<PostList />} />
+                        <Route path="/posts/create" element={<PostCreate />} />
+                    </Route>
+                    {/* In this `Route`, we'll render the `ErrorComponent`. */}
+                    {/* For authenticated users, we'll wrap it with the `Layout`, */}
+                    {/* So, our users will be able to use the sider component we have in the layout. */}
+                    {/* But for the, not authenticated users, we'll be rendering it without the layout. */}
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    )
+}
+```
 
 [routerprovider]: /api-reference/core/providers/router-provider.md
