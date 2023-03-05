@@ -20,9 +20,9 @@ const MyComponent = () => {
     const Link = useLink();
 
     return (
-        <Button onClick={() => back()}>
-            Go Back
-        </Button>
+        <Link to="/posts">
+            Posts
+        </Link>
     );
 };
 ```
