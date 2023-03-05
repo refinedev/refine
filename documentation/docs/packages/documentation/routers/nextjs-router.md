@@ -9,6 +9,16 @@ title: Next.js
 npm i @pankod/refine-nextjs-router
 ```
 
+:::tip
+
+We recommend using `create refine-app` to initialize your refine projects. It configures the project according to your needs including SSR with Next.js!
+
+```sh
+npm create refine-app@latest -- -o refine-nextjs my-refine-nextjs-app
+```
+
+:::
+
 [Refer to the Router Provider documentation for detailed information. &#8594][routerprovider]
 
 :::note Legacy Router

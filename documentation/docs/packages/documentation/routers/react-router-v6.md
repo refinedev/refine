@@ -9,6 +9,16 @@ title: React Router v6
 npm i @pankod/refine-react-router-v6 react-router-dom
 ```
 
+:::tip
+
+We recommend using `create refine-app` to initialize your refine projects. It gives you a good boilerplate to start with using React Router v6.
+
+```sh
+npm create refine-app@latest -- -o refine-react my-refine-app
+```
+
+:::
+
 [Refer to the Router Provider documentation for detailed information. &#8594][routerprovider]
 
 :::note Legacy Router
