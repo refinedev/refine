@@ -12,7 +12,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px disableScroll
 // visible-block-start
-import { Show, Breadcrumb } from "@pankod/refine-mui";
+import { Show, Breadcrumb } from "@refinedev/mui";
 
 const PostShow: React.FC = () => {
     return (
@@ -79,7 +79,7 @@ render(
 `<Breadcrumb>` component uses the Material UI [Breadcrumb][mui-breadcrumb] component so it can be configured with the `breadcrumbProps` property.
 
 ```tsx
-import { List, Breadcrumb } from "@pankod/refine-mui";
+import { List, Breadcrumb } from "@refinedev/mui";
 
 export const PostList: React.FC = () => {
     return (
@@ -95,7 +95,7 @@ export const PostList: React.FC = () => {
 If your application has a [DashboardPage](/api-reference/core/components/refine-config.md#dashboardpage), the home button is shown to the top of the hierarchy by default. If you don't want to show the home button, you can set `showHome` to `false`.
 
 ```tsx
-import { List, Breadcrumb } from "@pankod/refine-mui";
+import { List, Breadcrumb } from "@refinedev/mui";
 
 export const PostList: React.FC = () => {
     return <List breadcrumb={<Breadcrumb showHome={false} />}>...</List>;
@@ -107,7 +107,7 @@ export const PostList: React.FC = () => {
 If you don't want to show the resource icons on the breadcrumb, you can set `hideIcons` to `true`.
 
 ```tsx
-import { List, Breadcrumb } from "@pankod/refine-mui";
+import { List, Breadcrumb } from "@refinedev/mui";
 
 export const PostList: React.FC = () => {
     return (
@@ -119,7 +119,7 @@ export const PostList: React.FC = () => {
 ## API Reference
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/Breadcrumb"
+<PropsTable module="@refinedev/mui/Breadcrumb"
 breadcrumbProps-type="[BreadcrumbProps](https://mui.com/material-ui/react-breadcrumbs/#main-content)"
 breadcrumbProps-description="Passes properties for [`<Breadcrumb>`](https://mui.com/material-ui/react-breadcrumbs/#api)"
 />

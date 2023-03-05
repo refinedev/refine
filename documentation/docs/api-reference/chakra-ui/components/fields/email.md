@@ -35,14 +35,14 @@ Let's see how we can use `<EmailField>` with the example in the user list.
 
 ```tsx live url=http://localhost:3000/users previewHeight=420px hideCode
 setInitialRoutes(["/users"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
 import {
     List,
     // highlight-next-line
     EmailField,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import {
     TableContainer,
     Table,
@@ -52,7 +52,7 @@ import {
     Tbody,
     Td,
 } from "@chakra-ui/react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const UserList: React.FC = () => {
@@ -170,6 +170,6 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/EmailField" />
+<PropsTable module="@refinedev/chakra-ui/EmailField" />
 
 [Refer to the documentation for the rest of Anchor properties. &#8594](https://chakra-ui.com/docs/components/link/usage)

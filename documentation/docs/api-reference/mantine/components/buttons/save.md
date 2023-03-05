@@ -46,11 +46,11 @@ For example, let's add logic to the `<SaveButton>` component with the `saveButto
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/mantine";
 
 // visible-block-start
-import { Edit, useForm, useSelect } from "@pankod/refine-mantine";
+import { Edit, useForm, useSelect } from "@refinedev/mantine";
 import { Select, TextInput } from "@mantine/core";
 
 const PostEdit: React.FC = () => {
@@ -169,10 +169,10 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { SaveButton } from "@pankod/refine-mantine";
+import { SaveButton } from "@refinedev/mantine";
 
 const MySaveComponent = () => {
     return <SaveButton hideText />;
@@ -203,4 +203,4 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/SaveButton" />
+<PropsTable module="@refinedev/mantine/SaveButton" />

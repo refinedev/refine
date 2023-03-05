@@ -16,7 +16,7 @@ import {
     // highlight-next-line
     useMany,
     HttpError,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 // highlight-start
 interface ICategory {

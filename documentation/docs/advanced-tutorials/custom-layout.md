@@ -17,23 +17,23 @@ Both of these components can accept the listed props for customization. [`<Refin
 ## Usage
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 Let's look at an example of modifying the default layout to have a top menu layout.
 
 ```tsx title="/src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     AntdLayout,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+} from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList } from "pages/posts";
 // highlight-next-line
@@ -86,9 +86,9 @@ Here, we override the [`<Title>`][title] and [`<Layout>`][layout] components. Wh
 So, we just provided a custom [`<Sider>`][sider]. Here's our custom sider that looks horizontal, instead of the default vertical one:
 
 ```tsx title="/src/components/sider/index.tsx"
-import { useTitle, useMenu } from "@pankod/refine-core";
+import { useTitle, useMenu } from "@refinedev/core";
 import { Menu } from "antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@refinedev/react-router-v6";
 
 const { Link } = routerProvider;
 

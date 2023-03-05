@@ -231,7 +231,7 @@ Let's add our supabase url and key to our refine project.
 
 
 ```ts title="src/utility/supabaseClient.ts"
-import { createClient } from "@pankod/refine-supabase";
+import { createClient } from "@refinedev/supabase";
 
 const SUPABASE_URL = "YOUR_SUPABASE_URL";
 const SUPABASE_KEY = "YOUR_SUPABASE_API_KEY";
@@ -249,7 +249,7 @@ Our purpose here is to log in if there is a registered user in the supabase. If 
 
 ```tsx title="src/pages/login/index.tsx"
 import React from "react";
-import { useLogin, useNavigation } from "@pankod/refine-core";
+import { useLogin, useNavigation } from "@refinedev/core";
 
 import {
     Row,
@@ -260,7 +260,7 @@ import {
     Form,
     Input,
     Button,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import "./styles.css";
 
@@ -392,7 +392,7 @@ export const Login: React.FC = () => {
 
 ```tsx title="src/pages/signup.tsx"
 import React from "react";
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 import {
     Row,
     Col,
@@ -402,7 +402,7 @@ import {
     Form,
     Input,
     Button,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import "./styles.css";
 import { supabaseClient } from "utility";
 
@@ -539,18 +539,18 @@ export const Signup: React.FC = () => {
 ```
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import { dataProvider } from "@pankod/refine-supabase";
+} from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
@@ -600,18 +600,18 @@ We can now create supabase users and log in from our refine interface.
 **Adding resources according to the table name we created in Supabase**
 
 ```tsx
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import { dataProvider } from "@pankod/refine-supabase";
+} from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
@@ -672,7 +672,7 @@ import {
     IResourceComponentsProps,
     HttpError,
     CrudFilters,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     useTable,
@@ -688,7 +688,7 @@ import {
     Row,
     Col,
     Card,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import {
     ILabel,
@@ -940,7 +940,7 @@ import {
     DatePicker,
     Icons,
     Button,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
 
@@ -1079,7 +1079,7 @@ Now how do we create task? Let's examine how we can edit them and see their deta
 ## Create Task
 
 ```tsx title="src/pages/task/create.tsx"
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
     useForm,
@@ -1089,7 +1089,7 @@ import {
     Select,
     useSelect,
     DatePicker,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
 
@@ -1170,7 +1170,7 @@ export const TaskCreate: React.FC<IResourceComponentsProps> = () => {
 ## Edit Task
 
 ```tsx title="src/pages/task/edit.tsx"
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
     useForm,
@@ -1179,7 +1179,7 @@ import {
     Select,
     Edit,
     useSelect,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
 
@@ -1245,8 +1245,8 @@ export const EditTask: React.FC<IResourceComponentsProps> = () => {
 ## Show Task
 
 ```tsx title="src/pages/task/show"
-import { useShow, useOne } from "@pankod/refine-core";
-import { Show, Typography, Tag, DateField } from "@pankod/refine-antd";
+import { useShow, useOne } from "@refinedev/core";
+import { Show, Typography, Tag, DateField } from "@refinedev/antd";
 import { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
 
 const { Title, Text } = Typography;
@@ -1367,8 +1367,8 @@ export const TaskChart: React.FC<ChartProps> = ({ data }) => {
 
 ```tsx title="src/pages/dashboard/index.tsx"
 import React from "react";
-import { useList, useMany } from "@pankod/refine-core";
-import { Row, Col, Card } from "@pankod/refine-antd";
+import { useList, useMany } from "@refinedev/core";
+import { Row, Col, Card } from "@refinedev/antd";
 import { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
 import { TaskChart } from "components/task/pie";
 import { groupBy } from "helper";
@@ -1482,18 +1482,18 @@ export const Dashboard = () => {
 Final version of our `<App.tsx/>`.
 
 ```tsx
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import { dataProvider } from "@pankod/refine-supabase";
+} from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { UserList } from "./pages/user";
 import { TaskList, TaskShow, TaskCreate, EditTask } from "./pages/task";

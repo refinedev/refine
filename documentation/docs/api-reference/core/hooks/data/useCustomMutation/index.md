@@ -23,7 +23,7 @@ If you need to custom query request, use the [useCustom](/docs/api-reference/cor
 The `useCustomMutation` hook returns many useful properties and methods. One of them is the `mutate` method which expects `values`, `method`, and `url` as parameters. These parameters will be passed to the `custom` method from the `dataProvider` as parameters.
 
 ```tsx
-import { useCustomMutation, useApiUrl } from "@pankod/refine-core";
+import { useCustomMutation, useApiUrl } from "@refinedev/core";
 
 interface ICategory {
     id: number;

@@ -65,21 +65,21 @@ However, we can use [normalizeData](https://github.com/refinedev/refine/blob/27a
 ## Setup
 
 ```bash
-npm i @pankod/refine-strapi-v4
+npm i @refinedev/strapi-v4
 ```
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 ## Usage
 
 ```tsx title="App.tsx"
-import { Refine, AuthProvider } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, AuthProvider } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 //highlight-next-line
-import { DataProvider } from "@pankod/refine-strapi-v4";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { DataProvider } from "@refinedev/strapi-v4";
+import routerProvider from "@refinedev/react-router-v6";
 
 const App: React.FC = () => {
     return (
@@ -168,7 +168,7 @@ import {
     useSelect,
     EditButton,
     DeleteButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table, Select, Space } from "antd";
 
 import { IPost } from "interfaces";
@@ -283,7 +283,7 @@ const { tableProps } = useTable<IPost>({
 In order to pull the `categories` related to the posts, we can now show the categories in our list by defining the `meta` `populate` parameter.
 
 ```tsx title="PostList.tsx"
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 import {
     List,
     useTable,
@@ -292,7 +292,7 @@ import {
     useSelect,
     EditButton,
     DeleteButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table, Select, Space } from "antd";
 
 import { IPost } from "interfaces";
@@ -427,7 +427,7 @@ We can list the posts separately according to the `published` or `draft` informa
 // highlight-next-line
 import { useState } from "react";
 
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 import {
     List,
     useTable,
@@ -437,7 +437,7 @@ import {
     DateField,
     EditButton,
     DeleteButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import {
     Table,
     Select,
@@ -598,7 +598,7 @@ With the local parameter feature, we can fetch posts and categories created acco
 ```tsx
 import { useState } from "react";
 
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 import {
     List,
     useTable,
@@ -607,7 +607,7 @@ import {
     useSelect,
     EditButton,
     DeleteButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table, Select, Space, Form, Radio, Tag } from "antd";
 
 import { IPost } from "interfaces";

@@ -293,7 +293,7 @@ npm create refine-app@latest demo-refine-project -- -b v3
 #### SSR-Next.js Setup
 
 ```bash
-npm i @pankod/refine @pankod/refine-nextjs-router
+npm i @pankod/refine @refinedev/nextjs-router
 ```
 
 #### SSR-Next.js Basic Usage
@@ -304,8 +304,8 @@ npm i @pankod/refine @pankod/refine-nextjs-router
 import { AppProps } from "next/app";
 
 import { Refine } from "@pankod/refine";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-nextjs-router";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/nextjs-router";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -372,7 +372,7 @@ values={[
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@refinedev/react-router-v6";
 
 const App: React.FC = () => {
     return <Refine routerProvider={routerProvider} />;
@@ -384,7 +384,7 @@ const App: React.FC = () => {
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
-import routerProvider from "@pankod/refine-react-location";
+import routerProvider from "@refinedev/react-location";
 
 const App: React.FC = () => {
     return <Refine routerProvider={routerProvider} />;
@@ -396,7 +396,7 @@ const App: React.FC = () => {
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
-import routerProvider from "@pankod/refine-nextjs-router";
+import routerProvider from "@refinedev/nextjs-router";
 
 const App: React.FC = () => {
     return <Refine routerProvider={routerProvider} />;
@@ -459,8 +459,8 @@ In order to create a query, we need to specify the fields that we will use from 
 
 ```tsx src/App.tsx
 import { Refine } from "@pankod/refine";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider, { GraphQLClient } from "@pankod/refine-strapi-graphql";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider, { GraphQLClient } from "@refinedev/strapi-graphql";
 
 const client = new GraphQLClient("API_URL");
 

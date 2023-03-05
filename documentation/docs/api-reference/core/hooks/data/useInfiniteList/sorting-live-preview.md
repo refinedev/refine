@@ -10,7 +10,7 @@ setInitialRoutes(["/products"]);
 
 // visible-block-start
 import { useState } from "react";
-import { useInfiniteList, HttpError } from "@pankod/refine-core";
+import { useInfiniteList, HttpError } from "@refinedev/core";
 
 interface IProduct {
     id: number;

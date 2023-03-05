@@ -13,7 +13,7 @@ source: packages/core/src/hooks/live/usePublish/index.ts
 ## Usage
 
 ```tsx
-import { usePublish } from "@pankod/refine-core";
+import { usePublish } from "@refinedev/core";
 
 const publish = usePublish();
 

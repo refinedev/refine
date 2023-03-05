@@ -64,8 +64,8 @@ values={[
 <TabItem value="react-router-v6">
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 const App: React.FC = () => {
     return <Refine routerProvider={routerProvider} />;
@@ -76,8 +76,8 @@ const App: React.FC = () => {
 <TabItem value="react-router">
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v5";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v5";
 
 const App: React.FC = () => {
     return <Refine routerProvider={routerProvider} />;
@@ -88,8 +88,8 @@ const App: React.FC = () => {
 <TabItem value="react-location">
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-location";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-location";
 
 const App: React.FC = () => {
     return <Refine routerProvider={routerProvider} />;
@@ -100,8 +100,8 @@ const App: React.FC = () => {
 <TabItem value="nextjs">
 
 ```tsx title="pages/_app.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-nextjs-router";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/nextjs-router";
 import { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
@@ -126,8 +126,8 @@ import {
     Scripts,
     ScrollRestoration,
 } from "@remix-run/react";
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-remix-router";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/remix-router";
 
 export const meta: MetaFunction = () => ({
     charset: "utf-8",
@@ -180,7 +180,7 @@ values={[
 <TabItem value="react-useHistory-v6">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 
 const routerProvider: IRouterProvider = {
     ...
@@ -208,7 +208,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="react-useHistory">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 // highlight-next-line
 import { useHistory } from "react-router-dom";
 
@@ -224,7 +224,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="react-location-useHistory">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 // highlight-next-line
 import { useHistory, useLocation } from "react-location";
 
@@ -261,7 +261,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="nextjs-useHistory">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 // highlight-next-line
 import { useRouter } from "next/router";
 
@@ -286,7 +286,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="remix-useHistory">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 // highlight-next-line
 import { useNavigate } from "@remix-run/react";
 
@@ -330,7 +330,7 @@ values={[
 <TabItem value="react-useLocation-v6">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 // highlight-next-line
 import { useLocation } from "react-router-dom";
 
@@ -346,7 +346,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="react-useLocation">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 // highlight-next-line
 import { useLocation } from "react-router-dom";
 
@@ -362,7 +362,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="react-location-useLocation">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 // highlight-next-line
 import { useLocation } from "react-location";
 
@@ -385,7 +385,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="nextjs-useLocation">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 // highlight-start
 import { useRouter } from "next/router";
 import qs from "qs";
@@ -414,7 +414,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="remix-useLocation">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 // highlight-start
 import { useLocation } from "@remix-run/react";
 // highlight-end
@@ -451,7 +451,7 @@ values={[
 <TabItem value="react-router-v6-useParams">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 // highlight-next-line
 import { useParams } from "react-router-dom";
 
@@ -467,7 +467,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="react-router-v5-useParams">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 // highlight-next-line
 import { useParams } from "react-router-dom";
 
@@ -484,7 +484,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="react-location-useParams">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 // highlight-next-line
 import { useMatch } from "react-location";
 
@@ -506,7 +506,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="nextjs-useParams">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 // highlight-next-line
 import { useRouter } from "next/router";
 
@@ -528,7 +528,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="remix-useParams">
 
 ```ts title="routerProvider.ts"
-import { handleUseParams, IRouterProvider } from "@pankod/refine-core";
+import { handleUseParams, IRouterProvider } from "@refinedev/core";
 // highlight-next-line
 import { useParams } from "@remix-run/react";
 
@@ -569,7 +569,7 @@ import { UNSAFE_NavigationContext as NavigationContext } from "react-router-dom"
 import type { History } from "history";
 // highlight-end
 
-import type { PromptProps } from "@pankod/refine-core";
+import type { PromptProps } from "@refinedev/core";
 
 export const Prompt: React.FC<PromptProps> = ({
     message,
@@ -598,7 +598,7 @@ export const Prompt: React.FC<PromptProps> = ({
 ```
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 
 // highlight-next-line
 import { Prompt } from "./prompt";
@@ -615,7 +615,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="react--router-v5-prompt">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 // highlight-next-line
 import { Prompt } from "react-router-dom";
 
@@ -635,7 +635,7 @@ import { useEffect } from "react";
 // highlight-next-line
 import { useLocation } from "react-location";
 
-import type { PromptProps } from "@pankod/refine-core";
+import type { PromptProps } from "@refinedev/core";
 
 export const Prompt: React.FC<PromptProps> = ({
     message,
@@ -664,7 +664,7 @@ export const Prompt: React.FC<PromptProps> = ({
 ```
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 
 // highlight-next-line
 import { Prompt } from "./prompt";
@@ -684,7 +684,7 @@ const routerProvider: IRouterProvider = {
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-import type { PromptProps } from "@pankod/refine-core";
+import type { PromptProps } from "@refinedev/core";
 
 export const Prompt: React.FC<PromptProps> = ({
     message,
@@ -714,7 +714,7 @@ export const Prompt: React.FC<PromptProps> = ({
 ```
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 
 // highlight-next-line
 import { Prompt } from "./prompt";
@@ -735,7 +735,7 @@ import { useEffect, useContext } from "react";
 import { UNSAFE_NavigationContext as NavigationContext } from "react-router-dom";
 import type { History } from "history";
 
-import type { PromptProps } from "@pankod/refine-core";
+import type { PromptProps } from "@refinedev/core";
 
 export const Prompt: React.FC<PromptProps> = ({
     message,
@@ -764,7 +764,7 @@ export const Prompt: React.FC<PromptProps> = ({
 ```
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 
 // highlight-next-line
 import { Prompt } from "./prompt";
@@ -796,7 +796,7 @@ values={[
 <TabItem value="react-router-v6-link">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 // highlight-next-line
 import { Link } from "react-router-dom";
 
@@ -812,7 +812,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="react-router-v5-link">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 // highlight-next-line
 import { Link } from "react-router-dom";
 
@@ -828,7 +828,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="react-location-link">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 // highlight-next-line
 import { Link } from "react-location";
 
@@ -871,7 +871,7 @@ export const RefineLink: React.FC<RefineLinkProps> = ({
 ```
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 
 // highlight-start
 import { RefineLink } from "./refineLink";
@@ -888,7 +888,7 @@ const routerProvider: IRouterProvider = {
 
 We use `<WrapperLink>` instead of using `<Link>` directly because **refine** uses `<Link>` component with `to` prop in its packages. So `<WrapperLink>` maps `to` to `href` prop.
 
-`@pankod/refine-nextjs-router` uses `<Link/>` component with `legacyBehavior` prop set to `false` by default to comply with the new `<Link/>` behavior of Next.js which is currently under `experimental` flag but soon to be the default behavior with Next.js 13.
+`@refinedev/nextjs-router` uses `<Link/>` component with `legacyBehavior` prop set to `false` by default to comply with the new `<Link/>` behavior of Next.js which is currently under `experimental` flag but soon to be the default behavior with Next.js 13.
 
 [To learn more about the changing behavior of `<Link/>` check out this PR](https://github.com/vercel/next.js/pull/36436)
 
@@ -899,7 +899,7 @@ We use `<WrapperLink>` instead of using `<Link>` directly because **refine** use
 <TabItem value="remix-link">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 // highlight-next-line
 import { Link } from "@remix-run/react";
 
@@ -969,10 +969,10 @@ The [`<RouterComponent>`][routercomponent] in the [react-router-v6][react-router
 In the example below you can see how to serve the application in a subdirectory.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 // highlight-next-line
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -1022,10 +1022,10 @@ The [`<RouterComponent>`][routercomponent] in the [react-router-v5][react-router
 In the example below you can see how to serve the application in a subdirectory.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 // highlight-next-line
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -1079,10 +1079,10 @@ Using `basepath` in `react-location` causes some problems and as the development
 In the example below you can see how to serve the application in a subdirectory.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 // highlight-next-line
-import routerProvider from "@pankod/refine-react-location";
-import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@refinedev/react-location";
+import dataProvider from "@refinedev/simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -1157,18 +1157,18 @@ values={[
 ]}>
 <TabItem value="react-router-v6-initial-route">
 
-`RouterComponent` property in the `routerProvider` from `@pankod/refine-react-router-v6` checks for the `initialRoute` property in its context. If it is present, it will redirect to the given route. By default `routerProvider` is using `BrowserRouterComponent` but both `HashRouterComponent` and `MemoryRouterComponent` also supports `initialRoute` property.
+`RouterComponent` property in the `routerProvider` from `@refinedev/react-router-v6` checks for the `initialRoute` property in its context. If it is present, it will redirect to the given route. By default `routerProvider` is using `BrowserRouterComponent` but both `HashRouterComponent` and `MemoryRouterComponent` also supports `initialRoute` property.
 
 In the example below, `BrowserRouterComponent` is used and the initial route is set to `/users`.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 // highlight-start
 import routerProvider, {
     BrowserRouterComponent,
-} from "@pankod/refine-react-router-v6";
+} from "@refinedev/react-router-v6";
 // highlight-end
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -1212,15 +1212,15 @@ export default App;
 </TabItem>
 <TabItem value="react-location-initial-route">
 
-`RouterComponent` property in the `routerProvider` from `@pankod/refine-location` checks for the `initialRoute` property in its context. If it is present, it will redirect to the given route.
+`RouterComponent` property in the `routerProvider` from `@refinedev/location` checks for the `initialRoute` property in its context. If it is present, it will redirect to the given route.
 
 In the example below, you can see how the initial route is set to `/users`.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 // highlight-next-line
-import routerProvider from "@pankod/refine-react-location";
-import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@refinedev/react-location";
+import dataProvider from "@refinedev/simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -1264,12 +1264,12 @@ export default App;
 </TabItem>
 <TabItem value="nextjs-initial-route">
 
-Since Next.js uses file system based routing, instead of the `routerProvider` prop of `<Refine/>`, you should pass the `initialRoute` property to the context of the `NextRouteComponent` from `@pankod/refine-nextjs-router`.
+Since Next.js uses file system based routing, instead of the `routerProvider` prop of `<Refine/>`, you should pass the `initialRoute` property to the context of the `NextRouteComponent` from `@refinedev/nextjs-router`.
 
 In the example below, the initial route is set to `/users`.
 
 ```tsx title="pages/[[...refine]].tsx"
-import { NextRouteComponent } from "@pankod/refine-nextjs-router";
+import { NextRouteComponent } from "@refinedev/nextjs-router";
 
 export default NextRouteComponent.bind({ initialRoute: "/users" });
 ```
@@ -1281,12 +1281,12 @@ There is also a way to redirect to a custom page by using file system based rout
 </TabItem>
 <TabItem value="remix-initial-route">
 
-Since Remix uses file system based routing, instead of the `routerProvider` prop of `<Refine/>`, you should pass the `initialRoute` property to the context of the `RemixRouteComponent` from `@pankod/refine-remix-router`.
+Since Remix uses file system based routing, instead of the `routerProvider` prop of `<Refine/>`, you should pass the `initialRoute` property to the context of the `RemixRouteComponent` from `@refinedev/remix-router`.
 
 In the example below, the initial route is set to `/users`.
 
 ```tsx title="app/routes/index.tsx"
-import { RemixRouteComponent } from "@pankod/refine-remix-router";
+import { RemixRouteComponent } from "@refinedev/remix-router";
 
 export default RemixRouteComponent.bind({ initialRoute: "/users" });
 ```

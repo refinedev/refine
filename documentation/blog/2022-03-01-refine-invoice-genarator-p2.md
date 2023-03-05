@@ -99,7 +99,7 @@ import {
     TagField,
     useModalForm,
     EditButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { IMission } from "interfaces";
 
@@ -186,7 +186,7 @@ import {
     ModalProps,
     FormProps,
     InputNumber,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 type CreateMissionProps = {
     modalProps: ModalProps;
@@ -240,7 +240,7 @@ import {
     useTable,
     TagField,
     useModalForm,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { IMission } from "interfaces";
 import { CreateMission, EditMission } from "components/mission";
@@ -347,7 +347,7 @@ import {
     Icons,
     Button,
     Modal,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { IInvoice } from "interfaces";
 import { PdfLayout } from "components/pdf";
@@ -486,7 +486,7 @@ Then, we fill our refine [Create](https://refine.dev/docs/ui-frameworks/antd/com
 <p>
 
 ```tsx title="src/pages/invoice/CreateInvoice"
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
     Create,
@@ -496,7 +496,7 @@ import {
     useForm,
     useSelect,
     DatePicker,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { ICompany, IContact, IMission, IInvoice } from "interfaces";
 
@@ -629,7 +629,7 @@ Let's create a button to display our PDF arrangement in the Invoice List, as wel
 ```tsx title="src/pages/invoice/InvoiceList.tsx"
 import { useState } from "react";
 //highlight-next-line
-import { useModal } from "@pankod/refine-core";
+import { useModal } from "@refinedev/core";
 import {
     List,
     Table,
@@ -643,7 +643,7 @@ import {
     Icons,
     Button,
     Modal,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { IInvoice } from "interfaces";
 import { PdfLayout } from "components/pdf";

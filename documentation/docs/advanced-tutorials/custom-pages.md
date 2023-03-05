@@ -49,8 +49,8 @@ values={[
 <TabItem value="react-router-v6">
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 // highlight-next-line
 import { CustomPage } from "pages/custom-page";
@@ -81,8 +81,8 @@ export default App;
 <TabItem value="react-location">
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-location";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-location";
 
 // highlight-next-line
 import { CustomPage } from "pages/custom-page";
@@ -113,8 +113,8 @@ export default App;
 <TabItem value="react-router">
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 // highlight-next-line
 import { CustomPage } from "pages/custom-page";
@@ -161,8 +161,8 @@ values={[
 <TabItem value="react-router-v6">
 
 ```tsx title="src/App.tsx"
-import { Refine, Authenticated, AuthBindings } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, Authenticated, AuthBindings } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { CustomPage } from "pages/custom-page";
 
@@ -236,8 +236,8 @@ export default App;
 
 ```tsx title="src/App.tsx"
 // highlight-start
-import { Refine, Authenticated, AuthBindings } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-location";
+import { Refine, Authenticated, AuthBindings } from "@refinedev/core";
+import routerProvider from "@refinedev/react-location";
 // highlight-end
 
 // highlight-next-line
@@ -315,8 +315,8 @@ export default App;
 
 ```tsx title="src/App.tsx"
 // highlight-start
-import { Refine, Authenticated, AuthBindings } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, Authenticated, AuthBindings } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 // highlight-end
 
 // highlight-next-line
@@ -412,8 +412,8 @@ values={[
 <TabItem value="react-router-v6">
 
 ```tsx
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 // highlight-next-line
 import { CustomPage } from "pages/custom-page";
@@ -445,8 +445,8 @@ export default App;
 <TabItem value="react-location">
 
 ```tsx
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-location";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-location";
 
 // highlight-next-line
 import { CustomPage } from "pages/custom-page";
@@ -520,11 +520,11 @@ Before starting the example, let's assume that our [`dataProvider`](/api-referen
 First, we will create the post's CRUD pages and bootstrap the app.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -554,7 +554,7 @@ Now, let's create the custom page with the name `<PostReview>`. We will use the 
 [Refer to the `useList` documentation for detailed usage. &#8594](/docs/api-reference/core/hooks/data/useList/)
 
 ```tsx title="src/pages/post-review.tsx"
-import { useList } from "@pankod/refine-core";
+import { useList } from "@refinedev/core";
 
 const PostReview = () => {
     const { data, isLoading } = useList<IPost>({
@@ -592,7 +592,7 @@ Post's category is relational. So we will use the post's category "id" to get th
 
 ```tsx title="src/pages/post-review.tsx"
 // highlight-next-line
-import { useList, useOne } from "@pankod/refine-core";
+import { useList, useOne } from "@refinedev/core";
 
 export const PostReview = () => {
     const { data, isLoading } = useList<IPost>({
@@ -629,7 +629,7 @@ Now we have the data to display the post as we want. Let's use the `<Show>` comp
 :::
 
 ```tsx title="src/pages/post-review.tsx"
-import { useOne, useList } from "@pankod/refine-core";
+import { useOne, useList } from "@refinedev/core";
 import {
     // highlight-start
     Typography,
@@ -692,11 +692,11 @@ export const PostReview = () => {
 Then, pass this `<PostReview>` as the routes property in the `<Refine>` component:
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -757,8 +757,8 @@ import {
     useOne,
     //highlight-next-line
     useUpdate,
-} from "@pankod/refine-core";
-import { Show } from "@pankod/refine-antd";
+} from "@refinedev/core";
+import { Show } from "@refinedev/antd";
 import {
     Typography,
     Show,

@@ -151,7 +151,7 @@ Then, create a `Layout.tsx` file in the `components` folder and add the followin
 
 ```tsx title="src/components/Layout.tsx"
 import React from 'react';
-import { LayoutProps } from "@pankod/refine-core";
+import { LayoutProps } from "@refinedev/core";
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -183,7 +183,7 @@ For instance, if you have a page component where you want to render tabular data
 
 ```tsx title="src/pages/example.tsx"
 import React from'react'
-import { useDataGrid, DataGrid, GridColumns } from "@pankod/refine-mui"
+import { useDataGrid, DataGrid, GridColumns } from "@refinedev/mui"
 
 const Table: React.FC = () => {
     const { dataGridProps } = useDataGrid();
@@ -232,7 +232,7 @@ Add the following code to the `employees.tsx` file:
 
 ```tsx title="src/pages/employees.tsx"
 import React from 'react';
-import { useDataGrid, DataGrid, GridColumns, List } from '@pankod/refine-mui';
+import { useDataGrid, DataGrid, GridColumns, List } from '@refinedev/mui';
 
 const EmployeeList: React.FC = () => {
     const { dataGridProps } = useDataGrid();
@@ -297,15 +297,15 @@ The `columns` variable defines the column fields for our data. We also wrapped t
 Next, edit `App.tsx` in the `src` folder to the following:
 
 ```tsx title="src/App.tsx" 
-import { Refine } from '@pankod/refine-core';
+import { Refine } from '@refinedev/core';
 import {
     CssBaseline,
     GlobalStyles,
     ThemeProvider,
     LightTheme,
-} from '@pankod/refine-mui';
-import routerProvider from '@pankod/refine-react-router-v6';
-import dataProvider from '@pankod/refine-simple-rest';
+} from '@refinedev/mui';
+import routerProvider from '@refinedev/react-router-v6';
+import dataProvider from '@refinedev/simple-rest';
 import Layout from './components/Layout';
 import EmployeeList from './pages/employees';
 
@@ -383,7 +383,7 @@ This is similar to using the `initialState` prop on the DataGrid component. We c
 
 ```tsx title="src/pages/employees.tsx"
 import React from 'react';
-import { useDataGrid, DataGrid, GridColumns, List } from '@pankod/refine-mui';
+import { useDataGrid, DataGrid, GridColumns, List } from '@refinedev/mui';
 
    ...
 
@@ -495,7 +495,7 @@ import {
     Button,
     ButtonGroup,
      //highlight-end
-} from '@pankod/refine-mui';
+} from '@refinedev/mui';
 
  //highlight-start
 const ButtonsWrapper = styled.div`
@@ -629,7 +629,7 @@ or by using the filter button in the grid toolbar:
 You can import the GridToolbar component and use it like so:
 
 ```tsx title="src/pages/employees.tsx"
-import { GridToolbar } from "@pankod/refine-mui"
+import { GridToolbar } from "@refinedev/mui"
 
 <DataGrid
   {...dataGridProps} 
@@ -666,7 +666,7 @@ import {
     List,
     //highlight-next-line
     GridToolbar,
-} from '@pankod/refine-mui';
+} from '@refinedev/mui';
 
 //highlight-next-line
 const { dataGridProps} = useDataGrid();
@@ -727,7 +727,7 @@ import {
     FormControlLabel,
     Checkbox,
     //highlight-end
-} from '@pankod/refine-mui';
+} from '@refinedev/mui';
 
 const EmployeeList: React.FC = () => {
     const { dataGridProps, setFilters } = useDataGrid();

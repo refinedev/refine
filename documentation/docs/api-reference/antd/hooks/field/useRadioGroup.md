@@ -29,7 +29,7 @@ We will demonstrate how to get data at `/languages` endpoint from the `https://a
 ```
 
 ```tsx title="pages/posts/create.tsx"
-import { useRadioGroup } from "@pankod/refine-antd";
+import { useRadioGroup } from "@refinedev/antd";
 import { Form, Radio } from "antd";
 
 export const PostCreate = () => {
@@ -217,7 +217,7 @@ Use `sorters` instead.
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/useRadioGroup"/>
+<PropsTable module="@refinedev/antd/useRadioGroup"/>
 
 ### Return values
 

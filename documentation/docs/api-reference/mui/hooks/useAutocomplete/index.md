@@ -397,7 +397,7 @@ By default, refine does the search using the [`useList`](/docs/api-reference/cor
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/useAutocomplete"/>
+<PropsTable module="@refinedev/mui/useAutocomplete"/>
 
 ### Return values
 

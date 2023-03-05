@@ -45,12 +45,12 @@ Let's see how we can use `<EmailField>` with the example in the user list.
 
 ```tsx live url=http://localhost:3000/users previewHeight=420px hideCode
 setInitialRoutes(["/users"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { List, EmailField } from "@pankod/refine-mantine";
+import { List, EmailField } from "@refinedev/mantine";
 import { Table, Pagination } from "@mantine/core";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const UserList: React.FC = () => {
@@ -166,6 +166,6 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/EmailField" />
+<PropsTable module="@refinedev/mantine/EmailField" />
 
 [Refer to the documentation for the rest of Anchor properties. &#8594](https://mantine.dev/core/anchor/?t=props)

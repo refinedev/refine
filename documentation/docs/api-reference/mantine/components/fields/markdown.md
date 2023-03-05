@@ -45,12 +45,12 @@ Let's see how we can use `<MarkdownField>` in a show page.
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/mantine";
 
 // visible-block-start
-import { useShow } from "@pankod/refine-core";
-import { Show, MarkdownField } from "@pankod/refine-mantine";
+import { useShow } from "@refinedev/core";
+import { Show, MarkdownField } from "@refinedev/mantine";
 import { Title, Text } from "@mantine/core";
 
 const PostShow: React.FC<IResourceComponentsProps> = () => {
@@ -107,4 +107,4 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/MarkdownField" value-description="Markdown data to render"/>
+<PropsTable module="@refinedev/mantine/MarkdownField" value-description="Markdown data to render"/>

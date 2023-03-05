@@ -29,7 +29,7 @@ type OnErrorResponse = {
 Imagine that we make a payment request which is declined by the API. If the error status code is `418`, the user will be logged out for security reasons.
 
 ```tsx
-import { useOnError } from "@pankod/refine-core";
+import { useOnError } from "@refinedev/core";
 
 // highlight-next-line
 const { mutate: onError } = useOnError();
@@ -47,7 +47,7 @@ fetch("http://example.com/payment")
 We have a logic in [`authProvider`](/api-reference/core/providers/auth-provider.md)'s `onError` method like below.
 
 ```tsx
-import type { AuthBindings } from "@pankod/refine-core";
+import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // ---

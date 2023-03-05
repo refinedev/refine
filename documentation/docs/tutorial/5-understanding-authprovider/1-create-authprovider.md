@@ -13,7 +13,7 @@ This section will show you how to create an auth provider from scratch. We'll us
 1. Create a new file named `authProvider.ts` in `src` folder and add the following code:
 
     ```tsx title="src/authProvider.ts"
-    import type { AuthBindings } from "@pankod/refine-core";
+    import type { AuthBindings } from "@refinedev/core";
 
     const authProvider: AuthBindings = {
         login: async (params: any) => ({}),
@@ -68,7 +68,7 @@ type AuthActionResponse = {
 We'll use mock data to authenticate users. So, we'll create a mock user list and check if the user exists in the list. If the user exists, we'll save the user data to the local storage and resolve the Promise with `success: true`. Otherwise, we'll resolve the Promise with `success: false`.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const mockUsers = [{ email: "john@mail.com" }, { email: "jane@mail.com" }];
 
@@ -103,7 +103,7 @@ Invoking the `useLogin` hook's mutation will call the `login` method, passing in
 For example, if we call the `useLogin` hook's mutation like this:
 
 ```tsx
-import { useLogin } from "@pankod/refine-core";
+import { useLogin } from "@refinedev/core";
 
 const { mutate } = useLogin();
 
@@ -204,7 +204,7 @@ const authProvider: AuthBindings = {
 **refine** automatically displays an error notification when the `login` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an `error` object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
@@ -247,7 +247,7 @@ type CheckResponse = {
 In the `login` method, we've saved the user data to the local storage when the user logs in. So, we'll check if the user data exists in the local storage to determine if the user is authenticated.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // ---
@@ -278,7 +278,7 @@ Invoking the `useIsAuthenticated` hook will call the `check` method. If `check` 
 [Refer to the `useIsAuthenticated` documentation for more information &#8594](/docs/api-reference/core/hooks/auth/useIsAuthenticated/)
 
 ```tsx
-import { useIsAuthenticated } from "@pankod/refine-core";
+import { useIsAuthenticated } from "@refinedev/core";
 
 const { data, isSuccess, isLoading, isError, refetch } = useIsAuthenticated();
 ```
@@ -334,7 +334,7 @@ type AuthActionResponse = {
 In the `login` method, we've saved the user data to the local storage when the user logs in. So, we'll remove the user data from the local storage when the user logs out.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // ---
@@ -358,7 +358,7 @@ Invoking the `useLogout` hook's mutation will call the `logout` method. If you n
 For example, if we call the `useLogout` hook's mutation like this:
 
 ```tsx
-import { useLogout } from "@pankod/refine-core";
+import { useLogout } from "@refinedev/core";
 
 const { mutate } = useLogout();
 
@@ -447,7 +447,7 @@ const authProvider: AuthBindings = {
 **refine** automatically displays an error notification when the `logout` method resolves the Promise with `success: false`. If you want to customize the error message, you can resolve the Promise with an `error` object that has `name` and `message` properties.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     logout: async () => {
@@ -487,7 +487,7 @@ type OnErrorResponse = {
 We'll use the `onError` method to log out the user if the API returns a `401` or `403` error. If `redirectTo` is set, `logout` method will be called with the `redirectTo` value.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // ---
@@ -515,7 +515,7 @@ Invoking the `useOnError` hook's mutation will call the `onError` method, passin
 For example, if you want to check the error of a fetch request, you can use the `useOnError` hook's mutation like this:
 
 ```tsx
-import { useOnError } from "@pankod/refine-core";
+import { useOnError } from "@refinedev/core";
 
 const { mutate } = useOnError();
 
@@ -560,7 +560,7 @@ const authProvider: AuthBindings = {
 We'll use the `getPermissions` method to get the user's permissions from the `localStorage`.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const mockUsers = [
     { email: "john@mail.com", roles: ["admin"] },
@@ -593,7 +593,7 @@ Invoking the `usePermissions` hook will call the `getPermissions` method. If `ge
 For example, if you want to check if the user has a specific permission, you can use the `usePermissions` hook like this:
 
 ```tsx
-import { usePermissions } from "@pankod/refine-core";
+import { usePermissions } from "@refinedev/core";
 
 const { data } = usePermissions();
 
@@ -619,7 +619,7 @@ if (data?.includes("admin")) {
 We'll get the user's identity from the local storage and resolve the Promise.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const mockUsers = [
     { email: "john@mail.com", roles: ["admin"] },
@@ -652,7 +652,7 @@ Invoking the `useGetIdentity` hook will call the `getIdentity` method. If `getId
 For example, if you want to get the user's email, you can use the `useGetIdentity` hook like this:
 
 ```tsx
-import { useGetIdentity } from "@pankod/refine-core";
+import { useGetIdentity } from "@refinedev/core";
 
 const { data } = useGetIdentity();
 
@@ -713,7 +713,7 @@ type RegisterResponse = {
 We'll register a new user and resolve the Promise.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const mockUsers = [{ email: "john@mail.com" }, { email: "jane@mail.com" }];
 
@@ -752,7 +752,7 @@ Invoking the `useRegister` hook's mutation will call the `register` method, pass
 For example, if you want to register a new user, you can use the `useRegister` hook like this:
 
 ```tsx
-import { useRegister } from "@pankod/refine-core";
+import { useRegister } from "@refinedev/core";
 
 const { mutate } = useRegister();
 
@@ -884,7 +884,7 @@ type AuthActionResponse = {
 We'll show how to send a password reset link to the user's email address and resolve the Promise.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // ---
@@ -919,7 +919,7 @@ Invoking the `useForgotPassword` hook's mutation will call the `forgotPassword` 
 For example, if you want to send a password reset link to the user's email address, you can use the `useForgotPassword` hook like this:
 
 ```tsx
-import { useForgotPassword } from "@pankod/refine-core";
+import { useForgotPassword } from "@refinedev/core";
 
 const { mutate } = useForgotPassword();
 
@@ -1032,7 +1032,7 @@ type AuthActionResponse = {
 We'll show how to update the user's password and resolve the Promise.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // ---
@@ -1067,7 +1067,7 @@ Invoking the `useUpdatePassword` hook's mutation will call the `updatePassword` 
 For example, if you want to update the user's password, you can use the `useUpdatePassword` hook like this:
 
 ```tsx
-import { useUpdatePassword } from "@pankod/refine-core";
+import { useUpdatePassword } from "@refinedev/core";
 
 const { mutate } = useUpdatePassword();
 
@@ -1183,7 +1183,7 @@ Here's an example using `axios` and the `localStorage` to add a token acquired f
 
 ```tsx title="App.tsx"
 // ---
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 // highlight-next-line
 import axios from "axios";
 
@@ -1239,7 +1239,7 @@ const App = () => {
 ```
 
 :::note
-We recommend using **axios** as the **HTTP** client with the **@pankod/refine-simple-rest** [`dataProvider`](/api-reference/core/providers/data-provider.md). Other **HTTP** clients can also be preferred.
+We recommend using **axios** as the **HTTP** client with the **@refinedev/simple-rest** [`dataProvider`](/api-reference/core/providers/data-provider.md). Other **HTTP** clients can also be preferred.
 :::
 
 <br />
@@ -1250,7 +1250,7 @@ You can also use `axios.interceptors.request.use` to add the token acquired from
 
 ```tsx title="App.tsx"
 // ---
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 // highlight-next-line
 import axios, { AxiosRequestConfig } from "axios";
 

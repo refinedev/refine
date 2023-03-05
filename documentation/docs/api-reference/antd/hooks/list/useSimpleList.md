@@ -98,8 +98,8 @@ The use case for overriding the `resource` prop:
 
 ```tsx
 import React from "react";
-import { HttpError } from "@pankod/refine-core";
-import { useSimpleList } from "@pankod/refine-antd";
+import { HttpError } from "@refinedev/core";
+import { useSimpleList } from "@refinedev/antd";
 
 interface IProduct {
     id: number;
@@ -789,7 +789,7 @@ A function to set current [sorters state][crudsorting].
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/useSimpleList"/>
+<PropsTable module="@refinedev/antd/useSimpleList"/>
 
 ### Type Parameters
 

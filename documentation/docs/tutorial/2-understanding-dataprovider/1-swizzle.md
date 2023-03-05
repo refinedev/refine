@@ -22,14 +22,14 @@ In some cases, refine's built-in data providers are not fully complying with our
     npm run refine swizzle
     ```
 
-2. Select the data provider package from the list of packages that support `swizzle`. In this tutorial, we will use `@pankod/refine-simple-rest`.
+2. Select the data provider package from the list of packages that support `swizzle`. In this tutorial, we will use `@refinedev/simple-rest`.
 
     ```bash
     ? Which package do you want to swizzle?
       Data Provider
-    ❯  @pankod/refine-simple-rest
+    ❯  @refinedev/simple-rest
       UI Framework
-      @pankod/refine-antd
+      @refinedev/antd
     ```
 
 The necessary files for this package are copied to the `src/rest-data-provider` folder with `swizzle`.

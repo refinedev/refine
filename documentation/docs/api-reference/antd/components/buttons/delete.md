@@ -20,7 +20,7 @@ import {
     useTable,
     // highlight-next-line
     DeleteButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table } from "antd";
 
 const PostList: React.FC = () => {
@@ -73,7 +73,7 @@ render(
 ```tsx live disableScroll previewHeight=150px disableScroll
 const { useRouterContext } = RefineCore;
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-antd";
+import { DeleteButton } from "@refinedev/antd";
 
 const MyEditComponent = () => {
     return (
@@ -117,7 +117,7 @@ Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hook
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-antd";
+import { DeleteButton } from "@refinedev/antd";
 
 const MyDeleteComponent = () => {
     return (
@@ -163,11 +163,11 @@ For example, let's `console.log` after deletion:
 
 ```tsx live url=http://localhost:3000 previewHeight=150px disableScroll
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-antd";
+import { DeleteButton } from "@refinedev/antd";
 
 const MyDeleteComponent = () => {
     return (
@@ -221,7 +221,7 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 [Refer to the mutation mode docs for further information. &#8594](/advanced-tutorials/mutation-mode.md)
 
 ```tsx
-import { List, DeleteButton, useTable } from "@pankod/refine-antd";
+import { List, DeleteButton, useTable } from "@refinedev/antd";
 import { Table } from "antd";
 
 export const PostList: React.FC = () => {
@@ -258,7 +258,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-antd";
+import { DeleteButton } from "@refinedev/antd";
 
 const MyDeleteComponent = () => {
     return (
@@ -290,7 +290,7 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { DeleteButton } from "@pankod/refine-antd";
+import { DeleteButton } from "@refinedev/antd";
 
 export const MyListComponent = () => {
     return (
@@ -309,7 +309,7 @@ You can change the text that appears when you confirm a transaction with `confir
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-antd";
+import { DeleteButton } from "@refinedev/antd";
 
 const MyDeleteComponent = () => {
     return (
@@ -343,7 +343,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/DeleteButton" />
+<PropsTable module="@refinedev/antd/DeleteButton" />
 
 :::tip External Props
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).

@@ -66,12 +66,12 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine, useNavigation, useRouterContext } from "@pankod/refine-core";
+import { Refine, useNavigation, useRouterContext } from "@refinedev/core";
 
 // visible-block-start
-import { List, ShowButton } from "@pankod/refine-mantine";
+import { List, ShowButton } from "@refinedev/mantine";
 import { Table, Pagination } from "@mantine/core";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -193,10 +193,10 @@ render(
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@refinedev/mantine";
 
 const MyShowComponent = () => {
     return <ShowButton recordItemId="123" />;
@@ -237,10 +237,10 @@ Redirection endpoint(`resourceNameOrRouteName/show`) is defined by `resourceName
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@refinedev/mantine";
 
 const MyShowComponent = () => {
     return <ShowButton resourceNameOrRouteName="categories" recordItemId="2" />;
@@ -280,10 +280,10 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@refinedev/mantine";
 
 const MyShowComponent = () => {
     return <ShowButton recordItemId="123" hideText />;
@@ -316,7 +316,7 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@refinedev/mantine";
 
 export const MyListComponent = () => {
     return (
@@ -331,4 +331,4 @@ export const MyListComponent = () => {
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/ShowButton" />
+<PropsTable module="@refinedev/mantine/ShowButton" />

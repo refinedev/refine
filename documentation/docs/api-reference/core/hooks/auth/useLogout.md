@@ -32,7 +32,7 @@ By default, Refine already provides a logout button on the sider and if you want
 If you want to build a custom logout button instead of the default one, `useLogout` can be used like this:
 
 ```tsx title="components/customLogoutButton"
-import { useLogout } from "@pankod/refine-core";
+import { useLogout } from "@refinedev/core";
 
 export const LogoutButton = () => {
     const { mutate: logout } = useLogout();
@@ -46,7 +46,7 @@ export const LogoutButton = () => {
 A custom URL can be given to mutate the function from the `useLogin` hook if you want to redirect yourself to a certain URL.
 
 ```tsx
-import { useLogout } from "@pankod/refine-core";
+import { useLogout } from "@refinedev/core";
 
 const { mutate: logout } = useLogout();
 
@@ -56,7 +56,7 @@ logout({ redirectPath: "/custom-url" });
 Then, you can handle this URL in your `logout` method of the `authProvider`.
 
 ```tsx
-import type { AuthBindings } from "@pankod/refine-core";
+import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // ---

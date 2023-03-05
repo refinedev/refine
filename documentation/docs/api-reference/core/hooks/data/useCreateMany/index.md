@@ -19,7 +19,7 @@ If your data provider does not have a `createMany` method, `useCreateMany` will 
 The `useCreateMany` hook returns many useful properties and methods. One of them is the `mutate` method which expects `values` and `resource` as parameters. These parameters will be passed to the `createMany` method from the `dataProvider` as parameters.
 
 ```tsx
-import { useCreateMany } from "@pankod/refine-core";
+import { useCreateMany } from "@refinedev/core";
 
 const { mutate } = useCreateMany();
 

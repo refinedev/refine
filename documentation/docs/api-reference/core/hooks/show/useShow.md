@@ -219,7 +219,7 @@ It will trigger new request to fetch the data when the `showId` value is changed
 
 ### Props
 
-<PropsTable module="@pankod/refine-core/useShow" liveMode-default='`"off"`' />
+<PropsTable module="@refinedev/core/useShow" liveMode-default='`"off"`' />
 
 ### Return values
 

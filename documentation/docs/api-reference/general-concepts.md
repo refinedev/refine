@@ -17,9 +17,9 @@ How does refine know what the resource value is?
 Like below, if you are using the hook in the `<PostList>` component, the `resource` value defaults to `"posts"`.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { PostList } from "pages/posts/list.tsx";
 
@@ -46,7 +46,7 @@ export default App;
 You can override the default `resource` value hook by passing the `resource` prop to the hook like below:
 
 ```tsx title="src/pages/posts/list.tsx"
-import { useTable } from "@pankod/refine-core";
+import { useTable } from "@refinedev/core";
 
 const PostList: React.FC = () => {
     const result = useTable({

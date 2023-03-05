@@ -131,7 +131,7 @@ First, we need to override the refine login page. In this way, we will redirect 
 
 ```tsx title="src/login.tsx"
 import React from "react";
-import { useLogin } from "@pankod/refine-core";
+import { useLogin } from "@refinedev/core";
 import { Layout, Button } from "antd";
 
 const LoginPage = () => {
@@ -172,10 +172,10 @@ export default LoginPage;
 In refine, authentication and authorization processes are performed with the auth provider. Let's write a provider for Azure AD.
 
 ```tsx title="src/App.tsx"
-import { Refine, AuthBindings } from "@pankod/refine-core";
-import { Layout } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine, AuthBindings } from "@refinedev/core";
+import { Layout } from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import { AccountInfo, SilentRequest } from "@azure/msal-browser";
 import axios, { AxiosRequestConfig } from "axios";

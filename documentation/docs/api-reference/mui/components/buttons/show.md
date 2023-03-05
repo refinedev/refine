@@ -19,7 +19,7 @@ import {
     List,
     // highlight-next-line
     ShowButton,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
@@ -78,7 +78,7 @@ render(
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
 // visible-block-start
-import { ShowButton } from "@pankod/refine-mui";
+import { ShowButton } from "@refinedev/mui";
 
 const MyShowComponent = () => {
     return (
@@ -125,7 +125,7 @@ Redirection endpoint(`resourceNameOrRouteName/show`) is defined by `resourceName
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { ShowButton } from "@pankod/refine-mui";
+import { ShowButton } from "@refinedev/mui";
 
 const MyShowComponent = () => {
     return (
@@ -171,7 +171,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { ShowButton } from "@pankod/refine-mui";
+import { ShowButton } from "@refinedev/mui";
 
 const MyShowComponent = () => {
     return (
@@ -208,7 +208,7 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { ShowButton } from "@pankod/refine-mui";
+import { ShowButton } from "@refinedev/mui";
 
 export const MyListComponent = () => {
     return (
@@ -223,7 +223,7 @@ export const MyListComponent = () => {
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/ShowButton" />
+<PropsTable module="@refinedev/mui/ShowButton" />
 
 :::tip External Props
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).

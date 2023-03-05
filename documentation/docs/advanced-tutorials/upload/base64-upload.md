@@ -14,14 +14,14 @@ import {
     //highlight-start
     file2Base64,
     //highlight-end
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     Create,
     useForm,
     // highlight-next-line
     getValueFromEvent,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Form, Upload, Input } from "antd";
 
 export const UserCreate: React.FC = () => {

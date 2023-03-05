@@ -418,7 +418,7 @@ return <Select options={options} />;
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/useSelect"  />
+<PropsTable module="@refinedev/mantine/useSelect"  />
 
 ### Return values
 

@@ -14,7 +14,7 @@ import {
     HttpError,
     useMany,
     getDefaultFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     List,
@@ -24,7 +24,7 @@ import {
     useSelect,
     FilterDropdown,
     // highlight-end
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import {
     Table,
     // highlight-next-line

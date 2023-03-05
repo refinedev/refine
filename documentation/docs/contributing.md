@@ -93,8 +93,8 @@ npm run bootstrap -- --scope refine-use-select-example
 At this point, all/required packages are bootstrapped. Now you can start the packages you plan to work on in development mode. If you don't want to start all packages in development mode, you should filter them:
 
 ```bash
-npm run build -- --scope @pankod/refine-core --scope @pankod/refine-antd --scope refine-use-select-example
-npm run start -- --scope @pankod/refine-core --scope @pankod/refine-antd --scope refine-use-select-example
+npm run build -- --scope @refinedev/core --scope @refinedev/antd --scope refine-use-select-example
+npm run start -- --scope @refinedev/core --scope @refinedev/antd --scope refine-use-select-example
 ```
 
 This command starts the example named `refine-use-select-example` in dev mode. The value of the flag `--scope` is the name that is defined in it's `package.json` file. Note that `--scope` flag should be used for every package that should be filtered. If you should start two packages:
@@ -118,16 +118,16 @@ DISABLE_DOCGEN=true npm run start
 :::note Docgen plugin and Props Table
 If you are working on type generation and props tables for specific packages, you can use `INCLUDED_PACKAGES` environment variable to run the scripts for only the packages you are working on by providing comma delimited list of package directories.
 
-For example, if you are working on `@pankod/refine-antd` and `@pankod/refine-core` packages, which are located under `packages/antd` and `packages/core` directories, you can run the following command to generate type documentation for only these packages:
+For example, if you are working on `@refinedev/antd` and `@refinedev/core` packages, which are located under `packages/antd` and `packages/core` directories, you can run the following command to generate type documentation for only these packages:
 
 ```bash
 INCLUDED_PACKAGES=antd,core npm run start
 ```
 
-To use `<PropsTable />` component, you should pass `module` prop as `string` to the component in form of `@pankod/refine-antd/MyComponent`.
+To use `<PropsTable />` component, you should pass `module` prop as `string` to the component in form of `@refinedev/antd/MyComponent`.
 
 ```jsx
-<PropsTable module="@pankod/refine-antd/Create" />
+<PropsTable module="@refinedev/antd/Create" />
 ```
 
 :::
@@ -172,7 +172,7 @@ You can use `import` statements to show them in the code block but they will be 
 :::
 
 :::info
-Refine Live Previews has an independent package apart from the documentation and the previews are rendered through this package via iframe. `@pankod/refine-live-previews` runs on `3030` port by default and the fallback value for `LIVE_PREVIEW_URL` is set to `http://localhost:3030` for development purposes. If you want to run both the previews package and the documentation at the same time, use `npm run start:doc` command.
+Refine Live Previews has an independent package apart from the documentation and the previews are rendered through this package via iframe. `@refinedev/live-previews` runs on `3030` port by default and the fallback value for `LIVE_PREVIEW_URL` is set to `http://localhost:3030` for development purposes. If you want to run both the previews package and the documentation at the same time, use `npm run start:doc` command.
 :::
 
 ### Properties
@@ -231,7 +231,7 @@ import {
     Create,
     useForm,
     useSelect,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 // highlight-end
 
@@ -347,7 +347,7 @@ interface IPost {
 // visible-block-start
 // Import statements will be replaced with the object destructuring but visible code block will not be affected.
 // highlight-start
-import { Create, useForm, useSelect } from "@pankod/refine-antd";
+import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 // highlight-end
 
@@ -442,14 +442,14 @@ render(
 | Variable              | Description                                                                                                                                                                                                                                                 |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `React`               | React 17                                                                                                                                                                                                                                                    |
-| `RefineCore`          | `@pankod/refine-core`                                                                                                                                                                                                                                       |
-| `RefineSimpleRest`    | `@pankod/refine-simple-rest`                                                                                                                                                                                                                                |
-| `RefineAntd`          | `@pankod/refine-antd`                                                                                                                                                                                                                                       |
-| `RefineMui`           | `@pankod/refine-mui`                                                                                                                                                                                                                                        |
-| `RefineMantine`       | `@pankod/refine-mantine`                                                                                                                                                                                                                                    |
-| `RefineReactRouterV6` | `@pankod/refine-react-router-v6`                                                                                                                                                                                                                            |
-| `RefineReactHookForm` | `@pankod/refine-react-hook-form`                                                                                                                                                                                                                            |
-| `RefineReactTable`    | `@pankod/refine-react-table`                                                                                                                                                                                                                                |
+| `RefineCore`          | `@refinedev/core`                                                                                                                                                                                                                                       |
+| `RefineSimpleRest`    | `@refinedev/simple-rest`                                                                                                                                                                                                                                |
+| `RefineAntd`          | `@refinedev/antd`                                                                                                                                                                                                                                       |
+| `RefineMui`           | `@refinedev/mui`                                                                                                                                                                                                                                        |
+| `RefineMantine`       | `@refinedev/mantine`                                                                                                                                                                                                                                    |
+| `RefineReactRouterV6` | `@refinedev/react-router-v6`                                                                                                                                                                                                                            |
+| `RefineReactHookForm` | `@refinedev/react-hook-form`                                                                                                                                                                                                                            |
+| `RefineReactTable`    | `@refinedev/react-table`                                                                                                                                                                                                                                |
 | `RefineHeadlessDemo`  | Predefined `<Refine/>` component with simple-rest and react-router-v6 props for easier use                                                                                                                                                                  |
 | `RefineMuiDemo`       | Predefined `<Refine/>` component with Material UI, simple-rest and react-router-v6 props for easier use                                                                                                                                                     |
 | `RefineAntdDemo`      | Predefined `<Refine/>` component with Ant Design, simple-rest and react-router-v6 props for easier use                                                                                                                                                      |
@@ -465,7 +465,7 @@ Demo components are recommended to be used whenever possible to avoid unnecessar
 :::
 
 :::info
-`setInitialRoutes` is a function to set the initial routes of the preview for `@pankod/refine-react-router-v6` using `MemoryRouter`. This function takes one argument `initialRoutes` which is an array of routes to be rendered initially. For example, if your component is rendered at `/posts/create`, you can pass `["/posts/create"]` as the argument.
+`setInitialRoutes` is a function to set the initial routes of the preview for `@refinedev/react-router-v6` using `MemoryRouter`. This function takes one argument `initialRoutes` which is an array of routes to be rendered initially. For example, if your component is rendered at `/posts/create`, you can pass `["/posts/create"]` as the argument.
 :::
 
 :::tip

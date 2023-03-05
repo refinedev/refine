@@ -107,17 +107,17 @@ We can see all of the installed packages like [Ant Design](https://ant.design/),
 Here is what the `App.tsx` file should look like:
 
 ```typescript
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
     ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import "@pankod/refine-antd/dist/reset.css";
+} from "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
 function App() {
     return (
@@ -209,17 +209,17 @@ This will create a new folder `pages` and include 2 new files: `list.tsx` and `i
 Check your `App.tsx` file and it should now look like this:
 
 ```typescript
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
     ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import "@pankod/refine-antd/dist/reset.css";
+} from "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { TestList } from "pages/tests";
 
@@ -401,17 +401,17 @@ This will create 5 new files: `list.tsx`, `show.tsx`, `create.tsx`, `edit.tsx` a
 Check your `App.tsx` file and change it to the following:
 
 ```typescript
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
     ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import "@pankod/refine-antd/dist/reset.css";
+} from "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -453,7 +453,7 @@ import {
     EditButton,
     DeleteButton,
     ShowButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
@@ -530,7 +530,7 @@ Now test the `/posts` route on [http://localhost:3000/posts](http://localhost:30
 Let's also create a feature to create new records. Open the `create.tsx` file in the `pages` folder and paste the following code into the file:
 
 ```typescript
-import { Create, Form, Input, useForm } from "@pankod/refine-antd";
+import { Create, Form, Input, useForm } from "@refinedev/antd";
 
 import { IPost } from "interfaces";
 
@@ -568,7 +568,7 @@ Now every time we want to create a new record, we have a dedicated route ([http:
 Next, we will want to update the records. For that open the `edit.tsx` file and change the content to the following code:
 
 ```typescript
-import { Edit, Form, Input, useForm } from "@pankod/refine-antd";
+import { Edit, Form, Input, useForm } from "@refinedev/antd";
 
 import { IPost } from "interfaces";
 
@@ -608,8 +608,8 @@ The posts can be edited via [http://localhost:3000/posts/edit/5](http://localhos
 Finally, users should be able to see individual posts by opening them separately. For that, open `show.tsx` file and include the following code:
 
 ```typescript
-import { useShow } from "@pankod/refine-core";
-import { Show, Typography } from "@pankod/refine-antd";
+import { useShow } from "@refinedev/core";
+import { Show, Typography } from "@refinedev/antd";
 
 import { IPost } from "interfaces";
 
@@ -811,7 +811,7 @@ Now restart the developer server for the changes to take effect. Press Ctrl+C on
 Then create a new file `login.tsx` inside the `src` directory and include the following code:
 
 ```typescript
-import { AntdLayout, Button } from "@pankod/refine-antd";
+import { AntdLayout, Button } from "@refinedev/antd";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export const Login: React.FC = () => {
@@ -843,19 +843,19 @@ export const Login: React.FC = () => {
 Finally, open the `Apx.tsx` file and paste the following code:
 
 ```typescript
-import { Refine, AuthBindings } from "@pankod/refine-core";
+import { Refine, AuthBindings } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";

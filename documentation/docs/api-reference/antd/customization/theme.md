@@ -5,7 +5,7 @@ title: Theme
 
 ```tsx live shared
 import React from "react";
-import { IResourceComponentsProps, useShow } from "@pankod/refine-core";
+import { IResourceComponentsProps, useShow } from "@refinedev/core";
 
 import {
     List,
@@ -17,7 +17,7 @@ import {
     useTable,
     TextField,
     useForm,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table, Space, Form, Input, Typography } from "antd";
 
 const { Title, Text } = Typography;
@@ -183,15 +183,15 @@ You can override or extend the default themes. You can also create your own them
 setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 import {
     notificationProvider,
     Layout,
     ErrorComponent,
     ConfigProvider,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -255,7 +255,7 @@ setInitialRoutes(["/posts"]);
 // visible-block-start
 import { FC, useState } from "react";
 import { Button } from "antd";
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
@@ -263,13 +263,13 @@ import {
     ConfigProvider,
     // highlight-next-line
     theme,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
-import "@pankod/refine-antd/dist/reset.min.css";
+import "@refinedev/antd/dist/reset.min.css";
 
 // highlight-start
 interface HeaderProps {

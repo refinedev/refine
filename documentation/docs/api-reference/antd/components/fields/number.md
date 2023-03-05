@@ -23,7 +23,7 @@ import {
     // highlight-next-line
     NumberField,
     useTable,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table } from "antd";
 
 const PostList: React.FC = () => {
@@ -78,7 +78,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/NumberField" value-description="Number value" />
+<PropsTable module="@refinedev/antd/NumberField" value-description="Number value" />
 
 :::tip External Props
 It also accepts all props of Ant Design [Text](https://ant.design/components/typography/#Typography.Text).

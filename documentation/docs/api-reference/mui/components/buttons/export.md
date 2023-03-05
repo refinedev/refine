@@ -18,13 +18,13 @@ Use it like any other Ant Design [`<Button>`][button]. You can use it with [useE
 
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
 // visible-block-start
-import { useExport } from "@pankod/refine-core";
+import { useExport } from "@refinedev/core";
 import {
     useDataGrid,
     List,
     // highlight-next-line
     ExportButton,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
@@ -78,7 +78,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { ExportButton } from "@pankod/refine-mui";
+import { ExportButton } from "@refinedev/mui";
 
 const MyExportComponent = () => {
     return (
@@ -108,7 +108,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/ExportButton" />
+<PropsTable module="@refinedev/mui/ExportButton" />
 
 :::tip External Props
 It also accepts all props of Material UI [LoadingButton](https://mui.com/material-ui/api/loading-button/#main-content).

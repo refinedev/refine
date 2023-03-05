@@ -69,10 +69,10 @@ In a nutshell, you can build rock-solid CRUD apps easily using refine✨.
 Everything in **refine** is centered around the [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) component, which is configured via a set of provider props that each requires a provider object to be passed in. A typical application of providers on the `<Refine />` component looks like this:
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
-import { liveProvider } from "@pankod/refine-supabase";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import { liveProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
 
 <Refine

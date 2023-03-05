@@ -4,16 +4,16 @@ title: Theme
 ---
 
 ```tsx live shared
-import { useNavigation, useRouterContext } from "@pankod/refine-core";
+import { useNavigation, useRouterContext } from "@refinedev/core";
 import {
     List,
     Create,
     Edit,
     EditButton,
     useForm,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 import { Table, Pagination, TextInput } from "@mantine/core";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -168,15 +168,15 @@ Mantine theme is an object where your application's colors, fonts, spacing, bord
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
     Layout,
     notificationProvider,
     // highlight-next-line
     DarkTheme,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 
@@ -222,15 +222,15 @@ You can override or extend the default refine themes. You can also create your o
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
     Layout,
     notificationProvider,
     // highlight-next-line
     LightTheme,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 
@@ -336,9 +336,9 @@ const IconMoonStars = () => (
 );
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
     Layout,
     ErrorComponent,
@@ -346,7 +346,7 @@ import {
     notificationProvider,
     LightTheme,
     DarkTheme,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 // highlight-start
 import { NotificationsProvider } from "@mantine/notifications";
 import {

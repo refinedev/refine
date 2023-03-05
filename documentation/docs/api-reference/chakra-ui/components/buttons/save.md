@@ -36,11 +36,11 @@ For example, let's add logic to the `<SaveButton>` component with the `saveButto
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-chakra-ui";
+import { Edit } from "@refinedev/chakra-ui";
 import {
     FormControl,
     FormErrorMessage,
@@ -48,8 +48,8 @@ import {
     Input,
     Select,
 } from "@chakra-ui/react";
-import { useSelect } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useSelect } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 
 const PostEdit: React.FC = () => {
     const {
@@ -177,10 +177,10 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { SaveButton } from "@pankod/refine-chakra-ui";
+import { SaveButton } from "@refinedev/chakra-ui";
 
 const MySaveComponent = () => {
     return <SaveButton hideText />;
@@ -211,4 +211,4 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/SaveButton" />
+<PropsTable module="@refinedev/chakra-ui/SaveButton" />

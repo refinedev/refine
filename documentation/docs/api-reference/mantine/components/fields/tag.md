@@ -45,12 +45,12 @@ Let's see how we can use it in a basic list page:
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { List, TagField } from "@pankod/refine-mantine";
+import { List, TagField } from "@refinedev/mantine";
 import { Table, Pagination } from "@mantine/core";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -156,7 +156,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/TagField" value-description="Tag content" />
+<PropsTable module="@refinedev/mantine/TagField" value-description="Tag content" />
 
 :::tip External Props
 It also accepts all props of Mantine [Chip](https://mantine.dev/core/chip/?t=props).

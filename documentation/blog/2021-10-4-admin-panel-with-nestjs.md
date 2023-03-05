@@ -222,8 +222,8 @@ Next, let's define the resources in `<Refine>` (App.tsx):
 
 ```tsx
 import { Refine } from "@pankod/refine";
-import routerProvider from "@pankod/refine-react-router";
-import nestjsxCrudDataProvider from "@pankod/refine-nestjsx-crud";
+import routerProvider from "@refinedev/react-router";
+import nestjsxCrudDataProvider from "@refinedev/nestjsx-crud";
 
 import "styles/antd.less";
 

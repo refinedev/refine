@@ -180,11 +180,11 @@ You should now have 2 CSS files inside the public folder: `antd.dark-theme.css`a
 // highlight-end
 In App.tsx, adapt the file so it looks like this :
 ```tsx
-import { Refine, } from '@pankod/refine-core';
-import { notificationProvider } from '@pankod/refine-antd';
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, } from '@refinedev/core';
+import { notificationProvider } from '@refinedev/antd';
+import routerProvider from "@refinedev/react-router-v6";
 import "styles/antd.less";
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Title, Header, Sider, Footer, Layout, OffLayoutArea } from "components/layout"
 // highlight-start
@@ -243,7 +243,7 @@ import {
 // highlight-start
     Switch,
 // highlight-end
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 export const Header: React.FC = () => {
 // highlight-start

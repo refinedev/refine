@@ -15,7 +15,7 @@ For all the other features, you can refer to the MUI X [`<DataGrid>`][data-grid]
 > 💡 The `useDataGrid` hook is compatible with both the [`<DataGrid>`][data-grid] and the [`<DataGridPro>`](https://mui.com/x/react-data-grid/#commercial-version) components.
 
 :::info
-This hook is extended from [`useTable`][use-table-core] from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
+This hook is extended from [`useTable`][use-table-core] from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
 :::
 
 ## Basic usage
@@ -103,7 +103,7 @@ export const PostsList: React.FC = () => {
 If you want to sort externally from the `<DataGrid>` component. You can use `setSorter` like this:
 
 ```tsx
-import { useDataGrid, List } from "@pankod/refine-mui";
+import { useDataGrid, List } from "@refinedev/mui";
 import { Button, ButtonGroup } from "@mui/material";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
@@ -194,7 +194,7 @@ export const PostsList: React.FC = () => {
 If you want to filter externally from the `<DataGrid>` component. You can use `setFilter` like this:
 
 ```tsx
-import { useDataGrid, List } from "@pankod/refine-mui";
+import { useDataGrid, List } from "@refinedev/mui";
 import { FormControlLabel, Checkbox } from "@mui/material";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 const columns: GridColumns = [
@@ -920,7 +920,7 @@ You can use [`useSelect`](http://localhost:3000/docs/api-reference/core/hooks/us
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/useDataGrid"/>
+<PropsTable module="@refinedev/mui/useDataGrid"/>
 
 ### Type Parameters
 

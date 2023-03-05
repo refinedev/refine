@@ -33,7 +33,7 @@ Normally refine provides a default update password page. If you prefer to use th
 If we want to build a custom update password page instead of the default one that comes with **refine**, `useUpdatePassword` can be used like this:
 
 ```tsx title="pages/customupdatePasswordPage"
-import { useUpdatePassword } from "@pankod/refine-core";
+import { useUpdatePassword } from "@refinedev/core";
 
 type updatePasswordVariables = {
     password: string;
@@ -71,7 +71,7 @@ const { mutate: updatePassword } = useUpdatePassword<{ newPassword: string }>();
 `useUpdatePassword` gives you query strings for the `updatePassword` method from `authProvider`. If you have a logic that sends a password regeneration email to the email address while resetting the password and proceeds through the access token. You can use `queryStrings` variable `updatePassword` method from `authProvider`. For example, your regeneration link is `YOUR_DOMAIN/update-password?token=123`. You can access the token from the parameters of the URL.
 
 ```tsx
-import type { AuthBindings } from "@pankod/refine-core";
+import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // ---
@@ -93,7 +93,7 @@ const authProvider: AuthBindings = {
 A custom URL can be given to mutate the function from the `useUpdatePassword` hook if you want to redirect yourself to a certain URL.
 
 ```tsx
-import { useForgotPassword } from "@pankod/refine-core";
+import { useForgotPassword } from "@refinedev/core";
 
 const { mutate: updatePassword } = useUpdatePassword();
 
@@ -103,7 +103,7 @@ updatePassword({ redirectPath: "/custom-url" });
 Then, you can handle this URL in your `updatePassword` method of the `authProvider`.
 
 ```tsx
-import type { AuthBindings } from "@pankod/refine-core";
+import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // ---

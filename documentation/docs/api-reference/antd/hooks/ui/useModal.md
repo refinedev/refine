@@ -17,7 +17,7 @@ Let's see an example:
 
 ```tsx title="src/pages/posts/list.tsx"
 // highlight-start
-import { useModal } from "@pankod/refine-antd";
+import { useModal } from "@refinedev/antd";
 import { Modal, Button } from "antd";
 // highlight-end
 
@@ -46,7 +46,7 @@ Here, we show a button somewhere on the page and use `show` on it's onClick call
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/useModal"  />
+<PropsTable module="@refinedev/antd/useModal"  />
 
 ### Return Value
 

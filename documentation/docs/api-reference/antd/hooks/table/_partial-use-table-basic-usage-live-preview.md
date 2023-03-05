@@ -9,9 +9,9 @@ body {
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
+import { IResourceComponentsProps, HttpError } from "@refinedev/core";
 
-import { List, TagField, useTable } from "@pankod/refine-antd";
+import { List, TagField, useTable } from "@refinedev/antd";
 import { Table } from "antd";
 
 interface IPost {

@@ -56,14 +56,14 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
 import {
     List,
     // highlight-next-line
     CreateButton,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import {
     TableContainer,
     Table,
@@ -73,7 +73,7 @@ import {
     Tbody,
     Td,
 } from "@chakra-ui/react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -180,10 +180,10 @@ It is used to redirect the app to the `/create` endpoint of the given resource n
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { CreateButton } from "@pankod/refine-chakra-ui";
+import { CreateButton } from "@refinedev/chakra-ui";
 
 const MyCreateComponent = () => {
     return (
@@ -229,10 +229,10 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { CreateButton } from "@pankod/refine-chakra-ui";
+import { CreateButton } from "@refinedev/chakra-ui";
 
 const MyCreateComponent = () => {
     return <CreateButton colorScheme="black" hideText />;
@@ -266,7 +266,7 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { CreateButton } from "@pankod/refine-chakra-ui";
+import { CreateButton } from "@refinedev/chakra-ui";
 
 export const MyListComponent = () => {
     return (
@@ -281,4 +281,4 @@ export const MyListComponent = () => {
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/CloneButton" />
+<PropsTable module="@refinedev/chakra-ui/CloneButton" />

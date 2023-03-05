@@ -12,7 +12,7 @@ Internally, it uses [`export-to-csv`][export-to-csv] to create the `CSV` file.
 Here is a basic usage example of `useExport` hook:
 
 ```tsx
-import { useExport } from "@pankod/refine-core";
+import { useExport } from "@refinedev/core";
 
 interface IPost {
     id: number;
@@ -308,7 +308,7 @@ This will save the data as follows:
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useExport" />
+<PropsTable module="@refinedev/core/useExport" />
 
 ### Return Values
 

@@ -33,15 +33,15 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import {
     List,
     // highlight-next-line
     DeleteButton,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import {
     TableContainer,
     Table,
@@ -51,7 +51,7 @@ import {
     Tbody,
     Td,
 } from "@chakra-ui/react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -168,11 +168,11 @@ render(
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-chakra-ui";
+import { DeleteButton } from "@refinedev/chakra-ui";
 
 const MyDeleteComponent = () => {
     return <DeleteButton recordItemId="123" />;
@@ -229,11 +229,11 @@ Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hook
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-chakra-ui";
+import { DeleteButton } from "@refinedev/chakra-ui";
 
 const MyDeleteComponent = () => {
     return (
@@ -296,11 +296,11 @@ For example, let's `console.log` after deletion:
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-chakra-ui";
+import { DeleteButton } from "@refinedev/chakra-ui";
 
 const MyDeleteComponent = () => {
     return (
@@ -360,11 +360,11 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-chakra-ui";
+import { DeleteButton } from "@refinedev/chakra-ui";
 
 const MyDeleteComponent = () => {
     return <DeleteButton recordItemId="1" mutationMode="undoable" />;
@@ -415,11 +415,11 @@ It is used to show and not show the text of the button. When `true`, only the bu
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-chakra-ui";
+import { DeleteButton } from "@refinedev/chakra-ui";
 
 const MyDeleteComponent = () => {
     return <DeleteButton recordItemId="1" hideText />;
@@ -468,7 +468,7 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { DeleteButton } from "@pankod/refine-chakra-ui";
+import { DeleteButton } from "@refinedev/chakra-ui";
 
 export const MyListComponent = () => {
     return (
@@ -485,11 +485,11 @@ You can change the text that appears when you confirm a transaction with `confir
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-chakra-ui";
+import { DeleteButton } from "@refinedev/chakra-ui";
 
 const MyDeleteComponent = () => {
     return (
@@ -547,4 +547,4 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/DeleteButton" />
+<PropsTable module="@refinedev/chakra-ui/DeleteButton" />

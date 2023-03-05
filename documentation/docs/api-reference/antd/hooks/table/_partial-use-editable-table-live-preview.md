@@ -2,7 +2,7 @@
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
     List,
@@ -10,7 +10,7 @@ import {
     EditButton,
     TextField,
     useEditableTable,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table, Form, Space, Button, Input } from "antd";
 
 interface IPost {

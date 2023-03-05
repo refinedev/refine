@@ -15,14 +15,14 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
 const { Create } = RefineMui;
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 // visible-block-start
 import {
     useDataGrid,
     List,
     // highlight-next-line
     DeleteButton,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
@@ -92,10 +92,10 @@ render(
 ```tsx live disableScroll previewHeight=200px
 const { useRouterContext } = RefineCore;
 
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-mui";
+import { DeleteButton } from "@refinedev/mui";
 
 const MyDeleteComponent = () => {
     return <DeleteButton resourceNameOrRouteName="posts" recordItemId="1" />;
@@ -142,10 +142,10 @@ Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hook
 
 ```tsx live disableScroll previewHeight=200px
 const { useRouterContext } = RefineCore;
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-mui";
+import { DeleteButton } from "@refinedev/mui";
 
 const MyDeleteComponent = () => {
     return (
@@ -191,10 +191,10 @@ For example, let's `console.log` after deletion:
 
 ```tsx live disableScroll previewHeight=200px
 const { useRouterContext } = RefineCore;
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-mui";
+import { DeleteButton } from "@refinedev/mui";
 
 const MyDeleteComponent = () => {
     return (
@@ -242,13 +242,13 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 [Refer to the mutation mode docs for further information. &#8594](/advanced-tutorials/mutation-mode.md)
 
 ```tsx
-import { useTable } from "@pankod/refine-core";
+import { useTable } from "@refinedev/core";
 
 import {
     List,
     // highlight-next-line
     DeleteButton,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import {
     Table,
     TableHead,
@@ -306,10 +306,10 @@ It is used to show and not show the text of the button. When `true`, only the bu
 
 ```tsx live disableScroll previewHeight=200px
 const { useRouterContext } = RefineCore;
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-mui";
+import { DeleteButton } from "@refinedev/mui";
 
 const MyDeleteComponent = () => {
     return (
@@ -352,7 +352,7 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { DeleteButton } from "@pankod/refine-mui";
+import { DeleteButton } from "@refinedev/mui";
 
 export const MyListComponent = () => {
     return (
@@ -369,10 +369,10 @@ You can change the text that appears when you confirm a transaction with `confir
 
 ```tsx live disableScroll previewHeight=200px
 const { useRouterContext } = RefineCore;
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-mui";
+import { DeleteButton } from "@refinedev/mui";
 
 const MyDeleteComponent = () => {
     return (
@@ -418,7 +418,7 @@ render(
 
 ### Props
 
-<PropsTable module="@pankod/refine-mui/DeleteButton" />
+<PropsTable module="@refinedev/mui/DeleteButton" />
 
 :::tip External Props
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/react-button/).
