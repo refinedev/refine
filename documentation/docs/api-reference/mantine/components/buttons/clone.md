@@ -238,9 +238,9 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/api-re
 **`<CloneButton>`** component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
 
-It is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
+It is used to redirect the app to the `clone` action of the given resource name. By default, the app redirects to the inferred resource's `clone` action path.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
@@ -252,7 +252,7 @@ import { CloneButton } from "@pankod/refine-mantine";
 
 const MyCloneComponent = () => {
     return (
-        <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />
+        <CloneButton resource="categories" recordItemId="2" />
     );
 };
 // visible-block-end
@@ -281,7 +281,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/clone/2`.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
 
 ### `hideText`
 
@@ -336,6 +336,53 @@ export const MyListComponent = () => {
     );
 };
 ```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+It is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@pankod/refine-core";
+
+// visible-block-start
+import { CloneButton } from "@pankod/refine-mantine";
+
+const MyCloneComponent = () => {
+    return (
+        <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />
+    );
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            resources={[
+                {
+                    name: "posts",
+                    list: MyCloneComponent,
+                },
+                {
+                    name: "categories",
+                    create: ClonePage,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/clone/2`.
 
 ## API Reference
 

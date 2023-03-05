@@ -78,7 +78,7 @@ import { DeleteButton } from "@pankod/refine-antd";
 const MyEditComponent = () => {
     return (
         <DeleteButton
-            resourceNameOrRouteName="posts"
+            resource="posts"
             // highlight-next-line
             recordItemId="123"
         />
@@ -109,9 +109,9 @@ Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hook
 **`<DeleteButton>`** component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
 
-`resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
+`resource` allows us to manage which resource's record is going to be deleted.
 
 ```tsx live disableScroll previewHeight=150px disableScroll
 const { useRouterContext } = RefineCore;
@@ -121,7 +121,7 @@ import { DeleteButton } from "@pankod/refine-antd";
 
 const MyDeleteComponent = () => {
     return (
-        <DeleteButton resourceNameOrRouteName="categories" recordItemId="123" />
+        <DeleteButton resource="categories" recordItemId="123" />
     );
 };
 
@@ -300,6 +300,54 @@ export const MyListComponent = () => {
     );
 };
 ```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+`resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
+
+```tsx live disableScroll previewHeight=150px disableScroll
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
+import { DeleteButton } from "@pankod/refine-antd";
+
+const MyDeleteComponent = () => {
+    return (
+        <DeleteButton resourceNameOrRouteName="categories" recordItemId="123" />
+    );
+};
+
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => {
+                    return <RefineAntd.List>List page here...</RefineAntd.List>;
+                },
+            },
+            {
+                name: "categories",
+                list: () => {
+                    return <RefineAntd.List>List page here...</RefineAntd.List>;
+                },
+            },
+        ]}
+        DashboardPage={MyDeleteComponent}
+    />,
+);
+```
+
+Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
+
+:::note
+**`<DeleteButton>`** component reads the resource name from the route by default.
+:::
 
 ## How to override confirm texts?
 

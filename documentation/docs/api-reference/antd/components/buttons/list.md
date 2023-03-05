@@ -73,9 +73,9 @@ The button text is defined automatically by **refine** based on _resource_ objec
 
 ## Properties
 
-### `resourceNameOrRouteName`
+### `resource`
 
-Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
+Redirection endpoint is defined by the `resource`'s `list` action path. By default, `<ListButton>` uses the inferred resource from the route.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
@@ -84,7 +84,7 @@ const { useRouterContext } = RefineCore;
 import { ListButton } from "@pankod/refine-antd";
 
 const MyListComponent = () => {
-    return <ListButton resourceNameOrRouteName="categories" />;
+    return <ListButton resource="categories" />;
 };
 
 // visible-block-end
@@ -168,6 +168,49 @@ export const MyListComponent = () => {
     );
 };
 ```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
+
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
+import { ListButton } from "@pankod/refine-antd";
+
+const MyListComponent = () => {
+    return <ListButton resourceNameOrRouteName="categories" />;
+};
+
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+            },
+            {
+                name: "categories",
+                list: () => {
+                    return (
+                        <RefineAntd.List>
+                            <p>Your list page here</p>
+                        </RefineAntd.List>
+                    );
+                },
+            },
+        ]}
+        DashboardPage={MyListComponent}
+    />,
+);
+```
+
+Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
 
 ## API Reference
 

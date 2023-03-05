@@ -224,9 +224,9 @@ Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hook
 **`<DeleteButton>`** component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
 
-`resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
+`resource` allows us to manage which resource's record is going to be deleted.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
@@ -239,7 +239,7 @@ import { DeleteButton } from "@pankod/refine-mantine";
 
 const MyDeleteComponent = () => {
     return (
-        <DeleteButton resourceNameOrRouteName="categories" recordItemId="2" />
+        <DeleteButton resource="categories" recordItemId="2" />
     );
 };
 // visible-block-end
@@ -475,6 +475,73 @@ export const MyListComponent = () => {
     );
 };
 ```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+`resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@pankod/refine-core";
+import dataProvider from "@pankod/refine-simple-rest";
+
+// visible-block-start
+import { DeleteButton } from "@pankod/refine-mantine";
+
+const MyDeleteComponent = () => {
+    return (
+        <DeleteButton resourceNameOrRouteName="categories" recordItemId="2" />
+    );
+};
+// visible-block-end
+
+const App = () => {
+    const simpleRestDataProvider = dataProvider(
+        "https://api.fake-rest.refine.dev",
+    );
+
+    const customDataProvider = {
+        ...simpleRestDataProvider,
+        deleteOne: async ({ resource, id, variables }) => {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+
+            return {
+                data: {},
+            };
+        },
+    };
+
+    return (
+        <Refine
+            dataProvider={customDataProvider}
+            resources={[
+                {
+                    name: "posts",
+                    list: MyDeleteComponent,
+                },
+                {
+                    name: "categories",
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hooks/data/useDelete/) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
+
+:::note
+**`<DeleteButton>`** component reads the resource name from the route by default.
+:::
 
 ## How to override confirm texts?
 

@@ -79,7 +79,7 @@ import { RefreshButton } from "@pankod/refine-mui";
 const MyRefreshComponent = () => {
     return (
         <RefreshButton
-            resourceNameOrRouteName="posts"
+            resource="posts"
             // highlight-next-line
             recordItemId="1"
         />
@@ -106,9 +106,9 @@ Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/d
 `<RefreshButton>` component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
 
-`resourceNameOrRouteName` allows us to manage which resource is going to be refreshed.
+`resource` allows us to manage which resource is going to be refreshed.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
@@ -120,7 +120,7 @@ const MyRefreshComponent = () => {
         <RefreshButton
             recordItemId="1"
             // highlight-next-line
-            resourceNameOrRouteName="posts"
+            resource="posts"
         />
     );
 };
@@ -178,6 +178,47 @@ render(
     />,
 );
 ```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+`resourceNameOrRouteName` allows us to manage which resource is going to be refreshed.
+
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+// visible-block-start
+import { RefreshButton } from "@pankod/refine-mui";
+
+const MyRefreshComponent = () => {
+    return (
+        <RefreshButton
+            recordItemId="1"
+            // highlight-next-line
+            resourceNameOrRouteName="posts"
+        />
+    );
+};
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+            },
+        ]}
+        DashboardPage={MyRefreshComponent}
+    />,
+);
+```
+
+Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
+
+:::note
+`<RefreshButton>` component reads the resource name from the route by default.
+:::
 
 ## API Reference
 

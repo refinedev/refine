@@ -111,9 +111,9 @@ The button text is defined automatically by **refine** based on _resource_ objec
 
 ## Properties
 
-### `resourceNameOrRouteName`
+### `resource`
 
-Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
+Redirection endpoint is defined by the `resource`'s `list` action path. By default, `<ListButton>` uses the inferred resource from the route.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
@@ -124,7 +124,7 @@ import { ListButton } from "@pankod/refine-chakra-ui";
 
 const MyListComponent = () => {
     return (
-        <ListButton colorScheme="black" resourceNameOrRouteName="categories" />
+        <ListButton colorScheme="black" resource="categories" />
     );
 };
 // visible-block-end
@@ -229,6 +229,74 @@ export const MyListComponent = () => {
     );
 };
 ```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+import { Refine } from "@pankod/refine-core";
+
+// visible-block-start
+import { ListButton } from "@pankod/refine-chakra-ui";
+
+const MyListComponent = () => {
+    return (
+        <ListButton colorScheme="black" resourceNameOrRouteName="categories" />
+    );
+};
+// visible-block-end
+
+const ListPage = () => {
+    const { list } = RefineCore.useNavigation();
+    const params = RefineCore.useRouterContext().useParams();
+
+    return (
+        <RefineChakra.VStack alignItems="flex-start">
+            <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
+                URL Parameters:
+            </RefineChakra.Text>
+            <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
+
+            <RefineChakra.Button
+                size="sm"
+                onClick={() => list("posts")}
+                colorScheme="green"
+            >
+                Go back
+            </RefineChakra.Button>
+        </RefineChakra.VStack>
+    );
+};
+
+const App = () => {
+    return (
+        <Refine
+            resources={[
+                {
+                    name: "posts",
+                    list: MyListComponent,
+                },
+                {
+                    name: "categories",
+                    list: ListPage,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
 
 ## API Reference
 

@@ -83,7 +83,7 @@ import { ShowButton } from "@pankod/refine-mui";
 const MyShowComponent = () => {
     return (
         <ShowButton
-            resourceNameOrRouteName="posts"
+            resource="posts"
             // highlight-next-line
             recordItemId="1"
         />
@@ -111,15 +111,15 @@ render(
 );
 ```
 
-Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/show/1`.
+Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `show` action path of the resource, filling the necessary parameters in the route.
 
 :::note
 `<ShowButton>` component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
 
-Redirection endpoint(`resourceNameOrRouteName/show`) is defined by `resourceNameOrRouteName` property. By default, `<ShowButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
+Redirection endpoint is defined by the `resource`'s `show` action path. By default, `<ShowButton>` uses the inferred resource from the route.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
@@ -131,7 +131,7 @@ const MyShowComponent = () => {
     return (
         <ShowButton
             // highlight-next-line
-            resourceNameOrRouteName="categories"
+            resource="categories"
             recordItemId="2"
         />
     );
@@ -161,7 +161,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/show/2`.
+Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `show` action path of the resource, filling the necessary parameters in the route.
 
 ### `hideText`
 
@@ -218,6 +218,54 @@ export const MyListComponent = () => {
     );
 };
 ```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+Redirection endpoint(`resourceNameOrRouteName/show`) is defined by `resourceNameOrRouteName` property. By default, `<ShowButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
+
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
+import { ShowButton } from "@pankod/refine-mui";
+
+const MyShowComponent = () => {
+    return (
+        <ShowButton
+            // highlight-next-line
+            resourceNameOrRouteName="categories"
+            recordItemId="2"
+        />
+    );
+};
+
+// visible-block-end
+
+const ShowPage = () => {
+    const params = useRouterContext().useParams();
+    return <div>{JSON.stringify(params)}</div>;
+};
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+            },
+            {
+                name: "categories",
+                show: ShowPage,
+            },
+        ]}
+        DashboardPage={MyShowComponent}
+    />,
+);
+```
+
+Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/show/2`.
 
 ## API Reference
 

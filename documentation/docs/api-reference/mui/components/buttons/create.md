@@ -60,9 +60,9 @@ render(
 
 ## Properties
 
-### `resourceNameOrRouteName`
+### `resource`
 
-It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of resource object.
+It is used to redirect the app to the `create` action path of the given resource name. By default, the app redirects to the inferred resource's `create` action path.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
@@ -74,7 +74,7 @@ const MyCreateComponent = () => {
     return (
         <CreateButton
             // highlight-next-line
-            resourceNameOrRouteName="categories"
+            resource="categories"
         />
     );
 };
@@ -160,6 +160,53 @@ export const MyListComponent = () => {
     );
 };
 ```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of resource object.
+
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
+import { CreateButton } from "@pankod/refine-mui";
+
+const MyCreateComponent = () => {
+    return (
+        <CreateButton
+            // highlight-next-line
+            resourceNameOrRouteName="categories"
+        />
+    );
+};
+
+// visible-block-end
+
+const CreatePage = () => {
+    const params = useRouterContext().useParams();
+    return <div>{JSON.stringify(params)}</div>;
+};
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+            },
+            {
+                name: "categories",
+                create: CreatePage,
+            },
+        ]}
+        DashboardPage={MyCreateComponent}
+    />,
+);
+```
+
+Clicking the button will trigger the `create` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/posts/create`.
 
 ## API Reference
 

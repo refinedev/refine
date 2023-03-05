@@ -76,7 +76,7 @@ import { EditButton } from "@pankod/refine-antd";
 const MyEditComponent = () => {
     return (
         <EditButton
-            resourceNameOrRouteName="posts"
+            resource="posts"
             // highlight-next-line
             recordItemId="123"
         />
@@ -110,9 +110,9 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](/api-ref
 `<EditButton>` component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
 
-Redirection endpoint(`resourceNameOrRouteName/edit`) is defined by `resourceNameOrRouteName` property. By default, `<EditButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
+Redirection endpoint is defined by the `resource` property and its `edit` action path. By default, `<EditButton>` uses the inferred resource from the route.
 
 ```tsx live disableScroll previewHeight=150px disableScroll
 const { useRouterContext } = RefineCore;
@@ -124,7 +124,7 @@ const MyEditComponent = () => {
     return (
         <EditButton
             // highlight-next-line
-            resourceNameOrRouteName="categories"
+            resource="categories"
             recordItemId="123"
         />
     );
@@ -220,6 +220,60 @@ export const MyListComponent = () => {
     );
 };
 ```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+Redirection endpoint(`resourceNameOrRouteName/edit`) is defined by `resourceNameOrRouteName` property. By default, `<EditButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
+
+```tsx live disableScroll previewHeight=150px disableScroll
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
+import { EditButton } from "@pankod/refine-antd";
+
+const MyEditComponent = () => {
+    return (
+        <EditButton
+            // highlight-next-line
+            resourceNameOrRouteName="categories"
+            recordItemId="123"
+        />
+    );
+};
+
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => {
+                    return <RefineAntd.List>List page here...</RefineAntd.List>;
+                },
+                edit: () => {
+                    return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
+                },
+            },
+            {
+                name: "categories",
+                list: () => {
+                    return <RefineAntd.List>List page here...</RefineAntd.List>;
+                },
+                edit: () => {
+                    return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
+                },
+            },
+        ]}
+        DashboardPage={MyEditComponent}
+    />,
+);
+```
+
+Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/edit/2`.
 
 ## API Reference
 

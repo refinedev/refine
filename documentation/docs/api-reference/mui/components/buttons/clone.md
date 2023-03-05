@@ -84,7 +84,7 @@ const { useRouterContext } = RefineCore;
 import { CloneButton } from "@pankod/refine-mui";
 
 const MyCloneComponent = () => {
-    return <CloneButton resourceNameOrRouteName="posts" recordItemId="1" />;
+    return <CloneButton resource="posts" recordItemId="1" />;
 };
 
 // visible-block-end
@@ -114,9 +114,9 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/api-re
 **`<CloneButton>`** component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
 
-It is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
+It is used to redirect the app to the `clone` action of the given resource name. By default, the app redirects to the inferred resource's `clone` action path.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
@@ -126,7 +126,7 @@ import { CloneButton } from "@pankod/refine-mui";
 
 const MyCloneComponent = () => {
     return (
-        <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />
+        <CloneButton resource="categories" recordItemId="2" />
     );
 };
 
@@ -154,7 +154,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/clone/2`.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `clone` action path of the resource, filling the necessary parameters in the route.
 
 ### `hideText`
 
@@ -211,6 +211,51 @@ export const MyCloneComponent = () => {
     );
 };
 ```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+It is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
+
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
+import { CloneButton } from "@pankod/refine-mui";
+
+const MyCloneComponent = () => {
+    return (
+        <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />
+    );
+};
+
+// visible-block-end
+
+const ClonedPage = () => {
+    const params = useRouterContext().useParams();
+    return <div>{JSON.stringify(params)}</div>;
+};
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+            },
+            {
+                name: "categories",
+                create: ClonedPage,
+            },
+        ]}
+        DashboardPage={MyCloneComponent}
+    />,
+);
+```
+
+Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/clone/2`.
+
 
 ## API Reference
 

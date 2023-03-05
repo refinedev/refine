@@ -83,7 +83,7 @@ import { EditButton } from "@pankod/refine-mui";
 const MyEditComponent = () => {
     return (
         <EditButton
-            resourceNameOrRouteName="posts"
+            resource="posts"
             // highlight-next-line
             recordItemId="1"
         />
@@ -117,9 +117,9 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](/api-ref
 **`<EditButton>`** component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
 
-It is used to redirect the app to the `/edit` endpoint of the given resource name. By default, the app redirects to a URL with `/edit` defined by the name property of resource object.
+Redirection endpoint is defined by the `resource` property and its `edit` action path. By default, `<EditButton>` uses the inferred resource from the route.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
@@ -131,7 +131,7 @@ const MyEditComponent = () => {
     return (
         <EditButton
             // highlight-next-line
-            resourceNameOrRouteName="categories"
+            resource="categories"
             recordItemId="2"
         />
     );
@@ -161,7 +161,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/posts/edit/2`.
+Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `edit` action path of the resource, filling the necessary parameters in the route.
 
 ### `hideText`
 
@@ -218,6 +218,54 @@ export const MyListComponent = () => {
     );
 };
 ```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+It is used to redirect the app to the `/edit` endpoint of the given resource name. By default, the app redirects to a URL with `/edit` defined by the name property of resource object.
+
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
+import { EditButton } from "@pankod/refine-mui";
+
+const MyEditComponent = () => {
+    return (
+        <EditButton
+            // highlight-next-line
+            resourceNameOrRouteName="categories"
+            recordItemId="2"
+        />
+    );
+};
+
+// visible-block-end
+
+const EditPage = () => {
+    const params = useRouterContext().useParams();
+    return <div>{JSON.stringify(params)}</div>;
+};
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+            },
+            {
+                name: "categories",
+                edit: EditPage,
+            },
+        ]}
+        DashboardPage={MyEditComponent}
+    />,
+);
+```
+
+Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/posts/edit/2`.
 
 ## API Reference
 
