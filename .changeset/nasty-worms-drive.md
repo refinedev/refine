@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-chakra-ui": major
+"@refinedev/chakra-ui": major
 ---
 
 ## 🪄 Migrating your project automatically with refine-codemod ✨
@@ -16,7 +16,7 @@ And it's done. Now your project uses `refine@4.x.x`.
 
 ## 📝 Changelog
 
-All **Chakra UI** components re-exported from `@pankod/refine-chakra-ui` have been removed. You should import them from `@chakra-ui/react` package directly.
+All **Chakra UI** components re-exported from `@refinedev/chakra-ui` have been removed. You should import them from `@chakra-ui/react` package directly.
 
 If the packages are not installed, you can install them with your package manager:
 
@@ -39,7 +39,7 @@ After that, you can import them from related packages directly.
 -    Select,
 -    ShowButton,
 -    usePagination,
-- } from "@pankod/refine-chakra-ui";
+- } from "@refinedev/chakra-ui";
 
 + import { usePagination, ShowButton } from "@refinedev/chakra-ui";
 + import { ChakraProvider, Input, Select } from "@chakra-ui/react";

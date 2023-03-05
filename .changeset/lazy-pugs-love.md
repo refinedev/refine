@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-react-location": major
+"@refinedev/react-location": major
 ---
 
-Adjustments made to match the changes in `@pankod/refine-core` and `resource` definitions.
+Adjustments made to match the changes in `@refinedev/core` and `resource` definitions.

@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-remix-router": major
+"@refinedev/remix-router": major
 ---
 
 ## 🪄 Migrating your project automatically with refine-codemod ✨
@@ -18,7 +18,7 @@ And it's done. Now your project uses `refine@4.x.x`.
 
 We're releasing a new way to connect your router to **refine**. 
 
-The legacy `routerProvider` and its exports are now deprecated but accessible at `@pankod/refine-remix-router/legacy` path.
+The legacy `routerProvider` and its exports are now deprecated but accessible at `@refinedev/remix-router/legacy` path.
 
 The new `routerBindings` are smaller and more flexible than the previos one.
 

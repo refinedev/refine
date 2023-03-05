@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-core": minor
+"@refinedev/core": minor
 ---
 
 -   `options` prop of resource is now deprecated. Use `meta` prop instead.
