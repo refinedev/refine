@@ -1,13 +1,13 @@
 import React from "react";
 import axios from "axios";
 
-import { useTranslate, useApiUrl, HttpError } from "@pankod/refine-core";
+import { useTranslate, useApiUrl, HttpError } from "@refinedev/core";
 
-import { UseModalFormReturnType } from "@pankod/refine-react-hook-form";
+import { UseModalFormReturnType } from "@refinedev/react-hook-form";
 
 import { Controller } from "react-hook-form";
 
-import { useAutocomplete, Edit } from "@pankod/refine-mui";
+import { useAutocomplete, Edit } from "@refinedev/mui";
 
 import {
     Drawer,

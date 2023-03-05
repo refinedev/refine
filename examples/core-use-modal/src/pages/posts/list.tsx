@@ -1,5 +1,5 @@
 import React from "react";
-import { useModal } from "@pankod/refine-core";
+import { useModal } from "@refinedev/core";
 
 export const DummyList: React.FC = () => {
     const { visible, show, close } = useModal();

@@ -3,10 +3,10 @@ import {
     GetListResponse,
     LayoutWrapper,
     parseTableParamsFromQuery,
-} from "@pankod/refine-core";
-import { useTable, List, getDefaultSortOrder } from "@pankod/refine-antd";
+} from "@refinedev/core";
+import { useTable, List, getDefaultSortOrder } from "@refinedev/antd";
 import { Table } from "antd";
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 
 import { IPost } from "src/interfaces";
 

@@ -6,8 +6,8 @@ module.exports = {
         newNextLinkBehavior: true,
     },
     transpilePackages: [
-        "@pankod/refine-antd",
-        "@pankod/refine-inferencer",
+        "@refinedev/antd",
+        "@refinedev/inferencer",
         "antd",
         "@ant-design/pro-components",
         "@ant-design/pro-layout",

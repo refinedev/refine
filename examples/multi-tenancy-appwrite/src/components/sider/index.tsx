@@ -7,7 +7,7 @@ import {
     useLogout,
     useIsExistAuthentication,
     useMenu,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     UnorderedListOutlined,
     LogoutOutlined,

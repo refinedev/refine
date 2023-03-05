@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
-import dataProvider from "@pankod/refine-simple-rest";
-import { GetListResponse, LayoutWrapper, useTable } from "@pankod/refine-core";
+import dataProvider from "@refinedev/simple-rest";
+import { GetListResponse, LayoutWrapper, useTable } from "@refinedev/core";
 import ProductCards from "@components/ProductCards";
 
 interface IProduct {

@@ -5,8 +5,8 @@ import {
     useShow,
     useTranslate,
     useUpdate,
-} from "@pankod/refine-core";
-import { List } from "@pankod/refine-mui";
+} from "@refinedev/core";
+import { List } from "@refinedev/mui";
 import { useTheme } from "@mui/material/styles";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 

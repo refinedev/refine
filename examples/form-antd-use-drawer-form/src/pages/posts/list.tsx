@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useShow, IResourceComponentsProps } from "@pankod/refine-core";
+import { useShow, IResourceComponentsProps } from "@refinedev/core";
 
 import {
     List,
@@ -11,7 +11,7 @@ import {
     DeleteButton,
     useTable,
     useDrawerForm,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Form, Select, Input, Drawer, Space, Typography } from "antd";
 

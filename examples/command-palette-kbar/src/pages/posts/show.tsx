@@ -1,5 +1,5 @@
-import { useShow, IResourceComponentsProps, useOne } from "@pankod/refine-core";
-import { Show, MarkdownField } from "@pankod/refine-antd";
+import { useShow, IResourceComponentsProps, useOne } from "@refinedev/core";
+import { Show, MarkdownField } from "@refinedev/antd";
 
 import { Typography } from "antd";
 

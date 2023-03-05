@@ -1,6 +1,6 @@
 import React from "react";
-import { useNavigation, useSelect } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useNavigation, useSelect } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 
 export const ProductCreate = () => {
     const { list } = useNavigation();

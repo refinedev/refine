@@ -5,14 +5,14 @@ import {
     useModal,
     useShow,
     IResourceComponentsProps,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     List,
     useDataGrid,
     DateField,
     BooleanField,
     TextFieldComponent,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { DataGrid, GridColumns, GridActionsCellItem } from "@mui/x-data-grid";
 import { Avatar, Paper } from "@mui/material";
 import { EditOutlined } from "@mui/icons-material";

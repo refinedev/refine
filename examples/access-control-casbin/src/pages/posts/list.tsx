@@ -1,4 +1,4 @@
-import { useMany, useCan } from "@pankod/refine-core";
+import { useMany, useCan } from "@refinedev/core";
 
 import {
     List,
@@ -10,7 +10,7 @@ import {
     useSelect,
     TagField,
     NumberField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Space, Select, Radio } from "antd";
 

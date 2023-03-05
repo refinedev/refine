@@ -1,5 +1,5 @@
 import React from "react";
-import { useImport } from "@pankod/refine-core";
+import { useImport } from "@refinedev/core";
 
 export const DummyList: React.FC = () => {
     const [total, setTotal] = React.useState(0);

@@ -2,7 +2,7 @@ import {
     IResourceComponentsProps,
     useMany,
     getDefaultFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     List,
@@ -14,7 +14,7 @@ import {
     useTable,
     useSelect,
     useSimpleList,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Space, Select, Radio, Collapse, List as AntdList } from "antd";
 

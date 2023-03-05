@@ -1,4 +1,4 @@
-import { useMenu, LayoutProps, useRouterContext } from "@pankod/refine-core";
+import { useMenu, LayoutProps, useRouterContext } from "@refinedev/core";
 import React from "react";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {

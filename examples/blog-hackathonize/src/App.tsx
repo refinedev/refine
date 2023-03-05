@@ -1,15 +1,11 @@
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
-import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@pankod/refine-antd";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
-import "@pankod/refine-antd/dist/reset.css";
-import { dataProvider } from "@pankod/refine-supabase";
+import "@refinedev/antd/dist/reset.css";
+import { dataProvider } from "@refinedev/supabase";
 
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";

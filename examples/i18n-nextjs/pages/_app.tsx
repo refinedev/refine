@@ -1,20 +1,16 @@
 import React from "react";
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import { AppProps } from "next/app";
 
 import { appWithTranslation, useTranslation } from "next-i18next";
 
-import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-nextjs-router/legacy";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/nextjs-router/legacy";
 
 import { PostList, PostCreate, PostEdit, PostShow, Header } from "@components";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 import "@styles/global.css";
 
 const API_URL = "https://api.fake-rest.refine.dev";

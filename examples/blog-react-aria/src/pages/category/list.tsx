@@ -1,5 +1,5 @@
 import React from "react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { CategoryCreate } from "./create";
 

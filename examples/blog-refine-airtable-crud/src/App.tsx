@@ -1,8 +1,8 @@
 import React from "react";
 import "./index.css";
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-airtable";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/airtable";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import { Layout } from "components/Layout";
 

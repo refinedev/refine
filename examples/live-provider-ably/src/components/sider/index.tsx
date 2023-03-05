@@ -6,7 +6,7 @@ import {
     ITreeMenu,
     useRouterContext,
     useMenu,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { Layout as AntdLayout, Menu, Grid, Badge } from "antd";

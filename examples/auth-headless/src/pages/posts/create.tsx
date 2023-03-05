@@ -1,5 +1,5 @@
-import { useForm } from "@pankod/refine-react-hook-form";
-import { useSelect } from "@pankod/refine-core";
+import { useForm } from "@refinedev/react-hook-form";
+import { useSelect } from "@refinedev/core";
 
 export const PostCreate: React.FC = () => {
     const {

@@ -1,4 +1,4 @@
-import { Edit, useForm, useSelect } from "@pankod/refine-mantine";
+import { Edit, useForm, useSelect } from "@refinedev/mantine";
 
 import { TextInput, Select } from "@mantine/core";
 

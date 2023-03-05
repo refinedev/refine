@@ -3,7 +3,7 @@ import {
     HttpError,
     IResourceComponentsProps,
     useTranslate,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     useTable,
@@ -12,7 +12,7 @@ import {
     getDefaultSortOrder,
     NumberField,
     DateField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import {
     UserOutlined,

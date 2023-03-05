@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelect, useForm, useNavigation } from "@pankod/refine-core";
+import { useSelect, useForm, useNavigation } from "@refinedev/core";
 import { IPost } from "interfaces";
 
 export const PostEdit: React.FC = () => {

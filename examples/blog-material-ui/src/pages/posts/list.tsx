@@ -5,7 +5,7 @@ import {
     DeleteButton,
     DateField,
     List,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 import { Stack } from "@mui/material";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";

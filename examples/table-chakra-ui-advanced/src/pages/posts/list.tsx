@@ -1,19 +1,19 @@
 import React, { useCallback } from "react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
 import {
     GetManyResponse,
     useDeleteMany,
     useMany,
     useSelect,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     List,
     EditButton,
     DeleteButton,
     DateField,
     SaveButton,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 
 import {
     Table,
@@ -33,7 +33,7 @@ import {
     Textarea,
 } from "@chakra-ui/react";
 
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 import { IconChevronDown, IconChevronRight } from "@tabler/icons";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";

@@ -1,5 +1,5 @@
 import React from "react";
-import { HttpError, IResourceComponentsProps } from "@pankod/refine-core";
+import { HttpError, IResourceComponentsProps } from "@refinedev/core";
 
 import {
     Edit,
@@ -7,7 +7,7 @@ import {
     RefreshButton,
     useForm,
     useSelect,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Form, Input, Select, Space } from "antd";
 

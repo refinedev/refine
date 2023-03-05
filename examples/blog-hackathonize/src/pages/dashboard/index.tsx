@@ -1,4 +1,4 @@
-import { useList, useCreate } from "@pankod/refine-core";
+import { useList, useCreate } from "@refinedev/core";
 import {
     List as AntdList,
     Card,

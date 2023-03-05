@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLogout, useNavigation } from "@pankod/refine-core";
+import { useLogout, useNavigation } from "@refinedev/core";
 import { AppBar, Toolbar, Button, List, ListItem } from "react95";
 
 export const Footer: React.FC = () => {

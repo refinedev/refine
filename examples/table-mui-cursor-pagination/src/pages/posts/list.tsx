@@ -1,5 +1,5 @@
 import React from "react";
-import { useDataGrid, List } from "@pankod/refine-mui";
+import { useDataGrid, List } from "@refinedev/mui";
 
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 

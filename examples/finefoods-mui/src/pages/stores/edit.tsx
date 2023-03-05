@@ -2,10 +2,10 @@ import {
     HttpError,
     IResourceComponentsProps,
     useTranslate,
-} from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+} from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
-import { Edit } from "@pankod/refine-mui";
+import { Edit } from "@refinedev/mui";
 
 import {
     FormControl,

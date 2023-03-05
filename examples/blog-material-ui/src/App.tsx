@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
@@ -7,11 +7,11 @@ import {
     ReadyPage,
     LoginPage,
     ErrorComponent,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 import { authProvider, axiosInstance } from "./authProvider";
 import { API_URL } from "./constants";

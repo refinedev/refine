@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { PageHeader as AntdPageHeader } from "@pankod/refine-antd";
+import { PageHeader as AntdPageHeader } from "@refinedev/antd";
 
 import { Col } from "antd";
 

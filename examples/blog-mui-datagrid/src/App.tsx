@@ -1,9 +1,9 @@
-import { Refine } from "@pankod/refine-core";
-import { LightTheme } from "@pankod/refine-mui";
+import { Refine } from "@refinedev/core";
+import { LightTheme } from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
-import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
 import Layout from "./components/Layout";
 import EmployeeList from "./pages/employees";
 

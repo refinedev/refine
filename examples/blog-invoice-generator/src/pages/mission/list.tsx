@@ -4,7 +4,7 @@ import {
     TagField,
     useModalForm,
     EditButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table } from "antd";
 

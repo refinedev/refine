@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
-import { Create, useSelect, useForm } from "@pankod/refine-antd";
+import { Create, useSelect, useForm } from "@refinedev/antd";
 
 import { Form, Input, Select } from "antd";
 

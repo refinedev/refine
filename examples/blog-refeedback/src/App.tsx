@@ -1,15 +1,15 @@
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 import {
     notificationProvider,
     LoginPage,
     ErrorComponent,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
-import "@pankod/refine-antd/dist/reset.css";
-import { DataProvider } from "@pankod/refine-strapi";
+import "@refinedev/antd/dist/reset.css";
+import { DataProvider } from "@refinedev/strapi";
 import strapiAuthProvider from "authProvider";
 import { Header, Layout, OffLayoutArea } from "components";
 

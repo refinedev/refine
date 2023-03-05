@@ -1,4 +1,4 @@
-import { IResourceComponentsProps, useExport } from "@pankod/refine-core";
+import { IResourceComponentsProps, useExport } from "@refinedev/core";
 
 import {
     List,
@@ -13,7 +13,7 @@ import {
     ImportButton,
     CreateButton,
     useImport,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Space, Select } from "antd";
 

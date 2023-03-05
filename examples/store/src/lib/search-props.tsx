@@ -1,5 +1,5 @@
 import type { InferGetStaticPropsType } from "next";
-import { dataProvider } from "@pankod/refine-medusa";
+import { dataProvider } from "@refinedev/medusa";
 
 import { API_URL } from "./constants";
 

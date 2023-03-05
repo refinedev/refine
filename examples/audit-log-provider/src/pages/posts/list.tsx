@@ -1,4 +1,4 @@
-import { useTable, useNavigation, useModal } from "@pankod/refine-core";
+import { useTable, useNavigation, useModal } from "@refinedev/core";
 import { useState } from "react";
 
 import { Modal } from "../../components/modal";

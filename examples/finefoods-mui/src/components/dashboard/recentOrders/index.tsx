@@ -1,6 +1,6 @@
 import React from "react";
-import { useNavigation, useTranslate, useUpdate } from "@pankod/refine-core";
-import { NumberField, useDataGrid } from "@pankod/refine-mui";
+import { useNavigation, useTranslate, useUpdate } from "@refinedev/core";
+import { NumberField, useDataGrid } from "@refinedev/mui";
 import { DataGrid, GridActionsCellItem, GridColumns } from "@mui/x-data-grid";
 import { Avatar, Button, Stack, Typography } from "@mui/material";
 import { CheckOutlined, CloseOutlined } from "@mui/icons-material";

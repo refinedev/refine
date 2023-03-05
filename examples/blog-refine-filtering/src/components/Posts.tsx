@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useMany } from "@pankod/refine-core";
+import { useMany } from "@refinedev/core";
 
 import { Filter } from "./Filter";
 import { Search } from "./Search";

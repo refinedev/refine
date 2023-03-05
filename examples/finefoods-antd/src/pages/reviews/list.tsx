@@ -4,9 +4,9 @@ import {
     useUpdateMany,
     useNavigation,
     IResourceComponentsProps,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
-import { List, useTable } from "@pankod/refine-antd";
+import { List, useTable } from "@refinedev/antd";
 
 import {
     CheckCircleOutlined,

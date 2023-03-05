@@ -4,9 +4,9 @@ import {
     useShow,
     useNavigation,
     HttpError,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
-import { List, useTable } from "@pankod/refine-antd";
+import { List, useTable } from "@refinedev/antd";
 
 import {
     EnvironmentOutlined,

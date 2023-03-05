@@ -6,7 +6,7 @@ import {
     CanAccess,
     useRouterContext,
     useMenu,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     UnorderedListOutlined,

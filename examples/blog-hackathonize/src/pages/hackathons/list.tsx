@@ -4,7 +4,7 @@ import {
     ShowButton,
     EditButton,
     TextField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Space } from "antd";
 

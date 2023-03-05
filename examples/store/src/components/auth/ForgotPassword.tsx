@@ -1,4 +1,4 @@
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 import { useUI } from "@lib/context";
 import { emailRegex } from "@lib/regex";
