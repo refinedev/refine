@@ -23,6 +23,7 @@ import { CloneButtonProps } from "../types";
  */
 export const CloneButton: React.FC<CloneButtonProps> = ({
     resourceNameOrRouteName: propResourceNameOrRouteName,
+    resource: resourceNameFromProps,
     recordItemId,
     hideText = false,
     accessControl,
@@ -42,7 +43,9 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
 
     const translate = useTranslate();
 
-    const { id, resource } = useResource(propResourceNameOrRouteName);
+    const { id, resource } = useResource(
+        resourceNameFromProps ?? propResourceNameOrRouteName,
+    );
 
     const { data } = useCan({
         resource: resource?.name,
@@ -64,9 +67,12 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     };
 
     const cloneUrl =
-        (resource || propResourceNameOrRouteName) && (recordItemId || id)
+        (resource || resourceNameFromProps || propResourceNameOrRouteName) &&
+        (recordItemId || id)
             ? generateCloneUrl(
-                  resource! ?? propResourceNameOrRouteName!,
+                  resource! ??
+                      resourceNameFromProps ??
+                      propResourceNameOrRouteName!,
                   recordItemId! ?? id!,
                   meta,
               )

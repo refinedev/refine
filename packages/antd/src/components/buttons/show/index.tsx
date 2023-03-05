@@ -22,6 +22,7 @@ import { ShowButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/show-button} for more details.
  */
 export const ShowButton: React.FC<ShowButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName: propResourceNameOrRouteName,
     recordItemId,
     hideText = false,
@@ -42,7 +43,9 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
 
     const translate = useTranslate();
 
-    const { id, resource } = useResource(propResourceNameOrRouteName);
+    const { id, resource } = useResource(
+        resourceNameFromProps ?? propResourceNameOrRouteName,
+    );
 
     const { data } = useCan({
         resource: resource?.name,
@@ -64,9 +67,12 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     };
 
     const showUrl =
-        (resource || propResourceNameOrRouteName) && (recordItemId || id)
+        (resource || resourceNameFromProps || propResourceNameOrRouteName) &&
+        (recordItemId || id)
             ? generateShowUrl(
-                  resource! || propResourceNameOrRouteName!,
+                  resource! ||
+                      resourceNameFromProps ||
+                      propResourceNameOrRouteName!,
                   recordItemId! ?? id!,
                   meta,
               )

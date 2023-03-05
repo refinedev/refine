@@ -50,7 +50,7 @@ export const List: React.FC<ListProps> = ({
     const defaultExtra = isCreateButtonVisible ? (
         <CreateButton
             size="middle"
-            resourceNameOrRouteName={
+            resource={
                 routerType === "legacy"
                     ? resource?.route
                     : resource?.identifier ?? resource?.name

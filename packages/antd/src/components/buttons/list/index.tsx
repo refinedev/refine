@@ -23,6 +23,7 @@ import { ListButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/list-button} for more details.
  */
 export const ListButton: React.FC<ListButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName: propResourceNameOrRouteName,
     hideText = false,
     accessControl,
@@ -42,7 +43,9 @@ export const ListButton: React.FC<ListButtonProps> = ({
 
     const translate = useTranslate();
 
-    const { resource } = useResource(propResourceNameOrRouteName);
+    const { resource } = useResource(
+        resourceNameFromProps ?? propResourceNameOrRouteName,
+    );
 
     const { data } = useCan({
         resource: resource?.name,
@@ -66,8 +69,13 @@ export const ListButton: React.FC<ListButtonProps> = ({
     };
 
     const listUrl =
-        resource || propResourceNameOrRouteName
-            ? generateListUrl(resource! || propResourceNameOrRouteName!, meta)
+        resource || resourceNameFromProps || propResourceNameOrRouteName
+            ? generateListUrl(
+                  resource! ||
+                      resourceNameFromProps ||
+                      propResourceNameOrRouteName!,
+                  meta,
+              )
             : "";
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
@@ -100,12 +108,15 @@ export const ListButton: React.FC<ListButtonProps> = ({
                     (children ??
                         translate(
                             `${
-                                resource?.name ?? propResourceNameOrRouteName
+                                resource?.name ??
+                                resourceNameFromProps ??
+                                propResourceNameOrRouteName
                             }.titles.list`,
                             userFriendlyResourceName(
                                 resource?.meta?.label ??
                                     resource?.label ??
                                     resource?.name ??
+                                    resourceNameFromProps ??
                                     propResourceNameOrRouteName,
                                 "plural",
                             ),

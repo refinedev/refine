@@ -22,6 +22,7 @@ import { EditButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/edit-button} for more details.
  */
 export const EditButton: React.FC<EditButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName: propResourceNameOrRouteName,
     recordItemId,
     hideText = false,
@@ -43,7 +44,9 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
     const { editUrl: generateEditUrl } = useNavigation();
 
-    const { id, resource } = useResource(propResourceNameOrRouteName);
+    const { id, resource } = useResource(
+        resourceNameFromProps ?? propResourceNameOrRouteName,
+    );
 
     const { data } = useCan({
         resource: resource?.name,
@@ -65,9 +68,12 @@ export const EditButton: React.FC<EditButtonProps> = ({
     };
 
     const editUrl =
-        (resource || propResourceNameOrRouteName) && (recordItemId ?? id)
+        (resource || resourceNameFromProps || propResourceNameOrRouteName) &&
+        (recordItemId ?? id)
             ? generateEditUrl(
-                  resource! ?? propResourceNameOrRouteName!,
+                  resource! ??
+                      resourceNameFromProps ??
+                      propResourceNameOrRouteName!,
                   recordItemId! ?? id!,
                   meta,
               )
