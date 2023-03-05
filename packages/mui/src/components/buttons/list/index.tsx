@@ -23,6 +23,7 @@ import { ListButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/buttons/list-button} for more details.
  */
 export const ListButton: React.FC<ListButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName,
     hideText = false,
     accessControl,
@@ -43,7 +44,9 @@ export const ListButton: React.FC<ListButtonProps> = ({
 
     const translate = useTranslate();
 
-    const { resource } = useResource(resourceNameOrRouteName);
+    const { resource } = useResource(
+        resourceNameFromProps ?? resourceNameOrRouteName,
+    );
 
     const { data } = useCan({
         resource: resource?.name,
@@ -67,8 +70,13 @@ export const ListButton: React.FC<ListButtonProps> = ({
     };
 
     const listUrl =
-        resource || resourceNameOrRouteName
-            ? generateListUrl(resource! || resourceNameOrRouteName!, meta)
+        resource || resourceNameFromProps || resourceNameOrRouteName
+            ? generateListUrl(
+                  resource! ||
+                      resourceNameFromProps ||
+                      resourceNameOrRouteName!,
+                  meta,
+              )
             : "";
 
     const { sx, ...restProps } = rest;
@@ -107,12 +115,15 @@ export const ListButton: React.FC<ListButtonProps> = ({
                     children ??
                     translate(
                         `${
-                            resource?.name ?? resourceNameOrRouteName
+                            resource?.name ??
+                            resourceNameFromProps ??
+                            resourceNameOrRouteName
                         }.titles.list`,
                         userFriendlyResourceName(
                             resource?.meta?.label ??
                                 resource?.label ??
                                 resource?.name ??
+                                resourceNameFromProps ??
                                 resourceNameOrRouteName,
                             "plural",
                         ),

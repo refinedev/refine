@@ -58,7 +58,7 @@ export const List: React.FC<ListProps> = ({
 
     const defaultHeaderButtons = isCreateButtonVisible ? (
         <CreateButton
-            resourceNameOrRouteName={
+            resource={
                 routerType === "legacy"
                     ? resource?.route
                     : resource?.identifier ?? resource?.name

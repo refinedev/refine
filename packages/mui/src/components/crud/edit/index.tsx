@@ -106,7 +106,7 @@ export const Edit: React.FC<EditProps> = ({
             {!recordItemId && (
                 <ListButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={
+                    resource={
                         routerType === "legacy"
                             ? resource?.route
                             : resource?.identifier ?? resource?.name
@@ -115,7 +115,7 @@ export const Edit: React.FC<EditProps> = ({
             )}
             <RefreshButton
                 {...(isLoading ? { disabled: true } : {})}
-                resourceNameOrRouteName={
+                resource={
                     routerType === "legacy"
                         ? resource?.route
                         : resource?.identifier ?? resource?.name
@@ -132,6 +132,11 @@ export const Edit: React.FC<EditProps> = ({
                 (id || deleteButtonProps?.recordItemId) && (
                     <DeleteButton
                         {...(isLoading ? { disabled: true } : {})}
+                        resource={
+                            routerType === "legacy"
+                                ? resource?.route
+                                : resource?.identifier ?? resource?.name
+                        }
                         mutationMode={mutationMode}
                         variant="outlined"
                         onSuccess={() => {

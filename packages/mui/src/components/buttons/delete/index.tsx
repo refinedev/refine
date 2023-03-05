@@ -21,6 +21,7 @@ import { DeleteButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/buttons/delete-button} for more details.
  */
 export const DeleteButton: React.FC<DeleteButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName,
     recordItemId,
     onSuccess,
@@ -44,7 +45,9 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const translate = useTranslate();
 
-    const { id, resource } = useResource(resourceNameOrRouteName);
+    const { id, resource } = useResource(
+        resourceNameFromProps ?? resourceNameOrRouteName,
+    );
 
     const { mutationMode: mutationModeContext } = useMutationMode();
 
