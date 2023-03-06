@@ -1,5 +1,5 @@
 {
-    "name": "@pankod/refine-demo-sidebar",
+    "name": "@refinedev/demo-sidebar",
     "description": "refine demo sidebar. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
     "version": "4.0.2",
     "license": "MIT",
@@ -19,8 +19,8 @@
         "prepare": "npm run build"
     },
     "peerDependencies": {
-        "@pankod/refine-antd": "^4.0.0",
-        "@pankod/refine-core": "^3.23.2",
+        "@refinedev/antd": "^4.0.0",
+        "@refinedev/core": "^3.23.2",
         "react": "^17.0.0 || ^18.0.0",
         "react-dom": "^17.0.0 || ^18.0.0",
         "antd": "^5.0.3",
@@ -29,8 +29,8 @@
     "author": "refine",
     "module": "dist/esm/index.js",
     "devDependencies": {
-        "@pankod/refine-core": "^3.67.0",
-        "@pankod/refine-antd": "^4.0.0",
+        "@refinedev/core": "^3.67.0",
+        "@refinedev/antd": "^4.0.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
