@@ -89,7 +89,7 @@ const App: React.FC = () => {
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-location";
+import routerProvider from "@pankod/refine-react-location";
 
 const App: React.FC = () => {
     return <Refine routerProvider={routerProvider} />;
@@ -1081,7 +1081,7 @@ In the example below you can see how to serve the application in a subdirectory.
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 // highlight-next-line
-import routerProvider from "@refinedev/react-location";
+import routerProvider from "@pankod/refine-react-location";
 import dataProvider from "@refinedev/simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -1219,7 +1219,7 @@ In the example below, you can see how the initial route is set to `/users`.
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 // highlight-next-line
-import routerProvider from "@refinedev/react-location";
+import routerProvider from "@pankod/refine-react-location";
 import dataProvider from "@refinedev/simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 

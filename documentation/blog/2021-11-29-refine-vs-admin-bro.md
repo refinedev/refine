@@ -163,7 +163,7 @@ const App: React.FC = () => {
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
-import routerProvider from "@refinedev/react-location";
+import routerProvider from "@pankod/refine-react-location";
 
 const App: React.FC = () => {
     return <Refine routerProvider={routerProvider} />;

@@ -82,7 +82,7 @@ export default App;
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-location";
+import routerProvider from "@pankod/refine-react-location";
 
 // highlight-next-line
 import { CustomPage } from "pages/custom-page";
@@ -237,7 +237,7 @@ export default App;
 ```tsx title="src/App.tsx"
 // highlight-start
 import { Refine, Authenticated, AuthBindings } from "@refinedev/core";
-import routerProvider from "@refinedev/react-location";
+import routerProvider from "@pankod/refine-react-location";
 // highlight-end
 
 // highlight-next-line
@@ -446,7 +446,7 @@ export default App;
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-location";
+import routerProvider from "@pankod/refine-react-location";
 
 // highlight-next-line
 import { CustomPage } from "pages/custom-page";

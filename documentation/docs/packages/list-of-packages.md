@@ -52,11 +52,11 @@ title: List of Packages
 
 - `@refinedev/react-router-v6` - Router Provider for [React Router (v6)](https://reactrouter.com)
 
-- `@refinedev/react-router` - Router Provider for [React Router (v5)](https://v5.reactrouter.com/)
+- `@pankod/refine-react-router` - Router Provider for [React Router (v5)](https://v5.reactrouter.com/)
 
 - `@refinedev/nextjs-router` - Router Provider for [Next.js](https://nextjs.org/docs/api-reference/next/router#userouter)
 
-- `@refinedev/react-location` - Router Provider for [React Location](https://github.com/tannerlinsley/react-location)
+- `@pankod/refine-react-location` - Router Provider for [React Location](https://github.com/tannerlinsley/react-location)
 
 - `@refinedev/remix-router` - Router Provider for [Remix](https://remix.run/)
 
