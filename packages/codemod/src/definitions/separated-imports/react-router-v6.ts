@@ -65,4 +65,5 @@ export const exported: string[] = [
     "useResolvedPath",
     "useRoutes",
     "useOutletContext",
+    "NavigationType",
 ];
