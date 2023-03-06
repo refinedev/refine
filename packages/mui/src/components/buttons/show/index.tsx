@@ -68,15 +68,8 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     };
 
     const showUrl =
-        (resource || resourceNameFromProps || resourceNameOrRouteName) &&
-        (recordItemId || id)
-            ? generateShowUrl(
-                  resource! ??
-                      resourceNameFromProps ??
-                      resourceNameOrRouteName!,
-                  recordItemId! ?? id!,
-                  meta,
-              )
+        resource && (recordItemId || id)
+            ? generateShowUrl(resource, recordItemId! ?? id!, meta)
             : "";
 
     const { sx, ...restProps } = rest;

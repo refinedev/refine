@@ -68,15 +68,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
             );
     };
 
-    const createUrl =
-        resource || resourceNameFromProps || resourceNameOrRouteName
-            ? generateCreateUrl(
-                  resource! ||
-                      resourceNameFromProps ||
-                      resourceNameOrRouteName!,
-                  meta,
-              )
-            : "";
+    const createUrl = resource ? generateCreateUrl(resource, meta) : "";
 
     const { sx, ...restProps } = rest;
 

@@ -69,15 +69,8 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     };
 
     const cloneUrl =
-        (resource || resourceNameFromProps || resourceNameOrRouteName) &&
-        (recordItemId || id)
-            ? generateCloneUrl(
-                  resource! ??
-                      resourceNameFromProps ??
-                      resourceNameOrRouteName!,
-                  recordItemId! ?? id!,
-                  meta,
-              )
+        resource && (recordItemId || id)
+            ? generateCloneUrl(resource, recordItemId! ?? id!, meta)
             : "";
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {

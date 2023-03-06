@@ -67,15 +67,8 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     };
 
     const showUrl =
-        (resource || resourceNameFromProps || propResourceNameOrRouteName) &&
-        (recordItemId || id)
-            ? generateShowUrl(
-                  resource! ||
-                      resourceNameFromProps ||
-                      propResourceNameOrRouteName!,
-                  recordItemId! ?? id!,
-                  meta,
-              )
+        resource && (recordItemId || id)
+            ? generateShowUrl(resource, recordItemId! ?? id!, meta)
             : "";
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {

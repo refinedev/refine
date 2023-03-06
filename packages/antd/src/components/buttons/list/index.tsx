@@ -10,6 +10,7 @@ import {
     useRouterContext,
     useRouterType,
     useLink,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 
@@ -68,15 +69,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
             );
     };
 
-    const listUrl =
-        resource || resourceNameFromProps || propResourceNameOrRouteName
-            ? generateListUrl(
-                  resource! ||
-                      resourceNameFromProps ||
-                      propResourceNameOrRouteName!,
-                  meta,
-              )
-            : "";
+    const listUrl = resource ? generateListUrl(resource, meta) : "";
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;
@@ -116,8 +109,10 @@ export const ListButton: React.FC<ListButtonProps> = ({
                                 resource?.meta?.label ??
                                     resource?.label ??
                                     resource?.name ??
-                                    resourceNameFromProps ??
-                                    propResourceNameOrRouteName,
+                                    pickNotDeprecated(
+                                        resourceNameFromProps,
+                                        propResourceNameOrRouteName,
+                                    ),
                                 "plural",
                             ),
                         ))}

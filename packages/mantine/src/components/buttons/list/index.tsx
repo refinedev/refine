@@ -8,6 +8,7 @@ import {
     useRouterContext,
     useRouterType,
     useLink,
+    pickNotDeprecated,
 } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import { ActionIcon, Anchor, Button } from "@mantine/core";
@@ -70,15 +71,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
             );
     };
 
-    const listUrl =
-        resource || resourceNameFromProps || resourceNameOrRouteName
-            ? generateListUrl(
-                  resource! ||
-                      resourceNameFromProps ||
-                      resourceNameOrRouteName!,
-                  meta,
-              )
-            : "";
+    const listUrl = resource ? generateListUrl(resource, meta) : "";
 
     const { variant, styles, ...commonProps } = rest;
 
@@ -137,8 +130,10 @@ export const ListButton: React.FC<ListButtonProps> = ({
                                 resource?.meta?.label ??
                                     resource?.label ??
                                     resource?.name ??
-                                    resourceNameFromProps ??
-                                    resourceNameOrRouteName,
+                                    pickNotDeprecated(
+                                        resourceNameFromProps,
+                                        resourceNameOrRouteName,
+                                    ),
                                 "plural",
                             ),
                         )}

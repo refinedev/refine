@@ -61,15 +61,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
             );
     };
 
-    const createUrl =
-        resource || resourceNameFromProps || resourceNameOrRouteName
-            ? generateCreateUrl(
-                  resource! ||
-                      resourceNameFromProps ||
-                      resourceNameOrRouteName!,
-                  meta,
-              )
-            : "";
+    const createUrl = resource ? generateCreateUrl(resource, meta) : "";
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;

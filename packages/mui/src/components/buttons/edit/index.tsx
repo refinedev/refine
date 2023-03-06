@@ -69,15 +69,8 @@ export const EditButton: React.FC<EditButtonProps> = ({
     };
 
     const editUrl =
-        (resource || resourceNameFromProps || resourceNameOrRouteName) &&
-        (recordItemId ?? id)
-            ? generateEditUrl(
-                  resource! ??
-                      resourceNameFromProps ??
-                      resourceNameOrRouteName!,
-                  recordItemId! ?? id!,
-                  meta,
-              )
+        resource && (recordItemId ?? id)
+            ? generateEditUrl(resource, recordItemId! ?? id!, meta)
             : "";
 
     const { sx, ...restProps } = rest;
