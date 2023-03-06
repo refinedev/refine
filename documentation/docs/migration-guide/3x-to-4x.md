@@ -30,7 +30,7 @@ refine v4 will be released under `@refinedev` npm organization.
 So you must install the packages with the new organization name.
 
 ```bash
-npm uninstall @refinedev/core @refinedev/antd @pankod/..
+npm uninstall @pankod/refine-core @pankod/refine-antd @pankod/..
 
 npm i @refinedev/core @refinedev/antd @refinedev/..
 ```
@@ -39,7 +39,7 @@ npm i @refinedev/core @refinedev/antd @refinedev/..
 You must make this change for all packages that start with `@pankod`.
 :::
 
-## **`@refinedev/core` changes**
+## **`@pankod/refine-core` changes**
 
 ### `routerProvider`
 
@@ -50,7 +50,7 @@ refine v4 includes a new interface for the `routerProvider` prop. It is now smal
 We still support the `routerProvider@v3` for backward compatibility. We changed name to `legacyRouterProvider` and it will be removed in the next major version. If you want to continue using the `routerProvider@v3` you can use it as `legacyRouterProvider` in your project.
 
 ```diff
-- import routerProvider from "@refinedev/react-router-v6";
+- import routerProvider from "@pankod/refine-react-router-v6";
 + import routerProvider from "@refinedev/react-router-v6/legacy";
 
 const App = () => {
@@ -486,11 +486,11 @@ useList({
 
 `<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
 
-## **`@refinedev/antd` changes**
+## **`@pankod/refine-antd` changes**
 
 ### Import changes
 
-All **Ant Design** components re-exported from `@refinedev/antd` have been removed. You should import them from `antd` package directly.
+All **Ant Design** components re-exported from `@pankod/refine-antd` have been removed. You should import them from `antd` package directly.
 
 If the package is not installed, you should install it with your package manager:
 
@@ -527,7 +527,7 @@ yarn add antd
 After that, you can import components from `antd` package directly like below:
 
 ```diff
--import { useTable, SaveButton, Button, Form, Input, Select } from "@refinedev/antd";
+-import { useTable, SaveButton, Button, Form, Input, Select } from "@pankod/refine-antd";
 
 +import { useTable, SaveButton } from "@refinedev/antd";
 +import { Button, Form, Input, Select } from "antd";
@@ -535,7 +535,7 @@ After that, you can import components from `antd` package directly like below:
 
 <br />
 
-`Icons` are also removed from `@refinedev/antd`. So, you should import icons from `@ant-design/icons` package directly.
+`Icons` are also removed from `@pankod/refine-antd`. So, you should import icons from `@ant-design/icons` package directly.
 
 If the package is not installed, you should install it with your package manager:
 
@@ -572,7 +572,7 @@ yarn add @ant-design/icons
 After that, you can import icons from `@ant-design/icons` package directly like below:
 
 ```diff
--import { Icons } from "@refinedev/antd";
+-import { Icons } from "@pankod/refine-antd";
 -const { EditOutlined } = Icons;
 
 + import { EditOutlined } from "@ant-design/icons";
@@ -788,7 +788,7 @@ useImport({
 `useMenu` hook is removed. It will be exported from `@refinedev/core` package.
 
 ```diff
--import { useMenu } from "@refinedev/antd";
+-import { useMenu } from "@pankod/refine-antd";
 +import { useMenu } from "@refinedev/core";
 ```
 ### `useDrawerForm` and `useModalForm`  hooks
@@ -823,11 +823,11 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 
 `<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
 
-## **`@refinedev/mui` changes**
+## **`@pankod/refine-mui` changes**
 
 ### Import changes
 
-All **Material UI** components re-exported from `@refinedev/mui` have been removed. You should import them from Material UI packages directly.
+All **Material UI** components re-exported from `@pankod/refine-mui` have been removed. You should import them from Material UI packages directly.
 
 If the packages are not installed, you can install them with your package manager:
 
@@ -874,7 +874,7 @@ After that, you can import them from related packages directly.
 -    ThemeProvider,
 -    DataGrid
 -    LoadingButton,
-- } from "@refinedev/mui";
+- } from "@pankod/refine-mui";
 
 + import { NumberField } from "@refinedev/mui";
 + import { ThemeProvider } from "@mui/material/styles";
@@ -977,7 +977,7 @@ After that, you can import them from related packages directly.
 `useMenu` hook is removed. It will be exported from `@refinedev/core` package.
 
 ```diff
--import { useMenu } from "@refinedev/mui";
+-import { useMenu } from "@pankod/refine-mui";
 +import { useMenu } from "@refinedev/core";
 ```
 
@@ -1047,11 +1047,11 @@ Following basic view component props are removed:
 
 `<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
 
-## **`@refinedev/mantine` changes**
+## **`@pankod/refine-mantine` changes**
 
 ### Import changes
 
-All **Mantine** components re-exported from `@refinedev/mantine` have been removed. You should import them from Mantine packages directly.
+All **Mantine** components re-exported from `@pankod/refine-mantine` have been removed. You should import them from Mantine packages directly.
 
 If the packages are not installed, you can install them with your package manager:
 
@@ -1097,7 +1097,7 @@ After that, you can import them from related packages directly.
 -    Select,
 -    List,
 -    useSelect,
-- } from "@refinedev/mantine";
+- } from "@pankod/refine-mantine";
 
 + import { useSelect, List } from "@refinedev/mantine";
 + import { MantineProvider, TextInput, Select } from "@mantine/core";
@@ -1143,11 +1143,11 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 
 `<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
 
-## **`@refinedev/chakra-ui` changes**
+## **`@pankod/refine-chakra-ui` changes**
 
 ### Import changes
 
-All **Chakra UI** components re-exported from `@refinedev/chakra-ui` have been removed. You should import them from `@chakra-ui/react` package directly.
+All **Chakra UI** components re-exported from `@pankod/refine-chakra-ui` have been removed. You should import them from `@chakra-ui/react` package directly.
 
 If the packages are not installed, you can install them with your package manager:
 
@@ -1192,7 +1192,7 @@ After that, you can import them from related packages directly.
 -    Select,
 -    ShowButton,
 -    usePagination,
-- } from "@refinedev/chakra-ui";
+- } from "@pankod/refine-chakra-ui";
 
 + import { usePagination, ShowButton } from "@refinedev/chakra-ui";
 + import { ChakraProvider, Input, Select } from "@chakra-ui/react";
@@ -1215,11 +1215,11 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 
 `<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
 
-## **`@refinedev/react-table` changes**
+## **`@pankod/refine-react-table` changes**
 
 ### Import changes
 
-All `@tanstack/react-table` imports re-exported from `@refinedev/react-table` have been removed. You should import them from the `@tanstack/react-table` package directly.
+All `@tanstack/react-table` imports re-exported from `@pankod/refine-react-table` have been removed. You should import them from the `@tanstack/react-table` package directly.
 
 If the package is not installed, you can install it with your package manager:
 
@@ -1256,7 +1256,7 @@ yarn add @tanstack/react-table
 After that, you can import them from `@tanstack/react-table` package directly.
 
 ```diff
-- import { useTable, ColumnDef, flexRender } from "@refinedev/react-table";
+- import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 + import { useTable } from "@refinedev/react-table";
 + import { ColumnDef, flexRender } from "@tanstack/react-table";
@@ -1339,11 +1339,11 @@ After that, you can import them from `@tanstack/react-table` package directly.
     } = useTable();
     ```
 
-## **`@refinedev/react-hook-form` changes**
+## **`@pankod/refine-react-hook-form` changes**
 
 ### Import changes
 
-All `react-hook-form` imports re-exported from `@refinedev/react-hook-form` have been removed. You should import them from the `react-hook-form` package directly.
+All `react-hook-form` imports re-exported from `@pankod/refine-react-hook-form` have been removed. You should import them from the `react-hook-form` package directly.
 
 If the package is not installed, you can install it with your package manager:
 
@@ -1380,7 +1380,7 @@ yarn add react-hook-form
 After that, you can import them from `react-hook-form` package directly.
 
 ```diff
-- import { useForm, Controller } from "@refinedev/react-hook-form";
+- import { useForm, Controller } from "@pankod/refine-react-hook-form";
 
 + import { useForm } from "@refinedev/react-hook-form";
 + import { Controller } from "react-hook-form";
