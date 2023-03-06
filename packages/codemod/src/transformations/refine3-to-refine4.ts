@@ -34,6 +34,10 @@ import {
     separateImportsReactTablePostTransform,
 } from "./v4/separate-imports-react-table";
 import { useMenuToCore } from "./v4/use-menu-to-core";
+import {
+    separateImportsReactRouterV6,
+    separateImportsReactRouterV6PostTransform,
+} from "./v4/separate-imports-react-router-v6";
 
 export async function postTransform(files: any, flags: any) {
     await separateImportsAntDPostTransform(files, flags);
@@ -43,12 +47,14 @@ export async function postTransform(files: any, flags: any) {
     await separateImportsReactHookFormPostTransform(files, flags);
     await separateImportsReactQueryPostTransform(files, flags);
     await separateImportsReactTablePostTransform(files, flags);
+    await separateImportsReactRouterV6PostTransform(files, flags);
 }
 
 export default function transformer(file: FileInfo, api: API): string {
     const j = api.jscodeshift;
     const source = j(file.source);
 
+    separateImportsReactRouterV6(j, source);
     addV3LegacyAuthProviderCompatibleTrueToAuthHooks(j, source);
     authProviderToLegacyAuthProvider(j, source);
     metaDataToMeta(j, source);
