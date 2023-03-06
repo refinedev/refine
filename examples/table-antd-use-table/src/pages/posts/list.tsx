@@ -2,7 +2,7 @@ import {
     IResourceComponentsProps,
     useMany,
     getDefaultFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     List,
@@ -11,7 +11,7 @@ import {
     useTable,
     getDefaultSortOrder,
     useSelect,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { FilterDropdownProps } from "antd/lib/table/interface";
 import { Table, Radio, Select, Input } from "antd";

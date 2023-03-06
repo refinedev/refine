@@ -10,7 +10,7 @@ Internally, it uses [Papa Parse][papaparse] to parse the file contents.
 It will return properties that are compatible with Ant Design [`<Upload>`](https://ant.design/components/upload/) and [`<Button>`](https://ant.design/components/button/) components.
 
 :::info
-`useImport` hook is extended from [`useImport`][use-import-core] hook from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useImport`][use-import-core] hook.
+`useImport` hook is extended from [`useImport`][use-import-core] hook from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useImport`][use-import-core] hook.
 :::
 
 ## Basic Usage
@@ -18,7 +18,7 @@ It will return properties that are compatible with Ant Design [`<Upload>`](https
 Here is a basic usage example of `useImport` hook:
 
 ```tsx
-import { useImport, ImportButton } from "@pankod/refine-antd";
+import { useImport, ImportButton } from "@refinedev/antd";
 
 export const PostList: React.FC = () => {
     const importProps = useImport();
@@ -32,7 +32,7 @@ export const PostList: React.FC = () => {
 Also, you can use the `inputProps` and `uploadProps` properties without the `<ImportButton>` component for more customization:
 
 ```tsx
-import { useImport } from "@pankod/refine-antd";
+import { useImport } from "@refinedev/antd";
 import { Upload, Button } from "antd";
 
 export const PostList: React.FC = () => {
@@ -169,7 +169,7 @@ Use `resource` instead.
 Button properties that are compatible with Ant Design [`<Button>`](https://ant.design/components/button/) component.
 
 ```tsx
-import { useImport } from "@pankod/refine-antd";
+import { useImport } from "@refinedev/antd";
 import { Button } from "antd";
 
 export const PostList: React.FC = () => {
@@ -192,7 +192,7 @@ If the import is in progress, it sets the loading state of the button.
 Upload properties that are compatible with Ant Design [`<Upload>`](https://ant.design/components/upload/) component.
 
 ```tsx
-import { useImport } from "@pankod/refine-antd";
+import { useImport } from "@refinedev/antd";
 import { Upload } from "antd";
 
 export const PostList: React.FC = () => {
@@ -277,7 +277,7 @@ With this code, the parsed data will be mapped to conform to the API requirement
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/useImport"/>
+<PropsTable module="@refinedev/antd/useImport"/>
 
 ### Return Values
 

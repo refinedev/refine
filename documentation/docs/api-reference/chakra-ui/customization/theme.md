@@ -4,8 +4,8 @@ title: Theme
 ---
 
 ```tsx live shared
-import { useNavigation, useRouterContext } from "@pankod/refine-core";
-import { List, Edit, Create, EditButton } from "@pankod/refine-chakra-ui";
+import { useNavigation, useRouterContext } from "@refinedev/core";
+import { List, Edit, Create, EditButton } from "@refinedev/chakra-ui";
 import {
     TableContainer,
     Table,
@@ -20,9 +20,9 @@ import {
     FormLabel,
     Input,
 } from "@chakra-ui/react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -168,9 +168,9 @@ The theme object is where you define your application's color palette, type scal
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
     Layout,
@@ -178,7 +178,7 @@ import {
     notificationProvider,
     // highlight-next-line
     refineTheme,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import {
     ChakraProvider,
     // highlight-next-line
@@ -285,9 +285,9 @@ const IconMoonStars = () => (
 );
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
     Layout,
@@ -295,7 +295,7 @@ import {
     notificationProvider,
     // highlight-next-line
     refineTheme,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import {
     ChakraProvider,
     Box,

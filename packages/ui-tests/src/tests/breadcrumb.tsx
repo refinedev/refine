@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { RefineBreadcrumbProps } from "@pankod/refine-ui-types";
+import { RefineBreadcrumbProps } from "@refinedev/ui-types";
 
 import { act, ITestWrapperProps, render, TestWrapper } from "@test";
 
@@ -23,7 +23,7 @@ const DummyResourcePage = () => <div>Dummy</div>;
 export const breadcrumbTests = function (
     Breadcrumb: React.ComponentType<RefineBreadcrumbProps<any>>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / CRUD Create", () => {
+    describe("[@refinedev/ui-tests] Common Tests / CRUD Create", () => {
         it("should render successfuly", async () => {
             const { container } = renderBreadcrumb(<Breadcrumb />);
 

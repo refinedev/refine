@@ -1,4 +1,4 @@
-import { useGetLocale } from "@pankod/refine-core";
+import { useGetLocale } from "@refinedev/core";
 import { DownOutlined } from "@ant-design/icons";
 import {
     Layout as AntdLayout,
@@ -8,7 +8,7 @@ import {
     Dropdown,
     Avatar,
 } from "antd";
-import NextRouter from "@pankod/refine-nextjs-router/legacy";
+import NextRouter from "@refinedev/nextjs-router/legacy";
 import { useRouter } from "next/router";
 
 const { Link } = NextRouter;

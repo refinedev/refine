@@ -173,9 +173,9 @@ As a first step, navigate to the `_app.tsx` file inside the pages folder. When y
 ```tsx title="pages/_app.tsx"
 import React from "react";
 import { AppProps } from "next/app";
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-nextjs-router";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/nextjs-router";
+import dataProvider from "@refinedev/simple-rest";
  
 const API_URL = "https://api.fake-rest.refine.dev";
  
@@ -258,7 +258,7 @@ To get started, create a components sub-folder inside the src folder, Next, crea
 
 ```tsx title="src/Layout.tsx"
 import * as React from 'react';
-import { LayoutProps } from '@pankod/refine-core';
+import { LayoutProps } from '@refinedev/core';
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
@@ -399,7 +399,7 @@ To go about this, navigate to the `index.tsx` file inside the pages folder and a
 
 ```tsx title="pages/index.tsx"
 import { GetServerSideProps } from "next";
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
  
 interface IProduct {
   id: number;
@@ -503,9 +503,9 @@ Also import the `ProductCards` and the `LayoutWrapper` components like highlight
 
 ```tsx title="pages/index.tsx"
 import { GetServerSideProps } from 'next';
-import dataProvider from '@pankod/refine-simple-rest';
+import dataProvider from '@refinedev/simple-rest';
  //highlight-start
-import { GetListResponse, LayoutWrapper, useTable } from '@pankod/refine-core';
+import { GetListResponse, LayoutWrapper, useTable } from '@refinedev/core';
 import ProductCards from '@components/ProductCard';
  //highlight-end
 

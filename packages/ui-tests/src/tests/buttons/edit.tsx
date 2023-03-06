@@ -2,7 +2,7 @@ import React from "react";
 import {
     RefineEditButtonProps,
     RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 
 import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
 import { Route, Routes } from "react-router-dom";
@@ -10,7 +10,7 @@ import { Route, Routes } from "react-router-dom";
 export const buttonEditTests = function (
     EditButton: React.ComponentType<RefineEditButtonProps<any, any>>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Edit Button", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Edit Button", () => {
         const edit = jest.fn();
 
         beforeAll(() => {

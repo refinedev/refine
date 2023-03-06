@@ -9,21 +9,21 @@ title: Command Palette
 
 ## Installation
 
-Install the [@pankod/refine-kbar][refine-kbar] library.
+Install the [@refinedev/kbar][refine-kbar] library.
 
 ```bash
-npm i @pankod/refine-kbar
+npm i @refinedev/kbar
 ```
 ## Basic Usage
 
-First of all, you need to import the `@pankod/refine-kbar` library and we will use `RefineKbarProvider` to wrap the whole application.
+First of all, you need to import the `@refinedev/kbar` library and we will use `RefineKbarProvider` to wrap the whole application.
 
 After that, we should create the `<OffLayoutArea/>` component for the Refine component and use the `refine-kbar` command palette in `<OffLayoutArea>`. We have the `<RefineKbar>` component to provide the command palette to the `<Refine>` component.
 
 ```tsx tile="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 // highlight-next-line
-import { RefineKbarProvider } from "@pankod/refine-kbar";
+import { RefineKbarProvider } from "@refinedev/kbar";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import {
@@ -101,7 +101,7 @@ check the [`refine-finefoods`][refine-finefoods] example. Also you can find more
 You can use the `createAction` to create a new action and use the `useRegisterActions` to register the action to the command palette.
 
 ```tsx title="Custom action example"
-import { createAction, useRegisterActions } from "@pankod/refine-kbar";
+import { createAction, useRegisterActions } from "@refinedev/kbar";
 
 const customAction = createAction({
     name: "my custom action",

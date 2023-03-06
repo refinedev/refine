@@ -2,8 +2,8 @@ import { replaceImports } from ".";
 
 describe("replaceImports", () => {
     const packages = {
-        "@pankod/refine-core": "RefineCore",
-        "@pankod/refine-antd": "RefineAntd",
+        "@refinedev/core": "RefineCore",
+        "@refinedev/antd": "RefineAntd",
     };
 
     it("should return empty string if no string is passed", () => {
@@ -12,8 +12,8 @@ describe("replaceImports", () => {
 
     it("should replace imports", () => {
         const code = `
-import { useForm } from "@pankod/refine-core";
-import { useTable } from "@pankod/refine-antd";
+import { useForm } from "@refinedev/core";
+import { useTable } from "@refinedev/antd";
 `;
 
         expect(replaceImports(code, packages)).toContain(

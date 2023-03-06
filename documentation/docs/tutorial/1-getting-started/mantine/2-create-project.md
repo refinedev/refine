@@ -120,9 +120,9 @@ Here's what you should see:
 ```tsx live previewOnly previewHeight=450px url=http://localhost:3000
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
-import routerBindings from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerBindings from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
     LightTheme,

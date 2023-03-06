@@ -9,7 +9,7 @@ import {
     pickNotDeprecated,
     useSelect,
     UseSelectProps,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 export type UseRadioGroupReturnType<TData extends BaseRecord = BaseRecord> = {
     radioGroupProps: RadioGroupProps;

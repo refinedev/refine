@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { LayoutWrapper } from "@pankod/refine-core";
+import { LayoutWrapper } from "@refinedev/core";
 
 import { AccountLayout, AddressesTemplate } from "@components";
 

@@ -9,8 +9,8 @@ sidebar_label: <Refine>
 [`dataProvider`](/api-reference/core/providers/data-provider.md) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 import { PostList } from "pages/posts";
 
@@ -51,7 +51,7 @@ A [`dataProvider`](/api-reference/core/providers/data-provider.md) makes HTTP re
 To activate multiple data provider in refine, we have to pass the default key with `dataProvider` for the default data provider and we can pass other data providers with any key to the `<Refine />` component.
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 import defaultDataProvider from "./dataProvider";
 import exampleDataProvider from "./dataProvider";
@@ -100,8 +100,8 @@ Routes for the action pages that are for interacting with the CRUD API operation
 <br />
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-json-server";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/json-server";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -389,9 +389,9 @@ The value set in individual CRUD components ([ANTD](/docs/api-reference/antd/com
 ```tsx title="App.tsx"
 import { Breadcrumb } from "antd";
 OR
-import { Breadcrumb } from "@pankod/refine-mantine";
+import { Breadcrumb } from "@refinedev/mantine";
 OR
-import { Breadcrumb } from "@pankod/refine-mui";
+import { Breadcrumb } from "@refinedev/mui";
 OR
 import { Breadcrumb } from "my-custom-breadcrumb";
 
@@ -911,8 +911,8 @@ The component wanted to be placed out of the app layout structure can be set by 
 
 ```tsx title="App.tsx"
 // highlight-next-line
-import { Refine } from "@pankod/refine-core";
-import { BackTop } from "@pankod/refine-antd";
+import { Refine } from "@refinedev/core";
+import { BackTop } from "@refinedev/antd";
 
 const App: React.FC = () => (
     <Refine
@@ -955,6 +955,6 @@ const App: React.FC = () => (
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/Refine"/>
+<PropsTable module="@refinedev/core/Refine"/>
 
 [routerprovider]: /api-reference/core/providers/router-provider.md

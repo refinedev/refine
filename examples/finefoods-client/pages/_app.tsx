@@ -1,8 +1,8 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-nextjs-router/legacy";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/nextjs-router/legacy";
 
 import { Layout } from "@components";
 import { BasketContextProvider } from "@context";

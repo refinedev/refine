@@ -1,17 +1,17 @@
-import { Authenticated, Refine } from "@pankod/refine-core";
+import { Authenticated, Refine } from "@refinedev/core";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
     Layout,
     ErrorComponent,
     AuthPage,
     Sider,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 /**
  * New bindings for react-router-v6 are available as default export.
- * You can access the old router provider exports at `@pankod/refine-react-router-v6/legacy`.
+ * You can access the old router provider exports at `@refinedev/react-router-v6/legacy`.
  *
  * We've also added some new components to make it easier to use refine and its features with react-router-v6.
  *
@@ -40,9 +40,9 @@ import routerBindings, {
     RefineRoutes,
     NavigateToResource,
     UnsavedChangesNotifier,
-} from "@pankod/refine-react-router-v6";
+} from "@refinedev/react-router-v6";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -85,7 +85,7 @@ const App: React.FC = () => {
                  *
                  * The biggest difference between the old router bindings and the new one is that,
                  * The new routing system does not check for authentication in the routes by default.
-                 * You can achieve the same behavior by using the `Authenticated` component from `@pankod/refine-core`.
+                 * You can achieve the same behavior by using the `Authenticated` component from `@refinedev/core`.
                  * You can either use the `Authenticated` component inside each route,
                  * or you can wrap the `Routes` component that you'll use inside `RefineRoutes` component with the `Authenticated` component.
                  * This is done to make it easier to use refine with any routing case.

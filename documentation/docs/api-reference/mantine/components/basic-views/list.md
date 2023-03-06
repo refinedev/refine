@@ -48,14 +48,14 @@ We will show what `<List>` does using properties with examples.
 
 ```tsx live url=http://localhost:3000/posts previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List, DateField } from "@pankod/refine-mantine";
+import { List, DateField } from "@refinedev/mantine";
 import { Table, Pagination } from "@mantine/core";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -177,12 +177,12 @@ It allows adding a title for the `<List>` component. if you don't pass title pro
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-mantine";
+import { List } from "@refinedev/mantine";
 import { Title } from "@mantine/core";
 
 const PostList: React.FC = () => {
@@ -226,10 +226,10 @@ render(
 setInitialRoutes(["/custom"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { List, Layout } from "@pankod/refine-mantine";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { List, Layout } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 const CustomPage: React.FC = () => {
     return (
@@ -276,13 +276,13 @@ Create button redirects to the create page of the resource according to the valu
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-mantine";
-import { usePermissions } from "@pankod/refine-core";
+import { List } from "@refinedev/mantine";
+import { usePermissions } from "@refinedev/core";
 
 const PostList: React.FC = () => {
     const { data: permissionsData } = usePermissions();
@@ -372,7 +372,7 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-mantine` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mantine` package.
 
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mantine/components/breadcrumb.md)
 
@@ -382,12 +382,12 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-mantine";
+import { List } from "@refinedev/mantine";
 
 const CustomBreadcrumb: React.FC = () => {
     return (
@@ -438,18 +438,18 @@ render(
 
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<List/>` component, you can use the `wrapperProps` property. For `@pankod/refine-mantine` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
+If you want to customize the wrapper of the `<List/>` component, you can use the `wrapperProps` property. For `@refinedev/mantine` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
 
 [Refer to the `Card` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/card/)
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-mantine";
+import { List } from "@refinedev/mantine";
 
 const PostList: React.FC = () => {
     return (
@@ -498,12 +498,12 @@ If you want to customize the header of the `<List/>` component, you can use the 
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-mantine";
+import { List } from "@refinedev/mantine";
 
 const PostList: React.FC = () => {
     return (
@@ -552,12 +552,12 @@ If you want to customize the content of the `<List/>` component, you can use the
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-mantine";
+import { List } from "@refinedev/mantine";
 
 const PostList: React.FC = () => {
     return (
@@ -604,12 +604,12 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-mantine";
+import { List } from "@refinedev/mantine";
 import { Button } from "@mantine/core";
 
 const PostList: React.FC = () => {
@@ -661,12 +661,12 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-mantine";
+import { List } from "@refinedev/mantine";
 import { Button } from "@mantine/core";
 
 const PostList: React.FC = () => {
@@ -717,4 +717,4 @@ render(
 
 ### Props
 
-<PropsTable module="@pankod/refine-mantine/List" title-default="`<Title order={3}>{resource.name}</Title>`" />
+<PropsTable module="@refinedev/mantine/List" title-default="`<Title order={3}>{resource.name}</Title>`" />

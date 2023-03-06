@@ -1,4 +1,4 @@
-import { useForm, useSelect, Create } from "@pankod/refine-antd";
+import { useForm, useSelect, Create } from "@refinedev/antd";
 import { Form, Select, Input } from "antd";
 import { IPost } from "src/interfaces";
 

@@ -260,7 +260,7 @@ import {
     useImport,
     ImportButton,
     //highlight-end
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();

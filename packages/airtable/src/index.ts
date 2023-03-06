@@ -3,7 +3,7 @@ import {
     CrudFilters,
     CrudSorting,
     LogicalFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { compile, Formula } from "@qualifyze/airtable-formulator";
 
 import Airtable from "airtable";

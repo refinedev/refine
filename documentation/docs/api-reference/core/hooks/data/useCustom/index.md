@@ -25,7 +25,7 @@ The `useCustom` hook expects a `url` and `method` properties. These parameters w
 When properties are changed, the `useCustom` hook will trigger a new request.
 
 ```tsx
-import { useCustom, useApiUrl } from "@pankod/refine-core";
+import { useCustom, useApiUrl } from "@refinedev/core";
 
 interface PostUniqueCheckResponse {
     isAvailable: boolean;
@@ -255,7 +255,7 @@ useCustom({
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useCustom" />
+<PropsTable module="@refinedev/core/useCustom" />
 
 ### Type Parameters
 

@@ -34,17 +34,17 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 import {
     Show,
     MarkdownField,
     //highlight-next-line
     RefreshButton,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import { Heading, Text, Spacer } from "@chakra-ui/react";
 
 const PostShow: React.FC<IResourceComponentsProps> = () => {
@@ -113,10 +113,10 @@ render(
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-chakra-ui";
+import { RefreshButton } from "@refinedev/chakra-ui";
 
 const MyRefreshComponent = () => {
     return <RefreshButton colorScheme="black" recordItemId="123" />;
@@ -149,7 +149,95 @@ Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/d
 `<RefreshButton>` component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
+
+`resource` allows us to manage which resource is going to be refreshed.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@refinedev/core";
+
+// visible-block-start
+import { RefreshButton } from "@refinedev/chakra-ui";
+
+const MyRefreshComponent = () => {
+    return (
+        <RefreshButton
+            colorScheme="black"
+            resource="categories"
+            recordItemId="2"
+        />
+    );
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            resources={[
+                {
+                    name: "posts",
+                    list: MyRefreshComponent,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
+
+:::note
+`<RefreshButton>` component reads the resource name from the route by default.
+:::
+
+### `hideText`
+
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@refinedev/core";
+
+// visible-block-start
+import { RefreshButton } from "@refinedev/chakra-ui";
+
+const MyRefreshComponent = () => {
+    return <RefreshButton colorScheme="black" hideText recordItemId="123" />;
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            resources={[
+                {
+                    name: "posts",
+                    list: MyRefreshComponent,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
 
 `resourceNameOrRouteName` allows us to manage which resource is going to be refreshed.
 
@@ -198,45 +286,8 @@ Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/d
 `<RefreshButton>` component reads the resource name from the route by default.
 :::
 
-### `hideText`
-
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
-
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@pankod/refine-core";
-
-// visible-block-start
-import { RefreshButton } from "@pankod/refine-chakra-ui";
-
-const MyRefreshComponent = () => {
-    return <RefreshButton colorScheme="black" hideText recordItemId="123" />;
-};
-// visible-block-end
-
-const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyRefreshComponent,
-                },
-            ]}
-        />
-    );
-};
-
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
-```
-
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/RefreshButton" />
+<PropsTable module="@refinedev/chakra-ui/RefreshButton" />

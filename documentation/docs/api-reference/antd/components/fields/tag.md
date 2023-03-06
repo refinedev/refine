@@ -16,14 +16,14 @@ Let's see how we can use it in a basic list page:
 
 ```tsx live
 // visible-block-start
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
     List,
     // highlight-next-line
     TagField,
     useTable,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table } from "antd";
 
 const PostList: React.FC = () => {
@@ -68,7 +68,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/TagField" value-description="Tag content" />
+<PropsTable module="@refinedev/antd/TagField" value-description="Tag content" />
 
 :::tip External Props
 It also accepts all props of Ant Design [Tag](https://ant.design/components/tag/#API).

@@ -16,7 +16,7 @@ import {
     userFriendlyResourceName,
     useRouterType,
     useTranslate,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { IconArrowLeft } from "@tabler/icons";
 import { SaveButton, Breadcrumb } from "@components";
 import { CreateProps } from "../types";

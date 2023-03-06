@@ -17,12 +17,12 @@
     "test": "jest --passWithNoTests --runInBand",
     "prepare": "npm run build"
   },
-  "name": "@pankod/refine-react-hook-form",
+  "name": "@refinedev/react-hook-form",
   "description": "refine offers a React Hook Form adapter that allows you to use the React Hook Form library with refine.",
   "author": "refine",
   "module": "dist/esm/index.js",
   "peerDependencies": {
-    "@pankod/refine-core": "^3.23.2",
+    "@refinedev/core": "^3.23.2",
     "react-hook-form": "^7.30.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
@@ -30,7 +30,7 @@
     "@types/react-dom": "^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
-    "@pankod/refine-core": "^3.69.9",
+    "@refinedev/core": "^3.69.9",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/jest": "^29.2.4",
     "jest": "^29.3.1",

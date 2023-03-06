@@ -1,5 +1,5 @@
-import { useShow } from "@pankod/refine-core";
-import { Show } from "@pankod/refine-antd";
+import { useShow } from "@refinedev/core";
+import { Show } from "@refinedev/antd";
 import { Typography } from "antd";
 import dayjs from "dayjs";
 import { HackathonType } from "interfaces";

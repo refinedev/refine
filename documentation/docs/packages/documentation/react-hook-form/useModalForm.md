@@ -94,7 +94,7 @@ textarea {
 `useModalForm` hook allows you to manage a form within a modal. It provides some useful methods to handle the form modal.
 
 :::info
-`useModalForm` hook is extended from [`useForm`][refine-react-hook-form-use-form] from the [`@pankod/refine-react-hook-form`][@pankod/refine-react-hook-form] package. This means that you can use all the features of [`useForm`][refine-react-hook-form-use-form] hook.
+`useModalForm` hook is extended from [`useForm`][refine-react-hook-form-use-form] from the [`@refinedev/react-hook-form`][@refinedev/react-hook-form] package. This means that you can use all the features of [`useForm`][refine-react-hook-form-use-form] hook.
 :::
 
 ## Basic Usage
@@ -116,8 +116,8 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React from "react";
-import { HttpError, useTable } from "@pankod/refine-core";
-import { useModalForm } from "@pankod/refine-react-hook-form";
+import { HttpError, useTable } from "@refinedev/core";
+import { useModalForm } from "@refinedev/react-hook-form";
 
 import { Modal, PostsTable } from "@components";
 
@@ -231,8 +231,8 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React from "react";
-import { HttpError, useTable } from "@pankod/refine-core";
-import { useModalForm } from "@pankod/refine-react-hook-form";
+import { HttpError, useTable } from "@refinedev/core";
+import { useModalForm } from "@refinedev/react-hook-form";
 
 import { Modal, PostsTable } from "@components";
 
@@ -372,8 +372,8 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React from "react";
-import { HttpError, useTable } from "@pankod/refine-core";
-import { useModalForm } from "@pankod/refine-react-hook-form";
+import { HttpError, useTable } from "@refinedev/core";
+import { useModalForm } from "@refinedev/react-hook-form";
 
 import { Modal, PostsTable } from "@components";
 
@@ -880,7 +880,7 @@ return (
 
 ### Properties
 
-<PropsTable module="@pankod/refine-react-hook-form/useModalForm" />
+<PropsTable module="@refinedev/react-hook-form/useModalForm" />
 
 > `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-reference/core/components/refine-config.md)>** component.
 
@@ -913,7 +913,7 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 
 <CodeSandboxExample path="form-react-hook-form-use-modal-form" />
 
-[@pankod/refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
+[@refinedev/react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
 [refine-react-hook-form-use-form]: /packages/documentation/react-hook-form/useForm.md
 [react-hook-form-use-form]: https://react-hook-form.com/api/useform
 [use-form-core]: /api-reference/core/hooks/useForm.md

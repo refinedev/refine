@@ -1,9 +1,7 @@
-import { Refine, Authenticated } from "@pankod/refine-core";
-import { notificationProvider, ErrorComponent } from "@pankod/refine-antd";
-import { dataProvider, liveProvider } from "@pankod/refine-supabase";
-import routerBindings, {
-    NavigateToResource,
-} from "@pankod/refine-react-router-v6";
+import { Refine, Authenticated } from "@refinedev/core";
+import { notificationProvider, ErrorComponent } from "@refinedev/antd";
+import { dataProvider, liveProvider } from "@refinedev/supabase";
+import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
@@ -15,7 +13,7 @@ import { AuthPage } from "pages/auth";
 import { supabaseClient } from "utility";
 import { authProvider, auditLogProvider } from "./providers";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import "styles/style.css";
 

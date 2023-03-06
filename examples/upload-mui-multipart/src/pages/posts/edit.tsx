@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { Edit, useAutocomplete } from "@pankod/refine-mui";
+import { Edit, useAutocomplete } from "@refinedev/mui";
 import {
     Box,
     TextField,
@@ -10,8 +10,8 @@ import {
     Typography,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import { HttpError, useApiUrl } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { HttpError, useApiUrl } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 

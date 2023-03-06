@@ -5,14 +5,14 @@ import {
     HttpError,
     IResourceComponentsProps,
     useTranslate,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     useDataGrid,
     BooleanField,
     DateField,
     ShowButton,
     List,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 import {
     Grid,
@@ -31,7 +31,7 @@ import {
 } from "@mui/material";
 
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 

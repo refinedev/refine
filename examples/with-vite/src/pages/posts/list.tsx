@@ -2,7 +2,7 @@ import {
     IResourceComponentsProps,
     useMany,
     getDefaultFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     List,
@@ -11,11 +11,11 @@ import {
     ShowButton,
     FilterDropdown,
     TagField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Space, Select, Radio } from "antd";
 
-import { useTable, useSelect } from "@pankod/refine-antd";
+import { useTable, useSelect } from "@refinedev/antd";
 
 import { IPost, ICategory } from "../../interfaces";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { useGetIdentity, useActiveAuthProvider } from "@pankod/refine-core";
+import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
 import { Box, Avatar, Text, HStack } from "@chakra-ui/react";
 
 import { RefineLayoutHeaderProps } from "../types";

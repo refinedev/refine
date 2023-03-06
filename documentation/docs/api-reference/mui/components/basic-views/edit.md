@@ -11,9 +11,9 @@ We will show what `<Edit>` does using properties with examples.
 ```tsx live hideCode url=http://localhost:3000/posts/edit/123
 // visible-block-start
 import React from "react";
-import { Edit, useAutocomplete } from "@pankod/refine-mui";
+import { Edit, useAutocomplete } from "@refinedev/mui";
 import { TextField, Autocomplete, Box } from "@mui/material";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 
 const SampleEdit = () => {
@@ -134,7 +134,7 @@ It allows adding title inside the `<Edit>` component. if you don't pass title pr
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Edit } from "@pankod/refine-mui";
+import { Edit } from "@refinedev/mui";
 import { Typography } from "@mui/material";
 
 const EditPage: React.FC = () => {
@@ -179,10 +179,10 @@ The `<Edit>` component reads the `resource` information from the route by defaul
 setInitialRoutes(["/custom"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { Edit, Layout } from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { Edit, Layout } from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 const CustomPage: React.FC = () => {
     return (
@@ -232,7 +232,7 @@ Clicking on the save button will submit your form.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
-import { Edit } from "@pankod/refine-mui";
+import { Edit } from "@refinedev/mui";
 
 const PostEdit: React.FC = () => {
     return (
@@ -322,8 +322,8 @@ const authProvider = {
 };
 
 // visible-block-start
-import { Edit } from "@pankod/refine-mui";
-import { usePermissions } from "@pankod/refine-core";
+import { Edit } from "@refinedev/mui";
+import { usePermissions } from "@refinedev/core";
 
 const PostEdit: React.FC = () => {
     const { data: permissionsData } = usePermissions();
@@ -376,10 +376,10 @@ The `<Edit>` component reads the `id` information from the route by default. `re
 setInitialRoutes(["/custom"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { Edit, Layout } from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { Edit, Layout } from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 const CustomPage: React.FC = () => {
     return (
@@ -430,10 +430,10 @@ Determines which mode mutation will have while executing [`<DeleteButton>`](/api
 ```tsx live hideCode url=http://localhost:3000/posts/edit/123
 // visible-block-start
 import React from "react";
-import { Edit, useAutocomplete } from "@pankod/refine-mui";
+import { Edit, useAutocomplete } from "@refinedev/mui";
 import { TextField, Autocomplete, Box } from "@mui/material";
 
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 
 const SampleEdit = () => {
@@ -552,10 +552,10 @@ render(
 If not specified, Refine will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
 
 ```tsx
-import { Refine } from "@pankod/refine-core";
-import { Edit } from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { Edit } from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // highlight-start
 const PostEdit = () => {
@@ -585,9 +585,9 @@ To customize the back button or to disable it, you can use the `goBack` property
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
-import { Edit } from "@pankod/refine-mui";
+import { Edit } from "@refinedev/mui";
 import { Button } from "@mui/material";
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 
 const BackButton = () => {
     const { goBack } = useNavigation();
@@ -632,7 +632,7 @@ To toggle the loading state of the `<Edit/>` component, you can use the `isLoadi
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
-import { Edit } from "@pankod/refine-mui";
+import { Edit } from "@refinedev/mui";
 
 const PostEdit: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -669,7 +669,7 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-mui` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mui` package.
 
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mui/components/breadcrumb.md)
 
@@ -679,7 +679,7 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
-import { Edit, Breadcrumb } from "@pankod/refine-mui";
+import { Edit, Breadcrumb } from "@refinedev/mui";
 
 const PostEdit: React.FC = () => {
     return (
@@ -730,7 +730,7 @@ If you want to customize the wrapper of the `<Edit/>` component, you can use the
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
-import { Edit } from "@pankod/refine-mui";
+import { Edit } from "@refinedev/mui";
 
 const PostEdit: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -778,7 +778,7 @@ If you want to customize the header of the `<Edit/>` component, you can use the 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
-import { Edit } from "@pankod/refine-mui";
+import { Edit } from "@refinedev/mui";
 
 const PostEdit: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -826,7 +826,7 @@ If you want to customize the content of the `<Edit/>` component, you can use the
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
-import { Edit } from "@pankod/refine-mui";
+import { Edit } from "@refinedev/mui";
 
 const PostEdit: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -872,7 +872,7 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
-import { Edit } from "@pankod/refine-mui";
+import { Edit } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
@@ -922,7 +922,7 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
-import { Edit } from "@pankod/refine-mui";
+import { Edit } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
@@ -975,7 +975,7 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
-import { Edit } from "@pankod/refine-mui";
+import { Edit } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
@@ -1025,7 +1025,7 @@ You can customize the wrapper element of the buttons at the footer by using the 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
 // visible-block-start
-import { Edit } from "@pankod/refine-mui";
+import { Edit } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
@@ -1076,7 +1076,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/Edit" 
+<PropsTable module="@refinedev/mui/Edit" 
 wrapperProps-type="[`CardProps`](https://mui.com/material-ui/api/card/#props)"
 contentProps-type="[`CardContentProps`](https://mui.com/material-ui/api/card-content/#props)"
 headerProps-type="[`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)"

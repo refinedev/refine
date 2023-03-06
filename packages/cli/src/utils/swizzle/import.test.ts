@@ -81,12 +81,12 @@ describe("reorderImports", () => {
         const content = `
 import { Button, TextInput } from "zantd";
 import { useEffect } from "react";
-import { useList } from "@pankod/refine-core";
+import { useList } from "@refinedev/core";
 `;
 
         const expected = `
 import { useEffect } from "react";
-import { useList } from "@pankod/refine-core";
+import { useList } from "@refinedev/core";
 import { Button, TextInput } from "zantd";
 `;
 
@@ -97,13 +97,13 @@ import { Button, TextInput } from "zantd";
         const content = `
 import { Button, TextInput } from "antd";
 import { useEffect } from "react";
-import { useList, useOtherList, } from "@pankod/refine-core";
-import { useOne, useOtherOne } from "@pankod/refine-core";
+import { useList, useOtherList, } from "@refinedev/core";
+import { useOne, useOtherOne } from "@refinedev/core";
 `;
 
         const expected = `
 import { useEffect } from "react";
-import { useList, useOtherList, useOne, useOtherOne } from "@pankod/refine-core";
+import { useList, useOtherList, useOne, useOtherOne } from "@refinedev/core";
 import { Button, TextInput } from "antd";
 `;
 

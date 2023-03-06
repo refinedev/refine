@@ -1,4 +1,4 @@
-import { crudCreateTests } from "@pankod/refine-ui-tests";
+import { crudCreateTests } from "@refinedev/ui-tests";
 import { Create } from "./";
 
 describe("Create", () => {

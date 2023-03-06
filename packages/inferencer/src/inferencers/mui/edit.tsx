@@ -1,5 +1,5 @@
-import * as RefineMui from "@pankod/refine-mui";
-import * as RefineReactHookForm from "@pankod/refine-react-hook-form";
+import * as RefineMui from "@refinedev/mui";
+import * as RefineReactHookForm from "@refinedev/react-hook-form";
 import * as EmotionReact from "@emotion/react";
 import * as EmotionStyled from "@emotion/styled";
 import * as MuiLab from "@mui/lab";
@@ -47,9 +47,9 @@ export const renderer = ({
     );
     const recordName = getVariableName(resource.label ?? resource.name, "Data");
     const imports: Array<ImportElement> = [
-        ["Edit", "@pankod/refine-mui"],
+        ["Edit", "@refinedev/mui"],
         ["Box", "@mui/material"],
-        ["useForm", "@pankod/refine-react-hook-form"],
+        ["useForm", "@refinedev/react-hook-form"],
     ];
 
     const relationFields: (InferField | null)[] = fields.filter(
@@ -60,7 +60,7 @@ export const renderer = ({
         .filter(Boolean)
         .map((field) => {
             if (field?.relation && !field.fieldable && field.resource) {
-                imports.push(["useAutocomplete", "@pankod/refine-mui"]);
+                imports.push(["useAutocomplete", "@refinedev/mui"]);
                 let val = accessor(
                     recordName,
                     field.key,
@@ -305,7 +305,7 @@ export const renderer = ({
             imports.push(
                 ["Checkbox", "@mui/material"],
                 ["FormControlLabel", "@mui/material"],
-                ["Controller", "@pankod/refine-react-hook-form"],
+                ["Controller", "@refinedev/react-hook-form"],
             );
 
             if (field.multiple) {
@@ -375,7 +375,7 @@ export const renderer = ({
 
             return `
                 {/* 
-                    DatePicker component is not included in "@pankod/refine-mui" package.
+                    DatePicker component is not included in "@refinedev/mui" package.
                     To use a <DatePicker> component, you can follow the official documentation for Material UI.
                     
                     Docs: https://mui.com/x/react-date-pickers/date-picker/#basic-usage
@@ -456,9 +456,9 @@ export const renderer = ({
 export const EditInferencer: InferencerResultComponent = createInferencer({
     type: "edit",
     additionalScope: [
-        ["@pankod/refine-mui", "RefineMui", RefineMui],
+        ["@refinedev/mui", "RefineMui", RefineMui],
         [
-            "@pankod/refine-react-hook-form",
+            "@refinedev/react-hook-form",
             "RefineReactHookForm",
             RefineReactHookForm,
         ],

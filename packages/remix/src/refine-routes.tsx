@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "@remix-run/react";
-import { useResource } from "@pankod/refine-core";
+import { useResource } from "@refinedev/core";
 
 type RefineRoutesProps = {
     children?: (

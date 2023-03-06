@@ -124,11 +124,11 @@ The second command will start the development server for our project and automat
 
 You should see a similar refine welcome page rendered to your browser just like in the image above.
 
-Next, we'll install the refine React Hook Form package and set up refine. To do that, go back to the command line and run the following command to install the `@pankod/refine-react-hook-form` package:
+Next, we'll install the refine React Hook Form package and set up refine. To do that, go back to the command line and run the following command to install the `@refinedev/react-hook-form` package:
 
 
 ```
-npm i @pankod/refine-react-hook-form
+npm i @refinedev/react-hook-form
 ```
 
 After installation, open the project folder in your IDE of choice, in our case, we'll be using VS code. The next step is to create a pages subfolder inside the src folder and add a create.tsx file.
@@ -141,7 +141,7 @@ To do so, open the `App.tsx` file and import the `create.tsx` file, then add it 
 
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
@@ -152,9 +152,9 @@ import {
     LightTheme,
     ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+} from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import Create from "pages/create";
 
 function App() {
@@ -200,7 +200,7 @@ import {
     MenuItem,
     Select,
     Button,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 interface iformValue {
     firstname: string;
@@ -389,7 +389,7 @@ Since we're using MUI for our project, our focus will be on the Controller hook.
 Now to integrate React Hook Form into our application, we'll import the Controller component and the `useForm` hook inside the `create.tsx` file like so:
 
 ```tsx
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
+import { Controller, useForm } from "@refinedev/react-hook-form";
 ```
 
 Next, we'll wrap the `<TextField>` components with the Controller component:
@@ -406,8 +406,8 @@ import {
     MenuItem,
     Select,
     Button,
-} from "@pankod/refine-mui";
-import { Controller } from "@pankod/refine-react-hook-form";
+} from "@refinedev/mui";
+import { Controller } from "@refinedev/react-hook-form";
 
 const Create: React.FC = (props) => {
     return (
@@ -556,7 +556,7 @@ import {
     MenuItem,
     Select,
     Button,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 interface IFormValue {
     firstname: string;
@@ -705,8 +705,8 @@ import {
     MenuItem,
     Select,
     Button,
-} from "@pankod/refine-mui";
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
+} from "@refinedev/mui";
+import { Controller, useForm } from "@refinedev/react-hook-form";
 
 //highlight-start
 import * as Yup from "yup";

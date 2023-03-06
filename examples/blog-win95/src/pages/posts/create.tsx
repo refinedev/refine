@@ -1,6 +1,6 @@
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
-import { useSelect, useNavigation } from "@pankod/refine-core";
+import { useSelect, useNavigation } from "@refinedev/core";
 import {
     Select,
     Fieldset,

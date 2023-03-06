@@ -1,4 +1,4 @@
-import "@pankod/refine-mui";
+import "@refinedev/mui";
 
 export interface CustomTheme {
     timeLine: {

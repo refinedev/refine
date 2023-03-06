@@ -1,4 +1,4 @@
-import { useLink, useRouterContext, useRouterType } from "@pankod/refine-core";
+import { useLink, useRouterContext, useRouterType } from "@refinedev/core";
 import React, { ReactNode } from "react";
 
 interface PaginationLinkProps {

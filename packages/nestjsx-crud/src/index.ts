@@ -18,7 +18,7 @@ import {
     CrudSorting,
     CrudFilter,
     Pagination,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { stringify } from "query-string";
 
 type SortBy = QuerySort | QuerySortArr | Array<QuerySort | QuerySortArr>;

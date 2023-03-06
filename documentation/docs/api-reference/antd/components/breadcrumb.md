@@ -12,7 +12,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px disableScroll
 // visible-block-start
-import { Show } from "@pankod/refine-antd";
+import { Show } from "@refinedev/antd";
 import { Breadcrumb } from "antd";
 
 const PostIcon = (
@@ -80,7 +80,7 @@ render(
 `<Breadcrumb>` component uses the Ant Design [Breadcrumb][antd-breadcrumb] component so it can be configured with the `breadcrumbProps` property.
 
 ```tsx
-import { List } from "@pankod/refine-antd";
+import { List } from "@refinedev/antd";
 import { Breadcrumb } from "antd";
 
 export const PostList: React.FC = () => {
@@ -100,7 +100,7 @@ export const PostList: React.FC = () => {
 If your application has a [DashboardPage](/api-reference/core/components/refine-config.md#dashboardpage), the home button is shown to the top of the hierarchy by default. If you don't want to show the home button, you can set `showHome` to `false`.
 
 ```tsx
-import { List } from "@pankod/refine-antd";
+import { List } from "@refinedev/antd";
 import { Breadcrumb } from "antd";
 
 export const PostList: React.FC = () => {
@@ -120,7 +120,7 @@ export const PostList: React.FC = () => {
 If you don't want to show the resource icons on the breadcrumb, you can set `hideIcons` to `true`.
 
 ```tsx
-import { List } from "@pankod/refine-antd";
+import { List } from "@refinedev/antd";
 import { Breadcrumb } from "antd";
 
 export const PostList: React.FC = () => {
@@ -139,7 +139,7 @@ export const PostList: React.FC = () => {
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/Breadcrumb"
+<PropsTable module="@refinedev/antd/Breadcrumb"
 breadcrumbProps-type="[BreadcrumbProps](https://ant.design/components/breadcrumb/#API)"
 breadcrumbProps-description="Passes properties for [`<Breadcrumb>`](https://ant.design/components/breadcrumb/#Breadcrumb)"
 />

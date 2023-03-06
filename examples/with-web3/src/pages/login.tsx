@@ -1,4 +1,4 @@
-import { useLogin } from "@pankod/refine-core";
+import { useLogin } from "@refinedev/core";
 
 import Icon from "@ant-design/icons";
 

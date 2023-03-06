@@ -1,4 +1,4 @@
-import { BaseKey } from "@pankod/refine-core";
+import { BaseKey } from "@refinedev/core";
 
 export interface AgentCardProp {
     id?: BaseKey | undefined;

@@ -52,20 +52,20 @@ const authProvider = {
     getIdentity: async () => null,
 };
 
-import { Refine, Authenticated } from "@pankod/refine-core";
+import { Refine, Authenticated } from "@refinedev/core";
 import {
     Layout,
     notificationProvider,
     ErrorComponent,
     AuthPage,
-} from "@pankod/refine-antd";
-import routerBindings from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
-import { AntdInferencer } from "@pankod/refine-inferencer/antd";
+} from "@refinedev/antd";
+import routerBindings from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import { AntdInferencer } from "@refinedev/inferencer/antd";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
@@ -128,22 +128,22 @@ Login page is used to authenticate users. It provides a basic form to enter emai
 1. Open `src/App.tsx` file and import the `<AuthPage/>` component.
 
     ```tsx
-    import { AuthPage } from "@pankod/refine-antd";
+    import { AuthPage } from "@refinedev/antd";
     ```
 
 2. Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine, Authenticated } from "@pankod/refine-core";
+    import { Refine, Authenticated } from "@refinedev/core";
     import {
         Layout,
         notificationProvider,
         ErrorComponent,
         //highlight-next-line
         AuthPage,
-    } from "@pankod/refine-antd";
-    import dataProvider from "@pankod/refine-simple-rest";
-    import routerBindings from "@pankod/refine-react-router-v6";
+    } from "@refinedev/antd";
+    import dataProvider from "@refinedev/simple-rest";
+    import routerBindings from "@refinedev/react-router-v6";
 
     import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -154,7 +154,7 @@ Login page is used to authenticate users. It provides a basic form to enter emai
 
     import { authProvider } from "./authProvider";
 
-    import "@pankod/refine-antd/dist/reset.css";
+    import "@refinedev/antd/dist/reset.css";
 
     const App: React.FC = () => {
         return (
@@ -225,16 +225,16 @@ Register page is used to register new users. It provides a basic form to enter e
 1. Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine, Authenticated } from "@pankod/refine-core";
+    import { Refine, Authenticated } from "@refinedev/core";
     import {
         Layout,
         notificationProvider,
         ErrorComponent,
         //highlight-next-line
         AuthPage,
-    } from "@pankod/refine-antd";
-    import dataProvider from "@pankod/refine-simple-rest";
-    import routerBindings from "@pankod/refine-react-router-v6";
+    } from "@refinedev/antd";
+    import dataProvider from "@refinedev/simple-rest";
+    import routerBindings from "@refinedev/react-router-v6";
 
     import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -245,7 +245,7 @@ Register page is used to register new users. It provides a basic form to enter e
 
     import { authProvider } from "./authProvider";
 
-    import "@pankod/refine-antd/dist/reset.css";
+    import "@refinedev/antd/dist/reset.css";
 
     const App: React.FC = () => {
         return (
@@ -317,16 +317,16 @@ Forgot password page is used to send a reset password link to the user's email. 
 1. Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine, Authenticated } from "@pankod/refine-core";
+    import { Refine, Authenticated } from "@refinedev/core";
     import {
         Layout,
         notificationProvider,
         ErrorComponent,
         //highlight-next-line
         AuthPage,
-    } from "@pankod/refine-antd";
-    import dataProvider from "@pankod/refine-simple-rest";
-    import routerBindings from "@pankod/refine-react-router-v6";
+    } from "@refinedev/antd";
+    import dataProvider from "@refinedev/simple-rest";
+    import routerBindings from "@refinedev/react-router-v6";
 
     import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -337,7 +337,7 @@ Forgot password page is used to send a reset password link to the user's email. 
 
     import { authProvider } from "./authProvider";
 
-    import "@pankod/refine-antd/dist/reset.css";
+    import "@refinedev/antd/dist/reset.css";
 
     const App: React.FC = () => {
         return (
@@ -411,16 +411,16 @@ Update password page is used to update the user's password. It provides a basic 
 1. Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine, Authenticated } from "@pankod/refine-core";
+    import { Refine, Authenticated } from "@refinedev/core";
     import {
         Layout,
         notificationProvider,
         ErrorComponent,
         //highlight-next-line
         AuthPage,
-    } from "@pankod/refine-antd";
-    import dataProvider from "@pankod/refine-simple-rest";
-    import routerBindings from "@pankod/refine-react-router-v6";
+    } from "@refinedev/antd";
+    import dataProvider from "@refinedev/simple-rest";
+    import routerBindings from "@refinedev/react-router-v6";
 
     import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
@@ -431,7 +431,7 @@ Update password page is used to update the user's password. It provides a basic 
 
     import { authProvider } from "./authProvider";
 
-    import "@pankod/refine-antd/dist/reset.css";
+    import "@refinedev/antd/dist/reset.css";
 
     const App: React.FC = () => {
         return (
@@ -515,12 +515,12 @@ Let's customize the auth pages.
     npm run refine swizzle
     ```
 
-2. Select the `@pankod/refine-antd` package.
+2. Select the `@refinedev/antd` package.
 
     ```bash
         ? Which package do you want to swizzle?
         UI Framework
-        ❯  @pankod/refine-antd
+        ❯  @refinedev/antd
     ```
 
 3. Select the `AuthPage` component.

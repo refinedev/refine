@@ -3,7 +3,7 @@ import {
     IResourceComponentsProps,
     useNavigation,
     useShow,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     List,
@@ -11,7 +11,7 @@ import {
     DateField,
     BooleanField,
     useModal,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { FormOutlined, MoreOutlined } from "@ant-design/icons";
 import { Table, Dropdown, Menu, Avatar } from "antd";

@@ -1,7 +1,7 @@
 import React from "react";
 import * as Snack from "notistack";
 
-import { OpenNotificationParams } from "@pankod/refine-core";
+import { OpenNotificationParams } from "@refinedev/core";
 
 import { CircularDeterminate } from "@components/circularDeterminate";
 

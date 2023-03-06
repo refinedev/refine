@@ -24,6 +24,16 @@ npx @refinedev/codemod refine3-to-refine4
 
 And it's done. Now your project uses `refine@4.x.x`.
 
+:::caution Known Issues in refine-codemod
+
+- [Instantiation Expressions](https://devblogs.microsoft.com/typescript/announcing-typescript-4-7-beta/#instantiation-expressions) are not parsed correctly when running the codemod. This causes the codemod to fail for the files that contain instantiation expressions. If you encounter this issue, you can manually migrate the files that contain instantiation expressions.
+
+- [Type declaration files (`.d.ts`)](https://www.typescriptlang.org/docs/handbook/2/type-declarations.html#dts-files) are not parsed correctly when running the codemod. This causes the codemod to fail for the files that contain type declarations. If you encounter this issue, you can manually migrate the files that contain type declarations.
+
+- While making the changes, codemod fails to format the return statements with React fragments (`<>...</>`). If you encounter this issue, you may need to manually format the file after the codemod is done.
+
+:::
+
 ## Migrating your project manually
 
 refine v4 will be released under `@refinedev` npm organization.
@@ -791,6 +801,7 @@ useImport({
 -import { useMenu } from "@pankod/refine-antd";
 +import { useMenu } from "@refinedev/core";
 ```
+
 ### `useDrawerForm` and `useModalForm`  hooks
 
 These hooks now support syncing their visibility state with the location with their `syncWithLocation` prop. You can either pass `true` or an object with `key` and `syncId` properties. If you pass the `key` property, it will be used in the query params for the visibility state. If you pass `syncId: true` it will also add the `id` of the form to the query params, this is useful when working on `clone` and `edit` modes.
@@ -816,6 +827,15 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 +   accessControl={{
 +       enabled: false,
 +   }}
+/>
+```
+
+`resourceNameOrRouteName` prop is deprecated in favor of `resource` prop. You can pass the resource name or identifier. (`route` is also accepted for legacy router users)
+
+```diff
+<CreateButton
+-   resourceNameOrRouteName="posts"
++   resource="posts"
 />
 ```
 
@@ -994,6 +1014,15 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 />
 ```
 
+`resourceNameOrRouteName` prop is deprecated in favor of `resource` prop. You can pass the resource name or identifier. (`route` is also accepted for legacy router users)
+
+```diff
+<CreateButton
+-   resourceNameOrRouteName="posts"
++   resource="posts"
+/>
+```
+
 ### Basic Views
 
 Following basic view component props are removed:
@@ -1139,6 +1168,15 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 />
 ```
 
+`resourceNameOrRouteName` prop is deprecated in favor of `resource` prop. You can pass the resource name or identifier. (`route` is also accepted for legacy router users)
+
+```diff
+<CreateButton
+-   resourceNameOrRouteName="posts"
++   resource="posts"
+/>
+```
+
 ### `<ReadyPage>` component is deprecated
 
 `<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
@@ -1208,6 +1246,15 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 +   accessControl={{
 +       enabled: false,
 +   }}
+/>
+```
+
+`resourceNameOrRouteName` prop is deprecated in favor of `resource` prop. You can pass the resource name or identifier. (`route` is also accepted for legacy router users)
+
+```diff
+<CreateButton
+-   resourceNameOrRouteName="posts"
++   resource="posts"
 />
 ```
 

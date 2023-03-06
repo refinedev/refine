@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-antd": minor
+"@refinedev/antd": minor
 ---
 
 -   `useCheckboxGroup`'s `sort` prop is now deprecated. Use `sorters` prop instead.

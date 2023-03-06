@@ -1,6 +1,6 @@
-import { GetListResponse, LayoutWrapper, useTable } from "@pankod/refine-core";
+import { GetListResponse, LayoutWrapper, useTable } from "@refinedev/core";
 import { GetServerSideProps } from "next";
-import { dataProvider } from "@pankod/refine-medusa";
+import { dataProvider } from "@refinedev/medusa";
 import { Product, ProductCollection } from "@medusajs/medusa";
 import nookies from "nookies";
 

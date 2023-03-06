@@ -97,7 +97,7 @@ If you want to create your multi-level menu without any UI framework integration
 
 ```tsx title="src/components/layout/sider/index.tsx"
 //highlight-next-line
-import { useMenu } from "@pankod/refine-core";
+import { useMenu } from "@refinedev/core";
 
 export const Sider: React.FC = () => {
     //highlight-next-line

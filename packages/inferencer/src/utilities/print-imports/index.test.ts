@@ -8,12 +8,12 @@ describe("printImports", () => {
 
     it("should combine same module imports into one", () => {
         const imports: Array<ImportElement> = [
-            ["useForm", "@pankod/refine-core"],
-            ["useForm", "@pankod/refine-core"],
+            ["useForm", "@refinedev/core"],
+            ["useForm", "@refinedev/core"],
         ];
 
         expect(printImports(imports)).toEqual([
-            'import { useForm } from "@pankod/refine-core";',
+            'import { useForm } from "@refinedev/core";',
         ]);
     });
 
@@ -31,12 +31,12 @@ describe("printImports", () => {
     it("should print two lines of imports", () => {
         const imports: Array<ImportElement> = [
             ["useEffect", "react"],
-            ["useForm", "@pankod/refine-core"],
+            ["useForm", "@refinedev/core"],
         ];
 
         expect(printImports(imports)).toEqual([
             'import { useEffect } from "react";',
-            'import { useForm } from "@pankod/refine-core";',
+            'import { useForm } from "@refinedev/core";',
         ]);
     });
 });

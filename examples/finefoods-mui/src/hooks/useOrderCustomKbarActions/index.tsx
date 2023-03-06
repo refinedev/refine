@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useTranslate, useUpdate } from "@pankod/refine-core";
+import { useTranslate, useUpdate } from "@refinedev/core";
 import {
     Action,
     createAction,
     Priority,
     useRegisterActions,
-} from "@pankod/refine-kbar";
+} from "@refinedev/kbar";
 import { CheckOutlined, CloseOutlined } from "@mui/icons-material";
 
 import { IOrder } from "interfaces";

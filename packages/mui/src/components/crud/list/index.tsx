@@ -6,7 +6,7 @@ import {
     useRefineContext,
     useRouterType,
     useResource,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { Card, CardHeader, CardContent, Typography, Box } from "@mui/material";
 
@@ -58,7 +58,7 @@ export const List: React.FC<ListProps> = ({
 
     const defaultHeaderButtons = isCreateButtonVisible ? (
         <CreateButton
-            resourceNameOrRouteName={
+            resource={
                 routerType === "legacy"
                     ? resource?.route
                     : resource?.identifier ?? resource?.name

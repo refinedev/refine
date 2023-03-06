@@ -1,5 +1,5 @@
 import React from "react";
-import { DateField, List, NumberField, useDataGrid } from "@pankod/refine-mui";
+import { DateField, List, NumberField, useDataGrid } from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 import {
@@ -21,7 +21,7 @@ import {
     IResourceComponentsProps,
     useShow,
     useTranslate,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";

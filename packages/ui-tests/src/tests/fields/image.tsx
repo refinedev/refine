@@ -1,5 +1,5 @@
 import React from "react";
-import { RefineFieldImageProps } from "@pankod/refine-ui-types";
+import { RefineFieldImageProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 
@@ -14,7 +14,7 @@ export const fieldImageTests = function (
         >
     >,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Image Field", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Image Field", () => {
         it("renders image with correct title", () => {
             const imageUrl = "http://placeimg.com/640/480/animals";
             const { getAllByRole } = render(

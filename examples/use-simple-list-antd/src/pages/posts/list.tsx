@@ -1,11 +1,6 @@
-import { useMany, CrudFilters, HttpError } from "@pankod/refine-core";
+import { useMany, CrudFilters, HttpError } from "@refinedev/core";
 
-import {
-    List,
-    useSimpleList,
-    NumberField,
-    useSelect,
-} from "@pankod/refine-antd";
+import { List, useSimpleList, NumberField, useSelect } from "@refinedev/antd";
 
 import {
     Typography,

@@ -1,6 +1,6 @@
-import { IResourceComponentsProps, useTranslate } from "@pankod/refine-core";
+import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 
-import { Create, useForm } from "@pankod/refine-antd";
+import { Create, useForm } from "@refinedev/antd";
 
 import {
     Form,

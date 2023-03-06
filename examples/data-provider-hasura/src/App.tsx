@@ -1,12 +1,8 @@
-import { Refine } from "@pankod/refine-core";
-import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
-import dataProvider, { GraphQLClient } from "@pankod/refine-hasura";
-import "@pankod/refine-antd/dist/reset.css";
+import { Refine } from "@refinedev/core";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import dataProvider, { GraphQLClient } from "@refinedev/hasura";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import {

@@ -20,7 +20,7 @@ If you pass a resource name or identifier to `useResource`, it will return the r
 If you don't pass any parameter to `useResource`, it will return the resource object that matches the current route by default. If there is no match, the `resource` will be `undefined`.
 
 ```ts
-import { useResource } from "@pankod/refine-core";
+import { useResource } from "@refinedev/core";
 
 const { resources, resource, action, id } = useResource();
 ```
@@ -30,7 +30,7 @@ const { resources, resource, action, id } = useResource();
 If you pass a resource name or identifier to `useResource`, it will return the resource object that matches the name or identifier. If there is no match, a temporary `resource` will be created with the provided name or identifier.
 
 ```ts
-import { useResource } from "@pankod/refine-core";
+import { useResource } from "@refinedev/core";
 
 const { resource } = useResource("posts");
 ```
@@ -61,7 +61,7 @@ Resource name of resource object.
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useResource"  />
+<PropsTable module="@refinedev/core/useResource"  />
 
 ### Return value
 

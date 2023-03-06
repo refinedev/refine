@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-core": minor
+"@refinedev/core": minor
 ---
 
 Updated `useSelect` hook to support `optionLabel` and `optionValue` type as `keyof TData` instead of `string`.

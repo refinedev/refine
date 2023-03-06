@@ -1,4 +1,4 @@
-import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
+import { IResourceComponentsProps, useMany } from "@refinedev/core";
 
 import {
     List,
@@ -7,7 +7,7 @@ import {
     EditButton,
     ShowButton,
     DeleteButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Space } from "antd";
 

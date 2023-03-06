@@ -1,6 +1,6 @@
-import { useTranslate, useApiUrl } from "@pankod/refine-core";
+import { useTranslate, useApiUrl } from "@refinedev/core";
 
-import { Edit, getValueFromEvent, useSelect } from "@pankod/refine-antd";
+import { Edit, getValueFromEvent, useSelect } from "@refinedev/antd";
 
 import {
     Drawer,

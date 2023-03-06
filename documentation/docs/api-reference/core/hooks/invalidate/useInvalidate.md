@@ -21,7 +21,7 @@ The hook is used internally by **refine**. In most of the cases, you won't need 
 ## Basic Usage
 
 ```ts
-import { useInvalidate } from "@pankod/refine-core";
+import { useInvalidate } from "@refinedev/core";
 
 const invalidate = useInvalidate();
 

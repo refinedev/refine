@@ -1,4 +1,4 @@
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 import nookies from "nookies";
 
 const mockUsers = [

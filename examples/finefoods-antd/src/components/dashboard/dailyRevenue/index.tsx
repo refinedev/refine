@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
-import { useApiUrl, useCustom, useTranslate } from "@pankod/refine-core";
-import { NumberField } from "@pankod/refine-antd";
+import { useApiUrl, useCustom, useTranslate } from "@refinedev/core";
+import { NumberField } from "@refinedev/antd";
 import { Typography } from "antd";
 import { Line } from "@ant-design/charts";
 import { LineConfig } from "@ant-design/plots/lib/components/line";

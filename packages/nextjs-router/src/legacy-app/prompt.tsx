@@ -1,7 +1,7 @@
 import React from "react";
 import warnOnce from "warn-once";
 
-import type { PromptProps } from "@pankod/refine-core";
+import type { PromptProps } from "@refinedev/core";
 
 export const Prompt: React.FC<PromptProps> = ({ when }) => {
     React.useEffect(() => {

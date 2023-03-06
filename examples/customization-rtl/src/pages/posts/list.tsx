@@ -1,4 +1,4 @@
-import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
+import { IResourceComponentsProps, useMany } from "@refinedev/core";
 
 import {
     List,
@@ -9,7 +9,7 @@ import {
     FilterDropdown,
     useSelect,
     TagField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Space, Select, Radio } from "antd";
 

@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { Cart } from "@medusajs/medusa";
 import { useForm } from "react-hook-form";
-import { useInvalidate, useUpdate } from "@pankod/refine-core";
+import { useInvalidate, useUpdate } from "@refinedev/core";
 
 import { Input, Button } from "@components";
 import { Trash } from "@components/icons";

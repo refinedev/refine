@@ -1,4 +1,4 @@
-import { layoutTitleTests } from "@pankod/refine-ui-tests";
+import { layoutTitleTests } from "@refinedev/ui-tests";
 import { Title } from "./index";
 
 describe("Layout", () => {

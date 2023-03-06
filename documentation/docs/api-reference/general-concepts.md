@@ -21,9 +21,9 @@ To make the inference work, you need to pass the `routerProvider` prop to the `<
 Like below, if you are using the hook in the `<PostList>` component, the `resource` value defaults to `"posts"`. Because the active route is `/posts` and its also defined in the `resources` prop.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerBindings from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerBindings from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -58,7 +58,7 @@ export default App;
 You can override the default `resource` value hook by passing the `resource` prop to the hook like below:
 
 ```tsx title="src/pages/posts/list.tsx"
-import { useTable } from "@pankod/refine-core";
+import { useTable } from "@refinedev/core";
 
 const PostList: React.FC = () => {
     const result = useTable({

@@ -28,7 +28,7 @@ Here is a basic example of how to use the `useInfiniteList` hook.
 Dynamically changing the `pagination` properties will trigger a new request. Also, the `fetchNextPage` method will increase the `pagination.current` property by one and trigger a new request.
 
 ```ts
-import { useInfiniteList } from "@pankod/refine-core";
+import { useInfiniteList } from "@refinedev/core";
 
 const postListQueryResult = useInfiniteList({
     resource: "posts",
@@ -145,13 +145,15 @@ useInfiniteList({
 });
 ```
 
-### `hasPagination`
+#### `mode`
 
-`hasPagination` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to determine whether to use server-side pagination or not.
+It can be `"off"`, `"client"` or `"server"`. It is used to determine whether to use server-side pagination or not.
 
 ```tsx
 useInfiniteList({
-    hasPagination: false,
+    pagination: {
+        mode: "off",
+    },
 });
 ```
 
@@ -192,7 +194,6 @@ const myDataProvider = {
     getList: async ({
         resource,
         pagination,
-        hasPagination,
         sorters,
         filters,
         // highlight-next-line
@@ -291,6 +292,20 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 Use `pagination`, `hasPagination`, `sorters` and `filters` instead.
 :::
 
+### ~~`hasPagination`~~
+
+:::caution Deprecated
+Use `pagination.mode` instead.
+:::
+
+`hasPagination` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to determine whether to use server-side pagination or not.
+
+```tsx
+useInfiniteList({
+    hasPagination: false,
+});
+```
+
 ## Return Values
 
 Returns an object with TanStack Query's `useInfiniteQuery` return values.
@@ -352,7 +367,7 @@ getList: async ({ resource, pagination }) => {
 By default, `refine` expects you to return the `cursor` object, but is not required. This is because some APIs don't work that way. To fix this problem you need to override the `getNextPageParam` method and return the next `cursor`.
 
 ```tsx
-import { useInfiniteList } from "@pankod/refine-core";
+import { useInfiniteList } from "@refinedev/core";
 
 const {
     data,
@@ -384,7 +399,7 @@ When you override this method, you can access the `lastPage` and `allPages`.
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useInfiniteList" 
+<PropsTable module="@refinedev/core/useInfiniteList" 
 successNotification-default='`false`'
 errorNotification-default='"Error (status code: `statusCode`)"'
 />

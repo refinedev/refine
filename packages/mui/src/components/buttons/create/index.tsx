@@ -7,8 +7,8 @@ import {
     useRouterContext,
     useRouterType,
     useLink,
-} from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 import { Button } from "@mui/material";
 import { AddBoxOutlined } from "@mui/icons-material";
 
@@ -22,6 +22,7 @@ import { CreateButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/buttons/create-button} for more details.
  */
 export const CreateButton: React.FC<CreateButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName,
     hideText = false,
     accessControl,
@@ -42,7 +43,9 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
     const { createUrl: generateCreateUrl } = useNavigation();
 
-    const { resource } = useResource(resourceNameOrRouteName);
+    const { resource } = useResource(
+        resourceNameFromProps ?? resourceNameOrRouteName,
+    );
 
     const { data } = useCan({
         resource: resource?.name,
@@ -65,10 +68,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
             );
     };
 
-    const createUrl =
-        resource || resourceNameOrRouteName
-            ? generateCreateUrl(resource! || resourceNameOrRouteName!, meta)
-            : "";
+    const createUrl = resource ? generateCreateUrl(resource, meta) : "";
 
     const { sx, ...restProps } = rest;
 

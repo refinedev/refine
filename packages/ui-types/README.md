@@ -31,8 +31,8 @@
 [![Awesome](https://github.com/refinedev/awesome-refine/raw/main/images/badge.svg)](https://github.com/refinedev/awesome-refine)
 [![Maintainability](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/test_coverage)](https://codeclimate.com/github/pankod/refine/test_coverage)
-[![npm version](https://img.shields.io/npm/v/@pankod/refine-mui.svg)](https://www.npmjs.com/package/@pankod/refine-mui)
-[![npm](https://img.shields.io/npm/dm/@pankod/refine-mui)](https://www.npmjs.com/package/@pankod/refine-antd)
+[![npm version](https://img.shields.io/npm/v/@refinedev/mui.svg)](https://www.npmjs.com/package/@refinedev/mui)
+[![npm](https://img.shields.io/npm/dm/@refinedev/mui)](https://www.npmjs.com/package/@refinedev/antd)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](code_of_conduct.md)
 
 
@@ -148,7 +148,7 @@ Replace the contents of `App.tsx` with the following code:
 
 ```tsx title="App.tsx"
 import React from "react";
-import { Refine, useOne } from "@pankod/refine-core";
+import { Refine, useOne } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
@@ -158,9 +158,9 @@ import {
     RefineSnackbarProvider,
     CssBaseline,
     GlobalStyles,
-} from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+} from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 const App: React.FC = () => {
     return (

@@ -15,7 +15,7 @@ It is useful when you want to update a record.
 The `useUpdate` hook returns many useful properties and methods. One of them is the `mutate` method which expects `values`, `resource`, and `id` as parameters. These parameters will be passed to the `update` method from the `dataProvider` as parameters.
 
 ```tsx
-import { useUpdate } from "@pankod/refine-core";
+import { useUpdate } from "@refinedev/core";
 
 const { mutate } = useUpdate();
 

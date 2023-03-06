@@ -1,8 +1,8 @@
 import React from "react";
-import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
+import { RefineLayoutSiderProps } from "@refinedev/ui-types";
 
 import { act, render, TestWrapper, waitFor } from "@test";
-import { AuthBindings, LegacyAuthProvider } from "@pankod/refine-core";
+import { AuthBindings, LegacyAuthProvider } from "@refinedev/core";
 
 const mockLegacyAuthProvider: LegacyAuthProvider & { isProvided: boolean } = {
     login: () => Promise.resolve(),
@@ -25,7 +25,7 @@ const mockAuthProvider: AuthBindings = {
 export const layoutSiderTests = function (
     SiderElement: React.ComponentType<RefineLayoutSiderProps>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Sider Element", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Sider Element", () => {
         it("should render successful", async () => {
             const { container } = render(<SiderElement />, {
                 wrapper: TestWrapper({}),

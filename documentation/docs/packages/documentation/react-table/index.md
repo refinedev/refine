@@ -10,17 +10,17 @@ import SortingLivePreview from "./\_partial-sorting-live-preview.md";
 import RelationalLivePreview from "./\_partial-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-**refine** offers a [TanStack Table][tanstack-table] adapter with [@pankod/refine-react-table][refine-react-table] that allows you to use the TanStack Table library with **refine**. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch. Since it is designed as headless, It expects you to handle the UI.
+**refine** offers a [TanStack Table][tanstack-table] adapter with [@refinedev/react-table][refine-react-table] that allows you to use the TanStack Table library with **refine**. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/api-reference/core/hooks/data/useList/) for the fetch. Since it is designed as headless, It expects you to handle the UI.
 
 All of [TanStack Table's][tanstack-table] features are supported and you can use all of the [TanStack Table's][tanstack-table] examples with no changes just copy and paste them into your project.
 
 :::info
-`useTable` hook is extended from [`useTable`][use-table-core] hook from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
+`useTable` hook is extended from [`useTable`][use-table-core] hook from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
 :::
 
 ## Installation
 
-Install the [`@pankod/refine-react-table`][refine-react-table] library.
+Install the [`@refinedev/react-table`][refine-react-table] library.
 
 <Tabs
 defaultValue="npm"
@@ -33,7 +33,7 @@ values={[
 <TabItem value="npm">
 
 ```bash
-npm i @pankod/refine-react-table
+npm i @refinedev/react-table
 ```
 
 </TabItem>
@@ -41,7 +41,7 @@ npm i @pankod/refine-react-table
 <TabItem value="yarn">
 
 ```bash
-yarn add @pankod/refine-react-table
+yarn add @refinedev/react-table
 ```
 
 </TabItem>
@@ -49,7 +49,7 @@ yarn add @pankod/refine-react-table
 <TabItem value="pnpm">
 
 ```bash
-pnpm add @pankod/refine-react-table
+pnpm add @refinedev/react-table
 ```
 
 </TabItem>
@@ -352,7 +352,6 @@ const myDataProvider = {
     getList: async ({
         resource,
         pagination,
-        hasPagination,
         sorters,
         filters,
         // highlight-next-line
@@ -670,7 +669,7 @@ Current page index state. If pagination is disabled, it will be `undefined`.
 #### `setCurrent`
 
 ```tsx
-React.Dispatch<React.SetStateAction<number>> | undefined
+React.Dispatch<React.SetStateAction<number>> | undefined;
 ```
 
 A function to set the current page index state. If pagination is disabled, it will be `undefined`.
@@ -682,7 +681,7 @@ Current page size state. If pagination is disabled, it will be `undefined`.
 #### `setPageSize`
 
 ```tsx
-React.Dispatch<React.SetStateAction<number>> | undefined
+React.Dispatch<React.SetStateAction<number>> | undefined;
 ```
 
 A function to set the current page size state. If pagination is disabled, it will be `undefined`.
@@ -731,7 +730,7 @@ You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fe
 
 ### Properties
 
-<PropsTable module="@pankod/refine-react-table/useTable" />
+<PropsTable module="@refinedev/react-table/useTable" />
 
 ### Type Parameters
 

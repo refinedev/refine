@@ -2,7 +2,7 @@ import React from "react";
 import {
     RefineDeleteButtonProps,
     RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 
 import {
     act,
@@ -17,7 +17,7 @@ import { Route, Routes } from "react-router-dom";
 export const buttonDeleteTests = function (
     DeleteButton: React.ComponentType<RefineDeleteButtonProps<any, any>>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Delete Button", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Delete Button", () => {
         beforeAll(() => {
             jest.spyOn(console, "error").mockImplementation(jest.fn());
             jest.clearAllTimers();

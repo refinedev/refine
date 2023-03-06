@@ -4,9 +4,9 @@ import {
     IResourceComponentsProps,
     useApiUrl,
     useCustom,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
-import { Create, useForm, useSelect } from "@pankod/refine-antd";
+import { Create, useForm, useSelect } from "@refinedev/antd";
 
 import { Form, Input, Select } from "antd";
 

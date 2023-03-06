@@ -120,7 +120,7 @@ Here's what you should see:
 ```tsx live previewOnly previewHeight=450px url=http://localhost:3000
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     WelcomePage,
@@ -128,11 +128,11 @@ import {
     LightTheme,
     RefineSnackbarProvider,
     notificationProvider,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import routerBindings from "@pankod/refine-react-router-v6";
+import routerBindings from "@refinedev/react-router-v6";
 import { BrowserRouter } from "react-router-dom";
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 
 const App: React.FC = () => {
     return (

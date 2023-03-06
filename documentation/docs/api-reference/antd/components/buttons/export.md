@@ -18,13 +18,13 @@ Use it like any other Ant Design [`<Button>`][button]. You can use it with [useE
 
 ```tsx live
 // visible-block-start
-import { useExport } from "@pankod/refine-core";
+import { useExport } from "@refinedev/core";
 import {
     List,
     useTable,
     // highlight-next-line
     ExportButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table } from "antd";
 
 const PostList: React.FC = () => {
@@ -76,7 +76,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { ExportButton } from "@pankod/refine-antd";
+import { ExportButton } from "@refinedev/antd";
 
 const MyExportComponent = () => {
     return (
@@ -106,7 +106,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/ExportButton" />
+<PropsTable module="@refinedev/antd/ExportButton" />
 
 :::tip External Props
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).

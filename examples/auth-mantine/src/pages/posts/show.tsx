@@ -1,5 +1,5 @@
-import { useShow, useOne } from "@pankod/refine-core";
-import { Show, MarkdownField } from "@pankod/refine-mantine";
+import { useShow, useOne } from "@refinedev/core";
+import { Show, MarkdownField } from "@refinedev/mantine";
 
 import { Title, Text } from "@mantine/core";
 

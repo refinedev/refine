@@ -10,9 +10,9 @@ We will show what `<Show>` does using properties with examples.
 
 ```tsx live hideCode url=http://localhost:3000/posts/show/2
 // visible-block-start
-import { Show, MarkdownField } from "@pankod/refine-antd";
+import { Show, MarkdownField } from "@refinedev/antd";
 import { Typography } from "antd";
-import { useShow, IResourceComponentsProps, useOne } from "@pankod/refine-core";
+import { useShow, IResourceComponentsProps, useOne } from "@refinedev/core";
 
 const { Title, Text } = Typography;
 
@@ -95,7 +95,7 @@ const customDataProvider = {
 };
 
 // visible-block-start
-import { Show } from "@pankod/refine-antd";
+import { Show } from "@refinedev/antd";
 
 const PostShow: React.FC = () => {
     return (
@@ -136,10 +136,10 @@ The `<Show>` component reads the `resource` information from the route by defaul
 setInitialRoutes(["/custom/2"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { Show } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { Show } from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 const CustomPage: React.FC = () => {
     return (
@@ -236,8 +236,8 @@ const authProvider = {
 };
 
 // visible-block-start
-import { Show } from "@pankod/refine-antd";
-import { usePermissions } from "@pankod/refine-core";
+import { Show } from "@refinedev/antd";
+import { usePermissions } from "@refinedev/core";
 
 const PostShow: React.FC = () => {
     const { data: permissionsData } = usePermissions();
@@ -288,7 +288,7 @@ render(
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show, useModalForm } from "@pankod/refine-antd";
+import { Show, useModalForm } from "@refinedev/antd";
 import { Modal, Button } from "antd";
 
 const PostShow: React.FC = () => {
@@ -338,10 +338,10 @@ render(
 If not specified, Refine will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
 
 ```tsx
-import { Refine } from "@pankod/refine-core";
-import { Show } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { Show } from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // highlight-start
 const PostShow = () => {
@@ -373,7 +373,7 @@ To customize the back button or to disable it, you can use the `goBack` property
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show } from "@pankod/refine-antd";
+import { Show } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostShow: React.FC = () => {
@@ -414,7 +414,7 @@ Since `<Show>` uses the Ant Design [`<Card>`](https://ant.design/components/card
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show } from "@pankod/refine-antd";
+import { Show } from "@refinedev/antd";
 
 const PostShow: React.FC = () => {
     return (
@@ -447,7 +447,7 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-antd` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/antd` package.
 
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/antd/components/breadcrumb.md)
 
@@ -459,7 +459,7 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show } from "@pankod/refine-antd";
+import { Show } from "@refinedev/antd";
 import { Breadcrumb } from "antd";
 
 const PostShow: React.FC = () => {
@@ -505,13 +505,13 @@ render(
 
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<Show/>` component, you can use the `wrapperProps` property. For `@pankod/refine-antd` wrapper elements are simple `<div/>`s and `wrapperProps` can get every attribute that `<div/>` can get.
+If you want to customize the wrapper of the `<Show/>` component, you can use the `wrapperProps` property. For `@refinedev/antd` wrapper elements are simple `<div/>`s and `wrapperProps` can get every attribute that `<div/>` can get.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show } from "@pankod/refine-antd";
+import { Show } from "@refinedev/antd";
 
 const PostShow: React.FC = () => {
     return (
@@ -560,7 +560,7 @@ If you want to customize the header of the `<Show/>` component, you can use the 
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show } from "@pankod/refine-antd";
+import { Show } from "@refinedev/antd";
 
 const PostShow: React.FC = () => {
     return (
@@ -610,7 +610,7 @@ If you want to customize the content of the `<Show/>` component, you can use the
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show } from "@pankod/refine-antd";
+import { Show } from "@refinedev/antd";
 
 const PostShow: React.FC = () => {
     return (
@@ -657,7 +657,7 @@ You can customize the buttons at the header by using the `headerButtons` propert
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show } from "@pankod/refine-antd";
+import { Show } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostShow: React.FC = () => {
@@ -707,7 +707,7 @@ You can customize the wrapper element of the buttons at the header by using the 
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show } from "@pankod/refine-antd";
+import { Show } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostShow: React.FC = () => {
@@ -756,7 +756,7 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show } from "@pankod/refine-antd";
+import { Show } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostShow: React.FC = () => {
@@ -806,7 +806,7 @@ You can customize the wrapper element of the buttons at the footer by using the 
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show } from "@pankod/refine-antd";
+import { Show } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostShow: React.FC = () => {
@@ -860,7 +860,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/Show"
+<PropsTable module="@refinedev/antd/Show"
 contentProps-type="[`CardProps`](https://ant.design/components/card/#API)"
 headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)" 
 headerButtons-default="[`ListButton`](https://refine.dev/docs/api-reference/antd/components/buttons/list-button/), [`RefreshButton`](https://refine.dev/docs/api-reference/antd/components/buttons/refresh-button/), [`EditButton`](https://refine.dev/docs/api-reference/antd/components/buttons/edit-button/) and [`DeleteButton`](https://refine.dev/docs/api-reference/antd/components/buttons/delete-button/)"

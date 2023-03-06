@@ -56,14 +56,14 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
 import {
     List,
     // highlight-next-line
     CreateButton,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import {
     TableContainer,
     Table,
@@ -73,7 +73,7 @@ import {
     Tbody,
     Td,
 } from "@chakra-ui/react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -173,7 +173,127 @@ render(
 
 ## Properties
 
-### `resourceNameOrRouteName`
+### `resource`
+
+It is used to redirect the app to the `create` action path of the given resource name. By default, the app redirects to the inferred resource's `create` action path.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@refinedev/core";
+
+// visible-block-start
+import { CreateButton } from "@refinedev/chakra-ui";
+
+const MyCreateComponent = () => {
+    return (
+        <CreateButton
+            colorScheme="black"
+            resource="categories"
+        />
+    );
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            resources={[
+                {
+                    name: "posts",
+                    list: MyCreateComponent,
+                },
+                {
+                    name: "categories",
+                    create: CreatePage,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Clicking the button will trigger the `create` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `create` action path of the resource, filling the necessary parameters in the route.
+
+### `meta`
+
+It is used to pass additional parameters to the `create` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md). By default, existing parameters in the route are used by the `create` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+
+If the `create` action route is defined by the pattern: `/posts/:authorId/create`, the `meta` prop can be used as follows:
+
+```tsx
+const MyComponent = () => {
+    return (
+        <CreateButton meta={{ authorId: "10" }} />
+    );
+};
+```
+
+### `hideText`
+
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@refinedev/core";
+
+// visible-block-start
+import { CreateButton } from "@refinedev/chakra-ui";
+
+const MyCreateComponent = () => {
+    return <CreateButton colorScheme="black" hideText />;
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            resources={[
+                {
+                    name: "posts",
+                    list: MyCreateComponent,
+                    create: CreatePage,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+### `accessControl`
+
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
+
+```tsx
+import { CreateButton } from "@refinedev/chakra-ui";
+
+export const MyListComponent = () => {
+    return (
+        <CreateButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
+};
+```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
 
 It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of resource object.
 
@@ -222,63 +342,8 @@ render(
 
 Clicking the button will trigger the `create` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/posts/create`.
 
-### `hideText`
-
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
-
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@pankod/refine-core";
-
-// visible-block-start
-import { CreateButton } from "@pankod/refine-chakra-ui";
-
-const MyCreateComponent = () => {
-    return <CreateButton colorScheme="black" hideText />;
-};
-// visible-block-end
-
-const App = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: MyCreateComponent,
-                    create: CreatePage,
-                },
-            ]}
-        />
-    );
-};
-
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
-```
-
-### `accessControl`
-
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
-
-```tsx
-import { CreateButton } from "@pankod/refine-chakra-ui";
-
-export const MyListComponent = () => {
-    return (
-        <CreateButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
-};
-```
-
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/CloneButton" />
+<PropsTable module="@refinedev/chakra-ui/CloneButton" />

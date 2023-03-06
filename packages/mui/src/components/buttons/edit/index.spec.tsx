@@ -1,4 +1,4 @@
-import { buttonEditTests } from "@pankod/refine-ui-tests";
+import { buttonEditTests } from "@refinedev/ui-tests";
 import { EditButton } from "./";
 
 describe("Edit Button", () => {

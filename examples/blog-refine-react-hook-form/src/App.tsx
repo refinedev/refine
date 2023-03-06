@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
@@ -6,11 +6,11 @@ import {
     LightTheme,
     ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
-import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
 import Create from "pages/create";
 
 function App() {

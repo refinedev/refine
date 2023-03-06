@@ -56,8 +56,8 @@ To add a `resource` to our app, we need use `resources` prop of `<Refine/>` comp
 Here's a simple example of how to add a resource to a **refine** app:
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 const App: React.FC = () => {
     return (

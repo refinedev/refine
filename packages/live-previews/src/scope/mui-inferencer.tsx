@@ -1,4 +1,4 @@
-import * as RefineMuiInferencer from "@pankod/refine-inferencer/mui";
+import * as RefineMuiInferencer from "@refinedev/inferencer/mui";
 
 const MuiInferencerScope = {
     RefineMuiInferencer,

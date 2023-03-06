@@ -14,12 +14,12 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live
 // visible-block-start
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 import {
     // highlight-next-line
     RefreshButton,
     Show,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Typography } from "antd";
 
 const { Title, Text } = Typography;
@@ -78,12 +78,12 @@ render(
 
 ```tsx live disableScroll previewHeight=120px
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-antd";
+import { RefreshButton } from "@refinedev/antd";
 
 const MyRefreshComponent = () => {
     return (
         <RefreshButton
-            resourceNameOrRouteName="posts"
+            resource="posts"
             // highlight-next-line
             recordItemId="1"
         />
@@ -110,7 +110,80 @@ Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/d
 `<RefreshButton>` component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
+
+`resource` allows us to manage which resource is going to be refreshed.
+
+```tsx live disableScroll previewHeight=120px
+// visible-block-start
+import { RefreshButton } from "@refinedev/antd";
+
+const MyRefreshComponent = () => {
+    return (
+        <RefreshButton
+            // highlight-next-line
+            resource="posts"
+        />
+    );
+};
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+            },
+            {
+                name: "categories",
+            },
+        ]}
+        DashboardPage={MyRefreshComponent}
+    />,
+);
+```
+
+Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
+
+:::note
+`<RefreshButton>` component reads the resource name from the route by default.
+:::
+
+### `hideText`
+
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+
+```tsx live disableScroll previewHeight=120px
+// visible-block-start
+import { RefreshButton } from "@refinedev/antd";
+
+const MyRefreshComponent = () => {
+    return (
+        <RefreshButton
+            // highlight-next-line
+            hideText
+        />
+    );
+};
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+            },
+        ]}
+        DashboardPage={MyRefreshComponent}
+    />,
+);
+```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
 
 `resourceNameOrRouteName` allows us to manage which resource is going to be refreshed.
 
@@ -150,42 +223,11 @@ Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/d
 `<RefreshButton>` component reads the resource name from the route by default.
 :::
 
-### `hideText`
-
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
-
-```tsx live disableScroll previewHeight=120px
-// visible-block-start
-import { RefreshButton } from "@pankod/refine-antd";
-
-const MyRefreshComponent = () => {
-    return (
-        <RefreshButton
-            // highlight-next-line
-            hideText
-        />
-    );
-};
-// visible-block-end
-
-render(
-    <RefineAntdDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-            },
-        ]}
-        DashboardPage={MyRefreshComponent}
-    />,
-);
-```
-
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/RefreshButton" />
+<PropsTable module="@refinedev/antd/RefreshButton" />
 
 :::tip External Props
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).

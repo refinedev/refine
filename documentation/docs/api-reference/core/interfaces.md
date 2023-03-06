@@ -95,10 +95,11 @@ title: Interface References
 
 ## Pagination
 
-| Key      | Type     |
-| -------- | -------- |
-| current  | `number` |
-| pageSize | `number` |
+| Key      | Type                                |
+| -------- | ----------------------------------- |
+| current  | `number`                            |
+| pageSize | `number`                            |
+| mode     | `"client"` \| `"server"` \| `"off"` |
 
 ## BaseKey
 

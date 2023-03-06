@@ -16,7 +16,7 @@ When:
 ## Basic Usage
 
 ```tsx
-import { Authenticated } from "@pankod/refine-core";
+import { Authenticated } from "@refinedev/core";
 
 const MyPage = () => (
     <Authenticated>
@@ -67,7 +67,7 @@ Component to render while checking whether the user is logged in.
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/Authenticated"/>
+<PropsTable module="@refinedev/core/Authenticated"/>
 
 [use-is-authenticated]: docs/api-reference/core/hooks/auth/useIsAuthenticated
 [custom pages explanation]: /advanced-tutorials/custom-pages.md#authenticated-custom-pages

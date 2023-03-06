@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import {
     RefineCrudCreateProps,
     RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 
 import { ITestWrapperProps, render, TestWrapper } from "@test";
 
@@ -32,7 +32,7 @@ export const crudCreateTests = function (
         RefineCrudCreateProps<any, any, any, any, any, any, {}>
     >,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / CRUD Create", () => {
+    describe("[@refinedev/ui-tests] Common Tests / CRUD Create", () => {
         beforeAll(() => {
             jest.spyOn(console, "warn").mockImplementation(jest.fn());
         });

@@ -1,7 +1,4 @@
-import {
-    IResourceComponentsProps,
-    getDefaultFilter,
-} from "@pankod/refine-core";
+import { IResourceComponentsProps, getDefaultFilter } from "@refinedev/core";
 
 import {
     List,
@@ -14,7 +11,7 @@ import {
     useSelect,
     DateField,
     ImageField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Space, Select } from "antd";
 

@@ -6,7 +6,7 @@ title: useModalForm
 `useModalForm` hook allows you to manage a form within a [`<Modal>`][antd-modal]. It returns Ant Design [`<Form>`][antd-form] and [Modal][antd-modal] components props.
 
 :::info
-`useModalForm` hook is extended from [`useForm`][antd-use-form] from the [`@pankod/refine-antd`][@pankod/refine-antd] package. This means that you can use all the features of [`useForm`][antd-use-form] hook.
+`useModalForm` hook is extended from [`useForm`][antd-use-form] from the [`@refinedev/antd`][@refinedev/antd] package. This means that you can use all the features of [`useForm`][antd-use-form] hook.
 :::
 
 ## Basic Usage
@@ -31,9 +31,9 @@ setInitialRoutes(["/posts"]);
 // visible-block-start
 
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
-import { List, EditButton, useTable, useModalForm } from "@pankod/refine-antd";
+import { List, EditButton, useTable, useModalForm } from "@refinedev/antd";
 import { Table, Form, Select, Input, Modal, Space } from "antd";
 
 const PostList: React.FC<IResourceComponentsProps> = () => {
@@ -144,9 +144,9 @@ Let's learn how to add editing capabilities to records that will be opening form
 setInitialRoutes(["/posts"]);
 
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
-import { List, EditButton, useTable, useModalForm } from "@pankod/refine-antd";
+import { List, EditButton, useTable, useModalForm } from "@refinedev/antd";
 import { Table, Form, Select, Input, Modal, Space } from "antd";
 
 const PostList: React.FC<IResourceComponentsProps> = () => {
@@ -285,9 +285,9 @@ Let's learn how to add cloning capabilities to records that will be opening form
 setInitialRoutes(["/posts"]);
 
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
-import { List, CloneButton, useTable, useModalForm } from "@pankod/refine-antd";
+import { List, CloneButton, useTable, useModalForm } from "@refinedev/antd";
 import { Table, Form, Select, Input, Modal, Space } from "antd";
 
 const PostList: React.FC<IResourceComponentsProps> = () => {
@@ -685,7 +685,7 @@ return (
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/useModalForm"/>
+<PropsTable module="@refinedev/antd/useModalForm"/>
 
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-reference/core/components/refine-config.md)>** component. `useModalForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
@@ -721,7 +721,7 @@ return (
 
    <CodeSandboxExample path="form-antd-use-modal-form" />
 
-[@pankod/refine-antd]: https://github.com/refinedev/refine/tree/master/packages/antd
+[@refinedev/antd]: https://github.com/refinedev/refine/tree/master/packages/antd
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror
 [basekey]: /api-reference/core/interfaces.md#basekey

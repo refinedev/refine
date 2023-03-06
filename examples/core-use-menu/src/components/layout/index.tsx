@@ -5,7 +5,7 @@ import {
     useRouterContext,
     useRefineContext,
     ITreeMenu,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const { menuItems, selectedKey } = useMenu();

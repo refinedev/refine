@@ -21,7 +21,7 @@ npm install --save web3modal
 ```
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 ## Configure Refine Authprovider
@@ -33,7 +33,7 @@ In this example, we will show the login with Metamask Wallet. If you want, you c
 :::
 
 ```tsx title="/src/authprovider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 
@@ -137,7 +137,7 @@ export const getBalance = async (account: string): Promise<string> => {
 We need to override the refine login page. In this way, we will redirect it to the Metamask Wallet login page. We create a `login.tsx` file in the /pages folder.
 
 ```tsx title="/src/page/login.tsx"
-import { useLogin } from "@pankod/refine-core";
+import { useLogin } from "@refinedev/core";
 import { Layout, Button, Row, Col } from "antd";
 import Icon from "@ant-design/icons";
 
@@ -212,8 +212,8 @@ After connecting with our account, we can now retrieve account information. We w
 
 ```tsx title="src/pages/dashboard"
 import React from "react";
-import { useGetIdentity } from "@pankod/refine-core";
-import { useModal } from "@pankod/refine-antd";
+import { useGetIdentity } from "@refinedev/core";
+import { useModal } from "@refinedev/antd";
 import {
     Row,
     Col,
@@ -302,8 +302,8 @@ export const sendEthereum = async (
 
 ```tsx title"src/pages/dashboard.tsx"
 import React, { useState } from "react";
-import { useGetIdentity } from "@pankod/refine-core";
-import { useModal } from "@pankod/refine-antd";
+import { useGetIdentity } from "@refinedev/core";
+import { useModal } from "@refinedev/antd";
 import {
     Row,
     Col,

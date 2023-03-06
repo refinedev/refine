@@ -1,5 +1,5 @@
 import { ButtonProps } from "@mantine/core";
-import { UseImportInputPropsType } from "@pankod/refine-core";
+import { UseImportInputPropsType } from "@refinedev/core";
 import {
     RefineCloneButtonProps,
     RefineCreateButtonProps,
@@ -11,7 +11,7 @@ import {
     RefineRefreshButtonProps,
     RefineSaveButtonProps,
     RefineShowButtonProps,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 import { TablerIconProps } from "@tabler/icons";
 
 export type ShowButtonProps = RefineShowButtonProps<

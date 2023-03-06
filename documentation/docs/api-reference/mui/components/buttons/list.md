@@ -14,9 +14,9 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
 // visible-block-start
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 // highlight-next-line
-import { ListButton, Show } from "@pankod/refine-mui";
+import { ListButton, Show } from "@refinedev/mui";
 import { Typography, Stack } from "@mui/material";
 
 const PostShow: React.FC = () => {
@@ -73,7 +73,117 @@ The button text is defined automatically by **refine** based on _resource_ objec
 
 ## Properties
 
-### `resourceNameOrRouteName`
+### `resource`
+
+Redirection endpoint is defined by the `resource`'s `list` action path. By default, `<ListButton>` uses the inferred resource from the route.
+
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
+import { ListButton } from "@refinedev/mui";
+
+const MyListComponent = () => {
+    return <ListButton resource="categories" recordItemId="2" />;
+};
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+            },
+            {
+                name: "categories",
+                list: () => (
+                    <RefineMui.List>
+                        <p>Rest of the page here...</p>
+                    </RefineMui.List>
+                ),
+            },
+        ]}
+        DashboardPage={MyListComponent}
+    />,
+);
+```
+
+Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `list` action path of the resource, filling the necessary parameters in the route.
+
+### `meta`
+
+It is used to pass additional parameters to the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md). By default, existing parameters in the route are used by the `list` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+
+If the `list` action route is defined by the pattern: `/:authorId/posts`, the `meta` prop can be used as follows:
+
+```tsx
+const MyComponent = () => {
+    return (
+        <ListButton meta={{ authorId: "10" }} />
+    );
+};
+```
+
+### `hideText`
+
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
+import { ListButton } from "@refinedev/mui";
+
+const MyListComponent = () => {
+    return (
+        <ListButton
+            resourceNameOrRouteName="posts"
+            // highlight-next-line
+            hideText
+        />
+    );
+};
+
+// visible-block-end
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <RefineMui.List>
+                        <p>Rest of the page here...</p>
+                    </RefineMui.List>
+                ),
+            },
+        ]}
+        DashboardPage={MyListComponent}
+    />,
+);
+```
+
+### `accessControl`
+
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
+
+```tsx
+import { ListButton } from "@refinedev/mui";
+
+export const MyListComponent = () => {
+    return (
+        <ListButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
+};
+```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
 
 Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
 
@@ -111,67 +221,11 @@ render(
 
 Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
 
-### `hideText`
-
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
-
-```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
-
-// visible-block-start
-import { ListButton } from "@pankod/refine-mui";
-
-const MyListComponent = () => {
-    return (
-        <ListButton
-            resourceNameOrRouteName="posts"
-            // highlight-next-line
-            hideText
-        />
-    );
-};
-
-// visible-block-end
-
-render(
-    <RefineMuiDemo
-        initialRoutes={["/"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <RefineMui.List>
-                        <p>Rest of the page here...</p>
-                    </RefineMui.List>
-                ),
-            },
-        ]}
-        DashboardPage={MyListComponent}
-    />,
-);
-```
-
-### `accessControl`
-
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
-
-```tsx
-import { ListButton } from "@pankod/refine-mui";
-
-export const MyListComponent = () => {
-    return (
-        <ListButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
-};
-```
-
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/ListButton" />
+<PropsTable module="@refinedev/mui/ListButton" />
 
 :::tip External Props
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).

@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-antd": major
+"@refinedev/antd": major
 ---
 
 ## 🪄 Migrating your project automatically with refine-codemod ✨
@@ -16,9 +16,9 @@ And it's done. Now your project uses `refine@4.x.x`.
 
 ## 📝 Changelog
 
-Deprecated `useMenu` removed from `@pankod/refine-antd` package. Use `useMenu` from `@refinedev/core` package instead.
+Deprecated `useMenu` removed from `@refinedev/antd` package. Use `useMenu` from `@refinedev/core` package instead.
 
 ```diff
-- import { useMenu } from "@pankod/refine-antd";
+- import { useMenu } from "@refinedev/antd";
 + import { useMenu } from "@refinedev/core";
 ```

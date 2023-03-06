@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { useAutocomplete } from "@pankod/refine-mui";
+import { useAutocomplete } from "@refinedev/mui";
 
 import {
     Autocomplete,

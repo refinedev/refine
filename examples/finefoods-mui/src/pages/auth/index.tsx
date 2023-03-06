@@ -1,7 +1,7 @@
 import * as React from "react";
-import { AuthPage as MUIAuthPage, AuthProps } from "@pankod/refine-mui";
+import { AuthPage as MUIAuthPage, AuthProps } from "@refinedev/mui";
 
-import { useRouterContext } from "@pankod/refine-core";
+import { useRouterContext } from "@refinedev/core";
 
 const authWrapperProps = {
     style: {

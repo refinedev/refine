@@ -1,7 +1,7 @@
 import React from "react";
-import { HttpError, IResourceComponentsProps } from "@pankod/refine-core";
+import { HttpError, IResourceComponentsProps } from "@refinedev/core";
 
-import { Edit, useForm, useSelect } from "@pankod/refine-antd";
+import { Edit, useForm, useSelect } from "@refinedev/antd";
 
 import { RcFile } from "antd/lib/upload/interface";
 import { Form, Input, Select, Upload } from "antd";

@@ -1,4 +1,4 @@
-import { HttpError } from "@pankod/refine-core";
+import { HttpError } from "@refinedev/core";
 import axios from "axios";
 
 const axiosInstance = axios.create();

@@ -1,10 +1,5 @@
 import React from "react";
-import {
-    useShow,
-    useResource,
-    useNavigation,
-    useOne,
-} from "@pankod/refine-core";
+import { useShow, useResource, useNavigation, useOne } from "@refinedev/core";
 
 export const ProductShow = () => {
     const { edit, list } = useNavigation();

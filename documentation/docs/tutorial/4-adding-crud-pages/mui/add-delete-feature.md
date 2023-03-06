@@ -21,10 +21,10 @@ To add a delete feature to the products table, you can follow the steps below:
 
 1. Open the `src/pages/products/list.tsx` file on your editor.
 
-2. Import the `<DeleteButton/>` component from `@pankod/refine-mui`:
+2. Import the `<DeleteButton/>` component from `@refinedev/mui`:
 
     ```tsx
-    import { DeleteButton } from "@pankod/refine-mui";
+    import { DeleteButton } from "@refinedev/mui";
     ```
 
 3. Add the `<DeleteButton/>` component to the `actions` column of the table as shown below:
@@ -58,17 +58,17 @@ Now, you can try to delete a record from the list page. Just click on the delete
 When we define a resource, we can enable the delete feature on the show page and edit page by setting the `canDelete` property in `meta` to `true` as shown below:
 
 ```tsx src="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
     LightTheme,
     RefineSnackbarProvider,
     notificationProvider,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import routerBindings from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import routerBindings from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 

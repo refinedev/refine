@@ -1,4 +1,4 @@
-import { useLogin } from "@pankod/refine-core";
+import { useLogin } from "@refinedev/core";
 import { useRef, useState } from "react";
 import { Alert, Button, Card, Input } from "react-daisyui";
 import { supabaseClient } from "utility";

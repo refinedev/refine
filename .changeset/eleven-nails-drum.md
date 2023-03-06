@@ -1,11 +1,11 @@
 ---
-"@pankod/refine-nextjs-router": major
+"@refinedev/nextjs-router": major
 ---
 
 
 We're releasing a new way to connect your router to **refine**. 
 
-The legacy `routerProvider` and its exports are now deprecated but accessible at `@pankod/refine-nextjs-router/legacy-app` and `@pankod/refine-nextjs-router/legacy-pages`.
+The legacy `routerProvider` and its exports are now deprecated but accessible at `@refinedev/nextjs-router/legacy-app` and `@refinedev/nextjs-router/legacy-pages`.
 
 The new `routerBindings` are smaller and more flexible than the previos one.
 

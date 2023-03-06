@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import { List, EditButton, ShowButton } from "@pankod/refine-antd";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { List, EditButton, ShowButton } from "@refinedev/antd";
 import { Table, Space } from "antd";
-import { useTable } from "@pankod/refine-antd";
+import { useTable } from "@refinedev/antd";
 
-import { useCloudMutation } from "@pankod/refine-cloud";
+import { useCloudMutation } from "@refinedev/cloud";
 
 import { ICategory } from "interfaces";
 

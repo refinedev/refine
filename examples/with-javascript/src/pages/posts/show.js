@@ -1,6 +1,6 @@
-import { useShow, useOne } from "@pankod/refine-core";
+import { useShow, useOne } from "@refinedev/core";
 
-import { Show, MarkdownField } from "@pankod/refine-antd";
+import { Show, MarkdownField } from "@refinedev/antd";
 
 import { Typography } from "antd";
 

@@ -7,8 +7,8 @@ import {
     useRouterContext,
     useRouterType,
     useLink,
-} from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconPencil } from "@tabler/icons";
 
@@ -23,6 +23,7 @@ import { EditButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/edit-button} for more details.
  */
 export const EditButton: React.FC<EditButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName,
     recordItemId,
     hideText = false,
@@ -45,7 +46,9 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
     const { editUrl: generateEditUrl } = useNavigation();
 
-    const { id, resource } = useResource(resourceNameOrRouteName);
+    const { id, resource } = useResource(
+        resourceNameFromProps ?? resourceNameOrRouteName,
+    );
 
     const { data } = useCan({
         resource: resource?.name,
@@ -67,12 +70,8 @@ export const EditButton: React.FC<EditButtonProps> = ({
     };
 
     const editUrl =
-        (resource || resourceNameOrRouteName) && (recordItemId ?? id)
-            ? generateEditUrl(
-                  resource! ?? resourceNameOrRouteName!,
-                  recordItemId! ?? id!,
-                  meta,
-              )
+        resource && (recordItemId ?? id)
+            ? generateEditUrl(resource, recordItemId! ?? id!, meta)
             : "";
 
     const { variant, styles, ...commonProps } = rest;

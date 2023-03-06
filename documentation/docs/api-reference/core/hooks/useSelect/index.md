@@ -178,15 +178,15 @@ useSelect({
 });
 ```
 
-### `hasPagination`
+#### `mode`
 
-> Default: `false`
-
-`hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to determine whether to use server-side pagination or not.
+It can be `"off"`, `"client"` or `"server"`. It is used to determine whether to use server-side pagination or not.
 
 ```tsx
 useSelect({
-    hasPagination: true,
+    pagination: {
+        mode: "off",
+    },
 });
 ```
 
@@ -244,7 +244,6 @@ const myDataProvider = {
     getList: async ({
         resource,
         pagination,
-        hasPagination,
         sorters,
         filters,
         // highlight-next-line
@@ -350,6 +349,22 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 Use `sorters` instead.
 :::
 
+### ~~`hasPagination`~~
+
+:::caution Deprecated
+Use `pagination.mode` instead.
+:::
+
+> Default: `false`
+
+`hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to determine whether to use server-side pagination or not.
+
+```tsx
+useSelect({
+    hasPagination: true,
+});
+```
+
 ## FAQ
 
 ### How to get all the data without pagination?
@@ -413,7 +428,7 @@ return (
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useSelect"  />
+<PropsTable module="@refinedev/core/useSelect"  />
 
 ### Return values
 

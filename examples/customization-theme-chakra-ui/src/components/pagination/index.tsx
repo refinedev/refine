@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { HStack, Button, Box } from "@chakra-ui/react";
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
-import { usePagination } from "@pankod/refine-chakra-ui";
+import { usePagination } from "@refinedev/chakra-ui";
 
 import { IconButton } from "@chakra-ui/react";
 

@@ -1,19 +1,15 @@
 import React from "react";
-import { Refine } from "@pankod/refine-core";
-import { RefineKbarProvider } from "@pankod/refine-kbar";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
-import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@pankod/refine-antd";
+import { Refine } from "@refinedev/core";
+import { RefineKbarProvider } from "@refinedev/kbar";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import {
     ShoppingOutlined,
     UsergroupAddOutlined,
     ShopOutlined,
     StarOutlined,
 } from "@ant-design/icons";
-import jsonServerDataProvider from "@pankod/refine-simple-rest";
+import jsonServerDataProvider from "@refinedev/simple-rest";
 import { authProvider } from "authProvider";
 
 import "dayjs/locale/de";
@@ -36,7 +32,7 @@ import { useTranslation } from "react-i18next";
 import { Header, Title, OffLayoutArea } from "components";
 import { BikeWhiteIcon, PizzaIcon } from "components/icons";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     const API_URL = "https://api.finefoods.refine.dev";

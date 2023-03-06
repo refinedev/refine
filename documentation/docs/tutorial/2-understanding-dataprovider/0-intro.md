@@ -33,7 +33,7 @@ Data providers can communicate with `REST`, `GraphQL`, `RPC`, and `SOAP` based A
 The typical data provider has following methods:
 
 ```ts
-import { DataProvider } from "@pankod/refine-core";
+import { DataProvider } from "@refinedev/core";
 
 const dataProvider: DataProvider = {
     create: ({ resource, variables, meta }) => Promise,
@@ -41,7 +41,6 @@ const dataProvider: DataProvider = {
     getList: ({
         resource,
         pagination,
-        hasPagination,
         sorters,
         filters,
         meta,
@@ -65,7 +64,7 @@ In the previous units, we consumed the API and show the data in the auto-generat
 
 ```tsx
 ...
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 
 <Refine
     ...
@@ -82,7 +81,7 @@ We use **refine's** data hooks whenever we need to fetch data from the API. Thes
 To illustrate this internal connection, imagine we want to get all records from the `post` resource using refine's `useList` data hook.
 
 ```ts title="src/pages/posts/index.tsx"
-import { useList } from "@pankod/refine-core";
+import { useList } from "@refinedev/core";
 
 const postUseListResult = useList({
     resource: "posts",

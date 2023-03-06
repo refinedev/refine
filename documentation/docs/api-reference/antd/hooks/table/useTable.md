@@ -16,7 +16,7 @@ By using `useTable`, you can get properties that are compatible with Ant Design 
 For all the other features, you can refer to the Ant Design [`<Table>`][table] documentation.
 
 :::info
-`useTable` hook is extended from [`useTable`][use-table-core] hook from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
+`useTable` hook is extended from [`useTable`][use-table-core] hook from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
 :::
 
 ## Basic usage
@@ -412,7 +412,6 @@ const myDataProvider = {
     getList: async ({
         resource,
         pagination,
-        hasPagination,
         sorters,
         filters,
         // highlight-next-line
@@ -699,8 +698,8 @@ You can also use `searchFormProps.form.submit` to submit the form manually.
 It's useful when you want to create a filter form for your `<Table>`.
 
 ```tsx
-import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
-import { List, useTable, SaveButton } from "@pankod/refine-antd";
+import { IResourceComponentsProps, HttpError } from "@refinedev/core";
+import { List, useTable, SaveButton } from "@refinedev/antd";
 import { Table, Form, Input } from "antd";
 
 interface IPost {
@@ -780,7 +779,7 @@ Current page index state. If pagination is disabled, it will be `undefined`.
 ### `setCurrent`
 
 ```tsx
-React.Dispatch<React.SetStateAction<number>> | undefined
+React.Dispatch<React.SetStateAction<number>> | undefined;
 ```
 
 A function to set the current page index state. If pagination is disabled, it will be `undefined`.
@@ -792,7 +791,7 @@ Current page size state. If pagination is disabled, it will be `undefined`.
 ### `setPageSize`
 
 ```tsx
-React.Dispatch<React.SetStateAction<number>> | undefined
+React.Dispatch<React.SetStateAction<number>> | undefined;
 ```
 
 A function to set the current page size state. If pagination is disabled, it will be `undefined`.
@@ -841,7 +840,7 @@ You can use [`useMany`](/docs/api-reference/core/hooks/data/useMany/) hook to fe
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/useTable"/>
+<PropsTable module="@refinedev/antd/useTable"/>
 
 ### Type Parameters
 

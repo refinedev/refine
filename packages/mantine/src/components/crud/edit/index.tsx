@@ -19,7 +19,7 @@ import {
     useRouterType,
     useToPath,
     useTranslate,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { IconArrowLeft } from "@tabler/icons";
 import {
     DeleteButton,
@@ -101,7 +101,7 @@ export const Edit: React.FC<EditProps> = (props) => {
             {!recordItemId && (
                 <ListButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={
+                    resource={
                         routerType === "legacy"
                             ? resource?.route
                             : resource?.identifier ?? resource?.name
@@ -110,7 +110,7 @@ export const Edit: React.FC<EditProps> = (props) => {
             )}
             <RefreshButton
                 {...(isLoading ? { disabled: true } : {})}
-                resourceNameOrRouteName={
+                resource={
                     routerType === "legacy"
                         ? resource?.route
                         : resource?.identifier ?? resource?.name
@@ -127,6 +127,11 @@ export const Edit: React.FC<EditProps> = (props) => {
                 (id || deleteButtonProps?.recordItemId) && (
                     <DeleteButton
                         {...(isLoading ? { disabled: true } : {})}
+                        resource={
+                            routerType === "legacy"
+                                ? resource?.route
+                                : resource?.identifier ?? resource?.name
+                        }
                         mutationMode={mutationMode}
                         onSuccess={() => {
                             if (routerType === "legacy") {

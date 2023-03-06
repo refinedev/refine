@@ -1,8 +1,4 @@
-import {
-    useMany,
-    useExport,
-    IResourceComponentsProps,
-} from "@pankod/refine-core";
+import { useMany, useExport, IResourceComponentsProps } from "@refinedev/core";
 
 import {
     useTable,
@@ -13,7 +9,7 @@ import {
     TextField,
     ExportButton,
     ImportButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Space, Table } from "antd";
 

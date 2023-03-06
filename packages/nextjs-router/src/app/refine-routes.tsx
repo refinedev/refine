@@ -1,5 +1,5 @@
 import React from "react";
-import { useResource } from "@pankod/refine-core";
+import { useResource } from "@refinedev/core";
 import { usePathname } from "next/navigation";
 
 type RefineRoutesProps = {

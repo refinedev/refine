@@ -1,5 +1,5 @@
 import React from "react";
-import { useInfiniteList } from "@pankod/refine-core";
+import { useInfiniteList } from "@refinedev/core";
 
 export const CommitList: React.FC = () => {
     const {

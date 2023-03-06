@@ -1,14 +1,14 @@
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     LoginPage,
     Layout,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import { DataProvider } from "@pankod/refine-strapi-v4";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+} from "@refinedev/antd";
+import { DataProvider } from "@refinedev/strapi-v4";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { StoreProvider } from "context/store";
 import { CustomSider } from "components/sider";

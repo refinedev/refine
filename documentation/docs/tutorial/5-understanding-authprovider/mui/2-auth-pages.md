@@ -50,7 +50,7 @@ const authProvider = {
     getIdentity: async () => null,
 };
 
-import { Refine, Authenticated } from "@pankod/refine-core";
+import { Refine, Authenticated } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
@@ -58,11 +58,11 @@ import {
     RefineSnackbarProvider,
     notificationProvider,
     AuthPage,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import routerBindings from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
-import { MuiInferencer } from "@pankod/refine-inferencer/mui";
+import routerBindings from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import { MuiInferencer } from "@refinedev/inferencer/mui";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -133,13 +133,13 @@ Login page is used to authenticate users. It provides a basic form to enter emai
 1. Open `src/App.tsx` file and import the `<AuthPage/>` component.
 
     ```tsx
-    import { AuthPage } from "@pankod/refine-mui";
+    import { AuthPage } from "@refinedev/mui";
     ```
 
 2. Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine, Authenticated } from "@pankod/refine-core";
+    import { Refine, Authenticated } from "@refinedev/core";
     import {
         Layout,
         ErrorComponent,
@@ -148,10 +148,10 @@ Login page is used to authenticate users. It provides a basic form to enter emai
         notificationProvider,
         //highlight-next-line
         AuthPage,
-    } from "@pankod/refine-mui";
+    } from "@refinedev/mui";
     import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-    import routerBindings from "@pankod/refine-react-router-v6";
-    import dataProvider from "@pankod/refine-simple-rest";
+    import routerBindings from "@refinedev/react-router-v6";
+    import dataProvider from "@refinedev/simple-rest";
 
     import { ProductList } from "pages/products/list";
     import { ProductEdit } from "pages/products/edit";
@@ -244,7 +244,7 @@ Register page is used to register new users. It provides a basic form to enter e
 1.  Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine, Authenticated } from "@pankod/refine-core";
+    import { Refine, Authenticated } from "@refinedev/core";
     import {
         Layout,
         ErrorComponent,
@@ -253,10 +253,10 @@ Register page is used to register new users. It provides a basic form to enter e
         notificationProvider,
         //highlight-next-line
         AuthPage,
-    } from "@pankod/refine-mui";
+    } from "@refinedev/mui";
     import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-    import routerBindings from "@pankod/refine-react-router-v6";
-    import dataProvider from "@pankod/refine-simple-rest";
+    import routerBindings from "@refinedev/react-router-v6";
+    import dataProvider from "@refinedev/simple-rest";
 
     import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -350,7 +350,7 @@ Forgot password page is used to send a reset password link to the user's email. 
 1. Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine, Authenticated } from "@pankod/refine-core";
+    import { Refine, Authenticated } from "@refinedev/core";
     import {
         Layout,
         ErrorComponent,
@@ -359,10 +359,10 @@ Forgot password page is used to send a reset password link to the user's email. 
         notificationProvider,
         //highlight-next-line
         AuthPage,
-    } from "@pankod/refine-mui";
+    } from "@refinedev/mui";
     import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-    import routerBindings from "@pankod/refine-react-router-v6";
-    import dataProvider from "@pankod/refine-simple-rest";
+    import routerBindings from "@refinedev/react-router-v6";
+    import dataProvider from "@refinedev/simple-rest";
 
     import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -458,7 +458,7 @@ Update password page is used to update the user's password. It provides a basic 
 1. Open `src/App.tsx` file and add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
 
     ```tsx
-    import { Refine, Authenticated } from "@pankod/refine-core";
+    import { Refine, Authenticated } from "@refinedev/core";
     import {
         Layout,
         ErrorComponent,
@@ -467,10 +467,10 @@ Update password page is used to update the user's password. It provides a basic 
         notificationProvider,
         //highlight-next-line
         AuthPage,
-    } from "@pankod/refine-mui";
+    } from "@refinedev/mui";
     import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-    import routerBindings from "@pankod/refine-react-router-v6";
-    import dataProvider from "@pankod/refine-simple-rest";
+    import routerBindings from "@refinedev/react-router-v6";
+    import dataProvider from "@refinedev/simple-rest";
 
     import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -575,12 +575,12 @@ Let's customize the auth pages.
     npm run refine swizzle
     ```
 
-2. Select the `@pankod/refine-mui` package.
+2. Select the `@refinedev/mui` package.
 
     ```bash
         ? Which package do you want to swizzle?
         UI Framework
-        ❯  @pankod/refine-mui
+        ❯  @refinedev/mui
     ```
 
 3. Select the `AuthPage` component.

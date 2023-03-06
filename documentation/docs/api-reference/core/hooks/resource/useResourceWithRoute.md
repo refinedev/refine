@@ -12,7 +12,7 @@ This hook is deprecated and only works properly with the legacy routing system. 
 The hook is used internal in **refine**. Normally you don't need this hook, but we export it as it may be useful for some use-cases.
 
 ```ts
-import { useResourceWithRoute } from "@pankod/refine-core";
+import { useResourceWithRoute } from "@refinedev/core";
 
 const resourceWithRoute = useResourceWithRoute();
 

@@ -73,8 +73,8 @@ values={[
 <TabItem value="react-router-v6">
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 import { BrowserRouter } from "react-router-dom";
 
 const App: React.FC = () => {
@@ -90,8 +90,8 @@ const App: React.FC = () => {
 <TabItem value="react-router">
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v5";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v5";
 
 const App: React.FC = () => {
     return <Refine legacyRouterProvider={routerProvider} />;
@@ -102,8 +102,8 @@ const App: React.FC = () => {
 <TabItem value="react-location">
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-location";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-location";
 
 const App: React.FC = () => {
     return <Refine legacyRouterProvider={routerProvider} />;
@@ -114,8 +114,8 @@ const App: React.FC = () => {
 <TabItem value="nextjs">
 
 ```tsx title="pages/_app.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-nextjs-router";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/nextjs-router";
 import { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
@@ -140,8 +140,8 @@ import {
     Scripts,
     ScrollRestoration,
 } from "@remix-run/react";
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-remix-router";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/remix-router";
 
 export const meta: MetaFunction = () => ({
     charset: "utf-8",
@@ -198,7 +198,7 @@ The `parse` method is used to parse the current path and return the current `res
 
 `resource` is the name of the resource that is used in the current page and also defined in the `resources` prop of the `<Refine />` component. This can be `undefined` if there's no matching resource route.
 
-Matching the resource route can be done with the help of the `matchResourceFromRoute` function from the `@pankod/refine-core` package.
+Matching the resource route can be done with the help of the `matchResourceFromRoute` function from the `@refinedev/core` package.
 
 `id` is the id of the record that is used in the current page. This can be `undefined` if there's no matching parameter.
 
@@ -216,7 +216,7 @@ The `Link` component is used to create links to other pages. It accepts a `to` p
 
 ## Legacy Router Provider
 
-**refine**'s v4 release is backward compatible and supports the legacy router provider implementations until v5. The legacy router provider implementations are still available at `/legacy` paths in the router provider packages. For example, the legacy router provider implementation for React Router V6 is available at `@pankod/refine-react-router-v6/legacy`.
+**refine**'s v4 release is backward compatible and supports the legacy router provider implementations until v5. The legacy router provider implementations are still available at `/legacy` paths in the router provider packages. For example, the legacy router provider implementation for React Router V6 is available at `@refinedev/react-router-v6/legacy`.
 
 If you want to use a legacy router provider, you can pass them to the `<Refine />` component using the `legacyRouterProvider` prop.
 

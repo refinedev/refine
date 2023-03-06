@@ -23,7 +23,7 @@ import {
     List,
     // highlight-next-line
     NumberField,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
@@ -82,7 +82,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/NumberField" value-description="Number value" />
+<PropsTable module="@refinedev/mui/NumberField" value-description="Number value" />
 
 :::tip External Props
 It also accepts all props of Material UI [Text](https://mui.com/material-ui/react-text-field/).

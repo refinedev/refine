@@ -1,7 +1,7 @@
 import {
     DarkTheme as DefaultDarkTheme,
     LightTheme as DefaultLightTheme,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 

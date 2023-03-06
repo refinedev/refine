@@ -10,8 +10,9 @@ import {
     useRouterContext,
     useRouterType,
     useLink,
-} from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+    pickNotDeprecated,
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 
 import { ListButtonProps } from "../types";
 
@@ -23,6 +24,7 @@ import { ListButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/list-button} for more details.
  */
 export const ListButton: React.FC<ListButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName: propResourceNameOrRouteName,
     hideText = false,
     accessControl,
@@ -42,7 +44,9 @@ export const ListButton: React.FC<ListButtonProps> = ({
 
     const translate = useTranslate();
 
-    const { resource } = useResource(propResourceNameOrRouteName);
+    const { resource } = useResource(
+        resourceNameFromProps ?? propResourceNameOrRouteName,
+    );
 
     const { data } = useCan({
         resource: resource?.name,
@@ -65,10 +69,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
             );
     };
 
-    const listUrl =
-        resource || propResourceNameOrRouteName
-            ? generateListUrl(resource! || propResourceNameOrRouteName!, meta)
-            : "";
+    const listUrl = resource ? generateListUrl(resource, meta) : "";
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;
@@ -100,13 +101,18 @@ export const ListButton: React.FC<ListButtonProps> = ({
                     (children ??
                         translate(
                             `${
-                                resource?.name ?? propResourceNameOrRouteName
+                                resource?.name ??
+                                resourceNameFromProps ??
+                                propResourceNameOrRouteName
                             }.titles.list`,
                             userFriendlyResourceName(
                                 resource?.meta?.label ??
                                     resource?.label ??
                                     resource?.name ??
-                                    propResourceNameOrRouteName,
+                                    pickNotDeprecated(
+                                        resourceNameFromProps,
+                                        propResourceNameOrRouteName,
+                                    ),
                                 "plural",
                             ),
                         ))}

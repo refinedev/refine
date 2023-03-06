@@ -152,7 +152,7 @@ const { data } = useCan({
 
 ### Routes
 
-[`@pankod/refine-nextjs-router`][nextjsrouter], [`@pankod/refine-react-router`][reactrouter], and [`@pankod/refine-react-location`][reactlocation] packages integrate access control for CRUD pages at `[resource]/[action]` and root routes.
+[`@refinedev/nextjs-router`][nextjsrouter], [`@pankod/refine-react-router`][reactrouter], and [`@pankod/refine-react-location`][reactlocation] packages integrate access control for CRUD pages at `[resource]/[action]` and root routes.
 
 They will check access control with parameters:
 
@@ -195,7 +195,7 @@ These buttons will be disabled if access control returns `{ can: false }`
 
 <CodeSandboxExample path="access-control-casbin" />
 
-[nextjsrouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
+[nextjsrouter]: https://www.npmjs.com/package/@refinedev/nextjs-router
 [reactrouter]: https://www.npmjs.com/package/@pankod/refine-react-router
 [reactlocation]: https://www.npmjs.com/package/@pankod/refine-react-location
 [catchall]: /api-reference/core/components/refine-config.md#catchall

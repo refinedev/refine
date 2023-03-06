@@ -1,6 +1,6 @@
 import React from "react";
-import { Option, useSelect } from "@pankod/refine-core";
-import { useDataGrid, List } from "@pankod/refine-mui";
+import { Option, useSelect } from "@refinedev/core";
+import { useDataGrid, List } from "@refinedev/mui";
 
 import {
     DataGrid,

@@ -9,8 +9,8 @@ import {
     useRouterContext,
     useRouterType,
     useLink,
-} from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 
 import { CreateButtonProps } from "../types";
 
@@ -22,6 +22,7 @@ import { CreateButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/create-button} for more details.
  */
 export const CreateButton: React.FC<CreateButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName: propResourceNameOrRouteName,
     hideText = false,
     accessControl,
@@ -41,7 +42,9 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
     const { createUrl: generateCreateUrl } = useNavigation();
 
-    const { resource } = useResource(propResourceNameOrRouteName);
+    const { resource } = useResource(
+        resourceNameFromProps ?? propResourceNameOrRouteName,
+    );
 
     const { data } = useCan({
         resource: resource?.name,
@@ -64,10 +67,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
             );
     };
 
-    const createUrl =
-        resource || propResourceNameOrRouteName
-            ? generateCreateUrl(resource! || propResourceNameOrRouteName!, meta)
-            : "";
+    const createUrl = resource ? generateCreateUrl(resource, meta) : "";
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;

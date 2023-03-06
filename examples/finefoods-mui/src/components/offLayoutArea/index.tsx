@@ -1,4 +1,4 @@
-import { RefineKbar } from "@pankod/refine-kbar";
+import { RefineKbar } from "@refinedev/kbar";
 import { ArrowLeftOutlined } from "@mui/icons-material";
 
 import "./style.css";

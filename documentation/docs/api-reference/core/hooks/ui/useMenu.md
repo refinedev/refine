@@ -13,7 +13,7 @@ body {
 
 `useMenu` is used to get menu items derived from the resources. These items include a link to the dashboard page (if it exists) and links to the user-defined resources (passed as children to `<Refine>`).
 
-This hook can also be used to build custom menus, including multi-level support. `<Sider/>` components inside [`@pankod/refine-antd`](/docs/api-reference/antd/), [`@pankod/refine-mui`](/docs/api-reference/mui/), [`@pankod/refine-chakra-ui`](/docs/api-reference/chakra-ui/) and, [`@pankod/refine-mantine`](/docs/api-reference/mantine/) packages are using this hook as a base for their menus.
+This hook can also be used to build custom menus, including multi-level support. `<Sider/>` components inside [`@refinedev/antd`](/docs/api-reference/antd/), [`@refinedev/mui`](/docs/api-reference/mui/), [`@refinedev/chakra-ui`](/docs/api-reference/chakra-ui/) and, [`@refinedev/mantine`](/docs/api-reference/mantine/) packages are using this hook as a base for their menus.
 
 ```ts
 const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
@@ -27,14 +27,14 @@ const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
 
 :::caution
 
-`useMenu` hooks exported from `@pankod/refine-antd` and `@pankod/refine-mui` packages are now **deprecated** and will be removed. Please use `useMenu` from `@pankod/refine-core`.
+`useMenu` hooks exported from `@refinedev/antd` and `@refinedev/mui` packages are now **deprecated** and will be removed. Please use `useMenu` from `@refinedev/core`.
 :::
 
 ## Usage
 
 :::tip
 
-If you are using [`@pankod/refine-antd`](/docs/api-reference/antd/), [`@pankod/refine-mui`](/docs/api-reference/mui/), [`@pankod/refine-chakra-ui`](/docs/api-reference/chakra-ui/) or [`@pankod/refine-mantine`](/docs/api-reference/mantine/) as a UI framework integration, you can find out more info about how their `<Sider/>` components are created and how to create a custom one by following their guides.
+If you are using [`@refinedev/antd`](/docs/api-reference/antd/), [`@refinedev/mui`](/docs/api-reference/mui/), [`@refinedev/chakra-ui`](/docs/api-reference/chakra-ui/) or [`@refinedev/mantine`](/docs/api-reference/mantine/) as a UI framework integration, you can find out more info about how their `<Sider/>` components are created and how to create a custom one by following their guides.
 
 [Ant Design > Customization > Custom Sider &#8594](/docs/api-reference/antd/customization/antd-custom-sider/)
 
@@ -59,7 +59,7 @@ import {
     useRouterContext,
     useRefineContext,
     ITreeMenu,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     // highlight-start
@@ -129,9 +129,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     );
 };
 
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import { Layout } from "components";
 
@@ -179,9 +179,9 @@ After creating the `<Layout/>` component, we can use it in our application. We n
 Update your `resources` in `<Refine/>` with `parentName` to nest them inside a label.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import { Layout } from "components/layout";
 
@@ -227,7 +227,7 @@ import {
     useRouterContext,
     useRefineContext,
     ITreeMenu,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const { menuItems, selectedKey } = useMenu();

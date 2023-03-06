@@ -9,7 +9,7 @@ import LivePreview from "./\_partial-use-editable-table-live-preview.md";
 `useEditeableTable` allows you to implement the edit feature on the [`<Table>`][table] with ease. Return properties that can be used on Ant Desing's [`<Table>`][table] and [`<Form>`][form] components.
 
 :::info
-`useEditeableTable` hook is extended from [`useTable`][usetable] hook from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/next/packages/antd) package. This means that you can use all the features of [`useTable`][usetable] hook.
+`useEditeableTable` hook is extended from [`useTable`][usetable] hook from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/next/packages/antd) package. This means that you can use all the features of [`useTable`][usetable] hook.
 :::
 
 ## Basic Usage
@@ -25,7 +25,7 @@ Let's say that we want to make the `Post` data where we show the `id` and `title
 This time, to add the edit feature, we have to cover the `<Table>` component with a `<Form>` component and pass the properties coming from `useEditableTable` to the corresponding components:
 
 ```tsx title="/pages/posts/list.tsx"
-import { List, useEditableTable, TextField } from "@pankod/refine-antd";
+import { List, useEditableTable, TextField } from "@refinedev/antd";
 import { Table, Form } from "antd";
 
 export const PostList: React.FC = () => {
@@ -62,7 +62,7 @@ import {
     EditButton,
     // highlight-end
     useEditableTable,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import {
     Table,
     Form,
@@ -145,7 +145,7 @@ import {
     TextField,
     // highlight-end
     useEditableTable,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import {
     Table,
     Form,
@@ -244,7 +244,7 @@ The `onRow` property of the `<Table>` component can be used to put a line to edi
 We can use `setId` to put a line to edit mode whenever it's clicked on.
 
 ```tsx title="/pages/posts/list.tsx"
-import { List, TextField, useEditableTable } from "@pankod/refine-antd";
+import { List, TextField, useEditableTable } from "@refinedev/antd";
 import { Table, Form, Input } from "antd";
 
 export const PostList: React.FC = () => {
@@ -345,7 +345,7 @@ Takes a `id` as a parameter and returns `true` if the given `BaseKey` is equal t
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/useEditableTable"/>
+<PropsTable module="@refinedev/antd/useEditableTable"/>
 
 ### Type Parameters
 

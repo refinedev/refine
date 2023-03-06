@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { CrudFilters, useList, useOne } from "@pankod/refine-core";
+import { CrudFilters, useList, useOne } from "@refinedev/core";
 import { Cart, LineItem, Product } from "@medusajs/medusa";
 import omit from "lodash/omit";
 

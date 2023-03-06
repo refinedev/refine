@@ -1,6 +1,6 @@
 import React from "react";
 import { CardProps, FormProps, LayoutProps } from "antd";
-import { AuthPageProps } from "@pankod/refine-core";
+import { AuthPageProps } from "@refinedev/core";
 
 import {
     LoginPage,

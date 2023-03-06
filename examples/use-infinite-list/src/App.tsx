@@ -1,6 +1,6 @@
-import { LayoutProps, Refine, useRouterContext } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
-import dataProvider from "@pankod/refine-simple-rest";
+import { LayoutProps, Refine, useRouterContext } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
 
 import { githubDataProvider } from "github-data-provider";
 import { PostList } from "pages/posts/list";

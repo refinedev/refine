@@ -5,8 +5,8 @@ import {
     useImport,
     useMany,
     useNotification,
-} from "@pankod/refine-core";
-import { useTable } from "@pankod/refine-react-table";
+} from "@refinedev/core";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import {
     List,
@@ -14,7 +14,7 @@ import {
     ImportButton,
     ExportButton,
     DateField,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 
 import {
     Box,

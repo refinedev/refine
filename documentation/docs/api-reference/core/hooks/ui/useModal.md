@@ -20,7 +20,7 @@ Let's see an example:
 import {
     // highlight-next-line
     useModal,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 export const PostList: React.FC = () => {
     // highlight-next-line
@@ -78,7 +78,7 @@ A function that can change the `visible` state to `false`.
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useModal"  />
+<PropsTable module="@refinedev/core/useModal"  />
 
 ### Return Value
 

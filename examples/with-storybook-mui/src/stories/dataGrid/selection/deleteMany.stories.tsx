@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { useDataGrid } from "@pankod/refine-mui";
+import { useDataGrid } from "@refinedev/mui";
 import { DataGrid, GridColumns, GridSelectionModel } from "@mui/x-data-grid";
 import { Button, Box } from "@mui/material";
-import { useDeleteMany } from "@pankod/refine-core";
+import { useDeleteMany } from "@refinedev/core";
 
 import { RefineWithoutLayout } from "../../../../.storybook/preview";
 

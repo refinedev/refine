@@ -38,11 +38,11 @@ While creating a project using the refine command line tool, select Strapi as yo
 
 You don't need a Strapi instance to learn how to use Strapi with refine. The refine ecosystem has a [fake Strapi API](https://api.strapi-v4.refine.dev) that you can use when learning to integrate Strapi in a refine project.
 
-The refine command line tool will install the `@pankod/refine-strapi-v4` data provider when you choose it as your back-end service during project creation. You can then import and use it in your application like so:
+The refine command line tool will install the `@refinedev/strapi-v4` data provider when you choose it as your back-end service during project creation. You can then import and use it in your application like so:
 
 ```tsx
-import { Refine } from "@pankod/refine-core";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { Refine } from "@refinedev/core";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 function App() {
   return (
@@ -62,10 +62,10 @@ As highlighted above, one of the benefits of using refine is the built-in suppor
 
 When creating a refine application using `create-refine-app`, select Mantine as the UI framework in the command prompt. The refine command line tool will bootstrap a refine application and install the necessary Mantine packages.
 
-You can then import the refine Mantine components and hooks you want to use from the `@pankod/refine-mantine` package like so:
+You can then import the refine Mantine components and hooks you want to use from the `@refinedev/mantine` package like so:
 
 ```ts
-import { Edit, useForm, useSelect } from "@pankod/refine-mantine";
+import { Edit, useForm, useSelect } from "@refinedev/mantine";
 ```
 
 The refine ecosystem comprises several hooks and components for Mantine. You can read the refine [Mantine API documentation](https://refine.dev/docs/api-reference/mantine/) for more on the different Mantine hooks and Components and how to use them.
@@ -145,7 +145,7 @@ One of the hooks we will use a lot in this article is the [`useForm`](https://re
 The refine documentation does a great job of explaining the `useForm` hook. Check it out to understand the `useForm` hook in-depth and how to use it.
 
 ```tsx
-import { useForm } from "@pankod/refine-mantine";
+import { useForm } from "@refinedev/mantine";
 
 const { saveButtonProps, getInputProps } = useForm({
     initialValues: {
@@ -204,15 +204,15 @@ Since we will work with blog posts, let us create a `posts` directory and keep a
 
 ```tsx title="src/pages/posts/list.tsx"
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { useTable, ColumnDef, flexRender } from "@refinedev/react-table";
 import {
     List,
     Table,
     Pagination,
     DateField,
     CreateButton,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const columns = React.useMemo<ColumnDef<any>[]>(
@@ -320,7 +320,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 
 In the `PostList` component above, we used the `useTable` hook from the `refine-react-table` package. The `useTable` hook is headless by design. Therefore, the responsibility for managing the UI lies with you.
 
-We imported several other UI components from the `@pankod/refine-mantine` package. I won't explain them here. Read the [refine Mantine](https://refine.dev/docs/api-reference/mantine/) or the core [Mantine](https://mantine.dev/guides/cra/) documentation.
+We imported several other UI components from the `@refinedev/mantine` package. I won't explain them here. Read the [refine Mantine](https://refine.dev/docs/api-reference/mantine/) or the core [Mantine](https://mantine.dev/guides/cra/) documentation.
 
 Create a `src/pages/posts/index.tsx` file and add the following export statement to it.
 
@@ -378,7 +378,7 @@ Similarly, `create-refine-app` bootstraps a refine application with default `Aut
 Of particular interest is the login method of the `authProvider`. We will use email and password to log into our application. Be sure the login method has the code below.
 
 ```ts title="src/authProvider.ts"
-import type { AuthBindings } from "@pankod/refine-core";
+import type { AuthBindings } from "@refinedev/core";
 
 export const authProvider: AuthBindings = {
   //highlight-start
@@ -453,7 +453,7 @@ Therefore, for our data provider to return the categories for each post, we need
 
 ```tsx title="src/pages/posts/list.tsx"
 ...
-import { useTable } from '@pankod/refine-react-table';
+import { useTable } from '@refinedev/react-table';
 
 const {
     getHeaderGroups,
@@ -536,7 +536,7 @@ import {
     TextInput,
     useSelect,
     Select,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 
 import { ICategory } from "interfaces";
 
@@ -673,7 +673,7 @@ import {
   EditButton,
   Group,
   //highlight-end
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 
 const columns = React.useMemo<ColumnDef<any>[]>(
     () => [
@@ -731,7 +731,7 @@ import {
     TextInput,
     Select,
     useSelect,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 
 import { ICategory } from "interfaces";
 
@@ -862,7 +862,7 @@ import {
  ...
  //highlight-next-line
   DeleteButton,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 ```
 
 We will add the `DeleteButton` we imported above to every row in our table under the `Actions` column. The columns array we declared while creating the table in one of the sections above contains an object with the id `actions`. That object defines our `Actions` column. We will add the `DeleteButton` to it.
@@ -1028,14 +1028,14 @@ function App() {
 
 In the previous sections, we performed CRUD operations by building components from scratch. The refine ecosystem has the Inferencer package for generating CRUD pages based on the responses from your API.
 
-The sole purpose of the Inferencer is to set you off by generating CRUD pages. You can then customize the components to suit your needs. Depending on your design system or component library, import Inferencer from the `@pankod/refine-inferencer` package.
+The sole purpose of the Inferencer is to set you off by generating CRUD pages. You can then customize the components to suit your needs. Depending on your design system or component library, import Inferencer from the `@refinedev/inferencer` package.
 
 Since we are using Mantine as our components library, import and add `MantineInferencer` to the `resources` prop of the `Refine` component like so:
 
 ```tsx title="src/App.tsx"
 ...
 //highlight-next-line
-import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
+import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 function App() {
   return (

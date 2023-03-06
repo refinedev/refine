@@ -3,11 +3,11 @@ id: inferencer
 title: Inferencer
 ---
 
-You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `HeadlessListInferencer`, `HeadlessShowInferencer`, `HeadlessEditInferencer`, `HeadlessCreateInferencer` and `HeadlessInferencer` (which combines all in one place) components.
+You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `HeadlessListInferencer`, `HeadlessShowInferencer`, `HeadlessEditInferencer`, `HeadlessCreateInferencer` and `HeadlessInferencer` (which combines all in one place) components.
 
 :::caution Dependencies
 
-`@pankod/refine-inferencer/headless` uses [`@pankod/refine-react-hook-form`](/docs/packages/documentation/react-hook-form/useForm) and [`@pankod/refine-react-table`](/docs/packages/documentation/react-table) to create views.
+`@refinedev/inferencer/headless` uses [`@refinedev/react-hook-form`](/docs/packages/documentation/react-hook-form/useForm) and [`@refinedev/react-table`](/docs/packages/documentation/react-table) to create views.
 
 Make sure you include them in your dependencies.
 
@@ -16,7 +16,7 @@ Make sure you include them in your dependencies.
 
 ## Usage
 
-Inferencer components can be imported from `@pankod/refine-inferencer/headless`. You can directly use the components in your routes without passing any props. If you use a `routerProvider`, it will infer the `resource`, `action` and `id` from the current route.
+Inferencer components can be imported from `@refinedev/inferencer/headless`. You can directly use the components in your routes without passing any props. If you use a `routerProvider`, it will infer the `resource`, `action` and `id` from the current route.
 
 <Tabs
 defaultValue="resources"
@@ -30,7 +30,7 @@ values={[
 import routerProvider from "@pankod/refine-react-router-v6";
 import { BrowserRouter } from "react-router-dom";
 // highlight-next-line
-import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
+import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
 const App = () => {
     return (
@@ -59,7 +59,7 @@ const App = () => {
 
 ```tsx
 // highlight-next-line
-import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
+import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
 const SampleList = () => {
     return (
@@ -94,27 +94,27 @@ const SampleEdit = () => {
 </Tabs>
 
 :::info
-To learn more about `@pankod/refine-inferencer` package, please check out [Docs](/docs/packages/documentation/inferencer)
+To learn more about `@refinedev/inferencer` package, please check out [Docs](/docs/packages/documentation/inferencer)
 :::
 
 ## Views
 
 ### `List`
 
-Generates a sample list view for your resources according to the API response. It uses `useTable` hook from `@pankod/refine-react-table`.
+Generates a sample list view for your resources according to the API response. It uses `useTable` hook from `@refinedev/react-table`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples
 setInitialRoutes(["/"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // highlight-next-line
-import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
+import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -155,20 +155,20 @@ render(<App />);
 
 ### `Show`
 
-Generates a sample show view for your resources according to the API response. It uses `useShow` hook from `@pankod/refine-core`.
+Generates a sample show view for your resources according to the API response. It uses `useShow` hook from `@refinedev/core`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples/show/123
 setInitialRoutes(["/samples/show/123"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // highlight-next-line
-import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
+import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -209,20 +209,20 @@ render(<App />);
 
 ### `Create`
 
-Generates a sample create view for your resources according to the first record in list API response. It uses `useForm` hook from `@pankod/refine-react-hook-form`.
+Generates a sample create view for your resources according to the first record in list API response. It uses `useForm` hook from `@refinedev/react-hook-form`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples/create
 setInitialRoutes(["/samples/create"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // highlight-next-line
-import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
+import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -263,20 +263,20 @@ render(<App />);
 
 ### `Edit`
 
-Generates a sample edit view for your resources according to the API response. It uses `useForm` hook from `@pankod/refine-react-hook-form`.
+Generates a sample edit view for your resources according to the API response. It uses `useForm` hook from `@refinedev/react-hook-form`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples/edit/123
 setInitialRoutes(["/samples/edit/123"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // highlight-next-line
-import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
+import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -317,6 +317,6 @@ render(<App />);
 
 ## Example
 
-Below you'll find a Live CodeSandbox Example displaying a fully setup `Refine` app with `@pankod/refine-inferencer/headless` components.
+Below you'll find a Live CodeSandbox Example displaying a fully setup `Refine` app with `@refinedev/inferencer/headless` components.
 
 <CodeSandboxExample path="inferencer-headless" />
