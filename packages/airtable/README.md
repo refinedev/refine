@@ -22,5 +22,5 @@ For more detailed information and usage, refer to the [refine data provider docu
 ## Install
 
 ```
-npm install @pankod/refine-airtable
+npm install @refinedev/airtable
 ```

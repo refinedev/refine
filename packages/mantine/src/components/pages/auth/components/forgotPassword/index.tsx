@@ -4,12 +4,12 @@ import {
     ForgotPasswordFormTypes,
     useRouterType,
     useLink,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     useTranslate,
     useRouterContext,
     useForgotPassword,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     Box,
     Card,

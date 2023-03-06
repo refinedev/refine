@@ -1,5 +1,5 @@
 import React from "react";
-import { List, useTable, EditButton, DeleteButton } from "@pankod/refine-antd";
+import { List, useTable, EditButton, DeleteButton } from "@refinedev/antd";
 
 import { Table, Space } from "antd";
 

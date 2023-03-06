@@ -1,11 +1,11 @@
 ```tsx live url=http://localhost:3000/categories previewHeight=300px
 import React from "react";
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 setInitialRoutes(["/posts"]);
 // visible-block-start
 import React from "react";
-import { useInfiniteList } from "@pankod/refine-core";
+import { useInfiniteList } from "@refinedev/core";
 
 const PostList = () => {
     const {

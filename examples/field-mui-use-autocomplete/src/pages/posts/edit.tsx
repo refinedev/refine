@@ -1,11 +1,11 @@
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
-import { Edit, useAutocomplete } from "@pankod/refine-mui";
+import { Edit, useAutocomplete } from "@refinedev/mui";
 
 import { Box, TextField, Autocomplete } from "@mui/material";
 
 import { ICategory, IPost } from "interfaces";
-import { HttpError } from "@pankod/refine-core";
+import { HttpError } from "@refinedev/core";
 
 export const PostEdit: React.FC = () => {
     const {

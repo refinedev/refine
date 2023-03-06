@@ -24,17 +24,17 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 Let's look at an example of modifying the default layout to have a top menu layout.
 
 ```tsx title="/src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     AntdLayout,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+} from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList } from "pages/posts";
 // highlight-next-line
@@ -87,9 +87,9 @@ Here, we override the [`<Title>`][title] and [`<Layout>`][layout] components. Wh
 So, we just provided a custom [`<Sider>`][sider]. Here's our custom sider that looks horizontal, instead of the default vertical one:
 
 ```tsx title="/src/components/sider/index.tsx"
-import { useTitle, useMenu } from "@pankod/refine-core";
-import { Menu } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { useTitle, useMenu } from "@refinedev/core";
+import { Menu } from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
 
 const { Link } = routerProvider;
 

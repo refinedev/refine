@@ -1,5 +1,5 @@
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import { Edit, useForm } from "@pankod/refine-antd";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { Edit, useForm } from "@refinedev/antd";
 
 import { Form, Input } from "antd";
 

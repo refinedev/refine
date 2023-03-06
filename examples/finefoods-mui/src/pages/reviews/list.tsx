@@ -5,9 +5,9 @@ import {
     useNavigation,
     IResourceComponentsProps,
     BaseKey,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
-import { useDataGrid, List } from "@pankod/refine-mui";
+import { useDataGrid, List } from "@refinedev/mui";
 import { DataGrid, GridColumns, GridActionsCellItem } from "@mui/x-data-grid";
 import {
     Typography,

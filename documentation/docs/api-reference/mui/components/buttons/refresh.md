@@ -14,9 +14,9 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
 // visible-block-start
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 // highlight-next-line
-import { Show, RefreshButton } from "@pankod/refine-mui";
+import { Show, RefreshButton } from "@refinedev/mui";
 import { Typography, Stack } from "@mui/material";
 
 const PostShow: React.FC = () => {
@@ -74,7 +74,7 @@ render(
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-mui";
+import { RefreshButton } from "@refinedev/mui";
 
 const MyRefreshComponent = () => {
     return (
@@ -113,7 +113,7 @@ Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/d
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-mui";
+import { RefreshButton } from "@refinedev/mui";
 
 const MyRefreshComponent = () => {
     return (
@@ -152,7 +152,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-mui";
+import { RefreshButton } from "@refinedev/mui";
 
 const MyRefreshComponent = () => {
     return (
@@ -224,7 +224,7 @@ Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/d
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/RefreshButton" />
+<PropsTable module="@refinedev/mui/RefreshButton" />
 
 :::tip External Props
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).

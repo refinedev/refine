@@ -7,8 +7,8 @@ import {
     LoginPage as DefaultLoginPage,
     CanAccess,
     useRouterContext,
-} from "@pankod/refine-core";
-import type { ResourceRouterParams } from "@pankod/refine-core";
+} from "@refinedev/core";
+import type { ResourceRouterParams } from "@refinedev/core";
 
 export function NextRouteComponent(
     this: { initialRoute?: string },

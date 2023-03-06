@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useModal } from "@pankod/refine-core";
+import { useModal } from "@refinedev/core";
 import {
     List,
     useTable,
@@ -8,7 +8,7 @@ import {
     EmailField,
     DeleteButton,
     EditButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { FilePdfOutlined } from "@ant-design/icons";
 import { Table, Space, Button, Modal } from "antd";

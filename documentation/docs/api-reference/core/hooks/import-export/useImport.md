@@ -1,7 +1,7 @@
 ---
 id: useImport
 title: useImport
-description: useImport hook API references of @pankod/refine-core
+description: useImport hook API references of @refinedev/core
 ---
 
 `useImport` hook allows you to import data from a `CSV` file. For each row in the file, it calls the `create` or `createMany` method of your data provider according to your configuration.
@@ -13,7 +13,7 @@ Internally, it uses [Papa Parse][papaparse] to parse the file contents.
 Here is a basic usage example of `useImport` hook:
 
 ```tsx
-import { useImport } from "@pankod/refine-core";
+import { useImport } from "@refinedev/core";
 
 interface IPostFile {
     title: string;
@@ -245,7 +245,7 @@ With this code, the parsed data will be mapped to conform to the API requirement
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useImport" />
+<PropsTable module="@refinedev/core/useImport" />
 
 ### Return Values
 

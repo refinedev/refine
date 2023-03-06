@@ -5,7 +5,7 @@ import {
     MarkdownField,
     TextFieldComponent,
     NumberField,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 import { useTheme } from "@mui/material/styles";
 

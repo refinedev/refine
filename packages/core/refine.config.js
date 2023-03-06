@@ -1,6 +1,6 @@
-const { getImports, appendAfterImports } = require("@pankod/refine-cli");
+const { getImports, appendAfterImports } = require("@refinedev/cli");
 
-/** @type {import('@pankod/refine-cli').RefineConfig} */
+/** @type {import('@refinedev/cli').RefineConfig} */
 module.exports = {
     group: "UI Framework",
     swizzle: {
@@ -116,7 +116,7 @@ module.exports = {
                     importItem.importPath === "@hooks" ||
                     importItem.importPath === "@hooks/translate"
                 ) {
-                    const newStatement = `import ${importItem.namedImports} from "@pankod/refine-core";`;
+                    const newStatement = `import ${importItem.namedImports} from "@refinedev/core";`;
 
                     newContent = newContent.replace(
                         importItem.statement,

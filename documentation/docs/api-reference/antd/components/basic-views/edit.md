@@ -26,7 +26,7 @@ interface IPost {
     category: { id: number };
 }
 
-import { Edit, useForm, useSelect } from "@pankod/refine-antd";
+import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 
 const PostEdit: React.FC<IResourceComponentsProps> = () => {
@@ -144,7 +144,7 @@ const customDataProvider = {
 };
 
 // visible-block-start
-import { Edit } from "@pankod/refine-antd";
+import { Edit } from "@refinedev/antd";
 
 const PostEdit: React.FC = () => {
     return (
@@ -187,7 +187,7 @@ Clicking on the save button will submit your form.
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit } from "@pankod/refine-antd";
+import { Edit } from "@refinedev/antd";
 
 const PostEdit: React.FC = () => {
     return (
@@ -278,8 +278,8 @@ const authProvider = {
 };
 
 // visible-block-start
-import { Edit } from "@pankod/refine-antd";
-import { usePermissions } from "@pankod/refine-core";
+import { Edit } from "@refinedev/antd";
+import { usePermissions } from "@refinedev/core";
 
 const PostEdit: React.FC = () => {
     const { data: permissionsData } = usePermissions();
@@ -332,10 +332,10 @@ render(
 setInitialRoutes(["/custom/2"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { Edit } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { Edit } from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 const CustomPage: React.FC = () => {
     return (
@@ -378,7 +378,7 @@ The `<Edit>` component reads the `id` information from the route by default. `re
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit, useModalForm } from "@pankod/refine-antd";
+import { Edit, useModalForm } from "@refinedev/antd";
 import { Modal, Button } from "antd";
 
 const PostEdit: React.FC = () => {
@@ -447,7 +447,7 @@ interface IPost {
     category: { id: number };
 }
 
-import { Edit, useForm, useSelect } from "@pankod/refine-antd";
+import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 
 const PostEdit: React.FC<IResourceComponentsProps> = () => {
@@ -547,10 +547,10 @@ render(
 If not specified, Refine will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
 
 ```tsx
-import { Refine } from "@pankod/refine-core";
-import { Edit } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { Edit } from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // highlight-start
 const PostEdit = () => {
@@ -582,7 +582,7 @@ To customize the back button or to disable it, you can use the `goBack` property
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit } from "@pankod/refine-antd";
+import { Edit } from "@refinedev/antd";
 
 const PostEdit: React.FC = () => {
     const BackButton = () => <Button>←</Button>;
@@ -624,7 +624,7 @@ To toggle the loading state of the `<Edit/>` component, you can use the `isLoadi
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit } from "@pankod/refine-antd";
+import { Edit } from "@refinedev/antd";
 
 const PostEdit: React.FC = () => {
     return (
@@ -657,7 +657,7 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-antd` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/antd` package.
 
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/antd/components/breadcrumb.md)
 
@@ -669,7 +669,7 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit } from "@pankod/refine-antd";
+import { Edit } from "@refinedev/antd";
 import { Breadcrumb } from "antd";
 
 const PostEdit: React.FC = () => {
@@ -715,13 +715,13 @@ render(
 
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<Edit/>` component, you can use the `wrapperProps` property. For `@pankod/refine-antd` wrapper elements are simple `<div/>`s and `wrapperProps` can get every attribute that `<div/>` can get.
+If you want to customize the wrapper of the `<Edit/>` component, you can use the `wrapperProps` property. For `@refinedev/antd` wrapper elements are simple `<div/>`s and `wrapperProps` can get every attribute that `<div/>` can get.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit } from "@pankod/refine-antd";
+import { Edit } from "@refinedev/antd";
 
 const PostEdit: React.FC = () => {
     return (
@@ -770,7 +770,7 @@ If you want to customize the header of the `<Edit/>` component, you can use the 
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit } from "@pankod/refine-antd";
+import { Edit } from "@refinedev/antd";
 
 const PostEdit: React.FC = () => {
     return (
@@ -820,7 +820,7 @@ If you want to customize the content of the `<Edit/>` component, you can use the
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit } from "@pankod/refine-antd";
+import { Edit } from "@refinedev/antd";
 
 const PostEdit: React.FC = () => {
     return (
@@ -867,7 +867,7 @@ You can customize the buttons at the header by using the `headerButtons` propert
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit } from "@pankod/refine-antd";
+import { Edit } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostEdit: React.FC = () => {
@@ -917,7 +917,7 @@ You can customize the wrapper element of the buttons at the header by using the 
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit } from "@pankod/refine-antd";
+import { Edit } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostEdit: React.FC = () => {
@@ -966,7 +966,7 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit } from "@pankod/refine-antd";
+import { Edit } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostEdit: React.FC = () => {
@@ -1016,7 +1016,7 @@ You can customize the wrapper element of the buttons at the footer by using the 
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit } from "@pankod/refine-antd";
+import { Edit } from "@refinedev/antd";
 import { Button } from "antd";
 
 const PostEdit: React.FC = () => {
@@ -1064,7 +1064,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/Edit" 
+<PropsTable module="@refinedev/antd/Edit" 
 contentProps-type="[`CardProps`](https://ant.design/components/card/#API)"
 headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)" 
 headerButtons-default="[`ListButton`](https://refine.dev/docs/api-reference/antd/components/buttons/list-button/) and [`RefreshButton`](https://refine.dev/docs/api-reference/antd/components/buttons/refresh-button/)"

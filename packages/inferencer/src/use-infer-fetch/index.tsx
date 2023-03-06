@@ -1,5 +1,5 @@
 import React from "react";
-import { useDataProvider, useResource, BaseKey } from "@pankod/refine-core";
+import { useDataProvider, useResource, BaseKey } from "@refinedev/core";
 
 import { pickDataProvider, dataProviderFromResource } from "@/utilities";
 

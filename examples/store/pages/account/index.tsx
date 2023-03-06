@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import { LayoutWrapper, useGetIdentity, useOne } from "@pankod/refine-core";
+import { LayoutWrapper, useGetIdentity, useOne } from "@refinedev/core";
 import { StoreCustomersListOrdersRes } from "@medusajs/medusa";
 
 import { AccountLayout, Overview } from "@components/account";

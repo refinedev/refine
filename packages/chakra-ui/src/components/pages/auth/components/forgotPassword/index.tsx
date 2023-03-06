@@ -9,7 +9,7 @@ import {
     ForgotPasswordPageProps,
     BaseRecord,
     HttpError,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     Box,
     BoxProps,
@@ -21,7 +21,7 @@ import {
     Input,
     Link as ChakraLink,
 } from "@chakra-ui/react";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";
 import { FormPropsType } from "../..";

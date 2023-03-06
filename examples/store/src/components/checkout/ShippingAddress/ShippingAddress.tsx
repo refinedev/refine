@@ -1,4 +1,4 @@
-import { useOne } from "@pankod/refine-core";
+import { useOne } from "@refinedev/core";
 import { useFormContext } from "react-hook-form";
 import { Customer } from "@medusajs/medusa";
 

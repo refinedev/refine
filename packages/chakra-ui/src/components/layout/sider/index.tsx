@@ -12,7 +12,7 @@ import {
     useRouterType,
     useTitle,
     useTranslate,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     Accordion,
     AccordionButton,

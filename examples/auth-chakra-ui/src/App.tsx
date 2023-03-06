@@ -1,4 +1,4 @@
-import { AuthBindings, Refine } from "@pankod/refine-core";
+import { AuthBindings, Refine } from "@refinedev/core";
 import {
     AuthPage,
     Layout,
@@ -6,10 +6,10 @@ import {
     ReadyPage,
     refineTheme,
     notificationProvider,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";

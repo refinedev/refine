@@ -1,6 +1,6 @@
-import { useApiUrl } from "@pankod/refine-core";
+import { useApiUrl } from "@refinedev/core";
 
-import { Create } from "@pankod/refine-antd";
+import { Create } from "@refinedev/antd";
 
 import {
     Drawer,
@@ -20,7 +20,7 @@ import {
     useStrapiUpload,
     mediaUploadMapper,
     getValueProps,
-} from "@pankod/refine-strapi-v4";
+} from "@refinedev/strapi-v4";
 
 import { TOKEN_KEY } from "../../constants";
 

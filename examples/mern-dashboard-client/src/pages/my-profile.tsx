@@ -1,4 +1,4 @@
-import { useGetIdentity, useOne } from "@pankod/refine-core";
+import { useGetIdentity, useOne } from "@refinedev/core";
 
 import { Profile } from "components";
 

@@ -1,5 +1,5 @@
 /*eslint-disable */
-import "@pankod/refine-mui";
+import "@refinedev/mui";
 export interface CustomTheme {
     // Add custom variables here like below:
     // status: {

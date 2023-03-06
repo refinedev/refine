@@ -4,7 +4,7 @@ import {
     useRouterContext,
     useRouterType,
     useLink,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 export const Title: React.FC<TitleProps> = ({ collapsed }) => {
     const routerType = useRouterType();

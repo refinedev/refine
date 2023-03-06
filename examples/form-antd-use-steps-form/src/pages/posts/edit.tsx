@@ -1,7 +1,7 @@
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
-import { Edit, SaveButton, useSelect, useStepsForm } from "@pankod/refine-antd";
+import { Edit, SaveButton, useSelect, useStepsForm } from "@refinedev/antd";
 
 import { Form, Input, Select, Button, Steps } from "antd";
 

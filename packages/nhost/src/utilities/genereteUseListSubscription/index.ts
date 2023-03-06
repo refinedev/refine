@@ -3,7 +3,7 @@ import {
     Pagination,
     CrudSorting,
     CrudFilters,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import * as gql from "gql-query-builder";
 
 import { generateFilters, generateSorting } from "../../dataProvider";

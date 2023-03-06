@@ -1,5 +1,5 @@
-import { Refine } from "@pankod/refine-core";
-import { notificationProvider, Layout, LoginPage } from "@pankod/refine-antd";
+import { Refine } from "@refinedev/core";
+import { notificationProvider, Layout, LoginPage } from "@refinedev/antd";
 import {
     FileAddOutlined,
     UserAddOutlined,
@@ -7,9 +7,9 @@ import {
     InfoCircleOutlined,
     SlidersOutlined,
 } from "@ant-design/icons";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
-import "@pankod/refine-antd/dist/reset.css";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import "@refinedev/antd/dist/reset.css";
+import { DataProvider } from "@refinedev/strapi-v4";
 import { authProvider, axiosInstance } from "./authProvider";
 
 import { CompanyList } from "pages/company";

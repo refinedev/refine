@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
-import { LayoutWrapper } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { LayoutWrapper } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 import { Promotional, CategoryCard, ProductCard } from "@components";
 import { ICategory, IProduct } from "@interfaces";

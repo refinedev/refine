@@ -19,7 +19,7 @@ If your data provider does not have a `updateMany` method, `useUpdateMany` will 
 The `useUpdateMany` hook returns many useful properties and methods. One of them is the `mutate` method which expects `values`, `resource`, and `ids` as parameters. These parameters will be passed to the `updateMany` method from the `dataProvider` as parameters.
 
 ```tsx
-import { useUpdateMany } from "@pankod/refine-core";
+import { useUpdateMany } from "@refinedev/core";
 
 const { mutate } = useUpdateMany();
 

@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-core": minor
+"@refinedev/core": minor
 ---
 
 Added a helper function to pick not deprecated value. Gives priority according to the order of the arguments.

@@ -1,4 +1,4 @@
-import { useTranslate } from "@pankod/refine-core";
+import { useTranslate } from "@refinedev/core";
 import { useTheme } from "@mui/material/styles";
 import { Chip, ChipProps } from "@mui/material";
 

@@ -20,7 +20,7 @@ import {
     useGetIdentity,
     useGetLocale,
     useSetLocale,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     SearchOutlined,
     DarkModeOutlined,

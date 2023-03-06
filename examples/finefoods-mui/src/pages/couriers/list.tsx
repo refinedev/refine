@@ -4,8 +4,8 @@ import {
     IResourceComponentsProps,
     useDelete,
     useNavigation,
-} from "@pankod/refine-core";
-import { useDataGrid, List } from "@pankod/refine-mui";
+} from "@refinedev/core";
+import { useDataGrid, List } from "@refinedev/mui";
 import { Stack, Avatar, Typography, Tooltip } from "@mui/material";
 import { DataGrid, GridColumns, GridActionsCellItem } from "@mui/x-data-grid";
 import { Edit, Close } from "@mui/icons-material";

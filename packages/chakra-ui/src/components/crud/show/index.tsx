@@ -9,7 +9,7 @@ import {
     useRouterType,
     useBack,
     useGo,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { Box, IconButton, HStack, Heading, Spinner } from "@chakra-ui/react";
 
 // We use @tabler/icons for icons but you can use any icon library you want.

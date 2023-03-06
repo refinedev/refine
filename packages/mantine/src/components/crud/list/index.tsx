@@ -6,7 +6,7 @@ import {
     userFriendlyResourceName,
     useRouterType,
     useTranslate,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { CreateButton, Breadcrumb } from "@components";
 import { ListProps } from "../types";

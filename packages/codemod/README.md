@@ -25,7 +25,7 @@ This is a code migration tool for refine to handle breaking changes that emerge 
 To see available options, run:
 
 ```sh
-npx @pankod/refine-codemod --help
+npx @refinedev/codemod --help
 ```
 
 ## General usage
@@ -33,5 +33,5 @@ npx @pankod/refine-codemod --help
 In terminal, get inside your project root folder with `cd` and initialize `refine-codemod`:
 
 ```sh
-npx @pankod/refine-codemod
+npx @refinedev/codemod
 ```

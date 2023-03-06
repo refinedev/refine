@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout as AntLayout } from "antd";
 
-import { LayoutProps } from "@pankod/refine-core";
+import { LayoutProps } from "@refinedev/core";
 
 export const Layout: React.FC<LayoutProps> = ({
     children,

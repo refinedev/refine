@@ -1,6 +1,6 @@
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
-import { dataProvider } from "@pankod/refine-supabase";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import { dataProvider } from "@refinedev/supabase";
 import { supabaseClient } from "utility";
 import authProvider from "./authProvider";
 import { Countries } from "pages/Countries";

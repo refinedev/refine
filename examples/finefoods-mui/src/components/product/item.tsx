@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useTranslate, BaseKey } from "@pankod/refine-core";
+import { useTranslate, BaseKey } from "@refinedev/core";
 import {
     Card,
     CardHeader,

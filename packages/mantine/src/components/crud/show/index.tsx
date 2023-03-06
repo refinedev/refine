@@ -18,7 +18,7 @@ import {
     useRouterType,
     useToPath,
     useTranslate,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { IconArrowLeft } from "@tabler/icons";
 
 import {

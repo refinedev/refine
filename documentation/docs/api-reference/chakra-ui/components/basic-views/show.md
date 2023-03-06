@@ -49,14 +49,14 @@ We will show what `<Show>` does using properties with examples.
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { useShow, useOne } from "@pankod/refine-core";
-import { Show, MarkdownField } from "@pankod/refine-chakra-ui";
+import { useShow, useOne } from "@refinedev/core";
+import { Show, MarkdownField } from "@refinedev/chakra-ui";
 import { Heading, Text, Spacer } from "@chakra-ui/react";
 
 const PostShow: React.FC<IResourceComponentsProps> = () => {
@@ -139,13 +139,13 @@ It allows adding a title for the `<Show>` component. if you don't pass title pro
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Show } from "@pankod/refine-chakra-ui";
+import { Show } from "@refinedev/chakra-ui";
 import { Heading } from "@chakra-ui/react";
 
 const PostShow: React.FC = () => {
@@ -190,10 +190,10 @@ The `<Show>` component reads the `resource` information from the route by defaul
 setInitialRoutes(["/custom/123"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { Layout, Show } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { Layout, Show } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 const CustomPage: React.FC = () => {
     return (
@@ -243,14 +243,14 @@ Refer to the [`<DeleteButton>`](/api-reference/chakra-ui/components/buttons/dele
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Show } from "@pankod/refine-chakra-ui";
-import { usePermissions } from "@pankod/refine-core";
+import { Show } from "@refinedev/chakra-ui";
+import { usePermissions } from "@refinedev/core";
 
 const PostShow: React.FC = () => {
     const { data: permissionsData } = usePermissions();
@@ -348,14 +348,14 @@ render(
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=350px
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { useModalForm } from "@pankod/refine-react-hook-form";
-import { Show } from "@pankod/refine-chakra-ui";
+import { useModalForm } from "@refinedev/react-hook-form";
+import { Show } from "@refinedev/chakra-ui";
 import {
     Modal,
     Button,
@@ -427,10 +427,10 @@ The `<Edit>` component needs the `id` information for the `<RefreshButton>` to w
 If not specified, Refine will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
 
 ```tsx
-import { Refine } from "@pankod/refine-core";
-import { Show } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { Show } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // highlight-start
 const PostShow = () => {
@@ -460,10 +460,10 @@ To customize the back button or to disable it, you can use the `goBack` property
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 const IconMoodSmile = (
     <svg
@@ -487,7 +487,7 @@ const IconMoodSmile = (
 );
 
 // visible-block-start
-import { Show } from "@pankod/refine-chakra-ui";
+import { Show } from "@refinedev/chakra-ui";
 /* highlight-next-line */
 import { IconMoodSmile } from "@tabler/icons";
 
@@ -529,13 +529,13 @@ To toggle the loading state of the `<Edit/>` component, you can use the `isLoadi
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Show } from "@pankod/refine-chakra-ui";
+import { Show } from "@refinedev/chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
@@ -571,7 +571,7 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-chakra-ui` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/chakra-ui` package.
 
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/chakra-ui/components/breadcrumb.md)
 
@@ -581,13 +581,13 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Show, Breadcrumb } from "@pankod/refine-chakra-ui";
+import { Show, Breadcrumb } from "@refinedev/chakra-ui";
 import { Box } from "@chakra-ui/react";
 
 const CustomBreadcrumb: React.FC = () => {
@@ -635,19 +635,19 @@ render(
 
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<Show/>` component, you can use the `wrapperProps` property. For `@pankod/refine-chakra-ui` wrapper element is `<Box>`s and `wrapperProps` can get every attribute that `<Card>` can get.
+If you want to customize the wrapper of the `<Show/>` component, you can use the `wrapperProps` property. For `@refinedev/chakra-ui` wrapper element is `<Box>`s and `wrapperProps` can get every attribute that `<Card>` can get.
 
 [Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Show } from "@pankod/refine-chakra-ui";
+import { Show } from "@refinedev/chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
@@ -697,13 +697,13 @@ If you want to customize the header of the `<Show/>` component, you can use the 
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Show } from "@pankod/refine-chakra-ui";
+import { Show } from "@refinedev/chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
@@ -752,13 +752,13 @@ If you want to customize the content of the `<Show/>` component, you can use the
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Show } from "@pankod/refine-chakra-ui";
+import { Show } from "@refinedev/chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
@@ -806,13 +806,13 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Show } from "@pankod/refine-chakra-ui";
+import { Show } from "@refinedev/chakra-ui";
 import { Button, HStack, Box } from "@chakra-ui/react";
 
 const PostShow: React.FC = () => {
@@ -863,13 +863,13 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Show } from "@pankod/refine-chakra-ui";
+import { Show } from "@refinedev/chakra-ui";
 import { Button } from "@chakra-ui/react";
 
 const PostShow: React.FC = () => {
@@ -923,13 +923,13 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Show } from "@pankod/refine-chakra-ui";
+import { Show } from "@refinedev/chakra-ui";
 import { Button, HStack } from "@chakra-ui/react";
 
 const PostShow: React.FC = () => {
@@ -987,13 +987,13 @@ You can customize the wrapper element of the buttons at the footer by using the 
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Show } from "@pankod/refine-chakra-ui";
+import { Show } from "@refinedev/chakra-ui";
 import { Button } from "@chakra-ui/react";
 
 const PostShow: React.FC = () => {
@@ -1044,4 +1044,4 @@ render(
 
 ### Props
 
-<PropsTable module="@pankod/refine-chakra-ui/Show" title-default="<Title order={3}>Show {resource.name}</Title>"/>
+<PropsTable module="@refinedev/chakra-ui/Show" title-default="<Title order={3}>Show {resource.name}</Title>"/>

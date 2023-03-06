@@ -24,6 +24,16 @@ npx @refinedev/codemod refine3-to-refine4
 
 And it's done. Now your project uses `refine@4.x.x`.
 
+:::caution Known Issues in refine-codemod
+
+- [Instantiation Expressions](https://devblogs.microsoft.com/typescript/announcing-typescript-4-7-beta/#instantiation-expressions) are not parsed correctly when running the codemod. This causes the codemod to fail for the files that contain instantiation expressions. If you encounter this issue, you can manually migrate the files that contain instantiation expressions.
+
+- [Type declaration files (`.d.ts`)](https://www.typescriptlang.org/docs/handbook/2/type-declarations.html#dts-files) are not parsed correctly when running the codemod. This causes the codemod to fail for the files that contain type declarations. If you encounter this issue, you can manually migrate the files that contain type declarations.
+
+- While making the changes, codemod fails to format the return statements with React fragments (`<>...</>`). If you encounter this issue, you may need to manually format the file after the codemod is done.
+
+:::
+
 ## Migrating your project manually
 
 refine v4 will be released under `@refinedev` npm organization.

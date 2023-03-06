@@ -1,5 +1,5 @@
 import React from "react";
-import { TitleProps } from "@pankod/refine-core";
+import { TitleProps } from "@refinedev/core";
 import { Link } from "react-router-dom";
 
 export const Title: React.FC<TitleProps> = ({ collapsed }) => (

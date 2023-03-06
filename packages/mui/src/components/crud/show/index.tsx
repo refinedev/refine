@@ -9,7 +9,7 @@ import {
     useGo,
     useResource,
     useToPath,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     Card,

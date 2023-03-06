@@ -21,7 +21,7 @@ import {
     List,
     // highlight-next-line
     MarkdownField,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
@@ -73,7 +73,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/MarkdownField" value-description="Markdown data to render"/>
+<PropsTable module="@refinedev/antd/MarkdownField" value-description="Markdown data to render"/>
 
 ## Example
 

@@ -6,8 +6,8 @@ import {
     useCan,
     useResource,
     pickNotDeprecated,
-} from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { DeleteOutline } from "@mui/icons-material";

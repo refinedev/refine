@@ -22,6 +22,6 @@ For more detailed information and usage, refer to the [refine live provider docu
 ## Install
 
 ```
-npm install @pankod/refine-ably
+npm install @refinedev/ably
 ```
 

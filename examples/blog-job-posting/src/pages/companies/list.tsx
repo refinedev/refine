@@ -1,4 +1,4 @@
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 import {
     List,
     TextField,
@@ -8,7 +8,7 @@ import {
     DeleteButton,
     TagField,
     ShowButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Space } from "antd";
 

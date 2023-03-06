@@ -4,7 +4,7 @@ import {
     IResourceComponentsProps,
     HttpError,
     CrudFilters,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     useTable,
@@ -15,7 +15,7 @@ import {
     ShowButton,
     EditButton,
     DeleteButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Space, Row, Col, Card } from "antd";
 

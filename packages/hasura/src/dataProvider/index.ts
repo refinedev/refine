@@ -6,7 +6,7 @@ import {
     CrudSorting,
     DataProvider,
     CrudFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import setWith from "lodash/setWith";
 import set from "lodash/set";
 

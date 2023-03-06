@@ -19,7 +19,7 @@ import {
     useTable,
     // highlight-next-line
     EditButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table } from "antd";
 
 const PostList: React.FC = () => {
@@ -71,7 +71,7 @@ render(
 ```tsx live disableScroll previewHeight=150px disableScroll
 const { useRouterContext } = RefineCore;
 // visible-block-start
-import { EditButton } from "@pankod/refine-antd";
+import { EditButton } from "@refinedev/antd";
 
 const MyEditComponent = () => {
     return (
@@ -118,7 +118,7 @@ Redirection endpoint is defined by the `resource` property and its `edit` action
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { EditButton } from "@pankod/refine-antd";
+import { EditButton } from "@refinedev/antd";
 
 const MyEditComponent = () => {
     return (
@@ -184,7 +184,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { EditButton } from "@pankod/refine-antd";
+import { EditButton } from "@refinedev/antd";
 
 const MyEditComponent = () => {
     return (
@@ -219,7 +219,7 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { EditButton } from "@pankod/refine-antd";
+import { EditButton } from "@refinedev/antd";
 
 export const MyListComponent = () => {
     return (
@@ -293,7 +293,7 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](/api-ref
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/EditButton" />
+<PropsTable module="@refinedev/antd/EditButton" />
 
 :::tip External Props
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).

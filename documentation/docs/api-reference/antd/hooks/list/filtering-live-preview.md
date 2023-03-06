@@ -2,7 +2,7 @@
 setInitialRoutes(["/products"]);
 
 // visible-block-start
-import { useSimpleList } from "@pankod/refine-antd";
+import { useSimpleList } from "@refinedev/antd";
 import { Typography, List, Input } from "antd";
 
 const { Text } = Typography;

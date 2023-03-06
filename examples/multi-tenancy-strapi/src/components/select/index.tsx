@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useSelect } from "@pankod/refine-antd";
+import { useSelect } from "@refinedev/antd";
 
 import { Select } from "antd";
 

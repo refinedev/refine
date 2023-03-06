@@ -61,7 +61,7 @@ Let's create a wrapper component that renders children if `check` method returns
 
 ```tsx title="components/authenticated.tsx"
 // highlight-next-line
-import { useIsAuthenticated, useNavigation } from "@pankod/refine-core";
+import { useIsAuthenticated, useNavigation } from "@refinedev/core";
 
 export const Authenticated: React.FC<AuthenticatedProps> = ({
     children,

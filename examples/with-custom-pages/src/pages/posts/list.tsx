@@ -2,7 +2,7 @@ import {
     IResourceComponentsProps,
     useMany,
     useNavigation,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     List,
@@ -11,7 +11,7 @@ import {
     EditButton,
     ShowButton,
     CreateButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Space, Button } from "antd";
 

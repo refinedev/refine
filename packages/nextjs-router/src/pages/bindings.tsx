@@ -4,7 +4,7 @@ import {
     ResourceContext,
     matchResourceFromRoute,
     ParseResponse,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { parse, stringify } from "qs";

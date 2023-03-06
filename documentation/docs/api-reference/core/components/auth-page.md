@@ -101,8 +101,8 @@ const Wrapper = (children) => {
 setInitialRoutes(["/login"]);
 
 // visible-block-start
-import { Refine, AuthPage, useNavigation } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, AuthPage, useNavigation } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "pages/dashboard";
@@ -158,8 +158,8 @@ setInitialRoutes(["/login"]);
 const { useNavigation, useRouterContext } = RefineCore;
 
 // visible-block-start
-import { Refine, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, AuthPage } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -191,7 +191,7 @@ render(<App/>);
 After form submission, the [`login`][login] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // --
@@ -224,8 +224,8 @@ setInitialRoutes(["/register"]);
 const { useNavigation, useRouterContext } = RefineCore;
 
 // visible-block-start
-import { Refine, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, AuthPage } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -258,7 +258,7 @@ render(<App/>);
 After form submission, the [`register`][register] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // --
@@ -291,8 +291,8 @@ setInitialRoutes(["/forgot-password"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useNavigation, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, useNavigation, AuthPage } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -325,7 +325,7 @@ render(<App />);
 After form submission, the [`forgotPassword`][forgot-password] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // --
@@ -358,8 +358,8 @@ setInitialRoutes(["/update-password"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useNavigation, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, useNavigation, AuthPage } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -392,7 +392,7 @@ render(<App />);
 After form submission, the [`updatePassword`][update-password] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // --
@@ -436,8 +436,8 @@ import {
     useRouterContext,
     useNavigation,
     AuthPage,
-} from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -524,8 +524,8 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useNavigation, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, useNavigation, AuthPage } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -574,8 +574,8 @@ setInitialRoutes(["/register"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useRouterContext, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, useRouterContext, AuthPage } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -640,8 +640,8 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useRouterContext, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, useRouterContext, AuthPage } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -703,8 +703,8 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useRouterContext, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, useRouterContext, AuthPage } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -765,8 +765,8 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useNavigation, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, useNavigation, AuthPage } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -811,8 +811,8 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useNavigation, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, useNavigation, AuthPage } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -852,8 +852,8 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useNavigation, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, useNavigation, AuthPage } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -902,8 +902,8 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useRouterContext, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, useRouterContext, AuthPage } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -953,7 +953,7 @@ render(<App />);
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/AuthPage"/>
+<PropsTable module="@refinedev/core/AuthPage"/>
 
 ### Interface
 

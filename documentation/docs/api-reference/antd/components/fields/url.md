@@ -20,7 +20,7 @@ import {
     useTable,
     // highlight-next-line
     UrlField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table } from "antd";
 
 const PostList: React.FC = () => {
@@ -75,7 +75,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/UrlField" value-description="URL for link to reference to"/>
+<PropsTable module="@refinedev/antd/UrlField" value-description="URL for link to reference to"/>
 
 :::tip External Props
 It also accepts all props of Ant Design [Link](https://ant.design/components/typography/#How-to-use-Typography.Link-in-react-router).

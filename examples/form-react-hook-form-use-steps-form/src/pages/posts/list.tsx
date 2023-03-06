@@ -1,4 +1,4 @@
-import { useTable, useNavigation, useMany } from "@pankod/refine-core";
+import { useTable, useNavigation, useMany } from "@refinedev/core";
 
 import { ICategory, IPost } from "interfaces";
 

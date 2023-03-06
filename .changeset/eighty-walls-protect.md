@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-mui": minor
+"@refinedev/mui": minor
 ---
 
 `meta` prop is added. To ensure backward compatibility, `metaData` prop will be used if `meta` prop is not provided.

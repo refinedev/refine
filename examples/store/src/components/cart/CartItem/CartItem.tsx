@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import cn from "clsx";
-import { useDelete, useInvalidate, useUpdate } from "@pankod/refine-core";
+import { useDelete, useInvalidate, useUpdate } from "@refinedev/core";
 import { LineItem } from "@medusajs/medusa";
 import { formatAmount } from "medusa-react";
 

@@ -8,8 +8,8 @@ import {
     useResource,
     LoginPage as DefaultLoginPage,
     CanAccess,
-} from "@pankod/refine-core";
-import type { ResourceRouterParams } from "@pankod/refine-core";
+} from "@refinedev/core";
+import type { ResourceRouterParams } from "@refinedev/core";
 
 import { RouterProvider } from "./routerProvider";
 const { useHistory, useLocation, useParams } = RouterProvider;

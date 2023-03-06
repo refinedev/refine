@@ -22,5 +22,5 @@ For more detailed information and usage, refer to the [refine React Table docume
 ## Install
 
 ```
-npm install @pankod/refine-react-table
+npm install @refinedev/react-table
 ```

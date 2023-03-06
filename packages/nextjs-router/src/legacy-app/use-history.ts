@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 
-import type { IRouterProvider } from "@pankod/refine-core";
+import type { IRouterProvider } from "@refinedev/core";
 
 export const useHistory: IRouterProvider["useHistory"] = () => {
     const router = useRouter();

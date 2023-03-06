@@ -1,15 +1,15 @@
-import { AuthBindings, Refine } from "@pankod/refine-core";
+import { AuthBindings, Refine } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
     AuthPage,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
-import dataProvider from "@pankod/refine-nhost";
+} from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import dataProvider from "@refinedev/nhost";
 import { NhostAuthProvider } from "@nhost/react-auth";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { nhost } from "utility";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";

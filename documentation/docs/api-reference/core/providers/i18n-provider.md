@@ -15,7 +15,7 @@ The default language of **refine** is currently English. If you want to use othe
 If you want to add i18n support in the app, **refine** expects the `i18nProvider` type as follows.
 
 ```ts
-import { I18nProvider } from "@pankod/refine-core";
+import { I18nProvider } from "@refinedev/core";
 
 const i18nProvider: I18nProvider = {
     translate: (key: string, options?: any, defaultMessage?: string) => string,
@@ -27,9 +27,9 @@ const i18nProvider: I18nProvider = {
 After creating a `i18nProvider`, you can pass it to the `<Refine>` component.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import i18nProvider from "./i18nProvider";
 
@@ -163,9 +163,9 @@ Next, we will include the i18n instance and create the `i18nProvider` using [`re
 
 ```tsx title="src/App.tsx"
 // highlight-next-line
-import { Refine, I18nProvider } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, I18nProvider } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 // highlight-next-line
 import { useTranslation } from "react-i18next";
 
@@ -643,7 +643,7 @@ We can override refine's default texts by changing the `common.json` files in th
 Next, we will create a `<Header>` component. This component will allow us to change the language.
 
 ```tsx title="src/components/header.tsx"
-import { useGetLocale, useSetLocale } from "@pankod/refine-core";
+import { useGetLocale, useSetLocale } from "@refinedev/core";
 import { Layout, Space, Menu, Button, Dropdown, Avatar } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
@@ -709,9 +709,9 @@ export const Header: React.FC = () => {
 Then, we will pass `<Header>` to the `<Refine>` component as a property.
 
 ```tsx title="src/App.tsx"
-import { Refine, Resource } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, Resource } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 import { useTranslation } from "react-i18next";
 import "./i18n";
 
@@ -751,7 +751,7 @@ import {
     // highlight-next-line
     useTranslate,
     useMany,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     List,
     Table,
@@ -760,7 +760,7 @@ import {
     Space,
     EditButton,
     ShowButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -869,7 +869,7 @@ It means that you can use it in two different ways. The first one is to pass the
 -   Example of the `key` and `defaultMessage` function signature
 
 ```tsx
-import { I18nProvider } from "@pankod/refine-core";
+import { I18nProvider } from "@refinedev/core";
 import { useTranslation } from "react-i18next";
 
 // ...
@@ -885,7 +885,7 @@ const i18nProvider: I18nProvider = {
 ```
 
 ```tsx
-import { useTranslate } from "@pankod/refine-core";
+import { useTranslate } from "@refinedev/core";
 
 // ...
 
@@ -901,7 +901,7 @@ translate("posts.fields.title", "Title");
 -   Example of the `key`, `options` and, `defaultMessage` function signature
 
 ```tsx
-import { I18nProvider } from "@pankod/refine-core";
+import { I18nProvider } from "@refinedev/core";
 import { useTranslation } from "react-i18next";
 
 // ...
@@ -918,7 +918,7 @@ const i18nProvider: I18nProvider = {
 ```
 
 ```tsx
-import { useTranslate } from "@pankod/refine-core";
+import { useTranslate } from "@refinedev/core";
 
 // ...
 

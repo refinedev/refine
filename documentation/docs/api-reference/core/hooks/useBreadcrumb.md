@@ -20,7 +20,7 @@ It is a hook that returns `breadcrumbs` to create breadcrumbs for the current pa
 
 ```tsx
 import React from "react";
-import { useBreadcrumb } from "@pankod/refine-core";
+import { useBreadcrumb } from "@refinedev/core";
 
 export const Breadcrumb: React.FC = () => {
     const { breadcrumbs } = useBreadcrumb();

@@ -1,4 +1,4 @@
-import { useTranslate, useUpdate } from "@pankod/refine-core";
+import { useTranslate, useUpdate } from "@refinedev/core";
 import {
     CheckCircleOutlined,
     CloseCircleOutlined,

@@ -1,6 +1,6 @@
-const { getImports } = require("@pankod/refine-cli");
+const { getImports } = require("@refinedev/cli");
 
-/** @type {import('@pankod/refine-cli').RefineConfig} */
+/** @type {import('@refinedev/cli').RefineConfig} */
 module.exports = {
     group: "UI Framework",
     swizzle: {
@@ -524,7 +524,7 @@ module.exports = {
 
                                 // handle @components import replacement
                                 if (importItem.importPath === "@components") {
-                                    const newStatement = `import ${importItem.namedImports} from "@pankod/refine-mui";`;
+                                    const newStatement = `import ${importItem.namedImports} from "@refinedev/mui";`;
 
                                     newContent = newContent.replace(
                                         importItem.statement,
@@ -617,7 +617,7 @@ module.exports = {
             imports.map((importItem) => {
                 // for mui imports
                 if (importItem.importPath === "@components") {
-                    const newStatement = `import ${importItem.namedImports} from "@pankod/refine-mui";`;
+                    const newStatement = `import ${importItem.namedImports} from "@refinedev/mui";`;
 
                     newContent = newContent.replace(
                         importItem.statement,
@@ -651,7 +651,7 @@ module.exports = {
                 }
 
                 // for ui-types
-                if (importItem.importPath === "@pankod/refine-ui-types") {
+                if (importItem.importPath === "@refinedev/ui-types") {
                     newContent = newContent.replace(importItem.statement, "");
 
                     // prop is data-testid
@@ -666,7 +666,7 @@ module.exports = {
                     importItem.importPath === "../types" ||
                     importItem.importPath === "./types"
                 ) {
-                    const newStatement = `import type ${importItem.namedImports} from "@pankod/refine-mui";`;
+                    const newStatement = `import type ${importItem.namedImports} from "@refinedev/mui";`;
 
                     newContent = newContent.replace(
                         importItem.statement,

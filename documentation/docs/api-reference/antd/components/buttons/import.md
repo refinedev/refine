@@ -21,7 +21,7 @@ import {
     useImport,
     ImportButton,
     // highlight-end
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table } from "antd";
 
 const PostList: React.FC = () => {
@@ -78,7 +78,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { ImportButton, useImport } from "@pankod/refine-antd";
+import { ImportButton, useImport } from "@refinedev/antd";
 
 const MyImportComponent = () => {
     const importProps = useImport();
@@ -111,7 +111,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/ImportButton" />
+<PropsTable module="@refinedev/antd/ImportButton" />
 
 [useimport]: /api-reference/antd/hooks/import/useImport.md
 [button]: https://ant.design/components/button/

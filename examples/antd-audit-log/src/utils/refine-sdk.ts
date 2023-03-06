@@ -1,4 +1,4 @@
-import { createClient } from "@pankod/refine-sdk";
+import { createClient } from "@refinedev/sdk";
 
 export default createClient({
     baseUrl: "https://audit.cloud.api.refine.dev",

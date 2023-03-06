@@ -1,5 +1,5 @@
 import React from "react";
-import { useResource } from "@pankod/refine-core";
+import { useResource } from "@refinedev/core";
 
 import { ShowInferencer } from "./show";
 import { ListInferencer } from "./list";

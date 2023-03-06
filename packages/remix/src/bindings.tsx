@@ -4,7 +4,7 @@ import {
     ResourceContext,
     matchResourceFromRoute,
     ParseResponse,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { useParams, useLocation, useNavigate, Link } from "@remix-run/react";
 import { parse, stringify } from "qs";
 import React, { useCallback, useContext } from "react";

@@ -87,7 +87,7 @@ A [data provider](https://refine.dev/docs/api-reference/core/providers/data-prov
 You can install the Strapi data provider in a refine application like so:
 
 ```sh
-npm install @pankod/refine-strapi-v4
+npm install @refinedev/strapi-v4
 ```
 
 The refine documentation has comprehensive guides on [data providers](https://refine.dev/docs/api-reference/core/providers/data-provider/).
@@ -148,7 +148,7 @@ As highlighted above, refine has data providers for most CMS and platforms. You 
 You can install the Hasura data provider in your refine application like so:
 
 ```sh
-npm install @pankod/refine-hasura
+npm install @refinedev/hasura
 ```
 
 Check the [refine documentation](https://refine.dev/docs/api-reference/core/providers/data-provider/) on using data providers in a refine application.

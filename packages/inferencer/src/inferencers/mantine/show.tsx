@@ -1,4 +1,4 @@
-import * as RefineMantine from "@pankod/refine-mantine";
+import * as RefineMantine from "@refinedev/mantine";
 import * as MantineCore from "@mantine/core";
 
 import { createInferencer } from "@/create-inferencer";
@@ -39,8 +39,8 @@ export const renderer = ({
     );
     const recordName = "record";
     const imports: Array<[element: string, module: string]> = [
-        ["useShow", "@pankod/refine-core"],
-        ["Show", "@pankod/refine-mantine"],
+        ["useShow", "@refinedev/core"],
+        ["Show", "@refinedev/mantine"],
         ["Title", "@mantine/core"],
     ];
 
@@ -53,7 +53,7 @@ export const renderer = ({
         .map((field) => {
             if (field?.relation && !field.fieldable && field.resource) {
                 if (field.multiple) {
-                    imports.push(["useMany", "@pankod/refine-core"]);
+                    imports.push(["useMany", "@refinedev/core"]);
 
                     let ids = accessor(recordName, field.key);
 
@@ -82,7 +82,7 @@ export const renderer = ({
                 });
                 `;
                 }
-                imports.push(["useOne", "@pankod/refine-core"]);
+                imports.push(["useOne", "@refinedev/core"]);
 
                 return `
                 const { data: ${getVariableName(
@@ -114,7 +114,7 @@ export const renderer = ({
 
             if (field.multiple) {
                 imports.push(
-                    ["TagField", "@pankod/refine-mantine"],
+                    ["TagField", "@refinedev/mantine"],
                     ["Group", "@mantine/core"],
                 );
 
@@ -191,11 +191,11 @@ export const renderer = ({
 
     const textFields = (field: InferField) => {
         if (field.type === "text") {
-            imports.push(["TextField", "@pankod/refine-mantine"]);
+            imports.push(["TextField", "@refinedev/mantine"]);
 
             if (field.multiple) {
                 imports.push(
-                    ["TagField", "@pankod/refine-mantine"],
+                    ["TagField", "@refinedev/mantine"],
                     ["Group", "@mantine/core"],
                 );
 
@@ -255,11 +255,11 @@ export const renderer = ({
 
     const emailFields = (field: InferField) => {
         if (field.type === "email") {
-            imports.push(["EmailField", "@pankod/refine-mantine"]);
+            imports.push(["EmailField", "@refinedev/mantine"]);
 
             if (field.multiple) {
                 imports.push(
-                    ["TagField", "@pankod/refine-mantine"],
+                    ["TagField", "@refinedev/mantine"],
                     ["Group", "@mantine/core"],
                 );
 
@@ -289,11 +289,11 @@ export const renderer = ({
 
     const urlFields = (field: InferField) => {
         if (field.type === "url") {
-            imports.push(["UrlField", "@pankod/refine-mantine"]);
+            imports.push(["UrlField", "@refinedev/mantine"]);
 
             if (field.multiple) {
                 imports.push(
-                    ["TagField", "@pankod/refine-mantine"],
+                    ["TagField", "@refinedev/mantine"],
                     ["Group", "@mantine/core"],
                 );
 
@@ -323,11 +323,11 @@ export const renderer = ({
 
     const booleanFields = (field: InferField) => {
         if (field.type === "boolean") {
-            imports.push(["BooleanField", "@pankod/refine-mantine"]);
+            imports.push(["BooleanField", "@refinedev/mantine"]);
 
             if (field.multiple) {
                 imports.push(
-                    ["TagField", "@pankod/refine-mantine"],
+                    ["TagField", "@refinedev/mantine"],
                     ["Group", "@mantine/core"],
                 );
 
@@ -360,7 +360,7 @@ export const renderer = ({
 
     const dateFields = (field: InferField) => {
         if (field.type === "date") {
-            imports.push(["DateField", "@pankod/refine-mantine"]);
+            imports.push(["DateField", "@refinedev/mantine"]);
 
             if (field.multiple) {
                 imports.push(["Group", "@mantine/core"]);
@@ -391,7 +391,7 @@ export const renderer = ({
 
     const richtextFields = (field: InferField) => {
         if (field.type === "richtext") {
-            imports.push(["MarkdownField", "@pankod/refine-mantine"]);
+            imports.push(["MarkdownField", "@refinedev/mantine"]);
 
             return jsx`
                 <Title mt="xs" order={5}>${prettyString(field.key)}</Title>
@@ -409,11 +409,11 @@ export const renderer = ({
 
     const numberFields = (field: InferField) => {
         if (field.type === "number") {
-            imports.push(["NumberField", "@pankod/refine-mantine"]);
+            imports.push(["NumberField", "@refinedev/mantine"]);
 
             if (field.multiple) {
                 imports.push(
-                    ["TagField", "@pankod/refine-mantine"],
+                    ["TagField", "@refinedev/mantine"],
                     ["Group", "@mantine/core"],
                 );
 
@@ -510,7 +510,7 @@ export const renderer = ({
 export const ShowInferencer: InferencerResultComponent = createInferencer({
     type: "show",
     additionalScope: [
-        ["@pankod/refine-mantine", "RefineMantine", RefineMantine],
+        ["@refinedev/mantine", "RefineMantine", RefineMantine],
         ["@mantine/core", "MantineCore", MantineCore],
     ],
     codeViewerComponent: CodeViewerComponent,

@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useList } from "@pankod/refine-core";
+import { useList } from "@refinedev/core";
 import { Product } from "@medusajs/medusa";
 import { formatAmount } from "medusa-react";
 

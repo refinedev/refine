@@ -12,7 +12,7 @@ import {
     useTable as useAntdTable,
     EditButton as AntdEditButton,
     CloneButton as AntdCloneButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import {
     Table as AntdTable,
     Edit as AntdEdit,
@@ -125,7 +125,7 @@ const PostCreate = () => {
 };
 ```
 
-`useForm` is used to manage forms. It returns the necessary properties and methods to control the [Antd Form](https://ant.design/components/form/). Also, it has been developed by using [`useForm`](/docs/api-reference/core/hooks/useForm/) imported from [@pankod/refine-core](https://github.com/refinedev/refine/tree/next/packages/core) package.
+`useForm` is used to manage forms. It returns the necessary properties and methods to control the [Antd Form](https://ant.design/components/form/). Also, it has been developed by using [`useForm`](/docs/api-reference/core/hooks/useForm/) imported from [@refinedev/core](https://github.com/refinedev/refine/tree/next/packages/core) package.
 
 <GeneralConceptsLink />
 
@@ -137,7 +137,7 @@ We'll show the basic usage of `useForm` by adding an editing form.
 
 ```tsx title="pages/posts/edit.tsx"
 // highlight-next-line
-import { Edit, useForm } from "@pankod/refine-antd";
+import { Edit, useForm } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 
 export const PostEdit: React.FC = () => {
@@ -232,9 +232,9 @@ setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
-import { Create, useForm } from "@pankod/refine-antd";
+import { Create, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 
 interface IPost {
@@ -306,9 +306,9 @@ setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
-import { Edit, useForm } from "@pankod/refine-antd";
+import { Edit, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 
 interface IPost {
@@ -380,9 +380,9 @@ setInitialRoutes(["/posts/clone/123"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
-import { Create, useForm } from "@pankod/refine-antd";
+import { Create, useForm } from "@refinedev/antd";
 import { Form, Input, Space, Switch } from "antd";
 
 interface IPost {
@@ -857,7 +857,7 @@ It is useful when you want to `invalidate` other resources don't have relation w
 
 ```tsx
 import React from "react";
-import { Create, useForm } from "@pankod/refine-antd";
+import { Create, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 
 const PostEdit = () => {
@@ -886,7 +886,7 @@ For example, Let's send the values we received from the user in two separate inp
 
 ```tsx title="pages/user/create.tsx"
 import React from "react";
-import { Create, useForm } from "@pankod/refine-antd";
+import { Create, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 
 export const UserCreate: React.FC = () => {
@@ -921,7 +921,7 @@ export const UserCreate: React.FC = () => {
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/useForm"/>
+<PropsTable module="@refinedev/antd/useForm"/>
 
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-reference/core/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
 

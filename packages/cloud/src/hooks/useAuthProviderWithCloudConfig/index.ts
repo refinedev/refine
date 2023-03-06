@@ -1,5 +1,5 @@
-import { LegacyAuthProvider } from "@pankod/refine-core";
-import { IUser } from "@pankod/refine-sdk";
+import { LegacyAuthProvider } from "@refinedev/core";
+import { IUser } from "@refinedev/sdk";
 
 import { useSdk } from "../useSdk";
 

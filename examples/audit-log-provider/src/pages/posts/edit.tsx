@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useForm } from "@pankod/refine-react-hook-form";
-import { useModal, useResource, useSelect } from "@pankod/refine-core";
+import { useForm } from "@refinedev/react-hook-form";
+import { useModal, useResource, useSelect } from "@refinedev/core";
 
 import { Modal } from "../../components/modal";
 import { History } from "../../components/history";

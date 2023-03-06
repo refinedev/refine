@@ -2,14 +2,14 @@ import React from "react";
 import {
     RefineImportButtonProps,
     RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 
 import { act, render, TestWrapper } from "@test";
 
 export const buttonImportTests = function (
     ImportButton: React.ComponentType<RefineImportButtonProps<any, any>>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Import Button", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Import Button", () => {
         const parseMock = jest.fn();
 
         beforeAll(() => {

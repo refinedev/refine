@@ -5,7 +5,7 @@ import {
     useRefineContext,
     useRouterType,
     useResource,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { Box, Heading } from "@chakra-ui/react";
 

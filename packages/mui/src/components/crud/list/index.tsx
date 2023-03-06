@@ -6,7 +6,7 @@ import {
     useRefineContext,
     useRouterType,
     useResource,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { Card, CardHeader, CardContent, Typography, Box } from "@mui/material";
 

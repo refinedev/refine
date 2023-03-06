@@ -1,5 +1,5 @@
-import { useDelete } from "@pankod/refine-core";
-import { TagField } from "@pankod/refine-antd";
+import { useDelete } from "@refinedev/core";
+import { TagField } from "@refinedev/antd";
 
 import { FormOutlined, DeleteOutlined, MoreOutlined } from "@ant-design/icons";
 import { Card, Typography, Dropdown, Menu } from "antd";

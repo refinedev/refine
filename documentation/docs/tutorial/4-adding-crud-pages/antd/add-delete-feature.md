@@ -21,10 +21,10 @@ To add a delete feature to the products table, you can follow the steps below:
 
 1. Open the `src/pages/products/list.tsx` file on your editor.
 
-2. Import the `<DeleteButton/>` component from `@pankod/refine-antd`:
+2. Import the `<DeleteButton/>` component from `@refinedev/antd`:
 
     ```tsx
-    import { DeleteButton } from "@pankod/refine-antd";
+    import { DeleteButton } from "@refinedev/antd";
     ```
 
 3. Add the `<DeleteButton/>` component to the `actions` column of the table as shown below:
@@ -54,22 +54,22 @@ Now, you can try to delete a record from the list page. Just click on the delete
 When we define a resource, we can enable the delete feature on the show page and edit page by setting the `canDelete` property to `true` as shown below:
 
 ```tsx src="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+} from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import { ProductList } from "pages/products/list";
 import { ProductEdit } from "pages/products/edit";
 import { productshow } from "pages/products/show";
 import { ProductCreate } from "pages/products/create";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (

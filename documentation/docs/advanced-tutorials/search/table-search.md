@@ -12,7 +12,7 @@ import {
     // highlight-next-line
     useTable,
     List,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import {
     // highlight-start
     Form,
@@ -87,7 +87,7 @@ When the form is submitted, the `onSearch` method runs and we get the search for
 
 ```tsx title="pages/list.tsx"
 ...
-import { HttpError } from "@pankod/refine-core";
+import { HttpError } from "@refinedev/core";
 import { Dayjs } from "dayjs";
 
 const { searchFormProps } = useTable<IPost, HttpError, { title: string; createdAt: [Dayjs, Dayjs] }>({

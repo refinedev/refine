@@ -2,10 +2,10 @@ import React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
 
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-nextjs-router/legacy";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/nextjs-router/legacy";
 import { ChakraProvider } from "@chakra-ui/react";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 import { API_URL } from "src/constants";
 import { Layout } from "src/components";

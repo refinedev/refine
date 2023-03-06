@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useList, useTranslate } from "@pankod/refine-core";
+import { useList, useTranslate } from "@refinedev/core";
 
 import { Button, Space, Skeleton } from "antd";
 

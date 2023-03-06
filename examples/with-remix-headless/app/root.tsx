@@ -7,9 +7,9 @@ import {
     Scripts,
     ScrollRestoration,
 } from "@remix-run/react";
-import { AuthPage, Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-remix-router/legacy";
+import { AuthPage, Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/remix-router/legacy";
 
 import { PostCreate, PostEdit, PostList } from "./pages/posts";
 import { authProvider } from "./authProvider";

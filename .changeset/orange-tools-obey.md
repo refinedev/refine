@@ -1,17 +1,17 @@
 ---
-"@pankod/refine-airtable": minor
-"@pankod/refine-altogic": minor
-"@pankod/refine-appwrite": minor
-"@pankod/refine-graphql": minor
-"@pankod/refine-hasura": minor
-"@pankod/refine-nestjsx-crud": minor
-"@pankod/refine-nhost": minor
-"@pankod/refine-simple-rest": minor
-"@pankod/refine-strapi": minor
-"@pankod/refine-strapi-graphql": minor
-"@pankod/refine-strapi-v4": minor
-"@pankod/refine-supabase": minor
-"@pankod/refine-medusa": minor
+"@refinedev/airtable": minor
+"@refinedev/altogic": minor
+"@refinedev/appwrite": minor
+"@refinedev/graphql": minor
+"@refinedev/hasura": minor
+"@refinedev/nestjsx-crud": minor
+"@refinedev/nhost": minor
+"@refinedev/simple-rest": minor
+"@refinedev/strapi": minor
+"@refinedev/strapi-graphql": minor
+"@refinedev/strapi-v4": minor
+"@refinedev/supabase": minor
+"@refinedev/medusa": minor
 ---
 
 -   `metaData` prop is now deprecated for all data provider methods. Use `meta` prop instead.

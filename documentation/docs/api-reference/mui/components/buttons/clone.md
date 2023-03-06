@@ -20,7 +20,7 @@ import {
     List,
     // highlight-next-line
     CloneButton,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
@@ -81,7 +81,7 @@ render(
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
 // visible-block-start
-import { CloneButton } from "@pankod/refine-mui";
+import { CloneButton } from "@refinedev/mui";
 
 const MyCloneComponent = () => {
     return <CloneButton resource="posts" recordItemId="1" />;
@@ -122,7 +122,7 @@ It is used to redirect the app to the `clone` action of the given resource name.
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { CloneButton } from "@pankod/refine-mui";
+import { CloneButton } from "@refinedev/mui";
 
 const MyCloneComponent = () => {
     return (
@@ -178,7 +178,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { CloneButton } from "@pankod/refine-mui";
+import { CloneButton } from "@refinedev/mui";
 
 const MyCloneComponent = () => {
     return (
@@ -215,7 +215,7 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { CloneButton } from "@pankod/refine-mui";
+import { CloneButton } from "@refinedev/mui";
 
 export const MyCloneComponent = () => {
     return (
@@ -273,7 +273,7 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/api-re
 
 ## API Reference
 
-<PropsTable module="@pankod/refine-mui/CloneButton" />
+<PropsTable module="@refinedev/mui/CloneButton" />
 
 :::tip External Props
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/react-button/).

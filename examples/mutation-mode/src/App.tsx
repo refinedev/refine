@@ -1,15 +1,11 @@
-import { Refine } from "@pankod/refine-core";
-import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@pankod/refine-antd";
+import { Refine } from "@refinedev/core";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import { BackTop } from "antd";
-import { DemoSidebar, useDemoSidebar } from "@pankod/refine-demo-sidebar";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import { DemoSidebar, useDemoSidebar } from "@refinedev/demo-sidebar";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 

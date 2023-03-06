@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout as AntdLayout, Typography, Avatar, Space } from "antd";
-import { useGetIdentity, useActiveAuthProvider } from "@pankod/refine-core";
+import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
 import { RefineLayoutHeaderProps } from "../types";
 const { Text } = Typography;
 

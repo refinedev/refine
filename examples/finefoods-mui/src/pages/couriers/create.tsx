@@ -7,8 +7,8 @@ import {
     useTranslate,
     useApiUrl,
     HttpError,
-} from "@pankod/refine-core";
-import { Create, SaveButton, useAutocomplete } from "@pankod/refine-mui";
+} from "@refinedev/core";
+import { Create, SaveButton, useAutocomplete } from "@refinedev/mui";
 
 import {
     Avatar,
@@ -29,7 +29,7 @@ import {
     TextFieldProps,
 } from "@mui/material";
 
-import { useStepsForm } from "@pankod/refine-react-hook-form";
+import { useStepsForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 import { ICourier, IStore } from "interfaces";
 

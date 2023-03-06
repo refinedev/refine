@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Create } from "@pankod/refine-chakra-ui";
+import { Create } from "@refinedev/chakra-ui";
 
 import {
     Box,
@@ -13,8 +13,8 @@ import {
     Text,
 } from "@chakra-ui/react";
 
-import { useApiUrl, useSelect } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useApiUrl, useSelect } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 import Upload from "rc-upload";
 import { IconFileUpload } from "@tabler/icons";
 

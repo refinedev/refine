@@ -28,10 +28,10 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
-import { Sider } from "@pankod/refine-mui";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import { Sider } from "@refinedev/mui";
 import { Box, ListItemText } from "@mui/material";
 
 const PostList: React.FC = () => {
@@ -129,9 +129,9 @@ import {
     useRouterContext,
     useMenu,
     useRefineContext,
-} from "@pankod/refine-core";
-import { Layout, Title as DefaultTitle } from "@pankod/refine-mui";
-import type { RefineLayoutSiderProps } from "@pankod/refine-mui";
+} from "@refinedev/core";
+import { Layout, Title as DefaultTitle } from "@refinedev/mui";
+import type { RefineLayoutSiderProps } from "@refinedev/mui";
 import {
     Box,
     Drawer,
@@ -584,7 +584,7 @@ If you want to create a multi-level menu, you can take a look at this [`multi-le
 We can override the default sider and show the custom menu we implemented in its place by passing a custom component to `<Refine>`s `Sider` prop:
 
 ```tsx live previewHeight=420px
-import { useDataGrid, List, Sider as CustomSider } from "@pankod/refine-mui";
+import { useDataGrid, List, Sider as CustomSider } from "@refinedev/mui";
 import { TextField } from "@mui/material";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
@@ -620,10 +620,10 @@ interface IPost {
 }
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { Layout } from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { Layout } from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import { PostsList } from "pages/posts";
 

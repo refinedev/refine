@@ -4,7 +4,7 @@ import {
     mapAntdSorterToCrudSorting,
     mapAntdFilterToCrudFilter,
 } from "./";
-import { CrudSorting, CrudFilters } from "@pankod/refine-core";
+import { CrudSorting, CrudFilters } from "@refinedev/core";
 
 describe("definitions/table", () => {
     it("getDefaultSortOrder", () => {

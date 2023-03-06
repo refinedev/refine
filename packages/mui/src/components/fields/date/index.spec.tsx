@@ -1,4 +1,4 @@
-import { fieldDateTests } from "@pankod/refine-ui-tests";
+import { fieldDateTests } from "@refinedev/ui-tests";
 
 import { DateField } from "./";
 

@@ -2,16 +2,16 @@
 
 import React from "react";
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
     ErrorComponent,
     AuthPage,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-nextjs-router/legacy-app";
-import "@pankod/refine-antd/dist/reset.css";
+} from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/nextjs-router/legacy-app";
+import "@refinedev/antd/dist/reset.css";
 
 import "@styles/global.css";
 

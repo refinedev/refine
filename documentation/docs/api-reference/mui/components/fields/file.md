@@ -21,7 +21,7 @@ import {
     List,
     // highlight-next-line
     FileField,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
@@ -81,7 +81,7 @@ If you don't use `title` prop it will use `src` as `title`
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/FileField"/>
+<PropsTable module="@refinedev/mui/FileField"/>
 
 :::tip External Props
 It also accepts all props of Material UI [Link](https://mui.com/material-ui/react-link/#main-content).

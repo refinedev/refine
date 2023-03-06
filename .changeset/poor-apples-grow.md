@@ -1,10 +1,10 @@
 ---
-"@pankod/refine-react-router-v6": major
+"@refinedev/react-router-v6": major
 ---
 
 We're releasing a new way to connect your router to **refine**. 
 
-The legacy `routerProvider` and its exports are now deprecated but accessible at `@pankod/refine-react-router-v6/legacy` path.
+The legacy `routerProvider` and its exports are now deprecated but accessible at `@refinedev/react-router-v6/legacy` path.
 
 The new `routerBindings` are smaller and more flexible than the previos one.
 

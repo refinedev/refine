@@ -1,5 +1,5 @@
 import React, { createContext, PropsWithChildren, useReducer } from "react";
-import { useMany } from "@pankod/refine-core";
+import { useMany } from "@refinedev/core";
 
 import { IBasketOrder, IProduct } from "../interfaces";
 import { OrdersModalContextProvider } from "@context";

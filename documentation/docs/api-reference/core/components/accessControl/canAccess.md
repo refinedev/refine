@@ -19,7 +19,7 @@ Passes the given properties to the `can` method from your [access control provid
 ## Basic Usage
 
 ```tsx
-import { CanAccess } from "@pankod/refine-core";
+import { CanAccess } from "@refinedev/core";
 
 const MyComponent = () => (
     <CanAccess
@@ -51,7 +51,7 @@ Component to render if [`useCan`][use-can] returns false. If `undefined`, it ren
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/CanAccess"/>
+<PropsTable module="@refinedev/core/CanAccess"/>
 
 [use-can]: /docs/api-reference/core/hooks/accessControl/useCan/
 [access-control-provider]: /docs/api-reference/core/providers/accessControl-provider/

@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-kbar": major
+"@refinedev/kbar": major
 ---
 
-Updated the action creation logic to match the changes in routing system of `@pankod/refine-core`.
+Updated the action creation logic to match the changes in routing system of `@refinedev/core`.

@@ -1,5 +1,5 @@
 import React from "react";
-import { NotificationProvider } from "@pankod/refine-core";
+import { NotificationProvider } from "@refinedev/core";
 import { toast } from "react-toastify";
 import { UndoableNotification } from "components/undoableNotification";
 

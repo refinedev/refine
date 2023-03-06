@@ -11,7 +11,7 @@ import {
     useRouterType,
     useBack,
     useGo,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     Card,

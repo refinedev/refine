@@ -56,7 +56,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
 import {
@@ -64,7 +64,7 @@ import {
 
     // highlight-next-line
     ShowButton,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import {
     TableContainer,
     Table,
@@ -74,7 +74,7 @@ import {
     Tbody,
     Td,
 } from "@chakra-ui/react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -197,10 +197,10 @@ render(
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { ShowButton } from "@pankod/refine-chakra-ui";
+import { ShowButton } from "@refinedev/chakra-ui";
 
 const MyShowComponent = () => {
     return <ShowButton colorScheme="black" recordItemId="123" />;
@@ -241,10 +241,10 @@ Redirection endpoint is defined by the `resource`'s `show` action path. By defau
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { ShowButton } from "@pankod/refine-chakra-ui";
+import { ShowButton } from "@refinedev/chakra-ui";
 
 const MyShowComponent = () => {
     return (
@@ -304,10 +304,10 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { ShowButton } from "@pankod/refine-chakra-ui";
+import { ShowButton } from "@refinedev/chakra-ui";
 
 const MyShowComponent = () => {
     return <ShowButton colorScheme="black" recordItemId="123" hideText />;
@@ -340,7 +340,7 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { ShowButton } from "@pankod/refine-chakra-ui";
+import { ShowButton } from "@refinedev/chakra-ui";
 
 export const MyListComponent = () => {
     return (
@@ -406,4 +406,4 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/api-ref
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/ShowButton" />
+<PropsTable module="@refinedev/chakra-ui/ShowButton" />

@@ -62,11 +62,6 @@ export interface KnownResourceMeta {
      */
     parent?: string;
     /**
-     * Whether to keep parent prefixes applied to the resource.
-     * @default true
-     */
-    keepParentPrefix?: boolean;
-    /**
      * To determine if the resource has ability to delete or not.
      */
     canDelete?: boolean;

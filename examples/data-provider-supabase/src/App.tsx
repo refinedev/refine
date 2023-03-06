@@ -1,16 +1,16 @@
-import { Refine, AuthBindings } from "@pankod/refine-core";
+import { Refine, AuthBindings } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
     ErrorComponent,
     AuthPage,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { notification } from "antd";
-import { dataProvider, liveProvider } from "@pankod/refine-supabase";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import { dataProvider, liveProvider } from "@refinedev/supabase";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import { GoogleOutlined } from "@ant-design/icons";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { supabaseClient } from "utility";
@@ -288,7 +288,7 @@ const App: React.FC = () => {
                 },
             ]}
             /**
-             * Multiple subscriptions are currently not supported with the supabase JS client v2 and @pankod/refine-supabase v4.
+             * Multiple subscriptions are currently not supported with the supabase JS client v2 and @refinedev/supabase v4.
              * Therefore, enabling global live mode will cause unexpected behaviors.
              * Please set `liveMode: "auto"` or `liveMode: "manual"` manually while using real-time features of refine.
              */

@@ -1,5 +1,5 @@
-import { useOne, useShow } from "@pankod/refine-core";
-import { Show } from "@pankod/refine-antd";
+import { useOne, useShow } from "@refinedev/core";
+import { Show } from "@refinedev/antd";
 
 import { Typography, Tag } from "antd";
 

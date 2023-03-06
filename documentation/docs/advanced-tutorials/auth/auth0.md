@@ -106,18 +106,18 @@ After clicking the `Login` button, you will be directed to the auth0 login scree
 In refine, authentication and authorization processes are performed with the auth provider. Let's write a provider for Auth0.
 
 ```tsx title="App.tsx"
-import { Refine, AuthBindings } from "@pankod/refine-core";
+import { Refine, AuthBindings } from "@refinedev/core";
 import {
     Layout,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { Login } from "pages/login";
 

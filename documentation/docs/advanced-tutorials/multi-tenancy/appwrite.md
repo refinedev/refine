@@ -20,27 +20,27 @@ This guide has been prepared to assume you know the basics of **refine**. If you
 ## Setup
 
 ```bash
-npm install @pankod/refine-appwrite
+npm install @refinedev/appwrite
 ```
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 ## Usage
 
 ```tsx
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import { dataProvider } from "@pankod/refine-appwrite";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/antd";
+import { dataProvider } from "@refinedev/appwrite";
+import routerProvider from "@refinedev/react-router-v6";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { appwriteClient } from "utility";
 import { authProvider } from "./authProvider";
@@ -121,12 +121,12 @@ export const StoreProvider = (props: any) => {
 ```
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
-import { dataProvider } from "@pankod/refine-appwrite";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import { dataProvider } from "@refinedev/appwrite";
+import routerProvider from "@refinedev/react-router-v6";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { appwriteClient } from "utility";
 import { authProvider } from "./authProvider";
@@ -158,7 +158,7 @@ We will create a select component in the Sider Menu where the user will select t
 
 ```tsx title="scr/components/select/StoreSelect.tsx"
 import { useContext } from "react";
-import { useSelect } from "@pankod/refine-antd";
+import { useSelect } from "@refinedev/antd";
 import { Select } from "antd";
 
 import { StoreContext } from "context/store";
@@ -217,7 +217,7 @@ import {
     ITreeMenu,
     CanAccess,
     useRouterContext,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { Layout, Menu, Grid } from "antd";
 import { AppstoreAddOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
@@ -340,7 +340,7 @@ const { listProps } = useSimpleList<IProduct>({
 
 ```tsx title="src/pages/ProductList.tsx"
 import { useContext } from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 import {
     useSimpleList,
     AntdList,
@@ -436,7 +436,7 @@ const [store] = useContext(StoreContext);
 
 ```tsx title="CreateProduct"
 import { useContext } from "react";
-import { Create } from "@pankod/refine-antd";
+import { Create } from "@refinedev/antd";
 import {
     Drawer,
     DrawerProps,
@@ -590,17 +590,17 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 Appwrite Realtime API support is out-of-the-box supported by **refine**, just add two lines to make your App Realtime.
 
 ```tsx
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import { dataProvider, liveProvider } from "@pankod/refine-appwrite";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/antd";
+import { dataProvider, liveProvider } from "@refinedev/appwrite";
+import routerProvider from "@refinedev/react-router-v6";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { appwriteClient } from "utility";
 import { authProvider } from "./authProvider";

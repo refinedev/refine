@@ -1,4 +1,4 @@
-import { buttonCloneTests } from "@pankod/refine-ui-tests";
+import { buttonCloneTests } from "@refinedev/ui-tests";
 
 import { CloneButton } from "./";
 

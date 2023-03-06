@@ -1,4 +1,4 @@
-import * as RefineMui from "@pankod/refine-mui";
+import * as RefineMui from "@refinedev/mui";
 import * as EmotionReact from "@emotion/react";
 import * as EmotionStyled from "@emotion/styled";
 import * as MuiLab from "@mui/lab";
@@ -44,13 +44,13 @@ export const renderer = ({
     const recordName = "dataGridProps?.rows";
     const imports: Array<ImportElement> = [
         ["React", "react", true],
-        ["useDataGrid", "@pankod/refine-mui"],
+        ["useDataGrid", "@refinedev/mui"],
         ["DataGrid", "@mui/x-data-grid"],
         ["GridColumns", "@mui/x-data-grid"],
-        ["EditButton", "@pankod/refine-mui"],
-        ["ShowButton", "@pankod/refine-mui"],
-        ["DeleteButton", "@pankod/refine-mui"],
-        ["List", "@pankod/refine-mui"],
+        ["EditButton", "@refinedev/mui"],
+        ["ShowButton", "@refinedev/mui"],
+        ["DeleteButton", "@refinedev/mui"],
+        ["List", "@refinedev/mui"],
     ];
 
     const relationFields: (InferField | null)[] = fields.filter(
@@ -61,7 +61,7 @@ export const renderer = ({
         .filter(Boolean)
         .map((field) => {
             if (field?.relation && !field.fieldable && field.resource) {
-                imports.push(["useMany", "@pankod/refine-core"]);
+                imports.push(["useMany", "@refinedev/core"]);
 
                 let idsString = "";
 
@@ -141,7 +141,7 @@ export const renderer = ({
             // if not, then just show the value
 
             if (field.multiple) {
-                imports.push(["TagField", "@pankod/refine-mui"]);
+                imports.push(["TagField", "@refinedev/mui"]);
 
                 let val = "item";
 
@@ -266,7 +266,7 @@ export const renderer = ({
 
     const emailFields = (field: InferField) => {
         if (field.type === "email") {
-            imports.push(["EmailField", "@pankod/refine-mui"]);
+            imports.push(["EmailField", "@refinedev/mui"]);
 
             const fieldProperty = `field: "${field.key}"`;
 
@@ -299,7 +299,7 @@ export const renderer = ({
         `;
 
             if (field.multiple) {
-                imports.push(["TagField", "@pankod/refine-mui"]);
+                imports.push(["TagField", "@refinedev/mui"]);
 
                 const val = accessor("item", undefined, field.accessor, " + ");
 
@@ -329,7 +329,7 @@ export const renderer = ({
 
     const urlFields = (field: InferField) => {
         if (field.type === "url") {
-            imports.push(["UrlField", "@pankod/refine-mui"]);
+            imports.push(["UrlField", "@refinedev/mui"]);
 
             const fieldProperty = `field: "${field.key}"`;
 
@@ -362,7 +362,7 @@ export const renderer = ({
             `;
 
             if (field.multiple) {
-                imports.push(["TagField", "@pankod/refine-mui"]);
+                imports.push(["TagField", "@refinedev/mui"]);
 
                 const val = accessor("item", undefined, field.accessor, " + ");
 
@@ -392,7 +392,7 @@ export const renderer = ({
 
     const booleanFields = (field: InferField) => {
         if (field?.type) {
-            imports.push(["Checkbox", "@pankod/refine-mui"]);
+            imports.push(["Checkbox", "@refinedev/mui"]);
 
             const fieldProperty = `field: "${field.key}"`;
 
@@ -454,7 +454,7 @@ export const renderer = ({
 
     const dateFields = (field: InferField) => {
         if (field.type === "date") {
-            imports.push(["DateField", "@pankod/refine-mui"]);
+            imports.push(["DateField", "@refinedev/mui"]);
 
             const fieldProperty = `field: "${field.key}"`;
 
@@ -510,7 +510,7 @@ export const renderer = ({
 
     const richtextFields = (field: InferField) => {
         if (field?.type === "richtext") {
-            imports.push(["MarkdownField", "@pankod/refine-mui"]);
+            imports.push(["MarkdownField", "@refinedev/mui"]);
 
             const fieldProperty = `field: "${field.key}"`;
 
@@ -585,7 +585,7 @@ export const renderer = ({
             let renderCell = "";
 
             if (field.multiple) {
-                imports.push(["TagField", "@pankod/refine-mui"]);
+                imports.push(["TagField", "@refinedev/mui"]);
 
                 const val = accessor(
                     "item",
@@ -634,13 +634,13 @@ export const renderer = ({
     const { canEdit, canShow, canDelete } = resource ?? {};
 
     if (canEdit) {
-        imports.push(["EditButton", "@pankod/refine-mui"]);
+        imports.push(["EditButton", "@refinedev/mui"]);
     }
     if (canShow) {
-        imports.push(["ShowButton", "@pankod/refine-mui"]);
+        imports.push(["ShowButton", "@refinedev/mui"]);
     }
     if (canDelete) {
-        imports.push(["DeleteButton", "@pankod/refine-mui"]);
+        imports.push(["DeleteButton", "@refinedev/mui"]);
     }
 
     const actionButtons =
@@ -732,7 +732,7 @@ export const renderer = ({
 export const ListInferencer: InferencerResultComponent = createInferencer({
     type: "list",
     additionalScope: [
-        ["@pankod/refine-mui", "RefineMui", RefineMui],
+        ["@refinedev/mui", "RefineMui", RefineMui],
         ["@emotion/react", "EmotionReact", EmotionReact],
         ["@emotion/styled", "EmotionStyled", EmotionStyled],
         ["@mui/lab", "MuiLab", MuiLab],

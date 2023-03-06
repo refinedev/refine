@@ -12,7 +12,7 @@ Internally, `useImport` uses [Papa Parse][papa parse] to parse the CSV file cont
 We'll use the `useImport` hook and add the `<ImportButton>` with properties returned from `useImport`. When the button gets triggered, it creates the imported resources using [`create`][create] or [`createMany`][createmany] [dataProvider][dataprovider] methods under the hood.
 
 ```tsx title="pages/posts/list.tsx"
-import { List, useImport, ImportButton } from "@pankod/refine-antd";
+import { List, useImport, ImportButton } from "@refinedev/antd";
 
 export const PostList: React.FC = () => {
     const importProps = useImport<IPostFile>();
@@ -59,7 +59,7 @@ As an example, let's say we have a CSV file like this:
 We need to map the CSV data to the API's data. In our case, we have a `categoryId` and `userId` in CSV. For the API, we need to send the `category` and `user` objects. To do this, we'll use the `mapData` prop of `useImport` hook.
 
 ```tsx title="pages/posts/list.tsx"
-import { List, useImport, ImportButton } from "@pankod/refine-antd";
+import { List, useImport, ImportButton } from "@refinedev/antd";
 
 export const PostList: React.FC = () => {
     const importProps = useImport<IPostFile>({

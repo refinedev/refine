@@ -140,10 +140,10 @@ const IconUsers = () => (
 );
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 //highlight-next-line
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
     Layout,
@@ -152,7 +152,7 @@ import {
     refineTheme,
     // highlight-next-line
     Sider,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import {
     ChakraProvider,
     // highlight-start
@@ -265,7 +265,7 @@ import {
     useRouterContext,
     useTitle,
     useTranslate,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     Accordion,
     AccordionButton,
@@ -292,7 +292,7 @@ import {
     IconLogout,
     IconMenu2,
 } from "@tabler/icons";
-import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
+import { RefineLayoutSiderProps } from "@refinedev/ui-types";
 
 const defaultNavIcon = <IconList size={20} />;
 
@@ -575,7 +575,7 @@ We will override the default sider and show the custom menu we implemented in it
 ```tsx live url=http://localhost:3000 previewHeight=420px
 setInitialRoutes(["/posts"]);
 
-import { Sider as CustomSider } from "@pankod/refine-chakra-ui";
+import { Sider as CustomSider } from "@refinedev/chakra-ui";
 import { Code, Text } from "@chakra-ui/react";
 
 const DummyListPage = () => {
@@ -635,15 +635,15 @@ const IconUsers = () => (
 );
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
     Layout,
     ReadyPage,
     notificationProvider,
     refineTheme,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import { IconCategory, IconUsers } from "@tabler/icons";
 

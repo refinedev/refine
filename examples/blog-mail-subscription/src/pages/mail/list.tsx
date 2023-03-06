@@ -1,7 +1,7 @@
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
-import { useTable, List, DateField } from "@pankod/refine-antd";
+import { useTable, List, DateField } from "@refinedev/antd";
 
 import { Table } from "antd";
 

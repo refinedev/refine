@@ -1,4 +1,4 @@
-import { LayoutWrapper } from "@pankod/refine-core";
+import { LayoutWrapper } from "@refinedev/core";
 
 import { CheckoutForm, CheckoutLoader, CheckoutSummary } from "@components";
 import { CheckoutProvider } from "@lib/context";

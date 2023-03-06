@@ -21,10 +21,10 @@ To add a delete feature to the products table, you can follow the steps below:
 
 1. Open the `src/pages/products/list.tsx` file on your editor.
 
-2. Import the `<DeleteButton/>` component from `@pankod/refine-chakra-ui`:
+2. Import the `<DeleteButton/>` component from `@refinedev/chakra-ui`:
 
     ```tsx
-    import { DeleteButton } from "@pankod/refine-chakra-ui";
+    import { DeleteButton } from "@refinedev/chakra-ui";
     ```
 
 3. Add the `<DeleteButton/>` component to the `actions` column of the table as shown below:
@@ -66,16 +66,16 @@ Now, you can try to delete a record from the list page. Just click on the delete
 When we define a resource, we can enable the delete feature on the show page and edit page by setting the `canDelete` property to `true` as shown below:
 
 ```tsx src="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
     Layout,
     refineTheme,
     ReadyPage,
     notificationProvider,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 
 import { ProductList } from "pages/products/list";

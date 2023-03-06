@@ -1,4 +1,4 @@
-import { CrudFilters } from "@pankod/refine-core";
+import { CrudFilters } from "@refinedev/core";
 import isEqual from "lodash/isEqual";
 import { renderHook, waitFor } from "@testing-library/react";
 

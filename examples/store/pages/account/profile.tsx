@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import { LayoutWrapper } from "@pankod/refine-core";
+import { LayoutWrapper } from "@refinedev/core";
 
 import { getSearchStaticProps } from "@lib/search-props";
 import { AccountLayout } from "@components/account";

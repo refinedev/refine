@@ -34,7 +34,7 @@ export const integrations: IntegrationsType = {
             icon: Antd,
             description:
                 "<strong>Ant Design</strong> System UI Framework support. 20+ framework-specific <strong>hooks</strong> and  <strong>components</strong> incl. Table, Form, Select, Menu, Layout, Notification and CRUD components.",
-            url: "https://www.npmjs.com/package/@pankod/refine-antd",
+            url: "https://www.npmjs.com/package/@refinedev/antd",
             status: "stable",
         },
         {
@@ -42,7 +42,7 @@ export const integrations: IntegrationsType = {
             icon: Mui,
             description:
                 "<strong>Material UI</strong> Framework support. 20+ framework-specific hooks and  components  incl. DataGrid (+ Pro), AutoComplete, Menu, Layout, Notification and CRUD components.",
-            url: "https://www.npmjs.com/package/@pankod/refine-mui",
+            url: "https://www.npmjs.com/package/@refinedev/mui",
             status: "stable",
         },
         {
@@ -50,7 +50,7 @@ export const integrations: IntegrationsType = {
             icon: Mantine,
             description:
                 " <strong>Mantine UI</strong> Framework support. 20+ framework-specific hooks and components incl. Table, Form, AutoComplete, Menu, Layout, Notification and CRUD components.",
-            url: "https://www.npmjs.com/package/@pankod/refine-mantine",
+            url: "https://www.npmjs.com/package/@refinedev/mantine",
             status: "stable",
         },
         {
@@ -58,7 +58,7 @@ export const integrations: IntegrationsType = {
             icon: Chakra,
             description:
                 " <strong>Chakra UI</strong> Framework support. 20+ framework-specific components incl. Layout, Feedback, and CRUD components.",
-            url: "https://www.npmjs.com/package/@pankod/refine-chakra-ui",
+            url: "https://www.npmjs.com/package/@refinedev/chakra-ui",
             status: "stable",
         },
     ],
@@ -68,14 +68,14 @@ export const integrations: IntegrationsType = {
             icon: Rest,
             description:
                 "Connect any custom <strong>REST API</strong> backend.",
-            url: "https://www.npmjs.com/package/@pankod/refine-simple-rest",
+            url: "https://www.npmjs.com/package/@refinedev/simple-rest",
             status: "stable",
         },
         {
             name: "GraphQL Data Provider",
             icon: Graphql,
             description: "Connect any custom <strong>GraphQL</strong> backend.",
-            url: "https://www.npmjs.com/package/@pankod/refine-graphql",
+            url: "https://www.npmjs.com/package/@refinedev/graphql",
             status: "stable",
         },
         {
@@ -83,7 +83,7 @@ export const integrations: IntegrationsType = {
             icon: Nest,
             description:
                 "Consume <strong>REST API's</strong> built with <strong>NestJs</strong>.",
-            url: "https://www.npmjs.com/package/@pankod/refine-nestjsx-crud",
+            url: "https://www.npmjs.com/package/@refinedev/nestjsx-crud",
             status: "stable",
         },
         {
@@ -91,7 +91,7 @@ export const integrations: IntegrationsType = {
             icon: Strapi,
             description:
                 "<strong>Strapi</strong> connector for <strong>v4 REST API</strong>.",
-            url: "https://www.npmjs.com/package/@pankod/refine-strapi",
+            url: "https://www.npmjs.com/package/@refinedev/strapi",
             status: "stable",
         },
         {
@@ -99,7 +99,7 @@ export const integrations: IntegrationsType = {
             icon: Supabase,
             description:
                 "<strong>Supabase</strong> data provider. Supports <strong>Supabase Realtime</strong> for <strong>live/realtime</strong> projects.",
-            url: "https://www.npmjs.com/package/@pankod/refine-supabase",
+            url: "https://www.npmjs.com/package/@refinedev/supabase",
             status: "stable",
         },
         {
@@ -107,7 +107,7 @@ export const integrations: IntegrationsType = {
             icon: Hasura,
             description:
                 "<strong>Hasura GraphQL</strong> data provider. Supports <strong>GraphQL Subscriptions</strong> for <strong>live/realtime</strong> projects.",
-            url: "https://www.npmjs.com/package/@pankod/refine-hasura",
+            url: "https://www.npmjs.com/package/@refinedev/hasura",
             status: "stable",
         },
         {
@@ -115,7 +115,7 @@ export const integrations: IntegrationsType = {
             icon: Nhost,
             description:
                 "<strong>Nhost</strong> data provider. Supports <strong>GraphQL Subscriptions</strong> for <strong>live/realtime</strong> projects.",
-            url: "https://www.npmjs.com/package/@pankod/refine-nhost",
+            url: "https://www.npmjs.com/package/@refinedev/nhost",
             status: "stable",
         },
         {
@@ -123,14 +123,14 @@ export const integrations: IntegrationsType = {
             icon: Appwrite,
             description:
                 " Appwrite data provider. Supports <strong>Appwrite Realtime</strong> for <strong>live/realtime</strong> projects.",
-            url: "https://www.npmjs.com/package/@pankod/refine-appwrite",
+            url: "https://www.npmjs.com/package/@refinedev/appwrite",
             status: "stable",
         },
         {
             name: "Airtable Data Provider",
             icon: Airtable,
             description: "Use <strong>Airtable</strong> as backend service.",
-            url: "https://www.npmjs.com/package/@pankod/refine-airtable",
+            url: "https://www.npmjs.com/package/@refinedev/airtable",
             status: "stable",
         },
         {
@@ -138,7 +138,7 @@ export const integrations: IntegrationsType = {
             icon: Medusa,
             description:
                 "<strong>Medusa</strong> connector for your e-commerce projects.",
-            url: "https://www.npmjs.com/package/@pankod/refine-medusa",
+            url: "https://www.npmjs.com/package/@refinedev/medusa",
             status: "stable",
         },
         {
@@ -146,7 +146,7 @@ export const integrations: IntegrationsType = {
             icon: Strapi,
             description:
                 "<strong>Strapi</strong> connector for <strong>GraphQL API</strong>.",
-            url: "https://www.npmjs.com/package/@pankod/refine-strapi-graphql",
+            url: "https://www.npmjs.com/package/@refinedev/strapi-graphql",
             status: "stable",
         },
         {
@@ -196,14 +196,14 @@ export const integrations: IntegrationsType = {
             name: "Next.js",
             icon: Nextjs,
             description: "Router Provider for <strong>Next.js</strong>",
-            url: "https://www.npmjs.com/package/@pankod/refine-nextjs-router",
+            url: "https://www.npmjs.com/package/@refinedev/nextjs-router",
             status: "stable",
         },
         {
             name: "Remix",
             icon: Remix,
             description: "Router Provider for <strong>Remix</strong>",
-            url: "https://www.npmjs.com/package/@pankod/refine-remix-router",
+            url: "https://www.npmjs.com/package/@refinedev/remix-router",
             status: "stable",
         },
     ],
@@ -213,7 +213,7 @@ export const integrations: IntegrationsType = {
             icon: React,
             description:
                 "<strong>React Table</strong> integration. Powerful tables & datagrids for your <strong>headless</strong> projects.",
-            url: "https://www.npmjs.com/package/@pankod/refine-react-table",
+            url: "https://www.npmjs.com/package/@refinedev/react-table",
             status: "stable",
         },
         {
@@ -221,7 +221,7 @@ export const integrations: IntegrationsType = {
             icon: HookForm,
             description:
                 "<strong>React Hook Form</strong> integration. Extensible forms and validation for your projects.",
-            url: "https://www.npmjs.com/package/@pankod/refine-react-hook-form",
+            url: "https://www.npmjs.com/package/@refinedev/react-hook-form",
             status: "stable",
         },
         {
@@ -229,7 +229,7 @@ export const integrations: IntegrationsType = {
             icon: Kbar,
             description:
                 "<strong>kbar</strong> integration. Add command/crtrl+k interfaces to your project.",
-            url: "https://www.npmjs.com/package/@pankod/refine-kbar",
+            url: "https://www.npmjs.com/package/@refinedev/kbar",
             status: "stable",
         },
     ],
@@ -239,7 +239,7 @@ export const integrations: IntegrationsType = {
             icon: Ably,
             description:
                 "<strong>Ably</strong> support for for <strong>live/realtime</strong> projects.",
-            url: "https://www.npmjs.com/package/@pankod/refine-ably",
+            url: "https://www.npmjs.com/package/@refinedev/ably",
             status: "stable",
         },
     ],

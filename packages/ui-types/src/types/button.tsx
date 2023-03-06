@@ -6,7 +6,7 @@ import {
     MetaQuery,
     MutationMode,
     SuccessErrorNotification,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 export type RefineButtonCommonProps = PropsWithChildren<{
     /**

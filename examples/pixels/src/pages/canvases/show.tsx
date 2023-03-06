@@ -6,8 +6,8 @@ import {
     useShow,
     useParsed,
     useIsAuthenticated,
-} from "@pankod/refine-core";
-import { useModal } from "@pankod/refine-antd";
+} from "@refinedev/core";
+import { useModal } from "@refinedev/antd";
 
 import { LeftOutlined } from "@ant-design/icons";
 import { Button, Typography, Spin, Modal } from "antd";

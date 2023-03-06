@@ -1,4 +1,4 @@
-import { createClient } from "@pankod/refine-supabase";
+import { createClient } from "@refinedev/supabase";
 
 const SUPABASE_URL = "YOUR SUPABASE URL";
 const SUPABASE_KEY = "YOUR SUPABASE KEY";

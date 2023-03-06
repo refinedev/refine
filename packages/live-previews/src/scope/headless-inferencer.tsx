@@ -1,4 +1,4 @@
-import * as RefineHeadlessInferencer from "@pankod/refine-inferencer/headless";
+import * as RefineHeadlessInferencer from "@refinedev/inferencer/headless";
 
 const HeadlessInferencerScope = {
     RefineHeadlessInferencer,
