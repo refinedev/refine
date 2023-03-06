@@ -1,7 +1,7 @@
 import React from "react";
 import { ConfigType } from "dayjs";
 
-import { RefineFieldDateProps } from "@pankod/refine-ui-types";
+import { RefineFieldDateProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 
@@ -10,7 +10,7 @@ import "dayjs/locale/tr";
 export const fieldDateTests = function (
     DateField: React.ComponentType<RefineFieldDateProps<ConfigType, any, any>>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Date Field", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Date Field", () => {
         it("renders date with default format", () => {
             const { getByText } = render(
                 <DateField value={new Date("2021-05-20")} />,

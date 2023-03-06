@@ -34,7 +34,7 @@ import {
     useMenu,
     useRefineContext,
     useActiveAuthProvider,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { RefineLayoutSiderProps } from "../types";
 
 import { Title as DefaultTitle } from "@components";

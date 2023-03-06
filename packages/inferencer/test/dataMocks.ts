@@ -1,4 +1,4 @@
-import { DataProvider } from "@pankod/refine-core";
+import { DataProvider } from "@refinedev/core";
 import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
 
 /* import {
@@ -6,7 +6,7 @@ import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
     IRouterContext,
     IAccessControlContext,
     ILiveContext,
-} from "@pankod/refine-core"; */
+} from "@refinedev/core"; */
 
 export const categories = [
     {

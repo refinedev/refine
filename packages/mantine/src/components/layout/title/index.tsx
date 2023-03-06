@@ -4,7 +4,7 @@ import {
     TitleProps,
     useRouterType,
     useLink,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { Center } from "@mantine/core";
 
 export const Title: React.FC<TitleProps> = ({ collapsed }) => {

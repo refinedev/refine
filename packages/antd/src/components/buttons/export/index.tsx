@@ -1,8 +1,8 @@
 import React from "react";
 import { Button } from "antd";
 import { ExportOutlined } from "@ant-design/icons";
-import { useTranslate } from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { useTranslate } from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 
 import { ExportButtonProps } from "../types";
 

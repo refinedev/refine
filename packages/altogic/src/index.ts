@@ -6,7 +6,7 @@ import {
     CrudOperators,
     CrudFilters,
     CrudSorting,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 const axiosInstance = axios.create();
 

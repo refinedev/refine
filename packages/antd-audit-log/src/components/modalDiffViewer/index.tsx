@@ -13,7 +13,7 @@ import {
     Space,
 } from "antd";
 
-import { useLog, ILogData, ILog } from "@pankod/refine-core";
+import { useLog, ILogData, ILog } from "@refinedev/core";
 import ReactDiffViewer, {
     DiffMethod,
     ReactDiffViewerProps,

@@ -5,7 +5,7 @@ import {
     useLink,
     useRouterType,
     useActiveAuthProvider,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     Row,
     Col,
@@ -21,7 +21,7 @@ import {
     Divider,
     FormProps,
 } from "antd";
-import { useLogin, useTranslate, useRouterContext } from "@pankod/refine-core";
+import { useLogin, useTranslate, useRouterContext } from "@refinedev/core";
 
 import { layoutStyles, containerStyles, titleStyles } from "../styles";
 

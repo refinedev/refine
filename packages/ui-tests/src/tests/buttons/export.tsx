@@ -2,14 +2,14 @@ import React from "react";
 import {
     RefineExportButtonProps,
     RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 
 import { act, render, TestWrapper } from "@test";
 
 export const buttonExportTests = function (
     ExportButton: React.ComponentType<RefineExportButtonProps<any, any>>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Export Button", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Export Button", () => {
         beforeAll(() => {
             jest.spyOn(console, "warn").mockImplementation(jest.fn());
         });

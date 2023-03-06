@@ -1,5 +1,5 @@
 import React from "react";
-import * as RefineCore from "@pankod/refine-core";
+import * as RefineCore from "@refinedev/core";
 
 import { LivePreview, LiveProvider, ContextProps } from "@aliemir/react-live";
 
@@ -8,7 +8,7 @@ import { AdditionalScopeType, LiveComponentProps } from "@/types";
 
 const defaultScope: Array<AdditionalScopeType> = [
     ["react", "React", React],
-    ["@pankod/refine-core", "RefineCore", RefineCore],
+    ["@refinedev/core", "RefineCore", RefineCore],
 ];
 
 const InferencerLiveContext = React.createContext<ContextProps>(

@@ -9,7 +9,7 @@ import {
     useSelect,
     BaseKey,
     pickNotDeprecated,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 export type UseCheckboxGroupReturnType<TData extends BaseRecord = BaseRecord> =
     {

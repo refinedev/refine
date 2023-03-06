@@ -16,7 +16,7 @@ import {
     RefineFieldTagProps,
     RefineFieldTextProps,
     RefineFieldUrlProps,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 import { ConfigType } from "dayjs";
 
 export type BooleanFieldProps = RefineFieldBooleanProps<

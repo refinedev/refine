@@ -3,7 +3,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { TestWrapper } from "@test";
 
 import { useDataGrid } from "./";
-import { CrudFilters } from "@pankod/refine-core";
+import { CrudFilters } from "@refinedev/core";
 import { act } from "react-dom/test-utils";
 
 describe("useDataGrid Hook", () => {

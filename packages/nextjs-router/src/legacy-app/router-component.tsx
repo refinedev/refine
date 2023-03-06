@@ -1,5 +1,5 @@
 import React from "react";
-import { IRouterProvider, useAuthenticated } from "@pankod/refine-core";
+import { IRouterProvider, useAuthenticated } from "@refinedev/core";
 import { useHistory } from "./use-history";
 
 export const RouterComponent: NonNullable<

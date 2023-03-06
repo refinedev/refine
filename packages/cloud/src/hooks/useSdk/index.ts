@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Client, createClient } from "@pankod/refine-sdk";
+import { Client, createClient } from "@refinedev/sdk";
 
 import { CloudContext } from "../../contexts";
 import { ICloudContext } from "../../interfaces";

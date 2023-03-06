@@ -1,4 +1,4 @@
-import { useResource, useGetToPath } from "@pankod/refine-core";
+import { useResource, useGetToPath } from "@refinedev/core";
 import React, { PropsWithChildren } from "react";
 import { Navigate } from "react-router-dom";
 

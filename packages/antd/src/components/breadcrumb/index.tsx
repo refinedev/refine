@@ -5,8 +5,8 @@ import {
     useRefineContext,
     useRouterContext,
     useRouterType,
-} from "@pankod/refine-core";
-import { RefineBreadcrumbProps } from "@pankod/refine-ui-types";
+} from "@refinedev/core";
+import { RefineBreadcrumbProps } from "@refinedev/ui-types";
 
 import {
     Breadcrumb as AntdBreadcrumb,

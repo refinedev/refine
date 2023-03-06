@@ -1,5 +1,5 @@
 import React from "react";
-import { useGetIdentity, useActiveAuthProvider } from "@pankod/refine-core";
+import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
 import { AppBar, Stack, Toolbar, Typography, Avatar } from "@mui/material";
 
 import { RefineLayoutHeaderProps } from "../types";

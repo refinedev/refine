@@ -66,7 +66,7 @@ export const getInstalledRefinePackages = async () => {
 export const getInstalledRefinePackagesFromNodeModules = async () => {
     try {
         const packageDirsFromModules = await globby(
-            "node_modules/@pankod/refine-*",
+            "node_modules/@refinedev/*",
             {
                 onlyDirectories: true,
             },

@@ -6,8 +6,8 @@ import {
     useTranslate,
     useResource,
     pickNotDeprecated,
-} from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 
 import { RefreshButtonProps } from "../types";
 

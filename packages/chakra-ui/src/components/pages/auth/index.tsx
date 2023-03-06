@@ -1,5 +1,5 @@
 import React from "react";
-import { AuthPageProps } from "@pankod/refine-core";
+import { AuthPageProps } from "@refinedev/core";
 import {
     LoginPage,
     RegisterPage,
@@ -7,7 +7,7 @@ import {
     UpdatePasswordPage,
 } from "./components";
 import { BoxProps } from "@chakra-ui/react";
-import { UseFormProps } from "@pankod/refine-react-hook-form";
+import { UseFormProps } from "@refinedev/react-hook-form";
 
 export interface FormPropsType<TFormType> extends UseFormProps {
     onSubmit?: (values: TFormType) => void;

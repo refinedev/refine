@@ -1,6 +1,6 @@
 import { usePathname, useSearchParams } from "next/navigation";
 
-import type { IRouterProvider } from "@pankod/refine-core";
+import type { IRouterProvider } from "@refinedev/core";
 
 export const useLocation: IRouterProvider["useLocation"] = () => {
     const pathname = usePathname();

@@ -6,8 +6,8 @@ import {
     useCan,
     useResource,
     pickNotDeprecated,
-} from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 import { Group, Text, Button, Popover, ActionIcon } from "@mantine/core";
 import { IconTrash } from "@tabler/icons";
 

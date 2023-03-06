@@ -7,7 +7,7 @@ import {
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
     useTableReturnType as useTableReturnTypeCore,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     useReactTable,
     TableOptions,

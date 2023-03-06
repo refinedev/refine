@@ -1,5 +1,5 @@
 import { useQuery, QueryObserverResult } from "@tanstack/react-query";
-import { IResourcesConfig } from "@pankod/refine-sdk";
+import { IResourcesConfig } from "@refinedev/sdk";
 
 import { useSdk } from "../useSdk";
 

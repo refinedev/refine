@@ -1,5 +1,5 @@
 import React from "react";
-import { useResource } from "@pankod/refine-core";
+import { useResource } from "@refinedev/core";
 
 import {
     CreateInferencer,
@@ -25,7 +25,7 @@ import { prepareLiveCode, componentName, removeHiddenCode } from "@/utilities";
  * Inferencer will handle the data fetching and the infering parts,
  * then it will invoke the `renderer` function to generate the code.
  * The generated code will be used to render the component by `react-live`.
- * Its required to havee`additionalScope` prop when using packages other than `react` and `@pankod/refine-core`.
+ * Its required to havee`additionalScope` prop when using packages other than `react` and `@refinedev/core`.
  *
  * @param config - Inferencer configuration.
  * @param config.type - Infering type.

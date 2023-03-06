@@ -1,7 +1,7 @@
 import React from "react";
-import type { RefineProps } from "@pankod/refine-core";
+import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
-import * as RefineMantine from "@pankod/refine-mantine";
+import * as RefineMantine from "@refinedev/mantine";
 import * as MantineCore from "@mantine/core";
 import * as MantineHooks from "@mantine/hooks";
 import * as MantineForm from "@mantine/form";

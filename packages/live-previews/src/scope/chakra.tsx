@@ -1,7 +1,7 @@
 import React from "react";
-import type { RefineProps } from "@pankod/refine-core";
+import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
-import * as RefineChakra from "@pankod/refine-chakra-ui";
+import * as RefineChakra from "@refinedev/chakra-ui";
 import * as ChakraUI from "@chakra-ui/react";
 import * as ReactHookForm from "react-hook-form";
 

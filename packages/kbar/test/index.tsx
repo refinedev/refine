@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import { AuthBindings, Refine } from "@pankod/refine-core";
+import { AuthBindings, Refine } from "@refinedev/core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";
 import {
@@ -11,7 +11,7 @@ import {
     DataProvider,
     NotificationProvider,
     IResourceItem,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { RefineKbarProvider } from "../src/index";
 

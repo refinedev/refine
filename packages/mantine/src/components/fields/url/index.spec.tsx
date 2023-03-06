@@ -1,4 +1,4 @@
-import { fieldUrlTests } from "@pankod/refine-ui-tests";
+import { fieldUrlTests } from "@refinedev/ui-tests";
 
 import { UrlField } from "./";
 

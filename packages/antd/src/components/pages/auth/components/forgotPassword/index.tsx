@@ -4,7 +4,7 @@ import {
     ForgotPasswordFormTypes,
     useRouterType,
     useLink,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     Row,
     Col,
@@ -22,7 +22,7 @@ import {
     useTranslate,
     useRouterContext,
     useForgotPassword,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { layoutStyles, containerStyles, titleStyles } from "../styles";
 

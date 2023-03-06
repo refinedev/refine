@@ -1,4 +1,4 @@
-import { LiveProvider } from "@pankod/refine-core";
+import { LiveProvider } from "@refinedev/core";
 import { Client } from "graphql-ws";
 
 import {

@@ -12,7 +12,7 @@ import {
     ResourceRouterParams,
     useActiveAuthProvider,
     useIsAuthenticated,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { RefineRouteProps } from "./index";
 
 const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {

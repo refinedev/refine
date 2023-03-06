@@ -1,7 +1,7 @@
 import qs from "qs";
 import { useRouter } from "next/router";
 
-import type { IRouterProvider } from "@pankod/refine-core";
+import type { IRouterProvider } from "@refinedev/core";
 
 export const useLocation: IRouterProvider["useLocation"] = () => {
     const router = useRouter();

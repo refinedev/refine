@@ -19,7 +19,7 @@ import {
     useLink,
     useRouterType,
     useActiveAuthProvider,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { Title as DefaultTitle } from "@components";
 

@@ -1,5 +1,5 @@
 import pluralize from "pluralize";
-import { IResourceItem } from "@pankod/refine-core";
+import { IResourceItem } from "@refinedev/core";
 
 import { InferField } from "@/types";
 

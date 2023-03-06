@@ -1,7 +1,7 @@
 import React from "react";
 import { BoxProps, CardProps } from "@mui/material";
-import { AuthPageProps, RegisterFormTypes } from "@pankod/refine-core";
-import { UseFormProps } from "@pankod/refine-react-hook-form";
+import { AuthPageProps, RegisterFormTypes } from "@refinedev/core";
+import { UseFormProps } from "@refinedev/react-hook-form";
 
 import {
     LoginPage,

@@ -11,7 +11,7 @@ import {
     useWarnAboutChange,
     UseFormProps as UseFormCoreProps,
     UseFormReturnType as UseFormReturnTypeCore,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 type FormVariableType<TVariables, TTransformed> = ReturnType<
     NonNullable<

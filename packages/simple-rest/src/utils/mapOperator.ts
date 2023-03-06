@@ -1,4 +1,4 @@
-import { CrudOperators } from "@pankod/refine-core";
+import { CrudOperators } from "@refinedev/core";
 
 export const mapOperator = (operator: CrudOperators): string => {
     switch (operator) {

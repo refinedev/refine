@@ -11,7 +11,7 @@ import {
     useResource,
     useGo,
     useToPath,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { Box, Heading, HStack, IconButton, Spinner } from "@chakra-ui/react";
 

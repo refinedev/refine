@@ -9,7 +9,7 @@ import {
     Badge,
     Typography,
 } from "antd";
-import { ILog, ILogData, useUpdate } from "@pankod/refine-core";
+import { ILog, ILogData, useUpdate } from "@refinedev/core";
 import dayjs from "dayjs";
 
 const { Text } = Typography;

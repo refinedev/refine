@@ -9,7 +9,7 @@ import {
     RefineCrudEditProps,
     RefineCrudListProps,
     RefineCrudShowProps,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 import { PageHeaderProps } from "../pageHeader";
 
 export type CreateProps = RefineCrudCreateProps<

@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 
 import { act, render, TestWrapper } from "@test";
 import { Create } from "./";
-import { crudCreateTests } from "@pankod/refine-ui-tests";
+import { crudCreateTests } from "@refinedev/ui-tests";
 
 describe("Create", () => {
     crudCreateTests.bind(this)(Create);

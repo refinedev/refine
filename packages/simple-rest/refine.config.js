@@ -1,6 +1,6 @@
-const { getImports } = require("@pankod/refine-cli");
+const { getImports } = require("@refinedev/cli");
 
-/** @type {import('@pankod/refine-cli').RefineConfig} */
+/** @type {import('@refinedev/cli').RefineConfig} */
 module.exports = {
     group: "Data Provider",
     swizzle: {
@@ -75,10 +75,10 @@ module.exports = {
                     // update query-string import
                     newContent = newContent.replace(
                         importItem?.statement,
-                        `// "stringify" function is re-exported from "query-string" package by "@pankod/refine-simple-rest"
+                        `// "stringify" function is re-exported from "query-string" package by "@refinedev/simple-rest"
             ${importItem.statement.replace(
                 "query-string",
-                "@pankod/refine-simple-rest",
+                "@refinedev/simple-rest",
             )}`,
                     );
                 }

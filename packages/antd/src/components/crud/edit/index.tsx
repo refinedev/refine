@@ -12,7 +12,7 @@ import {
     useResource,
     useGo,
     useToPath,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     DeleteButton,
