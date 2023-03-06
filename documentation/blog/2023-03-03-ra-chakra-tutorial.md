@@ -1608,3 +1608,9 @@ If you're looking to build a robust and dynamic admin panel for your web applica
 This article demonstrates the flexibility that comes with using refine to create web applications. refine is a fantastic tool that accelerates development by abstracting many time-consuming tasks, giving the developer more time to focus on the application's core business logic. 
 
 It also comes with detailed documentation that will get you started. Visit [here](https://refine.dev/docs/getting-started/overview/) to access the documentation.
+
+## Live CodeSandbox Example
+
+<CodeSandboxExample path="blog-ra-chakra-tutorial" />
+
+---
