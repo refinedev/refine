@@ -6,3 +6,4 @@ export { LayoutWrapper } from "./layoutWrapper";
 export { Authenticated } from "./authenticated";
 export { RouteChangeHandler } from "./routeChangeHandler";
 export { CanAccess } from "./canAccess";
+export { GitHubBanner } from "./gh-banner";
