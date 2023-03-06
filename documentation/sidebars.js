@@ -654,6 +654,12 @@ module.exports = {
                         {
                             type: "category",
                             label: "Routers",
+                            link: {
+                                type: "generated-index",
+                                title: "Router Providers",
+                                description: `<strong>refine</strong> comes with built-in router packages for Next.js, Remix and React Router v6. You can use them to integrate your app with <strong>refine</strong>. You can find examples and documentation for each router about how to use them with layouts, authentication and resource handling.`,
+                                slug: "/packages/documentation/routers",
+                            },
                             items: [
                                 "packages/documentation/routers/react-router-v6",
                                 "packages/documentation/routers/nextjs",
