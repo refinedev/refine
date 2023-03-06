@@ -4,6 +4,7 @@ import { authProviderToLegacyAuthProvider } from "./v4/authProvider-to-legacyAut
 import { metaDataToMeta } from "./v4/metadata-to-meta";
 import { moveDeprecatedAccessControlProps } from "./v4/move-deprecated-access-control";
 import { routerToLegacyRouter } from "./v4/router-to-legacy-router";
+import { renameResourcePropInButtons } from "./v4/rename-buttons-resource-prop";
 import {
     separateImportsAntD,
     separateImportsAntDPostTransform,
@@ -52,6 +53,7 @@ export default function transformer(file: FileInfo, api: API): string {
     authProviderToLegacyAuthProvider(j, source);
     metaDataToMeta(j, source);
     moveDeprecatedAccessControlProps(j, source);
+    renameResourcePropInButtons(j, source);
     routerToLegacyRouter(j, source);
     separateImportsAntD(j, source);
     separateImportsChakra(j, source);

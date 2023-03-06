@@ -1,10 +1,7 @@
 import React from "react";
 import {
     useNavigation,
-    useResourceWithRoute,
-    useRouterContext,
     useTranslate,
-    ResourceRouterParams,
     userFriendlyResourceName,
     useRefineContext,
     useRouterType,
@@ -103,7 +100,7 @@ export const Show: React.FC<ShowProps> = ({
             {!recordItemId && (
                 <ListButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={
+                    resource={
                         routerType === "legacy"
                             ? resource?.route
                             : resource?.identifier ?? resource?.name
@@ -113,7 +110,7 @@ export const Show: React.FC<ShowProps> = ({
             {isEditButtonVisible && (
                 <EditButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={
+                    resource={
                         routerType === "legacy"
                             ? resource?.route
                             : resource?.identifier ?? resource?.name
@@ -124,7 +121,7 @@ export const Show: React.FC<ShowProps> = ({
             {isDeleteButtonVisible && typeof id !== "undefined" && (
                 <DeleteButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={
+                    resource={
                         routerType === "legacy"
                             ? resource?.route
                             : resource?.identifier ?? resource?.name
@@ -144,7 +141,7 @@ export const Show: React.FC<ShowProps> = ({
             )}
             <RefreshButton
                 {...(isLoading ? { disabled: true } : {})}
-                resourceNameOrRouteName={
+                resource={
                     routerType === "legacy"
                         ? resource?.route
                         : resource?.identifier ?? resource?.name

@@ -98,7 +98,7 @@ import dataProvider from "@refinedev/simple-rest";
 import { DeleteButton } from "@refinedev/mui";
 
 const MyDeleteComponent = () => {
-    return <DeleteButton resourceNameOrRouteName="posts" recordItemId="1" />;
+    return <DeleteButton resource="posts" recordItemId="1" />;
 };
 
 // visible-block-end
@@ -136,9 +136,9 @@ Clicking the button will trigger the [`useDelete`](/docs/api-reference/core/hook
 **`<DeleteButton>`** component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
 
-`resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
+`resource` allows us to manage which resource's record is going to be deleted.
 
 ```tsx live disableScroll previewHeight=200px
 const { useRouterContext } = RefineCore;
@@ -149,7 +149,7 @@ import { DeleteButton } from "@refinedev/mui";
 
 const MyDeleteComponent = () => {
     return (
-        <DeleteButton resourceNameOrRouteName="categories" recordItemId="2" />
+        <DeleteButton resource="categories" recordItemId="2" />
     );
 };
 // visible-block-end
@@ -199,7 +199,7 @@ import { DeleteButton } from "@refinedev/mui";
 const MyDeleteComponent = () => {
     return (
         <DeleteButton
-            resourceNameOrRouteName="posts"
+            resource="posts"
             recordItemId="1"
             onSuccess={(value) => {
                 console.log(value);
@@ -361,6 +361,55 @@ export const MyListComponent = () => {
         />
     );
 };
+```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+`resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
+
+```tsx live disableScroll previewHeight=200px
+const { useRouterContext } = RefineCore;
+import dataProvider from "@pankod/refine-simple-rest";
+
+// visible-block-start
+import { DeleteButton } from "@pankod/refine-mui";
+
+const MyDeleteComponent = () => {
+    return (
+        <DeleteButton resourceNameOrRouteName="categories" recordItemId="2" />
+    );
+};
+// visible-block-end
+const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
+
+const customDataProvider = {
+    ...simpleRestDataProvider,
+    deleteOne: async ({ resource, id, variables }) => {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        return {
+            message: "You have successfully deleted the record",
+        };
+    },
+};
+
+render(
+    <RefineMuiDemo
+        initialRoutes={["/"]}
+        dataProvider={customDataProvider}
+        resources={[
+            {
+                name: "posts",
+            },
+            {
+                name: "categories",
+            },
+        ]}
+        DashboardPage={MyDeleteComponent}
+    />,
+);
 ```
 
 ## How to override confirm texts?

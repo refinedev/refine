@@ -73,9 +73,9 @@ The button text is defined automatically by **refine** based on _resource_ objec
 
 ## Properties
 
-### `resourceNameOrRouteName`
+### `resource`
 
-Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
+Redirection endpoint is defined by the `resource`'s `list` action path. By default, `<ListButton>` uses the inferred resource from the route.
 
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
@@ -84,7 +84,7 @@ const { useRouterContext } = RefineCore;
 import { ListButton } from "@refinedev/antd";
 
 const MyListComponent = () => {
-    return <ListButton resourceNameOrRouteName="categories" />;
+    return <ListButton resource="categories" />;
 };
 
 // visible-block-end
@@ -112,7 +112,21 @@ render(
 );
 ```
 
-Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
+Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `list` action path of the resource, filling the necessary parameters in the route.
+
+### `meta`
+
+It is used to pass additional parameters to the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md). By default, existing parameters in the route are used by the `list` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+
+If the `list` action route is defined by the pattern: `/:authorId/posts`, the `meta` prop can be used as follows:
+
+```tsx
+const MyComponent = () => {
+    return (
+        <ListButton meta={{ authorId: "10" }} />
+    );
+};
+```
 
 ### `hideText`
 
@@ -168,6 +182,49 @@ export const MyListComponent = () => {
     );
 };
 ```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
+
+```tsx live disableScroll previewHeight=120px
+const { useRouterContext } = RefineCore;
+
+// visible-block-start
+import { ListButton } from "@pankod/refine-antd";
+
+const MyListComponent = () => {
+    return <ListButton resourceNameOrRouteName="categories" />;
+};
+
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+            },
+            {
+                name: "categories",
+                list: () => {
+                    return (
+                        <RefineAntd.List>
+                            <p>Your list page here</p>
+                        </RefineAntd.List>
+                    );
+                },
+            },
+        ]}
+        DashboardPage={MyListComponent}
+    />,
+);
+```
+
+Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
 
 ## API Reference
 

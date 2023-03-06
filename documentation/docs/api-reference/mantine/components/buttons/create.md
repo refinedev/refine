@@ -173,9 +173,9 @@ render(
 
 ## Properties
 
-### `resourceNameOrRouteName`
+### `resource`
 
-It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of resource object.
+It is used to redirect the app to the `create` action path of the given resource name. By default, the app redirects to the inferred resource's `create` action path.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
@@ -186,7 +186,7 @@ import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mantine";
 
 const MyCreateComponent = () => {
-    return <CreateButton resourceNameOrRouteName="categories" />;
+    return <CreateButton resource="categories" />;
 };
 // visible-block-end
 
@@ -215,7 +215,21 @@ render(
 );
 ```
 
-Clicking the button will trigger the `create` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/posts/create`.
+Clicking the button will trigger the `create` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `create` action path of the resource, filling the necessary parameters in the route.
+
+### `meta`
+
+It is used to pass additional parameters to the `create` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md). By default, existing parameters in the route are used by the `create` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+
+If the `create` action route is defined by the pattern: `/posts/:authorId/create`, the `meta` prop can be used as follows:
+
+```tsx
+const MyComponent = () => {
+    return (
+        <CreateButton meta={{ authorId: "10" }} />
+    );
+};
+```
 
 ### `hideText`
 
@@ -271,6 +285,52 @@ export const MyListComponent = () => {
     );
 };
 ```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of resource object.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@pankod/refine-core";
+
+// visible-block-start
+import { CreateButton } from "@pankod/refine-mantine";
+
+const MyCreateComponent = () => {
+    return <CreateButton resourceNameOrRouteName="categories" />;
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            resources={[
+                {
+                    name: "posts",
+                    list: MyCreateComponent,
+                },
+                {
+                    name: "categories",
+                    create: CreatePage,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Clicking the button will trigger the `create` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/posts/create`.
 
 ## API Reference
 

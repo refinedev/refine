@@ -23,6 +23,7 @@ import { ShowButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/show-button} for more details.
  */
 export const ShowButton: React.FC<ShowButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName,
     recordItemId,
     hideText = false,
@@ -44,7 +45,9 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
 
     const translate = useTranslate();
 
-    const { id, resource } = useResource(resourceNameOrRouteName);
+    const { id, resource } = useResource(
+        resourceNameFromProps ?? resourceNameOrRouteName,
+    );
 
     const { data } = useCan({
         resource: resource?.name,
@@ -66,12 +69,8 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     };
 
     const showUrl =
-        (resource || resourceNameOrRouteName) && (recordItemId || id)
-            ? generateShowUrl(
-                  resource! ?? resourceNameOrRouteName!,
-                  recordItemId! ?? id!,
-                  meta,
-              )
+        resource && (recordItemId || id)
+            ? generateShowUrl(resource, recordItemId! ?? id!, meta)
             : "";
 
     const { variant, styles, ...commonProps } = rest;

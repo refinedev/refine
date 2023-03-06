@@ -111,9 +111,9 @@ The button text is defined automatically by **refine** based on _resource_ objec
 
 ## Properties
 
-### `resourceNameOrRouteName`
+### `resource`
 
-Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
+Redirection endpoint is defined by the `resource`'s `list` action path. By default, `<ListButton>` uses the inferred resource from the route.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
@@ -121,6 +121,141 @@ import { Refine } from "@refinedev/core";
 
 // visible-block-start
 import { ListButton } from "@refinedev/chakra-ui";
+
+const MyListComponent = () => {
+    return (
+        <ListButton colorScheme="black" resource="categories" />
+    );
+};
+// visible-block-end
+
+const ListPage = () => {
+    const { list } = RefineCore.useNavigation();
+    const params = RefineCore.useRouterContext().useParams();
+
+    return (
+        <RefineChakra.VStack alignItems="flex-start">
+            <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
+                URL Parameters:
+            </RefineChakra.Text>
+            <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
+
+            <RefineChakra.Button
+                size="sm"
+                onClick={() => list("posts")}
+                colorScheme="green"
+            >
+                Go back
+            </RefineChakra.Button>
+        </RefineChakra.VStack>
+    );
+};
+
+const App = () => {
+    return (
+        <Refine
+            resources={[
+                {
+                    name: "posts",
+                    list: MyListComponent,
+                },
+                {
+                    name: "categories",
+                    list: ListPage,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `list` action path of the resource, filling the necessary parameters in the route.
+
+### `meta`
+
+It is used to pass additional parameters to the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md). By default, existing parameters in the route are used by the `list` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+
+If the `list` action route is defined by the pattern: `/:authorId/posts`, the `meta` prop can be used as follows:
+
+```tsx
+const MyComponent = () => {
+    return (
+        <ListButton meta={{ authorId: "10" }} />
+    );
+};
+```
+
+### `hideText`
+
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@refinedev/core";
+
+// visible-block-start
+import { ListButton } from "@refinedev/chakra-ui";
+
+const MyListComponent = () => {
+    return <ListButton colorScheme="black" hideText />;
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            resources={[
+                {
+                    name: "posts",
+                    list: MyListComponent,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+### `accessControl`
+
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
+
+```tsx
+import { ListButton } from "@refinedev/chakra-ui";
+
+export const MyListComponent = () => {
+    return (
+        <ListButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
+};
+```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+import { Refine } from "@pankod/refine-core";
+
+// visible-block-start
+import { ListButton } from "@pankod/refine-chakra-ui";
 
 const MyListComponent = () => {
     return (
@@ -176,59 +311,6 @@ render(
 ```
 
 Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
-
-### `hideText`
-
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
-
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
-
-// visible-block-start
-import { ListButton } from "@refinedev/chakra-ui";
-
-const MyListComponent = () => {
-    return <ListButton colorScheme="black" hideText />;
-};
-// visible-block-end
-
-const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyListComponent,
-                },
-            ]}
-        />
-    );
-};
-
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
-```
-
-### `accessControl`
-
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
-
-```tsx
-import { ListButton } from "@refinedev/chakra-ui";
-
-export const MyListComponent = () => {
-    return (
-        <ListButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
-};
-```
 
 ## API Reference
 

@@ -153,9 +153,9 @@ Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/d
 `<RefreshButton>` component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
 
-`resourceNameOrRouteName` allows us to manage which resource is going to be refreshed.
+`resource` allows us to manage which resource is going to be refreshed.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
@@ -167,7 +167,7 @@ import { RefreshButton } from "@refinedev/mantine";
 
 const MyRefreshComponent = () => {
     return (
-        <RefreshButton resourceNameOrRouteName="categories" recordItemId="2" />
+        <RefreshButton resource="categories" recordItemId="2" />
     );
 };
 // visible-block-end
@@ -234,6 +234,53 @@ render(
     </Wrapper>,
 );
 ```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+`resourceNameOrRouteName` allows us to manage which resource is going to be refreshed.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@pankod/refine-core";
+
+// visible-block-start
+import { RefreshButton } from "@pankod/refine-mantine";
+
+const MyRefreshComponent = () => {
+    return (
+        <RefreshButton resourceNameOrRouteName="categories" recordItemId="2" />
+    );
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            resources={[
+                {
+                    name: "posts",
+                    list: MyRefreshComponent,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
+
+:::note
+`<RefreshButton>` component reads the resource name from the route by default.
+:::
 
 ## API Reference
 

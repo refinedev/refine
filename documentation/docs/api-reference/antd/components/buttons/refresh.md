@@ -83,7 +83,7 @@ import { RefreshButton } from "@refinedev/antd";
 const MyRefreshComponent = () => {
     return (
         <RefreshButton
-            resourceNameOrRouteName="posts"
+            resource="posts"
             // highlight-next-line
             recordItemId="1"
         />
@@ -110,9 +110,9 @@ Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/d
 `<RefreshButton>` component reads the id information from the route by default.
 :::
 
-### `resourceNameOrRouteName`
+### `resource`
 
-`resourceNameOrRouteName` allows us to manage which resource is going to be refreshed.
+`resource` allows us to manage which resource is going to be refreshed.
 
 ```tsx live disableScroll previewHeight=120px
 // visible-block-start
@@ -122,7 +122,7 @@ const MyRefreshComponent = () => {
     return (
         <RefreshButton
             // highlight-next-line
-            resourceNameOrRouteName="posts"
+            resource="posts"
         />
     );
 };
@@ -180,6 +180,48 @@ render(
     />,
 );
 ```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+`resourceNameOrRouteName` allows us to manage which resource is going to be refreshed.
+
+```tsx live disableScroll previewHeight=120px
+// visible-block-start
+import { RefreshButton } from "@pankod/refine-antd";
+
+const MyRefreshComponent = () => {
+    return (
+        <RefreshButton
+            // highlight-next-line
+            resourceNameOrRouteName="posts"
+        />
+    );
+};
+// visible-block-end
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+            },
+            {
+                name: "categories",
+            },
+        ]}
+        DashboardPage={MyRefreshComponent}
+    />,
+);
+```
+
+Clicking the button will trigger the [`useOne`](/docs/api-reference/core/hooks/data/useOne/) method and then fetches the record whose resource is "categories" and whose id is "2".
+
+:::note
+`<RefreshButton>` component reads the resource name from the route by default.
+:::
 
 ## API Reference
 

@@ -227,9 +227,9 @@ render(
 );
 ```
 
-### `resourceNameOrRouteName`
+### `resource`
 
-Redirection endpoint(`resourceNameOrRouteName/edit`) is defined by `resourceNameOrRouteName` property. By default, `<EditButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
+Redirection endpoint is defined by the `resource` property and its `edit` action path. By default, `<EditButton>` uses the inferred resource from the route.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
@@ -243,7 +243,7 @@ const MyEditComponent = () => {
     return (
         <EditButton
             colorScheme="black"
-            resourceNameOrRouteName="categories"
+            resource="categories"
             recordItemId="2"
         />
     );
@@ -274,7 +274,21 @@ render(
 );
 ```
 
-Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/edit/2`.
+Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `edit` action path of the resource, filling the necessary parameters in the route.
+
+### `meta`
+
+It is used to pass additional parameters to the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md). By default, existing parameters in the route are used by the `edit` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+
+If the `edit` action route is defined by the pattern: `/posts/:authorId/edit/:id`, the `meta` prop can be used as follows:
+
+```tsx
+const MyComponent = () => {
+    return (
+        <EditButton meta={{ authorId: "10" }} />
+    );
+};
+```
 
 ### `hideText`
 
@@ -329,6 +343,57 @@ export const MyListComponent = () => {
     );
 };
 ```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
+
+Redirection endpoint(`resourceNameOrRouteName/edit`) is defined by `resourceNameOrRouteName` property. By default, `<EditButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@pankod/refine-core";
+
+// visible-block-start
+import { EditButton } from "@pankod/refine-chakra-ui";
+
+const MyEditComponent = () => {
+    return (
+        <EditButton
+            colorScheme="black"
+            resourceNameOrRouteName="categories"
+            recordItemId="2"
+        />
+    );
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            resources={[
+                {
+                    name: "posts",
+                    list: MyEditComponent,
+                },
+                {
+                    name: "categories",
+                    edit: EditPage,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/edit/2`.
 
 ## API Reference
 

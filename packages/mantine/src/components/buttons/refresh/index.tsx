@@ -19,6 +19,7 @@ import { RefreshButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/refresh-button} for more details.
  */
 export const RefreshButton: React.FC<RefreshButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName,
     recordItemId,
     hideText = false,
@@ -30,7 +31,9 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const { resource, id } = useResource(resourceNameOrRouteName);
+    const { resource, id } = useResource(
+        resourceNameFromProps ?? resourceNameOrRouteName,
+    );
 
     const translate = useTranslate();
 
