@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useGetIdentity } from "@pankod/refine-core";
+import { useGetIdentity } from "@refinedev/core";
 import { Form, FormProps, Input, Modal, ModalProps, Radio } from "antd";
 
 import { getRandomName, DEFAULT_CANVAS_SIZE } from "utility";

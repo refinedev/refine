@@ -4,7 +4,7 @@ import { authProvider } from "~/authProvider";
 import {
     checkAuthentication,
     RemixRouteComponent,
-} from "@pankod/refine-remix-router/legacy";
+} from "@refinedev/remix-router/legacy";
 
 export const loader: LoaderFunction = async ({ request }) => {
     await checkAuthentication(authProvider, request);

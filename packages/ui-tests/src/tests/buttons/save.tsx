@@ -2,14 +2,14 @@ import React from "react";
 import {
     RefineSaveButtonProps,
     RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 
 import { act, fireEvent, render, TestWrapper } from "@test";
 
 export const buttonSaveTests = function (
     SaveButton: React.ComponentType<RefineSaveButtonProps<any, any>>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Save Button", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Save Button", () => {
         const save = jest.fn();
 
         it("should render button successfuly", async () => {

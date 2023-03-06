@@ -5,7 +5,7 @@ import {
     useGetIdentity,
     useTranslate,
     useList,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { SearchOutlined, DownOutlined } from "@ant-design/icons";
 
@@ -23,7 +23,7 @@ import {
     Layout as AntdLayout,
 } from "antd";
 
-import RefineReactRouter from "@pankod/refine-react-router-v6/legacy";
+import RefineReactRouter from "@refinedev/react-router-v6/legacy";
 
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";

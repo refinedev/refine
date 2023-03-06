@@ -4,8 +4,8 @@ import {
     IResourceComponentsProps,
     useTranslate,
     useUpdate,
-} from "@pankod/refine-core";
-import { List } from "@pankod/refine-antd";
+} from "@refinedev/core";
+import { List } from "@refinedev/antd";
 
 import {
     CheckCircleOutlined,

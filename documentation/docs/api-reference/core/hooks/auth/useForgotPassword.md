@@ -33,7 +33,7 @@ Normally refine provides a default forgot password page. If you prefer to use th
 If we want to build a custom forgotPassword page instead of the default one that comes with **refine**, `useForgotPassword` can be used like this:
 
 ```tsx title="pages/customForgotPasswordPage"
-import { useForgotPassword } from "@pankod/refine-core";
+import { useForgotPassword } from "@refinedev/core";
 
 type forgotPasswordVariables = {
     email: string;
@@ -62,7 +62,7 @@ export const forgotPasswordPage = () => {
 A type parameter for the values can be provided to `useForgotPassword`.
 
 ```tsx
-import { useForgotPassword } from "@pankod/refine-core";
+import { useForgotPassword } from "@refinedev/core";
 
 const { mutate: forgotPassword } = useForgotPassword<{ email: string }>();
 ```
@@ -74,7 +74,7 @@ const { mutate: forgotPassword } = useForgotPassword<{ email: string }>();
 A custom URL can be given to mutate the function from the `useForgotPassword` hook if you want to redirect yourself to a certain URL.
 
 ```tsx
-import { useForgotPassword } from "@pankod/refine-core";
+import { useForgotPassword } from "@refinedev/core";
 
 const { mutate: forgotPassword } = useForgotPassword();
 
@@ -84,7 +84,7 @@ forgotPassword({ redirectPath: "/custom-url" });
 Then, you can handle this URL in your `forgotPassword` method of the `authProvider`.
 
 ```tsx
-import type { AuthBindings } from "@pankod/refine-core";
+import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // ---

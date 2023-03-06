@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-core": major
+"@refinedev/core": major
 ---
 
 All `@tanstack/react-query` imports re-exported from `@refinedev/core` have been removed. You should import them from `@tanstack/react-query` package directly.

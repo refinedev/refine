@@ -2,14 +2,14 @@ import React from "react";
 import {
     RefineRefreshButtonProps,
     RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 
 import { act, fireEvent, render, TestWrapper } from "@test";
 
 export const buttonRefreshTests = function (
     RefreshButton: React.ComponentType<RefineRefreshButtonProps<any, any>>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Refresh Button", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Refresh Button", () => {
         const refresh = jest.fn();
 
         it("should render button successfuly", async () => {

@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
@@ -6,13 +6,13 @@ import {
     notificationProvider,
     LightTheme,
     DarkTheme,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 import { useLocalStorage } from "@mantine/hooks";
 import { ColorSchemeProvider } from "@mantine/styles";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, ColorScheme, Global } from "@mantine/core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
 import { Header } from "./components";

@@ -1576,9 +1576,9 @@
     "@nodelib/fs.scandir" "2.1.5"
     "fastq" "^1.6.0"
 
-"@pankod/refine-airtable@^3.18.0":
+"@refinedev/airtable@^3.18.0":
   "integrity" "sha512-hKLWkcEUf3UNv0WiAM/LsaM8zobr4JtTnaM8uZD9ywgijj407iHp2wQFvM21O+iFFP7Mouo7fbEbEsufFmli7Q=="
-  "resolved" "https://registry.npmjs.org/@pankod/refine-airtable/-/refine-airtable-3.33.0.tgz"
+  "resolved" "https://registry.npmjs.org/@refinedev/airtable/-/refine-airtable-3.33.0.tgz"
   "version" "3.33.0"
   dependencies:
     "@qualifyze/airtable-formulator" "^1.0.1"
@@ -1586,9 +1586,9 @@
     "asyncairtable" "^2.1.0"
     "query-string" "^7.1.1"
 
-"@pankod/refine-cli@^1.2.0":
+"@refinedev/cli@^1.2.0":
   "integrity" "sha512-TFxCjX+JpHBGjzhq10BcuTZ7ZjpccLWHMdRajUmBvVQOaBn1USmiZxCkj/viGVq8SfwjrkDRiSebMfGz4FpRlw=="
-  "resolved" "https://registry.npmjs.org/@pankod/refine-cli/-/refine-cli-1.7.0.tgz"
+  "resolved" "https://registry.npmjs.org/@refinedev/cli/-/refine-cli-1.7.0.tgz"
   "version" "1.7.0"
   dependencies:
     "chalk" "^4.1.2"
@@ -1618,9 +1618,9 @@
     "temp" "^0.9.4"
     "tslib" "^2.3.1"
 
-"@pankod/refine-core@^3.18.0", "@pankod/refine-core@^3.80.0":
+"@refinedev/core@^3.18.0", "@refinedev/core@^3.80.0":
   "integrity" "sha512-6wB0PvVmYSvnSsdZrs2KQ9L/zLH9iTNTQLVS2KEMDo3nKL2zWUb+nLRFFj8uMSxp6ULNijZDAa/jN4yFxDlC4w=="
-  "resolved" "https://registry.npmjs.org/@pankod/refine-core/-/refine-core-3.90.4.tgz"
+  "resolved" "https://registry.npmjs.org/@refinedev/core/-/refine-core-3.90.4.tgz"
   "version" "3.90.4"
   dependencies:
     "@tanstack/react-query" "^4.10.1"
@@ -1634,12 +1634,12 @@
     "tslib" "^2.3.1"
     "warn-once" "^0.1.0"
 
-"@pankod/refine-inferencer@^1.2.0":
+"@refinedev/inferencer@^1.2.0":
   "integrity" "sha512-X2WsMWJKA2eOrgu1LlsZAuF9bgqv8uH9PchSmbcTyq5yqAoh3p8S1RLM1hlIuT8bYG5XceaQNo5AQWjVuAYh8Q=="
-  "resolved" "https://registry.npmjs.org/@pankod/refine-inferencer/-/refine-inferencer-1.2.0.tgz"
+  "resolved" "https://registry.npmjs.org/@refinedev/inferencer/-/refine-inferencer-1.2.0.tgz"
   "version" "1.2.0"
   dependencies:
-    "@pankod/refine-core" "^3.80.0"
+    "@refinedev/core" "^3.80.0"
     "@tabler/icons" "^1.1.0"
     "dayjs" "^1.10.7"
     "lodash" "^4.17.21"
@@ -1652,23 +1652,23 @@
     "remark-gfm" "^1.0.0"
     "tslib" "^2.3.1"
 
-"@pankod/refine-react-hook-form@^3.37.2":
+"@refinedev/react-hook-form@^3.37.2":
   "integrity" "sha512-ejwmPTJ4NF56UTUNQxFmNqHwQSeglqtOkgiDG5hWRjiQskWsUQaRhzRo2WaK4Neguye9YpKQtrn03t8zH3k0Bg=="
-  "resolved" "https://registry.npmjs.org/@pankod/refine-react-hook-form/-/refine-react-hook-form-3.37.2.tgz"
+  "resolved" "https://registry.npmjs.org/@refinedev/react-hook-form/-/refine-react-hook-form-3.37.2.tgz"
   "version" "3.37.2"
   dependencies:
     "react-hook-form" "^7.30.0"
 
-"@pankod/refine-react-router-v6@^3.18.0":
+"@refinedev/react-router-v6@^3.18.0":
   "integrity" "sha512-1MO7S7Rgo+j1ThHJdCwvLB6alXNR7NOAKLU+P92SMfSLWxCqea8RYig8trFIqlcEuXFRbm5gOYMWMiMnDtfL8A=="
-  "resolved" "https://registry.npmjs.org/@pankod/refine-react-router-v6/-/refine-react-router-v6-3.36.4.tgz"
+  "resolved" "https://registry.npmjs.org/@refinedev/react-router-v6/-/refine-react-router-v6-3.36.4.tgz"
   "version" "3.36.4"
   dependencies:
     "react-router-dom" "6.3.0"
 
-"@pankod/refine-react-table@^4.9.0":
+"@refinedev/react-table@^4.9.0":
   "integrity" "sha512-vV++szuy9I5tewRETk/BShKMuGRYrYtFLv5/T2WVXIe8y02EgXTCvsWVZFnQCUDy33jHqTtSN780mN0IzlxpRw=="
-  "resolved" "https://registry.npmjs.org/@pankod/refine-react-table/-/refine-react-table-4.9.0.tgz"
+  "resolved" "https://registry.npmjs.org/@refinedev/react-table/-/refine-react-table-4.9.0.tgz"
   "version" "4.9.0"
   dependencies:
     "@tanstack/react-table" "^8.2.6"

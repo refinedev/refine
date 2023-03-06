@@ -1,9 +1,5 @@
 import React from "react";
-import {
-    IResourceComponentsProps,
-    BaseRecord,
-    useMany,
-} from "@pankod/refine-core";
+import { IResourceComponentsProps, BaseRecord, useMany } from "@refinedev/core";
 import {
     useTable,
     List,
@@ -12,7 +8,7 @@ import {
     MarkdownField,
     FilterDropdown,
     useSelect,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Space, Select } from "antd";
 

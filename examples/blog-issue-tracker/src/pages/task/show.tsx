@@ -1,5 +1,5 @@
-import { useShow, useOne } from "@pankod/refine-core";
-import { Show, DateField } from "@pankod/refine-antd";
+import { useShow, useOne } from "@refinedev/core";
+import { Show, DateField } from "@refinedev/antd";
 import { Typography, Tag } from "antd";
 import { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
 

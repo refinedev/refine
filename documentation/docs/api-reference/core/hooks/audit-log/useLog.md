@@ -8,7 +8,7 @@ title: useLog
 If you need to create or update an audit log, **refine** provides the `useLog` hook for it. The hook returns two mutations called `log` and `rename`.
 
 ```tsx
-import { useLog } from "@pankod/refine-core";
+import { useLog } from "@refinedev/core";
 
 const { log, rename } = useLog();
 ```
@@ -18,7 +18,7 @@ const { log, rename } = useLog();
 `log` is used to create an audit log event. The mutation uses `create` method from [`auditLogProvider`](/api-reference/core/providers/audit-log-provider.md#create) under the hood.
 
 ```tsx
-import { useLog } from "@pankod/refine-core";
+import { useLog } from "@refinedev/core";
 
 const { log } = useLog();
 const { mutate } = log;
@@ -73,7 +73,7 @@ This hook can only be used if `auditLogProvider`'s `create` method is provided.
 `log` is used to update an audit log event. The mutation uses `update` method from [`auditLogProvider`](/api-reference/core/providers/audit-log-provider.md#update) under the hood.
 
 ```tsx
-import { useLog } from "@pankod/refine-core";
+import { useLog } from "@refinedev/core";
 
 const { rename } = useLog();
 const { mutate } = rename;

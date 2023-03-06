@@ -1,4 +1,4 @@
-import { AuthPage } from "@pankod/refine-antd";
+import { AuthPage } from "@refinedev/antd";
 
 export default function Register() {
     return <AuthPage type="register" />;

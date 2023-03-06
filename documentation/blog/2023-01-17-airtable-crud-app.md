@@ -180,7 +180,7 @@ After Running the command, the Refine application should be up and running. Visi
 * **DataProvider**: A DataProvider in refine is represented as a [React context](https://reactjs.org/docs/context.html) provider in the refine core package which enables a refine app to interact with an API. It also enables the application to easily consume various APIs and data services. A data provider sends HTTP requests and receives responses via **predefined** **methods** shown below.
 
 ```tsx
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import dataProvider from "./dataProvider";
 
 const App: React.FC = () => {
@@ -197,8 +197,8 @@ In order to activate a resource, we have to pass the `resources` property to the
 
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-json-server";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/json-server";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -237,9 +237,9 @@ After obtaining more insight on the constitutents of a refine application, we wi
 
 ```tsx title="src/App.tsx"
 import React from "react";
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-airtable";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/airtable";
+import routerProvider from "@refinedev/react-router-v6";
  
 function App() {
  
@@ -270,9 +270,9 @@ We will add the /posts/ route to our refine application
 
 ```tsx title="src/App.tsx"
 import React from "react";
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-airtable";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/airtable";
+import routerProvider from "@refinedev/react-router-v6";
  
 function App() {
  
@@ -316,10 +316,10 @@ From the picture above, we can see a 404 error page on accessing the posts route
 
 
 ### Listing posts records
-First and foremost, To list our records, we will install the `@pankod/refine-react-table` to use the [`useTable()`](https://refine.dev/docs/examples/table/antd/useTable/) hook to display all posts records in a table format. To install the table, run the following command:
+First and foremost, To list our records, we will install the `@refinedev/react-table` to use the [`useTable()`](https://refine.dev/docs/examples/table/antd/useTable/) hook to display all posts records in a table format. To install the table, run the following command:
 
 ```tsx
-npm i @pankod/refine-react-table
+npm i @refinedev/react-table
 ```
 
 Next, we will define an interface for the fetched data from our Airtable Base. to do this, we will create a new folder called `interfaces` under the `src` folder in the root directory of our application. Then we will create a `post.d.ts` file and add the code below:
@@ -345,9 +345,9 @@ Next, we create a new folder named "pages" under `src`. Under that folder, creat
 
 ```tsx title="src/pages/post/list.tsx"
 import React from "react";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@refinedev/react-table";
 import { IPost } from "../../interfaces/post";
-import { useNavigation, useDelete } from "@pankod/refine-core";
+import { useNavigation, useDelete } from "@refinedev/core";
  
 export const PostList: React.FC = () => {
  const { show, edit, create } = useNavigation();
@@ -471,7 +471,7 @@ export const PostList: React.FC = () => {
 </p>
 </details>
 
-In the code above, we use the [`useTable()`](https://refine.dev/docs/examples/table/antd/useTable/) hook from the `@pankod/refine-react-table` package to fetch records from our Airtable base. It allows us to fetch data according to the sorter, filter, and pagination states.  
+In the code above, we use the [`useTable()`](https://refine.dev/docs/examples/table/antd/useTable/) hook from the `@refinedev/react-table` package to fetch records from our Airtable base. It allows us to fetch data according to the sorter, filter, and pagination states.  
 
 We also use the [`useNavigation()`](https://refine.dev/docs/api-references/hooks/navigation/useNavigation/) hook to navigate to the `show`, `edit`, and `create` pages of the `posts` resource.
 
@@ -515,10 +515,10 @@ Update the `<PostList/>` component with the highlighted code below:
 
 ```tsx title="src/pages/post/list.tsx"
 import React from "react";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@refinedev/react-table";
 import { ICategory, IPost } from "../../interfaces/post";
   //highlight-next-line
-import { useNavigation, useDelete, GetManyResponse, useMany } from "@pankod/refine-core";
+import { useNavigation, useDelete, GetManyResponse, useMany } from "@refinedev/core";
 
 export const PostList: React.FC = () => {
   
@@ -674,7 +674,7 @@ export default App;
 </div>
 
 ### Viewing a single post record
-For Viewing a record in our React CRUD app, we will use the `useShow()` hook which is present in the `@pankod/refine-core` package.
+For Viewing a record in our React CRUD app, we will use the `useShow()` hook which is present in the `@refinedev/core` package.
 
 We will add a `show.tsx` file In the `post`  under the `pages` folder.
 Next, with the following code:
@@ -682,7 +682,7 @@ Next, with the following code:
 
 ```tsx title="src/pages/post/show.tsx"
 
-import { useSelect, useShow } from "@pankod/refine-core";
+import { useSelect, useShow } from "@refinedev/core";
 import { IPost } from "../../interfaces/post";
 
 export const PostShow: React.FC = () => {
@@ -788,9 +788,9 @@ We'll add a View button to each row, so we'll need to update our `<PostList>` co
 
 ```tsx title="src/pages/post/list.tsx"
 import React from "react";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@refinedev/react-table";
 import { IPost } from "../../interfaces/post";
-import { useNavigation, useDelete } from "@pankod/refine-core";
+import { useNavigation, useDelete } from "@refinedev/core";
  
  
 export const PostList: React.FC = () => {
@@ -841,10 +841,10 @@ export const PostList: React.FC = () => {
 <br />
 
 ### Creating post record
-To create a record, we will install the `@pankod/refine-react-hook-form` to use the `useForm()` hook that comes with form validation out of the box and handles our form submission request to Airtable.
+To create a record, we will install the `@refinedev/react-hook-form` to use the `useForm()` hook that comes with form validation out of the box and handles our form submission request to Airtable.
 
 ```tsx
-npm i @pankod/refine-react-hook-form
+npm i @refinedev/react-hook-form
 ```
 
 
@@ -855,7 +855,7 @@ Next, In the `post`  under the `pages` folder we will add a `create.tsx` file wi
 <p>
 
 ```tsx title="src/pages/post/create.tsx"
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 import React from "react";
  
 export const PostCreate: React.FC = () => {
@@ -1004,7 +1004,7 @@ export const PostCreate: React.FC = () => {
 </p>
 </details>
 
-In the code above, we used the `useForm()` hook to create records. This hook comes from the [@pankod/refine-react-hook-form](https://github.com/refinedev/refine/tree/master/packages/react-hook-form) which is inherently a refine adapter of the [React Hook Form](https://react-hook-form.com/) library. In a nutshell, this library allows you to use the [React Hook Form](https://react-hook-form.com/) library with refine. More information about the `useForm()` hook can be obtained [here](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/).
+In the code above, we used the `useForm()` hook to create records. This hook comes from the [@refinedev/react-hook-form](https://github.com/refinedev/refine/tree/master/packages/react-hook-form) which is inherently a refine adapter of the [React Hook Form](https://react-hook-form.com/) library. In a nutshell, this library allows you to use the [React Hook Form](https://react-hook-form.com/) library with refine. More information about the `useForm()` hook can be obtained [here](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/).
 
 We use methods provided by the `useForm()` hook like  `register()` to validate the new post we will add into airtable. The hooks also provide methods like `handleSubmit()` and `onFinish()` methods which handle the submission of the contents from the form to Airtable.
 
@@ -1014,9 +1014,9 @@ We'll also add a create post button to the `<PostList>` component. Update the `<
 
 ```tsx title="src/pages/post/list.tsx
 import React from "react";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@refinedev/react-table";
 import { IPost } from "../../interfaces/post";
-import { useNavigation, useDelete } from "@pankod/refine-core";
+import { useNavigation, useDelete } from "@refinedev/core";
  
  
 export const PostList: React.FC = () => {
@@ -1044,7 +1044,7 @@ After this, we can now add the component `<PostCreate/>` in the `create.tsx` fil
 
 ```tsx title="src/App.tsx"
 ...
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import { PostList } from "pages/post/list";
 import { PostShow } from "pages/post/show";
   // highligth-next-line
@@ -1099,8 +1099,8 @@ Next, with the following code:
 
 ```tsx title="src/pages/post/edit.tsx"
 
-import { useSelect } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useSelect } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 import React, { useEffect } from "react";
 
 export const PostEdit: React.FC = () => {
@@ -1286,9 +1286,9 @@ We'll add an **Edit** button to each row, so we'll need to update our `<PostList
 ```tsx title="src/pages/post/list.tsx"
 
 import React from "react";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@refinedev/react-table";
 import { IPost } from "../../interfaces/post";
-import { useNavigation, useDelete } from "@pankod/refine-core";
+import { useNavigation, useDelete } from "@refinedev/core";
  
  
 export const PostList: React.FC = () => {
@@ -1345,7 +1345,7 @@ After this, we can now add the component `<PostEdit/>` in the `edit.tsx` file to
 
 
 ### Deleting post record
-For Deleting a record, we will use the `useDelete()` hook which is present in the `@pankod/refine-core` package which was installed using the `refine CLI` to build our refine application.
+For Deleting a record, we will use the `useDelete()` hook which is present in the `@refinedev/core` package which was installed using the `refine CLI` to build our refine application.
 
 We'll add a **Delete** button to each row because refine doesn't add one automatically, so we'll need to update our `<PostList>` component to include one for each record. Add the highlighted lines below to the existing list component.
 
@@ -1353,9 +1353,9 @@ We'll add a **Delete** button to each row because refine doesn't add one automat
 ```tsx title="src/pages/post/list.tsx"
 
 import React from "react";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@refinedev/react-table";
 import { IPost } from "../../interfaces/post";
-import { useNavigation, useDelete } from "@pankod/refine-core";
+import { useNavigation, useDelete } from "@refinedev/core";
  
  
 export const PostList: React.FC = () => {
@@ -1430,9 +1430,9 @@ We will go to update the `<PostList/>` component with the highlighted code below
 
 ```tsx title="src/pages/post/list.tsx"
 import React from "react";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@refinedev/react-table";
 import { ICategory, IPost } from "../../interfaces/post";
-import { useNavigation, useDelete, GetManyResponse, useMany } from "@pankod/refine-core";
+import { useNavigation, useDelete, GetManyResponse, useMany } from "@refinedev/core";
 
 
 export const PostList: React.FC = () => {

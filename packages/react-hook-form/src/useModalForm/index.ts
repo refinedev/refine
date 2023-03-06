@@ -11,7 +11,7 @@ import {
     userFriendlyResourceName,
     useTranslate,
     useWarnAboutChange,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { FieldValues } from "react-hook-form";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";

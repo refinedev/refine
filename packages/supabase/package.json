@@ -1,5 +1,5 @@
 {
-  "name": "@pankod/refine-supabase",
+  "name": "@refinedev/supabase",
   "description": "refine Supabase data provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "version": "4.1.2",
   "license": "MIT",
@@ -22,7 +22,7 @@
   "author": "refine",
   "module": "dist/esm/index.js",
   "devDependencies": {
-    "@pankod/refine-core": "^3.86.0",
+    "@refinedev/core": "^3.86.0",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/jest": "^29.2.4",
     "jest": "^29.3.1",
@@ -36,7 +36,7 @@
     "@supabase/supabase-js": "^2.7.0"
   },
   "peerDependencies": {
-    "@pankod/refine-core": "^3.23.2",
+    "@refinedev/core": "^3.23.2",
     "@supabase/supabase-js": "^2.7.0"
   },
   "repository": {

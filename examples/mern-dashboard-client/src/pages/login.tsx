@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useLogin } from "@pankod/refine-core";
+import { useLogin } from "@refinedev/core";
 import { Container, Box } from "@mui/material";
 
 import { yariga } from "../assets";

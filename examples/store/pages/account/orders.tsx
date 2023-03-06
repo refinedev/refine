@@ -1,6 +1,6 @@
 import { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
-import { LayoutWrapper } from "@pankod/refine-core";
+import { LayoutWrapper } from "@refinedev/core";
 
 import { AccountLayout } from "@components/account";
 import { OrdersTemplate } from "@components/orders/OrdersTemplate";

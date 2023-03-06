@@ -13,10 +13,10 @@ import {
     HttpError,
     useShow,
     useNavigation,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { Layout } from "components";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@refinedev/react-router-v6";
 
 const { Link } = routerProvider;
 
@@ -355,7 +355,7 @@ We'll show the basic usage of `useForm` by adding an creating form.
 
 ```tsx
 import { useState } from "react";
-import { useForm } from "@pankod/refine-core";
+import { useForm } from "@refinedev/core";
 
 const PostCreate = () => {
     const [title, setTitle] = useState();
@@ -416,7 +416,7 @@ setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
 import React, { useState } from "react";
-import { useForm } from "@pankod/refine-core";
+import { useForm } from "@refinedev/core";
 
 interface FormValues {
     id: number;
@@ -511,7 +511,7 @@ setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
 import React, { useState, useEffect } from "react";
-import { useForm } from "@pankod/refine-core";
+import { useForm } from "@refinedev/core";
 
 interface FormValues {
     id: number;
@@ -617,7 +617,7 @@ setInitialRoutes(["/posts/clone/123"]);
 
 // visible-block-start
 import React, { useState, useEffect } from "react";
-import { useForm } from "@pankod/refine-core";
+import { useForm } from "@refinedev/core";
 
 interface FormValues {
     id: number;
@@ -1061,7 +1061,7 @@ You can invalidate other resources with help of [`useInvalidate`](/docs/api-refe
 It is useful when you want to `invalidate` other resources don't have relation with the current resource.
 
 ```tsx
-import { useInvalidate, useForm } from "@pankod/refine-core";
+import { useInvalidate, useForm } from "@refinedev/core";
 
 const PostEdit = () => {
     const invalidate = useInvalidate();
@@ -1087,7 +1087,7 @@ For example, Let's send the values we received from the user in two separate inp
 
 ```tsx title="src/users/create.tsx"
 import React, { useState } from "react";
-import { useForm } from "@pankod/refine-core";
+import { useForm } from "@refinedev/core";
 
 export const UserCreate: React.FC = () => {
     const [name, setName] = useState();
@@ -1119,7 +1119,7 @@ export const UserCreate: React.FC = () => {
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useForm" />
+<PropsTable module="@refinedev/core/useForm" />
 
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-reference/core/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
 

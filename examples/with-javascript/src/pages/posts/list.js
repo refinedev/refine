@@ -1,4 +1,4 @@
-import { useMany } from "@pankod/refine-core";
+import { useMany } from "@refinedev/core";
 
 import {
     List,
@@ -6,7 +6,7 @@ import {
     useTable,
     EditButton,
     ShowButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Space } from "antd";
 

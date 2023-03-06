@@ -1,4 +1,4 @@
-import { Create, useAutocomplete } from "@pankod/refine-mui";
+import { Create, useAutocomplete } from "@refinedev/mui";
 import {
     Autocomplete,
     Box,
@@ -6,10 +6,10 @@ import {
     IconButton,
     TextField,
 } from "@mui/material";
-import { UseModalFormReturnType } from "@pankod/refine-react-hook-form";
+import { UseModalFormReturnType } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 import { CloseOutlined } from "@mui/icons-material";
-import { HttpError } from "@pankod/refine-core";
+import { HttpError } from "@refinedev/core";
 
 import { IPost } from "interfaces";
 

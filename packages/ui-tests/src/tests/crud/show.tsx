@@ -1,10 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import {
-    RefineCrudShowProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import { AccessControlProvider } from "@pankod/refine-core";
+import { RefineCrudShowProps, RefineButtonTestIds } from "@refinedev/ui-types";
+import { AccessControlProvider } from "@refinedev/core";
 
 import { ITestWrapperProps, render, TestWrapper } from "@test";
 
@@ -33,7 +30,7 @@ const renderShow = (
 export const crudShowTests = function (
     Show: React.ComponentType<RefineCrudShowProps<any, any, any, any, any, {}>>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / CRUD Show", () => {
+    describe("[@refinedev/ui-tests] Common Tests / CRUD Show", () => {
         beforeAll(() => {
             jest.spyOn(console, "warn").mockImplementation(jest.fn());
         });

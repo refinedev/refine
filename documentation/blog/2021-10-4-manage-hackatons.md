@@ -171,7 +171,7 @@ Then use these pages as the corresponding crud component for the `hackathon` res
 import { Refine } from "@pankod/refine";
 
 import "@pankod/refine/dist/styles.min.css";
-import { dataProvider } from "@pankod/refine-supabase";
+import { dataProvider } from "@refinedev/supabase";
 import { supabaseClient } from "utility";
 import {
   HackathonsList,

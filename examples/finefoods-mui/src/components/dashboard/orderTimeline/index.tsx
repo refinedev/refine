@@ -8,7 +8,7 @@ import {
     TimelineOppositeContent,
     TimelineSeparator,
 } from "@mui/lab";
-import { useTranslate, useNavigation, useTable } from "@pankod/refine-core";
+import { useTranslate, useNavigation, useTable } from "@refinedev/core";
 import { useTheme } from "@mui/material/styles";
 import { Box, Button, Tooltip, Typography, Pagination } from "@mui/material";
 import dayjs from "dayjs";

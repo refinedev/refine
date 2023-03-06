@@ -14,7 +14,7 @@ This hook can only be used if `auditLogProvider`'s `get` method is provided.
 :::
 
 ```tsx
-import { useLogList } from "@pankod/refine-core";
+import { useLogList } from "@refinedev/core";
 
 const postAuditLogResults = useLogList({
     resource: "posts",

@@ -8,7 +8,7 @@ title: Remix
 ## Setup
 
 ```bash
-npm i @pankod/refine-core @pankod/refine-remix-router @pankod/refine-simple-rest
+npm i @refinedev/core @refinedev/remix-router @refinedev/simple-rest
 ```
 
 :::tip
@@ -35,9 +35,9 @@ import {
     ScrollRestoration,
 } from "@remix-run/react";
 // highlight-start
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-remix-router";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/remix-router";
 // highlight-end
 
 export const meta: MetaFunction = () => ({
@@ -79,7 +79,7 @@ export default function App() {
 Let's say we want to show a list of users in `/posts`. After creating `posts.tsx` under `routes` in your Remix app, we can use the `useTable` hook to list the users in a table:
 
 ```tsx title="routes/posts.tsx"
-import { LayoutWrapper, useTable } from "@pankod/refine-core";
+import { LayoutWrapper, useTable } from "@refinedev/core";
 
 export const PostList: React.FC = () => {
     const { tableQueryResult } = useTable<IPost>({
@@ -153,10 +153,10 @@ import { json, LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 // highlight-end
 
-import { LayoutWrapper, useTable } from "@pankod/refine-core";
+import { LayoutWrapper, useTable } from "@refinedev/core";
 
 // highlight-next-line
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 
 export const PostList: React.FC = () => {
     // highlight-next-line
@@ -226,16 +226,16 @@ We used `getList` from `dataProvider` but data can be fetched in any way you des
 
 ## Standard CRUD Page
 
-**@pankod/refine-remix-router** package provides `RemixRouteComponent` for routing in **refine** resources. Simply export the component from the page and add a [loader function][loaderfunction]. While you can create pages with defined params like `$resource/$action/$id.tsx`, we recommend using a splat route to handle all refine routing in a single file. You can start by creating a `$.tsx` file under `app/routes` in your Remix app:
+**@refinedev/remix-router** package provides `RemixRouteComponent` for routing in **refine** resources. Simply export the component from the page and add a [loader function][loaderfunction]. While you can create pages with defined params like `$resource/$action/$id.tsx`, we recommend using a splat route to handle all refine routing in a single file. You can start by creating a `$.tsx` file under `app/routes` in your Remix app:
 
 ```tsx title="app/routes/$.tsx"
-export { RemixRouteComponent as default } from "@pankod/refine-remix-router";
+export { RemixRouteComponent as default } from "@refinedev/remix-router";
 ```
 
 Remix, does not handle the root `/` route in splat routes. So we also need to create a `index.tsx` file under `app/routes` with the same content:
 
 ```tsx title="app/routes/index.tsx"
-export { RemixRouteComponent as default } from "@pankod/refine-remix-router";
+export { RemixRouteComponent as default } from "@refinedev/remix-router";
 ```
 
 :::info
@@ -277,10 +277,10 @@ For example, for a `list` component that will be rendered for `/$.tsx`, the page
 
 ```tsx title="app/routes/$.tsx"
 import { json, LoaderFunction } from "@remix-run/node";
-import dataProvider from "@pankod/refine-simple-rest";
-import { handleRefineParams } from "@pankod/refine-remix-router";
+import dataProvider from "@refinedev/simple-rest";
+import { handleRefineParams } from "@refinedev/remix-router";
 
-export { RemixRouteComponent as default } from "@pankod/refine-remix-router";
+export { RemixRouteComponent as default } from "@refinedev/remix-router";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 export const loader: LoaderFunction = async ({ params, request }) => {
@@ -332,7 +332,7 @@ import {
     useTable,
     GetListResponse,
     IResourceComponentsProps,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 export const PostList: React.FC<
     IResourceComponentsProps<GetListResponse<IPost>>
@@ -389,9 +389,9 @@ import {
     Scripts,
     ScrollRestoration,
 } from "@remix-run/react";
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-remix-router";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/remix-router";
 
 import { PostList } from "./pages/posts/list";
 
@@ -444,7 +444,7 @@ There are two ways to do Server Side Authentication with Remix. You can choose o
 First, let's create our `AuthProvider`. For more information on `AuthProvider`, visit our [AuthProvider documentation][authprovider].
 
 ```tsx title="app/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const mockUsers = [
     {
@@ -597,7 +597,7 @@ Now let's create our login page
 
 ```tsx title="app/routes/login.tsx"
 import React from "react";
-import { useTranslate } from "@pankod/refine-core";
+import { useTranslate } from "@refinedev/core";
 
 import { login, createUserSession } from "~/session.server";
 import { ActionFunction } from "@remix-run/node";
@@ -737,7 +737,7 @@ npm i -D @types/js-cookie
 We will set/destroy cookies in the `login`, `logout` and `checkAuth` functions of our `AuthProvider`.
 
 ```tsx title="app/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 // highlight-start
 import Cookies from "js-cookie";
 import * as cookie from "cookie";
@@ -840,8 +840,8 @@ import { json, LoaderFunction } from "@remix-run/node";
 import { authProvider } from "~/authProvider";
 
 //highlight-next-line
-import { checkAuthentication } from "@pankod/refine-remix-router";
-export { RemixRouteComponent as default } from "@pankod/refine-remix-router";
+import { checkAuthentication } from "@refinedev/remix-router";
+export { RemixRouteComponent as default } from "@refinedev/remix-router";
 
 export const loader: LoaderFunction = async ({ params, request, context }) => {
     //highlight-next-line
@@ -862,11 +862,11 @@ If `syncWithLocation` is enabled, query parameters must be handled while doing S
 
 ```tsx title="app/routes/$resource/index.tsx"
 import { json, LoaderFunction } from "@remix-run/node";
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 // highligt-next-line
-import { parseTableParams } from "@pankod/refine-core";
+import { parseTableParams } from "@refinedev/core";
 
-export { RemixRouteComponent as default } from "@pankod/refine-remix-router";
+export { RemixRouteComponent as default } from "@refinedev/remix-router";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 export const loader: LoaderFunction = async ({ params, request }) => {

@@ -8,7 +8,7 @@ body {
 ```tsx live url=http://localhost:3000/products/show/1 previewHeight=300px
 setInitialRoutes(["/products/show/1"]);
 // visible-block-start
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 
 interface IProduct {
     id: number;

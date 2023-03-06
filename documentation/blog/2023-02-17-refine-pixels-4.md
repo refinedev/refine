@@ -72,7 +72,7 @@ This means mutation hooks such as [`useCreate()`](https://refine.dev/docs/api-re
 
 Now, it's time to move our attention back to the `<Refine />` component in our app.
 
-We already have the `liveProvider` prop passed in with the `liveProvider()` function from `@pankod/refine-supabase`:
+We already have the `liveProvider` prop passed in with the `liveProvider()` function from `@refinedev/supabase`:
 
 ```tsx title="App.tsx"
 <Refine
@@ -114,7 +114,7 @@ const liveProvider = {
 };
 ```
 
-In [`@pankod/refine-supabase`](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts) `version 3.35.0`, at the time of publishing this article, the `liveProvider` consists of only the `subscribe` and `unsubscribe` methods. Its implementation looks like this:
+In [`@refinedev/supabase`](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts) `version 3.35.0`, at the time of publishing this article, the `liveProvider` consists of only the `subscribe` and `unsubscribe` methods. Its implementation looks like this:
 
 ```tsx title="Supabase data provider"
 const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
@@ -188,7 +188,7 @@ If we look inside our `<CanvasShow />` component that is rendered at `/canvases/
 
 ```tsx title="src/pages/components/canvas/item.tsx"
 import React from "react";
-import { Typography } from "@pankod/refine-antd";
+import { Typography } from "@refinedev/antd";
 
 import { Pixel, Canvas } from "types";
 import { DEFAULT_SCALE, PIXEL_SIZE } from "utility/constants";
@@ -360,6 +360,6 @@ The `subscribe()` method on **Supabase**'s `liveProvider` object allows us to su
 
 Broadcasting, in turn, is initiated by the `usePublish()` hook called from a supported mutation hook for our resource - the `useCreate()` hook in this case.
 
-We implemented real time collaboration very effortlessly due to the out-of-box solutions provided by **refine**'s `@pankod/refine-supabase` package.
+We implemented real time collaboration very effortlessly due to the out-of-box solutions provided by **refine**'s `@refinedev/supabase` package.
 
 With this now, we have enabled multiple users to draw on a canvas at the same time and receive updates instantly.

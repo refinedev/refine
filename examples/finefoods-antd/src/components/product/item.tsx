@@ -1,6 +1,6 @@
-import { useTranslate, BaseKey } from "@pankod/refine-core";
+import { useTranslate, BaseKey } from "@refinedev/core";
 
-import { NumberField } from "@pankod/refine-antd";
+import { NumberField } from "@refinedev/antd";
 
 import {
     CloseCircleOutlined,

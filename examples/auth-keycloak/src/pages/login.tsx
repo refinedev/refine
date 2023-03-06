@@ -1,5 +1,5 @@
 import { Layout as AntdLayout, Button } from "antd";
-import { useLogin } from "@pankod/refine-core";
+import { useLogin } from "@refinedev/core";
 
 export const Login: React.FC = () => {
     const { mutate: login } = useLogin();

@@ -7,7 +7,7 @@ import {
     TextField,
     useSelect,
     useTable,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { SearchOutlined } from "@ant-design/icons";
 
 import {
@@ -25,7 +25,7 @@ import {
     Tag,
 } from "antd";
 
-import { HttpError, CrudFilters, useMany } from "@pankod/refine-core";
+import { HttpError, CrudFilters, useMany } from "@refinedev/core";
 import { IPost, IPostFilterVariables, ICategory } from "../../interfaces";
 
 import { RefineWithLayout } from "../../../.storybook/preview";

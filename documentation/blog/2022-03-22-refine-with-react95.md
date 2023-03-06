@@ -58,7 +58,7 @@ npm i react95 styled-components
 ### Manually Project Setup
 
 ```bash
-npm install @pankod/refine-core @pankod/refine-supabase
+npm install @refinedev/core @refinedev/supabase
 
 npm install react95 styled-components
 ```
@@ -76,7 +76,7 @@ Let's begin editing our project now that it's ready to use.
 <p>
 
 ```tsx title="src/utility/supabaseClient.ts"
-import { createClient } from "@pankod/refine-supabase";
+import { createClient } from "@refinedev/supabase";
 
 const SUPABASE_URL = "YOUR_DATABASE_URL";
 const SUPABASE_KEY = "YOUR_SUPABASE_KEY";
@@ -101,7 +101,7 @@ export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
 <p>
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 import { supabaseClient } from "utility";
 
@@ -195,11 +195,11 @@ export default authProvider;
 ### Configure Refine for Supabase
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 
 //highlight-start
-import { dataProvider } from "@pankod/refine-supabase";
+import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
 //highlight-end
@@ -224,9 +224,9 @@ We've completed our project structure. Now we can easily access our Supabase Dat
 ### React95 Setup
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import { dataProvider } from "@pankod/refine-supabase";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
 
@@ -263,7 +263,7 @@ In this step, we imported and defined the React95 library in our Refine project.
 ```tsx title="src/pages/login/LoginPage.tsx"
 import { useState } from "react";
 //highlight-start
-import { useLogin } from "@pankod/refine-core";
+import { useLogin } from "@refinedev/core";
 
 import {
     Window,
@@ -369,9 +369,9 @@ We used React95 components to construct our Login page design. Then, using the *
 
 ## Refine Post Page
 
-After our login process, we'll get the posts from our Supabase Database and display them in the table. We will use React95 components for the UI portion of our table, as well as `@pankod/refine-react-table` package to handle pagination, sorting, and filtering. You can use all the features of [TanStack Table](https://react-table.tanstack.com/) with the `@pankod/refine-react-table` adapter. On this page, we will use this adapter of **refine** to manage the table.
+After our login process, we'll get the posts from our Supabase Database and display them in the table. We will use React95 components for the UI portion of our table, as well as `@refinedev/react-table` package to handle pagination, sorting, and filtering. You can use all the features of [TanStack Table](https://react-table.tanstack.com/) with the `@refinedev/react-table` adapter. On this page, we will use this adapter of **refine** to manage the table.
 
-In this step, we'll show how to use the `@pankod/refine-react-table` package to create a data table. We will begin by examining this page in two parts. In the first step, we'll utilize our `@pankod/refine-react-table` package and React95 UI components to only use our data. Then, in the following stage, we'll arrange the sorting, pagination processes and our UI part. Let's start!
+In this step, we'll show how to use the `@refinedev/react-table` package to create a data table. We will begin by examining this page in two parts. In the first step, we'll utilize our `@refinedev/react-table` package and React95 UI components to only use our data. Then, in the following stage, we'll arrange the sorting, pagination processes and our UI part. Let's start!
 
 [Refer to the **refine** TanStack Table packages documentation for detailed information. →](/docs/packages/documentation/react-table/)
 
@@ -381,8 +381,8 @@ In this step, we'll show how to use the `@pankod/refine-react-table` package to 
 
 ```tsx title="src/pages/post/PostList.tsx"
 import { useMemo } from "react";
-import { useOne } from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useOne } from "@refinedev/core";
+import { useTable, ColumnDef, flexRender } from "@refinedev/react-table";
 
 import { IPost, ICategory } from "interfaces";
 import {
@@ -504,7 +504,7 @@ export const PostList = () => {
 </div>
 <br />
 
-As you can see, our first step is complete. Thanks to the `@pankod/refine-react-table` adapter, we fetch our Supabase data and process as table data. Then we placed this data in React95 components. Now let's move on to the second step.
+As you can see, our first step is complete. Thanks to the `@refinedev/react-table` adapter, we fetch our Supabase data and process as table data. Then we placed this data in React95 components. Now let's move on to the second step.
 
 <details>
 <summary>Show Part II Code</summary>
@@ -512,8 +512,8 @@ As you can see, our first step is complete. Thanks to the `@pankod/refine-react-
 
 ```tsx title="src/pages/post/PostList.tsx"
 import { useMemo, useRef, useState } from "react";
-import { useOne, useNavigation, useDelete } from "@pankod/refine-core";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useOne, useNavigation, useDelete } from "@refinedev/core";
+import { useTable, ColumnDef, flexRender } from "@refinedev/react-table";
 
 import { IPost, ICategory } from "interfaces";
 import {
@@ -725,8 +725,8 @@ We have created our post page. Now we will create pages where we can create and 
 <p>
 
 ```tsx title="src/pages/posts/Create.tsx"
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
-import { useSelect, useNavigation } from "@pankod/refine-core";
+import { Controller, useForm } from "@refinedev/react-hook-form";
+import { useSelect, useNavigation } from "@refinedev/core";
 import {
     Select,
     Fieldset,
@@ -824,8 +824,8 @@ export const PostCreate: React.FC = () => {
 
 ```tsx title="src/pages/posts/Edit.tsx"
 import { useEffect } from "react";
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
-import { useSelect, useNavigation } from "@pankod/refine-core";
+import { Controller, useForm } from "@refinedev/react-hook-form";
+import { useSelect, useNavigation } from "@refinedev/core";
 import {
     Select,
     Fieldset,
@@ -946,7 +946,7 @@ Our app is almost ready. As a final step, let's edit our Layout to make our appl
 
 ```tsx title="components/Footer.tsx"
 import React, { useState } from "react";
-import { useLogout, useNavigation } from "@pankod/refine-core";
+import { useLogout, useNavigation } from "@refinedev/core";
 import { AppBar, Toolbar, Button, List, ListItem } from "react95";
 
 export const Footer: React.FC = () => {
@@ -1016,9 +1016,9 @@ export const Footer: React.FC = () => {
 </details>
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import { dataProvider } from "@pankod/refine-supabase";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
 

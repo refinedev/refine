@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { DateField } from "@pankod/refine-mui";
+import { DateField } from "@refinedev/mui";
 
 import { useTheme } from "@mui/material/styles";
 

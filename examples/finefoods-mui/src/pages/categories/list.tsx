@@ -3,9 +3,9 @@ import {
     useTranslate,
     IResourceComponentsProps,
     HttpError,
-} from "@pankod/refine-core";
-import { useForm, useModalForm } from "@pankod/refine-react-hook-form";
-import { useTable } from "@pankod/refine-react-table";
+} from "@refinedev/core";
+import { useForm, useModalForm } from "@refinedev/react-hook-form";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
 import {
     List,
@@ -15,7 +15,7 @@ import {
     useDataGrid,
     DateField,
     NumberField,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 import { GridColumns, DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 

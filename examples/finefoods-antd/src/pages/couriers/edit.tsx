@@ -2,7 +2,7 @@ import {
     IResourceComponentsProps,
     useTranslate,
     useApiUrl,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     Edit,
@@ -10,7 +10,7 @@ import {
     getValueFromEvent,
     useStepsForm,
     useSelect,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import {
     Form,

@@ -5,9 +5,9 @@ import {
     useNavigation,
     useShow,
     useTranslate,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
-import { List, useDataGrid } from "@pankod/refine-mui";
+import { List, useDataGrid } from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 import {
     Avatar,

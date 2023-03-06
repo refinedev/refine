@@ -41,7 +41,7 @@ export const getInstalledRefinePackages = async () => {
 
         const dependencies = JSON.parse(execution.stdout)?.dependencies || {};
         const refineDependencies = Object.keys(dependencies).filter(
-            (dependency) => dependency.startsWith("@pankod/refine"),
+            (dependency) => dependency.startsWith("@refinedev"),
         );
 
         const normalize: {
@@ -66,7 +66,7 @@ export const getInstalledRefinePackages = async () => {
 export const getInstalledRefinePackagesFromNodeModules = async () => {
     try {
         const packageDirsFromModules = await globby(
-            "node_modules/@pankod/refine-*",
+            "node_modules/@refinedev/*",
             {
                 onlyDirectories: true,
             },

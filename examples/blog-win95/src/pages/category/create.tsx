@@ -1,5 +1,5 @@
-import { useForm } from "@pankod/refine-react-hook-form";
-import { useNavigation } from "@pankod/refine-core";
+import { useForm } from "@refinedev/react-hook-form";
+import { useNavigation } from "@refinedev/core";
 import {
     Button,
     TextField,

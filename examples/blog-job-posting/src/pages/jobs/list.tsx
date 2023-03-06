@@ -1,5 +1,5 @@
 import Select from "rc-select";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 import {
     List,
     TextField,
@@ -11,7 +11,7 @@ import {
     ShowButton,
     useSelect,
     FilterDropdown,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Space } from "antd";
 

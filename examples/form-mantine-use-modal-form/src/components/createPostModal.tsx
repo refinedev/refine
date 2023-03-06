@@ -1,9 +1,9 @@
-import { BaseRecord, HttpError } from "@pankod/refine-core";
+import { BaseRecord, HttpError } from "@refinedev/core";
 import {
     UseModalFormReturnType,
     useSelect,
     SaveButton,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 import { Modal, TextInput, Select, Box, Text } from "@mantine/core";
 import { RichTextEditor } from "@mantine/rte";
 

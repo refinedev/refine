@@ -1,4 +1,4 @@
-import * as RefineAntd from "@pankod/refine-antd";
+import * as RefineAntd from "@refinedev/antd";
 import * as AntdPackage from "antd";
 
 import dayjs from "dayjs";
@@ -44,10 +44,10 @@ export const renderer = ({
     const recordName = getVariableName(resource.label ?? resource.name, "Data");
     const imports: Array<ImportElement> = [
         ["React", "react", true],
-        ["IResourceComponentsProps", "@pankod/refine-core"],
-        ["Edit", "@pankod/refine-antd"],
+        ["IResourceComponentsProps", "@refinedev/core"],
+        ["Edit", "@refinedev/antd"],
         ["Form", "antd"],
-        ["useForm", "@pankod/refine-antd"],
+        ["useForm", "@refinedev/antd"],
         ["Input", "antd"],
     ];
 
@@ -59,7 +59,7 @@ export const renderer = ({
         .filter(Boolean)
         .map((field) => {
             if (field?.relation && !field.fieldable && field.resource) {
-                imports.push(["useSelect", "@pankod/refine-antd"]);
+                imports.push(["useSelect", "@refinedev/antd"]);
 
                 let val = accessor(
                     recordName,
@@ -221,7 +221,7 @@ export const renderer = ({
         if (field.type === "image") {
             imports.push(
                 ["Upload", "antd"],
-                ["getValueFromEvent", "@pankod/refine-antd"],
+                ["getValueFromEvent", "@refinedev/antd"],
             );
             let valueProps = 'valuePropName="fileList"';
 
@@ -450,7 +450,7 @@ export const renderer = ({
 export const EditInferencer: InferencerResultComponent = createInferencer({
     type: "edit",
     additionalScope: [
-        ["@pankod/refine-antd", "RefineAntd", RefineAntd],
+        ["@refinedev/antd", "RefineAntd", RefineAntd],
         ["dayjs", "dayjs", dayjs, true],
         ["antd", "AntdPackage", AntdPackage],
     ],

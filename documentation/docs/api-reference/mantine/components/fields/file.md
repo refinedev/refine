@@ -45,12 +45,12 @@ Let's see how we can use `<FileField>` with the example in the list page.
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { List, FileField } from "@pankod/refine-mantine";
+import { List, FileField } from "@refinedev/mantine";
 import { Table, Pagination } from "@mantine/core";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -160,4 +160,4 @@ If you don't use `title` prop it will use `src` as `title`
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/FileField" />
+<PropsTable module="@refinedev/mantine/FileField" />

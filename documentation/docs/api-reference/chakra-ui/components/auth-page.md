@@ -135,9 +135,9 @@ const GithubIcon = (
 ```tsx live url=http://localhost:3000 previewHeight=460px
 setInitialRoutes(["/login"]);
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -194,9 +194,9 @@ render(
 setInitialRoutes(["/login"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -225,7 +225,7 @@ render(
 After form submission, the [`login`][login] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // --
@@ -257,9 +257,9 @@ The register page will be used to register new users. You can use the following 
 setInitialRoutes(["/register"]);
 
 // visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, useNavigation } from "@refinedev/core";
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -297,7 +297,7 @@ render(
 After form submission, the [`register`][register] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // --
@@ -329,9 +329,9 @@ The `forgotPassword` type is a page that allows users to reset their passwords. 
 setInitialRoutes(["/forgot-password"]);
 
 // visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, useNavigation } from "@refinedev/core";
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -369,7 +369,7 @@ render(
 After form submission, the [`forgotPassword`][forgot-password] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // --
@@ -401,9 +401,9 @@ The `updatePassword` type is the page used to update the password of the user.
 setInitialRoutes(["/update-password"]);
 
 // visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, useNavigation } from "@refinedev/core";
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -441,7 +441,7 @@ render(
 After form submission, the [`updatePassword`][update-password] method of the [`authProvider`][auth-provider] will be called with the form values.
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // --
@@ -479,9 +479,9 @@ const authProvider: AuthBindings = {
 setInitialRoutes(["/login"]);
 
 // visible-block-start
-import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, useRouterContext, useNavigation } from "@refinedev/core";
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -535,10 +535,10 @@ render(
 setInitialRoutes(["/login"]);
 
 // visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
+import { Refine, useNavigation } from "@refinedev/core";
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
 import { Form, FormControlLabel, Checkbox } from "@chakra-ui/react";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@refinedev/react-router-v6";
 import { useFormContext } from "react-hook-form";
 
 import { authProvider } from "./authProvider";
@@ -584,10 +584,10 @@ render(
 setInitialRoutes(["/register"]);
 
 // visible-block-start
-import { Refine, useRouterContext } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
+import { Refine, useRouterContext } from "@refinedev/core";
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
 import { Box } from "@chakra-ui/react";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -651,10 +651,10 @@ render(
 setInitialRoutes(["/login"]);
 
 // visible-block-start
-import { Refine, useRouterContext } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
+import { Refine, useRouterContext } from "@refinedev/core";
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
 import { Box } from "@chakra-ui/react";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -714,10 +714,10 @@ render(
 setInitialRoutes(["/login"]);
 
 // visible-block-start
-import { Refine, useRouterContext } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
+import { Refine, useRouterContext } from "@refinedev/core";
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
 import { Box } from "@chakra-ui/react";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -776,9 +776,9 @@ render(
 setInitialRoutes(["/login"]);
 
 // visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, useNavigation } from "@refinedev/core";
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -819,9 +819,9 @@ render(
 setInitialRoutes(["/login"]);
 
 // visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, useNavigation } from "@refinedev/core";
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -862,9 +862,9 @@ render(
 setInitialRoutes(["/login"]);
 
 // visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine, useNavigation } from "@refinedev/core";
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -921,10 +921,10 @@ render(
 setInitialRoutes(["/login"]);
 
 // visible-block-start
-import { Refine, useRouterContext } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
+import { Refine, useRouterContext } from "@refinedev/core";
+import { AuthPage, Layout } from "@refinedev/chakra-ui";
 import { Box, Heading } from "@chakra-ui/react";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -1003,7 +1003,7 @@ interface OAuthProvider {
 ```
 
 ```tsx
-import { UseFormProps } from "@pankod/refine-react-hook-form";
+import { UseFormProps } from "@refinedev/react-hook-form";
 
 interface FormPropsType extends UseFormProps {
     onSubmit?: (values: any) => void;

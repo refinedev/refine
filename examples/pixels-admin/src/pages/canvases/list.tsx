@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useUpdate } from "@pankod/refine-core";
+import { useUpdate } from "@refinedev/core";
 import {
     List,
     useEditableTable,
     useModal,
     DeleteButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table, Form, Button, Space, Tag, Modal, Avatar } from "antd";
 
 import { TCanvas } from "types/canvas";

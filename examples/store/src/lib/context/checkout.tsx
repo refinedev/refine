@@ -10,12 +10,7 @@ import { isEqual } from "lodash";
 import { formatAmount } from "medusa-react";
 import { useRouter } from "next/router";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
-import {
-    useCreate,
-    useInvalidate,
-    useOne,
-    useUpdate,
-} from "@pankod/refine-core";
+import { useCreate, useInvalidate, useOne, useUpdate } from "@refinedev/core";
 
 import { useToggleState, StateType } from "@lib/hooks";
 import { useCartContext } from "@lib/context";

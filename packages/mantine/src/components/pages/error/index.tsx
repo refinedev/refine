@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { RefineErrorPageProps } from "@pankod/refine-ui-types";
+import { RefineErrorPageProps } from "@refinedev/ui-types";
 import {
     useNavigation,
     useTranslate,
     useGo,
     useResource,
     useRouterType,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     Box,
     Title,

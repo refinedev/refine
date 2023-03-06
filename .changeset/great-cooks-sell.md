@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-core": minor
+"@refinedev/core": minor
 ---
 
 ## `useList` hook

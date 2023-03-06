@@ -113,11 +113,11 @@ Add these `resources` as a prop to the `<Refine />` component:
 
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import React from "react";
 import 'App.css'
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 //highlight-next-line
 import { postList, categoryList, userList, eventList } from "pages";
 
@@ -231,7 +231,7 @@ Layout component is used for the customization of **refine** app's layout. Creat
 Create the following navbar using Tailwind CSS inside the `Layout` component. We can get all the `menuItems` from `<Refine />` using `useMenu()` hook.
 
 ```tsx title="src/components/Layout.tsx"
-import { useMenu, LayoutProps } from "@pankod/refine-core";
+import { useMenu, LayoutProps } from "@refinedev/core";
 import React from "react";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
@@ -335,7 +335,7 @@ We need to use `Link` component in the `Layout.tsx` will look like this:
 
 ```tsx title="src/components/Layout.tsx"
 //highlight-next-line
-import { useMenu, LayoutProps, useRouterContext } from "@pankod/refine-core";
+import { useMenu, LayoutProps, useRouterContext } from "@refinedev/core";
 import React from "react";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
@@ -453,7 +453,7 @@ Add following CSS classes to `App.css` file:
 
 
 ```tsx title="src/components/Layout.tsx"
-import { useMenu, LayoutProps } from "@pankod/refine-core";
+import { useMenu, LayoutProps } from "@refinedev/core";
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Navbar, Nav } from 'react-bootstrap'
@@ -511,7 +511,7 @@ Add `<Link>` component inside `<Nav>` like this:
 
 ```tsx title="src/components/Layout.tsx"
 //highlight-next-line
-import { useMenu, LayoutProps, useRouterContext } from "@pankod/refine-core";
+import { useMenu, LayoutProps, useRouterContext } from "@refinedev/core";
 import React from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css"

@@ -17,10 +17,10 @@ To add a delete feature to the products table, you can follow the steps below:
 
 1. Open the `src/pages/products/list.tsx` file on your editor.
 
-2. Import the `useOne` hook from `@pankod/refine-core`:
+2. Import the `useOne` hook from `@refinedev/core`:
 
     ```tsx
-    import { useOne } from "@pankod/refine-core";
+    import { useOne } from "@refinedev/core";
     ```
 
 3. Call the `useDelete` hook in the `ProductList` component:

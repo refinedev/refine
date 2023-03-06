@@ -17,11 +17,11 @@
     "test": "jest --passWithNoTests --runInBand",
     "prepare": "npm run build"
   },
-  "name": "@pankod/refine-appwrite",
+  "name": "@refinedev/appwrite",
   "author": "refine",
   "module": "dist/esm/index.js",
   "devDependencies": {
-    "@pankod/refine-core": "^3.86.0",
+    "@refinedev/core": "^3.86.0",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/jest": "^29.2.4",
     "jest": "^29.3.1",
@@ -35,7 +35,7 @@
     "appwrite": "^10.0.1"
   },
   "peerDependencies": {
-    "@pankod/refine-core": "^3.23.2"
+    "@refinedev/core": "^3.23.2"
   },
   "repository": {
     "type": "git",

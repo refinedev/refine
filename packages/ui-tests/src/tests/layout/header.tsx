@@ -1,8 +1,8 @@
 import React from "react";
-import { RefineLayoutHeaderProps } from "@pankod/refine-ui-types";
+import { RefineLayoutHeaderProps } from "@refinedev/ui-types";
 
 import { render, TestWrapper } from "@test";
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const mockLegacyAuthProvider = {
     login: () => Promise.resolve(),
@@ -27,7 +27,7 @@ const mockAuthProvider: AuthBindings = {
 export const layoutHeaderTests = function (
     HeaderElement: React.ComponentType<RefineLayoutHeaderProps>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Header Element", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Header Element", () => {
         // NOTE : Will be removed in v5
         it("should render successfull user name and avatar in header with legacy authProvider", async () => {
             const { findByText, getByRole } = render(<HeaderElement />, {

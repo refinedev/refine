@@ -1,4 +1,4 @@
-import { LegacyAuthProvider, HttpError } from "@pankod/refine-core";
+import { LegacyAuthProvider, HttpError } from "@refinedev/core";
 import axios from "axios";
 
 export const authProvider = (API_URL: string): LegacyAuthProvider => {

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useGo, useResource, useRouterType } from "@pankod/refine-core";
-import { RefineErrorPageProps } from "@pankod/refine-ui-types";
+import { useGo, useResource, useRouterType } from "@refinedev/core";
+import { RefineErrorPageProps } from "@refinedev/ui-types";
 import { Button, Result, Typography, Space, Tooltip } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
-import { useNavigation, useTranslate } from "@pankod/refine-core";
+import { useNavigation, useTranslate } from "@refinedev/core";
 
 const { Text } = Typography;
 

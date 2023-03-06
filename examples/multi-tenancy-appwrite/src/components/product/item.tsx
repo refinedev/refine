@@ -1,4 +1,4 @@
-import { ShowButton } from "@pankod/refine-antd";
+import { ShowButton } from "@refinedev/antd";
 
 import { EditOutlined } from "@ant-design/icons";
 import { Card } from "antd";

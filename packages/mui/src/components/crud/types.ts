@@ -15,7 +15,7 @@ import {
     RefineCrudEditProps,
     RefineCrudListProps,
     RefineCrudShowProps,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 
 export type CreateProps = RefineCrudCreateProps<
     SaveButtonProps,

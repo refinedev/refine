@@ -3,7 +3,7 @@ import {
     CrudSorting,
     DataProvider,
     LogicalFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { GraphQLClient } from "graphql-request";
 import * as gql from "gql-query-builder";
 import pluralize from "pluralize";

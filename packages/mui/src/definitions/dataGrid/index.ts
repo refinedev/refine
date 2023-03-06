@@ -9,7 +9,7 @@ import {
     CrudOperators,
     CrudSorting,
     LogicalFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 export const transformSortModelToCrudSorting = (
     sortModel: GridSortModel,

@@ -1,7 +1,7 @@
 ```tsx live url=http://localhost:3000/products previewHeight=200px hideCode
 setInitialRoutes(["/"]);
 // visible-block-start
-import { useNotification } from "@pankod/refine-core";
+import { useNotification } from "@refinedev/core";
 import { Button, Stack } from "@mui/material";
 
 const ExamplePage: React.FC = () => {

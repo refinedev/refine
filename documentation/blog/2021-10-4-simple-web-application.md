@@ -51,7 +51,7 @@ _App.tsx_
 
 ```tsx
 import { Refine } from "@pankod/refine";
-import { dataProvider } from "@pankod/refine-supabase";
+import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
 
@@ -252,7 +252,7 @@ You can use default user for login.
 import { Refine, Resource } from "@pankod/refine";
 
 import "@pankod/refine/dist/styles.min.css";
-import { dataProvider } from "@pankod/refine-supabase";
+import { dataProvider } from "@refinedev/supabase";
 
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
@@ -765,7 +765,7 @@ _App.tsx_
 import { Refine, Resource } from "@pankod/refine";
 
 import "@pankod/refine/dist/styles.min.css";
-import { dataProvider } from "@pankod/refine-supabase";
+import { dataProvider } from "@refinedev/supabase";
 
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";

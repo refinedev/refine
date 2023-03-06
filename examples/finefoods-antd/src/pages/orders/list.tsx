@@ -6,7 +6,7 @@ import {
     useNavigation,
     HttpError,
     getDefaultFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     List,
@@ -17,7 +17,7 @@ import {
     NumberField,
     useSelect,
     ExportButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { SearchOutlined } from "@ant-design/icons";
 

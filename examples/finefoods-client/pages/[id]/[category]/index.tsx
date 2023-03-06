@@ -2,9 +2,9 @@
 import React from "react";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import { GetListResponse, LayoutWrapper } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
-import { useTable } from "@pankod/refine-react-table";
+import { GetListResponse, LayoutWrapper } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import { useTable } from "@refinedev/react-table";
 
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 

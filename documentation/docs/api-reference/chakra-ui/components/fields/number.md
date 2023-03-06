@@ -37,14 +37,14 @@ If Intl is not available, `<NumberField>` outputs numbers as is (and ignores the
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
 import {
     List,
     // highlight-next-line
     NumberField,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import {
     TableContainer,
     Table,
@@ -54,7 +54,7 @@ import {
     Tbody,
     Td,
 } from "@chakra-ui/react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -168,7 +168,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/NumberField" value-description="Number value" />
+<PropsTable module="@refinedev/chakra-ui/NumberField" value-description="Number value" />
 
 :::tip External Props
 It also accepts all props of Chakra UI [Text](https://chakra-ui.com/docs/components/text/usage).

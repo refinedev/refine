@@ -40,12 +40,12 @@ We will show what `<List>` does using properties with examples.
 
 ```tsx live url=http://localhost:3000/posts previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List, DateField } from "@pankod/refine-chakra-ui";
+import { List, DateField } from "@refinedev/chakra-ui";
 import {
     TableContainer,
     Table,
@@ -55,7 +55,7 @@ import {
     Tbody,
     Td,
 } from "@chakra-ui/react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -179,12 +179,12 @@ It allows adding a title for the `<List>` component. if you don't pass title pro
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-chakra-ui";
+import { List } from "@refinedev/chakra-ui";
 import { Heading } from "@chakra-ui/react";
 
 const PostList: React.FC = () => {
@@ -228,10 +228,10 @@ render(
 setInitialRoutes(["/custom"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { List, Layout } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { List, Layout } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 const CustomPage: React.FC = () => {
     return (
@@ -278,13 +278,13 @@ Create button redirects to the create page of the resource according to the valu
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-chakra-ui";
-import { usePermissions } from "@pankod/refine-core";
+import { List } from "@refinedev/chakra-ui";
+import { usePermissions } from "@refinedev/core";
 
 const PostList: React.FC = () => {
     const { data: permissionsData } = usePermissions();
@@ -374,7 +374,7 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-chakra-ui` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/chakra-ui` package.
 
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/chakra-ui/components/breadcrumb.md)
 
@@ -384,12 +384,12 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-chakra-ui";
+import { List } from "@refinedev/chakra-ui";
 import { Box } from "@chakra-ui/react";
 
 const CustomBreadcrumb: React.FC = () => {
@@ -436,18 +436,18 @@ render(
 
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<List/>` component, you can use the `wrapperProps` property. For `@pankod/refine-chakra-ui` wrapper element is `<Box>`s and `wrapperProps` can get every attribute that `<Box>` can get.
+If you want to customize the wrapper of the `<List/>` component, you can use the `wrapperProps` property. For `@refinedev/chakra-ui` wrapper element is `<Box>`s and `wrapperProps` can get every attribute that `<Box>` can get.
 
 [Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-chakra-ui";
+import { List } from "@refinedev/chakra-ui";
 
 const PostList: React.FC = () => {
     return (
@@ -496,12 +496,12 @@ If you want to customize the header of the `<List/>` component, you can use the 
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-chakra-ui";
+import { List } from "@refinedev/chakra-ui";
 
 const PostList: React.FC = () => {
     return (
@@ -550,12 +550,12 @@ If you want to customize the content of the `<List/>` component, you can use the
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-chakra-ui";
+import { List } from "@refinedev/chakra-ui";
 
 const PostList: React.FC = () => {
     return (
@@ -602,12 +602,12 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-chakra-ui";
+import { List } from "@refinedev/chakra-ui";
 import { Button } from "@chakra-ui/react";
 
 const PostList: React.FC = () => {
@@ -659,12 +659,12 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-chakra-ui";
+import { List } from "@refinedev/chakra-ui";
 import { Button } from "@chakra-ui/react";
 
 const PostList: React.FC = () => {
@@ -715,4 +715,4 @@ render(
 
 ### Props
 
-<PropsTable module="@pankod/refine-chakra-ui/List" title-default="`<Title order={3}>{resource.name}</Title>`" />
+<PropsTable module="@refinedev/chakra-ui/List" title-default="`<Title order={3}>{resource.name}</Title>`" />

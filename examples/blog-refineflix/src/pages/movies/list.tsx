@@ -2,7 +2,7 @@ import {
     IResourceComponentsProps,
     useList,
     useNavigation,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { Card, Space } from "antd";
 import { Layout } from "components";
 

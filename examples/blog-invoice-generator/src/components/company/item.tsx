@@ -3,7 +3,7 @@ import {
     UrlField,
     EmailField,
     EditButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Card, Typography } from "antd";
 

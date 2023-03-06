@@ -801,6 +801,7 @@ useImport({
 -import { useMenu } from "@pankod/refine-antd";
 +import { useMenu } from "@refinedev/core";
 ```
+
 ### `useDrawerForm` and `useModalForm`  hooks
 
 These hooks now support syncing their visibility state with the location with their `syncWithLocation` prop. You can either pass `true` or an object with `key` and `syncId` properties. If you pass the `key` property, it will be used in the query params for the visibility state. If you pass `syncId: true` it will also add the `id` of the form to the query params, this is useful when working on `clone` and `edit` modes.
@@ -826,6 +827,15 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 +   accessControl={{
 +       enabled: false,
 +   }}
+/>
+```
+
+`resourceNameOrRouteName` prop is deprecated in favor of `resource` prop. You can pass the resource name or identifier. (`route` is also accepted for legacy router users)
+
+```diff
+<CreateButton
+-   resourceNameOrRouteName="posts"
++   resource="posts"
 />
 ```
 
@@ -1004,6 +1014,15 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 />
 ```
 
+`resourceNameOrRouteName` prop is deprecated in favor of `resource` prop. You can pass the resource name or identifier. (`route` is also accepted for legacy router users)
+
+```diff
+<CreateButton
+-   resourceNameOrRouteName="posts"
++   resource="posts"
+/>
+```
+
 ### Basic Views
 
 Following basic view component props are removed:
@@ -1149,6 +1168,15 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 />
 ```
 
+`resourceNameOrRouteName` prop is deprecated in favor of `resource` prop. You can pass the resource name or identifier. (`route` is also accepted for legacy router users)
+
+```diff
+<CreateButton
+-   resourceNameOrRouteName="posts"
++   resource="posts"
+/>
+```
+
 ### `<ReadyPage>` component is deprecated
 
 `<ReadyPage>` component is deprecated and will be removed in the next major version. Use your own custom page instead.
@@ -1218,6 +1246,15 @@ Deprecated `ignoreAccessControlProvider` prop is removed from all buttons export
 +   accessControl={{
 +       enabled: false,
 +   }}
+/>
+```
+
+`resourceNameOrRouteName` prop is deprecated in favor of `resource` prop. You can pass the resource name or identifier. (`route` is also accepted for legacy router users)
+
+```diff
+<CreateButton
+-   resourceNameOrRouteName="posts"
++   resource="posts"
 />
 ```
 

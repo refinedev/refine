@@ -13,7 +13,7 @@ import {
     CreateResponse,
     UpdateResponse,
     pickNotDeprecated,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 export type UseFormProps<
     TData extends BaseRecord = BaseRecord,

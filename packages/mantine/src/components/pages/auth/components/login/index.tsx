@@ -5,8 +5,8 @@ import {
     useRouterType,
     useLink,
     useActiveAuthProvider,
-} from "@pankod/refine-core";
-import { useLogin, useTranslate, useRouterContext } from "@pankod/refine-core";
+} from "@refinedev/core";
+import { useLogin, useTranslate, useRouterContext } from "@refinedev/core";
 import {
     Box,
     Card,

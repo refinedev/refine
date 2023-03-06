@@ -1,8 +1,8 @@
 ---
-"@pankod/refine-mui": major
+"@refinedev/mui": major
 ---
 
-Updated the components to match the changes in routing system of `@pankod/refine-core`.
+Updated the components to match the changes in routing system of `@refinedev/core`.
 
 ## `meta` property in components
 

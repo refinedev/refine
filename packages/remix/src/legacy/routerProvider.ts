@@ -1,4 +1,4 @@
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 import { Link, useLocation, useNavigate } from "@remix-run/react";
 
 import { Prompt } from "./prompt";

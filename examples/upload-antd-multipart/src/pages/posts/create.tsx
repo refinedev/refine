@@ -1,12 +1,7 @@
 import React from "react";
-import { IResourceComponentsProps, useApiUrl } from "@pankod/refine-core";
+import { IResourceComponentsProps, useApiUrl } from "@refinedev/core";
 
-import {
-    Create,
-    getValueFromEvent,
-    useForm,
-    useSelect,
-} from "@pankod/refine-antd";
+import { Create, getValueFromEvent, useForm, useSelect } from "@refinedev/antd";
 
 import { Form, Input, Select, Upload } from "antd";
 

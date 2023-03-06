@@ -19,7 +19,7 @@ Let's say that you want to show the user's name.
 We have a logic in [`authProvider`](/api-reference/core/providers/auth-provider.md)'s `getIdentity` method like below.
 
 ```tsx
-import type { AuthBindings } from "@pankod/refine-core";
+import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // ---
@@ -40,7 +40,7 @@ You can access identity data like below.
 
 ```tsx
 // highlight-next-line
-import { useGetIdentity } from "@pankod/refine-core";
+import { useGetIdentity } from "@refinedev/core";
 
 export const User: React.FC = () => {
     // highlight-next-line

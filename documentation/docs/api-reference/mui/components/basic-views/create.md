@@ -11,9 +11,9 @@ We'll show what `<Create>` does using properties with examples.
 ```tsx live hideCode url=http://localhost:3000/posts/create
 // visible-block-start
 import React from "react";
-import { Create, useAutocomplete } from "@pankod/refine-mui";
+import { Create, useAutocomplete } from "@refinedev/mui";
 import { Autocomplete, Box, TextField } from "@mui/material";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 
 const SampleCreate = () => {
@@ -132,7 +132,7 @@ It allows adding title inside the `<Create>` component. if you don't pass title 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 import { Typography } from "@mui/material";
 
 const CreatePage: React.FC = () => {
@@ -177,10 +177,10 @@ The `<Create>` component reads the `resource` information from the route by defa
 setInitialRoutes(["/custom"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { Create, Layout } from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { Create, Layout } from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 const CustomPage: React.FC = () => {
     return (
@@ -228,7 +228,7 @@ render(
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 
 const PostCreate: React.FC = () => {
     return (
@@ -265,9 +265,9 @@ To customize the back button or to disable it, you can use the `goBack` property
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 import { Button } from "@mui/material";
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 
 const BackButton = () => {
     const { goBack } = useNavigation();
@@ -312,7 +312,7 @@ To toggle the loading state of the `<Create/>` component, you can use the `isLoa
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 
 const PostCreate: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -349,7 +349,7 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-mui` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mui` package.
 
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mui/components/breadcrumb.md)
 
@@ -359,7 +359,7 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create, Breadcrumb } from "@pankod/refine-mui";
+import { Create, Breadcrumb } from "@refinedev/mui";
 
 const PostCreate: React.FC = () => {
     return (
@@ -410,7 +410,7 @@ If you want to customize the wrapper of the `<Create/>` component, you can use t
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 
 const PostCreate: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -458,7 +458,7 @@ If you want to customize the header of the `<Create/>` component, you can use th
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 
 const PostCreate: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -506,7 +506,7 @@ If you want to customize the content of the `<Create/>` component, you can use t
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 
 const PostCreate: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -552,7 +552,7 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostCreate: React.FC = () => {
@@ -602,7 +602,7 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostCreate: React.FC = () => {
@@ -655,7 +655,7 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostCreate: React.FC = () => {
@@ -705,7 +705,7 @@ You can customize the wrapper element of the buttons at the footer by using the 
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 // visible-block-start
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostCreate: React.FC = () => {
@@ -762,7 +762,7 @@ Use `headerButtons` or `footerButtons` instead.
 
 ```tsx title="src/pages/posts/create.tsx"
 // highlight-next-line
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 export const CreatePage: React.FC = () => {
@@ -801,7 +801,7 @@ Use `headerProps` instead.
 
 ```tsx
 // highlight-next-line
-import { Create } from "@pankod/refine-mui";
+import { Create } from "@refinedev/mui";
 import { Typography } from "@mui/material";
 
 export const CreatePage: React.FC = () => {
@@ -839,7 +839,7 @@ Use `headerButtonProps` and `footerButtonProps` instead.
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/Create" goBack-default="`<ArrowLeft />`"/>
+<PropsTable module="@refinedev/mui/Create" goBack-default="`<ArrowLeft />`"/>
 
 ```tsx live shared
 const SampleList = () => {

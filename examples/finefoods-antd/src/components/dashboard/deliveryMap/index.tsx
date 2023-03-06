@@ -1,4 +1,4 @@
-import { useList, useNavigation } from "@pankod/refine-core";
+import { useList, useNavigation } from "@refinedev/core";
 
 import { Map, MapMarker } from "components";
 

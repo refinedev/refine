@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
-import { Edit, useForm, useSelect } from "@pankod/refine-antd";
+import { Edit, useForm, useSelect } from "@refinedev/antd";
 
 import { Form, Input, Select, InputNumber } from "antd";
 

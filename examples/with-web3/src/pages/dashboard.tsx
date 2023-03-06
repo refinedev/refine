@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useGetIdentity } from "@pankod/refine-core";
+import { useGetIdentity } from "@refinedev/core";
 
-import { useModal } from "@pankod/refine-antd";
+import { useModal } from "@refinedev/antd";
 
 import {
     Row,

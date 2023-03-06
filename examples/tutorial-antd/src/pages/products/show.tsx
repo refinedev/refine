@@ -1,12 +1,12 @@
 import React from "react";
-import { IResourceComponentsProps, useShow, useOne } from "@pankod/refine-core";
+import { IResourceComponentsProps, useShow, useOne } from "@refinedev/core";
 import {
     Show,
     NumberField,
     TagField,
     TextField,
     MarkdownField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Typography } from "antd";
 

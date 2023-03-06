@@ -312,7 +312,7 @@ Returns an object with TanStack Query's `useQuery` return values.
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useList" 
+<PropsTable module="@refinedev/core/useList" 
 successNotification-default='`false`'
 errorNotification-default='"Error (status code: `statusCode`)"'
 />

@@ -10,7 +10,7 @@ import {
     IResourceItem,
     AuthBindings,
     LegacyAuthProvider,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";
 

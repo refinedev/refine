@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useForm } from "@pankod/refine-react-hook-form";
-import { HttpError, useLogin } from "@pankod/refine-core";
+import { useForm } from "@refinedev/react-hook-form";
+import { HttpError, useLogin } from "@refinedev/core";
 
 import { Info } from "@components/icons";
 import { Logo, Button, Input } from "@components/ui";

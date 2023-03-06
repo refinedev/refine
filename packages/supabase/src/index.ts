@@ -6,7 +6,7 @@ import {
     HttpError,
     CrudOperators,
     CrudFilters,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     createClient,
     PostgrestError,

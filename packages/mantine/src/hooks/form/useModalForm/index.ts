@@ -11,7 +11,7 @@ import {
     userFriendlyResourceName,
     useTranslate,
     useWarnAboutChange,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 import { UseFormInput } from "@mantine/form/lib/types";

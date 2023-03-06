@@ -31,7 +31,7 @@ This is Day Three and **refineWeek** is a seven-part tutorial that aims to help 
 
 ## Overview
 
-In the last episode, we explored **refine**'s auth and data providers in significant detail. We saw that `<Refine />`'s `dataProvider` and `authProvider` props were set to support [**Supabase**](https://supabase.com/) thanks to the [`@pankod/refine-supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase) package.
+In the last episode, we explored **refine**'s auth and data providers in significant detail. We saw that `<Refine />`'s `dataProvider` and `authProvider` props were set to support [**Supabase**](https://supabase.com/) thanks to the [`@refinedev/supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase) package.
 
 We mentioned that `dataProvider` methods allow us to communicate with API endpoints and `authProvider` methods help us with authentication and authorization. We are able to access and invoke these methods from consumer components via their corresponding hooks.
 
@@ -217,7 +217,7 @@ SUPABASE_KEY=YOUR_SUPABASE_KEY
 Doing so will let us use these credentials to update the `supabaseClient.ts` file created by `refine ` at initialization:
 
 ```tsx title="supabaseClient.ts"
-import { createClient } from "@pankod/refine-supabase";
+import { createClient } from "@refinedev/supabase";
 
 const SUPABASE_URL = process.env.SUPABASE_URL ?? "";
 const SUPABASE_KEY = process.env.SUPABASE_KEY ?? "";
@@ -236,16 +236,16 @@ If we look at our initial `App.tsx` component, it looks like this:
 
 ```tsx title="App.tsx"
 import React from "react";
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
   AuthPage,
   notificationProvider,
   ReadyPage,
   ErrorComponent,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
-import { dataProvider, liveProvider } from "@pankod/refine-supabase";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { dataProvider, liveProvider } from "@refinedev/supabase";
+import routerProvider from "@refinedev/react-router-v6";
 import { supabaseClient } from "utility";
 import authProvider from "./authProvider";
 
@@ -372,17 +372,17 @@ After creating files above you need to add some imports to `App.tsx`, simply add
 
 ```tsx title="App.tsx"
 import React from 'react';
-import { Refine } from '@pankod/refine-core';
+import { Refine } from '@refinedev/core';
 import {
     AuthPage,
     notificationProvider,
     ReadyPage,
     ErrorComponent,
     Icons
-} from '@pankod/refine-antd';
-import '@pankod/refine-antd/dist/reset.css';
-import { dataProvider, liveProvider } from '@pankod/refine-supabase';
-import routerProvider from '@pankod/refine-react-router-v6';
+} from '@refinedev/antd';
+import '@refinedev/antd/dist/reset.css';
+import { dataProvider, liveProvider } from '@refinedev/supabase';
+import routerProvider from '@refinedev/react-router-v6';
 
 import { supabaseClient } from 'utility';
 import authProvider from './authProvider';
@@ -457,14 +457,14 @@ export default App;
 
 ### `<Refine />` `list` Action
 
-The `list` action represents a `GET` request sent to the `canvases` table in our **Supabase** db. It is done through the `dataProvider.getList` method that [`@pankod/refine-supabase`](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts) gave us. From the consumer `<CanvasList />` component, it can be accessed via the `useList()` hook.
+The `list` action represents a `GET` request sent to the `canvases` table in our **Supabase** db. It is done through the `dataProvider.getList` method that [`@refinedev/supabase`](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts) gave us. From the consumer `<CanvasList />` component, it can be accessed via the `useList()` hook.
 
 **refine** defines the routes for `list` action to be the `/canvases` path, and adds it to the `routerProvider` object. `/canvases` path, in turn, renders the `<CanvasList />` component, as specified in the `resources` array.
 
 The contents of our `<CanvasList />` component look like this:
 
 ```tsx title="src/pages/canvases/list.tsx"
-import { AntdList, Skeleton, useSimpleList } from "@pankod/refine-antd";
+import { AntdList, Skeleton, useSimpleList } from "@refinedev/antd";
 
 import { CanvasTile } from "components/canvas";
 import { SponsorsBanner } from "components/banners";
@@ -512,13 +512,13 @@ export const CanvasList: React.FC = () => {
 };
 ```
 
-There are a few of things to note here: the first being the use of **Ant Design** with **refine**'s `@pankod/refine-antd` module. The second thing is the `useSimpleList()` hook that is being used to access `listProps` and `queryResult` items to feed UI elements. And third, the use of pagination and sorting in the query sent.
+There are a few of things to note here: the first being the use of **Ant Design** with **refine**'s `@refinedev/antd` module. The second thing is the `useSimpleList()` hook that is being used to access `listProps` and `queryResult` items to feed UI elements. And third, the use of pagination and sorting in the query sent.
 
 Let's briefly discuss what's going on:
 
 **1. `refine-antd` Components**
 
-**refine** makes all **Ant Design** components available to us via the `@pankod/refine-antd` package. They can be used with their same name in **Ant Design**. However, **Ant Design**'s `<List />` component is renamed as `<AntdList />`, which we are using above.
+**refine** makes all **Ant Design** components available to us via the `@refinedev/antd` package. They can be used with their same name in **Ant Design**. However, **Ant Design**'s `<List />` component is renamed as `<AntdList />`, which we are using above.
 
 It takes in the props inside `listProps` object that `useSimpleList()` hook prepares for us from the fetched canvases array and shows each canvas data inside the `<CanvasTile />` component. All the props and presentation logic are being handled inside the **Ant Design** `<List />` component. For detailed info on the `<List />` component, please visit [this **Ant Design** reference.](https://ant.design/components/list#list)
 
@@ -526,7 +526,7 @@ It takes in the props inside `listProps` object that `useSimpleList()` hook prep
 
 **2. `useSimpleList()` Hook**
 
-The `useSimpleList()` is a `@pankod/refine-antd` hook built on top of the low level [`useList()`](https://refine.dev/docs/api-reference/core/hooks/data/useList/) hook to fetch a resource collection. After fetching data according to the the value of the `resource` property, it prepares it according to the `listProps` of the **Ant Design**'s `<List />` component. 
+The `useSimpleList()` is a `@refinedev/antd` hook built on top of the low level [`useList()`](https://refine.dev/docs/api-reference/core/hooks/data/useList/) hook to fetch a resource collection. After fetching data according to the the value of the `resource` property, it prepares it according to the `listProps` of the **Ant Design**'s `<List />` component. 
 
 In our `<CanvasList />` component, we are passing the `listProps` props to `<AntdList />` in order to show a list of canvases.
 
@@ -627,7 +627,7 @@ But, let's now go ahead and implement how to create canvases.
 
 ### `<Refine />` `create` Action
 
-The `create` action represents a `POST` request sent to the `canvases` table in our **Supabase** database. It is done with the `dataProvider.create()` method that `@pankod/refine-supabase` package gave us.
+The `create` action represents a `POST` request sent to the `canvases` table in our **Supabase** database. It is done with the `dataProvider.create()` method that `@refinedev/supabase` package gave us.
 
 We are presenting the canvas form inside a modal contained in a `<CreateCanvas />` component, which is placed in the `<Header />` component. And the modal is accessed with a `Create` canvas button we have in the `<Header />`.
 
@@ -646,8 +646,8 @@ import {
     useMenu,
     useNavigation,
     useRouterContext,
-} from "@pankod/refine-core";
-import { Button, Image, Space, Icons, useModalForm } from "@pankod/refine-antd";
+} from "@refinedev/core";
+import { Button, Image, Space, Icons, useModalForm } from "@refinedev/antd";
 
 import { CreateCanvas } from "components/canvas";
 import { Canvas } from "types";
@@ -774,7 +774,7 @@ We are using the `<Modal />` and `<Form />` inside the `<CreateCanvas />` compon
 
 ```tsx title="src/components/canvas/create.tsx"
 import React, { useState } from "react";
-import { useGetIdentity } from "@pankod/refine-core";
+import { useGetIdentity } from "@refinedev/core";
 import {
     Form,
     FormProps,
@@ -782,7 +782,7 @@ import {
     Modal,
     ModalProps,
     Radio,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { getRandomName, DEFAULT_CANVAS_SIZE } from "utility";
 
@@ -945,8 +945,8 @@ import {
     useGetIdentity,
     useNavigation,
     useShow,
-} from "@pankod/refine-core";
-import { Button, Typography, Icons, Spin } from "@pankod/refine-antd";
+} from "@refinedev/core";
+import { Button, Typography, Icons, Spin } from "@refinedev/antd";
 
 import { CanvasItem, DisplayCanvas } from "components/canvas";
 import { ColorSelect } from "components/color-select";
@@ -1154,16 +1154,16 @@ In order to add a custom login route, we add a new entry to the `routes` prop of
 <p>
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     ReadyPage,
     ErrorComponent,
     Icons,
     ConfigProvider,
-} from "@pankod/refine-antd";
-import { dataProvider, liveProvider } from "@pankod/refine-supabase";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/antd";
+import { dataProvider, liveProvider } from "@refinedev/supabase";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { Layout } from "components/layout";
 import { CanvasFeaturedList, CanvasList, CanvasShow } from "pages/canvases";
@@ -1172,7 +1172,7 @@ import { AuthPage } from "pages/auth";
 import { supabaseClient } from "utility";
 import authProvider from './authProvider';
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import "styles/style.css";
 

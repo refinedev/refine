@@ -22,7 +22,7 @@ import {
     // highlight-start
     DateField,
     // highlight-end
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table } from "antd";
 
 const PostList: React.FC = () => {
@@ -71,7 +71,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/DateField" format-default="`L`"/>
+<PropsTable module="@refinedev/antd/DateField" format-default="`L`"/>
 
 :::tip External Props
 It also accepts all props of Ant Design [Text](https://ant.design/components/typography/#Typography.Text).

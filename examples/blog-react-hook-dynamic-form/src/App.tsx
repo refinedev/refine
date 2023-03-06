@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
@@ -8,7 +8,7 @@ import {
     LightTheme,
     ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
@@ -17,8 +17,8 @@ import UserCreate from "pages/userCreate";
 import UserEdit from "pages/userEdit";
 import UserList from "pages/userList";
 
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
-import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
 
 function App() {
     return (

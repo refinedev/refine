@@ -66,12 +66,12 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine, useNavigation, useRouterContext } from "@pankod/refine-core";
+import { Refine, useNavigation, useRouterContext } from "@refinedev/core";
 
 // visible-block-start
-import { List, EditButton } from "@pankod/refine-mantine";
+import { List, EditButton } from "@refinedev/mantine";
 import { Table, Pagination } from "@mantine/core";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -194,10 +194,10 @@ render(
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@refinedev/mantine";
 
 const MyEditComponent = () => {
     return <EditButton recordItemId="123" />;
@@ -225,7 +225,120 @@ render(
 );
 ```
 
-### `resourceNameOrRouteName`
+### `resource`
+
+Redirection endpoint is defined by the `resource` property and its `edit` action path. By default, `<EditButton>` uses the inferred resource from the route.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@refinedev/core";
+
+// visible-block-start
+import { EditButton } from "@refinedev/mantine";
+
+const MyEditComponent = () => {
+    return <EditButton resource="categories" recordItemId="2" />;
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            resources={[
+                {
+                    name: "posts",
+                    list: MyEditComponent,
+                },
+                {
+                    name: "categories",
+                    edit: EditPage,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to the `edit` action path of the resource, filling the necessary parameters in the route.
+
+### `meta`
+
+It is used to pass additional parameters to the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md). By default, existing parameters in the route are used by the `edit` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+
+If the `edit` action route is defined by the pattern: `/posts/:authorId/edit/:id`, the `meta` prop can be used as follows:
+
+```tsx
+const MyComponent = () => {
+    return (
+        <EditButton meta={{ authorId: "10" }} />
+    );
+};
+```
+
+### `hideText`
+
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@refinedev/core";
+
+// visible-block-start
+import { EditButton } from "@refinedev/mantine";
+
+const MyEditComponent = () => {
+    return <EditButton recordItemId="123" hideText />;
+};
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            resources={[
+                {
+                    name: "posts",
+                    list: MyEditComponent,
+                    edit: EditPage,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+### `accessControl`
+
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
+
+```tsx
+import { EditButton } from "@refinedev/mantine";
+
+export const MyListComponent = () => {
+    return (
+        <EditButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
+};
+```
+
+### ~~`resourceNameOrRouteName`~~ <PropTag deprecated />
+
+> `resourceNameOrRouteName` prop is deprecated. Use `resource` prop instead.
 
 Redirection endpoint(`resourceNameOrRouteName/edit`) is defined by `resourceNameOrRouteName` property. By default, `<EditButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
 
@@ -268,62 +381,8 @@ render(
 
 Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/edit/2`.
 
-### `hideText`
-
-It is used to show and not show the text of the button. When `true`, only the button icon is visible.
-
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@pankod/refine-core";
-
-// visible-block-start
-import { EditButton } from "@pankod/refine-mantine";
-
-const MyEditComponent = () => {
-    return <EditButton recordItemId="123" hideText />;
-};
-// visible-block-end
-
-const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    list: MyEditComponent,
-                    edit: EditPage,
-                },
-            ]}
-        />
-    );
-};
-
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
-```
-
-### `accessControl`
-
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
-
-```tsx
-import { EditButton } from "@pankod/refine-mantine";
-
-export const MyListComponent = () => {
-    return (
-        <EditButton
-            accessControl={{ enabled: true, hideIfUnauthorized: true }}
-        />
-    );
-};
-```
-
 ## API Reference
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/EditButton" />
+<PropsTable module="@refinedev/mantine/EditButton" />

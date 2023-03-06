@@ -15,7 +15,7 @@ import {
     useWarnAboutChange,
     UseFormProps as UseFormCoreProps,
     UseFormReturnType as UseFormReturnTypeCore,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 export type UseFormReturnType<
     TData extends BaseRecord = BaseRecord,

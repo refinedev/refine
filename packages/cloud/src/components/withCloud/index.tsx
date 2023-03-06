@@ -4,7 +4,7 @@ import {
     RefineProps,
     ResourceProps,
     AuditLogProvider,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import merge from "lodash/merge";
 
 import { Cloud } from "../../components";

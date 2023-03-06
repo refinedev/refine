@@ -3,13 +3,9 @@ import {
     CrudFilters,
     useUpdate,
     HttpError,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
-import {
-    useSimpleList,
-    CreateButton,
-    useDrawerForm,
-} from "@pankod/refine-antd";
+import { useSimpleList, CreateButton, useDrawerForm } from "@refinedev/antd";
 
 import { SearchOutlined } from "@ant-design/icons";
 import {

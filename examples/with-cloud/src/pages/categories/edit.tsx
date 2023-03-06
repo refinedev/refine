@@ -3,13 +3,13 @@ import {
     IResourceComponentsProps,
     useNavigation,
     useResource,
-} from "@pankod/refine-core";
-import { Edit } from "@pankod/refine-antd";
+} from "@refinedev/core";
+import { Edit } from "@refinedev/antd";
 
 import { Form, Input } from "antd";
 
 import { IProduct } from "interfaces";
-import { useCloudMutation } from "@pankod/refine-cloud";
+import { useCloudMutation } from "@refinedev/cloud";
 
 export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
     const { list } = useNavigation();

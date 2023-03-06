@@ -6,7 +6,7 @@ title: useDrawerForm
 `useDrawerForm` hook allows you to manage a form within a Drawer. It returns Ant Design [`<Form>`](https://ant.design/components/form/) and [`<Drawer>`](https://ant.design/components/drawer/) components props.
 
 :::info
-`useDrawerForm` hook is extended from [`useForm`](/api-reference/antd/hooks/form/useForm.md) from the [@pankod/refine-antd](https://github.com/refinedev/refine/tree/next/packages/antd) package. This means that you can use all the features of [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook.
+`useDrawerForm` hook is extended from [`useForm`](/api-reference/antd/hooks/form/useForm.md) from the [@refinedev/antd](https://github.com/refinedev/refine/tree/next/packages/antd) package. This means that you can use all the features of [`useForm`](/api-reference/antd/hooks/form/useForm.md) hook.
 :::
 
 ## Basic Usage
@@ -33,9 +33,9 @@ import {
     useShow,
     IResourceComponentsProps,
     HttpError,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
-import { List, Create, useTable, useDrawerForm } from "@pankod/refine-antd";
+import { List, Create, useTable, useDrawerForm } from "@refinedev/antd";
 import { Table, Form, Select, Input, Drawer } from "antd";
 
 interface IPost {
@@ -151,7 +151,7 @@ import {
     useShow,
     IResourceComponentsProps,
     HttpError,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     List,
@@ -159,7 +159,7 @@ import {
     EditButton,
     useTable,
     useDrawerForm,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table, Form, Select, Input, Drawer, Space } from "antd";
 
 interface IPost {
@@ -363,7 +363,7 @@ It renders `<Drawer>` instead of lazy rendering it.
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/useDrawerForm"/>
+<PropsTable module="@refinedev/antd/useDrawerForm"/>
 
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-reference/core/components/refine-config.md)>** component. `useDrawerForm` will use what is passed to `<Refine>` as default but a local value will override it.
 

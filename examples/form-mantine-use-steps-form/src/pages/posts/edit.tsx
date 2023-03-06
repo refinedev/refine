@@ -1,4 +1,4 @@
-import { Edit, useStepsForm, SaveButton } from "@pankod/refine-mantine";
+import { Edit, useStepsForm, SaveButton } from "@refinedev/mantine";
 import {
     Button,
     Code,

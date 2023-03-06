@@ -12,13 +12,13 @@ Theme specifies the color of the components, the darkness of the surfaces, level
 The [`ThemeProvider`](https://mui.com/material-ui/customization/theming/#theme-provider) component is a simple wrapper around React's Context API that allows you to inject a Theme object into your application. By default, Material-UI components come with a default Theme. In addition, you can also use the ThemeProvider component to inject a custom theme that you have created yourself. This is a feature that allows for great flexibility in how you design your application.
 
 ```tsx title="src/App.tsx
-import { Refine } from "@pankod/refine-core";
-import { Layout, ErrorComponent, ReadyPage } from "@pankod/refine-mui";
+import { Refine } from "@refinedev/core";
+import { Layout, ErrorComponent, ReadyPage } from "@refinedev/mui";
 // highlight-next-line
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { PostsList, PostCreate, PostEdit } from "pages/posts";
 
@@ -62,11 +62,11 @@ In order to use the theme in your app, you just have one choice: pass it on! Ref
 If you don't wrap your app with [`ThemeProvider`](https://mui.com/material-ui/customization/theming/#theme-provider) and theme, it looks like this when using the Material UI default:
 
 ```tsx live previewOnly disableScroll
-import { Refine } from "@pankod/refine-core";
-import { Layout, ErrorComponent, ReadyPage } from "@pankod/refine-mui";
+import { Refine } from "@refinedev/core";
+import { Layout, ErrorComponent, ReadyPage } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
 const App: React.FC = () => {
     return (
@@ -106,17 +106,17 @@ The design will change to match the `LightTheme`, so you can enjoy these amazing
 ```tsx live
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
     ReadyPage,
     // highlight-next-line
     LightTheme,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
 const App: React.FC = () => {
     return (
@@ -153,7 +153,7 @@ render(<App />);
 The best way to customize your theme is by changing the configuration variables. These sections cover some of those most important options, like [`palette`](https://mui.com/material-ui/customization/palette/) and [`typography`](https://mui.com/material-ui/customization/typography/)!
 
 ```tsx title="src/App.tsx"
-import { LightTheme } from "@pankod/refine-mui";
+import { LightTheme } from "@refinedev/mui";
 
 const overridedLightTheme = {
     ...LightTheme,
@@ -178,17 +178,17 @@ Get a designer's opinion anyway - you'll be happy with the end result!
 When we easy-override our LightTheme, it's going to look like this:
 
 ```tsx live previewOnly disableScroll
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
     ReadyPage,
     // highlight-next-line
     LightTheme,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
 const overridedLightTheme = {
     ...LightTheme,
@@ -234,7 +234,7 @@ render(<App />);
 You can also change the Default Font Family. Refine uses the [`Montserrat`](https://fonts.google.com/specimen/Montserrat) font family by default and you can change it like this:
 
 ```tsx title="src/App.tsx"
-import { LightTheme } from "@pankod/refine-mui";
+import { LightTheme } from "@refinedev/mui";
 // highlight-next-line
 import { TypographyVariantsOptions } from "@mui/material";
 
@@ -301,13 +301,13 @@ For more information, you can review [`responsiveFontSizes()`](https://mui.com/m
 
 ```tsx live
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { Layout, ErrorComponent, ReadyPage } from "@pankod/refine-mui";
+import { Refine } from "@refinedev/core";
+import { Layout, ErrorComponent, ReadyPage } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 // highlight-next-line
 import { createTheme, responsiveFontSizes } from "@mui/material";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
 // highlight-start
 let customTheme = createTheme({
@@ -368,7 +368,7 @@ const customTheme = createTheme({
 You need to use [`module augmentation`](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) for the theme to accept your custom values.
 
 ```ts title="src/interfaces/theme.d.ts"
-import "@pankod/refine-mui";
+import "@refinedev/mui";
 
 export interface CustomTheme {
     customVariable: {
@@ -396,13 +396,13 @@ With the [`useMediaQuery`](https://mui.com/material-ui/react-use-media-query/) h
 For example:
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import { Layout, ErrorComponent, ReadyPage } from "@pankod/refine-mui";
+import { Refine } from "@refinedev/core";
+import { Layout, ErrorComponent, ReadyPage } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 // highlight-next-line
 import { useMediaQuery } from "@mui/material";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
 import {
     SampleList,
@@ -464,7 +464,7 @@ import React, {
     useState,
 } from "react";
 import { ThemeProvider } from "@mui/material";
-import { DarkTheme, LightTheme } from "@pankod/refine-mui";
+import { DarkTheme, LightTheme } from "@refinedev/mui";
 
 type ColorModeContextType = {
     mode: string;
@@ -524,17 +524,17 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
      <p>
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
     ReadyPage,
     RefineSnackbarProvider,
     notificationProvider,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { CssBaseline, AppBar, IconButton, Box, Stack } from "@mui/material";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { LightModeOutlines, DarkModeOutlined } from "./icons";
 
@@ -611,17 +611,17 @@ export default App;
 
 ```tsx live previewOnly previewHeight=450px disableScroll
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
     ReadyPage,
     RefineSnackbarProvider,
     notificationProvider,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { CssBaseline, AppBar, IconButton, Box, Stack } from "@mui/material";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { LightModeOutlines, DarkModeOutlined } from "./icons";
 
@@ -704,7 +704,7 @@ We provide [`<RefineSnackbarProvider>`](https://github.com/refinedev/refine/blob
 
 ```tsx live
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
@@ -714,10 +714,10 @@ import {
     RefineSnackbarProvider,
     notificationProvider,
     // highlight-end
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { ThemeProvider, CssBaseline, GlobalStyles } from "@mui/material";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
 const App: React.FC = () => {
     return (
@@ -782,13 +782,13 @@ import {
     TextFieldComponent,
     Edit,
     useAutocomplete,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 import { Typography, TextField, Autocomplete } from "@mui/material";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 
-import { useMany, useShow, useOne } from "@pankod/refine-core";
+import { useMany, useShow, useOne } from "@refinedev/core";
 
 const LightModeOutlined = (props) => {
     return (

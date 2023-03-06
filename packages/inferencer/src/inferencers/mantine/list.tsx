@@ -1,5 +1,5 @@
-import * as RefineMantine from "@pankod/refine-mantine";
-import * as RefineReactTable from "@pankod/refine-react-table";
+import * as RefineMantine from "@refinedev/mantine";
+import * as RefineReactTable from "@refinedev/react-table";
 import * as MantineCore from "@mantine/core";
 import * as TanstackReactTable from "@tanstack/react-table";
 
@@ -48,18 +48,18 @@ export const renderer = ({
     );
     const recordName = "tableData?.data";
     const imports: Array<[element: string, module: string]> = [
-        ["IResourceComponentsProps", "@pankod/refine-core"],
-        ["useTable", "@pankod/refine-react-table"],
+        ["IResourceComponentsProps", "@refinedev/core"],
+        ["useTable", "@refinedev/react-table"],
         ["ColumnDef", "@tanstack/react-table"],
         ["flexRender", "@tanstack/react-table"],
         ["ScrollArea", "@mantine/core"],
-        ["List", "@pankod/refine-mantine"],
+        ["List", "@refinedev/mantine"],
         ["Table", "@mantine/core"],
         ["Pagination", "@mantine/core"],
         ["Group", "@mantine/core"],
-        ["EditButton", "@pankod/refine-mantine"],
-        ["ShowButton", "@pankod/refine-mantine"],
-        ["DeleteButton", "@pankod/refine-mantine"],
+        ["EditButton", "@refinedev/mantine"],
+        ["ShowButton", "@refinedev/mantine"],
+        ["DeleteButton", "@refinedev/mantine"],
     ];
 
     const relationFields: (InferField | null)[] = fields.filter(
@@ -70,8 +70,8 @@ export const renderer = ({
         .filter(Boolean)
         .map((field) => {
             if (field?.relation && !field.fieldable && field.resource) {
-                imports.push(["GetManyResponse", "@pankod/refine-core"]);
-                imports.push(["useMany", "@pankod/refine-core"]);
+                imports.push(["GetManyResponse", "@refinedev/core"]);
+                imports.push(["useMany", "@refinedev/core"]);
 
                 let idsString = "";
 
@@ -134,7 +134,7 @@ export const renderer = ({
             // if not, then just show the value
 
             if (field.multiple) {
-                imports.push(["TagField", "@pankod/refine-mantine"]);
+                imports.push(["TagField", "@refinedev/mantine"]);
                 let val = "item";
 
                 // for multiple
@@ -280,7 +280,7 @@ export const renderer = ({
 
     const emailFields = (field: InferField) => {
         if (field.type === "email") {
-            imports.push(["EmailField", "@pankod/refine-mantine"]);
+            imports.push(["EmailField", "@refinedev/mantine"]);
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
@@ -300,7 +300,7 @@ export const renderer = ({
             `;
 
             if (field.multiple) {
-                imports.push(["TagField", "@pankod/refine-mantine"]);
+                imports.push(["TagField", "@refinedev/mantine"]);
 
                 const val = accessor("item", undefined, field.accessor, " + ");
 
@@ -331,7 +331,7 @@ export const renderer = ({
 
     const urlFields = (field: InferField) => {
         if (field.type === "url") {
-            imports.push(["UrlField", "@pankod/refine-mantine"]);
+            imports.push(["UrlField", "@refinedev/mantine"]);
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
@@ -351,7 +351,7 @@ export const renderer = ({
             `;
 
             if (field.multiple) {
-                imports.push(["TagField", "@pankod/refine-mantine"]);
+                imports.push(["TagField", "@refinedev/mantine"]);
 
                 const val = accessor("item", undefined, field.accessor, " + ");
 
@@ -382,7 +382,7 @@ export const renderer = ({
 
     const booleanFields = (field: InferField) => {
         if (field?.type === "boolean") {
-            imports.push(["BooleanField", "@pankod/refine-mantine"]);
+            imports.push(["BooleanField", "@refinedev/mantine"]);
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
@@ -432,7 +432,7 @@ export const renderer = ({
 
     const dateFields = (field: InferField) => {
         if (field.type === "date") {
-            imports.push(["DateField", "@pankod/refine-mantine"]);
+            imports.push(["DateField", "@refinedev/mantine"]);
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
@@ -481,7 +481,7 @@ export const renderer = ({
 
     const richtextFields = (field: InferField) => {
         if (field?.type === "richtext") {
-            imports.push(["MarkdownField", "@pankod/refine-mantine"]);
+            imports.push(["MarkdownField", "@refinedev/mantine"]);
 
             const id = `id: "${field.key}"`;
             const accessorKey = getAccessorKey(field);
@@ -537,7 +537,7 @@ export const renderer = ({
             let cell = "";
 
             if (field.multiple) {
-                imports.push(["TagField", "@pankod/refine-mantine"]);
+                imports.push(["TagField", "@refinedev/mantine"]);
 
                 const val = accessor(
                     "item",
@@ -588,13 +588,13 @@ export const renderer = ({
     const { canEdit, canShow, canDelete } = resource ?? {};
 
     if (canEdit) {
-        imports.push(["EditButton", "@pankod/refine-mantine"]);
+        imports.push(["EditButton", "@refinedev/mantine"]);
     }
     if (canShow) {
-        imports.push(["ShowButton", "@pankod/refine-mantine"]);
+        imports.push(["ShowButton", "@refinedev/mantine"]);
     }
     if (canDelete) {
-        imports.push(["DeleteButton", "@pankod/refine-mantine"]);
+        imports.push(["DeleteButton", "@refinedev/mantine"]);
     }
 
     const actionButtons =
@@ -773,8 +773,8 @@ export const renderer = ({
 export const ListInferencer: InferencerResultComponent = createInferencer({
     type: "list",
     additionalScope: [
-        ["@pankod/refine-mantine", "RefineMantine", RefineMantine],
-        ["@pankod/refine-react-table", "RefineReactTable", RefineReactTable],
+        ["@refinedev/mantine", "RefineMantine", RefineMantine],
+        ["@refinedev/react-table", "RefineReactTable", RefineReactTable],
         ["@mantine/core", "MantineCore", MantineCore],
         ["@tanstack/react-table", "TanstackReactTable", TanstackReactTable],
     ],

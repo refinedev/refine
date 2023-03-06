@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useList, useNavigation } from "@pankod/refine-core";
+import { useList, useNavigation } from "@refinedev/core";
 
 import { IPost } from "interfaces";
 

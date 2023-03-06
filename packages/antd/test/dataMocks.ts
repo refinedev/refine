@@ -5,7 +5,7 @@ import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
     IRouterContext,
     IAccessControlContext,
     ILiveContext,
-} from "@pankod/refine-core"; */
+} from "@refinedev/core"; */
 
 export const posts = [
     {

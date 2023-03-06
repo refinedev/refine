@@ -1,5 +1,5 @@
-import { IResourceItem } from "@pankod/refine-core";
-import { pickNotDeprecated } from "@pankod/refine-core";
+import { IResourceItem } from "@refinedev/core";
+import { pickNotDeprecated } from "@refinedev/core";
 
 /**
  * Picks the data provider for the given resource. Which can be overridden by the resource itself.

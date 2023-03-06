@@ -16,8 +16,8 @@ For example, let's add logic to the `<SaveButton>` component with the `saveButto
 
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
 // visible-block-start
-import { useForm } from "@pankod/refine-react-hook-form";
-import { Edit } from "@pankod/refine-mui";
+import { useForm } from "@refinedev/react-hook-form";
+import { Edit } from "@refinedev/mui";
 import { Box, TextField } from "@mui/material";
 
 const PostEdit: React.FC = () => {
@@ -83,7 +83,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { SaveButton } from "@pankod/refine-mui";
+import { SaveButton } from "@refinedev/mui";
 
 const MySaveComponent = () => {
     return (
@@ -113,7 +113,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/SaveButton" />
+<PropsTable module="@refinedev/mui/SaveButton" />
 
 :::tip External Props
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).

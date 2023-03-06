@@ -1,5 +1,5 @@
-import { AuthBindings } from "@pankod/refine-core";
-import { AuthHelper } from "@pankod/refine-strapi";
+import { AuthBindings } from "@refinedev/core";
+import { AuthHelper } from "@refinedev/strapi";
 import axios from "axios";
 
 const strapiAuthProvider = (apiUrl: string) => {

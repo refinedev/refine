@@ -21,7 +21,7 @@ import {
     useTable,
     // highlight-next-line
     EmailField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table } from "antd";
 
 const UserList: React.FC = () => {
@@ -68,7 +68,7 @@ render(
 
 ## API Reference
 
-<PropsTable module="@pankod/refine-antd/EmailField" />
+<PropsTable module="@refinedev/antd/EmailField" />
 
 :::tip External Props
 It also accepts all props of Ant Design [Link](https://ant.design/components/typography/#How-to-use-Typography.Link-in-react-router).

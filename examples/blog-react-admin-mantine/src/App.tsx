@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Refine } from "@pankod/refine-core";
-import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
+import { Refine } from "@refinedev/core";
+import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 import {
     notificationProvider,
@@ -10,13 +10,13 @@ import {
     ReadyPage,
     ErrorComponent,
     AuthPage,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 
-import { DataProvider } from "@pankod/refine-strapi-v4";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import { DataProvider } from "@refinedev/strapi-v4";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import { authProvider, axiosInstance } from "./authProvider";
 import { API_URL } from "./constants";

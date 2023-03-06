@@ -1,12 +1,12 @@
 import { json, LoaderFunction } from "@remix-run/node";
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 import { authProvider } from "~/authProvider";
 
 import {
     RemixRouteComponent,
     checkAuthentication,
     handleRefineParams,
-} from "@pankod/refine-remix-router/legacy";
+} from "@refinedev/remix-router/legacy";
 
 export const loader: LoaderFunction = async ({
     params,

@@ -1,4 +1,4 @@
-import { CrudSorting } from "@pankod/refine-core";
+import { CrudSorting } from "@refinedev/core";
 
 export const generateSort = (sorters?: CrudSorting) => {
     if (sorters && sorters.length > 0) {

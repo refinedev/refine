@@ -1,4 +1,4 @@
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 
 import { useHistory } from "./use-history";
 import { useLocation } from "./use-location";

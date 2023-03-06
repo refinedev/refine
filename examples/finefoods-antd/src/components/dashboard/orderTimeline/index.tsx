@@ -1,5 +1,5 @@
-import { useTranslate, useNavigation } from "@pankod/refine-core";
-import { useSimpleList } from "@pankod/refine-antd";
+import { useTranslate, useNavigation } from "@refinedev/core";
+import { useSimpleList } from "@refinedev/antd";
 import {
     Typography,
     List as AntdList,

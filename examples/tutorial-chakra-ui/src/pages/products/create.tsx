@@ -1,4 +1,4 @@
-import { Create } from "@pankod/refine-chakra-ui";
+import { Create } from "@refinedev/chakra-ui";
 import {
     FormControl,
     FormLabel,
@@ -6,8 +6,8 @@ import {
     Input,
     Select,
 } from "@chakra-ui/react";
-import { useForm } from "@pankod/refine-react-hook-form";
-import { useSelect } from "@pankod/refine-core";
+import { useForm } from "@refinedev/react-hook-form";
+import { useSelect } from "@refinedev/core";
 
 export const ProductCreate = () => {
     const {

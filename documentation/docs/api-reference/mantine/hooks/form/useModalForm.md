@@ -6,7 +6,7 @@ title: useModalForm
 `useModalForm` hook also allows you to manage a form inside a modal component. It provides some useful methods to handle the form modal.
 
 :::info
-`useModalForm` hook is extended from [`useForm`][use-form-refine-mantine] hook from the [`@pankod/refine-mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. This means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
+`useModalForm` hook is extended from [`useForm`][use-form-refine-mantine] hook from the [`@refinedev/mantine`](https://github.com/refinedev/refine/tree/next/packages/mantine) package. This means that you can use all the features of [`useForm`][use-form-refine-mantine] hook.
 :::
 
 ## Basic Usage
@@ -30,11 +30,11 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable } from "@pankod/refine-react-table";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { GetManyResponse, useMany } from "@pankod/refine-core";
-import { List, useModalForm, SaveButton } from "@pankod/refine-mantine";
+import { GetManyResponse, useMany } from "@refinedev/core";
+import { List, useModalForm, SaveButton } from "@refinedev/mantine";
 import {
     Box,
     Group,
@@ -241,16 +241,16 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable } from "@pankod/refine-react-table";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { GetManyResponse, useMany } from "@pankod/refine-core";
+import { GetManyResponse, useMany } from "@refinedev/core";
 import {
     List,
     useModalForm,
     EditButton,
     SaveButton,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 import {
     Box,
     Group,
@@ -516,16 +516,16 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable } from "@pankod/refine-react-table";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { GetManyResponse, useMany } from "@pankod/refine-core";
+import { GetManyResponse, useMany } from "@refinedev/core";
 import {
     List,
     useModalForm,
     CloneButton,
     SaveButton,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 import {
     Box,
     Group,

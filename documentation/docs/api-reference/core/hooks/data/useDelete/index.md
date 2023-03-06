@@ -15,7 +15,7 @@ It is useful when you want to update a record.
 The `useDelete` hook returns many useful properties and methods. One of them is the `mutate` method which expects `resource` and `id` as parameters. These parameters will be passed to the `deleteOne` method from the `dataProvider` as parameters.
 
 ```tsx
-import { useDelete } from "@pankod/refine-core";
+import { useDelete } from "@refinedev/core";
 
 const { mutate } = useDelete();
 

@@ -35,14 +35,14 @@ Let's see how we can use `<UrlField>` with an example:
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
 import {
     List,
     // highlight-next-line
     UrlField,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import {
     TableContainer,
     Table,
@@ -52,7 +52,7 @@ import {
     Tbody,
     Td,
 } from "@chakra-ui/react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -160,7 +160,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/UrlField" value-description="URL for link to reference to"/>
+<PropsTable module="@refinedev/chakra-ui/UrlField" value-description="URL for link to reference to"/>
 
 :::tip External Props
 It also accepts all props of Chakra UI [Link](https://chakra-ui.com/docs/components/link/usage).

@@ -12,8 +12,8 @@ We will show what `<List>` does using properties with examples.
 ```tsx live hideCode url=http://localhost:3000/posts
 // visible-block-start
 import React from "react";
-import { useMany } from "@pankod/refine-core";
-import { List, useDataGrid, DateField } from "@pankod/refine-mui";
+import { useMany } from "@refinedev/core";
+import { List, useDataGrid, DateField } from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const SampleList = () => {
@@ -98,7 +98,7 @@ It allows adding title inside the `<List>` component. if you don't pass title pr
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts/create
 // visible-block-start
-import { List } from "@pankod/refine-mui";
+import { List } from "@refinedev/mui";
 import { Typography } from "@mui/material";
 
 const ListPage: React.FC = () => {
@@ -137,10 +137,10 @@ The `<List>` component reads the `resource` information from the route by defaul
 setInitialRoutes(["/custom"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { List, Layout } from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { List, Layout } from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 const CustomPage: React.FC = () => {
     return (
@@ -228,8 +228,8 @@ const authProvider = {
 };
 
 // visible-block-start
-import { List } from "@pankod/refine-mui";
-import { usePermissions } from "@pankod/refine-core";
+import { List } from "@refinedev/mui";
+import { usePermissions } from "@refinedev/core";
 
 const PostList: React.FC = () => {
     const { data: permissionsData } = usePermissions();
@@ -266,7 +266,7 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-mui` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mui` package.
 
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mui/components/breadcrumb.md)
 
@@ -276,7 +276,7 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
-import { List, Breadcrumb } from "@pankod/refine-mui";
+import { List, Breadcrumb } from "@refinedev/mui";
 
 const PostList: React.FC = () => {
     return (
@@ -329,7 +329,7 @@ If you want to customize the wrapper of the `<List/>` component, you can use the
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
-import { List } from "@pankod/refine-mui";
+import { List } from "@refinedev/mui";
 
 const PostList: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -371,7 +371,7 @@ If you want to customize the header of the `<List/>` component, you can use the 
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
-import { List } from "@pankod/refine-mui";
+import { List } from "@refinedev/mui";
 
 const PostList: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -413,7 +413,7 @@ If you want to customize the content of the `<List/>` component, you can use the
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
-import { List } from "@pankod/refine-mui";
+import { List } from "@refinedev/mui";
 
 const PostList: React.FC = () => {
     const [loading, setLoading] = React.useState(true);
@@ -453,7 +453,7 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
-import { List } from "@pankod/refine-mui";
+import { List } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostList: React.FC = () => {
@@ -497,7 +497,7 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/posts
 // visible-block-start
-import { List } from "@pankod/refine-mui";
+import { List } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostList: React.FC = () => {
@@ -556,7 +556,7 @@ Use `headerProps` instead.
 
 ```tsx title="src/pages/posts/create.tsx"
 // highlight-next-line
-import { List } from "@pankod/refine-mui";
+import { List } from "@refinedev/mui";
 import { Typography } from "@mui/material";
 
 export const CreatePage: React.FC = () => {
@@ -586,7 +586,7 @@ Use `contentProps` instead.
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/List" 
+<PropsTable module="@refinedev/mui/List" 
 wrapperProps-type="[`CardProps`](https://mui.com/material-ui/api/card/#props)"
 contentProps-type="[`CardContentProps`](https://mui.com/material-ui/api/card-content/#props)"
 headerProps-type="[`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)"

@@ -1,6 +1,6 @@
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable } from "@pankod/refine-react-table";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import {
     List,
@@ -8,7 +8,7 @@ import {
     CreateButton,
     EditButton,
     DeleteButton,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 
 import { Table, Pagination, Group } from "@mantine/core";
 

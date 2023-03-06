@@ -1,5 +1,5 @@
 import React from "react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { ICategory, IPost } from "../../interfaces/post";
 import {
@@ -7,7 +7,7 @@ import {
     useDelete,
     GetManyResponse,
     useMany,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 export const PostList: React.FC = () => {
     const { show, edit, create } = useNavigation();

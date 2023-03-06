@@ -6,9 +6,9 @@ import {
     DeleteButton,
     List,
     MarkdownField,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
-import { useMany } from "@pankod/refine-core";
+import { useMany } from "@refinedev/core";
 
 export const ProductList = () => {
     const { dataGridProps } = useDataGrid();

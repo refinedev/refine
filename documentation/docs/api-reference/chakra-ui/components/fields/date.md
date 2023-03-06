@@ -35,15 +35,15 @@ Let's see how we can use `<DateField>` with the example in the post list.
 
 ```tsx live url=http://localhost:3000/posts previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import {
     List,
     // highlight-next-line
     DateField,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import {
     TableContainer,
     Table,
@@ -53,7 +53,7 @@ import {
     Tbody,
     Td,
 } from "@chakra-ui/react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -161,7 +161,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/DateField" format-default="`L`" />
+<PropsTable module="@refinedev/chakra-ui/DateField" format-default="`L`" />
 
 :::tip External Props
 It also accepts all props of Chakra UI [Text](https://chakra-ui.com/docs/components/text/usage).

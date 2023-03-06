@@ -20,11 +20,11 @@ This guide has been prepared to assume you know the basics of **refine**. If you
 ## Setup
 
 ```bash
-npm i @pankod/refine-strapi-v4
+npm i @refinedev/strapi-v4
 ```
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 ## Usage
@@ -36,8 +36,8 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 <p>
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
-import { AuthHelper } from "@pankod/refine-strapi-v4";
+import { AuthBindings } from "@refinedev/core";
+import { AuthHelper } from "@refinedev/strapi-v4";
 import axios from "axios";
 
 export const axiosInstance = axios.create();
@@ -148,17 +148,17 @@ strapiAuthHelper.me("token", {
 </details>
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import { DataProvider } from "@pankod/refine-strapi-v4";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/antd";
+import { DataProvider } from "@refinedev/strapi-v4";
+import routerProvider from "@refinedev/react-router-v6";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 // highlight-next-line
 import { authProvider, axiosInstance } from "./authProvider";
@@ -264,17 +264,17 @@ export const StoreProvider = (props: any) => {
 ```
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import { DataProvider } from "@pankod/refine-strapi-v4";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/antd";
+import { DataProvider } from "@refinedev/strapi-v4";
+import routerProvider from "@refinedev/react-router-v6";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 // highlight-next-line
 import { StoreProvider } from "context/store";
@@ -307,7 +307,7 @@ We will create a select component in the Sider Menu where the user will select t
 
 ```tsx title="scr/components/select/StoreSelect.tsx"
 import { useContext } from "react";
-import { useSelect } from "@pankod/refine-antd";
+import { useSelect } from "@refinedev/antd";
 import { Select } from "antd";
 
 import { StoreContext } from "context/store";
@@ -366,7 +366,7 @@ import {
     CanAccess,
     ITreeMenu,
     useRouterContext,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { Layout, Menu, Grid } from "antd";
 import {
     UnorderedListOutlined,
@@ -502,14 +502,14 @@ const { listProps } = useSimpleList<IProduct>({
 
 ```tsx title=src/pages/ProductList.tsx
 import { useContext } from "react";
-import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
+import { IResourceComponentsProps, HttpError } from "@refinedev/core";
 import {
     useSimpleList,
     useModalForm,
     useDrawerForm,
     CreateButton,
     List,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { List as AntdList } from "antd";
 
 import { IProduct } from "interfaces";
@@ -597,8 +597,8 @@ const [store, setStore] = useContext(StoreContext);
 
 ```tsx title="CreateProduct"
 import { useContext } from "react";
-import { useApiUrl } from "@pankod/refine-core";
-import { Create } from "@pankod/refine-antd";
+import { useApiUrl } from "@refinedev/core";
+import { Create } from "@refinedev/antd";
 import {
     Drawer,
     DrawerProps,
@@ -616,7 +616,7 @@ import {
     useStrapiUpload,
     mediaUploadMapper,
     getValueProps,
-} from "@pankod/refine-strapi-v4";
+} from "@refinedev/strapi-v4";
 
 import { TOKEN_KEY } from "../../constants";
 
