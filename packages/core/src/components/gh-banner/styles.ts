@@ -50,9 +50,4 @@ export const CSSRules = [
         }
     }
     `,
-    `
-    .gh-link, .gh-link:hover, .gh-link:active, .gh-link:visited, .gh-link:focus {
-        text-decoration:none;
-    }
-    `,
 ];

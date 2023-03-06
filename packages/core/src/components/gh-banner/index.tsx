@@ -25,10 +25,10 @@ export const GitHubBanner = () => {
             }}
         >
             <a
-                className="gh-link"
-                href="https://github.com/refinedev/refine"
+                href="https://github.com/refinedev/refine?ref=gh-banner"
                 target="_blank"
                 rel="noreferrer"
+                style={{ all: "unset" }}
             >
                 <div
                     className="content"
