@@ -41,7 +41,7 @@ export const getInstalledRefinePackages = async () => {
 
         const dependencies = JSON.parse(execution.stdout)?.dependencies || {};
         const refineDependencies = Object.keys(dependencies).filter(
-            (dependency) => dependency.startsWith("@pankod/refine"),
+            (dependency) => dependency.startsWith("@refinedev"),
         );
 
         const normalize: {
