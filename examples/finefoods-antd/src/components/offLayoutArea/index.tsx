@@ -1,5 +1,5 @@
 import { LeftOutlined } from "@ant-design/icons";
-import { RefineKbar } from "@pankod/refine-kbar";
+import { RefineKbar } from "@refinedev/kbar";
 
 import { ToggleContainer } from "./styled";
 

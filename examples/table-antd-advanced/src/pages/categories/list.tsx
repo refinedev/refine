@@ -1,4 +1,4 @@
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
     List,
@@ -6,7 +6,7 @@ import {
     EditButton,
     ShowButton,
     BooleanField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Space } from "antd";
 

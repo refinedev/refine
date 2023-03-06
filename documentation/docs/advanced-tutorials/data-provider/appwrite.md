@@ -20,11 +20,11 @@ This guide has been prepared assuming you know the basics of **refine**. If you 
 ## Setup
 
 ```bash
-npm install @pankod/refine-appwrite
+npm install @refinedev/appwrite
 ```
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 ## Usage
@@ -34,7 +34,7 @@ It is very simple to use and consists of two steps. First, define your Appwrite 
 ### Creating Appwrite Client
 
 ```tsx title="appwriteClient.ts"
-import { Appwrite, Account, Storage } from "@pankod/refine-appwrite";
+import { Appwrite, Account, Storage } from "@refinedev/appwrite";
 
 const APPWRITE_URL = "http://YOUR_COOL_APPWRITE_API/v1";
 //highlight-start
@@ -56,7 +56,7 @@ export { appwriteClient, account, storage };
 ### Creating Auth Provider
 
 ```tsx title="authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 import { account } from "./appwriteClient";
 
@@ -136,17 +136,17 @@ const authProvider: AuthBindings = {
 ### Configure Refine Component
 
 ```tsx title="App.tsx"
-import { Refine, AuthBindings } from "@pankod/refine-core";
+import { Refine, AuthBindings } from "@refinedev/core";
 import {
     Layout,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
 
 //highlight-start
-import { dataProvider, liveProvider } from "@pankod/refine-appwrite";
+import { dataProvider, liveProvider } from "@refinedev/appwrite";
 //highlight-end
 
 //highlight-start
@@ -178,7 +178,7 @@ const App: React.FC = () => {
 ```
 
 :::tip Live/Realtime 🚀
-`@pankod/refine-appwrite` package supports Live/Realtime Provider natively 🚀
+`@refinedev/appwrite` package supports Live/Realtime Provider natively 🚀
 
 [Refer to the Live/Realtime Provider docs for detailed usage. →](/docs/api-reference/core/providers/live-provider.md)
 :::
@@ -266,7 +266,7 @@ We indicate that the read and write permission is open to everyone by giving the
 ```tsx title="pages/login.tsx"
 import React from "react";
 
-import { useLogin } from "@pankod/refine-core";
+import { useLogin } from "@refinedev/core";
 import {
     Row,
     Col,
@@ -460,7 +460,7 @@ Now that we've created our collections, we can create and list documents. Let's 
 <p>
 
 ```tsx
-import { useMany, IResourceComponentsProps } from "@pankod/refine-core";
+import { useMany, IResourceComponentsProps } from "@refinedev/core";
 import {
     List,
     TextField,
@@ -468,7 +468,7 @@ import {
     EditButton,
     ShowButton,
     getDefaultSortOrder,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table, Space } from "antd";
 
 import { IPost, ICategory } from "interfaces";
@@ -572,8 +572,8 @@ We can now create posts and set categories from our **refine** UI.
 ```tsx
 import { useState } from "react";
 
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import { Create, useForm, useSelect } from "@pankod/refine-antd";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, Upload } from "antd";
 import { RcFile } from "antd/lib/upload/interface";
 
@@ -695,7 +695,7 @@ As we mentioned above, we need permissions to list or create documents in Appwri
 If you want to restrict [permissions](https://appwrite.io/docs/permissions#permission-types) and only allow specific users, you need to specify it in meta.
 
 ```tsx
-import { Permission, Role } from "@pankod/refine-appwrite";
+import { Permission, Role } from "@refinedev/appwrite";
 const { formProps, saveButtonProps } = useForm<IPost>({
     meta: {
         writePermissions: [Permission.read(Role.any())],
@@ -717,8 +717,8 @@ You can edit the posts and categories we have created update your data.
 ```tsx
 import React from "react";
 
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import { Edit, useForm, useSelect } from "@pankod/refine-antd";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, Upload } from "antd";
 import { RcFile } from "antd/lib/upload/interface";
 

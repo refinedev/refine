@@ -39,9 +39,9 @@ export const renderer = ({
     const recordName = "record";
     const imports: Array<ImportElement> = [
         ["React", "react", true],
-        ["useShow", "@pankod/refine-core"],
-        ["useResource", "@pankod/refine-core"],
-        ["useNavigation", "@pankod/refine-core"],
+        ["useShow", "@refinedev/core"],
+        ["useResource", "@refinedev/core"],
+        ["useNavigation", "@refinedev/core"],
     ];
 
     const relationFields: (InferField | null)[] = fields.filter(
@@ -53,7 +53,7 @@ export const renderer = ({
         .map((field) => {
             if (field?.relation && !field.fieldable && field.resource) {
                 if (field.multiple) {
-                    imports.push(["useMany", "@pankod/refine-core"]);
+                    imports.push(["useMany", "@refinedev/core"]);
                     let ids = accessor(recordName, field.key);
 
                     if (field.accessor) {
@@ -81,7 +81,7 @@ export const renderer = ({
                 });
                 `;
                 }
-                imports.push(["useOne", "@pankod/refine-core"]);
+                imports.push(["useOne", "@refinedev/core"]);
                 return `
                 const { data: ${getVariableName(
                     field.key,

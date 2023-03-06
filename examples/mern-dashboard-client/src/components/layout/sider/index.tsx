@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Sider as DefaultSider } from "@pankod/refine-mui";
+import { Sider as DefaultSider } from "@refinedev/mui";
 
 import {
     Box,
@@ -34,7 +34,7 @@ import {
     useRouterContext,
     useMenu,
     useRefineContext,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { Title as DefaultTitle } from "../title";
 

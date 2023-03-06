@@ -53,17 +53,17 @@ We created the `<Header>` component as we want it to appear. We have not done an
 Let's not forget to pass the `<Header>` component to the `<Refine>` component in `App.tsx` as below.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+} from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 // highlight-next-line
 import { Header } from "components";
@@ -120,9 +120,9 @@ export interface IOptions {
 
 ```tsx title="src/components/header.tsx"
 import { useState, useEffect } from "react";
-import { useList } from "@pankod/refine-core";
+import { useList } from "@refinedev/core";
 import { Layout, AutoComplete, Input, Icons, Typography } from "antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider from "@refinedev/react-router-v6";
 
 const { Link } = routerProvider;
 const { Text } = Typography;

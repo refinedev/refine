@@ -1,4 +1,4 @@
-import { useLogList } from "@pankod/refine-core";
+import { useLogList } from "@refinedev/core";
 import { Avatar, List as AntdList, Typography } from "antd";
 import { formattedDate, timeFromNow } from "utility/time";
 

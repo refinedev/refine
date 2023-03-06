@@ -82,12 +82,12 @@ Let's see how we can use `<BooleanField>` with the example in the post list.
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { List, BooleanField } from "@pankod/refine-mantine";
+import { List, BooleanField } from "@refinedev/mantine";
 import { Table, Pagination } from "@mantine/core";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { IconX, IconCheck } from "@tabler/icons";
 
@@ -201,7 +201,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/BooleanField" title-description="The text shown in the tooltip" title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" trueIcon-default="[`<IconCheck />`](https://tabler-icons.io/i/check)" falseIcon-default="[`<IconX />`](https://tabler-icons.io/i/x)" />
+<PropsTable module="@refinedev/mantine/BooleanField" title-description="The text shown in the tooltip" title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" trueIcon-default="[`<IconCheck />`](https://tabler-icons.io/i/check)" falseIcon-default="[`<IconX />`](https://tabler-icons.io/i/x)" />
 
 :::tip External Props
 It also accepts all props of Mantine [Tooltip](https://mantine.dev/core/tooltip/?t=props).

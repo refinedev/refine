@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-codemod": minor
+"@refinedev/codemod": minor
 ---
 
 -   Added transformation function to renamed `AuthProvider` to `LegacyAuthProvider`.

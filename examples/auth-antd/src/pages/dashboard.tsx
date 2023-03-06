@@ -1,4 +1,4 @@
-import { useGetIdentity, usePermissions } from "@pankod/refine-core";
+import { useGetIdentity, usePermissions } from "@refinedev/core";
 
 import { Row, Col, Card, Avatar, Typography, Space } from "antd";
 

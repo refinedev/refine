@@ -3,8 +3,8 @@ import {
     IResourceComponentsProps,
     GetManyResponse,
     useMany,
-} from "@pankod/refine-core";
-import { useTable } from "@pankod/refine-react-table";
+} from "@refinedev/core";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import {
     List,
@@ -12,7 +12,7 @@ import {
     ShowButton,
     DeleteButton,
     MarkdownField,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 
 import { ScrollArea, Table, Pagination, Group } from "@mantine/core";
 

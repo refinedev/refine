@@ -50,10 +50,10 @@ const authProvider = {
     getIdentity: async () => null,
 };
 
-import { Refine, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
-import { HeadlessInferencer } from "@pankod/refine-inferencer/headless";
+import { Refine, AuthPage } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
 const App = () => {
     return (
@@ -109,15 +109,15 @@ Login page is used to authenticate users. It provides a basic form to enter emai
 1. Open `src/App.tsx` file and import the `<AuthPage/>` component.
 
     ```tsx
-    import { AuthPage } from "@pankod/refine-core";
+    import { AuthPage } from "@refinedev/core";
     ```
 
 2. Add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
 
     ```tsx
-    import { Refine, AuthPage } from "@pankod/refine-core";
-    import dataProvider from "@pankod/refine-simple-rest";
-    import routerProvider from "@pankod/refine-react-router-v6";
+    import { Refine, AuthPage } from "@refinedev/core";
+    import dataProvider from "@refinedev/simple-rest";
+    import routerProvider from "@refinedev/react-router-v6";
 
     import { ProductList } from "pages/products/list";
     import { ProductEdit } from "pages/products/edit";
@@ -204,9 +204,9 @@ Register page is used to register new users. It provides a basic form to enter e
 1. Open `src/App.tsx` file and add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
 
     ```tsx
-    import { Refine, AuthPage } from "@pankod/refine-core";
-    import dataProvider from "@pankod/refine-simple-rest";
-    import routerProvider from "@pankod/refine-react-router-v6";
+    import { Refine, AuthPage } from "@refinedev/core";
+    import dataProvider from "@refinedev/simple-rest";
+    import routerProvider from "@refinedev/react-router-v6";
 
     import { ProductList } from "pages/products/list";
     import { ProductEdit } from "pages/products/edit";
@@ -279,9 +279,9 @@ Forgot password page is used to send a reset password link to the user's email. 
 1. Open `src/App.tsx` file and add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
 
     ```tsx
-    import { Refine, AuthPage } from "@pankod/refine-core";
-    import dataProvider from "@pankod/refine-simple-rest";
-    import routerProvider from "@pankod/refine-react-router-v6";
+    import { Refine, AuthPage } from "@refinedev/core";
+    import dataProvider from "@refinedev/simple-rest";
+    import routerProvider from "@refinedev/react-router-v6";
 
     import { ProductList } from "pages/products/list";
     import { ProductEdit } from "pages/products/edit";
@@ -358,9 +358,9 @@ Update password page is used to update the user's password. It provides a basic 
 1. Open `src/App.tsx` file and add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
 
     ```tsx
-    import { Refine, AuthPage } from "@pankod/refine-core";
-    import dataProvider from "@pankod/refine-simple-rest";
-    import routerProvider from "@pankod/refine-react-router-v6";
+    import { Refine, AuthPage } from "@refinedev/core";
+    import dataProvider from "@refinedev/simple-rest";
+    import routerProvider from "@refinedev/react-router-v6";
 
     import { ProductList } from "pages/products/list";
     import { ProductEdit } from "pages/products/edit";
@@ -450,12 +450,12 @@ Let's customize the auth pages.
     npm run refine swizzle
     ```
 
-2. Select the `@pankod/refine-core` package.
+2. Select the `@refinedev/core` package.
 
     ```bash
         ? Which package do you want to swizzle?
         UI Framework
-        ❯  @pankod/refine-core
+        ❯  @refinedev/core
     ```
 
 3. Select the `AuthPage` component.

@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-codemod": major
+"@refinedev/codemod": major
 ---
 
-`Antd` components exported by `@pankod/refine-antd` have been removed. This codemode will help you move these components into `antd`.
+`Antd` components exported by `@refinedev/antd` have been removed. This codemode will help you move these components into `antd`.

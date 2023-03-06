@@ -1,7 +1,7 @@
 import React from "react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 import { useLoaderData } from "@remix-run/react";
 
 export interface IPost {

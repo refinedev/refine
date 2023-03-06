@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslate, useWarnAboutChange } from "@pankod/refine-core";
+import { useTranslate, useWarnAboutChange } from "@refinedev/core";
 import { usePrompt } from "./use-prompt-workaround";
 
 type UnsavedChangesNotifierProps = {

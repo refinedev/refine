@@ -8,7 +8,7 @@ import {
     useRouterType,
     useResource,
     useBack,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { Breadcrumb, SaveButton, PageHeader } from "@components";
 import { CreateProps } from "../types";

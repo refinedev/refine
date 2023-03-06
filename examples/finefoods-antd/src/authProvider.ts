@@ -1,4 +1,4 @@
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 import { notification } from "antd";
 
 export const TOKEN_KEY = "refine-auth";

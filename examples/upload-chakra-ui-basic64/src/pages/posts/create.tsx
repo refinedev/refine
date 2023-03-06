@@ -1,4 +1,4 @@
-import { Create } from "@pankod/refine-chakra-ui";
+import { Create } from "@refinedev/chakra-ui";
 
 import {
     Box,
@@ -12,8 +12,8 @@ import {
     Text,
 } from "@chakra-ui/react";
 
-import { useSelect, file2Base64 } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useSelect, file2Base64 } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 import Upload from "rc-upload";
 import { IconFileUpload } from "@tabler/icons";
 

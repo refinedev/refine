@@ -10,7 +10,7 @@ import {
     pickNotDeprecated,
     Pagination,
     Prettify,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     DataGridProps,
     GridFilterModel,

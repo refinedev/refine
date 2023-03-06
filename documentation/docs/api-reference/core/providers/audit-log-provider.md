@@ -54,7 +54,7 @@ const auditLogProvider = {
 You just need to pass your `auditLogProvider` object to `<Refine>`:
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 import auditLogProvider from "./auditLogProvider";
 
@@ -89,7 +89,7 @@ The event is create with parameters passed to the `useLogList` hook.
 Now let's see how we can handle these events in our audit log provider.
 
 ```ts title="auditLogProvider.ts"
-import refineSimpleRestDataProvider from "@pankod/refine-simple-rest";
+import refineSimpleRestDataProvider from "@refinedev/simple-rest";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -306,7 +306,7 @@ If [`getUserIdentity`](/api-reference/core/providers/auth-provider.md) is define
 Now let's see how we can handle these events in our audit log provider.
 
 ```ts title="auditLogProvider.ts"
-import refineSimpleRestDataProvider from "@pankod/refine-simple-rest";
+import refineSimpleRestDataProvider from "@refinedev/simple-rest";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -361,7 +361,7 @@ For example, using `useLog`'s `log` method creates an event like below:
 ```
 
 ```ts title="auditLogProvider.ts"
-import refineSimpleRestDataProvider from "@pankod/refine-simple-rest";
+import refineSimpleRestDataProvider from "@refinedev/simple-rest";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

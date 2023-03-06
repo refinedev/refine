@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
-import { LayoutWrapper, GetListResponse, useTable } from "@pankod/refine-core";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { LayoutWrapper, GetListResponse, useTable } from "@refinedev/core";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 import { API_URL } from "src/constants";
 import { IProduct, IStore } from "src/interfaces";

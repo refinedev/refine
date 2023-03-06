@@ -1,4 +1,4 @@
-import { layoutSiderTests } from "@pankod/refine-ui-tests";
+import { layoutSiderTests } from "@refinedev/ui-tests";
 
 import { Sider } from "./index";
 

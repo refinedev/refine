@@ -1,9 +1,4 @@
-import {
-    IAuthConfig,
-    IResourcesConfig,
-    ISession,
-    IUser,
-} from "@pankod/refine-sdk";
+import { IAuthConfig, IResourcesConfig, ISession, IUser } from "@refinedev/sdk";
 export const createClient = (): Client => {
     return new Client();
 };

@@ -1,4 +1,4 @@
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 import Cookies from "js-cookie";
 import * as cookie from "cookie";
 

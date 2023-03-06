@@ -1,6 +1,6 @@
 import * as React from "react";
-import { LoginPageProps, useActiveAuthProvider } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { LoginPageProps, useActiveAuthProvider } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 import {
     Button,
     TextField,
@@ -14,12 +14,7 @@ import {
     CardContent,
 } from "@mui/material";
 
-import {
-    BaseRecord,
-    HttpError,
-    useLogin,
-    useTranslate,
-} from "@pankod/refine-core";
+import { BaseRecord, HttpError, useLogin, useTranslate } from "@refinedev/core";
 
 type ILoginForm = {
     username: string;

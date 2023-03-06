@@ -20,7 +20,7 @@ Moreover, **refine** offers built-in examples for auth providers. You can use th
 The typical auth provider has the following methods:
 
 ```ts
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // required methods
@@ -45,7 +45,7 @@ When you create a new auth provider, you need to pass it to the `<Refine/>` comp
 
 ```tsx
 // ---
-import { AuthBindings, Refine } from "@pankod/refine-core";
+import { AuthBindings, Refine } from "@refinedev/core";
 
 // It is a mock auth provider.
 const authProvider: AuthBindings = {
@@ -71,7 +71,7 @@ Each method of auth provider is corresponding to a hook in **refine**. So, you c
 For example, you can use `useLogin` hook to perform login operation like below:
 
 ```tsx
-import { useLogin } from "@pankod/refine-core";
+import { useLogin } from "@refinedev/core";
 
 type LoginVariables = {
     email: string;
@@ -88,7 +88,7 @@ const handleLogin = async (values) => {
 As you can see, `useLogin` hook returns a `mutate` function. When you call this function, it calls the `login` method of auth provider like the below:
 
 ```ts
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     login: ({ email, password }) => {

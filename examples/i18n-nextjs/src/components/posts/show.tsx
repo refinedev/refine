@@ -3,9 +3,9 @@ import {
     IResourceComponentsProps,
     useOne,
     useTranslate,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
-import { Show, MarkdownField } from "@pankod/refine-antd";
+import { Show, MarkdownField } from "@refinedev/antd";
 
 import { Typography } from "antd";
 

@@ -6,7 +6,7 @@ import {
     DeleteButton,
     useModalForm,
     EmailField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Space } from "antd";
 

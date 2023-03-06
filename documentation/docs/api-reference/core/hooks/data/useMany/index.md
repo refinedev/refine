@@ -206,7 +206,7 @@ Returns an object with TanStack Query's `useQuery` return values.
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useMany" 
+<PropsTable module="@refinedev/core/useMany" 
 successNotification-default='`false`'
 errorNotification-default='"Error (status code: `statusCode`)"'
 />

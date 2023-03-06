@@ -1,4 +1,4 @@
-import { ResourceRouterParams, RouteAction } from "@pankod/refine-core";
+import { ResourceRouterParams, RouteAction } from "@refinedev/core";
 
 const actions: RouteAction[] = ["clone", "create", "edit", "show"];
 

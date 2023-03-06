@@ -1,4 +1,4 @@
-import { AuthBindings, Refine } from "@pankod/refine-core";
+import { AuthBindings, Refine } from "@refinedev/core";
 import {
     AuthPage,
     Layout,
@@ -6,11 +6,11 @@ import {
     ReadyPage,
     notificationProvider,
     LightTheme,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";

@@ -1,4 +1,4 @@
-import { useLogout } from "@pankod/refine-core";
+import { useLogout } from "@refinedev/core";
 import React, { FC, PropsWithChildren } from "react";
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {

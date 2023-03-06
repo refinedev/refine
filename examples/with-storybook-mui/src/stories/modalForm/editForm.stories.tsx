@@ -1,6 +1,6 @@
 import React from "react";
-import { HttpError } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mui";
+import { HttpError } from "@refinedev/core";
+import { EditButton } from "@refinedev/mui";
 
 import {
     TextField,
@@ -16,7 +16,7 @@ import {
     Select,
 } from "@mui/material";
 
-import { useModalForm } from "@pankod/refine-react-hook-form";
+import { useModalForm } from "@refinedev/react-hook-form";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";
 import { IPost } from "interfaces";

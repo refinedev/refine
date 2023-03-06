@@ -34,17 +34,17 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 import {
     Show,
     MarkdownField,
     //highlight-next-line
     ListButton,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import { Heading, Text, Spacer } from "@chakra-ui/react";
 
 const PostShow: React.FC<IResourceComponentsProps> = () => {
@@ -117,10 +117,10 @@ Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceName
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { ListButton } from "@pankod/refine-chakra-ui";
+import { ListButton } from "@refinedev/chakra-ui";
 
 const MyListComponent = () => {
     return (
@@ -184,10 +184,10 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { ListButton } from "@pankod/refine-chakra-ui";
+import { ListButton } from "@refinedev/chakra-ui";
 
 const MyListComponent = () => {
     return <ListButton colorScheme="black" hideText />;
@@ -219,7 +219,7 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { ListButton } from "@pankod/refine-chakra-ui";
+import { ListButton } from "@refinedev/chakra-ui";
 
 export const MyListComponent = () => {
     return (
@@ -234,4 +234,4 @@ export const MyListComponent = () => {
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/ListButton" />
+<PropsTable module="@refinedev/chakra-ui/ListButton" />

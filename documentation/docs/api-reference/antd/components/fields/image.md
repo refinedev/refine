@@ -21,7 +21,7 @@ import {
     useTable,
     // highlight-next-line
     ImageField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table } from "antd";
 
 const PostList: React.FC = () => {
@@ -79,7 +79,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/ImageField" value-description="Image path"/>
+<PropsTable module="@refinedev/antd/ImageField" value-description="Image path"/>
 
 :::tip External Props
 It also accepts all props of Ant Design [Image](https://ant.design/components/image/#API).

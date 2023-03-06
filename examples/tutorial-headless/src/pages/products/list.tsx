@@ -4,8 +4,8 @@ import {
     useNavigation,
     GetManyResponse,
     useMany,
-} from "@pankod/refine-core";
-import { useTable } from "@pankod/refine-react-table";
+} from "@refinedev/core";
+import { useTable } from "@refinedev/react-table";
 
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 

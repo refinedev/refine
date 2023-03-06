@@ -310,9 +310,9 @@ In the above code, we set a `formState` state variable to define whether to rend
 Import the `LoginPage` component in the `App.tsx` file and pass it as a prop to the `<Refine/>` component to override the Login page.
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import { dataProvider } from "@pankod/refine-supabase";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import { dataProvider } from "@refinedev/supabase";
 import { supabaseClient } from "utility";
 import authProvider from "./authProvider";
 import { Countries } from "pages/Countries";
@@ -493,7 +493,7 @@ The SQL snippet will create a countries table and dump the country list and othe
 In the `Countries` component, get the data from Supabase using the `useList` hook and render the data using the `Table` component.
 
 ```tsx title="src/pages/Countries.tsx"
-import { useList } from "@pankod/refine-core";
+import { useList } from "@refinedev/core";
 import { Table } from "react-daisyui";
 
 const columns = ["ID", "Name", "ISO Code", "Local Name", "Continent"];
@@ -541,7 +541,7 @@ export const Countries = () => {
 Create the Layout component to create an app bar with a logout button.
 
 ```tsx title="src/pages/Layout.tsx"
-import { LayoutProps, useLogout } from "@pankod/refine-core";
+import { LayoutProps, useLogout } from "@refinedev/core";
 import { Button } from "react-daisyui";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {

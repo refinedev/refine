@@ -1,4 +1,4 @@
-import { useTable, List } from "@pankod/refine-antd";
+import { useTable, List } from "@refinedev/antd";
 import { Table, Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 

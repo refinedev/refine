@@ -1,4 +1,4 @@
-import { useGetLocale, useSetLocale } from "@pankod/refine-core";
+import { useGetLocale, useSetLocale } from "@refinedev/core";
 import { DownOutlined } from "@ant-design/icons";
 import {
     Layout as AntdLayout,

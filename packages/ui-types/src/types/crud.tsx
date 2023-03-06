@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { BaseKey, MutationMode } from "@pankod/refine-core";
+import { BaseKey, MutationMode } from "@refinedev/core";
 
 export type ActionButtonRenderer =
     | ((context: { defaultButtons: React.ReactNode }) => React.ReactNode)

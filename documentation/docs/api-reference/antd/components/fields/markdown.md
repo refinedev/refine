@@ -15,12 +15,12 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 Let's see how we can use `<MarkdownField>` in a show page.
 
 ```tsx live
-import { useShow, IResourceComponentsProps } from "@pankod/refine-core";
+import { useShow, IResourceComponentsProps } from "@refinedev/core";
 import {
     Show,
     // highlight-next-line
     MarkdownField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Typography } from "antd";
 
 const { Title, Text } = Typography;
@@ -72,7 +72,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/MarkdownField" value-description="Markdown data to render"/>
+<PropsTable module="@refinedev/antd/MarkdownField" value-description="Markdown data to render"/>
 
 ## Example
 

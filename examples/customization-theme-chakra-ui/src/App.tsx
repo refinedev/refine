@@ -1,14 +1,14 @@
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     ErrorComponent,
     Layout,
     refineTheme,
     ReadyPage,
     notificationProvider,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "./pages";
 import { Header } from "./components/header";

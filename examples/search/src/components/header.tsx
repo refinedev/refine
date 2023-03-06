@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useList } from "@pankod/refine-core";
+import { useList } from "@refinedev/core";
 import { SearchOutlined } from "@ant-design/icons";
 import { Layout as AntdLayout, AutoComplete, Input, Typography } from "antd";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import debounce from "lodash/debounce";
 
 const { Link } = routerProvider;

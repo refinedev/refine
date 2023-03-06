@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-mantine": major
+"@refinedev/mantine": major
 ---
 
 ## 🪄 Migrating your project automatically with refine-codemod ✨
@@ -16,7 +16,7 @@ And it's done. Now your project uses `refine@4.x.x`.
 
 ## 📝 Changelog
 
-All **Mantine** components re-exported from `@pankod/refine-mantine` have been removed. You should import them from Mantine packages directly.
+All **Mantine** components re-exported from `@refinedev/mantine` have been removed. You should import them from Mantine packages directly.
 
 If the packages are not installed, you can install them with your package manager:
 
@@ -40,7 +40,7 @@ After that, you can import them from related packages directly.
 -    Select,
 -    List,
 -    useSelect,
-- } from "@pankod/refine-mantine";
+- } from "@refinedev/mantine";
 
 + import { useSelect, List } from "@refinedev/mantine";
 + import { MantineProvider, TextInput, Select } from "@mantine/core";

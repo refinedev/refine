@@ -1,13 +1,9 @@
-import { Refine } from "@pankod/refine-core";
-import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import { dataProvider, liveProvider } from "@pankod/refine-appwrite";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import { Refine } from "@refinedev/core";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import { dataProvider, liveProvider } from "@refinedev/appwrite";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { appwriteClient } from "utility";
 import { authProvider } from "./authProvider";

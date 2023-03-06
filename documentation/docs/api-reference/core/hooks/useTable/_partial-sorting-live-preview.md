@@ -15,7 +15,7 @@ import {
     useMany,
     useTable,
     HttpError,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 interface IPost {
     id: number;

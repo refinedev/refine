@@ -5,9 +5,9 @@ import {
     useMenu,
     useNavigation,
     useParsed,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { Link } from "react-router-dom";
-import { useModalForm } from "@pankod/refine-antd";
+import { useModalForm } from "@refinedev/antd";
 
 import {
     PlusSquareOutlined,

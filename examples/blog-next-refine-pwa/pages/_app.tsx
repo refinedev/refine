@@ -1,8 +1,8 @@
 import React from "react";
 import { AppProps } from "next/app";
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-nextjs-router/legacy";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/nextjs-router/legacy";
+import dataProvider from "@refinedev/simple-rest";
 import { Layout } from "@components/Layout";
 
 import "src/styles/global.css";

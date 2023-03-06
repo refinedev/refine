@@ -1,7 +1,7 @@
 ```tsx live url=http://localhost:3000/products previewHeight=200px hideCode
 setInitialRoutes(["/posts/create"]);
 // visible-block-start
-import { useSelect } from "@pankod/refine-core";
+import { useSelect } from "@refinedev/core";
 
 interface ICategory {
     id: number;

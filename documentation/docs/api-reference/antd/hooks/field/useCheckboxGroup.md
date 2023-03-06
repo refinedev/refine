@@ -29,7 +29,7 @@ We will demonstrate how to get data at the `/tags` endpoint from the `https://ap
 ```
 
 ```tsx title="pages/posts/create.tsx"
-import { useCheckboxGroup } from "@pankod/refine-antd";
+import { useCheckboxGroup } from "@refinedev/antd";
 import { Form, Checkbox } from "antd";
 
 export const PostCreate: React.FC = () => {
@@ -217,7 +217,7 @@ Use `sorters` instead.
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/useCheckboxGroup"/>
+<PropsTable module="@refinedev/antd/useCheckboxGroup"/>
 
 ## Example
 

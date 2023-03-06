@@ -10,7 +10,7 @@ title: Next.js
 [**nextjs-router**][nextjsrouter] package provided by **refine** must be used for the [`routerProvider`][routerprovider]
 
 ```bash
-npm i @pankod/refine-core @pankod/refine-antd @pankod/refine-nextjs-router
+npm i @refinedev/core @refinedev/antd @refinedev/nextjs-router
 ```
 
 :::tip
@@ -23,7 +23,7 @@ npm create refine-app@latest -- -o refine-nextjs my-refine-nextjs-app
 :::
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 ## Usage
@@ -33,16 +33,16 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 ```tsx title="pages/_app.tsx"
 import { AppProps } from "next/app";
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-nextjs-router";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/nextjs-router";
 
 import { PostList, PostEdit, PostCreate, PostShow } from "pages/posts";
 import { UserList, UserShow } from "pages/users";
@@ -88,8 +88,8 @@ export default MyApp;
 Let's say we want to show a list of users in `/users`. After creating `users.tsx` under `pages` in your Nextjs app, we can use the `useTable` hook to list the users in a table:
 
 ```tsx title="pages/users.tsx"
-import { LayoutWrapper } from "@pankod/refine-core";
-import { useTable } from "@pankod/refine-antd";
+import { LayoutWrapper } from "@refinedev/core";
+import { useTable } from "@refinedev/antd";
 import { List, Table } from "antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -150,13 +150,13 @@ We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Ref
 ```tsx title="pages/users.tsx"
 // highlight-next-line
 import { GetServerSideProps } from "next";
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 import {
     LayoutWrapper,
     // highlight-next-line
     GetListResponse,
-} from "@pankod/refine-core";
-import { useTable } from "@pankod/refine-antd";
+} from "@refinedev/core";
+import { useTable } from "@refinedev/antd";
 import { List, Table } from "antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -217,7 +217,7 @@ We used `getList` from `dataProvider` but data can be fetched in any way you des
 **nextjs-router** package provides `NextRouteComponent` for routing in **refine** resources. Simply export the component from the page and add a [data fetching function][datafetching]. While you can create pages with defined params like `[resource]/[action]/[id].tsx`, we recommend using a catch-all route to handle all **refine** routing in a single file. You can start by creating a `[[...refine]].tsx` file under `pages` in your Nextjs app:
 
 ```tsx title="pages/[[...refine]].tsx"
-export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
+export { NextRouteComponent as default } from "@refinedev/nextjs-router";
 ```
 
 :::info
@@ -258,9 +258,9 @@ type NextRouteComponentProps = {
 For example, for a `list` component that will be rendered for `/[resource]`, the page can use SSR like this:
 
 ```tsx title="pages/[[...refine]].tsx"
-export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
-import { handleRefineParams } from "@pankod/refine-nextjs-router";
-import dataProvider from "@pankod/refine-simple-rest";
+export { NextRouteComponent as default } from "@refinedev/nextjs-router";
+import { handleRefineParams } from "@refinedev/nextjs-router";
+import dataProvider from "@refinedev/simple-rest";
 
 import { GetServerSideProps } from "next";
 
@@ -305,8 +305,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 And in the `list` component for a `resource` e.g. "posts":
 
 ```tsx title="src/components/posts/list.tsx"
-import { GetListResponse, IResourceComponentsProps } from "@pankod/refine-core";
-import { useTable } from "@pankod/refine-antd";
+import { GetListResponse, IResourceComponentsProps } from "@refinedev/core";
+import { useTable } from "@refinedev/antd";
 import { List, Table } from "antd";
 
 export const PostList: React.FC<
@@ -348,9 +348,9 @@ You can also achieve SSR with `getStaticProps` and `getStaticPaths` for static g
 **nextjs-router** package provides `checkAuthentication` to easily handle server side authentication.
 
 ```tsx title="pages/[[...refine]].tsx"
-export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
+export { NextRouteComponent as default } from "@refinedev/nextjs-router";
 // highlight-next-line
-import { checkAuthentication } from "@pankod/refine-nextjs-router";
+import { checkAuthentication } from "@refinedev/nextjs-router";
 
 import { GetServerSideProps } from "next";
 
@@ -385,8 +385,8 @@ If `syncWithLocation` is enabled, query parameters must be handled while doing S
 ```tsx title="pages/users.tsx"
 import { GetServerSideProps } from "next";
 // highlight-next-line
-import { parseTableParamsFromQuery } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { parseTableParamsFromQuery } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -444,7 +444,7 @@ your-project
 ```tsx title="app/[[...refine]]/layout.tsx"
 "use client";
 
-import routerProvider from "@pankod/refine-nextjs-router/app";
+import routerProvider from "@refinedev/nextjs-router/app";
 
 export default function RefineLayout({
     children,
@@ -471,12 +471,12 @@ We need to bind the `params` to the `routerProvider` and call it to initialize t
 ```tsx title="app/[[...refine]]/page.tsx"
 "use client";
 
-import { NextRouteComponent } from "@pankod/refine-nextjs-router/app";
+import { NextRouteComponent } from "@refinedev/nextjs-router/app";
 
 export default NextRouteComponent;
 ```
 
-Note that we're importing `NextRouteComponent` from `@pankod/refine-nextjs-router/app` instead of `@pankod/refine-nextjs-router`. This is because we're using the `app/` directory and we need to import the `app` version of the `NextRouteComponent`.
+Note that we're importing `NextRouteComponent` from `@refinedev/nextjs-router/app` instead of `@refinedev/nextjs-router`. This is because we're using the `app/` directory and we need to import the `app` version of the `NextRouteComponent`.
 
 :::note
 `"use client";` is a directive that instructs Next.js to opt-out from Server Components. This is because **refine** and dependencies are not yet compatible with Server Components. That's why we're using it in both `layout.tsx` and `page.tsx` files.
@@ -497,7 +497,7 @@ You can find the `app/` directory example with **refine** in [examples/nextjs/ap
 <CodeSandboxExample path="with-nextjs" />
 
 [nextjs]: https://nextjs.org/docs/getting-started
-[nextjsrouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
+[nextjsrouter]: https://www.npmjs.com/package/@refinedev/nextjs-router
 [routerprovider]: /api-reference/core/providers/router-provider.md
 [nextjscustomapp]: https://nextjs.org/docs/advanced-features/custom-app
 [refine]: /api-reference/core/components/refine-config.md

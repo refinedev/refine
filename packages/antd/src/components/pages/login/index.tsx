@@ -1,5 +1,5 @@
 import React from "react";
-import { LoginPageProps, useActiveAuthProvider } from "@pankod/refine-core";
+import { LoginPageProps, useActiveAuthProvider } from "@refinedev/core";
 import {
     Row,
     Col,
@@ -11,7 +11,7 @@ import {
     Button,
     Checkbox,
 } from "antd";
-import { useLogin, useTranslate } from "@pankod/refine-core";
+import { useLogin, useTranslate } from "@refinedev/core";
 
 import {
     layoutStyles,

@@ -2,7 +2,7 @@ import { useEffect, useContext } from "react";
 import { UNSAFE_NavigationContext as NavigationContext } from "react-router-dom";
 import type { History } from "history";
 
-import type { PromptProps } from "@pankod/refine-core";
+import type { PromptProps } from "@refinedev/core";
 
 export const Prompt: React.FC<PromptProps> = ({
     message,

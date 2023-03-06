@@ -21,12 +21,12 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Creating a Custom Layout
 
-Let's start with creating a `<CustomLayout/>` component using `LayoutProps` from `@pankod/refine-core` with the following code:
+Let's start with creating a `<CustomLayout/>` component using `LayoutProps` from `@refinedev/core` with the following code:
 
 ```tsx live url=http://localhost:3000 previewHeight=420px
 setInitialRoutes(["/posts"]);
-import { useNavigation } from "@pankod/refine-core";
-import { List } from "@pankod/refine-chakra-ui";
+import { useNavigation } from "@refinedev/core";
+import { List } from "@refinedev/chakra-ui";
 import {
     Text,
     Code,
@@ -38,7 +38,7 @@ import {
     Th,
     Td,
 } from "@chakra-ui/react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -194,16 +194,16 @@ import {
     LayoutProps,
     useMenu,
     useRouterContext,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 // highlight-end
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
     ReadyPage,
     notificationProvider,
     refineTheme,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import {
     ChakraProvider,
     // highlight-start

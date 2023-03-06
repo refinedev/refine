@@ -1,4 +1,4 @@
-import { Create, useSelect, useModalForm } from "@pankod/refine-antd";
+import { Create, useSelect, useModalForm } from "@refinedev/antd";
 
 import {
     Drawer,

@@ -45,12 +45,12 @@ Let's see how we can use `<DateField>` with the example in the post list.
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { List, DateField } from "@pankod/refine-mantine";
+import { List, DateField } from "@refinedev/mantine";
 import { Table, Pagination } from "@mantine/core";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -156,7 +156,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/DateField" format-default="`L`" />
+<PropsTable module="@refinedev/mantine/DateField" format-default="`L`" />
 
 :::tip External Props
 It also accepts all props of Mantine [Text](https://mantine.dev/core/text/?t=props).

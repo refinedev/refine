@@ -1,6 +1,6 @@
-import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
+import { IResourceComponentsProps, useMany } from "@refinedev/core";
 
-import { List, TextField, useTable } from "@pankod/refine-antd";
+import { List, TextField, useTable } from "@refinedev/antd";
 
 import { Table } from "antd";
 

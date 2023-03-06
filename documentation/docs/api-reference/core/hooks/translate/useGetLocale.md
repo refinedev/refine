@@ -6,7 +6,7 @@ You can get the `locale` value from the `i18nProvider` that you provided.
 For example, `<LanguageSwitcher>` component needs to know the current locale in order to disable the button for the current language.
 
 ```tsx 
-import { useTranslate, useGetLocale, useSetLocale } from "@pankod/refine-core";
+import { useTranslate, useGetLocale, useSetLocale } from "@refinedev/core";
 
 export const LanguageSwitcher = () => {
     const changeLanguage = useSetLocale();

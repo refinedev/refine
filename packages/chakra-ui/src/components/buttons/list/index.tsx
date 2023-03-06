@@ -8,8 +8,8 @@ import {
     useRouterContext,
     useRouterType,
     useLink,
-} from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 import { IconButton, Button } from "@chakra-ui/react";
 import { IconList } from "@tabler/icons";
 

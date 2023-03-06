@@ -40,18 +40,18 @@ It uses Mantine [`<Button>`][button] component and native html [`<input>`][input
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
 //highlight-next-line
-import { useImport, useNotification } from "@pankod/refine-core";
+import { useImport, useNotification } from "@refinedev/core";
 import {
     List,
     //highlight-next-line
     ImportButton,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 import { Table, Pagination } from "@mantine/core";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -180,10 +180,10 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { ImportButton } from "@pankod/refine-mantine";
+import { ImportButton } from "@refinedev/mantine";
 
 const MyImportComponent = () => {
     return <ImportButton hideText />;
@@ -214,7 +214,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/ImportButton" />
+<PropsTable module="@refinedev/mantine/ImportButton" />
 
 [useimport]: /api-reference/core/hooks/import-export/useImport.md
 [button]: https://mantine.dev/core/button/

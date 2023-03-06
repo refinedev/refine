@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 import {
     Row,
     Col,

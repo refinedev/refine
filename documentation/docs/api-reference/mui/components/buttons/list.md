@@ -14,9 +14,9 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
 // visible-block-start
-import { useShow } from "@pankod/refine-core";
+import { useShow } from "@refinedev/core";
 // highlight-next-line
-import { ListButton, Show } from "@pankod/refine-mui";
+import { ListButton, Show } from "@refinedev/mui";
 import { Typography, Stack } from "@mui/material";
 
 const PostShow: React.FC = () => {
@@ -81,7 +81,7 @@ Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceName
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { ListButton } from "@pankod/refine-mui";
+import { ListButton } from "@refinedev/mui";
 
 const MyListComponent = () => {
     return <ListButton resourceNameOrRouteName="categories" recordItemId="2" />;
@@ -119,7 +119,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { ListButton } from "@pankod/refine-mui";
+import { ListButton } from "@refinedev/mui";
 
 const MyListComponent = () => {
     return (
@@ -156,7 +156,7 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { ListButton } from "@pankod/refine-mui";
+import { ListButton } from "@refinedev/mui";
 
 export const MyListComponent = () => {
     return (
@@ -171,7 +171,7 @@ export const MyListComponent = () => {
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/ListButton" />
+<PropsTable module="@refinedev/mui/ListButton" />
 
 :::tip External Props
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).

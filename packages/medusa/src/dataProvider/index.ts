@@ -5,7 +5,7 @@ import {
     HttpError,
     CrudOperators,
     CrudFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 const mapOperator = (operator: CrudOperators): string => {
     switch (operator) {

@@ -1,5 +1,5 @@
-import * as RefineCore from "@pankod/refine-core";
-import * as RefineReactHookForm from "@pankod/refine-react-hook-form";
+import * as RefineCore from "@refinedev/core";
+import * as RefineReactHookForm from "@refinedev/react-hook-form";
 import * as ReactHookForm from "react-hook-form";
 
 import { createInferencer } from "@/create-inferencer";
@@ -46,8 +46,8 @@ export const renderer = ({
     const recordName = getVariableName(resource.label ?? resource.name, "Data");
     const imports: Array<ImportElement> = [
         ["React", "react", true],
-        ["useNavigation", "@pankod/refine-core"],
-        ["useForm", "@pankod/refine-react-hook-form"],
+        ["useNavigation", "@refinedev/core"],
+        ["useForm", "@refinedev/react-hook-form"],
     ];
 
     const relationFields: (InferField | null)[] = fields.filter(
@@ -58,7 +58,7 @@ export const renderer = ({
         .filter(Boolean)
         .map((field) => {
             if (field?.relation && !field.fieldable && field.resource) {
-                imports.push(["useSelect", "@pankod/refine-core"]);
+                imports.push(["useSelect", "@refinedev/core"]);
                 let val = accessor(
                     recordName,
                     field.key,
@@ -100,7 +100,7 @@ export const renderer = ({
 
     const renderRelationFields = (field: InferField) => {
         if (field.relation && field.resource) {
-            imports.push(["useSelect", "@pankod/refine-core"]);
+            imports.push(["useSelect", "@refinedev/core"]);
 
             const variableName = getVariableName(field.key, "Options");
 
@@ -403,9 +403,9 @@ export const renderer = ({
 export const EditInferencer: InferencerResultComponent = createInferencer({
     type: "edit",
     additionalScope: [
-        ["@pankod/refine-core", "RefineCore", RefineCore],
+        ["@refinedev/core", "RefineCore", RefineCore],
         [
-            "@pankod/refine-react-hook-form",
+            "@refinedev/react-hook-form",
             "RefineReactHookForm",
             RefineReactHookForm,
         ],

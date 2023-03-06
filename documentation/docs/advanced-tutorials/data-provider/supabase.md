@@ -68,7 +68,7 @@ Then choose the following options:
 If you want to add Supabase data provider to existed **refine** app, you add it by running:
 
 ```
-npm i @pankod/refine-supabase
+npm i @refinedev/supabase
 ```
 
 :::
@@ -83,7 +83,7 @@ npm i @pankod/refine-supabase
 If you head over to `src/utilty` folder, you'll see a file called `supabaseClient.ts` created by CLI. This auto-generated file contains API credentials and a function that initializes the Supabase client.
 
 ```ts
-import { createClient } from "@pankod/refine-supabase";
+import { createClient } from "@refinedev/supabase";
 
 const SUPABASE_URL = "https://iwdfzvfqbtokqetmbmbp.supabase.co";
 const SUPABASE_KEY =
@@ -112,10 +112,10 @@ You can also use environment variables to store your Supabase URL and key. This 
 Let's head over to `App.tsx` file where all magic happens. This is the entry point of our app. We'll be registering our Supabase data provider here.
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 ...
  // highlight-start
-import { dataProvider } from "@pankod/refine-supabase";
+import { dataProvider } from "@refinedev/supabase";
 import { supabaseClient } from "utility";
 // highlight-end
 
@@ -155,7 +155,7 @@ Since we preferred refine-supabase as the data provider during the CLI project i
 <p>
 
 ```ts title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 
 import { supabaseClient } from "utility";
 
@@ -392,7 +392,7 @@ Auth provider functions are also consumed by [refine authorization hooks](/docs/
 Auth provider needed to be registered in `<Refine>` component to activate auth features in our app
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 ...
  // highlight-start
 import authProvider from './authProvider';
@@ -447,7 +447,7 @@ Let's add a listing page to show data retrieved from Supabase API in the table. 
 <p>
 
 ```tsx title="src/pages/posts/list.tsx"
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
     List,
@@ -457,7 +457,7 @@ import {
     getDefaultSortOrder,
     FilterDropdown,
     useSelect,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table, Space, Select } from "antd";
 
 import { IPost, ICategory } from "interfaces";
@@ -552,9 +552,9 @@ We'll need a page for creating a new record in Supabase API. Copy and paste foll
 
 ```tsx title="src/pages/posts/create.tsx"
 import { useState } from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
-import { Create, useForm, useSelect } from "@pankod/refine-antd";
+import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, Upload } from "antd";
 import { RcFile } from "antd/lib/upload/interface";
 
@@ -674,7 +674,7 @@ We'll need a page for editing a record in Supabase API. Copy and paste following
 
 ```tsx title="src/pages/posts/edit.tsx"
 import React, { useState } from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
     Edit,
@@ -682,7 +682,7 @@ import {
     RefreshButton,
     useForm,
     useSelect,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Alert, Button, Form, Input, Select, Upload } from "antd";
 import { RcFile } from "antd/lib/upload/interface";
 
@@ -921,7 +921,7 @@ export * from "./list";
 One last thing we need to do is to add newly created CRUD pages to the `resources` property of `<Refine>` component.
 
 ```tsx title="src/App.tsx"
-import { dataProvider } from '@pankod/refine-supabase';
+import { dataProvider } from '@refinedev/supabase';
 import { supabaseClient } from 'utility';
 //highlight-next-line
 import { PostList, PostCreate, PostEdit } from 'pages/posts';
@@ -982,10 +982,10 @@ Normally, refine shows a default login page when `authProvider` and `resources` 
 Let's check out the `LoginPage` property:
 
 ```tsx title="src/App.tsx"
-import { Refine } from '@pankod/refine-core';
+import { Refine } from '@refinedev/core';
 //highlight-start
-import { AuthPage } from '@pankod/refine-antd';
-import routerProvider from "@pankod/refine-react-router-v6";
+import { AuthPage } from '@refinedev/antd';
+import routerProvider from "@refinedev/react-router-v6";
 //highlight-end
 import authProvider from './authProvider';
 ...
@@ -1084,9 +1084,9 @@ We'll show how to add Google Login option to the app.
 Social login feature can be activated by setting `provider` property of the `<AuthPage>` component.
 
 ```tsx title="src/App.tsx"
-import { Refine } from '@pankod/refine-core';
+import { Refine } from '@refinedev/core';
 //highlight-start
-import { AuthPage } from '@pankod/refine-antd';
+import { AuthPage } from '@refinedev/antd';
 import { GoogleOutlined } from "@ant-design/icons";
   //highlight-end
 ...
@@ -1169,16 +1169,16 @@ So far, we have implemented the followings:
 ## Supabase Real Time Support
 
 **refine** has a built-in support for [Supabase Real Time](https://supabase.com/docs/guides/realtime). It means that when you create, update, or delete a record, the changes will be reflected in the app in real-time.  
-Required Supabase Real Time setup is already done in the [`@pankod/refine-supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase)` data provider.
+Required Supabase Real Time setup is already done in the [`@refinedev/supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase)` data provider.
 
 [You can check the Supabase Real Time integration in the data provider source code &#8594](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L325)
 
 We only need to register refine's Supabase Live Provider to the `liveProvider` property to enable real-time support.
 
 ```tsx title="src/App.tsx"
-import { Refine } from '@pankod/refine-core';
+import { Refine } from '@refinedev/core';
 //highlight-start
-import { liveProvider } from "@pankod/refine-supabase";
+import { liveProvider } from "@refinedev/supabase";
 import { supabaseClient } from 'utility';
 //highlight-end
 ...
@@ -1204,7 +1204,7 @@ For live features to work automatically, we setted `liveMode: "auto"` in the opt
 :::
 
 :::caution
-With [Supabase JS client v2](#), multiple subscription calls are not supported. Check out the related issue, [supabase/realtime#271](https://github.com/supabase/realtime/issues/271). Multiple subscriptions needs to be made in a single call, which is not supported by the current version of the `@pankod/refine-supabase` data provider. You can check out the related documentation in [Supabase Realtime Guides](https://supabase.com/docs/guides/realtime/postgres-changes#combination-changes).
+With [Supabase JS client v2](#), multiple subscription calls are not supported. Check out the related issue, [supabase/realtime#271](https://github.com/supabase/realtime/issues/271). Multiple subscriptions needs to be made in a single call, which is not supported by the current version of the `@refinedev/supabase` data provider. You can check out the related documentation in [Supabase Realtime Guides](https://supabase.com/docs/guides/realtime/postgres-changes#combination-changes).
 :::
 
 <br/>

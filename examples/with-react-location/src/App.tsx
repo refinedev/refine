@@ -15,7 +15,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <Refine
-            legacyRouterProvider={{
+            routerProvider={{
                 ...routerProvider,
                 /**
                  * By default refine uses the first route with `list` property as the initial route.

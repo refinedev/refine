@@ -171,7 +171,7 @@ import {
     GridColumns,
     DateField,
     List,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 import { IPost } from "interfaces";
 
@@ -203,7 +203,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-We import and use Material UI components from refine's `@pankod/refine-mui` to show data.
+We import and use Material UI components from refine's `@refinedev/mui` to show data.
 
 
  [`<DataGrid/>`](https://mui.com/x/react-data-grid/components/#main-content) is a native Material UI component. It renders records row by row as a table. `<DataGrid/>` expects a columns prop as a required.
@@ -253,7 +253,7 @@ We'll add `/posts/` endpoint from our example API as a resource.
 We'll add the highlighted code to our `App.tsx` to connect to the endpoint and List page.
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
@@ -264,9 +264,9 @@ import {
     LightTheme,
     ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+} from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 import { authProvider, axiosInstance } from "./authProvider";
 import { API_URL } from "./constants";
@@ -397,20 +397,20 @@ We use benefits of Strapi V4 relational population feature by using `populate` p
 The Material UI provides already styled, but still very customizable inputs that encapsulate adding labels and error handling with helper texts. However, we need a third-party library to handle forms when using Material UI. [React Hook Form](https://react-hook-form.com/) is one of the best options for this job!
 
 
-The React Hook Form library has been integrated with **refine** ([`@pankod/refine-react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form)) . This means you can now use Material UI for your forms and manage them using [`@pankod/refine-react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form).
+The React Hook Form library has been integrated with **refine** ([`@refinedev/react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form)) . This means you can now use Material UI for your forms and manage them using [`@refinedev/react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form).
 
 First, we'll create PostCreate page to create new records.
 
 ```tsx title="src/pages/posts/create"
-import { HttpError } from "@pankod/refine-core";
+import { HttpError } from "@refinedev/core";
 import {
     Box,
     TextField,
     Autocomplete,
     useAutocomplete,
     Create,
-} from "@pankod/refine-mui";
-import { useForm, Controller } from "@pankod/refine-react-hook-form";
+} from "@refinedev/mui";
+import { useForm, Controller } from "@refinedev/react-hook-form";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -569,15 +569,15 @@ Try it on the browser and see if you can create new posts from scratch.
 We'll start by creating a new `<PostEdit>` page responsible for editing a existed single record:
 
 ```tsx title="src/pages/posts/edit.tsx"
-import { HttpError } from "@pankod/refine-core";
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
+import { HttpError } from "@refinedev/core";
+import { Controller, useForm } from "@refinedev/react-hook-form";
 import {
     Edit,
     Box,
     TextField,
     Autocomplete,
     useAutocomplete,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -687,7 +687,7 @@ import {
     Stack,
     EditButton,
     //highlight-end
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 import { IPost } from "interfaces";
 
@@ -827,7 +827,7 @@ import {
     Stack,
     //highlight-next-line
     DeleteButton,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 import { IPost } from "interfaces";
 

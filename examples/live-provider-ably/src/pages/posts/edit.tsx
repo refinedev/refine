@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
     Edit,
@@ -7,7 +7,7 @@ import {
     RefreshButton,
     useForm,
     useSelect,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Alert, Form, Input, Select } from "antd";
 

@@ -33,7 +33,7 @@ Normally refine provides a default login page. If you prefer to use this default
 If we want to build a custom login page instead of the default one that comes with **refine**, `useLogin` can be used like this:
 
 ```tsx title="pages/customLoginPage"
-import { useLogin } from "@pankod/refine-core";
+import { useLogin } from "@refinedev/core";
 import { Form } from "antd";
 
 type LoginVariables = {
@@ -67,7 +67,7 @@ const { mutate: login } = useLogin<{ username: string; password: string }>();
 A custom URL can be given to mutate the function from the `useLogin` hook if you want to redirect yourself to a certain URL.
 
 ```tsx
-import { useLogin } from "@pankod/refine-core";
+import { useLogin } from "@refinedev/core";
 
 const { mutate: login } = useLogin();
 
@@ -77,7 +77,7 @@ login({ redirectPath: "/custom-url" });
 Then, you can handle this URL in your `login` method of the `authProvider`.
 
 ```tsx
-import type { AuthBindings } from "@pankod/refine-core";
+import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // ---

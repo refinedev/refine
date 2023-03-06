@@ -1,5 +1,5 @@
 import React from "react";
-import { layoutSiderTests } from "@pankod/refine-ui-tests";
+import { layoutSiderTests } from "@refinedev/ui-tests";
 import { render, fireEvent, TestWrapper, act } from "@test";
 
 import { Sider } from "./index";

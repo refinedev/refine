@@ -3,7 +3,7 @@ import {
     IResourceComponentsProps,
     useMany,
     useDeleteMany,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     List,
@@ -13,7 +13,7 @@ import {
     SaveButton,
     useEditableTable,
     useSelect,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Form, Input, Select, Space, Button } from "antd";
 

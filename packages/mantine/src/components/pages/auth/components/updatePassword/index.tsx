@@ -3,8 +3,8 @@ import {
     UpdatePasswordPageProps,
     UpdatePasswordFormTypes,
     useActiveAuthProvider,
-} from "@pankod/refine-core";
-import { useUpdatePassword, useTranslate } from "@pankod/refine-core";
+} from "@refinedev/core";
+import { useUpdatePassword, useTranslate } from "@refinedev/core";
 import {
     Box,
     Card,

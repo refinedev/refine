@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-import type { PromptProps } from "@pankod/refine-core";
+import type { PromptProps } from "@refinedev/core";
 
 export const Prompt: React.FC<PromptProps> = ({
     message,

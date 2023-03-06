@@ -1,4 +1,4 @@
-import { useList } from "@pankod/refine-core";
+import { useList } from "@refinedev/core";
 import React, { ReactElement } from "react";
 import { Canvas } from "types/canvas";
 import { Pixel } from "types/pixel";

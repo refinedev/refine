@@ -3,17 +3,17 @@ import {
     LegacyAuthProvider as AuthProvider,
     Authenticated,
     AuthBindings,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     notificationProvider,
     AuthPage,
     Layout,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+} from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { PostReview } from "pages/post-review";

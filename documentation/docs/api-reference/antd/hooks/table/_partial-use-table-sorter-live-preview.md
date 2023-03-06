@@ -9,7 +9,7 @@ body {
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
+import { IResourceComponentsProps, HttpError } from "@refinedev/core";
 
 import {
     List,
@@ -17,7 +17,7 @@ import {
     useTable,
     // highlight-next-line
     getDefaultSortOrder,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table } from "antd";
 
 interface IPost {

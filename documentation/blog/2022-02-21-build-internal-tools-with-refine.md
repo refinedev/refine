@@ -73,7 +73,7 @@ Refer to the [`useTable`](https://refine.dev/docs/ui-frameworks/antd/hooks/table
 For example, let's look at what happens when `useTable` is called.
 
 ```tsx
-import { List, Table, TextField, useTable } from "@pankod/refine-antd";
+import { List, Table, TextField, useTable } from "@refinedev/antd";
 
 interface IPost {
     id: string;
@@ -184,9 +184,9 @@ Refine includes many out-of-the-box data providers to use in your projects like:
 The main building blocks of a Refine app are `resources`. A resource is an entity in the API's endpoint (e.g., https://api.fake-rest.refine.dev/posts). It connects data from the API with page components, allowing pages to access data from the API.
 
 ```tsx
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-json-server";
-import "@pankod/refine-antd/dist/reset.css";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/json-server";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 

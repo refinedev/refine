@@ -59,7 +59,7 @@ superplate will quickly create our **refine** project according to the features 
 ```bash
 cd refine-ecommerce-example
 
-npm i @pankod/refine-strapi-v4 @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
+npm i @refinedev/strapi-v4 @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
 ```
 
 Our **refine** project and installations are now ready! Let's start using it.
@@ -72,10 +72,10 @@ Our **refine** project and installations are now ready! Let's start using it.
 import React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-nextjs-router";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/nextjs-router";
 //highlight-next-line
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 const API_URL = "https://api.strapi-multi-tenant.refine.dev/api";
 
@@ -101,9 +101,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 import React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-nextjs-router";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/nextjs-router";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 //highlight-next-line
 import { ChakraProvider } from "@chakra-ui/react";
@@ -140,7 +140,7 @@ We created our collections in the previous Strapi Multitenancy guide. Now we wil
 The Layout we've created now will only show the **refine** logo. In the following steps, we will edit our Layout.
 
 ```tsx title="components/Layout.tsx"
-import { LayoutProps } from "@pankod/refine-core";
+import { LayoutProps } from "@refinedev/core";
 import { Box, Container, Flex, Image } from "@chakra-ui/react";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
@@ -168,9 +168,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 import React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-nextjs-router";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/nextjs-router";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 import { ChakraProvider } from "@chakra-ui/react";
 //highlight-next-line
@@ -284,7 +284,7 @@ First, let's fetch our products with the nextjs `getServerSideProps` function.
 ```tsx title="pages/index.tsx"
 //highlight-next-line
 import { GetServerSideProps } from "next";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 import { IProduct } from "interfaces";
 
@@ -311,8 +311,8 @@ Let's process the data we fetch above using **refine**'s `useTable` hook. Then l
 ```tsx title="pages/index.tsx"
 import { GetServerSideProps } from "next";
 //highlight-next-line
-import { LayoutWrapper, GetListResponse, useTable } from "@pankod/refine-core";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { LayoutWrapper, GetListResponse, useTable } from "@refinedev/core";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 import { IProduct } from "interfaces";
 import { SimpleGrid } from "@chakra-ui/react";
@@ -416,8 +416,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 ```tsx title="pages/index.tsx"
 import { GetServerSideProps } from "next";
-import { LayoutWrapper, GetListResponse, useTable } from "@pankod/refine-core";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { LayoutWrapper, GetListResponse, useTable } from "@refinedev/core";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 import { IProduct, IStore } from "interfaces";
 import { Button, SimpleGrid, Flex, Text } from "@chakra-ui/react";
@@ -545,8 +545,8 @@ We list all products on our `All Products` page. Let's add pagination to this pa
 
 ```tsx title="pages/index.tsx"
 import { GetServerSideProps } from "next";
-import { LayoutWrapper, GetListResponse, useTable } from "@pankod/refine-core";
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { LayoutWrapper, GetListResponse, useTable } from "@refinedev/core";
+import { DataProvider } from "@refinedev/strapi-v4";
 
 import { IProduct, IStore } from "interfaces";
 import { Button, SimpleGrid, Flex, Text } from "@chakra-ui/react";

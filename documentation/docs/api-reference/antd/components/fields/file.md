@@ -21,7 +21,7 @@ import {
     useTable,
     // highlight-next-line
     FileField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table } from "antd";
 
 const PostList: React.FC = () => {
@@ -77,7 +77,7 @@ If you don't use `title` prop it will use `src` as `title`
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/FileField" />
+<PropsTable module="@refinedev/antd/FileField" />
 
 :::tip External Props
 It also accepts all props of Ant Design [Link](https://ant.design/components/typography/#How-to-use-Typography.Link-in-react-router).

@@ -20,7 +20,7 @@ import {
     useTable,
     // highlight-next-line
     CreateButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table } from "antd";
 
 const PostList: React.FC = () => {
@@ -75,7 +75,7 @@ It is used to redirect the app to the `/create` endpoint of the given resource n
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { CreateButton } from "@pankod/refine-antd";
+import { CreateButton } from "@refinedev/antd";
 
 const MyCreateComponent = () => {
     return (
@@ -120,7 +120,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { CreateButton } from "@pankod/refine-antd";
+import { CreateButton } from "@refinedev/antd";
 
 const MyCreateComponent = () => {
     return (
@@ -157,7 +157,7 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { CreateButton } from "@pankod/refine-antd";
+import { CreateButton } from "@refinedev/antd";
 
 export const MyListComponent = () => {
     return (
@@ -172,7 +172,7 @@ export const MyListComponent = () => {
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/CreateButton" />
+<PropsTable module="@refinedev/antd/CreateButton" />
 
 :::tip External Props
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).

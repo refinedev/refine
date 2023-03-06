@@ -1,4 +1,4 @@
-import * as RefineMantineInferencer from "@pankod/refine-inferencer/mantine";
+import * as RefineMantineInferencer from "@refinedev/inferencer/mantine";
 
 const MantineInferencerScope = {
     RefineMantineInferencer,

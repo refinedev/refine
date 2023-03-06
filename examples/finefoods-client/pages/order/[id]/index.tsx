@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { GetServerSideProps } from "next";
-import { LayoutWrapper } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { LayoutWrapper } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 import JSConfetti from "js-confetti";
 import { gsap, Power3 } from "gsap";
 

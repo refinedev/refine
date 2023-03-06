@@ -19,7 +19,7 @@ import {
     List,
     // highlight-next-line
     EditButton,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
@@ -78,7 +78,7 @@ render(
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
 // visible-block-start
-import { EditButton } from "@pankod/refine-mui";
+import { EditButton } from "@refinedev/mui";
 
 const MyEditComponent = () => {
     return (
@@ -125,7 +125,7 @@ It is used to redirect the app to the `/edit` endpoint of the given resource nam
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { EditButton } from "@pankod/refine-mui";
+import { EditButton } from "@refinedev/mui";
 
 const MyEditComponent = () => {
     return (
@@ -171,7 +171,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { EditButton } from "@pankod/refine-mui";
+import { EditButton } from "@refinedev/mui";
 
 const MyEditComponent = () => {
     return (
@@ -208,7 +208,7 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { EditButton } from "@pankod/refine-mui";
+import { EditButton } from "@refinedev/mui";
 
 export const MyListComponent = () => {
     return (
@@ -223,7 +223,7 @@ export const MyListComponent = () => {
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/EditButton" />
+<PropsTable module="@refinedev/mui/EditButton" />
 
 :::tip External Props
 It also accepts all props of Material UI [Button](https://mui.com/material-ui/react-button/).

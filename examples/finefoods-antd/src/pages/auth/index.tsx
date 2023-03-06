@@ -1,5 +1,5 @@
-import { AuthPage as AntdAuthPage, AuthProps } from "@pankod/refine-antd";
-import { useRouterContext } from "@pankod/refine-core";
+import { AuthPage as AntdAuthPage, AuthProps } from "@refinedev/antd";
+import { useRouterContext } from "@refinedev/core";
 
 const authWrapperProps = {
     style: {

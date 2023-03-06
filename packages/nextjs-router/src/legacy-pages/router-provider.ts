@@ -1,4 +1,4 @@
-import { IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@refinedev/core";
 
 import { Prompt } from "./prompt";
 import { RefineLink as Link } from "./../legacy-common/refine-link";

@@ -20,7 +20,7 @@ import {
     useTable,
     // highlight-next-line
     CloneButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table } from "antd";
 
 const PostList: React.FC = () => {
@@ -72,7 +72,7 @@ render(
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
 // visible-block-start
-import { CloneButton } from "@pankod/refine-antd";
+import { CloneButton } from "@refinedev/antd";
 
 const MyCloneComponent = () => {
     return <CloneButton resourceNameOrRouteName="posts" recordItemId="1" />;
@@ -113,7 +113,7 @@ It is used to redirect the app to the `/clone` endpoint of the given resource na
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { CloneButton } from "@pankod/refine-antd";
+import { CloneButton } from "@refinedev/antd";
 
 const MyCloneComponent = () => {
     return (
@@ -155,7 +155,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { CloneButton } from "@pankod/refine-antd";
+import { CloneButton } from "@refinedev/antd";
 
 const MyCloneComponent = () => {
     return (
@@ -192,7 +192,7 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { CloneButton } from "@pankod/refine-antd";
+import { CloneButton } from "@refinedev/antd";
 
 export const MyListComponent = () => {
     return (
@@ -210,7 +210,7 @@ export const MyListComponent = () => {
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/CloneButton" />
+<PropsTable module="@refinedev/antd/CloneButton" />
 
 :::tip External Props
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).

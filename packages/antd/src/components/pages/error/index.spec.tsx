@@ -1,5 +1,5 @@
 import React from "react";
-import { pageErrorTests } from "@pankod/refine-ui-tests";
+import { pageErrorTests } from "@refinedev/ui-tests";
 
 import { ErrorComponent } from ".";
 import { render, TestWrapper } from "@test";

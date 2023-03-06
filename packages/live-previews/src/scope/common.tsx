@@ -1,12 +1,12 @@
 import React from "react";
 import * as ReactRouterDom from "react-router-dom";
-import * as RefineCore from "@pankod/refine-core";
-import { MemoryRouterComponent } from "@pankod/refine-react-router-v6/legacy";
-import * as LegacyRefineReactRouterV6Base from "@pankod/refine-react-router-v6/legacy";
-import * as RefineReactRouterV6Base from "@pankod/refine-react-router-v6";
-import * as RefineSimpleRest from "@pankod/refine-simple-rest";
-import * as RefineReactHookForm from "@pankod/refine-react-hook-form";
-import * as RefineReactTable from "@pankod/refine-react-table";
+import * as RefineCore from "@refinedev/core";
+import { MemoryRouterComponent } from "@refinedev/react-router-v6/legacy";
+import * as LegacyRefineReactRouterV6Base from "@refinedev/react-router-v6/legacy";
+import * as RefineReactRouterV6Base from "@refinedev/react-router-v6";
+import * as RefineSimpleRest from "@refinedev/simple-rest";
+import * as RefineReactHookForm from "@refinedev/react-hook-form";
+import * as RefineReactTable from "@refinedev/react-table";
 import * as ReactHookForm from "react-hook-form";
 import * as TanstackReactTable from "@tanstack/react-table";
 

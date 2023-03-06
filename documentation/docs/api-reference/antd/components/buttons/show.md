@@ -19,7 +19,7 @@ import {
     useTable,
     // highlight-next-line
     ShowButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table } from "antd";
 
 const PostList: React.FC = () => {
@@ -71,7 +71,7 @@ render(
 ```tsx live disableScroll previewHeight=150px disableScroll
 const { useRouterContext } = RefineCore;
 // visible-block-start
-import { ShowButton } from "@pankod/refine-antd";
+import { ShowButton } from "@refinedev/antd";
 
 const MyShowComponent = () => {
     return (
@@ -118,7 +118,7 @@ Redirection endpoint(`resourceNameOrRouteName/show`) is defined by `resourceName
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { ShowButton } from "@pankod/refine-antd";
+import { ShowButton } from "@refinedev/antd";
 
 const MyShowComponent = () => {
     return (
@@ -170,7 +170,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { ShowButton } from "@pankod/refine-antd";
+import { ShowButton } from "@refinedev/antd";
 
 const MyShowComponent = () => {
     return (
@@ -205,7 +205,7 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { ShowButton } from "@pankod/refine-antd";
+import { ShowButton } from "@refinedev/antd";
 
 export const MyListComponent = () => {
     return (
@@ -225,7 +225,7 @@ export const MyListComponent = () => {
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/ShowButton" />
+<PropsTable module="@refinedev/antd/ShowButton" />
 
 :::tip External Props
 It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).

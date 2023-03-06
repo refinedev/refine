@@ -1,4 +1,4 @@
-import { fieldMarkdownTests } from "@pankod/refine-ui-tests";
+import { fieldMarkdownTests } from "@refinedev/ui-tests";
 
 import { MarkdownField } from "./";
 

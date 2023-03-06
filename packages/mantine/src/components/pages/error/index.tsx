@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { ResourceErrorRouterParams } from "@pankod/refine-core";
-import { RefineErrorPageProps } from "@pankod/refine-ui-types";
+import { ResourceErrorRouterParams } from "@refinedev/core";
+import { RefineErrorPageProps } from "@refinedev/ui-types";
 import {
     useNavigation,
     useTranslate,
@@ -8,7 +8,7 @@ import {
     useResource,
     useRouterType,
     useRouterContext,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     Box,
     Title,

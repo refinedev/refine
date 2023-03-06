@@ -1,16 +1,16 @@
-import { Refine, AuthBindings } from "@pankod/refine-core";
+import { Refine, AuthBindings } from "@refinedev/core";
 import {
     notificationProvider,
     LoginPage,
     Layout,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import { DataProvider, AuthHelper } from "@pankod/refine-strapi";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+} from "@refinedev/antd";
+import { DataProvider, AuthHelper } from "@refinedev/strapi";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import axios from "axios";
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit } from "pages/posts";
 import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";

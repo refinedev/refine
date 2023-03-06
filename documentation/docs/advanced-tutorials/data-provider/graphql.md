@@ -36,11 +36,11 @@ Hooks and components that support `MetaDataQuery`:
 ## Setup
 
 ```bash
-npm i @pankod/refine-core @pankod/refine-antd @pankod/refine-strapi-graphql
+npm i @refinedev/core @refinedev/antd @refinedev/strapi-graphql
 ```
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 :::info
@@ -49,19 +49,19 @@ We used [strapi-graphql](https://github.com/refinedev/refine/tree/master/package
 
 ## Usage
 
-To activate the data provider in `@pankod/refine-strapi-graphql`, we have to pass the API address with `GraphQLClient`.
+To activate the data provider in `@refinedev/strapi-graphql`, we have to pass the API address with `GraphQLClient`.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     Layout,
     ReadyPage,
     notificationProvider,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
 // highlight-next-line
-import dataProvider, { GraphQLClient } from "@pankod/refine-strapi-graphql";
+import dataProvider, { GraphQLClient } from "@refinedev/strapi-graphql";
 
 const client = new GraphQLClient("API_URL");
 

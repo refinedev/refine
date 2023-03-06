@@ -1,4 +1,4 @@
-import { TitleProps, LayoutProps } from "@pankod/refine-core";
+import { TitleProps, LayoutProps } from "@refinedev/core";
 
 export type SiderRenderProps = {
     items: JSX.Element[];

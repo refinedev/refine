@@ -1,4 +1,4 @@
-import { useList } from "@pankod/refine-core";
+import { useList } from "@refinedev/core";
 import { Typography, Box, Stack } from "@mui/material";
 
 import {

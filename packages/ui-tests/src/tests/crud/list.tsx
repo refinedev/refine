@@ -1,10 +1,7 @@
 import React from "react";
-import { AccessControlProvider } from "@pankod/refine-core";
+import { AccessControlProvider } from "@refinedev/core";
 import { Route, Routes } from "react-router-dom";
-import {
-    RefineCrudListProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+import { RefineCrudListProps, RefineButtonTestIds } from "@refinedev/ui-types";
 
 import { act, ITestWrapperProps, render, TestWrapper, waitFor } from "@test";
 
@@ -33,7 +30,7 @@ const renderList = (
 export const crudListTests = function (
     List: React.ComponentType<RefineCrudListProps<any, any, any, any, any, {}>>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / CRUD List", () => {
+    describe("[@refinedev/ui-tests] Common Tests / CRUD List", () => {
         beforeAll(() => {
             jest.spyOn(console, "warn").mockImplementation(jest.fn());
         });

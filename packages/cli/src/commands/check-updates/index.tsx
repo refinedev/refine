@@ -47,7 +47,7 @@ export const getOutdatedRefinePackages = async () => {
     Object.keys(packages).forEach((packageName) => {
         const dependency = packages[packageName];
 
-        if (packageName.includes("@pankod/refine")) {
+        if (packageName.includes("@refinedev")) {
             list.push({
                 name: packageName,
                 current: dependency.current,

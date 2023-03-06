@@ -1,6 +1,6 @@
-import { HttpError } from "@pankod/refine-core";
+import { HttpError } from "@refinedev/core";
 import { useState } from "react";
-import { Create, useForm, useSelect } from "@pankod/refine-mantine";
+import { Create, useForm, useSelect } from "@refinedev/mantine";
 import { Select, TextInput, Text, SimpleGrid, Image } from "@mantine/core";
 import { RichTextEditor } from "@mantine/rte";
 import { Dropzone, IMAGE_MIME_TYPE, FileWithPath } from "@mantine/dropzone";

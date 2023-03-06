@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelect } from "@pankod/refine-antd";
+import { useSelect } from "@refinedev/antd";
 
 import { SearchOutlined } from "@ant-design/icons";
 import { Form, FormProps, Input, Select, DatePicker, Button } from "antd";

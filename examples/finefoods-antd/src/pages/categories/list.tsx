@@ -1,4 +1,4 @@
-import { useTranslate, IResourceComponentsProps } from "@pankod/refine-core";
+import { useTranslate, IResourceComponentsProps } from "@refinedev/core";
 
 import {
     List,
@@ -9,7 +9,7 @@ import {
     NumberField,
     DateField,
     useDrawerForm,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { FormOutlined, MoreOutlined } from "@ant-design/icons";
 import {

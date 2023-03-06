@@ -21,7 +21,7 @@ import {
     List,
     // highlight-next-line
     DateField,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
@@ -73,7 +73,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/DateField" format-default="`L`"/>
+<PropsTable module="@refinedev/mui/DateField" format-default="`L`"/>
 
 :::tip External Props
 It also accepts all props of Material UI [Typography](https://mui.com/material-ui/react-typography/#main-content).

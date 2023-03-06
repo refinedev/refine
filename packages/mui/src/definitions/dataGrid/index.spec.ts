@@ -1,4 +1,4 @@
-import { CrudSorting, CrudFilters } from "@pankod/refine-core";
+import { CrudSorting, CrudFilters } from "@refinedev/core";
 import {
     GridSortModel,
     GridFilterModel,

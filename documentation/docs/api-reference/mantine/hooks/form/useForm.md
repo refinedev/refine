@@ -6,7 +6,7 @@ source: packages/mantine/src/hooks/form/useForm/index.ts
 
 ```tsx live shared
 import React from "react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 import {
@@ -16,7 +16,7 @@ import {
     useTable as useMantineTable,
     EditButton as MantineEditButton,
     CloneButton as MantineCloneButton,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 import {
     Input as MantineInput,
     Box as MantineBox,
@@ -234,7 +234,7 @@ const PostCreate: React.FC = () => {
 We'll show the basic usage of `useForm` by adding an editing form.
 
 ```tsx
-import { Edit, useForm } from "@pankod/refine-mantine";
+import { Edit, useForm } from "@refinedev/mantine";
 import { Select, TextInput } from "@mantine/core";
 
 const PostEdit: React.FC = () => {
@@ -325,7 +325,7 @@ setInitialRoutes(["/posts/create"]);
 // visible-block-start
 import React from "react";
 
-import { Create, useForm } from "@pankod/refine-mantine";
+import { Create, useForm } from "@refinedev/mantine";
 import { Text, TextInput, Textarea } from "@mantine/core";
 
 const PostCreatePage: React.FC = () => {
@@ -396,7 +396,7 @@ setInitialRoutes(["/posts/edit/123"]);
 // visible-block-start
 import React from "react";
 
-import { Edit, useForm } from "@pankod/refine-mantine";
+import { Edit, useForm } from "@refinedev/mantine";
 import { Text, TextInput, Textarea } from "@mantine/core";
 
 const PostEditPage: React.FC = () => {
@@ -469,7 +469,7 @@ setInitialRoutes(["/posts/clone/123"]);
 // visible-block-start
 import React from "react";
 
-import { Create, useForm } from "@pankod/refine-mantine";
+import { Create, useForm } from "@refinedev/mantine";
 import { Text, TextInput, Textarea } from "@mantine/core";
 
 const PostCreatePage: React.FC = () => {
@@ -936,8 +936,8 @@ It is useful when you want to `invalidate` other resources don't have relation w
 
 ```tsx
 import React from "react";
-import { useInvalidate } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-mantine";
+import { useInvalidate } from "@refinedev/core";
+import { useForm } from "@refinedev/mantine";
 
 const PostEdit = () => {
     const invalidate = useInvalidate();
@@ -965,7 +965,7 @@ For example, Let's send the values we received from the user in two separate inp
 
 ```tsx title="pages/user/create.tsx"
 import React from "react";
-import { Create, useForm } from "@pankod/refine-mantine";
+import { Create, useForm } from "@refinedev/mantine";
 import { TextInput } from "@mantine/core";
 
 const UserCreate: React.FC = () => {
@@ -1014,14 +1014,14 @@ Also, we added the following return values.
 > For example, we can define the `refineCoreProps` property in the `useForm` hook as:
 
 ```tsx
-import { useForm } from "@pankod/refine-mantine";
+import { useForm } from "@refinedev/mantine";
 
 const { ... } = useForm({
     ..., // @mantine/form's useForm props
     refineCoreProps: {
         resource: "posts",
         redirect: false,
-        //  @pankod/refine-core's useForm props
+        //  @refinedev/core's useForm props
     },
 });
 ```
@@ -1035,14 +1035,14 @@ Returns all the return values of the [`useForm`][use-form-mantine] hook provided
 > For example, we can access the `refineCore` return value in the `useForm` hook as:
 
 ```tsx
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 const {
     ..., // @mantine/form's useForm return values
     saveButtonProps,
     refineCore: {
         queryResult,
-        ...  // @pankod/refine-core's useForm return values
+        ...  // @refinedev/core's useForm return values
     },
 } = useForm({ ... });
 ```

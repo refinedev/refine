@@ -9,7 +9,7 @@ import {
     UseImportReturnType,
     ImportOptions,
     pickNotDeprecated,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 /**
  * `useImport` hook allows you to handle your csv import logic easily.

@@ -5,7 +5,7 @@ import {
     RouterBindings,
     matchResourceFromRoute,
     ResourceContext,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { useCallback, useContext } from "react";
 import { parse, stringify } from "qs";
 import { useNavigate, useLocation, useParams, Link } from "react-router-dom";

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useOne } from "@pankod/refine-core";
+import { useOne } from "@refinedev/core";
 import { Customer } from "@medusajs/medusa";
 
 import { Button, LoadingDots } from "@components";
