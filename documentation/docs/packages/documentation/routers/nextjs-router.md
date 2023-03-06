@@ -3,7 +3,7 @@ id: nextjs
 title: Next.js
 ---
 
-**refine** provides router bindings and utiliities for [Next.js](https://nextjs.org/). This package will provide easy integration between **refine** and **Next.js** for both existing projects and new projects without giving up the benefits of **Next.js**.
+**refine** provides router bindings and utilities for [Next.js](https://nextjs.org/). This package will provide easy integration between **refine** and **Next.js** for both existing projects and new projects without giving up the benefits of **Next.js**.
 
 ```bash
 npm i @pankod/refine-nextjs-router

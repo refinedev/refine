@@ -3,7 +3,7 @@ id: react-router-v6
 title: React Router v6
 ---
 
-**refine** provides router bindings and utiliities for [React Router v6](https://reactrouter.com/). It is built on top of the [react-router-dom](https://reactrouter.com/web/guides/quick-start) package. This package will provide easy integration between **refine** and **react-router-dom** for both existing projects and new projects.
+**refine** provides router bindings and utilities for [React Router v6](https://reactrouter.com/). It is built on top of the [react-router-dom](https://reactrouter.com/web/guides/quick-start) package. This package will provide easy integration between **refine** and **react-router-dom** for both existing projects and new projects.
 
 ```bash
 npm i @pankod/refine-react-router-v6 react-router-dom

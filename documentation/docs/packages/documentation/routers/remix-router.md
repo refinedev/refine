@@ -3,7 +3,7 @@ id: remix
 title: Remix
 ---
 
-**refine** provides router bindings and utiliities for [Remix](https://remix.run). This package will provide easy integration between **refine** and **Remix** for both existing projects and new projects without giving up the benefits of **Remix**.
+**refine** provides router bindings and utilities for [Remix](https://remix.run). This package will provide easy integration between **refine** and **Remix** for both existing projects and new projects without giving up the benefits of **Remix**.
 
 ```bash
 npm i @pankod/refine-remix-router
