@@ -38,6 +38,7 @@ import {
     separateImportsReactRouterV6,
     separateImportsReactRouterV6PostTransform,
 } from "./v4/separate-imports-react-router-v6";
+import { fixV4Deprecations } from "./v4/fix-v4-deprecations";
 
 export async function postTransform(files: any, flags: any) {
     await separateImportsAntDPostTransform(files, flags);
@@ -54,6 +55,7 @@ export default function transformer(file: FileInfo, api: API): string {
     const j = api.jscodeshift;
     const source = j(file.source);
 
+    fixV4Deprecations(j, source);
     separateImportsReactRouterV6(j, source);
     addV3LegacyAuthProviderCompatibleTrueToAuthHooks(j, source);
     authProviderToLegacyAuthProvider(j, source);
