@@ -1,37 +1,7 @@
 import { Collection, JSCodeshift } from "jscodeshift";
-import fs from "fs";
-import path from "path";
-import { install, addPackage, isPackageJsonUpdated } from "../../helpers";
-import checkPackageLock from "../../helpers/checkPackageLock";
 import separateImports from "../../helpers/separateImports";
 import { exported } from "../../definitions/separated-imports/react-query";
-
-export const separateImportsReactQueryPostTransform = async (
-    files: any,
-    flags: any,
-) => {
-    const rootDir = path.join(process.cwd(), files[0]);
-    const packageJsonPath = path.join(rootDir, "package.json");
-    const useYarn = checkPackageLock(rootDir) === "yarn.lock";
-
-    // Check root package.json exists
-    try {
-        JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
-    } catch (err) {
-        console.error(
-            `Error: failed to load package.json from ${packageJsonPath}, ensure provided directory is root.`,
-        );
-    }
-
-    if (!flags.dry) {
-        if (isPackageJsonUpdated(rootDir)) {
-            await install(rootDir, null, {
-                useYarn,
-                isOnline: true,
-            });
-        }
-    }
-};
+import { CONFIG_FILE_NAME, CodemodConfig } from "../../helpers";
 
 const REFINE_LIB_PATH = "@pankod/refine-core";
 const REACT_QUERY_PATH = "@tanstack/react-query";
@@ -41,6 +11,8 @@ export const separateImportsReactQuery = (
     j: JSCodeshift,
     source: Collection,
 ) => {
+    const config = new CodemodConfig(CONFIG_FILE_NAME);
+
     separateImports({
         j,
         source,
@@ -59,6 +31,6 @@ export const separateImportsReactQuery = (
     });
 
     if (reactQuery.length) {
-        addPackage(process.cwd(), { [REACT_QUERY_PATH]: REACT_QUERY_VERSION });
+        config.addPackage(REACT_QUERY_PATH, REACT_QUERY_VERSION);
     }
 };

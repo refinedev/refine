@@ -1,31 +1,44 @@
-import { API, Collection, FileInfo, JSCodeshift } from "jscodeshift";
-import fs from "fs";
-import path from "path";
-import {
-    addPackage,
-    install,
-    isPackageJsonUpdated,
-    removePackage,
-} from "../../helpers";
-import checkPackageLock from "../../helpers/checkPackageLock";
+import { Collection, JSCodeshift } from "jscodeshift";
+import { CONFIG_FILE_NAME, CodemodConfig } from "../../helpers";
 
 export const parser = "tsx";
 
 const previousScope = "@pankod/refine-";
 const newScope = "@refinedev/";
 
+const deprecatedPackages = [
+    "@pankod/refine-react-location",
+    "@pankod/refine-react-router",
+];
+
+const getOldPackageName = (oldName: string) => {
+    return `${previousScope}${oldName.replace(newScope, "").split("/")[0]}`;
+};
+
+const getNewPackageName = (oldName: string) => {
+    return `${newScope}${oldName.replace(previousScope, "").split("/")[0]}`;
+};
+
 const renameImports = (j: JSCodeshift, source: Collection) => {
+    const config = new CodemodConfig(CONFIG_FILE_NAME);
+
     source
         .find(j.ImportDeclaration)
-        .filter((path) =>
-            path.node.source.value?.toString()?.startsWith(previousScope),
+        .filter(
+            (path) =>
+                path.node.source.value?.toString()?.startsWith(previousScope) &&
+                !deprecatedPackages.includes(
+                    path.node.source.value?.toString() ?? "",
+                ),
         )
         .forEach((path) => {
-            const oldName = path.node.source.value?.toString() ?? "";
-            const newName = `${newScope}${oldName.replace(previousScope, "")}`;
+            const oldName = getOldPackageName(
+                path.node.source.value?.toString() ?? "",
+            );
+            const newName = getNewPackageName(oldName);
 
-            addPackage(process.cwd(), { [newName]: "latest" });
-            removePackage(process.cwd(), [oldName]);
+            config.addPackage(newName);
+            config.removePackage(oldName);
 
             j(path).replaceWith(
                 j.importDeclaration(path.node.specifiers, j.literal(newName)),
@@ -34,19 +47,26 @@ const renameImports = (j: JSCodeshift, source: Collection) => {
 };
 
 const renameExports = (j: JSCodeshift, source: Collection) => {
+    const config = new CodemodConfig(CONFIG_FILE_NAME);
+
     source
         .find(j.ExportNamedDeclaration)
         .filter(
             (path) =>
                 path.node.source &&
-                path.node.source.value?.toString()?.startsWith(previousScope),
+                path.node.source.value?.toString()?.startsWith(previousScope) &&
+                !deprecatedPackages.includes(
+                    path.node.source.value?.toString() ?? "",
+                ),
         )
         .forEach((path) => {
-            const oldName = path.node.source.value?.toString() ?? "";
-            const newName = `${newScope}${oldName.replace(previousScope, "")}`;
+            const oldName = getOldPackageName(
+                path.node.source.value?.toString() ?? "",
+            );
+            const newName = getNewPackageName(oldName);
 
-            addPackage(process.cwd(), { [newName]: "latest" });
-            removePackage(process.cwd(), [oldName]);
+            config.addPackage(newName);
+            config.removePackage(oldName);
 
             j(path).replaceWith(
                 j.exportNamedDeclaration(
@@ -56,38 +76,6 @@ const renameExports = (j: JSCodeshift, source: Collection) => {
                 ),
             );
         });
-};
-
-export const replacePankodImportsWithRefineDevPostTransform = async (
-    files: any,
-    flags: any,
-) => {
-    const rootDir = path.join(process.cwd(), files[0]);
-    const packageJsonPath = path.join(rootDir, "package.json");
-    const useYarn = checkPackageLock(rootDir) === "yarn.lock";
-    const needsInstall = isPackageJsonUpdated(rootDir);
-
-    if (!needsInstall) {
-        return;
-    }
-
-    // Check root package.json exists
-    try {
-        JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
-    } catch (err) {
-        console.error(
-            `Error: failed to load package.json from ${packageJsonPath}, ensure provided directory is root.`,
-        );
-    }
-
-    if (!flags.dry) {
-        if (isPackageJsonUpdated(rootDir)) {
-            await install(rootDir, null, {
-                useYarn,
-                isOnline: true,
-            });
-        }
-    }
 };
 
 export const replacePankodImportsWithRefineDev = async (

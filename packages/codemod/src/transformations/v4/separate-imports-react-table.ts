@@ -1,40 +1,22 @@
 import { Collection, JSCodeshift } from "jscodeshift";
-import fs from "fs";
-import path from "path";
-import { install } from "../../helpers";
-import checkPackageLock from "../../helpers/checkPackageLock";
 import separateImports from "../../helpers/separateImports";
 import { exported } from "../../definitions/separated-imports/react-table";
-
-export const separateImportsReactTablePostTransform = async (
-    files: any,
-    flags: any,
-) => {
-    const rootDir = path.join(process.cwd(), files[0]);
-    const packageJsonPath = path.join(rootDir, "package.json");
-    const useYarn = checkPackageLock(rootDir) === "yarn.lock";
-
-    // Check root package.json exists
-    try {
-        JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
-    } catch (err) {
-        console.error(
-            `Error: failed to load package.json from ${packageJsonPath}, ensure provided directory is root.`,
-        );
-    }
-
-    if (!flags.dry) {
-        await install(rootDir, ["@tanstack/react-table@^8.2.6"], {
-            useYarn,
-            isOnline: true,
-        });
-    }
-};
+import { CONFIG_FILE_NAME, CodemodConfig } from "../../helpers";
 
 export const separateImportsReactTable = (
     j: JSCodeshift,
     source: Collection,
 ) => {
+    const config = new CodemodConfig(CONFIG_FILE_NAME);
+
+    if (
+        source.find(j.ImportDeclaration, {
+            source: { value: "@pankod/refine-react-table" },
+        }).length > 0
+    ) {
+        config.addPackage("@tanstack/react-table", "^8.2.6");
+    }
+
     separateImports({
         j,
         source,

@@ -1,8 +1,5 @@
 import { Collection, JSCodeshift } from "jscodeshift";
-import fs from "fs";
-import path from "path";
-import { addPackage, install, isPackageJsonUpdated } from "../../helpers";
-import checkPackageLock from "../../helpers/checkPackageLock";
+import { CONFIG_FILE_NAME, CodemodConfig } from "../../helpers";
 import separateImports from "../../helpers/separateImports";
 import {
     exported,
@@ -17,39 +14,9 @@ const ANTD_VERSION = "^5.0.5";
 const ANTD_ICONS_PATH = "@ant-design/icons";
 const ANTD_ICONS_VERSION = "^5.0.1";
 
-export const separateImportsAntDPostTransform = async (
-    files: any,
-    flags: any,
-) => {
-    const rootDir = path.join(process.cwd(), files[0]);
-    const packageJsonPath = path.join(rootDir, "package.json");
-    const useYarn = checkPackageLock(rootDir) === "yarn.lock";
-    const needsInstall = isPackageJsonUpdated(rootDir);
-
-    if (!needsInstall) {
-        return;
-    }
-
-    // Check root package.json exists
-    try {
-        JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
-    } catch (err) {
-        console.error(
-            `Error: failed to load package.json from ${packageJsonPath}, ensure provided directory is root.`,
-        );
-    }
-
-    if (!flags.dry) {
-        if (isPackageJsonUpdated(rootDir)) {
-            await install(rootDir, null, {
-                useYarn,
-                isOnline: true,
-            });
-        }
-    }
-};
-
 export const separateImportsAntD = (j: JSCodeshift, source: Collection) => {
+    const config = new CodemodConfig(CONFIG_FILE_NAME);
+
     separateImports({
         j,
         source,
@@ -115,7 +82,8 @@ export const separateImportsAntD = (j: JSCodeshift, source: Collection) => {
     });
 
     if (addIcons) {
-        addPackage(process.cwd(), { [ANTD_ICONS_PATH]: ANTD_ICONS_VERSION });
+        config.addPackage(ANTD_ICONS_PATH, ANTD_ICONS_VERSION);
+
         // add comment to antd-icons import
         source
 
@@ -138,7 +106,7 @@ export const separateImportsAntD = (j: JSCodeshift, source: Collection) => {
             });
     }
     if (addAntd) {
-        addPackage(process.cwd(), { [ANTD_PATH]: ANTD_VERSION });
+        config.addPackage(ANTD_PATH, ANTD_VERSION);
     }
 
     // remove empty imports
