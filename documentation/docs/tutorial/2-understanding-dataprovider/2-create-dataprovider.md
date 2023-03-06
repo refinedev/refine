@@ -86,7 +86,7 @@ Now we'll add the methods that the data provider needs to implement. We will imp
 ### getList
 
 `getList` method is used to get a list of resources with sorting, filtering and pagination features.
-It takes `resource`, `sort`, `pagination` and `filters` as parameters and returns `data` and `total`.
+It takes `resource`, `sorters`, `pagination` and `filters` as parameters and returns `data` and `total`.
 
 Let's assume the API we want to implement is as follows:
 
@@ -201,7 +201,7 @@ access-control-expose-headers: X-Total-Count
     [GET] https://api.fake-rest.refine.dev/posts?_limit=10&_page=2&_sort=id&_order=desc
     ```
 
-    **refine** uses the `sort` parameter for sorting. This parameter includes `field` and `order` values.
+    **refine** uses the `sorters` parameter for sorting. This parameter includes `field` and `order` values.
     Supports multiple field sorting. [CrudSort[]](../../api-reference/core/interfaces.md#CrudSorting) type, it comes in the data provider as follows.
 
     ```bash
@@ -400,13 +400,12 @@ access-control-expose-headers: X-Total-Count
 
     **Parameter Types:**
 
-    | Name           | Type                                                                |
-    | -------------- | ------------------------------------------------------------------- |
-    | resource       | `string`                                                            |
-    | hasPagination? | `boolean` _(defaults to `true`)_                                    |
-    | pagination?    | [`Pagination`](../../api-reference/core/interfaces.md#pagination)   |
-    | sort?          | [`CrudSorting`](../../api-reference/core/interfaces.md#crudsorting) |
-    | filters?       | [`CrudFilters`](../../api-reference/core/interfaces.md#crudfilters) |
+    | Name        | Type                                                                |
+    | ----------- | ------------------------------------------------------------------- |
+    | resource    | `string`                                                            |
+    | pagination? | [`Pagination`](../../api-reference/core/interfaces.md#pagination)   |
+    | sorters?    | [`CrudSorting`](../../api-reference/core/interfaces.md#crudsorting) |
+    | filters?    | [`CrudFilters`](../../api-reference/core/interfaces.md#crudfilters) |
 
 <br/>
 
@@ -650,13 +649,21 @@ It's useful if you have non-standard REST API endpoints or want to make a connec
 ```ts title="dataProvider.ts"
 export const dataProvider = (apiUrl: string): DataProvider => ({
     // ...
-    custom: async ({ url, method, filters, sort, payload, query, headers }) => {
+    custom: async ({
+        url,
+        method,
+        filters,
+        sorters,
+        payload,
+        query,
+        headers,
+    }) => {
         let requestUrl = `${url}?`;
 
-        if (sort && sort.length > 0) {
+        if (sorters && sorters.length > 0) {
             const sortQuery = {
-                _sort: sort[0].field,
-                _order: sort[0].order,
+                _sort: sorters[0].field,
+                _order: sorters[0].order,
             };
             requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
         }
@@ -708,7 +715,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 | -------- | -------------------------------------------------------------------- |
 | url      | `string`                                                             |
 | method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch`           |
-| sort?    | [`CrudSorting`](../../api-reference/core/interfaces.md#crudsorting); |
+| sorters? | [`CrudSorting`](../../api-reference/core/interfaces.md#crudsorting); |
 | filters? | [`CrudFilters`](../../api-reference/core/interfaces.md#crudfilters); |
 | payload? | `{}`                                                                 |
 | query?   | `{}`                                                                 |
