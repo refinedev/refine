@@ -1,17 +1,5 @@
 export const CSSRules = [
     `
-    .banner {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        padding: 8px 16px;
-        background-color: #0d0d0d;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    }
-    `,
-    `
     .banner::before,
     .banner::after {
         content: '';
@@ -61,36 +49,6 @@ export const CSSRules = [
             background-position: -200% 0;
         }
     }
-    `,
-    `
-    .banner .content {
-        position: relative;
-        z-index: 2;
-        color: #fff;
-        display: flex;
-        flex-direction: row;
-        gap: 8px;
-      }
-    `,
-    `
-    .banner .content .wizard {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        width: 32px;
-        height: 32px;
-        font-size: 32px;
-        line-height: 32px;
-      }
-    `,
-    `
-    .banner .content .text {
-        padding: 4px 0;
-        font-size: 16px;
-        line-height: 24px;
-        text-shadow: 0px 0px 4px rgba(255, 255, 255, 0.5);
-      }
     `,
     `
     .gh-link, .gh-link:hover, .gh-link:active, .gh-link:visited, .gh-link:focus {
