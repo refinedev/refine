@@ -275,17 +275,17 @@ export const useNavigation = () => {
                     ? pickResource(resource, resources) ?? { name: resource }
                     : resource;
 
-            const showActionRoute = getActionRoutesFromResource(
+            const listActionRoute = getActionRoutesFromResource(
                 resourceItem,
                 resources,
-            ).find((r) => r.action === "show")?.route;
+            ).find((r) => r.action === "list")?.route;
 
-            if (!showActionRoute) {
+            if (!listActionRoute) {
                 return "";
             }
 
             return go({
-                to: composeRoute(showActionRoute, parsed, meta),
+                to: composeRoute(listActionRoute, parsed, meta),
                 type: "path",
             }) as string;
         }
