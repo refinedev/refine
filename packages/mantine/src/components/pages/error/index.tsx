@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { ResourceErrorRouterParams } from "@pankod/refine-core";
 import { RefineErrorPageProps } from "@pankod/refine-ui-types";
 import {
     useNavigation,
@@ -7,7 +6,6 @@ import {
     useGo,
     useResource,
     useRouterType,
-    useRouterContext,
 } from "@pankod/refine-core";
 import {
     Box,
