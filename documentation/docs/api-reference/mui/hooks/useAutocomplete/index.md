@@ -20,7 +20,8 @@ If you're looking for a complete select library, refine has out-of-the-box suppo
 -   refine's `useSelect` (for Headless users) - [Documentation](/docs/api-reference/core/hooks/useSelect/) - [Example](/docs/examples/core/useSelect)
 -   [Ant Design Select](https://ant.design/components/select) (for Ant Design users) - [Documentation](/docs/api-reference/antd/hooks/field/useSelect) - [Example](/docs/examples/field/useSelect)
 -   [Mantine Select](https://mantine.dev/core/select/) (for Mantine users) - [Documentation](/docs/api-reference/mantine/hooks/useSelect)
-    :::
+
+:::
 
 ## Basic Usage
 
@@ -150,15 +151,15 @@ useAutocomplete({
 });
 ```
 
-### `hasPagination`
+#### `mode`
 
-> Default: `false`
-
-`hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to determine whether to use server-side pagination or not.
+It can be `"off"`, `"client"` or `"server"`. It is used to determine whether to use server-side pagination or not.
 
 ```tsx
 useAutocomplete({
-    hasPagination: true,
+    pagination: {
+        mode: "off",
+    },
 });
 ```
 
@@ -187,12 +188,6 @@ It allows us to `AutoComplete` the `options`.
 
 :::info
 If `onSearch` is used, it will override the existing `filters`.
-:::
-
-### ~~`sort`~~
-
-:::caution Deprecated
-Use `sorters` instead.
 :::
 
 #### Client-side filtering
@@ -260,7 +255,6 @@ const myDataProvider = {
     getList: async ({
         resource,
         pagination,
-        hasPagination,
         sorters,
         filters,
         // highlight-next-line
@@ -359,6 +353,28 @@ useAutocomplete({
 > [`LiveProvider`](/docs/api-reference/core/providers/live-provider/) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/live-provider/#subscribe) method.
+
+### ~~`sort`~~
+
+:::caution Deprecated
+Use `sorters` instead.
+:::
+
+### ~~`hasPagination`~~
+
+:::caution Deprecated
+Use `pagination.mode` instead.
+:::
+
+> Default: `false`
+
+`hasPagination` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. It is used to determine whether to use server-side pagination or not.
+
+```tsx
+useAutocomplete({
+    hasPagination: true,
+});
+```
 
 ## FAQ
 

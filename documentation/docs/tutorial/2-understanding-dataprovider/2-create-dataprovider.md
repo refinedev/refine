@@ -400,13 +400,12 @@ access-control-expose-headers: X-Total-Count
 
     **Parameter Types:**
 
-    | Name           | Type                                                                |
-    | -------------- | ------------------------------------------------------------------- |
-    | resource       | `string`                                                            |
-    | hasPagination? | `boolean` _(defaults to `true`)_                                    |
-    | pagination?    | [`Pagination`](../../api-reference/core/interfaces.md#pagination)   |
-    | sort?          | [`CrudSorting`](../../api-reference/core/interfaces.md#crudsorting) |
-    | filters?       | [`CrudFilters`](../../api-reference/core/interfaces.md#crudfilters) |
+    | Name        | Type                                                                |
+    | ----------- | ------------------------------------------------------------------- |
+    | resource    | `string`                                                            |
+    | pagination? | [`Pagination`](../../api-reference/core/interfaces.md#pagination)   |
+    | sort?       | [`CrudSorting`](../../api-reference/core/interfaces.md#crudsorting) |
+    | filters?    | [`CrudFilters`](../../api-reference/core/interfaces.md#crudfilters) |
 
 <br/>
 
