@@ -4,7 +4,7 @@ import {
     useRouterType,
     useLink,
     TitleProps,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { Link as ChakraLink } from "@chakra-ui/react";
 
 export const Title: React.FC<TitleProps> = ({ collapsed }) => {

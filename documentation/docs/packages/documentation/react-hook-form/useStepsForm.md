@@ -10,12 +10,12 @@ body {
 ```
 
 ```tsx live shared
-import { useTable, useNavigation, useMany } from "@pankod/refine-core";
+import { useTable, useNavigation, useMany } from "@refinedev/core";
 import {
     useSelect as useSelectShared,
     HttpError as httpErrorShared,
-} from "@pankod/refine-core";
-import { useStepsForm as useStepsFormShared } from "@pankod/refine-react-hook-form";
+} from "@refinedev/core";
+import { useStepsForm as useStepsFormShared } from "@refinedev/react-hook-form";
 
 interface ICategory {
     id: number;
@@ -352,7 +352,7 @@ const PostEdit: React.FC = () => {
 `useStepsForm` allows you to manage a form with multiple steps. It provides features such as which step is currently active, the ability to go to a specific step and validation when changing steps etc.
 
 :::info
-`useStepsForm` hook is extended from [`useForm`][refine-react-hook-form-use-form] from the [`@pankod/refine-react-hook-form`][@pankod/refine-react-hook-form] package. This means you can use all the features of [`useForm`][refine-react-hook-form-use-form].
+`useStepsForm` hook is extended from [`useForm`][refine-react-hook-form-use-form] from the [`@refinedev/react-hook-form`][@refinedev/react-hook-form] package. This means you can use all the features of [`useForm`][refine-react-hook-form-use-form].
 :::
 
 ## Basic Usage
@@ -374,8 +374,8 @@ Here is the final result of the form: We will explain the code in following sect
 setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
-import { useSelect, HttpError } from "@pankod/refine-core";
-import { useStepsForm } from "@pankod/refine-react-hook-form";
+import { useSelect, HttpError } from "@refinedev/core";
+import { useStepsForm } from "@refinedev/react-hook-form";
 
 const stepTitles = ["Title", "Status", "Category and content"];
 
@@ -544,8 +544,8 @@ Here is the final result of the form: We will explain the code in following sect
 setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
-import { useSelect, HttpError } from "@pankod/refine-core";
-import { useStepsForm } from "@pankod/refine-react-hook-form";
+import { useSelect, HttpError } from "@refinedev/core";
+import { useStepsForm } from "@refinedev/react-hook-form";
 
 const stepTitles = ["Title", "Status", "Category and content"];
 
@@ -715,8 +715,8 @@ In this example we're going to build a Post `"create"` form. We also added a rel
 To split your `<input/>` components under a `<form/>` component, first import and use `useStepsForm` hook in your page:
 
 ```tsx
-import { HttpError, useSelect } from "@pankod/refine-core";
-import { useStepsForm } from "@pankod/refine-react-hook-form";
+import { HttpError, useSelect } from "@refinedev/core";
+import { useStepsForm } from "@refinedev/react-hook-form";
 
 const PostCreate = () => {
     const {
@@ -753,8 +753,8 @@ This hook returns a set of useful values to render steps form. Given current val
 Here, we're going to use a `switch` statement to render the form items based on the `currentStep`.
 
 ```tsx
-import { HttpError, useSelect } from "@pankod/refine-core";
-import { useStepsForm } from "@pankod/refine-react-hook-form";
+import { HttpError, useSelect } from "@refinedev/core";
+import { useStepsForm } from "@refinedev/react-hook-form";
 
 const PostCreate = () => {
     const {
@@ -864,8 +864,8 @@ Since `category` is a relational data, we use `useSelect` to fetch its data.
 Now, we can use `renderFormByStep` function to render the form items based on the `currentStep` and `gotoStep` function to navigate between steps.
 
 ```tsx
-import { HttpError, useSelect } from "@pankod/refine-core";
-import { useStepsForm } from "@pankod/refine-react-hook-form";
+import { HttpError, useSelect } from "@refinedev/core";
+import { useStepsForm } from "@refinedev/react-hook-form";
 
 const PostCreate = () => {
     const {
@@ -1081,7 +1081,7 @@ It takes in one argument, step, which is a number representing the index of the 
 
 ### Properties
 
-<PropsTable module="@pankod/refine-react-hook-form/useStepsForm" />
+<PropsTable module="@refinedev/react-hook-form/useStepsForm" />
 
 > `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-reference/core/components/refine-config.md)>** component.
 
@@ -1101,7 +1101,7 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 
 <CodeSandboxExample path="form-react-hook-form-use-steps-form" />
 
-[@pankod/refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
+[@refinedev/react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
 [refine-react-hook-form-use-form]: /packages/documentation/react-hook-form/useForm.md
 [react-hook-form-use-form]: https://react-hook-form.com/api/useform
 [use-form-core]: /api-reference/core/hooks/useForm.md

@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { MutationMode } from "@pankod/refine-core";
+import { MutationMode } from "@refinedev/core";
 
 export interface DemoSidebarProps {
     mutationMode: MutationMode;

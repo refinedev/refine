@@ -1,12 +1,12 @@
 import React, { ReactNode } from "react";
 import { Route, Routes } from "react-router-dom";
-import { AccessControlProvider } from "@pankod/refine-core";
-import { crudShowTests } from "@pankod/refine-ui-tests";
+import { AccessControlProvider } from "@refinedev/core";
+import { crudShowTests } from "@refinedev/ui-tests";
 
 import { render, TestWrapper, waitFor } from "@test";
 
 import { Show } from "./index";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 
 const renderShow = (
     show: ReactNode,

@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-core": major
+"@refinedev/core": major
 ---
 
 -   `AuthProvider` deprecated and renamed to `LegacyAuthProvider`.

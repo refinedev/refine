@@ -1,4 +1,4 @@
-import { useShow, IResourceComponentsProps, useOne } from "@pankod/refine-core";
+import { useShow, IResourceComponentsProps, useOne } from "@refinedev/core";
 
 import {
     Show,
@@ -7,7 +7,7 @@ import {
     ListButton,
     EditButton,
     RefreshButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Typography, Alert } from "antd";
 

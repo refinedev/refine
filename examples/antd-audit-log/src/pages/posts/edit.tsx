@@ -1,8 +1,8 @@
 import React from "react";
-import { Edit, useForm, useSelect } from "@pankod/refine-antd";
+import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, Col, Row } from "antd";
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import { LogList } from "@pankod/refine-antd-audit-log";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { LogList } from "@refinedev/antd-audit-log";
 
 import MDEditor from "@uiw/react-md-editor";
 

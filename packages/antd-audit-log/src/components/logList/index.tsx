@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useModal } from "@pankod/refine-antd";
+import { useModal } from "@refinedev/antd";
 import { Card, ModalProps } from "antd";
 import {
     BaseKey,
@@ -10,7 +10,7 @@ import {
     useLogList,
     useResourceWithRoute,
     useRouterContext,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { ReactDiffViewerProps } from "react-diff-viewer";
 
 import { ModalDiffViewer } from "../modalDiffViewer";

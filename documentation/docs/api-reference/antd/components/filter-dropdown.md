@@ -17,7 +17,7 @@ import {
     FilterDropdown,
     // highlight-end
     useTable,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table, Select } from "antd";
 
 const PostList: React.FC = (props) => {
@@ -102,8 +102,8 @@ Determines the value passed to children. `mapValue` takes `selectedKeys` as an a
 For example when using `useSelect` for `<Select>` component. In this case values must be mapped to `number`s using `mapValue`.
 
 ```tsx
-import { getDefaultFilter } from "@pankod/refine-core";
-import { useTable, FilterDropdown, useSelect } from "@pankod/refine-antd";
+import { getDefaultFilter } from "@refinedev/core";
+import { useTable, FilterDropdown, useSelect } from "@refinedev/antd";
 import { Table, Select } from "antd";
 
 const { tableProps, filters } = useTable<IPost>({
@@ -157,7 +157,7 @@ If [syncWithLocation](/api-reference/core/components/refine-config.md#syncwithlo
 > `getDefaultFilter` finds filter values for a given column from the given filters. In the example, `filters` passed to `getDefaultFilter` includes filter values from the URL since it comes from `useTable`.
 > :::
 
-<PropsTable module="@pankod/refine-antd/FilterDropdown"/>
+<PropsTable module="@refinedev/antd/FilterDropdown"/>
 
 ## Example
 

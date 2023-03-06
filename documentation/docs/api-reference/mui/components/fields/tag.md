@@ -21,7 +21,7 @@ import {
     List,
     // highlight-next-line
     TagField,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
@@ -73,7 +73,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/TagField" value-description="Tag content" />
+<PropsTable module="@refinedev/mui/TagField" value-description="Tag content" />
 
 :::tip External Props
 It also accepts all props of Material UI [Chip](https://mui.com/material-ui/react-chip/#main-content).

@@ -22,10 +22,10 @@ const PostList: React.FC = () => {
 };
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { AntdLayout, Menu, Sider } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { AntdLayout, Menu, Sider } from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import { PostList } from "./pages/posts";
 
@@ -122,7 +122,7 @@ import {
     useRouterContext,
     useMenu,
     useRefineContext,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     Layout,
     AntdLayout,
@@ -130,9 +130,9 @@ import {
     Icons,
     Menu,
     Title as DefaultTitle,
-} from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+} from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import { PostList } from "./pages/posts";
 

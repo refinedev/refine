@@ -4,7 +4,7 @@ import {
     TitleProps,
     useLink,
     useRouterType,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { Button } from "@mui/material";
 
 export const Title: React.FC<TitleProps> = ({ collapsed }) => {

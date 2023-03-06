@@ -4,13 +4,9 @@ import {
     CrudFilters,
     HttpError,
     getDefaultFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
-import {
-    useSimpleList,
-    CreateButton,
-    useDrawerForm,
-} from "@pankod/refine-antd";
+import { useSimpleList, CreateButton, useDrawerForm } from "@refinedev/antd";
 
 import { SearchOutlined } from "@ant-design/icons";
 import { Row, List as AntdList, Col, Form, Input, Typography } from "antd";

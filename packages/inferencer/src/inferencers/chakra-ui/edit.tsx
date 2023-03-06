@@ -1,7 +1,7 @@
-import * as RefineCore from "@pankod/refine-core";
-import * as RefineChakraUI from "@pankod/refine-chakra-ui";
+import * as RefineCore from "@refinedev/core";
+import * as RefineChakraUI from "@refinedev/chakra-ui";
 import * as ChakraUI from "@chakra-ui/react";
-import * as RefineReactHookForm from "@pankod/refine-react-hook-form";
+import * as RefineReactHookForm from "@refinedev/react-hook-form";
 import * as ReactHookForm from "react-hook-form";
 
 import { createInferencer } from "@/create-inferencer";
@@ -47,11 +47,11 @@ export const renderer = ({
     const recordName = getVariableName(resource.label ?? resource.name, "Data");
     const imports: Array<ImportElement> = [
         ["React", "react", true],
-        ["Edit", "@pankod/refine-chakra-ui"],
+        ["Edit", "@refinedev/chakra-ui"],
         ["FormControl", "@chakra-ui/react"],
         ["FormLabel", "@chakra-ui/react"],
         ["FormErrorMessage", "@chakra-ui/react"],
-        ["useForm", "@pankod/refine-react-hook-form"],
+        ["useForm", "@refinedev/react-hook-form"],
     ];
 
     const relationFields: (InferField | null)[] = fields.filter(
@@ -62,7 +62,7 @@ export const renderer = ({
         .filter(Boolean)
         .map((field) => {
             if (field?.relation && !field.fieldable && field.resource) {
-                imports.push(["useSelect", "@pankod/refine-core"]);
+                imports.push(["useSelect", "@refinedev/core"]);
                 let val = accessor(
                     recordName,
                     field.key,
@@ -104,7 +104,7 @@ export const renderer = ({
 
     const renderRelationFields = (field: InferField) => {
         if (field.relation && field.resource) {
-            imports.push(["useSelect", "@pankod/refine-core"]);
+            imports.push(["useSelect", "@refinedev/core"]);
             imports.push(["Select", "@chakra-ui/react"]);
 
             const variableName = getVariableName(field.key, "Options");
@@ -308,7 +308,7 @@ export const renderer = ({
 
             return `
                 {/* 
-                    DatePicker component is not included in "@pankod/refine-chakra-ui" package.
+                    DatePicker component is not included in "@refinedev/chakra-ui" package.
                     To use a <DatePicker> component, you can examine the following links:
                     
                     - https://github.com/aboveyunhai/chakra-dayzed-datepicker
@@ -385,10 +385,10 @@ export const renderer = ({
 export const EditInferencer: InferencerResultComponent = createInferencer({
     type: "edit",
     additionalScope: [
-        ["@pankod/refine-core", "RefineCore", RefineCore],
-        ["@pankod/refine-chakra-ui", "RefineChakraUI", RefineChakraUI],
+        ["@refinedev/core", "RefineCore", RefineCore],
+        ["@refinedev/chakra-ui", "RefineChakraUI", RefineChakraUI],
         [
-            "@pankod/refine-react-hook-form",
+            "@refinedev/react-hook-form",
             "RefineReactHookForm",
             RefineReactHookForm,
         ],

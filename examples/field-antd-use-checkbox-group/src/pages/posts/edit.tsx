@@ -1,7 +1,7 @@
 import React from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
-import { Edit, useForm, useCheckboxGroup } from "@pankod/refine-antd";
+import { Edit, useForm, useCheckboxGroup } from "@refinedev/antd";
 
 import { Form, Input, Checkbox } from "antd";
 

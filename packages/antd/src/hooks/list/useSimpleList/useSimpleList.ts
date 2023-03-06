@@ -11,8 +11,8 @@ import {
     useTableProps as useTablePropsCore,
     useTableReturnType,
     pickNotDeprecated,
-} from "@pankod/refine-core";
-import { useLiveMode } from "@pankod/refine-core";
+} from "@refinedev/core";
+import { useLiveMode } from "@refinedev/core";
 import { PaginationLink } from "@hooks/table/useTable/paginationLink";
 import { PaginationConfig } from "antd/lib/pagination";
 

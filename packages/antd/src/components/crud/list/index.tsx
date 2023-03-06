@@ -6,7 +6,7 @@ import {
     useRefineContext,
     useRouterType,
     useResource,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { Breadcrumb, CreateButton, PageHeader } from "@components";
 import { ListProps } from "../types";
@@ -50,7 +50,7 @@ export const List: React.FC<ListProps> = ({
     const defaultExtra = isCreateButtonVisible ? (
         <CreateButton
             size="middle"
-            resourceNameOrRouteName={
+            resource={
                 routerType === "legacy"
                     ? resource?.route
                     : resource?.identifier ?? resource?.name

@@ -2,11 +2,11 @@ export const checkPackage = (code = "") => {
     const set = new Set<string>();
 
     const hasAntd =
-        code.includes("@pankod/refine-antd") ||
+        code.includes("@refinedev/antd") ||
         code.includes("RefineAntd") ||
         code.includes(`from "antd"`);
     const hasMui =
-        code.includes("@pankod/refine-mui") ||
+        code.includes("@refinedev/mui") ||
         code.includes("RefineMui") ||
         code.includes("@emotion/react") ||
         code.includes("@emotion/styled") ||
@@ -15,31 +15,31 @@ export const checkPackage = (code = "") => {
         code.includes("@mui/x-data-grid") ||
         code.includes(`from "react-hook-form"`);
     const hasMantine =
-        code.includes("@pankod/refine-mantine") ||
+        code.includes("@refinedev/mantine") ||
         code.includes("RefineMantine") ||
         code.includes("@mantine/core") ||
         code.includes("@mantine/hooks") ||
         code.includes("@mantine/form") ||
         code.includes("@mantine/notifications");
     const hasChakra =
-        code.includes("@pankod/refine-chakra-ui") ||
+        code.includes("@refinedev/chakra-ui") ||
         code.includes("RefineChakra") ||
         code.includes("@chakra-ui/react") ||
         code.includes(`from "react-hook-form"`);
     const hasAntdInferencer =
-        code.includes("@pankod/refine-inferencer/antd") ||
+        code.includes("@refinedev/inferencer/antd") ||
         code.includes("RefineAntdInferencer");
     const hasMuiInferencer =
-        code.includes("@pankod/refine-inferencer/mui") ||
+        code.includes("@refinedev/inferencer/mui") ||
         code.includes("RefineMuiInferencer");
     const hasMantineInferencer =
-        code.includes("@pankod/refine-inferencer/mantine") ||
+        code.includes("@refinedev/inferencer/mantine") ||
         code.includes("RefineMantineInferencer");
     const hasChakraInferencer =
-        code.includes("@pankod/refine-inferencer/chakra-ui") ||
+        code.includes("@refinedev/inferencer/chakra-ui") ||
         code.includes("RefineChakraInferencer");
     const hasHeadlessInferencer =
-        code.includes("@pankod/refine-inferencer/headless") ||
+        code.includes("@refinedev/inferencer/headless") ||
         code.includes("RefineHeadlessInferencer");
 
     if (hasAntd) {

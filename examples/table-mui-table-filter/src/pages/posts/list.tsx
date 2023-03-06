@@ -4,13 +4,8 @@ import {
     HttpError,
     CrudFilters,
     getDefaultFilter,
-} from "@pankod/refine-core";
-import {
-    useDataGrid,
-    TagField,
-    List,
-    useAutocomplete,
-} from "@pankod/refine-mui";
+} from "@refinedev/core";
+import { useDataGrid, TagField, List, useAutocomplete } from "@refinedev/mui";
 
 import {
     Grid,
@@ -26,7 +21,7 @@ import {
 
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 import { SearchOutlined } from "@mui/icons-material";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 import { Controller } from "react-hook-form";
 

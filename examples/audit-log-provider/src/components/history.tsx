@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { BaseKey, useLogList } from "@pankod/refine-core";
+import { BaseKey, useLogList } from "@refinedev/core";
 
 import { ILog } from "../interfaces";
 

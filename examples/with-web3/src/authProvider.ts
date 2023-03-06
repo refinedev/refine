@@ -1,4 +1,4 @@
-import { AuthBindings } from "@pankod/refine-core";
+import { AuthBindings } from "@refinedev/core";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 

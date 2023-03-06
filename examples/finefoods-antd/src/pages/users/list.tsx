@@ -3,7 +3,7 @@ import {
     IResourceComponentsProps,
     CrudFilters,
     HttpError,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     List,
@@ -11,7 +11,7 @@ import {
     DateField,
     BooleanField,
     ShowButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { SearchOutlined } from "@ant-design/icons";
 

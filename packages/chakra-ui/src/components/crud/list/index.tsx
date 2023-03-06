@@ -5,7 +5,7 @@ import {
     useRefineContext,
     useRouterType,
     useResource,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { Box, Heading } from "@chakra-ui/react";
 
@@ -45,7 +45,7 @@ export const List: React.FC<ListProps> = (props) => {
 
     const defaultHeaderButtons = isCreateButtonVisible ? (
         <CreateButton
-            resourceNameOrRouteName={
+            resource={
                 routerType === "legacy"
                     ? resource?.route
                     : resource?.identifier ?? resource?.name

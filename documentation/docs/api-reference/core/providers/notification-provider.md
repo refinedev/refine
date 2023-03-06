@@ -39,9 +39,9 @@ interface OpenNotificationParams {
 To use `notificationProvider` in refine, we have to pass the notificationProvider to the `<Refine>` component.
 
 ```tsx
-import { Refine, NotificationProvider } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine, NotificationProvider } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 //highlight-start
 const notificationProvider: NotificationProvider = {
@@ -90,7 +90,7 @@ Create a custom notification provider by following the [guide](/docs/api-referen
   <TabItem value="antd">
 
 ```tsx
-import { notificationProvider } from "@pankod/refine-antd";
+import { notificationProvider } from "@refinedev/antd";
 
 return (
     <Refine
@@ -108,7 +108,7 @@ return (
 import {
     notificationProvider,
     RefineSnackbarProvider,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 return (
     <RefineSnackbarProvider>
@@ -125,7 +125,7 @@ return (
   <TabItem value="mantine">
 
 ```tsx
-import { notificationProvider } from "@pankod/refine-mantine";
+import { notificationProvider } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 
 return (
@@ -143,7 +143,7 @@ return (
   <TabItem value="chakra">
 
 ```tsx
-import { notificationProvider } from "@pankod/refine-chakra";
+import { notificationProvider } from "@refinedev/chakra";
 
 return (
     <Refine
@@ -163,7 +163,7 @@ We will build a simple `notificationProvider` from scratch to show the logic of 
 Before we start, we need set up the `react-toastify` requirements.
 
 ```tsx
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 //highlight-start
 import { ToastContainer } from "react-toastify";
@@ -335,7 +335,7 @@ export const UndoableNotification: React.FC<UndoableNotification> = ({
 `open` method will be accessible via [`useNotification`](/docs/api-reference/core/hooks/useNotification/) hook.
 
 ```tsx
-import { useNotification } from "@pankod/refine-core";
+import { useNotification } from "@refinedev/core";
 
 const { open } = useNotification();
 
@@ -366,7 +366,7 @@ const notificationProvider: NotificationProvider = {
 `close` method will be accessible via [`useNotification`](/docs/api-reference/core/hooks/useNotification/) hook.
 
 ```tsx
-import { useNotification } from "@pankod/refine-core";
+import { useNotification } from "@refinedev/core";
 
 const { close } = useNotification();
 

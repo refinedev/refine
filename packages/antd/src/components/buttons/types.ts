@@ -10,7 +10,7 @@ import {
     RefineRefreshButtonProps,
     RefineSaveButtonProps,
     RefineShowButtonProps,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 
 export type ShowButtonProps = RefineShowButtonProps<ButtonProps>;
 

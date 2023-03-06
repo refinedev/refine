@@ -72,8 +72,8 @@ Let's see how we can use `<BooleanField>` with the example in the post list.
 
 ```tsx live url=http://localhost:3000/posts previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import {
@@ -81,7 +81,7 @@ import {
     DateField,
     // highlight-next-line
     BooleanField,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import {
     TableContainer,
     Table,
@@ -91,7 +91,7 @@ import {
     Tbody,
     Td,
 } from "@chakra-ui/react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -206,7 +206,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/BooleanField" title-description="The text shown in the tooltip" title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" trueIcon-default="[`<IconCheck />`](https://tabler-icons.io/i/check)" falseIcon-default="[`<IconX />`](https://tabler-icons.io/i/x)" />
+<PropsTable module="@refinedev/chakra-ui/BooleanField" title-description="The text shown in the tooltip" title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" trueIcon-default="[`<IconCheck />`](https://tabler-icons.io/i/check)" falseIcon-default="[`<IconX />`](https://tabler-icons.io/i/x)" />
 
 :::tip External Props
 It also accepts all props of Chakra UI [Tooltip](https://chakra-ui.com/docs/components/tooltip/usage).

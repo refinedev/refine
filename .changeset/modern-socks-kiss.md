@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-mantine": minor
+"@refinedev/mantine": minor
 ---
 
 -   `useSelect`'s `sort` prop is now deprecated. Use `sorters` prop instead.

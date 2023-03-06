@@ -1,4 +1,4 @@
-import { BaseKey, MetaQuery } from "@pankod/refine-core";
+import { BaseKey, MetaQuery } from "@refinedev/core";
 import * as gql from "gql-query-builder";
 import camelCase from "camelcase";
 

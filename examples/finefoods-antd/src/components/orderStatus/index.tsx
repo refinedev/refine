@@ -1,4 +1,4 @@
-import { useTranslate } from "@pankod/refine-core";
+import { useTranslate } from "@refinedev/core";
 
 import { Tag } from "antd";
 

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useOne, LayoutWrapper } from "@pankod/refine-core";
+import { useOne, LayoutWrapper } from "@refinedev/core";
 import { Order } from "@medusajs/medusa";
 
 import { IS_BROWSER } from "@lib/isBrowser";

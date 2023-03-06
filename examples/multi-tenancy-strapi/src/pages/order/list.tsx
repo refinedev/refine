@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
     List,
@@ -9,7 +9,7 @@ import {
     EditButton,
     DeleteButton,
     ImageField,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Space } from "antd";
 

@@ -19,9 +19,9 @@ Auth provider's methods expect to return a resolved Promise. So, you can use asy
 To use `authProvider` in **refine**, we have to pass the `authProvider` to the `<Refine />` component.
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // highlight-next-line
 import authProvider from "./auth-provider";
@@ -51,7 +51,7 @@ Auth provider's methods are expected to return a resolved Promise. So, you can u
 An `authProvider` includes the following methods:
 
 ```tsx
-import type { AuthBindings } from "@pankod/refine-core";
+import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // required methods
@@ -209,7 +209,7 @@ If you want to use a legacy auth provider, you can pass them to the `<Refine />`
 [Refer to the Migration Guide for more information. &#8594](/docs/migration-guide/auth-provider/)
 
 ```tsx
-import { LegacyAuthProvider, Refine } from "@pankod/refine-core";
+import { LegacyAuthProvider, Refine } from "@refinedev/core";
 
 const legacyAuthProvider: LegacyAuthProvider = {
     /* --- */

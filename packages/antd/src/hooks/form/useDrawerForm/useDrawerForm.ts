@@ -14,7 +14,7 @@ import {
     useResource,
     useParsed,
     useGo,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 import { DeleteButtonProps } from "../../../components";

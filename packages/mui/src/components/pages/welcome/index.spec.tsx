@@ -1,5 +1,5 @@
 import React from "react";
-import { pageReadyTests } from "@pankod/refine-ui-tests";
+import { pageReadyTests } from "@refinedev/ui-tests";
 
 import Button from "@mui/material/Button";
 

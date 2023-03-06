@@ -1,4 +1,4 @@
-import { LegacyAuthProvider } from "@pankod/refine-core";
+import { LegacyAuthProvider } from "@refinedev/core";
 import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 
 export const checkAuthentication = async (

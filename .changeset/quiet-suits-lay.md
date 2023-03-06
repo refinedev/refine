@@ -1,8 +1,8 @@
 ---
-"@pankod/refine-react-hook-form": major
+"@refinedev/react-hook-form": major
 ---
 
-Updated the components to match the changes in routing system of `@pankod/refine-core`.
+Updated the components to match the changes in routing system of `@refinedev/core`.
 
 ## `meta` property in components
 

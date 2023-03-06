@@ -1,4 +1,4 @@
-import { MetaQuery, pickNotDeprecated } from "@pankod/refine-core";
+import { MetaQuery, pickNotDeprecated } from "@refinedev/core";
 import axios from "axios";
 import { stringify } from "qs";
 

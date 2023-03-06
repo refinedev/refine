@@ -1,5 +1,5 @@
 import { ComponentMeta } from "@storybook/react";
-import { List, useTable } from "@pankod/refine-antd";
+import { List, useTable } from "@refinedev/antd";
 
 import { Table } from "antd";
 

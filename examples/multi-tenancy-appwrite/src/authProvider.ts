@@ -1,5 +1,5 @@
-import { AppwriteException } from "@pankod/refine-appwrite";
-import { AuthBindings } from "@pankod/refine-core";
+import { AppwriteException } from "@refinedev/appwrite";
+import { AuthBindings } from "@refinedev/core";
 
 import { account } from "utility";
 

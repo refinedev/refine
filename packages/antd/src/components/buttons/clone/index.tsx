@@ -9,8 +9,8 @@ import {
     useRouterContext,
     useRouterType,
     useLink,
-} from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 
 import { CloneButtonProps } from "../types";
 
@@ -23,6 +23,7 @@ import { CloneButtonProps } from "../types";
  */
 export const CloneButton: React.FC<CloneButtonProps> = ({
     resourceNameOrRouteName: propResourceNameOrRouteName,
+    resource: resourceNameFromProps,
     recordItemId,
     hideText = false,
     accessControl,
@@ -42,7 +43,9 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
 
     const translate = useTranslate();
 
-    const { id, resource } = useResource(propResourceNameOrRouteName);
+    const { id, resource } = useResource(
+        resourceNameFromProps ?? propResourceNameOrRouteName,
+    );
 
     const { data } = useCan({
         resource: resource?.name,
@@ -64,12 +67,8 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     };
 
     const cloneUrl =
-        (resource || propResourceNameOrRouteName) && (recordItemId || id)
-            ? generateCloneUrl(
-                  resource! ?? propResourceNameOrRouteName!,
-                  recordItemId! ?? id!,
-                  meta,
-              )
+        resource && (recordItemId || id)
+            ? generateCloneUrl(resource, recordItemId! ?? id!, meta)
             : "";
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {

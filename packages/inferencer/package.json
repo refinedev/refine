@@ -1,5 +1,5 @@
 {
-    "name": "@pankod/refine-inferencer",
+    "name": "@refinedev/inferencer",
     "version": "2.8.2",
     "description": "refine is a React-based framework for building internal tools, rapidly.",
     "private": false,
@@ -61,13 +61,13 @@
         "prepare": "npm run build"
     },
     "peerDependencies": {
-        "@pankod/refine-antd": "^4.0.0",
-        "@pankod/refine-chakra-ui": "^1.2.0",
-        "@pankod/refine-core": "^3.88.0",
-        "@pankod/refine-mantine": "^1.11.0",
-        "@pankod/refine-mui": "^3.55.0",
-        "@pankod/refine-react-hook-form": "^3.33.2",
-        "@pankod/refine-react-table": "^4.9.0",
+        "@refinedev/antd": "^4.0.0",
+        "@refinedev/chakra-ui": "^1.2.0",
+        "@refinedev/core": "^3.88.0",
+        "@refinedev/mantine": "^1.11.0",
+        "@refinedev/mui": "^3.55.0",
+        "@refinedev/react-hook-form": "^3.33.2",
+        "@refinedev/react-table": "^4.9.0",
         "antd": "^5.0.3",
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
@@ -89,22 +89,22 @@
         "react-dom": "^17.0.0 || ^18.0.0"
     },
     "peerDependenciesMeta": {
-        "@pankod/refine-react-hook-form": {
+        "@refinedev/react-hook-form": {
             "optional": true
         },
-        "@pankod/refine-react-table": {
+        "@refinedev/react-table": {
             "optional": true
         },
-        "@pankod/refine-antd": {
+        "@refinedev/antd": {
             "optional": true
         },
-        "@pankod/refine-mantine": {
+        "@refinedev/mantine": {
             "optional": true
         },
-        "@pankod/refine-mui": {
+        "@refinedev/mui": {
             "optional": true
         },
-        "@pankod/refine-chakra-ui": {
+        "@refinedev/chakra-ui": {
             "optional": true
         },
         "dayjs": {
@@ -151,14 +151,14 @@
         }
     },
     "devDependencies": {
-        "@pankod/refine-antd": "^4.0.0",
-        "@pankod/refine-chakra-ui": "^1.2.10",
-        "@pankod/refine-core": "^3.97.0",
-        "@pankod/refine-mantine": "^1.15.3",
-        "@pankod/refine-mui": "^3.55.2",
+        "@refinedev/antd": "^4.0.0",
+        "@refinedev/chakra-ui": "^1.2.10",
+        "@refinedev/core": "^3.97.0",
+        "@refinedev/mantine": "^1.15.3",
+        "@refinedev/mui": "^3.55.2",
         "@types/lodash": "^4.14.171",
-        "@pankod/refine-react-hook-form": "^3.37.0",
-        "@pankod/refine-react-table": "^4.9.0",
+        "@refinedev/react-hook-form": "^3.37.0",
+        "@refinedev/react-table": "^4.9.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@types/react-test-renderer": "^18.0.0",
         "@testing-library/jest-dom": "^5.16.4",
@@ -184,7 +184,7 @@
     },
     "dependencies": {
         "@tabler/icons": "^1.1.0",
-        "@pankod/refine-core": "^3.97.0",
+        "@refinedev/core": "^3.97.0",
         "dayjs": "^1.10.7",
         "lodash": "^4.17.21",
         "lodash-es": "^4.17.21",

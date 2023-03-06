@@ -414,7 +414,7 @@ Open `Posts.tsx` and include the following code:
 
 ```typescript title="src/components/Posts.tsx"
 import { useState } from "react";
-import { useMany } from "@pankod/refine-core";
+import { useMany } from "@refinedev/core";
 
 import { Filter } from "./Filter";
 import { Search } from "./Search";
@@ -520,9 +520,9 @@ Now switch one level up to the `src` root and include the following code in the 
 
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import { Posts } from "components/Posts";
 

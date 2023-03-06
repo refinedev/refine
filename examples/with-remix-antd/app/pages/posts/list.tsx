@@ -1,13 +1,13 @@
-import { GetListResponse } from "@pankod/refine-core";
+import { GetListResponse } from "@refinedev/core";
 import {
     useTable,
     List,
     EditButton,
     ShowButton,
     DeleteButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table, Space } from "antd";
-import type { IResourceComponentsProps } from "@pankod/refine-core";
+import type { IResourceComponentsProps } from "@refinedev/core";
 
 import { IPost } from "../../interfaces";
 

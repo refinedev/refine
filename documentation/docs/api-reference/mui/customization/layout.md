@@ -21,16 +21,16 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ## Creating a Custom Layout
 
-Let's start with creating a `<CustomLayout/>` component using `LayoutProps` from `@pankod/refine-core` with the following code:
+Let's start with creating a `<CustomLayout/>` component using `LayoutProps` from `@refinedev/core` with the following code:
 
 ```tsx title="src/components/layout.tsx"
 import React from "react";
-import { LayoutProps } from "@pankod/refine-core";
+import { LayoutProps } from "@refinedev/core";
 // highlight-next-line
 import {
     Sider as DefaultSider,
     Header as DefaultHeader,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { Box } from "@mui/material";
 
 export const CustomLayout: React.FC<LayoutProps> = ({
@@ -76,10 +76,10 @@ export const CustomLayout: React.FC<LayoutProps> = ({
 We can now pass `CustomLayout` as `Layout` prop to `<Refine/>`:
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import { ReadyPage } from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { ReadyPage } from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import { PostList } from "pages/posts";
 // highlight-next-line
@@ -108,17 +108,17 @@ After this, `<Refine/>` will use the `CustomLayout` instead of it's default `Lay
 
 ```tsx live previewOnly disableScroll
 import React from "react";
-import { Refine, LayoutProps } from "@pankod/refine-core";
+import { Refine, LayoutProps } from "@refinedev/core";
 import {
     ReadyPage,
     Sider as DefaultSider,
     Header as DefaultHeader,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { Box } from "@mui/material";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
-import { useDataGrid, List } from "@pankod/refine-mui";
+import { useDataGrid, List } from "@refinedev/mui";
 import { DataGrid, GridColumns, TextField } from "@mui-x-data-grid";
 
 const columns: GridColumns = [

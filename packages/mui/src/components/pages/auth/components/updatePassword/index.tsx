@@ -3,8 +3,8 @@ import {
     UpdatePasswordFormTypes,
     UpdatePasswordPageProps,
     useActiveAuthProvider,
-} from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+} from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 import {
     Button,
     TextField,
@@ -22,7 +22,7 @@ import {
     HttpError,
     useTranslate,
     useUpdatePassword,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { layoutStyles, titleStyles } from "../styles";
 import { FormPropsType } from "../../index";

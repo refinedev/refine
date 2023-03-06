@@ -6,8 +6,8 @@ source: packages/react-hook-form/src/useForm/index.ts
 
 ```tsx live shared
 import React from "react";
-import { useTable, useNavigation } from "@pankod/refine-core";
-import { useForm as ReactHoomFormUseForm } from "@pankod/refine-react-hook-form";
+import { useTable, useNavigation } from "@refinedev/core";
+import { useForm as ReactHoomFormUseForm } from "@refinedev/react-hook-form";
 
 interface IPost {
     id: number;
@@ -195,16 +195,16 @@ const PostCreate: React.FC = () => {
 };
 ```
 
-The [`@pankod/refine-react-hook-form`][refine-react-hook-form] adapter allows you to integrate the [React Hook Form][react-hook-form] library with refine, enabling you to manage your forms in a headless manner. This adapter supports all of the features of both [React Hook Form][react-hook-form] and [refine's useForm][use-form-core] hook, and you can use any of the [React Hook Form][react-hook-form] examples as-is by copying and pasting them into your project."
+The [`@refinedev/react-hook-form`][refine-react-hook-form] adapter allows you to integrate the [React Hook Form][react-hook-form] library with refine, enabling you to manage your forms in a headless manner. This adapter supports all of the features of both [React Hook Form][react-hook-form] and [refine's useForm][use-form-core] hook, and you can use any of the [React Hook Form][react-hook-form] examples as-is by copying and pasting them into your project."
 
 <GeneralConceptsLink />
 
 ## Installation
 
-Install the [`@pankod/refine-react-hook-form`][refine-react-hook-form] library.
+Install the [`@refinedev/react-hook-form`][refine-react-hook-form] library.
 
 ```bash
-npm i @pankod/refine-react-hook-form
+npm i @refinedev/react-hook-form
 ```
 
 ## Basic Usage
@@ -214,8 +214,8 @@ npm i @pankod/refine-react-hook-form
 We'll show the basic usage of `useForm` by adding an editing form.
 
 ```tsx title="pages/posts/edit.tsx"
-import { useSelect } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useSelect } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 
 export const PostEdit: React.FC = () => {
     const {
@@ -335,7 +335,7 @@ In the following example, we'll show how to use `useForm` with `action: "create"
 setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 const PostCreatePage: React.FC = () => {
     const {
@@ -404,7 +404,7 @@ In the following example, we'll show how to use `useForm` with `action: "edit"`.
 setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 const PostEditPage: React.FC = () => {
     const {
@@ -474,7 +474,7 @@ In the following example, we'll show how to use `useForm` with `action: "clone"`
 setInitialRoutes(["/posts/clone/123"]);
 
 // visible-block-start
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 const PostCreatePage: React.FC = () => {
     const {
@@ -941,8 +941,8 @@ It is useful when you want to `invalidate` other resources don't have relation w
 
 ```tsx
 import React from "react";
-import { useInvalidate } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useInvalidate } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 
 const PostEdit = () => {
     const invalidate = useInvalidate();
@@ -970,7 +970,7 @@ For example, Let's send the values we received from the user in two separate inp
 
 ```tsx title="pages/user/create.tsx"
 import React from "react";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 import { FieldValues } from "react-hook-form";
 
 export const UserCreate: React.FC = () => {
@@ -1006,7 +1006,7 @@ export const UserCreate: React.FC = () => {
 
 ### Properties
 
-<PropsTable module="@pankod/refine-react-hook-form/useForm" />
+<PropsTable module="@refinedev/react-hook-form/useForm" />
 
 > `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-reference/core/components/refine-config.md)>** component.
 
@@ -1019,7 +1019,7 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 > For example, we can define the `refineCoreProps` property in the `useForm` hook as:
 
 ```tsx
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 const { ... } = useForm({
     ...,
@@ -1040,7 +1040,7 @@ Returns all the properties returned by [React Hook Form][react-hook-form] of the
 > For example, we can access the `refineCore` return value in the `useForm` hook as:
 
 ```tsx
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 const {
     refineCore: { queryResult, ... },

@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-ui-tests": minor
+"@refinedev/ui-tests": minor
 ---
 
 -   Buttons and CRUD tests are updated to use `resource.meta` property instead of `resource.options` property.

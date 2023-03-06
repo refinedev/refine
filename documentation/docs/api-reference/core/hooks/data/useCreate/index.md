@@ -15,7 +15,7 @@ It is useful when you want to create a new record.
 The `useCreate` hook returns many useful properties and methods. One of them is the `mutate` method which expects `values` and `resource` as parameters. These parameters will be passed to the `create` method from the `dataProvider` as parameters.
 
 ```tsx
-import { useCreate } from "@pankod/refine-core";
+import { useCreate } from "@refinedev/core";
 
 const { mutate } = useCreate();
 

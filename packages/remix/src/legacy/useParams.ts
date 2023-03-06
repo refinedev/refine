@@ -3,7 +3,7 @@ import {
     IRouterProvider,
     ResourceRouterParams,
     RouteAction,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { useParams as useRemixParams } from "@remix-run/react";
 
 const actions: RouteAction[] = ["clone", "create", "edit", "show"];

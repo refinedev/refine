@@ -25,7 +25,7 @@ Data hooks use [TanStack Query](https://tanstack.com/query) to manage data fetch
 To activate the data provider in refine, we have to pass the `dataProvider` to the `<Refine />` component.
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 import dataProvider from "./dataProvider";
 
@@ -45,11 +45,11 @@ Here is an example of using multiple data providers in your app:
 ```tsx live hideCode url=http://localhost:3000/posts previewHeight=420px
 setRefineProps({ Sider: () => null });
 // visible-block-start
-import { Refine, useList } from "@pankod/refine-core";
-import { Layout } from "@pankod/refine-antd";
+import { Refine, useList } from "@refinedev/core";
+import { Layout } from "@refinedev/antd";
 import { Collapse, Tag } from "antd";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 const FINE_FOODS_API_URL = "https://api.finefoods.refine.dev";
@@ -220,7 +220,7 @@ const App = () => {
 Data provider's methods are expected to return a Promise. So, you can use these async methods to [create a data provider][create-a-data-provider].
 
 ```tsx
-import { DataProvider } from "@pankod/refine-core";
+import { DataProvider } from "@refinedev/core";
 
 const dataProvider: DataProvider = {
     // required methods
@@ -412,7 +412,7 @@ The `getApiUrl` method returns the `apiUrl` value.
 **refine** will consume this `getApiUrl` method using the [`useApiUrl`][use-api-url] data hook.
 
 ```ts title="src/data-provider.ts"
-import { DataProvider } from "@pankod/refine-core";
+import { DataProvider } from "@refinedev/core";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
     getApiUrl: () => apiUrl,
@@ -574,7 +574,7 @@ updateMany: async ({ resource, ids, variables, meta }) => {
 Here is a basic example of how to implement error handling in your data provider.
 
 ```ts title="src/data-provider.ts"
-import { DataProvider, HttpError } from "@pankod/refine-core";
+import { DataProvider, HttpError } from "@refinedev/core";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
     getOne: async ({ resource, id }) => {
@@ -615,7 +615,7 @@ Also, Axios interceptor can be used to transform the error from the response bef
 ```ts title="src/data-provider.ts"
 // highlight-start
 import axios from "axios";
-import { DataProvider, HttpError } from "@pankod/refine-core";
+import { DataProvider, HttpError } from "@refinedev/core";
 // highlight-end
 import { stringify } from "query-string";
 
@@ -657,7 +657,7 @@ Here is an example of how to send a custom header parameter to the `getOne` meth
 -   Send a custom header parameter to the [`getOne`](#getone) method using `meta`.
 
 ```ts title="post/edit.tsx"
-import { useOne } from "@pankod/refine-core";
+import { useOne } from "@refinedev/core";
 
 useOne({
     resource: "post",
@@ -673,7 +673,7 @@ useOne({
 -   Get the `meta` parameter from the data provider.
 
 ```ts title="src/data-provider.ts"
-import { DataProvider } from "@pankod/refine-core";
+import { DataProvider } from "@refinedev/core";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
   ...
@@ -731,10 +731,10 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 
 In some cases, you may need to override the method of **refine** data providers. The simplest way to do this is to use the [Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
 
-For example, Let's override the `update` function of the [`@pankod/refine-simple-rest`](https://github.com/refinedev/refine/tree/next/packages/simple-rest). `@pankod/refine-simple-rest` uses the `PATCH` HTTP method for `update`, let's change it to `PUT` without forking the whole data provider.
+For example, Let's override the `update` function of the [`@refinedev/simple-rest`](https://github.com/refinedev/refine/tree/next/packages/simple-rest). `@refinedev/simple-rest` uses the `PATCH` HTTP method for `update`, let's change it to `PUT` without forking the whole data provider.
 
 ```tsx
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 
 const simpleRestProvider = dataProvider("API_URL");
 const myDataProvider = {

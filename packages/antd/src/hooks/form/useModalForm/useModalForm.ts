@@ -19,7 +19,7 @@ import {
     FormWithSyncWithLocationParams,
     useParsed,
     useGo,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 import React from "react";
 

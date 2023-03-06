@@ -62,7 +62,7 @@ npm create refine-app@latest refine-invoice-genarator -- -p refine-react -b v3
 superplate will quickly create our refine project according to the features we choose. Let's continue by install the [refine Strapi-v4 Data Provider](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/) that we will use later.
 
 ```bash
-npm i @pankod/refine-strapi-v4
+npm i @refinedev/strapi-v4
 ```
 
 Our refine project and installations are now ready! Let's start using it.
@@ -76,8 +76,8 @@ Our refine project and installations are now ready! Let's start using it.
 <p>
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@pankod/refine-core";
-import { AuthHelper } from "@pankod/refine-strapi-v4";
+import { AuthBindings } from "@refinedev/core";
+import { AuthHelper } from "@refinedev/strapi-v4";
 
 import { TOKEN_KEY, API_URL } from "./constants";
 
@@ -165,15 +165,15 @@ export const authProvider: AuthBindings = {
 ### Configure Refine for Strapi-v4​
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine-core";
-import { notificationProvider, Layout, LoginPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@refinedev/core";
+import { notificationProvider, Layout, LoginPage } from "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
 //highlight-start
-import { DataProvider } from "@pankod/refine-strapi-v4";
+import { DataProvider } from "@refinedev/strapi-v4";
 import { authProvider, axiosInstance } from "./authProvider";
 //highlight-end
 
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd/dist/reset.css";
 
 function App() {
     const API_URL = "Your_Strapi_Url";
@@ -275,7 +275,7 @@ import {
     EmailField,
     EditButton,
     Typography,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { ICompany } from "interfaces";
 import { API_URL } from "../../constants";
@@ -344,9 +344,9 @@ export const CompanyItem: React.FC<CompanyItemProps> = ({ item }) => {
 Let's place the `CompanyItem` component that we created above in the [refine-antd List](https://refine.dev/docs/ui-frameworks/antd/hooks/list/useSimpleList/) and display company information.
 
 ```tsx title="src/pages/company/CompanyList.tsx"
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@refinedev/core";
 //highlight-next-line
-import { useSimpleList, AntdList, List } from "@pankod/refine-antd";
+import { useSimpleList, AntdList, List } from "@refinedev/antd";
 
 //highlight-next-line
 import { CompanyItem } from "components/company";
@@ -433,7 +433,7 @@ import {
     EditButton,
     DeleteButton,
     useModalForm,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { IContact } from "interfaces";
 import { CreateContact } from "components/contacts";
@@ -534,7 +534,7 @@ Let's design the cards that will appear in our Client List.
 <p>
 
 ```tsx title="src/components/client/ClientItem.tsx"
-import { useDelete } from "@pankod/refine-core";
+import { useDelete } from "@refinedev/core";
 import {
     Card,
     TagField,
@@ -542,7 +542,7 @@ import {
     Dropdown,
     Menu,
     Icons,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { IClient } from "interfaces";
 
@@ -659,7 +659,7 @@ import {
     useSelect,
     useModalForm,
     Button,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { IContact } from "interfaces";
 import { CreateContact } from "components/contacts";
@@ -762,7 +762,7 @@ import {
     Grid,
     Select,
     useSelect,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 type EditClientProps = {
     drawerProps: DrawerProps;
@@ -825,7 +825,7 @@ export const EditClient: React.FC<EditClientProps> = ({
 Above, we created Card, Create and Edit components. Let's define and use these components we have created in our `ClientList`.
 
 ```tsx title="src/pages/client/ClientList.tsx"
-import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
+import { IResourceComponentsProps, HttpError } from "@refinedev/core";
 
 import {
     useSimpleList,
@@ -833,7 +833,7 @@ import {
     List,
     useDrawerForm,
     CreateButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { IClient } from "interfaces";
 //highlight-next-line

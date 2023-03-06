@@ -1,4 +1,4 @@
-import { fieldTagTests } from "@pankod/refine-ui-tests";
+import { fieldTagTests } from "@refinedev/ui-tests";
 
 import { TagField } from "./";
 

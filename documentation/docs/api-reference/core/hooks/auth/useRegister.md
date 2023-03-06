@@ -33,7 +33,7 @@ Normally refine provides a default register page. If you prefer to use this defa
 If we want to build a custom register page instead of the default one that comes with **refine**, `useRegister` can be used like this:
 
 ```tsx title="pages/customRegisterPage"
-import { useRegister } from "@pankod/refine-core";
+import { useRegister } from "@refinedev/core";
 
 type RegisterVariables = {
     email: string;
@@ -72,7 +72,7 @@ const { mutate: register } = useRegister<{ email: string; password: string }>();
 A custom URL can be given to mutate the function from the `useRegister` hook if you want to redirect yourself to a certain URL.
 
 ```tsx
-import { useRegister } from "@pankod/refine-core";
+import { useRegister } from "@refinedev/core";
 
 const { mutate: register } = useRegister();
 
@@ -82,7 +82,7 @@ register({ redirectPath: "/custom-url" });
 Then, you can handle this URL in your `register` method of the `authProvider`.
 
 ```tsx
-import type { AuthBindings } from "@pankod/refine-core";
+import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
     // ---
@@ -103,7 +103,7 @@ const authProvider: AuthBindings = {
 If you want to log in to the user after successful registration, you can use `useLogin` hook after `useRegister` hook `onSuccess` callback.
 
 ```tsx title="pages/customRegisterPage"
-import { useRegister, useLogin } from "@pankod/refine-core";
+import { useRegister, useLogin } from "@refinedev/core";
 
 type FormVariables = {
     email: string;
@@ -141,7 +141,7 @@ export const RegisterPage = () => {
 A custom URL can be given to mutate the function from the `useRegister` hook if you want to redirect yourself to a certain URL.
 
 ```tsx
-import { useRegister } from "@pankod/refine-core";
+import { useRegister } from "@refinedev/core";
 
 const { mutate: register } = useRegister();
 

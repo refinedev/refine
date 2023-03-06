@@ -10,7 +10,7 @@ import {
     useRouterType,
     useBack,
     useGo,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     EditButton,
@@ -83,7 +83,7 @@ export const Show: React.FC<ShowProps> = ({
         <>
             {!recordItemId && (
                 <ListButton
-                    resourceNameOrRouteName={
+                    resource={
                         routerType === "legacy"
                             ? resource?.route
                             : resource?.identifier ?? resource?.name
@@ -93,7 +93,7 @@ export const Show: React.FC<ShowProps> = ({
             {isEditButtonVisible && (
                 <EditButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={
+                    resource={
                         routerType === "legacy"
                             ? resource?.route
                             : resource?.identifier ?? resource?.name
@@ -104,7 +104,7 @@ export const Show: React.FC<ShowProps> = ({
             {isDeleteButtonVisible && (
                 <DeleteButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={
+                    resource={
                         routerType === "legacy"
                             ? resource?.route
                             : resource?.identifier ?? resource?.name
@@ -124,7 +124,7 @@ export const Show: React.FC<ShowProps> = ({
             )}
             <RefreshButton
                 {...(isLoading ? { disabled: true } : {})}
-                resourceNameOrRouteName={
+                resource={
                     routerType === "legacy"
                         ? resource?.route
                         : resource?.identifier ?? resource?.name

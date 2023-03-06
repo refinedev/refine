@@ -1,6 +1,6 @@
-import { CrudFilters, HttpError, useUpdate } from "@pankod/refine-core";
+import { CrudFilters, HttpError, useUpdate } from "@refinedev/core";
 
-import { List, useSimpleList, DateField } from "@pankod/refine-antd";
+import { List, useSimpleList, DateField } from "@refinedev/antd";
 
 import {
     Typography,

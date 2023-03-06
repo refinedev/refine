@@ -1,6 +1,6 @@
 import cn from "clsx";
 import { useRouter } from "next/router";
-import { useLogout } from "@pankod/refine-core";
+import { useLogout } from "@refinedev/core";
 
 import {
     DropdownContent,

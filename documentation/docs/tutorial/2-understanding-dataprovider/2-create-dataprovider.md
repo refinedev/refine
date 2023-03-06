@@ -31,7 +31,7 @@ npm install query-string
 For our own data provider, the first step is to create the following file.
 
 ```ts title="src/data-provider.ts"
-import { DataProvider } from "@pankod/refine-core";
+import { DataProvider } from "@refinedev/core";
 import { stringify } from "query-string";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
@@ -50,7 +50,7 @@ In a `utility` file, create an `axiosInstance` and define an `interceptor` to ha
 ```ts title="src/data-provider.ts"
 // highlight-start
 import axios from "axios";
-import { DataProvider, HttpError } from "@pankod/refine-core";
+import { DataProvider, HttpError } from "@refinedev/core";
 // highlight-end
 import { stringify } from "query-string";
 
@@ -412,7 +412,7 @@ access-control-expose-headers: X-Total-Count
 **refine** will consume this `getList` method using the `useList` or `useInfiniteList` data hook.
 
 ```ts
-import { useList } from "@pankod/refine-core";
+import { useList } from "@refinedev/core";
 
 const { data } = useList({
     resource: "posts",
@@ -468,7 +468,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 **refine** will consume this `create` method using the `useCreate` data hook.
 
 ```ts
-import { useCreate } from "@pankod/refine-core";
+import { useCreate } from "@refinedev/core";
 
 const { mutate } = useCreate();
 
@@ -517,7 +517,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 **refine** will consume this `update` method using the `useUpdate` data hook.
 
 ```ts
-import { useUpdate } from "@pankod/refine-core";
+import { useUpdate } from "@refinedev/core";
 
 const { mutate } = useUpdate();
 
@@ -567,7 +567,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 **refine** will consume this `deleteOne` method using the `useDelete` data hook.
 
 ```ts
-import { useDelete } from "@pankod/refine-core";
+import { useDelete } from "@refinedev/core";
 
 const { mutate } = useDelete();
 
@@ -608,7 +608,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 **refine** will consume this `getOne` method using the `useOne` data hook.
 
 ```ts
-import { useOne } from "@pankod/refine-core";
+import { useOne } from "@refinedev/core";
 
 const { data } = useOne({ resource: "posts", id: 1 });
 ```
@@ -622,7 +622,7 @@ const { data } = useOne({ resource: "posts", id: 1 });
 The `getApiUrl` method returns the `apiUrl` value.
 
 ```ts title="src/data-provider.ts"
-import { DataProvider } from "@pankod/refine-core";
+import { DataProvider } from "@refinedev/core";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
     // highlight-next-line
@@ -634,7 +634,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 **refine** will consume this `getApiUrl` method using the `useApiUrl` data hook.
 
 ```ts
-import { useApiUrl } from "@pankod/refine-core";
+import { useApiUrl } from "@refinedev/core";
 
 const { data } = useApiUrl();
 ```
@@ -726,7 +726,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 **refine** will consume this `custom` method using the `useCustom` data hook.
 
 ```ts
-import { useCustom, useApiUrl } from "@pankod/refine-core";
+import { useCustom, useApiUrl } from "@refinedev/core";
 
 const { data, isLoading } = useCustom({
     url: `${apiURL}/posts-unique-check`,
@@ -781,7 +781,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 **refine** will consume this `getMany` method using the `useMany` data hook.
 
 ```ts
-import { useMany } from "@pankod/refine-core";
+import { useMany } from "@refinedev/core";
 
 const { data } = useMany({ resource: "posts", ids: [1, 2] });
 ```
@@ -821,7 +821,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 **refine** will consume this `createMany` method using the `useCreateMany` data hook.
 
 ```ts
-import { useCreateMany } from "@pankod/refine-core";
+import { useCreateMany } from "@refinedev/core";
 
 const { mutate } = useCreateMany();
 
@@ -874,7 +874,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 **refine** will consume this `deleteMany` method using the `useDeleteMany` data hook.
 
 ```ts
-import { useDeleteMany } from "@pankod/refine-core";
+import { useDeleteMany } from "@refinedev/core";
 
 const { mutate } = useDeleteMany();
 
@@ -908,7 +908,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 **refine** will consume this `updateMany` method using the `useUpdateMany` data hook.
 
 ```ts
-import { useUpdateMany } from "@pankod/refine-core";
+import { useUpdateMany } from "@refinedev/core";
 
 const { mutate } = useUpdateMany();
 
@@ -932,7 +932,7 @@ The `meta` parameter can be used in all data, form, and table hooks.
 :::
 
 ```ts title="post/edit.tsx"
-import { useOne } from "@pankod/refine-core";
+import { useOne } from "@refinedev/core";
 
 useOne({
     resource: "post",
@@ -948,7 +948,7 @@ useOne({
 Now let's get the `meta` parameter from the data provider.
 
 ```ts title="src/data-provider.ts"
-import { DataProvider } from "@pankod/refine-core";
+import { DataProvider } from "@refinedev/core";
 
 export const dataProvider = (apiUrl: string): DataProvider => ({
     // ...

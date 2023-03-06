@@ -21,7 +21,7 @@ import {
     List,
     // highlight-next-line
     TextFieldComponent as TextField,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 const columns: GridColumns = [
@@ -71,7 +71,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/TextField" />
+<PropsTable module="@refinedev/mui/TextField" />
 
 :::tip External Props
 It also accepts all props of Material UI [Typography](https://mui.com/material-ui/react-typography/#main-content).

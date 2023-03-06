@@ -3,14 +3,14 @@ import { Route, Routes } from "react-router-dom";
 import {
     RefineCreateButtonProps,
     RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 
 import { act, render, TestWrapper, fireEvent, waitFor } from "@test";
 
 export const buttonCreateTests = function (
     CreateButton: React.ComponentType<RefineCreateButtonProps<any, any>>,
 ): void {
-    describe("[@pankod/refine-ui-tests] Common Tests / Create Button", () => {
+    describe("[@refinedev/ui-tests] Common Tests / Create Button", () => {
         beforeAll(() => {
             jest.spyOn(console, "warn").mockImplementation(jest.fn());
         });

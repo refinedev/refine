@@ -186,7 +186,7 @@ Let's now work on the `can` method. We can see from the type definition that `re
 
 ```tsx title="src/providers/accessControlProvider.ts" 
 import { newEnforcer } from "casbin";
-import { CanParams, CanReturnType } from "@pankod/refine-core";
+import { CanParams, CanReturnType } from "@refinedev/core";
 import { adapter, model } from "../casbin/accessControl";
 import { supabaseClient } from "utility";
 
@@ -237,7 +237,7 @@ And if we refresh at `/canvases`, we can see that the `Delete` button on each ro
 
 This is because now our policy for `editor` has taken effect.
 
-The `Delete` button gets disabled because `@pankod/refine-antd`'s special buttons like the `<DeleteButton />` are enabled or disabled based on the result of access control enforcement. Our `editor` policies do not allow a `delete` action on `canvases` resource, so the `Delete` button is disabled.
+The `Delete` button gets disabled because `@refinedev/antd`'s special buttons like the `<DeleteButton />` are enabled or disabled based on the result of access control enforcement. Our `editor` policies do not allow a `delete` action on `canvases` resource, so the `Delete` button is disabled.
 
 Visit [this section](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/#buttons) of the [`accessControlProvider` API reference](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/) for the complete list of buttons that check for and depend on user authorization state in **refine**.
 
@@ -248,7 +248,7 @@ So, let's look how to get the roles from our **Supabase** database next.
 
 ## User Permissions with Supabase in Refine
 
-In **refine**, user roles are fetched by `authProvider`'s `getPermissions()` method. It is already defined for us by `@pankod/refine-supabase`. Right now, it looks like this:
+In **refine**, user roles are fetched by `authProvider`'s `getPermissions()` method. It is already defined for us by `@refinedev/supabase`. Right now, it looks like this:
 
 ```tsx title="src/providers/authProvider.ts"
 getPermissions: async () => {
@@ -379,9 +379,9 @@ But, wait! We haven't used the `useCan()` hook or the `<CanAccess />` component 
 
 ## Low Level Inspection
 
-If we dig into the `@pankod/refine-antd` package for the `<DeleteButton />` component, we can see that `useCan()` hook is used to decide the authorization status:
+If we dig into the `@refinedev/antd` package for the `<DeleteButton />` component, we can see that `useCan()` hook is used to decide the authorization status:
 
-```tsx title="node_modules/@pankod/refine-antd/src/components/buttons/delete/index.ts"
+```tsx title="node_modules/@refinedev/antd/src/components/buttons/delete/index.ts"
 export const DeleteButton: React.FC<DeleteButtonProps> = ({
 	...
 }) => {

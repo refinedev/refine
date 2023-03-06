@@ -11,7 +11,7 @@ import {
     RefineFieldTagProps,
     RefineFieldTextProps,
     RefineFieldUrlProps,
-} from "@pankod/refine-ui-types";
+} from "@refinedev/ui-types";
 import { ImageProps, TagProps } from "antd";
 import { AbstractTooltipProps } from "antd/lib/tooltip";
 import { TextProps } from "antd/lib/typography/Text";

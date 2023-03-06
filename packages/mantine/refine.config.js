@@ -1,6 +1,6 @@
-const { getImports } = require("@pankod/refine-cli");
+const { getImports } = require("@refinedev/cli");
 
-/** @type {import('@pankod/refine-cli').RefineConfig} */
+/** @type {import('@refinedev/cli').RefineConfig} */
 module.exports = {
     group: "UI Framework",
     swizzle: {
@@ -502,7 +502,7 @@ module.exports = {
                             imports.map((importItem) => {
                                 // handle @components import replacement
                                 if (importItem.importPath === "@components") {
-                                    const newStatement = `import ${importItem.namedImports} from "@pankod/refine-mantine";`;
+                                    const newStatement = `import ${importItem.namedImports} from "@refinedev/mantine";`;
 
                                     newContent = newContent.replace(
                                         importItem.statement,
@@ -589,7 +589,7 @@ module.exports = {
             imports.map((importItem) => {
                 // for refine-mantine imports
                 if (importItem.importPath === "@components") {
-                    const newStatement = `import ${importItem.namedImports} from "@pankod/refine-mantine";`;
+                    const newStatement = `import ${importItem.namedImports} from "@refinedev/mantine";`;
 
                     newContent = newContent.replace(
                         importItem.statement,
@@ -620,7 +620,7 @@ module.exports = {
                 }
 
                 // for ui-types
-                if (importItem.importPath === "@pankod/refine-ui-types") {
+                if (importItem.importPath === "@refinedev/ui-types") {
                     newContent = newContent.replace(importItem.statement, "");
 
                     // prop is data-testid
@@ -635,7 +635,7 @@ module.exports = {
                     importItem.importPath === "../types" ||
                     importItem.importPath === "./types"
                 ) {
-                    const newStatement = `import type ${importItem.namedImports} from "@pankod/refine-mantine";`;
+                    const newStatement = `import type ${importItem.namedImports} from "@refinedev/mantine";`;
 
                     newContent = newContent.replace(
                         importItem.statement,
@@ -645,7 +645,7 @@ module.exports = {
 
                 // for buttons definition function
                 if (importItem.importPath === "@definitions/button") {
-                    const newStatement = `import ${importItem.namedImports} from "@pankod/refine-mantine";`;
+                    const newStatement = `import ${importItem.namedImports} from "@refinedev/mantine";`;
 
                     newContent = newContent.replace(
                         importItem.statement,
@@ -655,7 +655,7 @@ module.exports = {
 
                 // for change the import path of the FormContext component
                 if (importItem.importPath === "@contexts/form-context") {
-                    const newStatement = `import { FormContext } from "@pankod/refine-mantine";`;
+                    const newStatement = `import { FormContext } from "@refinedev/mantine";`;
 
                     newContent = newContent.replace(
                         importItem.statement,

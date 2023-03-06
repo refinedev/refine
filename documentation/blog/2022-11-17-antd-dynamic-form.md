@@ -177,16 +177,16 @@ import PostEdit from "pages/PostEdit";
 Then, create a `resources` prop on the `<Refine>` component and add the pages imports as the `create`, `list`, and `edit` property's values, respectively:
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
     ReadyPage,
     ErrorComponent,
-} from "@pankod/refine-antd";
-import "@pankod/refine-antd/dist/reset.css";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+} from "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import PostCreate from "pages/PostCreate";
 import PostList from "pages/PostList";
 import PostEdit from "pages/PostEdit";
@@ -231,7 +231,7 @@ Moving on, navigate to the `PostList.tsx` file and add the following code:
 
 ```tsx title="src/pages/PostList.tsx"
 import React from "react";
-import { List, Table, useTable, Space, EditButton } from "@pankod/refine-antd";
+import { List, Table, useTable, Space, EditButton } from "@refinedev/antd";
 
 interface IFormValue {
     name: string;
@@ -294,7 +294,7 @@ As you can see, the create button routes us to the `Create` page when clicked. R
 
 Ant design also provides a form component that ships with various functionalities such as data collection, styling, and data scope management out of the box. The component streamlines the process of quickly building a form in React.
 
-To create the form, first, navigate to the `PostCreate.tsx` file and import the `Create`, `Form`, `Button`, `Input`, `Icons`, `Space`, and `useForm` components and hook from `@pankod/refine-antd`:
+To create the form, first, navigate to the `PostCreate.tsx` file and import the `Create`, `Form`, `Button`, `Input`, `Icons`, `Space`, and `useForm` components and hook from `@refinedev/antd`:
 
 ```tsx title="src/pages/PostCreate.tsx"
 import {
@@ -305,7 +305,7 @@ import {
     Space,
     Icons,
     useForm,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 ```
 
 These are all the UI components and hooks we'll use for the entirety of the **PostCreate** page setup.
@@ -322,7 +322,7 @@ import {
     Space,
     Icons,
     useForm,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 interface IFormValue {
     name: string;
@@ -900,7 +900,7 @@ To do this, go back to the `<PostList>` file, import the `<EditButton>` componen
 
 ```tsx title="src/pages/PostList.tsx"
 import React from "react";
-import { List, Table, useTable, Space, EditButton } from "@pankod/refine-antd";
+import { List, Table, useTable, Space, EditButton } from "@refinedev/antd";
 
 interface IFormValue {
     name: string;
@@ -971,7 +971,7 @@ import {
     Icons,
     Button,
     Space,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 interface IFormValue {
     name: string;

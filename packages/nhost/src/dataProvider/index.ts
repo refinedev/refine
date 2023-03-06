@@ -7,7 +7,7 @@ import {
     DataProvider,
     HttpError,
     CrudFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import setWith from "lodash/setWith";
 import set from "lodash/set";
 
@@ -516,7 +516,7 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
         },
 
         custom: () => {
-            throw Error("useCustom is not implemented in @pankod/refine-nhost");
+            throw Error("useCustom is not implemented in @refinedev/nhost");
         },
     };
 };

@@ -2,7 +2,7 @@ import {
     IResourceComponentsProps,
     useMany,
     useTranslate,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     List,
@@ -10,7 +10,7 @@ import {
     useTable,
     EditButton,
     ShowButton,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { Table, Space } from "antd";
 

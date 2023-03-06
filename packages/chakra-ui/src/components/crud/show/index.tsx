@@ -9,7 +9,7 @@ import {
     useRouterType,
     useBack,
     useGo,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { Box, IconButton, HStack, Heading, Spinner } from "@chakra-ui/react";
 
 // We use @tabler/icons for icons but you can use any icon library you want.
@@ -81,7 +81,7 @@ export const Show: React.FC<ShowProps> = (props) => {
             {!recordItemId && (
                 <ListButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={
+                    resource={
                         routerType === "legacy"
                             ? resource?.route
                             : resource?.identifier ?? resource?.name
@@ -91,7 +91,7 @@ export const Show: React.FC<ShowProps> = (props) => {
             {isEditButtonVisible && (
                 <EditButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={
+                    resource={
                         routerType === "legacy"
                             ? resource?.route
                             : resource?.identifier ?? resource?.name
@@ -102,7 +102,7 @@ export const Show: React.FC<ShowProps> = (props) => {
             {isDeleteButtonVisible && (
                 <DeleteButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={
+                    resource={
                         routerType === "legacy"
                             ? resource?.route
                             : resource?.identifier ?? resource?.name
@@ -122,7 +122,7 @@ export const Show: React.FC<ShowProps> = (props) => {
             )}
             <RefreshButton
                 {...(isLoading ? { disabled: true } : {})}
-                resourceNameOrRouteName={
+                resource={
                     routerType === "legacy"
                         ? resource?.route
                         : resource?.identifier ?? resource?.name

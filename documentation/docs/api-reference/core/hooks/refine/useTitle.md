@@ -10,9 +10,9 @@ title: useTitle
 Normally refine provides a default title. If we want to build a custom title instead of default one that comes with **refine**, we need to overwrite it like this:
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 import "@pankod/refine/dist/styles.min.css";
 
@@ -43,7 +43,7 @@ Now `useTitle` will provides us to access to the `<Title>` component from variou
 
 ```tsx title="src/components/customSider"
 // highlight-next-line
-import { useTitle } from "@pankod/refine-core";
+import { useTitle } from "@refinedev/core";
 import { Layout } from "antd";
 
 export const CustomSider: React.FC = () => {

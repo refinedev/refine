@@ -1,4 +1,4 @@
-import { MetaQuery, BaseKey } from "@pankod/refine-core";
+import { MetaQuery, BaseKey } from "@refinedev/core";
 import * as gql from "gql-query-builder";
 
 type GenereteUseManySubscriptionParams = {

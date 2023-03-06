@@ -7,8 +7,8 @@ import {
     useRouterContext,
     useRouterType,
     useLink,
-} from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 import { Button } from "@mui/material";
 import { AddBoxOutlined } from "@mui/icons-material";
 
@@ -23,6 +23,7 @@ import { CloneButtonProps } from "../types";
  *
  */
 export const CloneButton: React.FC<CloneButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName,
     recordItemId,
     hideText = false,
@@ -44,7 +45,9 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
 
     const translate = useTranslate();
 
-    const { id, resource } = useResource(resourceNameOrRouteName);
+    const { id, resource } = useResource(
+        resourceNameFromProps ?? resourceNameOrRouteName,
+    );
 
     const { data } = useCan({
         resource: resource?.name,
@@ -66,12 +69,8 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     };
 
     const cloneUrl =
-        (resource || resourceNameOrRouteName) && (recordItemId || id)
-            ? generateCloneUrl(
-                  resource! ?? resourceNameOrRouteName!,
-                  recordItemId! ?? id!,
-                  meta,
-              )
+        resource && (recordItemId || id)
+            ? generateCloneUrl(resource, recordItemId! ?? id!, meta)
             : "";
 
     const { sx, ...restProps } = rest;

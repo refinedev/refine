@@ -9,7 +9,7 @@ import {
     userFriendlyResourceName,
     useRouterType,
     useGo,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     useRegisterActions,
     createAction,
@@ -19,7 +19,7 @@ import {
 } from "kbar";
 
 import { capitalize } from "@definitions";
-import { useGetToPath } from "@pankod/refine-core";
+import { useGetToPath } from "@refinedev/core";
 
 enum RefineKbarActionType {
     List = "list",

@@ -8,7 +8,7 @@ title: useNavigation
 Internally, it uses the `useHistory` of the [`routerProvider`][routerprovider].
 
 ```tsx
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 
 const {
     list,
@@ -34,7 +34,7 @@ const {
 It is a method that navigates to the list page of the given resource.
 
 ```tsx
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 
 const { list } = useNavigation();
 
@@ -48,7 +48,7 @@ You can also give a `type` property as a second parameter to the `list` method.
 It is a method that navigates to the create page of the given resource.
 
 ```tsx
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 
 const { create } = useNavigation();
 
@@ -62,7 +62,7 @@ You can also give a `type` property as a second parameter to the `create` method
 It is a method that navigates to the edit page of the given resource and id. When you use this method, you need to give the `id` of the record you want to edit.
 
 ```tsx
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 
 const { edit } = useNavigation();
 
@@ -76,7 +76,7 @@ You can also give a `type` property as a third parameter to the `edit` method.
 It is a method that navigates to the show page of the given resource and id. When you use this method, you need to give the `id` of the record you want to show.
 
 ```tsx
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 
 const { show } = useNavigation();
 
@@ -90,7 +90,7 @@ You can also give a `type` property as a third parameter to the `show` method.
 It is a method that navigates to the clone page of the given resource and id. When you use this method, you need to give the `id` of the record you want to clone.
 
 ```tsx
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 
 const { clone } = useNavigation();
 
@@ -104,7 +104,7 @@ You can also give a `type` property as a third parameter to the `clone` method.
 It is a method that pushes a new entry onto the history stack. It uses the `push` method of the `useHistory` from the [`routerProvider`][routerprovider].
 
 ```tsx
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 
 const { push } = useNavigation();
 
@@ -118,7 +118,7 @@ push("custom-page"); // It navigates to the `/custom-page` page
 It is a method that replaces the current entry on the history stack. It uses the `replace` method of the `useHistory` from the [`routerProvider`][routerprovider].
 
 ```tsx
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 
 const { replace } = useNavigation();
 
@@ -132,7 +132,7 @@ replace("custom-page"); // It navigates to the `/custom-page` page
 It is a method that navigates to the previous page. It uses the `goBack` method of the `useHistory` from the [`routerProvider`][routerprovider].
 
 ```tsx
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 
 const { goBack } = useNavigation();
 
@@ -146,7 +146,7 @@ goBack(); // It navigates to the previous page
 It is a method that returns the list page URL of the given resource.
 
 ```tsx
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 
 const { listUrl } = useNavigation();
 
@@ -158,7 +158,7 @@ listUrl("posts"); // It returns the `/posts` URL
 It is a method that returns the create page URL of the given resource.
 
 ```tsx
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 
 const { createUrl } = useNavigation();
 
@@ -170,7 +170,7 @@ createUrl("posts"); // It returns the `/posts/create` URL
 It is a method that returns the edit page URL of the given resource and id.
 
 ```tsx
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 
 const { editUrl } = useNavigation();
 
@@ -182,7 +182,7 @@ editUrl("posts", "1"); // It returns the `/posts/edit/1` URL
 It is a method that returns the show page URL of the given resource and id.
 
 ```tsx
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 
 const { showUrl } = useNavigation();
 
@@ -194,7 +194,7 @@ showUrl("posts", "1"); // It returns the `/posts/show/1` URL
 It is a method that returns the clone page URL of the given resource and id.
 
 ```tsx
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation } from "@refinedev/core";
 
 const { cloneUrl } = useNavigation();
 

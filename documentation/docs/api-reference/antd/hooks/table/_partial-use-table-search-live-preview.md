@@ -9,7 +9,7 @@ body {
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
+import { IResourceComponentsProps, HttpError } from "@refinedev/core";
 
 import {
     List,
@@ -18,7 +18,7 @@ import {
     // highlight-start
     SaveButton,
     // highlight-end
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import {
     Table,
     // highlight-start

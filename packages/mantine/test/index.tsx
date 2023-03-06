@@ -10,7 +10,7 @@ import {
     NotificationProvider,
     IResourceItem,
     AuthBindings,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";
 

@@ -9,8 +9,8 @@ import {
     useRouterContext,
     useRouterType,
     useLink,
-} from "@pankod/refine-core";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+} from "@refinedev/core";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 
 import { ShowButtonProps } from "../types";
 
@@ -22,6 +22,7 @@ import { ShowButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/show-button} for more details.
  */
 export const ShowButton: React.FC<ShowButtonProps> = ({
+    resource: resourceNameFromProps,
     resourceNameOrRouteName: propResourceNameOrRouteName,
     recordItemId,
     hideText = false,
@@ -42,7 +43,9 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
 
     const translate = useTranslate();
 
-    const { id, resource } = useResource(propResourceNameOrRouteName);
+    const { id, resource } = useResource(
+        resourceNameFromProps ?? propResourceNameOrRouteName,
+    );
 
     const { data } = useCan({
         resource: resource?.name,
@@ -64,12 +67,8 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     };
 
     const showUrl =
-        (resource || propResourceNameOrRouteName) && (recordItemId || id)
-            ? generateShowUrl(
-                  resource! || propResourceNameOrRouteName!,
-                  recordItemId! ?? id!,
-                  meta,
-              )
+        resource && (recordItemId || id)
+            ? generateShowUrl(resource, recordItemId! ?? id!, meta)
             : "";
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {

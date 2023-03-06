@@ -1,15 +1,15 @@
-import { Refine } from "@pankod/refine-core";
-import { KBarProvider } from "@pankod/refine-kbar";
+import { Refine } from "@refinedev/core";
+import { KBarProvider } from "@refinedev/kbar";
 import {
     ErrorComponent,
     ReadyPage,
     notificationProvider,
     Layout,
     RefineSnackbarProvider,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 import { GlobalStyles, CssBaseline } from "@mui/material";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import { useTranslation } from "react-i18next";
 import {
     AddShoppingCartOutlined,

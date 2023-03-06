@@ -1,12 +1,12 @@
 import { json, LoaderFunction } from "@remix-run/node";
-import { parseTableParams } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { parseTableParams } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 import {
     RemixRouteComponent,
     handleRefineParams,
     checkAuthentication,
-} from "@pankod/refine-remix-router/legacy";
+} from "@refinedev/remix-router/legacy";
 
 import { authProvider } from "~/authProvider";
 

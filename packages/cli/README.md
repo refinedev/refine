@@ -18,5 +18,5 @@
 ## Install
 
 ```
-npm install @pankod/refine-cli
+npm install @refinedev/cli
 ```

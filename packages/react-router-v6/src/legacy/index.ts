@@ -1,5 +1,5 @@
 import React from "react";
-import { handleUseParams, IRouterProvider } from "@pankod/refine-core";
+import { handleUseParams, IRouterProvider } from "@refinedev/core";
 import {
     useLocation,
     useParams,

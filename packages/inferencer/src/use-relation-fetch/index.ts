@@ -1,5 +1,5 @@
 import React from "react";
-import { useDataProvider } from "@pankod/refine-core";
+import { useDataProvider } from "@refinedev/core";
 
 import {
     dataProviderFromResource,
@@ -31,7 +31,7 @@ export const useRelationFetch = ({
     const resolver = React.useCallback(
         async (allFields: (InferField | false | null)[]) => {
             console.groupCollapsed(
-                "@pankod/refine-inferencer is trying to detect relations",
+                "@refinedev/inferencer is trying to detect relations",
             );
             const attempts: Array<ResourceInferenceAttempt> = [];
             setLoading(true);

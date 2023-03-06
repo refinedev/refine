@@ -17,10 +17,10 @@ An example use in a custom page may look like this:
 
 ```tsx title="App.tsx"
 // highlight-next-line
-import { Refine, Authenticated, LayoutWrapper } from "@pankod/refine-core";
+import { Refine, Authenticated, LayoutWrapper } from "@refinedev/core";
 
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList } from "pages/posts";
@@ -69,7 +69,7 @@ In this example, we hide the left sider only for this page. The rest should look
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/LayoutWrapper"/>
+<PropsTable module="@refinedev/core/LayoutWrapper"/>
 
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine][refine]>** component.
 

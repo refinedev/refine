@@ -1,4 +1,4 @@
-import { Edit, useForm } from "@pankod/refine-antd";
+import { Edit, useForm } from "@refinedev/antd";
 
 import { Form, Input } from "antd";
 

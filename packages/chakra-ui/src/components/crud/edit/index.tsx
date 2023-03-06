@@ -11,7 +11,7 @@ import {
     useResource,
     useGo,
     useToPath,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { Box, Heading, HStack, IconButton, Spinner } from "@chakra-ui/react";
 
@@ -88,7 +88,7 @@ export const Edit: React.FC<EditProps> = (props) => {
             {!recordItemId && (
                 <ListButton
                     {...(isLoading ? { disabled: true } : {})}
-                    resourceNameOrRouteName={
+                    resource={
                         routerType === "legacy"
                             ? resource?.route
                             : resource?.identifier ?? resource?.name
@@ -97,7 +97,7 @@ export const Edit: React.FC<EditProps> = (props) => {
             )}
             <RefreshButton
                 {...(isLoading ? { disabled: true } : {})}
-                resourceNameOrRouteName={
+                resource={
                     routerType === "legacy"
                         ? resource?.route
                         : resource?.identifier ?? resource?.name
@@ -113,6 +113,11 @@ export const Edit: React.FC<EditProps> = (props) => {
             {isDeleteButtonVisible && (
                 <DeleteButton
                     {...(isLoading ? { disabled: true } : {})}
+                    resource={
+                        routerType === "legacy"
+                            ? resource?.route
+                            : resource?.identifier ?? resource?.name
+                    }
                     mutationMode={mutationMode}
                     onSuccess={() => {
                         if (routerType === "legacy") {

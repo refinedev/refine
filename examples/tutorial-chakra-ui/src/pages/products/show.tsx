@@ -1,11 +1,11 @@
-import { useShow, useOne } from "@pankod/refine-core";
+import { useShow, useOne } from "@refinedev/core";
 import {
     Show,
     NumberField,
     TagField,
     TextField,
     MarkdownField,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 
 import { Heading, HStack } from "@chakra-ui/react";
 

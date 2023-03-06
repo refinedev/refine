@@ -1,4 +1,4 @@
-import { useSelect } from "@pankod/refine-antd";
+import { useSelect } from "@refinedev/antd";
 
 import { Form, Modal, Input, ModalProps, FormProps, Select } from "antd";
 

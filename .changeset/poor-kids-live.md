@@ -1,8 +1,8 @@
 ---
-"@pankod/refine-mui": major
+"@refinedev/mui": major
 ---
 
-All **Material UI** components re-exported from `@pankod/refine-mui` have been removed. You should import them from Material UI packages directly.
+All **Material UI** components re-exported from `@refinedev/mui` have been removed. You should import them from Material UI packages directly.
 
 If the packages are not installed, you can install them with your package manager:
 
@@ -27,7 +27,7 @@ After that, you can import them from related packages directly.
 -    ThemeProvider,
 -    DataGrid
 -    LoadingButton,
-- } from "@pankod/refine-mui";
+- } from "@refinedev/mui";
 
 + import { NumberField } from "@refinedev/mui";
 + import { ThemeProvider } from "@mui/material/styles";

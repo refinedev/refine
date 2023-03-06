@@ -1,4 +1,4 @@
-import { List, useTable, ShowButton, EditButton } from "@pankod/refine-antd";
+import { List, useTable, ShowButton, EditButton } from "@refinedev/antd";
 
 import { Table, Space } from "antd";
 

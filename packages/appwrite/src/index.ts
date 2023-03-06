@@ -5,7 +5,7 @@ import {
     CrudFilters,
     CrudSorting,
     CrudFilter,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     Client as Appwrite,
     Query,

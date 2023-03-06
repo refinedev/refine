@@ -1,4 +1,4 @@
-import { useMany } from "@pankod/refine-core";
+import { useMany } from "@refinedev/core";
 
 import {
     List,
@@ -10,9 +10,9 @@ import {
     getDefaultFilter,
     useTable,
     useSelect,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table, Space, Select, Radio } from "antd";
-import { LogButton } from "@pankod/refine-antd-audit-log";
+import { LogButton } from "@refinedev/antd-audit-log";
 
 import { IPost, ICategory } from "interfaces";
 

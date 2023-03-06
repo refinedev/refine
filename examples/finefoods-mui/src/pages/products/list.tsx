@@ -5,9 +5,9 @@ import {
     useTable,
     getDefaultFilter,
     HttpError,
-} from "@pankod/refine-core";
-import { useModalForm } from "@pankod/refine-react-hook-form";
-import { CreateButton } from "@pankod/refine-mui";
+} from "@refinedev/core";
+import { useModalForm } from "@refinedev/react-hook-form";
+import { CreateButton } from "@refinedev/mui";
 import {
     Grid,
     Paper,

@@ -140,17 +140,17 @@ const IconUsers = () => (
 );
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 //highlight-next-line
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
     LightTheme,
     Layout,
     // highlight-next-line
     Sider,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import {
     MantineProvider,
@@ -271,7 +271,7 @@ import {
     useRouterContext,
     useTitle,
     useTranslate,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     ActionIcon,
     Box,
@@ -287,7 +287,7 @@ import {
     TooltipProps,
     Styles,
     Title as DefaultTitle,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 import {
     IconList,
     IconMenu2,
@@ -296,7 +296,7 @@ import {
     IconLogout,
     IconDashboard,
 } from "@tabler/icons";
-import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
+import { RefineLayoutSiderProps } from "@refinedev/ui-types";
 
 const defaultNavIcon = <IconList size={18} />;
 
@@ -577,8 +577,8 @@ import {
     useRouterContext,
     useTitle,
     useTranslate,
-} from "@pankod/refine-core";
-import { RefineTitle as DefaultTitle } from "@pankod/refine-mantine";
+} from "@refinedev/core";
+import { RefineTitle as DefaultTitle } from "@refinedev/mantine";
 import {
     Code,
     Text,
@@ -1035,14 +1035,14 @@ const CustomSider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
 };
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
     LightTheme,
     Layout,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import { IconCategory, IconUsers } from "@tabler/icons";

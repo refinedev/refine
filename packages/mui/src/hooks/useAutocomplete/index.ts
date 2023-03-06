@@ -4,7 +4,7 @@ import {
     UseSelectProps,
     UseSelectReturnType,
     BaseRecord,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import { AutocompleteProps } from "@mui/material/Autocomplete";
 import isEqual from "lodash/isEqual";
 import unionWith from "lodash/unionWith";

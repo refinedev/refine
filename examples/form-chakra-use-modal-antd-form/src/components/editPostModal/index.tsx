@@ -1,4 +1,4 @@
-import { Edit } from "@pankod/refine-chakra-ui";
+import { Edit } from "@refinedev/chakra-ui";
 
 import {
     Modal,
@@ -14,8 +14,8 @@ import {
     Select,
 } from "@chakra-ui/react";
 
-import { useSelect } from "@pankod/refine-core";
-import { UseModalFormReturnType } from "@pankod/refine-react-hook-form";
+import { useSelect } from "@refinedev/core";
+import { UseModalFormReturnType } from "@refinedev/react-hook-form";
 
 import { ICategory } from "../../interfaces";
 

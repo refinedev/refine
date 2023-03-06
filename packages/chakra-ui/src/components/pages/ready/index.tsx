@@ -1,5 +1,5 @@
 import * as React from "react";
-import { RefineReadyPageProps } from "@pankod/refine-ui-types";
+import { RefineReadyPageProps } from "@refinedev/ui-types";
 import {
     Box,
     Code,

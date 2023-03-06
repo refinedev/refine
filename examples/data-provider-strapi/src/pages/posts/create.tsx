@@ -1,7 +1,7 @@
 import React from "react";
-import { IResourceComponentsProps, useApiUrl } from "@pankod/refine-core";
+import { IResourceComponentsProps, useApiUrl } from "@refinedev/core";
 
-import { Create, useForm, useSelect } from "@pankod/refine-antd";
+import { Create, useForm, useSelect } from "@refinedev/antd";
 
 import { Form, Input, Select, Upload } from "antd";
 
@@ -11,7 +11,7 @@ import {
     useStrapiUpload,
     mediaUploadMapper,
     getValueProps,
-} from "@pankod/refine-strapi";
+} from "@refinedev/strapi";
 
 import { TOKEN_KEY } from "../../constants";
 

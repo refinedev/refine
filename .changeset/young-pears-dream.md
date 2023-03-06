@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-antd": minor
+"@refinedev/antd": minor
 ---
 
 ## `useTable` hook

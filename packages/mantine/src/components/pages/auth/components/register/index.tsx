@@ -3,14 +3,14 @@ import {
     RegisterPageProps,
     RegisterFormTypes,
     useActiveAuthProvider,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     useTranslate,
     useRouterContext,
     useRouterType,
     useLink,
     useRegister,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     Box,
     Card,

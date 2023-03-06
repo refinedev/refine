@@ -1,5 +1,5 @@
 import React from "react";
-import { fieldBooleanTests } from "@pankod/refine-ui-tests";
+import { fieldBooleanTests } from "@refinedev/ui-tests";
 
 import { BooleanField } from "./";
 import { fireEvent, render } from "@test";

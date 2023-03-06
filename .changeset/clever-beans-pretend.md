@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-core": major
+"@refinedev/core": major
 ---
 
 ## 🪄 Migrating your project automatically with refine-codemod ✨
@@ -163,7 +163,7 @@ are provided by **refine** to use the properties of `routerProvider` in a more c
 
 ## `warnWhenUnsavedChanges` prop
 
-In earlier versions, **refine** was handling this feature in `beforeunload` event. This was causing unintended dependencies to the `window` and was not customizable. Now, **refine** is leaving this to the router libraries. Router packages `@pankod/refine-react-router-v6`, `@pankod/refine-nextjs-router` and `@pankod/refine-remix-router` are now exporting a component `UnsavedChangesNotifier` which can be placed under the `<Refine>` component and registers a listener to the necessary events to handle the `warnWhenUnsavedChanges` feature.
+In earlier versions, **refine** was handling this feature in `beforeunload` event. This was causing unintended dependencies to the `window` and was not customizable. Now, **refine** is leaving this to the router libraries. Router packages `@refinedev/react-router-v6`, `@refinedev/nextjs-router` and `@refinedev/remix-router` are now exporting a component `UnsavedChangesNotifier` which can be placed under the `<Refine>` component and registers a listener to the necessary events to handle the `warnWhenUnsavedChanges` feature.
 
 ## Changes in `Authenticated` component.
 

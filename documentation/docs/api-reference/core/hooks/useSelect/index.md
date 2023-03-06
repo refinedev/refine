@@ -428,7 +428,7 @@ return (
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useSelect"  />
+<PropsTable module="@refinedev/core/useSelect"  />
 
 ### Return values
 

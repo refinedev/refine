@@ -432,7 +432,7 @@ return <Select options={options} />;
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/useSelect"  />
+<PropsTable module="@refinedev/antd/useSelect"  />
 
 ### Return values
 

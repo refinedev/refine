@@ -61,11 +61,11 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
-import { Show, Breadcrumb } from "@pankod/refine-chakra-ui";
+import { Show, Breadcrumb } from "@refinedev/chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
@@ -115,11 +115,11 @@ If your application has a [DashboardPage](/api-reference/core/components/refine-
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
-import { Show, Breadcrumb } from "@pankod/refine-chakra-ui";
+import { Show, Breadcrumb } from "@refinedev/chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
@@ -169,11 +169,11 @@ If you don't want to show the resource icons on the breadcrumb, you can set `hid
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-chakra-ui";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
-import { Show, Breadcrumb } from "@pankod/refine-chakra-ui";
+import { Show, Breadcrumb } from "@refinedev/chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
@@ -221,6 +221,6 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/Breadcrumb" />
+<PropsTable module="@refinedev/chakra-ui/Breadcrumb" />
 
 [chakra-ui-breadcrumb]: https://chakra-ui.com/docs/components/breadcrumb/usage

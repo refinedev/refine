@@ -22,6 +22,6 @@ For more detailed information and usage, refer to the [refine data provider docu
 ## Install
 
 ```
-npm install @pankod/refine-antd-audit-log
+npm install @refinedev/antd-audit-log
 ```
 

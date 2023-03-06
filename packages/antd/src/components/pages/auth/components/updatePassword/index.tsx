@@ -3,7 +3,7 @@ import {
     UpdatePasswordPageProps,
     UpdatePasswordFormTypes,
     useActiveAuthProvider,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     Row,
     Col,
@@ -17,7 +17,7 @@ import {
     CardProps,
     FormProps,
 } from "antd";
-import { useTranslate, useUpdatePassword } from "@pankod/refine-core";
+import { useTranslate, useUpdatePassword } from "@refinedev/core";
 
 import { layoutStyles, containerStyles, titleStyles } from "../styles";
 

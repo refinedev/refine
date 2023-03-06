@@ -1,8 +1,8 @@
 import React from "react";
 import cn from "clsx";
-import { useModalForm } from "@pankod/refine-react-hook-form";
+import { useModalForm } from "@refinedev/react-hook-form";
 import { Address, Country, Region } from "@medusajs/medusa";
-import { useDelete, useList } from "@pankod/refine-core";
+import { useDelete, useList } from "@refinedev/core";
 
 import { Trash, Edit } from "@icons";
 import { LoadingDots, Modal, Button, Input } from "@components";

@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelect } from "@pankod/refine-core";
+import { useSelect } from "@refinedev/core";
 
 export const DummyList: React.FC = () => {
     const { options } = useSelect<ICategory>({

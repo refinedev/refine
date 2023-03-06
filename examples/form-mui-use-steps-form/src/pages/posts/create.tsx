@@ -1,5 +1,5 @@
-import { HttpError } from "@pankod/refine-core";
-import { Create, useAutocomplete, SaveButton } from "@pankod/refine-mui";
+import { HttpError } from "@refinedev/core";
+import { Create, useAutocomplete, SaveButton } from "@refinedev/mui";
 import { useTheme } from "@mui/material/styles";
 
 import {
@@ -13,7 +13,7 @@ import {
     useMediaQuery,
 } from "@mui/material";
 
-import { useStepsForm } from "@pankod/refine-react-hook-form";
+import { useStepsForm } from "@refinedev/react-hook-form";
 
 import { Controller } from "react-hook-form";
 

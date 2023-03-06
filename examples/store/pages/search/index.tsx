@@ -3,8 +3,8 @@ import {
     IResourceComponentsProps,
     LayoutWrapper,
     useTable,
-} from "@pankod/refine-core";
-import { dataProvider } from "@pankod/refine-medusa";
+} from "@refinedev/core";
+import { dataProvider } from "@refinedev/medusa";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { Product, StoreCartsRes } from "@medusajs/medusa";

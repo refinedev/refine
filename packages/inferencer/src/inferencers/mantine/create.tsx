@@ -1,4 +1,4 @@
-import * as RefineMantine from "@pankod/refine-mantine";
+import * as RefineMantine from "@refinedev/mantine";
 import * as MantineCore from "@mantine/core";
 
 import { createInferencer } from "@/create-inferencer";
@@ -40,8 +40,8 @@ export const renderer = ({
     const imports: Array<
         [element: string, module: string, isDefaultImport?: boolean]
     > = [
-        ["Create", "@pankod/refine-mantine"],
-        ["useForm", "@pankod/refine-mantine"],
+        ["Create", "@refinedev/mantine"],
+        ["useForm", "@refinedev/mantine"],
     ];
     let initialValues: Record<string, any> = {};
 
@@ -53,7 +53,7 @@ export const renderer = ({
         .filter(Boolean)
         .map((field) => {
             if (field?.relation && !field.fieldable && field.resource) {
-                imports.push(["useSelect", "@pankod/refine-mantine"]);
+                imports.push(["useSelect", "@refinedev/mantine"]);
 
                 return `
                 const { selectProps: ${getVariableName(
@@ -154,7 +154,7 @@ export const renderer = ({
         if (field.type === "image") {
             return jsx`
             {/* 
-                Dropzone component is not included in "@pankod/refine-mantine" package.
+                Dropzone component is not included in "@refinedev/mantine" package.
                 To use a <Dropzone> component, you can follow the official documentation for Mantine.
                 
                 Docs: https://mantine.dev/others/dropzone/
@@ -196,7 +196,7 @@ export const renderer = ({
 
             return `
                 {/* 
-                    DatePicker component is not included in "@pankod/refine-mantine" package.
+                    DatePicker component is not included in "@refinedev/mantine" package.
                     To use a <DatePicker> component, you can follow the official documentation for Mantine.
                     
                     Docs: https://mantine.dev/dates/date-picker/
@@ -332,7 +332,7 @@ export const renderer = ({
 export const CreateInferencer: InferencerResultComponent = createInferencer({
     type: "create",
     additionalScope: [
-        ["@pankod/refine-mantine", "RefineMantine", RefineMantine],
+        ["@refinedev/mantine", "RefineMantine", RefineMantine],
         ["@mantine/core", "MantineCore", MantineCore],
     ],
     codeViewerComponent: CodeViewerComponent,

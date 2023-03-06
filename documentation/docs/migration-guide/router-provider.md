@@ -26,21 +26,21 @@ We've created documents for each router we provide bindings for. You can check t
 
 ### React Router v6
 
-If you are using `react-router-dom` and `@pankod/refine-react-router-v6`, you will need to generate your routes using `Routes`, `Route`, `Outlet` and similar components, and then wrap the `<Refine>` component with your chosen router (e.g. `<BrowserRouter>`). Afterwards, you may pass the routerProvider to the `<Refine>` component from `@pankod/refine-react-router-v6`, and specify the paths for your resource actions in the `resources` array. Our documentation provides detailed instructions on how to create routes, associate them with your resources, and includes examples for reference.
+If you are using `react-router-dom` and `@refinedev/react-router-v6`, you will need to generate your routes using `Routes`, `Route`, `Outlet` and similar components, and then wrap the `<Refine>` component with your chosen router (e.g. `<BrowserRouter>`). Afterwards, you may pass the routerProvider to the `<Refine>` component from `@refinedev/react-router-v6`, and specify the paths for your resource actions in the `resources` array. Our documentation provides detailed instructions on how to create routes, associate them with your resources, and includes examples for reference.
 
-[Check out the documentation for `@pankod/refine-react-router-v6`](#)
+[Check out the documentation for `@refinedev/react-router-v6`](#)
 [Check out the documentation for `react-router-dom`](https://reactrouter.com)
 
 ### Next.js
 
-If you are using Next.js, you will need to create your routes using the file system-based routing method as you would normally do in Next.js. Afterwards, you can pass the `routerProvider` from `@pankod/refine-nextjs-router` to the `<Refine>` component, and specify the paths for your resource actions in the resources array. Our documentation provides step-by-step instructions on how to create routes and associate them with your resources, complete with examples for your reference.
+If you are using Next.js, you will need to create your routes using the file system-based routing method as you would normally do in Next.js. Afterwards, you can pass the `routerProvider` from `@refinedev/nextjs-router` to the `<Refine>` component, and specify the paths for your resource actions in the resources array. Our documentation provides step-by-step instructions on how to create routes and associate them with your resources, complete with examples for your reference.
 
-[Check out the documentation for `@pankod/refine-nextjs-router`](#)
+[Check out the documentation for `@refinedev/nextjs-router`](#)
 [Check out the documentation for `Next.js`](https://nextjs.org/docs/getting-started)
 
 ### Remix
 
-If you are using Remix, you will need to create your routes using the file system-based routing method as you would normally do in Remix. Afterwards, you can pass the `routerProvider` from `@pankod/refine-remix-router` to the `<Refine>` component, and specify the paths for your resource actions in the `resources` array. Our documentation provides comprehensive instructions on how to create routes and associate them with your resources, along with examples to guide you through the process.
+If you are using Remix, you will need to create your routes using the file system-based routing method as you would normally do in Remix. Afterwards, you can pass the `routerProvider` from `@refinedev/remix-router` to the `<Refine>` component, and specify the paths for your resource actions in the `resources` array. Our documentation provides comprehensive instructions on how to create routes and associate them with your resources, along with examples to guide you through the process.
 
-[Check out the documentation for `@pankod/refine-remix-router`](#)
+[Check out the documentation for `@refinedev/remix-router`](#)
 [Check out the documentation for `Remix`](https://remix.run/docs/en/main)

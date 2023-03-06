@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-mui": major
+"@refinedev/mui": major
 ---
 
 ## 🪄 Migrating your project automatically with refine-codemod ✨
@@ -16,9 +16,9 @@ And it's done. Now your project uses `refine@4.x.x`.
 
 ## 📝 Changelog
 
-Deprecated `useMenu` removed from `@pankod/refine-mui` package. Use `useMenu` from `@refinedev/core` package instead.
+Deprecated `useMenu` removed from `@refinedev/mui` package. Use `useMenu` from `@refinedev/core` package instead.
 
 ```diff
-- import { useMenu } from "@pankod/refine-mui";
+- import { useMenu } from "@refinedev/mui";
 + import { useMenu } from "@refinedev/core";
 ```

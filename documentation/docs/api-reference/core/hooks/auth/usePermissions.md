@@ -19,7 +19,7 @@ Imagine that you want to allow only users with the admin role to see the create 
 -   We have a logic in [`authProvider`](/api-reference/core/providers/auth-provider.md)'s `getPermissions` method like below.
 
 ```tsx
-import type { AuthBindings } from "@pankod/refine-core";
+import type { AuthBindings } from "@refinedev/core";
 
 const authProvider: AuthBindings = {
   ...
@@ -38,8 +38,8 @@ const authProvider: AuthBindings = {
 
 ```tsx title="pages/post/list"
 // highlight-next-line
-import { usePermissions } from "@pankod/refine-core";
-import { List } from "@pankod/refine-antd";
+import { usePermissions } from "@refinedev/core";
+import { List } from "@refinedev/antd";
 
 export const PostList: React.FC = () => {
     // highlight-next-line

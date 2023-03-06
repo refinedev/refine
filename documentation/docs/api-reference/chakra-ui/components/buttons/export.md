@@ -28,16 +28,16 @@ const Wrapper = ({ children }) => {
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
 //highlight-next-line
-import { useExport } from "@pankod/refine-core";
+import { useExport } from "@refinedev/core";
 import {
     List,
     //highlight-next-line
     ExportButton,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 import {
     TableContainer,
     Table,
@@ -47,7 +47,7 @@ import {
     Tbody,
     Td,
 } from "@chakra-ui/react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 const PostList: React.FC = () => {
@@ -178,10 +178,10 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { ExportButton } from "@pankod/refine-chakra-ui";
+import { ExportButton } from "@refinedev/chakra-ui";
 
 const MyExportComponent = () => {
     return <ExportButton colorScheme="black" hideText />;
@@ -212,4 +212,4 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-chakra-ui/ExportButton" />
+<PropsTable module="@refinedev/chakra-ui/ExportButton" />

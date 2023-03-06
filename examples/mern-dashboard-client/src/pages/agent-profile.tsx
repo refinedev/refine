@@ -1,4 +1,4 @@
-import { useOne } from "@pankod/refine-core";
+import { useOne } from "@refinedev/core";
 import { useParams } from "react-router-dom";
 
 import { Profile } from "components";

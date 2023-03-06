@@ -1,8 +1,8 @@
 import React from "react";
-import { HttpError, useMany } from "@pankod/refine-core";
-import { useDataGrid, List, EditButton } from "@pankod/refine-mui";
+import { HttpError, useMany } from "@refinedev/core";
+import { useDataGrid, List, EditButton } from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
-import { useModalForm } from "@pankod/refine-react-hook-form";
+import { useModalForm } from "@refinedev/react-hook-form";
 
 import { CreatePostDrawer, EditPostDrawer } from "components";
 import { ICategory, IPost } from "interfaces";

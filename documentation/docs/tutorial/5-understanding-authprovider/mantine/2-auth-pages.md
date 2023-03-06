@@ -50,9 +50,9 @@ const authProvider = {
     getIdentity: async () => null,
 };
 
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
     LightTheme,
@@ -63,7 +63,7 @@ import {
 } from ;
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
-import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
+import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
     return (
@@ -136,9 +136,9 @@ Login page is used to authenticate users. It provides a basic form to enter emai
 2. Add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
 
     ```tsx
-    import { Refine } from "@pankod/refine-core";
-    import routerProvider from "@pankod/refine-react-router-v6";
-    import dataProvider from "@pankod/refine-simple-rest";
+    import { Refine } from "@refinedev/core";
+    import routerProvider from "@refinedev/react-router-v6";
+    import dataProvider from "@refinedev/simple-rest";
     import {
         notificationProvider,
         LightTheme,
@@ -251,9 +251,9 @@ Register page is used to register new users. It provides a basic form to enter e
 1. Open `src/App.tsx` file and add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
 
     ```tsx
-    import { Refine } from "@pankod/refine-core";
-    import routerProvider from "@pankod/refine-react-router-v6";
-    import dataProvider from "@pankod/refine-simple-rest";
+    import { Refine } from "@refinedev/core";
+    import routerProvider from "@refinedev/react-router-v6";
+    import dataProvider from "@refinedev/simple-rest";
     import {
         notificationProvider,
         LightTheme,
@@ -351,9 +351,9 @@ Forgot password page is used to send a reset password link to the user's email. 
 1. Open `src/App.tsx` file and add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
 
     ```tsx
-    import { Refine } from "@pankod/refine-core";
-    import routerProvider from "@pankod/refine-react-router-v6";
-    import dataProvider from "@pankod/refine-simple-rest";
+    import { Refine } from "@refinedev/core";
+    import routerProvider from "@refinedev/react-router-v6";
+    import dataProvider from "@refinedev/simple-rest";
     import {
         notificationProvider,
         LightTheme,
@@ -456,9 +456,9 @@ Update password page is used to update the user's password. It provides a basic 
 1. Open `src/App.tsx` file and add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
 
     ```tsx
-    import { Refine } from "@pankod/refine-core";
-    import routerProvider from "@pankod/refine-react-router-v6";
-    import dataProvider from "@pankod/refine-simple-rest";
+    import { Refine } from "@refinedev/core";
+    import routerProvider from "@refinedev/react-router-v6";
+    import dataProvider from "@refinedev/simple-rest";
     import {
         notificationProvider,
         LightTheme,
@@ -573,12 +573,12 @@ Let's customize the auth pages.
     npm run refine swizzle
     ```
 
-2. Select the `@pankod/refine-mantine` package.
+2. Select the `@refinedev/mantine` package.
 
     ```bash
         ? Which package do you want to swizzle?
         UI Framework
-        ❯  @pankod/refine-mantine
+        ❯  @refinedev/mantine
     ```
 
 3. Select the `AuthPage` component.

@@ -10,7 +10,7 @@ import {
     BaseRecord,
     HttpError,
     useActiveAuthProvider,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     Box,
     Heading,
@@ -26,7 +26,7 @@ import {
     HStack,
     Checkbox,
 } from "@chakra-ui/react";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 import { FormProvider } from "react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";

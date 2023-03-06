@@ -10,7 +10,7 @@ Internally, it uses [`export-to-csv`][export-to-csv] to create the `CSV` file.
 ## Usage
 
 ```tsx title="pages/posts/list.tsx"
-import { useExport } from "@pankod/refine-core";
+import { useExport } from "@refinedev/core";
 
 interface IPost {
     id: number;

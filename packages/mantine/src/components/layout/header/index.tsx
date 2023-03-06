@@ -1,5 +1,5 @@
 import React from "react";
-import { useGetIdentity, useActiveAuthProvider } from "@pankod/refine-core";
+import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
 import { Avatar, Group, Header as MantineHeader, Title } from "@mantine/core";
 
 import { RefineLayoutHeaderProps } from "../types";

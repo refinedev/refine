@@ -28,7 +28,7 @@ Just be aware that the source code examples in this post have been updated to ve
     
 
  
-In this post, we apply **refine**'s built-in audit logging functionality to our **Pixels Admin** app and to the **Pixels** client app that we built previously in this [**refineWeek**](http://localhost:3000/week-of-refine/) series. **refine**'s audit logging system comes already baked into its data hooks and inside supplemental data provider packages, like the [`@pankod/refine-supabase`](https://www.npmjs.com/package/@pankod/refine-supabase). Today we are going to get it to work by using the `auditLogProvider` prop.
+In this post, we apply **refine**'s built-in audit logging functionality to our **Pixels Admin** app and to the **Pixels** client app that we built previously in this [**refineWeek**](http://localhost:3000/week-of-refine/) series. **refine**'s audit logging system comes already baked into its data hooks and inside supplemental data provider packages, like the [`@refinedev/supabase`](https://www.npmjs.com/package/@refinedev/supabase). Today we are going to get it to work by using the `auditLogProvider` prop.
 
 This is Day 7, and **refineWeek** is a quickfire tutorial guide that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
 
@@ -38,7 +38,7 @@ In this series, we have been exploring **refine**'s internals by building two ap
 
 We implemented CRUD actions for **Pixels** client app on [Day 3](https://refine.dev/blog/refine-pixels-3/) and for the admin app on [Day 5](https://refine.dev/blog/refine-pixels-5/). In this episode, we enable audit logging on database mutations by defining the `auditLogProvider` object and passing it to `<Refine />`.
 
-We are using **refine**'s supplemental [**Supabase**](https://supabase.com/) `@pankod/refine-supabase` package for our `dataProvider` client. The database mutation methods in **Supabase** `dataProvider` already come with audit logging mechanism implemented on them. For each successful database mutation, i.e. `create`, `update` and `delete` actions, a log event is emitted and a `params` object representing the change is made available to the `auditLogProvider.create()` method.
+We are using **refine**'s supplemental [**Supabase**](https://supabase.com/) `@refinedev/supabase` package for our `dataProvider` client. The database mutation methods in **Supabase** `dataProvider` already come with audit logging mechanism implemented on them. For each successful database mutation, i.e. `create`, `update` and `delete` actions, a log event is emitted and a `params` object representing the change is made available to the `auditLogProvider.create()` method.
 
 We will store the log entries in a `logs` table in our **Supabase** database. So, we have to set up the `logs` table with a shape that complies with the `params` object sent from the mutation.
 
@@ -180,8 +180,8 @@ const auditLogProvider = {
 Based on this, our `auditLogProvider` looks like this:
 
 ```tsx title="providers/auditLogProvider.ts"
-import { AuditLogProvider } from "@pankod/refine-core";
-import { dataProvider } from "@pankod/refine-supabase";
+import { AuditLogProvider } from "@refinedev/core";
+import { dataProvider } from "@refinedev/supabase";
 import { supabaseClient } from "utility";
 
 export const auditLogProvider: AuditLogProvider = {
@@ -280,7 +280,7 @@ import {
     useGetIdentity,
     useNavigation,
     useShow,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 import {
     Button,
     Typography,
@@ -288,7 +288,7 @@ import {
     Spin,
     Modal,
     useModal,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
 import { CanvasItem, DisplayCanvas } from "components/canvas";
 import { ColorSelect } from "components/color-select";
@@ -428,8 +428,8 @@ We are going to display the `pixels` log list for a canvas in the `<LogList />` 
 
 ```tsx title="components/logs/list.tsx"
 import React from "react";
-import { useLogList } from "@pankod/refine-core";
-import { Avatar, AntdList, Typography } from "@pankod/refine-antd";
+import { useLogList } from "@refinedev/core";
+import { Avatar, AntdList, Typography } from "@refinedev/antd";
 import { formattedDate, timeFromNow } from "utility/time";
 
 type TLogListProps = {
@@ -528,7 +528,7 @@ We mentioned earlier that each successful mutation emits a log event and sends a
 
 The log `params` object is sent to the `auditLogProvider.create()` method from inside the `log` object returned from the `useLog()` hook:
 
-```tsx title="@pankod/refine-core/src/hooks/useLog/index.ts/useLog/log"
+```tsx title="@refinedev/core/src/hooks/useLog/index.ts/useLog/log"
 // v3.90.6
 const log = useMutation<TLogData, Error, LogParams, unknown>(
   async (params) => {
@@ -562,7 +562,7 @@ Prior to that, the `log` object here utilizes `react-query`'s `useMutation()` ho
 
 Inside mutation hooks, the `useLog()` hook is used to create a log automatically after a successful resource mutation. For example, the `useCreate()` data hook implements it with the `mutate` method on `log` object returned from `useLog()`:
 
-```tsx title="@pankod/refine-core/src/hooks/data/useCreate.ts"
+```tsx title="@refinedev/core/src/hooks/data/useCreate.ts"
 // v3.90.6
 
 log?.mutate({

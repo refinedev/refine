@@ -1,7 +1,7 @@
 import React from "react";
 import { render, TestWrapper } from "@test";
 import { Header } from "./index";
-import { AuthBindings, LegacyAuthProvider } from "@pankod/refine-core";
+import { AuthBindings, LegacyAuthProvider } from "@refinedev/core";
 
 const mockLegacyAuthProvider: LegacyAuthProvider = {
     login: () => Promise.resolve(),

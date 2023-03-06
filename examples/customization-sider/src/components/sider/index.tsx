@@ -9,9 +9,9 @@ import {
     useTranslate,
     useLogout,
     useMenu,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
-import { Sider } from "@pankod/refine-antd";
+import { Sider } from "@refinedev/antd";
 import { Layout as AntdLayout, Menu, Grid } from "antd";
 import {
     DashboardOutlined,

@@ -1,5 +1,5 @@
 import React from "react";
-import { AuthPage } from "@pankod/refine-core";
+import { AuthPage } from "@refinedev/core";
 
 export const ExamplePage: React.FC = () => {
     const providers = [

@@ -1,7 +1,7 @@
 import React from "react";
-import type { RefineProps } from "@pankod/refine-core";
+import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
-import * as RefineMui from "@pankod/refine-mui";
+import * as RefineMui from "@refinedev/mui";
 
 import * as EmotionReact from "@emotion/react";
 import * as EmotionStyled from "@emotion/styled";

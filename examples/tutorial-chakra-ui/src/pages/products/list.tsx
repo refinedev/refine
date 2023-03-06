@@ -3,8 +3,8 @@ import {
     IResourceComponentsProps,
     GetManyResponse,
     useMany,
-} from "@pankod/refine-core";
-import { useTable } from "@pankod/refine-react-table";
+} from "@refinedev/core";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import {
     List,
@@ -12,7 +12,7 @@ import {
     EditButton,
     ShowButton,
     MarkdownField,
-} from "@pankod/refine-chakra-ui";
+} from "@refinedev/chakra-ui";
 
 import {
     TableContainer,

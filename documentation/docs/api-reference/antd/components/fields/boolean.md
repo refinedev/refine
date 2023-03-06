@@ -22,7 +22,7 @@ import {
     // highlight-start
     BooleanField,
     // highlight-end
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 import { Table } from "antd";
 
 const PostList: React.FC = () => {
@@ -81,7 +81,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/BooleanField" 
+<PropsTable module="@refinedev/antd/BooleanField" 
 title-description="The text shown in the tooltip" 
 title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" 
 trueIcon-default="[`<CheckOutlined />`](https://ant.design/components/icon/)"

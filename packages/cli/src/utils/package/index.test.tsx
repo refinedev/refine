@@ -3,9 +3,9 @@ import { parsePackageNameAndVersion } from "@utils/package";
 test("Get package name and version from string", () => {
     const testCases = [
         {
-            input: "@pankod/refine-antd@2.36.2",
+            input: "@refinedev/antd@2.36.2",
             output: {
-                name: "@pankod/refine-antd",
+                name: "@refinedev/antd",
                 version: "2.36.2",
             },
         },

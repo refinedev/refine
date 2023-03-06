@@ -81,12 +81,12 @@ Let's create a new component by swizzling the `Layout` components.
 ? Which package do you want to swizzle? (Use arrow keys or type to search)
 
 Data Provider
- ◯ @pankod/refine-simple-rest
+ ◯ @refinedev/simple-rest
 UI Framework
- ◉ @pankod/refine-antd
+ ◉ @refinedev/antd
 ```
 
-First, you need to select the package you want to swizzle. In this example, we will swizzle the `@pankod/refine-antd` package.
+First, you need to select the package you want to swizzle. In this example, we will swizzle the `@refinedev/antd` package.
 
 :::info
 
@@ -140,7 +140,7 @@ component.
     ╰─────────────────────────────────────────────────╯
 ```
 
-Finally, the swizzle command will create a new folder in the `src/components/layout` directory and generate the layout components of the `@pankod/refine-antd` package in it.
+Finally, the swizzle command will create a new folder in the `src/components/layout` directory and generate the layout components of the `@refinedev/antd` package in it.
 
 :::info
 
@@ -242,18 +242,18 @@ Interactively update your outdated **refine** packages. To skip interactive mode
    Package                          From      To
 
 Patch Updates
- ◯ @pankod/refine-cli                1.5.1 -> 1.5.3
+ ◯ @refinedev/cli                1.5.1 -> 1.5.3
 
 Minor Updates
- ◯ @pankod/refine-airtable           2.1.1 -> 2.7.8
- ◉ @pankod/refine-core              3.88.1 -> 3.90.4
- ◯ @pankod/refine-react-hook-form   3.31.0 -> 3.33.2
- ◯ @pankod/refine-simple-rest        2.6.0 -> 2.7.8
-❯◉ @pankod/refine-strapi            3.18.0 -> 3.37.0
+ ◯ @refinedev/airtable           2.1.1 -> 2.7.8
+ ◉ @refinedev/core              3.88.1 -> 3.90.4
+ ◯ @refinedev/react-hook-form   3.31.0 -> 3.33.2
+ ◯ @refinedev/simple-rest        2.6.0 -> 2.7.8
+❯◉ @refinedev/strapi            3.18.0 -> 3.37.0
 
 Major Updates
- ◯ @pankod/refine-airtable           2.1.1 -> 3.33.0
- ◯ @pankod/refine-simple-rest        2.6.0 -> 3.35.2
+ ◯ @refinedev/airtable           2.1.1 -> 3.33.0
+ ◯ @refinedev/simple-rest        2.6.0 -> 3.35.2
 ```
 
 #### Options
@@ -274,17 +274,17 @@ Show the running versions of the installed **refine** packages.
                 ┌────────────────────────────────┬─────────┬────────┬────────┐
                 │ name                           │ current │ wanted │ latest │
                 ├────────────────────────────────┼─────────┼────────┼────────┤
-                │ @pankod/refine-airtable        │ 2.1.1   │ 2.7.8  │ 3.33.0 │
+                │ @refinedev/airtable        │ 2.1.1   │ 2.7.8  │ 3.33.0 │
                 ├────────────────────────────────┼─────────┼────────┼────────┤
-                │ @pankod/refine-cli             │ 1.5.1   │ 1.5.3  │ 1.5.3  │
+                │ @refinedev/cli             │ 1.5.1   │ 1.5.3  │ 1.5.3  │
                 ├────────────────────────────────┼─────────┼────────┼────────┤
-                │ @pankod/refine-core            │ 3.88.1  │ 3.90.4 │ 3.90.4 │
+                │ @refinedev/core            │ 3.88.1  │ 3.90.4 │ 3.90.4 │
                 ├────────────────────────────────┼─────────┼────────┼────────┤
-                │ @pankod/refine-react-hook-form │ 3.31.0  │ 3.33.2 │ 3.33.2 │
+                │ @refinedev/react-hook-form │ 3.31.0  │ 3.33.2 │ 3.33.2 │
                 ├────────────────────────────────┼─────────┼────────┼────────┤
-                │ @pankod/refine-simple-rest     │ 2.6.0   │ 2.7.8  │ 3.35.2 │
+                │ @refinedev/simple-rest     │ 2.6.0   │ 2.7.8  │ 3.35.2 │
                 ├────────────────────────────────┼─────────┼────────┼────────┤
-                │ @pankod/refine-strapi          │ 3.18.0  │ 3.37.0 │ 3.37.0 │
+                │ @refinedev/strapi          │ 3.18.0  │ 3.37.0 │ 3.37.0 │
                 └────────────────────────────────┴─────────┴────────┴────────┘
                     To update `refine` packages with the wanted version
                         Run the following command npm run refine update
@@ -396,18 +396,18 @@ View the details of the development environment.
  - Safari: 16.1
 
 ## Refine Packages:
- - @pankod/refine-airtable: 2.1.1
- - @pankod/refine-antd: 3.62.0
- - @pankod/refine-cli: 1.5.1
- - @pankod/refine-core: 3.88.1
- - @pankod/refine-react-hook-form: 3.31.0
- - @pankod/refine-simple-rest: 2.6.0
- - @pankod/refine-strapi: 3.18.0
+ - @refinedev/airtable: 2.1.1
+ - @refinedev/antd: 3.62.0
+ - @refinedev/cli: 1.5.1
+ - @refinedev/core: 3.88.1
+ - @refinedev/react-hook-form: 3.31.0
+ - @refinedev/simple-rest: 2.6.0
+ - @refinedev/strapi: 3.18.0
 ```
 
 ## How to add to an existing project?
 
-If you want to add the [@pankod/refine-cli](https://github.com/refinedev/refine/tree/next/packages/cli) to your existing project, you have to add it to your project's `dependencies`.
+If you want to add the [@refinedev/cli](https://github.com/refinedev/refine/tree/next/packages/cli) to your existing project, you have to add it to your project's `dependencies`.
 
 <Tabs
 defaultValue="npm"
@@ -419,14 +419,14 @@ values={[
 <TabItem value="npm">
 
 ```bash
-npm i @pankod/refine-cli
+npm i @refinedev/cli
 ```
 
 </TabItem>
 <TabItem value="yarn">
 
 ```bash
-yarn add @pankod/refine-cli
+yarn add @refinedev/cli
 ```
 
 </TabItem>

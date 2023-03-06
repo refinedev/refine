@@ -1,5 +1,5 @@
-import { useMenu, useNavigation, LayoutProps } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6/legacy";
+import { useMenu, useNavigation, LayoutProps } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 const { Link } = routerProvider;
 

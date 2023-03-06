@@ -49,13 +49,13 @@ We will show what `<Edit>` does using properties with examples.
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-chakra-ui";
+import { Edit } from "@refinedev/chakra-ui";
 import {
     FormControl,
     FormErrorMessage,
@@ -63,8 +63,8 @@ import {
     Input,
     Select,
 } from "@chakra-ui/react";
-import { useSelect } from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useSelect } from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 
 const PostEdit: React.FC = () => {
     const {
@@ -175,13 +175,13 @@ It allows adding titles inside the `<Edit>` component. if you don't pass title p
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-chakra-ui";
+import { Edit } from "@refinedev/chakra-ui";
 import { Heading } from "@chakra-ui/react";
 
 const PostEdit: React.FC = () => {
@@ -226,13 +226,13 @@ Clicking on the save button will submit your form.
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-chakra-ui";
+import { Edit } from "@refinedev/chakra-ui";
 
 const PostEdit: React.FC = () => {
     return (
@@ -276,14 +276,14 @@ When clicked on, the delete button executes the `useDelete` method provided by t
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-chakra-ui";
-import { usePermissions } from "@pankod/refine-core";
+import { Edit } from "@refinedev/chakra-ui";
+import { usePermissions } from "@refinedev/core";
 
 const PostEdit: React.FC = () => {
     const { data: permissionsData } = usePermissions();
@@ -384,10 +384,10 @@ render(
 setInitialRoutes(["/custom/23"]);
 
 // visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { Layout, Edit } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { Layout, Edit } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 const CustomPage: React.FC = () => {
     return (
@@ -433,14 +433,14 @@ The `<Edit>` component reads the `id` information from the route by default. `re
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=350px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { useModalForm } from "@pankod/refine-react-hook-form";
-import { Edit } from "@pankod/refine-chakra-ui";
+import { useModalForm } from "@refinedev/react-hook-form";
+import { Edit } from "@refinedev/chakra-ui";
 import {
     Modal,
     Button,
@@ -522,20 +522,20 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-chakra-ui";
+import { Edit } from "@refinedev/chakra-ui";
 import {
     Input,
     FormControl,
     FormLabel,
     FormErrorMessage,
 } from "@chakra-ui/react";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@refinedev/react-hook-form";
 
 const PostEdit: React.FC = () => {
     const {
@@ -596,10 +596,10 @@ render(
 If not specified, Refine will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
 
 ```tsx
-import { Refine } from "@pankod/refine-core";
-import { Edit } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { Edit } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // highlight-start
 const PostEdit = () => {
@@ -629,10 +629,10 @@ To customize the back button or to disable it, you can use the `goBack` property
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 const IconMoodSmile = (
     <svg
@@ -656,7 +656,7 @@ const IconMoodSmile = (
 );
 
 // visible-block-start
-import { Edit } from "@pankod/refine-chakra-ui";
+import { Edit } from "@refinedev/chakra-ui";
 /* highlight-next-line */
 import { IconMoodSmile } from "@tabler/icons";
 
@@ -698,13 +698,13 @@ To toggle the loading state of the `<Edit/>` component, you can use the `isLoadi
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-chakra-ui";
+import { Edit } from "@refinedev/chakra-ui";
 
 const PostEdit: React.FC = () => {
     return (
@@ -740,7 +740,7 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-chakra-ui` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/chakra-ui` package.
 
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/chakra-ui/components/breadcrumb.md)
 
@@ -750,13 +750,13 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Edit, Breadcrumb } from "@pankod/refine-chakra-ui";
+import { Edit, Breadcrumb } from "@refinedev/chakra-ui";
 import { Box } from "@chakra-ui/react";
 
 const PostEdit: React.FC = () => {
@@ -800,19 +800,19 @@ render(
 
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<Edit/>` component, you can use the `wrapperProps` property. For `@pankod/refine-chakra-ui` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
+If you want to customize the wrapper of the `<Edit/>` component, you can use the `wrapperProps` property. For `@refinedev/chakra-ui` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
 
 [Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-chakra-ui";
+import { Edit } from "@refinedev/chakra-ui";
 
 const PostEdit: React.FC = () => {
     return (
@@ -862,13 +862,13 @@ If you want to customize the header of the `<Edit/>` component, you can use the 
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-chakra-ui";
+import { Edit } from "@refinedev/chakra-ui";
 
 const PostEdit: React.FC = () => {
     return (
@@ -917,13 +917,13 @@ If you want to customize the content of the `<Edit/>` component, you can use the
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-chakra-ui";
+import { Edit } from "@refinedev/chakra-ui";
 
 const PostEdit: React.FC = () => {
     return (
@@ -971,13 +971,13 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-chakra-ui";
+import { Edit } from "@refinedev/chakra-ui";
 import { Button, HStack, Box } from "@chakra-ui/react";
 
 const PostEdit: React.FC = () => {
@@ -1028,13 +1028,13 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-chakra-ui";
+import { Edit } from "@refinedev/chakra-ui";
 import { Button } from "@chakra-ui/react";
 
 const PostEdit: React.FC = () => {
@@ -1088,13 +1088,13 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-chakra-ui";
+import { Edit } from "@refinedev/chakra-ui";
 import { Button, HStack } from "@chakra-ui/react";
 
 const PostEdit: React.FC = () => {
@@ -1152,13 +1152,13 @@ You can customize the wrapper element of the buttons at the footer by using the 
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { EditButton } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-chakra-ui";
+import { Edit } from "@refinedev/chakra-ui";
 
 const PostEdit: React.FC = () => {
     return (
@@ -1205,4 +1205,4 @@ render(
 
 ### Props
 
-<PropsTable module="@pankod/refine-chakra-ui/Edit" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Edit {resource.name}</Title>`" />
+<PropsTable module="@refinedev/chakra-ui/Edit" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Edit {resource.name}</Title>`" />

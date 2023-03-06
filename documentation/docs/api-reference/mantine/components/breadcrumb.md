@@ -71,11 +71,11 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/mantine";
 
 // visible-block-start
-import { Show, Breadcrumb } from "@pankod/refine-mantine";
+import { Show, Breadcrumb } from "@refinedev/mantine";
 
 const PostShow: React.FC = () => {
     return (
@@ -123,11 +123,11 @@ If your application has a [DashboardPage](/api-reference/core/components/refine-
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/mantine";
 
 // visible-block-start
-import { Show, Breadcrumb } from "@pankod/refine-mantine";
+import { Show, Breadcrumb } from "@refinedev/mantine";
 
 const PostShow: React.FC = () => {
     return (
@@ -175,11 +175,11 @@ If you don't want to show the resource icons on the breadcrumb, you can set `hid
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/mantine";
 
 // visible-block-start
-import { Show, Breadcrumb } from "@pankod/refine-mantine";
+import { Show, Breadcrumb } from "@refinedev/mantine";
 
 const PostShow: React.FC = () => {
     return (
@@ -225,7 +225,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/Breadcrumb" />
+<PropsTable module="@refinedev/mantine/Breadcrumb" />
 
 [mantine-breadcrumb]: https://mantine.dev/core/breadcrumbs/
 [source-code]: https://github.com/refinedev/refine/blob/master/packages/mantine/src/components/breadcrumb/index.tsx

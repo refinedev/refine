@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuthenticated } from "@pankod/refine-core";
+import { useAuthenticated } from "@refinedev/core";
 import cn from "clsx";
 import Link from "next/link";
 import { LineItem } from "@medusajs/medusa";

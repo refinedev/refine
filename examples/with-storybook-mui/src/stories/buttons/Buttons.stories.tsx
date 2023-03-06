@@ -10,7 +10,7 @@ import {
     ListButton,
     ImportButton,
     ShowButton,
-} from "@pankod/refine-mui";
+} from "@refinedev/mui";
 
 import { Button } from "@mui/material";
 

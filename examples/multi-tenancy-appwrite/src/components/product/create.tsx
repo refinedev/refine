@@ -1,4 +1,4 @@
-import { Create } from "@pankod/refine-antd";
+import { Create } from "@refinedev/antd";
 
 import { RcFile } from "antd/lib/upload/interface";
 import {

@@ -3,8 +3,8 @@ import {
     RegisterFormTypes,
     RegisterPageProps,
     useActiveAuthProvider,
-} from "@pankod/refine-core";
-import { useForm } from "@pankod/refine-react-hook-form";
+} from "@refinedev/core";
+import { useForm } from "@refinedev/react-hook-form";
 
 import {
     Button,
@@ -28,7 +28,7 @@ import {
     useRouterType,
     useLink,
     useRegister,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import { layoutStyles, titleStyles } from "../styles";
 import { FormPropsType } from "../../index";

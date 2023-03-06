@@ -1,4 +1,4 @@
-import { Edit, useSelect } from "@pankod/refine-antd";
+import { Edit, useSelect } from "@refinedev/antd";
 
 import {
     Drawer,

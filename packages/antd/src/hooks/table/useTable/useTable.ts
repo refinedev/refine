@@ -15,7 +15,7 @@ import {
     useTableProps as useTablePropsCore,
     useTableReturnType as useTableCoreReturnType,
     pickNotDeprecated,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
 
 import {
     mapAntdSorterToCrudSorting,

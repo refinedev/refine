@@ -13,7 +13,7 @@ source: packages/core/src/hooks/live/useSubscription/index.ts
 ## Usage
 
 ```tsx
-import { useSubscription } from "@pankod/refine-core";
+import { useSubscription } from "@refinedev/core";
 
 useSubscription({
     channel: "channel-name",
@@ -57,7 +57,7 @@ Hooks that use `useSubscription` internally, send the query's parameters(paginat
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useSubscription"  />
+<PropsTable module="@refinedev/core/useSubscription"  />
 
 [live-provider]: /docs/api-reference/core/providers/live-provider
 [live-provider-subscribe]: /docs/api-reference/core/providers/live-provider/#subscribe

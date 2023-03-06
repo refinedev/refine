@@ -19,7 +19,7 @@ If your data provider does not have a `deleteMany` method, `useDeleteMany` will 
 The `useDeleteMany` hook returns many useful properties and methods. One of them is the `mutate` method which expects `resource` and `ids` as parameters. These parameters will be passed to the `deleteMany` method from the `dataProvider` as parameters.
 
 ```tsx
-import { useDeleteMany } from "@pankod/refine-core";
+import { useDeleteMany } from "@refinedev/core";
 
 const { mutate } = useDeleteMany();
 

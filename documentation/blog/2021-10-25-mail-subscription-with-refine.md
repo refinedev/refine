@@ -149,7 +149,7 @@ Let's list our messages and subscribers with refine. Here are the changes we nee
 import { Refine, Resource } from "@pankod/refine";
 
 import "@pankod/refine/dist/styles.min.css";
-import { DataProvider } from "@pankod/refine-strapi";
+import { DataProvider } from "@refinedev/strapi";
 import strapiAuthProvider from "authProvider";
 import { Header, Layout, OffLayoutArea } from "components";
 

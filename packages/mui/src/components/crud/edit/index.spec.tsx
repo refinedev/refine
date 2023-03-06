@@ -1,11 +1,11 @@
 import React, { ReactNode } from "react";
 import { Route, Routes } from "react-router-dom";
-import { AccessControlProvider } from "@pankod/refine-core";
+import { AccessControlProvider } from "@refinedev/core";
 
 import { act, render, TestWrapper, waitFor } from "@test";
 import { Edit } from "./";
-import { crudEditTests } from "@pankod/refine-ui-tests";
-import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { crudEditTests } from "@refinedev/ui-tests";
+import { RefineButtonTestIds } from "@refinedev/ui-types";
 
 const renderEdit = (
     edit: ReactNode,

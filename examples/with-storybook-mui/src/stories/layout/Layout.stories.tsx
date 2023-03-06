@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Layout } from "@pankod/refine-mui";
+import { Layout } from "@refinedev/mui";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useGo, useResource, useRouterType } from "@pankod/refine-core";
-import { RefineErrorPageProps } from "@pankod/refine-ui-types";
-import { useNavigation, useTranslate } from "@pankod/refine-core";
+import { useGo, useResource, useRouterType } from "@refinedev/core";
+import { RefineErrorPageProps } from "@refinedev/ui-types";
+import { useNavigation, useTranslate } from "@refinedev/core";
 import { Stack, Button, Tooltip, Typography, Grid } from "@mui/material";
 import { Info } from "@mui/icons-material";
 

@@ -1,4 +1,4 @@
-import { layoutHeaderTests } from "@pankod/refine-ui-tests";
+import { layoutHeaderTests } from "@refinedev/ui-tests";
 
 import { Header } from "./index";
 

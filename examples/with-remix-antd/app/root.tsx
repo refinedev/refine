@@ -7,19 +7,19 @@ import {
     Scripts,
     ScrollRestoration,
 } from "@remix-run/react";
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 import {
     AuthPage,
     ErrorComponent,
     Layout,
     notificationProvider,
     ReadyPage,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
 
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-remix-router/legacy";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/remix-router/legacy";
 
-import resetStyle from "@pankod/refine-antd/dist/reset.css";
+import resetStyle from "@refinedev/antd/dist/reset.css";
 
 import { authProvider } from "./authProvider";
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages/posts";

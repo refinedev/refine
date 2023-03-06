@@ -1,14 +1,14 @@
 import React from "react";
-import { useTable } from "@pankod/refine-react-table";
+import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { GetManyResponse, useMany } from "@pankod/refine-core";
+import { GetManyResponse, useMany } from "@refinedev/core";
 import {
     List,
     ShowButton,
     EditButton,
     DeleteButton,
     DateField,
-} from "@pankod/refine-mantine";
+} from "@refinedev/mantine";
 
 import {
     Box,
