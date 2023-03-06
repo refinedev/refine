@@ -3,9 +3,9 @@ const {
     getImports,
     appendAfterImports,
     getFileContent,
-} = require("@pankod/refine-cli");
+} = require("@refinedev/cli");
 
-/** @type {import('@pankod/refine-cli').RefineConfig} */
+/** @type {import('@refinedev/cli').RefineConfig} */
 module.exports = {
     group: "UI Framework",
     swizzle: {
@@ -288,23 +288,8 @@ module.exports = {
                 group: "Pages",
                 label: "ErrorPage",
                 message: ` 
-                **\`Warning:\`**
-                If you want to change the default error page;
-                You should pass it with the **catchAll** prop to the **<Refine/>** component.
-
-                \`\`\`
-                // title: App.tsx
-                import { ErrorPage } from "components/pages/error";
-
-                const App = () => {
-                    return (
-                        <Refine
-                            catchAll={ErrorPage}
-                            /* ... */
-                        />
-                    );
-                }
-                \`\`\`
+                **\`Info:\`**
+                If you want to see an examples of error page in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers/react-router-v6
                 `,
                 files: [
                     {
@@ -331,23 +316,8 @@ module.exports = {
                 group: "Pages",
                 label: "AuthPage",
                 message: ` 
-                **\`Warning:\`**
-                If you want to change the default auth pages;
-                You should pass it with the **LoginPage** prop to the **<Refine/>** component.
-
-                \`\`\`
-                // title: App.tsx
-                import { AuthPage } from "components/pages/auth";
-
-                const App = () => {
-                    return (
-                        <Refine
-                            LoginPage={AuthPage}
-                            /* ... */
-                        />
-                    );
-                }
-                \`\`\`
+                **\`Info:\`**
+                If you want to see an example of authentication pages in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers/react-router-v6/#how-to-handle-optional-authentication-redirects-and-layouts-with-authentication
                 `,
                 files: [
                     {
@@ -475,16 +445,16 @@ module.exports = {
 
                             newContent = newContent.replace(
                                 breadcrumbPropsExportRegex,
-                                "",
+                                `import { BreadcrumbProps } from "@refinedev/antd";`,
                             );
 
                             // change the breadcrumb import path
                             const breadcrumbImportRegex =
-                                /Breadcrumb as AntdBreadcrumb,\n\s*BreadcrumbProps as AntdBreadcrumbProps,/g;
+                                /BreadcrumbProps as AntdBreadcrumbProps,/g;
 
                             newContent = newContent.replace(
                                 breadcrumbImportRegex,
-                                "AntdBreadcrumb,\nBreadcrumbProps,",
+                                "",
                             );
 
                             return newContent;
@@ -498,18 +468,24 @@ module.exports = {
                 message: `
                 **\`Warning:\`**
                 If you want to change the default layout;
-                You should pass \`layout/index.tsx\` with the **Layout** prop to the **<Refine/>** component.
+                You should pass the layout components to the **<Layout/>** component.
 
                 \`\`\`
                 // title: App.tsx
                 import { Layout } from "components/layout";
+                import { Header } from "components/layout/header";
+                import { Sider } from "components/layout/sider";
+                import { Title } from "components/layout/title";
 
                 const App = () => {
                     return (
                         <Refine
-                            Layout={Layout}
                             /* ... */
-                        />
+                        >
+                            <Layout Header={Header} Sider={Sider} Title={Title} />
+                                /* ... */
+                            </Layout>
+                        </Refine>
                     );
                 }
                 \`\`\`
@@ -523,35 +499,9 @@ module.exports = {
                             const imports = getImports(content);
 
                             imports.map((importItem) => {
-                                // handle antd layout rename
-                                if (importItem.importPath === "antd") {
-                                    newContent = newContent.replace(
-                                        importItem.statement,
-                                        importItem.statement.replace(
-                                            "Layout,",
-                                            "AntdLayout,",
-                                        ),
-                                    );
-
-                                    newContent = newContent.replace(
-                                        /Layout\.Sider/g,
-                                        "AntdLayout.Sider",
-                                    );
-
-                                    newContent = newContent.replace(
-                                        "<Layout>",
-                                        "<AntdLayout>",
-                                    );
-
-                                    newContent = newContent.replace(
-                                        "</Layout>",
-                                        "</AntdLayout>",
-                                    );
-                                }
-
                                 // handle @components import replacement
                                 if (importItem.importPath === "@components") {
-                                    const newStatement = `import ${importItem.namedImports} from "@pankod/refine-antd";`;
+                                    const newStatement = `import ${importItem.namedImports} from "@refinedev/antd";`;
 
                                     newContent = newContent.replace(
                                         importItem.statement,
@@ -597,25 +547,6 @@ module.exports = {
                     {
                         src: "./src/components/layout/header/index.tsx",
                         dest: "./components/layout/header.tsx",
-                        transform: (content) => {
-                            let newContent = content;
-                            const imports = getImports(content);
-
-                            imports.map((importItem) => {
-                                // handle antd layout rename
-                                if (importItem.importPath === "antd") {
-                                    newContent = newContent.replace(
-                                        importItem.statement,
-                                        importItem.statement.replace(
-                                            "Layout as AntdLayout,",
-                                            "AntdLayout,",
-                                        ),
-                                    );
-                                }
-                            });
-
-                            return newContent;
-                        },
                     },
                     {
                         src: "./src/components/layout/title/index.tsx",
@@ -624,25 +555,6 @@ module.exports = {
                     {
                         src: "./src/components/layout/index.tsx",
                         dest: "./components/layout/index.tsx",
-                        transform: (content) => {
-                            let newContent = content;
-                            const imports = getImports(content);
-
-                            imports.map((importItem) => {
-                                // handle antd layout rename
-                                if (importItem.importPath === "antd") {
-                                    newContent = newContent.replace(
-                                        importItem.statement,
-                                        importItem.statement.replace(
-                                            "Layout as AntdLayout",
-                                            "AntdLayout,",
-                                        ),
-                                    );
-                                }
-                            });
-
-                            return newContent;
-                        },
                     },
                 ],
             },
@@ -652,37 +564,17 @@ module.exports = {
             const imports = getImports(content);
 
             imports.map((importItem) => {
-                // for antd imports
-                if (
-                    importItem.importPath === "antd" ||
-                    importItem.importPath === "@components"
-                ) {
-                    const newStatement = `import ${importItem.namedImports} from "@pankod/refine-antd";`;
+                if (importItem.importPath === "@components") {
+                    const newStatement = `import ${importItem.namedImports} from "@refinedev/antd";`;
 
                     newContent = newContent.replace(
                         importItem.statement,
                         newStatement,
                     );
-                }
-
-                // for icons
-                if (importItem.importPath === "@ant-design/icons") {
-                    const newStatement = `import * as Icons from "@ant-design/icons";`;
-
-                    const iconsLine = `
-                    const ${importItem.namedImports} = Icons;
-                    `;
-
-                    newContent = newContent.replace(
-                        importItem.statement,
-                        newStatement,
-                    );
-
-                    newContent = appendAfterImports(newContent, iconsLine);
                 }
 
                 // for ui-types
-                if (importItem.importPath === "@pankod/refine-ui-types") {
+                if (importItem.importPath === "@refinedev/ui-types") {
                     newContent = newContent.replace(importItem.statement, "");
 
                     // prop is data-testid
@@ -697,7 +589,7 @@ module.exports = {
                     importItem.importPath === "../types" ||
                     importItem.importPath === "./types"
                 ) {
-                    const newStatement = `import type ${importItem.namedImports} from "@pankod/refine-antd";`;
+                    const newStatement = `import type ${importItem.namedImports} from "@refinedev/antd";`;
 
                     newContent = newContent.replace(
                         importItem.statement,

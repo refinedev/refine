@@ -1,6 +1,6 @@
-const { getImports } = require("@pankod/refine-cli");
+const { getImports } = require("@refinedev/cli");
 
-/** @type {import('@pankod/refine-cli').RefineConfig} */
+/** @type {import('@refinedev/cli').RefineConfig} */
 module.exports = {
     group: "UI Framework",
     swizzle: {
@@ -233,23 +233,8 @@ module.exports = {
                 group: "Pages",
                 label: "ErrorPage",
                 message: ` 
-                **\`Warning:\`**
-                If you want to change the default error page;
-                You should pass it with the **catchAll** prop to the **<Refine/>** component.
-
-                \`\`\`
-                // title: App.tsx
-                import { ErrorPage } from "components/pages/error";
-
-                const App = () => {
-                    return (
-                        <Refine
-                            catchAll={ErrorPage}
-                            /* ... */
-                        />
-                    );
-                }
-                \`\`\`
+                **\`Info:\`**
+                If you want to see an examples of error page in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers/react-router-v6
                 `,
                 files: [
                     {
@@ -276,23 +261,8 @@ module.exports = {
                 group: "Pages",
                 label: "AuthPage",
                 message: ` 
-                **\`Warning:\`**
-                If you want to change the default auth pages;
-                You should pass it with the **LoginPage** prop to the **<Refine/>** component.
-
-                \`\`\`
-                // title: App.tsx
-                import { AuthPage } from "components/pages/auth";
-
-                const App = () => {
-                    return (
-                        <Refine
-                            LoginPage={AuthPage}
-                            /* ... */
-                        />
-                    );
-                }
-                \`\`\`
+                **\`Info:\`**
+                If you want to see an example of authentication pages in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers/react-router-v6/#how-to-handle-optional-authentication-redirects-and-layouts-with-authentication
                 `,
                 files: [
                     {
@@ -452,7 +422,7 @@ module.exports = {
 
                             newContent = newContent.replace(
                                 breadcrumbPropsExportRegex,
-                                "",
+                                `import { BreadcrumbProps } from "@refinedev/mantine";`,
                             );
 
                             // change the breadcrumb import path
@@ -461,7 +431,7 @@ module.exports = {
 
                             newContent = newContent.replace(
                                 breadcrumbImportRegex,
-                                "BreadcrumbProps,",
+                                "",
                             );
 
                             return newContent;
@@ -475,18 +445,24 @@ module.exports = {
                 message: `
                 **\`Warning:\`**
                 If you want to change the default layout;
-                You should pass \`layout/index.tsx\` with the **Layout** prop to the **<Refine/>** component.
+                You should pass the layout components to the **<Layout/>** component.
 
                 \`\`\`
                 // title: App.tsx
                 import { Layout } from "components/layout";
+                import { Header } from "components/layout/header";
+                import { Sider } from "components/layout/sider";
+                import { Title } from "components/layout/title";
 
                 const App = () => {
                     return (
                         <Refine
-                            Layout={Layout}
                             /* ... */
-                        />
+                        >
+                            <Layout Header={Header} Sider={Sider} Title={Title} />
+                                /* ... */
+                            </Layout>
+                        </Refine>
                     );
                 }
                 \`\`\`
@@ -495,41 +471,10 @@ module.exports = {
                     {
                         src: "./src/components/layout/sider/index.tsx",
                         dest: "./components/layout/sider.tsx",
-                        transform: (content) => {
-                            let newContent = content;
-                            const imports = getImports(content);
-
-                            imports.map((importItem) => {
-                                // handle @components import replacement
-                                if (importItem.importPath === "@components") {
-                                    const newStatement = `import ${importItem.namedImports} from "@pankod/refine-mantine";`;
-
-                                    newContent = newContent.replace(
-                                        importItem.statement,
-                                        newStatement,
-                                    );
-                                }
-                            });
-
-                            return newContent;
-                        },
                     },
                     {
                         src: "./src/components/layout/header/index.tsx",
                         dest: "./components/layout/header.tsx",
-                        transform: (content) => {
-                            let newContent = content;
-
-                            const headerImportRegex =
-                                /Header as MantineHeader,/g;
-
-                            newContent = newContent.replace(
-                                headerImportRegex,
-                                "MantineHeader,",
-                            );
-
-                            return newContent;
-                        },
                     },
                     {
                         src: "./src/components/layout/title/index.tsx",
@@ -589,29 +534,7 @@ module.exports = {
             imports.map((importItem) => {
                 // for refine-mantine imports
                 if (importItem.importPath === "@components") {
-                    const newStatement = `import ${importItem.namedImports} from "@pankod/refine-mantine";`;
-
-                    newContent = newContent.replace(
-                        importItem.statement,
-                        newStatement,
-                    );
-                }
-
-                // for mantine imports
-                if (importItem.importPath === "@mantine/core") {
-                    const newStatement = `import ${importItem.namedImports} from "@mantine/core";`;
-
-                    newContent = newContent.replace(
-                        importItem.statement,
-                        newStatement,
-                    );
-                }
-
-                // for icons
-                if (importItem.importPath === "@tabler/icons") {
-                    const newStatement = `
-                    // We use @tabler/icons for icons but you can use any icon library you want.
-                    import ${importItem.namedImports} from "@tabler/icons";`;
+                    const newStatement = `import ${importItem.namedImports} from "@refinedev/mantine";`;
 
                     newContent = newContent.replace(
                         importItem.statement,
@@ -620,7 +543,7 @@ module.exports = {
                 }
 
                 // for ui-types
-                if (importItem.importPath === "@pankod/refine-ui-types") {
+                if (importItem.importPath === "@refinedev/ui-types") {
                     newContent = newContent.replace(importItem.statement, "");
 
                     // prop is data-testid
@@ -635,7 +558,7 @@ module.exports = {
                     importItem.importPath === "../types" ||
                     importItem.importPath === "./types"
                 ) {
-                    const newStatement = `import type ${importItem.namedImports} from "@pankod/refine-mantine";`;
+                    const newStatement = `import type ${importItem.namedImports} from "@refinedev/mantine";`;
 
                     newContent = newContent.replace(
                         importItem.statement,
@@ -645,7 +568,7 @@ module.exports = {
 
                 // for buttons definition function
                 if (importItem.importPath === "@definitions/button") {
-                    const newStatement = `import ${importItem.namedImports} from "@pankod/refine-mantine";`;
+                    const newStatement = `import ${importItem.namedImports} from "@refinedev/mantine";`;
 
                     newContent = newContent.replace(
                         importItem.statement,
@@ -655,7 +578,7 @@ module.exports = {
 
                 // for change the import path of the FormContext component
                 if (importItem.importPath === "@contexts/form-context") {
-                    const newStatement = `import { FormContext } from "@pankod/refine-mantine";`;
+                    const newStatement = `import { FormContext } from "@refinedev/mantine";`;
 
                     newContent = newContent.replace(
                         importItem.statement,
