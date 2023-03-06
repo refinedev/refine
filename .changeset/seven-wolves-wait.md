@@ -1,5 +1,6 @@
 ---
-"@pankod/refine-codemod": major
+"@pankod/refine-codemod": minor
 ---
 
-Add `rename-buttons-resource-prop` transformation.
+Added transform function to change `resourceNameOrRouteName` prop to `resource` in buttons.
+
