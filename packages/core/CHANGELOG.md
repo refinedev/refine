@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.100.0
+
+### Minor Changes
+
+-   [#3716](https://github.com/refinedev/refine/pull/3716) [`03177f8aa06`](https://github.com/refinedev/refine/commit/03177f8aa0619f966e06461a273bd24ef89539cf) Thanks [@BatuhanW](https://github.com/BatuhanW)! - Added GitHubBanner component.
+
 ## 3.99.6
 
 ### Patch Changes
