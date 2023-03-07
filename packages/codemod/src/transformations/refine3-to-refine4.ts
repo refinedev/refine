@@ -30,6 +30,12 @@ export async function postTransform(files: any, flags: any) {
 
     const useYarn = checkPackageLock(rootDir) === "yarn.lock";
 
+    if (config.getUninstalls().length > 0) {
+        await remove(rootDir, config.getUninstalls(), {
+            useYarn,
+        });
+    }
+
     if (Object.keys(config.getInstalls()).length > 0) {
         await install(
             rootDir,
@@ -41,12 +47,6 @@ export async function postTransform(files: any, flags: any) {
                 isOnline: true,
             },
         );
-    }
-
-    if (config.getUninstalls().length > 0) {
-        await remove(rootDir, config.getUninstalls(), {
-            useYarn,
-        });
     }
 
     config.destroy();
