@@ -6,15 +6,12 @@ import {
     AuthPage,
 } from "@refinedev/antd";
 import { DataProvider, AuthHelper } from "@refinedev/strapi";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
 import axios from "axios";
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Outlet,
-    Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -124,7 +121,9 @@ const App: React.FC = () => {
                 <Routes>
                     <Route
                         element={
-                            <Authenticated fallback={<Navigate to="/login" />}>
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
                                 <Layout>
                                     <Outlet />
                                 </Layout>

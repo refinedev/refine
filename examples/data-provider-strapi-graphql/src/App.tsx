@@ -1,14 +1,11 @@
 import { AuthBindings, Authenticated, Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider, { GraphQLClient } from "@refinedev/strapi-graphql";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Outlet,
-    Navigate,
-} from "react-router-dom";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -149,7 +146,9 @@ const App: React.FC = () => {
                 <Routes>
                     <Route
                         element={
-                            <Authenticated fallback={<Navigate to="/login" />}>
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
                                 <Layout>
                                     <Outlet />
                                 </Layout>

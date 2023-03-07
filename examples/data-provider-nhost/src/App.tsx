@@ -7,14 +7,11 @@ import {
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/nhost";
 import { NhostAuthProvider } from "@nhost/react-auth";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Outlet,
-    Navigate,
-} from "react-router-dom";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -137,7 +134,7 @@ const App: React.FC = () => {
                         <Route
                             element={
                                 <Authenticated
-                                    fallback={<Navigate to="/login" />}
+                                    fallback={<CatchAllNavigate to="/login" />}
                                 >
                                     <Layout>
                                         <Outlet />

@@ -6,16 +6,13 @@ import {
     AuthPage,
 } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
 import { notification } from "antd";
 import { GoogleOutlined } from "@ant-design/icons";
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Outlet,
-    Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -268,7 +265,9 @@ const App: React.FC = () => {
                 <Routes>
                     <Route
                         element={
-                            <Authenticated fallback={<Navigate to="/login" />}>
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
                                 <Layout>
                                     <Outlet />
                                 </Layout>
