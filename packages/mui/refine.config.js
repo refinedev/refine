@@ -144,7 +144,7 @@ module.exports = {
                 label: "ErrorPage",
                 message: ` 
                 **\`Info:\`**
-                If you want to see an examples of error page in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers/react-router-v6
+                If you want to see an examples of error page in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers
                 `,
                 files: [
                     {
