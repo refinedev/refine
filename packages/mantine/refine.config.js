@@ -18,7 +18,7 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "CreateButton",
-                message: ` 
+                message: `
                 **\`Warning:\`**
                 This component is used in the below component. If you want to change it, you can run the **swizzle** command for the below component or you can use props to override the default buttons.
                     - <List/>
@@ -43,7 +43,7 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "DeleteButton",
-                message: ` 
+                message: `
                 **\`Warning:\`**
                 This component is used in the below components. If you want to change it, you can run the **swizzle** command for the below components or you can use props to override the default buttons.
                     - <Edit/>
@@ -59,7 +59,7 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "EditButton",
-                message: ` 
+                message: `
                 **\`Warning:\`**
                 This component is used in the below component. If you want to change it, you can run the **swizzle** command for the below component or you can use props to override the default buttons.
                     - <Show/>
@@ -94,7 +94,7 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "ListButton",
-                message: ` 
+                message: `
                 **\`Warning:\`**
                 This component is used in the below components. If you want to change it, you can run the **swizzle** command for the below components or you can use props to override the default buttons.
                     - <Edit/>
@@ -110,7 +110,7 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "RefreshButton",
-                message: ` 
+                message: `
                 **\`Warning:\`**
                 This component is used in the below components. If you want to change it, you can run the **swizzle** command for the below components or you can use props to override the default buttons.
                     - <Edit/>
@@ -126,7 +126,7 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "SaveButton",
-                message: ` 
+                message: `
                 **\`Warning:\`**
                 This component is used in the below components. If you want to change it, you can run the **swizzle** command for the below components or you can use props to override the default buttons.
                     - <Create/>
@@ -232,9 +232,9 @@ module.exports = {
             {
                 group: "Pages",
                 label: "ErrorPage",
-                message: ` 
+                message: `
                 **\`Info:\`**
-                If you want to see an examples of error page in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers
+                If you want to see an example of error page in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers
                 `,
                 files: [
                     {
@@ -260,9 +260,9 @@ module.exports = {
             {
                 group: "Pages",
                 label: "AuthPage",
-                message: ` 
+                message: `
                 **\`Info:\`**
-                If you want to see an example of authentication pages in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers
+                If you want to see examples of authentication pages in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers
                 `,
                 files: [
                     {
@@ -445,7 +445,7 @@ module.exports = {
                 message: `
                 **\`Warning:\`**
                 If you want to change the default layout;
-                You should pass the layout components to the **<Layout/>** component.
+                You should pass layout related components to the **<Layout/>** component's props.
 
                 \`\`\`
                 // title: App.tsx

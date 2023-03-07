@@ -8,9 +8,9 @@ module.exports = {
             {
                 group: "Pages",
                 label: "ErrorPage",
-                message: ` 
+                message: `
                 **\`Info:\`**
-                If you want to see an examples of error page in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers
+                If you want to see an example of error page in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers
                 `,
                 files: [
                     {
@@ -22,9 +22,9 @@ module.exports = {
             {
                 group: "Pages",
                 label: "AuthPage",
-                message: ` 
+                message: `
                 **\`Info:\`**
-                If you want to see an example of authentication pages in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers
+                If you want to see examples of authentication pages in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers
                 `,
                 files: [
                     {
