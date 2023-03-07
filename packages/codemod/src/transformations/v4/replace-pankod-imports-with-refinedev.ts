@@ -12,13 +12,11 @@ const deprecatedPackages = [
 ];
 
 const getOldPackageName = (oldName: string) => {
-    return `${previousScope}${
-        oldName.replace(previousScope, "").split("/")[0]
-    }`;
+    return `${previousScope}${oldName.replace(previousScope, "")}`;
 };
 
 const getNewPackageName = (oldName: string) => {
-    return `${newScope}${oldName.replace(previousScope, "").split("/")[0]}`;
+    return `${newScope}${oldName.replace(previousScope, "")}`;
 };
 
 const renameImports = (j: JSCodeshift, source: Collection) => {
