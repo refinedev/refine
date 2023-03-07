@@ -108,17 +108,17 @@ const App: React.FC = () => {
                         <Route path="/users/create" element={<UserCreate />} />
                         <Route path="/users/edit/:id" element={<UserEdit />} />
 
-                        <Route path="/posts" element={<CategoryList />} />
+                        <Route path="/categories" element={<CategoryList />} />
                         <Route
-                            path="/posts/show/:id"
+                            path="/categories/show/:id"
                             element={<CategoryShow />}
                         />
                         <Route
-                            path="/posts/create"
+                            path="/categories/create"
                             element={<CategoryCreate />}
                         />
                         <Route
-                            path="/posts/edit/:id"
+                            path="/categories/edit/:id"
                             element={<CategoryEdit />}
                         />
 
