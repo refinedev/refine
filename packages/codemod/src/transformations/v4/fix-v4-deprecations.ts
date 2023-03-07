@@ -1,8 +1,6 @@
 import {
-    API,
     JSCodeshift,
     Collection,
-    FileInfo,
     ObjectExpression,
     Property,
     Identifier,
@@ -860,10 +858,7 @@ const resourceOptionstoMeta = (j: JSCodeshift, source: Collection) => {
     });
 };
 
-export default function transformer(file: FileInfo, api: API): string {
-    const j = api.jscodeshift;
-    const source = j(file.source);
-
+export const fixV4Deprecations = async (j: JSCodeshift, source: Collection) => {
     configToSpreadConfig(j, source);
     sortToSorters(j, source);
     sorterToSorters(j, source);
@@ -875,6 +870,4 @@ export default function transformer(file: FileInfo, api: API): string {
     setSortertoSetSorters(j, source);
     addCommentToUseSimpleList(j, source);
     resourceOptionstoMeta(j, source);
-
-    return source.toSource();
-}
+};

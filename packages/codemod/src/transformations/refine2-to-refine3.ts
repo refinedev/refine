@@ -12,7 +12,7 @@ import {
 import fs from "fs";
 import path from "path";
 import { install, remove } from "../helpers";
-import checkPackageLock from "../helpers/checkPackageLock";
+import { checkPackageLock } from "../helpers";
 
 export const parser = "tsx";
 

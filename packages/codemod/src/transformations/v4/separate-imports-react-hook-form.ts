@@ -1,37 +1,10 @@
 import { Collection, JSCodeshift } from "jscodeshift";
-import fs from "fs";
-import path from "path";
-import { addPackage, install, isPackageJsonUpdated } from "../../helpers";
-import checkPackageLock from "../../helpers/checkPackageLock";
-import separateImports from "../../helpers/separateImports";
 import { exported } from "../../definitions/separated-imports/react-hook-form";
-
-export const separateImportsReactHookFormPostTransform = async (
-    files: any,
-    flags: any,
-) => {
-    const rootDir = path.join(process.cwd(), files[0]);
-    const packageJsonPath = path.join(rootDir, "package.json");
-    const useYarn = checkPackageLock(rootDir) === "yarn.lock";
-
-    // Check root package.json exists
-    try {
-        JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
-    } catch (err) {
-        console.error(
-            `Error: failed to load package.json from ${packageJsonPath}, ensure provided directory is root.`,
-        );
-    }
-
-    if (!flags.dry) {
-        if (isPackageJsonUpdated(rootDir)) {
-            await install(rootDir, null, {
-                useYarn,
-                isOnline: true,
-            });
-        }
-    }
-};
+import {
+    CONFIG_FILE_NAME,
+    CodemodConfig,
+    separateImports,
+} from "../../helpers";
 
 const REFINE_LIB_PATH = "@pankod/refine-react-hook-form";
 const REACT_HOOK_FORM_PATH = "react-hook-form";
@@ -41,6 +14,8 @@ export const separateImportsReactHookForm = (
     j: JSCodeshift,
     source: Collection,
 ) => {
+    const config = new CodemodConfig(CONFIG_FILE_NAME);
+
     separateImports({
         j,
         source,
@@ -59,8 +34,6 @@ export const separateImportsReactHookForm = (
     });
 
     if (reactQuery.length) {
-        addPackage(process.cwd(), {
-            [REACT_HOOK_FORM_PATH]: REACT_HOOK_FORM_VERSION,
-        });
+        config.addPackage(REACT_HOOK_FORM_PATH, REACT_HOOK_FORM_VERSION);
     }
 };
