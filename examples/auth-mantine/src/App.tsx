@@ -9,14 +9,11 @@ import {
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Navigate,
-    Outlet,
-} from "react-router-dom";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
@@ -147,7 +144,9 @@ const App: React.FC = () => {
                             <Route
                                 element={
                                     <Authenticated
-                                        fallback={<Navigate to="/login" />}
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
                                     >
                                         <Layout>
                                             <Outlet />

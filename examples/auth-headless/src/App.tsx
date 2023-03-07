@@ -6,14 +6,11 @@ import {
     ErrorComponent,
 } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Navigate,
-    Outlet,
-} from "react-router-dom";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { PostList, PostCreate, PostEdit } from "./pages/posts";
 import { ExamplePage } from "./pages/example";
@@ -135,7 +132,9 @@ const App: React.FC = () => {
                 <Routes>
                     <Route
                         element={
-                            <Authenticated fallback={<Navigate to="/login" />}>
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
                                 <Layout>
                                     <Outlet />
                                 </Layout>

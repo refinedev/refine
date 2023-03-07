@@ -2,7 +2,6 @@ import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
-    ReadyPage,
     LightTheme,
     notificationProvider,
     RefineSnackbarProvider,
@@ -16,14 +15,11 @@ import {
 } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Navigate,
-    Outlet,
-} from "react-router-dom";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { useFormContext } from "react-hook-form";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
@@ -178,7 +174,9 @@ const App: React.FC = () => {
                             <Route
                                 element={
                                     <Authenticated
-                                        fallback={<Navigate to="/login" />}
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
                                     >
                                         <Layout>
                                             <Outlet />

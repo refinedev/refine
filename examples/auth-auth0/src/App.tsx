@@ -1,14 +1,11 @@
 import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Navigate,
-    Outlet,
-} from "react-router-dom";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
@@ -101,7 +98,9 @@ const App: React.FC = () => {
                 <Routes>
                     <Route
                         element={
-                            <Authenticated fallback={<Navigate to="/login" />}>
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
                                 <Layout>
                                     <Outlet />
                                 </Layout>
