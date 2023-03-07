@@ -16,6 +16,21 @@ describe("deleteOne", () => {
         expect(data.title).toEqual("asdfasdfsadf");
     });
 
+    it("correct response with metaData and Int idType", async () => {
+        const { data } = await dataProvider(client, {
+            idType: "Int",
+        }).deleteOne({
+            resource: "users",
+            id: 1,
+            metaData: {
+                fields: ["id", "name"],
+            },
+        });
+
+        expect(data.id).toEqual(1);
+        expect(data.name).toEqual("Refine Dev");
+    });
+
     it("correct response without metaData", async () => {
         const { data } = await dataProvider(client).deleteOne({
             resource: "posts",
