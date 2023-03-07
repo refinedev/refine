@@ -1,6 +1,5 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { GetServerSideProps } from "next";
-import { LayoutWrapper } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import JSConfetti from "js-confetti";
 import { gsap, Power3 } from "gsap";
@@ -49,7 +48,7 @@ export const OrderDetail: React.FC<OrderPageProps> = ({ order }) => {
     }, []);
 
     return (
-        <LayoutWrapper>
+        <>
             <div
                 ref={el}
                 className="container overflow-hidden rounded-xl bg-white"
@@ -159,7 +158,7 @@ export const OrderDetail: React.FC<OrderPageProps> = ({ order }) => {
                     ))}
                 </div>
             </div>
-        </LayoutWrapper>
+        </>
     );
 };
 

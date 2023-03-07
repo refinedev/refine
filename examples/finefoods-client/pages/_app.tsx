@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/nextjs-router/legacy";
+import routerProvider from "@refinedev/nextjs-router";
 
 import { Layout } from "@components";
 import { BasketContextProvider } from "@context";
@@ -13,10 +13,8 @@ import "src/styles/globals.css";
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <Refine
-            legacyRouterProvider={routerProvider}
+            routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
-            Layout={Layout}
-            resources={[{ name: "users" }]}
         >
             <Head>
                 <title>Finefoods headless storefront example - refine</title>
@@ -27,7 +25,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                 <link rel="icon" type="image/png" href="/favicon.ico" />
             </Head>
             <BasketContextProvider>
-                <Component {...pageProps} />
+                <Layout>
+                    <Component {...pageProps} />
+                </Layout>
             </BasketContextProvider>
         </Refine>
     );
