@@ -945,6 +945,50 @@ export default function MyApp({ Component, pageProps }) {
 }
 ```
 
+To comply with TypeScript types, we'll need to extend the `NextPage` and `AppProps` types accordingly to expect the `layout` property in page components.
+
+:::info Read more at Next.js Docs
+
+You can find out more about this at [Next.js documentation for multiple layouts](https://nextjs.org/docs/basic-features/layouts#with-typescript)
+
+:::
+
+We'll define the types in `_app.tsx` file.
+
+```tsx title="pages/_app.tsx"
+import type { NextPage } from 'next'
+import type { AppProps } from 'next/app'
+
+export type PageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  layout?: keyof typeof Layouts;
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: PageWithLayout
+}
+
+// Then we'll change the type of `MyApp` components props to `AppPropsWithLayout`.
+export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+    /* ... */
+}
+```
+
+Then in our pages, we can use the `PageWithLayout` type when defining our page components.
+
+```tsx title="pages/login.tsx"
+import type { PageWithLayout } from "pages/_app";
+
+const Login: PageWithLayout = () => {
+    return (
+        <div>
+            <h1>Login</h1>
+        </div>
+    );
+};
+
+Login.layout = "auth";
+```
+
 ## Example (`/pages`)
 
 <CodeSandboxExample path="with-nextjs" />
