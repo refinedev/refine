@@ -145,13 +145,15 @@ useInfiniteList({
 });
 ```
 
-### `hasPagination`
+#### `mode`
 
-`hasPagination` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to determine whether to use server-side pagination or not.
+It can be `"off"`, `"client"` or `"server"`. It is used to determine whether to use server-side pagination or not.
 
 ```tsx
 useInfiniteList({
-    hasPagination: false,
+    pagination: {
+        mode: "off",
+    },
 });
 ```
 
@@ -192,7 +194,6 @@ const myDataProvider = {
     getList: async ({
         resource,
         pagination,
-        hasPagination,
         sorters,
         filters,
         // highlight-next-line
@@ -290,6 +291,20 @@ Params to pass to liveProvider's [subscribe](/docs/api-reference/core/providers/
 :::caution Deprecated
 Use `pagination`, `hasPagination`, `sorters` and `filters` instead.
 :::
+
+### ~~`hasPagination`~~
+
+:::caution Deprecated
+Use `pagination.mode` instead.
+:::
+
+`hasPagination` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to determine whether to use server-side pagination or not.
+
+```tsx
+useInfiniteList({
+    hasPagination: false,
+});
+```
 
 ## Return Values
 

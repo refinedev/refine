@@ -227,7 +227,6 @@ const dataProvider: DataProvider = {
      ({
         resource,
         pagination,
-        hasPagination,
         sorters,
         filters,
         meta,
@@ -272,17 +271,10 @@ It takes `resource`, `sorters`, `pagination`, and, `filters` as parameters and r
 **refine** will consume this `getList` method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
 
 ```ts
-getList: async ({
-    resource,
-    hasPagination,
-    pagination,
-    sorters,
-    filter,
-    meta,
-}) => {
-    const { current, pageSize } = pagination;
+getList: async ({ resource, pagination, sorters, filters, meta }) => {
+    const { current, pageSize, mode } = pagination;
     const { field, order } = sorters;
-    const { field, operator, value } = filter;
+    const { field, operator, value } = filters;
 
     // You can handle the request according to your API requirements.
 
@@ -301,14 +293,13 @@ getList: async ({
 
 **Parameter Types:**
 
-| Name           | Type                             |
-| -------------- | -------------------------------- |
-| resource       | `string`                         |
-| hasPagination? | `boolean` _(defaults to `true`)_ |
-| pagination?    | [`Pagination`][pagination]       |
-| sort?          | [`CrudSorting`][crud-sorting]    |
-| filters?       | [`CrudFilters`][crud-filters]    |
-| meta?          | [`MetaDataQuery`][meta-data]     |
+| Name        | Type                          |
+| ----------- | ----------------------------- |
+| resource    | `string`                      |
+| pagination? | [`Pagination`][pagination]    |
+| sorters?    | [`CrudSorting`][crud-sorting] |
+| filters?    | [`CrudFilters`][crud-filters] |
+| meta?       | [`MetaDataQuery`][meta-data]  |
 
 ### create <PropTag required/>
 
@@ -441,7 +432,7 @@ custom: async ({
     url,
     method,
     filters,
-    sort,
+    sorters,
     payload,
     query,
     headers,
@@ -461,7 +452,7 @@ custom: async ({
 | -------- | ---------------------------------------------------------- |
 | url      | `string`                                                   |
 | method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch` |
-| sort?    | [`CrudSorting`][crud-sorting]                              |
+| sorters? | [`CrudSorting`][crud-sorting]                              |
 | filters? | [`CrudFilters`][crud-filters]                              |
 | payload? | `{}`                                                       |
 | query?   | `{}`                                                       |

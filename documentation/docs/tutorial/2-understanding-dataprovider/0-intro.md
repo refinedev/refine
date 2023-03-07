@@ -41,7 +41,6 @@ const dataProvider: DataProvider = {
     getList: ({
         resource,
         pagination,
-        hasPagination,
         sorters,
         filters,
         meta,

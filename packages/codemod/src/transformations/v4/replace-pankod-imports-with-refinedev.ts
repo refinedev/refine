@@ -6,8 +6,8 @@ import {
     install,
     isPackageJsonUpdated,
     removePackage,
-} from "../helpers";
-import checkPackageLock from "../helpers/checkPackageLock";
+} from "../../helpers";
+import checkPackageLock from "../../helpers/checkPackageLock";
 
 export const parser = "tsx";
 
@@ -58,7 +58,10 @@ const renameExports = (j: JSCodeshift, source: Collection) => {
         });
 };
 
-export async function postTransform(files: any, flags: any) {
+export const replacePankodImportsWithRefineDevPostTransform = async (
+    files: any,
+    flags: any,
+) => {
     const rootDir = path.join(process.cwd(), files[0]);
     const packageJsonPath = path.join(rootDir, "package.json");
     const useYarn = checkPackageLock(rootDir) === "yarn.lock";
@@ -85,14 +88,12 @@ export async function postTransform(files: any, flags: any) {
             });
         }
     }
-}
+};
 
-export default function transformer(file: FileInfo, api: API): string {
-    const j = api.jscodeshift;
-    const source = j(file.source);
-
+export const replacePankodImportsWithRefineDev = async (
+    j: JSCodeshift,
+    source: Collection,
+) => {
     renameImports(j, source);
     renameExports(j, source);
-
-    return source.toSource();
-}
+};
