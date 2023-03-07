@@ -12,11 +12,17 @@ const deprecatedPackages = [
 ];
 
 const getOldPackageName = (oldName: string) => {
-    return `${previousScope}${oldName.replace(previousScope, "")}`;
+    return `${previousScope}${
+        oldName.replace(previousScope, "").split("/")[0]
+    }`;
 };
 
 const getNewPackageName = (oldName: string) => {
-    return `${newScope}${oldName.replace(previousScope, "")}`;
+    return `${newScope}${oldName.replace(previousScope, "").split("/")[0]}`;
+};
+
+const getNewImportValue = (oldValue: string) => {
+    return oldValue.replace(previousScope, newScope);
 };
 
 const renameImports = (j: JSCodeshift, source: Collection) => {
@@ -32,16 +38,26 @@ const renameImports = (j: JSCodeshift, source: Collection) => {
                 ),
         )
         .forEach((path) => {
-            const oldName = getOldPackageName(
-                path.node.source.value?.toString() ?? "",
-            );
+            // for example import line is: @pankod/refine-antd/dist/style.css
+            const oldImportValue = path.node.source.value?.toString() ?? "";
+
+            // getOldPackageName will return @pankod/refine-antd
+            const oldName = getOldPackageName(oldImportValue);
+
+            // getNewPackageName will return @refinedev/antd
             const newName = getNewPackageName(oldName);
+
+            // getNewImportValue will return @refinedev/antd/dist/style.css
+            const newImportValue = getNewImportValue(oldImportValue);
 
             config.addPackage(newName);
             config.removePackage(oldName);
 
             j(path).replaceWith(
-                j.importDeclaration(path.node.specifiers, j.literal(newName)),
+                j.importDeclaration(
+                    path.node.specifiers,
+                    j.literal(newImportValue),
+                ),
             );
         });
 };
@@ -60,10 +76,17 @@ const renameExports = (j: JSCodeshift, source: Collection) => {
                 ),
         )
         .forEach((path) => {
-            const oldName = getOldPackageName(
-                path.node.source.value?.toString() ?? "",
-            );
+            // for example import line is: @pankod/refine-antd/dist/style.css
+            const oldImportValue = path.node.source.value?.toString() ?? "";
+
+            // getOldPackageName will return @pankod/refine-antd
+            const oldName = getOldPackageName(oldImportValue);
+
+            // getNewPackageName will return @refinedev/antd
             const newName = getNewPackageName(oldName);
+
+            // getNewImportValue will return @refinedev/antd/dist/style.css
+            const newImportValue = getNewImportValue(oldImportValue);
 
             config.addPackage(newName);
             config.removePackage(oldName);
@@ -72,7 +95,7 @@ const renameExports = (j: JSCodeshift, source: Collection) => {
                 j.exportNamedDeclaration(
                     path.node.declaration,
                     path.node.specifiers,
-                    j.literal(newName),
+                    j.literal(newImportValue),
                 ),
             );
         });
