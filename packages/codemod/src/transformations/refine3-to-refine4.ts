@@ -19,6 +19,7 @@ import { fixV4Deprecations } from "./v4/fix-v4-deprecations";
 import { replacePankodImportsWithRefineDev } from "./v4/replace-pankod-imports-with-refinedev";
 import { CONFIG_FILE_NAME, CodemodConfig, install, remove } from "../helpers";
 import checkPackageLock from "../helpers/checkPackageLock";
+import PackageJson from "@npmcli/package-json";
 
 export async function postTransform(files: any, flags: any) {
     if (flags.dry) {
@@ -28,26 +29,21 @@ export async function postTransform(files: any, flags: any) {
     const config = new CodemodConfig(CONFIG_FILE_NAME);
     const rootDir = path.join(process.cwd(), files[0]);
 
+    const pkgJson = await PackageJson.load(rootDir);
+
+    const dependencies = Object.entries(pkgJson.content.dependencies)
+        .filter(([dep, _version]) => !config.getUninstalls().includes(dep))
+        .map(([k, v]) => [k, v]);
+
+    dependencies.push(...Object.entries(config.getInstalls()));
+
+    pkgJson.update({ dependencies: Object.fromEntries(dependencies) });
+
+    await pkgJson.save();
+
     const useYarn = checkPackageLock(rootDir) === "yarn.lock";
 
-    if (config.getUninstalls().length > 0) {
-        await remove(rootDir, config.getUninstalls(), {
-            useYarn,
-        });
-    }
-
-    if (Object.keys(config.getInstalls()).length > 0) {
-        await install(
-            rootDir,
-            Object.entries(config.getInstalls()).map(
-                ([key, value]) => `${key}@${value}`,
-            ),
-            {
-                useYarn,
-                isOnline: true,
-            },
-        );
-    }
+    await install(rootDir, null, { useYarn, isOnline: true });
 
     config.destroy();
 }
