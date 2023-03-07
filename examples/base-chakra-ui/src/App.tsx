@@ -3,36 +3,68 @@ import {
     ErrorComponent,
     Layout,
     refineTheme,
-    ReadyPage,
     notificationProvider,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "./pages";
 
 const App: React.FC = () => {
     return (
-        <ChakraProvider theme={refineTheme}>
-            <Refine
-                notificationProvider={notificationProvider()}
-                legacyRouterProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "posts",
-                        list: PostList,
-                        show: PostShow,
-                        create: PostCreate,
-                        edit: PostEdit,
-                    },
-                ]}
-            />
-        </ChakraProvider>
+        <BrowserRouter>
+            <ChakraProvider theme={refineTheme}>
+                <Refine
+                    notificationProvider={notificationProvider()}
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            show: "/posts/show/:id",
+                            create: "/posts/create",
+                            edit: "/posts/edit/:id",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            }
+                        >
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="posts" />
+                                }
+                            />
+                            <Route path="/posts" element={<PostList />} />
+                            <Route
+                                path="/posts/show/:id"
+                                element={<PostShow />}
+                            />
+                            <Route
+                                path="/posts/create"
+                                element={<PostCreate />}
+                            />
+                            <Route
+                                path="/posts/edit/:id"
+                                element={<PostEdit />}
+                            />
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ChakraProvider>
+        </BrowserRouter>
     );
 };
 

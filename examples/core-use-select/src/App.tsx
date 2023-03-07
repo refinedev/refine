@@ -1,16 +1,30 @@
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import { Refine, ErrorComponent } from "@refinedev/core";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 
 import { DummyList } from "pages/posts";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            legacyRouterProvider={routerProvider}
-            resources={[{ name: "posts", list: DummyList }]}
-        />
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                routerProvider={routerProvider}
+                resources={[{ name: "posts", list: "/posts" }]}
+            >
+                <Routes>
+                    <Route element={<Outlet />}>
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+                        <Route path="/posts" element={<DummyList />} />
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
