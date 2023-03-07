@@ -17,12 +17,13 @@ body {
 ```
 
 ```tsx live shared
-const { useNavigation: useNavigationShared } = RefineCore;
+const { useLogout: useLogoutShared } = RefineCore;
 
 window.__refineAuthStatus = false;
 
 const authProvider = {
     login: async () => {
+        window.__refineAuthStatus = true;
         return {
             success: true,
             redirectTo: "/",
@@ -44,13 +45,14 @@ const authProvider = {
         };
     },
     logout: async () => {
+        window.__refineAuthStatus = false;
         return {
             success: true,
-            redirectTo: "/",
+            redirectTo: "/login",
         };
     },
     check: async () => ({
-        authenticated: true,
+        authenticated: window.__refineAuthStatus,
     }),
     onError: async () => ({}),
     getPermissions: async () => ["admin"],
@@ -58,13 +60,14 @@ const authProvider = {
 };
 
 const DashboardPage = () => {
-    const { replace } = useNavigationShared();
+    const { mutate: logout } = useLogoutShared();
+
     return (
         <div>
             <h1>Dashboard Page</h1>
             <button
                 onClick={() => {
-                    replace("/login");
+                    logout();
                 }}
             >
                 Logout
@@ -101,39 +104,45 @@ const Wrapper = (children) => {
 setInitialRoutes(["/login"]);
 
 // visible-block-start
-import { Refine, AuthPage, useNavigation } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
+
 import { DashboardPage } from "pages/dashboard";
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    { path: "/login", element: <AuthPage type="login" /> },
-                    {
-                        path: "/register",
-                        element: <AuthPage type="register" />,
-                    },
-                    {
-                        path: "/forgot-password",
-                        element: <AuthPage type="forgotPassword" />,
-                    },
-                ],
-            }}
-            authProvider={authProvider}
-            // highlight-next-line
-            LoginPage={AuthPage}
-            DashboardPage={DashboardPage}
-            resources={[
-                {
-                    name: "posts",
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Outlet/>
+                            </Authenticated>
+                        )}
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated fallback={<Outlet />} />
+                        )}
+                    >
+                        {/* highlight-next-line */}
+                        <Route path="/login" element={<AuthPage />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -155,37 +164,51 @@ You can use the following props for the `<AuthPage>` component when the type is 
 
 ```tsx live disableScroll hideCode url=http://localhost:3000/login previewHeight=390px
 setInitialRoutes(["/login"]);
-const { useNavigation, useRouterContext } = RefineCore;
 
 // visible-block-start
-import { Refine, AuthPage } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
+
+import { DashboardPage } from "pages/dashboard";
 
 const App = () => {
     return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    // highlight-next-line
-                    { path: "/login", element: <AuthPage /> }
-                ],
-            }}
-            // highlight-next-line
-            LoginPage={AuthPage}
-            DashboardPage={DashboardPage}
-            resources={[
-                name: "posts",
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Outlet/>
+                            </Authenticated>
+                        )}
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated fallback={<Outlet />} />
+                        )}
+                    >
+                        {/* highlight-next-line */}
+                        <Route path="/login" element={<AuthPage />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
-render(<App/>);
+render(<App />);
 ```
 
 After form submission, the [`login`][login] method of the [`authProvider`][auth-provider] will be called with the form values.
@@ -221,38 +244,52 @@ The register page will be used to register new users. You can use the following 
 
 ```tsx live disableScroll hideCode url=http://localhost:3000/login previewHeight=390px
 setInitialRoutes(["/register"]);
-const { useNavigation, useRouterContext } = RefineCore;
 
 // visible-block-start
-import { Refine, AuthPage } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
+
+import { DashboardPage } from "pages/dashboard";
 
 const App = () => {
     return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    { path: "/login", element: <AuthPage /> },
-                    // highlight-next-line
-                    { path: "/register", element: <AuthPage type="register" /> }
-                ],
-            }}
-            // highlight-next-line
-            LoginPage={AuthPage}
-            DashboardPage={DashboardPage}
-            resources={[
-                name: "posts",
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Outlet/>
+                            </Authenticated>
+                        )}
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated fallback={<Outlet />} />
+                        )}
+                    >
+                        <Route path="/login" element={<AuthPage />} />
+                        {/* highlight-next-line */}
+                        <Route path="/register" element={<AuthPage type="register" />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
-render(<App/>);
+render(<App />);
 ```
 
 After form submission, the [`register`][register] method of the [`authProvider`][auth-provider] will be called with the form values.
@@ -291,31 +328,47 @@ setInitialRoutes(["/forgot-password"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useNavigation, AuthPage } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
+
+import { DashboardPage } from "pages/dashboard";
 
 const App = () => {
     return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    // highlight-start
-                    {
-                        path: "/forgot-password",
-                        element: <AuthPage type="forgotPassword" />,
-                    },
-                    // highlight-end
-                ],
-            }}
-            LoginPage={AuthPage}
-            DashboardPage={DashboardPage}
-            resources={[{ name: "posts" }]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Outlet/>
+                            </Authenticated>
+                        )}
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated fallback={<Outlet />} />
+                        )}
+                    >
+                        <Route path="/login" element={<AuthPage />} />
+                        <Route path="/register" element={<AuthPage type="register" />} />
+                        {/* highlight-next-line */}
+                        <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -358,31 +411,48 @@ setInitialRoutes(["/update-password"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useNavigation, AuthPage } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
+
+import { DashboardPage } from "pages/dashboard";
 
 const App = () => {
     return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    // highlight-start
-                    {
-                        path: "/update-password",
-                        element: <AuthPage type="updatePassword" />,
-                    },
-                    // highlight-end
-                ],
-            }}
-            LoginPage={AuthPage}
-            DashboardPage={DashboardPage}
-            resources={[{ name: "posts" }]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Outlet/>
+                            </Authenticated>
+                        )}
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated fallback={<Outlet />} />
+                        )}
+                    >
+                        <Route path="/login" element={<AuthPage />} />
+                        <Route path="/register" element={<AuthPage type="register" />} />
+                        <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                        {/* highlight-next-line */}
+                        <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -431,13 +501,10 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import {
-    Refine,
-    useRouterContext,
-    useNavigation,
-    AuthPage,
-} from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -496,15 +563,34 @@ const LoginPage = () => {
 
 const App = () => {
     return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={routerProvider}
-            // highlight-start
-            LoginPage={LoginPage}
-            // highlight-end
-            DashboardPage={DashboardPage}
-            resources={[{ name: "posts" }]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Outlet/>
+                            </Authenticated>
+                        )}
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated fallback={<Outlet />} />
+                        )}
+                    >
+                        {/* highlight-next-line */}
+                        <Route path="/login" element={<LoginPage />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -524,37 +610,63 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useNavigation, AuthPage } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            // highlight-start
-            LoginPage={() => (
-                <AuthPage
-                    rememberMe={
-                        <div
-                            style={{
-                                border: "1px dashed cornflowerblue",
-                                padding: 3,
-                            }}
-                        >
-                            <input name="CustomRememberMe" type="checkbox" />{" "}
-                            Custom remember me
-                        </div>
-                    }
-                />
-            )}
-            // highlight-end
-            DashboardPage={DashboardPage}
-            resources={[{ name: "posts" }]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Outlet/>
+                            </Authenticated>
+                        )}
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated fallback={<Outlet />} />
+                        )}
+                    >
+                        <Route
+                            path="/login"
+                            element={(
+                                <AuthPage
+                                    type="login"
+                                    // highlight-start
+                                    rememberMe={
+                                        <div
+                                            style={{
+                                                border: "1px dashed cornflowerblue",
+                                                padding: 3,
+                                            }}
+                                        >
+                                            <input name="CustomRememberMe" type="checkbox" />{" "}
+                                            Custom remember me
+                                        </div>
+                                    }
+                                    // highlight-end
+                                />
+                            )}
+                        />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -574,53 +686,63 @@ setInitialRoutes(["/register"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useRouterContext, AuthPage } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
-const Auth = (props) => {
-    const { Link } = useRouterContext();
-
-    return (
-        <AuthPage
-            {...props}
-            // highlight-start
-            loginLink={
-                <div
-                    style={{
-                        border: "1px dashed cornflowerblue",
-                        padding: 3,
-                    }}
-                >
-                    <Link to="/login">Login</Link>
-                </div>
-            }
-            // highlight-end
-        />
-    );
-};
-
 const App = () => {
     return (
-        <Refine
-            authProvider={authProvider}
-            // highlight-start
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/register",
-                        element: <Auth type="register" />,
-                    },
-                ],
-            }}
-            // highlight-end
-            LoginPage={Auth}
-            DashboardPage={DashboardPage}
-            resources={[{ name: "posts" }]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Outlet/>
+                            </Authenticated>
+                        )}
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated fallback={<Outlet />} />
+                        )}
+                    >
+                        <Route path="/login" element={<AuthPage type="login" />} />
+                        <Route
+                            path="/register"
+                            element={(
+                                <AuthPage
+                                    type="register"
+                                    // highlight-start
+                                    loginLink={
+                                        <div
+                                            style={{
+                                                border: "1px dashed cornflowerblue",
+                                                padding: 3,
+                                            }}
+                                        >
+                                            <Link to="/login">Login</Link>
+                                        </div>
+                                    }
+                                    // highlight-end
+                                />
+                            )}
+                        />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -640,50 +762,63 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useRouterContext, AuthPage } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
-const Auth = (props) => {
-    const { Link } = useRouterContext();
-
-    return (
-        <AuthPage
-            {...props}
-            // highlight-start
-            registerLink={
-                <div
-                    style={{
-                        border: "1px dashed cornflowerblue",
-                        marginTop: 5,
-                        padding: 5,
-                    }}
-                >
-                    <Link to="/register">Register</Link>
-                </div>
-            }
-            // highlight-end
-        />
-    );
-};
-
 const App = () => {
     return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    { path: "/register", element: <Auth type="register" /> },
-                ],
-            }}
-            // highlight-next-line
-            LoginPage={Auth}
-            DashboardPage={DashboardPage}
-            resources={[{ name: "posts" }]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Outlet/>
+                            </Authenticated>
+                        )}
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated fallback={<Outlet />} />
+                        )}
+                    >
+                        <Route
+                            path="/login"
+                            element={(
+                                <AuthPage
+                                    type="login"
+                                    // highlight-start
+                                    registerLink={
+                                        <div
+                                            style={{
+                                                border: "1px dashed cornflowerblue",
+                                                marginTop: 5,
+                                                padding: 5,
+                                            }}
+                                        >
+                                            <Link to="/register">Register</Link>
+                                        </div>
+                                    }
+                                    // highlight-end
+                                />
+                            )}
+                        />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -703,53 +838,63 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useRouterContext, AuthPage } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
-const Auth = (props) => {
-    const { Link } = useRouterContext();
-
-    return (
-        <AuthPage
-            {...props}
-            // highlight-start
-            forgotPasswordLink={
-                <div
-                    style={{
-                        border: "1px dashed cornflowerblue",
-                        marginTop: 5,
-                        padding: 5,
-                    }}
-                >
-                    <Link to="/forgot-password">Forgot Password</Link>
-                </div>
-            }
-            // highlight-end
-        />
-    );
-};
-
 const App = () => {
     return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/forgot-password",
-                        element: <Auth type="forgotPassword" />,
-                    },
-                ],
-            }}
-            // highlight-next-line
-            LoginPage={Auth}
-            DashboardPage={DashboardPage}
-            resources={[{ name: "posts" }]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Outlet/>
+                            </Authenticated>
+                        )}
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated fallback={<Outlet />} />
+                        )}
+                    >
+                        <Route
+                            path="/login"
+                            element={(
+                                <AuthPage
+                                    type="login"
+                                    // highlight-start
+                                    forgotPasswordLink={
+                                        <div
+                                            style={{
+                                                border: "1px dashed cornflowerblue",
+                                                marginTop: 5,
+                                                padding: 5,
+                                            }}
+                                        >
+                                            <Link to="/forgot-password">Forgot Password</Link>
+                                        </div>
+                                    }
+                                    // highlight-end
+                                />
+                            )}
+                        />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -765,37 +910,63 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useNavigation, AuthPage } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
     return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={routerProvider}
-            LoginPage={() => (
-                <AuthPage
-                    // highlight-start
-                    wrapperProps={{
-                        style: {
-                            background:
-                                "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-                            position: "absolute",
-                            top: "0px",
-                            right: "0px",
-                            bottom: "0px",
-                            left: "0px",
-                        },
-                    }}
-                    // highlight-end
-                />
-            )}
-            DashboardPage={DashboardPage}
-            resources={[{ name: "posts" }]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Outlet/>
+                            </Authenticated>
+                        )}
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated fallback={<Outlet />} />
+                        )}
+                    >
+                        <Route
+                            path="/login"
+                            element={(
+                                <AuthPage
+                                    type="login"
+                                    // highlight-start
+                                    wrapperProps={{
+                                        style: {
+                                            background:
+                                                "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+                                            position: "absolute",
+                                            top: "0px",
+                                            right: "0px",
+                                            bottom: "0px",
+                                            left: "0px",
+                                        },
+                                    }}
+                                    // highlight-end
+                                />
+                            )}
+                        />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -811,32 +982,58 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useNavigation, AuthPage } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            LoginPage={() => (
-                <AuthPage
-                    // highlight-start
-                    contentProps={{
-                        style: {
-                            background:
-                                "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-                        },
-                    }}
-                    // highlight-end
-                />
-            )}
-            DashboardPage={DashboardPage}
-            resources={[{ name: "posts" }]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Outlet/>
+                            </Authenticated>
+                        )}
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated fallback={<Outlet />} />
+                        )}
+                    >
+                        <Route
+                            path="/login"
+                            element={(
+                                <AuthPage
+                                    type="login"
+                                    // highlight-start
+                                    contentProps={{
+                                        style: {
+                                            background:
+                                                "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+                                        },
+                                    }}
+                                    // highlight-end
+                                />
+                            )}
+                        />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -852,41 +1049,67 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useNavigation, AuthPage } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            LoginPage={() => (
-                <AuthPage
-                    // highlight-start
-                    formProps={{
-                        onSubmit: (e: any) => {
-                            e.preventDefault();
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Outlet/>
+                            </Authenticated>
+                        )}
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated fallback={<Outlet />} />
+                        )}
+                    >
+                        <Route
+                            path="/login"
+                            element={(
+                                <AuthPage
+                                    type="login"
+                                    // highlight-start
+                                    formProps={{
+                                        onSubmit: (e: any) => {
+                                            e.preventDefault();
 
-                            const email = e.target.email.value;
-                            const password = e.target.password.value;
+                                            const email = e.target.email.value;
+                                            const password = e.target.password.value;
 
-                            alert(
-                                JSON.stringify({
-                                    email,
-                                    password,
-                                }),
-                            );
-                        },
-                    }}
-                    // highlight-end
-                />
-            )}
-            DashboardPage={DashboardPage}
-            resources={[{ name: "posts" }]}
-        />
+                                            alert(
+                                                JSON.stringify({
+                                                    email,
+                                                    password,
+                                                }),
+                                            );
+                                        },
+                                    }}
+                                    // highlight-end
+                                />
+                            )}
+                        />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -902,47 +1125,68 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useRouterContext, AuthPage } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            // highlight-start
-            LoginPage={() => (
-                <AuthPage
-                    contentProps={{
-                        style: {
-                            width: "400px",
-                        },
-                    }}
-                    renderContent={(content: React.ReactNode) => {
-                        return (
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                }}
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
                             >
-                                <h1>Extra Header</h1>
-                                {content}
-                                <h2>Extra Footer</h2>
-                            </div>
-                        );
-                    }}
-                />
-            )}
-            // highlight-end
-            DashboardPage={DashboardPage}
-            resources={[{ name: "posts" }]}
-        />
+                                <Outlet/>
+                            </Authenticated>
+                        )}
+                    >
+                        <Route index element={<DashboardPage />} />
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated fallback={<Outlet />} />
+                        )}
+                    >
+                        <Route
+                            path="/login"
+                            element={(
+                                <AuthPage
+                                    type="login"
+                                    // highlight-start
+                                    renderContent={(content: React.ReactNode) => {
+                                        return (
+                                            <div
+                                                style={{
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    justifyContent: "center",
+                                                    alignItems: "center",
+                                                }}
+                                            >
+                                                <h1>Extra Header</h1>
+                                                {content}
+                                                <h2>Extra Footer</h2>
+                                            </div>
+                                        );
+                                    }}
+                                    // highlight-end
+                                />
+                            )}
+                        />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
