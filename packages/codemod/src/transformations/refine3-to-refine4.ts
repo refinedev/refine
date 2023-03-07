@@ -17,27 +17,67 @@ import { useMenuToCore } from "./v4/use-menu-to-core";
 import { separateImportsReactRouterV6 } from "./v4/separate-imports-react-router-v6";
 import { fixV4Deprecations } from "./v4/fix-v4-deprecations";
 import { replacePankodImportsWithRefineDev } from "./v4/replace-pankod-imports-with-refinedev";
-import { CONFIG_FILE_NAME, CodemodConfig, install, remove } from "../helpers";
+import { CONFIG_FILE_NAME, CodemodConfig, install } from "../helpers";
 import checkPackageLock from "../helpers/checkPackageLock";
 import PackageJson from "@npmcli/package-json";
 
 export async function postTransform(files: any, flags: any) {
+    const config = new CodemodConfig(CONFIG_FILE_NAME);
+
     if (flags.dry) {
+        config.destroy();
         return;
     }
 
-    const config = new CodemodConfig(CONFIG_FILE_NAME);
     const rootDir = path.join(process.cwd(), files[0]);
 
     const pkgJson = await PackageJson.load(rootDir);
 
-    const dependencies = Object.entries(pkgJson.content.dependencies)
-        .filter(([dep, _version]) => !config.getUninstalls().includes(dep))
-        .map(([k, v]) => [k, v]);
+    const hasPankodCLIInDependencies =
+        !!pkgJson.content.dependencies?.["@pankod/refine-cli"];
 
-    dependencies.push(...Object.entries(config.getInstalls()));
+    const hasPankodCLIInDevDependencies =
+        !!pkgJson.content.devDependencies?.["@pankod/refine-cli"];
 
-    pkgJson.update({ dependencies: Object.fromEntries(dependencies) });
+    const dependencies = {
+        ...pkgJson.content.dependencies,
+        ...config.getInstalls(),
+    };
+
+    const devDependencies = {
+        ...pkgJson.content.devDependencies,
+    };
+
+    for (const packageName of [
+        ...config.getUninstalls(),
+        "@pankod/refine-cli",
+    ]) {
+        delete dependencies[packageName];
+    }
+
+    if (hasPankodCLIInDependencies || hasPankodCLIInDevDependencies) {
+        devDependencies["@refinedev/cli"] = "latest";
+    }
+
+    Object.keys(dependencies).forEach((dep) => {
+        if (
+            dep.startsWith("@pankod") &&
+            ![
+                "@pankod/refine-react-location",
+                "@pankod/refine-react-router",
+            ].includes(dep)
+        ) {
+            delete dependencies[dep];
+
+            dependencies[dep.replace("@pankod/refine-", "@refinedev/")] =
+                "latest";
+        }
+    });
+
+    pkgJson.update({
+        dependencies,
+        devDependencies,
+    });
 
     await pkgJson.save();
 
