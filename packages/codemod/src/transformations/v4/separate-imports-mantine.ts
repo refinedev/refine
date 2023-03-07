@@ -1,6 +1,9 @@
 import { Collection, JSCodeshift } from "jscodeshift";
-import { CONFIG_FILE_NAME, CodemodConfig } from "../../helpers";
-import separateImports from "../../helpers/separateImports";
+import {
+    CONFIG_FILE_NAME,
+    CodemodConfig,
+    separateImports,
+} from "../../helpers";
 import {
     exported,
     rename,

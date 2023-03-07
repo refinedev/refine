@@ -7,7 +7,7 @@ import { Collection, ImportSpecifier, JSCodeshift } from "jscodeshift";
  * import { Create } from "@pankod/refine-antd";
  * import { Button, Form } from "antd";
  */
-export default function separateImports(payload: {
+export function separateImports(payload: {
     j: JSCodeshift;
     source: Collection<any>;
     imports: string[];

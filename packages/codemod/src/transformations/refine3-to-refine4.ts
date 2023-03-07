@@ -1,5 +1,7 @@
-import { API, FileInfo } from "jscodeshift";
 import path from "path";
+import { API, FileInfo } from "jscodeshift";
+import PackageJson from "@npmcli/package-json";
+
 import { addV3LegacyAuthProviderCompatibleTrueToAuthHooks } from "./v4/add-v3LegacyAuthProviderCompatible-true-to-auth-hooks";
 import { authProviderToLegacyAuthProvider } from "./v4/authProvider-to-legacyAuthProvider";
 import { metaDataToMeta } from "./v4/metadata-to-meta";
@@ -17,9 +19,12 @@ import { useMenuToCore } from "./v4/use-menu-to-core";
 import { separateImportsReactRouterV6 } from "./v4/separate-imports-react-router-v6";
 import { fixV4Deprecations } from "./v4/fix-v4-deprecations";
 import { replacePankodImportsWithRefineDev } from "./v4/replace-pankod-imports-with-refinedev";
-import { CONFIG_FILE_NAME, CodemodConfig, install } from "../helpers";
-import checkPackageLock from "../helpers/checkPackageLock";
-import PackageJson from "@npmcli/package-json";
+import {
+    CONFIG_FILE_NAME,
+    CodemodConfig,
+    install,
+    checkPackageLock,
+} from "../helpers";
 
 export async function postTransform(files: any, flags: any) {
     const config = new CodemodConfig(CONFIG_FILE_NAME);

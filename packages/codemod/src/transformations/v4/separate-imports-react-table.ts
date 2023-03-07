@@ -1,7 +1,10 @@
 import { Collection, JSCodeshift } from "jscodeshift";
-import separateImports from "../../helpers/separateImports";
 import { exported } from "../../definitions/separated-imports/react-table";
-import { CONFIG_FILE_NAME, CodemodConfig } from "../../helpers";
+import {
+    CONFIG_FILE_NAME,
+    CodemodConfig,
+    separateImports,
+} from "../../helpers";
 
 export const separateImportsReactTable = (
     j: JSCodeshift,

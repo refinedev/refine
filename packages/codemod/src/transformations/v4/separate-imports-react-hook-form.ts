@@ -1,7 +1,10 @@
 import { Collection, JSCodeshift } from "jscodeshift";
-import separateImports from "../../helpers/separateImports";
 import { exported } from "../../definitions/separated-imports/react-hook-form";
-import { CONFIG_FILE_NAME, CodemodConfig } from "../../helpers";
+import {
+    CONFIG_FILE_NAME,
+    CodemodConfig,
+    separateImports,
+} from "../../helpers";
 
 const REFINE_LIB_PATH = "@pankod/refine-react-hook-form";
 const REACT_HOOK_FORM_PATH = "react-hook-form";

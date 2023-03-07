@@ -1,7 +1,10 @@
 import { Collection, JSCodeshift } from "jscodeshift";
-import separateImports from "../../helpers/separateImports";
 import { exported } from "../../definitions/separated-imports/react-query";
-import { CONFIG_FILE_NAME, CodemodConfig } from "../../helpers";
+import {
+    CONFIG_FILE_NAME,
+    CodemodConfig,
+    separateImports,
+} from "../../helpers";
 
 const REFINE_LIB_PATH = "@pankod/refine-core";
 const REACT_QUERY_PATH = "@tanstack/react-query";
