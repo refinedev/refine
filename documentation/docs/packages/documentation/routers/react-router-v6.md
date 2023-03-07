@@ -227,7 +227,9 @@ const App = () => {
 
 `message` (optional) - The warning message. Default value is `Are you sure you want to leave? You have unsaved changes.` Useful when you don't use an i18n provider.
 
-### `NavigateAndKeepCurrent`
+### `CatchAllNavigate`
+
+It will redirect to the given path and keep the current location in `to` query parameter to redirect back when needed.
 
 This component can be useful when you wrap your whole `Routes` component with an `Authenticated` component. In this case, to avoid constantly redirecting to the login page, you can use this component in a catch-all route to redirect to the desired page (e.g. `/login`) and keep the current location in `to` query parameter to redirect back to it after the user logs in.
 
@@ -252,7 +254,7 @@ const App = () => {
                         <Routes>
                             <Route path="/login" element={<AuthPage type="login" />} />
                             {/* highlight-next-line */}
-                            <Route path="*" element={<NavigateAndKeepCurrent to="/login" />} />
+                            <Route path="*" element={<CatchAllNavigate to="/login" />} />
                             {/* This component will catch all the routes and redirect to `/login` by adding them to `to` query */}
                             {/* The result will be `/login?to=/posts/show/1` */}
                         </Routes>
@@ -290,7 +292,7 @@ You can pass your **refine** routes to the `children` of `Authenticated` compone
 import { Refine, Authenticated } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 // highlight-start
-import routerProvider, { RefineRoutes, NavigateToResource, NavigateAndKeepCurrent } from "@pankod/refine-react-router-v6";
+import routerProvider, { RefineRoutes, NavigateToResource, CatchAllNavigate } from "@pankod/refine-react-router-v6";
 // highlight-end
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -328,7 +330,7 @@ const App = () => {
                             fallback={(
                                 <Routes>
                                     <Route path="/login" element={<AuthPage type="login" />} />
-                                    <Route path="*" element={<NavigateAndKeepCurrent to="/login" />} />
+                                    <Route path="*" element={<CatchAllNavigate to="/login" />} />
                                 </Routes>
                             )}
                         >
@@ -343,6 +345,7 @@ const App = () => {
                         </Authenticated>
                     )}
                 </RefineRoutes>
+            </Refine>
         </BrowserRouter>
     )
 }
@@ -377,7 +380,7 @@ In our `App.tsx`, while defining the routes, we'll leverage the `Outlet` compone
 ```tsx title=App.tsx
 import { Refine, Authenticated } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider, { NavigateToResource, NavigateAndKeepCurrent } from "@pankod/refine-react-router-v6";
+import routerProvider, { NavigateToResource, CatchAllNavigate } from "@pankod/refine-react-router-v6";
 
 // highlight-next-line
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -442,14 +445,16 @@ export const App = () => {
                     {/* In this `Route`, we'll render the protected routes.  */}
                     {/* While the authenticated users will be seeing the content, */}
                     {/* not authenticated users will be redirected to `/login` path. */}
-                    {/* `NavigateAndKeepCurrent` will pass the current route in the query parameters, */}
+                    {/* `CatchAllNavigate` will pass the current route in the query parameters, */}
                     {/* Providing us the opportunity to redirect the user back to the page after a successful login. */}
                     <Route
                         element={
                             <Authenticated
-                                fallback={<NavigateAndKeepCurrent to="/login" />}
+                                fallback={<CatchAllNavigate to="/login" />}
                             >
-                                <Outlet />
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
                             </Authenticated>
                         }
                     >
