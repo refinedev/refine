@@ -11,7 +11,7 @@ import * as Icons from "@ant-design/icons";
 
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import { Layout } from "components/layout";
 import { CanvasFeaturedList, CanvasList, CanvasShow } from "pages/canvases";
@@ -20,7 +20,7 @@ import { AuthPage } from "pages/auth";
 import { supabaseClient } from "utility";
 import { authProvider, auditLogProvider } from "./providers";
 
-import "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 
 import "styles/style.css";
 

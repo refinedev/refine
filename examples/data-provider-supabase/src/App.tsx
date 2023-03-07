@@ -11,10 +11,10 @@ import {
 } from "@refinedev/antd";
 import { notification } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import { GoogleOutlined } from "@ant-design/icons";
 
-import "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { supabaseClient } from "utility";

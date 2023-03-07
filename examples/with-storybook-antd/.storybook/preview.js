@@ -1,10 +1,10 @@
 import React from 'react';
-import "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 
 import { Refine } from "@refinedev/core";
 import { Layout } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { MemoryRouterComponent } from "@refinedev/react-router-v6";
+import routerProvider, { MemoryRouterComponent } from "@refinedev/react-router-v6/legacy";
 
 
 

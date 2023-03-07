@@ -3,7 +3,7 @@ import { AppProps } from "next/app";
 import Script from "next/script";
 
 import { GetListResponse, Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/nextjs-router";
+import routerProvider from "@refinedev/nextjs-router/legacy";
 import dataProvider, { authProvider } from "@refinedev/medusa";
 import NextNProgress from "nextjs-progressbar";
 import { ProductCollection } from "@medusajs/medusa";

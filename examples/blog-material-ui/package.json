@@ -13,6 +13,7 @@
         "@refinedev/mui": "latest",
         "@refinedev/react-hook-form": "latest",
         "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router-v6/legacy": "latest",
         "@refinedev/strapi-v4": "latest",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",

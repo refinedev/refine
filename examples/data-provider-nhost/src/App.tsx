@@ -5,11 +5,11 @@ import {
     AuthPage,
     ErrorComponent,
 } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/nhost";
 import { NhostAuthProvider } from "@nhost/react-auth";
 
-import "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 
 import { nhost } from "utility";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";

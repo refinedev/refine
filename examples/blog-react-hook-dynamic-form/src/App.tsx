@@ -18,7 +18,7 @@ import UserCreate from "pages/userCreate";
 import UserEdit from "pages/userEdit";
 import UserList from "pages/userList";
 
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 function App() {

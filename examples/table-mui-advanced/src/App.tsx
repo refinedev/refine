@@ -12,7 +12,7 @@ import {
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import { BasicDataGrid } from "pages/dataGrid";
 import { PostList } from "pages/table";

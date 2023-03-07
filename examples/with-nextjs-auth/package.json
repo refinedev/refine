@@ -12,6 +12,7 @@
         "@refinedev/antd": "latest",
         "@refinedev/core": "latest",
         "@refinedev/nextjs-router": "latest",
+        "@refinedev/nextjs-router/legacy": "latest",
         "@refinedev/simple-rest": "latest",
         "cross-env": "^7.0.3",
         "next": "^13.0.6",

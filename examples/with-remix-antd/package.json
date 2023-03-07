@@ -10,8 +10,10 @@
     },
     "dependencies": {
         "@refinedev/antd": "latest",
+        "@refinedev/antd/dist/reset.css": "latest",
         "@refinedev/core": "latest",
         "@refinedev/remix-router": "latest",
+        "@refinedev/remix-router/legacy": "latest",
         "@refinedev/simple-rest": "latest",
         "@remix-run/node": "^1.6.7",
         "@remix-run/react": "^1.6.7",

@@ -5,8 +5,8 @@ import { notificationProvider, Layout, LoginPage } from "@refinedev/antd";
 // import { IconName } from "@ant-design/icons";
 import * as Icons from "@ant-design/icons";
 
-import routerProvider from "@refinedev/react-router-v6";
-import "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import "@refinedev/antd/dist/reset.css";
 import { DataProvider } from "@refinedev/strapi-v4";
 import { authProvider, axiosInstance } from "./authProvider";
 

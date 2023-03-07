@@ -5,6 +5,7 @@
     "dependencies": {
         "@pankod/refine-react-location": "^3.36.2",
         "@refinedev/antd": "latest",
+        "@refinedev/antd/dist/reset.css": "latest",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@types/node": "^12.20.11",

@@ -7,7 +7,7 @@ import {
 import { useTable, List, getDefaultSortOrder } from "@refinedev/antd";
 import { Table } from "antd";
 import dataProvider from "@refinedev/simple-rest";
-import { checkAuthentication } from "@refinedev/nextjs-router";
+import { checkAuthentication } from "@refinedev/nextjs-router/legacy";
 
 import { IPost } from "src/interfaces";
 

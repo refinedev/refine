@@ -2,7 +2,7 @@ import {
     NextRouteComponent,
     checkAuthentication,
     handleRefineParams,
-} from "@refinedev/nextjs-router";
+} from "@refinedev/nextjs-router/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 import { GetServerSideProps } from "next";

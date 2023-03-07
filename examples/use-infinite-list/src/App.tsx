@@ -1,5 +1,5 @@
 import { LayoutProps, Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import { Link } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 

@@ -11,7 +11,7 @@ import {
 
 import { GlobalStyles, CssBaseline } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import { useTranslation } from "react-i18next";
 import {
     AddShoppingCartOutlined,

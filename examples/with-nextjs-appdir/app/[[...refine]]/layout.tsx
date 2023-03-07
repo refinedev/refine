@@ -10,8 +10,8 @@ import {
     AuthPage,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/nextjs-router";
-import "@refinedev/antd";
+import routerProvider from "@refinedev/nextjs-router/legacy-app";
+import "@refinedev/antd/dist/reset.css";
 
 import "@styles/global.css";
 

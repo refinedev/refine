@@ -1,11 +1,11 @@
 import { Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
 
-import "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 
 import { UserList } from "./pages/user";
 import { TaskList, TaskShow, TaskCreate, EditTask } from "./pages/task";

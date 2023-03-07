@@ -7,10 +7,10 @@ import {
     ReadyPage,
     ErrorComponent,
 } from "@refinedev/antd";
-import "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 function App() {
     return (

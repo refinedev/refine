@@ -3,26 +3,31 @@ import {
     HttpError,
     IResourceComponentsProps,
     useTranslate,
-} from "@pankod/refine-core";
+} from "@refinedev/core";
+import {
+    useTable,
+    List,
+    TextField,
+    getDefaultSortOrder,
+    NumberField,
+    DateField,
+} from "@refinedev/antd";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
 
 import {
     Typography,
-    useTable,
     Avatar,
     Row,
     Col,
     Card,
     Space,
-    Icons,
-    List,
     Table,
     Grid,
-    TextField,
-    getDefaultSortOrder,
-    NumberField,
     Popover,
-    DateField,
-} from "@pankod/refine-antd";
+} from "antd";
 
 import { OrderStatus } from "components";
 
@@ -38,30 +43,41 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
     const { data } = queryResult;
     const user = data?.data;
 
-    const { tableProps, sorter } = useTable<
+    const { tableProps, sorters: sorter } = useTable<
         IOrder,
         HttpError,
         IOrderFilterVariables
     >({
         resource: "orders",
-        initialSorter: [
-            {
-                field: "createdAt",
-                order: "desc",
-            },
-        ],
-        permanentFilter: [
-            {
-                field: "user.id",
-                operator: "eq",
-                value: user?.id,
-            },
-        ],
-        initialPageSize: 4,
+
         queryOptions: {
             enabled: user !== undefined,
         },
+
         syncWithLocation: false,
+
+        pagination: {
+            pageSize: 4,
+        },
+
+        filters: {
+            permanent: [
+                {
+                    field: "user.id",
+                    operator: "eq",
+                    value: user?.id,
+                },
+            ],
+        },
+
+        sorters: {
+            initial: [
+                {
+                    field: "createdAt",
+                    order: "desc",
+                },
+            ],
+        },
     });
 
     return (

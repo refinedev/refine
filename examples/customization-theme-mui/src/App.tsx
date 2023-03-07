@@ -10,7 +10,7 @@ import {
 
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import { PostsList, PostCreate, PostEdit } from "pages/posts";
 import { Header } from "./components/header";

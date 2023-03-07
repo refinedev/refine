@@ -5,6 +5,7 @@
     "dependencies": {
         "@refinedev/core": "latest",
         "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router-v6/legacy": "latest",
         "@refinedev/simple-rest": "latest",
         "bootstrap": "^5.2.1",
         "cross-env": "^7.0.3",

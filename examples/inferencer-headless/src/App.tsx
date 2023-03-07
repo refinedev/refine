@@ -1,9 +1,9 @@
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 import "./App.css";
 
-import { HeadlessInferencer } from "@refinedev/inferencer";
+import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
 const App: React.FC = () => {
     return (

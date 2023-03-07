@@ -1,9 +1,9 @@
 import { Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
-import "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 
 import { appwriteClient } from "utility";
 import { authProvider } from "./authProvider";

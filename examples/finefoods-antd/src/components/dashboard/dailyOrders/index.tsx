@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { useApiUrl, useCustom, useTranslate } from "@pankod/refine-core";
-import { Typography } from "@pankod/refine-antd";
+import { useApiUrl, useCustom, useTranslate } from "@refinedev/core";
+import { Typography } from "antd";
 import { Column } from "@ant-design/charts";
 import { ColumnConfig } from "@ant-design/plots/lib/components/column";
 

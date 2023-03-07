@@ -8,9 +8,9 @@ import {
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
-import { MantineInferencer } from "@refinedev/inferencer";
+import { MantineInferencer } from "@refinedev/inferencer/mantine";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 const App: React.FC = () => {
     return (

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Refine } from "@refinedev/core";
-import { MantineInferencer } from "@refinedev/inferencer";
+import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 import {
     notificationProvider,
@@ -15,7 +15,7 @@ import {
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import { DataProvider } from "@refinedev/strapi-v4";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import { authProvider, axiosInstance } from "./authProvider";
 import { API_URL } from "./constants";

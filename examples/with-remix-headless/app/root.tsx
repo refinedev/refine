@@ -9,7 +9,7 @@ import {
 } from "@remix-run/react";
 import { AuthPage, Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/remix-router";
+import routerProvider from "@refinedev/remix-router/legacy";
 
 import { PostCreate, PostEdit, PostList } from "./pages/posts";
 import { authProvider } from "./authProvider";

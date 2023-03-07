@@ -12,7 +12,7 @@ import {
 
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import { DataProvider } from "@refinedev/strapi-v4";
 
 import { authProvider, axiosInstance } from "./authProvider";

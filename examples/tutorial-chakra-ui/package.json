@@ -9,6 +9,7 @@
         "@refinedev/inferencer": "latest",
         "@refinedev/react-hook-form": "latest",
         "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router-v6/legacy": "latest",
         "@refinedev/react-table": "latest",
         "@refinedev/simple-rest": "latest",
         "@tabler/icons": "^1.1.0",

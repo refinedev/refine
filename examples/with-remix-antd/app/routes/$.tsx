@@ -6,7 +6,7 @@ import {
     RemixRouteComponent,
     checkAuthentication,
     handleRefineParams,
-} from "@refinedev/remix-router";
+} from "@refinedev/remix-router/legacy";
 
 export const loader: LoaderFunction = async ({
     params,

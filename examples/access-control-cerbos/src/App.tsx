@@ -1,11 +1,11 @@
 import { Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import { HTTP as Cerbos } from "@cerbos/http";
 
-import "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 
 import { Header } from "components/header";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";

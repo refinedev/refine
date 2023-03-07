@@ -12,7 +12,7 @@ import {
 
 import { ChakraProvider } from "@chakra-ui/react";
 import { DataProvider } from "@refinedev/strapi-v4";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import { authProvider, axiosInstance } from "./authProvider";
 import { API_URL } from "./constants";
 import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";

@@ -10,7 +10,7 @@ import {
 
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import { dataProvider } from "rest-data-provider";
 import { PostsList } from "pages/posts";

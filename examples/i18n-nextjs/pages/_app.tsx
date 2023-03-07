@@ -6,11 +6,11 @@ import { appWithTranslation, useTranslation } from "next-i18next";
 
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/nextjs-router";
+import routerProvider from "@refinedev/nextjs-router/legacy";
 
 import { PostList, PostCreate, PostEdit, PostShow, Header } from "@components";
 
-import "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 import "@styles/global.css";
 
 const API_URL = "https://api.fake-rest.refine.dev";

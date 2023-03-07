@@ -2,7 +2,7 @@ import { Refine } from "@refinedev/core";
 import { LightTheme } from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 import Layout from "./components/Layout";
 import EmployeeList from "./pages/employees";

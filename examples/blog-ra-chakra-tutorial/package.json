@@ -9,6 +9,7 @@
     "@refinedev/inferencer": "latest",
     "@refinedev/react-hook-form": "latest",
     "@refinedev/react-router-v6": "latest",
+    "@refinedev/react-router-v6/legacy": "latest",
     "@refinedev/react-table": "latest",
     "@refinedev/strapi-v4": "latest",
     "@tabler/icons": "^1.1.0",
@@ -23,6 +24,7 @@
     "dayzed": "^3.2.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-router-dom": "^6.8.1",
     "react-scripts": "^5.0.0",
     "web-vitals": "^1.1.1"
   },

@@ -3,10 +3,13 @@
     "version": "3.25.0",
     "private": true,
     "dependencies": {
+        "@ant-design/icons": "^5.0.1",
         "@refinedev/antd": "latest",
+        "@refinedev/antd/dist/reset.css": "latest",
         "@refinedev/core": "latest",
         "@refinedev/kbar": "latest",
         "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router-v6/legacy": "latest",
         "@refinedev/simple-rest": "latest",
         "@types/node": "^12.20.11",
         "@types/react": "^18.0.0",
@@ -16,6 +19,7 @@
         "cross-env": "^7.0.3",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
+        "react-router-dom": "^6.8.1",
         "react-scripts": "^5.0.0",
         "typescript": "^4.7.4"
     },

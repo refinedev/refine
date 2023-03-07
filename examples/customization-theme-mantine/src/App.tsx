@@ -14,7 +14,7 @@ import { ColorSchemeProvider } from "@mantine/styles";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, ColorScheme, Global } from "@mantine/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
 import { Header } from "./components";

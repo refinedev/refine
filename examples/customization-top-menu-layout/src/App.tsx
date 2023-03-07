@@ -2,8 +2,8 @@ import { Refine } from "@refinedev/core";
 import { notificationProvider, ErrorComponent } from "@refinedev/antd";
 import { Layout as AntdLayout } from "antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
-import "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList } from "pages/posts";
 import { CustomSider } from "components";

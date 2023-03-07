@@ -6,7 +6,7 @@ import {
     RemixRouteComponent,
     handleRefineParams,
     checkAuthentication,
-} from "@refinedev/remix-router";
+} from "@refinedev/remix-router/legacy";
 
 import { authProvider } from "~/authProvider";
 

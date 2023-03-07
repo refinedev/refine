@@ -6,7 +6,7 @@ import { useList } from "@refinedev/core";
 import * as Icons from "@ant-design/icons";
 
 import { Layout as AntdLayout, AutoComplete, Input, Typography } from "antd";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import debounce from "lodash/debounce";
 
 const { Link } = routerProvider;

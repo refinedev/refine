@@ -1,5 +1,5 @@
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";

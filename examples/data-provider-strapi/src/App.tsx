@@ -6,11 +6,11 @@ import {
     ErrorComponent,
 } from "@refinedev/antd";
 import { DataProvider, AuthHelper } from "@refinedev/strapi";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 import axios from "axios";
 
-import "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit } from "pages/posts";
 import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";

@@ -10,9 +10,9 @@ import {
 import { ConfigProvider } from "antd";
 import { Title } from "./components/layout";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import { supabaseClient } from "utility";
-import "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 
 import {
     auditLogProvider,

@@ -17,9 +17,9 @@ import {
 } from "@refinedev/antd";
 
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/remix-router";
+import routerProvider from "@refinedev/remix-router/legacy";
 
-import resetStyle from "@refinedev/antd";
+import resetStyle from "@refinedev/antd/dist/reset.css";
 
 import { authProvider } from "./authProvider";
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages/posts";

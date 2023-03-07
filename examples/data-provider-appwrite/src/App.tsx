@@ -5,8 +5,8 @@ import {
     dataProvider,
     liveProvider,
 } from "@refinedev/appwrite";
-import routerProvider from "@refinedev/react-router-v6";
-import "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import "@refinedev/antd/dist/reset.css";
 
 import { Login } from "pages/login";
 import { appwriteClient, account } from "utility";

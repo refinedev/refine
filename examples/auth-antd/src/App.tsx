@@ -8,9 +8,9 @@ import {
 import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
 
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
-import "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostEdit, PostShow } from "pages/posts";
 import { DashboardPage } from "pages/dashboard";

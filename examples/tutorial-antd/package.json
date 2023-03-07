@@ -4,9 +4,11 @@
     "private": true,
     "dependencies": {
         "@refinedev/antd": "latest",
+        "@refinedev/antd/dist/reset.css": "latest",
         "@refinedev/core": "latest",
         "@refinedev/inferencer": "latest",
         "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router-v6/legacy": "latest",
         "@refinedev/simple-rest": "latest",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
@@ -15,7 +17,6 @@
         "antd": "^5.0.5",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
-        "react-router-dom": "^6.8.1",
         "react-scripts": "^5.0.0",
         "web-vitals": "^1.1.1"
     },

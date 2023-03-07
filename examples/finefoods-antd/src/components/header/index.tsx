@@ -25,7 +25,7 @@ import {
     Layout as AntdLayout,
 } from "antd";
 
-import RefineReactRouter from "@refinedev/react-router-v6";
+import RefineReactRouter from "@refinedev/react-router-v6/legacy";
 
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";

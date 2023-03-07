@@ -13,12 +13,14 @@
         "@refinedev/core": "latest",
         "@refinedev/react-hook-form": "latest",
         "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router-v6/legacy": "latest",
         "@refinedev/react-table": "latest",
         "@refinedev/simple-rest": "latest",
         "@tabler/icons": "^1.1.0",
         "@tanstack/react-table": "^8.2.6",
         "react": "^18.0.0",
-        "react-dom": "^18.0.0"
+        "react-dom": "^18.0.0",
+        "react-router-dom": "^6.8.1"
     },
     "devDependencies": {
         "@refinedev/cli": "latest",

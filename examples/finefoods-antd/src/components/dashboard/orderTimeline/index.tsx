@@ -1,12 +1,12 @@
-import { useTranslate, useNavigation } from "@pankod/refine-core";
+import { useTranslate, useNavigation } from "@refinedev/core";
+import { useSimpleList } from "@refinedev/antd";
 import {
     Typography,
-    useSimpleList,
-    AntdList,
+    List as AntdList,
     Tooltip,
     ConfigProvider,
     theme,
-} from "@pankod/refine-antd";
+} from "antd";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
@@ -25,20 +25,21 @@ export const OrderTimeline: React.FC = () => {
     const t = useTranslate();
     const { show } = useNavigation();
 
-    const { listProps } = useSimpleList<IOrder>({
-        resource: "orders",
-        initialSorter: [
-            {
-                field: "createdAt",
-                order: "desc",
+    const //Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.,
+        { listProps } = useSimpleList<IOrder>({
+            resource: "orders",
+            initialSorter: [
+                {
+                    field: "createdAt",
+                    order: "desc",
+                },
+            ],
+            pagination: {
+                pageSize: 6,
+                simple: true,
             },
-        ],
-        pagination: {
-            pageSize: 6,
-            simple: true,
-        },
-        syncWithLocation: false,
-    });
+            syncWithLocation: false,
+        });
 
     const { dataSource } = listProps;
 

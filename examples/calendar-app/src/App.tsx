@@ -1,8 +1,8 @@
 import { Refine } from "@refinedev/core";
 import { Layout } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
-import "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import "@refinedev/antd/dist/reset.css";
 
 import { CalendarPage } from "pages/calendar";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { AppProps } from "next/app";
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/nextjs-router";
+import routerProvider from "@refinedev/nextjs-router/legacy";
 import dataProvider from "@refinedev/simple-rest";
 import { Layout } from "@components/Layout";
 

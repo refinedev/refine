@@ -1,7 +1,7 @@
 import React from "react";
 import { Refine } from "@refinedev/core";
 import { RefineKbarProvider } from "@refinedev/kbar";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 
 // It is recommended to use explicit import as seen below to reduce bundle size.
@@ -31,7 +31,7 @@ import { useTranslation } from "react-i18next";
 import { Header, Title, OffLayoutArea } from "components";
 import { BikeWhiteIcon, PizzaIcon } from "components/icons";
 
-import "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     const API_URL = "https://api.finefoods.refine.dev";

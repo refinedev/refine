@@ -17,7 +17,7 @@ import {
 } from "@mui/icons-material";
 
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import axios, { AxiosRequestConfig } from "axios";
 import { Title, Sider, Layout, Header } from "components/layout";
 import { ColorModeContextProvider } from "contexts";
