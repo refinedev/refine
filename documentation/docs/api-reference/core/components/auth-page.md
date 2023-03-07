@@ -506,107 +506,25 @@ const authProvider: AuthBindings = {
 
 `providers` property defines the list of providers used to handle login authentication. `providers` accepts an array of `Provider` type. Check out the [Interface](#interface) section for more information.
 
-```tsx live previewHeight=560px url=http://localhost:3000/login hideCode
-setInitialRoutes(["/login"]);
-setRefineProps({ Sider: () => null });
-
-// visible-block-start
-import { Refine, AuthPage, Authenticated } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
-
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
+```tsx
 const LoginPage = () => {
     return (
         <AuthPage
             providers={[
                 {
                     name: "github",
-                    icon: (
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                        >
-                            <path d="M12 0a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.4 1 .2-.8.5-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.1-.4-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.2 2.9.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.9 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 0z" />
-                        </svg>
-                    ),
+                    icon: <svg>{/* ... */}</svg>,
                     label: "Sign in with GitHub",
                 },
                 {
                     name: "google",
-                    icon: (
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                fill="#4285F4"
-                                d="m23.7 12.3-.1-2.3H12.3v4.5h6.4a5.6 5.6 0 0 1-2.4 3.6v3h3.9c2.2-2.1 3.5-5.2 3.5-8.8Z"
-                            />
-                            <path
-                                fill="#34A853"
-                                d="M12.3 24c3.2 0 6-1 7.9-3l-3.9-3a7.2 7.2 0 0 1-10.8-3.7h-4v3c2 4 6 6.7 10.8 6.7Z"
-                            />
-                            <path
-                                fill="#FBBC05"
-                                d="M5.5 14.3a7 7 0 0 1 0-4.6v-3h-4a11.9 11.9 0 0 0 0 10.7l4-3.1Z"
-                            />
-                            <path
-                                fill="#EA4335"
-                                d="M12.3 4.8c1.7 0 3.3.6 4.6 1.8L20.3 3A12 12 0 0 0 1.6 6.6l4 3.1c.9-2.8 3.5-5 6.7-5Z"
-                            />
-                        </svg>
-                    ),
+                    icon: <svg>{/* ... */}</svg>,
                     label: "Sign in with Google",
                 },
             ]}
         />
-    );
-};
-
-const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={(
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Outlet/>
-                            </Authenticated>
-                        )}
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={(
-                            <Authenticated fallback={<Outlet />} />
-                        )}
-                    >
-                        {/* highlight-next-line */}
-                        <Route path="/login" element={<LoginPage />} />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
-};
-// visible-block-end
-render(<App />);
+    )
+}
 ```
 
 ### `rememberMe`
@@ -617,74 +535,27 @@ render(<App />);
 
 `rememberMe` property defines to render your own remember me component or you can pass `false` to don't render it.
 
-```tsx live previewHeight=500px url=http://localhost:3000/login hideCode
-setInitialRoutes(["/login"]);
-setRefineProps({ Sider: () => null });
-
-// visible-block-start
-import { Refine, AuthPage, Authenticated } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
-
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
-const App = () => {
+```tsx
+const LoginPage = () => {
     return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={(
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Outlet/>
-                            </Authenticated>
-                        )}
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={(
-                            <Authenticated fallback={<Outlet />} />
-                        )}
-                    >
-                        <Route
-                            path="/login"
-                            element={(
-                                <AuthPage
-                                    type="login"
-                                    // highlight-start
-                                    rememberMe={
-                                        <div
-                                            style={{
-                                                border: "1px dashed cornflowerblue",
-                                                padding: 3,
-                                            }}
-                                        >
-                                            <input name="CustomRememberMe" type="checkbox" />{" "}
-                                            Custom remember me
-                                        </div>
-                                    }
-                                    // highlight-end
-                                />
-                            )}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
-};
-// visible-block-end
-render(<App />);
+        <AuthPage
+            type="login"
+            // highlight-start
+            rememberMe={
+                <div
+                    style={{
+                        border: "1px dashed cornflowerblue",
+                        padding: 3,
+                    }}
+                >
+                    <input name="CustomRememberMe" type="checkbox" />{" "}
+                    Custom remember me
+                </div>
+            }
+            // highlight-end
+        />
+    )
+}
 ```
 
 ### `loginLink`
@@ -695,74 +566,26 @@ render(<App />);
 
 `loginLink` property defines the link to the login page and also you can give a node to render. The default value is `"/login"`.
 
-```tsx live previewHeight=500px url=http://localhost:3000/register hideCode
-setInitialRoutes(["/register"]);
-setRefineProps({ Sider: () => null });
-
-// visible-block-start
-import { Refine, AuthPage, Authenticated } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
-
-import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
-const App = () => {
+```tsx
+const MyRegisterPage = () => {
     return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={(
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Outlet/>
-                            </Authenticated>
-                        )}
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={(
-                            <Authenticated fallback={<Outlet />} />
-                        )}
-                    >
-                        <Route path="/login" element={<AuthPage type="login" />} />
-                        <Route
-                            path="/register"
-                            element={(
-                                <AuthPage
-                                    type="register"
-                                    // highlight-start
-                                    loginLink={
-                                        <div
-                                            style={{
-                                                border: "1px dashed cornflowerblue",
-                                                padding: 3,
-                                            }}
-                                        >
-                                            <Link to="/login">Login</Link>
-                                        </div>
-                                    }
-                                    // highlight-end
-                                />
-                            )}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
-};
-// visible-block-end
-render(<App />);
+        <AuthPage
+            type="register"
+            // highlight-start
+            loginLink={
+                <div
+                    style={{
+                        border: "1px dashed cornflowerblue",
+                        padding: 3,
+                    }}
+                >
+                    <Link to="/login">Login</Link>
+                </div>
+            }
+            // highlight-end
+        />
+    )
+}
 ```
 
 ### `registerLink`
@@ -773,74 +596,27 @@ render(<App />);
 
 `registerLink` property defines the link to the registration page and also you can give a node to render. The default value is `"/register"`.
 
-```tsx live previewHeight=500px url=http://localhost:3000/login hideCode
-setInitialRoutes(["/login"]);
-setRefineProps({ Sider: () => null });
-
-// visible-block-start
-import { Refine, AuthPage, Authenticated } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
-
-import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
-const App = () => {
+```tsx
+const MyLoginPage = () => {
     return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={(
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Outlet/>
-                            </Authenticated>
-                        )}
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={(
-                            <Authenticated fallback={<Outlet />} />
-                        )}
-                    >
-                        <Route
-                            path="/login"
-                            element={(
-                                <AuthPage
-                                    type="login"
-                                    // highlight-start
-                                    registerLink={
-                                        <div
-                                            style={{
-                                                border: "1px dashed cornflowerblue",
-                                                marginTop: 5,
-                                                padding: 5,
-                                            }}
-                                        >
-                                            <Link to="/register">Register</Link>
-                                        </div>
-                                    }
-                                    // highlight-end
-                                />
-                            )}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
-};
-// visible-block-end
-render(<App />);
+        <AuthPage
+            type="login"
+            // highlight-start
+            registerLink={
+                <div
+                    style={{
+                        border: "1px dashed cornflowerblue",
+                        marginTop: 5,
+                        padding: 5,
+                    }}
+                >
+                    <Link to="/register">Register</Link>
+                </div>
+            }
+            // highlight-end
+        />
+    )
+}
 ```
 
 ### `forgotPasswordLink`
@@ -851,374 +627,139 @@ render(<App />);
 
 `forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. The default value is `"/forgot-password"`.
 
-```tsx live previewHeight=500px url=http://localhost:3000/login hideCode
-setInitialRoutes(["/login"]);
-setRefineProps({ Sider: () => null });
-
-// visible-block-start
-import { Refine, AuthPage, Authenticated } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
-
-import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
-const App = () => {
+```tsx
+const MyLoginPage = () => {
     return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={(
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Outlet/>
-                            </Authenticated>
-                        )}
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={(
-                            <Authenticated fallback={<Outlet />} />
-                        )}
-                    >
-                        <Route
-                            path="/login"
-                            element={(
-                                <AuthPage
-                                    type="login"
-                                    // highlight-start
-                                    forgotPasswordLink={
-                                        <div
-                                            style={{
-                                                border: "1px dashed cornflowerblue",
-                                                marginTop: 5,
-                                                padding: 5,
-                                            }}
-                                        >
-                                            <Link to="/forgot-password">Forgot Password</Link>
-                                        </div>
-                                    }
-                                    // highlight-end
-                                />
-                            )}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
-};
-// visible-block-end
-render(<App />);
+        <AuthPage
+            type="login"
+            // highlight-start
+            forgotPasswordLink={
+                <div
+                    style={{
+                        border: "1px dashed cornflowerblue",
+                        marginTop: 5,
+                        padding: 5,
+                    }}
+                >
+                    <Link to="/forgot-password">Forgot Password</Link>
+                </div>
+            }
+            // highlight-end
+        />
+    )
+}
 ```
 
 ### `wrapperProps`
 
 `wrapperProps` uses for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
 
-```tsx live previewHeight=500px url=http://localhost:3000/login hideCode
-setInitialRoutes(["/login"]);
-setRefineProps({ Sider: () => null });
-
-// visible-block-start
-import { Refine, AuthPage, Authenticated } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
-
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
-const App = () => {
+```tsx
+const MyLoginPage = () => {
     return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={(
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Outlet/>
-                            </Authenticated>
-                        )}
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={(
-                            <Authenticated fallback={<Outlet />} />
-                        )}
-                    >
-                        <Route
-                            path="/login"
-                            element={(
-                                <AuthPage
-                                    type="login"
-                                    // highlight-start
-                                    wrapperProps={{
-                                        style: {
-                                            background:
-                                                "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-                                            position: "absolute",
-                                            top: "0px",
-                                            right: "0px",
-                                            bottom: "0px",
-                                            left: "0px",
-                                        },
-                                    }}
-                                    // highlight-end
-                                />
-                            )}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
-};
-// visible-block-end
-render(<App />);
+        <AuthPage
+            type="login"
+            // highlight-start
+            wrapperProps={{
+                style: {
+                    background:
+                        "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+                    position: "absolute",
+                    top: "0px",
+                    right: "0px",
+                    bottom: "0px",
+                    left: "0px",
+                },
+            }}
+            // highlight-end
+        />
+    )
+}
 ```
 
 ### `contentProps`
 
 `contentProps` uses for passing props to the content component which is the card component. In the example below you can see that the title, header, and content styles are changed with `contentProps`.
 
-```tsx live previewHeight=500px url=http://localhost:3000/login hideCode
-setInitialRoutes(["/login"]);
-setRefineProps({ Sider: () => null });
-
-// visible-block-start
-import { Refine, AuthPage, Authenticated } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
-
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
-const App = () => {
+```tsx
+const MyLoginPage = () => {
     return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={(
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Outlet/>
-                            </Authenticated>
-                        )}
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={(
-                            <Authenticated fallback={<Outlet />} />
-                        )}
-                    >
-                        <Route
-                            path="/login"
-                            element={(
-                                <AuthPage
-                                    type="login"
-                                    // highlight-start
-                                    contentProps={{
-                                        style: {
-                                            background:
-                                                "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-                                        },
-                                    }}
-                                    // highlight-end
-                                />
-                            )}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
-};
-// visible-block-end
-render(<App />);
+        <AuthPage
+            type="login"
+            // highlight-start
+            contentProps={{
+                style: {
+                    background:
+                        "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+                },
+            }}
+            // highlight-end
+        />
+    )
+}
 ```
 
 ### `formProps`
 
 `formProps` uses for passing props to the form component.
 
-```tsx live previewHeight=500px url=http://localhost:3000/login hideCode
-setInitialRoutes(["/login"]);
-setRefineProps({ Sider: () => null });
-
-// visible-block-start
-import { Refine, AuthPage, Authenticated } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
-
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
-const App = () => {
+```tsx
+const MyLoginPage = () => {
     return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={(
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Outlet/>
-                            </Authenticated>
-                        )}
-                    >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={(
-                            <Authenticated fallback={<Outlet />} />
-                        )}
-                    >
-                        <Route
-                            path="/login"
-                            element={(
-                                <AuthPage
-                                    type="login"
-                                    // highlight-start
-                                    formProps={{
-                                        onSubmit: (e: any) => {
-                                            e.preventDefault();
+        <AuthPage
+            type="login"
+            // highlight-start
+            formProps={{
+                onSubmit: (e: any) => {
+                    e.preventDefault();
 
-                                            const email = e.target.email.value;
-                                            const password = e.target.password.value;
+                    const email = e.target.email.value;
+                    const password = e.target.password.value;
 
-                                            alert(
-                                                JSON.stringify({
-                                                    email,
-                                                    password,
-                                                }),
-                                            );
-                                        },
-                                    }}
-                                    // highlight-end
-                                />
-                            )}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
-};
-// visible-block-end
-render(<App />);
+                    alert(
+                        JSON.stringify({
+                            email,
+                            password,
+                        }),
+                    );
+                },
+            }}
+            // highlight-end
+        />
+    )
+}
 ```
 
 ### `renderContent`
 
 `renderContent` uses to render the form content. You can use this property to render your own content or `renderContent` gives you default content you can use to add some extra elements to the content.
 
-```tsx live previewHeight=500px url=http://localhost:3000/login hideCode
-setInitialRoutes(["/login"]);
-setRefineProps({ Sider: () => null });
-
-// visible-block-start
-import { Refine, AuthPage, Authenticated } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
-
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
-const App = () => {
+```tsx
+const MyLoginPage = () => {
     return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                authProvider={authProvider}
-            >
-                <Routes>
-                    <Route
-                        element={(
-                            <Authenticated
-                                fallback={<CatchAllNavigate to="/login" />}
-                            >
-                                <Outlet/>
-                            </Authenticated>
-                        )}
+        <AuthPage
+            type="login"
+            // highlight-start
+            renderContent={(content: React.ReactNode) => {
+                return (
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}
                     >
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-                    <Route
-                        element={(
-                            <Authenticated fallback={<Outlet />} />
-                        )}
-                    >
-                        <Route
-                            path="/login"
-                            element={(
-                                <AuthPage
-                                    type="login"
-                                    // highlight-start
-                                    renderContent={(content: React.ReactNode) => {
-                                        return (
-                                            <div
-                                                style={{
-                                                    display: "flex",
-                                                    flexDirection: "column",
-                                                    justifyContent: "center",
-                                                    alignItems: "center",
-                                                }}
-                                            >
-                                                <h1>Extra Header</h1>
-                                                {content}
-                                                <h2>Extra Footer</h2>
-                                            </div>
-                                        );
-                                    }}
-                                    // highlight-end
-                                />
-                            )}
-                        />
-                    </Route>
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
-};
-// visible-block-end
-render(<App />);
+                        <h1>Extra Header</h1>
+                        {content}
+                        <h2>Extra Footer</h2>
+                    </div>
+                );
+            }}
+            // highlight-end
+        />
+    )
+}
 ```
 
 ## API Reference
