@@ -12,7 +12,9 @@ const deprecatedPackages = [
 ];
 
 const getOldPackageName = (oldName: string) => {
-    return `${previousScope}${oldName.replace(newScope, "").split("/")[0]}`;
+    return `${previousScope}${
+        oldName.replace(previousScope, "").split("/")[0]
+    }`;
 };
 
 const getNewPackageName = (oldName: string) => {
