@@ -97,7 +97,10 @@ const App: React.FC = () => {
                             </Layout>
                         }
                     >
-                        <Route index element={<NavigateToResource />} />
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
 
                         <Route path="/posts" element={<PostList />} />
                         <Route path="/posts/show/:id" element={<PostShow />} />

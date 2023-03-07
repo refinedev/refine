@@ -148,7 +148,12 @@ const App: React.FC = () => {
                                 </Authenticated>
                             }
                         >
-                            <Route index element={<NavigateToResource />} />
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="posts" />
+                                }
+                            />
                             <Route path="/posts" element={<PostList />} />
                             <Route
                                 path="/posts/show/:id"
@@ -167,7 +172,7 @@ const App: React.FC = () => {
                         <Route
                             element={
                                 <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource />
+                                    <NavigateToResource resource="posts" />
                                 </Authenticated>
                             }
                         >
