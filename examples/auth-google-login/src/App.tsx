@@ -1,7 +1,14 @@
-import { Refine, AuthBindings } from "@refinedev/core";
+import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Navigate,
+    Outlet,
+} from "react-router-dom";
 import axios, { AxiosRequestConfig } from "axios";
 
 import "@refinedev/antd/dist/reset.css";
@@ -99,24 +106,62 @@ const App: React.FC = () => {
     };
 
     return (
-        <Refine
-            dataProvider={dataProvider(API_URL, axiosInstance)}
-            authProvider={authProvider}
-            legacyRouterProvider={routerProvider}
-            LoginPage={Login}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider(API_URL, axiosInstance)}
+                authProvider={authProvider}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        show: "/posts/show/:id",
+                        edit: "/posts/edit/:id",
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Navigate to="/login" />}>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route index element={<NavigateToResource />} />
+                        <Route path="/posts" element={<PostList />} />
+                        <Route path="/posts/show/:id" element={<PostShow />} />
+                        <Route path="/posts/create" element={<PostCreate />} />
+                        <Route path="/posts/edit/:id" element={<PostEdit />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/login" element={<Login />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 

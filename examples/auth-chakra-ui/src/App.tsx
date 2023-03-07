@@ -1,15 +1,21 @@
-import { AuthBindings, Refine } from "@refinedev/core";
+import { AuthBindings, Authenticated, Refine } from "@refinedev/core";
 import {
     AuthPage,
     Layout,
     ErrorComponent,
-    ReadyPage,
     refineTheme,
     notificationProvider,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Navigate,
+    Outlet,
+} from "react-router-dom";
 import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
@@ -111,74 +117,125 @@ const App: React.FC = () => {
     };
 
     return (
-        <ChakraProvider theme={refineTheme}>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                authProvider={authProvider}
-                notificationProvider={notificationProvider()}
-                legacyRouterProvider={{
-                    ...routerProvider,
-                    routes: [
+        <BrowserRouter>
+            <ChakraProvider theme={refineTheme}>
+                <Refine
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    authProvider={authProvider}
+                    routerProvider={routerProvider}
+                    notificationProvider={notificationProvider()}
+                    resources={[
                         {
-                            path: "/register",
-                            element: (
-                                <AuthPage
-                                    type="register"
-                                    providers={[
-                                        {
-                                            name: "google",
-                                            label: "Sign in with Google",
-                                            icon: <IconBrandGoogle />,
-                                        },
-                                        {
-                                            name: "github",
-                                            label: "Sign in with GitHub",
-                                            icon: <IconBrandGithub />,
-                                        },
-                                    ]}
-                                />
-                            ),
+                            name: "posts",
+                            list: "/posts",
+                            show: "/posts/show/:id",
+                            edit: "/posts/edit/:id",
+                            create: "/posts/create",
                         },
-                        {
-                            path: "/forgot-password",
-                            element: <AuthPage type="forgotPassword" />,
-                        },
-                        {
-                            path: "/update-password",
-                            element: <AuthPage type="updatePassword" />,
-                        },
-                    ],
-                }}
-                LoginPage={() => (
-                    <AuthPage
-                        providers={[
-                            {
-                                name: "google",
-                                label: "Sign in with Google",
-                                icon: <IconBrandGoogle />,
-                            },
-                            {
-                                name: "github",
-                                label: "Sign in with GitHub",
-                                icon: <IconBrandGithub />,
-                            },
-                        ]}
-                    />
-                )}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "posts",
-                        list: PostList,
-                        show: PostShow,
-                        edit: PostEdit,
-                        create: PostCreate,
-                    },
-                ]}
-            />
-        </ChakraProvider>
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={
+                                <Authenticated
+                                    fallback={<Navigate to="/login" />}
+                                >
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route index element={<NavigateToResource />} />
+                            <Route path="/posts" element={<PostList />} />
+                            <Route
+                                path="/posts/show/:id"
+                                element={<PostShow />}
+                            />
+                            <Route
+                                path="/posts/create"
+                                element={<PostCreate />}
+                            />
+                            <Route
+                                path="/posts/edit/:id"
+                                element={<PostEdit />}
+                            />
+                        </Route>
+
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            }
+                        >
+                            <Route
+                                path="/login"
+                                element={
+                                    <AuthPage
+                                        type="login"
+                                        providers={[
+                                            {
+                                                name: "google",
+                                                label: "Sign in with Google",
+                                                icon: <IconBrandGoogle />,
+                                            },
+                                            {
+                                                name: "github",
+                                                label: "Sign in with GitHub",
+                                                icon: <IconBrandGithub />,
+                                            },
+                                        ]}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/register"
+                                element={
+                                    <AuthPage
+                                        type="register"
+                                        providers={[
+                                            {
+                                                name: "google",
+                                                label: "Sign in with Google",
+                                                icon: <IconBrandGoogle />,
+                                            },
+                                            {
+                                                name: "github",
+                                                label: "Sign in with GitHub",
+                                                icon: <IconBrandGithub />,
+                                            },
+                                        ]}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/forgot-password"
+                                element={<AuthPage type="forgotPassword" />}
+                            />
+                            <Route
+                                path="/update-password"
+                                element={<AuthPage type="updatePassword" />}
+                            />
+                        </Route>
+
+                        <Route
+                            element={
+                                <Authenticated fallback={<Outlet />}>
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </ChakraProvider>
+        </BrowserRouter>
     );
 };
 

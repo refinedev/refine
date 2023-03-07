@@ -1,6 +1,19 @@
-import { AuthPage, AuthBindings, Refine } from "@refinedev/core";
+import {
+    AuthPage,
+    AuthBindings,
+    Refine,
+    Authenticated,
+    ErrorComponent,
+} from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Navigate,
+    Outlet,
+} from "react-router-dom";
 
 import { PostList, PostCreate, PostEdit } from "./pages/posts";
 import { ExamplePage } from "./pages/example";
@@ -102,39 +115,79 @@ const App: React.FC = () => {
     };
 
     return (
-        <Refine
-            legacyRouterProvider={{
-                ...routerProvider,
-                routes: [
-                    { path: "/example", element: <ExamplePage /> },
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                authProvider={authProvider}
+                resources={[
                     {
-                        path: "/register",
-                        element: <AuthPage type="register" />,
+                        name: "posts",
+                        list: "/posts",
+                        edit: "/posts/edit/:id",
+                        create: "/posts/create",
+                        meta: {
+                            canDelete: true,
+                        },
                     },
-                    {
-                        path: "/forgot-password",
-                        element: <AuthPage type="forgotPassword" />,
-                    },
-                    {
-                        path: "/update-password",
-                        element: <AuthPage type="updatePassword" />,
-                    },
-                ],
-            }}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            authProvider={authProvider}
-            LoginPage={() => <AuthPage />}
-            Layout={({ children }) => <Layout>{children}</Layout>}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    canDelete: true,
-                },
-            ]}
-        />
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Navigate to="/login" />}>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route index element={<NavigateToResource />} />
+                        <Route path="/posts" element={<PostList />} />
+                        <Route path="/posts/create" element={<PostCreate />} />
+                        <Route path="/posts/edit/:id" element={<PostEdit />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            path="/login"
+                            element={<AuthPage type="login" />}
+                        />
+                        <Route
+                            path="/register"
+                            element={<AuthPage type="register" />}
+                        />
+                        <Route
+                            path="/forgot-password"
+                            element={<AuthPage type="forgotPassword" />}
+                        />
+                        <Route
+                            path="/update-password"
+                            element={<AuthPage type="updatePassword" />}
+                        />
+                        <Route path="/example" element={<ExamplePage />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
