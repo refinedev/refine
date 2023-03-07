@@ -10,7 +10,7 @@
     "@pankod/refine-react-router-v6": "^3.18.0",
     "@pankod/refine-simple-rest": "^3.18.0",
     "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^11.2.6",
+    "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",
     "@types/jest": "^29.2.4",
     "@uiw/react-md-editor": "^3.19.5",
