@@ -105,6 +105,7 @@ setInitialRoutes(["/login"]);
 
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -117,6 +118,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
             >
@@ -167,6 +169,7 @@ setInitialRoutes(["/login"]);
 
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -179,6 +182,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
             >
@@ -247,6 +251,7 @@ setInitialRoutes(["/register"]);
 
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -259,6 +264,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
             >
@@ -329,6 +335,7 @@ setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -341,6 +348,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
             >
@@ -412,6 +420,7 @@ setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -424,6 +433,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
             >
@@ -502,6 +512,7 @@ setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -565,6 +576,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
             >
@@ -611,6 +623,7 @@ setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -622,6 +635,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
             >
@@ -687,6 +701,7 @@ setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
@@ -698,6 +713,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
             >
@@ -763,6 +779,7 @@ setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
@@ -774,6 +791,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
             >
@@ -839,6 +857,7 @@ setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
@@ -850,6 +869,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
             >
@@ -911,6 +931,7 @@ setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -922,6 +943,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
             >
@@ -983,6 +1005,7 @@ setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -994,6 +1017,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
             >
@@ -1050,6 +1074,7 @@ setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -1061,6 +1086,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
             >
@@ -1126,6 +1152,7 @@ setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -1137,6 +1164,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
             >
