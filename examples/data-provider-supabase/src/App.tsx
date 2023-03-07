@@ -1,14 +1,21 @@
-import { Refine, AuthBindings } from "@refinedev/core";
+import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
     ErrorComponent,
     AuthPage,
 } from "@refinedev/antd";
-import { notification } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { notification } from "antd";
 import { GoogleOutlined } from "@ant-design/icons";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Outlet,
+    Navigate,
+} from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -235,68 +242,112 @@ const authProvider: AuthBindings = {
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={dataProvider(supabaseClient)}
-            liveProvider={liveProvider(supabaseClient)}
-            legacyRouterProvider={{
-                ...routerProvider,
-                routes: [
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider(supabaseClient)}
+                liveProvider={liveProvider(supabaseClient)}
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+                resources={[
                     {
-                        path: "/register",
-                        element: <AuthPage type="register" />,
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                        show: "/posts/show/:id",
                     },
-                    {
-                        path: "/forgot-password",
-                        element: <AuthPage type="forgotPassword" />,
-                    },
-                    {
-                        path: "/update-password",
-                        element: <AuthPage type="updatePassword" />,
-                    },
-                ],
-            }}
-            authProvider={authProvider}
-            LoginPage={() => (
-                <AuthPage
-                    type="login"
-                    providers={[
-                        {
-                            name: "google",
-                            label: "Sign in with Google",
-                            icon: (
-                                <GoogleOutlined
-                                    style={{ fontSize: 18, lineHeight: 0 }}
+                ]}
+                /**
+                 * Multiple subscriptions are currently not supported with the supabase JS client v2 and @refinedev/supabase v4.
+                 * Therefore, enabling global live mode will cause unexpected behaviors.
+                 * Please set `liveMode: "auto"` or `liveMode: "manual"` manually while using real-time features of refine.
+                 */
+                options={{ liveMode: "off" }}
+                notificationProvider={notificationProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Navigate to="/login" />}>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+                        <Route path="/posts" element={<PostList />} />
+                        <Route path="/posts/create" element={<PostCreate />} />
+                        <Route path="/posts/edit/:id" element={<PostEdit />} />
+                        <Route path="/posts/show/:id" element={<PostShow />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            path="/login"
+                            element={
+                                <AuthPage
+                                    type="login"
+                                    providers={[
+                                        {
+                                            name: "google",
+                                            label: "Sign in with Google",
+                                            icon: (
+                                                <GoogleOutlined
+                                                    style={{
+                                                        fontSize: 18,
+                                                        lineHeight: 0,
+                                                    }}
+                                                />
+                                            ),
+                                        },
+                                    ]}
+                                    formProps={{
+                                        initialValues: {
+                                            email: "info@refine.dev",
+                                            password: "refine-supabase",
+                                        },
+                                    }}
                                 />
-                            ),
-                        },
-                    ]}
-                    formProps={{
-                        initialValues: {
-                            email: "info@refine.dev",
-                            password: "refine-supabase",
-                        },
-                    }}
-                />
-            )}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-            ]}
-            /**
-             * Multiple subscriptions are currently not supported with the supabase JS client v2 and @refinedev/supabase v4.
-             * Therefore, enabling global live mode will cause unexpected behaviors.
-             * Please set `liveMode: "auto"` or `liveMode: "manual"` manually while using real-time features of refine.
-             */
-            options={{ liveMode: "off" }}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+                            }
+                        />
+                        <Route
+                            path="/register"
+                            element={<AuthPage type="register" />}
+                        />
+                        <Route
+                            path="/forgot-password"
+                            element={<AuthPage type="forgotPassword" />}
+                        />
+                        <Route
+                            path="/update-password"
+                            element={<AuthPage type="updatePassword" />}
+                        />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 

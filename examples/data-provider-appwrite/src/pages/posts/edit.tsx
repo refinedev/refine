@@ -11,7 +11,7 @@ import MDEditor from "@uiw/react-md-editor";
 import { IPost, IPostVariables, ICategory } from "interfaces";
 import { normalizeFile, storage } from "utility";
 
-export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
+export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<
         IPost,
         HttpError,

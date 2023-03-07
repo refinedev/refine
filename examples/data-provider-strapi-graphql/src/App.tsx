@@ -1,7 +1,14 @@
-import { AuthBindings, Refine } from "@refinedev/core";
+import { AuthBindings, Authenticated, Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider, { GraphQLClient } from "@refinedev/strapi-graphql";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Outlet,
+    Navigate,
+} from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -120,25 +127,69 @@ const authProvider: AuthBindings = {
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={gqlDataProvider}
-            authProvider={authProvider}
-            legacyRouterProvider={routerProvider}
-            LoginPage={Login}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    canDelete: true,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+        <BrowserRouter>
+            <Refine
+                dataProvider={gqlDataProvider}
+                authProvider={authProvider}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                        show: "/posts/show/:id",
+                        meta: {
+                            canDelete: true,
+                        },
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated fallback={<Navigate to="/login" />}>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+                        <Route path="/posts" element={<PostList />} />
+                        <Route path="/posts/create" element={<PostCreate />} />
+                        <Route path="/posts/edit/:id" element={<PostEdit />} />
+                        <Route path="/posts/show/:id" element={<PostShow />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/login" element={<Login />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
