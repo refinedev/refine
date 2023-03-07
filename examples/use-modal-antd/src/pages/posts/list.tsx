@@ -1,7 +1,5 @@
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import { List, useTable, useModal } from "@refinedev/antd";
-
 import { Table, Modal, Button } from "antd";
 
 import { IPost } from "interfaces";

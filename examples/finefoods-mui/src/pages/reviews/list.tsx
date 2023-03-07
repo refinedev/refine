@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
     useTranslate,
     useUpdateMany,
@@ -33,14 +34,19 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
     const { mutate } = useUpdateMany<IReview>();
 
     const { dataGridProps } = useDataGrid<IReview>({
-        initialPageSize: 10,
-        permanentFilter: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "pending",
-            },
-        ],
+        pagination: {
+            pageSize: 10,
+        },
+
+        filters: {
+            permanent: [
+                {
+                    field: "status",
+                    operator: "eq",
+                    value: "pending",
+                },
+            ],
+        },
     });
 
     const handleUpdate = (id: BaseKey, status: IReview["status"]) => {
@@ -179,8 +185,8 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List
-            wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
-            headerProps={{
+            cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
+            cardHeaderProps={{
                 subheader: hasSelected && (
                     <Stack direction="row">
                         <Button

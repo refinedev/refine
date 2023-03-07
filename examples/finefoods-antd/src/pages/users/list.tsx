@@ -4,7 +4,6 @@ import {
     CrudFilters,
     HttpError,
 } from "@refinedev/core";
-
 import {
     List,
     useTable,
@@ -13,7 +12,9 @@ import {
     ShowButton,
 } from "@refinedev/antd";
 
-import { SearchOutlined } from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
 
 import {
     Table,
@@ -37,12 +38,6 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
         HttpError,
         IUserFilterVariables
     >({
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
         onSearch: (params) => {
             const filters: CrudFilters = [];
             const { q, status, createdAt, gender, isActive } = params;
@@ -90,7 +85,17 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
 
             return filters;
         },
+
         syncWithLocation: false,
+
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
+        },
     });
 
     const t = useTranslate();
@@ -184,7 +189,7 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
                     <Form.Item label={t("users.filter.search.label")} name="q">
                         <Input
                             placeholder={t("users.filter.search.placeholder")}
-                            prefix={<SearchOutlined />}
+                            prefix={<Icons.SearchOutlined />}
                         />
                     </Form.Item>
                 </Col>

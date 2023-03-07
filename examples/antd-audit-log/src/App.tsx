@@ -1,4 +1,4 @@
-import { AuthBindings, Refine } from "@refinedev/core";
+import { LegacyAuthProvider as AuthProvider, Refine } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
@@ -6,8 +6,8 @@ import {
     AuthPage,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import "@refinedev/antd/dist/reset.css";
+import routerProvider from "@refinedev/react-router-v6";
+import "@refinedev/antd";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import {
@@ -23,76 +23,37 @@ import refineSDK from "utils/refine-sdk";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
     login: async (payload: ILoginDto) => {
         const { email, password, providerName } = payload;
 
-        try {
-            await refineSDK.auth.login({
-                email,
-                password,
-                provider: providerName,
-            });
+        await refineSDK.auth.login({
+            email,
+            password,
+            provider: providerName,
+        });
 
-            return {
-                success: true,
-            };
-        } catch (error) {
-            return {
-                success: false,
-                error: new Error("Invalid email or password"),
-            };
-        }
+        return Promise.resolve();
     },
-    logout: async () => {
-        try {
-            await refineSDK.auth.logout();
+    logout: async () => refineSDK.auth.logout(),
+    checkError: () => Promise.resolve(),
+    checkAuth: async () => {
+        // for social login
+        refineSDK.auth.getSessionFromUrl();
 
-            return {
-                success: true,
-                redirectTo: "/login",
-            };
-        } catch (error: any) {
-            return {
-                success: false,
-                error: new Error(error),
-            };
-        }
+        return refineSDK.auth
+            .session()
+            .then(() => {
+                return Promise.resolve();
+            })
+            .catch(() => Promise.reject());
     },
-    onError: async () => ({}),
-    check: async () => {
-        try {
-            await refineSDK.auth.getSessionFromUrl();
-            const user = await refineSDK.auth.session();
-
-            if (!user) {
-                return {
-                    authenticated: false,
-                    redirectTo: "/login",
-                    logout: true,
-                };
-            }
-
-            return {
-                authenticated: true,
-            };
-        } catch (error: any) {
-            return {
-                authenticated: false,
-                redirectTo: "/login",
-                logout: true,
-                error,
-            };
-        }
-    },
-    getPermissions: async () => null,
-    getIdentity: async () => {
-        try {
-            const response = await refineSDK.auth.session();
-            return response;
-        } catch (error) {
-            return null;
-        }
+    getPermissions: () => Promise.resolve(),
+    getUserIdentity: async () => {
+        return refineSDK.auth
+            .session()
+            .then((response) => Promise.resolve(response))
+            .catch(() => Promise.reject());
     },
 };
 
@@ -101,7 +62,7 @@ const App: React.FC = () => {
         <Refine
             legacyRouterProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             resources={[
                 {
                     name: "posts",
@@ -110,7 +71,7 @@ const App: React.FC = () => {
                     edit: PostEdit,
                     show: PostShow,
                     canDelete: true,
-                    options: {
+                    meta: {
                         auditLog: {
                             permissions: ["create", "delete", "update"],
                         },

@@ -1,8 +1,14 @@
+import React from "react";
 import { useTable, List } from "@refinedev/antd";
-import { Table, Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
 
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import { Table, Avatar } from "antd";
 import { TUser } from "types/user";
+
+const { UserOutlined } = Icons;
 
 export const UserList = () => {
     const { tableProps } = useTable<TUser>();

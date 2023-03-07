@@ -1,5 +1,4 @@
 import { Edit, useForm, useSelect } from "@refinedev/mantine";
-
 import { NumberInput, TextInput, Textarea, Select } from "@mantine/core";
 
 export const ProductEdit = () => {

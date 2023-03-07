@@ -1,7 +1,5 @@
 import { useShow, IResourceComponentsProps } from "@refinedev/core";
-
 import { Show, MarkdownField, RefreshButton } from "@refinedev/antd";
-
 import { Typography } from "antd";
 
 import { IPost } from "interfaces";
@@ -10,7 +8,7 @@ const { Title, Text } = Typography;
 
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>({
-        metaData: {
+        meta: {
             fields: [
                 "id",
                 "title",

@@ -1,8 +1,8 @@
-import { AuthBindings } from "@refinedev/core";
+import { LegacyAuthProvider as AuthProvider } from "@refinedev/core";
 
 import { supabaseClient } from "utility";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
     login: async ({ mobileNo, otp }) => {
         const { data, error } = await supabaseClient.auth.verifyOtp({
             phone: mobileNo,
@@ -11,76 +11,49 @@ const authProvider: AuthBindings = {
         });
 
         if (error) {
-            return {
-                success: false,
-                error: error || new Error("Invalid OTP"),
-            };
+            return Promise.reject(error);
         }
 
         if (data) {
-            return {
-                success: true,
-                redirectTo: "/",
-            };
+            return Promise.resolve();
         }
-
-        return {
-            success: false,
-            error: new Error("Invalid OTP"),
-        };
     },
     logout: async () => {
         const { error } = await supabaseClient.auth.signOut();
 
         if (error) {
-            return {
-                success: false,
-                error: error || new Error("Invalid OTP"),
-            };
+            return Promise.reject(error);
         }
 
-        return {
-            success: true,
-            redirectTo: "/",
-        };
+        return Promise.resolve("/");
     },
-    onError: async () => ({}),
-    check: async () => {
-        const { data, error } = await supabaseClient.auth.getSession();
+    checkError: () => Promise.resolve(),
+    checkAuth: async () => {
+        const { data } = await supabaseClient.auth.getSession();
         const { session } = data;
 
         if (!session) {
-            return {
-                authenticated: false,
-                error: error || new Error("Session not found"),
-                redirectTo: "/login",
-            };
+            return Promise.reject();
         }
 
-        return {
-            authenticated: true,
-        };
+        return Promise.resolve();
     },
     getPermissions: async () => {
         const { data } = await supabaseClient.auth.getUser();
 
         if (data) {
-            return data.user?.role;
+            return Promise.resolve(data.user?.role);
         }
-
-        return null;
     },
-    getIdentity: async () => {
+    getUserIdentity: async () => {
         const { data } = await supabaseClient.auth.getUser();
         const { user } = data;
         if (user) {
-            return {
+            return Promise.resolve({
                 ...user,
                 name: user.email,
-            };
+            });
         }
-
-        return null;
     },
 };
 

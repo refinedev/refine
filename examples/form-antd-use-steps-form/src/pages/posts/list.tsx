@@ -1,7 +1,5 @@
 import { IResourceComponentsProps, useMany } from "@refinedev/core";
-
 import { List, TextField, useTable, EditButton } from "@refinedev/antd";
-
 import { Table, Space } from "antd";
 
 import { IPost, ICategory } from "interfaces";

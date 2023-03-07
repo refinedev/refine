@@ -24,24 +24,32 @@ const SearchPage: React.FC<
 
     const { tableQueryResult } = useTable<Product>({
         resource: "products",
+
         queryOptions: {
             initialData,
         },
-        initialFilter: [
-            {
-                field: "cart_id",
-                value: cartId,
-                operator: "eq",
-            },
-        ],
-        permanentFilter: [
-            {
-                field: "q",
-                operator: "eq",
-                value: q,
-            },
-        ],
-        hasPagination: false,
+
+        pagination: {
+            mode: "off",
+        },
+
+        filters: {
+            initial: [
+                {
+                    field: "cart_id",
+                    value: cartId,
+                    operator: "eq",
+                },
+            ],
+
+            permanent: [
+                {
+                    field: "q",
+                    operator: "eq",
+                    value: q,
+                },
+            ],
+        },
     });
 
     return (

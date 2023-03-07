@@ -1,4 +1,5 @@
 import { Refine } from "@refinedev/core";
+
 import {
     Layout,
     ErrorComponent,
@@ -7,10 +8,11 @@ import {
     notificationProvider,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
+
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { BasicDataGrid } from "pages/dataGrid";
 import { PostList } from "pages/table";
@@ -37,7 +39,7 @@ const App: React.FC = () => {
                             name: "posts",
                             parentName: "Posts",
                             list: PostList,
-                            options: {
+                            meta: {
                                 route: "react-table",
                                 label: "React Table",
                             },
@@ -46,7 +48,7 @@ const App: React.FC = () => {
                             name: "posts",
                             parentName: "Posts",
                             list: BasicDataGrid,
-                            options: { route: "data-grid", label: "Data Grid" },
+                            meta: { route: "data-grid", label: "Data Grid" },
                         },
                     ]}
                 />

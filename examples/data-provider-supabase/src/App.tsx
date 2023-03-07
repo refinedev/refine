@@ -1,4 +1,8 @@
-import { Refine, AuthBindings } from "@refinedev/core";
+import {
+    Refine,
+    LegacyAuthProvider as AuthProvider,
+    useGetIdentity,
+} from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
@@ -7,229 +11,132 @@ import {
 } from "@refinedev/antd";
 import { notification } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 import { GoogleOutlined } from "@ant-design/icons";
 
-import "@refinedev/antd/dist/reset.css";
+import "@refinedev/antd";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { supabaseClient } from "utility";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
     login: async ({ email, password, providerName }) => {
         // sign in with oauth
-        try {
-            if (providerName) {
-                const { data, error } =
-                    await supabaseClient.auth.signInWithOAuth({
-                        provider: providerName,
-                    });
-
-                if (error) {
-                    return {
-                        success: false,
-                        error,
-                    };
-                }
-
-                if (data?.url) {
-                    return {
-                        success: true,
-                    };
-                }
-            }
-
-            // sign in with email and password
-            const { data, error } =
-                await supabaseClient.auth.signInWithPassword({
-                    email,
-                    password,
-                });
+        if (providerName) {
+            const { data, error } = await supabaseClient.auth.signInWithOAuth({
+                provider: providerName,
+            });
 
             if (error) {
-                return {
-                    success: false,
-                    error,
-                };
+                return Promise.reject(error);
             }
 
-            if (data?.user) {
-                return {
-                    success: true,
-                };
+            if (data?.url) {
+                return Promise.resolve(false);
             }
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
         }
 
-        return {
-            success: false,
-            error: new Error("Login failed"),
-        };
+        // sign in with email and password
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+            email,
+            password,
+        });
+
+        if (error) {
+            return Promise.reject(error);
+        }
+
+        if (data?.user) {
+            return Promise.resolve();
+        }
+
+        return Promise.resolve();
     },
     register: async ({ email, password }) => {
-        try {
-            const { data, error } = await supabaseClient.auth.signUp({
-                email,
-                password,
-            });
+        const { data, error } = await supabaseClient.auth.signUp({
+            email,
+            password,
+        });
 
-            if (error) {
-                return {
-                    success: false,
-                    error,
-                };
-            }
-
-            if (data) {
-                return {
-                    success: true,
-                };
-            }
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
+        if (error) {
+            return Promise.reject(error);
         }
 
-        return {
-            success: false,
-            error: new Error("Register failed"),
-        };
+        if (data) {
+            return Promise.resolve();
+        }
     },
     forgotPassword: async ({ email }) => {
-        try {
-            const { data, error } =
-                await supabaseClient.auth.resetPasswordForEmail(email, {
-                    redirectTo: `${window.location.origin}/update-password`,
-                });
+        const { data, error } = await supabaseClient.auth.resetPasswordForEmail(
+            email,
+            {
+                redirectTo: `${window.location.origin}/update-password`,
+            },
+        );
 
-            if (error) {
-                return {
-                    success: false,
-                    error,
-                };
-            }
-
-            if (data) {
-                notification.open({
-                    type: "success",
-                    message: "Success",
-                    description:
-                        "Please check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.",
-                });
-                return {
-                    success: true,
-                };
-            }
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
+        if (error) {
+            return Promise.reject(error);
         }
 
-        return {
-            success: false,
-            error: new Error("Forgot Password password failed"),
-        };
+        if (data) {
+            notification.open({
+                type: "success",
+                message: "Success",
+                description:
+                    "Please check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.",
+            });
+            return Promise.resolve();
+        }
     },
     updatePassword: async ({ password }) => {
-        try {
-            const { data, error } = await supabaseClient.auth.updateUser({
-                password,
-            });
+        const { data, error } = await supabaseClient.auth.updateUser({
+            password,
+        });
 
-            if (error) {
-                return {
-                    success: false,
-                    error,
-                };
-            }
-
-            if (data) {
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
-            }
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
+        if (error) {
+            return Promise.reject(error);
         }
-        return {
-            success: false,
-            error: new Error("Update Password password failed"),
-        };
+
+        if (data) {
+            return Promise.resolve("/");
+        }
     },
     logout: async () => {
         const { error } = await supabaseClient.auth.signOut();
 
         if (error) {
-            return {
-                success: false,
-                error,
-            };
+            return Promise.reject(error);
         }
 
-        return {
-            success: true,
-            redirectTo: "/",
-        };
+        return Promise.resolve("/");
     },
-    onError: async () => ({}),
-    check: async () => {
-        try {
-            const { data } = await supabaseClient.auth.getSession();
-            const { session } = data;
+    checkError: () => Promise.resolve(),
+    checkAuth: async () => {
+        const { data } = await supabaseClient.auth.getSession();
+        const { session } = data;
 
-            if (!session) {
-                return {
-                    authenticated: false,
-                    error: new Error("Not authenticated"),
-                    logout: true,
-                    redirectTo: "/login",
-                };
-            }
-        } catch (error: any) {
-            return {
-                authenticated: false,
-                error: error || new Error("Not authenticated"),
-                logout: true,
-                redirectTo: "/login",
-            };
+        if (!session) {
+            return Promise.reject();
         }
 
-        return {
-            authenticated: true,
-        };
+        return Promise.resolve();
     },
     getPermissions: async () => {
         const user = await supabaseClient.auth.getUser();
 
         if (user) {
-            return user.data.user?.role;
+            return Promise.resolve(user.data.user?.role);
         }
-
-        return null;
     },
-    getIdentity: async () => {
+    getUserIdentity: async () => {
         const { data } = await supabaseClient.auth.getUser();
 
         if (data?.user) {
-            return {
+            return Promise.resolve({
                 ...data.user,
                 name: data.user.email,
-            };
+            });
         }
-
-        return null;
     },
 };
 
@@ -255,7 +162,7 @@ const App: React.FC = () => {
                     },
                 ],
             }}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             LoginPage={() => (
                 <AuthPage
                     type="login"
@@ -288,7 +195,7 @@ const App: React.FC = () => {
                 },
             ]}
             /**
-             * Multiple subscriptions are currently not supported with the supabase JS client v2 and @refinedev/supabase v4.
+             * Multiple subscriptions are currently not supported with the supabase JS client v2 and @pankod/refine-supabase v4.
              * Therefore, enabling global live mode will cause unexpected behaviors.
              * Please set `liveMode: "auto"` or `liveMode: "manual"` manually while using real-time features of refine.
              */

@@ -1,12 +1,8 @@
-import { Refine } from "@pankod/refine-core";
-import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@pankod/refine-react-location";
-import "@pankod/refine-antd/dist/reset.css";
+import "@refinedev/antd";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -15,7 +11,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 /**
                  * By default refine uses the first route with `list` property as the initial route.

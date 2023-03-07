@@ -23,21 +23,25 @@ export const Dashboard: React.FC<
         setFilters,
     } = useTable({
         resource: "products",
+
         queryOptions: {
             initialData,
         },
-        initialFilter: [
-            {
-                field: "cart_id",
-                value: cartId,
-                operator: "eq",
-            },
-            {
-                field: "tags",
-                value: ["ptag_01GCBDFH0EV71KPH85EHWE5EWR"], //homepage tag
-                operator: "eq",
-            },
-        ],
+
+        filters: {
+            initial: [
+                {
+                    field: "cart_id",
+                    value: cartId,
+                    operator: "eq",
+                },
+                {
+                    field: "tags",
+                    value: ["ptag_01GCBDFH0EV71KPH85EHWE5EWR"], //homepage tag
+                    operator: "eq",
+                },
+            ],
+        },
     });
 
     useEffect(() => {

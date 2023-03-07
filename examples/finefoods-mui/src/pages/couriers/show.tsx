@@ -6,7 +6,6 @@ import {
     useShow,
     useTranslate,
 } from "@refinedev/core";
-
 import { List, useDataGrid } from "@refinedev/mui";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 import {
@@ -61,24 +60,35 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
 
     const { dataGridProps } = useDataGrid<IReview, HttpError>({
         resource: "reviews",
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
-        permanentFilter: [
-            {
-                field: "order.courier.id",
-                operator: "eq",
-                value: courier?.id,
-            },
-        ],
-        initialPageSize: 4,
+
         queryOptions: {
             enabled: courier !== undefined,
         },
+
         syncWithLocation: false,
+
+        pagination: {
+            pageSize: 4,
+        },
+
+        filters: {
+            permanent: [
+                {
+                    field: "order.courier.id",
+                    operator: "eq",
+                    value: courier?.id,
+                },
+            ],
+        },
+
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
+        },
     });
 
     const columns = React.useMemo<GridColumns<IReview>>(
@@ -189,7 +199,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
             <Grid item xs={12} lg={9}>
                 <Stack direction="column" spacing={2}>
                     <List
-                        headerProps={{ title: t("orders.orders") }}
+                        cardHeaderProps={{ title: t("orders.orders") }}
                         canCreate={false}
                     >
                         <DataGrid

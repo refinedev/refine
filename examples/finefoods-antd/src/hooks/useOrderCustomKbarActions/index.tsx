@@ -6,7 +6,7 @@ import {
     Priority,
     useRegisterActions,
 } from "@refinedev/kbar";
-import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
 
 import { IOrder } from "interfaces";
 
@@ -45,7 +45,7 @@ export const useOrderCustomKbarActions = (order?: IOrder): void => {
             preActions.push(
                 createAction({
                     name: t("buttons.accept"),
-                    icon: <CheckCircleOutlined />,
+                    icon: <Icons.CheckCircleOutlined />,
                     section: "actions",
                     perform: () => {
                         handleMutate({
@@ -61,7 +61,7 @@ export const useOrderCustomKbarActions = (order?: IOrder): void => {
             preActions.push(
                 createAction({
                     name: t("buttons.reject"),
-                    icon: <CloseCircleOutlined />,
+                    icon: <Icons.CloseCircleOutlined />,
                     section: "actions",
                     perform: () => {
                         handleMutate({

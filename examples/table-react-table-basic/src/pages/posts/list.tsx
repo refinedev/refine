@@ -1,6 +1,5 @@
 import React from "react";
 import { useTable } from "@refinedev/react-table";
-
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 import { IPost } from "interfaces";

@@ -1,6 +1,5 @@
 import { IResourceComponentsProps } from "@refinedev/core";
 import { Create, useForm } from "@refinedev/antd";
-
 import { Form, Input } from "antd";
 
 import { ICategory } from "interfaces";

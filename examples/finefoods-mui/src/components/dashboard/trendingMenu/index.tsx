@@ -1,6 +1,5 @@
 import { useList } from "@refinedev/core";
 import { NumberField } from "@refinedev/mui";
-
 import { Avatar, Typography, Box, Stack } from "@mui/material";
 
 import { IOrder } from "interfaces";
@@ -8,9 +7,7 @@ import { IOrder } from "interfaces";
 export const TrendingMenu: React.FC = () => {
     const { data } = useList<IOrder>({
         resource: "orders",
-        config: {
-            pagination: { pageSize: 5 },
-        },
+        pagination: { pageSize: 5 },
     });
 
     return (

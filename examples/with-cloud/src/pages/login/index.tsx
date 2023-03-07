@@ -1,6 +1,9 @@
 import React from "react";
 import { useLogin } from "@refinedev/core";
-import { GoogleOutlined } from "@ant-design/icons";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
 
 import {
     Row,
@@ -19,6 +22,7 @@ import {
 import { useAuthConfig } from "@refinedev/cloud";
 
 const { Text, Title } = Typography;
+const { GoogleOutlined } = Icons;
 
 export interface ILoginForm {
     username: string;

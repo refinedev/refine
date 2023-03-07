@@ -1,5 +1,6 @@
 import { Refine } from "@refinedev/core";
 import { KBarProvider } from "@refinedev/kbar";
+
 import {
     ErrorComponent,
     ReadyPage,
@@ -7,9 +8,10 @@ import {
     Layout,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
+
 import { GlobalStyles, CssBaseline } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 import { useTranslation } from "react-i18next";
 import {
     AddShoppingCartOutlined,
@@ -95,7 +97,7 @@ const App: React.FC = () => {
                         dataProvider={dataProvider(
                             "https://api.finefoods.refine.dev",
                         )}
-                        authProvider={authProvider}
+                        legacyAuthProvider={authProvider}
                         i18nProvider={i18nProvider}
                         DashboardPage={DashboardPage}
                         Title={Title}

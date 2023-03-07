@@ -1,10 +1,10 @@
-import { Refine, AuthBindings } from "@refinedev/core";
+import { Refine, LegacyAuthProvider as AuthProvider } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 import axios, { AxiosRequestConfig } from "axios";
 
-import "@refinedev/antd/dist/reset.css";
+import "@refinedev/antd";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
@@ -28,8 +28,8 @@ axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
 });
 
 const App: React.FC = () => {
-    const authProvider: AuthBindings = {
-        login: async ({ credential }: CredentialResponse) => {
+    const authProvider: AuthProvider = {
+        login: ({ credential }: CredentialResponse) => {
             const profileObj = credential ? parseJwt(credential) : null;
 
             if (profileObj) {
@@ -40,20 +40,13 @@ const App: React.FC = () => {
                         avatar: profileObj.picture,
                     }),
                 );
-
-                localStorage.setItem("token", `${credential}`);
-
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
             }
 
-            return {
-                success: false,
-            };
+            localStorage.setItem("token", `${credential}`);
+
+            return Promise.resolve();
         },
-        logout: async () => {
+        logout: () => {
             const token = localStorage.getItem("token");
 
             if (token && typeof window !== "undefined") {
@@ -61,48 +54,36 @@ const App: React.FC = () => {
                 localStorage.removeItem("user");
                 axios.defaults.headers.common = {};
                 window.google?.accounts.id.revoke(token, () => {
-                    return {};
+                    return Promise.resolve();
                 });
             }
 
-            return {
-                success: true,
-                redirectTo: "/login",
-            };
+            return Promise.resolve();
         },
-        onError: async () => ({}),
-        check: async () => {
+        checkError: () => Promise.resolve(),
+        checkAuth: async () => {
             const token = localStorage.getItem("token");
 
             if (token) {
-                return {
-                    authenticated: true,
-                };
+                return Promise.resolve();
             }
-
-            return {
-                authenticated: false,
-                error: new Error("Not authenticated"),
-                logout: true,
-                redirectTo: "/login",
-            };
+            return Promise.reject();
         },
-        getPermissions: async () => null,
-        getIdentity: async () => {
+
+        getPermissions: () => Promise.resolve(),
+        getUserIdentity: async () => {
             const user = localStorage.getItem("user");
             if (user) {
-                return JSON.parse(user);
+                return Promise.resolve(JSON.parse(user));
             }
-
-            return null;
         },
     };
 
     return (
         <Refine
             dataProvider={dataProvider(API_URL, axiosInstance)}
-            authProvider={authProvider}
             legacyRouterProvider={routerProvider}
+            legacyAuthProvider={authProvider}
             LoginPage={Login}
             resources={[
                 {

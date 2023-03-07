@@ -7,9 +7,9 @@ import {
     notificationProvider,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
-import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
+import { ChakraUIInferencer } from "@refinedev/inferencer";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 
 const App: React.FC = () => {
     return (

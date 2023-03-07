@@ -1,10 +1,17 @@
-import { Refine, Authenticated } from "@refinedev/core";
-import { notificationProvider, ErrorComponent } from "@refinedev/antd";
-import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { Refine } from "@refinedev/core";
+import {
+    notificationProvider,
+    ReadyPage,
+    ErrorComponent,
+} from "@refinedev/antd";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import { ConfigProvider } from "antd";
-import { GithubOutlined } from "@ant-design/icons";
+import { dataProvider, liveProvider } from "@refinedev/supabase";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { Layout } from "components/layout";
 import { CanvasFeaturedList, CanvasList, CanvasShow } from "pages/canvases";
@@ -13,103 +20,82 @@ import { AuthPage } from "pages/auth";
 import { supabaseClient } from "utility";
 import { authProvider, auditLogProvider } from "./providers";
 
-import "@refinedev/antd/dist/reset.css";
+import "@refinedev/antd";
 
 import "styles/style.css";
 
+const { GithubOutlined } = Icons;
+
 function App() {
     return (
-        <BrowserRouter>
-            <ConfigProvider
-                theme={{
-                    token: {
-                        colorPrimary: "#3ecf8e",
-                        colorText: "#80808a",
-                        colorError: "#fa541c",
-                        colorBgLayout: "#f0f2f5",
-                        colorLink: "#3ecf8e",
-                        colorLinkActive: "#3ecf8e",
-                        colorLinkHover: "#3ecf8e",
-                    },
-                }}
-            >
-                <Refine
-                    authProvider={authProvider}
-                    dataProvider={dataProvider(supabaseClient)}
-                    liveProvider={liveProvider(supabaseClient)}
-                    auditLogProvider={auditLogProvider}
-                    routerProvider={routerBindings}
-                    resources={[
+        <ConfigProvider
+            theme={{
+                token: {
+                    colorPrimary: "#3ecf8e",
+                    colorText: "#80808a",
+                    colorError: "#fa541c",
+                    colorBgLayout: "#f0f2f5",
+                    colorLink: "#3ecf8e",
+                    colorLinkActive: "#3ecf8e",
+                    colorLinkHover: "#3ecf8e",
+                },
+            }}
+        >
+            <Refine
+                auditLogProvider={auditLogProvider}
+                legacyAuthProvider={authProvider}
+                dataProvider={dataProvider(supabaseClient)}
+                liveProvider={liveProvider(supabaseClient)}
+                legacyRouterProvider={{
+                    ...routerProvider,
+                    routes: [
                         {
-                            name: "canvases",
-                            list: "/canvases",
-                            show: "/canvases/show/:id",
+                            path: "/login",
+                            element: (
+                                <AuthPage
+                                    type="login"
+                                    providers={[
+                                        {
+                                            name: "github",
+                                            icon: (
+                                                <GithubOutlined
+                                                    style={{ fontSize: "18px" }}
+                                                />
+                                            ),
+                                            label: "Sign in with GitHub",
+                                        },
+                                    ]}
+                                />
+                            ),
                         },
-                    ]}
-                    notificationProvider={notificationProvider}
-                >
-                    <Routes>
-                        <Route
-                            element={
-                                <Layout>
-                                    <Outlet />
-                                </Layout>
-                            }
-                        >
-                            <Route index element={<CanvasFeaturedList />} />
-                            <Route path="/canvases" element={<CanvasList />} />
-                            <Route
-                                path="/canvases/show/:id"
-                                element={<CanvasShow />}
-                            />
-                        </Route>
-                        <Route
-                            element={
-                                <Authenticated fallback={<Outlet />}>
-                                    <NavigateToResource />
-                                </Authenticated>
-                            }
-                        >
-                            <Route
-                                path="/login"
-                                element={
-                                    <AuthPage
-                                        type="login"
-                                        providers={[
-                                            {
-                                                name: "github",
-                                                icon: (
-                                                    <GithubOutlined
-                                                        style={{
-                                                            fontSize: "18px",
-                                                        }}
-                                                    />
-                                                ),
-                                                label: "Sign in with GitHub",
-                                            },
-                                        ]}
-                                    />
-                                }
-                            />
-                            <Route
-                                path="/register"
-                                element={<AuthPage type="register" />}
-                            />
-                            <Route
-                                path="/forgot-password"
-                                element={<AuthPage type="forgotPassword" />}
-                            />
-                            <Route
-                                path="/update-password"
-                                element={<AuthPage type="updatePassword" />}
-                            />
-                        </Route>
-
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Routes>
-                </Refine>
-            </ConfigProvider>
-        </BrowserRouter>
+                        {
+                            path: "/register",
+                            element: <AuthPage type="register" />,
+                        },
+                        {
+                            path: "/forgot-password",
+                            element: <AuthPage type="forgotPassword" />,
+                        },
+                        {
+                            path: "/update-password",
+                            element: <AuthPage type="updatePassword" />,
+                        },
+                    ],
+                }}
+                DashboardPage={() => <CanvasFeaturedList />}
+                resources={[
+                    {
+                        name: "canvases",
+                        list: CanvasList,
+                        show: CanvasShow,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                ReadyPage={ReadyPage}
+                catchAll={<ErrorComponent />}
+                Layout={Layout}
+            />
+        </ConfigProvider>
     );
 }
 

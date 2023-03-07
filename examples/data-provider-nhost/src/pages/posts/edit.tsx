@@ -1,6 +1,5 @@
 import React from "react";
 import { HttpError, IResourceComponentsProps } from "@refinedev/core";
-
 import {
     Edit,
     ListButton,
@@ -8,7 +7,6 @@ import {
     useForm,
     useSelect,
 } from "@refinedev/antd";
-
 import { RcFile } from "antd/lib/upload/interface";
 import { Form, Input, Select, Upload } from "antd";
 
@@ -23,7 +21,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         HttpError,
         IPost
     >({
-        metaData: {
+        meta: {
             fields: [
                 "id",
                 "title",
@@ -41,7 +39,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
         defaultValue: postData?.category_id,
-        metaData: {
+        meta: {
             fields: ["id", "title"],
         },
     });

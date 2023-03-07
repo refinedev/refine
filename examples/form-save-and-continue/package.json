@@ -3,18 +3,18 @@
     "version": "3.25.0",
     "private": true,
     "dependencies": {
-        "@refinedev/core": "^3.99.6",
-        "@refinedev/cli": "^1.17.1",
-        "@refinedev/react-router-v6": "^3.38.0",
-        "@refinedev/simple-rest": "^3.37.4",
+        "@refinedev/core": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "@refinedev/simple-rest": "latest",
         "@types/node": "^12.20.11",
         "@types/react": "^18.0.0",
         "@types/react-dom": "^18.0.0",
         "axios": "^0.26.1",
+        "cross-env": "^7.0.3",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
+        "react-router-dom": "^6.8.1",
         "react-scripts": "^5.0.0",
-        "cross-env": "^7.0.3",
         "typescript": "^4.7.4",
         "uuid": "^8.3.2"
     },
@@ -37,6 +37,7 @@
         ]
     },
     "devDependencies": {
+        "@refinedev/cli": "latest",
         "@types/uuid": "^8.3.4"
     }
 }

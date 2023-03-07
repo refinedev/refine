@@ -1,5 +1,4 @@
 import { IResourceComponentsProps, useMany } from "@refinedev/core";
-
 import {
     List,
     TextField,
@@ -8,19 +7,20 @@ import {
     ShowButton,
     getDefaultSortOrder,
 } from "@refinedev/antd";
-
 import { Table, Space } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 
 export const PostsList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "$id",
-                order: "asc",
-            },
-        ],
+    const { tableProps, sorters: sorter } = useTable<IPost>({
+        sorters: {
+            initial: [
+                {
+                    field: "$id",
+                    order: "asc",
+                },
+            ],
+        },
     });
 
     const categoryIds =

@@ -1,26 +1,19 @@
-import { AuthBindings } from "@refinedev/core";
+import { LegacyAuthProvider as AuthProvider } from "@refinedev/core";
 import { notification } from "antd";
 
 export const TOKEN_KEY = "refine-auth";
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
         localStorage.setItem(TOKEN_KEY, `${email}-${password}`);
-        return {
-            success: true,
-        };
+        return Promise.resolve();
     },
     register: async ({ email, password }) => {
         try {
             await authProvider.login({ email, password });
-            return {
-                success: true,
-            };
+            return Promise.resolve();
         } catch (error) {
-            return {
-                success: false,
-                error: new Error("Invalid email or password"),
-            };
+            return Promise.reject();
         }
     },
     updatePassword: async () => {
@@ -28,52 +21,39 @@ export const authProvider: AuthBindings = {
             message: "Updated Password",
             description: "Password updated successfully",
         });
-        return {
-            success: true,
-        };
+        return Promise.resolve();
     },
     forgotPassword: async ({ email }) => {
         notification.success({
             message: "Reset Password",
             description: `Reset password link sent to "${email}"`,
         });
-        return {
-            success: true,
-        };
+        return Promise.resolve();
     },
-    logout: async () => {
+    logout: () => {
         localStorage.removeItem(TOKEN_KEY);
-        return {
-            success: true,
-        };
+        return Promise.resolve();
     },
-    onError: async () => ({}),
-    check: async () => {
+    checkError: () => Promise.resolve(),
+    checkAuth: () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
-            return {
-                authenticated: true,
-            };
+            return Promise.resolve();
         }
 
-        return {
-            authenticated: false,
-            error: new Error("Invalid token"),
-            logout: true,
-            redirectTo: "/login",
-        };
+        return Promise.reject();
     },
-    getPermissions: async () => null,
-    getIdentity: async () => {
+    getPermissions: () => Promise.resolve(),
+    getUserIdentity: async () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (!token) {
-            return null;
+            return Promise.reject();
         }
 
-        return {
+        return Promise.resolve({
             id: 1,
             name: "James Sullivan",
             avatar: "https://i.pravatar.cc/150",
-        };
+        });
     },
 };

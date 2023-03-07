@@ -1,34 +1,31 @@
 import { useSimpleList } from "@refinedev/antd";
-import { List, Skeleton } from "antd";
+import { List as AntdList, Skeleton } from "antd";
 
 import { CanvasTile } from "components/canvas";
 import { SponsorsBanner } from "components/banners";
 import { Canvas } from "types";
 
 export const CanvasFeaturedList: React.FC = () => {
-    const { listProps, queryResult } = useSimpleList<Canvas>({
-        resource: "canvases",
-        pagination: {
-            pageSize: 12,
-        },
-        sorters: {
-            initial: [
+    const //Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.,
+        { listProps, queryResult } = useSimpleList<Canvas>({
+            resource: "canvases",
+            pagination: {
+                pageSize: 12,
+            },
+            initialSorter: [
                 {
                     field: "created_at",
                     order: "desc",
                 },
             ],
-        },
-        filters: {
-            initial: [
+            initialFilter: [
                 {
                     field: "is_featured",
                     operator: "eq",
                     value: true,
                 },
             ],
-        },
-    });
+        });
 
     const { isLoading } = queryResult;
 
@@ -42,7 +39,7 @@ export const CanvasFeaturedList: React.FC = () => {
                         ))}
                     </div>
                 ) : (
-                    <List
+                    <AntdList
                         {...listProps}
                         className="canvas-list"
                         split={false}

@@ -8,10 +8,14 @@ import {
 
 import { useSimpleList, CreateButton, useDrawerForm } from "@refinedev/antd";
 
-import { SearchOutlined } from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import { Row, List as AntdList, Col, Form, Input, Typography } from "antd";
 
 const { Text } = Typography;
+const { SearchOutlined } = Icons;
 
 import {
     ProductItem,
@@ -25,30 +29,31 @@ import { IProduct } from "interfaces";
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
-    const { listProps, searchFormProps, filters } = useSimpleList<
-        IProduct,
-        HttpError,
-        { name: string; categories: string[] }
-    >({
-        pagination: { pageSize: 12, current: 2 },
-        onSearch: ({ name, categories }) => {
-            const productFilters: CrudFilters = [];
+    const //Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.,
+        { listProps, searchFormProps, filters } = useSimpleList<
+            IProduct,
+            HttpError,
+            { name: string; categories: string[] }
+        >({
+            pagination: { pageSize: 12, defaultCurrent: 2 },
+            onSearch: ({ name, categories }) => {
+                const productFilters: CrudFilters = [];
 
-            productFilters.push({
-                field: "category.id",
-                operator: "in",
-                value: categories?.length > 0 ? categories : undefined,
-            });
+                productFilters.push({
+                    field: "category.id",
+                    operator: "in",
+                    value: categories?.length > 0 ? categories : undefined,
+                });
 
-            productFilters.push({
-                field: "name",
-                operator: "contains",
-                value: name ? name : undefined,
-            });
+                productFilters.push({
+                    field: "name",
+                    operator: "contains",
+                    value: name ? name : undefined,
+                });
 
-            return productFilters;
-        },
-    });
+                return productFilters;
+            },
+        });
 
     const {
         drawerProps: createDrawerProps,

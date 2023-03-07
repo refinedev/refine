@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { IResourceComponentsProps, HttpError } from "@refinedev/core";
-
 import {
     useSimpleList,
     useModalForm,
@@ -8,7 +7,6 @@ import {
     CreateButton,
     List,
 } from "@refinedev/antd";
-
 import { List as AntdList } from "antd";
 
 import { IProduct } from "interfaces";
@@ -18,12 +16,13 @@ import { StoreContext } from "context/store";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const [store] = useContext(StoreContext);
-    const { listProps } = useSimpleList<IProduct>({
-        permanentFilter: [
-            { field: "stores][id]", operator: "eq", value: store },
-        ],
-        metaData: { populate: ["image"] },
-    });
+    const //Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.,
+        { listProps } = useSimpleList<IProduct>({
+            permanentFilter: [
+                { field: "stores][id]", operator: "eq", value: store },
+            ],
+            meta: { populate: ["image"] },
+        });
 
     const {
         drawerProps: createDrawerProps,
@@ -42,7 +41,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         show: editShow,
     } = useModalForm<IProduct, HttpError, IProduct>({
         action: "edit",
-        metaData: { populate: ["image"] },
+        meta: { populate: ["image"] },
     });
 
     return (

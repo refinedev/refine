@@ -7,10 +7,10 @@ import {
     LightTheme,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
-import { MantineProvider, Global } from "@mantine/styles";
-import { MantineInferencer } from "@refinedev/inferencer/mantine";
+import { MantineProvider, Global } from "@mantine/core";
+import { MantineInferencer } from "@refinedev/inferencer";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 
 const App: React.FC = () => {
     return (

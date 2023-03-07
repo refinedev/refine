@@ -18,25 +18,33 @@ const SearchPage: React.FC<{
 
     const { tableQueryResult } = useTable<Product>({
         resource: "products",
-        initialFilter: [
-            {
-                field: "cart_id",
-                value: cartId,
-                operator: "eq",
-            },
-        ],
-        permanentFilter: [
-            {
-                field: "collection_id",
-                operator: "eq",
-                value: [collection.id],
-            },
-        ],
+
         queryOptions: {
             initialData,
             keepPreviousData: false,
         },
-        hasPagination: false,
+
+        pagination: {
+            mode: "off",
+        },
+
+        filters: {
+            initial: [
+                {
+                    field: "cart_id",
+                    value: cartId,
+                    operator: "eq",
+                },
+            ],
+
+            permanent: [
+                {
+                    field: "collection_id",
+                    operator: "eq",
+                    value: [collection.id],
+                },
+            ],
+        },
     });
 
     return (

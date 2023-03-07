@@ -3,24 +3,24 @@
     "version": "3.25.0",
     "private": true,
     "dependencies": {
-        "@refinedev/core": "^3.99.6",
-        "@refinedev/cli": "^1.17.1",
-        "@refinedev/mui": "^3.61.5",
-        "@refinedev/react-hook-form": "^3.37.2",
-        "@refinedev/react-router-v6": "^3.38.0",
-        "@refinedev/simple-rest": "^3.37.4",
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
         "@mui/lab": "^5.0.0-alpha.85",
         "@mui/material": "^5.8.6",
         "@mui/x-data-grid": "^5.12.1",
+        "@refinedev/core": "latest",
+        "@refinedev/mui": "latest",
+        "@refinedev/react-hook-form": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "@refinedev/simple-rest": "latest",
         "@types/node": "^12.20.11",
         "@types/react": "^18.0.0",
         "@types/react-dom": "^18.0.0",
+        "cross-env": "^7.0.3",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
+        "react-router-dom": "^6.8.1",
         "react-scripts": "^5.0.0",
-        "cross-env": "^7.0.3",
         "typescript": "^4.7.4"
     },
     "scripts": {
@@ -40,5 +40,8 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "@refinedev/cli": "latest"
     }
 }

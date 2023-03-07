@@ -9,8 +9,8 @@ import {
     AuthPage,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/nextjs-router/legacy";
-import "@refinedev/antd/dist/reset.css";
+import routerProvider from "@refinedev/nextjs-router";
+import "@refinedev/antd";
 
 import "@styles/global.css";
 
@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <Refine
             legacyRouterProvider={routerProvider}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
             resources={[
                 { name: "users" },

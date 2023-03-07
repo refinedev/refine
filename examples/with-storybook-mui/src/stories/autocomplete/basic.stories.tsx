@@ -1,6 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useAutocomplete } from "@refinedev/mui";
-
 import {
     Autocomplete,
     TextField,
@@ -62,8 +61,8 @@ type IGroupedCategory = { firstLetter: string } & ICategory;
 export const Grouped: ComponentStory<typeof Autocomplete> = (args) => {
     const { autocompleteProps } = useAutocomplete({
         resource: "categories",
-        sort: [{ field: "title", order: "asc" }],
         fetchSize: 100,
+        sorters: [{ field: "title", order: "asc" }],
     });
 
     const options = autocompleteProps.options.map((option) => {

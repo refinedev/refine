@@ -4,10 +4,12 @@ import {
     useUpdate,
     HttpError,
 } from "@refinedev/core";
-
 import { useSimpleList, CreateButton, useDrawerForm } from "@refinedev/antd";
 
-import { SearchOutlined } from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import {
     Typography,
     Row,
@@ -20,6 +22,7 @@ import {
 } from "antd";
 
 const { Text } = Typography;
+const { SearchOutlined } = Icons;
 
 import { IStore, IProduct } from "interfaces";
 import {
@@ -41,45 +44,44 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
 }) => {
     const t = useTranslate();
 
-    const { listProps, searchFormProps, queryResult } = useSimpleList<
-        IProduct,
-        HttpError,
-        { name: string; categories: string[] }
-    >({
-        resource: "products",
-        pagination: { pageSize: 9 },
-        syncWithLocation: false,
-        onSearch: ({ name, categories }) => {
-            const productFilters: CrudFilters = [];
+    const //Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.,
+        { listProps, searchFormProps, queryResult } = useSimpleList<
+            IProduct,
+            HttpError,
+            { name: string; categories: string[] }
+        >({
+            resource: "products",
+            pagination: { pageSize: 9 },
+            onSearch: ({ name, categories }) => {
+                const productFilters: CrudFilters = [];
 
-            if (categories.length > 0) {
-                productFilters.push({
-                    field: "category.id",
-                    operator: "in",
-                    value: categories,
-                });
-            }
+                if (categories.length > 0) {
+                    productFilters.push({
+                        field: "category.id",
+                        operator: "in",
+                        value: categories,
+                    });
+                }
 
-            if (name) {
-                productFilters.push({
-                    field: "name",
-                    operator: "contains",
-                    value: name,
-                });
-            }
+                if (name) {
+                    productFilters.push({
+                        field: "name",
+                        operator: "contains",
+                        value: name,
+                    });
+                }
 
-            return productFilters;
-        },
-    });
+                return productFilters;
+            },
+        });
     const { data: productData } = queryResult;
 
-    const mergedData =
-        productData?.data.map((product) => ({
-            ...record?.products.find(
-                (storeProduct) => storeProduct.id === product.id,
-            ),
-            ...product,
-        })) ?? [];
+    const mergedData = productData?.data.map((product) => ({
+        ...record?.products.find(
+            (storeProduct) => storeProduct.id === product.id,
+        ),
+        ...product,
+    }));
 
     const { mutate } = useUpdate<IStore>();
 
@@ -171,7 +173,7 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
                                     paddingRight: "4px",
                                 }}
                                 {...listProps}
-                                dataSource={mergedData as IProduct[]}
+                                dataSource={mergedData}
                                 renderItem={(item) => (
                                     <ProductItem
                                         item={item}

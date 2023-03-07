@@ -20,18 +20,18 @@ const ProductShow: React.FC<
 > = ({ initialData, handle }) => {
     const { data } = useList<MedusaProduct>({
         resource: "products",
+
         queryOptions: {
             initialData,
         },
-        config: {
-            filters: [
-                {
-                    field: "handle",
-                    operator: "eq",
-                    value: handle,
-                },
-            ],
-        },
+
+        filters: [
+            {
+                field: "handle",
+                operator: "eq",
+                value: handle,
+            },
+        ],
     });
 
     const record = data?.data?.[0];

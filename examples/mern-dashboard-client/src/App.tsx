@@ -17,7 +17,7 @@ import {
 } from "@mui/icons-material";
 
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 import axios, { AxiosRequestConfig } from "axios";
 import { Title, Sider, Layout, Header } from "components/layout";
 import { ColorModeContextProvider } from "contexts";
@@ -112,7 +112,7 @@ function App() {
             return Promise.reject();
         },
 
-        getPermissions: async () => null,
+        getPermissions: () => Promise.resolve(),
         getUserIdentity: async () => {
             const user = localStorage.getItem("user");
             if (user) {
@@ -158,7 +158,7 @@ function App() {
                         },
                         {
                             name: "my-profile",
-                            options: { label: "My Profile " },
+                            meta: { label: "My Profile " },
                             list: MyProfile,
                             icon: <AccountCircleOutlined />,
                         },

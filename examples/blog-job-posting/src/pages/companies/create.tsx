@@ -1,6 +1,5 @@
 import { IResourceComponentsProps } from "@refinedev/core";
 import { Create, useForm } from "@refinedev/antd";
-
 import { Form, Input, Checkbox, Typography, Row, Col } from "antd";
 
 import { ICompany } from "interfaces";

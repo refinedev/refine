@@ -1,9 +1,9 @@
 import { Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 
-import "@refinedev/antd/dist/reset.css";
+import "@refinedev/antd";
 
 import { appwriteClient } from "utility";
 import { authProvider } from "./authProvider";
@@ -22,7 +22,7 @@ function App() {
                 legacyRouterProvider={routerProvider}
                 liveProvider={liveProvider(appwriteClient)}
                 dataProvider={dataProvider(appwriteClient)}
-                authProvider={authProvider}
+                legacyAuthProvider={authProvider}
                 LoginPage={Login}
                 options={{ liveMode: "auto" }}
                 Sider={CustomSider}
@@ -31,7 +31,7 @@ function App() {
                         name: "61cb01b17ef57",
                         list: ProductList,
                         show: ProductShow,
-                        options: {
+                        meta: {
                             label: "Products",
                             route: "products",
                         },
@@ -41,7 +41,7 @@ function App() {
                         list: OrderList,
                         create: CreateOrder,
                         edit: OrderEdit,
-                        options: {
+                        meta: {
                             label: "Orders",
                             route: "orders",
                         },

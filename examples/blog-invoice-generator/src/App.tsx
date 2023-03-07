@@ -1,14 +1,12 @@
 import { Refine } from "@refinedev/core";
 import { notificationProvider, Layout, LoginPage } from "@refinedev/antd";
-import {
-    FileAddOutlined,
-    UserAddOutlined,
-    TeamOutlined,
-    InfoCircleOutlined,
-    SlidersOutlined,
-} from "@ant-design/icons";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import "@refinedev/antd/dist/reset.css";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import routerProvider from "@refinedev/react-router-v6";
+import "@refinedev/antd";
 import { DataProvider } from "@refinedev/strapi-v4";
 import { authProvider, axiosInstance } from "./authProvider";
 
@@ -20,6 +18,14 @@ import { MissionList } from "pages/mission";
 
 import { API_URL } from "../src/constants";
 
+const {
+    FileAddOutlined,
+    UserAddOutlined,
+    TeamOutlined,
+    InfoCircleOutlined,
+    SlidersOutlined,
+} = Icons;
+
 function App() {
     const dataProvider = DataProvider(API_URL + "/api", axiosInstance);
 
@@ -29,12 +35,12 @@ function App() {
             notificationProvider={notificationProvider}
             Layout={Layout}
             dataProvider={dataProvider}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             LoginPage={LoginPage}
             resources={[
                 {
                     name: "companies",
-                    options: { label: "Company" },
+                    meta: { label: "Company" },
                     list: CompanyList,
                     icon: <InfoCircleOutlined />,
                 },

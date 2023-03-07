@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { IResourceComponentsProps, useApiUrl } from "@refinedev/core";
-
 import { Create, useForm, useSelect } from "@refinedev/antd";
-
 import { Form, Input, Select, Upload, Radio } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
@@ -24,7 +22,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps } = useSelect({
         resource: "categories",
-        metaData: { locale },
+        meta: { locale },
     });
 
     const { ...uploadProps } = useStrapiUpload({

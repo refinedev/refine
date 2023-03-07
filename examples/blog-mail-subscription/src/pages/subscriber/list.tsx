@@ -1,8 +1,6 @@
 import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import { useTable, List, DateField, DeleteButton } from "@refinedev/antd";
-
 import { Table } from "antd";
 
 import { ISubscriber } from "interfaces";

@@ -1,8 +1,8 @@
 import { Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 
-import "@refinedev/antd/dist/reset.css";
+import "@refinedev/antd";
 import simpleRestDataProvider from "@refinedev/simple-rest";
 import { authProvider } from "authProvider";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -16,7 +16,7 @@ function App() {
         <Refine
             legacyRouterProvider={routerProvider}
             dataProvider={dataProvider}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             LoginPage={Login}
             DashboardPage={DashboardPage}
             resources={[

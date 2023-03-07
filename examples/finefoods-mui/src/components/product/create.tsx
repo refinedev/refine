@@ -99,7 +99,7 @@ export const CreateProduct: React.FC<
         >
             <Create
                 saveButtonProps={saveButtonProps}
-                headerProps={{
+                cardHeaderProps={{
                     avatar: (
                         <IconButton
                             onClick={() => close()}
@@ -114,7 +114,7 @@ export const CreateProduct: React.FC<
                     ),
                     action: null,
                 }}
-                wrapperProps={{ sx: { overflowY: "scroll", height: "100vh" } }}
+                cardProps={{ sx: { overflowY: "scroll", height: "100vh" } }}
             >
                 <Stack>
                     <Box

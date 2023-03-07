@@ -1,5 +1,4 @@
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import {
     List,
     SaveButton,
@@ -7,7 +6,6 @@ import {
     TextField,
     useEditableTable,
 } from "@refinedev/antd";
-
 import { Table, Form, Space, Button, Input } from "antd";
 
 import { IPost } from "interfaces";

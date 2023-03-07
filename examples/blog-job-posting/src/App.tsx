@@ -1,8 +1,8 @@
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 import nestjsxCrudDataProvider from "@refinedev/nestjsx-crud";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
-import "@refinedev/antd/dist/reset.css";
+import "@refinedev/antd";
 
 import {
     CompanyList,

@@ -4,9 +4,7 @@ import {
     useOne,
     useTranslate,
 } from "@refinedev/core";
-
 import { Show, MarkdownField } from "@refinedev/antd";
-
 import { Typography } from "antd";
 
 import { IPost, ICategory } from "interfaces";

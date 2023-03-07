@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useRouterContext } from "@refinedev/core";
 import { AuthPage as AntdAuthPage, AuthProps } from "@refinedev/antd";
-
 import { Image } from "antd";
 
 import { StackBanner } from "components/banners";

@@ -1,12 +1,12 @@
-import { Refine, AuthBindings } from "@refinedev/core";
+import { Refine, LegacyAuthProvider as AuthProvider } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
-import "@refinedev/antd/dist/reset.css";
+import "@refinedev/antd";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
@@ -20,64 +20,46 @@ const App: React.FC = () => {
         return <span>loading...</span>;
     }
 
-    const authProvider: AuthBindings = {
-        login: async () => {
-            return {
-                success: true,
-            };
+    const authProvider: AuthProvider = {
+        login: () => {
+            return Promise.resolve(false);
         },
-        logout: async () => {
+        logout: () => {
             logout({ returnTo: window.location.origin });
-            return {
-                success: true,
-            };
+            return Promise.resolve("/");
         },
-        onError: async () => {
-            return {};
-        },
-        check: async () => {
+        checkError: () => Promise.resolve(),
+        checkAuth: async () => {
             try {
                 const token = await getIdTokenClaims();
                 if (token) {
                     axios.defaults.headers.common = {
                         Authorization: `Bearer ${token.__raw}`,
                     };
-                    return {
-                        authenticated: true,
-                    };
+                    return Promise.resolve();
                 } else {
-                    return {
-                        authenticated: false,
-                        error: new Error("Token not found"),
-                        redirectTo: "/login",
-                        logout: true,
-                    };
+                    return Promise.reject();
                 }
-            } catch (error: any) {
-                return {
-                    authenticated: false,
-                    error: new Error(error),
-                    redirectTo: "/login",
-                    logout: true,
-                };
+            } catch (error) {
+                return Promise.reject();
             }
         },
-        getPermissions: async () => null,
-        getIdentity: async () => {
+        getPermissions: () => Promise.resolve(),
+        getUserIdentity: async () => {
             if (user) {
-                return {
+                return Promise.resolve({
                     ...user,
                     avatar: user.picture,
-                };
+                });
             }
-            return null;
+            return Promise.reject();
         },
     };
 
     return (
         <Refine
             LoginPage={Login}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             dataProvider={dataProvider(API_URL, axios)}
             legacyRouterProvider={routerProvider}
             resources={[

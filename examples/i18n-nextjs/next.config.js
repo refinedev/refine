@@ -1,13 +1,14 @@
+const withPlugins = require("next-compose-plugins");
 const { i18n } = require("./next-i18next.config");
 
-module.exports = {
+module.exports = withPlugins([], {
     i18n,
     experimental: {
         newNextLinkBehavior: true,
     },
     transpilePackages: [
-        "@refinedev/antd",
-        "@refinedev/inferencer",
+        "@pankod/refine-antd",
+        "@pankod/refine-inferencer",
         "antd",
         "@ant-design/pro-components",
         "@ant-design/pro-layout",
@@ -16,4 +17,4 @@ module.exports = {
         "rc-pagination",
         "rc-picker",
     ],
-};
+});

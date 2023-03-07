@@ -2,9 +2,9 @@ import React from "react";
 import "./index.css";
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/airtable";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 
-import { Layout } from "components/Layout";
+import { Layout } from " components/Layout";
 
 import { PostList } from "pages/post/list";
 import { PostShow } from "pages/post/show";

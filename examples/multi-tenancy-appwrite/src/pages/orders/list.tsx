@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { IResourceComponentsProps, useMany } from "@refinedev/core";
-
 import {
     List,
     useTable,
@@ -10,7 +9,6 @@ import {
     DeleteButton,
     ImageField,
 } from "@refinedev/antd";
-
 import { Table, Space } from "antd";
 
 import { IOrder, IProduct } from "interfaces";
@@ -19,7 +17,9 @@ import { StoreContext } from "context/store";
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const [store] = useContext(StoreContext);
     const { tableProps } = useTable<IOrder>({
-        permanentFilter: [{ field: "storeId", operator: "eq", value: store }],
+        filters: {
+            permanent: [{ field: "storeId", operator: "eq", value: store }],
+        },
     });
 
     const productIds =

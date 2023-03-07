@@ -4,11 +4,11 @@
     "private": true,
     "dependencies": {
         "@ant-design/charts": "^1.2.0",
-        "@refinedev/antd": "^4.7.3",
-        "@refinedev/core": "^3.99.6",
-        "@refinedev/cli": "^1.17.1",
-        "@refinedev/react-router-v6": "^3.38.0",
-        "@refinedev/supabase": "^4.1.2",
+        "@ant-design/icons": "^5.0.1",
+        "@refinedev/antd": "latest",
+        "@refinedev/core": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "@refinedev/supabase": "latest",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",
@@ -16,13 +16,13 @@
         "@types/node": "^12.20.11",
         "@types/react": "^18.0.0",
         "@types/react-dom": "^18.0.0",
+        "antd": "^5.0.5",
+        "cross-env": "^7.0.3",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
+        "react-router-dom": "^6.8.1",
         "react-scripts": "^5.0.0",
-        "cross-env": "^7.0.3",
-        "typescript": "^4.7.4",
-        "antd": "^5.0.5",
-        "@ant-design/icons": "^5.0.1"
+        "typescript": "^4.7.4"
     },
     "scripts": {
         "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
@@ -41,5 +41,8 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "@refinedev/cli": "latest"
     }
 }

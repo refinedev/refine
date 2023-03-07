@@ -1,5 +1,4 @@
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import {
     List,
     useTable,
@@ -7,7 +6,6 @@ import {
     ShowButton,
     BooleanField,
 } from "@refinedev/antd";
-
 import { Table, Space } from "antd";
 
 import { ICategory, IPost } from "interfaces";
@@ -56,13 +54,16 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
 const CategoryPostsTable: React.FC<{ record: ICategory }> = ({ record }) => {
     const { tableProps: postTableProps } = useTable<IPost>({
         resource: "posts",
-        permanentFilter: [
-            {
-                field: "category.id",
-                operator: "eq",
-                value: record.id,
-            },
-        ],
+
+        filters: {
+            permanent: [
+                {
+                    field: "category.id",
+                    operator: "eq",
+                    value: record.id,
+                },
+            ],
+        },
     });
 
     return (
@@ -77,12 +78,12 @@ const CategoryPostsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                     <Space>
                         <EditButton
                             size="small"
-                            resourceNameOrRouteName="posts"
+                            resourceName="posts"
                             recordItemId={record.id}
                         />
                         <ShowButton
                             size="small"
-                            resourceNameOrRouteName="posts"
+                            resourceName="posts"
                             recordItemId={record.id}
                         />
                     </Space>

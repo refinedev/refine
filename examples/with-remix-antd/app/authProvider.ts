@@ -1,4 +1,4 @@
-import { AuthBindings } from "@refinedev/core";
+import { LegacyAuthProvider as AuthProvider } from "@refinedev/core";
 import Cookies from "js-cookie";
 import * as cookie from "cookie";
 
@@ -15,42 +15,31 @@ const mockUsers = [
 
 const COOKIE_NAME = "user";
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
     login: ({ email }) => {
         // Suppose we actually send a request to the back end here.
         const user = mockUsers.find((item) => item.email === email);
 
         if (user) {
             Cookies.set(COOKIE_NAME, JSON.stringify(user));
-            return {
-                success: true,
-            };
+            return Promise.resolve();
         }
 
-        return {
-            success: false,
-        };
+        return Promise.reject();
     },
     logout: () => {
         Cookies.remove(COOKIE_NAME);
 
-        return {
-            success: true,
-            redirectTo: "/login",
-        };
+        return Promise.resolve();
     },
-    onError: (error) => {
+    checkError: (error) => {
         if (error && error.statusCode === 401) {
-            return {
-                error: new Error("Unauthorized"),
-                logout: true,
-                redirectTo: "/login",
-            };
+            return Promise.reject();
         }
 
-        return {};
+        return Promise.resolve();
     },
-    check: async (context) => {
+    checkAuth: async (context) => {
         let user = undefined;
         if (context) {
             const { request } = context;
@@ -62,22 +51,14 @@ export const authProvider: AuthBindings = {
         }
 
         if (!user) {
-            return {
-                authenticated: false,
-                error: new Error("Unauthorized"),
-                logout: true,
-                redirectTo: "/login",
-            };
+            return Promise.reject();
         }
-
-        return {
-            authenticated: true,
-        };
+        return Promise.resolve();
     },
     getPermissions: async () => {
-        return null;
+        return Promise.resolve();
     },
-    getIdentity: async () => {
-        return null;
+    getUserIdentity: async () => {
+        return Promise.resolve();
     },
 };

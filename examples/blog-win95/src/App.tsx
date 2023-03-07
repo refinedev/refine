@@ -1,5 +1,5 @@
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
@@ -20,7 +20,7 @@ function App() {
             <Refine
                 legacyRouterProvider={routerProvider}
                 dataProvider={dataProvider(supabaseClient)}
-                authProvider={authProvider}
+                legacyAuthProvider={authProvider}
                 LoginPage={LoginPage}
                 Layout={({ children }) => {
                     return (

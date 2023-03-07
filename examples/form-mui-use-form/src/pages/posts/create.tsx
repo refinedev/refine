@@ -2,7 +2,6 @@ import { HttpError } from "@refinedev/core";
 import { Create, useAutocomplete } from "@refinedev/mui";
 import { Box, TextField, Autocomplete } from "@mui/material";
 import { useForm } from "@refinedev/react-hook-form";
-
 import { Controller } from "react-hook-form";
 
 import { ICategory, IPost } from "interfaces";

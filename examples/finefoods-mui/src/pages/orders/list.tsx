@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
     IResourceComponentsProps,
     BaseRecord,
@@ -10,6 +11,7 @@ import {
     useExport,
     getDefaultFilter,
 } from "@refinedev/core";
+
 import {
     useDataGrid,
     NumberField,
@@ -45,12 +47,12 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const { mutate } = useUpdate();
 
-    const { dataGridProps, search, filters, sorter } = useDataGrid<
-        IOrder,
-        HttpError,
-        IOrderFilterVariables
-    >({
-        initialPageSize: 10,
+    const {
+        dataGridProps,
+        search,
+        filters,
+        sorters: sorter,
+    } = useDataGrid<IOrder, HttpError, IOrderFilterVariables>({
         onSearch: (params) => {
             const filters: CrudFilters = [];
             const { q, store, user, status } = params;
@@ -80,6 +82,10 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
             });
 
             return filters;
+        },
+
+        pagination: {
+            pageSize: 10,
         },
     });
 
@@ -243,10 +249,10 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const { show } = useNavigation();
 
     const { isLoading, triggerExport } = useExport<IOrder>({
-        sorter,
         filters,
         pageSize: 50,
         maxItemCount: 50,
+
         mapData: (item) => {
             return {
                 id: item.id,
@@ -257,6 +263,8 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 user: item.user.firstName,
             };
         },
+
+        sorters: sorter,
     });
 
     const { register, handleSubmit, control } = useForm<
@@ -457,8 +465,8 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
             </Grid>
             <Grid item xs={12} lg={9}>
                 <List
-                    wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
-                    headerProps={{
+                    cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
+                    cardHeaderProps={{
                         action: (
                             <ExportButton
                                 onClick={triggerExport}

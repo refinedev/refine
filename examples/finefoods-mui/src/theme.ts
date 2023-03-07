@@ -2,7 +2,6 @@ import {
     DarkTheme as DefaultDarkTheme,
     LightTheme as DefaultLightTheme,
 } from "@refinedev/mui";
-
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
 const LightTheme = createTheme({

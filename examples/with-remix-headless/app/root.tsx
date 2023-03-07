@@ -9,7 +9,7 @@ import {
 } from "@remix-run/react";
 import { AuthPage, Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/remix-router/legacy";
+import routerProvider from "@refinedev/remix-router";
 
 import { PostCreate, PostEdit, PostList } from "./pages/posts";
 import { authProvider } from "./authProvider";
@@ -32,8 +32,8 @@ export default function App() {
             <body>
                 <Refine
                     dataProvider={dataProvider(API_URL)}
-                    authProvider={authProvider}
                     legacyRouterProvider={routerProvider}
+                    legacyAuthProvider={authProvider}
                     resources={[
                         {
                             name: "posts",

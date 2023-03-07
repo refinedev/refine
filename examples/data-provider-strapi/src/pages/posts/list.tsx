@@ -16,13 +16,19 @@ import { Table, Select, Space } from "antd";
 import { IPost } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter, filters } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
+    const {
+        tableProps,
+        sorters: sorter,
+        filters,
+    } = useTable<IPost>({
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
+        },
     });
 
     const { selectProps } = useSelect({

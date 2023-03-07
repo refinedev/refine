@@ -1,5 +1,9 @@
 import { useGetLocale, useSetLocale } from "@refinedev/core";
-import { DownOutlined } from "@ant-design/icons";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import {
     Layout as AntdLayout,
     Space,
@@ -9,6 +13,8 @@ import {
     Avatar,
 } from "antd";
 import { useTranslation } from "react-i18next";
+
+const { DownOutlined } = Icons;
 
 export const Header: React.FC = () => {
     const { i18n } = useTranslation();

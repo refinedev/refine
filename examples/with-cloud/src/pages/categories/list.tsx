@@ -3,7 +3,6 @@ import { IResourceComponentsProps } from "@refinedev/core";
 import { List, EditButton, ShowButton } from "@refinedev/antd";
 import { Table, Space } from "antd";
 import { useTable } from "@refinedev/antd";
-
 import { useCloudMutation } from "@refinedev/cloud";
 
 import { ICategory } from "interfaces";
@@ -19,9 +18,13 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
 
     const { tableProps } = useTable<ICategory>({
         syncWithLocation: true,
-        hasPagination: false,
+
         queryOptions: {
             enabled: false,
+        },
+
+        pagination: {
+            mode: "off",
         },
     });
 

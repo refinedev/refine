@@ -1,6 +1,5 @@
 import React from "react";
 import { useDataGrid, List } from "@refinedev/mui";
-
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 import { ICommit } from "interfaces";
@@ -8,11 +7,14 @@ import { ICommit } from "interfaces";
 export const PostsList: React.FC = () => {
     const [next, setNext] = React.useState<string | undefined>(undefined);
     const { dataGridProps, tableQueryResult } = useDataGrid<ICommit>({
-        initialPageSize: 5,
-        metaData: {
+        meta: {
             cursor: {
                 next,
             },
+        },
+
+        pagination: {
+            pageSize: 5,
         },
     });
 

@@ -1,5 +1,4 @@
 import { Create, useForm } from "@refinedev/antd";
-
 import { Form, Input, DatePicker } from "antd";
 
 import { HackathonType } from "interfaces";

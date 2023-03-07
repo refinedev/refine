@@ -3,7 +3,6 @@ import {
     useMany,
     getDefaultFilter,
 } from "@refinedev/core";
-
 import {
     List,
     TextField,
@@ -12,9 +11,7 @@ import {
     FilterDropdown,
     TagField,
 } from "@refinedev/antd";
-
 import { Table, Space, Select, Radio } from "antd";
-
 import { useTable, useSelect } from "@refinedev/antd";
 
 import { IPost, ICategory } from "../../interfaces";

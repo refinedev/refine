@@ -1,8 +1,6 @@
 import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import { Edit, useForm, useCheckboxGroup } from "@refinedev/antd";
-
 import { Form, Input, Checkbox } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";

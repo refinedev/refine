@@ -3,7 +3,6 @@ import { Create } from "@refinedev/mui";
 import { Box, TextField, Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useForm } from "@refinedev/react-hook-form";
-
 import { Controller, useFieldArray } from "react-hook-form";
 
 interface IPost {

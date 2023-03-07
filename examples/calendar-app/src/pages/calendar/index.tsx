@@ -1,5 +1,4 @@
 import { IResourceComponentsProps, useList } from "@refinedev/core";
-
 import { Show } from "@refinedev/antd";
 import { Badge, BadgeProps, Calendar } from "antd";
 import { CalendarMode } from "antd/lib/calendar/generateCalendar";
@@ -12,10 +11,9 @@ import "./index.css";
 export const CalendarPage: React.FC<IResourceComponentsProps> = () => {
     const { data } = useList<IEvent>({
         resource: "events",
-        config: {
-            pagination: {
-                pageSize: 100,
-            },
+
+        pagination: {
+            pageSize: 100,
         },
     });
 

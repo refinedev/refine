@@ -1,4 +1,5 @@
 import { Refine } from "@refinedev/core";
+
 import {
     Layout,
     ErrorComponent,
@@ -7,9 +8,10 @@ import {
     notificationProvider,
     SnackbarProvider,
 } from "@refinedev/mui";
+
 import { ThemeProvider } from "@mui/material/styles";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { PostsList, PostCreate, PostEdit } from "pages/posts";
 

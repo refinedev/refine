@@ -1,5 +1,4 @@
 import { useForm, useSelect, Create } from "@refinedev/antd";
-
 import { Form, Select, Input } from "antd";
 
 import { IPost } from "../../interfaces";

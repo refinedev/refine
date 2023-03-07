@@ -3,13 +3,12 @@
     "version": "3.25.0",
     "private": true,
     "dependencies": {
-        "@refinedev/core": "^3.99.6",
-        "@refinedev/cli": "^1.17.1",
-        "@refinedev/react-hook-form": "^3.37.2",
-        "@refinedev/react-router-v6": "^3.38.0",
-        "@refinedev/react-table": "^4.9.1",
+        "@refinedev/core": "latest",
+        "@refinedev/react-hook-form": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-table": "latest",
+        "@refinedev/supabase": "latest",
         "@tanstack/react-table": "^8.2.6",
-        "@refinedev/supabase": "^4.1.2",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",
@@ -17,18 +16,18 @@
         "@types/node": "^12.20.11",
         "@types/react": "^18.0.0",
         "@types/react-dom": "^18.0.0",
+        "cross-env": "^7.0.3",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
+        "react-hook-form": "^7.30.0",
+        "react-router-dom": "^6.8.1",
         "react-scripts": "^5.0.0",
-        "cross-env": "^7.0.3",
         "react95": "^3.11.1",
         "styled-components": "^5.3.3",
-        "typescript": "^4.7.4",
-        "react-hook-form": "^7.30.0"
+        "typescript": "^4.7.4"
     },
     "scripts": {
         "dev": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
-        "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
         "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
@@ -47,6 +46,7 @@
         ]
     },
     "devDependencies": {
+        "@refinedev/cli": "latest",
         "@types/styled-components": "^5.1.24"
     }
 }

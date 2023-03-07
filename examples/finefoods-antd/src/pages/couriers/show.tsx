@@ -5,18 +5,12 @@ import {
     useNavigation,
     HttpError,
 } from "@refinedev/core";
-
 import { List, useTable } from "@refinedev/antd";
 
-import {
-    EnvironmentOutlined,
-    PhoneOutlined,
-    MailOutlined,
-    BankOutlined,
-    HomeOutlined,
-    CarOutlined,
-    StarOutlined,
-} from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import {
     Table,
     Card,
@@ -41,24 +35,35 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
 
     const { tableProps } = useTable<IOrder, HttpError, IOrderFilterVariables>({
         resource: "reviews",
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
-        permanentFilter: [
-            {
-                field: "order.courier.id",
-                operator: "eq",
-                value: courier?.id,
-            },
-        ],
-        initialPageSize: 4,
+
         queryOptions: {
             enabled: courier !== undefined,
         },
+
         syncWithLocation: false,
+
+        pagination: {
+            pageSize: 4,
+        },
+
+        filters: {
+            permanent: [
+                {
+                    field: "order.courier.id",
+                    operator: "eq",
+                    value: courier?.id,
+                },
+            ],
+        },
+
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
+        },
     });
 
     const t = useTranslate();
@@ -92,22 +97,23 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                             }}
                         >
                             <Typography.Text>
-                                <EnvironmentOutlined /> {courier?.store.title}
+                                <Icons.EnvironmentOutlined />{" "}
+                                {courier?.store.title}
                             </Typography.Text>
                             <Typography.Text>
-                                <PhoneOutlined /> {courier?.gsm}
+                                <Icons.PhoneOutlined /> {courier?.gsm}
                             </Typography.Text>
                             <Typography.Text>
-                                <MailOutlined /> {courier?.email}
+                                <Icons.MailOutlined /> {courier?.email}
                             </Typography.Text>
                             <Typography.Text>
-                                <BankOutlined /> {courier?.accountNumber}
+                                <Icons.BankOutlined /> {courier?.accountNumber}
                             </Typography.Text>
                             <Typography.Text>
-                                <HomeOutlined /> {courier?.address}
+                                <Icons.HomeOutlined /> {courier?.address}
                             </Typography.Text>
                             <Typography.Text>
-                                <CarOutlined /> {courier?.licensePlate}
+                                <Icons.CarOutlined /> {courier?.licensePlate}
                             </Typography.Text>
                         </Space>
                     </Space>
@@ -160,7 +166,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                                         {value}
                                     </Typography.Text>
                                     <Rate
-                                        character={<StarOutlined />}
+                                        character={<Icons.StarOutlined />}
                                         disabled
                                         value={value}
                                         style={{

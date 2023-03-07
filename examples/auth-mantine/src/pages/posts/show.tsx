@@ -1,6 +1,5 @@
 import { useShow, useOne } from "@refinedev/core";
 import { Show, MarkdownField } from "@refinedev/mantine";
-
 import { Title, Text } from "@mantine/core";
 
 import { ICategory, IPost } from "../../interfaces";

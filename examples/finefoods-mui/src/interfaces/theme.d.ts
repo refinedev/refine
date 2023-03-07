@@ -1,4 +1,4 @@
-import "@refinedev/mui";
+import "@pankod/refine-mui";
 
 export interface CustomTheme {
     timeLine: {
@@ -19,9 +19,9 @@ export interface CustomTheme {
     };
 }
 
-declare module "@mui/material/styles" {
-    interface Theme extends import("@mui/material/styles").Theme, CustomTheme {}
+declare module "@pankod/refine-mui" {
+    interface Theme extends import("@pankod/refine-mui").Theme, CustomTheme {}
     interface ThemeOptions
-        extends import("@mui/material/styles").ThemeOptions,
+        extends import("@pankod/refine-mui").ThemeOptions,
             CustomTheme {}
 }

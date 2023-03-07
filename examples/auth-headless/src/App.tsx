@@ -1,104 +1,72 @@
-import { AuthPage, AuthBindings, Refine } from "@refinedev/core";
+import {
+    AuthPage,
+    LegacyAuthProvider as AuthProvider,
+    Refine,
+} from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { PostList, PostCreate, PostEdit } from "./pages/posts";
 import { ExamplePage } from "./pages/example";
-import Layout from "./pages/layout";
 
 const App: React.FC = () => {
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async ({ providerName, email }) => {
             if (providerName === "google") {
                 window.location.href =
                     "https://accounts.google.com/o/oauth2/v2/auth";
-                return {
-                    success: true,
-                };
+                return Promise.resolve(false);
             }
 
             if (providerName === "github") {
                 window.location.href =
                     "https://github.com/login/oauth/authorize";
-                return {
-                    success: true,
-                };
+                return Promise.resolve(false);
             }
 
             if (email) {
                 localStorage.setItem("email", email);
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
+                return Promise.resolve();
             }
 
-            return {
-                success: false,
-                error: new Error("Email is wrong"),
-            };
+            return Promise.reject();
         },
-        register: async ({ email, password }) => {
+        register: ({ email, password }) => {
             if (email && password) {
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
+                return Promise.resolve();
             }
-            return {
-                success: false,
-                error: new Error("Email or password is wrong"),
-            };
+            return Promise.reject();
         },
-        updatePassword: async ({ password }) => {
+        updatePassword: ({ password }) => {
             if (password) {
                 //we can update password here
-                return {
-                    success: true,
-                    redirectTo: "/login",
-                };
+                return Promise.resolve();
             }
-            return {
-                success: false,
-                error: new Error("password is wrong"),
-            };
+            return Promise.reject();
         },
-        forgotPassword: async ({ email }) => {
+        forgotPassword: ({ email }) => {
             if (email) {
                 //we can send email with forgot password link here
-                return {
-                    success: true,
-                    redirectTo: "/login",
-                };
+                return Promise.resolve();
             }
-            return {
-                success: false,
-                error: new Error("Email is wrong"),
-            };
+            return Promise.reject();
         },
-        logout: async () => {
+        logout: () => {
             localStorage.removeItem("email");
-            return {
-                success: true,
-                redirectTo: "/",
-            };
+            return Promise.resolve();
         },
-        onError: async () => ({}),
-        check: async () => {
-            return localStorage.getItem("email")
-                ? { authenticated: true }
-                : {
-                      authenticated: false,
-                      redirectTo: "/login",
-                      error: new Error("Not authenticated"),
-                  };
-        },
-        getPermissions: async () => ["admin"],
-        getIdentity: async () => ({
-            id: 1,
-            name: "Jane Doe",
-            avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-        }),
+        checkError: () => Promise.resolve(),
+        checkAuth: () =>
+            localStorage.getItem("email")
+                ? Promise.resolve()
+                : Promise.reject(),
+        getPermissions: () => Promise.resolve(["admin"]),
+        getUserIdentity: () =>
+            Promise.resolve({
+                id: 1,
+                name: "Jane Doe",
+                avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
+            }),
     };
 
     return (
@@ -122,9 +90,8 @@ const App: React.FC = () => {
                 ],
             }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             LoginPage={() => <AuthPage />}
-            Layout={({ children }) => <Layout>{children}</Layout>}
             resources={[
                 {
                     name: "posts",

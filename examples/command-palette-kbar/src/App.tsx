@@ -1,10 +1,14 @@
 import { Refine } from "@refinedev/core";
 import { RefineKbarProvider } from "@refinedev/kbar";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
-import { StarOutlined } from "@ant-design/icons";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import "@refinedev/antd/dist/reset.css";
+import routerProvider from "@refinedev/react-router-v6";
+import "@refinedev/antd";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import {
@@ -30,7 +34,7 @@ const App: React.FC = () => {
                         create: PostCreate,
                         edit: PostEdit,
                         show: PostShow,
-                        icon: <StarOutlined />,
+                        icon: <Icons.StarOutlined />,
                         canDelete: true,
                     },
                     {

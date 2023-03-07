@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Refine } from "@refinedev/core";
+
 import {
     notificationProvider,
     RefineSnackbarProvider,
@@ -12,9 +13,8 @@ import {
 
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
-
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 
 function App() {
     return (

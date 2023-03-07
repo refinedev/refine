@@ -1,7 +1,6 @@
 import React from "react";
 import { Option, useSelect } from "@refinedev/core";
 import { useDataGrid, List } from "@refinedev/mui";
-
 import {
     DataGrid,
     GridColumns,
@@ -12,22 +11,31 @@ import { ICategory, IPost } from "interfaces";
 
 export const PostsList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>({
-        initialCurrent: 2,
-        initialPageSize: 10,
-        initialSorter: [
-            {
-                field: "title",
-                order: "asc",
-            },
-        ],
-        initialFilter: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "draft",
-            },
-        ],
         syncWithLocation: true,
+
+        pagination: {
+            current: 2,
+            pageSize: 10,
+        },
+
+        filters: {
+            initial: [
+                {
+                    field: "status",
+                    operator: "eq",
+                    value: "draft",
+                },
+            ],
+        },
+
+        sorters: {
+            initial: [
+                {
+                    field: "title",
+                    order: "asc",
+                },
+            ],
+        },
     });
 
     const {
@@ -35,6 +43,7 @@ export const PostsList: React.FC = () => {
         queryResult: { isLoading },
     } = useSelect<ICategory>({
         resource: "categories",
+        hasPagination: false,
     });
 
     const columns = React.useMemo<GridColumns<IPost>>(

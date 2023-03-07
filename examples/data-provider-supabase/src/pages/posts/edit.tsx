@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import {
     Edit,
     ListButton,
@@ -8,7 +7,6 @@ import {
     useForm,
     useSelect,
 } from "@refinedev/antd";
-
 import { RcFile } from "antd/lib/upload/interface";
 import { Alert, Button, Form, Input, Select, Upload } from "antd";
 

@@ -2,11 +2,8 @@ import React from "react";
 import axios from "axios";
 
 import { useTranslate, useApiUrl, HttpError } from "@refinedev/core";
-
 import { UseModalFormReturnType } from "@refinedev/react-hook-form";
-
 import { Controller } from "react-hook-form";
-
 import { useAutocomplete, Edit } from "@refinedev/mui";
 
 import {
@@ -104,7 +101,7 @@ export const EditProduct: React.FC<
         >
             <Edit
                 saveButtonProps={saveButtonProps}
-                headerProps={{
+                cardHeaderProps={{
                     avatar: (
                         <IconButton
                             onClick={() => close()}
@@ -115,7 +112,7 @@ export const EditProduct: React.FC<
                     ),
                     action: null,
                 }}
-                wrapperProps={{ sx: { overflowY: "scroll", height: "100vh" } }}
+                cardProps={{ sx: { overflowY: "scroll", height: "100vh" } }}
             >
                 <Stack>
                     <Box

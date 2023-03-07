@@ -1,14 +1,13 @@
 import React from "react";
 import { Refine } from "@refinedev/core";
 import { RefineKbarProvider } from "@refinedev/kbar";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
-import {
-    ShoppingOutlined,
-    UsergroupAddOutlined,
-    ShopOutlined,
-    StarOutlined,
-} from "@ant-design/icons";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import jsonServerDataProvider from "@refinedev/simple-rest";
 import { authProvider } from "authProvider";
 
@@ -32,7 +31,7 @@ import { useTranslation } from "react-i18next";
 import { Header, Title, OffLayoutArea } from "components";
 import { BikeWhiteIcon, PizzaIcon } from "components/icons";
 
-import "@refinedev/antd/dist/reset.css";
+import "@refinedev/antd";
 
 const App: React.FC = () => {
     const API_URL = "https://api.finefoods.refine.dev";
@@ -77,7 +76,7 @@ const App: React.FC = () => {
                     ],
                 }}
                 dataProvider={dataProvider}
-                authProvider={authProvider}
+                legacyAuthProvider={authProvider}
                 i18nProvider={i18nProvider}
                 OffLayoutArea={OffLayoutArea}
                 DashboardPage={DashboardPage}
@@ -104,13 +103,13 @@ const App: React.FC = () => {
                         name: "orders",
                         list: OrderList,
                         show: OrderShow,
-                        icon: <ShoppingOutlined />,
+                        icon: <Icons.ShoppingOutlined />,
                     },
                     {
                         name: "users",
                         list: UserList,
                         show: UserShow,
-                        icon: <UsergroupAddOutlined />,
+                        icon: <Icons.UsergroupAddOutlined />,
                     },
                     {
                         name: "products",
@@ -123,7 +122,7 @@ const App: React.FC = () => {
                         list: StoreList,
                         edit: StoreEdit,
                         create: StoreCreate,
-                        icon: <ShopOutlined />,
+                        icon: <Icons.ShopOutlined />,
                     },
                     {
                         name: "categories",
@@ -140,7 +139,7 @@ const App: React.FC = () => {
                     {
                         name: "reviews",
                         list: ReviewsList,
-                        icon: <StarOutlined />,
+                        icon: <Icons.StarOutlined />,
                     },
                 ]}
                 notificationProvider={notificationProvider}

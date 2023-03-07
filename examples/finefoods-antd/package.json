@@ -5,15 +5,15 @@
     "dependencies": {
         "@ant-design/charts": "^1.2.0",
         "@ant-design/graphs": "^1.2.7",
+        "@ant-design/icons": "^5.0.1",
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
         "@googlemaps/react-wrapper": "^1.1.35",
-        "@refinedev/antd": "^4.7.3",
-        "@refinedev/core": "^3.99.6",
-        "@refinedev/cli": "^1.17.1",
-        "@refinedev/kbar": "0.10.2",
-        "@refinedev/react-router-v6": "^3.38.0",
-        "@refinedev/simple-rest": "^3.37.4",
+        "@refinedev/antd": "latest",
+        "@refinedev/core": "latest",
+        "@refinedev/kbar": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "@refinedev/simple-rest": "latest",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",
@@ -23,6 +23,8 @@
         "@types/react": "^18.0.0",
         "@types/react-dom": "^18.0.0",
         "@uiw/react-md-editor": "^3.19.5",
+        "antd": "^5.0.5",
+        "cross-env": "^7.0.3",
         "dayjs": "^1.10.7",
         "google-map-react": "^2.1.10",
         "i18next": "^20.1.0",
@@ -33,12 +35,10 @@
         "react-dom": "^18.0.0",
         "react-i18next": "^11.8.11",
         "react-input-mask": "^2.0.4",
+        "react-router-dom": "^6.8.1",
         "react-scripts": "^5.0.0",
-        "cross-env": "^7.0.3",
         "tslib": "^2.3.1",
-        "typescript": "^4.7.4",
-        "@ant-design/icons": "^5.0.1",
-        "antd": "^5.0.5"
+        "typescript": "^4.7.4"
     },
     "scripts": {
         "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
@@ -53,6 +53,7 @@
         "not op_mini all"
     ],
     "devDependencies": {
+        "@refinedev/cli": "latest",
         "@types/lodash": "^4.14.171",
         "@types/react-input-mask": "^3.0.1"
     }

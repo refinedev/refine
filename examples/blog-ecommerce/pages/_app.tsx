@@ -3,7 +3,7 @@ import { AppProps } from "next/app";
 import Head from "next/head";
 
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/nextjs-router/legacy";
+import routerProvider from "@refinedev/nextjs-router";
 import { ChakraProvider } from "@chakra-ui/react";
 import { DataProvider } from "@refinedev/strapi-v4";
 

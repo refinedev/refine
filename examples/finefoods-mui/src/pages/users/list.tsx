@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
     CrudFilters,
     getDefaultFilter,
@@ -6,6 +7,7 @@ import {
     IResourceComponentsProps,
     useTranslate,
 } from "@refinedev/core";
+
 import {
     useDataGrid,
     BooleanField,
@@ -45,7 +47,6 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
         HttpError,
         IUserFilterVariables
     >({
-        initialPageSize: 10,
         onSearch: (params) => {
             const filters: CrudFilters = [];
             const { q, gender, isActive } = params;
@@ -69,6 +70,10 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
             });
 
             return filters;
+        },
+
+        pagination: {
+            pageSize: 10,
         },
     });
 
@@ -270,7 +275,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                 </Card>
             </Grid>
             <Grid item xs={12} lg={9}>
-                <List wrapperProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
+                <List cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
                     <DataGrid
                         {...dataGridProps}
                         columns={columns}

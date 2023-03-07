@@ -9,7 +9,6 @@ import {
     EditButton,
     DeleteButton,
 } from "@refinedev/mantine";
-
 import { Table, Pagination, Group } from "@mantine/core";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {

@@ -19,7 +19,9 @@ import {
     ExportButton,
 } from "@refinedev/antd";
 
-import { SearchOutlined } from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
 
 import {
     Table,
@@ -39,21 +41,16 @@ import dayjs from "dayjs";
 
 import { OrderStatus, OrderActions } from "components";
 
-import {
-    IOrder,
-    IStore,
-    IOrderFilterVariables,
-    IOrderStatus,
-    IUser,
-} from "interfaces";
+import { IOrder, IStore, IOrderFilterVariables } from "interfaces";
 import { useMemo } from "react";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter, searchFormProps, filters } = useTable<
-        IOrder,
-        HttpError,
-        IOrderFilterVariables
-    >({
+    const {
+        tableProps,
+        sorters: sorter,
+        searchFormProps,
+        filters,
+    } = useTable<IOrder, HttpError, IOrderFilterVariables>({
         onSearch: (params) => {
             const filters: CrudFilters = [];
             const { q, store, user, createdAt, status } = params;
@@ -107,10 +104,10 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const { show } = useNavigation();
 
     const { isLoading, triggerExport } = useExport<IOrder>({
-        sorter,
         filters,
         pageSize: 50,
         maxItemCount: 50,
+
         mapData: (item) => {
             return {
                 id: item.id,
@@ -121,6 +118,8 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 user: item.user.firstName,
             };
         },
+
+        sorters: sorter,
     });
 
     const Actions: React.FC = () => (
@@ -273,14 +272,14 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
         defaultValue: getDefaultFilter("store.id", filters),
     });
 
-    const { selectProps: orderSelectProps } = useSelect<IOrderStatus>({
+    const { selectProps: orderSelectProps } = useSelect<IStore>({
         resource: "orderStatuses",
         optionLabel: "text",
         optionValue: "text",
         defaultValue: getDefaultFilter("status.text", filters),
     });
 
-    const { selectProps: userSelectProps } = useSelect<IUser>({
+    const { selectProps: userSelectProps } = useSelect<IStore>({
         resource: "users",
         optionLabel: "fullName",
         defaultValue: getDefaultFilter("user.id", filters),
@@ -318,7 +317,7 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
                     <Form.Item label={t("orders.filter.search.label")} name="q">
                         <Input
                             placeholder={t("orders.filter.search.placeholder")}
-                            prefix={<SearchOutlined />}
+                            prefix={<Icons.SearchOutlined />}
                         />
                     </Form.Item>
                 </Col>

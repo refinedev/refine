@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import { Create, useForm, useCheckboxGroup } from "@refinedev/antd";
-
 import { Form, Input, Checkbox } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
@@ -15,7 +13,8 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { checkboxGroupProps: tagsCheckboxGroupProps } =
         useCheckboxGroup<ITag>({
             resource: "tags",
-            sort: [
+
+            sorters: [
                 {
                     field: "title",
                     order: "asc",

@@ -7,7 +7,9 @@ import {
     useList,
 } from "@refinedev/core";
 
-import { SearchOutlined, DownOutlined } from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
 
 import {
     Menu,
@@ -23,13 +25,14 @@ import {
     Layout as AntdLayout,
 } from "antd";
 
-import RefineReactRouter from "@refinedev/react-router-v6/legacy";
+import RefineReactRouter from "@refinedev/react-router-v6";
 
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";
 
 const { Header: AntdHeader } = AntdLayout;
 const { Link } = RefineReactRouter;
+const { SearchOutlined, DownOutlined } = Icons;
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
 
@@ -80,9 +83,7 @@ export const Header: React.FC = () => {
 
     const { refetch: refetchOrders } = useList<IOrder>({
         resource: "orders",
-        config: {
-            filters: [{ field: "q", operator: "contains", value }],
-        },
+
         queryOptions: {
             enabled: false,
             onSuccess: (data) => {
@@ -104,13 +105,13 @@ export const Header: React.FC = () => {
                 }
             },
         },
+
+        filters: [{ field: "q", operator: "contains", value }],
     });
 
     const { refetch: refetchStores } = useList<IStore>({
         resource: "stores",
-        config: {
-            filters: [{ field: "q", operator: "contains", value }],
-        },
+
         queryOptions: {
             enabled: false,
             onSuccess: (data) => {
@@ -132,13 +133,13 @@ export const Header: React.FC = () => {
                 }
             },
         },
+
+        filters: [{ field: "q", operator: "contains", value }],
     });
 
     const { refetch: refetchCouriers } = useList<ICourier>({
         resource: "couriers",
-        config: {
-            filters: [{ field: "q", operator: "contains", value }],
-        },
+
         queryOptions: {
             enabled: false,
             onSuccess: (data) => {
@@ -160,6 +161,8 @@ export const Header: React.FC = () => {
                 }
             },
         },
+
+        filters: [{ field: "q", operator: "contains", value }],
     });
 
     useEffect(() => {
@@ -189,6 +192,8 @@ export const Header: React.FC = () => {
             ))}
         </Menu>
     );
+
+    console.log(screens, screens.sm ? "space-between" : "end");
 
     return (
         <AntdHeader

@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import { GetListResponse, LayoutWrapper } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import { useTable } from "@refinedev/react-table";
-
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 import {
@@ -51,19 +50,27 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
         previousPage,
     } = useTable<IProduct>({
         columns,
+
         refineCoreProps: {
             resource: "products",
+
             queryOptions: {
                 initialData: products,
             },
-            initialPageSize: 6,
-            permanentFilter: [
-                {
-                    field: "category.id",
-                    operator: "eq",
-                    value: id,
-                },
-            ],
+
+            pagination: {
+                pageSize: 6,
+            },
+
+            filters: {
+                permanent: [
+                    {
+                        field: "category.id",
+                        operator: "eq",
+                        value: id,
+                    },
+                ],
+            },
         },
     });
 

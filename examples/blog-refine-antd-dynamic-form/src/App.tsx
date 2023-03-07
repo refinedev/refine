@@ -5,8 +5,8 @@ import {
     ReadyPage,
     ErrorComponent,
 } from "@refinedev/antd";
-import "@refinedev/antd/dist/reset.css";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import "@refinedev/antd";
+import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import PostCreate from "pages/PostCreate";
 import PostEdit from "pages/PostEdit";

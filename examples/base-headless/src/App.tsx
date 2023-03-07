@@ -1,43 +1,24 @@
 import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import routerBindings, { RefineRoutes } from "@refinedev/react-router-v6";
-
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { PostCreate, PostEdit } from "pages/posts";
-
 import "./App.css";
+
+import { PostList, PostCreate, PostEdit } from "pages/posts";
 
 const App: React.FC = () => {
     return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerBindings}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "posts",
-                        create: {
-                            path: "posts/:id/create",
-                            component: PostCreate,
-                        },
-                        show: "posts/test/:id",
-                        edit: PostEdit,
-                    },
-                ]}
-            >
-                <RefineRoutes>
-                    {(routes) => (
-                        <Routes>
-                            {routes}
-                            <Route path="posts/test/:id" element={<>test</>} />
-                            <Route path="custom-route" element={<>custom</>} />
-                            <Route path="posts" element={<>posts list</>} />
-                        </Routes>
-                    )}
-                </RefineRoutes>
-            </Refine>
-        </BrowserRouter>
+        <Refine
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            legacyRouterProvider={routerProvider}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                },
+            ]}
+        />
     );
 };
 

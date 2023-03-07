@@ -1,5 +1,4 @@
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import {
     List,
     useTable,
@@ -7,7 +6,6 @@ import {
     DateField,
     DeleteButton,
 } from "@refinedev/antd";
-
 import { Table, Space } from "antd";
 
 import { ICategory } from "interfaces";

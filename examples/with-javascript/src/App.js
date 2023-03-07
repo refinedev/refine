@@ -1,9 +1,9 @@
 import { Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 
-import "@refinedev/antd/dist/reset.css";
+import "@refinedev/antd";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
 

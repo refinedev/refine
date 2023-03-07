@@ -6,9 +6,9 @@ import {
     ErrorComponent,
 } from "@refinedev/antd";
 
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 
-import "@refinedev/antd/dist/reset.css";
+import "@refinedev/antd";
 import { DataProvider } from "@refinedev/strapi";
 import strapiAuthProvider from "authProvider";
 import { Header, Layout, OffLayoutArea } from "components";
@@ -23,7 +23,7 @@ function App() {
     return (
         <Refine
             dataProvider={dataProvider}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             Header={Header}
             Layout={Layout}
             OffLayoutArea={OffLayoutArea}

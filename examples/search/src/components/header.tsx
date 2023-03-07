@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import { useList } from "@refinedev/core";
-import { SearchOutlined } from "@ant-design/icons";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import { Layout as AntdLayout, AutoComplete, Input, Typography } from "antd";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 import debounce from "lodash/debounce";
 
 const { Link } = routerProvider;
 const { Text } = Typography;
+const { SearchOutlined } = Icons;
 
 import { ICategory, IOptions, IPost } from "interfaces";
 
@@ -35,9 +40,7 @@ export const Header: React.FC = () => {
 
     const { refetch: refetchPosts } = useList<IPost>({
         resource: "posts",
-        config: {
-            filters: [{ field: "title", operator: "contains", value }],
-        },
+
         queryOptions: {
             enabled: false,
             onSuccess: (data) => {
@@ -55,13 +58,13 @@ export const Header: React.FC = () => {
                 }
             },
         },
+
+        filters: [{ field: "title", operator: "contains", value }],
     });
 
     const { refetch: refetchCategories } = useList<ICategory>({
         resource: "categories",
-        config: {
-            filters: [{ field: "title", operator: "contains", value }],
-        },
+
         queryOptions: {
             enabled: false,
             onSuccess: (data) => {
@@ -79,6 +82,8 @@ export const Header: React.FC = () => {
                 }
             },
         },
+
+        filters: [{ field: "title", operator: "contains", value }],
     });
 
     useEffect(() => {

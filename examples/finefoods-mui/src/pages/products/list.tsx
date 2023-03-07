@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
     useTranslate,
     IResourceComponentsProps,
@@ -6,6 +7,7 @@ import {
     getDefaultFilter,
     HttpError,
 } from "@refinedev/core";
+
 import { useModalForm } from "@refinedev/react-hook-form";
 import { CreateButton } from "@refinedev/mui";
 import {
@@ -33,7 +35,10 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const { tableQueryResult, setFilters, setCurrent, filters, pageCount } =
         useTable<IProduct>({
             resource: "products",
-            initialPageSize: 12,
+
+            pagination: {
+                pageSize: 12,
+            },
         });
 
     const createDrawerFormProps = useModalForm<IProduct, HttpError, IProduct>({

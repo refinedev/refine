@@ -3,11 +3,10 @@
     "version": "3.25.0",
     "private": true,
     "dependencies": {
-        "@refinedev/antd": "^4.7.3",
-        "@refinedev/core": "^3.99.6",
-        "@refinedev/cli": "^1.17.1",
-        "@refinedev/react-router-v6": "^3.38.0",
-        "@refinedev/strapi": "^3.37.0",
+        "@refinedev/antd": "latest",
+        "@refinedev/core": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "@refinedev/strapi": "latest",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",
@@ -15,18 +14,17 @@
         "@types/node": "^12.20.11",
         "@types/react": "^18.0.0",
         "@types/react-dom": "^18.0.0",
+        "@uiw/react-md-editor": "^3.19.5",
+        "antd": "^5.0.5",
         "axios": "^0.26.1",
+        "cross-env": "^7.0.3",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
-        "@uiw/react-md-editor": "^3.19.5",
         "react-scripts": "^5.0.0",
-        "cross-env": "^7.0.3",
-        "typescript": "^4.7.4",
-        "antd": "^5.0.5"
+        "typescript": "^4.7.4"
     },
     "scripts": {
         "dev": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
-        "start": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts start",
         "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
@@ -43,5 +41,8 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "@refinedev/cli": "latest"
     }
 }

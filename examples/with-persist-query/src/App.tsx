@@ -1,6 +1,6 @@
 import { Refine } from "@refinedev/core";
 import { QueryClient } from "@tanstack/react-query";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import "./App.css";
 

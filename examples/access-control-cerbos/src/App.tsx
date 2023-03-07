@@ -1,11 +1,11 @@
 import { Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { HTTP as Cerbos } from "@cerbos/http";
 
-import "@refinedev/antd/dist/reset.css";
+import "@refinedev/antd";
 
 import { Header } from "components/header";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -46,7 +46,7 @@ const App: React.FC = () => {
                             attributes: {},
                         },
                         resource: {
-                            kind: resource ?? "",
+                            kind: resource,
                             policyVersion: "default",
                             id: params?.id + "" || "new",
                             attributes: params,

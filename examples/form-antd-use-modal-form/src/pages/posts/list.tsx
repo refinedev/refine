@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useShow, IResourceComponentsProps } from "@refinedev/core";
-
 import {
     List,
     EditButton,
@@ -8,7 +7,6 @@ import {
     useTable,
     useModalForm,
 } from "@refinedev/antd";
-
 import { Table, Form, Select, Input, Modal, Space, Typography } from "antd";
 
 import { IPost } from "interfaces";

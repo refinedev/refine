@@ -1,5 +1,5 @@
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 import { dataProvider } from "@refinedev/supabase";
 import { supabaseClient } from "utility";
 import authProvider from "./authProvider";
@@ -15,7 +15,7 @@ function App() {
                 ...routerProvider,
             }}
             dataProvider={dataProvider(supabaseClient)}
-            authProvider={authProvider}
+            legacyAuthProvider={authProvider}
             resources={[{ name: "countries", list: Countries }]}
             LoginPage={LoginPage}
             Layout={Layout}

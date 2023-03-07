@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Refine } from "@refinedev/core";
-import { MantineInferencer } from "@refinedev/inferencer/mantine";
+import { MantineInferencer } from "@refinedev/inferencer";
 
 import {
     notificationProvider,
@@ -14,9 +14,8 @@ import {
 
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
-
 import { DataProvider } from "@refinedev/strapi-v4";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { authProvider, axiosInstance } from "./authProvider";
 import { API_URL } from "./constants";
@@ -29,7 +28,7 @@ function App() {
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <Refine
-                    authProvider={authProvider}
+                    legacyAuthProvider={authProvider}
                     dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
                     notificationProvider={notificationProvider}
                     Layout={Layout}

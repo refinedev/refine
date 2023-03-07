@@ -7,7 +7,7 @@ import {
     DeleteButton,
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
-import type { IResourceComponentsProps } from "@refinedev/core";
+import { IResourceComponentsProps } from "@refinedev/core";
 
 import { IPost } from "../../interfaces";
 

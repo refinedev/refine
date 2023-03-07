@@ -1,3 +1,4 @@
+import React from "react";
 import { useLogList } from "@refinedev/core";
 import { Avatar, List as AntdList, Typography } from "antd";
 import { formattedDate, timeFromNow } from "utility/time";

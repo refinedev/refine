@@ -1,7 +1,10 @@
 import React from "react";
 import { useSelect } from "@refinedev/antd";
 
-import { SearchOutlined } from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import { Form, FormProps, Input, Select, DatePicker, Button } from "antd";
 
 import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
@@ -30,7 +33,7 @@ export const Filter: React.FC<{ formProps: FormProps }> = ({ formProps }) => {
     return (
         <Form layout="vertical" {...formProps}>
             <Form.Item label="Search" name="title">
-                <Input placeholder="Title" prefix={<SearchOutlined />} />
+                <Input placeholder="Title" prefix={<Icons.SearchOutlined />} />
             </Form.Item>
             <Form.Item label="Label" name="label">
                 <Select

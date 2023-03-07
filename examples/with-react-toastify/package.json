@@ -3,20 +3,20 @@
     "version": "3.25.0",
     "private": true,
     "dependencies": {
-        "@refinedev/core": "^3.99.6",
-        "@refinedev/cli": "^1.17.1",
-        "@refinedev/react-hook-form": "^3.37.2",
-        "@refinedev/react-router-v6": "^3.38.0",
-        "@refinedev/react-table": "^4.9.1",
+        "@refinedev/core": "latest",
+        "@refinedev/react-hook-form": "latest",
+        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-table": "latest",
+        "@refinedev/simple-rest": "latest",
         "@tanstack/react-table": "^8.2.6",
-        "@refinedev/simple-rest": "^3.37.4",
         "@types/node": "^12.20.11",
         "@types/react": "^18.0.0",
         "@types/react-dom": "^18.0.0",
+        "cross-env": "^7.0.3",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
+        "react-router-dom": "^6.8.1",
         "react-scripts": "^5.0.0",
-        "cross-env": "^7.0.3",
         "react-toastify": "^8.1.0",
         "typescript": "^4.7.4"
     },
@@ -37,5 +37,8 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "@refinedev/cli": "latest"
     }
 }

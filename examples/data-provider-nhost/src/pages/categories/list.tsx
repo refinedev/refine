@@ -1,5 +1,4 @@
 import { IResourceComponentsProps } from "@refinedev/core";
-
 import {
     List,
     useTable,
@@ -8,21 +7,23 @@ import {
     DateField,
     getDefaultSortOrder,
 } from "@refinedev/antd";
-
 import { Table, Space } from "antd";
 
 import { ICategory } from "interfaces";
 
 export const CategoriesList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<ICategory>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
-        metaData: {
+    const { tableProps, sorters: sorter } = useTable<ICategory>({
+        meta: {
             fields: ["id", "title", "created_at"],
+        },
+
+        sorters: {
+            initial: [
+                {
+                    field: "id",
+                    order: "asc",
+                },
+            ],
         },
     });
 

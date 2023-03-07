@@ -6,7 +6,6 @@ import {
     TextFieldComponent,
     NumberField,
 } from "@refinedev/mui";
-
 import { useTheme } from "@mui/material/styles";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";

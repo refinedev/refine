@@ -93,7 +93,7 @@ const App: React.FC = () => {
                  * `routerProvider` prop and its properties are now **optional**.
                  * Using it will enable refine's router related features but they are not required to use refine.
                  */
-                routerProvider={routerBindings}
+                legacyRouterProvider={routerBindings}
                 dataProvider={dataProvider(API_URL)}
                 notificationProvider={notificationProvider}
                 /**

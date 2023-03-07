@@ -3,7 +3,6 @@ import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { GetManyResponse, useMany } from "@refinedev/core";
 import { List, DeleteButton, DateField } from "@refinedev/mantine";
-
 import {
     Box,
     Group,
@@ -112,23 +111,33 @@ export const PostList: React.FC = () => {
         },
     } = useTable({
         columns,
+
         refineCoreProps: {
-            initialCurrent: 2,
-            initialPageSize: 10,
-            initialSorter: [
-                {
-                    field: "title",
-                    order: "asc",
-                },
-            ],
-            initialFilter: [
-                {
-                    field: "status",
-                    operator: "eq",
-                    value: "draft",
-                },
-            ],
             syncWithLocation: true,
+
+            pagination: {
+                current: 2,
+                pageSize: 10,
+            },
+
+            filters: {
+                initial: [
+                    {
+                        field: "status",
+                        operator: "eq",
+                        value: "draft",
+                    },
+                ],
+            },
+
+            sorters: {
+                initial: [
+                    {
+                        field: "title",
+                        order: "asc",
+                    },
+                ],
+            },
         },
     });
 

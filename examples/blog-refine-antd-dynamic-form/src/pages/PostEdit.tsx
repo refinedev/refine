@@ -1,7 +1,10 @@
 import React from "react";
 import { useForm, Edit } from "@refinedev/antd";
 
-import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import { Form, Input, Button, Space } from "antd";
 
 interface IFormValue {
@@ -104,14 +107,14 @@ export default function PostEdit(Props: any) {
                                                     position: "absolute",
                                                     top: "47px",
                                                 }}
-                                                icon={<DeleteOutlined />}
+                                                icon={<Icons.DeleteOutlined />}
                                             ></Button>
                                         </Space>
                                     );
                                 })}
                                 <Form.Item>
                                     <Button
-                                        icon={<PlusOutlined />}
+                                        icon={<Icons.PlusOutlined />}
                                         type="dashed"
                                         block
                                         style={{ maxWidth: "600px" }}

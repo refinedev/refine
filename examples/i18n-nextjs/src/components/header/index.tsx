@@ -1,5 +1,9 @@
 import { useGetLocale } from "@refinedev/core";
-import { DownOutlined } from "@ant-design/icons";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
 import {
     Layout as AntdLayout,
     Space,
@@ -8,10 +12,12 @@ import {
     Dropdown,
     Avatar,
 } from "antd";
-import NextRouter from "@refinedev/nextjs-router/legacy";
+import NextRouter from "@refinedev/nextjs-router";
 import { useRouter } from "next/router";
 
 const { Link } = NextRouter;
+
+const { DownOutlined } = Icons;
 
 export const Header: React.FC = () => {
     const locale = useGetLocale();

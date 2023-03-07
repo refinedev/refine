@@ -1,16 +1,8 @@
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    MemoryRouterComponent,
-} from "@refinedev/react-router-v6/legacy";
+import routerProvider, { MemoryRouterComponent } from "@refinedev/react-router-v6";
 import { useDarkMode } from "storybook-dark-mode";
-import {
-    DarkTheme,
-    LightTheme,
-    LoginPage,
-    ReadyPage,
-    ErrorComponent,
-} from "@refinedev/mui";
+import { DarkTheme, LightTheme, LoginPage, ReadyPage, ErrorComponent } from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
 import { authProvider } from "../src/authProvider";
 
@@ -53,6 +45,7 @@ export const RefineWithLayout = (Story) => (
                     list: Story,
                 },
             ]}
+
         />
     </ThemeProvider>
 );
@@ -79,6 +72,7 @@ export const RefineWithoutLayout = (Story) => (
                     list: Story,
                 },
             ]}
+
         />
     </ThemeProvider>
 );

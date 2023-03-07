@@ -1,6 +1,5 @@
 import { AuditLogProvider } from "@refinedev/core";
 import { dataProvider } from "@refinedev/supabase";
-
 import { supabaseClient } from "utility";
 
 export const auditLogProvider: AuditLogProvider = {

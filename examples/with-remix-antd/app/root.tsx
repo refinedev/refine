@@ -17,9 +17,9 @@ import {
 } from "@refinedev/antd";
 
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/remix-router/legacy";
+import routerProvider from "@refinedev/remix-router";
 
-import resetStyle from "@refinedev/antd/dist/reset.css";
+import resetStyle from "@refinedev/antd";
 
 import { authProvider } from "./authProvider";
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages/posts";
@@ -41,9 +41,8 @@ export default function App(): JSX.Element {
             <body>
                 <Refine
                     dataProvider={dataProvider(API_URL)}
-                    routerProvider={routerProvider}
-                    authProvider={authProvider}
                     legacyRouterProvider={routerProvider}
+                    legacyAuthProvider={authProvider}
                     notificationProvider={notificationProvider}
                     Layout={Layout}
                     LoginPage={() => (

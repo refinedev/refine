@@ -7,6 +7,7 @@ import {
 import { useTable, List, getDefaultSortOrder } from "@refinedev/antd";
 import { Table } from "antd";
 import dataProvider from "@refinedev/simple-rest";
+import { checkAuthentication } from "@refinedev/nextjs-router";
 
 import { IPost } from "src/interfaces";
 
@@ -15,11 +16,13 @@ import { API_URL } from "../../src/constants";
 export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
     users,
 }) => {
-    const { tableProps, sorter } = useTable<IPost>({
+    const { tableProps, sorters: sorter } = useTable<IPost>({
         resource: "users",
+
         queryOptions: {
             initialData: users,
         },
+
         syncWithLocation: true,
     });
 
@@ -52,10 +55,13 @@ export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
 
 export default UserList;
 
-import { checkAuthentication } from "src/utils/checkAuthentication";
+import { authProvider } from "../../src/authProvider";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { isAuthenticated, ...props } = await checkAuthentication(context);
+    const { isAuthenticated, ...props } = await checkAuthentication(
+        authProvider,
+        context,
+    );
 
     if (!isAuthenticated) {
         return props;

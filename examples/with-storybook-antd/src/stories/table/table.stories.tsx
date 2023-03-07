@@ -1,6 +1,5 @@
 import { ComponentMeta } from "@storybook/react";
 import { List, useTable } from "@refinedev/antd";
-
 import { Table } from "antd";
 
 import { RefineWithLayout } from "../../../.storybook/preview";

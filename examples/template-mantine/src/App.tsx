@@ -8,12 +8,10 @@ import {
     ReadyPage,
     ErrorComponent,
 } from "@refinedev/mantine";
-
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
-
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 
 function App() {
     return (

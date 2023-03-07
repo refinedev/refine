@@ -1,5 +1,4 @@
 import { useMany } from "@refinedev/core";
-
 import {
     List,
     TextField,
@@ -7,7 +6,6 @@ import {
     EditButton,
     ShowButton,
 } from "@refinedev/antd";
-
 import { Table, Space } from "antd";
 
 export const PostList = () => {

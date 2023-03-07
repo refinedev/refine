@@ -6,7 +6,6 @@ import {
     TextField,
     MarkdownField,
 } from "@refinedev/chakra-ui";
-
 import { Heading, HStack } from "@chakra-ui/react";
 
 export const ProductShow = () => {

@@ -1,7 +1,6 @@
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 import { Edit, useAutocomplete } from "@refinedev/mui";
-
 import { Box, TextField, Autocomplete } from "@mui/material";
 
 import { ICategory, IPost } from "interfaces";
