@@ -262,7 +262,7 @@ module.exports = {
                 label: "AuthPage",
                 message: ` 
                 **\`Info:\`**
-                If you want to see an example of authentication pages in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers/react-router-v6/#how-to-handle-optional-authentication-redirects-and-layouts-with-authentication
+                If you want to see an example of authentication pages in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers
                 `,
                 files: [
                     {
