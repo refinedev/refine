@@ -7,7 +7,6 @@ import {
     useGo,
     useRouterType,
 } from "@hooks";
-import { ResourceErrorRouterParams, ActionWithPage } from "../../../interfaces";
 
 /**
  * When the app is navigated to a non-existent route, refine shows a default error page.
