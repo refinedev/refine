@@ -18,7 +18,7 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "events",
-                        list: CalendarPage,
+                        list: "/events",
                     },
                 ]}
             >
