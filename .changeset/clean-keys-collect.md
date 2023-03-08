@@ -2,4 +2,4 @@
 "@pankod/refine-hasura": minor
 ---
 
-allow custom ID type for hasura data provider
+Allow custom ID types with `idType` property when initializing the data provider instance. `idType` can either be `Int`, `uuid` or a function returning the type by resource name.
