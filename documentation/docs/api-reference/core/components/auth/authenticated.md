@@ -1,6 +1,7 @@
 ---
 id: authenticated
 title: <Authenticated>
+sidebar_label: <Authenticated> 🆙
 ---
 
 `<Authenticated>` is the component form of [`useIsAuthenticated`][use-is-authenticated].
@@ -13,6 +14,8 @@ When:
 -   `data.authenticated` is `false`, it renders [`fallback`](#fallback) prop if provided. Otherwise, it redirects to `data.redirectTo` page.
 -   `isLoading` is `true`, it renders [`loading`](#loading) prop.
 
+You may want to use this component when rendering a page that requires authentication. You will be able to render a fallback or redirect to an authentication page depending on your case. `Authenticated` can also be used to render a conditional content based on the user's authentication status.
+
 ## Basic Usage
 
 ```tsx
@@ -24,8 +27,6 @@ const MyPage = () => (
     </Authenticated>
 );
 ```
-
-> Refer to [Custom Pages Example][custom pages example] and [it's explanation][custom pages explanation] to learn how to use it with custom pages. &#8594
 
 ## Properties
 
@@ -70,5 +71,3 @@ Component to render while checking whether the user is logged in.
 <PropsTable module="@refinedev/core/Authenticated"/>
 
 [use-is-authenticated]: docs/api-reference/core/hooks/auth/useIsAuthenticated
-[custom pages explanation]: /advanced-tutorials/custom-pages.md#authenticated-custom-pages
-[custom pages example]: /examples/custom-pages.md
