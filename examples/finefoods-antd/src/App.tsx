@@ -136,43 +136,48 @@ const App: React.FC = () => {
                             }
                         >
                             <Route index element={<DashboardPage />} />
-                            <Route path="/orders" element={<OrderList />} />
-                            <Route
-                                path="/orders/show/:id"
-                                element={<OrderShow />}
-                            />
-                            <Route path="/users" element={<UserList />} />
-                            <Route
-                                path="/users/show/:id"
-                                element={<UserShow />}
-                            />
+                            <Route path="/orders">
+                                <Route index element={<OrderList />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<OrderShow />}
+                                />
+                            </Route>
+                            <Route path="/users">
+                                <Route index element={<UserList />} />
+                                <Route path="show/:id" element={<UserShow />} />
+                            </Route>
                             <Route path="/products" element={<ProductList />} />
-                            <Route path="/stores" element={<StoreList />} />
-                            <Route
-                                path="/stores/create"
-                                element={<StoreCreate />}
-                            />
-                            <Route
-                                path="/stores/edit/:id"
-                                element={<StoreEdit />}
-                            />
+                            <Route path="/stores">
+                                <Route index element={<StoreList />} />
+                                <Route
+                                    path="create"
+                                    element={<StoreCreate />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<StoreEdit />}
+                                />
+                            </Route>
                             <Route
                                 path="/categories"
                                 element={<CategoryList />}
                             />
-                            <Route path="/couriers" element={<CourierList />} />
-                            <Route
-                                path="/couriers/create"
-                                element={<CourierCreate />}
-                            />
-                            <Route
-                                path="/couriers/edit/:id"
-                                element={<CourierEdit />}
-                            />
-                            <Route
-                                path="/couriers/show/:id"
-                                element={<CourierShow />}
-                            />
+                            <Route path="/couriers">
+                                <Route index element={<CourierList />} />
+                                <Route
+                                    path="create"
+                                    element={<CourierCreate />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<CourierEdit />}
+                                />
+                                <Route
+                                    path="show/:id"
+                                    element={<CourierShow />}
+                                />
+                            </Route>
                             <Route path="/reviews" element={<ReviewsList />} />
                         </Route>
 
