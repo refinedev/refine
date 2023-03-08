@@ -2,41 +2,67 @@ import { Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
-    ReadyPage,
     LightTheme,
     notificationProvider,
     SnackbarProvider,
 } from "@refinedev/mui";
-import { ThemeProvider } from "@mui/material/styles";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { ThemeProvider } from "@mui/material/styles";
 
-import { PostsList, PostCreate, PostEdit } from "pages/posts";
+import { PostList, PostCreate, PostEdit } from "pages/posts";
+
+const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
-            <SnackbarProvider>
-                <Refine
-                    legacyRouterProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    Layout={Layout}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: PostsList,
-                            create: PostCreate,
-                            edit: PostEdit,
-                        },
-                    ]}
-                />
-            </SnackbarProvider>
-        </ThemeProvider>
+        <BrowserRouter>
+            <ThemeProvider theme={LightTheme}>
+                <SnackbarProvider>
+                    <Refine
+                        routerProvider={routerProvider}
+                        dataProvider={dataProvider(API_URL)}
+                        notificationProvider={notificationProvider}
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                create: "/posts/create",
+                                edit: "/posts/edit/:id",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                }
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="posts" />
+                                    }
+                                />
+                                <Route path="/posts" element={<PostList />} />
+                                <Route
+                                    path="/posts/create"
+                                    element={<PostCreate />}
+                                />
+                                <Route
+                                    path="/posts/edit/:id"
+                                    element={<PostEdit />}
+                                />
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </SnackbarProvider>
+            </ThemeProvider>
+        </BrowserRouter>
     );
 };
 

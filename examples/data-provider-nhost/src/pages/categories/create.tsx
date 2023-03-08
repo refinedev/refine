@@ -6,7 +6,7 @@ import { Form, Input } from "antd";
 
 import { ICategory } from "interfaces";
 
-export const CategoriesCreate: React.FC<IResourceComponentsProps> = () => {
+export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<ICategory>();
 
     return (
