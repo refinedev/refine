@@ -1,6 +1,7 @@
 ---
 id: cli
 title: CLI
+sidebar_label: CLI 🆙
 ---
 
 import Tabs from '@theme/Tabs';
@@ -121,7 +122,7 @@ Files created:
 
 Warning:
 If you want to change the default layout;
-You should pass layout/index.tsx with the Layout prop to the <Refine/>
+You should wrap your pages with layout/index.tsx inside <Refine>
 component.
 
     ╭ App.tsx ────────────────────────────────────────╮
@@ -131,9 +132,12 @@ component.
     │   const App = () => {                           │
     │       return (                                  │
     │           <Refine                               │
-    │               Layout={Layout}                   │
     │               /* ... */                         │
-    │           />                                    │
+    │           >                                     │
+    │               <Layout>                          │
+    │                   {/* ... */}                   │
+    │               <Layout>                          │
+    │           </Refine>                             │
     │       );                                        │
     │   }                                             │
     │                                                 │
