@@ -198,7 +198,7 @@ const App: React.FC = () => {
                                 }
                             />
                             <Route
-                                path="/login"
+                                path="/register"
                                 element={
                                     <AuthPage
                                         type="register"
