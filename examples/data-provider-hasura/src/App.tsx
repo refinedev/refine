@@ -1,15 +1,13 @@
 import { Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider, { GraphQLClient } from "@refinedev/hasura";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import {
-    CategoriesList,
-    CategoriesCreate,
-    CategoriesEdit,
-} from "pages/categories";
+import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
 
 const API_URL = "https://flowing-mammal-24.hasura.app/v1/graphql";
 /* 
@@ -31,31 +29,60 @@ const gqlDataProvider = dataProvider(client);
 
 const App: React.FC = () => {
     return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={gqlDataProvider}
-            // ## Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
-            //liveProvider={liveProvider(gqlWebSocketClient)}
-            //options={{ liveMode: "auto" }}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-                {
-                    name: "categories",
-                    list: CategoriesList,
-                    create: CategoriesCreate,
-                    edit: CategoriesEdit,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={gqlDataProvider}
+                // ## Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
+                //liveProvider={liveProvider(gqlWebSocketClient)}
+                //options={{ liveMode: "auto" }}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                        show: "/posts/show/:id",
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories",
+                        create: "/categories/create",
+                        edit: "/categories/edit/:id",
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+                        <Route path="/posts" element={<PostList />} />
+                        <Route path="/posts/create" element={<PostCreate />} />
+                        <Route path="/posts/edit/:id" element={<PostEdit />} />
+                        <Route path="/posts/show/:id" element={<PostShow />} />
+                        <Route path="/categories" element={<CategoryList />} />
+                        <Route
+                            path="/categories/create"
+                            element={<CategoryCreate />}
+                        />
+                        <Route
+                            path="/categories/edit/:id"
+                            element={<CategoryEdit />}
+                        />
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 

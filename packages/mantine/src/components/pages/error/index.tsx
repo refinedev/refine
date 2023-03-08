@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { ResourceErrorRouterParams } from "@refinedev/core";
 import { RefineErrorPageProps } from "@refinedev/ui-types";
 import {
     useNavigation,
@@ -7,7 +6,6 @@ import {
     useGo,
     useResource,
     useRouterType,
-    useRouterContext,
 } from "@refinedev/core";
 import {
     Box,

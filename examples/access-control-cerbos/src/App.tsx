@@ -1,7 +1,8 @@
 import { Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { HTTP as Cerbos } from "@cerbos/http";
 
@@ -32,62 +33,104 @@ const cerbos = new Cerbos("https://demo-pdp.cerbos.cloud", {
 const App: React.FC = () => {
     const role = localStorage.getItem("role") ?? "admin";
     return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            accessControlProvider={{
-                can: async ({ action, params, resource }) => {
-                    const result = await cerbos.checkResource({
-                        principal: {
-                            id: "demoUser", // Fake a user ID
-                            roles: [role],
-                            policyVersion: "default",
-                            // this is where user attributes can be passed
-                            attributes: {},
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                accessControlProvider={{
+                    can: async ({ action, params, resource }) => {
+                        const result = await cerbos.checkResource({
+                            principal: {
+                                id: "demoUser", // Fake a user ID
+                                roles: [role],
+                                policyVersion: "default",
+                                // this is where user attributes can be passed
+                                attributes: {},
+                            },
+                            resource: {
+                                kind: resource ?? "",
+                                policyVersion: "default",
+                                id: params?.id + "" || "new",
+                                attributes: params,
+                            },
+                            // the list of actions on the resource to check authorization for
+                            actions: [action],
+                        });
+                        return Promise.resolve({
+                            can: result.isAllowed(action) || false,
+                        });
+                    },
+                }}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        show: "/posts/show/:id",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                        meta: {
+                            canDelete: true,
                         },
-                        resource: {
-                            kind: resource ?? "",
-                            policyVersion: "default",
-                            id: params?.id + "" || "new",
-                            attributes: params,
-                        },
-                        // the list of actions on the resource to check authorization for
-                        actions: [action],
-                    });
-                    return Promise.resolve({
-                        can: result.isAllowed(action) || false,
-                    });
-                },
-            }}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    canDelete: true,
-                },
-                {
-                    name: "users",
-                    list: UserList,
-                    create: UserCreate,
-                    edit: UserEdit,
-                    show: UserShow,
-                },
-                {
-                    name: "categories",
-                    list: CategoryList,
-                    create: CategoryCreate,
-                    edit: CategoryEdit,
-                    show: CategoryShow,
-                },
-            ]}
-            Header={() => <Header role={role} />}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+                    },
+                    {
+                        name: "users",
+                        list: "/users",
+                        show: "/users/show/:id",
+                        create: "/users/create",
+                        edit: "/users/edit/:id",
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories",
+                        show: "/categories/show/:id",
+                        create: "/categories/create",
+                        edit: "/categories/edit/:id",
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout Header={() => <Header role={role} />}>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+
+                        <Route path="/posts" element={<PostList />} />
+                        <Route path="/posts/show/:id" element={<PostShow />} />
+                        <Route path="/posts/create" element={<PostCreate />} />
+                        <Route path="/posts/edit/:id" element={<PostEdit />} />
+
+                        <Route path="/users" element={<UserList />} />
+                        <Route path="/users/show/:id" element={<UserShow />} />
+                        <Route path="/users/create" element={<UserCreate />} />
+                        <Route path="/users/edit/:id" element={<UserEdit />} />
+
+                        <Route path="/categories" element={<CategoryList />} />
+                        <Route
+                            path="/categories/show/:id"
+                            element={<CategoryShow />}
+                        />
+                        <Route
+                            path="/categories/create"
+                            element={<CategoryCreate />}
+                        />
+                        <Route
+                            path="/categories/edit/:id"
+                            element={<CategoryEdit />}
+                        />
+
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 

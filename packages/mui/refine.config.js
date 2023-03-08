@@ -18,7 +18,7 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "CreateButton",
-                message: ` 
+                message: `
                 **\`Warning:\`**
                 This component is used in the below component. If you want to change it, you can run the **swizzle** command for the below component or you can use props to override the default buttons.
                     - <List/>
@@ -43,7 +43,7 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "DeleteButton",
-                message: ` 
+                message: `
                 **\`Warning:\`**
                 This component is used in the below components. If you want to change it, you can run the **swizzle** command for the below components or you can use props to override the default buttons.
                     - <Edit/>
@@ -59,7 +59,7 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "EditButton",
-                message: ` 
+                message: `
                 **\`Warning:\`**
                 This component is used in the below component. If you want to change it, you can run the **swizzle** command for the below component or you can use props to override the default buttons.
                     - <Show/>
@@ -94,7 +94,7 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "ListButton",
-                message: ` 
+                message: `
                 **\`Warning:\`**
                 This component is used in the below components. If you want to change it, you can run the **swizzle** command for the below components or you can use props to override the default buttons.
                     - <Edit/>
@@ -110,7 +110,7 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "RefreshButton",
-                message: ` 
+                message: `
                 **\`Warning:\`**
                 This component is used in the below components. If you want to change it, you can run the **swizzle** command for the below components or you can use props to override the default buttons.
                     - <Edit/>
@@ -126,7 +126,7 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "SaveButton",
-                message: ` 
+                message: `
                 **\`Warning:\`**
                 This component is used in the below components. If you want to change it, you can run the **swizzle** command for the below components or you can use props to override the default buttons.
                     - <Create/>
@@ -142,24 +142,9 @@ module.exports = {
             {
                 group: "Pages",
                 label: "ErrorPage",
-                message: ` 
-                **\`Warning:\`**
-                If you want to change the default error page;
-                You should pass it with the **catchAll** prop to the **<Refine/>** component.
-
-                \`\`\`
-                // title: App.tsx
-                import { ErrorPage } from "components/pages/error";
-
-                const App = () => {
-                    return (
-                        <Refine
-                            catchAll={ErrorPage}
-                            /* ... */
-                        />
-                    );
-                }
-                \`\`\`
+                message: `
+                **\`Info:\`**
+                If you want to see an example of error page in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers
                 `,
                 files: [
                     {
@@ -275,24 +260,9 @@ module.exports = {
             {
                 group: "Pages",
                 label: "AuthPage",
-                message: ` 
-                **\`Warning:\`**
-                If you want to change the default auth pages;
-                You should pass it with the **LoginPage** prop to the **<Refine/>** component.
-
-                \`\`\`
-                // title: App.tsx
-                import { AuthPage } from "components/pages/auth";
-
-                const App = () => {
-                    return (
-                        <Refine
-                            LoginPage={AuthPage}
-                            /* ... */
-                        />
-                    );
-                }
-                \`\`\`
+                message: `
+                **\`Info:\`**
+                If you want to see examples of authentication pages in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers
                 `,
                 files: [
                     {
@@ -452,7 +422,7 @@ module.exports = {
 
                             newContent = newContent.replace(
                                 breadcrumbPropsExportRegex,
-                                "",
+                                `import { BreadcrumbProps } from "@refinedev/mui";`,
                             );
 
                             // change the breadcrumb import path
@@ -461,7 +431,7 @@ module.exports = {
 
                             newContent = newContent.replace(
                                 breadcrumbImportRegex,
-                                "BreadcrumbProps,",
+                                "",
                             );
 
                             return newContent;
@@ -475,18 +445,24 @@ module.exports = {
                 message: `
                 **\`Warning:\`**
                 If you want to change the default layout;
-                You should pass \`layout/index.tsx\` with the **Layout** prop to the **<Refine/>** component.
+                You should pass layout related components to the **<Layout/>** component's props.
 
                 \`\`\`
                 // title: App.tsx
                 import { Layout } from "components/layout";
+                import { Header } from "components/layout/header";
+                import { Sider } from "components/layout/sider";
+                import { Title } from "components/layout/title";
 
                 const App = () => {
                     return (
                         <Refine
-                            Layout={Layout}
                             /* ... */
-                        />
+                        >
+                            <Layout Header={Header} Sider={Sider} Title={Title} />
+                                /* ... */
+                            </Layout>
+                        </Refine>
                     );
                 }
                 \`\`\`
@@ -500,28 +476,6 @@ module.exports = {
                             const imports = getImports(content);
 
                             imports.map((importItem) => {
-                                // handle antd layout rename
-                                if (importItem.importPath === "@mui/material") {
-                                    newContent = newContent.replace(
-                                        importItem.statement,
-                                        importItem.statement.replace(
-                                            "List,",
-                                            "MuiList,",
-                                        ),
-                                    );
-
-                                    // replace "<List" with "<MuiList" but <List must be followed by a space or an end of line
-                                    newContent = newContent.replace(
-                                        /<List(?=[\s>])/g,
-                                        "<MuiList",
-                                    );
-                                    // replace "</List" with "</MuiList"
-                                    newContent = newContent.replace(
-                                        /<\/List>/g,
-                                        "</MuiList>",
-                                    );
-                                }
-
                                 // handle @components import replacement
                                 if (importItem.importPath === "@components") {
                                     const newStatement = `import ${importItem.namedImports} from "@refinedev/mui";`;
@@ -547,25 +501,6 @@ module.exports = {
                     {
                         src: "./src/components/layout/index.tsx",
                         dest: "./components/layout/index.tsx",
-                        transform: (content) => {
-                            let newContent = content;
-                            const imports = getImports(content);
-
-                            imports.map((importItem) => {
-                                // handle antd layout rename
-                                if (importItem.importPath === "antd") {
-                                    newContent = newContent.replace(
-                                        importItem.statement,
-                                        importItem.statement.replace(
-                                            "Layout as AntdLayout,",
-                                            "AntdLayout,",
-                                        ),
-                                    );
-                                }
-                            });
-
-                            return newContent;
-                        },
                     },
                 ],
             },
@@ -618,31 +553,6 @@ module.exports = {
                 // for mui imports
                 if (importItem.importPath === "@components") {
                     const newStatement = `import ${importItem.namedImports} from "@refinedev/mui";`;
-
-                    newContent = newContent.replace(
-                        importItem.statement,
-                        newStatement,
-                    );
-                }
-
-                // mui/material and mui/lab imports
-                if (
-                    importItem.importPath === "@mui/material" ||
-                    importItem.importPath === "@mui/lab"
-                ) {
-                    const newStatement = `import ${importItem.namedImports} from "${importItem.importPath}";`;
-
-                    newContent = newContent.replace(
-                        importItem.statement,
-                        newStatement,
-                    );
-                }
-
-                // for icons
-                if (importItem.importPath === "@mui/icons-material") {
-                    const newStatement = `
-                    // We use @mui/icons-material for icons but you can use any icon library you want.
-                    import ${importItem.namedImports} from "@mui/icons-material";`;
 
                     newContent = newContent.replace(
                         importItem.statement,
