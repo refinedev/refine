@@ -1,14 +1,10 @@
-import { useOne, useShow } from "@pankod/refine-core";
-import {
-    Show,
-    Heading,
-    NumberField,
-    TextField,
-} from "@pankod/refine-chakra-ui";
+import { useOne, useShow } from "@refinedev/core";
+import { Show, NumberField, TextField } from "@refinedev/chakra-ui";
+import { Heading } from "@chakra-ui/react";
 
 export const PostShow = () => {
     const { queryResult } = useShow({
-        metaData: {
+        meta: {
             populate: ["category"],
         },
     });
