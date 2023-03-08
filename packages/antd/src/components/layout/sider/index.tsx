@@ -19,6 +19,7 @@ import {
     useLink,
     useRouterType,
     useActiveAuthProvider,
+    pickNotDeprecated,
 } from "@refinedev/core";
 
 import { Title as DefaultTitle } from "@components";
@@ -53,7 +54,16 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
 
     const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
         return tree.map((item: ITreeMenu) => {
-            const { icon, label, route, name, children, parentName } = item;
+            const {
+                icon,
+                label,
+                route,
+                name,
+                children,
+                parentName,
+                meta,
+                options,
+            } = item;
 
             if (children.length > 0) {
                 return (
@@ -77,7 +87,8 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
             }
             const isSelected = route === selectedKey;
             const isRoute = !(
-                parentName !== undefined && children.length === 0
+                pickNotDeprecated(meta?.parent, options?.parent, parentName) !==
+                    undefined && children.length === 0
             );
             return (
                 <CanAccess

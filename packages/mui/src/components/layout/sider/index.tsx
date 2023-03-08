@@ -34,6 +34,7 @@ import {
     useMenu,
     useRefineContext,
     useActiveAuthProvider,
+    pickNotDeprecated,
 } from "@refinedev/core";
 import { RefineLayoutSiderProps } from "../types";
 
@@ -92,11 +93,23 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
 
     const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
         return tree.map((item: ITreeMenu) => {
-            const { icon, label, route, name, children, parentName } = item;
+            const {
+                icon,
+                label,
+                route,
+                name,
+                children,
+                parentName,
+                meta,
+                options,
+            } = item;
             const isOpen = open[item.key || ""] || false;
 
             const isSelected = item.key === selectedKey;
-            const isNested = !(parentName === undefined);
+            const isNested = !(
+                pickNotDeprecated(meta?.parent, options?.parent, parentName) ===
+                undefined
+            );
 
             if (children.length > 0) {
                 return (
