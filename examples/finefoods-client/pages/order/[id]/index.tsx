@@ -48,7 +48,6 @@ export const OrderDetail: React.FC<OrderPageProps> = ({ order }) => {
     }, []);
 
     return (
-        <>
             <div
                 ref={el}
                 className="container overflow-hidden rounded-xl bg-white"
