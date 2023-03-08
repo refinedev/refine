@@ -19,7 +19,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 const { default: dataProvider } = RefineSimpleRest;
 const { useLogout: useLogoutShared } =
     RefineCore;
-const { Button } = RefineMantine;
+const { Button } = MantineCore;
 
 window.__refineAuthStatus = false;
 
