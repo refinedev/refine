@@ -4,21 +4,19 @@ import {
     AuthPage,
     Layout,
     ErrorComponent,
-    Sider,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
 } from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
-import { CheckOutlined } from "@ant-design/icons";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { PostReview } from "pages/post-review";
-import { Menu } from "antd";
+import { Sider } from "components/sider";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -80,29 +78,7 @@ const App: React.FC = () => {
                             <Authenticated
                                 fallback={<CatchAllNavigate to="/login" />}
                             >
-                                <Layout
-                                    Sider={() => (
-                                        <Sider
-                                            render={({ items, logout }) => {
-                                                return (
-                                                    <>
-                                                        {items}
-                                                        <Menu.Item
-                                                            icon={
-                                                                <CheckOutlined />
-                                                            }
-                                                        >
-                                                            <Link to="/post-review">
-                                                                Post Review
-                                                            </Link>
-                                                        </Menu.Item>
-                                                        {logout}
-                                                    </>
-                                                );
-                                            }}
-                                        />
-                                    )}
-                                >
+                                <Layout Sider={() => <Sider />}>
                                     <Outlet />
                                 </Layout>
                             </Authenticated>
