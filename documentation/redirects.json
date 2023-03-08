@@ -258,7 +258,7 @@
     },
     {
       "from": "/docs/guides-and-concepts/custom-pages/",
-      "to": "/docs/advanced-tutorials/custom-pages/"
+      "to": "/docs/packages/documentation/routers"
     },
     {
       "from": "/docs/guides-and-concepts/data-provider/appwrite/",
@@ -719,6 +719,14 @@
     {
       "from": "/docs/advanced-tutorials/ssr/remix",
       "to": "/docs/packages/documentation/routers/remix"
+    },
+    {
+      "from": "/docs/advanced-tutorials/custom-pages/",
+      "to": "/docs/packages/documentation/routers"
+    },
+    {
+      "from": "/docs/api-reference/core/components/layout-wrapper",
+      "to": "/docs/2.xx.xx/api-reference/core/components/layout-wrapper"
     }
   ]
 }
