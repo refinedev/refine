@@ -174,19 +174,15 @@ import {
     Layout,
     ThemeProvider,
     LightTheme,
-    ReadyPage,
     ErrorComponent,
 } from '@refinedev/mui';
 
 import dataProvider from '@refinedev/simple-rest';
-import routerProvider from '@refinedev/react-router-v6';
+import routerProvider, { NavigateToResource } from '@refinedev/react-router-v6';
 
-import {
-    MuiListInferencer,
-    MuiShowInferencer,
-    MuiCreateInferencer,
-    MuiEditInferencer,
-} from '@refinedev/inferencer/mui';
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+
+import { MuiInferencer } from '@refinedev/inferencer/mui';
 
 function App() {
     return (
@@ -194,36 +190,43 @@ function App() {
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: 'auto' } }} />
             <RefineSnackbarProvider>
-                <Refine
-                    dataProvider={dataProvider(
-                        'https://api.fake-rest.refine.dev'
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: 'samples',
-                            list: MuiListInferencer,
-                            show: MuiShowInferencer,
-                            create: MuiCreateInferencer,
-                            edit: MuiEditInferencer,
-                            canDelete: true,
-                        },
-                        {
-                            name: 'categories',
-                            list: MuiListInferencer,
-                            show: MuiShowInferencer,
-                        },
-                        {
-                            name: 'tags',
-                            list: MuiListInferencer,
-                            show: MuiShowInferencer,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        dataProvider={dataProvider(
+                            'https://api.fake-rest.refine.dev'
+                        )}
+                        notificationProvider={notificationProvider}
+                        routerProvider={routerProvider}
+                        resources={[
+                            {
+                                name: 'samples',
+                                list: "/samples",
+                                show: "/samples/show/:id",
+                                create: "/samples/create",
+                                edit: "/samples/edit/:id",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            <Route
+                                element={(
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                )}
+                            >
+                                <Route index element={<NavigateToResource />} />
+                                <Route path="samples">
+                                    <Route index element={<MuiInferencer />} />
+                                    <Route path="show/:id" element={<MuiInferencer />} />
+                                    <Route path="create" element={<MuiInferencer />} />
+                                    <Route path="edit/:id" element={<MuiInferencer />} />
+                                </Route>
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </BrowserRouter>
             </RefineSnackbarProvider>
         </ThemeProvider>
     );

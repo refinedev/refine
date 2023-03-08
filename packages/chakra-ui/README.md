@@ -169,41 +169,56 @@ import {
     notificationProvider,
     ChakraProvider,
     refineTheme,
-    ReadyPage,
     ErrorComponent,
     Layout,
 } from '@refinedev/chakra-ui';
 
-import {
-    ChakraUIListInferencer,
-    ChakraUIShowInferencer,
-    ChakraUICreateInferencer,
-    ChakraUIEditInferencer,
-} from '@refinedev/inferencer/chakra-ui';
+import { ChakraUIInferencer } from '@refinedev/inferencer/chakra-ui';
 
 import dataProvider from '@refinedev/simple-rest';
-import routerProvider from '@refinedev/react-router-v6';
+
+import routerProvider, { NavigateToResource } from '@refinedev/react-router-v6';
+
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 
 function App() {
     return (
         <ChakraProvider theme={refineTheme}>
-            <Refine
-                dataProvider={dataProvider('https://api.fake-rest.refine.dev')}
-                notificationProvider={notificationProvider()}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                Layout={Layout}
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: 'samples',
-                        list: ChakraUIListInferencer,
-                        show: ChakraUIShowInferencer,
-                        create: ChakraUICreateInferencer,
-                        edit: ChakraUIEditInferencer,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    dataProvider={dataProvider('https://api.fake-rest.refine.dev')}
+                    notificationProvider={notificationProvider()}
+                    routerProvider={routerProvider}
+                    resources={[
+                        {
+                            name: 'samples',
+                            list: "/samples",
+                            show: "/samples/show/:id",
+                            create: "/samples/create",
+                            edit: "/samples/edit/:id",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={(
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            )}
+                        >
+                            <Route index element={<NavigateToResource />} />
+                            <Route path="samples">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route path="show/:id" element={<ChakraUIInferencer />} />
+                                <Route path="create" element={<ChakraUIInferencer />} />
+                                <Route path="edit/:id" element={<ChakraUIInferencer />} />
+                            </Route>
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 }

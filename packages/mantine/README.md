@@ -172,49 +172,58 @@ import {
     Global,
     Layout,
     LightTheme,
-    ReadyPage,
     ErrorComponent,
 } from '@refinedev/mantine';
 
-import {
-    MantineListInferencer,
-    MantineShowInferencer,
-    MantineCreateInferencer,
-    MantineEditInferencer,
-} from '@refinedev/inferencer/mantine';
+import { MantineInferencer } from '@refinedev/inferencer/mantine';
 
 import dataProvider from '@refinedev/simple-rest';
-import routerProvider from '@refinedev/react-router-v6';
+import routerProvider, { NavigateToResource } from '@refinedev/react-router-v6';
+
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 
 function App() {
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: 'auto' } }} />
             <NotificationsProvider position="top-right">
-                <Refine
-                    dataProvider={dataProvider(
-                        'https://api.fake-rest.refine.dev'
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    routerProvider={routerProvider}
-                    resources={[
-                        {
-                            name: 'samples',
-                            list: MantineListInferencer,
-                            show: MantineShowInferencer,
-                            create: MantineCreateInferencer,
-                            edit: MantineEditInferencer,
-                        },
-                        {
-                            name: 'tags',
-                            list: MantineListInferencer,
-                            show: MantineShowInferencer,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        dataProvider={dataProvider(
+                            'https://api.fake-rest.refine.dev'
+                        )}
+                        notificationProvider={notificationProvider}
+                        routerProvider={routerProvider}
+                        resources={[
+                            {
+                                name: 'samples',
+                                list: "/samples",
+                                show: "/samples/show/:id",
+                                create: "/samples/create",
+                                edit: "/samples/edit/:id",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            <Route
+                                element={(
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                )}
+                            >
+                                <Route index element={<NavigateToResource />} />
+                                <Route path="samples">
+                                    <Route index element={<MantineInferencer />} />
+                                    <Route path="show/:id" element={<MantineInferencer />} />
+                                    <Route path="create" element={<MantineInferencer />} />
+                                    <Route path="edit/:id" element={<MantineInferencer />} />
+                                </Route>
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </BrowserRouter>
             </NotificationsProvider>
         </MantineProvider>
     );
