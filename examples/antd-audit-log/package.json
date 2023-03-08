@@ -5,10 +5,8 @@
     "dependencies": {
         "@refinedev/antd": "latest",
         "@refinedev/antd-audit-log": "latest",
-        "@refinedev/antd/dist/reset.css": "latest",
         "@refinedev/core": "latest",
         "@refinedev/react-router-v6": "latest",
-        "@refinedev/react-router-v6/legacy": "latest",
         "@refinedev/sdk": "latest",
         "@refinedev/simple-rest": "latest",
         "@types/node": "^12.20.11",

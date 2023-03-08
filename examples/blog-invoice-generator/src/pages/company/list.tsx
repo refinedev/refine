@@ -6,7 +6,7 @@ import { ICompany } from "interfaces";
 import { CompanyItem, CreateCompany, EditCompany } from "components/company";
 
 export const CompanyList: React.FC<IResourceComponentsProps> = () => {
-    const //Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.,
+    const //`useSimpleList` does not accept all of Ant Design's `List` component props anymore. You can directly use `List` component instead.,
         { listProps } = useSimpleList<ICompany>({
             meta: { populate: ["logo"] },
         });

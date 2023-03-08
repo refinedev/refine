@@ -15,7 +15,7 @@ const { Text } = Typography;
 import { IPost, ICategory, IPostFilterVariables } from "interfaces";
 
 export const PostList: React.FC = () => {
-    const //Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.,
+    const //`useSimpleList` does not accept all of Ant Design's `List` component props anymore. You can directly use `List` component instead.,
         { listProps, searchFormProps } = useSimpleList<
             IPost,
             HttpError,

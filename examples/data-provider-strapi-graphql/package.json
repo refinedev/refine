@@ -4,10 +4,8 @@
     "private": true,
     "dependencies": {
         "@refinedev/antd": "latest",
-        "@refinedev/antd/dist/reset.css": "latest",
         "@refinedev/core": "latest",
         "@refinedev/react-router-v6": "latest",
-        "@refinedev/react-router-v6/legacy": "latest",
         "@refinedev/strapi-graphql": "latest",
         "@types/node": "^12.20.11",
         "@types/react": "^18.0.0",

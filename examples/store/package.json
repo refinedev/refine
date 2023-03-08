@@ -18,7 +18,6 @@
         "@refinedev/core": "latest",
         "@refinedev/medusa": "latest",
         "@refinedev/nextjs-router": "latest",
-        "@refinedev/nextjs-router/legacy": "latest",
         "@refinedev/react-hook-form": "latest",
         "@stripe/react-stripe-js": "1.10.0",
         "@stripe/stripe-js": "1.34.0",

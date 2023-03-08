@@ -5,10 +5,8 @@
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
     "@refinedev/antd": "latest",
-    "@refinedev/antd/dist/reset.css": "latest",
     "@refinedev/core": "latest",
     "@refinedev/react-router-v6": "latest",
-    "@refinedev/react-router-v6/legacy": "latest",
     "@refinedev/supabase": "latest",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
@@ -19,7 +17,6 @@
     "dotenv": "^16.0.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^6.8.1",
     "react-scripts": "^5.0.0",
     "web-vitals": "^1.1.1"
   },

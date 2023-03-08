@@ -4,15 +4,13 @@ import {
     useUpdateMany,
     useNavigation,
     IResourceComponentsProps,
-} from "@refinedev/core";
-import { List, useTable } from "@refinedev/antd";
-
-// It is recommended to use explicit import as seen below to reduce bundle size.
-// import { IconName } from "@ant-design/icons";
-import * as Icons from "@ant-design/icons";
+} from "@pankod/refine-core";
 
 import {
+    List,
     Table,
+    useTable,
+    Icons,
     Space,
     Button,
     Avatar,
@@ -20,7 +18,7 @@ import {
     Typography,
     Dropdown,
     Menu,
-} from "antd";
+} from "@pankod/refine-antd";
 
 import { IReview } from "interfaces";
 
@@ -33,15 +31,13 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
     const { show } = useNavigation();
 
     const { tableProps } = useTable<IReview>({
-        filters: {
-            permanent: [
-                {
-                    field: "status",
-                    operator: "eq",
-                    value: "pending",
-                },
-            ],
-        },
+        permanentFilter: [
+            {
+                field: "status",
+                operator: "eq",
+                value: "pending",
+            },
+        ],
     });
 
     const { mutate, isLoading } = useUpdateMany<IReview>();

@@ -4,15 +4,20 @@ import {
     CrudFilters,
     HttpError,
     getDefaultFilter,
-} from "@refinedev/core";
+} from "@pankod/refine-core";
 
-import { useSimpleList, CreateButton, useDrawerForm } from "@refinedev/antd";
-
-// It is recommended to use explicit import as seen below to reduce bundle size.
-// import { IconName } from "@ant-design/icons";
-import * as Icons from "@ant-design/icons";
-
-import { Row, List as AntdList, Col, Form, Input, Typography } from "antd";
+import {
+    useSimpleList,
+    Row,
+    AntdList,
+    Col,
+    CreateButton,
+    Form,
+    Input,
+    Icons,
+    Typography,
+    useDrawerForm,
+} from "@pankod/refine-antd";
 
 const { Text } = Typography;
 const { SearchOutlined } = Icons;
@@ -29,31 +34,30 @@ import { IProduct } from "interfaces";
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
-    const //Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.,
-        { listProps, searchFormProps, filters } = useSimpleList<
-            IProduct,
-            HttpError,
-            { name: string; categories: string[] }
-        >({
-            pagination: { pageSize: 12, defaultCurrent: 2 },
-            onSearch: ({ name, categories }) => {
-                const productFilters: CrudFilters = [];
+    const { listProps, searchFormProps, filters } = useSimpleList<
+        IProduct,
+        HttpError,
+        { name: string; categories: string[] }
+    >({
+        pagination: { pageSize: 12, defaultCurrent: 2 },
+        onSearch: ({ name, categories }) => {
+            const productFilters: CrudFilters = [];
 
-                productFilters.push({
-                    field: "category.id",
-                    operator: "in",
-                    value: categories?.length > 0 ? categories : undefined,
-                });
+            productFilters.push({
+                field: "category.id",
+                operator: "in",
+                value: categories?.length > 0 ? categories : undefined,
+            });
 
-                productFilters.push({
-                    field: "name",
-                    operator: "contains",
-                    value: name ? name : undefined,
-                });
+            productFilters.push({
+                field: "name",
+                operator: "contains",
+                value: name ? name : undefined,
+            });
 
-                return productFilters;
-            },
-        });
+            return productFilters;
+        },
+    });
 
     const {
         drawerProps: createDrawerProps,

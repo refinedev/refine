@@ -27,7 +27,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         syncWithLocation: true,
     });
 
-    const //Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.,
+    const //`useSimpleList` does not accept all of Ant Design's `List` component props anymore. You can directly use `List` component instead.,
         { listProps } = useSimpleList<IProducts>({
             resource: "products",
             dataProviderName: "fineFoods",

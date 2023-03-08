@@ -6,7 +6,6 @@
         "@refinedev/core": "latest",
         "@refinedev/react-hook-form": "latest",
         "@refinedev/react-router-v6": "latest",
-        "@refinedev/react-router-v6/legacy": "latest",
         "@refinedev/react-table": "latest",
         "@refinedev/supabase": "latest",
         "@tanstack/react-table": "^8.2.6",

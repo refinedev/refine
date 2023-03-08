@@ -11,10 +11,8 @@
     "dependencies": {
         "@ant-design/icons": "^5.0.1",
         "@refinedev/antd": "latest",
-        "@refinedev/antd/dist/reset.css": "latest",
         "@refinedev/core": "latest",
         "@refinedev/nextjs-router": "latest",
-        "@refinedev/nextjs-router/legacy": "latest",
         "@refinedev/simple-rest": "latest",
         "antd": "^5.0.5",
         "cross-env": "^7.0.3",

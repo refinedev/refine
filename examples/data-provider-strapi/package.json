@@ -4,10 +4,8 @@
     "private": true,
     "dependencies": {
         "@refinedev/antd": "latest",
-        "@refinedev/antd/dist/reset.css": "latest",
         "@refinedev/core": "latest",
         "@refinedev/react-router-v6": "latest",
-        "@refinedev/react-router-v6/legacy": "latest",
         "@refinedev/strapi": "latest",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",

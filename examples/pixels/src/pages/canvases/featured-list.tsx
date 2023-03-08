@@ -6,7 +6,7 @@ import { SponsorsBanner } from "components/banners";
 import { Canvas } from "types";
 
 export const CanvasFeaturedList: React.FC = () => {
-    const //Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.,
+    const //`useSimpleList` does not accept all of Ant Design's `List` component props anymore. You can directly use `List` component instead.,
         { listProps, queryResult } = useSimpleList<Canvas>({
             resource: "canvases",
             pagination: {

@@ -11,7 +11,6 @@
         "@handsontable/react": "^12.1.2",
         "@refinedev/core": "latest",
         "@refinedev/react-router-v6": "latest",
-        "@refinedev/react-router-v6/legacy": "latest",
         "@refinedev/simple-rest": "latest",
         "handsontable": "^12.1.2",
         "lodash": "^4.17.21",

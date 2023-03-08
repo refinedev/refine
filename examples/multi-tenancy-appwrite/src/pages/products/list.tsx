@@ -15,7 +15,7 @@ import { StoreContext } from "context/store";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const [store] = useContext(StoreContext);
-    const //Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.,
+    const //`useSimpleList` does not accept all of Ant Design's `List` component props anymore. You can directly use `List` component instead.,
         { listProps } = useSimpleList<IProduct>({
             permanentFilter: [
                 { field: "storeId", operator: "eq", value: store },

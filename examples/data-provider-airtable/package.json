@@ -11,7 +11,6 @@
         "@types/react": "^18.0.0",
         "@types/react-dom": "^18.0.0",
         "@uiw/react-md-editor": "^3.19.5",
-        "antd": "^5.0.5",
         "cross-env": "^7.0.3",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",

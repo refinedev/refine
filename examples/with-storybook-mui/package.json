@@ -5,7 +5,6 @@
     "dependencies": {
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
-        "@mui/lab": "^5.0.0-alpha.85",
         "@mui/material": "^5.8.6",
         "@mui/x-data-grid": "^5.12.1",
         "@refinedev/core": "latest",
@@ -19,7 +18,6 @@
         "cross-env": "^7.0.3",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
-        "react-router-dom": "^6.8.1",
         "react-scripts": "^5.0.0",
         "typescript": "^4.7.4"
     },

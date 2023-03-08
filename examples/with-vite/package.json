@@ -9,10 +9,8 @@
     },
     "dependencies": {
         "@refinedev/antd": "latest",
-        "@refinedev/antd/dist/reset.css": "latest",
         "@refinedev/core": "latest",
         "@refinedev/react-router-v6": "latest",
-        "@refinedev/react-router-v6/legacy": "latest",
         "@refinedev/simple-rest": "latest",
         "@uiw/react-md-editor": "^3.19.5",
         "antd": "^5.0.5",

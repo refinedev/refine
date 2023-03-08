@@ -25,7 +25,7 @@ export const OrderTimeline: React.FC = () => {
     const t = useTranslate();
     const { show } = useNavigation();
 
-    const //Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.,
+    const //`useSimpleList` does not accept all of Ant Design's `List` component props anymore. You can directly use `List` component instead.,
         { listProps } = useSimpleList<IOrder>({
             resource: "orders",
             initialSorter: [

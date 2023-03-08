@@ -44,7 +44,7 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
 }) => {
     const t = useTranslate();
 
-    const //Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.,
+    const //`useSimpleList` does not accept all of Ant Design's `List` component props anymore. You can directly use `List` component instead.,
         { listProps, searchFormProps, queryResult } = useSimpleList<
             IProduct,
             HttpError,
