@@ -21,7 +21,7 @@ export const createResourceKey = (
     parents.reverse();
 
     const key = [...parents, resource]
-        .map((r) => removeLeadingTrailingSlashes(r.name))
+        .map((r) => removeLeadingTrailingSlashes(r.identifier ?? r.name))
         .join("/");
 
     return key;
