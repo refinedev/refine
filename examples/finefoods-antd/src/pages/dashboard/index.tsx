@@ -28,7 +28,6 @@ export const DashboardPage: React.FC = () => {
                             }}
                             style={{
                                 background: "url(images/daily-revenue.png)",
-                                backgroundColor: "#3a233c",
                                 backgroundRepeat: "no-repeat",
                                 backgroundPosition: "right",
                                 backgroundSize: "cover",
@@ -45,8 +44,8 @@ export const DashboardPage: React.FC = () => {
                             }}
                             style={{
                                 background: "url(images/daily-order.png)",
-                                backgroundColor: "#332a4b",
                                 backgroundRepeat: "no-repeat",
+                                backgroundPosition: "right",
                                 backgroundSize: "cover",
                             }}
                         >
@@ -61,7 +60,6 @@ export const DashboardPage: React.FC = () => {
                             }}
                             style={{
                                 background: "url(images/new-orders.png)",
-                                backgroundColor: "#3d335b",
                                 backgroundRepeat: "no-repeat",
                                 backgroundPosition: "right",
                                 backgroundSize: "cover",
