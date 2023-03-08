@@ -5,6 +5,7 @@
     "dependencies": {
         "@refinedev/antd": "latest",
         "@refinedev/core": "latest",
+        "@refinedev/react-router-v6": "latest",
         "@refinedev/simple-rest": "latest",
         "@types/node": "^12.20.11",
         "@types/react": "^18.0.0",

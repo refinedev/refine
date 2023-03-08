@@ -1,5 +1,11 @@
-import { NumberField, useSimpleList } from "@refinedev/antd";
-import { Typography, Avatar, Space, List as AntdList } from "antd";
+import {
+    Typography,
+    Avatar,
+    Space,
+    NumberField,
+    useSimpleList,
+    AntdList,
+} from "@pankod/refine-antd";
 import { Container, AvatarWrapper, AvatarCircle, TextWrapper } from "./styled";
 
 import { IOrder } from "interfaces";
@@ -7,12 +13,11 @@ import { IOrder } from "interfaces";
 const { Text } = Typography;
 
 export const TrendingMenu: React.FC = () => {
-    const //`useSimpleList` does not accept all of Ant Design's `List` component props anymore. You can directly use `List` component instead.,
-        { listProps } = useSimpleList<IOrder>({
-            resource: "orders",
-            pagination: { pageSize: 5 },
-            syncWithLocation: false,
-        });
+    const { listProps } = useSimpleList<IOrder>({
+        resource: "orders",
+        pagination: { pageSize: 5 },
+        syncWithLocation: false,
+    });
 
     return (
         <AntdList

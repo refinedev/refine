@@ -23,8 +23,7 @@
         "@tabler/icons": "^1.1.0",
         "@tanstack/react-table": "^8.2.6",
         "react": "^18.0.0",
-        "react-dom": "^18.0.0",
-        "react-router-dom": "^6.8.1"
+        "react-dom": "^18.0.0"
     },
     "devDependencies": {
         "@refinedev/cli": "latest",

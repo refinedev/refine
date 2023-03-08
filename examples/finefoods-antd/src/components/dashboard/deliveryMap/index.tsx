@@ -1,4 +1,4 @@
-import { useList, useNavigation } from "@pankod/refine-core";
+import { useList, useNavigation } from "@refinedev/core";
 
 import { Map, MapMarker } from "components";
 
@@ -7,17 +7,17 @@ import { IOrder } from "interfaces";
 export const DeliveryMap: React.FC = () => {
     const { data: orderData } = useList<IOrder>({
         resource: "orders",
-        config: {
-            filters: [
-                {
-                    field: "status.text",
-                    operator: "eq",
-                    value: "On The Way",
-                },
-            ],
-            pagination: {
-                pageSize: 1000,
+
+        filters: [
+            {
+                field: "status.text",
+                operator: "eq",
+                value: "On The Way",
             },
+        ],
+
+        pagination: {
+            pageSize: 1000,
         },
     });
 

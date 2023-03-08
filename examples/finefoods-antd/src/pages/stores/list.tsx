@@ -3,20 +3,20 @@ import {
     IResourceComponentsProps,
     useNavigation,
     useShow,
-} from "@pankod/refine-core";
-
+} from "@refinedev/core";
 import {
     List,
-    Table,
     useTable,
     DateField,
-    Dropdown,
     BooleanField,
-    Menu,
-    Icons,
-    Avatar,
     useModal,
-} from "@pankod/refine-antd";
+} from "@refinedev/antd";
+
+// It is recommended to use explicit import as seen below to reduce bundle size.
+// import { IconName } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
+
+import { Table, Dropdown, Menu, Avatar } from "antd";
 
 const { FormOutlined } = Icons;
 

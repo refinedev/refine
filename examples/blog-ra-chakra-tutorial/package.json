@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/react": "^2.5.1",
     "@refinedev/chakra-ui": "latest",
     "@refinedev/core": "latest",
     "@refinedev/inferencer": "latest",
@@ -11,6 +12,7 @@
     "@refinedev/react-table": "latest",
     "@refinedev/strapi-v4": "latest",
     "@tabler/icons": "^1.1.0",
+    "@tanstack/react-table": "^8.2.6",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",
@@ -21,6 +23,7 @@
     "dayzed": "^3.2.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-router-dom": "^6.8.1",
     "react-scripts": "^5.0.0",
     "web-vitals": "^1.1.1"
   },
