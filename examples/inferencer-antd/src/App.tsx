@@ -60,50 +60,45 @@ const App: React.FC = () => {
                             index
                             element={<NavigateToResource resource="samples" />}
                         />
-                        <Route path="/samples" element={<AntdInferencer />} />
-                        <Route
-                            path="/samples/create"
-                            element={<AntdInferencer />}
-                        />
-                        <Route
-                            path="/samples/edit/:id"
-                            element={<AntdInferencer />}
-                        />
-                        <Route
-                            path="/samples/show/:id"
-                            element={<AntdInferencer />}
-                        />
 
-                        <Route
-                            path="/categories"
-                            element={<AntdInferencer />}
-                        />
-                        <Route
-                            path="/categories/create"
-                            element={<AntdInferencer />}
-                        />
-                        <Route
-                            path="/categories/edit/:id"
-                            element={<AntdInferencer />}
-                        />
-                        <Route
-                            path="/categories/show/:id"
-                            element={<AntdInferencer />}
-                        />
+                        <Route path="/samples">
+                            <Route index element={<AntdInferencer />} />
+                            <Route path="create" element={<AntdInferencer />} />
+                            <Route
+                                path="edit/:id"
+                                element={<AntdInferencer />}
+                            />
+                            <Route
+                                path="show/:id"
+                                element={<AntdInferencer />}
+                            />
+                        </Route>
 
-                        <Route path="/users" element={<AntdInferencer />} />
-                        <Route
-                            path="/users/create"
-                            element={<AntdInferencer />}
-                        />
-                        <Route
-                            path="/users/edit/:id"
-                            element={<AntdInferencer />}
-                        />
-                        <Route
-                            path="/users/show/:id"
-                            element={<AntdInferencer />}
-                        />
+                        <Route path="/categories">
+                            <Route index element={<AntdInferencer />} />
+                            <Route path="create" element={<AntdInferencer />} />
+                            <Route
+                                path="edit/:id"
+                                element={<AntdInferencer />}
+                            />
+                            <Route
+                                path="show/:id"
+                                element={<AntdInferencer />}
+                            />
+                        </Route>
+
+                        <Route path="/users">
+                            <Route index element={<AntdInferencer />} />
+                            <Route path="create" element={<AntdInferencer />} />
+                            <Route
+                                path="edit/:id"
+                                element={<AntdInferencer />}
+                            />
+                            <Route
+                                path="show/:id"
+                                element={<AntdInferencer />}
+                            />
+                        </Route>
 
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
