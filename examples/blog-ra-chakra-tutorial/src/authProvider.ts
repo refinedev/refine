@@ -1,5 +1,5 @@
-import { AuthProvider } from "@pankod/refine-core";
-import { AuthHelper } from "@pankod/refine-strapi-v4";
+import { LegacyAuthProvider as AuthProvider } from "@refinedev/core";
+import { AuthHelper } from "@refinedev/strapi-v4";
 
 import { TOKEN_KEY, API_URL } from "./constants";
 
