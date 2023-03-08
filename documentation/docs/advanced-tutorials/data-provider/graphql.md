@@ -1,6 +1,7 @@
 ---
 id: graphql
 title: GraphQL
+sidebar_label: GraphQL 🆙
 ---
 
 import Tabs from '@theme/Tabs';
@@ -63,19 +64,22 @@ import routerProvider from "@refinedev/react-router-v6";
 // highlight-next-line
 import dataProvider, { GraphQLClient } from "@refinedev/strapi-graphql";
 
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 const client = new GraphQLClient("API_URL");
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            // highlight-next-line
-            dataProvider={dataProvider(client)}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                // highlight-next-line
+                dataProvider={dataProvider(client)}
+                notificationProvider={notificationProvider}
+            >
+                {/* ... */}
+            </Refine>
+        </BrowserRouter>
     );
 };
 ```
@@ -115,7 +119,7 @@ values={[
 <TabItem value="usage">
 
 ```tsx
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList: React.FC = () => {
     const { tableProps, sorter } = useTable<IPost>({
         sorters: {
             initial: [
@@ -247,7 +251,7 @@ values={[
 <TabItem value="usage">
 
 ```tsx
-export const PostEdit: React.FC<IResourceComponentsProps> = () => {
+export const PostEdit: React.FC = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<
         IPost,
         HttpError,
@@ -371,7 +375,7 @@ values={[
 <TabItem value="usage">
 
 ```tsx
-export const PostShow: React.FC<IResourceComponentsProps> = () => {
+export const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>({
         resource: "posts",
         // highlight-start

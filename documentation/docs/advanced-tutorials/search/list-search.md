@@ -85,14 +85,11 @@ After creating the `<PostList>` component, add it to the resource with `list` pr
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
-} from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
+import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -103,22 +100,35 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            // highlight-start
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-            //highlight-end
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                notificationProvider={notificationProvider}
+                // highlight-start
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                    },
+                ]}
+                //highlight-end
+            >
+                <Routes>
+                    <Route index element={<NavigateToResource />} />
+                    <Route
+                        element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}
+                    >
+                        <Route path="/posts" element={<PostList />} />
+                    </Route>
+                    <Route path="*" element={<ErrorComponent />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 

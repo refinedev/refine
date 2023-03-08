@@ -1,6 +1,7 @@
 ---
 id: appwrite
 title: Appwrite
+sidebar_label: Appwrite 🆙
 ---
 
 ## Introduction
@@ -145,6 +146,8 @@ import {
 } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 //highlight-start
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 //highlight-end
@@ -156,23 +159,24 @@ import authProvider from "./authProvider";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            //highlight-start
-            dataProvider={dataProvider(appwriteClient, {
-                databaseId: "default",
-            })}
-            liveProvider={liveProvider(appwriteClient, {
-                databaseId: "default",
-            })}
-            options={{ liveMode: "auto" }}
-            authProvider={authProvider}
-            //highlight-end
-            routerProvider={routerProvider}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-        />
+        <BrowserRouter>
+            <Refine
+                //highlight-start
+                dataProvider={dataProvider(appwriteClient, {
+                    databaseId: "default",
+                })}
+                liveProvider={liveProvider(appwriteClient, {
+                    databaseId: "default",
+                })}
+                options={{ liveMode: "auto" }}
+                authProvider={authProvider}
+                //highlight-end
+                routerProvider={routerProvider}
+                notificationProvider={notificationProvider}
+            >
+                {/* ... */}
+            </Refine>
+        </BrowserRouter>
     );
 };
 ```
@@ -460,7 +464,7 @@ Now that we've created our collections, we can create and list documents. Let's 
 <p>
 
 ```tsx
-import { useMany, IResourceComponentsProps } from "@refinedev/core";
+import { useMany } from "@refinedev/core";
 import {
     List,
     TextField,
@@ -473,7 +477,7 @@ import { Table, Space } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostsList: React.FC<IResourceComponentsProps> = () => {
+export const PostsList: React.FC = () => {
     const { tableProps, sorter } = useTable<IPost>({
         sorters: {
             initial: [
@@ -572,7 +576,6 @@ We can now create posts and set categories from our **refine** UI.
 ```tsx
 import { useState } from "react";
 
-import { IResourceComponentsProps } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, Upload } from "antd";
 import { RcFile } from "antd/lib/upload/interface";
@@ -582,7 +585,7 @@ import MDEditor from "@uiw/react-md-editor";
 import { IPost, ICategory } from "interfaces";
 import { storage, normalizeFile } from "utility";
 
-export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
+export const PostsCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -717,7 +720,6 @@ You can edit the posts and categories we have created update your data.
 ```tsx
 import React from "react";
 
-import { IResourceComponentsProps } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, Upload } from "antd";
 import { RcFile } from "antd/lib/upload/interface";
@@ -727,7 +729,7 @@ import MDEditor from "@uiw/react-md-editor";
 import { IPost, ICategory } from "interfaces";
 import { storage, normalizeFile } from "utility";
 
-export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
+export const PostsEdit: React.FC = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
     const postData = queryResult?.data?.data;

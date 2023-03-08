@@ -1,6 +1,7 @@
 ---
 id: auth0
 title: Auth0 Login
+sidebar_label: Auth0 Login 🆙
 ---
 
 [Auth0](https://auth0.com/) is a flexible, drop-in solution for adding authentication and authorization services to your applications. Your team and organization can avoid the cost, time, and risk that comes with building your own solution to authenticate and authorize users. You can check the [Auth0 document](https://auth0.com/docs) for details.
@@ -49,7 +50,7 @@ root.render(
 Refer to [**Auth0 docs**](https://auth0.com/docs/quickstart/spa/react#configure-auth0) for detailed configuration.
 :::
 
-### Override login page
+### Override `/login` page
 
 First, we need to override the **refine** login page. In this way, we will redirect it to the Auth0 login page. We create a `login.tsx` file in the `/pages` folder.
 
@@ -106,7 +107,7 @@ After clicking the `Login` button, you will be directed to the auth0 login scree
 In refine, authentication and authorization processes are performed with the auth provider. Let's write a provider for Auth0.
 
 ```tsx title="App.tsx"
-import { Refine, AuthBindings } from "@refinedev/core";
+import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
 import {
     Layout,
     ReadyPage,
@@ -114,8 +115,10 @@ import {
     ErrorComponent,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
 import { useAuth0 } from "@auth0/auth0-react";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -203,21 +206,50 @@ const App = () => {
     });
 
     return (
-        <Refine
-            LoginPage={Login}
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            dataProvider={dataProvider(API_URL, axios)}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "posts",
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+                dataProvider={dataProvider(API_URL, axios)}
+                notificationProvider={notificationProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        )}
+                    >
+                        <Route path="/posts" element={<div>dummy list page</div>} />
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={(
+                                    <Outlet />
+                                )}
+                            >
+                                <NavigateToResource />
+                            </Authenticated>
+                        )}
+                    >
+                        <Route path="/login" element={<Login />} />
+                    </Route>
+                    <Route path="*" element={<ErrorComponent />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 

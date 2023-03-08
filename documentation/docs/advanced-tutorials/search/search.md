@@ -50,17 +50,11 @@ We created the `<Header>` component as we want it to appear. We have not done an
 <br />
 
 :::note
-Let's not forget to pass the `<Header>` component to the `<Refine>` component in `App.tsx` as below.
+Let's not forget to pass the `<Header>` component to the `<Layout>` component in `App.tsx` as below.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
-} from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
+import { Layout } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 
 import "@refinedev/antd/dist/reset.css";
@@ -73,15 +67,13 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            // highlight-next-line
-            Header={Header}
-        />
+            /* ... */
+        >
+            <Layout Header={Header}>
+                {/* ... */}
+            </Layout>
+        </Refine>
     );
 };
 

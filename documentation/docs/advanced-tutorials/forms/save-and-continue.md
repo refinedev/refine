@@ -1,6 +1,7 @@
 ---
 id: save-and-continue
 title: Save and Continue
+sidebar_label: Save and Continue 🆙
 ---
 
 **refine** provides you with the necessary methods to add this feature. This feature is familiar to [Django](https://www.djangoproject.com/) users.
@@ -77,7 +78,7 @@ We will create the form and listen to the changes in this form with the help of 
 
 ```tsx title="src/pages/create.tsx"
 import React, { useState } from "react";
-import { useSelect, useForm, useNavigation } from "@refinedev/core";
+import { useSelect, useForm, useBack } from "@refinedev/core";
 
 import { IPost } from "interfaces";
 
@@ -94,7 +95,7 @@ export const PostCreate: React.FC = () => {
         redirect: false,
     });
 
-    const { goBack } = useNavigation();
+    const goBack = useBack();
 
     const { options } = useSelect({
         resource: "categories",
