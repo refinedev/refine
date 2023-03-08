@@ -132,7 +132,7 @@ setRefineProps({ Sider: () => null });
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import { AuthPage, Layout } from "@refinedev/antd";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -163,7 +163,9 @@ const App = () => {
                     </Route>
                     <Route
                         element={(
-                            <Authenticated fallback={<Outlet />} />
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
                         )}
                     >
                         {/* highlight-start */}
@@ -206,7 +208,7 @@ setRefineProps({ Sider: () => null });
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 
 import { AuthPage, Layout } from "@refinedev/antd";
 
@@ -240,7 +242,9 @@ const App = () => {
                     </Route>
                     <Route
                         element={(
-                            <Authenticated fallback={<Outlet />} />
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
                         )}
                     >
                         {/* highlight-next-line */}
@@ -293,7 +297,7 @@ setRefineProps({ Sider: () => null });
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 
 import { AuthPage, Layout } from "@refinedev/antd";
 
@@ -327,7 +331,9 @@ const App = () => {
                     </Route>
                     <Route
                         element={(
-                            <Authenticated fallback={<Outlet />} />
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
                         )}
                     >
                         <Route path="/login" element={<AuthPage />} />
@@ -381,7 +387,7 @@ setRefineProps({ Sider: () => null });
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 
 import { AuthPage, Layout } from "@refinedev/antd";
 
@@ -415,7 +421,9 @@ const App = () => {
                     </Route>
                     <Route
                         element={(
-                            <Authenticated fallback={<Outlet />} />
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
                         )}
                     >
                         <Route path="/login" element={<AuthPage />} />
@@ -470,7 +478,7 @@ setRefineProps({ Sider: () => null });
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 
 import { AuthPage, Layout } from "@refinedev/antd";
 
@@ -504,7 +512,9 @@ const App = () => {
                     </Route>
                     <Route
                         element={(
-                            <Authenticated fallback={<Outlet />} />
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
                         )}
                     >
                         <Route path="/login" element={<AuthPage />} />

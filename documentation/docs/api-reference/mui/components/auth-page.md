@@ -157,7 +157,7 @@ setInitialRoutes(["/login"]);
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import { AuthPage, Layout } from "@refinedev/mui";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -188,7 +188,9 @@ const App = () => {
                     </Route>
                     <Route
                         element={(
-                            <Authenticated fallback={<Outlet />} />
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
                         )}
                     >
                         {/* highlight-start */}
@@ -234,7 +236,7 @@ setInitialRoutes(["/login"]);
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 
 import { AuthPage, Layout } from "@refinedev/mui";
 
@@ -268,7 +270,9 @@ const App = () => {
                     </Route>
                     <Route
                         element={(
-                            <Authenticated fallback={<Outlet />} />
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
                         )}
                     >
                         {/* highlight-next-line */}
@@ -324,7 +328,7 @@ setInitialRoutes(["/register"]);
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 
 import { AuthPage, Layout } from "@refinedev/mui";
 
@@ -358,7 +362,9 @@ const App = () => {
                     </Route>
                     <Route
                         element={(
-                            <Authenticated fallback={<Outlet />} />
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
                         )}
                     >
                         <Route path="/login" element={<AuthPage />} />
@@ -415,7 +421,7 @@ setInitialRoutes(["/forgot-password"]);
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 
 import { AuthPage, Layout } from "@refinedev/mui";
 
@@ -449,7 +455,9 @@ const App = () => {
                     </Route>
                     <Route
                         element={(
-                            <Authenticated fallback={<Outlet />} />
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
                         )}
                     >
                         <Route path="/login" element={<AuthPage />} />
@@ -507,7 +515,7 @@ setInitialRoutes(["/update-password"]);
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 
 import { AuthPage, Layout } from "@refinedev/mui";
 
@@ -541,7 +549,9 @@ const App = () => {
                     </Route>
                     <Route
                         element={(
-                            <Authenticated fallback={<Outlet />} />
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
                         )}
                     >
                         <Route path="/login" element={<AuthPage />} />
