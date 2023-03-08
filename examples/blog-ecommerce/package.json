@@ -13,7 +13,7 @@
         "@chakra-ui/react": "^2.3.6",
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
-        "@refinedev/core": "^3.99.6",
+        "@refinedev/core": "^3.101.0",
         "@refinedev/cli": "^1.17.1",
         "@refinedev/nextjs-router": "^4.3.0",
         "@refinedev/strapi": "^3.37.0",

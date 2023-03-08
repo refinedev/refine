@@ -1,5 +1,5 @@
 import { parse } from "qs";
-import type { ParsedParams } from "@pankod/refine-core";
+import type { ParsedParams } from "@refinedev/core";
 
 export const parseTableParams = (search: string) => {
     const parsed: ParsedParams = parse(search, { ignoreQueryPrefix: true });

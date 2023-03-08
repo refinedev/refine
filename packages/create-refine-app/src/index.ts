@@ -61,7 +61,9 @@ const bootstrap = () => {
                     superplateExecutable,
                     [
                         ...command.args,
-                        "--project=refine",
+                        command.getOptionValue("project")
+                            ? "--project=" + command.getOptionValue("project")
+                            : "--project=refine",
                         "--download=zip",
                         command.getOptionValue("source")
                             ? "--source=" + command.getOptionValue("source")
