@@ -76,7 +76,7 @@
     },
     "author": "refine",
     "devDependencies": {
-        "@refinedev/core": "^3.74.0",
+        "@refinedev/core": "^3.101.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@types/qs": "^6.9.7",
         "jest": "^29.3.1",

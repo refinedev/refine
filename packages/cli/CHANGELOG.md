@@ -1,5 +1,11 @@
 # @pankod/refine-cli
 
+## 1.17.2
+
+### Patch Changes
+
+-   [#3685](https://github.com/refinedev/refine/pull/3685) [`b6812af2293`](https://github.com/refinedev/refine/commit/b6812af22931c6d505914e452756fafe2d56b96b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Fixed: `provideCliHelpers` function type error.
+
 ## 1.17.1
 
 ### Patch Changes

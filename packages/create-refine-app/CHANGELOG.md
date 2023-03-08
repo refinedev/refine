@@ -1,5 +1,17 @@
 # create-refine-app
 
+## 1.5.4
+
+### Patch Changes
+
+-   [#3708](https://github.com/refinedev/refine/pull/3708) [`912cd812876`](https://github.com/refinedev/refine/commit/912cd81287636214031e12432e771a064a650641) Thanks [@omeraplak](https://github.com/omeraplak)! - chore: bump superplate@1.12.3
+
+## 1.5.3
+
+### Patch Changes
+
+-   [#3708](https://github.com/refinedev/refine/pull/3708) [`912cd812876`](https://github.com/refinedev/refine/commit/912cd81287636214031e12432e771a064a650641) Thanks [@omeraplak](https://github.com/omeraplak)! - chore: bump superplate@1.12.3
+
 ## 1.5.2
 
 ### Patch Changes
