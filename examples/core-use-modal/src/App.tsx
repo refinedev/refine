@@ -14,7 +14,7 @@ const App: React.FC = () => {
                 resources={[{ name: "posts", list: "/posts" }]}
             >
                 <Routes>
-                    <Route element={<Outlet />}>
+                    <Route>
                         <Route
                             index
                             element={<NavigateToResource resource="posts" />}
