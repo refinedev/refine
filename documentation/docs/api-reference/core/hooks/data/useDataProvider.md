@@ -23,7 +23,9 @@ const App = () => {
                 default: dataProvider("API_URL"),
                 second: dataProvider("SECOND_API_URL"),
             }}
-        />
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 

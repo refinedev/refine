@@ -1,6 +1,7 @@
 ---
 id: useBreadcrumb
 title: useBreadcrumb
+sidebar_label: useBreadcrumb 🆙
 source: packages/core/src/hooks/breadcrumb
 ---
 
@@ -13,7 +14,7 @@ Congratulations [@salihozdemir](https://github.com/salihozdemir)! It was great s
 It is a hook that returns `breadcrumbs` to create breadcrumbs for the current page. The `breadcrumbs` is an array of objects with the following properties:
 
 -   `label`: the label of the resource.
--   `href`: the route of the resource.
+-   `href`: the route of the resource's list action.
 -   `icon`: the icon of the resource.
 
 ## Basic Usage
@@ -48,9 +49,9 @@ The `breadcrumbs` are created with your resource definitions. For example, if yo
 [
     {
         name: "posts",
-        icon: <div>icon</div>,
-        list: () => <div>List Page</div>,
-        create: () => <div>Create Page</div>,
+        icon: <PostsIcon />,
+        list: "/posts",
+        create: "/posts/create",
     },
 ];
 ```
@@ -62,7 +63,7 @@ The `breadcrumbs` are created with your resource definitions. For example, if yo
         {
             label: "Posts",
             href: "/posts",
-            icon: <div>icon</div>,
+            icon: <PostsIcon />,
         },
     ];
     ```
@@ -74,7 +75,7 @@ The `breadcrumbs` are created with your resource definitions. For example, if yo
         {
             label: "Posts",
             href: "/posts",
-            icon: <div>icon</div>,
+            icon: <PostsIcon />,
         },
         { label: "Create" },
     ];
@@ -95,9 +96,9 @@ If you have a nested resource definition as below:
     },
     {
         name: "users",
-        parentName: "cms",
-        list: () => <div>List Page</div>,
-        create: () => <div>Create Page</div>,
+        list: "/users",
+        create: "/users/create",
+        meta: { parent: "cms" },
     },
 ];
 ```

@@ -1,6 +1,7 @@
 ---
 id: useMenu
 title: useMenu
+sidebar_label: useMenu 🆙
 source: packages/core/src/hooks/menu/useMenu.tsx
 ---
 
@@ -53,23 +54,14 @@ setInitialRoutes(["/"]);
 
 // visible-block-start
 import React from "react";
-import {
-    useMenu,
-    LayoutProps,
-    useRouterContext,
-    useRefineContext,
-    ITreeMenu,
-} from "@refinedev/core";
+import { useMenu, LayoutProps, ITreeMenu } from "@refinedev/core";
+
+import { Link } from "react-router-dom";
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     // highlight-start
     const { menuItems, selectedKey } = useMenu();
     // highlight-end
-    const { hasDashboard } = useRefineContext();
-    const { Link } = useRouterContext();
-
-    // You can also use navigation helpers from `useNavigation` hook instead of `Link` from your Router Provider.
-    // const { push } = useNavigation();
 
     // highlight-start
     const renderMenuItems = (items: ITreeMenu[]) => {
@@ -107,19 +99,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 </Link>
                 {/* highlight-start */}
                 <ul>
-                    {hasDashboard && (
-                        <li>
-                            <Link
-                                to="/"
-                                style={{
-                                    fontWeight:
-                                        selectedKey === "/" ? "bold" : "normal",
-                                }}
-                            >
-                                <span>Dashboard</span>
-                            </Link>
-                        </li>
-                    )}
                     {renderMenuItems(menuItems)}
                 </ul>
                 {/* highlight-end */}
@@ -130,8 +109,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 };
 
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { Layout } from "components";
 
@@ -139,21 +120,36 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: () => <div>dummy posts page</div>,
-                },
-                {
-                    name: "categories",
-                    list: () => <div>dummy categories page</div>,
-                },
-            ]}
-            Layout={Layout}
-        />
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider(API_URL)}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts"
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories"
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}
+                    >
+                        <Route index element={<NavigateToResource />} />
+                        <Route path="/posts" element={<div>dummy posts page</div>} />
+                        <Route path="/categories" element={<div>dummy categories page</div>} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -180,8 +176,10 @@ Update your `resources` in `<Refine/>` with `parentName` to nest them inside a l
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { Layout } from "components/layout";
 
@@ -189,28 +187,43 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            // highlight-start
-            resources={[
-                {
-                    name: "CMS",
-                },
-                {
-                    name: "posts",
-                    parentName: "CMS",
-                    list: () => <div>dummy posts page</div>,
-                },
-                {
-                    name: "categories",
-                    parentName: "CMS",
-                    list: () => <div>dummy categories page</div>,
-                },
-            ]}
-            // highlight-end
-            Layout={Layout}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                // highlight-start
+                resources={[
+                    {
+                        name: "CMS",
+                    },
+                    {
+                        name: "posts",
+                        list: "/CMS/posts",
+                        meta: { parent: "CMS" },
+                    },
+                    {
+                        name: "categories",
+                        list: "/CMS/categories",
+                        meta: { parent: "CMS" },
+                    },
+                ]}
+                // highlight-end
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}
+                    >
+                        <Route index element={<NavigateToResource />} />
+                        <Route path="/posts" element={<div>dummy posts page</div>} />
+                        <Route path="/categories" element={<div>dummy categories page</div>} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
@@ -221,17 +234,12 @@ Now you can update your `<Layout/>` to support multi level rendering with follow
 
 ```tsx title="src/components/Layout.tsx"
 import React from "react";
-import {
-    useMenu,
-    LayoutProps,
-    useRouterContext,
-    useRefineContext,
-    ITreeMenu,
-} from "@refinedev/core";
+import { useMenu, LayoutProps, ITreeMenu } from "@refinedev/core";
+
+import { Link } from "react-router-dom";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const { menuItems, selectedKey } = useMenu();
-    const { Link } = useRouterContext();
 
     // highlight-start
     const renderMenuItems = (items: ITreeMenu[]) => {
@@ -278,19 +286,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                     />
                 </Link>
                 <ul>
-                    {hasDashboard && (
-                        <li>
-                            <Link
-                                to="/"
-                                style={{
-                                    fontWeight:
-                                        selectedKey === "/" ? "bold" : "normal",
-                                }}
-                            >
-                                <span>Dashboard</span>
-                            </Link>
-                        </li>
-                    )}
                     {renderMenuItems(menuItems)}
                 </ul>
             </div>
