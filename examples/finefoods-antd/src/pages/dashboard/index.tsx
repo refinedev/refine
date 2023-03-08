@@ -31,6 +31,7 @@ export const DashboardPage: React.FC = () => {
                                 backgroundColor: "#3a233c",
                                 backgroundRepeat: "no-repeat",
                                 backgroundPosition: "right",
+                                backgroundSize: "cover",
                             }}
                         >
                             <DailyRevenue />
@@ -46,6 +47,7 @@ export const DashboardPage: React.FC = () => {
                                 background: "url(images/daily-order.png)",
                                 backgroundColor: "#332a4b",
                                 backgroundRepeat: "no-repeat",
+                                backgroundSize: "cover",
                             }}
                         >
                             <DailyOrders />
@@ -62,6 +64,7 @@ export const DashboardPage: React.FC = () => {
                                 backgroundColor: "#3d335b",
                                 backgroundRepeat: "no-repeat",
                                 backgroundPosition: "right",
+                                backgroundSize: "cover",
                             }}
                         >
                             <NewCustomers />
