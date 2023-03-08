@@ -1,13 +1,14 @@
 ---
 id: useForm
 title: useForm
+sidebar_label: useForm 🆙
 source: packages/react-hook-form/src/useForm/index.ts
 ---
 
 ```tsx live shared
 import React from "react";
 import { useTable, useNavigation } from "@refinedev/core";
-import { useForm as ReactHoomFormUseForm } from "@refinedev/react-hook-form";
+import { useForm as ReactHookFormUseForm } from "@refinedev/react-hook-form";
 
 interface IPost {
     id: number;
@@ -126,7 +127,7 @@ const PostEdit: React.FC = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = ReactHoomFormUseForm();
+    } = ReactHookFormUseForm();
 
     return (
         <form onSubmit={handleSubmit(onFinish)}>
@@ -163,7 +164,7 @@ const PostCreate: React.FC = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = ReactHoomFormUseForm();
+    } = ReactHookFormUseForm();
 
     return (
         <form onSubmit={handleSubmit(onFinish)}>
