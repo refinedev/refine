@@ -1,7 +1,7 @@
 ---
 id: auth-provider
 title: Auth Provider
-sidebar_label: Auth Provider
+sidebar_label: Auth Provider 🆙
 ---
 
 import AuthProviderExamplesLinks from "@site/src/partials/auth-provider-examples-links.md";
@@ -20,22 +20,20 @@ To use `authProvider` in **refine**, we have to pass the `authProvider` to the `
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
 // highlight-next-line
 import authProvider from "./auth-provider";
-
-const API_URL = "https://api.fake-rest.refine.dev";
 
 const App = () => {
     return (
         <Refine
             // highlight-next-line
             authProvider={authProvider}
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-        />
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 ```

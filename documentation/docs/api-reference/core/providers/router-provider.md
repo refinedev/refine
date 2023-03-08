@@ -1,6 +1,7 @@
 ---
 id: router-provider
 title: Router Provider
+sidebar_label: Router Provider 🆙
 ---
 
 import Tabs from '@theme/Tabs';
@@ -75,12 +76,19 @@ values={[
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6";
+
 import { BrowserRouter } from "react-router-dom";
 
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Refine routerProvider={routerProvider} />
+            <Refine
+                // highlight-next-line
+                routerProvider={routerProvider}
+                /* ... */
+            >
+                {/* ... */}
+            </Refine>
         </BrowserRouter>
     );
 };
@@ -91,7 +99,7 @@ const App: React.FC = () => {
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v5";
+import routerProvider from "@pankod/refine-react-router";
 
 const App: React.FC = () => {
     return <Refine legacyRouterProvider={routerProvider} />;
@@ -103,7 +111,7 @@ const App: React.FC = () => {
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-location";
+import routerProvider from "@pankod/refine-react-location";
 
 const App: React.FC = () => {
     return <Refine legacyRouterProvider={routerProvider} />;
