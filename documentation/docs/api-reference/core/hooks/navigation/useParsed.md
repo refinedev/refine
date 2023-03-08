@@ -1,6 +1,7 @@
 ---
 id: useParsed
-title: useParsed 🆕
+title: useParsed
+sidebar_label: useParsed 🆕
 ---
 
 `useParsed` is a hook that leverages the `parse` method of the [`routerProvider`][routerprovider] to access the URL and query parameters along with the inferred `resource`, `action` and `id` from the URL.

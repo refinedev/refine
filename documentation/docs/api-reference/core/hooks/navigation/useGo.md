@@ -1,6 +1,7 @@
 ---
 id: useGo
-title: useGo 🆕
+title: useGo
+sidebar_label: useGo 🆕
 ---
 
 `useGo` is a hook that leverages the `go` method of the [`routerProvider`][routerprovider] to perform navigation operations.

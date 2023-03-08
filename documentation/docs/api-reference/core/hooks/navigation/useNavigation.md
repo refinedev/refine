@@ -1,6 +1,7 @@
 ---
 id: useNavigation
 title: useNavigation
+sidebar_label: useNavigation 🆙
 ---
 
 `useNavigation` is a hook that provides methods to navigate the app. Internally, it uses the `go` method of the [`routerProvider`][routerprovider]. 

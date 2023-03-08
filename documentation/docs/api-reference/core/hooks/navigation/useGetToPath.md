@@ -1,6 +1,7 @@
 ---
 id: useGetToPath
-title: useGetToPath 🆕
+title: useGetToPath
+sidebar_label: useGetToPath 🆕
 ---
 
 `useGetToPath` is a hook that returns a function that composes the URL for the given `resource` and the `action` by using the URL parameters and the `meta` property if provided.
