@@ -8,7 +8,7 @@ import { IPost, ICategory, IFile } from "interfaces";
 
 const { Title, Text } = Typography;
 
-export const PostsShow: React.FC<IResourceComponentsProps> = () => {
+export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;

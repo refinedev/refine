@@ -4,7 +4,7 @@ import { List, useTable } from "@refinedev/antd";
 
 import { Table } from "antd";
 
-export const UsersList: React.FC<IResourceComponentsProps> = () => {
+export const UserList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable({
         hasPagination: false,
         syncWithLocation: true,
