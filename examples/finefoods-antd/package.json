@@ -9,7 +9,7 @@
         "@emotion/styled": "^11.8.1",
         "@googlemaps/react-wrapper": "^1.1.35",
         "@refinedev/antd": "^4.7.3",
-        "@refinedev/core": "^3.99.6",
+        "@refinedev/core": "^3.101.0",
         "@refinedev/cli": "^1.17.1",
         "@refinedev/kbar": "0.10.2",
         "@refinedev/react-router-v6": "^3.38.0",

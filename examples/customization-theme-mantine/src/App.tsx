@@ -2,7 +2,6 @@ import { Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
-    ReadyPage,
     notificationProvider,
     LightTheme,
     DarkTheme,
@@ -12,7 +11,8 @@ import { ColorSchemeProvider } from "@mantine/styles";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, ColorScheme, Global } from "@mantine/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
 import { Header } from "./components";
@@ -28,42 +28,77 @@ const App: React.FC = () => {
         setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
     return (
-        <ColorSchemeProvider
-            colorScheme={colorScheme}
-            toggleColorScheme={toggleColorScheme}
-        >
-            <MantineProvider
-                theme={colorScheme === "dark" ? DarkTheme : LightTheme}
-                withNormalizeCSS
-                withGlobalStyles
+        <BrowserRouter>
+            <ColorSchemeProvider
+                colorScheme={colorScheme}
+                toggleColorScheme={toggleColorScheme}
             >
-                <Global
-                    styles={{ body: { "-webkit-font-smoothing": "auto" } }}
-                />
-                <NotificationsProvider position="top-right">
-                    <Refine
-                        legacyRouterProvider={routerProvider}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        ReadyPage={ReadyPage}
-                        catchAll={<ErrorComponent />}
-                        Layout={Layout}
-                        Header={Header}
-                        resources={[
-                            {
-                                name: "posts",
-                                show: PostShow,
-                                list: PostList,
-                                edit: PostEdit,
-                                create: PostCreate,
-                            },
-                        ]}
+                <MantineProvider
+                    theme={colorScheme === "dark" ? DarkTheme : LightTheme}
+                    withNormalizeCSS
+                    withGlobalStyles
+                >
+                    <Global
+                        styles={{ body: { "-webkit-font-smoothing": "auto" } }}
                     />
-                </NotificationsProvider>
-            </MantineProvider>
-        </ColorSchemeProvider>
+                    <NotificationsProvider position="top-right">
+                        <Refine
+                            routerProvider={routerProvider}
+                            dataProvider={dataProvider(
+                                "https://api.fake-rest.refine.dev",
+                            )}
+                            notificationProvider={notificationProvider}
+                            resources={[
+                                {
+                                    name: "posts",
+                                    list: "/posts",
+                                    show: "/posts/show/:id",
+                                    create: "/posts/create",
+                                    edit: "/posts/edit/:id",
+                                },
+                            ]}
+                        >
+                            <Routes>
+                                <Route
+                                    element={
+                                        <Layout Header={Header}>
+                                            <Outlet />
+                                        </Layout>
+                                    }
+                                >
+                                    <Route
+                                        index
+                                        element={
+                                            <NavigateToResource resource="posts" />
+                                        }
+                                    />
+                                    <Route
+                                        path="/posts"
+                                        element={<PostList />}
+                                    />
+                                    <Route
+                                        path="/posts/show/:id"
+                                        element={<PostShow />}
+                                    />
+                                    <Route
+                                        path="/posts/create"
+                                        element={<PostCreate />}
+                                    />
+                                    <Route
+                                        path="/posts/edit/:id"
+                                        element={<PostEdit />}
+                                    />
+                                    <Route
+                                        path="*"
+                                        element={<ErrorComponent />}
+                                    />
+                                </Route>
+                            </Routes>
+                        </Refine>
+                    </NotificationsProvider>
+                </MantineProvider>
+            </ColorSchemeProvider>
+        </BrowserRouter>
     );
 };
 

@@ -9,7 +9,7 @@
         "svgr": "npx @svgr/cli src/icons -d src/components/icons --typescript --no-svgo"
     },
     "dependencies": {
-        "@refinedev/core": "^3.99.6",
+        "@refinedev/core": "^3.101.0",
         "@refinedev/cli": "^1.17.1",
         "@refinedev/nextjs-router": "^4.3.0",
         "@refinedev/react-table": "^4.9.1",
