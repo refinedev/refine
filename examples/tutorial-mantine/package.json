@@ -4,7 +4,7 @@
     "private": true,
     "dependencies": {
         "@refinedev/cli": "^1.17.1",
-        "@refinedev/core": "^3.99.6",
+        "@refinedev/core": "^3.101.0",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@testing-library/user-event": "^14.1.1",
@@ -21,10 +21,10 @@
         "@refinedev/react-router-v6": "^3.18.0",
         "@refinedev/inferencer": "^2.8.2",
         "@emotion/react": "^11.8.2",
-        "@mantine/core": "^5.5.6",
-        "@mantine/hooks": "^5.5.6",
-        "@mantine/form": "^5.5.6",
-        "@mantine/notifications": "^5.5.6"
+        "@mantine/core": "5.10.4",
+        "@mantine/hooks": "5.10.4",
+        "@mantine/form": "5.10.4",
+        "@mantine/notifications": "5.10.4"
     },
     "devDependencies": {
         "@types/react": "^18.0.0",

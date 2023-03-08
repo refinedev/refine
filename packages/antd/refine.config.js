@@ -23,7 +23,7 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "CreateButton",
-                message: ` 
+                message: `
                 **\`Warning:\`**
                 This component is used in the below component. If you want to change it, you can run the **swizzle** command for the below component or you can use props to override the default buttons.
                     - <List/>
@@ -48,7 +48,7 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "DeleteButton",
-                message: ` 
+                message: `
                 **\`Warning:\`**
                 This component is used in the below components. If you want to change it, you can run the **swizzle** command for the below components or you can use props to override the default buttons.
                     - <Edit/>
@@ -64,7 +64,7 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "EditButton",
-                message: ` 
+                message: `
                 **\`Warning:\`**
                 This component is used in the below component. If you want to change it, you can run the **swizzle** command for the below component or you can use props to override the default buttons.
                     - <Show/>
@@ -99,7 +99,7 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "ListButton",
-                message: ` 
+                message: `
                 **\`Warning:\`**
                 This component is used in the below components. If you want to change it, you can run the **swizzle** command for the below components or you can use props to override the default buttons.
                     - <Edit/>
@@ -115,7 +115,7 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "RefreshButton",
-                message: ` 
+                message: `
                 **\`Warning:\`**
                 This component is used in the below components. If you want to change it, you can run the **swizzle** command for the below components or you can use props to override the default buttons.
                     - <Edit/>
@@ -131,7 +131,7 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "SaveButton",
-                message: ` 
+                message: `
                 **\`Warning:\`**
                 This component is used in the below components. If you want to change it, you can run the **swizzle** command for the below components or you can use props to override the default buttons.
                     - <Create/>
@@ -287,24 +287,9 @@ module.exports = {
             {
                 group: "Pages",
                 label: "ErrorPage",
-                message: ` 
-                **\`Warning:\`**
-                If you want to change the default error page;
-                You should pass it with the **catchAll** prop to the **<Refine/>** component.
-
-                \`\`\`
-                // title: App.tsx
-                import { ErrorPage } from "components/pages/error";
-
-                const App = () => {
-                    return (
-                        <Refine
-                            catchAll={ErrorPage}
-                            /* ... */
-                        />
-                    );
-                }
-                \`\`\`
+                message: `
+                **\`Info:\`**
+                If you want to see an example of error page in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers
                 `,
                 files: [
                     {
@@ -330,24 +315,9 @@ module.exports = {
             {
                 group: "Pages",
                 label: "AuthPage",
-                message: ` 
-                **\`Warning:\`**
-                If you want to change the default auth pages;
-                You should pass it with the **LoginPage** prop to the **<Refine/>** component.
-
-                \`\`\`
-                // title: App.tsx
-                import { AuthPage } from "components/pages/auth";
-
-                const App = () => {
-                    return (
-                        <Refine
-                            LoginPage={AuthPage}
-                            /* ... */
-                        />
-                    );
-                }
-                \`\`\`
+                message: `
+                **\`Info:\`**
+                If you want to see examples of authentication pages in use, you can refer to the documentation at https://refine.dev/docs/packages/documentation/routers
                 `,
                 files: [
                     {
@@ -475,16 +445,16 @@ module.exports = {
 
                             newContent = newContent.replace(
                                 breadcrumbPropsExportRegex,
-                                "",
+                                `import { BreadcrumbProps } from "@refinedev/antd";`,
                             );
 
                             // change the breadcrumb import path
                             const breadcrumbImportRegex =
-                                /Breadcrumb as AntdBreadcrumb,\n\s*BreadcrumbProps as AntdBreadcrumbProps,/g;
+                                /BreadcrumbProps as AntdBreadcrumbProps,/g;
 
                             newContent = newContent.replace(
                                 breadcrumbImportRegex,
-                                "AntdBreadcrumb,\nBreadcrumbProps,",
+                                "",
                             );
 
                             return newContent;
@@ -498,18 +468,24 @@ module.exports = {
                 message: `
                 **\`Warning:\`**
                 If you want to change the default layout;
-                You should pass \`layout/index.tsx\` with the **Layout** prop to the **<Refine/>** component.
+                You should pass layout related components to the **<Layout/>** component's props.
 
                 \`\`\`
                 // title: App.tsx
                 import { Layout } from "components/layout";
+                import { Header } from "components/layout/header";
+                import { Sider } from "components/layout/sider";
+                import { Title } from "components/layout/title";
 
                 const App = () => {
                     return (
                         <Refine
-                            Layout={Layout}
                             /* ... */
-                        />
+                        >
+                            <Layout Header={Header} Sider={Sider} Title={Title} />
+                                /* ... */
+                            </Layout>
+                        </Refine>
                     );
                 }
                 \`\`\`
@@ -523,32 +499,6 @@ module.exports = {
                             const imports = getImports(content);
 
                             imports.map((importItem) => {
-                                // handle antd layout rename
-                                if (importItem.importPath === "antd") {
-                                    newContent = newContent.replace(
-                                        importItem.statement,
-                                        importItem.statement.replace(
-                                            "Layout,",
-                                            "AntdLayout,",
-                                        ),
-                                    );
-
-                                    newContent = newContent.replace(
-                                        /Layout\.Sider/g,
-                                        "AntdLayout.Sider",
-                                    );
-
-                                    newContent = newContent.replace(
-                                        "<Layout>",
-                                        "<AntdLayout>",
-                                    );
-
-                                    newContent = newContent.replace(
-                                        "</Layout>",
-                                        "</AntdLayout>",
-                                    );
-                                }
-
                                 // handle @components import replacement
                                 if (importItem.importPath === "@components") {
                                     const newStatement = `import ${importItem.namedImports} from "@refinedev/antd";`;
@@ -597,25 +547,6 @@ module.exports = {
                     {
                         src: "./src/components/layout/header/index.tsx",
                         dest: "./components/layout/header.tsx",
-                        transform: (content) => {
-                            let newContent = content;
-                            const imports = getImports(content);
-
-                            imports.map((importItem) => {
-                                // handle antd layout rename
-                                if (importItem.importPath === "antd") {
-                                    newContent = newContent.replace(
-                                        importItem.statement,
-                                        importItem.statement.replace(
-                                            "Layout as AntdLayout,",
-                                            "AntdLayout,",
-                                        ),
-                                    );
-                                }
-                            });
-
-                            return newContent;
-                        },
                     },
                     {
                         src: "./src/components/layout/title/index.tsx",
@@ -624,25 +555,6 @@ module.exports = {
                     {
                         src: "./src/components/layout/index.tsx",
                         dest: "./components/layout/index.tsx",
-                        transform: (content) => {
-                            let newContent = content;
-                            const imports = getImports(content);
-
-                            imports.map((importItem) => {
-                                // handle antd layout rename
-                                if (importItem.importPath === "antd") {
-                                    newContent = newContent.replace(
-                                        importItem.statement,
-                                        importItem.statement.replace(
-                                            "Layout as AntdLayout",
-                                            "AntdLayout,",
-                                        ),
-                                    );
-                                }
-                            });
-
-                            return newContent;
-                        },
                     },
                 ],
             },
@@ -652,33 +564,13 @@ module.exports = {
             const imports = getImports(content);
 
             imports.map((importItem) => {
-                // for antd imports
-                if (
-                    importItem.importPath === "antd" ||
-                    importItem.importPath === "@components"
-                ) {
+                if (importItem.importPath === "@components") {
                     const newStatement = `import ${importItem.namedImports} from "@refinedev/antd";`;
 
                     newContent = newContent.replace(
                         importItem.statement,
                         newStatement,
                     );
-                }
-
-                // for icons
-                if (importItem.importPath === "@ant-design/icons") {
-                    const newStatement = `import * as Icons from "@ant-design/icons";`;
-
-                    const iconsLine = `
-                    const ${importItem.namedImports} = Icons;
-                    `;
-
-                    newContent = newContent.replace(
-                        importItem.statement,
-                        newStatement,
-                    );
-
-                    newContent = appendAfterImports(newContent, iconsLine);
                 }
 
                 // for ui-types

@@ -1,17 +1,22 @@
-import { Refine, AuthBindings } from "@refinedev/core";
+import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import {
     AppwriteException,
     dataProvider,
     liveProvider,
 } from "@refinedev/appwrite";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 import "@refinedev/antd/dist/reset.css";
 
-import { Login } from "pages/login";
 import { appwriteClient, account } from "utility";
 
-import { PostsCreate, PostsList, PostsEdit, PostsShow } from "pages/posts";
+import { PostCreate, PostList, PostEdit, PostShow } from "pages/posts";
+import { Login } from "pages/login";
 
 const authProvider: AuthBindings = {
     login: async ({ email, password }) => {
@@ -87,33 +92,77 @@ const authProvider: AuthBindings = {
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={dataProvider(appwriteClient, {
-                databaseId: "default",
-            })}
-            liveProvider={liveProvider(appwriteClient, {
-                databaseId: "default",
-            })}
-            options={{ liveMode: "auto" }}
-            authProvider={authProvider}
-            legacyRouterProvider={routerProvider}
-            LoginPage={Login}
-            resources={[
-                {
-                    name: "61c43ad33b857",
-                    create: PostsCreate,
-                    list: PostsList,
-                    edit: PostsEdit,
-                    show: PostsShow,
-                    options: {
-                        label: "Post",
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider(appwriteClient, {
+                    databaseId: "default",
+                })}
+                liveProvider={liveProvider(appwriteClient, {
+                    databaseId: "default",
+                })}
+                options={{ liveMode: "auto" }}
+                authProvider={authProvider}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                        show: "/posts/show/:id",
+                        meta: {
+                            label: "Post",
+                        },
                     },
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+                ]}
+                notificationProvider={notificationProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+                        <Route path="/posts" element={<PostList />} />
+                        <Route path="/posts/create" element={<PostCreate />} />
+                        <Route path="/posts/edit/:id" element={<PostEdit />} />
+                        <Route path="/posts/show/:id" element={<PostShow />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/login" element={<Login />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
