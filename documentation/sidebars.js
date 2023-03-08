@@ -358,15 +358,7 @@ module.exports = {
                                 },
                             ],
                         },
-                        {
-                            type: "category",
-                            label: "Customization",
-                            items: [
-                                "api-reference/antd/customization/antd-custom-theme",
-                                "api-reference/antd/customization/antd-custom-layout",
-                                "api-reference/antd/customization/antd-custom-sider",
-                            ],
-                        },
+                        "api-reference/antd/theming",
                         "api-reference/antd/migration-guide/v4-to-v5",
                     ],
                 },
@@ -430,15 +422,7 @@ module.exports = {
                                 },
                             ],
                         },
-                        {
-                            type: "category",
-                            label: "Customization",
-                            items: [
-                                "api-reference/chakra-ui/customization/theme",
-                                "api-reference/chakra-ui/customization/layout",
-                                "api-reference/chakra-ui/customization/sider",
-                            ],
-                        },
+                        "api-reference/chakra-ui/theming",
                     ],
                 },
 
@@ -518,15 +502,7 @@ module.exports = {
                                 },
                             ],
                         },
-                        {
-                            type: "category",
-                            label: "Customization",
-                            items: [
-                                "api-reference/mantine/customization/theme",
-                                "api-reference/mantine/customization/layout",
-                                "api-reference/mantine/customization/sider",
-                            ],
-                        },
+                        "api-reference/mantine/theming",
                     ],
                 },
 
@@ -597,15 +573,7 @@ module.exports = {
                                 },
                             ],
                         },
-                        {
-                            type: "category",
-                            label: "Customization",
-                            items: [
-                                "api-reference/mui/customization/mui-custom-theme",
-                                "api-reference/mui/customization/mui-custom-layout",
-                                "api-reference/mui/customization/mui-custom-sider",
-                            ],
-                        },
+                        "api-reference/mui/theming",
                     ],
                 },
             ],
