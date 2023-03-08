@@ -10,7 +10,7 @@ import "@refinedev/antd/dist/reset.css";
 import "@styles/global.css";
 
 import { authProvider } from "src/authProvider";
-import { API_URL } from "../src/constants";
+import { API_URL } from "src/constants";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
     layout?: string;
