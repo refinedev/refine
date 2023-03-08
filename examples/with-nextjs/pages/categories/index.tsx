@@ -2,7 +2,7 @@ import { AntdListInferencer } from "@refinedev/inferencer/antd";
 import { GetServerSideProps } from "next";
 import { authProvider } from "src/authProvider";
 
-export default function PostList() {
+export default function CategoryList() {
     return <AntdListInferencer />;
 }
 

@@ -1,5 +1,5 @@
 import { AntdCreateInferencer } from "@refinedev/inferencer/antd";
 
-export default function PostList() {
+export default function CategoryList() {
     return <AntdCreateInferencer />;
 }
