@@ -1,14 +1,15 @@
-import { LayoutProps, Refine, useRouterContext } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import { Refine, LayoutProps, ErrorComponent } from "@refinedev/core";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 
 import { githubDataProvider } from "github-data-provider";
 import { PostList } from "pages/posts/list";
 import { CommitList } from "pages/commits/list";
+
 import "./App.css";
 
 const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
-    const { Link } = useRouterContext();
     return (
         <div>
             <ul>
@@ -32,24 +33,46 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={{
-                default: dataProvider("https://api.fake-rest.refine.dev"),
-                github: githubDataProvider(),
-            }}
-            legacyRouterProvider={routerProvider}
-            Layout={Layout}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-                {
-                    name: "commits",
-                    list: CommitList,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={{
+                    default: dataProvider("https://api.fake-rest.refine.dev"),
+                    github: githubDataProvider(),
+                }}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                    },
+                    {
+                        name: "commits",
+                        list: "/commits",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+
+                        <Route path="/posts" element={<PostList />} />
+
+                        <Route path="/commits" element={<CommitList />} />
+
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
