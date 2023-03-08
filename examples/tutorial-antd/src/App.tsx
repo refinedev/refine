@@ -30,20 +30,18 @@ function App() {
             >
                 <Layout>
                     <Routes>
-                        <Route index element={<NavigateToResource />} />
-                        <Route path="/products" element={<ProductList />} />
                         <Route
-                            path="/products/show/:id"
-                            element={<ProductShow />}
+                            index
+                            element={<NavigateToResource resource="products" />}
                         />
-                        <Route
-                            path="/products/create"
-                            element={<ProductCreate />}
-                        />
-                        <Route
-                            path="/products/edit/:id"
-                            element={<ProductEdit />}
-                        />
+
+                        <Route path="/products">
+                            <Route index element={<ProductList />} />
+                            <Route path="show/:id" element={<ProductShow />} />
+                            <Route path="create" element={<ProductCreate />} />
+                            <Route path="edit/:id" element={<ProductEdit />} />
+                        </Route>
+
                         <Route path="*" element={<ErrorComponent />} />
                     </Routes>
                 </Layout>
