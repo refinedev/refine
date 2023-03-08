@@ -44,7 +44,7 @@
   },
   "author": "refine",
   "devDependencies": {
-    "@refinedev/core": "^3.74.0",
+    "@refinedev/core": "^3.99.6",
     "remix": "^1.6.7",
     "@remix-run/react": "^1.6.7",
     "@remix-run/node": "^1.6.7",

@@ -37,7 +37,7 @@
     },
     "dependencies": {
         "@refinedev/ui-types": "^0.14.2",
-        "@refinedev/core": "^3.90.6",
+        "@refinedev/core": "^3.99.6",
         "tslib": "^2.3.1"
     },
     "author": "refine",

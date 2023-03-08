@@ -29,7 +29,7 @@
     "author": "refine",
     "module": "dist/esm/index.js",
     "devDependencies": {
-        "@refinedev/core": "^3.67.0",
+        "@refinedev/core": "^3.99.6",
         "@refinedev/antd": "^4.0.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@testing-library/jest-dom": "^5.16.4",
