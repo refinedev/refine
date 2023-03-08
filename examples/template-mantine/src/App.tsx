@@ -3,6 +3,7 @@ import {
     notificationProvider,
     LightTheme,
     WelcomePage,
+    ErrorComponent,
 } from "@refinedev/mantine";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
@@ -29,6 +30,8 @@ function App() {
                     >
                         <Routes>
                             <Route index element={<WelcomePage />} />
+
+                            <Route path="*" element={<ErrorComponent />} />
                         </Routes>
                     </Refine>
                 </NotificationsProvider>

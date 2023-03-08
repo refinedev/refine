@@ -4,6 +4,7 @@ import {
     RefineSnackbarProvider,
     LightTheme,
     WelcomePage,
+    ErrorComponent,
 } from "@refinedev/mui";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
@@ -29,6 +30,8 @@ function App() {
                     >
                         <Routes>
                             <Route index element={<WelcomePage />} />
+
+                            <Route path="*" element={<ErrorComponent />} />
                         </Routes>
                     </Refine>
                 </RefineSnackbarProvider>

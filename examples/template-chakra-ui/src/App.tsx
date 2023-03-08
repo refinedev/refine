@@ -3,6 +3,7 @@ import {
     notificationProvider,
     refineTheme,
     WelcomePage,
+    ErrorComponent,
 } from "@refinedev/chakra-ui";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -22,6 +23,8 @@ function App() {
                 >
                     <Routes>
                         <Route index element={<WelcomePage />} />
+
+                        <Route path="*" element={<ErrorComponent />} />
                     </Routes>
                 </Refine>
             </ChakraProvider>

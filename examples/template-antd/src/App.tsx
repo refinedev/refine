@@ -1,5 +1,9 @@
 import { Refine } from "@refinedev/core";
-import { notificationProvider, WelcomePage } from "@refinedev/antd";
+import {
+    notificationProvider,
+    WelcomePage,
+    ErrorComponent,
+} from "@refinedev/antd";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
@@ -16,6 +20,8 @@ function App() {
             >
                 <Routes>
                     <Route index element={<WelcomePage />} />
+
+                    <Route path="*" element={<ErrorComponent />} />
                 </Routes>
             </Refine>
         </BrowserRouter>
