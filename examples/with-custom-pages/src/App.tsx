@@ -10,7 +10,13 @@ import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
 } from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Outlet,
+    Navigate,
+} from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -71,7 +77,7 @@ const App: React.FC = () => {
                 notificationProvider={notificationProvider}
             >
                 <Routes>
-                    <Route index element={<PostReview />} />
+                    <Route index element={<Navigate to="post-review" />} />
 
                     <Route
                         element={
