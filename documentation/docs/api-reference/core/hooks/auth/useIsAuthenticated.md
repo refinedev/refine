@@ -61,7 +61,7 @@ Let's create a wrapper component that renders children if `check` method returns
 
 ```tsx title="components/authenticated.tsx"
 // highlight-next-line
-import { useIsAuthenticated, useNavigation } from "@refinedev/core";
+import { useIsAuthenticated, useGo } from "@refinedev/core";
 
 export const Authenticated: React.FC<AuthenticatedProps> = ({
     children,
@@ -71,7 +71,7 @@ export const Authenticated: React.FC<AuthenticatedProps> = ({
     // highlight-next-line
     const { isLoading, data } = useIsAuthenticated();
 
-    const { replace } = useNavigation();
+    const go = useGo();
 
     if (isLoading) {
         return <>{loading}</> || null;
@@ -79,7 +79,7 @@ export const Authenticated: React.FC<AuthenticatedProps> = ({
 
     if (data.error) {
         if (!fallback) {
-            replace(redirectTo);
+            go({ to: redirectTo, type: "replace" });
             return null;
         }
 
