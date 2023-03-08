@@ -42,7 +42,7 @@
     },
     "dependencies": {
         "@refinedev/antd": "^4.0.0",
-        "@refinedev/core": "^3.99.6",
+        "@refinedev/core": "^3.101.0",
         "dayjs": "^1.10.7",
         "json-stable-stringify": "^1.0.1",
         "react-diff-viewer": "^3.1.1",

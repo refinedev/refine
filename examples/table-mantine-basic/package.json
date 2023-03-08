@@ -9,7 +9,7 @@
     },
     "dependencies": {
         "@refinedev/mantine": "^1.15.10",
-        "@refinedev/core": "^3.99.6",
+        "@refinedev/core": "^3.101.0",
         "@refinedev/cli": "^1.17.1",
         "@refinedev/react-router-v6": "^3.38.0",
         "@refinedev/simple-rest": "^3.37.4",

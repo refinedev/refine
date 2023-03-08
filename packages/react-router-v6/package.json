@@ -42,7 +42,7 @@
     "prepare": "npm run build"
   },
   "devDependencies": {
-    "@refinedev/core": "^3.99.6",
+    "@refinedev/core": "^3.101.0",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/jest": "^29.2.4",
     "jest": "^29.3.1",

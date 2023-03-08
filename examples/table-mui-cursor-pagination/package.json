@@ -3,7 +3,7 @@
     "version": "3.25.0",
     "private": true,
     "dependencies": {
-        "@refinedev/core": "^3.99.6",
+        "@refinedev/core": "^3.101.0",
         "@refinedev/cli": "^1.17.1",
         "@refinedev/mui": "^3.61.5",
         "@refinedev/react-router-v6": "^3.38.0",
