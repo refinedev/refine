@@ -42,7 +42,11 @@ import { RefineTitle as DefaultTitle } from "@components";
 
 const defaultNavIcon = <IconList size={18} />;
 
-export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({
+    render,
+    meta,
+    Title: TitleFromProps,
+}) => {
     const [collapsed, setCollapsed] = useState(false);
     const [opened, setOpened] = useState(false);
 
@@ -52,7 +56,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
     const Link = routerType === "legacy" ? LegacyLink : NewLink;
 
     const { defaultOpenKeys, menuItems, selectedKey } = useMenu({ meta });
-    const Title = useTitle();
+    const TitleFromContext = useTitle();
     const isExistAuthentication = useIsExistAuthentication();
     const t = useTranslate();
     const { hasDashboard } = useRefineContext();
@@ -61,7 +65,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
-    const RenderToTitle = Title ?? DefaultTitle;
+    const RenderToTitle = TitleFromProps ?? TitleFromContext ?? DefaultTitle;
 
     const drawerWidth = () => {
         if (collapsed) return 80;
