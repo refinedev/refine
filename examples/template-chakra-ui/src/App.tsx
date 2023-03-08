@@ -1,31 +1,34 @@
-import React from "react";
-
 import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
     refineTheme,
-    ReadyPage,
+    WelcomePage,
     ErrorComponent,
-    Layout,
 } from "@refinedev/chakra-ui";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
-
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
 
 function App() {
     return (
-        <ChakraProvider theme={refineTheme}>
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider()}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                Layout={Layout}
-                legacyRouterProvider={routerProvider}
-            />
-        </ChakraProvider>
+        <BrowserRouter>
+            <ChakraProvider theme={refineTheme}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                >
+                    <Routes>
+                        <Route index element={<WelcomePage />} />
+
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Routes>
+                </Refine>
+            </ChakraProvider>
+        </BrowserRouter>
     );
 }
 
