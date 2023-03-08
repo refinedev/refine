@@ -1,16 +1,18 @@
 import React from "react";
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
+
 import {
     notificationProvider,
-    ChakraProvider,
     refineTheme,
     ReadyPage,
     ErrorComponent,
     Layout,
     AuthPage,
-} from "@pankod/refine-chakra-ui";
-import { DataProvider } from "@pankod/refine-strapi-v4";
-import routerProvider from "@pankod/refine-react-router-v6";
+} from "@refinedev/chakra-ui";
+
+import { ChakraProvider } from "@chakra-ui/react";
+import { DataProvider } from "@refinedev/strapi-v4";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import { authProvider, axiosInstance } from "./authProvider";
 import { API_URL } from "./constants";
 import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
@@ -19,13 +21,13 @@ function App() {
     return (
         <ChakraProvider theme={refineTheme}>
             <Refine
-                authProvider={authProvider}
+                legacyAuthProvider={authProvider}
                 dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
                 notificationProvider={notificationProvider()}
                 ReadyPage={ReadyPage}
                 catchAll={<ErrorComponent />}
                 Layout={Layout}
-                routerProvider={routerProvider}
+                legacyRouterProvider={routerProvider}
                 LoginPage={AuthPage}
                 resources={[
                     {
