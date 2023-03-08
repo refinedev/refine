@@ -1,13 +1,14 @@
 ---
 id: inferencer
 title: Inferencer
+sidebar_label: Inferencer 🆙
 ---
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `ChakraUIListInferencer`, `ChakraUIShowInferencer`, `ChakraUIEditInferencer`, `ChakraUICreateInferencer` and `ChakraUIInferencer` (which combines all in one place) components.
 
 ## Usage
 
-Chakra UI components can be imported from `@refinedev/inferencer/chakra-ui`. You can directly use the components in `resources` prop of `Refine` component or you can use them in your custom components by passing the `resource` prop as the resource name.
+Inferencer components can be imported from `@refinedev/inferencer/chakra-ui`. You can directly use the components in your routes without passing any props. If you use a `routerProvider`, it will infer the `resource`, `action` and `id` from the current route.
 
 <Tabs
 defaultValue="resources"
@@ -21,25 +22,30 @@ values={[
 import { Layout, refineTheme } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 // highlight-next-line
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
 const App = () => {
     return (
         <ChakraProvider theme={refineTheme}>
-            <Refine
-                resources={[
-                    {
-                        name: "samples",
-                        // highlight-start
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                        // highlight-end
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    resources={[
+                        {
+                            name: "samples",
+                            list: "/samples",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        {/* highlight-next-line */}
+                        <Route path="/samples" element={<ChakraUIInferencer />} />
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };
@@ -95,7 +101,7 @@ To learn more about `@refinedev/inferencer` package, please check out [Docs](/do
 Generates a sample list view for your resources according to the API response. It uses `List` component from `@refinedev/chakra-ui` and `useTable` hook from `@refinedev/react-table`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples
-setInitialRoutes(["/"]);
+setInitialRoutes(["/samples"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
@@ -103,6 +109,8 @@ import { Layout, refineTheme } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 // highlight-next-line
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
@@ -112,34 +120,31 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <ChakraProvider theme={refineTheme}>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        // highlight-next-line
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        // highlight-next-line
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                    },
-                    {
-                        name: "tags",
-                        // highlight-next-line
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "samples",
+                            list: "/samples",
+                        }
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={(
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            )}
+                        >
+                            {/* highlight-next-line */}
+                            <Route path="/samples" element={<ChakraUIInferencer />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };
@@ -163,6 +168,8 @@ import { ChakraProvider } from "@chakra-ui/react";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 // highlight-next-line
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
@@ -171,34 +178,31 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <ChakraProvider theme={refineTheme}>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        list: ChakraUIInferencer,
-                        // highlight-next-line
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        list: ChakraUIInferencer,
-                        // highlight-next-line
-                        show: ChakraUIInferencer,
-                    },
-                    {
-                        name: "tags",
-                        list: ChakraUIInferencer,
-                        // highlight-next-line
-                        show: ChakraUIInferencer,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "samples",
+                            show: "/samples/show/:id",
+                        }
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={(
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            )}
+                        >
+                            {/* highlight-next-line */}
+                            <Route path="/samples/show/:id" element={<ChakraUIInferencer />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };
@@ -222,6 +226,8 @@ import { ChakraProvider } from "@chakra-ui/react";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 // highlight-next-line
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
@@ -230,32 +236,31 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <ChakraProvider theme={refineTheme}>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        // highlight-next-line
-                        create: ChakraUIInferencer,
-                        edit: ChakraUIInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                    },
-                    {
-                        name: "tags",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "samples",
+                            create: "/samples/create",
+                        }
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={(
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            )}
+                        >
+                            {/* highlight-next-line */}
+                            <Route path="/samples/create" element={<ChakraUIInferencer />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };
@@ -279,6 +284,8 @@ import { ChakraProvider } from "@chakra-ui/react";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 // highlight-next-line
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
@@ -287,32 +294,31 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <ChakraProvider theme={refineTheme}>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                        create: ChakraUIInferencer,
-                        // highlight-next-line
-                        edit: ChakraUIInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                    },
-                    {
-                        name: "tags",
-                        list: ChakraUIInferencer,
-                        show: ChakraUIInferencer,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "samples",
+                            edit: "/samples/edit/:id",
+                        }
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={(
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            )}
+                        >
+                            {/* highlight-next-line */}
+                            <Route path="/samples/edit/:id" element={<ChakraUIInferencer />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };

@@ -1,6 +1,7 @@
 ---
 id: mui-breadcrumb
 title: Breadcrumb
+sidebar_label: Breadcrumb 🆙
 swizzle: true
 ---
 
@@ -90,15 +91,41 @@ export const PostList: React.FC = () => {
 };
 ```
 
-### `showHome`
+### `home`
 
-If your application has a [DashboardPage](/api-reference/core/components/refine-config.md#dashboardpage), the home button is shown to the top of the hierarchy by default. If you don't want to show the home button, you can set `showHome` to `false`.
+If you have a root page other than a resource, you can pass `{ icon?: React.ReactNode; path?: string; }` to thr `home` property to make it the root of the hierarchy.
 
 ```tsx
 import { List, Breadcrumb } from "@refinedev/mui";
 
 export const PostList: React.FC = () => {
-    return <List breadcrumb={<Breadcrumb showHome={false} />}>...</List>;
+    return (
+        <List
+            // highlight-next-line
+            breadcrumb={<Breadcrumb home={{ path: "/my-landing-page" }} />}
+        >
+            ...
+        </List>
+    );
+};
+```
+
+### `meta`
+
+If your routes has additional parameters in their paths, you can pass the `meta` property to the `<Breadcrumb>` component to use them while creating the paths and filling the parameters in the paths. By default, existing URL parameters are used. You can use `meta` to override them or add new ones.
+
+```tsx
+import { List, Breadcrumb } from "@refinedev/mui";
+
+export const PostList: React.FC = () => {
+    return (
+        <List
+            // highlight-next-line
+            breadcrumb={<Breadcrumb meta={{ authorId: "123" }} />}
+        >
+            ...
+        </List>
+    );
 };
 ```
 

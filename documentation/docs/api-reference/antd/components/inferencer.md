@@ -1,13 +1,14 @@
 ---
 id: inferencer
 title: Inferencer
+sidebar_label: Inferencer 🆙
 ---
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `AntdListInferencer`, `AntdShowInferencer`, `AntdEditInferencer`, `AntdCreateInferencer` and `AntdInferencer` (which combines all in one place) components.
 
 ## Usage
 
-Ant Design components can be imported from `@refinedev/inferencer/antd`. You can directly use the components in `resources` prop of `Refine` component or you can use them in your custom components by passing the `resource` prop as the resource name.
+Inferencer components can be imported from `@refinedev/inferencer/antd`. You can directly use the components in your routes without passing any props. If you use a `routerProvider`, it will infer the `resource`, `action` and `id` from the current route.
 
 <Tabs
 defaultValue="resources"
@@ -18,24 +19,29 @@ values={[
 <TabItem value="resources">
 
 ```tsx
+import routerProvider from "@pankod/refine-react-router-v6";
+import { BrowserRouter } from "react-router-dom";
 // highlight-next-line
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
 const App = () => {
     return (
-        <Refine
-            resources={[
-                {
-                    name: "samples",
-                    // highlight-start
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                    // highlight-end
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "samples",
+                        list: "/samples",
+                    },
+                ]}
+            >
+                <Routes>
+                    {/* highlight-next-line */}
+                    <Route path="/samples" element={<AntdInferencer />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 ```
@@ -90,13 +96,15 @@ To learn more about `@refinedev/inferencer` package, please check out [Docs](/do
 Generates a sample list view for your resources according to the API response. It uses `List` and `Table` components with `useTable` hook from `@refinedev/antd`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples
-setInitialRoutes(["/"]);
+setInitialRoutes(["/samples"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import { Layout } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 // highlight-next-line
 import { AntdInferencer } from "@refinedev/inferencer/antd";
@@ -105,34 +113,31 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            Layout={Layout}
-            resources={[
-                {
-                    name: "samples",
-                    // highlight-next-line
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                    canDelete: true,
-                },
-                {
-                    name: "categories",
-                    // highlight-next-line
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                },
-                {
-                    name: "tags",
-                    // highlight-next-line
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                resources={[
+                    {
+                        name: "samples",
+                        list: "/samples",
+                    }
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}
+                    >
+                        {/* highlight-next-line */}
+                        <Route path="/samples" element={<AntdInferencer />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
@@ -154,6 +159,8 @@ import { Layout } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 // highlight-next-line
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
@@ -161,34 +168,31 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            Layout={Layout}
-            resources={[
-                {
-                    name: "samples",
-                    list: AntdInferencer,
-                    // highlight-next-line
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                    canDelete: true,
-                },
-                {
-                    name: "categories",
-                    list: AntdInferencer,
-                    // highlight-next-line
-                    show: AntdInferencer,
-                },
-                {
-                    name: "tags",
-                    list: AntdInferencer,
-                    // highlight-next-line
-                    show: AntdInferencer,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                resources={[
+                    {
+                        name: "samples",
+                        show: "/samples/show/:id",
+                    }
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}
+                    >
+                        {/* highlight-next-line */}
+                        <Route path="/samples/show/:id" element={<AntdInferencer />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
@@ -210,6 +214,8 @@ import { Layout } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 // highlight-next-line
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
@@ -217,32 +223,31 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            Layout={Layout}
-            resources={[
-                {
-                    name: "samples",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    // highlight-next-line
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                    canDelete: true,
-                },
-                {
-                    name: "categories",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                },
-                {
-                    name: "tags",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                resources={[
+                    {
+                        name: "samples",
+                        create: "/samples/create",
+                    }
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}
+                    >
+                        {/* highlight-next-line */}
+                        <Route path="/samples/create" element={<AntdInferencer />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
@@ -264,6 +269,8 @@ import { Layout } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 // highlight-next-line
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
@@ -271,32 +278,31 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            Layout={Layout}
-            resources={[
-                {
-                    name: "samples",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    // highlight-next-line
-                    edit: AntdInferencer,
-                    canDelete: true,
-                },
-                {
-                    name: "categories",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                },
-                {
-                    name: "tags",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                resources={[
+                    {
+                        name: "samples",
+                        edit: "/samples/edit/:id",
+                    }
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}
+                    >
+                        {/* highlight-next-line */}
+                        <Route path="/samples/edit/:id" element={<AntdInferencer />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 

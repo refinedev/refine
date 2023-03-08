@@ -1,61 +1,9 @@
 ---
 id: breadcrumb
 title: Breadcrumb
+sidebar_label: Breadcrumb 🆙
 swizzle: true
 ---
-
-```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
-const { default: simpleRest } = RefineSimpleRest;
-setRefineProps({
-    routerProvider,
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    Layout: RefineMantine.Layout,
-    Sider: () => null,
-    DashboardPage: () => <p>Dashboard Page</p>,
-    notificationProvider: RefineMantine.notificationProvider,
-});
-
-const Wrapper = ({ children }) => {
-    return (
-        <MantineCore.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <MantineCore.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <MantineNotifications.NotificationsProvider position="top-right">
-                {children}
-            </MantineNotifications.NotificationsProvider>
-        </MantineCore.MantineProvider>
-    );
-};
-
-const PostIcon = (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="icon icon-tabler icon-tabler-list"
-        width={18}
-        height={18}
-        viewBox="0 0 24 24"
-        strokeWidth="2"
-        stroke="currentColor"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-    >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <line x1={9} y1={6} x2={20} y2={6}></line>
-        <line x1={9} y1={12} x2={20} y2={12}></line>
-        <line x1={9} y1={18} x2={20} y2={18}></line>
-        <line x1={5} y1={6} x2={5} y2="6.01"></line>
-        <line x1={5} y1={12} x2={5} y2="12.01"></line>
-        <line x1={5} y1={18} x2={5} y2="18.01"></line>
-    </svg>
-);
-```
 
 A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy. `<Breadcrumb>` component built with Mantine [Breadcrumb][mantine-breadcrumb] components using the [`useBreadcrumb`](/api-reference/core/hooks/useBreadcrumb.md) hook.
 
@@ -69,12 +17,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 
 `<Breadcrumb>` component uses the Mantine [Breadcrumb][mantine-breadcrumb] component so it can be configured with the `breadcrumbProps` property.
 
-```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
-setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@refinedev/core";
-import { ShowButton } from "@refinedev/mantine";
-
-// visible-block-start
+```tsx
 import { Show, Breadcrumb } from "@refinedev/mantine";
 
 const PostShow: React.FC = () => {
@@ -87,98 +30,51 @@ const PostShow: React.FC = () => {
         </Show>
     );
 };
-// visible-block-end
-
-const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                    icon: PostIcon,
-                },
-            ]}
-        />
-    );
-};
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
 ```
 
-### `showHome`
+### `home`
 
-If your application has a [DashboardPage](/api-reference/core/components/refine-config.md#dashboardpage), the home button is shown to the top of the hierarchy by default. If you don't want to show the home button, you can set `showHome` to `false`.
+If you have a root page other than a resource, you can pass `{ icon?: React.ReactNode; path?: string; }` to thr `home` property to make it the root of the hierarchy.
 
-```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
-setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@refinedev/core";
-import { ShowButton } from "@refinedev/mantine";
+```tsx
+import { List, Breadcrumb } from "@refinedev/mantine";
 
-// visible-block-start
-import { Show, Breadcrumb } from "@refinedev/mantine";
-
-const PostShow: React.FC = () => {
+export const PostList: React.FC = () => {
     return (
-        <Show
+        <List
             // highlight-next-line
-            breadcrumb={<Breadcrumb showHome={false} />}
+            breadcrumb={<Breadcrumb home={{ path: "/my-landing-page" }} />}
         >
-            <p>Rest of your page here</p>
-        </Show>
+            ...
+        </List>
     );
 };
-// visible-block-end
+```
 
-const App = () => {
+### `meta`
+
+If your routes has additional parameters in their paths, you can pass the `meta` property to the `<Breadcrumb>` component to use them while creating the paths and filling the parameters in the paths. By default, existing URL parameters are used. You can use `meta` to override them or add new ones.
+
+```tsx
+import { List, Breadcrumb } from "@refinedev/mantine";
+
+export const PostList: React.FC = () => {
     return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                    icon: PostIcon,
-                },
-            ]}
-        />
+        <List
+            // highlight-next-line
+            breadcrumb={<Breadcrumb meta={{ authorId: "123" }} />}
+        >
+            ...
+        </List>
     );
 };
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
 ```
 
 ### `hideIcons`
 
 If you don't want to show the resource icons on the breadcrumb, you can set `hideIcons` to `true`.
 
-```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
-setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@refinedev/core";
-import { ShowButton } from "@refinedev/mantine";
-
-// visible-block-start
+```tsx
 import { Show, Breadcrumb } from "@refinedev/mantine";
 
 const PostShow: React.FC = () => {
@@ -191,34 +87,6 @@ const PostShow: React.FC = () => {
         </Show>
     );
 };
-// visible-block-end
-
-const App = () => {
-    return (
-        <Refine
-            resources={[
-                {
-                    name: "posts",
-                    show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
-                    icon: PostIcon,
-                },
-            ]}
-        />
-    );
-};
-render(
-    <Wrapper>
-        <App />
-    </Wrapper>,
-);
 ```
 
 ## API Reference
