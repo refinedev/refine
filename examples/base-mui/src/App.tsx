@@ -1,9 +1,7 @@
 import { Refine } from "@refinedev/core";
 import {
     Layout,
-    LoginPage,
     ErrorComponent,
-    ReadyPage,
     LightTheme,
     notificationProvider,
     RefineSnackbarProvider,
@@ -11,37 +9,65 @@ import {
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { PostsList, PostCreate, PostEdit } from "pages/posts";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <Refine
-                    legacyRouterProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    Layout={Layout}
-                    LoginPage={LoginPage}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: PostsList,
-                            create: PostCreate,
-                            edit: PostEdit,
-                        },
-                    ]}
+        <BrowserRouter>
+            <ThemeProvider theme={LightTheme}>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
                 />
-            </RefineSnackbarProvider>
-        </ThemeProvider>
+                <RefineSnackbarProvider>
+                    <Refine
+                        routerProvider={routerProvider}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                create: "/posts/create",
+                                edit: "/posts/edit/:id",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                }
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="posts" />
+                                    }
+                                />
+                                <Route path="/posts" element={<PostsList />} />
+                                <Route
+                                    path="/posts/create"
+                                    element={<PostCreate />}
+                                />
+                                <Route
+                                    path="/posts/edit/:id"
+                                    element={<PostEdit />}
+                                />
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </RefineSnackbarProvider>
+            </ThemeProvider>
+        </BrowserRouter>
     );
 };
 
