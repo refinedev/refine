@@ -2,58 +2,114 @@ import { Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import "@refinedev/antd/dist/reset.css";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            legacyRouterProvider={{
-                ...routerProvider,
-                /**
-                 * By default refine uses the first route with `list` property as the initial route.
-                 * If you want to change the initial route, you can bind the `initialRoute` property to the `RouterComponent` property.
-                 *
-                 * Example:
-                 *
-                 *  RouterComponent: routerProvider.RouterComponent.bind({
-                 *     initialRoute: "/posts",
-                 *  }),
-                 */
-            }}
-            dataProvider={dataProvider(API_URL)}
-            resources={[
-                {
-                    name: "samples",
-                    list: AntdInferencer,
-                    edit: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    canDelete: true,
-                },
-                {
-                    name: "categories",
-                    list: AntdInferencer,
-                    edit: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    canDelete: true,
-                },
-                {
-                    name: "users",
-                    list: AntdInferencer,
-                    edit: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    canDelete: true,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                resources={[
+                    {
+                        name: "samples",
+                        list: "/samples",
+                        create: "/samples/create",
+                        edit: "/samples/edit/:id",
+                        show: "/samples/show/:id",
+                        meta: {
+                            canDelete: true,
+                        },
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories",
+                        create: "/categories/create",
+                        edit: "/categories/edit/:id",
+                        show: "/categories/show/:id",
+                        meta: {
+                            canDelete: true,
+                        },
+                    },
+                    {
+                        name: "users",
+                        list: "/users",
+                        create: "/users/create",
+                        edit: "/users/edit/:id",
+                        show: "/users/show/:id",
+                        meta: {
+                            canDelete: true,
+                        },
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="samples" />}
+                        />
+                        <Route path="/samples" element={<AntdInferencer />} />
+                        <Route
+                            path="/samples/create"
+                            element={<AntdInferencer />}
+                        />
+                        <Route
+                            path="/samples/edit/:id"
+                            element={<AntdInferencer />}
+                        />
+                        <Route
+                            path="/samples/show/:id"
+                            element={<AntdInferencer />}
+                        />
+
+                        <Route
+                            path="/categories"
+                            element={<AntdInferencer />}
+                        />
+                        <Route
+                            path="/categories/create"
+                            element={<AntdInferencer />}
+                        />
+                        <Route
+                            path="/categories/edit/:id"
+                            element={<AntdInferencer />}
+                        />
+                        <Route
+                            path="/categories/show/:id"
+                            element={<AntdInferencer />}
+                        />
+
+                        <Route path="/users" element={<AntdInferencer />} />
+                        <Route
+                            path="/users/create"
+                            element={<AntdInferencer />}
+                        />
+                        <Route
+                            path="/users/edit/:id"
+                            element={<AntdInferencer />}
+                        />
+                        <Route
+                            path="/users/show/:id"
+                            element={<AntdInferencer />}
+                        />
+
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 

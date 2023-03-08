@@ -1,12 +1,12 @@
 import { Refine } from "@refinedev/core";
-import { notificationProvider, Layout, Title } from "@refinedev/antd";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import { liveProvider } from "@refinedev/ably";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import "@refinedev/antd/dist/reset.css";
 
 import { ablyClient } from "utility";
-import { CustomSider } from "components";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import {
     CategoryList,
@@ -19,33 +19,69 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            liveProvider={liveProvider(ablyClient)}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    canDelete: true,
-                },
-                {
-                    name: "categories",
-                    list: CategoryList,
-                    create: CategoryCreate,
-                    edit: CategoryEdit,
-                    show: CategoryShow,
-                },
-            ]}
-            options={{ liveMode: "auto" }}
-            Sider={CustomSider}
-            Title={Title}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                liveProvider={liveProvider(ablyClient)}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                        show: "/posts/show/:id",
+                        meta: {
+                            canDelete: true,
+                        },
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories",
+                        create: "/categories/create",
+                        edit: "/categories/edit/:id",
+                        show: "/categories/show/:id",
+                    },
+                ]}
+                options={{ liveMode: "auto" }}
+                notificationProvider={notificationProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+
+                        <Route path="/posts" element={<PostList />} />
+                        <Route path="/posts/create" element={<PostCreate />} />
+                        <Route path="/posts/edit/:id" element={<PostEdit />} />
+                        <Route path="/posts/show/:id" element={<PostShow />} />
+
+                        <Route path="/categories" element={<CategoryList />} />
+                        <Route
+                            path="/categories/create"
+                            element={<CategoryCreate />}
+                        />
+                        <Route
+                            path="/categories/edit/:id"
+                            element={<CategoryEdit />}
+                        />
+                        <Route
+                            path="/categories/show/:id"
+                            element={<CategoryShow />}
+                        />
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
