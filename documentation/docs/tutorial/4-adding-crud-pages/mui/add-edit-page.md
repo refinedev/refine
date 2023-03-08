@@ -43,7 +43,7 @@ import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 const App: React.FC = () => {
     return (
@@ -69,11 +69,21 @@ const App: React.FC = () => {
                         ]}
                     >
                         <Routes>
-                            <Route path="/products" element={<MuiInferencer />} />
-                            <Route path="/products/show/:id" element={<MuiInferencer />} />
-                            <Route path="/products/edit/:id" element={<MuiInferencer />} />
-                            <Route path="/products/create" element={<MuiInferencer />} />
-                            <Route path="*" element={<ErrorComponent />} />
+                            <Route
+                                element={(
+                                    <Layout>
+                                        <Outlet/>
+                                    </Layout>
+                                )}
+                            >
+                                <Route path="products">
+                                    <Route index element={<MuiInferencer />} />
+                                    <Route path="show/:id" element={<MuiInferencer />} />
+                                    <Route path="edit/:id" element={<MuiInferencer />} />
+                                    <Route path="create" element={<MuiInferencer />} />
+                                </Route>
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
                         </Routes>
                     </Refine>
                 </BrowserRouter>
@@ -161,7 +171,7 @@ import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { ProductList } from "pages/products/list";
 //highlight-next-line
@@ -191,12 +201,22 @@ const App: React.FC = () => {
                         ]}
                     >
                         <Routes>
-                            <Route path="/products" element={<ProductList />} />
-                            <Route path="/products/show/:id" element={<MuiInferencer />} />
-                            {/* highlight-next-line */}
-                            <Route path="/products/edit/:id" element={<ProductEdit />} />
-                            <Route path="/products/create" element={<MuiInferencer />} />
-                            <Route path="*" element={<ErrorComponent />} />
+                            <Route
+                                element={(
+                                    <Layout>
+                                        <Outlet/>
+                                    </Layout>
+                                )}
+                            >
+                                <Route path="products">
+                                    <Route index element={<ProductList />} />
+                                    <Route path="show/:id" element={<MuiInferencer />} />
+                                    {/* highlight-next-line */}
+                                    <Route path="edit/:id" element={<ProductEdit />} />
+                                    <Route path="create" element={<MuiInferencer />} />
+                                </Route>
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
                         </Routes>
                     </Refine>
                 </BrowserRouter>

@@ -33,7 +33,7 @@ import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 const App = () => {
     return (
@@ -158,7 +158,7 @@ import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 //highlight-next-line
 import { ProductList } from "pages/products/list";
@@ -180,11 +180,13 @@ const App = () => {
                 ]}
             >
                 <Routes>
-                    {/* highlight-next-line */}
-                    <Route path="/products" element={<ProductList />} />
-                    <Route path="/products/show/:id" element={<HeadlessInferencer />} />
-                    <Route path="/products/edit/:id" element={<HeadlessInferencer />} />
-                    <Route path="/products/create" element={<HeadlessInferencer />} />
+                    <Route path="products">
+                        {/* highlight-next-line */}
+                        <Route index element={<ProductList />} />
+                        <Route path="show/:id" element={<HeadlessInferencer />} />
+                        <Route path="edit/:id" element={<HeadlessInferencer />} />
+                        <Route path="create" element={<HeadlessInferencer />} />
+                    </Route>
                 </Routes>
             </Refine>
         </BrowserRouter>

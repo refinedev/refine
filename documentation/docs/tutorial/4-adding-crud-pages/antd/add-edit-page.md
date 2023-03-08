@@ -40,7 +40,7 @@ import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -61,15 +61,25 @@ const App: React.FC = () => {
                     },
                 ]}
             >
-                <Layout>
-                    <Routes>
-                        <Route path="/products" element={<AntdInferencer />} />
-                        <Route path="/products/show/:id" element={<AntdInferencer />} />
-                        <Route path="/products/create" element={<AntdInferencer />} />
-                        <Route path="/products/edit/:id" element={<AntdInferencer />} />
+                <Routes>
+                    <Route
+                        element={(
+                            <Layout>
+                                <Outlet/>
+                            </Layout>
+                        )}
+                    >
+                        {/* highlight-start */}
+                        <Route path="products">
+                            <Route index element={<AntdInferencer />} />
+                            <Route path="show/:id" element={<AntdInferencer />} />
+                            <Route path="edit/:id" element={<AntdInferencer />} />
+                            <Route path="create" element={<AntdInferencer />} />
+                        </Route>
+                        {/* highlight-end */}
                         <Route path="*" element={<ErrorComponent />} />
-                    </Routes>
-                </Layout>
+                    </Route>
+                </Routes>
             </Refine>
         </BrowserRouter>
     );
@@ -147,7 +157,7 @@ import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { ProductList } from "pages/products/list";
 //highlight-next-line
@@ -172,17 +182,25 @@ const App: React.FC = () => {
                     },
                 ]}
             >
-                <Layout>
-                    <Routes>
-                        <Route path="/products" element={<ProductList />} />
-                        <Route path="/products/show/:id" element={<AntdInferencer />} />
-                        <Route path="/products/create" element={<AntdInferencer />} />
-                        {/* highlight-start */}
-                        <Route path="/products/edit/:id" element={<ProductEdit />} />
-                        {/* highlight-end */}
+                <Routes>
+                    <Route
+                        element={(
+                            <Layout>
+                                <Outlet/>
+                            </Layout>
+                        )}
+                    >
+                        <Route path="products">
+                            <Route index element={<ProductList />} />
+                            <Route path="show/:id" element={<AntdInferencer />} />
+                            {/* highlight-start */}
+                            <Route path="edit/:id" element={<ProductEdit />} />
+                            {/* highlight-end */}
+                            <Route path="create" element={<AntdInferencer />} />
+                        </Route>
                         <Route path="*" element={<ErrorComponent />} />
-                    </Routes>
-                </Layout>
+                    </Route>
+                </Routes>
             </Refine>
         </BrowserRouter>
     );

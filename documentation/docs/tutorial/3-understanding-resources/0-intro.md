@@ -41,17 +41,17 @@ In the [Unit 2.4](/docs/tutorial/getting-started/mui/generate-crud-pages/), we h
 
 :::
 
-Before we start, let's understand what `<Refine/>` component is.
+Before we start, let's understand what `<Refine>` component is.
 
-The `<Refine/>` is the initialization point of **refine**. It is a wrapper component that provides the context to the **refine** components and hooks. It is used to configure the highest level settings of the app.
+The `<Refine>` is the initialization point of **refine**. It is a wrapper component that provides the context to the **refine** components and hooks. It is used to configure the highest level settings of the app.
 
 In order to initialize the app, the `dataProvider` is the only required prop to be provided. Additionally, it also has other props such as `resources`, `routerProvider`, `authProvider`, `i18nProvider` etc. These props allow for the configuration of different aspects of the app, including data management, routing, authentication, localization, layout etc.
 
-[Refer to the `<Refine/>` documentation for more information &#8594](/docs/api-reference/core/components/refine-config/)
+[Refer to the `<Refine>` documentation for more information &#8594](/docs/api-reference/core/components/refine-config/)
 
 In the context of a CRUD application, a resource typically refers to a data entity that can be created, read, updated, or deleted. For example, a resource could be a user account, a blog post, a product in an online store, or any other piece of data that can be managed by the CRUD app.
 
-To add a `resource` to our app, we need use `resources` prop of `<Refine/>` component. This prop accepts an array of objects. Each object represents a resource. The resource object may contain properties to define the name of the resource, the routes of the actions it can perform which can be defined as paths, components or both and additional metadata such as the label, the icon, audit log settings, nesting etc.
+To add a `resource` to our app, we need use `resources` prop of `<Refine>` component. This prop accepts an array of objects. Each object represents a resource. The resource object may contain properties to define the name of the resource, the routes of the actions it can perform which can be defined as paths, components or both and additional metadata such as the label, the icon, audit log settings, nesting etc.
 
 Here's a simple example of how to add a resource to a **refine** app:
 

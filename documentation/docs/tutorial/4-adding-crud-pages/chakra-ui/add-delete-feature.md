@@ -77,7 +77,7 @@ import {
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { ProductList } from "pages/products/list";
 import { ProductEdit } from "pages/products/edit";

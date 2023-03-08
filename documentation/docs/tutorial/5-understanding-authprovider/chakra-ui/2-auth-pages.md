@@ -51,7 +51,7 @@ const authProvider = {
 };
 
 import { Refine, Authenticated } from "@refinedev/core";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
@@ -63,7 +63,7 @@ import {
 import { ChakraProvider } from "@chakra-ui/react";
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 const App = () => {
     return (
@@ -84,26 +84,45 @@ const App = () => {
                         },
                     ]}
                 >
-                    <Authenticated
-                        fallback={(
-                            <Routes>
-                                <Route path="/login" element={<AuthPage type="login" />} />
-                                <Route path="/register" element={<AuthPage type="register" />} />
-                                <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-                                <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
-                            </Routes>
-                        )}
-                    >
-                        <Layout>
-                            <Routes>
-                                <Route path="/products" element={<ChakraUIInferencer />} />
-                                <Route path="/products/show/:id" element={<ChakraUIInferencer />} />
-                                <Route path="/products/edit/:id" element={<ChakraUIInferencer />} />
-                                <Route path="/products/create" element={<ChakraUIInferencer />} />
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Routes>
-                        </Layout>
-                    </Authenticated>
+                    <Routes>
+                        <Route 
+                            element={(
+                                <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                </Authenticated>
+                            )}
+                        >
+                            <Route path="products">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route path="show/:id" element={<ChakraUIInferencer />} />
+                                <Route path="edit/:id" element={<ChakraUIInferencer />} />
+                                <Route path="create" element={<ChakraUIInferencer />} />
+                            </Route>
+                        </Route>
+                        <Route
+                            element={(
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            )}
+                        >
+                            <Route path="/login" element={<AuthPage type="login" />} />
+                            <Route path="/register" element={<AuthPage type="register" />} />
+                            <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                            <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+                        </Route>
+                        <Route
+                            element={(
+                                <Authenticated fallback={<Outlet />}>
+                                    <Layout><Outlet/></Layout>
+                                </Authenticated>
+                            )}
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
                 </Refine>
             </BrowserRouter>
         </ChakraProvider>
@@ -135,7 +154,7 @@ Login page is used to authenticate users. It provides a basic form to enter emai
 
     ```tsx
     import { Refin, Authenticated } from "@refinedev/core";
-    import routerBindings from "@refinedev/react-router-v6";
+    import routerBindings, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
     import dataProvider from "@refinedev/simple-rest";
     import {
         ErrorComponent,
@@ -148,12 +167,9 @@ Login page is used to authenticate users. It provides a basic form to enter emai
     import { ChakraProvider } from "@chakra-ui/react";
     import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
-    import { BrowserRouter, Routes, Route } from "react-router-dom";
+    import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
     import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
 
     import { authProvider } from "./authProvider";
 
@@ -170,30 +186,43 @@ Login page is used to authenticate users. It provides a basic form to enter emai
                             {
                                 name: "products",
                                 list: "/products",
-                                show: "/products/show/:id",
-                                edit: "/products/edit/:id",
-                                create: "/products/create",
                             },
                         ]}
                     >
-                        <Authenticated
-                            fallback={(
-                                <Routes>
-                                    {/* highlight-next-line */}
-                                    <Route path="/login" element={<AuthPage type="login" />} />
-                                </Routes>
-                            )}
-                        >
-                            <Layout>
-                                <Routes>
-                                    <Route path="/products" element={<ProductList />} />
-                                    <Route path="/products/show/:id" element={<ProductShow />} />
-                                    <Route path="/products/edit/:id" element={<ProductEdit />} />
-                                    <Route path="/products/create" element={<ProductCreate />} />
-                                    <Route path="*" element={<ErrorComponent />} />
-                                </Routes>
-                            </Layout>
-                        </Authenticated>
+                        <Routes>
+                            <Route 
+                                element={(
+                                    <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                                        <Layout>
+                                            <Outlet />
+                                        </Layout>
+                                    </Authenticated>
+                                )}
+                            >
+                                <Route path="products">
+                                    <Route index element={<ProductList />} />
+                                </Route>
+                            </Route>
+                            <Route
+                                element={(
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource />
+                                    </Authenticated>
+                                )}
+                            >
+                                {/* highlight-next-line */}
+                                <Route path="/login" element={<AuthPage type="login" />} />
+                            </Route>
+                            <Route
+                                element={(
+                                    <Authenticated fallback={<Outlet />}>
+                                        <Layout><Outlet/></Layout>
+                                    </Authenticated>
+                                )}
+                            >
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
                     </Refine>
                 </BrowserRouter>
             </ChakraProvider>
@@ -234,7 +263,7 @@ Register page is used to register new users. It provides a basic form to enter e
 
     ```tsx
     import { Refine, Authenticated } from "@refinedev/core";
-    import routerBindings from "@refinedev/react-router-v6";
+    import routerBindings, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
     import dataProvider from "@refinedev/simple-rest";
     import {
         ErrorComponent,
@@ -247,12 +276,9 @@ Register page is used to register new users. It provides a basic form to enter e
     import { ChakraProvider } from "@chakra-ui/react";
     import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
-    import { BrowserRouter, Routes, Route } from "react-router-dom";
+    import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
     import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
 
     import { authProvider } from "./authProvider";
 
@@ -269,31 +295,44 @@ Register page is used to register new users. It provides a basic form to enter e
                             {
                                 name: "products",
                                 list: "/products",
-                                show: "/products/show/:id",
-                                edit: "/products/edit/:id",
-                                create: "/products/create",
                             },
                         ]}
                     >
-                        <Authenticated
-                            fallback={(
-                                <Routes>
-                                    <Route path="/login" element={<AuthPage type="login" />} />
-                                    {/* highlight-next-line */}
-                                    <Route path="/register" element={<AuthPage type="register" />} />
-                                </Routes>
-                            )}
-                        >
-                            <Layout>
-                                <Routes>
-                                    <Route path="/products" element={<ProductList />} />
-                                    <Route path="/products/show/:id" element={<ProductShow />} />
-                                    <Route path="/products/edit/:id" element={<ProductEdit />} />
-                                    <Route path="/products/create" element={<ProductCreate />} />
-                                    <Route path="*" element={<ErrorComponent />} />
-                                </Routes>
-                            </Layout>
-                        </Authenticated>
+                        <Routes>
+                            <Route 
+                                element={(
+                                    <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                                        <Layout>
+                                            <Outlet />
+                                        </Layout>
+                                    </Authenticated>
+                                )}
+                            >
+                                <Route path="products">
+                                    <Route index element={<ProductList />} />
+                                </Route>
+                            </Route>
+                            <Route
+                                element={(
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource />
+                                    </Authenticated>
+                                )}
+                            >
+                                <Route path="/login" element={<AuthPage type="login" />} />
+                                {/* highlight-next-line */}
+                                <Route path="/register" element={<AuthPage type="register" />} />
+                            </Route>
+                            <Route
+                                element={(
+                                    <Authenticated fallback={<Outlet />}>
+                                        <Layout><Outlet/></Layout>
+                                    </Authenticated>
+                                )}
+                            >
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
                     </Refine>
                 </BrowserRouter>
             </ChakraProvider>
@@ -334,7 +373,7 @@ Forgot password page is used to send a reset password link to the user's email. 
 
     ```tsx
     import { Refine, Authenticated } from "@refinedev/core";
-    import routerBindings from "@refinedev/react-router-v6";
+    import routerBindings, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
     import dataProvider from "@refinedev/simple-rest";
     import {
         ErrorComponent,
@@ -348,9 +387,6 @@ Forgot password page is used to send a reset password link to the user's email. 
     import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
     import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
 
     import { authProvider } from "./authProvider";
 
@@ -367,32 +403,45 @@ Forgot password page is used to send a reset password link to the user's email. 
                             {
                                 name: "products",
                                 list: "/products",
-                                show: "/products/show/:id",
-                                edit: "/products/edit/:id",
-                                create: "/products/create",
                             },
                         ]}
                     >
-                        <Authenticated
-                            fallback={(
-                                <Routes>
-                                    <Route path="/login" element={<AuthPage type="login" />} />
-                                    <Route path="/register" element={<AuthPage type="register" />} />
-                                    {/* highlight-next-line */}
-                                    <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-                                </Routes>
-                            )}
-                        >
-                            <Layout>
-                                <Routes>
-                                    <Route path="/products" element={<ProductList />} />
-                                    <Route path="/products/show/:id" element={<ProductShow />} />
-                                    <Route path="/products/edit/:id" element={<ProductEdit />} />
-                                    <Route path="/products/create" element={<ProductCreate />} />
-                                    <Route path="*" element={<ErrorComponent />} />
-                                </Routes>
-                            </Layout>
-                        </Authenticated>
+                        <Routes>
+                            <Route 
+                                element={(
+                                    <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                                        <Layout>
+                                            <Outlet />
+                                        </Layout>
+                                    </Authenticated>
+                                )}
+                            >
+                                <Route path="products">
+                                    <Route index element={<ProductList />} />
+                                </Route>
+                            </Route>
+                            <Route
+                                element={(
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource />
+                                    </Authenticated>
+                                )}
+                            >
+                                <Route path="/login" element={<AuthPage type="login" />} />
+                                <Route path="/register" element={<AuthPage type="register" />} />
+                                {/* highlight-next-line */}
+                                <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                            </Route>
+                            <Route
+                                element={(
+                                    <Authenticated fallback={<Outlet />}>
+                                        <Layout><Outlet/></Layout>
+                                    </Authenticated>
+                                )}
+                            >
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
                     </Refine>
                 </BrowserRouter>
             </ChakraProvider>
@@ -434,7 +483,7 @@ Update password page is used to update the user's password. It provides a basic 
 
     ```tsx
     import { Refine, Authenticated } from "@refinedev/core";
-    import routerBindings from "@refinedev/react-router-v6";
+    import routerBindings, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
     import dataProvider from "@refinedev/simple-rest";
     import {
         ErrorComponent,
@@ -447,12 +496,9 @@ Update password page is used to update the user's password. It provides a basic 
     import { ChakraProvider } from "@chakra-ui/react";
     import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
-    import { BrowserRouter, Routes, Route } from "react-router-dom";
+    import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
     import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
 
     import { authProvider } from "./authProvider";
 
@@ -469,33 +515,47 @@ Update password page is used to update the user's password. It provides a basic 
                             {
                                 name: "products",
                                 list: "/products",
-                                show: "/products/show/:id",
-                                edit: "/products/edit/:id",
-                                create: "/products/create",
+
                             },
                         ]}
                     >
-                        <Authenticated
-                            fallback={(
-                                <Routes>
-                                    <Route path="/login" element={<AuthPage type="login" />} />
-                                    <Route path="/register" element={<AuthPage type="register" />} />
-                                    <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-                                    {/* highlight-next-line */}
-                                    <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
-                                </Routes>
-                            )}
-                        >
-                            <Layout>
-                                <Routes>
-                                    <Route path="/products" element={<ProductList />} />
-                                    <Route path="/products/show/:id" element={<ProductShow />} />
-                                    <Route path="/products/edit/:id" element={<ProductEdit />} />
-                                    <Route path="/products/create" element={<ProductCreate />} />
-                                    <Route path="*" element={<ErrorComponent />} />
-                                </Routes>
-                            </Layout>
-                        </Authenticated>
+                        <Routes>
+                            <Route 
+                                element={(
+                                    <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                                        <Layout>
+                                            <Outlet />
+                                        </Layout>
+                                    </Authenticated>
+                                )}
+                            >
+                                <Route path="products">
+                                    <Route index element={<ProductList />} />
+                                </Route>
+                            </Route>
+                            <Route
+                                element={(
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource />
+                                    </Authenticated>
+                                )}
+                            >
+                                <Route path="/login" element={<AuthPage type="login" />} />
+                                <Route path="/register" element={<AuthPage type="register" />} />
+                                <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                                {/* highlight-next-line */}
+                                <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+                            </Route>
+                            <Route
+                                element={(
+                                    <Authenticated fallback={<Outlet />}>
+                                        <Layout><Outlet/></Layout>
+                                    </Authenticated>
+                                )}
+                            >
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
                     </Refine>
                 </BrowserRouter>
             </ChakraProvider>

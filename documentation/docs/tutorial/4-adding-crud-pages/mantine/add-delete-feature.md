@@ -76,7 +76,7 @@ import {
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { ProductList } from "pages/products/list";
 import { ProductEdit } from "pages/products/edit";
@@ -110,15 +110,7 @@ const App = () => {
                             },
                         ]}
                     >
-                        <Layout>
-                            <Routes>
-                                <Route path="/products" element={<ProductList />} />
-                                <Route path="/products/show/:id" element={<ProductShow />} />
-                                <Route path="/products/edit/:id" element={<ProductEdit />} />
-                                <Route path="/products/create" element={<ProductCreate />} />
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Routes>
-                        </Layout>
+                        {/* ... */}
                     </Refine>
                 </BrowserRouter>
             </NotificationsProvider>

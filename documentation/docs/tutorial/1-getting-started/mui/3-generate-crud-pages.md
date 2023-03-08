@@ -51,7 +51,7 @@ import {
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 
@@ -78,17 +78,25 @@ const App: React.FC = () => {
                             },
                         ]}
                     >
-                        <Layout>
-                            <Routes>
+                        <Routes>
+                            <Route
+                                element={(
+                                    <Layout>
+                                        <Outlet/>
+                                    </Layout>
+                                )}
+                            >
                                 {/* highlight-start */}
-                                <Route path="/products" element={<MuiInferencer />} />
-                                <Route path="/products/show/:id" element={<MuiInferencer />} />
-                                <Route path="/products/create" element={<MuiInferencer />} />
-                                <Route path="/products/edit/:id" element={<MuiInferencer />} />
+                                <Route path="products">
+                                    <Route index element={<MuiInferencer />} />
+                                    <Route path="show/:id" element={<MuiInferencer />} />
+                                    <Route path="edit/:id" element={<MuiInferencer />} />
+                                    <Route path="create" element={<MuiInferencer />} />
+                                </Route>
                                 {/* highlight-end */}
                                 <Route path="*" element={<ErrorComponent />} />
-                            </Routes>
-                        </Layout>
+                            </Route>
+                        </Routes>
                     </Refine>
                 </BrowserRouter>
             </RefineSnackbarProvider>
@@ -139,7 +147,7 @@ import {
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 
@@ -168,15 +176,25 @@ const App: React.FC = () => {
                         ]}
                         //highlight-end
                     >
-                        <Layout>
-                            <Routes>
-                                <Route path="/products" element={<MuiInferencer />} />
-                                <Route path="/products/show/:id" element={<MuiInferencer />} />
-                                <Route path="/products/create" element={<MuiInferencer />} />
-                                <Route path="/products/edit/:id" element={<MuiInferencer />} />
+                        <Routes>
+                            <Route
+                                element={(
+                                    <Layout>
+                                        <Outlet/>
+                                    </Layout>
+                                )}
+                            >
+                                {/* highlight-start */}
+                                <Route path="products">
+                                    <Route index element={<MuiInferencer />} />
+                                    <Route path="show/:id" element={<MuiInferencer />} />
+                                    <Route path="edit/:id" element={<MuiInferencer />} />
+                                    <Route path="create" element={<MuiInferencer />} />
+                                </Route>
+                                {/* highlight-end */}
                                 <Route path="*" element={<ErrorComponent />} />
-                            </Routes>
-                        </Layout>
+                            </Route>
+                        </Routes>
                     </Refine>
                 </BrowserRouter>
             </RefineSnackbarProvider>
@@ -207,7 +225,7 @@ import {
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 
@@ -236,15 +254,25 @@ const App: React.FC = () => {
                         ]}
                         //highlight-end
                     >
-                        <Layout>
-                            <Routes>
-                                <Route path="/products" element={<MuiInferencer />} />
-                                <Route path="/products/show/:id" element={<MuiInferencer />} />
-                                <Route path="/products/create" element={<MuiInferencer />} />
-                                <Route path="/products/edit/:id" element={<MuiInferencer />} />
+                        <Routes>
+                            <Route
+                                element={(
+                                    <Layout>
+                                        <Outlet/>
+                                    </Layout>
+                                )}
+                            >
+                                {/* highlight-start */}
+                                <Route path="products">
+                                    <Route index element={<MuiInferencer />} />
+                                    <Route path="show/:id" element={<MuiInferencer />} />
+                                    <Route path="edit/:id" element={<MuiInferencer />} />
+                                    <Route path="create" element={<MuiInferencer />} />
+                                </Route>
+                                {/* highlight-end */}
                                 <Route path="*" element={<ErrorComponent />} />
-                            </Routes>
-                        </Layout>
+                            </Route>
+                        </Routes>
                     </Refine>
                 </BrowserRouter>
             </RefineSnackbarProvider>
@@ -275,7 +303,7 @@ import {
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 
@@ -304,15 +332,25 @@ const App: React.FC = () => {
                         ]}
                         //highlight-end
                     >
-                        <Layout>
-                            <Routes>
-                                <Route path="/products" element={<MuiInferencer />} />
-                                <Route path="/products/show/:id" element={<MuiInferencer />} />
-                                <Route path="/products/create" element={<MuiInferencer />} />
-                                <Route path="/products/edit/:id" element={<MuiInferencer />} />
+                        <Routes>
+                            <Route
+                                element={(
+                                    <Layout>
+                                        <Outlet/>
+                                    </Layout>
+                                )}
+                            >
+                                {/* highlight-start */}
+                                <Route path="products">
+                                    <Route index element={<MuiInferencer />} />
+                                    <Route path="show/:id" element={<MuiInferencer />} />
+                                    <Route path="edit/:id" element={<MuiInferencer />} />
+                                    <Route path="create" element={<MuiInferencer />} />
+                                </Route>
+                                {/* highlight-end */}
                                 <Route path="*" element={<ErrorComponent />} />
-                            </Routes>
-                        </Layout>
+                            </Route>
+                        </Routes>
                     </Refine>
                 </BrowserRouter>
             </RefineSnackbarProvider>
@@ -343,7 +381,7 @@ import {
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 
@@ -372,15 +410,25 @@ const App: React.FC = () => {
                         ]}
                         //highlight-end
                     >
-                        <Layout>
-                            <Routes>
-                                <Route path="/products" element={<MuiInferencer />} />
-                                <Route path="/products/show/:id" element={<MuiInferencer />} />
-                                <Route path="/products/create" element={<MuiInferencer />} />
-                                <Route path="/products/edit/:id" element={<MuiInferencer />} />
+                        <Routes>
+                            <Route
+                                element={(
+                                    <Layout>
+                                        <Outlet/>
+                                    </Layout>
+                                )}
+                            >
+                                {/* highlight-start */}
+                                <Route path="products">
+                                    <Route index element={<MuiInferencer />} />
+                                    <Route path="show/:id" element={<MuiInferencer />} />
+                                    <Route path="edit/:id" element={<MuiInferencer />} />
+                                    <Route path="create" element={<MuiInferencer />} />
+                                </Route>
+                                {/* highlight-end */}
                                 <Route path="*" element={<ErrorComponent />} />
-                            </Routes>
-                        </Layout>
+                            </Route>
+                        </Routes>
                     </Refine>
                 </BrowserRouter>
             </RefineSnackbarProvider>

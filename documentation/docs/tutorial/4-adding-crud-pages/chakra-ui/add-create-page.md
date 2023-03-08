@@ -42,7 +42,7 @@ import {
 import { ChakraProvider } from "@chakra-ui/react";
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 const App = () => {
     return (
@@ -146,7 +146,7 @@ import {
 import { ChakraProvider } from "@chakra-ui/react";
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { ProductList } from "pages/products/list";
 import { ProductEdit } from "pages/products/edit";
@@ -172,16 +172,24 @@ const App = () => {
                         },
                     ]}
                 >
-                    <Layout>
-                        <Routes>
-                            <Route path="/products" element={<ProductList />} />
-                            <Route path="/products/show/:id" element={<ProductShow />} />
-                            <Route path="/products/edit/:id" element={<ProductEdit />} />
-                            {/* highlight-next-line */}
-                            <Route path="/products/create" element={<ProductCreate />} />
+                    <Routes>
+                        <Route
+                            element={(
+                                <Layout>
+                                    <Outlet/>
+                                </Layout>
+                            )}
+                        >
+                            <Route path="products">
+                                <Route index element={<ProductList />} />
+                                <Route path="show/:id" element={<ProductShow />} />
+                                <Route path="edit/:id" element={<ProductEdit />} />
+                                {/* highlight-next-line */}
+                                <Route path="create" element={<ProductCreate />} />
+                            </Route>
                             <Route path="*" element={<ErrorComponent />} />
-                        </Routes>
-                    </Layout>
+                        </Route>
+                    </Routes>
                 </Refine>
             </BrowserRouter>
         </ChakraProvider>

@@ -42,7 +42,7 @@ import {
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
@@ -162,7 +162,7 @@ import {
 } from "@refinedev/mantine";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { ProductList } from "pages/products/list";
 //highlight-next-line
@@ -190,16 +190,24 @@ const App = () => {
                             },
                         ]}
                     >
-                        <Layout>
-                            <Routes>
-                                <Route path="/products" element={<ProductList />} />
-                                <Route path="/products/show/:id" element={<MantineInferencer />} />
-                                {/* highlight-next-line */}
-                                <Route path="/products/edit/:id" element={<ProductEdit />} />
-                                <Route path="/products/create" element={<MantineInferencer />} />
+                        <Routes>
+                            <Route
+                                element={(
+                                    <Layout>
+                                        <Outlet/>
+                                    </Layout>
+                                )}
+                            >
+                                <Route path="products">
+                                    <Route index element={<ProductList />} />
+                                    <Route path="show/:id" element={<MantineInferencer />} />
+                                    {/* highlight-next-line */}
+                                    <Route path="edit/:id" element={<ProductEdit />} />
+                                    <Route path="create" element={<MantineInferencer />} />
+                                </Route>
                                 <Route path="*" element={<ErrorComponent />} />
-                            </Routes>
-                        </Layout>
+                            </Route>
+                        </Routes>
                     </Refine>
                 </BrowserRouter>
             </NotificationsProvider>

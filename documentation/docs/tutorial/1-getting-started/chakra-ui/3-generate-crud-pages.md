@@ -50,7 +50,7 @@ import {
     notificationProvider,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
@@ -72,17 +72,25 @@ const App = () => {
                         },
                     ]}
                 >
-                    <Layout>
-                        <Routes>
+                    <Routes>
+                        <Route
+                            element={(
+                                <Layout>
+                                    <Outlet/>
+                                </Layout>
+                            )}
+                        >
                             {/* highlight-start */}
-                            <Route path="/products" element={<ChakraUIInferencer />} />
-                            <Route path="/products/show/:id" element={<ChakraUIInferencer />} />
-                            <Route path="/products/create" element={<ChakraUIInferencer />} />
-                            <Route path="/products/edit/:id" element={<ChakraUIInferencer />} />
+                            <Route path="products">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route path="show/:id" element={<ChakraUIInferencer />} />
+                                <Route path="edit/:id" element={<ChakraUIInferencer />} />
+                                <Route path="create" element={<ChakraUIInferencer />} />
+                            </Route>
                             {/* highlight-end */}
                             <Route path="*" element={<ErrorComponent />} />
-                        </Routes>
-                    </Layout>
+                        </Route>
+                    </Routes>
                 </Refine>
             </BrowserRouter>
         </ChakraProvider>
@@ -131,7 +139,7 @@ import {
     notificationProvider,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
@@ -155,15 +163,25 @@ const App = () => {
                     ]}
                     //highlight-end
                 >
-                    <Layout>
-                        <Routes>
-                            <Route path="/products" element={<ChakraUIInferencer />} />
-                            <Route path="/products/show/:id" element={<ChakraUIInferencer />} />
-                            <Route path="/products/create" element={<ChakraUIInferencer />} />
-                            <Route path="/products/edit/:id" element={<ChakraUIInferencer />} />
+                    <Routes>
+                        <Route
+                            element={(
+                                <Layout>
+                                    <Outlet/>
+                                </Layout>
+                            )}
+                        >
+                            {/* highlight-start */}
+                            <Route path="products">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route path="show/:id" element={<ChakraUIInferencer />} />
+                                <Route path="edit/:id" element={<ChakraUIInferencer />} />
+                                <Route path="create" element={<ChakraUIInferencer />} />
+                            </Route>
+                            {/* highlight-end */}
                             <Route path="*" element={<ErrorComponent />} />
-                        </Routes>
-                    </Layout>
+                        </Route>
+                    </Routes>
                 </Refine>
             </BrowserRouter>
         </ChakraProvider>
@@ -192,7 +210,7 @@ import {
     notificationProvider,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
@@ -216,15 +234,25 @@ const App = () => {
                     ]}
                     //highlight-end
                 >
-                    <Layout>
-                        <Routes>
-                            <Route path="/products" element={<ChakraUIInferencer />} />
-                            <Route path="/products/show/:id" element={<ChakraUIInferencer />} />
-                            <Route path="/products/create" element={<ChakraUIInferencer />} />
-                            <Route path="/products/edit/:id" element={<ChakraUIInferencer />} />
+                    <Routes>
+                        <Route
+                            element={(
+                                <Layout>
+                                    <Outlet/>
+                                </Layout>
+                            )}
+                        >
+                            {/* highlight-start */}
+                            <Route path="products">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route path="show/:id" element={<ChakraUIInferencer />} />
+                                <Route path="edit/:id" element={<ChakraUIInferencer />} />
+                                <Route path="create" element={<ChakraUIInferencer />} />
+                            </Route>
+                            {/* highlight-end */}
                             <Route path="*" element={<ErrorComponent />} />
-                        </Routes>
-                    </Layout>
+                        </Route>
+                    </Routes>
                 </Refine>
             </BrowserRouter>
         </ChakraProvider>
@@ -253,7 +281,7 @@ import {
     notificationProvider,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
@@ -275,17 +303,25 @@ const App = () => {
                         },
                     ]}
                 >
-                    <Layout>
-                        <Routes>
+                    <Routes>
+                        <Route
+                            element={(
+                                <Layout>
+                                    <Outlet/>
+                                </Layout>
+                            )}
+                        >
                             {/* highlight-start */}
-                            <Route path="/products" element={<ChakraUIInferencer />} />
-                            <Route path="/products/show/:id" element={<ChakraUIInferencer />} />
-                            <Route path="/products/create" element={<ChakraUIInferencer />} />
-                            <Route path="/products/edit/:id" element={<ChakraUIInferencer />} />
-                            <Route path="*" element={<ErrorComponent />} />
+                            <Route path="products">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route path="show/:id" element={<ChakraUIInferencer />} />
+                                <Route path="edit/:id" element={<ChakraUIInferencer />} />
+                                <Route path="create" element={<ChakraUIInferencer />} />
+                            </Route>
                             {/* highlight-end */}
-                        </Routes>
-                    </Layout>
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
                 </Refine>
             </BrowserRouter>
         </ChakraProvider>
@@ -314,7 +350,7 @@ import {
     notificationProvider,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 //highlight-next-line
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
@@ -338,15 +374,25 @@ const App = () => {
                     ]}
                     //highlight-end
                 >
-                    <Layout>
-                        <Routes>
-                            <Route path="/products" element={<ChakraUIInferencer />} />
-                            <Route path="/products/show/:id" element={<ChakraUIInferencer />} />
-                            <Route path="/products/create" element={<ChakraUIInferencer />} />
-                            <Route path="/products/edit/:id" element={<ChakraUIInferencer />} />
+                    <Routes>
+                        <Route
+                            element={(
+                                <Layout>
+                                    <Outlet/>
+                                </Layout>
+                            )}
+                        >
+                            {/* highlight-start */}
+                            <Route path="products">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route path="show/:id" element={<ChakraUIInferencer />} />
+                                <Route path="edit/:id" element={<ChakraUIInferencer />} />
+                                <Route path="create" element={<ChakraUIInferencer />} />
+                            </Route>
+                            {/* highlight-end */}
                             <Route path="*" element={<ErrorComponent />} />
-                        </Routes>
-                    </Layout>
+                        </Route>
+                    </Routes>
                 </Refine>
             </BrowserRouter>
         </ChakraProvider>

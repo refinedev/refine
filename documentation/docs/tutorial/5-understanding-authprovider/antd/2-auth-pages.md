@@ -59,54 +59,73 @@ import {
     ErrorComponent,
     AuthPage,
 } from "@refinedev/antd";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
-            <BrowserRouter>
-                <Refine
-                    authProvider={authProvider}
-                    routerProvider={routerBindings}
-                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                    notificationProvider={notificationProvider}
-                    resources={[
-                        {
-                            name: "products",
-                            list: "/products",
-                            show: "/products/show/:id",
-                            edit: "/products/edit/:id",
-                            create: "/products/create",
-                        },
-                    ]}
-                >
-                    <Authenticated
-                        fallback={(
-                            <Routes>
-                                <Route path="/login" element={<AuthPage type="login" />} />
-                                <Route path="/register" element={<AuthPage type="register" />} />
-                                <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-                                <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
-                            </Routes>
+        <BrowserRouter>
+            <Refine
+                authProvider={authProvider}
+                routerProvider={routerBindings}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider}
+                resources={[
+                    {
+                        name: "products",
+                        list: "/products",
+                        show: "/products/show/:id",
+                        edit: "/products/edit/:id",
+                        create: "/products/create",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route 
+                        element={(
+                            <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
                         )}
                     >
-                        <Layout>
-                            <Routes>
-                                <Route path="/products" element={<AntdInferencer />} />
-                                <Route path="/products/show/:id" element={<AntdInferencer />} />
-                                <Route path="/products/edit/:id" element={<AntdInferencer />} />
-                                <Route path="/products/create" element={<AntdInferencer />} />
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Routes>
-                        </Layout>
-                    </Authenticated>
-                </Refine>
-            </BrowserRouter>
+                        <Route path="products">
+                            <Route index element={<AntdInferencer />} />
+                            <Route path="show/:id" element={<AntdInferencer />} />
+                            <Route path="edit/:id" element={<AntdInferencer />} />
+                            <Route path="create" element={<AntdInferencer />} />
+                        </Route>
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        )}
+                    >
+                        <Route path="/login" element={<AuthPage type="login" />} />
+                        <Route path="/register" element={<AuthPage type="register" />} />
+                        <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                        <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated fallback={<Outlet />}>
+                                <Layout><Outlet/></Layout>
+                            </Authenticated>
+                        )}
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 ```
@@ -143,14 +162,11 @@ Login page is used to authenticate users. It provides a basic form to enter emai
         AuthPage,
     } from "@refinedev/antd";
     import dataProvider from "@refinedev/simple-rest";
-    import routerBindings from "@refinedev/react-router-v6";
+    import routerBindings, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 
-    import { BrowserRouter, Routes, Route } from "react-router-dom";
+    import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
     import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { productshow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
 
     import { authProvider } from "./authProvider";
 
@@ -171,22 +187,40 @@ Login page is used to authenticate users. It provides a basic form to enter emai
                         },
                     ]}
                 >
-                    <Authenticated
-                        fallback={(
-                            <Routes>
-                                {/* highlight-next-line */}
-                                <Route path="/login" element={<AuthPage type="login" />} />
-                            </Routes>
-                        )}
-                    >
-                        <Routes>
-                            <Route path="/products" element={<ProductList />} />
-                            <Route path="/products/show/:id" element={<ProductShow />} />
-                            <Route path="/products/edit/:id" element={<ProductEdit />} />
-                            <Route path="/products/create" element={<ProductCreate />} />
+                    <Routes>
+                        <Route 
+                            element={(
+                                <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                </Authenticated>
+                            )}
+                        >
+                            <Route path="products">
+                                <Route index element={<ProductList />} />
+                            </Route>
+                        </Route>
+                        <Route
+                            element={(
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            )}
+                        >
+                            {/* highlight-next-line */}
+                            <Route path="/login" element={<AuthPage type="login" />} />
+                        </Route>
+                        <Route
+                            element={(
+                                <Authenticated fallback={<Outlet />}>
+                                    <Layout><Outlet/></Layout>
+                                </Authenticated>
+                            )}
+                        >
                             <Route path="*" element={<ErrorComponent />} />
-                        </Routes>
-                    </Authenticated>
+                        </Route>
+                    </Routes>
                 </Refine>
             </BrowserRouter>
         );
@@ -234,14 +268,11 @@ Register page is used to register new users. It provides a basic form to enter e
         AuthPage,
     } from "@refinedev/antd";
     import dataProvider from "@refinedev/simple-rest";
-    import routerBindings from "@refinedev/react-router-v6";
+    import routerBindings, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 
-    import { BrowserRouter, Routes, Route } from "react-router-dom";
+    import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
     import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { productshow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
 
     import { authProvider } from "./authProvider";
 
@@ -262,23 +293,41 @@ Register page is used to register new users. It provides a basic form to enter e
                         },
                     ]}
                 >
-                    <Authenticated
-                        fallback={(
-                            <Routes>
-                                <Route path="/login" element={<AuthPage type="login" />} />
-                                {/* highlight-next-line */}
-                                <Route path="/register" element={<AuthPage type="register" />} />
-                            </Routes>
-                        )}
-                    >
-                        <Routes>
-                            <Route path="/products" element={<ProductList />} />
-                            <Route path="/products/show/:id" element={<ProductShow />} />
-                            <Route path="/products/edit/:id" element={<ProductEdit />} />
-                            <Route path="/products/create" element={<ProductCreate />} />
+                    <Routes>
+                        <Route 
+                            element={(
+                                <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                </Authenticated>
+                            )}
+                        >
+                            <Route path="products">
+                                <Route index element={<ProductList />} />
+                            </Route>
+                        </Route>
+                        <Route
+                            element={(
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            )}
+                        >
+                            <Route path="/login" element={<AuthPage type="login" />} />
+                            {/* highlight-next-line */}
+                            <Route path="/register" element={<AuthPage type="register" />} />
+                        </Route>
+                        <Route
+                            element={(
+                                <Authenticated fallback={<Outlet />}>
+                                    <Layout><Outlet/></Layout>
+                                </Authenticated>
+                            )}
+                        >
                             <Route path="*" element={<ErrorComponent />} />
-                        </Routes>
-                    </Authenticated>
+                        </Route>
+                    </Routes>
                 </Refine>
             </BrowserRouter>
         );
@@ -326,14 +375,12 @@ Forgot password page is used to send a reset password link to the user's email. 
         AuthPage,
     } from "@refinedev/antd";
     import dataProvider from "@refinedev/simple-rest";
-    import routerBindings from "@refinedev/react-router-v6";
+    import routerBindings, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 
-    import { BrowserRouter, Routes, Route } from "react-router-dom";
+    import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
     import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { productshow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
+
 
     import { authProvider } from "./authProvider";
 
@@ -354,24 +401,42 @@ Forgot password page is used to send a reset password link to the user's email. 
                         },
                     ]}
                 >
-                    <Authenticated
-                        fallback={(
-                            <Routes>
-                                <Route path="/login" element={<AuthPage type="login" />} />
-                                <Route path="/register" element={<AuthPage type="register" />} />
-                                {/* highlight-next-line */}
-                                <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-                            </Routes>
-                        )}
-                    >
-                        <Routes>
-                            <Route path="/products" element={<ProductList />} />
-                            <Route path="/products/show/:id" element={<ProductShow />} />
-                            <Route path="/products/edit/:id" element={<ProductEdit />} />
-                            <Route path="/products/create" element={<ProductCreate />} />
+                    <Routes>
+                        <Route 
+                            element={(
+                                <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                </Authenticated>
+                            )}
+                        >
+                            <Route path="products">
+                                <Route index element={<AntdInferencer />} />
+                            </Route>
+                        </Route>
+                        <Route
+                            element={(
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            )}
+                        >
+                            <Route path="/login" element={<AuthPage type="login" />} />
+                            <Route path="/register" element={<AuthPage type="register" />} />
+                            {/* highlight-next-line */}
+                            <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                        </Route>
+                        <Route
+                            element={(
+                                <Authenticated fallback={<Outlet />}>
+                                    <Layout><Outlet/></Layout>
+                                </Authenticated>
+                            )}
+                        >
                             <Route path="*" element={<ErrorComponent />} />
-                        </Routes>
-                    </Authenticated>
+                        </Route>
+                    </Routes>
                 </Refine>
             </BrowserRouter>
         );
@@ -420,14 +485,12 @@ Update password page is used to update the user's password. It provides a basic 
         AuthPage,
     } from "@refinedev/antd";
     import dataProvider from "@refinedev/simple-rest";
-    import routerBindings from "@refinedev/react-router-v6";
+    import routerBindings, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 
     import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
     import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { productshow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
+
 
     import { authProvider } from "./authProvider";
 
@@ -448,26 +511,43 @@ Update password page is used to update the user's password. It provides a basic 
                         },
                     ]}
                 >
-                    <Authenticated
-                        fallback={(
-                            <Routes>
-                                <Route path="/login" element={<AuthPage type="login" />} />
-                                <Route path="/register" element={<AuthPage type="register" />} />
-                                <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-                                {/* highlight-next-line */}
-                                <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
-                                <Route path="*" element={<Navigate to="/login" />} />
-                            </Routes>
-                        )}
-                    >
-                        <Routes>
-                            <Route path="/products" element={<ProductList />} />
-                            <Route path="/products/show/:id" element={<ProductShow />} />
-                            <Route path="/products/edit/:id" element={<ProductEdit />} />
-                            <Route path="/products/create" element={<ProductCreate />} />
+                    <Routes>
+                        <Route 
+                            element={(
+                                <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                </Authenticated>
+                            )}
+                        >
+                            <Route path="products">
+                                <Route index element={<AntdInferencer />} />
+                            </Route>
+                        </Route>
+                        <Route
+                            element={(
+                                <Authenticated fallback={<Outlet />}>
+                                    <NavigateToResource />
+                                </Authenticated>
+                            )}
+                        >
+                            <Route path="/login" element={<AuthPage type="login" />} />
+                            <Route path="/register" element={<AuthPage type="register" />} />
+                            <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                            {/* highlight-next-line */}
+                            <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+                        </Route>
+                        <Route
+                            element={(
+                                <Authenticated fallback={<Outlet />}>
+                                    <Layout><Outlet/></Layout>
+                                </Authenticated>
+                            )}
+                        >
                             <Route path="*" element={<ErrorComponent />} />
-                        </Routes>
-                    </Authenticated>
+                        </Route>
+                    </Routes>
                 </Refine>
             </BrowserRouter>
         );

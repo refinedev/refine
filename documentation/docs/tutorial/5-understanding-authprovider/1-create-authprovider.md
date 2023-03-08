@@ -1313,7 +1313,9 @@ const App = () => {
             routerProvider={routerProvider}
             //highlight-next-line
             dataProvider={dataProvider(API_URL, axiosInstance)}
-        />
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 ```
