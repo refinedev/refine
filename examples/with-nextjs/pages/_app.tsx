@@ -1,20 +1,29 @@
 import React from "react";
+import type { NextPage } from "next";
 import { AppProps } from "next/app";
 
 import { Refine } from "@refinedev/core";
-import { notificationProvider, Layout } from "@refinedev/antd";
+import { notificationProvider, Layout as AntdLayout } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/nextjs-router";
 import "@refinedev/antd/dist/reset.css";
-
 import "@styles/global.css";
 
 import { authProvider } from "src/authProvider";
 import { API_URL } from "../src/constants";
 
-// import { PostList, PostCreate, PostEdit, PostShow } from "@components";
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+    layout?: string;
+};
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+type AppPropsWithLayout = AppProps & {
+    Component: NextPageWithLayout;
+};
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+    const ActiveLayout =
+        Component.layout === "auth" ? React.Fragment : AntdLayout;
+
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
@@ -38,9 +47,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                 },
             ]}
         >
-            <Layout>
+            <ActiveLayout>
                 <Component {...pageProps} />
-            </Layout>
+            </ActiveLayout>
         </Refine>
     );
 }

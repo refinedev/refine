@@ -1,5 +1,10 @@
+import { Authenticated } from "@refinedev/core";
 import { AntdListInferencer } from "@refinedev/inferencer/antd";
 
 export default function PostList() {
-    return <AntdListInferencer />;
+    return (
+        <Authenticated redirectOnFail="/login">
+            <AntdListInferencer />
+        </Authenticated>
+    );
 }
