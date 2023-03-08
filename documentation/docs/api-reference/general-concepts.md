@@ -1,6 +1,6 @@
 ---
 id: general-concepts
-title: General Concepts
+title: General Concepts 🆙
 ---
 
 -   **refine** core is fully independent of UI. So you can use core components and hooks without any UI dependency.
