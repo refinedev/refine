@@ -6,7 +6,7 @@ import { DataGridPro, GridColumns } from "@mui/x-data-grid-pro";
 
 import { ICategory, IPost } from "interfaces";
 
-export const PostsList: React.FC = () => {
+export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>({
         initialCurrent: 2,
         initialPageSize: 10,
