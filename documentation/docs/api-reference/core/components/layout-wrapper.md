@@ -75,8 +75,8 @@ In this example, we hide the left sider only for this page. The rest should look
 
 [refine]: ./refine-config.md
 [custom pages]: /advanced-tutorials/custom-pages.md
-[refine#sider]: https://refine.dev/docs/api-reference/core/components/refine-config/#sider
-[refine#header]:https://refine.dev/docs/api-reference/core/components/refine-config/#header
-[refine#title]: https://refine.dev/docs/api-reference/core/components/refine-config/#title
-[refine#footer]: https://refine.dev/docs/api-reference/core/components/refine-config/#footer
-[refine#offlayoutarea]: https://refine.dev/docs/api-reference/core/components/refine-config/#offlayoutarea
+[refine#sider]: /api-reference/core/components/refine-config/#sider
+[refine#header]:/api-reference/core/components/refine-config/#header
+[refine#title]: /api-reference/core/components/refine-config/#title
+[refine#footer]: /api-reference/core/components/refine-config/#footer
+[refine#offlayoutarea]: /api-reference/core/components/refine-config/#offlayoutarea
