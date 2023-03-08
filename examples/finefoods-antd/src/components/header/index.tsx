@@ -6,7 +6,7 @@ import {
     useTranslate,
     useList,
 } from "@refinedev/core";
-
+import { Link } from "react-router-dom";
 import { SearchOutlined, DownOutlined } from "@ant-design/icons";
 
 import {
@@ -23,13 +23,11 @@ import {
     Layout as AntdLayout,
 } from "antd";
 
-import RefineReactRouter from "@refinedev/react-router-v6/legacy";
-
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";
 
 const { Header: AntdHeader } = AntdLayout;
-const { Link } = RefineReactRouter;
+
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
 
