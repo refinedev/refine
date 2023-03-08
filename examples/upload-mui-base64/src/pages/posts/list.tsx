@@ -6,7 +6,7 @@ import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
 import { ICategory, IPost } from "interfaces";
 
-export const PostsList: React.FC = () => {
+export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>();
 
     const categoryIds = dataGridProps.rows.map((item) => item.category.id);
