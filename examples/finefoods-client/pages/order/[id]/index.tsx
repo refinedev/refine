@@ -157,7 +157,6 @@ export const OrderDetail: React.FC<OrderPageProps> = ({ order }) => {
                     ))}
                 </div>
             </div>
-        </>
     );
 };
 
