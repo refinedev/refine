@@ -1,14 +1,14 @@
 import React from "react";
+import { Edit } from "@refinedev/chakra-ui";
 import {
-    Edit,
     FormControl,
     FormLabel,
     FormErrorMessage,
     Input,
     Select,
-} from "@pankod/refine-chakra-ui";
-import { useForm } from "@pankod/refine-react-hook-form";
-import { useSelect } from "@pankod/refine-core";
+} from "@chakra-ui/react";
+import { useForm } from "@refinedev/react-hook-form";
+import { useSelect } from "@refinedev/core";
 
 export const PostEdit = () => {
     const {
