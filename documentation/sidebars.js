@@ -171,13 +171,6 @@ module.exports = {
                                 },
                                 {
                                     type: "category",
-                                    label: "Refine",
-                                    items: [
-                                        "api-reference/core/hooks/refine/useTitle",
-                                    ],
-                                },
-                                {
-                                    type: "category",
                                     label: "Resource",
                                     items: [
                                         "api-reference/core/hooks/resource/useResource",

@@ -154,7 +154,7 @@
     },
     {
       "from": "/docs/core/hooks/refine/useTitle/",
-      "to": "/docs/api-reference/core/hooks/refine/useTitle/"
+      "to": "/docs/3.xx.xx/api-reference/core/hooks/refine/useTitle/"
     },
     {
       "from": "/docs/core/hooks/resource/useResource/",
@@ -731,6 +731,10 @@
     {
       "from": "/docs/api-reference/core/hooks/resource/useResourceWithRoute/",
       "to": "/docs/api-reference/core/hooks/resource/useResource/"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/refine/useTitle/",
+      "to": "/docs/3.xx.xx/api-reference/core/hooks/refine/useTitle/"
     }
   ]
 }
