@@ -151,13 +151,13 @@ export const generateFilters: any = (filters?: CrudFilters) => {
     return nestedQuery;
 };
 
-export type HasuraDataProviderOption = {
+export type HasuraDataProviderOptions = {
     idType?: "uuid" | "Int" | ((resource: string) => "uuid" | "Int");
 };
 
 const dataProvider = (
     client: GraphQLClient,
-    option?: HasuraDataProviderOption,
+    options?: HasuraDataProviderOptions,
 ): Required<DataProvider> => {
     const { idType } = option ?? {};
     const getIdType = (resource: string) => {
