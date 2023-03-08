@@ -311,24 +311,8 @@ This property is deprecated and only works with the legacy routers. When using t
 Custom route name for the resource.
 
 :::tip
-You can also pass any type of property into the `meta` object. This property you pass can be received from the [useResource](/api-reference/core/hooks/resource/useResource.md) and [useResourceWithRoute](/api-reference/core/hooks/resource/useResourceWithRoute.md) hooks as well as the components rendered in the `list`, `create`, `edit` and `show` pages.
 
-```tsx
-type DataType = {
-    id: number;
-    title: string;
-};
-
-//highlight-start
-type OptionType = {
-    yourCustomOption: string;
-};
-//highlight-end
-
-const PostList: React.FC<IResourceComponentsProps<DataType, OptionType>> = (props) => {
-    ...
-}
-```
+You can also pass any type of property into the `meta` object. This property you pass can be received from the [useResource](/api-reference/core/hooks/resource/useResource.md)
 
 :::
 

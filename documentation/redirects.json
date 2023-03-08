@@ -162,7 +162,7 @@
     },
     {
       "from": "/docs/core/hooks/resource/useResourceWithRoute/",
-      "to": "/docs/api-reference/core/hooks/resource/useResourceWithRoute/"
+      "to": "/docs/api-reference/core/hooks/resource/useResource/"
     },
     {
       "from": "/docs/core/hooks/show/useShow/",
@@ -726,7 +726,11 @@
     },
     {
       "from": "/docs/api-reference/core/components/layout-wrapper",
-      "to": "/docs/2.xx.xx/api-reference/core/components/layout-wrapper"
+      "to": "/docs/3.xx.xx/api-reference/core/components/layout-wrapper"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/resource/useResourceWithRoute/",
+      "to": "/docs/api-reference/core/hooks/resource/useResource/"
     }
   ]
 }

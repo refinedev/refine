@@ -181,7 +181,6 @@ module.exports = {
                                     label: "Resource",
                                     items: [
                                         "api-reference/core/hooks/resource/useResource",
-                                        "api-reference/core/hooks/resource/useResourceWithRoute",
                                     ],
                                 },
                                 {
