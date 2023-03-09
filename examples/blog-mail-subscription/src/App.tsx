@@ -35,13 +35,13 @@ function App() {
                 resources={[
                     {
                         name: "subscribers",
-                        list: SubscriberList,
-                        create: CreateSubscriber,
+                        list: "/subscribers",
+                        create: "/subscribers/create",
                     },
                     {
                         name: "messages",
-                        list: MessageList,
-                        create: MailCreate,
+                        list: "/messages",
+                        create: "/messages/create",
                     },
                 ]}
                 notificationProvider={notificationProvider}
@@ -97,7 +97,10 @@ function App() {
                     <Route
                         element={
                             <Authenticated fallback={<Outlet />}>
-                                <Layout>
+                                <Layout
+                                    Header={Header}
+                                    OffLayoutArea={OffLayoutArea}
+                                >
                                     <Outlet />
                                 </Layout>
                             </Authenticated>

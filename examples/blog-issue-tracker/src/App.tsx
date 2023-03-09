@@ -66,7 +66,7 @@ function App() {
                     <Route
                         element={
                             <Authenticated fallback={<Outlet />}>
-                                <NavigateToResource resource="companies" />
+                                <NavigateToResource resource="users" />
                             </Authenticated>
                         }
                     >

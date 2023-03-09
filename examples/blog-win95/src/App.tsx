@@ -14,10 +14,9 @@ import { ThemeProvider } from "styled-components";
 import { PostList, PostEdit, PostCreate } from "pages/posts";
 import { CategoryList, CategoryCreate, CategoryEdit } from "pages/category";
 import { LoginPage } from "pages/login";
-import { Footer } from "./components/footer";
+import Layout from "components/layout";
 
 import "./app.css";
-import Layout from "components/layout";
 
 function App() {
     return (
@@ -27,16 +26,6 @@ function App() {
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(supabaseClient)}
                     authProvider={authProvider}
-                    Layout={({ children }) => {
-                        return (
-                            <div className="main">
-                                <div className="layout">{children}</div>
-                                <div>
-                                    <Footer />
-                                </div>
-                            </div>
-                        );
-                    }}
                     resources={[
                         {
                             name: "posts",
