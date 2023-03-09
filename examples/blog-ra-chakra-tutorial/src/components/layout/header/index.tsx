@@ -9,10 +9,11 @@ import {
     useColorMode,
 } from "@chakra-ui/react";
 import { IconMoon, IconSun } from "@tabler/icons";
-import { IIdentity } from "interfaces";
 
 export const Header: React.FC = () => {
-    const { data: user } = useGetIdentity<IIdentity>();
+    const { data: user } = useGetIdentity({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const showUserInfo = user && (user.name || user.avatar);
 
     const { colorMode, toggleColorMode } = useColorMode();

@@ -6,10 +6,3 @@ export interface IPost {
     publishedAt: string;
     createdAt: string;
 }
-
-export interface IIdentity {
-    id: number;
-    name: string;
-    email: string;
-    avatar: string;
-}
