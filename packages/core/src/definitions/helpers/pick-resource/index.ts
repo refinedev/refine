@@ -1,5 +1,5 @@
 import { IResourceItem } from "src/interfaces/bindings/resource";
-import { pickNotDeprecated } from "../pickNotDeprecated";
+import { removeLeadingTrailingSlashes } from "../router/remove-leading-trailing-slashes";
 
 /**
  * Picks the resource based on the provided identifier.
@@ -21,8 +21,8 @@ export const pickResource = (
     if (legacy) {
         const resourceByRoute = resources.find(
             (r) =>
-                pickNotDeprecated(r.meta?.route, r.options?.route, r.route) ===
-                identifier,
+                removeLeadingTrailingSlashes(r.route ?? "") ===
+                removeLeadingTrailingSlashes(identifier),
         );
 
         const resource = resourceByRoute
