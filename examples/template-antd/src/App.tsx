@@ -1,27 +1,30 @@
-import React from "react";
-
 import { Refine } from "@refinedev/core";
 import {
     notificationProvider,
-    Layout,
-    ReadyPage,
+    WelcomePage,
     ErrorComponent,
 } from "@refinedev/antd";
-import "@refinedev/antd/dist/reset.css";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
+
+import "@refinedev/antd/dist/reset.css";
 
 function App() {
     return (
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            catchAll={<ErrorComponent />}
-            legacyRouterProvider={routerProvider}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider}
+            >
+                <Routes>
+                    <Route index element={<WelcomePage />} />
+
+                    <Route path="*" element={<ErrorComponent />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 }
 

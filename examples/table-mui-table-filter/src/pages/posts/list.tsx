@@ -27,7 +27,7 @@ import { Controller } from "react-hook-form";
 
 import { ICategory, IPost, IPostFilterVariables } from "interfaces";
 
-export const PostsList: React.FC = () => {
+export const PostList: React.FC = () => {
     const { dataGridProps, filters, search } = useDataGrid<
         IPost,
         HttpError,

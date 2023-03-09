@@ -33,17 +33,21 @@ export const createTree = (resources: IResourceItem[]): FlatTreeItem[] => {
         let currentTree = root;
 
         parents.forEach((parent) => {
-            if (!currentTree.children[parent.name]) {
-                currentTree.children[parent.name] = {
+            const key = parent.identifier ?? parent.name;
+
+            if (!currentTree.children[key]) {
+                currentTree.children[key] = {
                     item: parent,
                     children: {},
                 };
             }
-            currentTree = currentTree.children[parent.name];
+            currentTree = currentTree.children[key];
         });
 
-        if (!currentTree.children[resource.name]) {
-            currentTree.children[resource.name] = {
+        const key = resource.identifier ?? resource.name;
+
+        if (!currentTree.children[key]) {
+            currentTree.children[key] = {
                 item: resource,
                 children: {},
             };

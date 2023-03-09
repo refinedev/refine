@@ -249,7 +249,7 @@ We can use it with the `user` from the `useAuth0` hook.
 ## Example
 
 :::caution
-Auth0 example doesn't work in CodeSandbox embed mode. With [this](https://ussft.csb.app/) link, you can open the example in the browser and try it.
+Auth0 example doesn't work in CodeSandbox embed mode. With [this](https://cv8k99.csb.app/) link, you can open the example in the browser and try it.
 :::
 
 <CodeSandboxExample path="auth-auth0" />

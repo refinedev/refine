@@ -13,7 +13,7 @@ import { Table, Space } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostsList: React.FC<IResourceComponentsProps> = () => {
+export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
             {

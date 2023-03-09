@@ -1,10 +1,10 @@
 import * as React from "react";
-import { useRouterContext } from "@refinedev/core";
 import { AuthPage as AntdAuthPage, AuthProps } from "@refinedev/antd";
 
 import { Image } from "antd";
 
 import { StackBanner } from "components/banners";
+import { Link } from "react-router-dom";
 
 const authWrapperProps = {
     style: {
@@ -25,8 +25,6 @@ const contentProps = {
 };
 
 const renderAuthContent = (content: React.ReactNode) => {
-    const { Link } = useRouterContext();
-
     return (
         <div
             style={{

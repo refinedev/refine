@@ -1,57 +1,77 @@
 import { Refine } from "@refinedev/core";
-import { notificationProvider, ErrorComponent } from "@refinedev/antd";
+import { notificationProvider, ErrorComponent, Layout } from "@refinedev/antd";
 import { Layout as AntdLayout } from "antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList } from "pages/posts";
 import { CustomSider } from "components";
 
-const { Link } = routerProvider;
-
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            legacyRouterProvider={routerProvider}
-            Layout={({ children, Footer, OffLayoutArea }) => (
-                <AntdLayout>
-                    <AntdLayout.Header>
-                        <CustomSider />
-                    </AntdLayout.Header>
-                    <AntdLayout.Content>
-                        <AntdLayout.Content>
-                            <div style={{ padding: 24, minHeight: 360 }}>
-                                {children}
-                            </div>
-                        </AntdLayout.Content>
-                        {Footer && <Footer />}
-                    </AntdLayout.Content>
-                    {OffLayoutArea && <OffLayoutArea />}
-                </AntdLayout>
-            )}
-            Title={() => (
-                <Link to="/" style={{ float: "left", marginRight: "10px" }}>
-                    <img
-                        src="/refine.svg"
-                        alt="Refine"
-                        style={{ width: "100px" }}
-                    />
-                </Link>
-            )}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-        />
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider(API_URL)}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout
+                                Sider={() => null}
+                                Header={() => {
+                                    return (
+                                        <AntdLayout.Header>
+                                            <Link
+                                                to="/"
+                                                style={{
+                                                    float: "left",
+                                                    marginRight: "10px",
+                                                }}
+                                            >
+                                                <img
+                                                    src="/refine.svg"
+                                                    alt="Refine"
+                                                    style={{ width: "100px" }}
+                                                />
+                                            </Link>
+                                            <CustomSider />
+                                        </AntdLayout.Header>
+                                    );
+                                }}
+                            >
+                                <AntdLayout.Content>
+                                    <div
+                                        style={{ padding: 24, minHeight: 360 }}
+                                    >
+                                        <Outlet />
+                                    </div>
+                                </AntdLayout.Content>
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+                        <Route path="/posts" element={<PostList />} />
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 

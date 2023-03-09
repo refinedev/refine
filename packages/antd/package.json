@@ -25,7 +25,7 @@
     "devDependencies": {
         "@refinedev/cli": "^1.15.0",
         "@refinedev/ui-tests": "^0.11.6",
-        "@refinedev/core": "^3.95.1",
+        "@refinedev/core": "^3.101.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
@@ -48,7 +48,7 @@
     },
     "dependencies": {
         "@ant-design/icons": "^5.0.1",
-        "@ant-design/pro-layout": "^7.3.4",
+        "@ant-design/pro-layout": "7.8.3",
         "@refinedev/ui-types": "^0.14.2",
         "@tanstack/react-query": "^4.10.1",
         "antd": "^5.0.5",

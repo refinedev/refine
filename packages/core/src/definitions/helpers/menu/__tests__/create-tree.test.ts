@@ -122,4 +122,45 @@ describe("createTree", () => {
             },
         ]);
     });
+
+    it("should define a key based on the identifier", () => {
+        const resources = [
+            {
+                name: "posts",
+            },
+            {
+                name: "posts",
+                identifier: "recent-posts",
+                meta: { parent: "posts" },
+            },
+            {
+                name: "posts",
+                identifier: "featured-posts",
+                meta: { parent: "posts" },
+            },
+        ];
+
+        expect(createTree(resources)).toEqual([
+            {
+                name: "posts",
+                key: "posts",
+                children: [
+                    {
+                        name: "posts",
+                        key: "posts/recent-posts",
+                        identifier: "recent-posts",
+                        meta: { parent: "posts" },
+                        children: [],
+                    },
+                    {
+                        name: "posts",
+                        key: "posts/featured-posts",
+                        identifier: "featured-posts",
+                        meta: { parent: "posts" },
+                        children: [],
+                    },
+                ],
+            },
+        ]);
+    });
 });

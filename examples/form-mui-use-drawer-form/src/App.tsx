@@ -2,42 +2,62 @@ import { Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
-    ReadyPage,
     LightTheme,
     notificationProvider,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
 
-import { PostsList } from "pages/posts";
+import { PostList } from "pages/posts";
+
+const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <Refine
-                    legacyRouterProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    Layout={Layout}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: PostsList,
-                        },
-                    ]}
+        <BrowserRouter>
+            <ThemeProvider theme={LightTheme}>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
                 />
-            </RefineSnackbarProvider>
-        </ThemeProvider>
+                <RefineSnackbarProvider>
+                    <Refine
+                        routerProvider={routerProvider}
+                        dataProvider={dataProvider(API_URL)}
+                        notificationProvider={notificationProvider}
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                }
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="posts" />
+                                    }
+                                />
+                                <Route path="/posts" element={<PostList />} />
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </RefineSnackbarProvider>
+            </ThemeProvider>
+        </BrowserRouter>
     );
 };
 
