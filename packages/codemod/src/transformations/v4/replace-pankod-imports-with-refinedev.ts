@@ -1,93 +1,104 @@
-import { API, Collection, FileInfo, JSCodeshift } from "jscodeshift";
-import fs from "fs";
-import path from "path";
-import {
-    addPackage,
-    install,
-    isPackageJsonUpdated,
-    removePackage,
-} from "../../helpers";
-import checkPackageLock from "../../helpers/checkPackageLock";
+import { Collection, JSCodeshift } from "jscodeshift";
+import { CONFIG_FILE_NAME, CodemodConfig } from "../../helpers";
 
 export const parser = "tsx";
 
 const previousScope = "@pankod/refine-";
 const newScope = "@refinedev/";
 
-const renameImports = (j: JSCodeshift, source: Collection) => {
-    source
-        .find(j.ImportDeclaration)
-        .filter((path) =>
-            path.node.source.value?.toString()?.startsWith(previousScope),
-        )
-        .forEach((path) => {
-            const oldName = path.node.source.value?.toString() ?? "";
-            const newName = `${newScope}${oldName.replace(previousScope, "")}`;
+const deprecatedPackages = [
+    "@pankod/refine-react-location",
+    "@pankod/refine-react-router",
+];
 
-            addPackage(process.cwd(), { [newName]: "latest" });
-            removePackage(process.cwd(), [oldName]);
-
-            j(path).replaceWith(
-                j.importDeclaration(path.node.specifiers, j.literal(newName)),
-            );
-        });
+const getOldPackageName = (oldName: string) => {
+    return `${previousScope}${
+        oldName.replace(previousScope, "").split("/")[0]
+    }`;
 };
 
-const renameExports = (j: JSCodeshift, source: Collection) => {
+const getNewPackageName = (oldName: string) => {
+    return `${newScope}${oldName.replace(previousScope, "").split("/")[0]}`;
+};
+
+const getNewImportValue = (oldValue: string) => {
+    return oldValue.replace(previousScope, newScope);
+};
+
+const renameImports = (j: JSCodeshift, source: Collection) => {
+    const config = new CodemodConfig(CONFIG_FILE_NAME);
+
     source
-        .find(j.ExportNamedDeclaration)
+        .find(j.ImportDeclaration)
         .filter(
             (path) =>
-                path.node.source &&
-                path.node.source.value?.toString()?.startsWith(previousScope),
+                path.node.source.value?.toString()?.startsWith(previousScope) &&
+                !deprecatedPackages.includes(
+                    path.node.source.value?.toString() ?? "",
+                ),
         )
         .forEach((path) => {
-            const oldName = path.node.source.value?.toString() ?? "";
-            const newName = `${newScope}${oldName.replace(previousScope, "")}`;
+            // for example import line is: @pankod/refine-antd/dist/style.css
+            const oldImportValue = path.node.source.value?.toString() ?? "";
 
-            addPackage(process.cwd(), { [newName]: "latest" });
-            removePackage(process.cwd(), [oldName]);
+            // getOldPackageName will return @pankod/refine-antd
+            const oldName = getOldPackageName(oldImportValue);
+
+            // getNewPackageName will return @refinedev/antd
+            const newName = getNewPackageName(oldName);
+
+            // getNewImportValue will return @refinedev/antd/dist/style.css
+            const newImportValue = getNewImportValue(oldImportValue);
+
+            config.addPackage(newName);
+            config.removePackage(oldName);
 
             j(path).replaceWith(
-                j.exportNamedDeclaration(
-                    path.node.declaration,
+                j.importDeclaration(
                     path.node.specifiers,
-                    j.literal(newName),
+                    j.literal(newImportValue),
                 ),
             );
         });
 };
 
-export const replacePankodImportsWithRefineDevPostTransform = async (
-    files: any,
-    flags: any,
-) => {
-    const rootDir = path.join(process.cwd(), files[0]);
-    const packageJsonPath = path.join(rootDir, "package.json");
-    const useYarn = checkPackageLock(rootDir) === "yarn.lock";
-    const needsInstall = isPackageJsonUpdated(rootDir);
+const renameExports = (j: JSCodeshift, source: Collection) => {
+    const config = new CodemodConfig(CONFIG_FILE_NAME);
 
-    if (!needsInstall) {
-        return;
-    }
+    source
+        .find(j.ExportNamedDeclaration)
+        .filter(
+            (path) =>
+                path.node.source &&
+                path.node.source.value?.toString()?.startsWith(previousScope) &&
+                !deprecatedPackages.includes(
+                    path.node.source.value?.toString() ?? "",
+                ),
+        )
+        .forEach((path) => {
+            // for example import line is: @pankod/refine-antd/dist/style.css
+            const oldImportValue = path.node.source.value?.toString() ?? "";
 
-    // Check root package.json exists
-    try {
-        JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
-    } catch (err) {
-        console.error(
-            `Error: failed to load package.json from ${packageJsonPath}, ensure provided directory is root.`,
-        );
-    }
+            // getOldPackageName will return @pankod/refine-antd
+            const oldName = getOldPackageName(oldImportValue);
 
-    if (!flags.dry) {
-        if (isPackageJsonUpdated(rootDir)) {
-            await install(rootDir, null, {
-                useYarn,
-                isOnline: true,
-            });
-        }
-    }
+            // getNewPackageName will return @refinedev/antd
+            const newName = getNewPackageName(oldName);
+
+            // getNewImportValue will return @refinedev/antd/dist/style.css
+            const newImportValue = getNewImportValue(oldImportValue);
+
+            config.addPackage(newName);
+            config.removePackage(oldName);
+
+            j(path).replaceWith(
+                j.exportNamedDeclaration(
+                    path.node.declaration,
+                    path.node.specifiers,
+                    j.literal(newImportValue),
+                ),
+            );
+        });
 };
 
 export const replacePankodImportsWithRefineDev = async (

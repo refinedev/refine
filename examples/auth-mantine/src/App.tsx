@@ -1,16 +1,19 @@
-import { AuthBindings, Refine } from "@refinedev/core";
+import { AuthBindings, Authenticated, Refine } from "@refinedev/core";
 import {
     AuthPage,
     Layout,
     ErrorComponent,
-    ReadyPage,
     notificationProvider,
     LightTheme,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
@@ -112,79 +115,139 @@ const App: React.FC = () => {
     };
 
     return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <Refine
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    authProvider={authProvider}
-                    legacyRouterProvider={{
-                        ...routerProvider,
-                        routes: [
+        <BrowserRouter>
+            <MantineProvider
+                theme={LightTheme}
+                withNormalizeCSS
+                withGlobalStyles
+            >
+                <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+                <NotificationsProvider position="top-right">
+                    <Refine
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        authProvider={authProvider}
+                        routerProvider={routerProvider}
+                        notificationProvider={notificationProvider}
+                        resources={[
                             {
-                                path: "/register",
-                                element: (
-                                    <AuthPage
-                                        type="register"
-                                        providers={[
-                                            {
-                                                name: "google",
-                                                label: "Sign in with Google",
-                                                icon: <IconBrandGoogle />,
-                                            },
-                                            {
-                                                name: "github",
-                                                label: "Sign in with GitHub",
-                                                icon: <IconBrandGithub />,
-                                            },
-                                        ]}
-                                    />
-                                ),
+                                name: "posts",
+                                list: "/posts",
+                                show: "/posts/show/:id",
+                                edit: "/posts/edit/:id",
+                                create: "/posts/create",
                             },
-                            {
-                                path: "/forgot-password",
-                                element: <AuthPage type="forgotPassword" />,
-                            },
-                            {
-                                path: "/update-password",
-                                element: <AuthPage type="updatePassword" />,
-                            },
-                        ],
-                    }}
-                    notificationProvider={notificationProvider}
-                    LoginPage={() => (
-                        <AuthPage
-                            providers={[
-                                {
-                                    name: "google",
-                                    label: "Sign in with Google",
-                                    icon: <IconBrandGoogle />,
-                                },
-                                {
-                                    name: "github",
-                                    label: "Sign in with GitHub",
-                                    icon: <IconBrandGithub />,
-                                },
-                            ]}
-                        />
-                    )}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: PostList,
-                            show: PostShow,
-                            edit: PostEdit,
-                            create: PostCreate,
-                        },
-                    ]}
-                />
-            </NotificationsProvider>
-        </MantineProvider>
+                        ]}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Authenticated
+                                        fallback={
+                                            <CatchAllNavigate to="/login" />
+                                        }
+                                    >
+                                        <Layout>
+                                            <Outlet />
+                                        </Layout>
+                                    </Authenticated>
+                                }
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="posts" />
+                                    }
+                                />
+                                <Route path="/posts" element={<PostList />} />
+                                <Route
+                                    path="/posts/show/:id"
+                                    element={<PostShow />}
+                                />
+                                <Route
+                                    path="/posts/create"
+                                    element={<PostCreate />}
+                                />
+                                <Route
+                                    path="/posts/edit/:id"
+                                    element={<PostEdit />}
+                                />
+                            </Route>
+
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource resource="posts" />
+                                    </Authenticated>
+                                }
+                            >
+                                <Route
+                                    path="/login"
+                                    element={
+                                        <AuthPage
+                                            type="login"
+                                            providers={[
+                                                {
+                                                    name: "google",
+                                                    label: "Sign in with Google",
+                                                    icon: <IconBrandGoogle />,
+                                                },
+                                                {
+                                                    name: "github",
+                                                    label: "Sign in with GitHub",
+                                                    icon: <IconBrandGithub />,
+                                                },
+                                            ]}
+                                        />
+                                    }
+                                />
+                                <Route
+                                    path="/register"
+                                    element={
+                                        <AuthPage
+                                            type="register"
+                                            providers={[
+                                                {
+                                                    name: "google",
+                                                    label: "Sign in with Google",
+                                                    icon: <IconBrandGoogle />,
+                                                },
+                                                {
+                                                    name: "github",
+                                                    label: "Sign in with GitHub",
+                                                    icon: <IconBrandGithub />,
+                                                },
+                                            ]}
+                                        />
+                                    }
+                                />
+                                <Route
+                                    path="/forgot-password"
+                                    element={<AuthPage type="forgotPassword" />}
+                                />
+                                <Route
+                                    path="/update-password"
+                                    element={<AuthPage type="updatePassword" />}
+                                />
+                            </Route>
+
+                            <Route
+                                element={
+                                    <Authenticated fallback={<Outlet />}>
+                                        <Layout>
+                                            <Outlet />
+                                        </Layout>
+                                    </Authenticated>
+                                }
+                            >
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </NotificationsProvider>
+            </MantineProvider>
+        </BrowserRouter>
     );
 };
 

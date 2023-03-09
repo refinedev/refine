@@ -1,19 +1,22 @@
-import { Refine, AuthBindings } from "@refinedev/core";
+import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
 import {
     notificationProvider,
-    LoginPage,
     Layout,
     ErrorComponent,
+    AuthPage,
 } from "@refinedev/antd";
 import { DataProvider, AuthHelper } from "@refinedev/strapi-v4";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
 import axios from "axios";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit } from "pages/posts";
-import { UsersList } from "pages/users";
+import { UserList } from "pages/users";
 import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
 
 import { TOKEN_KEY, API_URL } from "./constants";
@@ -23,9 +26,9 @@ const App: React.FC = () => {
     const strapiAuthHelper = AuthHelper(API_URL + "/api");
 
     const authProvider: AuthBindings = {
-        login: async ({ username, password }) => {
+        login: async ({ email, password }) => {
             const { data, status } = await strapiAuthHelper.login(
-                username,
+                email,
                 password,
             );
             if (status === 200) {
@@ -43,7 +46,7 @@ const App: React.FC = () => {
             }
             return {
                 success: false,
-                error: new Error("Invalid username or password"),
+                error: new Error("Invalid email or password"),
             };
         },
         logout: async () => {
@@ -94,33 +97,98 @@ const App: React.FC = () => {
     };
 
     return (
-        <Refine
-            authProvider={authProvider}
-            dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                },
-                {
-                    name: "categories",
-                    list: CategoryList,
-                    create: CategoryCreate,
-                    edit: CategoryEdit,
-                },
-                {
-                    name: "users",
-                    list: UsersList,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            LoginPage={LoginPage}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+        <BrowserRouter>
+            <Refine
+                authProvider={authProvider}
+                dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories",
+                        create: "/categories/create",
+                        edit: "/categories/edit/:id",
+                    },
+                    {
+                        name: "users",
+                        list: "/users",
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+                        <Route path="/posts" element={<PostList />} />
+                        <Route path="/posts/create" element={<PostCreate />} />
+                        <Route path="/posts/edit/:id" element={<PostEdit />} />
+                        <Route path="/categories" element={<CategoryList />} />
+                        <Route
+                            path="/categories/create"
+                            element={<CategoryCreate />}
+                        />
+                        <Route
+                            path="/categories/edit/:id"
+                            element={<CategoryEdit />}
+                        />
+                        <Route path="/users" element={<UserList />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource />
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            path="/login"
+                            element={
+                                <AuthPage
+                                    formProps={{
+                                        initialValues: {
+                                            email: "demo@refine.dev",
+                                            password: "demodemo",
+                                        },
+                                    }}
+                                />
+                            }
+                        />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 

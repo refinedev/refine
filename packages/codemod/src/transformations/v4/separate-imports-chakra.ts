@@ -1,37 +1,22 @@
 import { Collection, JSCodeshift } from "jscodeshift";
-import fs from "fs";
-import path from "path";
-import { install } from "../../helpers";
-import checkPackageLock from "../../helpers/checkPackageLock";
-import separateImports from "../../helpers/separateImports";
+import {
+    CONFIG_FILE_NAME,
+    CodemodConfig,
+    separateImports,
+} from "../../helpers";
 import { exported, rename } from "../../definitions/separated-imports/chakra";
 
-export const separateImportsChakraPostTransform = async (
-    files: any,
-    flags: any,
-) => {
-    const rootDir = path.join(process.cwd(), files[0]);
-    const packageJsonPath = path.join(rootDir, "package.json");
-    const useYarn = checkPackageLock(rootDir) === "yarn.lock";
-
-    // Check root package.json exists
-    try {
-        JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
-    } catch (err) {
-        console.error(
-            `Error: failed to load package.json from ${packageJsonPath}, ensure provided directory is root.`,
-        );
-    }
-
-    if (!flags.dry) {
-        await install(rootDir, ["@chakra-ui/react@^2.5.1"], {
-            useYarn,
-            isOnline: true,
-        });
-    }
-};
-
 export const separateImportsChakra = (j: JSCodeshift, source: Collection) => {
+    const config = new CodemodConfig(CONFIG_FILE_NAME);
+
+    if (
+        source.find(j.ImportDeclaration, {
+            source: { value: "@pankod/refine-chakra-ui" },
+        }).length > 0
+    ) {
+        config.addPackage("@chakra-ui/react", "^2.5.1");
+    }
+
     separateImports({
         j,
         source,

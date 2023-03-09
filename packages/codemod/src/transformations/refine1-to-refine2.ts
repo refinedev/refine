@@ -2,7 +2,7 @@ import { API, JSCodeshift, Collection, FileInfo } from "jscodeshift";
 import fs from "fs";
 import path from "path";
 import { install } from "../helpers";
-import checkPackageLock from "../helpers/checkPackageLock";
+import { checkPackageLock } from "../helpers";
 
 export const parser = "tsx";
 

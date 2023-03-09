@@ -1,48 +1,30 @@
 import { Collection, JSCodeshift } from "jscodeshift";
-import fs from "fs";
-import path from "path";
-import { install } from "../../helpers";
-import checkPackageLock from "../../helpers/checkPackageLock";
-import separateImports from "../../helpers/separateImports";
+import {
+    CONFIG_FILE_NAME,
+    CodemodConfig,
+    separateImports,
+} from "../../helpers";
 import {
     exported,
     rename,
     other,
 } from "../../definitions/separated-imports/mantine";
 
-export const separateImportsMantinePostTransform = async (files, flags) => {
-    const rootDir = path.join(process.cwd(), files[0]);
-    const packageJsonPath = path.join(rootDir, "package.json");
-    const useYarn = checkPackageLock(rootDir) === "yarn.lock";
-
-    // Check root package.json exists
-    try {
-        JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
-    } catch (err) {
-        console.error(
-            `Error: failed to load package.json from ${packageJsonPath}, ensure provided directory is root.`,
-        );
-    }
-
-    if (!flags.dry) {
-        await install(
-            rootDir,
-            [
-                "@emotion/react@^11.8.2",
-                "@mantine/core@^5.5.6",
-                "@mantine/hooks@^5.5.6",
-                "@mantine/form@^5.5.6",
-                "@mantine/notifications@^5.5.6",
-            ],
-            {
-                useYarn,
-                isOnline: true,
-            },
-        );
-    }
-};
-
 export const separateImportsMantine = (j: JSCodeshift, source: Collection) => {
+    const config = new CodemodConfig(CONFIG_FILE_NAME);
+
+    if (
+        source.find(j.ImportDeclaration, {
+            source: { value: "@pankod/refine-mantine" },
+        }).length > 0
+    ) {
+        config.addPackage("@mantine/core", "^5.5.6");
+        config.addPackage("@mantine/hooks", "^5.5.6");
+        config.addPackage("@mantine/form", "^5.5.6");
+        config.addPackage("@mantine/notifications", "^5.5.6");
+        config.addPackage("@emotion/react", "^11.8.2");
+    }
+
     separateImports({
         j,
         source,

@@ -790,7 +790,7 @@ const addCommentToUseSimpleList = (j: JSCodeshift, source: Collection) => {
 
     useSimpleListHooks.forEach((path) => {
         const comment = j.commentLine(
-            "Now, `useSimpleList` not accept to all Ant Design `List` component props. You can directly use `List` component instead.",
+            "`useSimpleList` does not accept all of Ant Design's `List` component props anymore. You can directly use `List` component instead.",
             false,
             true,
         );
