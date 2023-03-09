@@ -16,7 +16,7 @@ const mockUsers = [
 const COOKIE_NAME = "user";
 
 export const authProvider: AuthBindings = {
-    login: ({ email }) => {
+    login: async ({ email }) => {
         // Suppose we actually send a request to the back end here.
         const user = mockUsers.find((item) => item.email === email);
 
@@ -24,6 +24,7 @@ export const authProvider: AuthBindings = {
             Cookies.set(COOKIE_NAME, JSON.stringify(user));
             return {
                 success: true,
+                redirectTo: "/",
             };
         }
 
@@ -31,7 +32,7 @@ export const authProvider: AuthBindings = {
             success: false,
         };
     },
-    logout: () => {
+    logout: async () => {
         Cookies.remove(COOKIE_NAME);
 
         return {
@@ -39,7 +40,7 @@ export const authProvider: AuthBindings = {
             redirectTo: "/login",
         };
     },
-    onError: (error) => {
+    onError: async (error) => {
         if (error && error.statusCode === 401) {
             return {
                 error: new Error("Unauthorized"),
@@ -50,10 +51,9 @@ export const authProvider: AuthBindings = {
 
         return {};
     },
-    check: async (context) => {
+    check: async (request) => {
         let user = undefined;
-        if (context) {
-            const { request } = context;
+        if (request) {
             const parsedCookie = cookie.parse(request.headers.get("Cookie"));
             user = parsedCookie[COOKIE_NAME];
         } else {
