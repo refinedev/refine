@@ -14,6 +14,7 @@ import {
     CategoryEdit,
     CategoryShow,
 } from "pages/categories";
+import { CustomSider } from "components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -49,7 +50,7 @@ const App: React.FC = () => {
                 <Routes>
                     <Route
                         element={
-                            <Layout>
+                            <Layout Sider={CustomSider}>
                                 <Outlet />
                             </Layout>
                         }
