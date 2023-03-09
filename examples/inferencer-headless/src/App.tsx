@@ -50,51 +50,45 @@ const App: React.FC = () => {
                         index
                         element={<NavigateToResource resource="samples" />}
                     />
-                    <Route path="/samples" element={<HeadlessInferencer />} />
-                    <Route
-                        path="/samples/create"
-                        element={<HeadlessInferencer />}
-                    />
-                    <Route
-                        path="/samples/edit/:id"
-                        element={<HeadlessInferencer />}
-                    />
-                    <Route
-                        path="/samples/show/:id"
-                        element={<HeadlessInferencer />}
-                    />
 
-                    <Route
-                        path="/categories"
-                        element={<HeadlessInferencer />}
-                    />
-                    <Route
-                        path="/categories/create"
-                        element={<HeadlessInferencer />}
-                    />
-                    <Route
-                        path="/categories/edit/:id"
-                        element={<HeadlessInferencer />}
-                    />
-                    <Route
-                        path="/categories/show/:id"
-                        element={<HeadlessInferencer />}
-                    />
+                    <Route path="samples">
+                        <Route index element={<HeadlessInferencer />} />
+                        <Route path="create" element={<HeadlessInferencer />} />
+                        <Route
+                            path="edit/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route
+                            path="show/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                    </Route>
 
-                    <Route path="/users" element={<HeadlessInferencer />} />
-                    <Route
-                        path="/users/create"
-                        element={<HeadlessInferencer />}
-                    />
-                    <Route
-                        path="/users/edit/:id"
-                        element={<HeadlessInferencer />}
-                    />
-                    <Route
-                        path="/users/show/:id"
-                        element={<HeadlessInferencer />}
-                    />
+                    <Route path="categories">
+                        <Route index element={<HeadlessInferencer />} />
+                        <Route path="create" element={<HeadlessInferencer />} />
+                        <Route
+                            path="edit/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route
+                            path="show/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                    </Route>
 
+                    <Route path="users">
+                        <Route index element={<HeadlessInferencer />} />
+                        <Route path="create" element={<HeadlessInferencer />} />
+                        <Route
+                            path="edit/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                        <Route
+                            path="show/:id"
+                            element={<HeadlessInferencer />}
+                        />
+                    </Route>
                     <Route path="*" element={<ErrorComponent />} />
                 </Routes>
             </Refine>

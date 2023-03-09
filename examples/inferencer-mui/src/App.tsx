@@ -75,56 +75,54 @@ const App: React.FC = () => {
                                         <NavigateToResource resource="samples" />
                                     }
                                 />
-                                <Route
-                                    path="/samples"
-                                    element={<MuiInferencer />}
-                                />
-                                <Route
-                                    path="/samples/create"
-                                    element={<MuiInferencer />}
-                                />
-                                <Route
-                                    path="/samples/edit/:id"
-                                    element={<MuiInferencer />}
-                                />
-                                <Route
-                                    path="/samples/show/:id"
-                                    element={<MuiInferencer />}
-                                />
 
-                                <Route
-                                    path="/categories"
-                                    element={<MuiInferencer />}
-                                />
-                                <Route
-                                    path="/categories/create"
-                                    element={<MuiInferencer />}
-                                />
-                                <Route
-                                    path="/categories/edit/:id"
-                                    element={<MuiInferencer />}
-                                />
-                                <Route
-                                    path="/categories/show/:id"
-                                    element={<MuiInferencer />}
-                                />
+                                <Route path="samples">
+                                    <Route index element={<MuiInferencer />} />
+                                    <Route
+                                        path="create"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                </Route>
 
-                                <Route
-                                    path="/users"
-                                    element={<MuiInferencer />}
-                                />
-                                <Route
-                                    path="/users/create"
-                                    element={<MuiInferencer />}
-                                />
-                                <Route
-                                    path="/users/edit/:id"
-                                    element={<MuiInferencer />}
-                                />
-                                <Route
-                                    path="/users/show/:id"
-                                    element={<MuiInferencer />}
-                                />
+                                <Route path="categories">
+                                    <Route index element={<MuiInferencer />} />
+                                    <Route
+                                        path="create"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                </Route>
+
+                                <Route path="users">
+                                    <Route index element={<MuiInferencer />} />
+                                    <Route
+                                        path="create"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MuiInferencer />}
+                                    />
+                                </Route>
 
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>

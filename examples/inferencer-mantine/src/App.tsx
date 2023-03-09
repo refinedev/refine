@@ -75,56 +75,63 @@ const App: React.FC = () => {
                                         <NavigateToResource resource="samples" />
                                     }
                                 />
-                                <Route
-                                    path="/samples"
-                                    element={<MantineInferencer />}
-                                />
-                                <Route
-                                    path="/samples/create"
-                                    element={<MantineInferencer />}
-                                />
-                                <Route
-                                    path="/samples/edit/:id"
-                                    element={<MantineInferencer />}
-                                />
-                                <Route
-                                    path="/samples/show/:id"
-                                    element={<MantineInferencer />}
-                                />
 
-                                <Route
-                                    path="/categories"
-                                    element={<MantineInferencer />}
-                                />
-                                <Route
-                                    path="/categories/create"
-                                    element={<MantineInferencer />}
-                                />
-                                <Route
-                                    path="/categories/edit/:id"
-                                    element={<MantineInferencer />}
-                                />
-                                <Route
-                                    path="/categories/show/:id"
-                                    element={<MantineInferencer />}
-                                />
+                                <Route path="samples">
+                                    <Route
+                                        index
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                </Route>
 
-                                <Route
-                                    path="/users"
-                                    element={<MantineInferencer />}
-                                />
-                                <Route
-                                    path="/users/create"
-                                    element={<MantineInferencer />}
-                                />
-                                <Route
-                                    path="/users/edit/:id"
-                                    element={<MantineInferencer />}
-                                />
-                                <Route
-                                    path="/users/show/:id"
-                                    element={<MantineInferencer />}
-                                />
+                                <Route path="categories">
+                                    <Route
+                                        index
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                </Route>
+
+                                <Route path="users">
+                                    <Route
+                                        index
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="create"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<MantineInferencer />}
+                                    />
+                                </Route>
 
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>

@@ -68,56 +68,54 @@ const App: React.FC = () => {
                                     <NavigateToResource resource="samples" />
                                 }
                             />
-                            <Route
-                                path="/samples"
-                                element={<ChakraUIInferencer />}
-                            />
-                            <Route
-                                path="/samples/create"
-                                element={<ChakraUIInferencer />}
-                            />
-                            <Route
-                                path="/samples/edit/:id"
-                                element={<ChakraUIInferencer />}
-                            />
-                            <Route
-                                path="/samples/show/:id"
-                                element={<ChakraUIInferencer />}
-                            />
 
-                            <Route
-                                path="/categories"
-                                element={<ChakraUIInferencer />}
-                            />
-                            <Route
-                                path="/categories/create"
-                                element={<ChakraUIInferencer />}
-                            />
-                            <Route
-                                path="/categories/edit/:id"
-                                element={<ChakraUIInferencer />}
-                            />
-                            <Route
-                                path="/categories/show/:id"
-                                element={<ChakraUIInferencer />}
-                            />
+                            <Route path="samples">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                            </Route>
 
-                            <Route
-                                path="/users"
-                                element={<ChakraUIInferencer />}
-                            />
-                            <Route
-                                path="/users/create"
-                                element={<ChakraUIInferencer />}
-                            />
-                            <Route
-                                path="/users/edit/:id"
-                                element={<ChakraUIInferencer />}
-                            />
-                            <Route
-                                path="/users/show/:id"
-                                element={<ChakraUIInferencer />}
-                            />
+                            <Route path="categories">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                            </Route>
+
+                            <Route path="users">
+                                <Route index element={<ChakraUIInferencer />} />
+                                <Route
+                                    path="create"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                                <Route
+                                    path="show/:id"
+                                    element={<ChakraUIInferencer />}
+                                />
+                            </Route>
 
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
