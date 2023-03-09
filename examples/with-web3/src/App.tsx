@@ -6,6 +6,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
+import { DashboardOutlined } from "@ant-design/icons";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -24,6 +25,13 @@ function App() {
                 dataProvider={dataProvider(API_URL)}
                 authProvider={authProvider}
                 resources={[
+                    {
+                        name: "dashboard",
+                        list: "/",
+                        meta: {
+                            icon: <DashboardOutlined />,
+                        },
+                    },
                     {
                         name: "posts",
                         list: "/posts",

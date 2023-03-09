@@ -3,6 +3,7 @@ import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { DashboardOutlined } from "@ant-design/icons";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -18,6 +19,13 @@ const App: React.FC = () => {
                 dataProvider={dataProvider(API_URL)}
                 routerProvider={routerProvider}
                 resources={[
+                    {
+                        name: "dashboard",
+                        list: "/",
+                        meta: {
+                            icon: <DashboardOutlined />,
+                        },
+                    },
                     {
                         name: "posts",
                         list: "/posts",
