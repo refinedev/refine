@@ -1,9 +1,8 @@
 import React from "react";
-import { NextPage } from "next";
 import { AppProps } from "next/app";
 
 import { Refine } from "@refinedev/core";
-import { notificationProvider, Layout } from "@refinedev/antd";
+import { notificationProvider } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/nextjs-router";
 import "@refinedev/antd/dist/reset.css";
@@ -11,17 +10,9 @@ import "@refinedev/antd/dist/reset.css";
 import "@styles/global.css";
 
 import { authProvider } from "src/authProvider";
-import { API_URL } from "../src/constants";
+import { API_URL } from "src/constants";
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-    layout?: string;
-};
-
-type AppPropsWithLayout = AppProps & {
-    Component: NextPageWithLayout;
-};
-
-function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <Refine
             routerProvider={routerProvider}
