@@ -255,7 +255,7 @@ export const CustomSider: React.FC = ({ Title }) => {
                     </SubMenu>
                 );
             }
-            const isSelected = route === selectedKey;
+            const isSelected = key === selectedKey;
             const isRoute = !(
                 meta?.parent !== undefined && children.length === 0
             );

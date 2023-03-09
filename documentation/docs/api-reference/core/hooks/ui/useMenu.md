@@ -62,7 +62,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         return (
             <>
                 {menuItems.map(({ name, label, icon, route }) => {
-                    const isSelected = route === selectedKey;
+                    const isSelected = key === selectedKey;
                     return (
                         <li key={name}>
                             <Link
@@ -249,7 +249,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                         );
                     }
 
-                    const isSelected = route === selectedKey;
+                    const isSelected = key === selectedKey;
 
                     return (
                         <li key={label}>
