@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     CssBaseline,
     GlobalStyles,
@@ -15,6 +15,7 @@ function App() {
         <ThemeProvider theme={LightTheme}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+            <GitHubBanner />
             <Refine
                 Layout={Layout}
                 routerProvider={routerProvider}

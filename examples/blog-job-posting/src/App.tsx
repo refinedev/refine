@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import nestjsxCrudDataProvider from "@pankod/refine-nestjsx-crud";
 import {
@@ -21,41 +21,44 @@ const App: React.FC = () => {
     const dataProvider = nestjsxCrudDataProvider(API_URL);
 
     return (
-        <Refine
-            routerProvider={{
-                ...routerProvider,
-                /**
-                 * By default refine uses the first route with `list` property as the initial route.
-                 * If you want to change the initial route, you can bind the `initialRoute` property to the `RouterComponent` property.
-                 *
-                 * Example:
-                 *
-                 *  RouterComponent: routerProvider.RouterComponent.bind({
-                 *     initialRoute: "/posts",
-                 *  }),
-                 */
-            }}
-            dataProvider={dataProvider}
-            resources={[
-                {
-                    name: "companies",
-                    list: CompanyList,
-                    create: CompanyCreate,
-                    edit: CompanyEdit,
-                    show: CompanyShow,
-                },
-                {
-                    name: "jobs",
-                    list: JobList,
-                    create: JobCreate,
-                    edit: JobEdit,
-                    show: CompanyShow,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+        <>
+            <GitHubBanner />
+            <Refine
+                routerProvider={{
+                    ...routerProvider,
+                    /**
+                     * By default refine uses the first route with `list` property as the initial route.
+                     * If you want to change the initial route, you can bind the `initialRoute` property to the `RouterComponent` property.
+                     *
+                     * Example:
+                     *
+                     *  RouterComponent: routerProvider.RouterComponent.bind({
+                     *     initialRoute: "/posts",
+                     *  }),
+                     */
+                }}
+                dataProvider={dataProvider}
+                resources={[
+                    {
+                        name: "companies",
+                        list: CompanyList,
+                        create: CompanyCreate,
+                        edit: CompanyEdit,
+                        show: CompanyShow,
+                    },
+                    {
+                        name: "jobs",
+                        list: JobList,
+                        create: JobCreate,
+                        edit: JobEdit,
+                        show: CompanyShow,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

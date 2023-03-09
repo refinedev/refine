@@ -1,4 +1,4 @@
-import { AuthProvider, Refine } from "@pankod/refine-core";
+import { Refine, AuthProvider, GitHubBanner } from "@pankod/refine-core";
 import {
     AuthPage,
     ChakraProvider,
@@ -77,6 +77,7 @@ const App: React.FC = () => {
 
     return (
         <ChakraProvider theme={refineTheme}>
+            <GitHubBanner />
             <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 authProvider={authProvider}

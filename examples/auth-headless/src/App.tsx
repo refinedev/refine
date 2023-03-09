@@ -1,4 +1,9 @@
-import { AuthPage, AuthProvider, Refine } from "@pankod/refine-core";
+import {
+    AuthPage,
+    AuthProvider,
+    GitHubBanner,
+    Refine,
+} from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
@@ -66,38 +71,41 @@ const App: React.FC = () => {
     };
 
     return (
-        <Refine
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    { path: "/example", element: <ExamplePage /> },
+        <>
+            <GitHubBanner />
+            <Refine
+                routerProvider={{
+                    ...routerProvider,
+                    routes: [
+                        { path: "/example", element: <ExamplePage /> },
+                        {
+                            path: "/register",
+                            element: <AuthPage type="register" />,
+                        },
+                        {
+                            path: "/forgot-password",
+                            element: <AuthPage type="forgotPassword" />,
+                        },
+                        {
+                            path: "/update-password",
+                            element: <AuthPage type="updatePassword" />,
+                        },
+                    ],
+                }}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                authProvider={authProvider}
+                LoginPage={() => <AuthPage />}
+                resources={[
                     {
-                        path: "/register",
-                        element: <AuthPage type="register" />,
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        canDelete: true,
                     },
-                    {
-                        path: "/forgot-password",
-                        element: <AuthPage type="forgotPassword" />,
-                    },
-                    {
-                        path: "/update-password",
-                        element: <AuthPage type="updatePassword" />,
-                    },
-                ],
-            }}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            authProvider={authProvider}
-            LoginPage={() => <AuthPage />}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    canDelete: true,
-                },
-            ]}
-        />
+                ]}
+            />
+        </>
     );
 };
 

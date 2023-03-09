@@ -1,4 +1,4 @@
-import { AuthProvider, Refine } from "@pankod/refine-core";
+import { Refine, AuthProvider, GitHubBanner } from "@pankod/refine-core";
 import {
     AuthPage,
     MantineProvider,
@@ -81,6 +81,7 @@ const App: React.FC = () => {
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
+                <GitHubBanner />
                 <Refine
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",

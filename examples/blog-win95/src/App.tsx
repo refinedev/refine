@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { dataProvider } from "@pankod/refine-supabase";
 import authProvider from "./authProvider";
@@ -17,6 +17,7 @@ import "./app.css";
 function App() {
     return (
         <ThemeProvider theme={original}>
+            <GitHubBanner />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(supabaseClient)}

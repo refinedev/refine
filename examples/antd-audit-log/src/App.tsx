@@ -1,4 +1,4 @@
-import { AuthProvider, Refine } from "@pankod/refine-core";
+import { AuthProvider, Refine, GitHubBanner } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -59,58 +59,61 @@ const authProvider: AuthProvider = {
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            authProvider={authProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    canDelete: true,
-                    options: {
-                        auditLog: {
-                            permissions: ["create", "delete", "update"],
+        <>
+            <GitHubBanner />
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                authProvider={authProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                        canDelete: true,
+                        options: {
+                            auditLog: {
+                                permissions: ["create", "delete", "update"],
+                            },
                         },
                     },
-                },
-                {
-                    name: "categories",
-                    list: CategoryList,
-                    create: CategoryCreate,
-                    edit: CategoryEdit,
-                    show: CategoryShow,
-                    canDelete: true,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-            Header={() => null}
-            LoginPage={AuthPage}
-            DashboardPage={DashboardPage}
-            auditLogProvider={{
-                create: async ({ ...params }) => {
-                    await refineSDK.log.create(params);
-                },
-                get: async ({ resource, action, meta, author }) => {
-                    return await refineSDK.log.get({
-                        resource,
-                        action,
-                        meta,
-                        author,
-                    });
-                },
-                update: async ({ id, name }) => {
-                    return await refineSDK.log.update(id, {
-                        name,
-                    });
-                },
-            }}
-        />
+                    {
+                        name: "categories",
+                        list: CategoryList,
+                        create: CategoryCreate,
+                        edit: CategoryEdit,
+                        show: CategoryShow,
+                        canDelete: true,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+                Header={() => null}
+                LoginPage={AuthPage}
+                DashboardPage={DashboardPage}
+                auditLogProvider={{
+                    create: async ({ ...params }) => {
+                        await refineSDK.log.create(params);
+                    },
+                    get: async ({ resource, action, meta, author }) => {
+                        return await refineSDK.log.get({
+                            resource,
+                            action,
+                            meta,
+                            author,
+                        });
+                    },
+                    update: async ({ id, name }) => {
+                        return await refineSDK.log.update(id, {
+                            name,
+                        });
+                    },
+                }}
+            />
+        </>
     );
 };
 

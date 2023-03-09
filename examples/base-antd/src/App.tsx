@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -14,35 +14,38 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={{
-                ...routerProvider,
-                /**
-                 * By default refine uses the first route with `list` property as the initial route.
-                 * If you want to change the initial route, you can bind the `initialRoute` property to the `RouterComponent` property.
-                 *
-                 * Example:
-                 *
-                 *  RouterComponent: routerProvider.RouterComponent.bind({
-                 *     initialRoute: "/posts",
-                 *  }),
-                 */
-            }}
-            dataProvider={dataProvider(API_URL)}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    canDelete: true,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+        <>
+            <GitHubBanner />
+            <Refine
+                routerProvider={{
+                    ...routerProvider,
+                    /**
+                     * By default refine uses the first route with `list` property as the initial route.
+                     * If you want to change the initial route, you can bind the `initialRoute` property to the `RouterComponent` property.
+                     *
+                     * Example:
+                     *
+                     *  RouterComponent: routerProvider.RouterComponent.bind({
+                     *     initialRoute: "/posts",
+                     *  }),
+                     */
+                }}
+                dataProvider={dataProvider(API_URL)}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                        canDelete: true,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

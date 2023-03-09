@@ -1,4 +1,4 @@
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import { Refine, AuthProvider, GitHubBanner } from "@pankod/refine-core";
 import {
     Layout,
     ErrorComponent,
@@ -107,6 +107,7 @@ const App: React.FC = () => {
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
+                <GitHubBanner />
                 <Refine
                     authProvider={authProvider}
                     dataProvider={dataProvider(
