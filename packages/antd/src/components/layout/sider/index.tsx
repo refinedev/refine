@@ -19,6 +19,7 @@ import {
     useLink,
     useRouterType,
     useActiveAuthProvider,
+    pickNotDeprecated,
 } from "@refinedev/core";
 
 import { Title as DefaultTitle } from "@components";
@@ -57,7 +58,17 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
 
     const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
         return tree.map((item: ITreeMenu) => {
-            const { icon, label, route, name, children, parentName } = item;
+            const {
+                icon,
+                label,
+                route,
+                key,
+                name,
+                children,
+                parentName,
+                meta,
+                options,
+            } = item;
 
             if (children.length > 0) {
                 return (
@@ -79,9 +90,10 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
                     </CanAccess>
                 );
             }
-            const isSelected = route === selectedKey;
+            const isSelected = key === selectedKey;
             const isRoute = !(
-                parentName !== undefined && children.length === 0
+                pickNotDeprecated(meta?.parent, options?.parent, parentName) !==
+                    undefined && children.length === 0
             );
             return (
                 <CanAccess
@@ -118,6 +130,10 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
             {translate("buttons.logout", "Logout")}
         </Menu.Item>
     );
+
+    console.log({
+        selectedKey,
+    });
 
     const dashboard = hasDashboard ? (
         <Menu.Item

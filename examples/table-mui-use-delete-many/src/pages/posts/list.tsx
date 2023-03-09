@@ -11,7 +11,7 @@ import {
 
 import { ICategory, IPost } from "interfaces";
 
-export const PostsList: React.FC = () => {
+export const PostList: React.FC = () => {
     const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>(
         [],
     );

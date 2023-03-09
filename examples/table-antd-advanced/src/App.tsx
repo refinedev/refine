@@ -1,7 +1,8 @@
 import { Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -12,28 +13,58 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-                {
-                    name: "categories",
-                    list: CategoryList,
-                    create: CategoryCreate,
-                    edit: CategoryEdit,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider(API_URL)}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                        show: "/posts/show/:id",
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories",
+                        create: "/categories/create",
+                        edit: "/categories/edit/:id",
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+
+                        <Route path="posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                        </Route>
+
+                        <Route path="categories">
+                            <Route index element={<CategoryList />} />
+                            <Route path="create" element={<CategoryCreate />} />
+                            <Route path="edit/:id" element={<CategoryEdit />} />
+                        </Route>
+
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 

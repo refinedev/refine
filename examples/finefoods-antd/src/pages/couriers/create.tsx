@@ -33,7 +33,7 @@ const { Text } = Typography;
 
 import { ICourier, IStore } from "interfaces";
 
-export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
+export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const {
         current,

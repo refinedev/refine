@@ -1,7 +1,8 @@
 import { Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -11,22 +12,46 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "users",
-                    list: UserList,
-                    create: UserCreate,
-                    edit: UserEdit,
-                    show: UserShow,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider(API_URL)}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "users",
+                        list: "/users",
+                        create: "/users/create",
+                        edit: "/users/edit/:id",
+                        show: "/users/show/:id",
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="users" />}
+                        />
+
+                        <Route path="users">
+                            <Route index element={<UserList />} />
+                            <Route path="create" element={<UserCreate />} />
+                            <Route path="edit/:id" element={<UserEdit />} />
+                            <Route path="show/:id" element={<UserShow />} />
+                        </Route>
+
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 

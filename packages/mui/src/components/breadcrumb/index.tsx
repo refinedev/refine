@@ -1,8 +1,10 @@
 import React from "react";
 import {
+    matchResourceFromRoute,
     useBreadcrumb,
     useLink,
     useRefineContext,
+    useResource,
     useRouterContext,
     useRouterType,
 } from "@refinedev/core";
@@ -25,7 +27,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     breadcrumbProps,
     showHome = true,
     hideIcons = false,
-    home,
     meta,
 }) => {
     const { breadcrumbs } = useBreadcrumb({ meta });
@@ -37,6 +38,10 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 
     const { hasDashboard } = useRefineContext();
 
+    const { resources } = useResource();
+
+    const rootRouteResource = matchResourceFromRoute("/", resources);
+
     if (breadcrumbs.length === 1) {
         return null;
     }
@@ -44,33 +49,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     const LinkRouter = (props: LinkProps & { to?: string }) => (
         <Link {...props} component={ActiveLink} />
     );
-
-    const renderHome = () => {
-        if (home) {
-            return (
-                <LinkRouter
-                    underline="hover"
-                    sx={{
-                        display: "flex",
-                        alignItems: "center",
-                    }}
-                    color="inherit"
-                    to={home?.path ?? "/"}
-                >
-                    {typeof home.icon !== "undefined" ? (
-                        home.icon
-                    ) : (
-                        <HomeOutlined
-                            sx={{
-                                fontSize: "18px",
-                            }}
-                        />
-                    )}
-                </LinkRouter>
-            );
-        }
-        return null;
-    };
 
     return (
         <Breadcrumbs
@@ -82,7 +60,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
             }}
             {...breadcrumbProps}
         >
-            {showHome && hasDashboard && (
+            {showHome && (hasDashboard || rootRouteResource.found) && (
                 <LinkRouter
                     underline="hover"
                     sx={{
@@ -92,11 +70,13 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                     color="inherit"
                     to="/"
                 >
-                    <HomeOutlined
-                        sx={{
-                            fontSize: "18px",
-                        }}
-                    />
+                    {rootRouteResource?.resource?.meta?.icon ?? (
+                        <HomeOutlined
+                            sx={{
+                                fontSize: "18px",
+                            }}
+                        />
+                    )}
                 </LinkRouter>
             )}
             {breadcrumbs.map(({ label, icon, href }) => {

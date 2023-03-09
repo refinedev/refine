@@ -80,7 +80,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
         return tree.map((item) => {
             const { label, route, name, icon, children } = item;
 
-            const isSelected = route === selectedKey;
+            const isSelected = item.key === selectedKey;
             const isParent = children.length > 0;
 
             const linkProps = !isParent

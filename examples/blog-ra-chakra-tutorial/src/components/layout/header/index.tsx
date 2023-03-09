@@ -1,4 +1,4 @@
-import { useGetIdentity } from "@pankod/refine-core";
+import { useGetIdentity } from "@refinedev/core";
 import {
     Box,
     IconButton,
@@ -7,11 +7,13 @@ import {
     Avatar,
     Icon,
     useColorMode,
-} from "@pankod/refine-chakra-ui";
+} from "@chakra-ui/react";
 import { IconMoon, IconSun } from "@tabler/icons";
 
 export const Header: React.FC = () => {
-    const { data: user } = useGetIdentity();
+    const { data: user } = useGetIdentity({
+        v3LegacyAuthProviderCompatible: true,
+    });
     const showUserInfo = user && (user.name || user.avatar);
 
     const { colorMode, toggleColorMode } = useColorMode();
