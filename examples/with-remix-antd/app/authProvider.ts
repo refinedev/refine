@@ -54,8 +54,13 @@ export const authProvider: AuthBindings = {
     check: async (request) => {
         let user = undefined;
         if (request) {
-            const parsedCookie = cookie.parse(request.headers.get("Cookie"));
-            user = parsedCookie[COOKIE_NAME];
+            const hasCookie = request.headers.get("Cookie");
+            if (hasCookie) {
+                const parsedCookie = cookie.parse(
+                    request.headers.get("Cookie"),
+                );
+                user = parsedCookie[COOKIE_NAME];
+            }
         } else {
             const parsedCookie = Cookies.get(COOKIE_NAME);
             user = parsedCookie ? JSON.parse(parsedCookie) : undefined;

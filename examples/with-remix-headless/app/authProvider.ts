@@ -24,6 +24,7 @@ export const authProvider: AuthBindings = {
             Cookies.set(COOKIE_NAME, JSON.stringify(user));
             return {
                 success: true,
+                redirectTo: "/",
             };
         }
 
@@ -50,12 +51,16 @@ export const authProvider: AuthBindings = {
 
         return {};
     },
-    check: async (context) => {
+    check: async (request) => {
         let user = undefined;
-        if (context) {
-            const { request } = context;
-            const parsedCookie = cookie.parse(request.headers.get("Cookie"));
-            user = parsedCookie[COOKIE_NAME];
+        if (request) {
+            const hasCookie = request.headers.get("Cookie");
+            if (hasCookie) {
+                const parsedCookie = cookie.parse(
+                    request.headers.get("Cookie"),
+                );
+                user = parsedCookie[COOKIE_NAME];
+            }
         } else {
             const parsedCookie = Cookies.get(COOKIE_NAME);
             user = parsedCookie ? JSON.parse(parsedCookie) : undefined;

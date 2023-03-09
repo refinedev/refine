@@ -54,4 +54,6 @@ export async function loader({ request }: LoaderArgs) {
     if (!authenticated) {
         throw redirect(redirectTo ?? "/login");
     }
+
+    return {};
 }
