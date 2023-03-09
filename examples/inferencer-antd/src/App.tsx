@@ -61,7 +61,7 @@ const App: React.FC = () => {
                             element={<NavigateToResource resource="samples" />}
                         />
 
-                        <Route path="/samples">
+                        <Route path="samples">
                             <Route index element={<AntdInferencer />} />
                             <Route path="create" element={<AntdInferencer />} />
                             <Route
@@ -74,7 +74,7 @@ const App: React.FC = () => {
                             />
                         </Route>
 
-                        <Route path="/categories">
+                        <Route path="categories">
                             <Route index element={<AntdInferencer />} />
                             <Route path="create" element={<AntdInferencer />} />
                             <Route
@@ -87,7 +87,7 @@ const App: React.FC = () => {
                             />
                         </Route>
 
-                        <Route path="/users">
+                        <Route path="users">
                             <Route index element={<AntdInferencer />} />
                             <Route path="create" element={<AntdInferencer />} />
                             <Route
