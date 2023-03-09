@@ -18,7 +18,7 @@
     },
     {
       "from": "/docs/core/components/layout-wrapper/",
-      "to": "/docs/api-reference/core/components/layout-wrapper/"
+      "to": "/docs/3.xx.xx/api-reference/core/components/layout-wrapper"
     },
     {
       "from": "/docs/core/components/refine-config/",
