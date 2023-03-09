@@ -107,9 +107,9 @@ export const PostList: React.FC = () => {
 };
 ```
 
-### `home`
+### `showHome`
 
-If you have a root page other than a resource, you can pass `{ icon?: React.ReactNode; path?: string; }` to thr `home` property to make it the root of the hierarchy.
+If you have a page with route `/`, it will be used as the root of the hierarchy and shown in the `Breadcrumb` with a home icon. To hide the root item, set `showHome` to `false.`
 
 ```tsx
 import { List, Breadcrumb } from "@refinedev/antd";
@@ -118,7 +118,7 @@ export const PostList: React.FC = () => {
     return (
         <List
             // highlight-next-line
-            breadcrumb={<Breadcrumb home={{ path: "/my-landing-page" }} />}
+            breadcrumb={<Breadcrumb showHome={true} />}
         >
             ...
         </List>
