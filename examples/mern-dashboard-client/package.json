@@ -5,7 +5,7 @@
   "dependencies": {
     "@mui/icons-material": "^5.8.3",
     "@pankod/refine-cli": "^1.17.2",
-    "@pankod/refine-core": "^3.99.6",
+    "@pankod/refine-core": "^3.101.0",
     "@pankod/refine-inferencer": "^2.8.2",
     "@pankod/refine-mui": "^3.30.0",
     "@pankod/refine-react-hook-form": "^3.27.1",
