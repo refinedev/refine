@@ -23,4 +23,12 @@ describe("createResourceKey", () => {
             ]),
         ).toBe("cms/orgs/posts");
     });
+
+    it("should return the key with identifier", () => {
+        expect(
+            createResourceKey({ name: "posts", identifier: "foo" }, [
+                { name: "posts", identifier: "foo" },
+            ]),
+        ).toBe("foo");
+    });
 });

@@ -1,4 +1,4 @@
-import { useRouterContext } from "@refinedev/core";
+import { Link } from "react-router-dom";
 import { Box } from "@mui/material";
 
 import { BikeWhiteIcon } from "components/icons/bike-white";
@@ -8,8 +8,6 @@ type TitleProps = {
 };
 
 export const Title: React.FC<TitleProps> = ({ collapsed }) => {
-    const { Link } = useRouterContext();
-
     return (
         <Link to="/">
             <Box
