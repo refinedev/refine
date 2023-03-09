@@ -31,7 +31,7 @@ const { Header: AntdHeader } = AntdLayout;
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
 
-import { IOrder, IStore, ICourier } from "interfaces";
+import { IOrder, IStore, ICourier, IIdentity } from "interfaces";
 import { HeaderTitle } from "./styled";
 
 interface IOptionGroup {
@@ -48,9 +48,7 @@ export const Header: React.FC = () => {
     const { i18n } = useTranslation();
     const locale = useGetLocale();
     const changeLanguage = useSetLocale();
-    const { data: user } = useGetIdentity({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { data: user } = useGetIdentity<IIdentity>();
     const screens = useBreakpoint();
     const t = useTranslate();
 

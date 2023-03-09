@@ -30,9 +30,7 @@ export const Login: React.FC = () => {
     const [form] = Form.useForm<ILoginForm>();
     const authConfig = useAuthConfig();
 
-    const { mutate: login } = useLogin<ILoginForm>({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { mutate: login } = useLogin<ILoginForm>();
 
     const CardTitle = (
         <Title level={3} className="title">
