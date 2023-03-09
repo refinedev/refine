@@ -25,6 +25,7 @@ export const GitHubBanner = () => {
             }}
         >
             <a
+                className="gh-link"
                 href="https://s.refine.dev/github-support"
                 target="_blank"
                 rel="noreferrer"
