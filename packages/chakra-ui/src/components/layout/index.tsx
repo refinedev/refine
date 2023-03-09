@@ -8,6 +8,7 @@ import { RefineLayoutLayoutProps } from "./types";
 export const Layout: React.FC<RefineLayoutLayoutProps> = ({
     Sider,
     Header,
+    Title,
     Footer,
     OffLayoutArea,
     children,
@@ -19,7 +20,7 @@ export const Layout: React.FC<RefineLayoutLayoutProps> = ({
 
     return (
         <Box display="flex" bg={bg}>
-            <SiderToRender />
+            <SiderToRender Title={Title} />
             <Box
                 display="flex"
                 flexDirection="column"

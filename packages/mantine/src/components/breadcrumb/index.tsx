@@ -1,8 +1,10 @@
 import React from "react";
 import {
+    matchResourceFromRoute,
     useBreadcrumb,
     useLink,
     useRefineContext,
+    useResource,
     useRouterContext,
     useRouterType,
 } from "@refinedev/core";
@@ -23,7 +25,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     breadcrumbProps,
     showHome = true,
     hideIcons = false,
-    home,
     meta,
 }) => {
     const routerType = useRouterType();
@@ -33,30 +34,15 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 
     const { hasDashboard } = useRefineContext();
 
+    const { resources } = useResource();
+
+    const rootRouteResource = matchResourceFromRoute("/", resources);
+
     const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     if (breadcrumbs.length === 1) {
         return null;
     }
-
-    const renderHome = () => {
-        if (home) {
-            return (
-                <Anchor
-                    component={ActiveLink as any}
-                    color="dimmed"
-                    to={home.path ?? "/"}
-                >
-                    {typeof home.icon !== "undefined" ? (
-                        home.icon
-                    ) : (
-                        <IconHome size={18} />
-                    )}
-                </Anchor>
-            );
-        }
-        return null;
-    };
 
     return (
         <Breadcrumbs
@@ -66,12 +52,13 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
             }}
             {...breadcrumbProps}
         >
-            {showHome && hasDashboard && (
+            {showHome && (hasDashboard || rootRouteResource.found) && (
                 <Anchor component={ActiveLink as any} color="dimmed" to="/">
-                    <IconHome size={18} />
+                    {rootRouteResource?.resource?.meta?.icon ?? (
+                        <IconHome size={18} />
+                    )}
                 </Anchor>
             )}
-            {renderHome()}
             {breadcrumbs.map(({ label, icon, href }) => {
                 return (
                     <Group key={label} spacing={4} align="center" noWrap>

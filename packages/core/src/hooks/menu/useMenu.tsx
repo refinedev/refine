@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslate, useResource } from "..";
+import { useTranslate, useResource, useParsed } from "..";
 import { userFriendlyResourceName, pickNotDeprecated } from "@definitions";
 import { useRouterType } from "../../contexts/router-picker";
 import { createResourceKey } from "../../definitions/helpers/menu/create-resource-key";
@@ -46,8 +46,18 @@ export const useMenu = (
     const getToPath = useGetToPath();
     const routerType = useRouterType();
     const { resource, resources } = useResource();
+    const { pathname } = useParsed();
 
-    const selectedKey = resource ? createResourceKey(resource, resources) : "";
+    const cleanPathname = pathname
+        ? pathname
+              .split("?")[0]
+              .split("#")[0]
+              .replace(/(.+)(\/$)/, "$1")
+        : undefined;
+
+    const selectedKey = resource
+        ? createResourceKey(resource, resources)
+        : cleanPathname ?? "";
 
     const defaultOpenKeys = React.useMemo(() => {
         if (!resource) return [];

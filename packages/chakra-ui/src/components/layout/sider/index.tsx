@@ -41,7 +41,11 @@ import {
 import { Title as DefaultTitle } from "@components";
 import { RefineLayoutSiderProps } from "../types";
 
-export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({
+    Title: TitleFromProps,
+    render,
+    meta,
+}) => {
     const [collapsed, setCollapsed] = useState(false);
     const [opened, setOpened] = useState(false);
 
@@ -50,7 +54,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
     const { Link: LegacyLink } = useRouterContext();
     const Link = routerType === "legacy" ? LegacyLink : NewLink;
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu({ meta });
-    const Title = useTitle();
+    const TitleFromContext = useTitle();
     const isExistAuthentication = useIsExistAuthentication();
     const t = useTranslate();
     const { hasDashboard } = useRefineContext();
@@ -59,7 +63,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
 
-    const RenderToTitle = Title ?? DefaultTitle;
+    const RenderToTitle = TitleFromProps ?? TitleFromContext ?? DefaultTitle;
 
     const siderWidth = () => {
         if (collapsed) return "80px";
@@ -76,7 +80,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
         return tree.map((item) => {
             const { label, route, name, icon, children } = item;
 
-            const isSelected = route === selectedKey;
+            const isSelected = item.key === selectedKey;
             const isParent = children.length > 0;
 
             const linkProps = !isParent

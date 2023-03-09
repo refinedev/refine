@@ -1,8 +1,10 @@
 import React from "react";
 import {
+    matchResourceFromRoute,
     useBreadcrumb,
     useLink,
     useRefineContext,
+    useResource,
     useRouterContext,
     useRouterType,
 } from "@refinedev/core";
@@ -21,7 +23,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     breadcrumbProps,
     showHome = true,
     hideIcons = false,
-    home,
     meta,
 }) => {
     const routerType = useRouterType();
@@ -36,33 +37,21 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
         return null;
     }
 
-    const renderHome = () => {
-        if (home) {
-            return (
+    const { resources } = useResource();
+
+    const rootRouteResource = matchResourceFromRoute("/", resources);
+
+    return (
+        <ChakraBreadcrumb mb="3" {...breadcrumbProps}>
+            {showHome && (hasDashboard || rootRouteResource?.found) && (
                 <BreadcrumbItem>
-                    <ActiveLink to={home.path ?? "/"}>
-                        {typeof home.icon !== "undefined" ? (
-                            home.icon
-                        ) : (
+                    <ActiveLink to="/">
+                        {rootRouteResource?.resource?.meta?.icon ?? (
                             <IconHome size={20} />
                         )}
                     </ActiveLink>
                 </BreadcrumbItem>
-            );
-        }
-        return null;
-    };
-
-    return (
-        <ChakraBreadcrumb mb="3" {...breadcrumbProps}>
-            {showHome && hasDashboard && (
-                <BreadcrumbItem>
-                    <ActiveLink to="/">
-                        <IconHome size={20} />
-                    </ActiveLink>
-                </BreadcrumbItem>
             )}
-            {renderHome()}
             {breadcrumbs.map(({ label, icon, href }) => {
                 return (
                     <BreadcrumbItem key={label}>
