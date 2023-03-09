@@ -1,6 +1,10 @@
-import { Refine } from "@refinedev/core";
+import { Authenticated, Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
@@ -8,44 +12,82 @@ import { supabaseClient } from "utility";
 import "@refinedev/antd/dist/reset.css";
 
 import { UserList } from "./pages/user";
-import { TaskList, TaskShow, TaskCreate, EditTask } from "./pages/task";
+import { TaskList, TaskShow, TaskCreate, TaskEdit } from "./pages/task";
 import { Dashboard } from "./pages/dashboard";
 import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
 
 function App() {
     return (
-        <Refine
-            dataProvider={dataProvider(supabaseClient)}
-            authProvider={authProvider}
-            DashboardPage={Dashboard}
-            LoginPage={Login}
-            legacyRouterProvider={{
-                ...routerProvider,
-                routes: [
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider(supabaseClient)}
+                authProvider={authProvider}
+                routerProvider={routerProvider}
+                resources={[
                     {
-                        element: <Signup />,
-                        path: "/signup",
+                        name: "users",
+                        list: "/users",
                     },
-                ] as typeof routerProvider.routes,
-            }}
-            resources={[
-                {
-                    name: "users",
-                    list: UserList,
-                },
-                {
-                    name: "tasks",
-                    list: TaskList,
-                    edit: EditTask,
-                    create: TaskCreate,
-                    show: TaskShow,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+                    {
+                        name: "tasks",
+                        list: "/tasks",
+                        show: "/tasks/show/:id",
+                        create: "/tasks/create",
+                        edit: "/tasks/edit/:id",
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route index element={<Dashboard />} />
+
+                        <Route path="users" element={<UserList />} />
+
+                        <Route path="tasks">
+                            <Route index element={<TaskList />} />
+                            <Route path="edit/:id" element={<TaskEdit />} />
+                            <Route path="create" element={<TaskCreate />} />
+                            <Route path="show/:id" element={<TaskShow />} />
+                        </Route>
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource resource="companies" />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/signup" element={<Signup />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 }
 

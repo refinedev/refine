@@ -5,7 +5,7 @@ import { Form, Select, Input } from "antd";
 
 import { IContact } from "interfaces";
 
-export const EditContact: React.FC<IResourceComponentsProps> = () => {
+export const ContactEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IContact>({
         metaData: { populate: ["client"] },
     });

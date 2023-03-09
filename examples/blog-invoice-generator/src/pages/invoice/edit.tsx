@@ -6,7 +6,7 @@ import { Form, Input, Select } from "antd";
 
 import { IInvoice } from "interfaces";
 
-export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
+export const InvoiceEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IInvoice>({
         metaData: { populate: ["company", "contact", "missions"] },
     });

@@ -6,7 +6,7 @@ import { Form, Input, Select } from "antd";
 
 import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
 
-export const EditTask: React.FC<IResourceComponentsProps> = () => {
+export const TaskEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<ITask>();
 
     const { selectProps: labelSelectProps } = useSelect<ITask>({

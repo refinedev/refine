@@ -1,2 +1,2 @@
 import React from "react";
-export const postList = () => <p className="post">Post Page</p>;
+export const PostList = () => <p className="post">Post Page</p>;

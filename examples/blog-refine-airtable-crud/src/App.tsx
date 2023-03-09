@@ -1,8 +1,9 @@
 import React from "react";
 import "./index.css";
-import { Refine } from "@refinedev/core";
+import { ErrorComponent, Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/airtable";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { Layout } from "components/Layout";
 
@@ -16,20 +17,43 @@ function App() {
     const BASE_ID = "appez0LgaOVA6SdCO";
 
     return (
-        <Refine
-            dataProvider={dataProvider(API_TOKEN, BASE_ID)}
-            legacyRouterProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    show: PostShow,
-                    create: PostCreate,
-                    edit: PostEdit,
-                },
-            ]}
-            Layout={Layout}
-        />
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider(API_TOKEN, BASE_ID)}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        show: "/posts/show/:id",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+                        <Route path="posts">
+                            <Route index element={<PostList />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                        </Route>
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 }
 
