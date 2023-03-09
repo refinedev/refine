@@ -2,13 +2,12 @@ import React from "react";
 import { Layout, Typography, Avatar, Space } from "antd";
 
 import { useGetIdentity } from "@refinedev/core";
+import { IIdentity } from "interfaces";
 
 const { Text } = Typography;
 
 export const Header: React.FC = () => {
-    const { data: user } = useGetIdentity({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { data: user } = useGetIdentity<IIdentity>();
 
     const shouldRenderHeader = user && (user.name || user.avatar);
 

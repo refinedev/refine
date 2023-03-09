@@ -2,9 +2,7 @@ import { LayoutProps, useLogout } from "@refinedev/core";
 import { Button } from "react-daisyui";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
-    const { mutate: logout } = useLogout({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { mutate: logout } = useLogout();
     return (
         <div className="flex min-h-screen flex-col">
             <div className="bg-gray mb-2 py-3">

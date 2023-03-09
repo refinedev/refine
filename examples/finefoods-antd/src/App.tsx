@@ -12,6 +12,7 @@ import {
     UsergroupAddOutlined,
     ShopOutlined,
     StarOutlined,
+    DashboardOutlined,
 } from "@ant-design/icons";
 import jsonServerDataProvider from "@refinedev/simple-rest";
 import { authProvider } from "authProvider";
@@ -64,6 +65,13 @@ const App: React.FC = () => {
                     }}
                     notificationProvider={notificationProvider}
                     resources={[
+                        {
+                            name: "dashboard",
+                            list: "/",
+                            meta: {
+                                icon: <DashboardOutlined />,
+                            },
+                        },
                         {
                             name: "orders",
                             list: "/orders",
