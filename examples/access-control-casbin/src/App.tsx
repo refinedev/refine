@@ -98,29 +98,26 @@ const App: React.FC = () => {
                             element={<NavigateToResource resource="posts" />}
                         />
 
-                        <Route path="/posts" element={<PostList />} />
-                        <Route path="/posts/show/:id" element={<PostShow />} />
-                        <Route path="/posts/create" element={<PostCreate />} />
-                        <Route path="/posts/edit/:id" element={<PostEdit />} />
+                        <Route path="/posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                        </Route>
 
-                        <Route path="/users" element={<UserList />} />
-                        <Route path="/users/show/:id" element={<UserShow />} />
-                        <Route path="/users/create" element={<UserCreate />} />
-                        <Route path="/users/edit/:id" element={<UserEdit />} />
+                        <Route path="/users">
+                            <Route index element={<UserList />} />
+                            <Route path="create" element={<UserCreate />} />
+                            <Route path="edit/:id" element={<UserEdit />} />
+                            <Route path="show/:id" element={<UserShow />} />
+                        </Route>
 
-                        <Route path="/categories" element={<CategoryList />} />
-                        <Route
-                            path="/categories/show/:id"
-                            element={<CategoryShow />}
-                        />
-                        <Route
-                            path="/categories/create"
-                            element={<CategoryCreate />}
-                        />
-                        <Route
-                            path="/categories/edit/:id"
-                            element={<CategoryEdit />}
-                        />
+                        <Route path="/categories">
+                            <Route index element={<CategoryList />} />
+                            <Route path="create" element={<CategoryCreate />} />
+                            <Route path="edit/:id" element={<CategoryEdit />} />
+                            <Route path="show/:id" element={<CategoryShow />} />
+                        </Route>
 
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
