@@ -14,6 +14,7 @@ import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
 import { Login } from "./pages/login";
+import { DashboardOutlined } from "@ant-design/icons";
 
 import {
     HackathonersList,
@@ -49,6 +50,13 @@ function App() {
                 authProvider={authProvider}
                 routerProvider={routerProvider}
                 resources={[
+                    {
+                        name: "dashboard",
+                        list: "/",
+                        meta: {
+                            icon: <DashboardOutlined />,
+                        },
+                    },
                     {
                         name: "hackathons",
                         list: "/hackathons",
