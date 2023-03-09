@@ -12,7 +12,7 @@ import { Table, Space } from "antd";
 import { IPost } from "src/interfaces";
 
 const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>({});
+    const { tableProps } = useTable<IPost>();
 
     return (
         <List>

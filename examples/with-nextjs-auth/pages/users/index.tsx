@@ -1,12 +1,13 @@
 import { GetServerSideProps } from "next";
-import { GetListResponse, parseTableParamsFromQuery } from "@refinedev/core";
+import { GetListResponse } from "@refinedev/core";
 import { useTable, List, getDefaultSortOrder, Layout } from "@refinedev/antd";
 import { Table } from "antd";
 import dataProvider from "@refinedev/simple-rest";
+import { parseTableParams } from "@refinedev/nextjs-router";
 
 import { IUser } from "src/interfaces";
 import { authProvider } from "src/authProvider";
-import { API_URL } from "../../src/constants";
+import { API_URL } from "src/constants";
 
 export const UserList: React.FC<{ initialData: GetListResponse<IUser> }> = ({
     initialData,
@@ -61,17 +62,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         };
     }
 
-    const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
-        parseTableParamsFromQuery(context.query);
+    const { pagination, filters, sorters } = parseTableParams(
+        context.resolvedUrl?.split("?")[1] ?? "",
+    );
 
     const data = await dataProvider(API_URL).getList({
         resource: "users",
-        filters: parsedFilters,
-        pagination: {
-            current: parsedCurrent || 1,
-            pageSize: parsedPageSize || 10,
-        },
-        sorters: parsedSorter,
+        filters,
+        pagination,
+        sorters,
     });
 
     return {

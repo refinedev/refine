@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import { GetListResponse, parseTableParamsFromQuery } from "@refinedev/core";
+import { GetListResponse } from "@refinedev/core";
 import {
     useTable,
     Layout,
@@ -10,6 +10,7 @@ import {
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import { Table, Space } from "antd";
+import { parseTableParams } from "@refinedev/nextjs-router";
 
 import { authProvider } from "src/authProvider";
 import { IPost } from "src/interfaces";
@@ -72,17 +73,15 @@ export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
         };
     }
 
-    const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
-        parseTableParamsFromQuery(context.query);
+    const { pagination, filters, sorters } = parseTableParams(
+        context.resolvedUrl?.split("?")[1] ?? "",
+    );
 
     const data = await dataProvider(API_URL).getList({
         resource: "posts",
-        filters: parsedFilters,
-        pagination: {
-            current: parsedCurrent || 1,
-            pageSize: parsedPageSize || 10,
-        },
-        sorters: parsedSorter,
+        filters,
+        pagination,
+        sorters,
     });
 
     return {

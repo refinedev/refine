@@ -1,4 +1,3 @@
-import { parseTableParamsFromQuery } from "@refinedev/core";
 import {
     useTable,
     List,
@@ -11,6 +10,7 @@ import { Table, Space } from "antd";
 import { useLoaderData } from "@remix-run/react";
 import { json, LoaderArgs, redirect } from "@remix-run/node";
 import dataProvider from "@refinedev/simple-rest";
+import { parseTableParams } from "@refinedev/remix-router";
 
 import { IPost } from "../interfaces";
 import { API_URL } from "~/constants";
@@ -73,22 +73,14 @@ export async function loader({ request }: LoaderArgs) {
     }
 
     const url = new URL(request.url);
-    const queryParams: any = {};
-    url.searchParams.forEach((value, key) => {
-        queryParams[key] = value;
-    });
 
-    const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
-        parseTableParamsFromQuery(queryParams);
+    const { pagination, filters, sorters } = parseTableParams(url.search);
 
     const data = await dataProvider(API_URL).getList<IPost>({
         resource: "posts",
-        filters: parsedFilters,
-        pagination: {
-            current: parsedCurrent || 1,
-            pageSize: parsedPageSize || 10,
-        },
-        sorters: parsedSorter,
+        filters,
+        pagination,
+        sorters,
     });
 
     return json({ initialData: data });
