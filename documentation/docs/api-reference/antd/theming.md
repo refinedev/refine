@@ -129,6 +129,12 @@ const App: React.FC = () => {
 };
 ```
 
+:::tip
+
+If you want to customize the default layout elements provided with `@refinedev/antd` package, check out the [Custom Layout](/docs/advanced-tutorials/custom-layout) tutorial.
+
+:::
+
 ## Example
 
 <CodeSandboxExample path="customization-theme-antd" />

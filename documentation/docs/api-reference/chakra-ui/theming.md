@@ -1,10 +1,10 @@
 ---
 id: theming
 title: Theme
+sidebar_label: Theme 🆙
 ---
 
 ```tsx live shared
-import { useNavigation, useRouterContext } from "@refinedev/core";
 import { List, Edit, Create, EditButton } from "@refinedev/chakra-ui";
 import {
     TableContainer,
@@ -174,7 +174,6 @@ import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
     Layout,
-    ReadyPage,
     notificationProvider,
     // highlight-next-line
     refineTheme,
@@ -184,6 +183,8 @@ import {
     // highlight-next-line
     extendTheme,
 } from "@chakra-ui/react";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 
@@ -203,21 +204,36 @@ const App = () => {
     return (
         // highlight-next-line
         <ChakraProvider theme={customTheme}>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider()}
-                ReadyPage={ReadyPage}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "posts",
-                        list: PostList,
-                        edit: PostEdit,
-                        create: PostCreate,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    notificationProvider={notificationProvider()}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            edit: "/posts/edit/:id",
+                            create: "/posts/create",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}>
+                            <Route path="posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                                <Route path="edit/:id" element={<PostEdit />} />
+                            </Route>
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };
@@ -291,7 +307,6 @@ import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
     Layout,
-    ReadyPage,
     notificationProvider,
     // highlight-next-line
     refineTheme,
@@ -307,6 +322,8 @@ import {
     // highlight-end
 } from "@chakra-ui/react";
 import { IconSun, IconMoonStars } from "@tabler/icons";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 
@@ -352,26 +369,46 @@ const App = () => {
     return (
         // highlight-next-line
         <ChakraProvider theme={customTheme}>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider()}
-                ReadyPage={ReadyPage}
-                Layout={Layout}
-                // highlight-next-line
-                Header={Header}
-                resources={[
-                    {
-                        name: "posts",
-                        list: PostList,
-                        edit: PostEdit,
-                        create: PostCreate,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    notificationProvider={notificationProvider()}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            edit: "/posts/edit/:id",
+                            create: "/posts/create",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        <Route element={(
+                            // highlight-next-line
+                            <Layout Header={Header}>
+                                <Outlet />
+                            </Layout>
+                        )}>
+                            <Route path="posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                                <Route path="edit/:id" element={<PostEdit />} />
+                            </Route>
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </ChakraProvider>
     );
 };
 // visible-block-end
 render(<App />);
 ```
+
+:::tip
+
+If you want to customize the default layout elements provided with `@refinedev/chakra-ui` package, check out the [Custom Layout](/docs/advanced-tutorials/custom-layout) tutorial.
+
+:::
