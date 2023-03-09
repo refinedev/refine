@@ -21,7 +21,6 @@ export type SiderRenderProps = {
 };
 
 export type RefineLayoutSiderProps = {
-    Title?: React.FC<TitleProps>;
     render?: (props: SiderRenderProps) => React.ReactNode;
     meta?: Record<string, unknown>;
 };

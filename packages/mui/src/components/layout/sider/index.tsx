@@ -40,11 +40,7 @@ import { RefineLayoutSiderProps } from "../types";
 
 import { Title as DefaultTitle } from "@components";
 
-export const Sider: React.FC<RefineLayoutSiderProps> = ({
-    Title: TitleFromProps,
-    render,
-    meta,
-}) => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
     const [collapsed, setCollapsed] = useState(false);
     const [opened, setOpened] = useState(false);
 
@@ -63,7 +59,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
 
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu({ meta });
     const isExistAuthentication = useIsExistAuthentication();
-    const TitleFromContext = useTitle();
+    const Title = useTitle();
     const authProvider = useActiveAuthProvider();
     const { mutate: mutateLogout } = useLogout({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
@@ -89,7 +85,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
         });
     }, [defaultOpenKeys]);
 
-    const RenderToTitle = TitleFromProps ?? TitleFromContext ?? DefaultTitle;
+    const RenderToTitle = Title ?? DefaultTitle;
 
     const handleClick = (key: string) => {
         setOpen({ ...open, [key]: !open[key] });

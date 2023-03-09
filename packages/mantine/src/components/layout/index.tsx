@@ -8,7 +8,6 @@ import { Header as DefaultHeader } from "./header";
 export const Layout: React.FC<RefineLayoutLayoutProps> = ({
     Sider,
     Header,
-    Title,
     Footer,
     OffLayoutArea,
     children,
@@ -18,7 +17,7 @@ export const Layout: React.FC<RefineLayoutLayoutProps> = ({
 
     return (
         <Box sx={{ display: "flex" }}>
-            <SiderToRender Title={Title} />
+            <SiderToRender />
             <Box
                 sx={{
                     display: "flex",
