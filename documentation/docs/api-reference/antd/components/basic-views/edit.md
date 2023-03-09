@@ -324,16 +324,16 @@ render(
 
 ### `resource`
 
-`<Edit>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Edit>` component in a custom page, you can use the `resource` property.
+`<Edit>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Edit>` component, you can use the `resource` prop.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom/2
 setInitialRoutes(["/custom/2"]);
 
-// visible-block-start
 import { Refine } from "@refinedev/core";
-import { Edit } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
+// visible-block-start
+import { Edit } from "@refinedev/antd";
 
 const CustomPage: React.FC = () => {
     return (
@@ -343,11 +343,12 @@ const CustomPage: React.FC = () => {
         </Edit>
     );
 };
+// visible-block-end
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={{
+        <RefineAntdDemo
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
@@ -363,7 +364,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(<App />);
 ```
@@ -546,9 +546,9 @@ If not specified, Refine will use the default data provider. If you have multipl
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { Edit } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { Edit } from "@refinedev/antd";
 
 // highlight-start
 const PostEdit = () => {
@@ -559,15 +559,15 @@ const PostEdit = () => {
 export const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
             // highlight-start
             dataProvider={{
                 default: dataProvider("https://api.fake-rest.refine.dev/"),
                 other: dataProvider("https://other-api.fake-rest.refine.dev/"),
             }}
             // highlight-end
-            resources={[{ name: "posts", edit: PostEdit }]}
-        />
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 ```
@@ -581,6 +581,7 @@ const { EditButton } = RefineAntd;
 
 // visible-block-start
 import { Edit } from "@refinedev/antd";
+import { Button } from "antd";
 
 const PostEdit: React.FC = () => {
     const BackButton = () => <Button>←</Button>;
@@ -667,8 +668,7 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 const { EditButton } = RefineAntd;
 
 // visible-block-start
-import { Edit } from "@refinedev/antd";
-import { Breadcrumb } from "antd";
+import { Edit, Breadcrumb } from "@refinedev/antd";
 
 const PostEdit: React.FC = () => {
     return (

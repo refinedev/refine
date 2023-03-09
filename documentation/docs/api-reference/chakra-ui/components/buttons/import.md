@@ -5,10 +5,10 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
+const { default: sharedRouterProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
+    legacyRouterProvider: sharedRouterProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     Layout: RefineChakra.Layout,
     Sider: () => null,

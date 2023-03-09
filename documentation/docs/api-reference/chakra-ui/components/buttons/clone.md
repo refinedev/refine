@@ -5,10 +5,10 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
+const { default: sharedRouterProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
+    legacyRouterProvider: sharedRouterProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     Layout: RefineChakra.Layout,
     Sider: () => null,
@@ -47,7 +47,6 @@ const ClonePage = () => {
 ```
 
 `<CloneButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `clone` method from [useNavigation](/api-reference/core/hooks/navigation/useNavigation.md) under the hood.
-It can be useful when redirecting the app to the create page with the record id route of resource.
 
 :::info-tip Swizzle
 You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
@@ -58,6 +57,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import {
@@ -171,6 +171,7 @@ interface IPost {
 const App = () => {
     return (
         <Refine
+            legacyRouterProvider={routerProvider}
             notificationProvider={RefineChakra.notificationProvider()}
             resources={[
                 {
@@ -209,7 +210,7 @@ const MyCloneComponent = () => {
 
 const App = () => {
     return (
-        <Refine
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -259,7 +260,7 @@ const MyCloneComponent = () => {
 
 const App = () => {
     return (
-        <Refine
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -316,7 +317,7 @@ const MyCloneComponent = () => {
 
 const App = () => {
     return (
-        <Refine
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -360,10 +361,10 @@ It is used to redirect the app to the `/clone` endpoint of the given resource na
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { CloneButton } from "@pankod/refine-chakra-ui";
+import { CloneButton } from "@refinedev/chakra-ui";
 
 const MyCloneComponent = () => {
     return (
@@ -378,7 +379,7 @@ const MyCloneComponent = () => {
 
 const App = () => {
     return (
-        <Refine
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",

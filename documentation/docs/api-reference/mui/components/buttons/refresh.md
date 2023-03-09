@@ -188,7 +188,7 @@ render(
 ```tsx live disableScroll previewHeight=120px
 const { useRouterContext } = RefineCore;
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-mui";
+import { RefreshButton } from "@refinedev/mui";
 
 const MyRefreshComponent = () => {
     return (

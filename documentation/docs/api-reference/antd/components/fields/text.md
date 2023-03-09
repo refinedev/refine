@@ -16,7 +16,7 @@ Let's see how to use it in a basic list page:
 
 ```tsx live
 // visible-block-start
-import { IResourceComponentsProps, useMany } from "@refinedev/core";
+import { useMany } from "@refinedev/core";
 import {
     List,
     // highlight-next-line
@@ -25,7 +25,7 @@ import {
 } from "@refinedev/antd";
 import { Table } from "antd";
 
-const PostList: React.FC<IResourceComponentsProps> = (props) => {
+const PostList: React.FC = (props) => {
     const { tableProps } = useTable<IPost>();
 
     const categoryIds =

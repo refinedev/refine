@@ -128,17 +128,18 @@ render(
 
 ### `resource`
 
-The `<List>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<List>` component in a custom page, you can use the `resource` prop.
+The `<List>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<List>` component, you can use the `resource` prop.
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/custom
 // handle initial routes in new way
 setInitialRoutes(["/custom"]);
 
-// visible-block-start
 import { Refine } from "@refinedev/core";
-import { List, Layout } from "@refinedev/mui";
-import routerProvider from "@refinedev/react-router-v6";
+import { Layout } from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
+// visible-block-start
+import { List } from "@refinedev/mui";
 
 const CustomPage: React.FC = () => {
     return (
@@ -148,11 +149,12 @@ const CustomPage: React.FC = () => {
         </List>
     );
 };
+// visible-block-end
 
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
@@ -169,7 +171,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(
     <Wrapper>

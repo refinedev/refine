@@ -52,7 +52,7 @@ We will show what `<Edit>` does using properties with examples.
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -80,9 +80,6 @@ const PostEdit: React.FC = () => {
                 id: (value) =>
                     value.length <= 0 ? "Category is required" : null,
             },
-        },
-        refineCoreProps: {
-            warnWhenUnsavedChanges: true,
         },
     });
 
@@ -128,7 +125,7 @@ const PostEdit: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -168,7 +165,7 @@ It allows adding titles inside the `<Edit>` component. if you don't pass title p
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -188,7 +185,7 @@ const PostEdit: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -226,7 +223,7 @@ Clicking on the save button will submit your form.
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -245,7 +242,7 @@ const PostEdit: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -283,7 +280,7 @@ When clicked on, the delete button executes the `useDelete` method provided by t
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -320,9 +317,9 @@ const App = () => {
         },
     };
 
-const authProvider = {
       window.__refineAuthStatus = true;
 
+const authProvider = {
     login: async () => {
         return {
             success: true,
@@ -362,7 +359,7 @@ const authProvider = {
 
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={customDataProvider}
             authProvider={authProvider}
             resources={[
@@ -393,16 +390,17 @@ render(
 
 ### `resource`
 
-`<Edit>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Edit>` component in a custom page, you can use the `resource` property.
+`<Edit>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Edit>` component, you can use the `resource` prop.
 
 ```tsx live url=http://localhost:3000/custom/23 previewHeight=280px
 setInitialRoutes(["/custom/23"]);
 
-// visible-block-start
 import { Refine } from "@refinedev/core";
-import { Layout, Edit } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import { Layout } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
+// visible-block-start
+import { Edit } from "@refinedev/mantine";
 
 const CustomPage: React.FC = () => {
     return (
@@ -412,11 +410,12 @@ const CustomPage: React.FC = () => {
         </Edit>
     );
 };
+// visible-block-end
 
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
@@ -433,7 +432,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(
     <Wrapper>
@@ -450,7 +448,7 @@ The `<Edit>` component reads the `id` information from the route by default. `re
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -489,7 +487,7 @@ const PostEdit: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -529,7 +527,7 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -543,9 +541,6 @@ const PostEdit: React.FC = () => {
         },
         validate: {
             title: (value) => (value.length < 2 ? "Too short title" : null),
-        },
-        refineCoreProps: {
-            warnWhenUnsavedChanges: true,
         },
     });
 
@@ -572,7 +567,7 @@ const PostEdit: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -605,9 +600,9 @@ If not specified, Refine will use the default data provider. If you have multipl
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { Edit } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { Edit } from "@refinedev/mantine";
 
 // highlight-start
 const PostEdit = () => {
@@ -618,15 +613,15 @@ const PostEdit = () => {
 export const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
             // highlight-start
             dataProvider={{
                 default: dataProvider("https://api.fake-rest.refine.dev/"),
                 other: dataProvider("https://other-api.fake-rest.refine.dev/"),
             }}
             // highlight-end
-            resources={[{ name: "posts", edit: PostEdit }]}
-        />
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 ```
@@ -639,7 +634,7 @@ To customize the back button or to disable it, you can use the `goBack` property
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -658,7 +653,7 @@ const PostEdit: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -692,7 +687,7 @@ To toggle the loading state of the `<Edit/>` component, you can use the `isLoadi
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -711,7 +706,7 @@ const PostEdit: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -751,7 +746,7 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -782,7 +777,7 @@ const PostEdit: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -818,7 +813,7 @@ If you want to customize the wrapper of the `<Edit/>` component, you can use the
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -845,7 +840,7 @@ const PostEdit: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -881,7 +876,7 @@ If you want to customize the header of the `<Edit/>` component, you can use the 
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -908,7 +903,7 @@ const PostEdit: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -944,7 +939,7 @@ If you want to customize the content of the `<Edit/>` component, you can use the
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -971,7 +966,7 @@ const PostEdit: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -1005,7 +1000,7 @@ You can customize the buttons at the header by using the `headerButtons` propert
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -1035,7 +1030,7 @@ const PostEdit: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -1071,7 +1066,7 @@ You can customize the wrapper element of the buttons at the header by using the 
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -1104,7 +1099,7 @@ const PostEdit: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -1138,7 +1133,7 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -1166,7 +1161,7 @@ const PostEdit: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -1202,7 +1197,7 @@ You can customize the wrapper element of the buttons at the footer by using the 
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -1233,7 +1228,7 @@ const PostEdit: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {

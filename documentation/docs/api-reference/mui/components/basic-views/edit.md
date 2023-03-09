@@ -170,17 +170,18 @@ render(
 
 ### `resource`
 
-The `<Edit>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Edit>` component in a custom page, you can use the `resource` prop.
+The `<Edit>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Edit>` component, you can use the `resource` prop.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
 // handle initial routes in new way
 setInitialRoutes(["/custom"]);
 
-// visible-block-start
 import { Refine } from "@refinedev/core";
-import { Edit, Layout } from "@refinedev/mui";
-import routerProvider from "@refinedev/react-router-v6";
+import { Layout } from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
+// visible-block-start
+import { Edit } from "@refinedev/mui";
 
 const CustomPage: React.FC = () => {
     return (
@@ -190,11 +191,12 @@ const CustomPage: React.FC = () => {
         </Edit>
     );
 };
+// visible-block-end
 
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
@@ -373,11 +375,12 @@ The `<Edit>` component reads the `id` information from the route by default. `re
 // handle initial routes in new way
 setInitialRoutes(["/custom"]);
 
-// visible-block-start
 import { Refine } from "@refinedev/core";
-import { Edit, Layout } from "@refinedev/mui";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
+import { Layout } from "@refinedev/mui";
+// visible-block-start
+import { Edit } from "@refinedev/mui";
 
 const CustomPage: React.FC = () => {
     return (
@@ -387,11 +390,11 @@ const CustomPage: React.FC = () => {
         </Edit>
     );
 };
-
+// visible-block-end
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 routes: [
                     {
@@ -406,7 +409,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(
     <Wrapper>
@@ -551,9 +553,9 @@ If not specified, Refine will use the default data provider. If you have multipl
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { Edit } from "@refinedev/mui";
-import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { Edit } from "@refinedev/mui";
 
 // highlight-start
 const PostEdit = () => {
@@ -564,15 +566,15 @@ const PostEdit = () => {
 export const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
             // highlight-start
             dataProvider={{
                 default: dataProvider("https://api.fake-rest.refine.dev/"),
                 other: dataProvider("https://other-api.fake-rest.refine.dev/"),
             }}
             // highlight-end
-            resources={[{ name: "posts", edit: PostEdit }]}
-        />
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 ```
@@ -585,10 +587,10 @@ To customize the back button or to disable it, you can use the `goBack` property
 // visible-block-start
 import { Edit } from "@refinedev/mui";
 import { Button } from "@mui/material";
-import { useNavigation } from "@refinedev/core";
+import { useBack } from "@refinedev/core";
 
 const BackButton = () => {
-    const { goBack } = useNavigation();
+    const goBack = useBack();
 
     return <Button onClick={() => goBack()}>BACK!</Button>;
 };

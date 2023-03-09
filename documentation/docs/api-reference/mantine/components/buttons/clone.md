@@ -5,10 +5,10 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
+const { default: routerProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
+    legacyRouterProvider: routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     notificationProvider: RefineMantine.notificationProvider,
     Layout: RefineMantine.Layout,
@@ -39,18 +39,18 @@ const ClonePage = () => {
 
     return (
         <div>
-            <RefineMantine.Text italic color="dimmed" size="sm">
+            <MantineCore.Text italic color="dimmed" size="sm">
                 URL Parameters:
-            </RefineMantine.Text>
-            <RefineMantine.Code>{JSON.stringify(params)}</RefineMantine.Code>
-            <RefineMantine.Space h="md" />
-            <RefineMantine.Button
+            </MantineCore.Text>
+            <MantineCore.Code>{JSON.stringify(params)}</MantineCore.Code>
+            <MantineCore.Space h="md" />
+            <MantineCore.Button
                 size="xs"
                 variant="outline"
                 onClick={() => list("posts")}
             >
                 Go back
-            </RefineMantine.Button>
+            </MantineCore.Button>
         </div>
     );
 };
@@ -175,7 +175,7 @@ interface IPost {
 
 const App = () => {
     return (
-        <Refine
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -213,7 +213,7 @@ const MyCloneComponent = () => {
 
 const App = () => {
     return (
-        <Refine
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -259,7 +259,7 @@ const MyCloneComponent = () => {
 
 const App = () => {
     return (
-        <Refine
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -316,7 +316,7 @@ const MyCloneComponent = () => {
 
 const App = () => {
     return (
-        <Refine
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",
@@ -360,10 +360,10 @@ It is used to redirect the app to the `/clone` endpoint of the given resource na
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { CloneButton } from "@pankod/refine-mantine";
+import { CloneButton } from "@refinedev/mantine";
 
 const MyCloneComponent = () => {
     return (
@@ -374,7 +374,7 @@ const MyCloneComponent = () => {
 
 const App = () => {
     return (
-        <Refine
+        <RefineHeadlessDemo
             resources={[
                 {
                     name: "posts",

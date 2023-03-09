@@ -5,10 +5,10 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
+const { default: routerProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
+    legacyRouterProvider: routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     notificationProvider: RefineMantine.notificationProvider,
     Layout: RefineMantine.Layout,
@@ -75,9 +75,6 @@ const PostEdit: React.FC = () => {
                 id: (value) =>
                     value.length <= 0 ? "Category is required" : null,
             },
-        },
-        refineCoreProps: {
-            warnWhenUnsavedChanges: true,
         },
     });
 

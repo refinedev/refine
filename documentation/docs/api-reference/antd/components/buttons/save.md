@@ -17,7 +17,8 @@ For example, let's add logic to the `<SaveButton>` component with the `saveButto
 
 ```tsx live url=http://localhost:3000/posts/edit/123
 // visible-block-start
-import { Edit, Form, Input, useForm } from "@refinedev/antd";
+import { Edit, useForm } from "@refinedev/antd";
+import { Form, Input } from "antd";
 
 const PostEdit: React.FC = () => {
     // highlight-next-line

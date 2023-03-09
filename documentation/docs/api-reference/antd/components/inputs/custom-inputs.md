@@ -17,7 +17,6 @@ We will demonstrate how to use custom input fields for markdown data by adding a
 
 ```tsx title="/src/pages/posts/edit.tsx"
 import React, { useState } from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { Edit, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 

@@ -236,7 +236,7 @@ It is used to redirect the app to the `/clone` endpoint of the given resource na
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { CloneButton } from "@pankod/refine-mui";
+import { CloneButton } from "@refinedev/mui";
 
 const MyCloneComponent = () => {
     return (

@@ -168,17 +168,18 @@ render(
 
 ### `resource`
 
-The `<Create>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Create>` component in a custom page, you can use the `resource` prop.
+The `<Create>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Create>` component, you can use the `resource` prop.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
 // handle initial routes in new way
 setInitialRoutes(["/custom"]);
 
-// visible-block-start
 import { Refine } from "@refinedev/core";
-import { Create, Layout } from "@refinedev/mui";
-import routerProvider from "@refinedev/react-router-v6";
+import { Layout } from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
+// visible-block-start
+import { Create } from "@refinedev/mui";
 
 const CustomPage: React.FC = () => {
     return (
@@ -188,11 +189,12 @@ const CustomPage: React.FC = () => {
         </Create>
     );
 };
+// visible-block-end
 
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
@@ -209,7 +211,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(
     <Wrapper>
@@ -265,10 +266,10 @@ To customize the back button or to disable it, you can use the `goBack` property
 // visible-block-start
 import { Create } from "@refinedev/mui";
 import { Button } from "@mui/material";
-import { useNavigation } from "@refinedev/core";
+import { useBack } from "@refinedev/core";
 
 const BackButton = () => {
-    const { goBack } = useNavigation();
+    const goBack = useBack();
 
     return <Button onClick={() => goBack()}>BACK!</Button>;
 };

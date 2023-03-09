@@ -128,16 +128,16 @@ render(
 
 ### `resource`
 
-The `<Show>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Show>` component in a custom page, you can use the `resource` property.
+The `<Show>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Show>` component, you can use the `resource` prop.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom/2
 setInitialRoutes(["/custom/2"]);
 
-// visible-block-start
 import { Refine } from "@refinedev/core";
-import { Show } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
+// visible-block-start
+import { Show } from "@refinedev/antd";
 
 const CustomPage: React.FC = () => {
     return (
@@ -147,11 +147,11 @@ const CustomPage: React.FC = () => {
         </Show>
     );
 };
-
+// visible-block-end
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={{
+        <RefineAntdDemo
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
@@ -167,7 +167,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(<App />);
 ```
@@ -182,7 +181,6 @@ Refer to the [`<DeleteButton>`](/api-reference/antd/components/buttons/delete.md
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
 const { ShowButton, Edit } = RefineAntd;
-const { usePermissions } = RefineCore;
 
 const { default: simpleRest } = RefineSimpleRest;
 
@@ -337,9 +335,9 @@ If not specified, Refine will use the default data provider. If you have multipl
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { Show } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { Show } from "@refinedev/antd";
 
 // highlight-start
 const PostShow = () => {
@@ -350,15 +348,15 @@ const PostShow = () => {
 export const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
             // highlight-start
             dataProvider={{
                 default: dataProvider("https://api.fake-rest.refine.dev/"),
                 other: dataProvider("https://other-api.fake-rest.refine.dev/"),
             }}
             // highlight-end
-            resources={[{ name: "posts", show: PostShow }]}
-        />
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 ```
@@ -378,7 +376,7 @@ const PostShow: React.FC = () => {
     const BackButton = () => <Button>←</Button>;
     return (
         /* highlight-next-line */
-        <Show goBack={<SmileOutlined />}>
+        <Show goBack={<div>back</div>}>
             <p>Rest of your page here</p>
         </Show>
     );
@@ -457,8 +455,7 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 const { ShowButton } = RefineAntd;
 
 // visible-block-start
-import { Show } from "@refinedev/antd";
-import { Breadcrumb } from "antd";
+import { Show, Breadcrumb } from "@refinedev/antd";
 
 const PostShow: React.FC = () => {
     return (

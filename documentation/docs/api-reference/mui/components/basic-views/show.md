@@ -124,17 +124,18 @@ render(
 
 ### `resource`
 
-The `<Show>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Show>` component in a custom page, you can use the `resource` property.
+The `<Show>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Show>` component, you can use the `resource` prop.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
 // handle initial routes in new way
 setInitialRoutes(["/custom"]);
 
-// visible-block-start
 import { Refine } from "@refinedev/core";
-import { Show, Layout } from "@refinedev/mui";
-import routerProvider from "@refinedev/react-router-v6";
+import { Layout } from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
+// visible-block-start
+import { Show } from "@refinedev/mui";
 
 const CustomPage: React.FC = () => {
     return (
@@ -144,11 +145,11 @@ const CustomPage: React.FC = () => {
         </Show>
     );
 };
-
+// visible-block-end
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
@@ -165,7 +166,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(
     <Wrapper>
@@ -286,25 +286,27 @@ render(
 // handle initial routes in new way
 setInitialRoutes(["/custom"]);
 
-// visible-block-start
 import { Refine } from "@refinedev/core";
-import { List, Layout } from "@refinedev/mui";
-import routerProvider from "@refinedev/react-router-v6";
+import { Layout } from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
+// visible-block-start
+import { Show } from "@refinedev/mui";
 
 const CustomPage: React.FC = () => {
     return (
         /* highlight-next-line */
-        <List resource="posts" recordItemId={123}>
+        <Show resource="posts" recordItemId={123}>
             <span>Rest of your page here</span>
-        </List>
+        </Show>
     );
 };
+// visible-block-end
 
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 routes: [
                     {
@@ -319,7 +321,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(
     <Wrapper>
@@ -342,9 +343,9 @@ If not specified, Refine will use the default data provider. If you have multipl
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { Show } from "@refinedev/mui";
-import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { Show } from "@refinedev/mui";
 
 // highlight-start
 const PostShow = () => {
@@ -355,15 +356,15 @@ const PostShow = () => {
 export const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
             // highlight-start
             dataProvider={{
                 default: dataProvider("https://api.fake-rest.refine.dev/"),
                 other: dataProvider("https://other-api.fake-rest.refine.dev/"),
             }}
             // highlight-end
-            resources={[{ name: "posts", show: PostShow }]}
-        />
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 ```
@@ -376,10 +377,10 @@ To customize the back button or to disable it, you can use the `goBack` property
 // visible-block-start
 import { Show } from "@refinedev/mui";
 import { Button } from "@mui/material";
-import { useNavigation } from "@refinedev/core";
+import { useBack } from "@refinedev/core";
 
 const BackButton = () => {
-    const { goBack } = useNavigation();
+    const goBack = useBack();
 
     return <Button onClick={() => goBack()}>BACK!</Button>;
 };

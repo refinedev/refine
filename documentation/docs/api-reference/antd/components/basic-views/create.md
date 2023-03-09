@@ -197,19 +197,20 @@ render(
 
 ### `resource`
 
-The `<Create>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Create>` component in a custom page, you can use the `resource` prop.
+The `<Create>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Create>` component, you can use the `resource` prop.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
 // handle initial routes in new way
 setInitialRoutes(["/custom"]);
 
-// visible-block-start
-import { Refine } from "@refinedev/core";
-import { Create } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
+import { Refine } from "@refinedev/core";
 
-const CustomPage: React.FC = () => {
+// visible-block-start
+import { Create } from "@refinedev/antd";
+
+const MyComponent: React.FC = () => {
     return (
         /* highlight-next-line */
         <Create resource="posts">
@@ -217,16 +218,17 @@ const CustomPage: React.FC = () => {
         </Create>
     );
 };
+// visible-block-end
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={{
+        <RefineAntdDemo
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
                     {
-                        element: <CustomPage />,
+                        element: <MyComponent />,
                         path: "/custom",
                     },
                 ],
@@ -237,7 +239,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(<App />);
 ```
@@ -336,8 +337,7 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 const { CreateButton } = RefineAntd;
 
 // visible-block-start
-import { Create } from "@refinedev/antd";
-import { Breadcrumb } from "antd";
+import { Create, Breadcrumb } from "@refinedev/antd";
 
 const PostCreate: React.FC = () => {
     return (
