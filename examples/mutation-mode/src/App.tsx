@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     BackTop,
     notificationProvider,
@@ -19,29 +19,32 @@ const App: React.FC = () => {
     const [refineProps, demoSidebarProps] = useDemoSidebar();
 
     return (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            routerProvider={routerProvider}
-            OffLayoutArea={() => (
-                <>
-                    <BackTop />
-                    <DemoSidebar {...demoSidebarProps} />
-                </>
-            )}
-            {...refineProps}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+        <>
+            <GitHubBanner />
+            <Refine
+                dataProvider={dataProvider(API_URL)}
+                routerProvider={routerProvider}
+                OffLayoutArea={() => (
+                    <>
+                        <BackTop />
+                        <DemoSidebar {...demoSidebarProps} />
+                    </>
+                )}
+                {...refineProps}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

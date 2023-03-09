@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -15,32 +15,35 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            routerProvider={routerProvider}
-            Footer={() => (
-                <div
-                    style={{
-                        backgroundColor: "white",
-                        height: "64px",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
-                    Custom Footer Content
-                </div>
-            )}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+        <>
+            <GitHubBanner />
+            <Refine
+                dataProvider={dataProvider(API_URL)}
+                routerProvider={routerProvider}
+                Footer={() => (
+                    <div
+                        style={{
+                            backgroundColor: "white",
+                            height: "64px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}
+                    >
+                        Custom Footer Content
+                    </div>
+                )}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

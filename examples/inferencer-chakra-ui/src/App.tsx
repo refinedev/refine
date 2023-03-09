@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     ChakraProvider,
     ErrorComponent,
@@ -14,6 +14,7 @@ import routerProvider from "@pankod/refine-react-router-v6";
 const App: React.FC = () => {
     return (
         <ChakraProvider theme={refineTheme}>
+            <GitHubBanner />
             <Refine
                 notificationProvider={notificationProvider()}
                 routerProvider={routerProvider}

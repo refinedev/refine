@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import { KBarProvider } from "@pankod/refine-kbar";
 import {
     ErrorComponent,
@@ -56,6 +56,7 @@ const App: React.FC = () => {
                     styles={{ html: { WebkitFontSmoothing: "auto" } }}
                 />
                 <RefineSnackbarProvider>
+                    <GitHubBanner />
                     <Refine
                         routerProvider={{
                             ...routerProvider,

@@ -2,7 +2,7 @@ import React from "react";
 import { AppProps } from "next/app";
 import Script from "next/script";
 
-import { GetListResponse, Refine } from "@pankod/refine-core";
+import { GitHubBanner, GetListResponse, Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-nextjs-router";
 import dataProvider, { authProvider } from "@pankod/refine-medusa";
 import NextNProgress from "nextjs-progressbar";
@@ -28,6 +28,7 @@ function MyApp({
 
     return (
         <ManagedUIContext>
+            <GitHubBanner />
             <Refine
                 Layout={({ ...rest }) => (
                     <Layout {...rest} categories={categories} />

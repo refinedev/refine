@@ -1,4 +1,4 @@
-import { AuthProvider, Refine } from "@pankod/refine-core";
+import { GitHubBanner, AuthProvider, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -109,25 +109,28 @@ const authProvider: AuthProvider = {
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={gqlDataProvider}
-            routerProvider={routerProvider}
-            authProvider={authProvider}
-            LoginPage={Login}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    canDelete: true,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+        <>
+            <GitHubBanner />
+            <Refine
+                dataProvider={gqlDataProvider}
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+                LoginPage={Login}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                        canDelete: true,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

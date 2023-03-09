@@ -1,4 +1,4 @@
-import { AuthProvider, Refine } from "@pankod/refine-core";
+import { GitHubBanner, AuthProvider, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -79,6 +79,7 @@ const authProvider: AuthProvider = {
 const App: React.FC = () => {
     return (
         <NhostAuthProvider nhost={nhost}>
+            <GitHubBanner />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(nhost)}

@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -40,38 +40,41 @@ const RefineWithCloud = withCloud(Refine, {
 
 const App: React.FC = () => {
     return (
-        <RefineWithCloud
-            LoginPage={Login}
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    canDelete: true,
-                },
-                {
-                    name: "products",
-                    list: ProductList,
-                    create: ProductCreate,
-                    edit: ProductEdit,
-                    show: ProductShow,
-                },
-                {
-                    name: "categories",
-                    list: CategoryList,
-                    create: CategoryCreate,
-                    edit: CategoryEdit,
-                    show: CategoryShow,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+        <>
+            <GitHubBanner />
+            <RefineWithCloud
+                LoginPage={Login}
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                        canDelete: true,
+                    },
+                    {
+                        name: "products",
+                        list: ProductList,
+                        create: ProductCreate,
+                        edit: ProductEdit,
+                        show: ProductShow,
+                    },
+                    {
+                        name: "categories",
+                        list: CategoryList,
+                        create: CategoryCreate,
+                        edit: CategoryEdit,
+                        show: CategoryShow,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

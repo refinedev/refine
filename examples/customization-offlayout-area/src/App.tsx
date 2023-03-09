@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     BackTop,
     AntdLayout,
@@ -19,45 +19,48 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     const breakpoint = Grid.useBreakpoint();
     return (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            routerProvider={routerProvider}
-            Layout={({ children, Header, Footer, OffLayoutArea }) => (
-                <AntdLayout
-                    style={{ minHeight: "100vh", flexDirection: "row" }}
-                >
-                    <FixedSider />
-                    <AntdLayout style={{ marginLeft: 200 }}>
-                        {Header && <Header />}
-                        <AntdLayout.Content>
-                            <div
-                                style={{
-                                    padding: breakpoint.sm ? 24 : 12,
-                                    minHeight: 360,
-                                }}
-                            >
-                                {children}
-                            </div>
-                        </AntdLayout.Content>
-                        {Footer && <Footer />}
+        <>
+            <GitHubBanner />
+            <Refine
+                dataProvider={dataProvider(API_URL)}
+                routerProvider={routerProvider}
+                Layout={({ children, Header, Footer, OffLayoutArea }) => (
+                    <AntdLayout
+                        style={{ minHeight: "100vh", flexDirection: "row" }}
+                    >
+                        <FixedSider />
+                        <AntdLayout style={{ marginLeft: 200 }}>
+                            {Header && <Header />}
+                            <AntdLayout.Content>
+                                <div
+                                    style={{
+                                        padding: breakpoint.sm ? 24 : 12,
+                                        minHeight: 360,
+                                    }}
+                                >
+                                    {children}
+                                </div>
+                            </AntdLayout.Content>
+                            {Footer && <Footer />}
+                        </AntdLayout>
+                        {OffLayoutArea && <OffLayoutArea />}
                     </AntdLayout>
-                    {OffLayoutArea && <OffLayoutArea />}
-                </AntdLayout>
-            )}
-            OffLayoutArea={() => (
-                <>
-                    <BackTop />
-                </>
-            )}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-        />
+                )}
+                OffLayoutArea={() => (
+                    <>
+                        <BackTop />
+                    </>
+                )}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

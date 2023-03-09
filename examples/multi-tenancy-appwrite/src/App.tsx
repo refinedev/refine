@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -22,6 +22,7 @@ import { StoreProvider } from "context/store";
 function App() {
     return (
         <StoreProvider>
+            <GitHubBanner />
             <Refine
                 routerProvider={routerProvider}
                 liveProvider={liveProvider(appwriteClient)}

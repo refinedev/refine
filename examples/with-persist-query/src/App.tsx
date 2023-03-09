@@ -1,4 +1,4 @@
-import { QueryClient, Refine } from "@pankod/refine-core";
+import { GitHubBanner, QueryClient, Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import "./App.css";
@@ -28,23 +28,26 @@ persistQueryClient({
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            routerProvider={routerProvider}
-            options={{
-                reactQuery: {
-                    clientConfig: queryClient,
-                },
-            }}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                },
-            ]}
-        />
+        <>
+            <GitHubBanner />
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                routerProvider={routerProvider}
+                options={{
+                    reactQuery: {
+                        clientConfig: queryClient,
+                    },
+                }}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                    },
+                ]}
+            />
+        </>
     );
 };
 

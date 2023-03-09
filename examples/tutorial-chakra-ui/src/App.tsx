@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     ChakraProvider,
@@ -21,6 +21,7 @@ import { ProductShow } from "pages/products/show";
 function App() {
     return (
         <ChakraProvider theme={refineTheme}>
+            <GitHubBanner />
             <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 notificationProvider={notificationProvider()}

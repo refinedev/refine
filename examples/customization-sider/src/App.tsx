@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -19,45 +19,48 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            routerProvider={routerProvider}
-            Sider={CustomSider}
-            Title={({ collapsed }) => (
-                <Link to="/">
-                    {collapsed ? (
-                        <img
-                            src="/refine-collapsed.svg"
-                            alt="Refine"
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                padding: "12px 24px",
-                            }}
-                        />
-                    ) : (
-                        <img
-                            src="/refine.svg"
-                            alt="Refine"
-                            style={{
-                                width: "200px",
-                                padding: "12px 24px",
-                            }}
-                        />
-                    )}
-                </Link>
-            )}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+        <>
+            <GitHubBanner />
+            <Refine
+                dataProvider={dataProvider(API_URL)}
+                routerProvider={routerProvider}
+                Sider={CustomSider}
+                Title={({ collapsed }) => (
+                    <Link to="/">
+                        {collapsed ? (
+                            <img
+                                src="/refine-collapsed.svg"
+                                alt="Refine"
+                                style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    padding: "12px 24px",
+                                }}
+                            />
+                        ) : (
+                            <img
+                                src="/refine.svg"
+                                alt="Refine"
+                                style={{
+                                    width: "200px",
+                                    padding: "12px 24px",
+                                }}
+                            />
+                        )}
+                    </Link>
+                )}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 };
 

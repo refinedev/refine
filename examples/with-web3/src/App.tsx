@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -17,25 +17,28 @@ function App() {
     const API_URL = "https://api.fake-rest.refine.dev";
     const dataProvider = simpleRestDataProvider(API_URL);
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider}
-            authProvider={authProvider}
-            LoginPage={Login}
-            DashboardPage={DashboardPage}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+        <>
+            <GitHubBanner />
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider}
+                authProvider={authProvider}
+                LoginPage={Login}
+                DashboardPage={DashboardPage}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
+            />
+        </>
     );
 }
 

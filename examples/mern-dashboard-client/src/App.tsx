@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import { GitHubBanner, Refine, AuthProvider } from "@pankod/refine-core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
@@ -127,6 +127,7 @@ function App() {
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
+                <GitHubBanner />
                 <Refine
                     dataProvider={dataProvider("http://localhost:8080/api/v1")}
                     notificationProvider={notificationProvider}
