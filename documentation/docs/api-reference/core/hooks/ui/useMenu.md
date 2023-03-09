@@ -35,13 +35,7 @@ const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
 
 :::tip
 
-If you are using [`@refinedev/antd`](/docs/api-reference/antd/), [`@refinedev/mui`](/docs/api-reference/mui/), [`@refinedev/chakra-ui`](/docs/api-reference/chakra-ui/) or [`@refinedev/mantine`](/docs/api-reference/mantine/) as a UI framework integration, you can find out more info about how their `<Sider/>` components are created and how to create a custom one by following their guides.
-
-[Ant Design > Customization > Custom Sider &#8594](/docs/api-reference/antd/customization/antd-custom-sider/)
-
-[Material UI > Customization > Custom Sider &#8594](/docs/api-reference/mui/customization/mui-custom-sider/)
-
-[Mantine > Customization > Custom Sider &#8594](/docs/api-reference/mantine/customization/sider/)
+If you are using [`@refinedev/antd`](/docs/api-reference/antd/), [`@refinedev/mui`](/docs/api-reference/mui/), [`@refinedev/chakra-ui`](/docs/api-reference/chakra-ui/) or [`@refinedev/mantine`](/docs/api-reference/mantine/) as a UI framework integration, you can find out more info about their structure and how to use `useMenu` in the [Custom Layout][customlayout]
 
 :::
 
@@ -338,3 +332,4 @@ export type TreeMenuItem = IResourceItem & {
 <CodeSandboxExample path="core-use-menu" />
 
 [use-navigation]: /docs/api-reference/core/hooks/navigation/useNavigation/
+[customlayout]: /docs/advanced-tutorials/custom-layout/

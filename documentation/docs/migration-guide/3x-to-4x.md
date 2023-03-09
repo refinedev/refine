@@ -1437,5 +1437,5 @@ After that, you can import them from `react-hook-form` package directly.
 [refine]: /api-reference/core/components/refine-config.md
 [resources]: /api-reference/core/components/refine-config.md#resources
 [routerprovider]: /api-reference/core/providers/router-provider.md
-[custompages]: /advanced-tutorials/custom-pages.md
+[custompages]: packages/documentation/routers
 [auth-provider]: /api-reference/core/providers/auth-provider/

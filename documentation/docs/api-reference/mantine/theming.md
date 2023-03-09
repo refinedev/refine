@@ -1,5 +1,5 @@
 ---
-id: theme
+id: theming
 title: Theme
 ---
 

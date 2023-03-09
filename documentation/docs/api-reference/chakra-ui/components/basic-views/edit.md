@@ -378,7 +378,7 @@ render(
 
 `<Edit>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Edit>` component in a custom page, you can use the `resource` property.
 
-[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
+[Refer to the custom pages documentation for detailed usage. &#8594](packages/documentation/routers)
 
 ```tsx live url=http://localhost:3000/custom/23 previewHeight=280px
 setInitialRoutes(["/custom/23"]);

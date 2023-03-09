@@ -1,5 +1,5 @@
 ---
-id: mui-custom-theme
+id: theming
 title: Theme
 ---
 

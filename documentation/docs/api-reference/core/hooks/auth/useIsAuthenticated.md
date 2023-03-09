@@ -27,7 +27,7 @@ type CheckResponse = {
 
 ## Usage
 
-`useIsAuthenticated` can be useful when you want to ask for authentication to grant access to [custom pages](/advanced-tutorials/custom-pages.md) manually.
+`useIsAuthenticated` can be useful when you want to check for authentication and handle the result manually.
 
 We have used this hook in refine's [`<Authenticated>`](/api-reference/core/components/auth/authenticated.md) component which allows only authenticated users to access the page or any part of the code.
 

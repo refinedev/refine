@@ -12,6 +12,8 @@ You don't have to customize the whole layout and its sub components. You can cus
 
 Here's an example of a custom layout, made with help of **refine**'s hooks and components.
 
+You can find more examples about custom layouts for different UI packages in the [examples](/docs/examples) section.
+
 <CodeSandboxExample path="customization-top-menu-layout" />
 
 [refine]: /docs/api-reference/core/components/refine-config
@@ -20,9 +22,4 @@ Here's an example of a custom layout, made with help of **refine**'s hooks and c
 [sider]: /docs/api-reference/core/components/refine-config#sider
 [footer]: /docs/api-reference/core/components/refine-config#footer
 [header]: /docs/api-reference/core/components/refine-config#header
-[offlayoutarea]: /docs/api-reference/core/components/refine-config#offlayoutarea
 [title]: /docs/api-reference/core/components/refine-config#title
-[custom page example]: /advanced-tutorials/custom-pages
-[custom page example code]: /examples/customization/topMenuLayout
-[antdlayout]: https://ant.design/components/layout/
-[usemenu]: /docs/api-reference/core/hooks/ui/useMenu
