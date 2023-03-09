@@ -1,19 +1,13 @@
 import React, { useState } from "react";
-import {
-    useTitle,
-    ITreeMenu,
-    CanAccess,
-    useRouterContext,
-    useMenu,
-} from "@refinedev/core";
+import { useTitle, ITreeMenu, CanAccess, useMenu } from "@refinedev/core";
 
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { Layout as AntdLayout, Menu } from "antd";
+import { Link } from "react-router-dom";
 
 export const FixedSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const Title = useTitle();
-    const { Link } = useRouterContext();
     const { SubMenu } = Menu;
     const { menuItems, selectedKey } = useMenu();
 
@@ -50,7 +44,7 @@ export const FixedSider: React.FC = () => {
                         }}
                         icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
-                        <Link to={route}>{label}</Link>
+                        <Link to={route || "/"}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
