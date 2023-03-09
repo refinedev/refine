@@ -1,8 +1,11 @@
+"use client";
+
 import { useForm, useSelect, Create } from "@refinedev/antd";
 import { Form, Select, Input } from "antd";
+
 import { IPost } from "src/interfaces";
 
-export const PostCreate: React.FC = () => {
+const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<IPost>({
@@ -40,3 +43,5 @@ export const PostCreate: React.FC = () => {
         </Create>
     );
 };
+
+export default PostCreate;

@@ -1,11 +1,14 @@
+"use client";
+
 import { useOne, useShow } from "@refinedev/core";
 import { Show } from "@refinedev/antd";
 import { Typography, Tag } from "antd";
+
 import { ICategory } from "src/interfaces";
 
 const { Title, Text } = Typography;
 
-export const PostShow: React.FC = () => {
+const PostShow: React.FC = () => {
     const { queryResult } = useShow();
     const { data, isLoading } = queryResult;
     const record = data?.data;
@@ -33,3 +36,5 @@ export const PostShow: React.FC = () => {
         </Show>
     );
 };
+
+export default PostShow;

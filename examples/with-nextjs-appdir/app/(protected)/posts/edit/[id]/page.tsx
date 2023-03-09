@@ -1,8 +1,11 @@
+"use client";
+
 import { useForm, useSelect, Edit } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
+
 import { IPost } from "src/interfaces";
 
-export const PostEdit: React.FC = () => {
+const PostEdit: React.FC = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<IPost>({
@@ -41,3 +44,5 @@ export const PostEdit: React.FC = () => {
         </Edit>
     );
 };
+
+export default PostEdit;

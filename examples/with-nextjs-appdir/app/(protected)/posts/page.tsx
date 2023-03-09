@@ -1,4 +1,5 @@
-import { GetListResponse } from "@refinedev/core";
+"use client";
+
 import {
     useTable,
     List,
@@ -7,17 +8,11 @@ import {
     DeleteButton,
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
-import type { IResourceComponentsProps } from "@refinedev/core";
-import { IPost } from "../../interfaces";
 
-export const PostList: React.FC<
-    IResourceComponentsProps<GetListResponse<IPost>>
-> = ({ initialData }) => {
-    const { tableProps } = useTable<IPost>({
-        queryOptions: {
-            initialData,
-        },
-    });
+import { IPost } from "src/interfaces";
+
+const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>({});
 
     return (
         <List>
@@ -51,3 +46,5 @@ export const PostList: React.FC<
         </List>
     );
 };
+
+export default PostList;
