@@ -115,7 +115,10 @@ import {
     ErrorComponent,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, {
+    NavigateToResource,
+    CatchAllNavigate,
+} from "@refinedev/react-router-v6";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -148,8 +151,9 @@ const App = () => {
                 success: true,
             };
         },
-        onError: async () => {
-            return {};
+        onError: async (error) => {
+            console.error(error);
+            return { error };
         },
         check: async () => {
             try {
@@ -221,7 +225,7 @@ const App = () => {
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Authenticated
                                 fallback={<CatchAllNavigate to="/login" />}
                             >
@@ -229,20 +233,19 @@ const App = () => {
                                     <Outlet />
                                 </Layout>
                             </Authenticated>
-                        )}
+                        }
                     >
-                        <Route path="/posts" element={<div>dummy list page</div>} />
+                        <Route
+                            path="/posts"
+                            element={<div>dummy list page</div>}
+                        />
                     </Route>
                     <Route
-                        element={(
-                            <Authenticated
-                                fallback={(
-                                    <Outlet />
-                                )}
-                            >
+                        element={
+                            <Authenticated fallback={<Outlet />}>
                                 <NavigateToResource />
                             </Authenticated>
-                        )}
+                        }
                     >
                         <Route path="/login" element={<Login />} />
                     </Route>
