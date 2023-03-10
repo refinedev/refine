@@ -30,6 +30,7 @@ function App() {
                         name: "dashboard",
                         list: "/",
                         meta: {
+                            label: "Dashboard",
                             icon: <DashboardOutlined />,
                         },
                     },
