@@ -1,5 +1,5 @@
 import React from "react";
-import { GitHubBanner, GitHubBanner, Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import { AppProps } from "next/app";
 
 import { appWithTranslation, useTranslation } from "next-i18next";

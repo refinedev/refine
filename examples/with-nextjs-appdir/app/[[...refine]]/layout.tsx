@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { GitHubBanner, Refine } from "@pankod/refine-core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
