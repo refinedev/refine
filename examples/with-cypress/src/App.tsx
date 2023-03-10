@@ -8,7 +8,7 @@ import { DashboardOutlined } from "@ant-design/icons";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-const DashBoardPage = () => <div>Dashboard</div>;
+const DashboardPage = () => <div>Dashboard</div>;
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -24,6 +24,7 @@ const App: React.FC = () => {
                         list: "/",
                         meta: {
                             icon: <DashboardOutlined />,
+                            label: "Dashboard",
                         },
                     },
                     {
@@ -47,7 +48,7 @@ const App: React.FC = () => {
                             </Layout>
                         }
                     >
-                        <Route index element={<DashBoardPage />} />
+                        <Route index element={<DashboardPage />} />
 
                         <Route path="posts">
                             <Route index element={<PostList />} />
