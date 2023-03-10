@@ -121,8 +121,6 @@ function App() {
                                         element={<MantineInferencer />}
                                     />
                                 </Route>
-
-                                <Route path="*" element={<ErrorComponent />} />
                             </Route>
 
                             <Route

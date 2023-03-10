@@ -40,7 +40,6 @@ function App() {
                             }
                         />
                         <Route path="/countries" element={<Countries />} />
-                        <Route path="*" element={<ErrorComponent />} />
                     </Route>
 
                     <Route

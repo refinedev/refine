@@ -63,8 +63,6 @@ function App() {
                         />
 
                         <Route path="/feedbacks" element={<FeedbackList />} />
-
-                        <Route path="*" element={<ErrorComponent />} />
                     </Route>
 
                     <Route
