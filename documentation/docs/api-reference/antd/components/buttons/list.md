@@ -193,7 +193,7 @@ Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceName
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { ListButton } from "@pankod/refine-antd";
+import { ListButton } from "@refinedev/antd";
 
 const MyListComponent = () => {
     return <ListButton resourceNameOrRouteName="categories" />;

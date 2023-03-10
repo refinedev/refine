@@ -5,9 +5,9 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
+const { default: sharedRouterProvider } = LegacyRefineReactRouterV6;
 setRefineProps({
-    routerProvider,
+    legacyRouterProvider: sharedRouterProvider,
     Layout: RefineChakra.Layout,
     Sider: () => null,
     catchAll: <RefineChakra.ErrorComponent />,
@@ -488,11 +488,11 @@ export const MyListComponent = () => {
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-chakra-ui";
+import { DeleteButton } from "@refinedev/chakra-ui";
 
 const MyDeleteComponent = () => {
     return (

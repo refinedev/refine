@@ -5,10 +5,10 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
+const { default: routerProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
+    legacyRouterProvider: routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     notificationProvider: RefineMantine.notificationProvider,
     Layout: RefineMantine.Layout,
@@ -57,7 +57,7 @@ import {
 } from "@refinedev/mantine";
 import { Title, Text } from "@mantine/core";
 
-const PostShow: React.FC<IResourceComponentsProps> = () => {
+const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
@@ -239,11 +239,11 @@ Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceName
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
+import { Refine, useRouterContext, useNavigation } from "@refinedev/core";
 import { Button, Code, Space, Text } from "@mantine/core";
 
 // visible-block-start
-import { ListButton } from "@pankod/refine-mantine";
+import { ListButton } from "@refinedev/mantine";
 
 const MyListComponent = () => {
     return <ListButton resourceNameOrRouteName="categories" />;

@@ -185,7 +185,7 @@ It is used to redirect the app to the `/create` endpoint of the given resource n
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { CreateButton } from "@pankod/refine-mui";
+import { CreateButton } from "@refinedev/mui";
 
 const MyCreateComponent = () => {
     return (

@@ -1,6 +1,7 @@
 ---
 id: useDrawerForm
 title: useDrawerForm
+sidebar_label: useDrawerForm 🆙
 ---
 
 [`useModalForm`][use-modal-form-refine-mantine] hook allows you to manage a form within a `<Modal>` as well as a `<Drawer>`. It provides some useful methods to handle the form `<Modal>` or form `<Drawer>`.
@@ -31,7 +32,6 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { GetManyResponse, useMany } from "@refinedev/core";
@@ -52,7 +52,7 @@ import {
     TextInput,
 } from "@mantine/core";
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     // highlight-start
     const {
         getInputProps,
@@ -254,7 +254,6 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { GetManyResponse, useMany } from "@refinedev/core";
@@ -276,7 +275,7 @@ import {
     TextInput,
 } from "@mantine/core";
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     // highlight-start
     const {
         getInputProps,
@@ -599,6 +598,20 @@ const drawerForm = useDrawerForm({
     modalProps: {
         autoResetForm: false,
     },
+});
+```
+
+### `syncWithLocation`
+
+> Default: `false`
+
+When `true`, the drawers visibility state and the `id` of the record will be synced with the URL.
+
+This property can also be set as an object `{ key: string; syncId?: boolean }` to customize the key of the URL query parameter. `id` will be synced with the URL only if `syncId` is `true`.
+
+```tsx
+const drawerForm = useDrawerForm({
+    syncWithLocation: { key: "my-modal", syncId: true },
 });
 ```
 

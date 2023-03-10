@@ -28,11 +28,11 @@ import { useMany } from "@refinedev/core";
 
 import {
     List,
-    Table,
     TextField,
     TagField,
     useTable,
 } from "@refinedev/antd";
+import { Table } from "antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>({
@@ -135,18 +135,16 @@ render(
 
 ### `resource`
 
-`<List>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<List>` component in a custom page, you can use the `resource` prop.
-
-[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
+`<List>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<List>` component, you can use the `resource` prop.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
 setInitialRoutes(["/custom"]);
 
-// visible-block-start
 import { Refine } from "@refinedev/core";
-import { List } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
+// visible-block-start
+import { List } from "@refinedev/antd";
 
 const CustomPage: React.FC = () => {
     return (
@@ -156,11 +154,12 @@ const CustomPage: React.FC = () => {
         </List>
     );
 };
+// visible-block-end
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={{
+        <RefineAntdDemo
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
@@ -176,7 +175,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(<App />);
 ```

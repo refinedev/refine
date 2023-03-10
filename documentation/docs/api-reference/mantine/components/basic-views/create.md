@@ -52,7 +52,7 @@ We'll show what `<Create>` does using properties with examples.
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create, useForm, useSelect } from "@refinedev/mantine";
@@ -118,7 +118,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -155,7 +155,7 @@ It allows adding title inside the `<Create>` component. if you don't pass title 
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
@@ -174,7 +174,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -207,7 +207,7 @@ render(
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
@@ -225,7 +225,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -250,18 +250,17 @@ render(
 
 ### `resource`
 
-The `<Create>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Create>` component in a custom page, you can use the `resource` prop.
-
-[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
+The `<Create>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Create>` component, you can use the `resource` prop.
 
 ```tsx live url=http://localhost:3000/custom previewHeight=280px
 setInitialRoutes(["/custom"]);
 
-// visible-block-start
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
-import { Layout, Create } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import { Layout } from "@refinedev/mantine";
+// visible-block-start
+import { Create } from "@refinedev/mantine";
 
 const CustomPage: React.FC = () => {
     return (
@@ -271,11 +270,12 @@ const CustomPage: React.FC = () => {
         </Create>
     );
 };
+// visible-block-end
 
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
@@ -292,7 +292,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(
     <Wrapper>
@@ -309,7 +308,7 @@ To customize the back button or to disable it, you can use the `goBack` property
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
@@ -327,7 +326,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -358,7 +357,7 @@ To toggle the loading state of the `<Create/>` component, you can use the `isLoa
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
@@ -376,7 +375,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -413,7 +412,7 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create, Breadcrumb } from "@refinedev/mantine";
@@ -443,7 +442,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -476,7 +475,7 @@ If you want to customize the wrapper of the `<Create/>` component, you can use t
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
@@ -502,7 +501,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -535,7 +534,7 @@ If you want to customize the header of the `<Create/>` component, you can use th
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
@@ -561,7 +560,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -594,7 +593,7 @@ If you want to customize the content of the `<Create/>` component, you can use t
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
@@ -620,7 +619,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -651,10 +650,11 @@ You can customize the buttons at the header by using the `headerButtons` propert
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
-import { Create, Button } from "@mantine/core";
+import { Create } from "@refinedev/mantine";
+import { Button } from "@mantine/core";
 
 const PostCreate: React.FC = () => {
     return (
@@ -677,7 +677,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -710,7 +710,7 @@ You can customize the wrapper element of the buttons at the header by using the 
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
@@ -738,7 +738,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -769,7 +769,7 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
@@ -796,7 +796,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",
@@ -829,7 +829,7 @@ You can customize the wrapper element of the buttons at the footer by using the 
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
@@ -859,7 +859,7 @@ const PostCreate: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            legacyRouterProvider={routerProvider}
             resources={[
                 {
                     name: "posts",

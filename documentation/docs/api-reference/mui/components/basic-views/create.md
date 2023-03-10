@@ -168,19 +168,18 @@ render(
 
 ### `resource`
 
-The `<Create>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Create>` component in a custom page, you can use the `resource` prop.
-
-[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
+The `<Create>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Create>` component, you can use the `resource` prop.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
 // handle initial routes in new way
 setInitialRoutes(["/custom"]);
 
-// visible-block-start
 import { Refine } from "@refinedev/core";
-import { Create, Layout } from "@refinedev/mui";
-import routerProvider from "@refinedev/react-router-v6";
+import { Layout } from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
+// visible-block-start
+import { Create } from "@refinedev/mui";
 
 const CustomPage: React.FC = () => {
     return (
@@ -190,11 +189,12 @@ const CustomPage: React.FC = () => {
         </Create>
     );
 };
+// visible-block-end
 
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
@@ -211,7 +211,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(
     <Wrapper>
@@ -267,10 +266,10 @@ To customize the back button or to disable it, you can use the `goBack` property
 // visible-block-start
 import { Create } from "@refinedev/mui";
 import { Button } from "@mui/material";
-import { useNavigation } from "@refinedev/core";
+import { useBack } from "@refinedev/core";
 
 const BackButton = () => {
-    const { goBack } = useNavigation();
+    const goBack = useBack();
 
     return <Button onClick={() => goBack()}>BACK!</Button>;
 };
@@ -751,89 +750,6 @@ render(
     />,
 );
 ```
-
-### ~~`actionButtons`~~
-
-:::caution Deprecated
-Use `headerButtons` or `footerButtons` instead.
-:::
-
-`<Create>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component. The children of the [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component shows [`<SaveButton>`](/api-reference/mui/components/buttons/save.md) and [`<DeleteButton>`](/api-reference/mui/components/buttons/delete.md) based on your resource definition in the`resources` property you pass to `<Refine>`. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
-
-```tsx title="src/pages/posts/create.tsx"
-// highlight-next-line
-import { Create } from "@refinedev/mui";
-import { Button } from "@mui/material";
-
-export const CreatePage: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            actionButtons={
-                <>
-                    <Button>Custom Button 1</Button>
-                    <Button>Custom Button 2</Button>
-                </>
-            }
-            // highlight-end
-        >
-            ...
-        </Create>
-    );
-};
-```
-
-### ~~`cardProps`~~
-
-:::caution Deprecated
-Use `wrapperProps` instead.
-:::
-
-`<Create>` uses the Material UI [`<Card>`](https://mui.com/material-ui/react-card/#main-content) components so you can customize with the props of `cardProps`.
-
-### ~~`cardHeaderProps`~~
-
-:::caution Deprecated
-Use `headerProps` instead.
-:::
-
-`<Create>` uses the Material UI [`<CardHeader>`](https://mui.com/material-ui/api/card-header/) components so you can customize with the props of `cardHeaderProps`.
-
-```tsx
-// highlight-next-line
-import { Create } from "@refinedev/mui";
-import { Typography } from "@mui/material";
-
-export const CreatePage: React.FC = () => {
-    return (
-        <Create
-            // highlight-start
-            cardHeaderProps={{
-                title: <Typography variant="h5">Custom Title</Typography>,
-            }}
-            // highlight-end
-        >
-            ...
-        </Create>
-    );
-};
-```
-
-### ~~`cardContentProps`~~
-
-:::caution Deprecated
-Use `contentProps` instead.
-:::
-
-`<Create>` uses the Material UI [`<CardContent>`](https://mui.com/material-ui/api/card-content/) components so you can customize with the props of `cardContentProps`.
-
-### ~~`cardActionsProps`~~
-
-:::caution Deprecated
-Use `headerButtonProps` and `footerButtonProps` instead.
-:::
-
-`<Create>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/) components so you can customize with the props of `cardActionsProps`.
 
 ## API Reference
 

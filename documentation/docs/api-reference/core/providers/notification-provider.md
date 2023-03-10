@@ -1,6 +1,7 @@
 ---
 id: notification-provider
 title: Notification Provider
+sidebar_label: Notification Provider 🆙
 ---
 
 **refine** let's you set a notification API by providing the `notificationProvider` property to the `<Refine>` component.
@@ -40,8 +41,6 @@ To use `notificationProvider` in refine, we have to pass the notificationProvide
 
 ```tsx
 import { Refine, NotificationProvider } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
 
 //highlight-start
 const notificationProvider: NotificationProvider = {
@@ -55,9 +54,10 @@ const App = () => {
         <Refine
             //highlight-next-line
             notificationProvider={notificationProvider}
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        />
+            /* ... */
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 ```
@@ -173,16 +173,13 @@ import "react-toastify/dist/ReactToastify.css";
 const App: React.FC = () => {
     return (
         <Refine
-            ...
-            //highlight-start
-            Layout={({ children }) => (
-                <div>
-                    {children}
-                    <ToastContainer />
-                </div>
-            )}
-            //highlight-end
-        />
+            /* ...*/
+        >
+            {/* ... */}
+            {/* highlight-start */}
+            <ToastContainer />
+            {/* highlight-end */}
+        </Refine>
     );
 };
 

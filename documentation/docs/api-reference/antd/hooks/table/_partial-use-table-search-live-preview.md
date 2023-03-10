@@ -9,7 +9,7 @@ body {
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 
 import {
     List,
@@ -38,7 +38,7 @@ interface ISearch {
     title: string;
 }
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { tableProps, searchFormProps } = useTable<IPost, HttpError, ISearch>(
         {
             // highlight-start

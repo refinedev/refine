@@ -31,35 +31,55 @@ setInitialRoutes(["/products"]);
 import { Refine } from "@refinedev/core";
 import {
     Layout,
-    ReadyPage,
     notificationProvider,
     ErrorComponent,
 } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
+import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "products",
-                    list: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                    edit: AntdInferencer,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerBindings}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider}
+                resources={[
+                    {
+                        name: "products",
+                        list: "/products",
+                        show: "/products/show/:id",
+                        create: "/products/create",
+                        edit: "/products/edit/:id",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Layout>
+                                <Outlet/>
+                            </Layout>
+                        )}
+                    >
+                        {/* highlight-start */}
+                        <Route path="products">
+                            <Route index element={<AntdInferencer />} />
+                            <Route path="show/:id" element={<AntdInferencer />} />
+                            <Route path="edit/:id" element={<AntdInferencer />} />
+                            <Route path="create" element={<AntdInferencer />} />
+                        </Route>
+                        {/* highlight-end */}
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
@@ -174,13 +194,14 @@ Now that we have created the list page, we need to add it to the `App.tsx` file.
 import { Refine } from "@refinedev/core";
 import {
     Layout,
-    ReadyPage,
     notificationProvider,
     ErrorComponent,
 } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
+import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 //highlight-next-line
 import { ProductList } from "pages/products/list";
@@ -189,24 +210,42 @@ import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "products",
-                    //highlight-next-line
-                    list: ProductList,
-                    edit: AntdInferencer,
-                    show: AntdInferencer,
-                    create: AntdInferencer,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerBindings}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider}
+                resources={[
+                    {
+                        name: "products",
+                        list: "/products",
+                        show: "/products/show/:id",
+                        create: "/products/create",
+                        edit: "/products/edit/:id",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Layout>
+                                <Outlet/>
+                            </Layout>
+                        )}
+                    >
+                        <Route path="products">
+                            {/* highlight-start */}
+                            <Route index element={<ProductList />} />
+                            {/* highlight-end */}
+                            <Route path="show/:id" element={<AntdInferencer />} />
+                            <Route path="edit/:id" element={<AntdInferencer />} />
+                            <Route path="create" element={<AntdInferencer />} />
+                        </Route>
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 export default App;

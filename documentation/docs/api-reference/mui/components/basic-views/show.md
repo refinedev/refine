@@ -124,19 +124,18 @@ render(
 
 ### `resource`
 
-The `<Show>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Show>` component in a custom page, you can use the `resource` property.
-
-[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
+The `<Show>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Show>` component, you can use the `resource` prop.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
 // handle initial routes in new way
 setInitialRoutes(["/custom"]);
 
-// visible-block-start
 import { Refine } from "@refinedev/core";
-import { Show, Layout } from "@refinedev/mui";
-import routerProvider from "@refinedev/react-router-v6";
+import { Layout } from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
+// visible-block-start
+import { Show } from "@refinedev/mui";
 
 const CustomPage: React.FC = () => {
     return (
@@ -146,11 +145,11 @@ const CustomPage: React.FC = () => {
         </Show>
     );
 };
-
+// visible-block-end
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
@@ -167,7 +166,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(
     <Wrapper>
@@ -288,25 +286,27 @@ render(
 // handle initial routes in new way
 setInitialRoutes(["/custom"]);
 
-// visible-block-start
 import { Refine } from "@refinedev/core";
-import { List, Layout } from "@refinedev/mui";
-import routerProvider from "@refinedev/react-router-v6";
+import { Layout } from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
+// visible-block-start
+import { Show } from "@refinedev/mui";
 
 const CustomPage: React.FC = () => {
     return (
         /* highlight-next-line */
-        <List resource="posts" recordItemId={123}>
+        <Show resource="posts" recordItemId={123}>
             <span>Rest of your page here</span>
-        </List>
+        </Show>
     );
 };
+// visible-block-end
 
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 routes: [
                     {
@@ -321,7 +321,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(
     <Wrapper>
@@ -344,9 +343,9 @@ If not specified, Refine will use the default data provider. If you have multipl
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { Show } from "@refinedev/mui";
-import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { Show } from "@refinedev/mui";
 
 // highlight-start
 const PostShow = () => {
@@ -357,15 +356,15 @@ const PostShow = () => {
 export const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
             // highlight-start
             dataProvider={{
                 default: dataProvider("https://api.fake-rest.refine.dev/"),
                 other: dataProvider("https://other-api.fake-rest.refine.dev/"),
             }}
             // highlight-end
-            resources={[{ name: "posts", show: PostShow }]}
-        />
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 ```
@@ -378,10 +377,10 @@ To customize the back button or to disable it, you can use the `goBack` property
 // visible-block-start
 import { Show } from "@refinedev/mui";
 import { Button } from "@mui/material";
-import { useNavigation } from "@refinedev/core";
+import { useBack } from "@refinedev/core";
 
 const BackButton = () => {
-    const { goBack } = useNavigation();
+    const goBack = useBack();
 
     return <Button onClick={() => goBack()}>BACK!</Button>;
 };
@@ -862,105 +861,6 @@ render(
     />,
 );
 ```
-
-### ~~`actionButtons`~~
-
-:::caution Deprecated
-Use `headerButtons` or `footerButtons` instead.
-:::
-
-`<Show>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component. By default,The children of the [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component shows nothing in the `<Show>` component.
-
-```tsx title="src/pages/posts/show.tsx"
-// highlight-next-line
-import { Show } from "@refinedev/mui";
-import { Button } from "@mui/material";
-
-export const ShowPage: React.FC = () => {
-    return (
-        <Show
-            // highlight-start
-            actionButtons={
-                <>
-                    <Button type="primary">Custom Button 1</Button>
-                    <Button type="default">Custom Button 2</Button>
-                </>
-            }
-            // highlight-end
-        >
-            ...
-        </Show>
-    );
-};
-```
-
-### ~~`cardProps`~~
-
-:::caution Deprecated
-Use `wrapperProps` instead.
-:::
-
-`<Show>` uses the Material UI [`<Card>`](https://mui.com/material-ui/react-card/#main-content) components so you can customize with the props of `cardProps`.
-
-### ~~`cardHeaderProps`~~
-
-:::caution Deprecated
-Use `headerProps` instead.
-:::
-
-`<Show>` uses the Material UI [`<CardHeader>`](https://mui.com/material-ui/api/card-header/) components so you can customize with the props of `cardHeaderProps`.
-
-```tsx title="src/pages/posts/show.tsx"
-import { useShow } from "@refinedev/core";
-// highlight-next-line
-import { Show } from "@refinedev/mui";
-import { Typography, Stack } from "@mui/material";
-
-export const ShowPage: React.FC = () => {
-    const { queryResult } = useShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
-
-    return (
-        <Show
-            isLoading={isLoading}
-            // highlight-start
-            cardHeaderProps={{
-                title: <Typography variant="h5">Custom Title</Typography>,
-            }}
-            // highlight-end
-        >
-            <Stack gap="10px">
-                <Typography fontWeight="bold">Id</Typography>
-                <Typography>{record?.id}</Typography>
-                <Typography fontWeight="bold">Title</Typography>
-                <Typography>{record?.title}</Typography>
-            </Stack>
-        </Show>
-    );
-};
-
-interface IPost {
-    id: number;
-    title: string;
-}
-```
-
-### ~~`cardContentProps`~~
-
-:::caution Deprecated
-Use `contentProps` instead.
-:::
-
-`<Show>` uses the Material UI [`<CardContent>`](https://mui.com/material-ui/api/card-content/) components so you can customize with the props of `cardContentProps`.
-
-### ~~`cardActionsProps`~~
-
-:::caution Deprecated
-Use `headerButtonProps` and `footerButtonProps` instead.
-:::
-
-`<Show>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/) components so you can customize with the props of `cardActionsProps`.
 
 ## API Reference
 

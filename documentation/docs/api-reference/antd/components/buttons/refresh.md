@@ -189,7 +189,7 @@ render(
 
 ```tsx live disableScroll previewHeight=120px
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-antd";
+import { RefreshButton } from "@refinedev/antd";
 
 const MyRefreshComponent = () => {
     return (

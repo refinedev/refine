@@ -1,6 +1,7 @@
 ---
 id: supabase
 title: Supabase
+sidebar_label: Supabase 🆙
 ---
 
 import Tabs from '@theme/Tabs';
@@ -122,11 +123,12 @@ import { supabaseClient } from "utility";
 function App() {
   return (
     <Refine
-      ...
       // highlight-next-line
       dataProvider={dataProvider(supabaseClient)}
-      ...
-    />
+      /* ... */
+    >
+        {/* ... */}
+    </Refine>
   );
 }
 
@@ -401,11 +403,12 @@ import authProvider from './authProvider';
 function App() {
   return (
     <Refine
-      ...
       // highlight-next-line
       authProvider={authProvider}
-      ...
-    />
+      /* ... */
+    >
+        {/* ... */}
+    </Refine>
   );
 }
 
@@ -447,7 +450,6 @@ Let's add a listing page to show data retrieved from Supabase API in the table. 
 <p>
 
 ```tsx title="src/pages/posts/list.tsx"
-import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
     List,
@@ -462,7 +464,7 @@ import { Table, Space, Select } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList: React.FC = () => {
     const { tableProps, sorter } = useTable<IPost>({
         sorters: {
             initial: [
@@ -552,7 +554,6 @@ We'll need a page for creating a new record in Supabase API. Copy and paste foll
 
 ```tsx title="src/pages/posts/create.tsx"
 import { useState } from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 
 import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, Upload } from "antd";
@@ -563,7 +564,7 @@ import MDEditor from "@uiw/react-md-editor";
 import { IPost, ICategory } from "interfaces";
 import { supabaseClient, normalizeFile } from "utility";
 
-export const PostCreate: React.FC<IResourceComponentsProps> = () => {
+export const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -674,7 +675,6 @@ We'll need a page for editing a record in Supabase API. Copy and paste following
 
 ```tsx title="src/pages/posts/edit.tsx"
 import React, { useState } from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
     Edit,
@@ -691,7 +691,7 @@ import MDEditor from "@uiw/react-md-editor";
 import { IPost, ICategory } from "interfaces";
 import { supabaseClient, normalizeFile } from "utility";
 
-export const PostEdit: React.FC<IResourceComponentsProps> = () => {
+export const PostEdit: React.FC = () => {
     const [isDeprecated, setIsDeprecated] = useState(false);
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
         liveMode: "manual",
@@ -923,25 +923,36 @@ One last thing we need to do is to add newly created CRUD pages to the `resource
 ```tsx title="src/App.tsx"
 import { dataProvider } from '@refinedev/supabase';
 import { supabaseClient } from 'utility';
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 //highlight-next-line
 import { PostList, PostCreate, PostEdit } from 'pages/posts';
 
 function App() {
     return (
-        <Refine
-            ...
-            dataProvider={dataProvider(supabaseClient)}
-            //highlight-start
-            resources={[
-                {
-                    name: 'posts',
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit
-                },
-            ]}
-            //highlight-end
-        />
+        <BrowserRouter>
+            <Refine
+                ...
+                dataProvider={dataProvider(supabaseClient)}
+                //highlight-start
+                resources={[
+                    {
+                        name: 'posts',
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                    },
+                ]}
+                //highlight-end
+            >
+                <Routes>
+                    <Route path="/posts" element={<PostList />} />
+                    <Route path="/posts/create" element={<PostCreate />} />
+                    <Route path="/posts/edit/:id" element={<PostEdit />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 }
 
@@ -982,47 +993,67 @@ Normally, refine shows a default login page when `authProvider` and `resources` 
 Let's check out the `LoginPage` property:
 
 ```tsx title="src/App.tsx"
-import { Refine } from '@refinedev/core';
+import { Refine, Authenticated } from '@refinedev/core';
 //highlight-start
 import { AuthPage } from '@refinedev/antd';
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
 //highlight-end
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 import authProvider from './authProvider';
-...
+
+/* ... */
 
 function App() {
-  return (
-      <Refine
-          ...
-          //highlight-start
-           routerProvider={{
-              ...routerProvider,
-              routes: [
-                  {
-                      path: '/register',
-                      element: <AuthPage type="register" />,
-                  },
-                  {
-                      path: '/forgot-password',
-                      element: <AuthPage type="forgotPassword" />,
-                  },
-                  {
-                      path: '/update-password',
-                      element: <AuthPage type="updatePassword" />,
-                  },
-              ],
-          }}
-          //highlight-end
-          authProvider={authProvider}
-          //highlight-start
-          LoginPage={AuthPage}
-          //highlight-end
-      />
-  );
+    return (
+        <BrowserRouter>
+            <Refine
+                /* ... */
+                //highlight-next-line
+                routerProvider={routerProvider}
+                authProvider={authProvider}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        )}
+                    >
+                        <Route path="/posts" element={<div>dummy list page</div>} />
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={(
+                                    <Outlet />
+                                )}
+                            >
+                                <NavigateToResource />
+                            </Authenticated>
+                        )}
+                    >
+                        {/* highlight-start */}
+                        <Route path="/login" element={<AuthPage />} />
+                        <Route path="/register" element={<AuthPage type="register" />} />
+                        <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                        <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+                        {/* highlight-end */}
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    );
 }
 ```
 
-The `AuthPage` component returns ready-to-use authentication pages for login, register, update, and forgot password actions. We passed it to the `LoginPage` property to override the default login page.
+The `AuthPage` component returns ready-to-use authentication pages for login, register, update, and forgot password actions.
 
 **This is where `authProvider` comes into play.**
 
@@ -1084,37 +1115,28 @@ We'll show how to add Google Login option to the app.
 Social login feature can be activated by setting `provider` property of the `<AuthPage>` component.
 
 ```tsx title="src/App.tsx"
-import { Refine } from '@refinedev/core';
 //highlight-start
 import { AuthPage } from '@refinedev/antd';
 import { GoogleOutlined } from "@ant-design/icons";
   //highlight-end
-...
 
-function App() {
+const MyLoginPage = () => {
     return (
-        <Refine
-            ...
-            //highlight-start
-            LoginPage={() => (
-                <AuthPage
-                    type="login"
-                    providers={[
-                        {
-                            name: "google",
-                            label: "Sign in with Google",
-                            icon: (
-                                <GoogleOutlined
-                                    style={{ fontSize: 18, lineHeight: 0 }}
-                                />
-                            ),
-                        },
-                    ]}
-                />
-            )}
-            //highlight-end
+        <AuthPage
+            type="login"
+            providers={[
+                {
+                    name: "google",
+                    label: "Sign in with Google",
+                    icon: (
+                        <GoogleOutlined
+                            style={{ fontSize: 18, lineHeight: 0 }}
+                        />
+                    ),
+                },
+            ]}
         />
-    );
+    )
 }
 ```
 
@@ -1181,18 +1203,20 @@ import { Refine } from '@refinedev/core';
 import { liveProvider } from "@refinedev/supabase";
 import { supabaseClient } from 'utility';
 //highlight-end
-...
+
+/* ... */
 
 function App() {
     return (
         <Refine
-            ...
             //highlight-start
              liveProvider={liveProvider(supabaseClient)}
              options={{ liveMode: "auto" }}
             //highlight-end
-            ...
-        />
+            /* ... */
+        >
+            {/* ... */}
+        </Refine>
     );
 }
 ```

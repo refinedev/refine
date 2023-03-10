@@ -371,10 +371,10 @@ export const MyListComponent = () => {
 
 ```tsx live disableScroll previewHeight=200px
 const { useRouterContext } = RefineCore;
-import dataProvider from "@pankod/refine-simple-rest";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-mui";
+import { DeleteButton } from "@refinedev/mui";
 
 const MyDeleteComponent = () => {
     return (

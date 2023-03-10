@@ -50,63 +50,84 @@ const authProvider = {
     getIdentity: async () => null,
 };
 
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine, Authenticated } from "@refinedev/core";
+import routerBindings, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
     LightTheme,
     Layout,
-    ReadyPage,
     ErrorComponent,
     AuthPage,
-} from ;
+} from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 const App = () => {
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
-                <Refine
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    authProvider={authProvider}
-                    routerProvider={{
-                        ...routerProvider,
-                        routes: [
-                            { path: "/login", element: <AuthPage /> },
+                <BrowserRouter>
+                    <Refine
+                        authProvider={authProvider}
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                        notificationProvider={notificationProvider}
+                        resources={[
                             {
-                                path: "/register",
-                                element: <AuthPage type="register" />,
+                                name: "products",
+                                list: "/products",
+                                show: "/products/show/:id",
+                                edit: "/products/edit/:id",
+                                create: "/products/create",
                             },
-                            {
-                                path: "/forgot-password",
-                                element: <AuthPage type="forgotPassword" />,
-                            },
-                            {
-                                path: "/update-password",
-                                element: <AuthPage type="updatePassword" />,
-                            },
-                        ],
-                    }}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "products",
-                            list: MantineInferencer,
-                            show: MantineInferencer,
-                            create: MantineInferencer,
-                            edit: MantineInferencer,
-                        },
-                    ]}
-                />
+                        ]}
+                    >
+                        <Routes>
+                            <Route 
+                                element={(
+                                    <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                                        <Layout>
+                                            <Outlet />
+                                        </Layout>
+                                    </Authenticated>
+                                )}
+                            >
+                                <Route path="products">
+                                    <Route index element={<MantineInferencer />} />
+                                    <Route path="show/:id" element={<MantineInferencer />} />
+                                    <Route path="edit/:id" element={<MantineInferencer />} />
+                                    <Route path="create" element={<MantineInferencer />} />
+                                </Route>
+                            </Route>
+                            <Route
+                                element={(
+                                    <Authenticated fallback={<Outlet />}>
+                                        <NavigateToResource />
+                                    </Authenticated>
+                                )}
+                            >
+                                <Route path="/login" element={<AuthPage type="login" />} />
+                                <Route path="/register" element={<AuthPage type="register" />} />
+                                <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                                <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+                            </Route>
+                            <Route
+                                element={(
+                                    <Authenticated fallback={<Outlet />}>
+                                        <Layout><Outlet/></Layout>
+                                    </Authenticated>
+                                )}
+                            >
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </BrowserRouter>
             </NotificationsProvider>
         </MantineProvider>
     );
@@ -130,31 +151,29 @@ Login page is used to authenticate users. It provides a basic form to enter emai
 1. Open `src/App.tsx` file and import the `<AuthPage/>` component.
 
     ```tsx
-    import { AuthPage } from ;
+    import { AuthPage } from "@refinedev/mantine";
     ```
 
-2. Add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
+2. Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine } from "@refinedev/core";
-    import routerProvider from "@refinedev/react-router-v6";
+    import { Refine, Authenticated } from "@refinedev/core";
+    import routerBindings, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
     import dataProvider from "@refinedev/simple-rest";
     import {
         notificationProvider,
         LightTheme,
         Layout,
-        ReadyPage,
         ErrorComponent,
         //highlight-next-line
         AuthPage,
-    } from ;
+    } from "@refinedev/mantine";
     import { NotificationsProvider } from "@mantine/notifications";
     import { MantineProvider, Global } from "@mantine/core";
 
     import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
+
+    import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
     import { authProvider } from "./authProvider";
 
@@ -167,31 +186,55 @@ Login page is used to authenticate users. It provides a basic form to enter emai
             >
                 <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
                 <NotificationsProvider position="top-right">
-                    <Refine
-                        authProvider={authProvider}
-                        //highlight-start
-                        routerProvider={{
-                            ...routerProvider,
-                            routes: [{ path: "/login", element: <AuthPage /> }],
-                        }}
-                        //highlight-end
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        ReadyPage={ReadyPage}
-                        catchAll={<ErrorComponent />}
-                        Layout={Layout}
-                        resources={[
-                            {
-                                name: "products",
-                                list: ProductList,
-                                edit: ProductEdit,
-                                show: ProductShow,
-                                create: ProductCreate,
-                            },
-                        ]}
-                    />
+                    <BrowserRouter>
+                        <Refine
+                            authProvider={authProvider}
+                            routerProvider={routerBindings}
+                            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                            notificationProvider={notificationProvider}
+                            resources={[
+                                {
+                                    name: "products",
+                                    list: "/products",
+                                },
+                            ]}
+                        >
+                            <Routes>
+                                <Route 
+                                    element={(
+                                        <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                                            <Layout>
+                                                <Outlet />
+                                            </Layout>
+                                        </Authenticated>
+                                    )}
+                                >
+                                    <Route path="products">
+                                        <Route index element={<ProductList />} />
+                                    </Route>
+                                </Route>
+                                <Route
+                                    element={(
+                                        <Authenticated fallback={<Outlet />}>
+                                            <NavigateToResource />
+                                        </Authenticated>
+                                    )}
+                                >
+                                    {/* highlight-next-line */}
+                                    <Route path="/login" element={<AuthPage type="login" />} />
+                                </Route>
+                                <Route
+                                    element={(
+                                        <Authenticated fallback={<Outlet />}>
+                                            <Layout><Outlet/></Layout>
+                                        </Authenticated>
+                                    )}
+                                >
+                                    <Route path="*" element={<ErrorComponent />} />
+                                </Route>
+                            </Routes>
+                        </Refine>
+                    </BrowserRouter>
                 </NotificationsProvider>
             </MantineProvider>
         );
@@ -223,53 +266,30 @@ setInitialRoutes(["/login"]);
 render(<App />);
 ```
 
-<br />
-
-:::tip
-
-You can also use the `LoginPage` prop of the `<Refine/>` component to render the login page.
-
-```tsx
-<Refine
-    authProvider={authProvider}
-    routerProvider={routerProvider}
-    ...
-    //highlight-start
-    LoginPage={AuthPage}
-    //highlight-end
-/>
-```
-
-[Refer to the `<Refine/>` documentation for more information &#8594](/docs/api-reference/core/components/refine-config.md#loginpage)
-
-:::
-
 ## Register Page
 
 Register page is used to register new users. It provides a basic form to enter email and password. After submitting the form, it sends the email and password to the auth provider's `register` method via `useRegister` hook.
 
-1. Open `src/App.tsx` file and add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
+1. Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine } from "@refinedev/core";
-    import routerProvider from "@refinedev/react-router-v6";
+    import { Refine, Authenticated } from "@refinedev/core";
+    import routerBindings, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
     import dataProvider from "@refinedev/simple-rest";
     import {
         notificationProvider,
         LightTheme,
         Layout,
-        ReadyPage,
         ErrorComponent,
         //highlight-next-line
         AuthPage,
-    } from ;
+    } from "@refinedev/mantine";
     import { NotificationsProvider } from "@mantine/notifications";
     import { MantineProvider, Global } from "@mantine/core";
 
     import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
+
+    import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
     import { authProvider } from "./authProvider";
 
@@ -282,37 +302,56 @@ Register page is used to register new users. It provides a basic form to enter e
             >
                 <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
                 <NotificationsProvider position="top-right">
-                    <Refine
-                        authProvider={authProvider}
-                        routerProvider={{
-                            ...routerProvider,
-                            routes: [
-                                { path: "/login", element: <AuthPage /> },
-                                //highlight-start
+                    <BrowserRouter>
+                        <Refine
+                            authProvider={authProvider}
+                            routerProvider={routerBindings}
+                            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                            notificationProvider={notificationProvider}
+                            resources={[
                                 {
-                                    path: "/register",
-                                    element: <AuthPage type="register" />,
+                                    name: "products",
+                                    list: "/products",
                                 },
-                                //highlight-end
-                            ],
-                        }}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        ReadyPage={ReadyPage}
-                        catchAll={<ErrorComponent />}
-                        Layout={Layout}
-                        resources={[
-                            {
-                                name: "products",
-                                list: ProductList,
-                                edit: ProductEdit,
-                                show: ProductShow,
-                                create: ProductCreate,
-                            },
-                        ]}
-                    />
+                            ]}
+                        >
+                            <Routes>
+                                <Route 
+                                    element={(
+                                        <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                                            <Layout>
+                                                <Outlet />
+                                            </Layout>
+                                        </Authenticated>
+                                    )}
+                                >
+                                    <Route path="products">
+                                        <Route index element={<ProductList />} />
+                                    </Route>
+                                </Route>
+                                <Route
+                                    element={(
+                                        <Authenticated fallback={<Outlet />}>
+                                            <NavigateToResource />
+                                        </Authenticated>
+                                    )}
+                                >
+                                    <Route path="/login" element={<AuthPage type="login" />} />
+                                    {/* highlight-next-line */}
+                                    <Route path="/register" element={<AuthPage type="register" />} />
+                                </Route>
+                                <Route
+                                    element={(
+                                        <Authenticated fallback={<Outlet />}>
+                                            <Layout><Outlet/></Layout>
+                                        </Authenticated>
+                                    )}
+                                >
+                                    <Route path="*" element={<ErrorComponent />} />
+                                </Route>
+                            </Routes>
+                        </Refine>
+                    </BrowserRouter>
                 </NotificationsProvider>
             </MantineProvider>
         );
@@ -348,28 +387,26 @@ render(<App />);
 
 Forgot password page is used to send a reset password link to the user's email. It provides a basic form to enter email. After submitting the form, it sends the email to the auth provider's `forgotPassword` method via `useForgotPassword` hook.
 
-1. Open `src/App.tsx` file and add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
+1. Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine } from "@refinedev/core";
-    import routerProvider from "@refinedev/react-router-v6";
+    import { Refine, Authenticated } from "@refinedev/core";
+    import routerBindings, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
     import dataProvider from "@refinedev/simple-rest";
     import {
         notificationProvider,
         LightTheme,
         Layout,
-        ReadyPage,
         ErrorComponent,
         //highlight-next-line
         AuthPage,
-    } from ;
+    } from "@refinedev/mantine";
     import { NotificationsProvider } from "@mantine/notifications";
     import { MantineProvider, Global } from "@mantine/core";
 
+    import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
     import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
 
     import { authProvider } from "./authProvider";
 
@@ -382,41 +419,57 @@ Forgot password page is used to send a reset password link to the user's email. 
             >
                 <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
                 <NotificationsProvider position="top-right">
-                    <Refine
-                        authProvider={authProvider}
-                        routerProvider={{
-                            ...routerProvider,
-                            routes: [
-                                { path: "/login", element: <AuthPage /> },
+                    <BrowserRouter>
+                        <Refine
+                            authProvider={authProvider}
+                            routerProvider={routerBindings}
+                            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                            notificationProvider={notificationProvider}
+                            resources={[
                                 {
-                                    path: "/register",
-                                    element: <AuthPage type="register" />,
+                                    name: "products",
+                                    list: "/products",
                                 },
-                                //highlight-start
-                                {
-                                    path: "/forgot-password",
-                                    element: <AuthPage type="forgotPassword" />,
-                                },
-                                //highlight-end
-                            ],
-                        }}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        ReadyPage={ReadyPage}
-                        catchAll={<ErrorComponent />}
-                        Layout={Layout}
-                        resources={[
-                            {
-                                name: "products",
-                                list: ProductList,
-                                edit: ProductEdit,
-                                show: ProductShow,
-                                create: ProductCreate,
-                            },
-                        ]}
-                    />
+                            ]}
+                        >
+                            <Routes>
+                                <Route 
+                                    element={(
+                                        <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                                            <Layout>
+                                                <Outlet />
+                                            </Layout>
+                                        </Authenticated>
+                                    )}
+                                >
+                                    <Route path="products">
+                                        <Route index element={<ProductList />} />
+                                    </Route>
+                                </Route>
+                                <Route
+                                    element={(
+                                        <Authenticated fallback={<Outlet />}>
+                                            <NavigateToResource />
+                                        </Authenticated>
+                                    )}
+                                >
+                                    <Route path="/login" element={<AuthPage type="login" />} />
+                                    <Route path="/register" element={<AuthPage type="register" />} />
+                                    {/* highlight-next-line */}
+                                    <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                                </Route>
+                                <Route
+                                    element={(
+                                        <Authenticated fallback={<Outlet />}>
+                                            <Layout><Outlet/></Layout>
+                                        </Authenticated>
+                                    )}
+                                >
+                                    <Route path="*" element={<ErrorComponent />} />
+                                </Route>
+                            </Routes>
+                        </Refine>
+                    </BrowserRouter>
                 </NotificationsProvider>
             </MantineProvider>
         );
@@ -453,28 +506,26 @@ render(<App />);
 
 Update password page is used to update the user's password. It provides a basic form to enter new password and confirm password. After submitting the form, it sends the new password and confirm password to the auth provider's `updatePassword` method via `useUpdatePassword` hook.
 
-1. Open `src/App.tsx` file and add the `<AuthPage/>` component to the `routes` prop of the `routerProvider` prop of the `<Refine/>` component.
+1. Place the `<AuthPage/>` component to the respective route inside your router.
 
     ```tsx
-    import { Refine } from "@refinedev/core";
-    import routerProvider from "@refinedev/react-router-v6";
+    import { Refine, Authenticated } from "@refinedev/core";
+    import routerBindings, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
     import dataProvider from "@refinedev/simple-rest";
     import {
         notificationProvider,
         LightTheme,
         Layout,
-        ReadyPage,
         ErrorComponent,
         //highlight-next-line
         AuthPage,
-    } from ;
+    } from "@refinedev/mantine";
     import { NotificationsProvider } from "@mantine/notifications";
     import { MantineProvider, Global } from "@mantine/core";
 
+    import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
     import { ProductList } from "pages/products/list";
-    import { ProductEdit } from "pages/products/edit";
-    import { ProductShow } from "pages/products/show";
-    import { ProductCreate } from "pages/products/create";
 
     import { authProvider } from "./authProvider";
 
@@ -487,45 +538,58 @@ Update password page is used to update the user's password. It provides a basic 
             >
                 <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
                 <NotificationsProvider position="top-right">
-                    <Refine
-                        authProvider={authProvider}
-                        routerProvider={{
-                            ...routerProvider,
-                            routes: [
-                                { path: "/login", element: <AuthPage /> },
+                    <BrowserRouter>
+                        <Refine
+                            authProvider={authProvider}
+                            routerProvider={routerBindings}
+                            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                            notificationProvider={notificationProvider}
+                            resources={[
                                 {
-                                    path: "/register",
-                                    element: <AuthPage type="register" />,
+                                    name: "products",
+                                    list: "/products",
                                 },
-                                {
-                                    path: "/forgot-password",
-                                    element: <AuthPage type="forgotPassword" />,
-                                },
-                                //highlight-start
-                                {
-                                    path: "/update-password",
-                                    element: <AuthPage type="updatePassword" />,
-                                },
-                                //highlight-end
-                            ],
-                        }}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        ReadyPage={ReadyPage}
-                        catchAll={<ErrorComponent />}
-                        Layout={Layout}
-                        resources={[
-                            {
-                                name: "products",
-                                list: ProductList,
-                                edit: ProductEdit,
-                                show: ProductShow,
-                                create: ProductCreate,
-                            },
-                        ]}
-                    />
+                            ]}
+                        >
+                            <Routes>
+                                <Route 
+                                    element={(
+                                        <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                                            <Layout>
+                                                <Outlet />
+                                            </Layout>
+                                        </Authenticated>
+                                    )}
+                                >
+                                    <Route path="products">
+                                        <Route index element={<ProductList />} />
+                                    </Route>
+                                </Route>
+                                <Route
+                                    element={(
+                                        <Authenticated fallback={<Outlet />}>
+                                            <NavigateToResource />
+                                        </Authenticated>
+                                    )}
+                                >
+                                    <Route path="/login" element={<AuthPage type="login" />} />
+                                    <Route path="/register" element={<AuthPage type="register" />} />
+                                    <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                                    {/* highlight-next-line */}
+                                    <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+                                </Route>
+                                <Route
+                                    element={(
+                                        <Authenticated fallback={<Outlet />}>
+                                            <Layout><Outlet/></Layout>
+                                        </Authenticated>
+                                    )}
+                                >
+                                    <Route path="*" element={<ErrorComponent />} />
+                                </Route>
+                            </Routes>
+                        </Refine>
+                    </BrowserRouter>
                 </NotificationsProvider>
             </MantineProvider>
         );

@@ -138,7 +138,7 @@ import {
     ActionIcon,
     Stack,
     Group,
-} from ;
+} from "@pankod/refine-mantine";
 import { IconFilter, IconX, IconCheck } from "@tabler/icons";
 import type { Column } from "@tanstack/react-table";
 

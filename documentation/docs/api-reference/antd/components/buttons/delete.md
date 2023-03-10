@@ -311,7 +311,7 @@ export const MyListComponent = () => {
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-antd";
+import { DeleteButton } from "@refinedev/antd";
 
 const MyDeleteComponent = () => {
     return (

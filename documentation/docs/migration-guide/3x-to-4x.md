@@ -1,7 +1,7 @@
 ---
 id: 3x-to-4x
 title: Migrating from 3.x.x to 4.x.x
-sidebar_label: 3.x.x to 4.x.x
+sidebar_label: 3.x.x to 4.x.x 🆙
 ---
 
 import Tabs from '@theme/Tabs';
@@ -1437,5 +1437,4 @@ After that, you can import them from `react-hook-form` package directly.
 [refine]: /api-reference/core/components/refine-config.md
 [resources]: /api-reference/core/components/refine-config.md#resources
 [routerprovider]: /api-reference/core/providers/router-provider.md
-[custompages]: /advanced-tutorials/custom-pages.md
 [auth-provider]: /api-reference/core/providers/auth-provider/

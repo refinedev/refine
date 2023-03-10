@@ -1,6 +1,7 @@
 ---
 id: appwrite
 title: Appwrite
+sidebar_label: Appwrite 🆙
 ---
 
 ## What is Multitenancy?
@@ -31,14 +32,11 @@ To make this example more visual, we used the [`@refinedev/antd`](https://github
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
-} from "@refinedev/antd";
+import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
 import { dataProvider } from "@refinedev/appwrite";
 import routerProvider from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -47,17 +45,20 @@ import { authProvider } from "./authProvider";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            //highlight-start
-            dataProvider={dataProvider(appwriteClient)}
-            authProvider={authProvider}
-            //highlight-end
-            routerProvider={routerProvider}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-        />
+        <BrowserRouter>
+            <Refine
+                //highlight-start
+                dataProvider={dataProvider(appwriteClient)}
+                authProvider={authProvider}
+                //highlight-end
+                routerProvider={routerProvider}
+                notificationProvider={notificationProvider}
+            >
+                <Layout>
+                    {/* ... */}
+                </Layout>
+            </Refine>
+        </BrowserRouter>
     );
 };
 ```
@@ -126,6 +127,8 @@ import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@refine
 import { dataProvider } from "@refinedev/appwrite";
 import routerProvider from "@refinedev/react-router-v6";
 
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 import "@refinedev/antd/dist/reset.css";
 
 import { appwriteClient } from "utility";
@@ -135,19 +138,22 @@ import { StoreProvider } from "context/store";
 
 const App: React.FC = () => {
     return (
-          //highlight-start
+        //highlight-start
         <StoreProvider>
-            <Refine
-                dataProvider={dataProvider(appwriteClient)}
-                authProvider={authProvider}
-                routerProvider={routerProvider}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                notificationProvider={notificationProvider}
-                catchAll={<ErrorComponent />}
-            />
+            <BrowserRouter>
+                <Refine
+                    dataProvider={dataProvider(appwriteClient)}
+                    authProvider={authProvider}
+                    routerProvider={routerProvider}
+                    notificationProvider={notificationProvider}
+                >
+                    <Layout>
+                        {/* ... */}
+                    </Layout>
+                </Refine>
+            </BrowserRouter>
         <StoreProvider>
-         //highlight-end
+        //highlight-end
     );
 };
 ```
@@ -212,22 +218,21 @@ Let's define the select component in the **refine** Sider Menu. First, we need t
 ```tsx title="src/components/sider/CustomSider.tsx"
 import React, { useState } from "react";
 import {
-    useTitle,
     useMenu,
-    ITreeMenu,
+    TreeMenuItem,
     CanAccess,
-    useRouterContext,
 } from "@refinedev/core";
 import { Layout, Menu, Grid } from "antd";
 import { AppstoreAddOutlined, UnorderedListOutlined } from "@ant-design/icons";
+
+import { Link } from "react-router-dom";
+
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 import { StoreSelect } from "components/select";
 
-export const CustomSider: React.FC = () => {
+export const CustomSider: React.FC = ({ Title }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
-    const { Link } = useRouterContext();
-    const Title = useTitle();
     const { SubMenu } = Menu;
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
@@ -235,14 +240,14 @@ export const CustomSider: React.FC = () => {
     const isMobile =
         typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
-    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
-        return tree.map((item: ITreeMenu) => {
-            const { icon, label, route, name, children, parentName } = item;
+    const renderTreeView = (tree: TreeMenuItem[], selectedKey?: string) => {
+        return tree.map((item: TreeMenuItem) => {
+            const { icon, label, route, key, name, children, meta } = item;
 
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={name}
+                        key={key}
                         icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
@@ -250,18 +255,18 @@ export const CustomSider: React.FC = () => {
                     </SubMenu>
                 );
             }
-            const isSelected = route === selectedKey;
+            const isSelected = key === selectedKey;
             const isRoute = !(
-                parentName !== undefined && children.length === 0
+                meta?.parent !== undefined && children.length === 0
             );
             return (
                 <CanAccess
-                    key={route}
+                    key={key}
                     resource={name.toLowerCase()}
                     action="list"
                 >
                     <Menu.Item
-                        key={route}
+                        key={key}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
@@ -340,7 +345,6 @@ const { listProps } = useSimpleList<IProduct>({
 
 ```tsx title="src/pages/ProductList.tsx"
 import { useContext } from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import {
     useSimpleList,
     AntdList,
@@ -354,7 +358,7 @@ import { IProduct } from "interfaces";
 import { ProductItem } from "components/product";
 import { StoreContext } from "context/store";
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const ProductList: React.FC = () => {
     //highlight-start
     const [store] = useContext(StoreContext);
     const { listProps } = useSimpleList<IProduct>({
@@ -367,9 +371,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
     return (
         <>
             <List
-                headerProps={{
-                    extra: <CreateButton onClick={() => createShow()} />,
-                }}
+                headerButtons={<CreateButton onClick={() => createShow()} />}
             >
                 <AntdList
                     grid={{ gutter: 16, xs: 1 }}
@@ -590,15 +592,12 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 Appwrite Realtime API support is out-of-the-box supported by **refine**, just add two lines to make your App Realtime.
 
 ```tsx
-import { Refine } from "@refinedev/core";
-import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
-} from "@refinedev/antd";
+import { Refine, Authenticated } from "@refinedev/core";
+import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -614,32 +613,61 @@ import { StoreProvider } from "context/store";
 function App() {
     return (
         <StoreProvider>
-            <Refine
-                routerProvider={routerProvider}
-                //highlight-start
-                liveProvider={liveProvider(appwriteClient)}
-                options={{ liveMode: "auto" }}
-                //highlight-end
-                dataProvider={dataProvider(appwriteClient)}
-                authProvider={authProvider}
-                LoginPage={Login}
-                Sider={CustomSider}
-                resources={[
-                    {
-                        name: "61cb01b17ef57",
-                        list: ProductList,
-                        show: ProductShow,
-                        meta: {
-                            label: "Products",
-                            route: "products",
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    //highlight-start
+                    liveProvider={liveProvider(appwriteClient)}
+                    options={{ liveMode: "auto" }}
+                    //highlight-end
+                    dataProvider={dataProvider(appwriteClient)}
+                    authProvider={authProvider}
+                    notificationProvider={notificationProvider}
+                    resources={[
+                        {
+                            name: "61cb01b17ef57",
+                            list: "/products",
+                            show: "/products/show:id",
+                            meta: {
+                                label: "Products",
+                            },
                         },
-                    },
-                ]}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                notificationProvider={notificationProvider}
-                catchAll={<ErrorComponent />}
-            />
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={(
+                                <Authenticated
+                                    fallback={<CatchAllNavigate to="/login" />}
+                                >
+                                    <Layout Sider={CustomSider}>
+                                        <Outlet />
+                                    </Layout>
+                                </Authenticated>
+                            )}
+                        >
+                            <Route path="products">
+                                <Route index element={<ProductList />} />
+                                <Route path="show:id" element={<ProductShow />} />
+                            </Route>
+                        </Route>
+                        <Route
+                            element={(
+                                <Authenticated
+                                    fallback={(
+                                        <Outlet />
+                                    )}
+                                >
+                                    <NavigateToResource />
+                                </Authenticated>
+                            )}
+                        >
+                            <Route path="/login" element={<Login />} />
+                        </Route>
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </StoreProvider>
     );
 }

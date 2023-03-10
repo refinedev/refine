@@ -2,8 +2,6 @@
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { IResourceComponentsProps } from "@refinedev/core";
-
 import {
     List,
     SaveButton,
@@ -18,7 +16,7 @@ interface IPost {
     title: string;
 }
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const {
         tableProps,
         formProps,

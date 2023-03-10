@@ -245,7 +245,7 @@ Redirection endpoint(`resourceNameOrRouteName/edit`) is defined by `resourceName
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { EditButton } from "@pankod/refine-antd";
+import { EditButton } from "@refinedev/antd";
 
 const MyEditComponent = () => {
     return (

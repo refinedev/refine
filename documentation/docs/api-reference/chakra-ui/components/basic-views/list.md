@@ -41,7 +41,6 @@ We will show what `<List>` does using properties with examples.
 ```tsx live url=http://localhost:3000/posts previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -147,8 +146,7 @@ const PostList: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             notificationProvider={RefineChakra.notificationProvider()}
             resources={[
@@ -180,7 +178,6 @@ It allows adding a title for the `<List>` component. if you don't pass title pro
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -199,8 +196,7 @@ const PostList: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -220,18 +216,17 @@ render(
 
 ### `resource`
 
-`<List>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<List>` component in a custom page, you can use the `resource` prop.
-
-[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
+`<List>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<List>` component, you can use the `resource` prop.
 
 ```tsx live url=http://localhost:3000/custom previewHeight=280px
 setInitialRoutes(["/custom"]);
 
-// visible-block-start
 import { Refine } from "@refinedev/core";
-import { List, Layout } from "@refinedev/chakra-ui";
-import routerProvider from "@refinedev/react-router-v6";
+import { Layout } from "@refinedev/chakra-ui";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
+// visible-block-start
+import { List } from "@refinedev/chakra-ui";
 
 const CustomPage: React.FC = () => {
     return (
@@ -246,7 +241,7 @@ const CustomPage: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
@@ -279,7 +274,6 @@ Create button redirects to the create page of the resource according to the valu
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -352,8 +346,7 @@ const App = () => {
     };
 
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             dataProvider={customDataProvider}
             authProvider={authProvider}
             resources={[
@@ -385,7 +378,6 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -415,8 +407,7 @@ const PostList: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -443,7 +434,6 @@ If you want to customize the wrapper of the `<List/>` component, you can use the
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -469,8 +459,7 @@ const PostList: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -497,7 +486,6 @@ If you want to customize the header of the `<List/>` component, you can use the 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -523,8 +511,7 @@ const PostList: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -551,7 +538,6 @@ If you want to customize the content of the `<List/>` component, you can use the
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -577,8 +563,7 @@ const PostList: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -603,7 +588,6 @@ You can customize the buttons at the header by using the `headerButtons` propert
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -632,8 +616,7 @@ const PostList: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -660,7 +643,6 @@ You can customize the wrapper element of the buttons at the header by using the 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
@@ -692,8 +674,7 @@ const PostList: React.FC = () => {
 
 const App = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
+        <RefineHeadlessDemo
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {

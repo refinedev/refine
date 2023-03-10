@@ -243,7 +243,7 @@ Redirection endpoint(`resourceNameOrRouteName/show`) is defined by `resourceName
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { ShowButton } from "@pankod/refine-mui";
+import { ShowButton } from "@refinedev/mui";
 
 const MyShowComponent = () => {
     return (

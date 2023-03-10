@@ -191,7 +191,7 @@ Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceName
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { ListButton } from "@pankod/refine-mui";
+import { ListButton } from "@refinedev/mui";
 
 const MyListComponent = () => {
     return <ListButton resourceNameOrRouteName="categories" recordItemId="2" />;

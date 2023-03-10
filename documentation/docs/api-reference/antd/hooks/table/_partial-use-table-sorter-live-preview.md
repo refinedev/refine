@@ -9,7 +9,7 @@ body {
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 
 import {
     List,
@@ -27,7 +27,7 @@ interface IPost {
     status: "published" | "draft" | "rejected";
 }
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     // highlight-start
     const { tableProps, sorter } = useTable<IPost>({
         sorters: {
@@ -37,7 +37,7 @@ const PostList: React.FC<IResourceComponentsProps> = () => {
                     order: "desc",
                 },
             ],
-        ],
+        },
     });
     // highlight-end
 

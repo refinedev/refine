@@ -192,7 +192,7 @@ It is used to redirect the app to the `/create` endpoint of the given resource n
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { CreateButton } from "@pankod/refine-antd";
+import { CreateButton } from "@refinedev/antd";
 
 const MyCreateComponent = () => {
     return (

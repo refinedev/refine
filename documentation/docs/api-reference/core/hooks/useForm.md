@@ -12,13 +12,16 @@ import {
     useList,
     HttpError,
     useShow,
-    useNavigation,
+    useNavigation
 } from "@refinedev/core";
+
 import { Layout } from "components";
+
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+
 import routerProvider from "@refinedev/react-router-v6";
 
-const { Link } = routerProvider;
+import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
 
 type FormValues = Omit<IPost, "id">;
 
@@ -45,6 +48,7 @@ const PAGE_SIZE = 10;
 
 const PostList: React.FC = () => {
     const [page, setPage] = React.useState(1);
+
     const { edit, create, clone } = useNavigation();
 
     const { data } = useList<IPost>({
@@ -384,17 +388,7 @@ const PostCreate = () => {
 
 ### `action`
 
-`useForm` can handle `edit`, `create` and `clone` actions.
-
-:::tip
-By default, it determines the `action` from route.
-
--   If the route is `/posts/create` thus the hook will be called with `action: "create"`.
--   If the route is `/posts/edit/1`, the hook will be called with `action: "edit"`.
--   If the route is `/posts/clone/1`, the hook will be called with `action: "clone"`.
-
-It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
-:::
+`useForm` can handle `edit`, `create` and `clone` actions. By default the `action` is inferred from the active route. It can be overridden by passing the `action` explicitly.
 
 <Tabs
 defaultValue="create"
@@ -481,19 +475,34 @@ const PostCreatePage: React.FC = () => {
 };
 // visible-block-end
 
-setRefineProps({
-    Layout: (props: LayoutProps) => <Layout {...props} />,
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreatePage,
-            edit: PostEdit,
-        },
-    ],
-});
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                dataProvider={RefineSimpleRest.default("https://api.fake-rest.refine.dev")}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                    },
+                ]}
+            >
+                <Layout>
+                    <Routes>
+                        <Route path="/posts" element={<PostList />} />
+                        <Route path="/posts/create" element={<PostCreatePage />} />
+                        <Route path="/posts/edit/:id" element={<PostEdit />} />
+                    </Routes>
+                </Layout>
+            </Refine>
+        </BrowserRouter>
+    )
+}
 
-render(<RefineHeadlessDemo />);
+render(<App />);
 ```
 
 </TabItem>
@@ -585,19 +594,34 @@ const PostEditPage: React.FC = () => {
 };
 // visible-block-end
 
-setRefineProps({
-    Layout: (props: LayoutProps) => <Layout {...props} />,
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreate,
-            edit: PostEditPage,
-        },
-    ],
-});
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                dataProvider={RefineSimpleRest.default("https://api.fake-rest.refine.dev")}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                    },
+                ]}
+            >
+                <Layout>
+                    <Routes>
+                        <Route path="/posts" element={<PostList />} />
+                        <Route path="/posts/create" element={<PostCreate />} />
+                        <Route path="/posts/edit/:id" element={<PostEditPage />} />
+                    </Routes>
+                </Layout>
+            </Refine>
+        </BrowserRouter>
+    )
+}
 
-render(<RefineHeadlessDemo />);
+render(<App />);
 ```
 
 </TabItem>
@@ -691,19 +715,35 @@ const PostCreatePage: React.FC = () => {
 };
 // visible-block-end
 
-setRefineProps({
-    Layout: (props: LayoutProps) => <Layout {...props} />,
-    resources: [
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreatePage,
-            edit: PostEdit,
-        },
-    ],
-});
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                dataProvider={RefineSimpleRest.default("https://api.fake-rest.refine.dev")}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                        clone: "/posts/clone/:id",
+                    },
+                ]}
+            >
+                <Layout>
+                    <Routes>
+                        <Route path="/posts" element={<PostList />} />
+                        <Route path="/posts/clone/:id" element={<PostCreatePage />} />
+                        <Route path="/posts/edit/:id" element={<PostEdit />} />
+                    </Routes>
+                </Layout>
+            </Refine>
+        </BrowserRouter>
+    )
+}
 
-render(<RefineHeadlessDemo />);
+render(<App />);
 ```
 
 </TabItem>
@@ -879,10 +919,12 @@ useForm({
 
 ### `meta`
 
-[`meta`](/docs/api-reference/general-concepts/#meta) is used following two purposes:
+[`meta`](/docs/api-reference/general-concepts/#meta) is used following three purposes:
 
 -   To pass additional information to data provider methods.
 -   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
+-   When generating the redirection path, properties in `meta` will also be checked to fill in the path parameters.
+-   To provide additional parameters to the redirection path after the form is submitted. If your route has additional parameters, you can use `meta` to provide them.
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 

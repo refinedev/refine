@@ -121,29 +121,31 @@ Here's what you should see:
 setInitialRoutes(["/"]);
 
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
     ErrorComponent,
     Layout,
     refineTheme,
-    ReadyPage,
+    WelcomePage,
     notificationProvider,
 } from "@refinedev/chakra-ui";
+import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 
 const App = () => {
     return (
-        <ChakraProvider theme={refineTheme}>
-            <Refine
-                notificationProvider={notificationProvider()}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-            />
-        </ChakraProvider>
+        <BrowserRouter>
+            <ChakraProvider theme={refineTheme}>
+                <Refine
+                    notificationProvider={notificationProvider()}
+                    routerProvider={routerBindings}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                >
+                    <WelcomePage />
+                </Refine>
+            </ChakraProvider>
+        </BrowserRouter>
     );
 };
 

@@ -121,7 +121,7 @@ Here's what you should see:
 setInitialRoutes(["/"]);
 
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
     notificationProvider,
@@ -131,6 +131,7 @@ import {
     ErrorComponent,
 } from ;
 import { NotificationsProvider } from "@mantine/notifications";
+import { BrowserRouter } from "react-router-dom";
 import { MantineProvider, Global } from "@mantine/core";
 
 const App = () => {
@@ -138,16 +139,17 @@ const App = () => {
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                    Layout={Layout}
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                    >
+                        <WelcomePage />
+                    </Refine>
+                </BrowserRouter>
             </NotificationsProvider>
         </MantineProvider>
     );

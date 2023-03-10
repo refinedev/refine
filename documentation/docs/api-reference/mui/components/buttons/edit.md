@@ -243,7 +243,7 @@ It is used to redirect the app to the `/edit` endpoint of the given resource nam
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { EditButton } from "@pankod/refine-mui";
+import { EditButton } from "@refinedev/mui";
 
 const MyEditComponent = () => {
     return (

@@ -1,6 +1,7 @@
 ---
 id: useModalForm
 title: useModalForm
+sidebar_label: useModalForm 🆙
 ---
 
 ```tsx live shared
@@ -678,6 +679,20 @@ You can also set this value in [`<Refine>`](/docs/api-reference/core/components/
 ```tsx
 const modalForm = useModalForm({
     warnWhenUnsavedChanges: true,
+});
+```
+
+### `syncWithLocation`
+
+> Default: `false`
+
+When `true`, the modals visibility state and the `id` of the record will be synced with the URL.
+
+This property can also be set as an object `{ key: string; syncId?: boolean }` to customize the key of the URL query parameter. `id` will be synced with the URL only if `syncId` is `true`.
+
+```tsx
+const modalForm = useModalForm({
+    syncWithLocation: { key: "my-modal", syncId: true },
 });
 ```
 

@@ -1,6 +1,7 @@
 ---
 id: azure-ad
 title: Azure AD Login
+sidebar_label: Azure AD Login 🆙
 ---
 
 # Azure Active Directory B2C (AAD B2C)
@@ -125,7 +126,7 @@ root.render(
 );
 ```
 
-## Override login page
+## Override `/login` page
 
 First, we need to override the refine login page. In this way, we will redirect it to the Azure AD login page. We create a `login.tsx` file in the `/src` folder.
 
@@ -172,13 +173,15 @@ export default LoginPage;
 In refine, authentication and authorization processes are performed with the auth provider. Let's write a provider for Azure AD.
 
 ```tsx title="src/App.tsx"
-import { Refine, AuthBindings } from "@refinedev/core";
-import { Layout } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
+import { Layout, ErrorComponent } from "@refinedev/antd";
+import routerProvider, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import { AccountInfo, SilentRequest } from "@azure/msal-browser";
 import axios, { AxiosRequestConfig } from "axios";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import LoginPage from "./login";
 import { tokenRequest } from "./config";
@@ -275,18 +278,49 @@ const App: React.FC = () => {
     };
 
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL, axiosInstance)}
-            authProvider={authProvider}
-            LoginPage={LoginPage}
-            Layout={Layout}
-            resources={[
-                {
-                    name: "posts",
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL, axiosInstance)}
+                authProvider={authProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        )}
+                    >
+                        <Route path="/posts" element={<div>dummy list page</div>} />
+                    </Route>
+                    <Route
+                        element={(
+                            <Authenticated
+                                fallback={(
+                                    <Outlet />
+                                )}
+                            >
+                                <NavigateToResource />
+                            </Authenticated>
+                        )}
+                    >
+                        <Route path="/login" element={<LoginPage />} />
+                    </Route>
+                    <Route path="*" element={<ErrorComponent />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 

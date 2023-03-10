@@ -1,6 +1,7 @@
 ---
 id: useDrawerForm
 title: useDrawerForm
+sidebar_label: useDrawerForm 🆙
 ---
 
 `useDrawerForm` hook allows you to manage a form within a Drawer. It returns Ant Design [`<Form>`](https://ant.design/components/form/) and [`<Drawer>`](https://ant.design/components/drawer/) components props.
@@ -31,7 +32,6 @@ setInitialRoutes(["/posts"]);
 import React, { useState } from "react";
 import {
     useShow,
-    IResourceComponentsProps,
     HttpError,
 } from "@refinedev/core";
 
@@ -44,7 +44,7 @@ interface IPost {
     status: "published" | "draft" | "rejected";
 }
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost, HttpError>();
 
     // highlight-start
@@ -149,7 +149,6 @@ setInitialRoutes(["/posts"]);
 import React, { useState } from "react";
 import {
     useShow,
-    IResourceComponentsProps,
     HttpError,
 } from "@refinedev/core";
 
@@ -168,7 +167,7 @@ interface IPost {
     status: "published" | "draft" | "rejected";
 }
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost, HttpError>();
 
     // highlight-start
@@ -307,6 +306,20 @@ Don't forget to pass the record `"id"` to `show` to fetch the record data. This 
 :::tip
 All [`useForm`][antd-use-form] props also available in `useDrawerForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) docs.
 :::
+
+### `syncWithLocation`
+
+> Default: `false`
+
+When `true`, the drawers visibility state and the `id` of the record will be synced with the URL.
+
+This property can also be set as an object `{ key: string; syncId?: boolean }` to customize the key of the URL query parameter. `id` will be synced with the URL only if `syncId` is `true`.
+
+```tsx
+const drawerForm = useDrawerForm({
+    syncWithLocation: { key: "my-modal", syncId: true },
+});
+```
 
 ## Return values
 

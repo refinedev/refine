@@ -1,6 +1,7 @@
 ---
 id: i18n-provider
 title: i18n Provider
+sidebar_label: i18n Provider 🆙
 ---
 
 import Tabs from '@theme/Tabs';
@@ -28,19 +29,18 @@ After creating a `i18nProvider`, you can pass it to the `<Refine>` component.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
 
 import i18nProvider from "./i18nProvider";
 
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            // highlight-next-line
             i18nProvider={i18nProvider}
-            resources={[{ name: "posts" }]}
-        />
+            /* ... */
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 ```
@@ -163,13 +163,10 @@ Next, we will include the i18n instance and create the `i18nProvider` using [`re
 
 ```tsx title="src/App.tsx"
 // highlight-next-line
-import { Refine, I18nProvider } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine } from "@refinedev/core";
+import type { I18nProvider } from "@refinedev/core";
 // highlight-next-line
 import { useTranslation } from "react-i18next";
-
-import { PostList } from "pages/posts";
 
 const App: React.FC = () => {
     // highlight-start
@@ -184,12 +181,12 @@ const App: React.FC = () => {
 
     return (
         <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             // highlight-next-line
             i18nProvider={i18nProvider}
-            resources={[{ name: "posts", list: PostList }]}
-        />
+            /* ... */
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 ```
@@ -706,16 +703,15 @@ export const Header: React.FC = () => {
 
 <br/>
 
-Then, we will pass `<Header>` to the `<Refine>` component as a property.
+Then, we will pass `<Header>` to our `<Layout>` component.
 
 ```tsx title="src/App.tsx"
 import { Refine, Resource } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
-import { useTranslation } from "react-i18next";
-import "./i18n";
+import { Layout } from "@refinedev/antd";
 
-import { PostList } from "pages/posts";
+import { useTranslation } from "react-i18next";
+
+import "./i18n";
 
 // highlight-next-line
 import { Header } from "components";
@@ -731,13 +727,16 @@ const App: React.FC = () => {
 
     return (
         <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             i18nProvider={i18nProvider}
-            // highlight-next-line
-            Header={Header}
-            resources={[{ name: "posts", list: PostList }]}
-        />
+            /* ... */
+        >
+            <Layout
+                // highlight-next-line
+                header={<Header />}
+            >
+                {/* ... */}
+            </Layout>
+        </Refine>
     );
 };
 ```
@@ -754,13 +753,12 @@ import {
 } from "@refinedev/core";
 import {
     List,
-    Table,
-    TextField,
     useTable,
-    Space,
+    TextField,
     EditButton,
     ShowButton,
 } from "@refinedev/antd";
+import { Table, Space } from "antd";
 
 import { IPost, ICategory } from "interfaces";
 

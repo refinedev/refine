@@ -15,7 +15,7 @@ You can swizzle this component to customize it with the [**refine CLI**](/docs/p
 Let's see how we can use `<MarkdownField>` in a show page.
 
 ```tsx live
-import { useShow, IResourceComponentsProps } from "@refinedev/core";
+import { useShow } from "@refinedev/core";
 import {
     Show,
     // highlight-next-line

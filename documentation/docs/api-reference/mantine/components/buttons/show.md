@@ -5,10 +5,10 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = RefineReactRouterV6;
+const { default: routerProvider } = LegacyRefineReactRouterV6;
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    routerProvider,
+    legacyRouterProvider: routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     notificationProvider: RefineMantine.notificationProvider,
     Layout: RefineMantine.Layout,
@@ -39,18 +39,18 @@ const ShowPage = () => {
 
     return (
         <div>
-            <RefineMantine.Text italic color="dimmed" size="sm">
+            <MantineCore.Text italic color="dimmed" size="sm">
                 URL Parameters:
-            </RefineMantine.Text>
-            <RefineMantine.Code>{JSON.stringify(params)}</RefineMantine.Code>
-            <RefineMantine.Space h="md" />
-            <RefineMantine.Button
+            </MantineCore.Text>
+            <MantineCore.Code>{JSON.stringify(params)}</MantineCore.Code>
+            <MantineCore.Space h="md" />
+            <MantineCore.Button
                 size="xs"
                 variant="outline"
                 onClick={() => list("posts")}
             >
                 Go back
-            </RefineMantine.Button>
+            </MantineCore.Button>
         </div>
     );
 };
@@ -350,10 +350,10 @@ Redirection endpoint(`resourceNameOrRouteName/show`) is defined by `resourceName
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine } from "@pankod/refine-core";
+import { Refine } from "@refinedev/core";
 
 // visible-block-start
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@refinedev/mantine";
 
 const MyShowComponent = () => {
     return <ShowButton resourceNameOrRouteName="categories" recordItemId="2" />;

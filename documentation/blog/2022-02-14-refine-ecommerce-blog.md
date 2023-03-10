@@ -32,7 +32,7 @@ In this article, we will create the e-commerce client of our [Strapi-Multitenanc
 
 It is now used **headless** with the **refine** 3 version. You can use any UI library you want with the **headless** feature.
 
-We will use [Strapi](https://strapi.io/) and [Chakra-UI](https://chakra-ui.com/) together with [**Next.js**](/docs/advanced-tutorials/ssr/nextjs/) in our E-commerce client example application.
+We will use [Strapi](https://strapi.io/) and [Chakra-UI](https://chakra-ui.com/) together with [**Next.js**](/docs/packages/documentation/routers/nextjs) in our E-commerce client example application.
 
 <!--truncate-->
 

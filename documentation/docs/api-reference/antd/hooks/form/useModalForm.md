@@ -1,6 +1,7 @@
 ---
 id: useModalForm
 title: useModalForm
+sidebar_label: useModalForm 🆙
 ---
 
 `useModalForm` hook allows you to manage a form within a [`<Modal>`][antd-modal]. It returns Ant Design [`<Form>`][antd-form] and [Modal][antd-modal] components props.
@@ -31,12 +32,11 @@ setInitialRoutes(["/posts"]);
 // visible-block-start
 
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 
 import { List, EditButton, useTable, useModalForm } from "@refinedev/antd";
 import { Table, Form, Select, Input, Modal, Space } from "antd";
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     // highlight-start
@@ -144,12 +144,11 @@ Let's learn how to add editing capabilities to records that will be opening form
 setInitialRoutes(["/posts"]);
 
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 
 import { List, EditButton, useTable, useModalForm } from "@refinedev/antd";
 import { Table, Form, Select, Input, Modal, Space } from "antd";
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     // highlight-start
@@ -285,12 +284,11 @@ Let's learn how to add cloning capabilities to records that will be opening form
 setInitialRoutes(["/posts"]);
 
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 
 import { List, CloneButton, useTable, useModalForm } from "@refinedev/antd";
 import { Table, Form, Select, Input, Modal, Space } from "antd";
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     // highlight-start
@@ -424,6 +422,20 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 :::tip
 All [`useForm`][antd-use-form] props also available in `useModalForm`. You can find descriptions on [`useForm`](/docs/api-reference/antd/hooks/form/useForm/#properties) docs.
 :::
+
+### `syncWithLocation`
+
+> Default: `false`
+
+When `true`, the modals visibility state and the `id` of the record will be synced with the URL.
+
+This property can also be set as an object `{ key: string; syncId?: boolean }` to customize the key of the URL query parameter. `id` will be synced with the URL only if `syncId` is `true`.
+
+```tsx
+const modalForm = useModalForm({
+    syncWithLocation: { key: "my-modal", syncId: true },
+});
+```
 
 ### `defaultFormValues`
 

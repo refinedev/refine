@@ -1,10 +1,10 @@
 ---
-id: theme
+id: theming
 title: Theme
+sidebar_label: Theme 🆙
 ---
 
 ```tsx live shared
-import { useNavigation, useRouterContext } from "@refinedev/core";
 import {
     List,
     Create,
@@ -174,11 +174,14 @@ import dataProvider from "@refinedev/simple-rest";
 import {
     Layout,
     notificationProvider,
+    ErrorComponent,
     // highlight-next-line
     DarkTheme,
 } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 
@@ -188,22 +191,38 @@ const App = () => {
         <MantineProvider theme={DarkTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: PostList,
-                            edit: PostEdit,
-                            create: PostCreate,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerProvider}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                edit: "/posts/edit/:id",
+                                create: "/posts/create",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            <Route element={(
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            )}>
+                                <Route path="posts">
+                                    <Route index element={<PostList />} />
+                                    <Route path="create" element={<PostCreate />} />
+                                    <Route path="edit/:id" element={<PostEdit />} />
+                                </Route>
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </BrowserRouter>
             </NotificationsProvider>
         </MantineProvider>
     );
@@ -228,11 +247,14 @@ import dataProvider from "@refinedev/simple-rest";
 import {
     Layout,
     notificationProvider,
+    ErrorComponent,
     // highlight-next-line
     LightTheme,
 } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 
@@ -263,22 +285,39 @@ const App = () => {
         >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: PostList,
-                            edit: PostEdit,
-                            create: PostCreate,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerProvider}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                        Layout={Layout}
+                        resources={[
+                            {
+                                name: "posts",
+                                list: "/posts",
+                                edit: "/posts/edit/:id",
+                                create: "/posts/create",
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            <Route element={(
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            )}>
+                                <Route path="posts">
+                                    <Route index element={<PostList />} />
+                                    <Route path="create" element={<PostCreate />} />
+                                    <Route path="edit/:id" element={<PostEdit />} />
+                                </Route>
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </BrowserRouter>
             </NotificationsProvider>
         </MantineProvider>
     );
@@ -342,7 +381,6 @@ import dataProvider from "@refinedev/simple-rest";
 import {
     Layout,
     ErrorComponent,
-    ReadyPage,
     notificationProvider,
     LightTheme,
     DarkTheme,
@@ -361,6 +399,8 @@ import {
 } from "@mantine/core";
 import { useLocalStorage } from "@mantine/hooks";
 // highlight-end
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { IconSun, IconMoonStars } from "@tabler/icons";
 
@@ -417,24 +457,41 @@ const App = () => {
             >
                 <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
                 <NotificationsProvider position="top-right">
-                    <Refine
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        Layout={Layout}
-                        // highlight-next-line
-                        Header={Header}
-                        resources={[
-                            {
-                                name: "posts",
-                                list: PostList,
-                                edit: PostEdit,
-                                create: PostCreate,
-                            },
-                        ]}
-                    />
+                    <BrowserRouter>
+                        <Refine
+                            routerProvider={routerProvider}
+                            dataProvider={dataProvider(
+                                "https://api.fake-rest.refine.dev",
+                            )}
+                            notificationProvider={notificationProvider}
+                            resources={[
+                                {
+                                    name: "posts",
+                                    list: "/posts",
+                                    edit: "/posts/edit/:id",
+                                    create: "/posts/create",
+                                },
+                            ]}
+                        >
+                            <Routes>
+                                <Route element={(
+                                    <Layout
+                                        // highlight-next-line
+                                        Header={Header}
+                                    >
+                                        <Outlet />
+                                    </Layout>
+                                )}>
+                                    <Route path="posts">
+                                        <Route index element={<PostList />} />
+                                        <Route path="create" element={<PostCreate />} />
+                                        <Route path="edit/:id" element={<PostEdit />} />
+                                    </Route>
+                                    <Route path="*" element={<ErrorComponent />} />
+                                </Route>
+                            </Routes>
+                        </Refine>
+                    </BrowserRouter>
                 </NotificationsProvider>
             </MantineProvider>
         </ColorSchemeProvider>
@@ -445,3 +502,9 @@ render(<App />);
 ```
 
 [Refer to the Mantine dark theme documentation for more information. &#8594](https://mantine.dev/guides/dark-theme)
+
+:::tip
+
+If you want to customize the default layout elements provided with `@refinedev/mantine` package, check out the [Custom Layout](/docs/advanced-tutorials/custom-layout) tutorial.
+
+:::

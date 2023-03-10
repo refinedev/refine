@@ -123,14 +123,15 @@ setInitialRoutes(["/"]);
 import { Refine } from "@refinedev/core";
 import {
     Layout,
-    ReadyPage,
+    WelcomePage,
     ErrorComponent,
     LightTheme,
     RefineSnackbarProvider,
     notificationProvider,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import routerProvider from "@refinedev/react-router-v6";
+import routerBindings from "@refinedev/react-router-v6";
+import { BrowserRouter } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 
 const App: React.FC = () => {
@@ -139,16 +140,17 @@ const App: React.FC = () => {
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    ReadyPage={ReadyPage}
-                    catchAll={<ErrorComponent />}
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerBindings}
+                        dataProvider={dataProvider(
+                            "https://api.fake-rest.refine.dev",
+                        )}
+                        notificationProvider={notificationProvider}
+                    >
+                        <WelcomePage />
+                    </Refine>
+                </BrowserRouter>
             </RefineSnackbarProvider>
         </ThemeProvider>
     );

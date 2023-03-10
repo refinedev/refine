@@ -1,7 +1,7 @@
 ---
 id: auth-provider
 title: Migrating Auth Provider from 3.x.x to 4.x.x
-sidebar_label: Migrating Auth Provider
+sidebar_label: Migrating Auth Provider 🆙
 ---
 
 ## Motivation behind the changes

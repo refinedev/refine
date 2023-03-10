@@ -168,49 +168,63 @@ Let's consume a public `fake REST API` and add two resources (*posts*, *categori
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
-} from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
+import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
-import {
-    AntdListInferencer,
-    AntdShowInferencer,
-    AntdCreateInferencer,
-    AntdEditInferencer,
-} from '@refinedev/inferencer/antd';
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import { AntdInferencer } from "@refinedev/inferencer/antd";
 
 import "@refinedev/antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: 'posts',
-                    list: AntdListInferencer,
-                    show: AntdShowInferencer,
-                    create: AntdCreateInferencer,
-                    edit: AntdEditInferencer,
-                    canDelete: true,
-                },
-                {
-                    name: 'categories',
-                    list: AntdListInferencer,
-                    show: AntdShowInferencer,
-                }
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider}
+                resources={[
+                    {
+                        name: 'posts',
+                        list: "/posts",
+                        show: "/posts/show/:id",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                        meta: { canDelete: true },
+                    },
+                    {
+                        name: 'categories',
+                        list: "/categories",
+                        show: "/categories/show/:id",
+                    }
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}
+                    >
+                        <Route index element={<NavigateToResource />} />
+                        <Route path="posts">
+                            <Route index element={<AntdInferencer />} />
+                            <Route path="show/:id" element={<AntdInferencer />} />
+                            <Route path="create" element={<AntdInferencer />} />
+                            <Route path="edit/:id" element={<AntdInferencer />} />
+                        </Route>
+                        <Route path="categories">
+                            <Route index element={<AntdInferencer />} />
+                            <Route path="show/:id" element={<AntdInferencer />} />
+                        </Route>
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };   
 

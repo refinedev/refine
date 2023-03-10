@@ -1,6 +1,7 @@
 ---
 id: strapi-v4
 title: Strapi-v4
+sidebar_label: Strapi-v4 🆙
 ---
 
 import Tabs from '@theme/Tabs';
@@ -75,24 +76,19 @@ To make this example more visual, we used the [`@refinedev/antd`](https://github
 ## Usage
 
 ```tsx title="App.tsx"
-import { Refine, AuthProvider } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import { Refine } from "@refinedev/core";
 //highlight-next-line
 import { DataProvider } from "@refinedev/strapi-v4";
-import routerProvider from "@refinedev/react-router-v6";
 
 const App: React.FC = () => {
     return (
         <Refine
-            authProvider={authProvider}
             //highlight-next-line
             dataProvider={DataProvider("API_URL")}
-            routerProvider={routerProvider}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-        />
+            /* ... */
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 ```
@@ -159,7 +155,6 @@ When sending the request, we can specify which fields will come, so we send `fie
 
 ```tsx title="PostList.tsx"
 import { useState } from "react";
-import { IResourceComponentsProps } from "@pankod/core";
 import {
     List,
     useTable,
@@ -175,7 +170,7 @@ import { IPost } from "interfaces";
 
 import { API_URL } from "../../constants";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList: React.FC = () => {
     const { tableProps, sorter } = useTable<IPost>({
         meta: {
             // highlight-start
@@ -283,7 +278,6 @@ const { tableProps } = useTable<IPost>({
 In order to pull the `categories` related to the posts, we can now show the categories in our list by defining the `meta` `populate` parameter.
 
 ```tsx title="PostList.tsx"
-import { IResourceComponentsProps } from "@refinedev/core";
 import {
     List,
     useTable,
@@ -299,7 +293,7 @@ import { IPost } from "interfaces";
 
 import { API_URL } from "../../constants";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList: React.FC = () => {
     const { tableProps, sorter } = useTable<IPost>({
         meta: {
             fields: ["id", "title"],
@@ -427,7 +421,6 @@ We can list the posts separately according to the `published` or `draft` informa
 // highlight-next-line
 import { useState } from "react";
 
-import { IResourceComponentsProps } from "@refinedev/core";
 import {
     List,
     useTable,
@@ -453,7 +446,7 @@ import { IPost } from "interfaces";
 
 import { API_URL } from "../../constants";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList: React.FC = () => {
     // highlight-start
     const [publicationState, setPublicationState] = useState("live");
     // highlight-end
@@ -598,7 +591,6 @@ With the local parameter feature, we can fetch posts and categories created acco
 ```tsx
 import { useState } from "react";
 
-import { IResourceComponentsProps } from "@refinedev/core";
 import {
     List,
     useTable,
@@ -614,7 +606,7 @@ import { IPost } from "interfaces";
 
 import { API_URL } from "../../constants";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList: React.FC = () => {
     //highlight-start
     const [locale, setLocale] = useState("en");
     //highlight-end

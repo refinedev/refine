@@ -16,8 +16,6 @@ Let's see how we can use it in a basic list page:
 
 ```tsx live
 // visible-block-start
-import { IResourceComponentsProps } from "@refinedev/core";
-
 import {
     List,
     // highlight-next-line

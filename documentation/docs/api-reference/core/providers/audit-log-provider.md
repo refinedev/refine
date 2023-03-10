@@ -1,6 +1,6 @@
 ---
 id: audit-log-provider
-title: Audit Log Provider
+title: Audit Log Provider 🆙
 ---
 
 import Tabs from '@theme/Tabs';
@@ -613,7 +613,7 @@ mutate({
 
 ## Enable/Disable to Audit Log by Mutation Type for a Resource
 
-The `options` allows you to manage the audit log events for a resource. In addition, it can be managed in which type of mutations an event will be created. **If no definition is made, it works in all actions**.
+The `meta.audit` allows you to manage the audit log events for a resource. In addition, it can be managed in which type of mutations an event will be created. **If no definition is made, it works in all actions**.
 
 In this case, only events will be created for the `create` mutation.
 
@@ -630,9 +630,7 @@ In this case, only events will be created for the `create` mutation.
             canDelete: true,
             // highlight-start
             meta: {
-                auditLog: {
-                    permissions: ["create"],
-                },
+                audit: ["create"],
             },
             // highlight-end
         },

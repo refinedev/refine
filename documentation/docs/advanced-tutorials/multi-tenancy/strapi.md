@@ -1,6 +1,7 @@
 ---
 id: strapi-v4
 title: Strapi-v4
+sidebar_label: Strapi-v4 🆙
 ---
 
 ## What is Multitenancy?
@@ -148,15 +149,12 @@ strapiAuthHelper.me("token", {
 </details>
 
 ```tsx title="App.tsx"
-import { Refine } from "@refinedev/core";
-import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
-} from "@refinedev/antd";
+import { Refine, Authenticated } from "@refinedev/core";
+import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
 import { DataProvider } from "@refinedev/strapi-v4";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -167,17 +165,18 @@ const API_URL = "YOUR_API_URL";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            //highlight-start
-            authProvider={authProvider}
-            dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
-            //highlight-end
-            routerProvider={routerProvider}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-        />
+        <BrowserRouter>
+            <Refine
+                //highlight-start
+                authProvider={authProvider}
+                dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
+                //highlight-end
+                routerProvider={routerProvider}
+                notificationProvider={notificationProvider}
+            >
+                {/* ... */}
+            </Refine>
+        </BrowserRouter>
     );
 };
 ```
@@ -274,6 +273,8 @@ import {
 import { DataProvider } from "@refinedev/strapi-v4";
 import routerProvider from "@refinedev/react-router-v6";
 
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 import "@refinedev/antd/dist/reset.css";
 
 // highlight-next-line
@@ -286,15 +287,16 @@ const App: React.FC = () => {
     return (
         //highlight-next-line
         <StoreProvider>
-            <Refine
-                authProvider={authProvider}
-                dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
-                routerProvider={routerProvider}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                notificationProvider={notificationProvider}
-                catchAll={<ErrorComponent />}
-            />
+            <BrowserRouter>
+                <Refine
+                    authProvider={authProvider}
+                    dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
+                    routerProvider={routerProvider}
+                    notificationProvider={notificationProvider}
+                >
+                    {/* ... */}
+                </Refine>
+            </BrowserRouter>
             //highlight-next-line
         </StoreProvider>
     );
@@ -360,12 +362,10 @@ Let's define the select component in the **refine** Sider Menu. First, we need t
 ```tsx title="src/components/sider/CustomSider.tsx"
 import React, { useState } from "react";
 import {
-    useTitle,
     useMenu,
     useLogout,
     CanAccess,
-    ITreeMenu,
-    useRouterContext,
+    TreeMenuItem,
 } from "@refinedev/core";
 import { Layout, Menu, Grid } from "antd";
 import {
@@ -374,28 +374,28 @@ import {
     LoginOutlined,
 } from "@ant-design/icons";
 
+import { Link } from "react-router-dom";
+
 import { StoreSelect } from "components/select";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
-export const CustomSider: React.FC = () => {
+export const CustomSider: React.FC = ({ Title }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const { mutate: logout } = useLogout();
-    const { Link } = useRouterContext();
-    const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
 
     const isMobile =
         typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
-    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
-        return tree.map((item: ITreeMenu) => {
-            const { icon, label, route, name, children, parentName } = item;
+    const renderTreeView = (tree: TreeMenuItem[], selectedKey?: string) => {
+        return tree.map((item: TreeMenuItem) => {
+            const { icon, label, route, key, name, children, meta } = item;
 
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={route}
+                        key={key}
                         icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
@@ -403,18 +403,18 @@ export const CustomSider: React.FC = () => {
                     </SubMenu>
                 );
             }
-            const isSelected = route === selectedKey;
+            const isSelected = key === selectedKey;
             const isRoute = !(
-                parentName !== undefined && children.length === 0
+                meta?.parent !== undefined && children.length === 0
             );
             return (
                 <CanAccess
-                    key={route}
+                    key={key}
                     resource={name.toLowerCase()}
                     action="list"
                 >
                     <Menu.Item
-                        key={route}
+                        key={key}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
@@ -502,7 +502,7 @@ const { listProps } = useSimpleList<IProduct>({
 
 ```tsx title=src/pages/ProductList.tsx
 import { useContext } from "react";
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 import {
     useSimpleList,
     useModalForm,
@@ -517,7 +517,7 @@ import { IProduct } from "interfaces";
 import { ProductItem } from "components/product";
 import { StoreContext } from "context/store";
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const ProductList: React.FC = () => {
     //highlight-start
     const [store] = useContext(StoreContext);
     const { listProps } = useSimpleList<IProduct>({

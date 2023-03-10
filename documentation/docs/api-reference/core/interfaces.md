@@ -1,6 +1,7 @@
 ---
 id: interfaceReferences
 title: Interface References
+sidebar_label: Interface References 🆙
 ---
 
 ## CrudFilters
@@ -245,27 +246,22 @@ ButtonProps
 
 ## MetaProps
 
-| Key               | Type     |
-| ----------------- | -------- |
-| label?            | `string` |
-| route?            | `string` |
-| dataProviderName? | `string` |
-| [key: string]     | `any`    |
+| Key               | Type              |
+| ----------------- | ----------------- |
+| label?            | `string`          |
+| icon?             | `React.ReactNode` |
+| audit?            | `string[]`        |
+| parent?:          | `string`          |
+| dataProviderName? | `string`          |
+| [key: string]     | `any`             |
 
 ## ResourceItemProps
 
 | Key         | Type        |
 | ----------- | ----------- |
 | name        | `string`    |
-| label?      | `string`    |
-| route?      | `string`    |
-| icon?       | `ReactNode` |
-| canCreate?  | `boolean`   |
-| canEdit?    | `boolean`   |
-| canShow?    | `boolean`   |
-| canDelete?  | `boolean`   |
-| meta?       | `object`    |
-| parentName? | `string`    |
+| identifier? | `string`    |
+| meta?       | `MetaProps` |
 
 ## SyncWithLocationParams
 

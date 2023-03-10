@@ -128,19 +128,18 @@ render(
 
 ### `resource`
 
-The `<List>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<List>` component in a custom page, you can use the `resource` prop.
-
-[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
+The `<List>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<List>` component, you can use the `resource` prop.
 
 ```tsx live disableScroll previewHeight=210px url=http://localhost:3000/custom
 // handle initial routes in new way
 setInitialRoutes(["/custom"]);
 
-// visible-block-start
 import { Refine } from "@refinedev/core";
-import { List, Layout } from "@refinedev/mui";
-import routerProvider from "@refinedev/react-router-v6";
+import { Layout } from "@refinedev/mui";
+import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
+// visible-block-start
+import { List } from "@refinedev/mui";
 
 const CustomPage: React.FC = () => {
     return (
@@ -150,11 +149,12 @@ const CustomPage: React.FC = () => {
         </List>
     );
 };
+// visible-block-end
 
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={{
+            legacyRouterProvider={{
                 ...routerProvider,
                 // highlight-start
                 routes: [
@@ -171,7 +171,6 @@ const App: React.FC = () => {
         />
     );
 };
-// visible-block-end
 
 render(
     <Wrapper>
@@ -537,50 +536,6 @@ render(
     />,
 );
 ```
-
-### ~~`cardProps`~~
-
-:::caution Deprecated
-Use `wrapperProps` instead.
-:::
-
-`<List>` uses the Material UI [`<Card>`](https://mui.com/material-ui/react-card/#main-content) components so you can customize with the props of `cardProps`.
-
-### ~~`cardHeaderProps`~~
-
-:::caution Deprecated
-Use `headerProps` instead.
-:::
-
-`<List>` uses the Material UI [`<CardHeader>`](https://mui.com/material-ui/api/card-header/) components so you can customize with the props of `cardHeaderProps`.
-
-```tsx title="src/pages/posts/create.tsx"
-// highlight-next-line
-import { List } from "@refinedev/mui";
-import { Typography } from "@mui/material";
-
-export const CreatePage: React.FC = () => {
-    return (
-        <List
-            // highlight-start
-            cardHeaderProps={{
-                title: <Typography variant="h5">Custom Title</Typography>,
-            }}
-            // highlight-end
-        >
-            ...
-        </List>
-    );
-};
-```
-
-### ~~`cardContentProps`~~
-
-:::caution Deprecated
-Use `contentProps` instead.
-:::
-
-`<List>` uses the Material UI [`<CardContent>`](https://mui.com/material-ui/api/card-content/) components so you can customize with the props of `cardContentProps`.
 
 ## API Reference
 

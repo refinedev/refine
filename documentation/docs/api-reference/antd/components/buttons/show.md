@@ -245,7 +245,7 @@ Redirection endpoint(`resourceNameOrRouteName/show`) is defined by `resourceName
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
-import { ShowButton } from "@pankod/refine-antd";
+import { ShowButton } from "@refinedev/antd";
 
 const MyShowComponent = () => {
     return (

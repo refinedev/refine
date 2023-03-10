@@ -65,7 +65,9 @@ const App: React.FC = () => {
                 return Promise.resolve({ can: true });
             },
         }}
-    />;
+    >
+        {/* your app */}
+    </Refine>
 };
 ```
 
@@ -149,23 +151,6 @@ const { data } = useCan({
 **refine** uses 5 minutes `cacheTime` and 0 for `staleTime` by default for its own access control points.
 
 ## List of Default Access Control Points
-
-### Routes
-
-[`@refinedev/nextjs-router`][nextjsrouter], [`@pankod/refine-react-router`][reactrouter], and [`@pankod/refine-react-location`][reactlocation] packages integrate access control for CRUD pages at `[resource]/[action]` and root routes.
-
-They will check access control with parameters:
-
--   dashboard (`/`): `{ resource: "dashboard", action: "list" }`
--   list (e.g. `/posts`): `{ resource: "posts", action: "list", params: { *resource } }`
--   create (e.g. `/posts/create`): `{ resource: "posts", action: "create", params: { *resource } }`
--   clone (e.g. `/posts/clone/1`): `{ resource: "posts", action: "create", params: { id: 1, *resource }}`
--   edit (e.g. `/posts/edit/1`): `{ resource: "posts", action: "edit", params: { id: 1, *resource } }`
--   show (e.g. `/posts/show/1`): `{ resource: "posts", action: "show", params: { id: 1, *resource } }`
-
-In case access control returns `false` they will show [`cathcAll`][catchall] if provided or a standard error page otherwise.
-
-> `*resource`: &#8594 It returns the resource ([ResourceItemProps][iresourceitem]) object you gave to `<Refine />` component. This will enable Attribute Based Access Control (ABAC), for example granting permissions based on the value of a field in the resource object.
 
 ### Sider
 

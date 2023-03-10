@@ -18,7 +18,7 @@
     },
     {
       "from": "/docs/core/components/layout-wrapper/",
-      "to": "/docs/api-reference/core/components/layout-wrapper/"
+      "to": "/docs/3.xx.xx/api-reference/core/components/layout-wrapper"
     },
     {
       "from": "/docs/core/components/refine-config/",
@@ -154,7 +154,7 @@
     },
     {
       "from": "/docs/core/hooks/refine/useTitle/",
-      "to": "/docs/api-reference/core/hooks/refine/useTitle/"
+      "to": "/docs/3.xx.xx/api-reference/core/hooks/refine/useTitle/"
     },
     {
       "from": "/docs/core/hooks/resource/useResource/",
@@ -162,7 +162,7 @@
     },
     {
       "from": "/docs/core/hooks/resource/useResourceWithRoute/",
-      "to": "/docs/api-reference/core/hooks/resource/useResourceWithRoute/"
+      "to": "/docs/api-reference/core/hooks/resource/useResource/"
     },
     {
       "from": "/docs/core/hooks/show/useShow/",
@@ -258,7 +258,7 @@
     },
     {
       "from": "/docs/guides-and-concepts/custom-pages/",
-      "to": "/docs/advanced-tutorials/custom-pages/"
+      "to": "/docs/packages/documentation/routers"
     },
     {
       "from": "/docs/guides-and-concepts/data-provider/appwrite/",
@@ -326,11 +326,11 @@
     },
     {
       "from": "/docs/guides-and-concepts/ssr/nextjs/",
-      "to": "/docs/advanced-tutorials/ssr/nextjs/"
+      "to": "/docs/packages/documentation/routers/nextjs"
     },
     {
       "from": "/docs/guides-and-concepts/ssr/remix/",
-      "to": "/docs/advanced-tutorials/ssr/remix/"
+      "to": "/docs/packages/documentation/routers/nextjs"
     },
     {
       "from": "/docs/guides-and-concepts/upload/base64-upload/",
@@ -478,15 +478,15 @@
     },
     {
       "from": "/docs/ui-frameworks/antd/customization/antd-custom-layout/",
-      "to": "/docs/api-reference/antd/customization/antd-custom-layout/"
+      "to": "/docs/advanced-tutorials/custom-layout/"
     },
     {
       "from": "/docs/ui-frameworks/antd/customization/antd-custom-sider/",
-      "to": "/docs/api-reference/antd/customization/antd-custom-sider/"
+      "to": "/docs/advanced-tutorials/custom-layout/"
     },
     {
       "from": "/docs/ui-frameworks/antd/customization/antd-custom-theme/",
-      "to": "/docs/api-reference/antd/customization/antd-custom-theme/"
+      "to": "/docs/api-reference/antd/theming"
     },
     {
       "from": "/docs/ui-frameworks/antd/hooks/field/useCheckboxGroup/",
@@ -630,15 +630,15 @@
     },
     {
       "from": "/docs/ui-frameworks/mui/customization/mui-custom-layout/",
-      "to": "/docs/api-reference/mui/customization/mui-custom-layout/"
+      "to": "/docs/advanced-tutorials/custom-layout/"
     },
     {
       "from": "/docs/ui-frameworks/mui/customization/mui-custom-sider/",
-      "to": "/docs/api-reference/mui/customization/mui-custom-sider/"
+      "to": "/docs/advanced-tutorials/custom-layout/"
     },
     {
       "from": "/docs/ui-frameworks/mui/customization/mui-custom-theme/",
-      "to": "/docs/api-reference/mui/customization/mui-custom-theme/"
+      "to": "/docs/api-reference/mui/theming"
     },
     {
       "from": "/docs/ui-frameworks/mui/hooks/useAutocomplete/",
@@ -711,6 +711,59 @@
     {
       "from": "/docs/getting-started/overview/",
       "to": "/docs/"
+    },
+    {
+      "from": "/docs/advanced-tutorials/ssr/nextjs",
+      "to": "/docs/packages/documentation/routers/nextjs"
+    },
+    {
+      "from": "/docs/advanced-tutorials/ssr/remix",
+      "to": "/docs/packages/documentation/routers/remix"
+    },
+    {
+      "from": "/docs/advanced-tutorials/custom-pages/",
+      "to": "/docs/packages/documentation/routers"
+    },
+    {
+      "from": "/docs/api-reference/core/components/layout-wrapper",
+      "to": "/docs/3.xx.xx/api-reference/core/components/layout-wrapper"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/resource/useResourceWithRoute/",
+      "to": "/docs/api-reference/core/hooks/resource/useResource/"
+    },
+    {
+      "from": "/docs/api-reference/core/hooks/refine/useTitle/",
+      "to": "/docs/3.xx.xx/api-reference/core/hooks/refine/useTitle/"
+    },
+    {
+      "to": "/docs/advanced-tutorials/custom-layout/",
+      "from": [
+        "/docs/api-reference/antd/customization/antd-custom-sider/",
+        "/docs/api-reference/antd/customization/antd-custom-layout/",
+        "/docs/api-reference/mui/customization/mui-custom-sider/",
+        "/docs/api-reference/mui/customization/mui-custom-layout/",
+        "/docs/api-reference/mantine/customization/sider",
+        "/docs/api-reference/mantine/customization/layout",
+        "/docs/api-reference/chakra-ui/customization/sider",
+        "/docs/api-reference/chakra-ui/customization/layout"
+      ]
+    },
+    {
+      "from": "/docs/api-reference/mui/customization/mui-custom-theme/",
+      "to": "/docs/api-reference/mui/theming/"
+    },
+    {
+      "from": "/docs/api-reference/antd/customization/antd-custom-theme",
+      "to": "/docs/api-reference/antd/theming"
+    },
+    {
+      "from": "/docs/api-reference/chakra-ui/customization/theme",
+      "to": "/docs/api-reference/chakra-ui/theming"
+    },
+    {
+      "from": "/docs/api-reference/mantine/customization/theme",
+      "to": "/docs/api-reference/mantine/theming"
     }
   ]
 }

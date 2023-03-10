@@ -1,6 +1,7 @@
 ---
 id: useBreadcrumb
 title: useBreadcrumb
+sidebar_label: useBreadcrumb 🆙
 source: packages/core/src/hooks/breadcrumb
 ---
 
@@ -13,7 +14,7 @@ Congratulations [@salihozdemir](https://github.com/salihozdemir)! It was great s
 It is a hook that returns `breadcrumbs` to create breadcrumbs for the current page. The `breadcrumbs` is an array of objects with the following properties:
 
 -   `label`: the label of the resource.
--   `href`: the route of the resource.
+-   `href`: the route of the resource's list action.
 -   `icon`: the icon of the resource.
 
 ## Basic Usage
@@ -48,9 +49,9 @@ The `breadcrumbs` are created with your resource definitions. For example, if yo
 [
     {
         name: "posts",
-        icon: <div>icon</div>,
-        list: () => <div>List Page</div>,
-        create: () => <div>Create Page</div>,
+        icon: <PostsIcon />,
+        list: "/posts",
+        create: "/posts/create",
     },
 ];
 ```
@@ -62,7 +63,7 @@ The `breadcrumbs` are created with your resource definitions. For example, if yo
         {
             label: "Posts",
             href: "/posts",
-            icon: <div>icon</div>,
+            icon: <PostsIcon />,
         },
     ];
     ```
@@ -74,7 +75,7 @@ The `breadcrumbs` are created with your resource definitions. For example, if yo
         {
             label: "Posts",
             href: "/posts",
-            icon: <div>icon</div>,
+            icon: <PostsIcon />,
         },
         { label: "Create" },
     ];
@@ -95,9 +96,9 @@ If you have a nested resource definition as below:
     },
     {
         name: "users",
-        parentName: "cms",
-        list: () => <div>List Page</div>,
-        create: () => <div>Create Page</div>,
+        list: "/users",
+        create: "/users/create",
+        meta: { parent: "cms" },
     },
 ];
 ```
@@ -126,6 +127,21 @@ If you have a nested resource definition as below:
         { label: "Create" },
     ];
     ```
+
+### Adding a Home/Root Page
+
+In earlier versions of **refine**, `<Refine>` component had accepted `DashboardPage` which could be used to add an index page to your app. With the changes in `routerProvider` API of **refine**, `DashboardPage` is deprecated. You can now define an index route yourself manually by your router package.
+
+In earlier versions, the home icon in the `Breadcrumb` was created by the `DashboardPage`, now it is rendered if you define a an action route as `/` in any one of your resources. It will be rendered with the home icon regardless of the current route. You can also hide the home icon by setting `showHome` to `false`.
+
+```tsx
+[
+    {
+        name: "dashboard", // name of the resource is not important for the `useBreadcrumb` hook
+        list: "/", // If any one of your resources has a list action with `/` route, the home icon will be rendered
+    }
+]
+```
 
 ## i18n support
 

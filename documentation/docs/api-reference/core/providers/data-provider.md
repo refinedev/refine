@@ -1,7 +1,7 @@
 ---
 id: data-provider
 title: Data Provider
-sidebar_label: Data Provider
+sidebar_label: Data Provider 🆙
 ---
 
 import SupportedDataProviders from "@site/src/partials/data-provider/supported-data-providers.md";
@@ -43,13 +43,18 @@ const App: React.FC = () => {
 Here is an example of using multiple data providers in your app:
 
 ```tsx live hideCode url=http://localhost:3000/posts previewHeight=420px
+setInitialRoutes(["/posts"]);
 setRefineProps({ Sider: () => null });
+
 // visible-block-start
 import { Refine, useList } from "@refinedev/core";
-import { Layout } from "@refinedev/antd";
-import { Collapse, Tag } from "antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
+import { Layout } from "@refinedev/antd";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { Collapse, Tag } from "antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 const FINE_FOODS_API_URL = "https://api.finefoods.refine.dev";
@@ -68,32 +73,38 @@ interface IProduct {
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            Layout={Layout}
-            // highlight-start
-            dataProvider={{
-                default: dataProvider(API_URL),
-                fineFoods: dataProvider(FINE_FOODS_API_URL),
-            }}
-            // highlight-end
-            resources={[
-                {
-                    // highlight-next-line
-                    // **refine** will use the `default` data provider for this resource
-                    name: "posts",
-                    list: PostList,
-                },
-                {
-                    name: "products",
-                    meta: {
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                // highlight-start
+                dataProvider={{
+                    default: dataProvider(API_URL),
+                    fineFoods: dataProvider(FINE_FOODS_API_URL),
+                }}
+                // highlight-end
+                resources={[
+                    {
                         // highlight-next-line
-                        // **refine** will use the `fineFoods` data provider for this resource
-                        dataProviderName: "fineFoods",
+                        // **refine** will use the `default` data provider for this resource
+                        name: "posts",
+                        list: "/posts",
                     },
-                },
-            ]}
-        />
+                    {
+                        name: "products",
+                        meta: {
+                            // highlight-start
+                            // **refine** will use the `fineFoods` data provider for this resource
+                            dataProviderName: "fineFoods",
+                            // highlight-end
+                        },
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route path="/posts" element={<PostList />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
@@ -168,7 +179,9 @@ const App = () => {
                 default: defaultDataProvider,
                 example: exampleDataProvider,
             }}
-        />
+        >
+            {/* ... */}
+        </Refine>
     );
 };
 ```
@@ -750,7 +763,7 @@ const myDataProvider = {
     },
 };
 
-<Refine dataProvider={myDataProvider} />;
+<Refine dataProvider={myDataProvider}>{/* ... */}</Refine>;
 ```
 
 [basekey]: /docs/api-reference/core/interfaceReferences/#basekey

@@ -1,6 +1,7 @@
 ---
 id: contributing
 title: Contributing
+sidebar_label: Contributing 🆙
 ---
 
 We follow a [code of conduct][code_of_conduct] when participating in the community. Please read it before you make any contributions.
@@ -212,31 +213,27 @@ const { CreateButton } = RefineAntd;
 // highlight-end
 
 interface ICategory {
-id: number;
-title: string;
+    id: number;
+    title: string;
 }
 
 interface IPost {
-id: number;
-title: string;
-content: string;
-status: "published" | "draft" | "rejected";
-category: { id: number };
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: { id: number };
 }
 
 // visible-block-start
 // Import statements will be replaced with the object destructuring but visible code block will not be affected.
 // highlight-start
-import {
-    Create,
-    useForm,
-    useSelect,
-} from "@refinedev/antd";
+import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 // highlight-end
 
 const PostCreate: React.FC = () => {
-const { formProps, saveButtonProps } = useForm<IPost>();
+    const { formProps, saveButtonProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
@@ -296,28 +293,44 @@ const { formProps, saveButtonProps } = useForm<IPost>();
             </Form>
         </Create>
     );
-
 };
 // visible-block-end
+
+// highlight-start
+// We're setting the initial route to "/posts/create" to render the preview.
+setInitialRoutes(["/posts/create"]);
+// highlight-end
 
 // This part is required to render the preview.
 // highlight-start
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+    <ReactRouterDom.BrowserRouter>
+        <Refine
+            resources={[
+                {
+                    name: "posts",
+                    list: "/posts",
+                    create: "/posts/create",
+                },
+            ]}
+        >
+            <ReactRouterDom.Routes>
+                <ReactRouterDom.Route
+                    path="/posts"
+                    element={(
+                        <div>
+                            <p>This page is empty.</p>
+                            <CreateButton />
+                        </div>
+                    )}
+                />
+                <ReactRouterDom.Route
+                    path="/posts/create"
+                    element={<PostCreate />}
+                />
+            </ReactRouterDom.Routes>
+        </Refine>
+    </ReactRouterDom.BrowserRouter>,
 );
 // highlight-end
 ```;
@@ -415,24 +428,41 @@ const PostCreate: React.FC = () => {
 };
 // visible-block-end
 
+// highlight-start
+// We're setting the initial route to "/posts/create" to render the preview.
+setInitialRoutes(["/posts/create"]);
+// highlight-end
+
 // This part is required to render the preview.
 // highlight-start
 render(
-    <RefineAntdDemo
-        initialRoutes={["/posts/create"]}
-        resources={[
-            {
-                name: "posts",
-                list: () => (
-                    <div>
-                        <p>This page is empty.</p>
-                        <CreateButton />
-                    </div>
-                ),
-                create: PostCreate,
-            },
-        ]}
-    />,
+    <ReactRouterDom.BrowserRouter>
+        <Refine
+            resources={[
+                {
+                    name: "posts",
+                    list: "/posts",
+                    create: "/posts/create",
+                },
+            ]}
+        >
+            <ReactRouterDom.Routes>
+                <ReactRouterDom.Route
+                    path="/posts"
+                    element={(
+                        <div>
+                            <p>This page is empty.</p>
+                            <CreateButton />
+                        </div>
+                    )}
+                />
+                <ReactRouterDom.Route
+                    path="/posts/create"
+                    element={<PostCreate />}
+                />
+            </ReactRouterDom.Routes>
+        </Refine>
+    </ReactRouterDom.BrowserRouter>,
 );
 // highlight-end
 ```
@@ -447,9 +477,30 @@ render(
 | `RefineAntd`          | `@refinedev/antd`                                                                                                                                                                                                                                       |
 | `RefineMui`           | `@refinedev/mui`                                                                                                                                                                                                                                        |
 | `RefineMantine`       | `@refinedev/mantine`                                                                                                                                                                                                                                    |
+| `RefineChakra`       | `@refinedev/chakra-ui`                                                                                                                                                                                                                                  |
 | `RefineReactRouterV6` | `@refinedev/react-router-v6`                                                                                                                                                                                                                            |
 | `RefineReactHookForm` | `@refinedev/react-hook-form`                                                                                                                                                                                                                            |
 | `RefineReactTable`    | `@refinedev/react-table`                                                                                                                                                                                                                                |
+| `RefineAntdInferencer` | `@refinedev/inferencer/antd`                                                                                                                                                                                                                            |
+| `RefineMuiInferencer` | `@refinedev/inferencer/mui`                                                                                                                                                                                                                             |
+| `RefineMantineInferencer` | `@refinedev/inferencer/mantine`                                                                                                                                                                                                                         |
+| `RefineChakraInferencer` | `@refinedev/inferencer/chakra-ui`                                                                                                                                                                                                                          |
+| `LegacyRefineReactRouterV6` | `@refinedev/react-router-v6/legacy`                                                                                                                                                                                                                     |
+| `RefineReactRouterV6` | `@refinedev/react-router-v6`                                                                                                                                                                                                                            |
+| `ReactRouterDom` | `react-router-dom`                                                                                                                                                                                                                            |
+| `AntdCore` | `antd`                                                                                                                                                                                                                            |
+| `MantineCore` | `@mantine/core`                                                                                                                                                                                                                            |
+| `MantineHooks` | `@mantine/hooks`                                                                                                                                                                                                                            |
+| `MantineForm` | `@mantine/form`                                                                                                                                                                                                                            |
+| `MantineNotifications` | `@mantine/notifications`                                                                                                                                                                                                                            |
+| `EmotionReact` | `@emotion/react`                                                                                                                                                                                                                            |
+| `EmotionStyled` | `@emotion/styled`                                                                                                                                                                                                                            |
+| `MuiLab` | `@mui/lab`                                                                                                                                                                                                                            |
+| `MuiMaterial` | `@mui/material`                                                                                                                                                                                                                            |
+| `MuiXDataGrid` | `@mui/x-data-grid`                                                                                                                                                                                                                            |
+| `ChakraUI` | `@chakra-ui/react`                                                                                                                                                                                                                            |
+| `ReactHookForm` | `react-hook-form`                                                                                                                                                                                                                            |
+| `TanstackReactTable` | `@tanstack/react-table`                                                                                                                                                                                                                            |
 | `RefineHeadlessDemo`  | Predefined `<Refine/>` component with simple-rest and react-router-v6 props for easier use                                                                                                                                                                  |
 | `RefineMuiDemo`       | Predefined `<Refine/>` component with Material UI, simple-rest and react-router-v6 props for easier use                                                                                                                                                     |
 | `RefineAntdDemo`      | Predefined `<Refine/>` component with Ant Design, simple-rest and react-router-v6 props for easier use                                                                                                                                                      |

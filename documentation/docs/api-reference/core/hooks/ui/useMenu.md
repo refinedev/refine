@@ -1,6 +1,7 @@
 ---
 id: useMenu
 title: useMenu
+sidebar_label: useMenu 🆙
 source: packages/core/src/hooks/menu/useMenu.tsx
 ---
 
@@ -34,13 +35,7 @@ const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
 
 :::tip
 
-If you are using [`@refinedev/antd`](/docs/api-reference/antd/), [`@refinedev/mui`](/docs/api-reference/mui/), [`@refinedev/chakra-ui`](/docs/api-reference/chakra-ui/) or [`@refinedev/mantine`](/docs/api-reference/mantine/) as a UI framework integration, you can find out more info about how their `<Sider/>` components are created and how to create a custom one by following their guides.
-
-[Ant Design > Customization > Custom Sider &#8594](/docs/api-reference/antd/customization/antd-custom-sider/)
-
-[Material UI > Customization > Custom Sider &#8594](/docs/api-reference/mui/customization/mui-custom-sider/)
-
-[Mantine > Customization > Custom Sider &#8594](/docs/api-reference/mantine/customization/sider/)
+If you are using [`@refinedev/antd`](/docs/api-reference/antd/), [`@refinedev/mui`](/docs/api-reference/mui/), [`@refinedev/chakra-ui`](/docs/api-reference/chakra-ui/) or [`@refinedev/mantine`](/docs/api-reference/mantine/) as a UI framework integration, you can find out more info about their structure and how to use `useMenu` in the [Custom Layout][customlayout]
 
 :::
 
@@ -53,30 +48,21 @@ setInitialRoutes(["/"]);
 
 // visible-block-start
 import React from "react";
-import {
-    useMenu,
-    LayoutProps,
-    useRouterContext,
-    useRefineContext,
-    ITreeMenu,
-} from "@refinedev/core";
+import { useMenu, LayoutProps, ITreeMenu } from "@refinedev/core";
+
+import { Link } from "react-router-dom";
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     // highlight-start
     const { menuItems, selectedKey } = useMenu();
     // highlight-end
-    const { hasDashboard } = useRefineContext();
-    const { Link } = useRouterContext();
-
-    // You can also use navigation helpers from `useNavigation` hook instead of `Link` from your Router Provider.
-    // const { push } = useNavigation();
 
     // highlight-start
     const renderMenuItems = (items: ITreeMenu[]) => {
         return (
             <>
                 {menuItems.map(({ name, label, icon, route }) => {
-                    const isSelected = route === selectedKey;
+                    const isSelected = key === selectedKey;
                     return (
                         <li key={name}>
                             <Link
@@ -107,19 +93,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 </Link>
                 {/* highlight-start */}
                 <ul>
-                    {hasDashboard && (
-                        <li>
-                            <Link
-                                to="/"
-                                style={{
-                                    fontWeight:
-                                        selectedKey === "/" ? "bold" : "normal",
-                                }}
-                            >
-                                <span>Dashboard</span>
-                            </Link>
-                        </li>
-                    )}
                     {renderMenuItems(menuItems)}
                 </ul>
                 {/* highlight-end */}
@@ -130,8 +103,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 };
 
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { Layout } from "components";
 
@@ -139,21 +114,36 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: () => <div>dummy posts page</div>,
-                },
-                {
-                    name: "categories",
-                    list: () => <div>dummy categories page</div>,
-                },
-            ]}
-            Layout={Layout}
-        />
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider(API_URL)}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts"
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories"
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}
+                    >
+                        <Route index element={<NavigateToResource />} />
+                        <Route path="/posts" element={<div>dummy posts page</div>} />
+                        <Route path="/categories" element={<div>dummy categories page</div>} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 // visible-block-end
@@ -176,12 +166,14 @@ After creating the `<Layout/>` component, we can use it in our application. We n
 
 `useMenu` hook comes out of the box with multi level menu support, you can render menu items recursively to get a multi level menu.
 
-Update your `resources` in `<Refine/>` with `parentName` to nest them inside a label.
+Update your `resources` in `<Refine/>` with `meta.parent` to nest them inside a label.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { Layout } from "components/layout";
 
@@ -189,28 +181,43 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            // highlight-start
-            resources={[
-                {
-                    name: "CMS",
-                },
-                {
-                    name: "posts",
-                    parentName: "CMS",
-                    list: () => <div>dummy posts page</div>,
-                },
-                {
-                    name: "categories",
-                    parentName: "CMS",
-                    list: () => <div>dummy categories page</div>,
-                },
-            ]}
-            // highlight-end
-            Layout={Layout}
-        />
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                // highlight-start
+                resources={[
+                    {
+                        name: "CMS",
+                    },
+                    {
+                        name: "posts",
+                        list: "/CMS/posts",
+                        meta: { parent: "CMS" },
+                    },
+                    {
+                        name: "categories",
+                        list: "/CMS/categories",
+                        meta: { parent: "CMS" },
+                    },
+                ]}
+                // highlight-end
+            >
+                <Routes>
+                    <Route
+                        element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}
+                    >
+                        <Route index element={<NavigateToResource />} />
+                        <Route path="/posts" element={<div>dummy posts page</div>} />
+                        <Route path="/categories" element={<div>dummy categories page</div>} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 
@@ -221,17 +228,12 @@ Now you can update your `<Layout/>` to support multi level rendering with follow
 
 ```tsx title="src/components/Layout.tsx"
 import React from "react";
-import {
-    useMenu,
-    LayoutProps,
-    useRouterContext,
-    useRefineContext,
-    ITreeMenu,
-} from "@refinedev/core";
+import { useMenu, LayoutProps, ITreeMenu } from "@refinedev/core";
+
+import { Link } from "react-router-dom";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const { menuItems, selectedKey } = useMenu();
-    const { Link } = useRouterContext();
 
     // highlight-start
     const renderMenuItems = (items: ITreeMenu[]) => {
@@ -247,7 +249,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                         );
                     }
 
-                    const isSelected = route === selectedKey;
+                    const isSelected = key === selectedKey;
 
                     return (
                         <li key={label}>
@@ -278,19 +280,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                     />
                 </Link>
                 <ul>
-                    {hasDashboard && (
-                        <li>
-                            <Link
-                                to="/"
-                                style={{
-                                    fontWeight:
-                                        selectedKey === "/" ? "bold" : "normal",
-                                }}
-                            >
-                                <span>Dashboard</span>
-                            </Link>
-                        </li>
-                    )}
                     {renderMenuItems(menuItems)}
                 </ul>
             </div>
@@ -320,59 +309,20 @@ Array with the keys of default opened menus.
 
 | Property        | Description                                                                              | Type                         |
 | --------------- | ---------------------------------------------------------------------------------------- | ---------------------------- |
-| selectedKey     | Key of the resource the user is viewing at the moment.                                   | `string`                     |
-| menuItems       | List of keys and routes and some metadata of resources and also the dashboard if exists. | [`ITreeMenu[]`](#interfaces) |
+| selectedKey     | Key of the resource the user is viewing at the moment.                                   | `string` \| `undefined`                     |
+| menuItems       | List of keys and routes and some metadata of resources and also the dashboard if exists. | [`TreeMenuItem[]`](#interfaces) |
 | defaultOpenKeys | Array with the keys of default opened menus.                                             | `string[]`                   |
 
 #### Interfaces
 
 ```ts
-interface IResourceItem extends IResourceComponents {
-    name: string;
-    label?: string;
-    route?: string;
-    icon?: ReactNode;
-    canCreate?: boolean;
-    canEdit?: boolean;
-    canShow?: boolean;
-    canDelete?: boolean;
-    parentName?: string;
-    meta?: MetaProps;
-}
-
-interface IResourceComponents {
-    list?: React.FunctionComponent<IResourceComponentsProps>;
-    create?: React.FunctionComponent<IResourceComponentsProps>;
-    edit?: React.FunctionComponent<IResourceComponentsProps>;
-    show?: React.FunctionComponent<IResourceComponentsProps>;
-}
-
-interface IResourceComponentsProps<TCrudData = any> {
-    canCreate?: boolean;
-    canEdit?: boolean;
-    canDelete?: boolean;
-    canShow?: boolean;
-    name?: string;
-    initialData?: TCrudData;
-}
-
-type MetaProps<TExtends = { [key: string]: any }> = TExtends & {
-    label?: string;
-    route?: string;
-    auditLog?: {
-        permissions?: AuditLogPermissions[number][] | string[];
-    };
-    hide?: boolean;
-    [key: string]: any;
-};
-
 // highlight-start
-type IMenuItem = IResourceItem & {
+export type TreeMenuItem = IResourceItem & {
     key: string;
-};
-
-type ITreeMenu = IMenuItem & {
-    children: ITreeMenu[];
+    route?: string;
+    icon?: React.ReactNode;
+    label?: string;
+    children: TreeMenuItem[];
 };
 // highlight-end
 ```
@@ -382,3 +332,4 @@ type ITreeMenu = IMenuItem & {
 <CodeSandboxExample path="core-use-menu" />
 
 [use-navigation]: /docs/api-reference/core/hooks/navigation/useNavigation/
+[customlayout]: /docs/advanced-tutorials/custom-layout/

@@ -1,13 +1,14 @@
 ---
 id: inferencer
 title: Inferencer
+sidebar_label: Inferencer 🆙
 ---
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `MantineListInferencer`, `MantineShowInferencer`, `MantineEditInferencer`, `MantineCreateInferencer` and `MantineInferencer` (which combines all in one place) components.
 
 ## Usage
 
-Mantine components can be imported from `@refinedev/inferencer/mantine`. You can directly use the components in `resources` prop of `Refine` component or you can use them in your custom components by passing the `resource` prop as the resource name.
+Inferencer components can be imported from `@refinedev/inferencer/mantine`. You can directly use the components in your routes without passing any props. If you use a `routerProvider`, it will infer the `resource`, `action` and `id` from the current route.
 
 <Tabs
 defaultValue="resources"
@@ -28,19 +29,22 @@ const App = () => {
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                resources={[
-                    {
-                        name: "samples",
-                        // highlight-start
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                        create: MantineInferencer,
-                        edit: MantineInferencer,
-                        // highlight-end
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    resources={[
+                        {
+                            name: "samples",
+                            list: "/samples",
+                        },
+                    ]}
+                >
+                    <Routes>
+                        {/* highlight-next-line */}
+                        <Route path="/samples" element={<MantineInferencer />} />
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </MantineProvider>
     );
 };
@@ -96,7 +100,7 @@ To learn more about `@refinedev/inferencer` package, please check out [Docs](/do
 Generates a sample list view for your resources according to the API response. It uses `List` component and from `@refinedev/mantine` and `useTable` hook from `@refinedev/react-table`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples
-setInitialRoutes(["/"]);
+setInitialRoutes(["/samples"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
@@ -104,6 +108,8 @@ import { Layout, LightTheme } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 // highlight-next-line
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
@@ -114,34 +120,31 @@ const App: React.FC = () => {
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        // highlight-next-line
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                        create: MantineInferencer,
-                        edit: MantineInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        // highlight-next-line
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                    },
-                    {
-                        name: "tags",
-                        // highlight-next-line
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "samples",
+                            list: "/samples",
+                        }
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={(
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            )}
+                        >
+                            {/* highlight-next-line */}
+                            <Route path="/samples" element={<MantineInferencer />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </MantineProvider>
     );
 };
@@ -165,6 +168,8 @@ import { MantineProvider, Global } from "@mantine/core";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 // highlight-next-line
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
@@ -174,34 +179,31 @@ const App: React.FC = () => {
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        list: MantineInferencer,
-                        // highlight-next-line
-                        show: MantineInferencer,
-                        create: MantineInferencer,
-                        edit: MantineInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        list: MantineInferencer,
-                        // highlight-next-line
-                        show: MantineInferencer,
-                    },
-                    {
-                        name: "tags",
-                        list: MantineInferencer,
-                        // highlight-next-line
-                        show: MantineInferencer,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "samples",
+                            show: "/samples/show/:id",
+                        }
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={(
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            )}
+                        >
+                            {/* highlight-next-line */}
+                            <Route path="/samples/show/:id" element={<MantineInferencer />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </MantineProvider>
     );
 };
@@ -225,6 +227,8 @@ import { MantineProvider, Global } from "@mantine/core";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 // highlight-next-line
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
@@ -234,32 +238,31 @@ const App: React.FC = () => {
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                        // highlight-next-line
-                        create: MantineInferencer,
-                        edit: MantineInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                    },
-                    {
-                        name: "tags",
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "samples",
+                            create: "/samples/create",
+                        }
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={(
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            )}
+                        >
+                            {/* highlight-next-line */}
+                            <Route path="/samples/create" element={<MantineInferencer />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </MantineProvider>
     );
 };
@@ -283,6 +286,8 @@ import { MantineProvider, Global } from "@mantine/core";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 // highlight-next-line
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
@@ -292,32 +297,31 @@ const App: React.FC = () => {
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "samples",
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                        create: MantineInferencer,
-                        // highlight-next-line
-                        edit: MantineInferencer,
-                        canDelete: true,
-                    },
-                    {
-                        name: "categories",
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                    },
-                    {
-                        name: "tags",
-                        list: MantineInferencer,
-                        show: MantineInferencer,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    resources={[
+                        {
+                            name: "samples",
+                            edit: "/samples/edit/:id",
+                        }
+                    ]}
+                >
+                    <Routes>
+                        <Route
+                            element={(
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            )}
+                        >
+                            {/* highlight-next-line */}
+                            <Route path="/samples/edit/:id" element={<MantineInferencer />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </MantineProvider>
     );
 };

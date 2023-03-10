@@ -1,6 +1,7 @@
 ---
-id: mui-custom-theme
+id: theming
 title: Theme
+sidebar_label: Theme 🆙
 ---
 
 Theme specifies the color of the components, the darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc. You can either create your own Theme or use Themes that provide from Refine. There are two types of Themes: [`LightTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L16) and [`DarkTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L46). [`LightTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L16) tend to have dark text on a light background, while [`DarkTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L46) have light text on a dark background. Theme provides a way to your app's design to meet them.
@@ -13,12 +14,14 @@ The [`ThemeProvider`](https://mui.com/material-ui/customization/theming/#theme-p
 
 ```tsx title="src/App.tsx
 import { Refine } from "@refinedev/core";
-import { Layout, ErrorComponent, ReadyPage } from "@refinedev/mui";
+import { Layout, ErrorComponent } from "@refinedev/mui";
 // highlight-next-line
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { PostsList, PostCreate, PostEdit } from "pages/posts";
 
@@ -28,21 +31,35 @@ const App: React.FC = () => {
         <ThemeProvider theme={YOUR_THEME_OBJECT}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                ReadyPage={ReadyPage}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "posts",
-                        list: PostsList,
-                        create: PostCreate,
-                        edit: PostEdit,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: "/posts",
+                            create: "/posts/create",
+                            edit: "/posts/edit/:id",
+                        }
+                    ]}
+                >
+                    <Routes>
+                        <Route element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}>
+                            <Route path="posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                                <Route path="edit/:id" element={<PostEdit />} />
+                            </Route>
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
             // highlight-next-line
         </ThemeProvider>
     );
@@ -63,32 +80,50 @@ If you don't wrap your app with [`ThemeProvider`](https://mui.com/material-ui/cu
 
 ```tsx live previewOnly disableScroll
 import { Refine } from "@refinedev/core";
-import { Layout, ErrorComponent, ReadyPage } from "@refinedev/mui";
+import { Layout, ErrorComponent } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import { SampleList, SampleCreate, SampleEdit } from "pages/samples";
 
 const App: React.FC = () => {
     return (
         <>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                ReadyPage={ReadyPage}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "samples",
-                        list: SampleList,
-                        create: SampleCreate,
-                        edit: SampleEdit,
-                        show: SampleShow,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    resources={[
+                        {
+                            name: "samples",
+                            list: "/samples",
+                            create: "/samples/create",
+                            edit: "/samples/edit/:id",
+                        }
+                    ]}
+                >
+                    <Routes>
+                        <Route index element={<NavigateToResource />} />
+                        <Route element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}>
+                            <Route path="samples">
+                                <Route index element={<SampleList />} />
+                                <Route path="create" element={<SampleCreate />} />
+                                <Route path="edit/:id" element={<SampleEdit />} />
+                            </Route>
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </>
     );
 };
@@ -101,16 +136,12 @@ In our example, we will be using LightTheme.
 The design will change to match the `LightTheme`, so you can enjoy these amazing interfaces without any hassle!
 
 ````tsx live
-```tsx live
-
-```tsx live
-
+setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
-    ReadyPage,
     // highlight-next-line
     LightTheme,
 } from "@refinedev/mui";
@@ -118,28 +149,47 @@ import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
 
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import { SampleList, SampleCreate, SampleEdit } from "pages/samples";
+
 const App: React.FC = () => {
     return (
         // highlight-next-line
         <ThemeProvider theme={LightTheme}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                ReadyPage={ReadyPage}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "samples",
-                        list: SampleList,
-                        create: SampleCreate,
-                        edit: SampleEdit,
-                        show: SampleShow,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    resources={[
+                        {
+                            name: "samples",
+                            list: "/samples",
+                            create: "/samples/create",
+                            edit: "/samples/edit/:id",
+                            show: "/samples/show/:id",
+                        }
+                    ]}
+                >
+                    <Routes>
+                        <Route element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}>
+                            <Route path="samples">
+                                <Route index element={<SampleList />} />
+                                <Route path="create" element={<SampleCreate />} />
+                                <Route path="edit/:id" element={<SampleEdit />} />
+                                <Route path="show/:id" element={<SampleShow />} />
+                            </Route>
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </ThemeProvider>
     );
 };
@@ -178,17 +228,22 @@ Get a designer's opinion anyway - you'll be happy with the end result!
 When we easy-override our LightTheme, it's going to look like this:
 
 ```tsx live previewOnly disableScroll
+setInitialRoutes(["/samples"]);
+// visible-block-start
 import { Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
-    ReadyPage,
     // highlight-next-line
     LightTheme,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import { SampleList } from "./pages/samples";
 
 const overridedLightTheme = {
     ...LightTheme,
@@ -211,22 +266,35 @@ const App: React.FC = () => {
         <ThemeProvider theme={overridedLightTheme}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                ReadyPage={ReadyPage}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "samples",
-                        list: SampleList,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    resources={[
+                        {
+                            name: "samples",
+                            list: "/samples",
+                        }
+                    ]}
+                >
+                    <Routes>
+                        <Route element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}>
+                            <Route path="samples">
+                                <Route index element={<SampleList />} />
+                            </Route>
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </ThemeProvider>
     );
 };
+// visible-block-end
 
 render(<App />);
 ```
@@ -267,6 +335,7 @@ const overridedLightTheme = {
 [Refer to the Material UI documentation for more information about Material UI Theme Configuration Variables. &#8594](https://mui.com/material-ui/customization/theming/)
 
 :::info
+
 If you are overriding the `fontFamily` in typography, you can add the `<link>` tags in your `index.html` like the following:
 
 ```html title="index.html"
@@ -300,14 +369,19 @@ For more information, you can review [`responsiveFontSizes()`](https://mui.com/m
 :::
 
 ```tsx live
+setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import { Layout, ErrorComponent, ReadyPage } from "@refinedev/mui";
+import { Layout, ErrorComponent } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 // highlight-next-line
 import { createTheme, responsiveFontSizes } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import { SampleList } from "./pages/samples";
 
 // highlight-start
 let customTheme = createTheme({
@@ -332,19 +406,31 @@ const App: React.FC = () => {
         <ThemeProvider theme={customTheme}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                ReadyPage={ReadyPage}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "samples",
-                        list: SampleList,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    resources={[
+                        {
+                            name: "samples",
+                            list: "/samples",
+                        }
+                    ]}
+                >
+                    <Routes>
+                        <Route element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}>
+                            <Route path="samples">
+                                <Route index element={<SampleList />} />
+                            </Route>
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </ThemeProvider>
     );
 };
@@ -397,19 +483,16 @@ For example:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { Layout, ErrorComponent, ReadyPage } from "@refinedev/mui";
+import { Layout, ErrorComponent } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 // highlight-next-line
 import { useMediaQuery } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
 
-import {
-    SampleList,
-    SampleCreate,
-    SampleEdit,
-    SampleShow,
-} from "pages/samples";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import { SampleList, SampleCreate, SampleEdit, SampleShow } from "pages/samples";
 
 const App: React.FC = () => {
     // highlight-next-line
@@ -420,22 +503,36 @@ const App: React.FC = () => {
         <ThemeProvider theme={prefersDarkMode ? DarkTheme : LightTheme}>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                ReadyPage={ReadyPage}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "samples",
-                        list: SampleList,
-                        create: SampleCreate,
-                        edit: SampleEdit,
-                        show: SampleShow,
-                    },
-                ]}
-            />
+            <BrowserRouter>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                    resources={[
+                        {
+                            name: "samples",
+                            list: "/samples",
+                            create: "/samples/create",
+                            edit: "/samples/edit/:id",
+                        }
+                    ]}
+                >
+                    <Routes>
+                        <Route element={(
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        )}>
+                            <Route path="samples">
+                                <Route index element={<SampleList />} />
+                                <Route path="create" element={<SampleCreate />} />
+                                <Route path="edit/:id" element={<SampleEdit />} />
+                                <Route path="show/:id" element={<SampleShow />} />
+                            </Route>
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
+                    </Routes>
+                </Refine>
+            </BrowserRouter>
         </ThemeProvider>
     );
 };
@@ -528,13 +625,14 @@ import { Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
-    ReadyPage,
     RefineSnackbarProvider,
     notificationProvider,
 } from "@refinedev/mui";
 import { CssBaseline, AppBar, IconButton, Box, Stack } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { LightModeOutlines, DarkModeOutlined } from "./icons";
 
@@ -544,6 +642,7 @@ import {
     SampleEdit,
     SampleShow,
 } from "pages/samples";
+
 import { ColorModeContextProvider, ColorModeContext } from "./contexts";
 
 const Header = () => {
@@ -574,26 +673,38 @@ const App: React.FC = () => {
         <ColorModeContextProvider>
             <CssBaseline />
             <RefineSnackbarProvider>
-                <Refine
-                    notificationProvider={notificationProvider}
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    ReadyPage={ReadyPage}
-                    Layout={Layout}
-                    catchAll={<ErrorComponent />}
-                    Header={Header}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: SampleList,
-                            create: SampleCreate,
-                            edit: SampleEdit,
-                            show: SampleShow,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        notificationProvider={notificationProvider}
+                        routerProvider={routerProvider}
+                        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                        resources={[
+                            {
+                                name: "samples",
+                                list: "/samples",
+                                create: "/samples/create",
+                                edit: "/samples/edit/:id",
+                            }
+                        ]}
+                    >
+                        <Routes>
+                            <Route element={(
+                                // highlight-next-line
+                                <Layout Header={Header}>
+                                    <Outlet />
+                                </Layout>
+                            )}>
+                                <Route path="samples">
+                                    <Route index element={<SampleList />} />
+                                    <Route path="create" element={<SampleCreate />} />
+                                    <Route path="edit/:id" element={<SampleEdit />} />
+                                    <Route path="show/:id" element={<SampleShow />} />
+                                </Route>
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </BrowserRouter>
             </RefineSnackbarProvider>
         </ColorModeContextProvider>
     );
@@ -610,18 +721,20 @@ export default App;
 [You can use this CodeSandbox link to access this example. &#8594](https://codesandbox.io/embed/github/refinedev/refine/tree/next/examples/customization-theme-mui/?view=preview&theme=dark&codemirror=1)
 
 ```tsx live previewOnly previewHeight=450px disableScroll
+setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
-    ReadyPage,
     RefineSnackbarProvider,
     notificationProvider,
 } from "@refinedev/mui";
 import { CssBaseline, AppBar, IconButton, Box, Stack } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { LightModeOutlines, DarkModeOutlined } from "./icons";
 
@@ -631,6 +744,7 @@ import {
     SampleEdit,
     SampleShow,
 } from "pages/samples";
+
 import { ColorModeContextProvider, ColorModeContext } from "./contexts";
 
 const Header = () => {
@@ -667,26 +781,37 @@ const App: React.FC = () => {
         <ColorModeContextProvider>
             <CssBaseline />
             <RefineSnackbarProvider>
-                <Refine
-                    notificationProvider={notificationProvider}
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    ReadyPage={ReadyPage}
-                    Layout={Layout}
-                    catchAll={<ErrorComponent />}
-                    Header={Header}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: SampleList,
-                            create: SampleCreate,
-                            edit: SampleEdit,
-                            show: SampleShow,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        notificationProvider={notificationProvider}
+                        routerProvider={routerProvider}
+                        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                        resources={[
+                            {
+                                name: "samples",
+                                list: "/samples",
+                                create: "/samples/create",
+                                edit: "/samples/edit/:id",
+                            }
+                        ]}
+                    >
+                        <Routes>
+                            <Route element={(
+                                <Layout Header={Header}>
+                                    <Outlet />
+                                </Layout>
+                            )}>
+                                <Route path="samples">
+                                    <Route index element={<SampleList />} />
+                                    <Route path="create" element={<SampleCreate />} />
+                                    <Route path="edit/:id" element={<SampleEdit />} />
+                                    <Route path="show/:id" element={<SampleShow />} />
+                                </Route>
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </BrowserRouter>
             </RefineSnackbarProvider>
         </ColorModeContextProvider>
     );
@@ -703,12 +828,12 @@ The main motivation for us to use the Notistack was that while the Notistack pro
 We provide [`<RefineSnackbarProvider>`](https://github.com/refinedev/refine/blob/next/packages/mui/src/providers/refineSnackbarProvider/index.tsx) that extended `<SnackbarProvider>` with theme style. You have to wrap Refine with [`<RefineSnackbarProvider>`](https://github.com/refinedev/refine/blob/next/packages/mui/src/providers/refineSnackbarProvider/index.tsx) and also pass the `notificationProvider` as props.
 
 ```tsx live
+setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
-    ReadyPage,
     LightTheme,
     // highlight-start
     RefineSnackbarProvider,
@@ -719,6 +844,10 @@ import { ThemeProvider, CssBaseline, GlobalStyles } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
 
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import { SampleList, SampleCreate, SampleEdit, SampleShow } from "pages/samples";
+
 const App: React.FC = () => {
     return (
         <ThemeProvider theme={LightTheme}>
@@ -726,25 +855,36 @@ const App: React.FC = () => {
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             {/* highlight-next-line */}
             <RefineSnackbarProvider>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    ReadyPage={ReadyPage}
-                    Layout={Layout}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "samples",
-                            list: SampleList,
-                            edit: SampleEdit,
-                            create: SampleCreate,
-                            show: SampleShow,
-                        },
-                    ]}
-                />
+                <BrowserRouter>
+                    <Refine
+                        routerProvider={routerProvider}
+                        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                        notificationProvider={notificationProvider}
+                        resources={[
+                            {
+                                name: "samples",
+                                list: "/samples",
+                                create: "/samples/create",
+                                edit: "/samples/edit/:id",
+                            }
+                        ]}
+                    >
+                        <Routes>
+                            <Route element={(
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            )}>
+                                <Route path="samples">
+                                    <Route index element={<SampleList />} />
+                                    <Route path="create" element={<SampleCreate />} />
+                                    <Route path="edit/:id" element={<SampleEdit />} />
+                                </Route>
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </BrowserRouter>
                 {/* highlight-next-line */}
             </RefineSnackbarProvider>
         </ThemeProvider>
@@ -757,6 +897,12 @@ render(<App />);
 
 :::tip
 If you want to use notistack snackbars with the default style, simply wrap Refine in `<SnackbarProvider>`.
+:::
+
+:::tip
+
+If you want to customize the default layout elements provided with `@refinedev/antd` package, check out the [Custom Layout](/docs/advanced-tutorials/custom-layout) tutorial.
+
 :::
 
 [create-refine-app]: /docs/getting-started/quickstart.md
@@ -952,7 +1098,7 @@ const SampleShow = () => {
 
     return (
         <Show isLoading={isLoading}>
-            <RefineMui.Stack gap={1}>
+            <MuiMaterial.Stack gap={1}>
                 <Typography variant="body1" fontWeight="bold">
                     Id
                 </Typography>
@@ -977,7 +1123,7 @@ const SampleShow = () => {
                     Created At
                 </Typography>
                 <DateField value={record?.createdAt} />
-            </RefineMui.Stack>
+            </MuiMaterial.Stack>
         </Show>
     );
 };
@@ -1000,7 +1146,7 @@ const SampleEdit = () => {
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
-            <RefineMui.Box
+            <MuiMaterial.Box
                 component="form"
                 sx={{ display: "flex", flexDirection: "column" }}
                 autoComplete="off"
@@ -1087,7 +1233,7 @@ const SampleEdit = () => {
                         />
                     )}
                 />
-            </RefineMui.Box>
+            </MuiMaterial.Box>
         </Edit>
     );
 };
@@ -1107,7 +1253,7 @@ const SampleCreate = () => {
 
     return (
         <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-            <RefineMui.Box
+            <MuiMaterial.Box
                 component="form"
                 sx={{ display: "flex", flexDirection: "column" }}
                 autoComplete="off"
@@ -1180,7 +1326,7 @@ const SampleCreate = () => {
                         />
                     )}
                 />
-            </RefineMui.Box>
+            </MuiMaterial.Box>
         </Create>
     );
 };
