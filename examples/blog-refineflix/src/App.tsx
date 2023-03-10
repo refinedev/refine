@@ -71,8 +71,6 @@ function App() {
                                 />
                             </Route>
                         </Route>
-
-                        <Route path="*" element={<ErrorComponent />} />
                     </Route>
 
                     <Route

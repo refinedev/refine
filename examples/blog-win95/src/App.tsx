@@ -75,8 +75,6 @@ function App() {
                                     element={<CategoryEdit />}
                                 />
                             </Route>
-
-                            <Route path="*" element={<ErrorComponent />} />
                         </Route>
 
                         <Route
