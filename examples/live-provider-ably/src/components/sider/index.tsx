@@ -1,22 +1,19 @@
 import React, { useState } from "react";
 import {
-    useTitle,
     useSubscription,
     CanAccess,
     ITreeMenu,
-    useRouterContext,
     useMenu,
 } from "@refinedev/core";
-
+import { Link } from "react-router-dom";
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { Layout as AntdLayout, Menu, Grid, Badge } from "antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
+import { Title } from "@refinedev/antd";
 
 export const CustomSider: React.FC = () => {
     const [subscriptionCount, setSubscriptionCount] = useState(0);
     const [collapsed, setCollapsed] = useState<boolean>(false);
-    const { Link } = useRouterContext();
-    const Title = useTitle();
     const { SubMenu } = Menu;
 
     const { menuItems, selectedKey } = useMenu();
@@ -64,7 +61,7 @@ export const CustomSider: React.FC = () => {
                         }}
                         icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
-                        <Link to={route}>{label}</Link>
+                        <Link to={route || "/"}>{label}</Link>
                         {label === "Posts" && (
                             <Badge
                                 size="small"
@@ -90,7 +87,7 @@ export const CustomSider: React.FC = () => {
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
         >
-            {Title && <Title collapsed={collapsed} />}
+            <Title collapsed={collapsed} />
 
             <Menu
                 selectedKeys={[selectedKey]}

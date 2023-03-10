@@ -9,10 +9,10 @@ export const axiosInstance = axios.create();
 const strapiAuthHelper = AuthHelper(API_URL + "/api");
 
 export const authProvider: AuthBindings = {
-    login: async ({ username, password }) => {
+    login: async ({ email, password }) => {
         try {
             const { data, status } = await strapiAuthHelper.login(
-                username,
+                email,
                 password,
             );
             if (status === 200) {

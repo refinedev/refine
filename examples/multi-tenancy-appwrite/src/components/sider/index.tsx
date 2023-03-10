@@ -3,7 +3,6 @@ import {
     useTitle,
     ITreeMenu,
     CanAccess,
-    useRouterContext,
     useLogout,
     useIsExistAuthentication,
     useMenu,
@@ -14,13 +13,13 @@ import {
     AppstoreAddOutlined,
 } from "@ant-design/icons";
 import { Layout as AntdLayout, Menu, Grid } from "antd";
+import { Link } from "react-router-dom";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 import { StoreSelect } from "components/select";
 
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
-    const { Link } = useRouterContext();
     const Title = useTitle();
     const { SubMenu } = Menu;
     const { menuItems, selectedKey } = useMenu();
@@ -64,7 +63,7 @@ export const CustomSider: React.FC = () => {
                         }}
                         icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
-                        <Link to={route}>{label}</Link>
+                        <Link to={route || "/"}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
