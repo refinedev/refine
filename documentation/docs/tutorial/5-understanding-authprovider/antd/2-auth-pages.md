@@ -381,7 +381,6 @@ Forgot password page is used to send a reset password link to the user's email. 
 
     import { ProductList } from "pages/products/list";
 
-
     import { authProvider } from "./authProvider";
 
     import "@refinedev/antd/dist/reset.css";
@@ -490,7 +489,6 @@ Update password page is used to update the user's password. It provides a basic 
     import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
     import { ProductList } from "pages/products/list";
-
 
     import { authProvider } from "./authProvider";
 
