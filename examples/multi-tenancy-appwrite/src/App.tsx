@@ -107,7 +107,7 @@ function App() {
 
                         <Route
                             element={
-                                <Authenticated fallback={<Outlet />}>
+                                <Authenticated>
                                     <Layout Sider={CustomSider}>
                                         <Outlet />
                                     </Layout>

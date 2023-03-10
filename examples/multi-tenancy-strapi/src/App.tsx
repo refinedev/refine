@@ -94,7 +94,7 @@ const App: React.FC = () => {
 
                         <Route
                             element={
-                                <Authenticated fallback={<Outlet />}>
+                                <Authenticated>
                                     <Layout Sider={CustomSider}>
                                         <Outlet />
                                     </Layout>
