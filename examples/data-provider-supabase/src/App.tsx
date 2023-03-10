@@ -184,7 +184,7 @@ const authProvider: AuthBindings = {
 
         return {
             success: true,
-            redirectTo: "/",
+            redirectTo: "/login",
         };
     },
     onError: async () => ({}),
@@ -335,7 +335,7 @@ const App: React.FC = () => {
 
                     <Route
                         element={
-                            <Authenticated fallback={<Outlet />}>
+                            <Authenticated>
                                 <Layout>
                                     <Outlet />
                                 </Layout>

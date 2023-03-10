@@ -28,7 +28,7 @@ import {
 } from "@mui/icons-material";
 import i18n from "i18n";
 
-import { IOrder, IStore, ICourier } from "interfaces";
+import { IOrder, IStore, ICourier, IIdentity } from "interfaces";
 import { ColorModeContext } from "contexts";
 
 interface IOptions {
@@ -47,9 +47,7 @@ export const Header: React.FC = () => {
     const changeLanguage = useSetLocale();
     const locale = useGetLocale();
     const currentLocale = locale();
-    const { data: user } = useGetIdentity({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { data: user } = useGetIdentity<IIdentity | null>();
 
     const t = useTranslate();
 

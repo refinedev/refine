@@ -5,6 +5,8 @@ import {
     useRefineContext,
     useRouterContext,
     useRouterType,
+    useResource,
+    matchResourceFromRoute,
 } from "@refinedev/core";
 import { RefineBreadcrumbProps } from "@refinedev/ui-types";
 
@@ -20,7 +22,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     breadcrumbProps,
     showHome = true,
     hideIcons = false,
-    home,
     meta,
 }) => {
     const routerType = useRouterType();
@@ -31,39 +32,27 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     const { Link: LegacyLink } = useRouterContext();
     const { hasDashboard } = useRefineContext();
 
+    const { resources } = useResource();
+
+    const rootRouteResource = matchResourceFromRoute("/", resources);
+
     const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
     if (breadcrumbs.length === 1) {
         return null;
     }
 
-    const renderHome = () => {
-        if (home) {
-            return (
+    return (
+        <AntdBreadcrumb {...breadcrumbProps}>
+            {showHome && (hasDashboard || rootRouteResource.found) && (
                 <AntdBreadcrumb.Item>
-                    <ActiveLink to={home.path ?? "/"}>
-                        {typeof home.icon !== "undefined" ? (
-                            home.icon
-                        ) : (
+                    <ActiveLink to="/">
+                        {rootRouteResource?.resource?.meta?.icon ?? (
                             <HomeOutlined />
                         )}
                     </ActiveLink>
                 </AntdBreadcrumb.Item>
-            );
-        }
-        return null;
-    };
-
-    return (
-        <AntdBreadcrumb {...breadcrumbProps}>
-            {showHome && hasDashboard && (
-                <AntdBreadcrumb.Item>
-                    <ActiveLink to="/">
-                        <HomeOutlined />
-                    </ActiveLink>
-                </AntdBreadcrumb.Item>
             )}
-            {renderHome()}
             {breadcrumbs.map(({ label, icon, href }) => {
                 return (
                     <AntdBreadcrumb.Item key={label}>

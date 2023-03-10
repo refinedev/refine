@@ -107,7 +107,7 @@ import { useLogin } from "@refinedev/core";
 
 const { mutate } = useLogin();
 
-mutate({ email: "john@mail.com", password: "123456"}}
+mutate({ email: "john@mail.com", password: "123456"})
 
 ```
 

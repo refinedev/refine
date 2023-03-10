@@ -105,7 +105,7 @@ const App: React.FC = () => {
                 routerProvider={routerProvider}
                 resources={[
                     {
-                        name: "posts",
+                        name: "61c43ad33b857",
                         list: "/posts",
                         create: "/posts/create",
                         edit: "/posts/edit/:id",
@@ -151,7 +151,7 @@ const App: React.FC = () => {
 
                     <Route
                         element={
-                            <Authenticated fallback={<Outlet />}>
+                            <Authenticated>
                                 <Layout>
                                     <Outlet />
                                 </Layout>

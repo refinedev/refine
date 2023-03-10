@@ -45,6 +45,7 @@ export const authProvider: AuthBindings = {
         localStorage.removeItem(TOKEN_KEY);
         return {
             success: true,
+            redirectTo: "/login",
         };
     },
     onError: async () => ({}),

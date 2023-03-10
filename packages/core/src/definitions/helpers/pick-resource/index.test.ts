@@ -1,4 +1,5 @@
 import { pickResource } from ".";
+import { legacyResourceTransform } from "../legacy-resource-transform";
 
 describe("pickResource", () => {
     it("should pick by name", () => {
@@ -48,12 +49,12 @@ describe("pickResource", () => {
     it("should match by route first if legacy", () => {
         const resource = pickResource(
             "route",
-            [
+            legacyResourceTransform([
                 { name: "name", options: { route: "route" } },
                 {
                     name: "route",
                 },
-            ],
+            ]),
             true,
         );
 
