@@ -1,2 +1,2 @@
 import React from "react";
-export const categoryList = () => <p className="category">Category Page</p>;
+export const CategoryList = () => <p className="category">Category Page</p>;

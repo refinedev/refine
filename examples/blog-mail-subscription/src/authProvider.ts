@@ -9,9 +9,9 @@ const strapiAuthProvider = (apiUrl: string) => {
     const strapiAuthHelper = AuthHelper(apiUrl);
 
     const authProvider: AuthBindings = {
-        login: async ({ username, password }) => {
+        login: async ({ email, password }) => {
             const { data, status, statusText } = await strapiAuthHelper.login(
-                username,
+                email,
                 password,
             );
             if (status === 200) {
