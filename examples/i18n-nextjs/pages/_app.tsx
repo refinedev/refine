@@ -4,11 +4,11 @@ import { AppProps } from "next/app";
 
 import { appWithTranslation, useTranslation } from "next-i18next";
 
-import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import { notificationProvider, Layout } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/nextjs-router/legacy";
+import routerProvider from "@refinedev/nextjs-router";
 
-import { PostList, PostCreate, PostEdit, PostShow, Header } from "@components";
+import { Header } from "@components";
 
 import "@refinedev/antd/dist/reset.css";
 import "@styles/global.css";
@@ -25,25 +25,26 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 
     return (
         <Refine
-            legacyRouterProvider={routerProvider}
+            routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             i18nProvider={i18nProvider}
-            Header={Header}
             resources={[
                 {
                     name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    canDelete: true,
+                    list: "/posts",
+                    create: "/posts/create",
+                    edit: "/posts/edit/:id",
+                    show: "/posts/show/:id",
+                    meta: {
+                        canDelete: true,
+                    },
                 },
             ]}
             notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
         >
-            <Component {...pageProps} />
+            <Layout Header={Header}>
+                <Component {...pageProps} />
+            </Layout>
         </Refine>
     );
 }
