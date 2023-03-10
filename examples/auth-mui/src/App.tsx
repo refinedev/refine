@@ -213,6 +213,7 @@ const App: React.FC = () => {
                                     element={
                                         <AuthPage
                                             type="login"
+                                            rememberMe={<RememeberMe />}
                                             providers={[
                                                 {
                                                     name: "google",
@@ -298,7 +299,7 @@ const App: React.FC = () => {
 
                             <Route
                                 element={
-                                    <Authenticated fallback={<Outlet />}>
+                                    <Authenticated>
                                         <Layout>
                                             <Outlet />
                                         </Layout>

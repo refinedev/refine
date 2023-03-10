@@ -272,7 +272,7 @@ const App: React.FC = () => {
 
                                 <Route
                                     element={
-                                        <Authenticated fallback={<Outlet />}>
+                                        <Authenticated>
                                             <Layout
                                                 Header={Header}
                                                 Title={Title}
