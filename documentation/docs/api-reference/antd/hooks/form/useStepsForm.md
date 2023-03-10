@@ -344,7 +344,7 @@ setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 
 import {
     Create,
@@ -356,7 +356,7 @@ import { Form, Input, Select, Button, Steps } from "antd";
 
 const { Step } = Steps;
 
-const PostCreatePage: React.FC<IResourceComponentsProps> = () => {
+const PostCreatePage: React.FC = () => {
     const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
         useStepsForm<IPost, HttpError, IPost>();
 
@@ -512,14 +512,14 @@ setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 
 import { Edit, SaveButton, useSelect, useStepsForm } from "@refinedev/antd";
 import { Form, Input, Select, Button, Steps } from "antd";
 
 const { Step } = Steps;
 
-const PostEditPage: React.FC<IResourceComponentsProps> = () => {
+const PostEditPage: React.FC = () => {
     const {
         current,
         gotoStep,

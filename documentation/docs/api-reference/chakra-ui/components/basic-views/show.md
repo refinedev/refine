@@ -59,7 +59,7 @@ import { useShow, useOne } from "@refinedev/core";
 import { Show, MarkdownField } from "@refinedev/chakra-ui";
 import { Heading, Text, Spacer } from "@chakra-ui/react";
 
-const PostShow: React.FC<IResourceComponentsProps> = () => {
+const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;

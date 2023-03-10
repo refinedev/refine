@@ -29,7 +29,7 @@ interface IPost {
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 
-const PostEdit: React.FC<IResourceComponentsProps> = () => {
+const PostEdit: React.FC = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
         warnWhenUnsavedChanges: true,
     });
@@ -448,7 +448,7 @@ interface IPost {
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 
-const PostEdit: React.FC<IResourceComponentsProps> = () => {
+const PostEdit: React.FC = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
         warnWhenUnsavedChanges: true,
     });

@@ -53,7 +53,7 @@ import { useShow, useOne } from "@refinedev/core";
 import { Show, TextField } from "@refinedev/mantine";
 import { Title, Text } from "@mantine/core";
 
-const PostShow: React.FC<IResourceComponentsProps> = () => {
+const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;

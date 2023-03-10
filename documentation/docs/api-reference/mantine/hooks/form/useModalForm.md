@@ -1,6 +1,7 @@
 ---
 id: useModalForm
 title: useModalForm
+sidebar_label: useModalForm 🆙
 ---
 
 `useModalForm` hook also allows you to manage a form inside a modal component. It provides some useful methods to handle the form modal.
@@ -30,7 +31,6 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { GetManyResponse, useMany } from "@refinedev/core";
@@ -46,7 +46,7 @@ import {
     TextInput,
 } from "@mantine/core";
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     // highlight-start
     const {
         getInputProps,
@@ -241,7 +241,6 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { GetManyResponse, useMany } from "@refinedev/core";
@@ -262,7 +261,7 @@ import {
     TextInput,
 } from "@mantine/core";
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     // highlight-start
     const {
         getInputProps,
@@ -516,7 +515,6 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { GetManyResponse, useMany } from "@refinedev/core";
@@ -537,7 +535,7 @@ import {
     TextInput,
 } from "@mantine/core";
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     // highlight-start
     const {
         getInputProps,

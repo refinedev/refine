@@ -10,7 +10,6 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import {
-    IResourceComponentsProps,
     HttpError,
     useMany,
     getDefaultFilter,
@@ -50,7 +49,7 @@ interface IPost {
     // highlight-end
 }
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { tableProps, filters } = useTable<IPost, HttpError>();
 
     // highlight-start

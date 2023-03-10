@@ -1,6 +1,7 @@
 ---
 id: useDrawerForm
 title: useDrawerForm
+sidebar_label: useDrawerForm 🆙
 ---
 
 `useDrawerForm` hook allows you to manage a form within a Drawer. It returns Ant Design [`<Form>`](https://ant.design/components/form/) and [`<Drawer>`](https://ant.design/components/drawer/) components props.
@@ -31,7 +32,6 @@ setInitialRoutes(["/posts"]);
 import React, { useState } from "react";
 import {
     useShow,
-    IResourceComponentsProps,
     HttpError,
 } from "@refinedev/core";
 
@@ -44,7 +44,7 @@ interface IPost {
     status: "published" | "draft" | "rejected";
 }
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost, HttpError>();
 
     // highlight-start
@@ -149,7 +149,6 @@ setInitialRoutes(["/posts"]);
 import React, { useState } from "react";
 import {
     useShow,
-    IResourceComponentsProps,
     HttpError,
 } from "@refinedev/core";
 
@@ -168,7 +167,7 @@ interface IPost {
     status: "published" | "draft" | "rejected";
 }
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost, HttpError>();
 
     // highlight-start

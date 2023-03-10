@@ -698,7 +698,7 @@ You can also use `searchFormProps.form.submit` to submit the form manually.
 It's useful when you want to create a filter form for your `<Table>`.
 
 ```tsx
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 import { List, useTable, SaveButton } from "@refinedev/antd";
 import { Table, Form, Input } from "antd";
 
@@ -711,7 +711,7 @@ interface ISearch {
     title: string;
 }
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { searchFormProps, tableProps } = useTable<IPost, HttpError, ISearch>(
         {
             onSearch: (values) => {

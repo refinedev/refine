@@ -9,7 +9,7 @@ body {
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 
 import {
     List,
@@ -33,7 +33,7 @@ interface IPost {
     status: "published" | "draft" | "rejected";
 }
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost, HttpError>();
 
     return (

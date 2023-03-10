@@ -84,10 +84,11 @@ How can I request an API with nested route?
 
 ### `meta`
 
-`meta` is used following two purposes:
+`meta` is used following three purposes:
 
 -   To pass additional information to data provider methods.
 -   Generate GraphQL queries using plain JavaScript Objects (JSON).
+-   Hooks related with routing also uses `meta` to fill additional parameters in the target routes.
 
 How to use `meta` to pass additional information to data provider methods?
 

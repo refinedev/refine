@@ -308,11 +308,7 @@ If you want to show a form in a modal or drawer where necessary route params mig
 `useForm` can handle `edit`, `create` and `clone` actions.
 
 :::tip
-By default, it determines the `action` from route.
-
--   If the route is `/posts/create` thus the hook will be called with `action: "create"`.
--   If the route is `/posts/edit/1`, the hook will be called with `action: "edit"`.
--   If the route is `/posts/clone/1`, the hook will be called with `action: "clone"`. To display form, uses `create` component from resource.
+By default, it determines the `action` from route. The action is inferred by matching the resource's action path with the current route.
 
 It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
 :::
@@ -721,19 +717,20 @@ useForm({
 }
 ```
 
-### `metaData`
+### `meta`
 
-[`metaData`](/docs/api-reference/general-concepts/#metadata) is used following two purposes:
+[`meta`](/docs/api-reference/general-concepts/#meta) is used following three purposes:
 
 -   To pass additional information to data provider methods.
 -   Generate GraphQL queries using plain JavaScript Objects (JSON). Please refer [GraphQL](/docs/advanced-tutorials/data-provider/graphql/#edit-page) for more information.
+-   To provide additional parameters to the redirection path after the form is submitted. If your route has additional parameters, you can use `meta` to provide them.
 
-In the following example, we pass the `headers` property in the `metaData` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
+In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
 useForm({
     refineCoreProps: {
-        metaData: {
+        meta: {
             headers: { "x-meta-data": "true" },
         },
     },
@@ -742,8 +739,8 @@ useForm({
 const myDataProvider = {
     //...
     // highlight-start
-    create: async ({ resource, variables, metaData }) => {
-        const headers = metaData?.headers ?? {};
+    create: async ({ resource, variables, meta }) => {
+        const headers = meta?.headers ?? {};
         // highlight-end
         const url = `${apiUrl}/${resource}`;
 

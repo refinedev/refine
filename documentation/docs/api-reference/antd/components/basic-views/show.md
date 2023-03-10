@@ -12,11 +12,11 @@ We will show what `<Show>` does using properties with examples.
 // visible-block-start
 import { Show, MarkdownField } from "@refinedev/antd";
 import { Typography } from "antd";
-import { useShow, IResourceComponentsProps, useOne } from "@refinedev/core";
+import { useShow, useOne } from "@refinedev/core";
 
 const { Title, Text } = Typography;
 
-const PostShow: React.FC<IResourceComponentsProps> = () => {
+const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
