@@ -23,20 +23,35 @@ export const authProvider: AuthBindings = {
         }
     },
     logout: async () => {
-        await account.deleteSession("current");
+        try {
+            await account.deleteSession("current");
 
-        return {
-            success: true,
-            redirectTo: "/",
-        };
+            return {
+                success: true,
+                redirectTo: "/",
+            };
+        } catch (error) {
+            return {
+                success: true,
+                redirectTo: "/",
+            };
+        }
     },
     onError: async () => ({}),
     check: async () => {
-        const session = await account.getSession("current");
+        try {
+            const session = await account.getSession("current");
 
-        if (session) {
+            if (session) {
+                return {
+                    authenticated: true,
+                };
+            }
+        } catch (error: any) {
             return {
-                authenticated: true,
+                authenticated: false,
+                redirectTo: "/login",
+                error,
             };
         }
 

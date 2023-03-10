@@ -1,8 +1,10 @@
+import { PostCreate } from "@components/posts";
 import { GetServerSideProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-export { NextRouteComponent as default } from "@refinedev/nextjs-router/legacy";
-
+export default function PostCreatePage() {
+    return <PostCreate />;
+}
 export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
         props: {
