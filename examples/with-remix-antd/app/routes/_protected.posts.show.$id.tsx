@@ -1,13 +1,12 @@
 import { useOne, useShow } from "@refinedev/core";
-import { Show, Layout } from "@refinedev/antd";
+import { Show } from "@refinedev/antd";
 import { Typography, Tag } from "antd";
 import dataProvider from "@refinedev/simple-rest";
 import { useLoaderData } from "@remix-run/react";
-import { json, LoaderArgs, redirect } from "@remix-run/node";
+import { json, LoaderArgs } from "@remix-run/node";
 
 import { ICategory, IPost } from "../interfaces";
 import { API_URL } from "~/constants";
-import { authProvider } from "~/authProvider";
 
 const { Title, Text } = Typography;
 
@@ -31,32 +30,24 @@ const PostShow: React.FC = () => {
     });
 
     return (
-        <Layout>
-            <Show isLoading={isLoading}>
-                <Title level={5}>Title</Title>
-                <Text>{record?.title}</Text>
+        <Show isLoading={isLoading}>
+            <Title level={5}>Title</Title>
+            <Text>{record?.title}</Text>
 
-                <Title level={5}>Status</Title>
-                <Text>
-                    <Tag>{record?.status}</Tag>
-                </Text>
+            <Title level={5}>Status</Title>
+            <Text>
+                <Tag>{record?.status}</Tag>
+            </Text>
 
-                <Title level={5}>Category</Title>
-                <Text>{categoryData?.data.title}</Text>
-            </Show>
-        </Layout>
+            <Title level={5}>Category</Title>
+            <Text>{categoryData?.data.title}</Text>
+        </Show>
     );
 };
 
 export default PostShow;
 
-export async function loader({ params, request }: LoaderArgs) {
-    const { authenticated, redirectTo } = await authProvider.check(request);
-
-    if (!authenticated) {
-        throw redirect(redirectTo ?? "/login");
-    }
-
+export async function loader({ params }: LoaderArgs) {
     const data = await dataProvider(API_URL).getOne<IPost>({
         resource: "posts",
         id: params?.id as string,
