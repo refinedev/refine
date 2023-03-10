@@ -5,6 +5,7 @@ import { CssBaseline, GlobalStyles } from "@mui/material";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
+
 import Layout from "./components/Layout";
 import EmployeeList from "./pages/employees";
 
@@ -37,6 +38,7 @@ function App() {
                                     <NavigateToResource resource="employees" />
                                 }
                             />
+
                             <Route
                                 path="/employees"
                                 element={<EmployeeList />}

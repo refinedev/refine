@@ -14,7 +14,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
-            resources={[{ name: "products" }]}
         >
             <Layout>
                 <Component {...pageProps} />

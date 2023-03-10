@@ -6,11 +6,12 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { dataProvider } from "@refinedev/supabase";
-import authProvider from "./authProvider";
-import { supabaseClient } from "utility";
 import { DashboardOutlined } from "@ant-design/icons";
+
 import "@refinedev/antd/dist/reset.css";
 
+import authProvider from "./authProvider";
+import { supabaseClient } from "utility";
 import { UserList } from "./pages/user";
 import { TaskList, TaskShow, TaskCreate, TaskEdit } from "./pages/task";
 import { Dashboard } from "./pages/dashboard";

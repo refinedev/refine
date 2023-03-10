@@ -4,7 +4,7 @@ import {
     RefineSnackbarProvider,
     Layout,
     LightTheme,
-    LoginPage,
+    AuthPage,
     ErrorComponent,
 } from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
@@ -94,7 +94,19 @@ function App() {
                                     </Authenticated>
                                 }
                             >
-                                <Route path="/login" element={<LoginPage />} />
+                                <Route
+                                    path="/login"
+                                    element={
+                                        <AuthPage
+                                            formProps={{
+                                                defaultValues: {
+                                                    email: "demo@refine.dev",
+                                                    password: "demodemo",
+                                                },
+                                            }}
+                                        />
+                                    }
+                                />
                             </Route>
 
                             <Route

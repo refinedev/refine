@@ -3,7 +3,7 @@ import {
     notificationProvider,
     Layout,
     ErrorComponent,
-    LoginPage,
+    AuthPage,
 } from "@refinedev/antd";
 import {
     FileAddOutlined,
@@ -125,7 +125,19 @@ function App() {
                             </Authenticated>
                         }
                     >
-                        <Route path="/login" element={<LoginPage />} />
+                        <Route
+                            path="/login"
+                            element={
+                                <AuthPage
+                                    formProps={{
+                                        initialValues: {
+                                            email: "demo@refine.dev",
+                                            password: "demodemo",
+                                        },
+                                    }}
+                                />
+                            }
+                        />
                     </Route>
 
                     <Route

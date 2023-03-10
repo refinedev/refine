@@ -1,19 +1,18 @@
 import { Authenticated, Refine } from "@refinedev/core";
-
 import {
     notificationProvider,
-    LoginPage,
     ErrorComponent,
+    AuthPage,
 } from "@refinedev/antd";
-
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { DataProvider } from "@refinedev/strapi";
 
 import "@refinedev/antd/dist/reset.css";
-import { DataProvider } from "@refinedev/strapi";
+
 import strapiAuthProvider from "authProvider";
 import { Header, Layout, OffLayoutArea } from "components";
 import { SubscriberList, CreateSubscriber } from "./pages/subscriber";
@@ -29,8 +28,6 @@ function App() {
             <Refine
                 dataProvider={dataProvider}
                 authProvider={authProvider}
-                Header={Header}
-                Layout={Layout}
                 routerProvider={routerProvider}
                 resources={[
                     {
@@ -45,8 +42,6 @@ function App() {
                     },
                 ]}
                 notificationProvider={notificationProvider}
-                LoginPage={LoginPage}
-                catchAll={<ErrorComponent />}
             >
                 <Routes>
                     <Route
@@ -91,7 +86,7 @@ function App() {
                             </Authenticated>
                         }
                     >
-                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/login" element={<AuthPage />} />
                     </Route>
 
                     <Route
