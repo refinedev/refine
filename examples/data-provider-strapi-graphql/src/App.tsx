@@ -24,7 +24,7 @@ const authProvider: AuthBindings = {
             const { data } = await gqlDataProvider.custom!({
                 url: "",
                 method: "post",
-                metaData: {
+                meta: {
                     operation: "login",
                     variables: {
                         input: {
@@ -83,7 +83,7 @@ const authProvider: AuthBindings = {
             const { data } = await gqlDataProvider.custom!({
                 url: "",
                 method: "get",
-                metaData: {
+                meta: {
                     operation: "me",
                     fields: [
                         {
@@ -105,7 +105,7 @@ const authProvider: AuthBindings = {
             const { data } = await gqlDataProvider.custom!({
                 url: "",
                 method: "get",
-                metaData: {
+                meta: {
                     operation: "me",
                     fields: ["id", "username", "email"],
                 },
@@ -159,10 +159,13 @@ const App: React.FC = () => {
                             index
                             element={<NavigateToResource resource="posts" />}
                         />
-                        <Route path="/posts" element={<PostList />} />
-                        <Route path="/posts/create" element={<PostCreate />} />
-                        <Route path="/posts/edit/:id" element={<PostEdit />} />
-                        <Route path="/posts/show/:id" element={<PostShow />} />
+
+                        <Route path="/posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                        </Route>
                     </Route>
 
                     <Route
