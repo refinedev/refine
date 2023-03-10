@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import { ConfigProvider, theme } from "antd";
@@ -10,7 +11,6 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import "@refinedev/antd/dist/reset.css";
 
 import Header from "components/Header";
-import { useState } from "react";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -73,19 +73,14 @@ const App: React.FC = () => {
                                     <NavigateToResource resource="posts" />
                                 }
                             />
-                            <Route path="/posts" element={<PostList />} />
-                            <Route
-                                path="/posts/show/:id"
-                                element={<PostShow />}
-                            />
-                            <Route
-                                path="/posts/create"
-                                element={<PostCreate />}
-                            />
-                            <Route
-                                path="/posts/edit/:id"
-                                element={<PostEdit />}
-                            />
+
+                            <Route path="/posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                                <Route path="edit/:id" element={<PostEdit />} />
+                                <Route path="show/:id" element={<PostShow />} />
+                            </Route>
+
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
                     </Routes>

@@ -47,19 +47,14 @@ const App: React.FC = () => {
                                     <NavigateToResource resource="posts" />
                                 }
                             />
-                            <Route path="/posts" element={<PostList />} />
-                            <Route
-                                path="/posts/show/:id"
-                                element={<PostShow />}
-                            />
-                            <Route
-                                path="/posts/create"
-                                element={<PostCreate />}
-                            />
-                            <Route
-                                path="/posts/edit/:id"
-                                element={<PostEdit />}
-                            />
+
+                            <Route path="/posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                                <Route path="edit/:id" element={<PostEdit />} />
+                                <Route path="show/:id" element={<PostShow />} />
+                            </Route>
+
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
                     </Routes>

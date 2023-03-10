@@ -8,11 +8,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import {
-    CategoriesList,
-    CategoriesCreate,
-    CategoriesEdit,
-} from "pages/categories";
+import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
 
 import { OffLayoutArea } from "./components";
 
@@ -48,12 +44,11 @@ const App: React.FC = () => {
                         },
                     ]}
                     notificationProvider={notificationProvider}
-                    OffLayoutArea={OffLayoutArea}
                 >
                     <Routes>
                         <Route
                             element={
-                                <Layout>
+                                <Layout OffLayoutArea={OffLayoutArea}>
                                     <Outlet />
                                 </Layout>
                             }
@@ -64,32 +59,25 @@ const App: React.FC = () => {
                                     <NavigateToResource resource="posts" />
                                 }
                             />
-                            <Route path="/posts" element={<PostList />} />
-                            <Route
-                                path="/posts/show/:id"
-                                element={<PostShow />}
-                            />
-                            <Route
-                                path="/posts/create"
-                                element={<PostCreate />}
-                            />
-                            <Route
-                                path="/posts/edit/:id"
-                                element={<PostEdit />}
-                            />
 
-                            <Route
-                                path="/categories"
-                                element={<CategoriesList />}
-                            />
-                            <Route
-                                path="/categories/create"
-                                element={<CategoriesCreate />}
-                            />
-                            <Route
-                                path="/categories/edit/:id"
-                                element={<CategoriesEdit />}
-                            />
+                            <Route path="/posts">
+                                <Route index element={<PostList />} />
+                                <Route path="create" element={<PostCreate />} />
+                                <Route path="edit/:id" element={<PostEdit />} />
+                                <Route path="show/:id" element={<PostShow />} />
+                            </Route>
+
+                            <Route path="/categories">
+                                <Route index element={<CategoryList />} />
+                                <Route
+                                    path="create"
+                                    element={<CategoryCreate />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<CategoryEdit />}
+                                />
+                            </Route>
 
                             <Route path="*" element={<ErrorComponent />} />
                         </Route>
