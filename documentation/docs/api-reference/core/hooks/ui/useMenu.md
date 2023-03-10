@@ -166,7 +166,7 @@ After creating the `<Layout/>` component, we can use it in our application. We n
 
 `useMenu` hook comes out of the box with multi level menu support, you can render menu items recursively to get a multi level menu.
 
-Update your `resources` in `<Refine/>` with `parentName` to nest them inside a label.
+Update your `resources` in `<Refine/>` with `meta.parent` to nest them inside a label.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";

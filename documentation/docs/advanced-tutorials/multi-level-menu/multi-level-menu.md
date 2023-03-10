@@ -95,7 +95,7 @@ export const Sider: React.FC = () => {
 
 ### Ant Design
 
-The Sider component allows you to create the groups you want in the sider menu. By default, the sider will group menu items by their top-level heading. However, you can also add sub menu items to each group via `parentName`.
+The Sider component allows you to create the groups you want in the sider menu. By default, the sider will group menu items by their top-level heading. However, you can also add sub menu items to each group via `meta.parent`.
 
 This gives you more control over the side menu and allows you to customize it to better suit your needs.
 
