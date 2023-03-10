@@ -1,9 +1,8 @@
 import React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
-
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/nextjs-router/legacy";
+import routerProvider from "@refinedev/nextjs-router";
 import { ChakraProvider } from "@chakra-ui/react";
 import { DataProvider } from "@refinedev/strapi-v4";
 
@@ -27,16 +26,16 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                 />
             </Head>
             <Refine
-                legacyRouterProvider={routerProvider}
+                routerProvider={routerProvider}
                 dataProvider={dataProvider}
-                resources={[{ name: "products" }]}
-                Layout={Layout}
                 options={{
                     reactQuery: { devtoolConfig: { position: "bottom-left" } },
                 }}
             >
                 <ChakraProvider>
-                    <Component {...pageProps} />
+                    <Layout>
+                        <Component {...pageProps} />
+                    </Layout>
                 </ChakraProvider>
             </Refine>
             <div
