@@ -110,7 +110,7 @@ export const useMenu = (
                     ),
             };
         },
-        [routerType, meta, hideOnMissingParameter],
+        [routerType, meta, translate, hideOnMissingParameter],
     );
 
     const treeItems = React.useMemo(() => {
