@@ -107,7 +107,6 @@ const App = () => {
                         <Route path="create" element={<HeadlessInferencer />} />
                     </Route>
                     {/* highlight-end */}
-                    <Route path="*" element={<ErrorComponent />} />
                 </Routes>
             </Refine>
         </BrowserRouter>
@@ -177,7 +176,6 @@ const App = () => {
                         <Route path="create" element={<HeadlessInferencer />} />
                     </Route>
                     {/* highlight-end */}
-                    <Route path="*" element={<ErrorComponent />} />
                 </Routes>
             </Refine>
         </BrowserRouter>
@@ -227,7 +225,6 @@ const App = () => {
                         <Route path="create" element={<HeadlessInferencer />} />
                     </Route>
                     {/* highlight-end */}
-                    <Route path="*" element={<ErrorComponent />} />
                 </Routes>
             </Refine>
         </BrowserRouter>
@@ -276,7 +273,6 @@ const App = () => {
                         <Route path="create" element={<HeadlessInferencer />} />
                     </Route>
                     {/* highlight-end */}
-                    <Route path="*" element={<ErrorComponent />} />
                 </Routes>
             </Refine>
         </BrowserRouter>
@@ -325,7 +321,6 @@ const App = () => {
                         <Route path="create" element={<HeadlessInferencer />} />
                     </Route>
                     {/* highlight-end */}
-                    <Route path="*" element={<ErrorComponent />} />
                 </Routes>
             </Refine>
         </BrowserRouter>
