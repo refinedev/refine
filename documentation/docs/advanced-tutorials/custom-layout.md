@@ -90,4 +90,4 @@ You can find more examples about custom layouts for different UI packages in the
 
 [refine]: /docs/api-reference/core/components/refine-config
 [cli]: /docs/packages/documentation/cli#swizzle
-[usemenu]: /docs/api-reference/core/hooks/ui/use-menu
+[usemenu]: /docs/api-reference/core/hooks/ui/useMenu/
