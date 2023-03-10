@@ -19,6 +19,8 @@ export const stringifyConfig = {
     encodeValuesOnly: true,
 };
 
+decodeURIComponent;
+
 export const routerBindings: RouterBindings = {
     go: () => {
         const { search: existingSearch, hash: existingHash } = useLocation();
@@ -39,6 +41,10 @@ export const routerBindings: RouterBindings = {
                         parse(existingSearch, { ignoreQueryPrefix: true })),
                     ...query,
                 };
+
+                if (urlQuery.to) {
+                    urlQuery.to = encodeURIComponent(`${urlQuery.to}`);
+                }
 
                 const hasUrlQuery = Object.keys(urlQuery).length > 0;
 
@@ -111,6 +117,9 @@ export const routerBindings: RouterBindings = {
                     pageSize: convertToNumberIfPossible(
                         combinedParams.pageSize as string,
                     ) as number | undefined,
+                    to: combinedParams.to
+                        ? decodeURIComponent(combinedParams.to as string)
+                        : undefined,
                 },
             };
 

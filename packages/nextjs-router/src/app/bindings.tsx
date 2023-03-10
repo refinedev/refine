@@ -53,6 +53,10 @@ export const routerBindings: RouterBindings = {
                     ...query,
                 };
 
+                if (urlQuery.to) {
+                    urlQuery.to = encodeURIComponent(`${urlQuery.to}`);
+                }
+
                 const cleanPathname = pathname.split("?")[0].split("#")[0];
 
                 const urlTo = to || cleanPathname;
@@ -127,6 +131,9 @@ export const routerBindings: RouterBindings = {
                     pageSize: convertToNumberIfPossible(
                         combinedParams.pageSize as string,
                     ) as number | undefined,
+                    to: combinedParams.to
+                        ? decodeURIComponent(combinedParams.to as string)
+                        : undefined,
                 },
             };
 

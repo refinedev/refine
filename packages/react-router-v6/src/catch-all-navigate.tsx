@@ -9,7 +9,8 @@ export const CatchAllNavigate: React.FC<{ to: string }> = ({ to }) => {
 
     const queryValue = `${pathname}${search}`;
 
-    const query = queryValue.length > 1 ? `?to=${queryValue}` : "";
+    const query =
+        queryValue.length > 1 ? `?to=${encodeURIComponent(queryValue)}` : "";
 
     return <Navigate to={`${to}${query}`} />;
 };

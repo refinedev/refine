@@ -40,6 +40,10 @@ export const routerBindings: RouterBindings = {
                     ...query,
                 };
 
+                if (urlQuery.to) {
+                    urlQuery.to = encodeURIComponent(`${urlQuery.to}`);
+                }
+
                 const hasUrlQuery = Object.keys(urlQuery).length > 0;
 
                 /** Get hash */
@@ -118,6 +122,9 @@ export const routerBindings: RouterBindings = {
                     pageSize: convertToNumberIfPossible(
                         combinedParams.pageSize as string,
                     ) as number | undefined,
+                    to: combinedParams.to
+                        ? decodeURIComponent(combinedParams.to as string)
+                        : undefined,
                 },
             };
 
