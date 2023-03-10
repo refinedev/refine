@@ -69,14 +69,16 @@ In this example, we hide the left sider only for this page. The rest should look
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/LayoutWrapper"/>
+<PropsTable
+    module="@pankod/refine-core/LayoutWrapper"
+    Sider-description="[Custom sider to use](/docs/api-reference/core/components/refine-config#sider)"
+    Header-description="[Custom header to use](/docs/api-reference/core/components/refine-config#header)"
+    Title-description="[Custom title to use](/docs/api-reference/core/components/refine-config#title)"
+    Footer-description="[Custom footer to use](/docs/api-reference/core/components/refine-config#footer)"
+    OffLayoutArea-description="[Custom off layout area to use](/docs/api-reference/core/components/refine-config#offlayoutarea)"
+/>
 
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine][refine]>** component.
 
 [refine]: ./refine-config.md
-[custom pages]: /advanced-tutorials/custom-pages.md
-[refine#sider]: /api-reference/core/components/refine-config/#sider
-[refine#header]:/api-reference/core/components/refine-config/#header
-[refine#title]: /api-reference/core/components/refine-config/#title
-[refine#footer]: /api-reference/core/components/refine-config/#footer
-[refine#offlayoutarea]: /api-reference/core/components/refine-config/#offlayoutarea
+[custom pages]: /docs/advanced-tutorials/custom-pages.md
