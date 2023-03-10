@@ -1,4 +1,9 @@
-import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
+import {
+    GitHubBanner,
+    Refine,
+    AuthBindings,
+    Authenticated,
+} from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import {
     AppwriteException,
@@ -96,6 +101,7 @@ const authProvider: AuthBindings = {
 const App: React.FC = () => {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <Refine
                 dataProvider={dataProvider(appwriteClient, {
                     databaseId: "default",

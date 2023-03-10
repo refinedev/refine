@@ -1,4 +1,4 @@
-import { Authenticated, Refine } from "@refinedev/core";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { KBarProvider } from "@refinedev/kbar";
 import {
     ErrorComponent,
@@ -55,6 +55,7 @@ const App: React.FC = () => {
 
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <KBarProvider>
                 <ColorModeContextProvider>
                     <CssBaseline />
@@ -77,6 +78,7 @@ const App: React.FC = () => {
                                     name: "dashboard",
                                     list: "/",
                                     meta: {
+                                        label: "Dashboard",
                                         icon: <Dashboard />,
                                     },
                                 },

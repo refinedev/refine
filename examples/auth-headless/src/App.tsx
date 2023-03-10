@@ -1,6 +1,7 @@
 import {
     AuthPage,
     AuthBindings,
+    GitHubBanner,
     Refine,
     Authenticated,
     ErrorComponent,
@@ -116,6 +117,7 @@ const App: React.FC = () => {
 
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}

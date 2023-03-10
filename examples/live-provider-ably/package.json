@@ -5,8 +5,8 @@
     "dependencies": {
         "@refinedev/ably": "^3.29.0",
         "@refinedev/antd": "^4.7.3",
-        "@refinedev/core": "^3.101.0",
-        "@refinedev/cli": "^1.17.1",
+        "@refinedev/core": "^3.101.2",
+        "@refinedev/cli": "^1.17.2",
         "@refinedev/react-router-v6": "^3.38.0",
         "@refinedev/simple-rest": "^3.37.4",
         "@types/node": "^12.20.11",

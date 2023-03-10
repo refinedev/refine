@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import { ErrorComponent, LightTheme } from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
@@ -12,6 +12,7 @@ import EmployeeList from "./pages/employees";
 function App() {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ThemeProvider theme={LightTheme}>
                 <CssBaseline />
                 <GlobalStyles

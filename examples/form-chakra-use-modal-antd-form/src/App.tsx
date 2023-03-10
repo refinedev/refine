@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     ErrorComponent,
     Layout,
@@ -17,6 +17,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ChakraProvider theme={refineTheme}>
                 <Refine
                     routerProvider={routerProvider}

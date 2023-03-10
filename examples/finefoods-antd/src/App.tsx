@@ -1,5 +1,5 @@
 import React from "react";
-import { Authenticated, Refine } from "@refinedev/core";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbarProvider } from "@refinedev/kbar";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import routerProvider, {
@@ -53,6 +53,7 @@ const App: React.FC = () => {
 
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <RefineKbarProvider>
                 <Refine
                     routerProvider={routerProvider}
@@ -69,6 +70,7 @@ const App: React.FC = () => {
                             name: "dashboard",
                             list: "/",
                             meta: {
+                                label: "Dashboard",
                                 icon: <DashboardOutlined />,
                             },
                         },

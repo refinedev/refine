@@ -1,4 +1,4 @@
-import { Authenticated, Refine } from "@refinedev/core";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import routerProvider, {
     CatchAllNavigate,
@@ -22,6 +22,7 @@ import { Login } from "./pages/login";
 function App() {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <Refine
                 dataProvider={dataProvider(supabaseClient)}
                 authProvider={authProvider}

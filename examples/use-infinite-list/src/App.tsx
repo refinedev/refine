@@ -1,4 +1,9 @@
-import { Refine, LayoutProps, ErrorComponent } from "@refinedev/core";
+import {
+    GitHubBanner,
+    Refine,
+    LayoutProps,
+    ErrorComponent,
+} from "@refinedev/core";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
@@ -34,6 +39,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
 const App: React.FC = () => {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={{

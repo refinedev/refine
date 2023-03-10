@@ -1,4 +1,9 @@
-import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
+import {
+    GitHubBanner,
+    Refine,
+    AuthBindings,
+    Authenticated,
+} from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
@@ -151,6 +156,7 @@ const App: React.FC = () => {
 
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ThemeProvider theme={LightTheme}>
                 <CssBaseline />
                 <GlobalStyles

@@ -1,4 +1,4 @@
-import { ErrorComponent, Refine } from "@refinedev/core";
+import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -10,6 +10,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <Refine
                 auditLogProvider={{
                     get: async ({ resource, meta }) => {

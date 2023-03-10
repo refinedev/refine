@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@refinedev/cli": "^1.17.1",
-    "@refinedev/core": "^3.101.0",
+    "@refinedev/cli": "^1.17.2",
+    "@refinedev/core": "^3.101.2",
     "@refinedev/inferencer": "^2.0.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",

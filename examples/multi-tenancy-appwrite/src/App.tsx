@@ -1,4 +1,4 @@
-import { Authenticated, Refine } from "@refinedev/core";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
@@ -29,6 +29,7 @@ import { CustomSider } from "components/sider";
 function App() {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <StoreProvider>
                 <Refine
                     routerProvider={routerProvider}

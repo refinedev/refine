@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
     refineTheme,
@@ -13,6 +13,7 @@ import routerProvider from "@refinedev/react-router-v6";
 function App() {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ChakraProvider theme={refineTheme}>
                 <Refine
                     routerProvider={routerProvider}

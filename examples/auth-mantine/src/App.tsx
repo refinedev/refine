@@ -1,4 +1,9 @@
-import { AuthBindings, Authenticated, Refine } from "@refinedev/core";
+import {
+    AuthBindings,
+    Authenticated,
+    GitHubBanner,
+    Refine,
+} from "@refinedev/core";
 import {
     AuthPage,
     Layout,
@@ -119,6 +124,7 @@ const App: React.FC = () => {
 
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <MantineProvider
                 theme={LightTheme}
                 withNormalizeCSS

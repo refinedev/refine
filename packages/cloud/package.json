@@ -30,7 +30,7 @@
         "@types/react-dom": "^17.0.0 || ^18.0.0"
     },
     "devDependencies": {
-        "@refinedev/core": "^3.101.0",
+        "@refinedev/core": "^3.101.2",
         "@refinedev/sdk": "^0.8.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@types/lodash": "^4.14.171",
