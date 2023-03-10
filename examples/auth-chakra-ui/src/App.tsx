@@ -219,7 +219,7 @@ const App: React.FC = () => {
 
                         <Route
                             element={
-                                <Authenticated redirectOnFail="/login">
+                                <Authenticated>
                                     <Layout>
                                         <Outlet />
                                     </Layout>
