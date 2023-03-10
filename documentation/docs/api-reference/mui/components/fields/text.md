@@ -4,7 +4,6 @@ title: Text
 swizzle: true
 ---
 
-
 This field lets you show basic text. It uses Material UI [`<Typography>`](https://mui.com/material-ui/react-typography/#main-content) component.
 
 :::info-tip Swizzle
@@ -23,7 +22,7 @@ import {
     GridColumns,
     List,
     // highlight-next-line
-    TextField,
+    TextFieldComponent,
 } from "@pankod/refine-mui";
 
 const columns: GridColumns = [
@@ -33,9 +32,7 @@ const columns: GridColumns = [
         headerName: "Title",
         renderCell: function render({ row }) {
             // highlight-start
-            return (
-                <TextField value={row.title} />
-            );
+            return <TextFieldComponent value={row.title} />;
             // highlight-end
         },
         minWidth: 100,
