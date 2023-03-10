@@ -1,58 +1,53 @@
 import { Refine } from "@refinedev/core";
 import { notificationProvider, ErrorComponent } from "@refinedev/antd";
-import { BackTop, Layout as AntdLayout, Grid } from "antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList } from "pages/posts";
-import { FixedSider } from "components";
+import { Layout, FixedSider, OffLayoutArea } from "components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    const breakpoint = Grid.useBreakpoint();
     return (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            legacyRouterProvider={routerProvider}
-            Layout={({ children, Header, Footer, OffLayoutArea }) => (
-                <AntdLayout
-                    style={{ minHeight: "100vh", flexDirection: "row" }}
-                >
-                    <FixedSider />
-                    <AntdLayout style={{ marginLeft: 200 }}>
-                        {Header && <Header />}
-                        <AntdLayout.Content>
-                            <div
-                                style={{
-                                    padding: breakpoint.sm ? 24 : 12,
-                                    minHeight: 360,
-                                }}
+        <BrowserRouter>
+            <Refine
+                dataProvider={dataProvider(API_URL)}
+                routerProvider={routerProvider}
+                notificationProvider={notificationProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout
+                                Sider={FixedSider}
+                                OffLayoutArea={OffLayoutArea}
                             >
-                                {children}
-                            </div>
-                        </AntdLayout.Content>
-                        {Footer && <Footer />}
-                    </AntdLayout>
-                    {OffLayoutArea && <OffLayoutArea />}
-                </AntdLayout>
-            )}
-            OffLayoutArea={() => (
-                <>
-                    <BackTop />
-                </>
-            )}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-        />
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+
+                        <Route path="/posts" element={<PostList />} />
+
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 };
 

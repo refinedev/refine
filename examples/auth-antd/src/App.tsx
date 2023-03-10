@@ -157,9 +157,12 @@ const App: React.FC = () => {
                         }
                     >
                         <Route index element={<DashboardPage />} />
-                        <Route path="/posts" element={<PostList />} />
-                        <Route path="/posts/show/:id" element={<PostShow />} />
-                        <Route path="/posts/edit/:id" element={<PostEdit />} />
+
+                        <Route path="/posts">
+                            <Route index element={<PostList />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                        </Route>
                     </Route>
 
                     <Route
@@ -249,7 +252,7 @@ const App: React.FC = () => {
 
                     <Route
                         element={
-                            <Authenticated fallback={<Outlet />}>
+                            <Authenticated>
                                 <Layout>
                                     <Outlet />
                                 </Layout>

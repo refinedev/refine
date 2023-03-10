@@ -184,7 +184,7 @@ const authProvider: AuthBindings = {
 
         return {
             success: true,
-            redirectTo: "/",
+            redirectTo: "/login",
         };
     },
     onError: async () => ({}),
@@ -278,10 +278,13 @@ const App: React.FC = () => {
                             index
                             element={<NavigateToResource resource="posts" />}
                         />
-                        <Route path="/posts" element={<PostList />} />
-                        <Route path="/posts/create" element={<PostCreate />} />
-                        <Route path="/posts/edit/:id" element={<PostEdit />} />
-                        <Route path="/posts/show/:id" element={<PostShow />} />
+
+                        <Route path="/posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                        </Route>
                     </Route>
 
                     <Route
@@ -335,7 +338,7 @@ const App: React.FC = () => {
 
                     <Route
                         element={
-                            <Authenticated fallback={<Outlet />}>
+                            <Authenticated>
                                 <Layout>
                                     <Outlet />
                                 </Layout>

@@ -1,12 +1,8 @@
 import { Refine } from "@refinedev/core";
-import {
-    notificationProvider,
-    Layout,
-    ReadyPage,
-    ErrorComponent,
-} from "@refinedev/antd";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 import PostCreate from "pages/PostCreate";
 import PostEdit from "pages/PostEdit";
@@ -14,22 +10,42 @@ import PostList from "pages/PostList";
 
 function App() {
     return (
-        <Refine
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            catchAll={<ErrorComponent />}
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "users",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                },
-            ]}
-        />
+        <BrowserRouter>
+            <Refine
+                notificationProvider={notificationProvider}
+                routerProvider={routerProvider}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                resources={[
+                    {
+                        name: "users",
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+                        <Route path="posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                        </Route>
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </BrowserRouter>
     );
 }
 

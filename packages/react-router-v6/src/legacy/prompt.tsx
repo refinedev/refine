@@ -1,6 +1,4 @@
-import { useEffect, useContext } from "react";
-import { UNSAFE_NavigationContext as NavigationContext } from "react-router-dom";
-import type { History } from "history";
+import { usePrompt } from "../use-prompt-workaround";
 
 import type { PromptProps } from "@refinedev/core";
 
@@ -9,22 +7,9 @@ export const Prompt: React.FC<PromptProps> = ({
     when,
     setWarnWhen,
 }) => {
-    const navigator = useContext(NavigationContext).navigator as History;
-
-    useEffect(() => {
-        if (!when) return;
-
-        const unblock = navigator.block((transition: any) => {
-            if (window.confirm(message)) {
-                setWarnWhen?.(false);
-                unblock();
-                transition.retry();
-            } else {
-                navigator.location.pathname = window.location.pathname;
-            }
-        });
-        return unblock;
-    }, [when, location, message]);
+    usePrompt(message, when, () => {
+        setWarnWhen?.(false);
+    });
 
     return null;
 };

@@ -8,10 +8,8 @@ import {
     Dropdown,
     Avatar,
 } from "antd";
-import NextRouter from "@refinedev/nextjs-router/legacy";
 import { useRouter } from "next/router";
-
-const { Link } = NextRouter;
+import Link from "next/link";
 
 export const Header: React.FC = () => {
     const locale = useGetLocale();

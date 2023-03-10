@@ -57,11 +57,14 @@ function App() {
                             }
                         >
                             <Route index element={<CanvasFeaturedList />} />
-                            <Route path="/canvases" element={<CanvasList />} />
-                            <Route
-                                path="/canvases/show/:id"
-                                element={<CanvasShow />}
-                            />
+
+                            <Route path="/canvases">
+                                <Route index element={<CanvasList />} />
+                                <Route
+                                    path="show/:id"
+                                    element={<CanvasShow />}
+                                />
+                            </Route>
                         </Route>
                         <Route
                             element={
@@ -105,7 +108,15 @@ function App() {
                             />
                         </Route>
 
-                        <Route path="*" element={<ErrorComponent />} />
+                        <Route
+                            element={
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
                     </Routes>
                 </Refine>
             </ConfigProvider>

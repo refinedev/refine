@@ -1,8 +1,13 @@
-import { Refine } from "@refinedev/core";
+import { Authenticated, Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
 import { withCloud } from "@refinedev/cloud";
+import routerProvider, {
+    CatchAllNavigate,
+    NavigateToResource,
+} from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -36,38 +41,98 @@ const RefineWithCloud = withCloud(Refine, {
 
 const App: React.FC = () => {
     return (
-        <RefineWithCloud
-            LoginPage={Login}
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    canDelete: true,
-                },
-                {
-                    name: "products",
-                    list: ProductList,
-                    create: ProductCreate,
-                    edit: ProductEdit,
-                    show: ProductShow,
-                },
-                {
-                    name: "categories",
-                    list: CategoryList,
-                    create: CategoryCreate,
-                    edit: CategoryEdit,
-                    show: CategoryShow,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
+        <BrowserRouter>
+            <RefineWithCloud
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/edit/:id",
+                        show: "/posts/show/:id",
+                    },
+                    {
+                        name: "products",
+                        list: "/products",
+                        create: "/products/create",
+                        edit: "/products/edit/:id",
+                        show: "/products/show/:id",
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories",
+                        create: "/categories/create",
+                        edit: "/categories/edit/:id",
+                        show: "/categories/show/:id",
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Authenticated
+                                fallback={<CatchAllNavigate to="/login" />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route
+                            index
+                            element={<NavigateToResource resource="posts" />}
+                        />
+
+                        <Route path="posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                            <Route path="show/:id" element={<PostShow />} />
+                        </Route>
+
+                        <Route path="products">
+                            <Route index element={<ProductList />} />
+                            <Route path="create" element={<ProductCreate />} />
+                            <Route path="edit/:id" element={<ProductEdit />} />
+                            <Route path="show/:id" element={<ProductShow />} />
+                        </Route>
+
+                        <Route path="categories">
+                            <Route index element={<CategoryList />} />
+                            <Route path="create" element={<CategoryCreate />} />
+                            <Route path="edit/:id" element={<CategoryEdit />} />
+                            <Route path="show/:id" element={<CategoryShow />} />
+                        </Route>
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated fallback={<Outlet />}>
+                                <NavigateToResource resource="posts" />
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="/login" element={<Login />} />
+                    </Route>
+
+                    <Route
+                        element={
+                            <Authenticated>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }
+                    >
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </RefineWithCloud>
+        </BrowserRouter>
     );
 };
 

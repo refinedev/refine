@@ -6,7 +6,7 @@ import { Form, Input, Select, DatePicker } from "antd";
 
 import { ICompany, IContact, IMission, IInvoice } from "interfaces";
 
-export const CreateInvoice: React.FC<IResourceComponentsProps> = () => {
+export const InvoiceCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IInvoice>();
 
     const { selectProps: companySelectProps } = useSelect<ICompany>({

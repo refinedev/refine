@@ -24,7 +24,7 @@ import { useFormContext } from "react-hook-form";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 
-import { PostsList, PostCreate, PostEdit } from "pages/posts";
+import { PostList, PostCreate, PostEdit } from "pages/posts";
 
 const App: React.FC = () => {
     const authProvider: AuthBindings = {
@@ -190,15 +190,18 @@ const App: React.FC = () => {
                                         <NavigateToResource resource="posts" />
                                     }
                                 />
-                                <Route path="/posts" element={<PostsList />} />
-                                <Route
-                                    path="/posts/create"
-                                    element={<PostCreate />}
-                                />
-                                <Route
-                                    path="/posts/edit/:id"
-                                    element={<PostEdit />}
-                                />
+
+                                <Route path="/posts">
+                                    <Route index element={<PostList />} />
+                                    <Route
+                                        path="create"
+                                        element={<PostCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<PostEdit />}
+                                    />
+                                </Route>
                             </Route>
 
                             <Route
@@ -213,6 +216,7 @@ const App: React.FC = () => {
                                     element={
                                         <AuthPage
                                             type="login"
+                                            rememberMe={<RememeberMe />}
                                             providers={[
                                                 {
                                                     name: "google",
@@ -298,7 +302,7 @@ const App: React.FC = () => {
 
                             <Route
                                 element={
-                                    <Authenticated fallback={<Outlet />}>
+                                    <Authenticated>
                                         <Layout>
                                             <Outlet />
                                         </Layout>

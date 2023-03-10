@@ -157,6 +157,7 @@ const App: React.FC = () => {
                                     }
                                 >
                                     <Route index element={<DashboardPage />} />
+
                                     <Route path="/orders">
                                         <Route index element={<OrderList />} />
                                         <Route
@@ -164,6 +165,7 @@ const App: React.FC = () => {
                                             element={<OrderShow />}
                                         />
                                     </Route>
+
                                     <Route path="/users">
                                         <Route index element={<UserList />} />
                                         <Route
@@ -171,10 +173,12 @@ const App: React.FC = () => {
                                             element={<UserShow />}
                                         />
                                     </Route>
+
                                     <Route
                                         path="/products"
                                         element={<ProductList />}
                                     />
+
                                     <Route path="/stores">
                                         <Route index element={<StoreList />} />
                                         <Route
@@ -186,10 +190,12 @@ const App: React.FC = () => {
                                             element={<StoreEdit />}
                                         />
                                     </Route>
+
                                     <Route
                                         path="/categories"
                                         element={<CategoryList />}
                                     />
+
                                     <Route path="/couriers">
                                         <Route
                                             index
@@ -208,6 +214,7 @@ const App: React.FC = () => {
                                             element={<CourierShow />}
                                         />
                                     </Route>
+
                                     <Route
                                         path="/reviews"
                                         element={<ReviewsList />}
@@ -272,7 +279,7 @@ const App: React.FC = () => {
 
                                 <Route
                                     element={
-                                        <Authenticated fallback={<Outlet />}>
+                                        <Authenticated>
                                             <Layout
                                                 Header={Header}
                                                 Title={Title}

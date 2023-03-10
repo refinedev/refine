@@ -93,7 +93,17 @@ function App() {
                             />
                         </Route>
 
-                        <Route path="*" element={<ErrorComponent />} />
+                        <Route
+                            element={
+                                <Authenticated>
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                </Authenticated>
+                            }
+                        >
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Route>
                     </Routes>
                 </Refine>
             </ConfigProvider>

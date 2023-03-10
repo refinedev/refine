@@ -34,7 +34,16 @@ export const CustomSider: typeof Sider = ({ render }) => {
 
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item: ITreeMenu) => {
-            const { icon, label, route, name, children, parentName } = item;
+            const {
+                icon,
+                label,
+                route,
+                name,
+                children,
+                parentName,
+                meta,
+                options,
+            } = item;
 
             if (children.length > 0) {
                 return (
@@ -49,7 +58,8 @@ export const CustomSider: typeof Sider = ({ render }) => {
             }
             const isSelected = route === selectedKey;
             const isRoute = !(
-                parentName !== undefined && children.length === 0
+                (meta?.parent ?? options?.parent ?? parentName) !== undefined &&
+                children.length === 0
             );
             return (
                 <CanAccess
@@ -153,6 +163,7 @@ export const CustomSider: typeof Sider = ({ render }) => {
                 )}
             </Link>
             <Menu
+                theme="dark"
                 defaultOpenKeys={defaultOpenKeys}
                 selectedKeys={[selectedKey]}
                 mode="inline"

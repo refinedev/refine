@@ -138,18 +138,19 @@ const App: React.FC = () => {
                             index
                             element={<NavigateToResource resource="posts" />}
                         />
-                        <Route path="/posts" element={<PostList />} />
-                        <Route path="/posts/create" element={<PostCreate />} />
-                        <Route path="/posts/edit/:id" element={<PostEdit />} />
-                        <Route path="/categories" element={<CategoryList />} />
-                        <Route
-                            path="/categories/create"
-                            element={<CategoryCreate />}
-                        />
-                        <Route
-                            path="/categories/edit/:id"
-                            element={<CategoryEdit />}
-                        />
+
+                        <Route path="/posts">
+                            <Route index element={<PostList />} />
+                            <Route path="create" element={<PostCreate />} />
+                            <Route path="edit/:id" element={<PostEdit />} />
+                        </Route>
+
+                        <Route path="/categories">
+                            <Route index element={<CategoryList />} />
+                            <Route path="create" element={<CategoryCreate />} />
+                            <Route path="edit/:id" element={<CategoryEdit />} />
+                        </Route>
+
                         <Route path="/users" element={<UserList />} />
                     </Route>
 
@@ -177,7 +178,7 @@ const App: React.FC = () => {
 
                     <Route
                         element={
-                            <Authenticated fallback={<Outlet />}>
+                            <Authenticated>
                                 <Layout>
                                     <Outlet />
                                 </Layout>
