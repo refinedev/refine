@@ -1,4 +1,9 @@
-import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
+import {
+    GitHubBanner,
+    Refine,
+    AuthBindings,
+    Authenticated,
+} from "@refinedev/core";
 import {
     notificationProvider,
     Layout,
@@ -240,6 +245,7 @@ const authProvider: AuthBindings = {
 const App: React.FC = () => {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <Refine
                 dataProvider={dataProvider(supabaseClient)}
                 liveProvider={liveProvider(supabaseClient)}

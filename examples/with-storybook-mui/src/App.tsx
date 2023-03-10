@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -16,6 +16,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ThemeProvider theme={LightTheme}>
                 <CssBaseline />
                 <GlobalStyles

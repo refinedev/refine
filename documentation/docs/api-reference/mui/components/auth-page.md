@@ -860,7 +860,7 @@ const MyLoginPage = () => {
 
 ### Properties
 
-<PropsTable module="@refinedev/mui/AuthPage" 
+<PropsTable module="@refinedev/mui/AuthPage"
 wrapperProps-type="[`CardProps`](https://mui.com/material-ui/api/card/#props)"
 contentProps-type="[`CardContentProps`](https://mui.com/material-ui/api/card-content/#props)"
 headerProps-type="[`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)"

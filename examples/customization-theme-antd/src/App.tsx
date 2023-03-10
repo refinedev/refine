@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import { ConfigProvider, theme } from "antd";
 import dataProvider from "@refinedev/simple-rest";
@@ -19,6 +19,7 @@ const App: React.FC = () => {
 
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ConfigProvider
                 theme={{
                     algorithm:

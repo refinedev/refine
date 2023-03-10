@@ -1,4 +1,4 @@
-import { Authenticated, Refine } from "@refinedev/core";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import { withCloud } from "@refinedev/cloud";
@@ -42,6 +42,7 @@ const RefineWithCloud = withCloud(Refine, {
 const App: React.FC = () => {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <RefineWithCloud
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}

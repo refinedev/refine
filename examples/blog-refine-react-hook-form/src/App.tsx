@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
     RefineSnackbarProvider,
@@ -16,6 +16,7 @@ import Create from "pages/create";
 function App() {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ThemeProvider theme={LightTheme}>
                 <CssBaseline />
                 <GlobalStyles

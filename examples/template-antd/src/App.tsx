@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     notificationProvider,
     WelcomePage,
@@ -13,6 +13,7 @@ import "@refinedev/antd/dist/reset.css";
 function App() {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}

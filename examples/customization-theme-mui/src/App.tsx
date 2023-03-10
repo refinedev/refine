@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     Layout,
     ErrorComponent,
@@ -17,6 +17,7 @@ import { ColorModeContextProvider } from "./contexts";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ColorModeContextProvider>
                 <CssBaseline />
                 <GlobalStyles

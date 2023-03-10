@@ -159,7 +159,21 @@ const handleError = (error: object | Error) => {
     return Promise.reject(customError);
 };
 
-const dataProvider = (client: NhostClient): Required<DataProvider> => {
+export type NHostDataProviderOptions = {
+    idType?: "uuid" | "Int" | ((resource: string) => "uuid" | "Int");
+};
+
+const dataProvider = (
+    client: NhostClient,
+    options?: NHostDataProviderOptions,
+): Required<DataProvider> => {
+    const { idType } = options ?? {};
+    const getIdType = (resource: string) => {
+        if (typeof idType === "function") {
+            return idType(resource);
+        }
+        return idType ?? "uuid";
+    };
     return {
         getOne: async ({ resource, id, meta }) => {
             const operation = `${meta?.operation ?? resource}_by_pk`;
@@ -167,8 +181,12 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
             const { query, variables } = gql.query({
                 operation,
                 variables: {
-                    id: { value: id, type: "uuid", required: true },
-                    ...meta?.variables,
+                    id: {
+                        value: id,
+                        type: getIdType(resource),
+                        required: true,
+                    },
+                    ...metaData?.variables,
                 },
                 fields: meta?.fields,
             });
@@ -450,7 +468,11 @@ const dataProvider = (client: NhostClient): Required<DataProvider> => {
             const { query, variables } = gql.mutation({
                 operation: deleteOperation,
                 variables: {
-                    id: { value: id, type: "uuid", required: true },
+                    id: {
+                        value: id,
+                        type: getIdType(resource),
+                        required: true,
+                    },
                     ...meta?.variables,
                 },
                 fields: meta?.fields ?? ["id"],

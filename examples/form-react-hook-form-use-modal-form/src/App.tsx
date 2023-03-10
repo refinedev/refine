@@ -1,4 +1,4 @@
-import { Refine, ErrorComponent } from "@refinedev/core";
+import { GitHubBanner, Refine, ErrorComponent } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -12,6 +12,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <Refine
                 dataProvider={dataProvider(API_URL)}
                 routerProvider={routerProvider}

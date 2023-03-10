@@ -1,4 +1,4 @@
-import { Authenticated, Refine } from "@refinedev/core";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import routerProvider, {
     CatchAllNavigate,
@@ -20,6 +20,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 function App() {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}

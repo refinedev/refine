@@ -1,4 +1,9 @@
-import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
+import {
+    GitHubBanner,
+    Refine,
+    AuthBindings,
+    Authenticated,
+} from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
@@ -51,6 +56,7 @@ const App: React.FC = () => {
 
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <Refine
                 dataProvider={dataProvider(API_URL)}
                 authProvider={authProvider}

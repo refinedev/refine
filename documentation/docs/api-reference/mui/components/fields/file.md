@@ -32,7 +32,13 @@ const columns: GridColumns = [
         headerName: "Image",
         renderCell: function render({ row }) {
             // highlight-start
-            return <FileField src={row.image[0].url} />;
+            return (
+                <FileField
+                    src={row.image[0].url}
+                    target="_blank"
+                    rel="noopener"
+                />
+            );
             // highlight-end
         },
         minWidth: 100,

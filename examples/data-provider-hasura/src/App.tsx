@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider, { GraphQLClient } from "@refinedev/hasura";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
@@ -10,8 +10,9 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
 
 const API_URL = "https://flowing-mammal-24.hasura.app/v1/graphql";
-/* 
-## Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
+
+/*
+## Refine supports GraphQL subscriptions out-of-the-box. For more detailed information, please visit here: https://refine.dev/docs/core/providers/live-provider/
 
 const WS_URL = "ws://flowing-mammal-24.hasura.app/v1/graphql";
 
@@ -19,6 +20,7 @@ const gqlWebSocketClient = graphqlWS.createClient({
     url: WS_URL,
 });
  */
+
 const client = new GraphQLClient(API_URL, {
     headers: {
         "x-hasura-role": "public",
@@ -30,6 +32,7 @@ const gqlDataProvider = dataProvider(client);
 const App: React.FC = () => {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={gqlDataProvider}

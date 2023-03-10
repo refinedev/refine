@@ -153,7 +153,7 @@
     "devDependencies": {
         "@refinedev/antd": "^4.0.0",
         "@refinedev/chakra-ui": "^1.2.10",
-        "@refinedev/core": "^3.101.0",
+        "@refinedev/core": "^3.101.2",
         "@refinedev/mantine": "^1.15.3",
         "@refinedev/mui": "^3.55.2",
         "@types/lodash": "^4.14.171",
@@ -184,7 +184,7 @@
     },
     "dependencies": {
         "@tabler/icons": "^1.1.0",
-        "@refinedev/core": "^3.101.0",
+        "@refinedev/core": "^3.101.2",
         "dayjs": "^1.10.7",
         "lodash": "^4.17.21",
         "lodash-es": "^4.17.21",

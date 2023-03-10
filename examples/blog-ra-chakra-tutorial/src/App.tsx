@@ -1,4 +1,4 @@
-import { Authenticated, Refine } from "@refinedev/core";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 
 import {
     notificationProvider,
@@ -22,6 +22,7 @@ import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
 function App() {
     return (
         <BrowserRouter>
+            <GitHubBanner />
             <ChakraProvider theme={refineTheme}>
                 <Refine
                     authProvider={authProvider}
