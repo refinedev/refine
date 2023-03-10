@@ -9,6 +9,35 @@ import {
     useIsAuthenticated,
 } from "@hooks";
 import { useActiveAuthProvider } from "@definitions/index";
+import { GoConfig } from "src/interfaces";
+
+/**
+ * This hook is used to avoid React's invalid setState call warning.
+ * When `go` is called during the render phase, it's updating the internal router state before the render phase is finished.
+ * This causes React to throw an error. This hook is used to defer the `go` call to the effect calls.
+ */
+const useDeferredGo = () => {
+    const go = useGo();
+
+    const [config, setConfig] = React.useState<GoConfig | undefined>(undefined);
+
+    React.useEffect(() => {
+        if (config) {
+            go(config);
+        }
+    }, [config]);
+
+    const cb = React.useCallback(
+        (props: GoConfig) => {
+            if (!config) {
+                setConfig(props);
+            }
+        },
+        [config],
+    );
+
+    return cb;
+};
 
 export type AuthenticatedCommonProps = {
     /**
@@ -79,6 +108,7 @@ export function Authenticated({
     const routerType = useRouterType();
     const parsed = useParsed();
     const go = useGo();
+    const deferredGo = useDeferredGo();
     const { replace } = useNavigation();
     const { useLocation } = useRouterContext();
     const { pathname, search } = useLocation();
@@ -149,7 +179,7 @@ export function Authenticated({
                       });
 
                 if (appliedRedirect) {
-                    go({
+                    deferredGo({
                         // needs to be adjusted by the return value of `checkAuth`
                         to: `/${appliedRedirect.replace(/^\//, "")}`,
                         query: suffix

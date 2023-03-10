@@ -216,6 +216,7 @@ const App: React.FC = () => {
                                     element={
                                         <AuthPage
                                             type="login"
+                                            rememberMe={<RememeberMe />}
                                             providers={[
                                                 {
                                                     name: "google",

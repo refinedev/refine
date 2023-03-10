@@ -104,7 +104,7 @@ const App: React.FC = () => {
 
                     <Route
                         element={
-                            <Authenticated redirectOnFail="/posts">
+                            <Authenticated>
                                 <Layout>
                                     <Outlet />
                                 </Layout>
