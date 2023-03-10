@@ -22,6 +22,7 @@ export const stringifyConfig = {
 export const routerBindings: RouterBindings = {
     go: () => {
         const { push, replace } = useRouter();
+        const pathname = usePathname();
         const searchParamsObj = useSearchParams();
 
         const fn = React.useCallback(
@@ -51,7 +52,9 @@ export const routerBindings: RouterBindings = {
                     ...query,
                 };
 
-                const urlTo = to || "";
+                const cleanPathname = pathname.split("?")[0].split("#")[0];
+
+                const urlTo = to || cleanPathname;
 
                 const hasUrlHash = urlHash.length > 1;
                 const hasUrlQuery = Object.keys(urlQuery).length > 0;

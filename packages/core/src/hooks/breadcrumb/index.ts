@@ -64,11 +64,15 @@ export const useBreadcrumb = ({
             if (grandParentName) {
                 addBreadcrumb(grandParentName);
             }
-            const hrefRaw = getActionRoutesFromResource(
+            const listActionOfResource = getActionRoutesFromResource(
                 parentResource,
                 resources,
                 routerType === "legacy",
-            ).find((r) => r.action === "list")?.route;
+            ).find((r) => r.action === "list");
+
+            const hrefRaw = listActionOfResource?.resource?.list
+                ? listActionOfResource?.route
+                : undefined;
 
             const href = hrefRaw
                 ? routerType === "legacy"

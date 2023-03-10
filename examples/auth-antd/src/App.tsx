@@ -5,7 +5,11 @@ import {
     ErrorComponent,
     AuthPage,
 } from "@refinedev/antd";
-import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
+import {
+    GoogleOutlined,
+    GithubOutlined,
+    DashboardOutlined,
+} from "@ant-design/icons";
 
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
@@ -124,6 +128,13 @@ const App: React.FC = () => {
                 dataProvider={dataProvider(API_URL)}
                 routerProvider={routerProvider}
                 resources={[
+                    {
+                        name: "dashboard",
+                        list: "/",
+                        meta: {
+                            icon: <DashboardOutlined />,
+                        },
+                    },
                     {
                         name: "posts",
                         list: "/posts",

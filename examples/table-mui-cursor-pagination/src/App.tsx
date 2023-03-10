@@ -8,35 +8,62 @@ import {
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { dataProvider } from "rest-data-provider";
-import { PostsList } from "pages/posts";
+import { PostList } from "pages/posts";
 
 const App: React.FC = () => {
     return (
-        <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <RefineSnackbarProvider>
-                <Refine
-                    legacyRouterProvider={routerProvider}
-                    dataProvider={dataProvider("https://api.github.com")}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    catchAll={<ErrorComponent />}
-                    resources={[
-                        {
-                            name: "repos/refinedev/refine/commits",
-                            list: PostsList,
-                            options: {
-                                label: "Commits",
-                            },
-                        },
-                    ]}
+        <BrowserRouter>
+            <ThemeProvider theme={LightTheme}>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
                 />
-            </RefineSnackbarProvider>
-        </ThemeProvider>
+                <RefineSnackbarProvider>
+                    <Refine
+                        routerProvider={routerProvider}
+                        dataProvider={dataProvider("https://api.github.com")}
+                        notificationProvider={notificationProvider}
+                        resources={[
+                            {
+                                name: "repos/refinedev/refine/commits",
+                                list: "/repos/refinedev/refine/commits",
+                                meta: {
+                                    label: "Commits",
+                                },
+                            },
+                        ]}
+                    >
+                        <Routes>
+                            <Route
+                                element={
+                                    <Layout>
+                                        <Outlet />
+                                    </Layout>
+                                }
+                            >
+                                <Route
+                                    index
+                                    element={
+                                        <NavigateToResource resource="posts" />
+                                    }
+                                />
+
+                                <Route
+                                    path="/repos/refinedev/refine/commits"
+                                    element={<PostList />}
+                                />
+
+                                <Route path="*" element={<ErrorComponent />} />
+                            </Route>
+                        </Routes>
+                    </Refine>
+                </RefineSnackbarProvider>
+            </ThemeProvider>
+        </BrowserRouter>
     );
 };
 

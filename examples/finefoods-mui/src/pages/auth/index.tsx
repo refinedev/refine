@@ -1,7 +1,6 @@
 import * as React from "react";
 import { AuthPage as MUIAuthPage, AuthProps } from "@refinedev/mui";
-
-import { useRouterContext } from "@refinedev/core";
+import { Link } from "react-router-dom";
 
 const authWrapperProps = {
     style: {
@@ -12,8 +11,6 @@ const authWrapperProps = {
 };
 
 const renderAuthContent = (content: React.ReactNode) => {
-    const { Link } = useRouterContext();
-
     return (
         <div
             style={{

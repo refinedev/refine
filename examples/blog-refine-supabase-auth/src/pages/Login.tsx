@@ -11,9 +11,7 @@ export const LoginPage = () => {
         "SEND_OTP",
     );
 
-    const { mutate: login } = useLogin({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { mutate: login } = useLogin();
 
     const onLogin = () => {
         login(

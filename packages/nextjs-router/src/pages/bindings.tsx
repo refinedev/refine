@@ -66,7 +66,9 @@ export const routerBindings: RouterBindings = {
                 }
 
                 if (type === "replace") {
-                    replace(fullPath);
+                    replace(fullPath, undefined, {
+                        shallow: typeof to === "undefined",
+                    });
                 } else {
                     push(fullPath);
                 }

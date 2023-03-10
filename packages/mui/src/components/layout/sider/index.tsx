@@ -34,12 +34,17 @@ import {
     useMenu,
     useRefineContext,
     useActiveAuthProvider,
+    pickNotDeprecated,
 } from "@refinedev/core";
 import { RefineLayoutSiderProps } from "../types";
 
 import { Title as DefaultTitle } from "@components";
 
-export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({
+    Title: TitleFromProps,
+    render,
+    meta,
+}) => {
     const [collapsed, setCollapsed] = useState(false);
     const [opened, setOpened] = useState(false);
 
@@ -58,7 +63,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
 
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu({ meta });
     const isExistAuthentication = useIsExistAuthentication();
-    const Title = useTitle();
+    const TitleFromContext = useTitle();
     const authProvider = useActiveAuthProvider();
     const { mutate: mutateLogout } = useLogout({
         v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
@@ -84,7 +89,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
         });
     }, [defaultOpenKeys]);
 
-    const RenderToTitle = Title ?? DefaultTitle;
+    const RenderToTitle = TitleFromProps ?? TitleFromContext ?? DefaultTitle;
 
     const handleClick = (key: string) => {
         setOpen({ ...open, [key]: !open[key] });
@@ -92,11 +97,23 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
 
     const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
         return tree.map((item: ITreeMenu) => {
-            const { icon, label, route, name, children, parentName } = item;
+            const {
+                icon,
+                label,
+                route,
+                name,
+                children,
+                parentName,
+                meta,
+                options,
+            } = item;
             const isOpen = open[item.key || ""] || false;
 
             const isSelected = item.key === selectedKey;
-            const isNested = !(parentName === undefined);
+            const isNested = !(
+                pickNotDeprecated(meta?.parent, options?.parent, parentName) ===
+                undefined
+            );
 
             if (children.length > 0) {
                 return (
