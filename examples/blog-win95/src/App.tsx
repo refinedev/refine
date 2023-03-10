@@ -91,7 +91,7 @@ function App() {
 
                         <Route
                             element={
-                                <Authenticated fallback={<Outlet />}>
+                                <Authenticated>
                                     <Layout>
                                         <Outlet />
                                     </Layout>

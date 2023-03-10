@@ -96,7 +96,7 @@ function App() {
 
                     <Route
                         element={
-                            <Authenticated fallback={<Outlet />}>
+                            <Authenticated>
                                 <Layout
                                     Header={Header}
                                     OffLayoutArea={OffLayoutArea}
