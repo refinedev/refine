@@ -7,5 +7,10 @@ import { Navigate, useLocation } from "react-router-dom";
 export const CatchAllNavigate: React.FC<{ to: string }> = ({ to }) => {
     const { pathname, search } = useLocation();
 
-    return <Navigate to={`${to}?to=${pathname}${search}`} />;
+    const queryValue = `${pathname}${search}`;
+
+    const query =
+        queryValue.length > 1 ? `?to=${encodeURIComponent(queryValue)}` : "";
+
+    return <Navigate to={`${to}${query}`} />;
 };

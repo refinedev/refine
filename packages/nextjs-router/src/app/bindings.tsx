@@ -10,6 +10,7 @@ import Link from "next/link";
 import { parse, stringify } from "qs";
 import React, { useContext } from "react";
 import { paramsFromCurrentPath } from "../common/params-from-current-path";
+import { convertToNumberIfPossible } from "src/common/convert-to-number-if-possible";
 
 export const stringifyConfig = {
     addQueryPrefix: true,
@@ -51,6 +52,10 @@ export const routerBindings: RouterBindings = {
                         : {}),
                     ...query,
                 };
+
+                if (urlQuery.to) {
+                    urlQuery.to = encodeURIComponent(`${urlQuery.to}`);
+                }
 
                 const cleanPathname = pathname.split("?")[0].split("#")[0];
 
@@ -108,14 +113,27 @@ export const routerBindings: RouterBindings = {
         }, [searchParamsObj]);
 
         const fn = React.useCallback(() => {
+            const combinedParams = {
+                ...inferredParams,
+                ...parsedParams,
+            };
+
             const response: ParseResponse = {
                 ...(resource && { resource }),
                 ...(action && { action }),
                 ...(inferredId && { id: decodeURIComponent(inferredId) }),
                 pathname: pathname ? pathname : undefined,
                 params: {
-                    ...inferredParams,
-                    ...parsedParams,
+                    ...combinedParams,
+                    current: convertToNumberIfPossible(
+                        combinedParams.current as string,
+                    ) as number | undefined,
+                    pageSize: convertToNumberIfPossible(
+                        combinedParams.pageSize as string,
+                    ) as number | undefined,
+                    to: combinedParams.to
+                        ? decodeURIComponent(combinedParams.to as string)
+                        : undefined,
                 },
             };
 

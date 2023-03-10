@@ -182,11 +182,14 @@ export function Authenticated({
                     deferredGo({
                         // needs to be adjusted by the return value of `checkAuth`
                         to: `/${appliedRedirect.replace(/^\//, "")}`,
-                        query: suffix
-                            ? {
-                                  to: suffix,
-                              }
-                            : {},
+                        query:
+                            suffix &&
+                            typeof suffix === "string" &&
+                            suffix.length > 1
+                                ? {
+                                      to: suffix,
+                                  }
+                                : {},
                     });
                 }
             }
