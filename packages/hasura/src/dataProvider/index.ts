@@ -159,7 +159,7 @@ const dataProvider = (
     client: GraphQLClient,
     options?: HasuraDataProviderOptions,
 ): Required<DataProvider> => {
-    const { idType } = option ?? {};
+    const { idType } = options ?? {};
     const getIdType = (resource: string) => {
         if (typeof idType === "function") {
             return idType(resource);
