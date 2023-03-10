@@ -1,5 +1,11 @@
 # @pankod/refine-nhost
 
+## 3.42.0
+
+### Minor Changes
+
+-   [#3752](https://github.com/refinedev/refine/pull/3752) [`426386ca250`](https://github.com/refinedev/refine/commit/426386ca2506de14094ccdde767b7bede210e5e4) Thanks [@zulianrizki](https://github.com/zulianrizki)! - Allow custom ID types with `idType` property when initializing the data provider instance. `idType` can either be `Int`, `uuid` or a function returning the type by resource name.
+
 ## 3.41.0
 
 ### Minor Changes
