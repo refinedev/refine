@@ -21,9 +21,7 @@ import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 export const CustomSider: typeof Sider = ({ render }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
-    const { mutate: mutateLogout } = useLogout({
-        v3LegacyAuthProviderCompatible: true,
-    });
+    const { mutate: mutateLogout } = useLogout();
     const translate = useTranslate();
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const { hasDashboard } = useRefineContext();

@@ -127,10 +127,6 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render, meta }) => {
         </Menu.Item>
     );
 
-    console.log({
-        selectedKey,
-    });
-
     const dashboard = hasDashboard ? (
         <Menu.Item
             key="dashboard"

@@ -45,7 +45,6 @@ export const getActionRoutesFromResource = (
                 legacy
                     ? resource.meta?.route ??
                           resource.options?.route ??
-                          resource.route ??
                           resource.name
                     : resource.name,
                 action,

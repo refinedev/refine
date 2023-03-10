@@ -21,6 +21,7 @@ import {
     StoreOutlined,
     LocalPizzaOutlined,
     PeopleOutlineOutlined,
+    Dashboard,
 } from "@mui/icons-material";
 
 import { authProvider } from "authProvider";
@@ -72,6 +73,13 @@ const App: React.FC = () => {
                             }}
                             notificationProvider={notificationProvider}
                             resources={[
+                                {
+                                    name: "dashboard",
+                                    list: "/",
+                                    meta: {
+                                        icon: <Dashboard />,
+                                    },
+                                },
                                 {
                                     name: "orders",
                                     list: "/orders",

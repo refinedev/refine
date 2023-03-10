@@ -5,6 +5,7 @@ import {
     ErrorComponent,
     AuthPage,
 } from "@refinedev/antd";
+import { DashboardOutlined } from "@ant-design/icons";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
@@ -108,6 +109,13 @@ const App: React.FC = () => {
                 dataProvider={dataProvider(API_URL)}
                 authProvider={authProvider}
                 resources={[
+                    {
+                        name: "dashboard",
+                        list: "/",
+                        meta: {
+                            icon: <DashboardOutlined />,
+                        },
+                    },
                     {
                         name: "posts",
                         list: "/posts",

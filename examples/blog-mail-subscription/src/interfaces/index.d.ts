@@ -16,3 +16,10 @@ export interface IMail {
     to: string;
     create_at: string;
 }
+
+export interface IIdentity {
+    id: number;
+    name: string;
+    email: string;
+    avatar: string;
+}
