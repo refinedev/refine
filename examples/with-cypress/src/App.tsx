@@ -23,8 +23,8 @@ const App: React.FC = () => {
                         name: "dashboard",
                         list: "/",
                         meta: {
-                            icon: <DashboardOutlined />,
                             label: "Dashboard",
+                            icon: <DashboardOutlined />,
                         },
                     },
                     {
