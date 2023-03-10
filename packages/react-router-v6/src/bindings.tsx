@@ -19,8 +19,6 @@ export const stringifyConfig = {
     encodeValuesOnly: true,
 };
 
-decodeURIComponent;
-
 export const routerBindings: RouterBindings = {
     go: () => {
         const { search: existingSearch, hash: existingHash } = useLocation();
