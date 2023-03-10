@@ -151,7 +151,22 @@ export const generateFilters: any = (filters?: CrudFilters) => {
     return nestedQuery;
 };
 
-const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
+export type HasuraDataProviderOptions = {
+    idType?: "uuid" | "Int" | ((resource: string) => "uuid" | "Int");
+};
+
+const dataProvider = (
+    client: GraphQLClient,
+    options?: HasuraDataProviderOptions,
+): Required<DataProvider> => {
+    const { idType } = options ?? {};
+    const getIdType = (resource: string) => {
+        if (typeof idType === "function") {
+            return idType(resource);
+        }
+        return idType ?? "uuid";
+    };
+
     return {
         getOne: async ({ resource, id, metaData }) => {
             const operation = `${metaData?.operation ?? resource}_by_pk`;
@@ -159,7 +174,11 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             const { query, variables } = gql.query({
                 operation,
                 variables: {
-                    id: { value: id, type: "uuid", required: true },
+                    id: {
+                        value: id,
+                        type: getIdType(resource),
+                        required: true,
+                    },
                     ...metaData?.variables,
                 },
                 fields: metaData?.fields,
@@ -397,7 +416,11 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             const { query, variables } = gql.mutation({
                 operation: deleteOperation,
                 variables: {
-                    id: { value: id, type: "uuid", required: true },
+                    id: {
+                        value: id,
+                        type: getIdType(resource),
+                        required: true,
+                    },
                     ...metaData?.variables,
                 },
                 fields: metaData?.fields ?? ["id"],
