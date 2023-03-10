@@ -9,6 +9,7 @@ import {
 import { useCallback, useContext } from "react";
 import { parse, stringify } from "qs";
 import { useNavigate, useLocation, useParams, Link } from "react-router-dom";
+import { convertToNumberIfPossible } from "./convert-to-number-if-possible";
 
 export const stringifyConfig = {
     addQueryPrefix: true,
@@ -91,6 +92,11 @@ export const routerBindings: RouterBindings = {
         const fn = useCallback(() => {
             const parsedSearch = parse(search, { ignoreQueryPrefix: true });
 
+            const combinedParams = {
+                ...params,
+                ...parsedSearch,
+            };
+
             const response: ParseResponse = {
                 ...(resource && { resource }),
                 ...(action && { action }),
@@ -98,8 +104,13 @@ export const routerBindings: RouterBindings = {
                 // ...(params?.action && { action: params.action }), // lets see if there is a need for this
                 pathname,
                 params: {
-                    ...params,
-                    ...parsedSearch,
+                    ...combinedParams,
+                    current: convertToNumberIfPossible(
+                        combinedParams.current as string,
+                    ) as number | undefined,
+                    pageSize: convertToNumberIfPossible(
+                        combinedParams.pageSize as string,
+                    ) as number | undefined,
                 },
             };
 
