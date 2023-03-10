@@ -12,7 +12,7 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { PostsList, PostCreate, PostEdit } from "pages/posts";
+import { PostList, PostCreate, PostEdit } from "pages/posts";
 
 const App: React.FC = () => {
     return (
@@ -52,15 +52,19 @@ const App: React.FC = () => {
                                         <NavigateToResource resource="posts" />
                                     }
                                 />
-                                <Route path="/posts" element={<PostsList />} />
-                                <Route
-                                    path="/posts/create"
-                                    element={<PostCreate />}
-                                />
-                                <Route
-                                    path="/posts/edit/:id"
-                                    element={<PostEdit />}
-                                />
+
+                                <Route path="/posts">
+                                    <Route index element={<PostList />} />
+                                    <Route
+                                        path="create"
+                                        element={<PostCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<PostEdit />}
+                                    />
+                                </Route>
+
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
                         </Routes>

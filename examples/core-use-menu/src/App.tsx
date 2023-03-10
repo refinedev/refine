@@ -42,6 +42,7 @@ const App: React.FC = () => {
                             path="/categories"
                             element={<div>dummy categories page</div>}
                         />
+
                         <Route path="*" element={<ErrorComponent />} />
                     </Route>
                 </Routes>
