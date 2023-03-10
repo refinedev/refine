@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.101.2
+
+### Patch Changes
+
+-   [#3768](https://github.com/refinedev/refine/pull/3768) [`38eb18ab795`](https://github.com/refinedev/refine/commit/38eb18ab7950d231bce8d25f930f199a35315cfe) Thanks [@BatuhanW](https://github.com/BatuhanW)! - Update URL for GitHubBanner component
+
 ## 3.101.1
 
 ### Patch Changes
