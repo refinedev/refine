@@ -483,4 +483,151 @@ export const App = () => {
 }
 ```
 
+### Handling 404s
+
+In the earlier versions of **refine**, if `authProvider` was defined, we've redirected the users to the `/login` route even with the 404s and 404 pages were only available to the authenticated users. Now, the routes are handled by the users, so you can handle the 404s however you like.
+
+#### 404 Pages for both authenticated and not authenticated users
+
+Here's an example for rendering the `ErrorComponent` for undefined routes for both authenticated and not authenticated users.
+
+Let's start with defining the `Refine` component.
+
+```tsx title=App.tsx
+import { Refine, Authenticated } from "@refinedev/core";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6"; 
+import dataProvider from "@refinedev/simple-rest";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import { authProvider } from "providers/authProvider";
+
+import { ErrorPage } from "pages/error";
+import { AuthPage } from "pages/auth";
+import { PostList, CategoryList } from "pages/posts";
+import { Layout } from "components/Layout";
+
+export const App = () => {
+    return (
+        <BrowserRouter>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                authProvider={authProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: "/posts",
+                    },
+                    {
+                        name: "categories",
+                        list: "/categories",
+                    },
+                ]}
+            >
+                <Routes>
+                    {/* ... */}
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    )
+}
+```
+
+Now, we can add the routes with authentication control. We should place them inside the `Routes` component.
+
+```tsx
+    <Route
+        element={
+            <Authenticated
+                fallback={<CatchAllNavigate to="/login" />}
+            >
+                <Layout>
+                    <Outlet />
+                </Layout>
+            </Authenticated>
+        }
+    >
+        <Route path="/posts" element={<PostList />} />
+        <Route path="/categories" element={<CategoryList />} />
+    </Route>
+```
+
+This will render the `/posts` and `/categories` routes for authenticated users and apply the `Layout` when rendering. If the current visitor is not authenticated, it will redirect them to the `/login` route.
+
+Let's add the `/login` route.
+
+```tsx
+    <Route
+        element={
+            <Authenticated fallback={<Outlet />}>
+                <NavigateToResource />
+            </Authenticated>
+        }
+    >
+        <Route
+            path="/login"
+            element={ <AuthPage type="login" />}
+        />
+    </Route>
+```
+
+This will render the `/login` route for not authenticated users and redirect the authenticated users to the `/posts` route.
+
+And finally, we will add a catch-all route (`*`) and render the `ErrorPage` component.
+
+```tsx
+    <Route
+        element={
+            <Authenticated fallback={<Outlet />}>
+                <Layout>
+                    <Outlet />
+                </Layout>
+            </Authenticated>
+        }
+    >
+        <Route path="*" element={<ErrorPage />} />
+    </Route>
+```
+
+We will render the `ErrorPage` component for both authenticated and not authenticated users. Only authenticated users will be able to use the sider component we have in the layout.
+
+#### 404 Pages for authenticated users only
+
+The difference from the previous example is in the wrapper of the `*` route. Now we will redirect the unauthenticated users to the `/login` route and show the `ErrorPage` component for authenticated users only.
+
+```tsx
+    <Route
+        element={
+            <Authenticated
+                fallback={<CatchAllNavigate to="/login" />}
+            >
+                <Layout>
+                    <Outlet />
+                </Layout>
+            </Authenticated>
+        }
+    >
+        <Route path="*" element={<ErrorPage />} />
+    </Route>
+```
+
+We can also omit the `fallback` property and let the default redirect flow handle the unauthenticated users.
+
+```tsx
+    <Route
+        element={
+            <Authenticated>
+                <Layout>
+                    <Outlet />
+                </Layout>
+            </Authenticated>
+        }
+    >
+        <Route path="*" element={<ErrorPage />} />
+    </Route>
+```
+
+This means we will look for the `redirectTo` property in the `authProvider`'s `check` method. If it's defined, `<Authenticated>` component will redirect the user to the `redirectTo` route.
+
 [routerprovider]: /api-reference/core/providers/router-provider.md

@@ -925,6 +925,36 @@ export const loader: LoaderFunction = async ({ params, request, context }) => {
 
 This needs to be done for all the routes that we want to protect.
 
+### Handling 404s
+
+In the earlier versions of **refine**, if `authProvider` was defined, we've redirected the users to the `/login` route even with the 404s and 404 pages were only available to the authenticated users. Now, the routes are handled by the users, so you can handle the 404s however you like.
+
+In remix, you can use a splat ($) route to handle the 404s. Check out the [remix docs](https://remix.run/docs/en/main/guides/routing#md-splats) for more information.
+
+**Using `loader`**
+
+```tsx title="app/routes/$.tsx"
+import { json, LoaderFunction } from "@remix-run/node";
+
+export const loader: LoaderFunction = async ({ params, request, context }) => {
+    return json({}, { status: 404 });
+};
+```
+
+**Using `Authenticated`**
+
+```tsx title="app/routes/$.tsx"
+import { Authenticated } from "@refinedev/core";
+
+export default function NotFound() {
+    return (
+        <Authenticated>
+            <div>I'm the 404 page for the authenticated users.</div>
+        </Authenticated>
+    )
+}
+```
+
 ## Example
 
 <CodeSandboxExample path="with-remix-antd" />

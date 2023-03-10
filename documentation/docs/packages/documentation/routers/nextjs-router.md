@@ -989,6 +989,63 @@ const Login: PageWithLayout = () => {
 Login.layout = "auth";
 ```
 
+### Handling 404s
+
+In the earlier versions of **refine**, if `authProvider` was defined, we've redirected the users to the `/login` route even with the 404s and 404 pages were only available to the authenticated users. Now, the routes are handled by the users, so you can handle the 404s however you like.
+
+#### Using the Next.js's 404 page
+
+If you want to use the Next.js's 404 page, you can create a `404.tsx` file in your `/pages` directory and it will be used as the 404 page. For more information, you can check the [Next.js documentation for custom 404 page](https://nextjs.org/docs/advanced-features/custom-error-page#404-page).
+
+#### Using an optional catch-all route
+
+If you want to achieve the legacy behavior or want to have more control over the unhandled routes, you can use the optional catch-all route. For more information, you can check the [Next.js documentation for optional catch-all route](https://nextjs.org/docs/routing/dynamic-routes#optional-catch-all-routes).
+
+You can use **refine**'s authentication hooks and the `authProvider` to check if the user is authenticated or not and redirect them to the login page. This check can be done on the client-side or server-side.
+
+**Client Side**
+
+```tsx title="pages/[[...slug]].tsx"
+import { Authenticated } from "@refinedev/core";
+
+export default function CatchAll() {
+    return (
+        // This will redirect the user if they're not authenticated depending on the response of `authProvider.check`.
+        <Authenticated>
+            <div>This page is not found.</div>
+        </Authenticated>
+    );
+}
+```
+
+**Server Side**
+
+```tsx title="pages/[[...slug]].tsx"
+import { authProvider } from "src/authProvider";
+
+export const getServerSideProps = async (context) => {
+    const { authenticated, redirectTo } = await authProvider.check(context);
+
+    if (!authenticated && redirectTo) {
+        return {
+            redirect: {
+                destination: redirectTo,
+                permanent: false,
+            },
+            props: {},
+        };
+    }
+
+    return {
+        props: {},
+    };
+};
+
+export default function CatchAll() {
+    return <div>This page is not found.</div>;
+}
+```
+
 ## Example (`/pages`)
 
 <CodeSandboxExample path="with-nextjs" />
