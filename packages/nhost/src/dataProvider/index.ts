@@ -186,7 +186,7 @@ const dataProvider = (
                         type: getIdType(resource),
                         required: true,
                     },
-                    ...metaData?.variables,
+                    ...meta?.variables,
                 },
                 fields: meta?.fields,
             });
