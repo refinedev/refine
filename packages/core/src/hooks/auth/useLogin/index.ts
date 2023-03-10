@@ -136,7 +136,7 @@ export function useLogin<TVariables = {}>({
                 open?.(buildNotification(error));
             }
 
-            if (to) {
+            if (to && success) {
                 if (routerType === "legacy") {
                     return replace(to as string);
                 } else {

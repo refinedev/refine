@@ -402,7 +402,7 @@ describe("useLogin Hook", () => {
             });
         });
 
-        expect(mockGo).toBeCalledWith({ type: "replace", to: "/show/posts/5" });
+        expect(mockGo).not.toBeCalled();
     });
 
     it("login rejected with undefined error", async () => {
