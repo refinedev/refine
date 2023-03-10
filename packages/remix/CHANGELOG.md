@@ -1,5 +1,11 @@
 # @pankod/refine-remix-router
 
+## 1.7.2
+
+### Patch Changes
+
+-   [#3779](https://github.com/refinedev/refine/pull/3779) [`2acb0cd8ad6`](https://github.com/refinedev/refine/commit/2acb0cd8ad6596e3bebb3f0b3a9843f3b5321398) Thanks [@aliemir](https://github.com/aliemir)! - Updated the broken `Prompt` with `useBlocker` instead of an unsafe workaround.
+
 ## 1.7.1
 
 ### Patch Changes
