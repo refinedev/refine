@@ -1,16 +1,39 @@
 import { Refine } from "@refinedev/core";
-
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+    LightTheme,
+    notificationProvider,
+    RefineSnackbarProvider,
+    WelcomePage,
+} from "@refinedev/mui";
+import { ThemeProvider } from "@mui/material/styles";
+import { CssBaseline, GlobalStyles } from "@mui/material";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine
-            legacyRouterProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-        />
+        <BrowserRouter>
+            <ThemeProvider theme={LightTheme}>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <RefineSnackbarProvider>
+                    <Refine
+                        routerProvider={routerProvider}
+                        dataProvider={dataProvider(API_URL)}
+                        notificationProvider={notificationProvider}
+                    >
+                        <Routes>
+                            <Route path="*" element={<WelcomePage />} />
+                        </Routes>
+                    </Refine>
+                </RefineSnackbarProvider>
+            </ThemeProvider>
+        </BrowserRouter>
     );
 };
 

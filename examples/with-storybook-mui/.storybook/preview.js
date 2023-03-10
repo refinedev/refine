@@ -1,17 +1,11 @@
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    MemoryRouterComponent,
-} from "@refinedev/react-router-v6/legacy";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { MemoryRouter, Routes, Route, Outlet } from "react-router-dom";
 import { useDarkMode } from "storybook-dark-mode";
-import {
-    DarkTheme,
-    LightTheme,
-    LoginPage,
-    ReadyPage,
-    ErrorComponent,
-} from "@refinedev/mui";
+import { DarkTheme, LightTheme, ErrorComponent } from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
+
 import { authProvider } from "../src/authProvider";
 
 export const parameters = {
@@ -32,53 +26,73 @@ export const parameters = {
 };
 
 export const RefineWithLayout = (Story) => (
-    <ThemeProvider theme={useDarkMode() ? DarkTheme : LightTheme}>
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            legacyAuthProvider={authProvider}
-            LoginPage={LoginPage}
-            ReadyPage={ReadyPage}
-            catchAll={ErrorComponent}
-            legacyRouterProvider={{
-                ...routerProvider,
-                RouterComponent: MemoryRouterComponent,
-            }}
-            resources={[
-                {
-                    name: "CMS",
-                },
-                {
-                    name: "posts",
-                    parentName: "CMS",
-                    list: Story,
-                },
-            ]}
-        />
-    </ThemeProvider>
+    <MemoryRouter>
+        <ThemeProvider theme={useDarkMode() ? DarkTheme : LightTheme}>
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                authProvider={authProvider}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "CMS",
+                    },
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        meta: {
+                            parent: "CMS",
+                        },
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route
+                        element={
+                            <Layout>
+                                <Outlet />
+                            </Layout>
+                        }
+                    >
+                        <Route index element={<NavigateToResource />} />
+
+                        <Route path="posts">
+                            <Route index element={<Story />} />
+                        </Route>
+                    </Route>
+                </Routes>
+            </Refine>
+        </ThemeProvider>
+    </MemoryRouter>
 );
 
 export const RefineWithoutLayout = (Story) => (
-    <ThemeProvider theme={useDarkMode() ? DarkTheme : LightTheme}>
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            legacyAuthProvider={authProvider}
-            LoginPage={LoginPage}
-            ReadyPage={ReadyPage}
-            catchAll={ErrorComponent}
-            legacyRouterProvider={{
-                ...routerProvider,
-                RouterComponent: MemoryRouterComponent,
-            }}
-            resources={[
-                {
-                    name: "CMS",
-                },
-                {
-                    name: "posts",
-                    parentName: "CMS",
-                    list: Story,
-                },
-            ]}
-        />
-    </ThemeProvider>
+    <MemoryRouter>
+        <ThemeProvider theme={useDarkMode() ? DarkTheme : LightTheme}>
+            <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                authProvider={authProvider}
+                routerProvider={routerProvider}
+                resources={[
+                    {
+                        name: "CMS",
+                    },
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        meta: {
+                            parent: "CMS",
+                        },
+                    },
+                ]}
+            >
+                <Routes>
+                    <Route index element={<NavigateToResource />} />
+
+                    <Route path="posts">
+                        <Route index element={<Story />} />
+                    </Route>
+                </Routes>
+            </Refine>
+        </ThemeProvider>
+    </MemoryRouter>
 );
