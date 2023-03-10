@@ -844,11 +844,7 @@ Finally, open the `Apx.tsx` file and paste the following code:
 
 ```typescript
 import { Refine, AuthBindings } from "@refinedev/core";
-import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@refinedev/antd";
+import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
 
@@ -883,7 +879,10 @@ const App: React.FC = () => {
                 redirectTo: "/",
             };
         },
-        onError: async () => ({}),
+        onError: async (error) => {
+            console.error(error);
+            return { error };
+        },
         check: async () => {
             try {
                 const token = await getIdTokenClaims();

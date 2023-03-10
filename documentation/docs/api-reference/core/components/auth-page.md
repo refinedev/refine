@@ -54,7 +54,10 @@ const authProvider = {
     check: async () => ({
         authenticated: window.__refineAuthStatus,
     }),
-    onError: async () => ({}),
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
     getPermissions: async () => ["admin"],
     getIdentity: async () => null,
 };
@@ -124,21 +127,17 @@ const App = () => {
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Authenticated
                                 fallback={<CatchAllNavigate to="/login" />}
                             >
-                                <Outlet/>
+                                <Outlet />
                             </Authenticated>
-                        )}
+                        }
                     >
                         <Route index element={<DashboardPage />} />
                     </Route>
-                    <Route
-                        element={(
-                            <Authenticated fallback={<Outlet />} />
-                        )}
-                    >
+                    <Route element={<Authenticated fallback={<Outlet />} />}>
                         {/* highlight-next-line */}
                         <Route path="/login" element={<AuthPage />} />
                     </Route>
@@ -188,21 +187,17 @@ const App = () => {
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Authenticated
                                 fallback={<CatchAllNavigate to="/login" />}
                             >
-                                <Outlet/>
+                                <Outlet />
                             </Authenticated>
-                        )}
+                        }
                     >
                         <Route index element={<DashboardPage />} />
                     </Route>
-                    <Route
-                        element={(
-                            <Authenticated fallback={<Outlet />} />
-                        )}
-                    >
+                    <Route element={<Authenticated fallback={<Outlet />} />}>
                         {/* highlight-next-line */}
                         <Route path="/login" element={<AuthPage />} />
                     </Route>
@@ -270,24 +265,23 @@ const App = () => {
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Authenticated
                                 fallback={<CatchAllNavigate to="/login" />}
                             >
-                                <Outlet/>
+                                <Outlet />
                             </Authenticated>
-                        )}
+                        }
                     >
                         <Route index element={<DashboardPage />} />
                     </Route>
-                    <Route
-                        element={(
-                            <Authenticated fallback={<Outlet />} />
-                        )}
-                    >
+                    <Route element={<Authenticated fallback={<Outlet />} />}>
                         <Route path="/login" element={<AuthPage />} />
                         {/* highlight-next-line */}
-                        <Route path="/register" element={<AuthPage type="register" />} />
+                        <Route
+                            path="/register"
+                            element={<AuthPage type="register" />}
+                        />
                     </Route>
                 </Routes>
             </Refine>
@@ -354,25 +348,27 @@ const App = () => {
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Authenticated
                                 fallback={<CatchAllNavigate to="/login" />}
                             >
-                                <Outlet/>
+                                <Outlet />
                             </Authenticated>
-                        )}
+                        }
                     >
                         <Route index element={<DashboardPage />} />
                     </Route>
-                    <Route
-                        element={(
-                            <Authenticated fallback={<Outlet />} />
-                        )}
-                    >
+                    <Route element={<Authenticated fallback={<Outlet />} />}>
                         <Route path="/login" element={<AuthPage />} />
-                        <Route path="/register" element={<AuthPage type="register" />} />
+                        <Route
+                            path="/register"
+                            element={<AuthPage type="register" />}
+                        />
                         {/* highlight-next-line */}
-                        <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                        <Route
+                            path="/forgot-password"
+                            element={<AuthPage type="forgotPassword" />}
+                        />
                     </Route>
                 </Routes>
             </Refine>
@@ -439,26 +435,31 @@ const App = () => {
             >
                 <Routes>
                     <Route
-                        element={(
+                        element={
                             <Authenticated
                                 fallback={<CatchAllNavigate to="/login" />}
                             >
-                                <Outlet/>
+                                <Outlet />
                             </Authenticated>
-                        )}
+                        }
                     >
                         <Route index element={<DashboardPage />} />
                     </Route>
-                    <Route
-                        element={(
-                            <Authenticated fallback={<Outlet />} />
-                        )}
-                    >
+                    <Route element={<Authenticated fallback={<Outlet />} />}>
                         <Route path="/login" element={<AuthPage />} />
-                        <Route path="/register" element={<AuthPage type="register" />} />
-                        <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+                        <Route
+                            path="/register"
+                            element={<AuthPage type="register" />}
+                        />
+                        <Route
+                            path="/forgot-password"
+                            element={<AuthPage type="forgotPassword" />}
+                        />
                         {/* highlight-next-line */}
-                        <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+                        <Route
+                            path="/update-password"
+                            element={<AuthPage type="updatePassword" />}
+                        />
                     </Route>
                 </Routes>
             </Refine>
@@ -523,8 +524,8 @@ const LoginPage = () => {
                 },
             ]}
         />
-    )
-}
+    );
+};
 ```
 
 ### `rememberMe`
@@ -548,14 +549,14 @@ const LoginPage = () => {
                         padding: 3,
                     }}
                 >
-                    <input name="CustomRememberMe" type="checkbox" />{" "}
-                    Custom remember me
+                    <input name="CustomRememberMe" type="checkbox" /> Custom
+                    remember me
                 </div>
             }
             // highlight-end
         />
-    )
-}
+    );
+};
 ```
 
 ### `loginLink`
@@ -584,8 +585,8 @@ const MyRegisterPage = () => {
             }
             // highlight-end
         />
-    )
-}
+    );
+};
 ```
 
 ### `registerLink`
@@ -615,8 +616,8 @@ const MyLoginPage = () => {
             }
             // highlight-end
         />
-    )
-}
+    );
+};
 ```
 
 ### `forgotPasswordLink`
@@ -646,8 +647,8 @@ const MyLoginPage = () => {
             }
             // highlight-end
         />
-    )
-}
+    );
+};
 ```
 
 ### `wrapperProps`
@@ -673,8 +674,8 @@ const MyLoginPage = () => {
             }}
             // highlight-end
         />
-    )
-}
+    );
+};
 ```
 
 ### `contentProps`
@@ -695,8 +696,8 @@ const MyLoginPage = () => {
             }}
             // highlight-end
         />
-    )
-}
+    );
+};
 ```
 
 ### `formProps`
@@ -726,8 +727,8 @@ const MyLoginPage = () => {
             }}
             // highlight-end
         />
-    )
-}
+    );
+};
 ```
 
 ### `renderContent`
@@ -758,8 +759,8 @@ const MyLoginPage = () => {
             }}
             // highlight-end
         />
-    )
-}
+    );
+};
 ```
 
 ## API Reference

@@ -64,7 +64,10 @@ const authProvider: AuthBindings = {
             };
         }
     },
-    onError: async () => ({}),
+    onError: async (error) => {
+        console.error(error);
+        return { error };
+    },
     check: async () => {
         try {
             await refineSDK.auth.getSessionFromUrl();

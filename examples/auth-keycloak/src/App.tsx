@@ -52,7 +52,10 @@ const App: React.FC = () => {
                 };
             }
         },
-        onError: async () => ({}),
+        onError: async (error) => {
+            console.error(error);
+            return { error };
+        },
         check: async () => {
             try {
                 const { token } = keycloak;

@@ -46,7 +46,10 @@ const App: React.FC = () => {
             localStorage.removeItem("email");
             return { redirectTo: "/login", success: true };
         },
-        onError: async () => ({}),
+        onError: async (error) => {
+            console.error(error);
+            return { error };
+        },
         check: async () =>
             localStorage.getItem("email")
                 ? {
